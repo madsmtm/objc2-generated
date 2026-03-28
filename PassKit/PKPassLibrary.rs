@@ -229,6 +229,10 @@ impl PKPassLibrary {
         #[unsafe(method_family = none)]
         pub unsafe fn openPaymentSetup(&self);
 
+        #[unsafe(method(openPaymentSetupWithMerchantIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn openPaymentSetupWithMerchantIdentifier(&self, merchant_identifier: &NSString);
+
         #[cfg(all(
             feature = "PKObject",
             feature = "PKPass",

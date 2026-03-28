@@ -154,6 +154,8 @@ pub use self::__AXSettings::AXAssistiveAccessEnabled;
 #[cfg(all(feature = "AXSettings", feature = "block2"))]
 pub use self::__AXSettings::AXOpenSettingsFeature;
 #[cfg(feature = "AXSettings")]
+pub use self::__AXSettings::AXOpenSettingsFeatureIsSupported;
+#[cfg(feature = "AXSettings")]
 pub use self::__AXSettings::AXPrefersActionSliderAlternative;
 #[cfg(feature = "AXSettings")]
 pub use self::__AXSettings::AXPrefersActionSliderAlternativeDidChangeNotification;
@@ -165,6 +167,10 @@ pub use self::__AXSettings::AXPrefersHorizontalTextLayoutDidChangeNotification;
 pub use self::__AXSettings::AXPrefersNonBlinkingTextInsertionIndicator;
 #[cfg(feature = "AXSettings")]
 pub use self::__AXSettings::AXPrefersNonBlinkingTextInsertionIndicatorDidChangeNotification;
+#[cfg(feature = "AXSettings")]
+pub use self::__AXSettings::AXReduceHighlightingEffectsEnabled;
+#[cfg(feature = "AXSettings")]
+pub use self::__AXSettings::AXReduceHighlightingEffectsEnabledDidChangeNotification;
 #[cfg(feature = "AXSettings")]
 pub use self::__AXSettings::AXSettingsFeature;
 #[cfg(feature = "AXSettings")]

@@ -2169,6 +2169,8 @@ impl DefaultRetained for XCTContext {
 /// matching expected failure and the stack is cleaned up by the test after it runs. If a failure is expected
 /// but none is recorded, a distinct failure for the unmatched expected failure will be recorded instead.
 ///
+/// By default XCTExpectFailure matches all issues, including issues with warning severity.
+///
 /// Threading considerations: when XCTExpectFailure is called on the test's primary thread it will match against
 /// any issue recorded on any thread. When XCTExpectFailure is called on any other thread, it will only match
 /// against issues recorded on the same thread.
@@ -2280,7 +2282,7 @@ impl XCTExpectedFailureOptions {
         /// An optional filter can be used to determine whether or not an issue recorded inside an expected
         /// failure block should be matched to the expected failure. Issues that are not matched to an expected
         /// failure will be recorded as normal issues (real test failures). By default the filter is nil and
-        /// all issues are matched.
+        /// all issues are matched, including issues with warning severity.
         ///
         /// # Safety
         ///

@@ -108,6 +108,22 @@ impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
             &self,
             resident_key_preference: &ASAuthorizationPublicKeyCredentialResidentKeyPreference,
         );
+
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationInput")]
+        #[unsafe(method(prf))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prf(
+            &self,
+        ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFRegistrationInput>>;
+
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationInput")]
+        /// Setter for [`prf`][Self::prf].
+        #[unsafe(method(setPrf:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPrf(
+            &self,
+            prf: Option<&ASAuthorizationPublicKeyCredentialPRFRegistrationInput>,
+        );
     );
 }
 

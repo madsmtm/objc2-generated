@@ -350,6 +350,8 @@ pub use self::__CTFontDescriptor::kCTFontCascadeListAttribute;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontCharacterSetAttribute;
 #[cfg(feature = "CTFontDescriptor")]
+pub use self::__CTFontDescriptor::kCTFontDescriptorLanguageAttribute;
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDescriptorMatchingCurrentAssetSize;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDescriptorMatchingDescriptors;

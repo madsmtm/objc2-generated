@@ -140,6 +140,12 @@ mod __PKPassRelevantDate;
 #[cfg(feature = "PKPass_Types")]
 #[path = "PKPass_Types.rs"]
 mod __PKPass_Types;
+#[cfg(feature = "PKPayLaterValidator")]
+#[path = "PKPayLaterValidator.rs"]
+mod __PKPayLaterValidator;
+#[cfg(feature = "PKPayLaterView")]
+#[path = "PKPayLaterView.rs"]
+mod __PKPayLaterView;
 #[cfg(feature = "PKPayment")]
 #[path = "PKPayment.rs"]
 mod __PKPayment;
@@ -326,6 +332,8 @@ pub use self::__PKConstants::PKPaymentNetworkDankort;
 pub use self::__PKConstants::PKPaymentNetworkDiscover;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkEftpos;
+#[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkElCorteIngles;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkElectron;
 #[cfg(feature = "PKConstants")]

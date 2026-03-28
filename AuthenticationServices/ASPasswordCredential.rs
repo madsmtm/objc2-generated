@@ -13,6 +13,10 @@ extern_class!(
     pub struct ASPasswordCredential;
 );
 
+unsafe impl Send for ASPasswordCredential {}
+
+unsafe impl Sync for ASPasswordCredential {}
+
 #[cfg(feature = "ASAuthorizationCredential")]
 extern_conformance!(
     unsafe impl ASAuthorizationCredential for ASPasswordCredential {}
@@ -68,6 +72,12 @@ impl ASPasswordCredential {
         /// The user name of this credential.
         ///
         /// Returns: The user string.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(user))]
         #[unsafe(method_family = none)]
         pub unsafe fn user(&self) -> Retained<NSString>;
@@ -75,6 +85,12 @@ impl ASPasswordCredential {
         /// The password of this credential.
         ///
         /// Returns: The password string.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(password))]
         #[unsafe(method_family = none)]
         pub unsafe fn password(&self) -> Retained<NSString>;

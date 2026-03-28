@@ -163,6 +163,8 @@ pub use self::__FSVolume::FSDirectoryVerifierInitial;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSItemDeactivationOptions;
 #[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSMountOptions;
+#[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSPreallocateFlags;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSSetXattrPolicy;

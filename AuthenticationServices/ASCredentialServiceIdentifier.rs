@@ -39,6 +39,10 @@ extern_class!(
     pub struct ASCredentialServiceIdentifier;
 );
 
+unsafe impl Send for ASCredentialServiceIdentifier {}
+
+unsafe impl Sync for ASCredentialServiceIdentifier {}
+
 extern_conformance!(
     unsafe impl NSCoding for ASCredentialServiceIdentifier {}
 );
@@ -92,6 +96,12 @@ impl ASCredentialServiceIdentifier {
         /// A user visible name for the identifier. For `app` types it will contain the localized name of the app. For `URL` types it will contain the host name of the URL if it contains a valid host.
         /// For `URL` type identifiers that do not contain a valid host and for `domain` type identifiers, this will be equal to `identifier`.
         /// This property is meant only as a best effort suggestion for display purposes. It is not used by the system to identify the service or suggest a credential for AutoFill.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
@@ -99,6 +109,12 @@ impl ASCredentialServiceIdentifier {
         /// Get the identifier.
         ///
         /// Returns: The service identifier.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
@@ -106,6 +122,12 @@ impl ASCredentialServiceIdentifier {
         /// Get the service identifier type.
         ///
         /// Returns: The service identifier type.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> ASCredentialServiceIdentifierType;

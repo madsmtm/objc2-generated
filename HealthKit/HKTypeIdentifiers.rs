@@ -1070,17 +1070,23 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdatatypeidentifierstateofmind?language=objc)
+    /// A state of mind type that records the user's mental health
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdatatypeidentifierstateofmind?language=objc)
     pub static HKDataTypeIdentifierStateOfMind: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseeventtypeidentifiermedicationdoseevent?language=objc)
+    /// A medication dose event type that represents a single dose administration for a medication.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseeventtypeidentifiermedicationdoseevent?language=objc)
     pub static HKMedicationDoseEventTypeIdentifierMedicationDoseEvent: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdatatypeidentifieruserannotatedmedicationconcept?language=objc)
+    /// The user annotated medication type that represents a medication concept.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdatatypeidentifieruserannotatedmedicationconcept?language=objc)
     pub static HKDataTypeIdentifierUserAnnotatedMedicationConcept: &'static NSString;
 }
 

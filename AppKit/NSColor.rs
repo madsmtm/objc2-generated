@@ -598,30 +598,27 @@ impl NSColor {
         #[unsafe(method_family = none)]
         pub fn systemCyanColor() -> Retained<NSColor>;
 
-        /// Fill colors for UI elements.
-        /// These are meant to be used over the background colors, since their alpha component is less than 1.
-        ///
-        /// systemFillColor is appropriate for filling thin shapes, such as the track of a slider.
+        /// A color appropriate for filling thin shapes, such as the track of a slider.
         #[unsafe(method(systemFillColor))]
         #[unsafe(method_family = none)]
         pub fn systemFillColor() -> Retained<NSColor>;
 
-        /// secondarySystemFillColor is appropriate for filling small-size shapes, such as the backing of a progress indicator.
+        /// A color appropriate for filling small-size shapes, such as the backing of a progress indicator.
         #[unsafe(method(secondarySystemFillColor))]
         #[unsafe(method_family = none)]
         pub fn secondarySystemFillColor() -> Retained<NSColor>;
 
-        /// tertiarySystemFillColor is appropriate for filling medium-size shapes,  such as the backing of a switch.
+        /// A color appropriate for filling medium-size shapes, such as the backing of a switch.
         #[unsafe(method(tertiarySystemFillColor))]
         #[unsafe(method_family = none)]
         pub fn tertiarySystemFillColor() -> Retained<NSColor>;
 
-        /// quaternarySystemFillColor is appropriate for filling large areas, such as a group box or tab pane.
+        /// A color appropriate for filling large areas, such as a group box or tab pane.
         #[unsafe(method(quaternarySystemFillColor))]
         #[unsafe(method_family = none)]
         pub fn quaternarySystemFillColor() -> Retained<NSColor>;
 
-        /// quinarySystemFillColor is appropriate for filling large areas that require subtle emphasis, such as content of a form..
+        /// A color appropriate for filling large areas that require subtle emphasis, such as content of a form.
         #[unsafe(method(quinarySystemFillColor))]
         #[unsafe(method_family = none)]
         pub fn quinarySystemFillColor() -> Retained<NSColor>;

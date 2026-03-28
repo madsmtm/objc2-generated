@@ -133,7 +133,7 @@ impl SBApplication {
         /// - pid: A BSD process ID specifying an application that is OSA-compliant.
         /// Often you can get the process ID of a process using the
         /// <doc
-        /// ://com.apple.documentation/documentation/foundation/nstask/1412022-processidentifier>
+        /// ://com.apple.documentation/documentation/Foundation/Process/processIdentifier>
         /// method of `NSTask`.
         ///
         /// - Returns: An initialized `SBApplication` that you can use to communicate
@@ -209,7 +209,7 @@ impl SBApplication {
         /// - pid: The BSD process ID of a OSA-compliant application. Often you can get
         /// the process ID of a process using the
         /// <doc
-        /// ://com.apple.documentation/documentation/foundation/nstask/1412022-processidentifier>
+        /// ://com.apple.documentation/documentation/Foundation/Process/processIdentifier>
         /// method of `NSTask`.
         ///
         /// - Returns: An instance of an `SBApplication` subclass that represents the
@@ -229,7 +229,7 @@ impl SBApplication {
         /// have the class object, you may allocate an instance of the class and
         /// appropriately the raw instance. Or you may use it in a call to
         /// <doc
-        /// ://com.apple.documentation/documentation/objectivec/1418956-nsobject/1418511-iskindofclass>
+        /// ://com.apple.documentation/documentation/ObjectiveC/NSObjectProtocol/isKind(of:)>
         /// to determine the class type of an object.
         ///
         /// - Parameters:
@@ -472,7 +472,7 @@ extern_protocol!(
         ///
         /// - Returns: If you return a result, it will become the result of the
         /// <doc
-        /// ://com.apple.documentation/documentation/appkit/nsapplication/1428359-sendevent>
+        /// ://com.apple.documentation/documentation/AppKit/NSApplication/sendEvent(_:)>
         /// that failed. Can be `nil`.
         ///
         /// # Safety

@@ -22,44 +22,35 @@ extern_class!(
 
 #[cfg(feature = "CPListImageRowItemElement")]
 extern_conformance!(
+    unsafe impl NSCoding for CPListImageRowItemCardElement {}
+);
+
+#[cfg(feature = "CPListImageRowItemElement")]
+extern_conformance!(
     unsafe impl NSObjectProtocol for CPListImageRowItemCardElement {}
+);
+
+#[cfg(feature = "CPListImageRowItemElement")]
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPListImageRowItemCardElement {}
 );
 
 #[cfg(feature = "CPListImageRowItemElement")]
 impl CPListImageRowItemCardElement {
     extern_methods!(
         #[cfg(feature = "objc2-ui-kit")]
-        /// Initialize an element that is constituted of an image, boolean to entirely cover the element with the image, title, subtitle and a tint color.
-        ///
-        /// When providing an image, your app should provide a
-        /// `UIImage`that is display-ready. If necessary for the image, provide
-        /// light and dark styles by using an asset from your asset catalog, prepared with light and dark styles
-        /// or by using
-        /// `UIImageAsset`to combine two
-        /// `UIImage`instances into a single image with
-        /// both styles.
-        ///
-        /// UIImageAsset is used to combine multiple UIImages with different trait collections into a single UIImage.
+        /// Initialize a card element with an image.
         ///
         ///
-        /// Note: The expected image size is given by +[CPListImageRowItemCardElement maximumImageSize] or by +[CPListImageRowItemCardElement maximumFullHeightImageSize] if
-        /// `showsImageFullHeight`is true. Images provided will be resized to this size if necessary.
+        /// Parameter `image`: The image to display in the card.
         ///
+        /// Parameter `showsImageFullHeight`: Whether the image should fill the full height of the card.
         ///
-        /// To properly size your images, your app should size them to the display scale of the car screen.
-        /// See -[CPInterfaceController carTraitCollection].
+        /// Parameter `title`: The title text for the card.
         ///
+        /// Parameter `subtitle`: The subtitle text for the card.
         ///
-        /// Parameter `image`: The image associated to the element.
-        ///
-        /// Parameter `showsImageFullHeight`: Determines if the image should entirely cover the card
-        ///
-        /// Parameter `title`: The title of the element.
-        ///
-        /// Parameter `subtitle`: The subtitle of the element.
-        ///
-        /// Parameter `tintColor`: The color used as background if
-        /// `showsImageFullHeight`is true, part of the gradient color at the bottom of the card otherwise.
+        /// Parameter `tintColor`: The tint color for the card.
         #[unsafe(method(initWithImage:showsImageFullHeight:title:subtitle:tintColor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_showsImageFullHeight_title_subtitle_tintColor(
@@ -70,6 +61,42 @@ impl CPListImageRowItemCardElement {
             subtitle: Option<&NSString>,
             tint_color: Option<&UIColor>,
         ) -> Retained<Self>;
+
+        #[cfg(all(feature = "CPThumbnailImage", feature = "objc2-ui-kit"))]
+        /// Initialize an element with a thumbnail, title, subtitle, and tint color.
+        ///
+        /// This initializer uses a CPThumbnailImage which encapsulates the image, aspect ratio,
+        /// image, and sports overlay information.
+        ///
+        ///
+        /// Parameter `thumbnail`: The thumbnail containing image, aspect ratio, image, and sports overlay information.
+        ///
+        /// Parameter `title`: The title of the element.
+        ///
+        /// Parameter `subtitle`: The subtitle of the element.
+        ///
+        /// Parameter `tintColor`: The color used for styling the element.
+        #[unsafe(method(initWithThumbnail:title:subtitle:tintColor:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithThumbnail_title_subtitle_tintColor(
+            this: Allocated<Self>,
+            thumbnail: &CPThumbnailImage,
+            title: Option<&NSString>,
+            subtitle: Option<&NSString>,
+            tint_color: Option<&UIColor>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "CPThumbnailImage")]
+        /// The thumbnail associated with this element.
+        #[unsafe(method(thumbnail))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn thumbnail(&self) -> Option<Retained<CPThumbnailImage>>;
+
+        #[cfg(feature = "CPThumbnailImage")]
+        /// Setter for [`thumbnail`][Self::thumbnail].
+        #[unsafe(method(setThumbnail:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setThumbnail(&self, thumbnail: Option<&CPThumbnailImage>);
 
         /// The title associated with this element.
         #[unsafe(method(title))]

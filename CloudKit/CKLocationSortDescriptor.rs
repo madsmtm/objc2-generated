@@ -9,7 +9,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cklocationsortdescriptor?language=objc)
+    /// An object for sorting records that contain location data.
+    ///
+    /// You can add a location sort descriptor to your queries when searching for records. At creation time, you must provide the sort descriptor with a key that has a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corelocation/cllocation> object as its value. The sort descriptor uses the value of that key to perform the sort.
+    ///
+    /// CloudKit computes distance by drawing a direct line between the two locations that follows the curvature of the Earth. Distances don't account for altitude changes between the two locations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cklocationsortdescriptor?language=objc)
     #[unsafe(super(NSSortDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKLocationSortDescriptor;
@@ -42,6 +50,15 @@ impl CKLocationSortDescriptor {
         // +new (unavailable)
 
         #[cfg(feature = "objc2-core-location")]
+        /// Creates a location sort descriptor using the specified key and relative location.
+        ///
+        /// - Parameters:
+        /// - key: The name of the key with a
+        /// <doc
+        /// ://com.apple.documentation/documentation/corelocation/cllocation> object as its value. The key must belong to the records you're sorting. The sort descriptor uses this key to retrieve the corresponding value from the record.
+        /// - relativeLocation: The reference location when sorting. CloudKit sorts records according to their distance from this location.
+        ///
+        /// During sorting, the sort descriptor computes the distance between the value in the `relativeLocation` parameter and the location value in the specified key of each record. It then sorts the records in ascending order using the distance between the two points. You can't change the sort order.
         #[unsafe(method(initWithKey:relativeLocation:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKey_relativeLocation(
@@ -50,6 +67,11 @@ impl CKLocationSortDescriptor {
             relative_location: &CLLocation,
         ) -> Retained<Self>;
 
+        /// Creates a location sort descriptor from a serialized instance.
+        ///
+        /// - Parameters:
+        /// - aDecoder: The coder to use when deserializing the location sort descriptor.
+        ///
         /// # Safety
         ///
         /// `a_decoder` possibly has further requirements.
@@ -58,6 +80,7 @@ impl CKLocationSortDescriptor {
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
+        /// The reference location for sorting records.
         #[unsafe(method(relativeLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn relativeLocation(&self) -> Retained<CLLocation>;

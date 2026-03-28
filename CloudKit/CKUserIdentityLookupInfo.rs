@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckuseridentitylookupinfo?language=objc)
+    /// The criteria to use when searching for discoverable iCloud users.
+    ///
+    /// Use this object when you want to discover the identities of your app's users with ``CKDiscoverUserIdentitiesOperation``, or to create a share's participants with ``CKFetchShareParticipantsOperation``.
+    ///
+    /// You create individual instances by providing an email address, phone number, or user record ID. Alternatively, create an array of objects all at once by using one of the convenience methods, such as ``lookupInfos(withEmails:)``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckuseridentitylookupinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKUserIdentityLookupInfo;
@@ -39,6 +45,12 @@ impl CKUserIdentityLookupInfo {
 
         // +new (unavailable)
 
+        /// Creates a lookup info for the specified email address.
+        ///
+        /// - Parameters:
+        /// - emailAddress: The email address for looking up the user identity.
+        ///
+        /// After you create a lookup info, use the ``CKDiscoverUserIdentitiesOperation`` operation or the  ``CKFetchShareParticipantsOperation`` operation to retrieve the corresponding user identity.
         #[unsafe(method(initWithEmailAddress:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEmailAddress(
@@ -46,6 +58,12 @@ impl CKUserIdentityLookupInfo {
             email_address: &NSString,
         ) -> Retained<Self>;
 
+        /// Creates a lookup info for the specified phone number.
+        ///
+        /// - Parameters:
+        /// - phoneNumber: The phone number for looking up the user identity.
+        ///
+        /// After you create a lookup info, use the ``CKDiscoverUserIdentitiesOperation`` operation or the  ``CKFetchShareParticipantsOperation`` operation to retrieve the corresponding user identity.
         #[unsafe(method(initWithPhoneNumber:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPhoneNumber(
@@ -54,6 +72,12 @@ impl CKUserIdentityLookupInfo {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
+        /// Creates a lookup info for the specified user record ID.
+        ///
+        /// - Parameters:
+        /// - userRecordID: The user record ID for looking up the user identity.
+        ///
+        /// After you create a lookup info, use the ``CKDiscoverUserIdentitiesOperation`` operation or the  ``CKFetchShareParticipantsOperation`` operation to retrieve the corresponding user identity.
         #[unsafe(method(initWithUserRecordID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUserRecordID(
@@ -61,12 +85,24 @@ impl CKUserIdentityLookupInfo {
             user_record_id: &CKRecordID,
         ) -> Retained<Self>;
 
+        /// Returns an array of lookup infos for the specified email addresses.
+        ///
+        /// - Parameters:
+        /// - emails: The email addresses for looking up the user identities.
+        ///
+        /// Use the values that this method returns in an ``CKDiscoverUserIdentitiesOperation`` operation or an  ``CKFetchShareParticipantsOperation`` operation to retrieve the corresponding user identities.
         #[unsafe(method(lookupInfosWithEmails:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lookupInfosWithEmails(
             emails: &NSArray<NSString>,
         ) -> Retained<NSArray<CKUserIdentityLookupInfo>>;
 
+        /// Returns an array of lookup infos for the specified phone numbers.
+        ///
+        /// - Parameters:
+        /// - phoneNumbers: The phone numbers for looking up the user identities.
+        ///
+        /// Use the values that this method returns in an ``CKDiscoverUserIdentitiesOperation`` operation or an  ``CKFetchShareParticipantsOperation`` operation to retrieve the corresponding user identities.
         #[unsafe(method(lookupInfosWithPhoneNumbers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lookupInfosWithPhoneNumbers(
@@ -74,21 +110,32 @@ impl CKUserIdentityLookupInfo {
         ) -> Retained<NSArray<CKUserIdentityLookupInfo>>;
 
         #[cfg(feature = "CKRecordID")]
+        /// Returns an array of lookup infos for the specified user record IDs.
+        ///
+        /// - Parameters:
+        /// - recordIDs: The user record IDs for looking up the user identities.
+        ///
+        /// Use the values that this method returns in an ``CKDiscoverUserIdentitiesOperation`` operation or an  ``CKFetchShareParticipantsOperation`` operation to retrieve the corresponding user identities.
         #[unsafe(method(lookupInfosWithRecordIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lookupInfosWithRecordIDs(
             record_i_ds: &NSArray<CKRecordID>,
         ) -> Retained<NSArray<CKUserIdentityLookupInfo>>;
 
+        /// The user's email address.
         #[unsafe(method(emailAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn emailAddress(&self) -> Option<Retained<NSString>>;
 
+        /// The user's phone number.
         #[unsafe(method(phoneNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn phoneNumber(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CKRecordID")]
+        /// The ID of the user record.
+        ///
+        /// Use this value to retrieve the user record for the user identity. The user record doesn't contain any personal information about the user, by default. You can add data to the user record, but you shouldn't add anything sensitive.
         #[unsafe(method(userRecordID))]
         #[unsafe(method_family = none)]
         pub unsafe fn userRecordID(&self) -> Option<Retained<CKRecordID>>;

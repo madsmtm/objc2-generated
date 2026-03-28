@@ -80,6 +80,8 @@ pub use self::__CTCellularData::CellularDataRestrictionDidUpdateNotifier;
 #[cfg(feature = "CTCellularPlanProperties")]
 pub use self::__CTCellularPlanProperties::CTCellularPlanCapability;
 #[cfg(feature = "CTCellularPlanProperties")]
+pub use self::__CTCellularPlanProperties::CTCellularPlanLifecycleProperties;
+#[cfg(feature = "CTCellularPlanProperties")]
 pub use self::__CTCellularPlanProperties::CTCellularPlanProperties;
 #[cfg(feature = "CTCellularPlanProvisioning")]
 pub use self::__CTCellularPlanProvisioning::CTCellularPlanProvisioning;

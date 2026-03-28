@@ -16,7 +16,7 @@ extern_class!(
     ///
     /// - Note: To enable macOS clients to fetch metadata for remote URLs, add the
     /// <doc
-    /// ://com.apple.documentation/documentation/bundleresources/entitlements/com_apple_security_network_client>
+    /// ://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.client>
     /// entitlement.
     ///
     /// ## Fetch link metadata from a URL

@@ -438,6 +438,17 @@ impl NSPersistentStoreCoordinator {
             options: Option<&NSDictionary>,
         ) -> Result<(), Retained<NSError>>;
 
+        #[cfg(feature = "NSManagedObjectModel")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
+        #[unsafe(method(cachedModelForPersistentStoreAtURL:options:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn cachedModelForPersistentStoreAtURL_options_error(
+            url: &NSURL,
+            options: Option<&NSDictionary>,
+        ) -> Result<Retained<NSManagedObjectModel>, Retained<NSError>>;
+
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[unsafe(method(elementsDerivedFromExternalRecordURL:))]
         #[unsafe(method_family = none)]

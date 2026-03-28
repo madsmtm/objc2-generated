@@ -818,6 +818,10 @@ pub use self::__MTLDevice::MTLCreateSystemDefaultDevice;
 #[cfg(feature = "MTLDevice")]
 pub use self::__MTLDevice::MTLDevice;
 #[cfg(feature = "MTLDevice")]
+pub use self::__MTLDevice::MTLDeviceError;
+#[cfg(feature = "MTLDevice")]
+pub use self::__MTLDevice::MTLDeviceErrorDomain;
+#[cfg(feature = "MTLDevice")]
 pub use self::__MTLDevice::MTLDeviceLocation;
 #[cfg(all(feature = "MTLDevice", feature = "block2"))]
 pub use self::__MTLDevice::MTLDeviceNotificationHandler;

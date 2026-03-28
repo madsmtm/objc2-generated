@@ -331,7 +331,7 @@ impl MPSGraphExecutable {
         /// Use this method to choose when specialization happens, else it occurs at encode time automatically.
         ///
         /// - Parameters:
-        /// - device:Ooptional MPSGraph device to compile with.
+        /// - device:Optional MPSGraph device to compile with.
         /// - inputTypes: Input types expected to be passed to the executable.
         /// - compilationDescriptor: Compilation descriptor to be used to specialize, since the executable was created with a compilationDescriptor already this one overrides those settings to the extent it can.
         #[unsafe(method(specializeWithDevice:inputTypes:compilationDescriptor:))]

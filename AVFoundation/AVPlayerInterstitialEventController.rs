@@ -378,6 +378,11 @@ impl AVPlayerInterstitialEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn assetListResponse(&self) -> Option<Retained<NSDictionary>>;
 
+        /// The identifier of the daterange-schedule that produced this event. nil if the event was not a product of a daterange-schedule.
+        #[unsafe(method(scheduleIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn scheduleIdentifier(&self) -> Option<Retained<NSString>>;
+
         /// Indicates this event's occupancy on AVPlayerItemIntegratedTimeline. The default value is AVPlayerInterstitialEventTimelineSinglePointOccupancy.
         #[unsafe(method(timelineOccupancy))]
         #[unsafe(method_family = none)]
@@ -716,6 +721,40 @@ extern "C" {
         &'static NSString;
 }
 
+extern "C" {
+    /// A notification that is posted whenever a daterange-schedule request completes.
+    ///
+    /// The userInfo dictionary can contain the following keys and values:
+    /// 1. AVPlayerInterstitialEventMonitorScheduleRequestIdentifierKey, whose value is an NSString identifying the schedule.
+    /// 2. AVPlayerInterstitialEventMonitorScheduleRequestResponseKey, whose value is an NSData carrying the JSON response. Absent if request failed.
+    /// 3. AVPlayerInterstitialEventMonitorScheduleRequestErrorKey, whose value is an NSError.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorschedulerequestcompletednotification?language=objc)
+    pub static AVPlayerInterstitialEventMonitorScheduleRequestCompletedNotification:
+        &'static NSNotificationName;
+}
+
+extern "C" {
+    /// userInfo dictionary key for the AVPlayerInterstitialEventMonitorScheduleRequestCompletedNotification. Value is NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorschedulerequestidentifierkey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorScheduleRequestIdentifierKey: &'static NSString;
+}
+
+extern "C" {
+    /// userInfo dictionary key for the AVPlayerInterstitialEventMonitorScheduleRequestCompletedNotification. Value is NSData. Absent if the request failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorschedulerequestresponsekey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorScheduleRequestResponseKey: &'static NSString;
+}
+
+extern "C" {
+    /// userInfo dictionary key for the AVPlayerInterstitialEventMonitorScheduleRequestCompletedNotification. Value is NSError. Absent if the request succeeded
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorschedulerequesterrorkey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorScheduleRequestErrorKey: &'static NSString;
+}
+
 extern_class!(
     /// An AVPlayerInterstitialEventController allows you to specify a schedule of interstitial events for items played by a primary player. By creating an instance of AVPlayerInterstitialEventController and setting a schedule of interstitial events, you pre-empt directives the are intrinsic to the items played by the primary player, if any exist, causing them to be ignored.
     ///
@@ -905,5 +944,10 @@ impl AVPlayerItem {
         #[unsafe(method(templatePlayerItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn templatePlayerItem(&self) -> Option<Retained<AVPlayerItem>>;
+
+        /// The identifier of the AVPlayerInterstitialEvent that created this item, or nil if the item was not created from an interstitial event.
+        #[unsafe(method(interstitialEventIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn interstitialEventIdentifier(&self) -> Option<Retained<NSString>>;
     );
 }

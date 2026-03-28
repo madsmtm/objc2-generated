@@ -204,7 +204,9 @@ impl NSLevelIndicator {
         pub fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
 
         #[cfg(feature = "NSColor")]
-        /// Sets the fill color used by Continuous and Discrete Capacity indicators when drawing the "normal" state, and by the Rating indicator when drawing stars. The default value is a system-defined color which may vary between level indicator styles and OS releases.
+        /// Sets the fill color used by Continuous and Discrete Capacity indicators when drawing the "normal" state, and by the rating indicator when drawing stars.
+        ///
+        /// The default value is a system-defined color which may vary between level indicator styles and OS releases.
         #[unsafe(method(fillColor))]
         #[unsafe(method_family = none)]
         pub fn fillColor(&self) -> Retained<NSColor>;
@@ -218,7 +220,9 @@ impl NSLevelIndicator {
         pub fn setFillColor(&self, fill_color: Option<&NSColor>);
 
         #[cfg(feature = "NSColor")]
-        /// Sets the fill color used by Continuous and Discrete Capacity indicators when drawing values above the "warning" threshold. The default value is a system-defined color which may vary between level indicator styles and OS releases.
+        /// Sets the fill color used by Continuous and Discrete Capacity indicators when drawing values above the "warning" threshold.
+        ///
+        /// The default value is a system-defined color which may vary between level indicator styles and OS releases.
         #[unsafe(method(warningFillColor))]
         #[unsafe(method_family = none)]
         pub fn warningFillColor(&self) -> Retained<NSColor>;
@@ -232,7 +236,9 @@ impl NSLevelIndicator {
         pub fn setWarningFillColor(&self, warning_fill_color: Option<&NSColor>);
 
         #[cfg(feature = "NSColor")]
-        /// Sets the fill color used by Continuous and Discrete Capacity indicators when drawing values above the "critical" threshold. The default value is a system-defined color which may vary between level indicator styles and OS releases.
+        /// Sets the fill color used by Continuous and Discrete Capacity indicators when drawing values above the "critical" threshold.
+        ///
+        /// The default value is a system-defined color which may vary between level indicator styles and OS releases.
         #[unsafe(method(criticalFillColor))]
         #[unsafe(method_family = none)]
         pub fn criticalFillColor(&self) -> Retained<NSColor>;
@@ -254,8 +260,10 @@ impl NSLevelIndicator {
         #[unsafe(method_family = none)]
         pub fn setDrawsTieredCapacityLevels(&self, draws_tiered_capacity_levels: bool);
 
-        /// For a Rating-style indicator, sets the conditions under which Rating placeholders are displayed. This property currently has no effect for other indicator styles. The default value is
-        /// `NSLevelIndicatorPlaceholderVisibilityAutomatic.`
+        /// For a rating-style indicator, sets the conditions under which rating placeholders are displayed.
+        ///
+        /// This property currently has no effect for other indicator styles.
+        /// The default value is `NSLevelIndicatorPlaceholderVisibilityAutomatic`.
         #[unsafe(method(placeholderVisibility))]
         #[unsafe(method_family = none)]
         pub fn placeholderVisibility(&self) -> NSLevelIndicatorPlaceholderVisibility;
@@ -269,7 +277,9 @@ impl NSLevelIndicator {
         );
 
         #[cfg(feature = "NSImage")]
-        /// If non-nil, sets the image used by the Rating indicator style in place of the default star image. The default value is nil.
+        /// Sets the image used by the rating indicator style in place of the default star image.
+        ///
+        /// The default value is `nil`.
         #[unsafe(method(ratingImage))]
         #[unsafe(method_family = none)]
         pub fn ratingImage(&self) -> Option<Retained<NSImage>>;
@@ -281,11 +291,11 @@ impl NSLevelIndicator {
         pub fn setRatingImage(&self, rating_image: Option<&NSImage>);
 
         #[cfg(feature = "NSImage")]
-        /// If non-nil, sets the image used by the Rating indicator style in place of the default faded placeholder image. The default value is nil.
+        /// Sets the image used by the rating indicator style in place of the default faded placeholder image.
         ///
         /// If the custom placeholder is a template image, its fill opacity can be adjusted by modifying the opacity of the template image.
-        ///
-        /// If both a ratingImage and ratingPlaceholderImage are set, each rating position is sized such that either image will fit without scaling (i.e. sized to the maximum width and height of both images).
+        /// If both a ``ratingImage`` and ``ratingPlaceholderImage`` are set, each rating position is sized such that either image will fit without scaling (i.e. sized to the maximum width and height of both images).
+        /// The default value is `nil`.
         #[unsafe(method(ratingPlaceholderImage))]
         #[unsafe(method_family = none)]
         pub fn ratingPlaceholderImage(&self) -> Option<Retained<NSImage>>;

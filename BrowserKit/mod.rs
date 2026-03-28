@@ -23,8 +23,56 @@ extern "C" {}
 #[cfg(feature = "BEAvailability")]
 #[path = "BEAvailability.rs"]
 mod __BEAvailability;
+#[cfg(feature = "BEBrowserData")]
+#[path = "BEBrowserData.rs"]
+mod __BEBrowserData;
+#[cfg(feature = "BEBrowserDataExchangeErrors")]
+#[path = "BEBrowserDataExchangeErrors.rs"]
+mod __BEBrowserDataExchangeErrors;
+#[cfg(feature = "BEBrowserDataExportManager")]
+#[path = "BEBrowserDataExportManager.rs"]
+mod __BEBrowserDataExportManager;
+#[cfg(feature = "BEBrowserDataImportManager")]
+#[path = "BEBrowserDataImportManager.rs"]
+mod __BEBrowserDataImportManager;
 
 #[cfg(feature = "BEAvailability")]
 pub use self::__BEAvailability::BEAvailability;
 #[cfg(feature = "BEAvailability")]
 pub use self::__BEAvailability::BEEligibilityContext;
+#[cfg(feature = "BEBrowserData")]
+pub use self::__BEBrowserData::BEBrowserData;
+#[cfg(feature = "BEBrowserData")]
+pub use self::__BEBrowserData::BEBrowserDataBookmark;
+#[cfg(feature = "BEBrowserData")]
+pub use self::__BEBrowserData::BEBrowserDataExtension;
+#[cfg(feature = "BEBrowserData")]
+pub use self::__BEBrowserData::BEBrowserDataHistoryVisit;
+#[cfg(feature = "BEBrowserData")]
+pub use self::__BEBrowserData::BEBrowserDataReadingListItem;
+#[cfg(feature = "BEBrowserDataExchangeErrors")]
+pub use self::__BEBrowserDataExchangeErrors::BEBrowserDataExchangeError;
+#[cfg(feature = "BEBrowserDataExchangeErrors")]
+pub use self::__BEBrowserDataExchangeErrors::BEBrowserDataExchangeErrorDomain;
+#[cfg(feature = "BEBrowserDataExportManager")]
+pub use self::__BEBrowserDataExportManager::BEBrowserDataExchangeExportActivity;
+#[cfg(feature = "BEBrowserDataExportManager")]
+pub use self::__BEBrowserDataExportManager::BEBrowserDataExchangeExportToken;
+#[cfg(feature = "BEBrowserDataExportManager")]
+pub use self::__BEBrowserDataExportManager::BEBrowserDataExportManager;
+#[cfg(feature = "BEBrowserDataExportManager")]
+pub use self::__BEBrowserDataExportManager::BEExportDataTypes;
+#[cfg(feature = "BEBrowserDataExportManager")]
+pub use self::__BEBrowserDataExportManager::BEExportMetadata;
+#[cfg(feature = "BEBrowserDataExportManager")]
+pub use self::__BEBrowserDataExportManager::BEExportOptions;
+#[cfg(feature = "BEBrowserDataImportManager")]
+pub use self::__BEBrowserDataImportManager::BEBrowserDataExchangeImportActivity;
+#[cfg(feature = "BEBrowserDataImportManager")]
+pub use self::__BEBrowserDataImportManager::BEBrowserDataExchangeImportToken;
+#[cfg(feature = "BEBrowserDataImportManager")]
+pub use self::__BEBrowserDataImportManager::BEBrowserDataImportManager;
+#[cfg(feature = "BEBrowserDataImportManager")]
+pub use self::__BEBrowserDataImportManager::BEImportMetadata;
+#[cfg(feature = "BEBrowserDataImportManager")]
+pub use self::__BEBrowserDataImportManager::BEImportOptions;

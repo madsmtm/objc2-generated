@@ -169,6 +169,10 @@ impl AVContentKeySession {
         #[unsafe(method_family = none)]
         pub unsafe fn keySystem(&self) -> Retained<AVContentKeySystem>;
 
+        // -supportsAdvisoryKeys (unavailable)
+
+        // -setSupportsAdvisoryKeys: (unavailable)
+
         /// Tells the receiver to treat the session as having been intentionally and normally expired.
         ///
         /// When an instance of AVContentKeySession receives an expire message, all of its associated objects conforming to the AVContentKeyRecipient protocol will become inoperable. Send this message only after you have finished operating on the media data.
@@ -616,6 +620,8 @@ impl AVContentKeyRequest {
         pub unsafe fn originatingRecipient(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVContentKeyRecipient>>>;
+
+        // -canBeFulfilledWithAdvisoryKey (unavailable)
 
         #[cfg(feature = "block2")]
         /// Obtains a content key request data for a specific combination of application and content.

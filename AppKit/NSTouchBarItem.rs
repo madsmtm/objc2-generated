@@ -84,6 +84,7 @@ impl NSTouchBarItem {
         #[unsafe(method_family = none)]
         pub fn viewController(&self) -> Option<Retained<NSViewController>>;
 
+        /// The user visible string identifying this item during customization. By default this method returns the empty string.
         #[unsafe(method(customizationLabel))]
         #[unsafe(method_family = none)]
         pub fn customizationLabel(&self) -> Retained<NSString>;

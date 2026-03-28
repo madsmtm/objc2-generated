@@ -56,6 +56,9 @@ mod __CPGridButton;
 #[cfg(feature = "CPGridTemplate")]
 #[path = "CPGridTemplate.rs"]
 mod __CPGridTemplate;
+#[cfg(feature = "CPImageOverlay")]
+#[path = "CPImageOverlay.rs"]
+mod __CPImageOverlay;
 #[cfg(feature = "CPImageSet")]
 #[path = "CPImageSet.rs"]
 mod __CPImageSet;
@@ -113,6 +116,12 @@ mod __CPListSection;
 #[cfg(feature = "CPListTemplate")]
 #[path = "CPListTemplate.rs"]
 mod __CPListTemplate;
+#[cfg(feature = "CPListTemplateDetailsHeader")]
+#[path = "CPListTemplateDetailsHeader.rs"]
+mod __CPListTemplateDetailsHeader;
+#[cfg(feature = "CPLocation")]
+#[path = "CPLocation.rs"]
+mod __CPLocation;
 #[cfg(feature = "CPManeuver")]
 #[path = "CPManeuver.rs"]
 mod __CPManeuver;
@@ -122,6 +131,9 @@ mod __CPMapButton;
 #[cfg(feature = "CPMapTemplate")]
 #[path = "CPMapTemplate.rs"]
 mod __CPMapTemplate;
+#[cfg(feature = "CPMapTemplateWaypoint")]
+#[path = "CPMapTemplateWaypoint.rs"]
+mod __CPMapTemplateWaypoint;
 #[cfg(feature = "CPMessageComposeBarButton")]
 #[path = "CPMessageComposeBarButton.rs"]
 mod __CPMessageComposeBarButton;
@@ -137,6 +149,9 @@ mod __CPNavigationEnum;
 #[cfg(feature = "CPNavigationSession")]
 #[path = "CPNavigationSession.rs"]
 mod __CPNavigationSession;
+#[cfg(feature = "CPNavigationWaypoint")]
+#[path = "CPNavigationWaypoint.rs"]
+mod __CPNavigationWaypoint;
 #[cfg(feature = "CPNowPlayingButton")]
 #[path = "CPNowPlayingButton.rs"]
 mod __CPNowPlayingButton;
@@ -146,21 +161,36 @@ mod __CPNowPlayingMode;
 #[cfg(feature = "CPNowPlayingTemplate")]
 #[path = "CPNowPlayingTemplate.rs"]
 mod __CPNowPlayingTemplate;
+#[cfg(feature = "CPPlaybackConfiguration")]
+#[path = "CPPlaybackConfiguration.rs"]
+mod __CPPlaybackConfiguration;
 #[cfg(feature = "CPPointOfInterest")]
 #[path = "CPPointOfInterest.rs"]
 mod __CPPointOfInterest;
 #[cfg(feature = "CPPointOfInterestTemplate")]
 #[path = "CPPointOfInterestTemplate.rs"]
 mod __CPPointOfInterestTemplate;
+#[cfg(feature = "CPRerouteReason")]
+#[path = "CPRerouteReason.rs"]
+mod __CPRerouteReason;
 #[cfg(feature = "CPRouteInformation")]
 #[path = "CPRouteInformation.rs"]
 mod __CPRouteInformation;
+#[cfg(feature = "CPRouteSegment")]
+#[path = "CPRouteSegment.rs"]
+mod __CPRouteSegment;
+#[cfg(feature = "CPRouteSource")]
+#[path = "CPRouteSource.rs"]
+mod __CPRouteSource;
 #[cfg(feature = "CPSearchTemplate")]
 #[path = "CPSearchTemplate.rs"]
 mod __CPSearchTemplate;
 #[cfg(feature = "CPSessionConfiguration")]
 #[path = "CPSessionConfiguration.rs"]
 mod __CPSessionConfiguration;
+#[cfg(feature = "CPSportsOverlay")]
+#[path = "CPSportsOverlay.rs"]
+mod __CPSportsOverlay;
 #[cfg(feature = "CPTabBarTemplate")]
 #[path = "CPTabBarTemplate.rs"]
 mod __CPTabBarTemplate;
@@ -179,6 +209,9 @@ mod __CPTemplateApplicationScene;
 #[cfg(feature = "CPTextButton")]
 #[path = "CPTextButton.rs"]
 mod __CPTextButton;
+#[cfg(feature = "CPThumbnailImage")]
+#[path = "CPThumbnailImage.rs"]
+mod __CPThumbnailImage;
 #[cfg(feature = "CPTravelEstimates")]
 #[path = "CPTravelEstimates.rs"]
 mod __CPTravelEstimates;
@@ -241,6 +274,10 @@ pub use self::__CPGridButton::CPMessageGridItemConfiguration;
 pub use self::__CPGridTemplate::CPGridTemplate;
 #[cfg(feature = "CPGridTemplate")]
 pub use self::__CPGridTemplate::CPGridTemplateMaximumItems;
+#[cfg(feature = "CPImageOverlay")]
+pub use self::__CPImageOverlay::CPImageOverlay;
+#[cfg(feature = "CPImageOverlay")]
+pub use self::__CPImageOverlay::CPImageOverlayAlignment;
 #[cfg(feature = "CPImageSet")]
 pub use self::__CPImageSet::CPImageSet;
 #[cfg(feature = "CPInformationItem")]
@@ -332,6 +369,10 @@ pub use self::__CPListTemplate::CPAssistantCellVisibility;
 pub use self::__CPListTemplate::CPListTemplate;
 #[cfg(feature = "CPListTemplate")]
 pub use self::__CPListTemplate::CPListTemplateDelegate;
+#[cfg(feature = "CPListTemplateDetailsHeader")]
+pub use self::__CPListTemplateDetailsHeader::CPListTemplateDetailsHeader;
+#[cfg(all(feature = "CPLocation", feature = "objc2-core-location"))]
+pub use self::__CPLocation::CPLocationCoordinate3D;
 #[cfg(feature = "CPManeuver")]
 pub use self::__CPManeuver::CPJunctionType;
 #[cfg(feature = "CPManeuver")]
@@ -356,6 +397,8 @@ pub use self::__CPMapTemplate::CPPanDirection;
 pub use self::__CPMapTemplate::CPTimeRemainingColor;
 #[cfg(feature = "CPMapTemplate")]
 pub use self::__CPMapTemplate::CPTripEstimateStyle;
+#[cfg(feature = "CPMapTemplateWaypoint")]
+pub use self::__CPMapTemplateWaypoint::CPMapTemplateWaypoint;
 #[cfg(all(feature = "CPBarButton", feature = "CPMessageComposeBarButton"))]
 pub use self::__CPMessageComposeBarButton::CPMessageComposeBarButton;
 #[cfg(all(feature = "CPMessageListItem", feature = "objc2-core-foundation"))]
@@ -384,12 +427,16 @@ pub use self::__CPNavigationEnum::NSStringFromCPJunctionType;
 pub use self::__CPNavigationEnum::NSStringFromCPLaneStatus;
 #[cfg(all(feature = "CPManeuver", feature = "CPNavigationEnum"))]
 pub use self::__CPNavigationEnum::NSStringFromCPManeuverType;
+#[cfg(all(feature = "CPNavigationEnum", feature = "CPRerouteReason"))]
+pub use self::__CPNavigationEnum::NSStringFromCPRerouteReason;
 #[cfg(all(feature = "CPManeuver", feature = "CPNavigationEnum"))]
 pub use self::__CPNavigationEnum::NSStringFromCPTrafficSide;
 #[cfg(feature = "CPNavigationSession")]
 pub use self::__CPNavigationSession::CPNavigationSession;
 #[cfg(feature = "CPNavigationSession")]
 pub use self::__CPNavigationSession::CPTripPauseReason;
+#[cfg(feature = "CPNavigationWaypoint")]
+pub use self::__CPNavigationWaypoint::CPNavigationWaypoint;
 #[cfg(feature = "CPNowPlayingButton")]
 pub use self::__CPNowPlayingButton::CPNowPlayingAddToLibraryButton;
 #[cfg(feature = "CPNowPlayingButton")]
@@ -422,14 +469,28 @@ pub use self::__CPNowPlayingMode::CPNowPlayingSportsTeamLogo;
 pub use self::__CPNowPlayingTemplate::CPNowPlayingTemplate;
 #[cfg(feature = "CPNowPlayingTemplate")]
 pub use self::__CPNowPlayingTemplate::CPNowPlayingTemplateObserver;
+#[cfg(feature = "CPPlaybackConfiguration")]
+pub use self::__CPPlaybackConfiguration::CPPlayableItem;
+#[cfg(feature = "CPPlaybackConfiguration")]
+pub use self::__CPPlaybackConfiguration::CPPlaybackAction;
+#[cfg(feature = "CPPlaybackConfiguration")]
+pub use self::__CPPlaybackConfiguration::CPPlaybackConfiguration;
+#[cfg(feature = "CPPlaybackConfiguration")]
+pub use self::__CPPlaybackConfiguration::CPPlaybackPresentation;
 #[cfg(feature = "CPPointOfInterest")]
 pub use self::__CPPointOfInterest::CPPointOfInterest;
 #[cfg(all(feature = "CPPointOfInterestTemplate", feature = "CPTemplate"))]
 pub use self::__CPPointOfInterestTemplate::CPPointOfInterestTemplate;
 #[cfg(feature = "CPPointOfInterestTemplate")]
 pub use self::__CPPointOfInterestTemplate::CPPointOfInterestTemplateDelegate;
+#[cfg(feature = "CPRerouteReason")]
+pub use self::__CPRerouteReason::CPRerouteReason;
 #[cfg(feature = "CPRouteInformation")]
 pub use self::__CPRouteInformation::CPRouteInformation;
+#[cfg(feature = "CPRouteSegment")]
+pub use self::__CPRouteSegment::CPRouteSegment;
+#[cfg(feature = "CPRouteSource")]
+pub use self::__CPRouteSource::CPRouteSource;
 #[cfg(all(feature = "CPSearchTemplate", feature = "CPTemplate"))]
 pub use self::__CPSearchTemplate::CPSearchTemplate;
 #[cfg(feature = "CPSearchTemplate")]
@@ -442,6 +503,8 @@ pub use self::__CPSessionConfiguration::CPLimitableUserInterface;
 pub use self::__CPSessionConfiguration::CPSessionConfiguration;
 #[cfg(feature = "CPSessionConfiguration")]
 pub use self::__CPSessionConfiguration::CPSessionConfigurationDelegate;
+#[cfg(feature = "CPSportsOverlay")]
+pub use self::__CPSportsOverlay::CPSportsOverlay;
 #[cfg(all(feature = "CPTabBarTemplate", feature = "CPTemplate"))]
 pub use self::__CPTabBarTemplate::CPTabBarTemplate;
 #[cfg(feature = "CPTabBarTemplate")]
@@ -488,6 +551,8 @@ pub use self::__CPTemplateApplicationScene::CPTemplateApplicationSceneSessionRol
 pub use self::__CPTextButton::CPTextButton;
 #[cfg(feature = "CPTextButton")]
 pub use self::__CPTextButton::CPTextButtonStyle;
+#[cfg(feature = "CPThumbnailImage")]
+pub use self::__CPThumbnailImage::CPThumbnailImage;
 #[cfg(feature = "CPTravelEstimates")]
 pub use self::__CPTravelEstimates::CPTravelEstimates;
 #[cfg(feature = "CPTrip")]

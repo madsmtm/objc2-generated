@@ -7,9 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// CPRouteInformation describes information pertaining to a route that is necessary for rerouting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cprouteinformation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cprouteinformation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPRouteInformation;

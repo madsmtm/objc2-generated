@@ -66,11 +66,45 @@ impl PHAssetResourceUploadJob {
         #[unsafe(method_family = none)]
         pub unsafe fn destination(&self) -> Retained<NSURLRequest>;
 
+        /// The HTTP response headers received from the server upon completion of the upload.
+        ///
+        /// This property is populated when the job reaches a terminal state (`PHAssetResourceUploadJobStateSucceeded`
+        /// or `PHAssetResourceUploadJobStateFailed`). It contains the HTTP response headers returned by the
+        /// destination server.
+        ///
+        /// Header field names are normalized to lowercase for consistent lookup.
+        ///
+        /// - Returns: A dictionary of response header fields, or `nil` if the job has not completed or no HTTP response was received.
+        #[unsafe(method(responseHeaderFields))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn responseHeaderFields(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
+
         #[cfg(feature = "PhotosTypes")]
         /// The state of this upload job.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> PHAssetResourceUploadJobState;
+
+        #[cfg(feature = "PhotosTypes")]
+        /// The type of this upload job.
+        #[unsafe(method(type))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn r#type(&self) -> PHAssetResourceUploadJobType;
+
+        /// The error that caused the job to fail.
+        ///
+        /// This property is populated when the job reaches the `PHAssetResourceUploadJobStateFailed` state.
+        /// It provides detailed information about why the upload failed, including network errors,
+        /// server errors, or client-side errors.
+        ///
+        /// - Note: The error provided is sanitized and may not be the actual error returned from URLResponse.
+        ///
+        /// - Returns: An error object describing the failure, or `nil` if the job has not failed.
+        #[unsafe(method(error))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[cfg(all(
             feature = "PHFetchOptions",

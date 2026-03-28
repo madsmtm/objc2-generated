@@ -203,6 +203,10 @@ impl NSScreen {
     extern_methods!(
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
+        /// Returns a new display link whose callback will be invoked in-sync with the display the screen is on.
+        ///
+        /// Note that views and windows can move between screens and you may want to get a display link directly from `NSView` or `NSWindow` which will track those changes automatically.
+        ///
         /// # Safety
         ///
         /// - `target` should be of the correct type.

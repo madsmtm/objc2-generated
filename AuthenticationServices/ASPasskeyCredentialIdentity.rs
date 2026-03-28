@@ -17,6 +17,10 @@ extern_class!(
     pub struct ASPasskeyCredentialIdentity;
 );
 
+unsafe impl Send for ASPasskeyCredentialIdentity {}
+
+unsafe impl Sync for ASPasskeyCredentialIdentity {}
+
 #[cfg(feature = "ASCredentialIdentity")]
 extern_conformance!(
     unsafe impl ASCredentialIdentity for ASPasskeyCredentialIdentity {}
@@ -92,6 +96,12 @@ impl ASPasskeyCredentialIdentity {
         /// The relying party identifier of this passkey credential.
         ///
         /// This field is reported as the serviceIdentifier property of ASCredentialIdentity.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(relyingPartyIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
@@ -99,6 +109,12 @@ impl ASPasskeyCredentialIdentity {
         /// The user name of this passkey credential.
         ///
         /// This field is reported as the user property of ASCredentialIdentity.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(userName))]
         #[unsafe(method_family = none)]
         pub unsafe fn userName(&self) -> Retained<NSString>;
@@ -106,6 +122,12 @@ impl ASPasskeyCredentialIdentity {
         /// The credential ID of this passkey credential.
         ///
         /// This field is used to identify the correct credential to use based on relying party request parameters.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(credentialID))]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialID(&self) -> Retained<NSData>;
@@ -113,6 +135,12 @@ impl ASPasskeyCredentialIdentity {
         /// The user handle of this passkey credential.
         ///
         /// This field is used to identify the correct credential to use based on relying party request parameters.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(userHandle))]
         #[unsafe(method_family = none)]
         pub unsafe fn userHandle(&self) -> Retained<NSData>;
@@ -122,6 +150,12 @@ impl ASPasskeyCredentialIdentity {
         /// Returns: The record identifier.
         ///
         /// You can utilize the record identifier to uniquely identify the credential identity in your local database.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordIdentifier(&self) -> Option<Retained<NSString>>;
@@ -132,11 +166,21 @@ impl ASPasskeyCredentialIdentity {
         /// if two identities have the same service identifier. A credential identity with a larger rank value
         /// precedes one with a smaller value if both credential identities have the same service identifier.
         /// The default value of this property is 0.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(rank))]
         #[unsafe(method_family = none)]
         pub unsafe fn rank(&self) -> NSInteger;
 
         /// Setter for [`rank`][Self::rank].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRank:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRank(&self, rank: NSInteger);

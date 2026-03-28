@@ -91,6 +91,15 @@ pub const kIOHIDPointerAccelerationSupportKey: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollaccelerationsupportkey?language=objc)
 pub const kIOHIDScrollAccelerationSupportKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDSupportsScrollAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidsupportedeventmaskkey?language=objc)
+pub const kIOHIDSupportedEventMaskKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"SupportedHIDEventMask\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidsupportedkeyboardusagepairskey?language=objc)
+pub const kIOHIDSupportedKeyboardUsagePairsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"SupportedKeyboardUsagePairs\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidsupportedvendorusagepairskey?language=objc)
+pub const kIOHIDSupportedVendorUsagePairsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"SupportedVendorUsagePairs\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohideventservicesensorcontroloptionskey?language=objc)
 pub const kIOHIDEventServiceSensorControlOptionsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDDefaultSensorControlOptions\0") };
@@ -203,6 +212,12 @@ pub const kIOHIDPhysicalDeviceUniqueIDKey: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddeviceaccessentitlementkey?language=objc)
 pub const kIOHIDDeviceAccessEntitlementKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDDeviceAccessEntitlement\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddevicecarplaydevicekey?language=objc)
+pub const kIOHIDDeviceCarPlayDeviceKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"isCarPlayDevice\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddeviceapprovedcarplaydevicekey?language=objc)
+pub const kIOHIDDeviceApprovedCarPlayDeviceKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"isApprovedCarPlayDevice\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddevicekey?language=objc)
 pub const kIOHIDDeviceKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIDDevice\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidvendoridsourcekey?language=objc)
@@ -10019,11 +10034,18 @@ impl IOHIDTransaction {
         ret != 0
     }
 
-    /// Schedules transaction with run loop.
+    /// DEPRECATED - Schedules transaction with run loop.
     ///
+    /// This function is deprecated and should no longer be used.
     /// Formally associates transaction with client's run loop.
-    /// Scheduling this transaction with the run loop is necessary
-    /// before making use of any asynchronous APIs.
+    /// Scheduling the transaction with a run loop is not required for
+    /// asynchronous behavior, however the underlying IOHIDDevice must
+    /// be properly scheduled for the transaction to function correctly.
+    /// The transaction will inherit the same run loop configuration as
+    /// its associated device. If a different run loop is explicitly
+    /// specified for the transaction, transaction callbacks may fire on
+    /// either the specified run loop or the device's run loop, which
+    /// can lead to unpredictable behavior.
     ///
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
@@ -10037,6 +10059,7 @@ impl IOHIDTransaction {
     ///
     /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "IOHIDTransactionScheduleWithRunLoop")]
+    #[deprecated]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
         extern "C-unwind" {
@@ -10049,7 +10072,7 @@ impl IOHIDTransaction {
         unsafe { IOHIDTransactionScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
-    /// Unschedules transaction with run loop.
+    /// DEPRECATED Unschedules transaction with run loop.
     ///
     /// Formally disassociates transaction with client's run loop.
     ///
@@ -10065,6 +10088,7 @@ impl IOHIDTransaction {
     ///
     /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "IOHIDTransactionUnscheduleFromRunLoop")]
+    #[deprecated]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
         extern "C-unwind" {

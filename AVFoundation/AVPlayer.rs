@@ -203,6 +203,18 @@ extern "C" {
     pub static AVPlayerRateDidChangeReasonAppBackgrounded: &'static AVPlayerRateDidChangeReason;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonplayheadreachedliveedge?language=objc)
+    pub static AVPlayerRateDidChangeReasonPlayheadReachedLiveEdge:
+        &'static AVPlayerRateDidChangeReason;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonreverseplaybackreachedstartofseekablerange?language=objc)
+    pub static AVPlayerRateDidChangeReasonReversePlaybackReachedStartOfSeekableRange:
+        &'static AVPlayerRateDidChangeReason;
+}
+
 /// These constants are the allowable values of AVPlayer's timeControlStatus property. This discussion pertains when automaticallyWaitsToMinimizeStalling is YES, the default setting, and exceptions are discussed in connection with automaticallyWaitsToMinimizeStalling.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayertimecontrolstatus?language=objc)
@@ -1245,6 +1257,27 @@ impl AVPlayer {
         #[unsafe(method(setObservationEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObservationEnabled(observation_enabled: bool, mtm: MainThreadMarker);
+    );
+}
+
+/// AVPlayerAllowsCaptureOfClearKeyVideo.
+impl AVPlayer {
+    extern_methods!(
+        /// Indicates whether the video output of ClearKey Encrypted Video can be captured
+        ///
+        /// When set to YES, and the video being played by AVPlayer is Clear Key encrypted, allows video to be captured in screenshots and screen recordings, and via APIs like AVPlayerItemVideoOutput and ScreenCaptureKit. When NO, Clear Key encrypted video will not be included in such captured video. This property has no effect on content protected by FairPlay Streaming.
+        /// Default is NO.
+        #[unsafe(method(allowsCaptureOfClearKeyVideo))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsCaptureOfClearKeyVideo(&self) -> bool;
+
+        /// Setter for [`allowsCaptureOfClearKeyVideo`][Self::allowsCaptureOfClearKeyVideo].
+        #[unsafe(method(setAllowsCaptureOfClearKeyVideo:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsCaptureOfClearKeyVideo(
+            &self,
+            allows_capture_of_clear_key_video: bool,
+        );
     );
 }
 

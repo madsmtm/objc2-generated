@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation?language=objc)
+    /// An operation for fetching subscriptions.
+    ///
+    /// A fetch subscriptions operation retrieves subscriptions (with IDs you already know) from iCloud and can fetch all subscriptions for the current user.
+    ///
+    /// You might fetch subscriptions so you can examine or modify their parameters — for example, to adjust the delivery options for push notifications that the subscription generates.
+    ///
+    /// If you assign a handler to the
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/operation/completionblock> property, the operation calls it after it executes and passes it the results. Use the handler to perform any housekeeping tasks for the operation. The handler you specify should manage any failures, whether due to an error or an explicit cancellation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation?language=objc)
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
@@ -23,15 +33,27 @@ extern_conformance!(
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 impl CKFetchSubscriptionsOperation {
     extern_methods!(
+        /// Returns an operation that fetches all of the user's subscriptions.
+        ///
+        /// After creating the operation, set the ``CKFetchSubscriptionsOperation/fetchSubscriptionCompletionBlock-207ep`` property to process the results.
         #[unsafe(method(fetchAllSubscriptionsOperation))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllSubscriptionsOperation() -> Retained<Self>;
 
+        /// Creates an empty fetch subscriptions operation.
+        ///
+        /// You must set the ``CKFetchSubscriptionsOperation/subscriptionIDs-714ct`` property before you execute the operation.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
+        /// Creates an operation for fetching the specified subscriptions.
+        ///
+        /// - Parameters:
+        /// - subscriptionIDs: An array of strings where each one is an ID of a subscription that you want to retrieve. This parameter sets the ``CKFetchSubscriptionsOperation/subscriptionIDs-714ct`` property's value. If you specify `nil`, you must set the `subscriptionIDs` property before you execute the operation.
+        ///
+        /// After creating the operation, assign a block to the ``CKFetchSubscriptionsOperation/fetchSubscriptionCompletionBlock-207ep`` property to process the results.
         #[unsafe(method(initWithSubscriptionIDs:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSubscriptionIDs(
@@ -40,6 +62,12 @@ impl CKFetchSubscriptionsOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
+        /// The IDs of the subscriptions to fetch.
+        ///
+        /// Use this property to view or change the IDs of the subscriptions to fetch. Each element of the array is a string that represents the ID of a subscription. If you intend to modify this property's value, do so before you execute the operation or submit it to a queue.
+        ///
+        /// If you use the ``CKFetchSubscriptionsOperation/fetchAllSubscriptionsOperation()`` method to create the operation, CloudKit ignores this property's value and sets it to `nil`.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -65,13 +93,17 @@ impl CKFetchSubscriptionsOperation {
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
-        /// Called on success or failure for each subscriptionID.
+        /// The closure to execute as the operation fetches individual subscriptions.
         ///
+        /// The closure returns no value and takes the following parameters:
         ///
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// - The ID of the subscription.
+        /// - The subscription, or `nil` if CloudKit can't fetch the subscription.
+        /// - If CloudKit can't fetch the subscription, this parameter provides information about the failure; otherwise, it's `nil`.
+        ///
+        /// The operation executes this closure once for each subscription ID in the ``CKFetchSubscriptionsOperation/subscriptionIDs-714ct`` property. Each time the closure executes, it executes serially with respect to the other closures of the operation.
+        ///
+        /// If you intend to use this closure to process results, set it before you execute the operation or submit the operation to a queue.
         ///
         /// This property is not atomic.
         ///
@@ -109,25 +141,20 @@ impl CKFetchSubscriptionsOperation {
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
-        /// This block is called when the operation completes.
+        /// The block to execute after the operation fetches the subscriptions.
         ///
+        /// The block returns no value and takes the following parameters:
         ///
-        /// The
+        /// - term `subscriptionsBySubscriptionID`: A dictionary with keys that are the IDs of the subscriptions you request, and values that are the corresponding subscriptions.
+        /// - term `operationError`: An error that contains information about a problem, or `nil` if the system successfully fetches the subscriptions.
         ///
-        /// ```text
-        ///  -[NSOperation completionBlock]
-        /// ```
+        /// The operation executes this block only once, and it's your only opportunity to process the results. The block executes on a background queue, so any tasks that require access to the main queue must dispatch accordingly.
         ///
-        /// will also be called if both are set.
-        /// If the error is
-        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of subscriptionID to errors keyed off of
-        /// `CKPartialErrorsByItemIDKey.``subscriptionsBySubscriptionID`and any
-        /// `CKPartialErrorsByItemIDKey`errors are repeats of the data sent back in previous
-        /// `perSubscriptionCompletionBlock`invocations
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// The block reports an error of type ``CKError/Code/partialFailure`` when it retrieves only some of the subscriptions successfully. The
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nserror/userinfo> dictionary of the error contains a ``CKPartialErrorsByItemIDKey`` key that has a dictionary as its value. The keys of the dictionary are the IDs of the subscriptions that the operation can't fetch, and the corresponding values are errors that contain information about the failures.
+        ///
+        /// Set this property's value before you execute the operation or submit it to a queue.
         ///
         /// This property is not atomic.
         ///

@@ -150,7 +150,9 @@ extern_conformance!(
 ))]
 impl NSStatusBarButton {
     extern_methods!(
-        /// If `YES`, the status bar icon has a disabled/off appearance while still being functional, such as allowing selection and actions. Defaults to `NO`.
+        /// Determines whether the status bar icon has a disabled/off appearance while still being functional, such as allowing selection and actions.
+        ///
+        /// The default value is `false`.
         #[unsafe(method(appearsDisabled))]
         #[unsafe(method_family = none)]
         pub fn appearsDisabled(&self) -> bool;

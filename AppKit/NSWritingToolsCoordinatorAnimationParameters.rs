@@ -24,7 +24,7 @@ extern_class!(
     ///
     /// You don’t create an `NSWritingToolsCoordinator.AnimationParameters`
     /// object directly. Instead, the system creates one and passes it to the
-    /// ``NSWritingToolsCoordinator/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)``
+    /// ``NSWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:replace:in:proposedText:reason:animationParameters:completion:)``
     /// method of your ``NSWritingToolsCoordinator/Delegate`` object. Use that
     /// object to specify the blocks to run during and after the system animations.
     ///

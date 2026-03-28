@@ -30,6 +30,10 @@ extern_conformance!(
 
 impl AVCaptionRenderer {
     extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
         #[cfg(feature = "AVCaption")]
         /// A NSArray holding captions to consider for rendering.
         ///
@@ -92,13 +96,36 @@ impl AVCaptionRenderer {
 /// Methods declared on superclass `NSObject`.
 impl AVCaptionRenderer {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+/// AVCaptionRenderer_CaptionPreview.
+impl AVCaptionRenderer {
+    extern_methods!(
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Generate a caption preview attributed string for the specified profile ID.
+        ///
+        /// Returns an attributed string containing a preview of captions rendered using the specified profile ID.
+        ///
+        /// Parameter `profileID`: The identifier of the accessibility profile to use for caption appearance. Profile IDs can be obtained from MACaptionAppearanceCopyProfileIDs(). This determines font, color, background, and other visual characteristics.
+        ///
+        /// Parameter `extendedLanguageTag`: The IETF BCP 47 (RFC 4646) language identifier that will be used to generate the localized caption preview text.  If nil, the system language will be used.
+        ///
+        /// Parameter `renderSize`: The size of the layer into which the captions will be rendered. This determines the layout and positioning of the caption text.
+        ///
+        /// Returns: An NSAttributedString containing the caption preview.
+        ///
+        /// It is strongly recommended that the caller take appropriate measures to prevent blocking essential services such as the user interface, for example, by avoiding calling this method in the main thread.
+        #[unsafe(method(captionPreviewForProfileID:extendedLanguageTag:renderSize:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn captionPreviewForProfileID_extendedLanguageTag_renderSize(
+            profile_id: &NSString,
+            extended_language_tag: Option<&NSString>,
+            render_size: CGSize,
+        ) -> Retained<NSAttributedString>;
     );
 }
 

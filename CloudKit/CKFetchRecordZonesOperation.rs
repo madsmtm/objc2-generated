@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation?language=objc)
+    /// An operation for retrieving record zones from a database.
+    ///
+    /// Use this operation object to fetch record zones so that you can ascertain their capabilities.
+    ///
+    /// If you assign a handler to the
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/operation/completionblock> property of the operation, CloudKit calls it after the operation executes and returns its results. You can use the handler to perform any housekeeping tasks that relate to the operation, but don't use it to process the results of the operation. The handler you specify should manage any failures, whether due to an error or an explicit cancellation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation?language=objc)
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
@@ -23,15 +31,29 @@ extern_conformance!(
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 impl CKFetchRecordZonesOperation {
     extern_methods!(
+        /// Returns an operation for fetching all record zones in the current database.
+        ///
+        /// Assign a value to the ``CKFetchRecordZonesOperation/fetchRecordZonesCompletionBlock`` property of the operation that this method returns so that you can process the results.
         #[unsafe(method(fetchAllRecordZonesOperation))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllRecordZonesOperation() -> Retained<Self>;
 
+        /// Creates an empty fetch zones operation.
+        ///
+        /// You must set the ``CKFetchRecordZonesOperation/recordZoneIDs`` property before you execute the operation.
+        ///
+        /// After creating the operation, assign a value to the ``CKFetchRecordZonesOperation/fetchRecordZonesCompletionBlock`` property so you can process the results.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Creates an operation for fetching the specified record zones.
+        ///
+        /// - Parameters:
+        /// - zoneIDs: An array of ``CKRecordZone/ID`` objects that represents the zones you want to retrieve. If you provide an empty array, you must set the ``CKFetchRecordZonesOperation/recordZoneIDs`` property before you execute the operation.
+        ///
+        /// After creating the operation, assign a value to the ``CKFetchRecordZonesOperation/fetchRecordZonesCompletionBlock`` property so you can process the results.
         #[unsafe(method(initWithRecordZoneIDs:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordZoneIDs(
@@ -40,6 +62,12 @@ impl CKFetchRecordZonesOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// The IDs of the record zones to retrieve.
+        ///
+        /// Use this property to view or change the IDs of the record zones you want to retrieve. If you intend to change the value of this property, do so before you execute the operation or submit the operation to a queue.
+        ///
+        /// If you use the operation that ``CKFetchRecordZonesOperation/fetchAllRecordZonesOperation()`` returns, CloudKit ignores the contents of this property and sets its value to `nil`.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -66,13 +94,17 @@ impl CKFetchRecordZonesOperation {
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
-        /// Called on success or failure for each record zone.
+        /// The closure to execute as the operation fetches individual record zones.
         ///
+        /// The closure returns no value and takes the following parameters:
         ///
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// - The ID of the record zone.
+        /// - The record zone, or `nil` if CloudKit can't fetch the record zone.
+        /// - If CloudKit can't fetch the record zone, this parameter provides information about the failure; otherwise, it's `nil`.
+        ///
+        /// The operation executes this closure once for each record zone ID in the ``CKFetchRecordZonesOperation/recordZoneIDs`` property. Each time the closure executes, it executes serially with respect to the other closures of the operation.
+        ///
+        /// If you intend to use this closure to process results, set it before you execute the operation or submit the operation to a queue.
         ///
         /// This property is not atomic.
         ///
@@ -114,25 +146,20 @@ impl CKFetchRecordZonesOperation {
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
-        /// This block is called when the operation completes.
+        /// The closure to execute after CloudKit retrieves all of the record zones.
         ///
+        /// This property is a closure that returns no value and has the following parameters:
         ///
-        /// The
+        /// - A dictionary that maps the zone IDs you request to the results. The keys in the dictionary are ``CKRecordZone/ID`` objects, and the values are the corresponding ``CKRecordZone`` objects that CloudKit returns.
+        /// - If CloudKit can't retrieve any of the record zones, an error that provides information about the failure; otherwise, `nil`.
         ///
-        /// ```text
-        ///  -[NSOperation completionBlock]
-        /// ```
+        /// The operation executes the closure only once, and it's your only chance to process the results. You must provide a closure capable of executing on a background thread, so any tasks that require access to the main thread must redirect accordingly.
         ///
-        /// will also be called if both are set.
-        /// If the error is
-        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of zoneIDs to errors keyed off of
-        /// `CKPartialErrorsByItemIDKey.``recordZonesByZoneID`and any
-        /// `CKPartialErrorsByItemIDKey`errors are repeats of the data sent back in previous
-        /// `perRecordZoneCompletionBlock`invocations
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// The closure reports an error of type ``CKError/Code/partialFailure`` when it retrieves only some of the record zones successfully. The
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nserror/userinfo> dictionary of the error contains a ``CKPartialErrorsByItemIDKey`` key that has a dictionary as its value. The keys of the dictionary are the IDs of the record zones that the operation can't retrieve, and the corresponding values are errors that contain information about the failures.
+        ///
+        /// If you intend to use this closure to process results, set it before you execute the operation or submit the operation to a queue.
         ///
         /// This property is not atomic.
         ///

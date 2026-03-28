@@ -30,12 +30,12 @@ impl LARightState {
     pub const Authorizing: Self = Self(1);
     /// Authorization was granted
     ///
-    /// This can be achieved by succesful authorization.
+    /// This can be achieved by successful authorization.
     #[doc(alias = "LARightStateAuthorized")]
     pub const Authorized: Self = Self(2);
     /// Authorization was rejected.
     ///
-    /// This can be caused by several reasons. For example requirements were not satisified or user rejects to authorize.
+    /// This can be caused by several reasons. For example requirements were not satisfied or user rejects to authorize.
     #[doc(alias = "LARightStateNotAuthorized")]
     pub const NotAuthorized: Self = Self(3);
 }
@@ -69,7 +69,7 @@ impl LARight {
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> LARightState;
 
-        /// An application-supplied integer that can be used to identify right intances. The default value is
+        /// An application-supplied integer that can be used to identify right instances. The default value is
         /// `0.`
         #[unsafe(method(tag))]
         #[unsafe(method_family = none)]
@@ -91,7 +91,7 @@ impl LARight {
 
         #[cfg(feature = "LARequirement")]
         /// Constructs a right that will be granted only when the given
-        /// `LAAuthenticationRequirement`is statisfied.
+        /// `LAAuthenticationRequirement`is satisfied.
         ///
         /// Parameter `requirement`: Requirement that needs to be satisfied to authorize the right
         ///

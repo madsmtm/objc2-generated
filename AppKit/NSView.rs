@@ -962,6 +962,8 @@ impl NSView {
         pub fn setPostsBoundsChangedNotifications(&self, posts_bounds_changed_notifications: bool);
 
         #[cfg(feature = "NSScrollView")]
+        /// The nearest ancestor scroll view that contains the current view as part of its document view.
+        /// - Note: If the current view is not embedded inside a scroll view, the value of this property is `nil`. This property does not contain the current view if the current view is itself a scroll view. It always contains an ancestor scroll view.
         #[unsafe(method(enclosingScrollView))]
         #[unsafe(method_family = none)]
         pub fn enclosingScrollView(&self) -> Option<Retained<NSScrollView>>;
@@ -1706,6 +1708,10 @@ impl NSView {
     extern_methods!(
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
+        /// Returns a new display link whose callback will be invoked in-sync with the display the view is on.
+        ///
+        /// If the view is hidden, or not on any display, the callback will not be invoked.
+        ///
         /// # Safety
         ///
         /// - `target` should be of the correct type.

@@ -248,6 +248,13 @@ impl MPSDataType {
     pub const Bool: Self = Self(MPSDataType::AlternateEncodingBit.0 | 8);
     #[doc(alias = "MPSDataTypeBFloat16")]
     pub const BFloat16: Self = Self(MPSDataType::AlternateEncodingBit.0 | MPSDataType::Float16.0);
+    #[doc(alias = "MPSDataTypeComplexBFloat16")]
+    pub const ComplexBFloat16: Self = Self(
+        MPSDataType::AlternateEncodingBit.0
+            | MPSDataType::FloatBit.0
+            | MPSDataType::ComplexBit.0
+            | 32,
+    );
     #[doc(alias = "MPSDataTypeNormalizedBit")]
     pub const NormalizedBit: Self = Self(0x40000000);
     #[doc(alias = "MPSDataTypeUnorm1")]

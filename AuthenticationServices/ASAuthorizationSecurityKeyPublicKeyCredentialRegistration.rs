@@ -70,6 +70,13 @@ impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
         pub unsafe fn transports(
             &self,
         ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
+
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationOutput")]
+        #[unsafe(method(prf))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prf(
+            &self,
+        ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFRegistrationOutput>>;
     );
 }
 

@@ -2031,6 +2031,8 @@ pub use self::__WKWebViewConfiguration::WKWebViewConfiguration;
 #[cfg(feature = "WKWebpagePreferences")]
 pub use self::__WKWebpagePreferences::WKContentMode;
 #[cfg(feature = "WKWebpagePreferences")]
+pub use self::__WKWebpagePreferences::WKSecurityRestrictionMode;
+#[cfg(feature = "WKWebpagePreferences")]
 pub use self::__WKWebpagePreferences::WKWebpagePreferences;
 #[cfg(feature = "WKWebpagePreferences")]
 pub use self::__WKWebpagePreferences::WKWebpagePreferencesUpgradeToHTTPSPolicy;

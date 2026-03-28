@@ -83,6 +83,19 @@ extern "C" {
     pub static AXShowBordersEnabledStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+#[inline]
+pub unsafe extern "C-unwind" fn AXReduceHighlightingEffectsEnabled() -> bool {
+    extern "C-unwind" {
+        fn AXReduceHighlightingEffectsEnabled() -> Bool;
+    }
+    unsafe { AXReduceHighlightingEffectsEnabled() }.as_bool()
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axreducehighlightingeffectsenableddidchangenotification?language=objc)
+    pub static AXReduceHighlightingEffectsEnabledDidChangeNotification: &'static NSNotificationName;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axsettingsfeature?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -99,6 +112,8 @@ impl AXSettingsFeature {
     pub const AssistiveTouchDevices: Self = Self(4);
     #[doc(alias = "AXSettingsFeatureDwellControl")]
     pub const DwellControl: Self = Self(5);
+    #[doc(alias = "AXSettingsFeatureCaptionStyles")]
+    pub const CaptionStyles: Self = Self(6);
 }
 
 unsafe impl Encode for AXSettingsFeature {
@@ -115,4 +130,15 @@ extern "C-unwind" {
         feature: AXSettingsFeature,
         completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
     );
+}
+
+#[inline]
+pub unsafe extern "C-unwind" fn AXOpenSettingsFeatureIsSupported(
+    feature: AXSettingsFeature,
+) -> bool {
+    extern "C-unwind" {
+        fn AXOpenSettingsFeatureIsSupported(feature: AXSettingsFeature) -> Boolean;
+    }
+    let ret = unsafe { AXOpenSettingsFeatureIsSupported(feature) };
+    ret != 0
 }

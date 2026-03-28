@@ -412,8 +412,12 @@ pub const kPMSetDisplayState: c_uint = 16;
 pub const kPMRequestIdleSleepRevert: c_uint = 17;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsetldmhibernationdisable?language=objc)
 pub const kPMSetLDMHibernationDisable: c_uint = 18;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmgetassertionlog?language=objc)
+pub const kPMGetAssertionLog: c_uint = 19;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsetassertionlogthreshold?language=objc)
+pub const kPMSetAssertionLogThreshold: c_uint = 20;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/knumpmmethods?language=objc)
-pub const kNumPMMethods: c_uint = 19;
+pub const kNumPMMethods: c_uint = 21;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemloadadvisorynotifyname?language=objc)
 pub const kIOSystemLoadAdvisoryNotifyName: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powermanagement.SystemLoadAdvisory\0")
@@ -1039,6 +1043,25 @@ pub const kIOPMSystemCapabilityAudio: c_uint = 0x04;
 pub const kIOPMSystemCapabilityNetwork: c_uint = 0x08;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilityaot?language=objc)
 pub const kIOPMSystemCapabilityAOT: c_uint = 0x10;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmuserclientnotificationtype?language=objc)
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct IOPMUserClientNotificationType(pub c_uint);
+impl IOPMUserClientNotificationType {
+    #[doc(alias = "IOPMUserClientNotificationType_AssertionLog")]
+    pub const AssertionLog: Self = Self(0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for IOPMUserClientNotificationType {
+    const ENCODING: Encoding = c_uint::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for IOPMUserClientNotificationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 /// Finds the Root Power Domain IOService.
 ///

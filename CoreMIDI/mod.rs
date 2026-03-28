@@ -394,6 +394,8 @@ pub use self::__MIDIServices::kMIDIPropertyUMPActiveGroupBitmap;
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 pub use self::__MIDIServices::kMIDIPropertyUMPCanTransmitGroupless;
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
+pub use self::__MIDIServices::kMIDIPropertyUMPEnabled;
+#[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 pub use self::__MIDIServices::kMIDIPropertyUniqueID;
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 pub use self::__MIDIServices::kMIDIPropertyUserPatchNameFile;

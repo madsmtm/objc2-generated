@@ -34,7 +34,7 @@ extern_class!(
     ///
     /// ``LPLinkView`` has an intrinsic size, but it also responds to
     /// <doc
-    /// ://com.apple.documentation/documentation/uikit/uiview/1622630-sizetofit>
+    /// ://com.apple.documentation/documentation/UIKit/UIView/sizeToFit()>
     /// to present a layout at any size.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lplinkview?language=objc)

@@ -225,6 +225,19 @@ impl CSSearchableItemAttributeSet {
         #[unsafe(method(setDomainIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDomainIdentifier(&self, domain_identifier: Option<&NSString>);
+
+        #[unsafe(method(textContentSummary))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn textContentSummary(&self) -> Option<Retained<NSString>>;
+
+        #[unsafe(method(transcribedTextContent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn transcribedTextContent(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`transcribedTextContent`][Self::transcribedTextContent].
+        #[unsafe(method(setTranscribedTextContent:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTranscribedTextContent(&self, transcribed_text_content: Option<&NSString>);
     );
 }
 

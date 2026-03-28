@@ -224,6 +224,36 @@ impl CPListTemplate {
             header_grid_buttons: Option<&NSArray<CPGridButton>>,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "CPListSection", feature = "CPListTemplateDetailsHeader"))]
+        /// Initialize a list template with a details list header.
+        #[unsafe(method(initWithTitle:listHeader:sections:assistantCellConfiguration:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTitle_listHeader_sections_assistantCellConfiguration(
+            this: Allocated<Self>,
+            title: Option<&NSString>,
+            list_header: Option<&CPListTemplateDetailsHeader>,
+            sections: &NSArray<CPListSection>,
+            assistant_cell_configuration: Option<&CPAssistantCellConfiguration>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "CPListTemplateDetailsHeader")]
+        /// An optional details header displayed at the top of the list template.
+        ///
+        /// The list header provides a way to display additional context or summary information
+        /// above the list sections. When set, the header appears between the navigation bar
+        /// and the first list section.
+        ///
+        /// Assigning to this property will dynamically update the List Template to show or hide the header.
+        #[unsafe(method(listHeader))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn listHeader(&self) -> Option<Retained<CPListTemplateDetailsHeader>>;
+
+        #[cfg(feature = "CPListTemplateDetailsHeader")]
+        /// Setter for [`listHeader`][Self::listHeader].
+        #[unsafe(method(setListHeader:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setListHeader(&self, list_header: Option<&CPListTemplateDetailsHeader>);
+
         /// The list template's delegate is informed of list selection events.
         #[deprecated]
         #[unsafe(method(delegate))]

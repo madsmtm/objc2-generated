@@ -52,3 +52,15 @@ pub unsafe extern "C-unwind" fn NSStringFromCPLaneStatus(
     let ret = unsafe { NSStringFromCPLaneStatus(lane_status) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
+
+#[cfg(feature = "CPRerouteReason")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromCPRerouteReason(
+    reason: CPRerouteReason,
+) -> Option<Retained<NSString>> {
+    extern "C-unwind" {
+        fn NSStringFromCPRerouteReason(reason: CPRerouteReason) -> *mut NSString;
+    }
+    let ret = unsafe { NSStringFromCPRerouteReason(reason) };
+    unsafe { Retained::retain_autoreleased(ret) }
+}

@@ -6386,6 +6386,10 @@ pub use self::__hid::kIOHIDCountryCodeKey;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDDeviceAccessEntitlementKey;
 #[cfg(feature = "hid")]
+pub use self::__hid::kIOHIDDeviceApprovedCarPlayDeviceKey;
+#[cfg(feature = "hid")]
+pub use self::__hid::kIOHIDDeviceCarPlayDeviceKey;
+#[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDDeviceDefaultAsyncRequestTimeout;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDDeviceKey;
@@ -6685,6 +6689,12 @@ pub use self::__hid::kIOHIDStandardTypeJIS;
 pub use self::__hid::kIOHIDStandardTypeKey;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDStandardTypeUnspecified;
+#[cfg(feature = "hid")]
+pub use self::__hid::kIOHIDSupportedEventMaskKey;
+#[cfg(feature = "hid")]
+pub use self::__hid::kIOHIDSupportedKeyboardUsagePairsKey;
+#[cfg(feature = "hid")]
+pub use self::__hid::kIOHIDSupportedVendorUsagePairsKey;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDSurfaceDimensionsKey;
 #[cfg(feature = "hid")]
@@ -8328,6 +8338,8 @@ pub use self::__pwr_mgt::kPMGeneralAggressiveness;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kPMGetAggressiveness;
 #[cfg(feature = "pwr_mgt")]
+pub use self::__pwr_mgt::kPMGetAssertionLog;
+#[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kPMGetSystemSleepType;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kPMLastAggressivenessType;
@@ -8347,6 +8359,8 @@ pub use self::__pwr_mgt::kPMRequestIdleSleepRevert;
 pub use self::__pwr_mgt::kPMRestartSystem;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kPMSetAggressiveness;
+#[cfg(feature = "pwr_mgt")]
+pub use self::__pwr_mgt::kPMSetAssertionLogThreshold;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kPMSetClamshellSleepState;
 #[cfg(feature = "pwr_mgt")]
@@ -8489,6 +8503,8 @@ pub use self::__pwr_mgt::IOPMSoftSleep;
 pub use self::__pwr_mgt::IOPMSystemCapabilityChangeParameters;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMUserActiveType;
+#[cfg(feature = "pwr_mgt")]
+pub use self::__pwr_mgt::IOPMUserClientNotificationType;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMWillAckLater;
 #[cfg(feature = "pwr_mgt")]

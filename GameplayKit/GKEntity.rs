@@ -89,6 +89,10 @@ impl GKEntity {
         #[unsafe(method_family = none)]
         pub unsafe fn addComponent(&self, component: &GKComponent);
 
+        /// Removes the component of the indicates class from this entity
+        ///
+        /// Parameter `componentClass`: the class of the component you want to remove
+        ///
         /// # Safety
         ///
         /// `component_class` probably has further requirements.
@@ -97,6 +101,10 @@ impl GKEntity {
         pub unsafe fn removeComponentForClass(&self, component_class: &AnyClass);
 
         #[cfg(feature = "GKComponent")]
+        /// Gets the component of the indicated class.  Returns nil if entity does not have this component
+        ///
+        /// Parameter `componentClass`: the class of the component you want to get
+        ///
         /// # Safety
         ///
         /// `component_class` probably has further requirements.

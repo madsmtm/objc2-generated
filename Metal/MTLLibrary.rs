@@ -785,7 +785,6 @@ impl MTLCompileOptions {
 
         #[cfg(feature = "MTLTypes")]
         /// Sets the required threads-per-threadgroup during dispatches. The `threadsPerThreadgroup` argument of any dispatch must match this value if it is set.
-        /// Optional, unless the pipeline is going to use CooperativeTensors in which case this must be set.
         /// Setting this to a size of 0 in every dimension disables this property
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]

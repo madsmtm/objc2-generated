@@ -30,7 +30,7 @@ pub unsafe trait LARightUI: ClassType + Sized + private_LARightUI::Sealed {
         ///
         /// Parameter `presentationContext`: Container where the authorization UI will be presented.
         ///
-        /// Parameter `handler`: Completion handler called after the authorization finishses. Returns an error when the authorization fails.
+        /// Parameter `handler`: Completion handler called after the authorization finishes. Returns an error when the authorization fails.
         #[unsafe(method(authorizeWithLocalizedReason:inPresentationContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn authorizeWithLocalizedReason_inPresentationContext_completion(

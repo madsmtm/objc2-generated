@@ -89,6 +89,29 @@ unsafe impl RefEncode for FSSyncFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Mount options to be requested from FSKit using the `requestedMountOptions` property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmountoptions?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct FSMountOptions(pub NSUInteger);
+bitflags::bitflags! {
+    impl FSMountOptions: NSUInteger {
+/// An option to request a read-only mount.
+        #[doc(alias = "FSMountOptionsReadOnly")]
+        const ReadOnly = 1<<0;
+    }
+}
+
+unsafe impl Encode for FSMountOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for FSMountOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// A type that identifies a volume.
     ///
@@ -937,6 +960,21 @@ extern_protocol!(
         #[unsafe(method(setEnableOpenUnlinkEmulation:))]
         #[unsafe(method_family = none)]
         unsafe fn setEnableOpenUnlinkEmulation(&self, enable_open_unlink_emulation: bool);
+
+        /// A property that allows the file system to request for specific mount options from FSKit.
+        ///
+        /// FSKit reads this value after the volume replies to the ``mount(options:replyHandler:)`` call.
+        /// Changing the returned value during the runtime of the volume has no effect.
+        #[optional]
+        #[unsafe(method(requestedMountOptions))]
+        #[unsafe(method_family = none)]
+        unsafe fn requestedMountOptions(&self) -> FSMountOptions;
+
+        /// Setter for [`requestedMountOptions`][Self::requestedMountOptions].
+        #[optional]
+        #[unsafe(method(setRequestedMountOptions:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setRequestedMountOptions(&self, requested_mount_options: FSMountOptions);
 
         #[cfg(all(feature = "FSTaskOptions", feature = "block2"))]
         /// Mounts this volume, using the specified options.

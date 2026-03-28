@@ -40,12 +40,69 @@ impl PHAssetResourceUploadJobChangeRequest {
         /// <doc
         /// ://com.apple.documentation/foundation/nsurlrequest> to which this asset resource will be sent.
         /// - resource: the asset resource to be uploaded.
+        #[deprecated]
         #[unsafe(method(createJobWithDestination:resource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createJobWithDestination_resource(
             destination: &NSURLRequest,
             resource: &PHAssetResource,
         );
+
+        #[cfg(feature = "PHAssetResource")]
+        /// Creates an asset resource upload job and returns the change request.
+        ///
+        /// This method creates an upload job and returns a change request that can be used to access the placeholder
+        /// for the created job. Use the placeholder to obtain the local identifier before the change block completes.
+        ///
+        /// If the number of jobs exceeds ``PHAssetResourceUploadJob/jobLimit`` the photo library ``performChanges`` request will fail with a ``PHPhotosErrorLimitExceeded`` error.
+        /// To generate jobs after this limit is triggered, you must acknowledge succeeded/failed jobs, and wait for the registered/pending ones to finish uploading, which will make those jobs also succeeded/failed.
+        ///
+        /// - Parameter:
+        /// - destination: the destination
+        /// <doc
+        /// ://com.apple.documentation/foundation/nsurlrequest> to which this asset resource will be sent.
+        /// - resource: the asset resource to be uploaded.
+        /// - Returns: A change request for the created job.
+        #[unsafe(method(creationRequestForJobWithDestination:resource:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn creationRequestForJobWithDestination_resource(
+            destination: &NSURLRequest,
+            resource: &PHAssetResource,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "PHAssetResource")]
+        /// Creates a download-only job request for the specified asset resource.
+        ///
+        /// This method registers a job that requests an asset resource be downloaded from iCloud to the device
+        /// without uploading it to a remote server. The download operation is performed asynchronously by the
+        /// system over time. This is useful when you need to ensure a resource is available locally for processing.
+        ///
+        /// The job will transition through the same states as upload jobs (`PHAssetResourceUploadJobStateRegistered`,
+        /// `PHAssetResourceUploadJobStatePending`, and eventually `PHAssetResourceUploadJobStateSucceeded` or
+        /// `PHAssetResourceUploadJobStateFailed`), but will only perform a download operation.
+        ///
+        /// Use `fetchJobsWithAction:options:` to check the job's state. When the job reaches
+        /// `PHAssetResourceUploadJobStateSucceeded`, the download has completed successfully.
+        ///
+        /// - Note: The system may subsequently purge the downloaded resource due to system conditions.
+        ///
+        /// - Parameter resource: The asset resource to download.
+        /// - Returns: A change request for the created job.
+        #[unsafe(method(creationRequestForDownloadJobWithResource:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn creationRequestForDownloadJobWithResource(
+            resource: &PHAssetResource,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "PHObject")]
+        /// A placeholder for the asset resource upload job created by this request.
+        ///
+        /// The placeholder can be used to obtain the local identifier of the job that will be created when the change block completes.
+        #[unsafe(method(placeholderForCreatedAssetResourceUploadJob))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn placeholderForCreatedAssetResourceUploadJob(
+            &self,
+        ) -> Option<Retained<PHObjectPlaceholder>>;
 
         #[cfg(all(feature = "PHAssetResourceUploadJob", feature = "PHObject"))]
         /// Creates a request for modifying the specified upload job.
@@ -66,6 +123,19 @@ impl PHAssetResourceUploadJobChangeRequest {
         #[unsafe(method(retryWithDestination:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retryWithDestination(&self, destination: Option<&NSURLRequest>);
+
+        /// Cancels an upload job that is registered or pending.
+        ///
+        /// Use this method to cancel an upload job that has not yet completed. This is useful when
+        /// a resource is uploaded through another path (e.g., the main app) and the background
+        /// upload job is no longer needed, avoiding wasteful duplicate uploads.
+        ///
+        /// Only jobs in the `PHAssetResourceUploadJobStateRegistered` or `PHAssetResourceUploadJobStatePending`
+        /// states can be cancelled. Cancelled jobs transition to the `PHAssetResourceUploadJobStateCancelled` state
+        /// and are automatically acknowledged.
+        #[unsafe(method(cancel))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn cancel(&self);
     );
 }
 

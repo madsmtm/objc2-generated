@@ -7,18 +7,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantacceptancestatus?language=objc)
+/// Constants that represent the status of a participant.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantacceptancestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantAcceptanceStatus(pub NSInteger);
 impl CKShareParticipantAcceptanceStatus {
+    /// The participant's status is unknown.
     #[doc(alias = "CKShareParticipantAcceptanceStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The participant's acceptance of the share request is pending.
     #[doc(alias = "CKShareParticipantAcceptanceStatusPending")]
     pub const Pending: Self = Self(1);
+    /// The participant accepted the share request.
     #[doc(alias = "CKShareParticipantAcceptanceStatusAccepted")]
     pub const Accepted: Self = Self(2);
+    /// The system removed the participant from the share.
     #[doc(alias = "CKShareParticipantAcceptanceStatusRemoved")]
     pub const Removed: Self = Self(3);
 }
@@ -31,7 +37,7 @@ unsafe impl RefEncode for CKShareParticipantAcceptanceStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// These permissions determine what share participants can do with records inside that share
+/// Constants that represent the permissions to grant to a share participant.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantpermission?language=objc)
 // NS_ENUM
@@ -39,12 +45,16 @@ unsafe impl RefEncode for CKShareParticipantAcceptanceStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantPermission(pub NSInteger);
 impl CKShareParticipantPermission {
+    /// The participant's permissions are unknown.
     #[doc(alias = "CKShareParticipantPermissionUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The participant doesn't have any permissions for the share.
     #[doc(alias = "CKShareParticipantPermissionNone")]
     pub const None: Self = Self(1);
+    /// The participant has read-only permissions for the share.
     #[doc(alias = "CKShareParticipantPermissionReadOnly")]
     pub const ReadOnly: Self = Self(2);
+    /// The participant has read-and-write permissions for the share.
     #[doc(alias = "CKShareParticipantPermissionReadWrite")]
     pub const ReadWrite: Self = Self(3);
 }
@@ -57,14 +67,7 @@ unsafe impl RefEncode for CKShareParticipantPermission {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Defines the participant role in a share:
-/// - `owner`: Can add private users.
-/// - `privateUser`: Can access the share.
-/// - `publicUser`: Self-added when accessing the share URL (owners cannot add public users).
-/// - `administrator`: Can add and remove participants and change their permissions.
-///
-/// Shares with ``CloudKit/CKShareParticipantRole/CKShareParticipantRoleAdministrator`` participants will be returned as read-only to devices running OS versions prior to this role being introduced.
-/// Administrator participants on these read-only shares will be returned as ``CloudKit/CKShareParticipantRole/CKShareParticipantRolePrivateUser``.
+/// Constants that represent the role of a share's participant.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantrole?language=objc)
 // NS_ENUM
@@ -72,14 +75,30 @@ unsafe impl RefEncode for CKShareParticipantPermission {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantRole(pub NSInteger);
 impl CKShareParticipantRole {
+    /// The participant's role is unknown.
     #[doc(alias = "CKShareParticipantRoleUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The participant is the share's owner.
+    ///
+    /// The owner of a share can invite private users.
     #[doc(alias = "CKShareParticipantRoleOwner")]
     pub const Owner: Self = Self(1);
+    /// The participant has the private role.
+    ///
+    /// A private user of a share can access the share.
     #[doc(alias = "CKShareParticipantRolePrivateUser")]
     pub const PrivateUser: Self = Self(3);
+    /// The participant has the public role.
+    ///
+    /// A public user of a share is self-added when accessing the share URL.
     #[doc(alias = "CKShareParticipantRolePublicUser")]
     pub const PublicUser: Self = Self(4);
+    /// The participant has the administrator role.
+    ///
+    /// An administrator of a share can add and remove participants and change their permissions.
+    ///
+    /// CloudKit returns shares with `administrator` participants as read-only to devices running OS versions prior to this role being introduced.
+    /// CloudKit returns administrator participants on such read-only shares as ``CloudKit/CKShareParticipantRole/CKShareParticipantRolePrivateUser``.
     #[doc(alias = "CKShareParticipantRoleAdministrator")]
     pub const Administrator: Self = Self(2);
 }
@@ -92,22 +111,28 @@ unsafe impl RefEncode for CKShareParticipantRole {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipanttype?language=objc)
+/// The role of a participant.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipanttype?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantType(pub NSInteger);
 impl CKShareParticipantType {
+    /// An unknown role.
     #[doc(alias = "CKShareParticipantTypeUnknown")]
     #[deprecated]
     pub const Unknown: Self = Self(0);
+    /// The type of an owner.
     #[doc(alias = "CKShareParticipantTypeOwner")]
     #[deprecated]
     pub const Owner: Self = Self(1);
+    /// The type of a private user.
     #[doc(alias = "CKShareParticipantTypePrivateUser")]
     #[deprecated]
     pub const PrivateUser: Self = Self(3);
+    /// The type of a public owner.
     #[doc(alias = "CKShareParticipantTypePublicUser")]
     #[deprecated]
     pub const PublicUser: Self = Self(4);
@@ -122,7 +147,21 @@ unsafe impl RefEncode for CKShareParticipantType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipant?language=objc)
+    /// An object that describes a user's participation in a share.
+    ///
+    /// Participants are a key element of sharing in CloudKit. A participant provides information about an iCloud user and their participation in a share, including their identity, acceptance status, permissions, and role.
+    ///
+    /// The acceptance status determines the participant's visibilty of the shared records. Statuses are: `pending`, `accepted`, `removed`, and `unknown`. If the status is `pending`, use ``CKAcceptSharesOperation`` to accept the share. Upon acceptance, CloudKit makes the shared records available in the participant's shared database. The records remain accessible for as long as the participant's status is `accepted`.
+    ///
+    /// You don't create participants. Use the share's ``CKShare/participants`` property to access its existing participants. Use
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit/uicloudsharingcontroller> to manage the share's participants and their permissions. Alternatively, you can generate participants using ``CKFetchShareParticipantsOperation``. Participants must have an active iCloud account.
+    ///
+    /// Anyone with the URL of a public share can become a participant in that share. Participants of a public share assume the `publicUser` role. For private shares, the owner manages the participants. An owner is any participant with the `owner` role. A participant of a private share can't accept the share unless the owner adds them first. Private share participants assume the `privateUser` role. CloudKit removes any pending participants if the owner changes the share's ``CKShare/publicPermission``. CloudKit removes all participants if the new permission is `none`.
+    ///
+    /// Participants with write permissions can modify or delete any record that you include in the share. However, only the owner can delete a shared hierarchy's root record. If a participant attempts to delete the share, CloudKit removes the participant. The share remains active for all other participants.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKShareParticipant;
@@ -155,12 +194,14 @@ impl CKShareParticipant {
         // +new (unavailable)
 
         #[cfg(feature = "CKUserIdentity")]
+        /// The identity of the participant.
+        ///
+        /// This property contains a reference to the user identity for the share participant.
         #[unsafe(method(userIdentity))]
         #[unsafe(method_family = none)]
         pub unsafe fn userIdentity(&self) -> Retained<CKUserIdentity>;
 
-        /// The default participant role is
-        /// `CKShareParticipantRolePrivateUser.`
+        /// The participant's role for the share.
         #[unsafe(method(role))]
         #[unsafe(method_family = none)]
         pub unsafe fn role(&self) -> CKShareParticipantRole;
@@ -170,7 +211,9 @@ impl CKShareParticipant {
         #[unsafe(method_family = none)]
         pub unsafe fn setRole(&self, role: CKShareParticipantRole);
 
-        /// The default participant type is ``CloudKit/CKShareParticipantType/CKShareParticipantTypePrivateUser``.
+        /// The participant type.
+        ///
+        /// The property controls the participant type for the share. For a list of possible values, see ``CKShareParticipantType``.
         #[deprecated]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
@@ -182,12 +225,16 @@ impl CKShareParticipant {
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: CKShareParticipantType);
 
+        /// The current state of the user's acceptance of the share.
+        ///
+        /// This property contains the current state of the participant's acceptance of the share. For a list of possible values, see ``CKShare/ParticipantAcceptanceStatus``.
         #[unsafe(method(acceptanceStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptanceStatus(&self) -> CKShareParticipantAcceptanceStatus;
 
-        /// The default permission for a new participant is
-        /// `CKShareParticipantPermissionReadOnly.`
+        /// The participant's permission level for the share.
+        ///
+        /// This property controls the permissions that the participant has for the share. For a list of possible values, see ``CKShare/ParticipantPermission``.
         #[unsafe(method(permission))]
         #[unsafe(method_family = none)]
         pub unsafe fn permission(&self) -> CKShareParticipantPermission;
@@ -202,23 +249,23 @@ impl CKShareParticipant {
         #[unsafe(method_family = none)]
         pub unsafe fn participantID(&self) -> Retained<NSString>;
 
-        /// Indicates whether the participant was originally a requester who was approved to join the share.
+        /// Indicates whether the participant was originally a requester that an originator or administrator approved to join the share.
         #[unsafe(method(isApprovedRequester))]
         #[unsafe(method_family = none)]
         pub unsafe fn isApprovedRequester(&self) -> bool;
 
-        /// The date and time when the participant was added to the share.
+        /// The date and time when an originator or administrator added this participant to the share.
         ///
-        /// This timestamp is set when the share is successfully saved to the server.
+        /// CloudKit sets this timestamp when the share is successfully saved to the server.
         #[unsafe(method(dateAddedToShare))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateAddedToShare(&self) -> Option<Retained<NSDate>>;
 
         /// Generate a unique URL for inviting a participant without knowing their handle
         ///
-        /// When a participant's email address / phone number / userRecordID isn't known up-front, a ``CKShareParticipant/oneTimeURLParticipant`` can be added
-        /// to the share. Once the share is saved, a custom invitation link or one-time URL is available for the added participant via ``CKShare/oneTimeURLForParticipantID:``.
-        /// This custom link can be used by any recipient user to fetch share metadata and accept the share.
+        /// When a participant's email address / phone number / userRecordID isn't known up-front, you can add a ``CKShareParticipant/oneTimeURLParticipant``
+        /// to the share. Once you save the share, you can get a custom invitation link or one-time URL for the added participant via ``CKShare/oneTimeURL(for:)``.
+        /// Any recipient user can use this custom link to fetch share metadata and accept the share.
         ///
         /// Note that a one-time URL participant in the ``ParticipantAcceptanceStatus/pending`` state has empty ``CKUserIdentity/nameComponents``
         /// and a nil ``CKUserIdentity/lookupInfo``.

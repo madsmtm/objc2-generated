@@ -28,6 +28,51 @@ unsafe impl RefEncode for CTCellularPlanCapability {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanlifecycleproperties?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct CTCellularPlanLifecycleProperties;
+);
+
+extern_conformance!(
+    unsafe impl NSCoding for CTCellularPlanLifecycleProperties {}
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CTCellularPlanLifecycleProperties {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for CTCellularPlanLifecycleProperties {}
+);
+
+impl CTCellularPlanLifecycleProperties {
+    extern_methods!(
+        #[unsafe(method(expirationDate))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn expirationDate(&self) -> Retained<NSDateComponents>;
+
+        /// Setter for [`expirationDate`][Self::expirationDate].
+        #[unsafe(method(setExpirationDate:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setExpirationDate(&self, expiration_date: &NSDateComponents);
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl CTCellularPlanLifecycleProperties {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanproperties?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -74,6 +119,20 @@ impl CTCellularPlanProperties {
         #[unsafe(method(setSupportedRegionCodes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedRegionCodes(&self, supported_region_codes: &NSArray<NSString>);
+
+        #[unsafe(method(lifecycleProperties))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn lifecycleProperties(
+            &self,
+        ) -> Option<Retained<CTCellularPlanLifecycleProperties>>;
+
+        /// Setter for [`lifecycleProperties`][Self::lifecycleProperties].
+        #[unsafe(method(setLifecycleProperties:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLifecycleProperties(
+            &self,
+            lifecycle_properties: Option<&CTCellularPlanLifecycleProperties>,
+        );
     );
 }
 

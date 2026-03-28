@@ -6,12 +6,23 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousb20bitratelow?language=objc)
-pub const kIOUSB20BitrateLow: c_uint = 1500 * 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousb20bitratefull?language=objc)
-pub const kIOUSB20BitrateFull: c_uint = 12 * 1000 * 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousb20bitratehigh?language=objc)
-pub const kIOUSB20BitrateHigh: c_uint = 480 * 1000 * 1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeedlow?language=objc)
+pub const kIOUSBLinkSpeedLow: c_ulong = 1500 * 1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeedfull?language=objc)
+pub const kIOUSBLinkSpeedFull: c_ulong = 12 * 1000 * 1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeedhigh?language=objc)
+pub const kIOUSBLinkSpeedHigh: c_ulong = 480 * 1000 * 1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeed5gbps?language=objc)
+pub const kIOUSBLinkSpeed5Gbps: c_ulong = 5 * 1000 * 1000 * 1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeed10gbps?language=objc)
+pub const kIOUSBLinkSpeed10Gbps: c_ulong = 10 * 1000 * 1000 * 1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeed20gbps?language=objc)
+pub const kIOUSBLinkSpeed20Gbps: c_ulong = 20 * 1000 * 1000 * 1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeed40gbps?language=objc)
+pub const kIOUSBLinkSpeed40Gbps: c_ulong = 40 * 1000 * 1000 * 1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeed80gbps?language=objc)
+pub const kIOUSBLinkSpeed80Gbps: c_ulong = 80 * 1000 * 1000 * 1000;
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbapplevendorid?language=objc)
 pub const kIOUSBAppleVendorID: c_uint = 0x05AC;
 
@@ -1209,7 +1220,7 @@ pub struct IOUSBDeviceCapabilityBillboardAltMode {
     pub bDescriptorType: u8,
     pub bDevCapabilityType: u8,
     pub bIndex: u8,
-    pub dwAlternateModeVdo: u16,
+    pub dwAlternateModeVdo: u32,
 }
 
 #[cfg(feature = "objc2")]
@@ -1221,7 +1232,7 @@ unsafe impl Encode for IOUSBDeviceCapabilityBillboardAltMode {
             <u8>::ENCODING,
             <u8>::ENCODING,
             <u8>::ENCODING,
-            <u16>::ENCODING,
+            <u32>::ENCODING,
         ],
     );
 }
@@ -1314,10 +1325,10 @@ unsafe impl RefEncode for IOUSBSuperSpeedEndpointCompanionDescriptor {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedendpointcompaniondescriptormaxburst?language=objc)
-pub const kIOUSBSuperSpeedEndpointCompanionDescriptorMaxBurst: c_uint = IOUSBBitRange!(0, 4);
+pub const kIOUSBSuperSpeedEndpointCompanionDescriptorMaxBurst: c_uint = IOUSBBitRange!(0, 7);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedendpointcompaniondescriptormaxburstphase?language=objc)
 pub const kIOUSBSuperSpeedEndpointCompanionDescriptorMaxBurstPhase: c_uint =
-    IOUSBBitRangePhase!(0, 4);
+    IOUSBBitRangePhase!(0, 7);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedendpointcompaniondescriptorbulkmaxstreams?language=objc)
 pub const kIOUSBSuperSpeedEndpointCompanionDescriptorBulkMaxStreams: c_uint = IOUSBBitRange!(0, 4);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedendpointcompaniondescriptorbulkmaxstreamsphase?language=objc)
@@ -2269,5 +2280,26 @@ unsafe impl Encode for tIOUSB30HubExtStatus {
 
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for tIOUSB30HubExtStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousb40linkstatetimeout?language=objc)
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct tIOUSB40LinkStateTimeout(pub c_uint);
+impl tIOUSB40LinkStateTimeout {
+    #[doc(alias = "kPortReadyTimeout")]
+    pub const PortReadyTimeout: Self = Self(1100);
+    #[doc(alias = "kKeepAliveTimeout")]
+    pub const KeepAliveTimeout: Self = Self(20);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for tIOUSB40LinkStateTimeout {
+    const ENCODING: Encoding = c_uint::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for tIOUSB40LinkStateTimeout {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

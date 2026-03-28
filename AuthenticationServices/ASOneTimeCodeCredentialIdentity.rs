@@ -16,6 +16,10 @@ extern_class!(
     pub struct ASOneTimeCodeCredentialIdentity;
 );
 
+unsafe impl Send for ASOneTimeCodeCredentialIdentity {}
+
+unsafe impl Sync for ASOneTimeCodeCredentialIdentity {}
+
 #[cfg(feature = "ASCredentialIdentity")]
 extern_conformance!(
     unsafe impl ASCredentialIdentity for ASOneTimeCodeCredentialIdentity {}
@@ -64,6 +68,12 @@ impl ASOneTimeCodeCredentialIdentity {
 
         /// A label to identify the one time code, typically supplied by the user.
         /// This string will be shown in the AutoFill suggestion for this one time code credential.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;

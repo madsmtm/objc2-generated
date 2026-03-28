@@ -5,6 +5,7 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+use objc2_foundation::*;
 #[cfg(feature = "objc2-ui-kit")]
 use objc2_ui_kit::*;
 
@@ -79,3 +80,23 @@ impl CPListImageRowItemElement {
 
     );
 }
+
+impl CPListImageRowItemElement {
+    extern_methods!(
+        #[unsafe(method(accessibilityLabel))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setAccessibilityLabel:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
+    );
+}
+
+#[cfg(feature = "CPPlaybackConfiguration")]
+extern_conformance!(
+    unsafe impl CPPlayableItem for CPListImageRowItemElement {}
+);

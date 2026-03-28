@@ -61,7 +61,9 @@ extern_class!(
     ///
     /// Searching the catalog is asynchronous. The session calls your delegate methods with the result.
     ///
-    /// Matching songs in Shazam music requires enabling your app to access the catalog. For more information on enabling your app, see [Enable ShazamKit for an App ID](https://developer.apple.com/help/account/configure-app-services/shazamkit).
+    /// Matching audio against the Shazam catalog requires enabling your app to access the catalog. If you are
+    /// using a custom catalog, you don't need to enable ShazamKit. For more information on enabling your app,
+    /// see [Enable ShazamKit for an App ID](https://developer.apple.com/help/account/configure-app-services/shazamkit).
     ///
     /// The code below shows searching for a match in the Shazam catalog using an existing audio buffer:
     ///
@@ -163,6 +165,34 @@ impl SHSession {
         ///
         /// - Parameters:
         /// - signature: The signature for searching the catalog of reference signatures.
+        ///
+        /// The signature duration should be between ``SHCatalog/minimumQuerySignatureDuration`` and
+        /// ``SHCatalog/maximumQuerySignatureDuration``.  For audio longer than the maximum duration,
+        /// use ``SHSignature/slices(from:duration:stride:)`` to create multiple slices from the
+        /// signature.
+        ///
+        /// The code below creates slices from a signature and uses the first three slices to find a match:
+        ///
+        /// ```swift
+        /// let signature = try await SHSignatureGenerator.signature(from: audioAsset)
+        /// let slices = try signature.slices(from: 2.0, duration: 10.0, stride: 5.0)
+        ///
+        /// // Use the first 3 slices to find a match.
+        /// for try await slice in slices.prefix(3) {
+        /// session.match(slice)
+        /// }
+        /// ```
+        ///
+        /// You can use AsyncSequence operators like
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/asyncsequence/prefix(_:)>
+        /// or
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/asyncsequence/first(where:)>
+        /// to choose which slices are processed.
+        ///
+        /// For continuous matching as audio becomes available, use ``matchStreamingBuffer(_:at:)``,
+        /// which automatically generates and matches signatures from audio buffers.
         #[unsafe(method(matchSignature:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchSignature(&self, signature: &SHSignature);

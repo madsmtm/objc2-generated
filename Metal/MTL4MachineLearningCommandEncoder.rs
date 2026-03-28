@@ -34,7 +34,7 @@ extern_protocol!(
         /// - argumentTable: An argument table to set on the command encoder's Machine Learning stage.
         #[unsafe(method(setArgumentTable:))]
         #[unsafe(method_family = none)]
-        fn setArgumentTable(&self, argument_table: &ProtocolObject<dyn MTL4ArgumentTable>);
+        fn setArgumentTable(&self, argument_table: Option<&ProtocolObject<dyn MTL4ArgumentTable>>);
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLHeap"))]
         /// Dispatches a machine learning network using the current pipeline state and argument table.

@@ -443,6 +443,7 @@ impl NSSegmentedControl {
     extern_methods!(
         /// Creates a standard segmented control containing one segment for each of the provided labels.
         ///
+        ///
         /// Parameter `labels`: An array of localized label strings to use for the control's segments.
         ///
         /// Parameter `trackingMode`: The selection mode for the control. The NSSegmentSwitchTracking enum describes the possible values and their effects.
@@ -468,7 +469,9 @@ impl NSSegmentedControl {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        /// Creates a standard segmented control containing one segment for each of the provided images. To ensure accessibility for this control, set the accessibilityDescription property on each of the provided images.
+        /// Creates a standard segmented control containing one segment for each of the provided images.
+        ///
+        /// To ensure accessibility for this control, set the `accessibilityDescription` property on each of the provided images.
         ///
         /// Parameter `images`: An array of image objects to use for the control's segments.
         ///

@@ -236,6 +236,8 @@ impl CWPHYMode {
     pub const Mode11ac: Self = Self(5);
     #[doc(alias = "kCWPHYMode11ax")]
     pub const Mode11ax: Self = Self(6);
+    #[doc(alias = "kCWPHYMode11be")]
+    pub const Mode11be: Self = Self(7);
 }
 
 unsafe impl Encode for CWPHYMode {

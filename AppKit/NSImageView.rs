@@ -201,7 +201,10 @@ impl NSImageView {
         pub fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
 
         #[cfg(feature = "NSImage")]
-        /// Specifies a combination of point size, weight, and scale to use when sizing and displaying symbol images. If a symbol configuration isn't provided, the image view uses a default size, weight, and scale provided by the system. The default value is `nil`.
+        /// Specifies a combination of point size, weight, and scale to use when sizing and displaying symbol images.
+        ///
+        /// If a symbol configuration isn't provided, the image view uses a default size, weight, and scale provided by the system.
+        /// The default value is `nil`.
         #[unsafe(method(symbolConfiguration))]
         #[unsafe(method_family = none)]
         pub fn symbolConfiguration(&self) -> Option<Retained<NSImageSymbolConfiguration>>;
@@ -218,7 +221,10 @@ impl NSImageView {
         );
 
         #[cfg(feature = "NSColor")]
-        /// A tint color to be used when rendering template image content. This color may be combined with other effects to produce a theme-appropriate rendition of the template image. A nil value indicates the standard set of effects without color modification. The default value is nil.
+        /// A tint color to be used when rendering template image content.
+        ///
+        /// This color may be combined with other effects to produce a theme-appropriate rendition of the template image. A `nil` value indicates the standard set of effects without color modification.
+        /// The default value is `nil`.
         #[unsafe(method(contentTintColor))]
         #[unsafe(method_family = none)]
         pub fn contentTintColor(&self) -> Option<Retained<NSColor>>;

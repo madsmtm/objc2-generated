@@ -32,6 +32,9 @@ mod __PKPushPayload;
 #[cfg(feature = "PKPushRegistry")]
 #[path = "PKPushRegistry.rs"]
 mod __PKPushRegistry;
+#[cfg(feature = "PKVoIPPushMetadata")]
+#[path = "PKVoIPPushMetadata.rs"]
+mod __PKVoIPPushMetadata;
 
 #[cfg(feature = "PKDefines")]
 pub use self::__PKDefines::PKPushType;
@@ -49,3 +52,5 @@ pub use self::__PKPushRegistry::PKPushTypeComplication;
 pub use self::__PKPushRegistry::PKPushTypeFileProvider;
 #[cfg(all(feature = "PKDefines", feature = "PKPushRegistry"))]
 pub use self::__PKPushRegistry::PKPushTypeVoIP;
+#[cfg(feature = "PKVoIPPushMetadata")]
+pub use self::__PKVoIPPushMetadata::PKVoIPPushMetadata;

@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordzonesoperation?language=objc)
+    /// An operation that modifies one or more record zones.
+    ///
+    /// After you create one or more record zones, use this operation to save those zones to the database. You can also use the operation to delete record zones and their records.
+    ///
+    /// If you assign a handler to the
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/operation/completionblock> property of the operation, CloudKit calls the handler after the operation executes and returns its results. Use the handler to perform housekeeping tasks for the operation, but don't use it to process the results of the operation. The handler you provide should manage any failures of the operation, whether due to an error or an explicit cancellation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordzonesoperation?language=objc)
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
@@ -23,11 +31,21 @@ extern_conformance!(
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 impl CKModifyRecordZonesOperation {
     extern_methods!(
+        /// Creates an empty modify record zones operation.
+        ///
+        /// You must set at least one of the ``CKModifyRecordZonesOperation/recordZonesToSave`` or ``CKModifyRecordZonesOperation/recordZoneIDsToDelete`` properties before you execute the operation.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKRecordZone", feature = "CKRecordZoneID"))]
+        /// Creates an operation for modifying the specified record zones.
+        ///
+        /// - Parameters:
+        /// - recordZonesToSave: The record zones to save. You can specify `nil` for this parameter.
+        /// - recordZoneIDsToDelete: The IDs of the record zones to delete. You can specify `nil` for this parameter.
+        ///
+        /// The record zones you intend to save or delete must all reside in the same database, which you specify when you configure the operation. If you delete a record zone, CloudKit deletes any records it contains.
         #[unsafe(method(initWithRecordZonesToSave:recordZoneIDsToDelete:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordZonesToSave_recordZoneIDsToDelete(
@@ -37,6 +55,12 @@ impl CKModifyRecordZonesOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZone")]
+        /// The record zones to save to the database.
+        ///
+        /// The initial value of the property is the array that you provide to the ``CKModifyRecordZonesOperation/init(recordZonesToSave:recordZoneIDsToDelete:)`` method. You can modify this array as necessary before you execute the operation. The record zones must all target the same database. You can specify `nil`, or an empty array, for this property.
+        ///
+        /// If you intend to change the value of this property, do so before you execute the operation or submit the operation to a queue.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -62,6 +86,12 @@ impl CKModifyRecordZonesOperation {
         );
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// The IDs of the record zones to delete permanently from the database.
+        ///
+        /// The initial value of the property is the array of zone IDs that you provide to the ``CKModifyRecordZonesOperation/init(recordZonesToSave:recordZoneIDsToDelete:)`` method. You can modify this array as necessary before you execute the operation. The record zones must all target the same database. You can specify `nil`, or an empty array, for this property.
+        ///
+        /// If you intend to change the value of this property, do so before you execute the operation or submit the operation to a queue.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -91,13 +121,17 @@ impl CKModifyRecordZonesOperation {
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
-        /// Called on success or failure of a record zone save
+        /// The closure to execute when CloudKit saves a record zone.
         ///
+        /// This property is a closure that returns no value and has the following parameters:
         ///
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// - The ID of the record zone that CloudKit saves.
+        /// - The record zone that CloudKit saves, or `nil` if CloudKit can't save the record zone.
+        /// - If CloudKit can't save the record zone, an error that provides information about the failure; otherwise, `nil`.
+        ///
+        /// The closure executes once for each record zone in the ``CKModifyRecordZonesOperation/recordZonesToSave`` property. Each time the closure executes, it executes serially with respect to the other record zone completion blocks of the operation.
+        ///
+        /// If you intend to use this closure to process results, set it before you execute the operation or submit the operation to a queue.
         ///
         /// This property is not atomic.
         ///
@@ -135,13 +169,16 @@ impl CKModifyRecordZonesOperation {
         );
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
-        /// Called on success or failure of a record zone deletion
+        /// The closure to execute when CloudKit deletes a record zone.
         ///
+        /// This property is a closure that returns no value and has the following parameters:
         ///
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// - The ID of the record zone that CloudKit deletes.
+        /// - If CloudKit can't delete the record zone, an error that provides information about the failure; otherwise, `nil`.
+        ///
+        /// The closure executes once for each record zone in the ``CKModifyRecordZonesOperation/recordZoneIDsToDelete`` property. Each time the closure executes, it executes serially with respect to the other record zone completion blocks of the operation.
+        ///
+        /// If you intend to use this closure to process results, set it before you execute the operation or submit the operation to a queue.
         ///
         /// This property is not atomic.
         ///
@@ -178,26 +215,21 @@ impl CKModifyRecordZonesOperation {
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
-        /// This block is called when the operation completes.
+        /// The closure to execute after CloudKit modifies all of the record zones.
         ///
+        /// This property is a closure that returns no value and has the following parameters:
         ///
-        /// The
+        /// - The record zones that CloudKit saves.
+        /// - The IDs of the record zones that CloudKit deletes.
+        /// - If CloudKit can't modify any of the record zones, this parameter provides information about the failure; otherwise, it's `nil`.
         ///
-        /// ```text
-        ///  -[NSOperation completionBlock]
-        /// ```
+        /// The closure executes once, and represents your only opportunity to process the results.
         ///
-        /// will also be called if both are set.
-        /// If the error is
-        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of recordZoneIDs to errors keyed off of
-        /// `CKPartialErrorsByItemIDKey.``savedRecordZones,``deletedRecordZoneIDs`and any
-        /// `CKPartialErrorsByItemIDKey`errors are repeats of the data sent back in previous
-        /// `perRecordZoneSaveBlock`and
-        /// `perRecordZoneDeleteBlock`invocations
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// The closure reports an error of type ``CKError/Code/partialFailure`` when it modifies only some of the record zones successfully. The
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nserror/userinfo> dictionary of the error contains a ``CKPartialErrorsByItemIDKey`` key that has a dictionary as its value. The keys of the dictionary are the IDs of the record zones that the operation can't modify, and the corresponding values are errors that contain information about the failures.
+        ///
+        /// If you intend to use this closure to process the results, set it before you execute the operation or submit the operation to a queue.
         ///
         /// This property is not atomic.
         ///

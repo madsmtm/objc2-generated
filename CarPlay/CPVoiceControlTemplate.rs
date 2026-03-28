@@ -79,6 +79,41 @@ impl CPVoiceControlState {
         #[unsafe(method(repeats))]
         #[unsafe(method_family = none)]
         pub unsafe fn repeats(&self) -> bool;
+
+        #[cfg(feature = "CPButton")]
+        /// An array of action buttons displayed in the template.
+        ///
+        /// These buttons provide user interaction capabilities such as play/pause,
+        /// favorite/unfavorite, share, or other content-specific actions. The buttons
+        /// are displayed horizontally and are limited by maximumActionButtonCount.
+        ///
+        ///
+        /// Buttons should have clear, concise titles or recognizable icons.
+        /// The order of buttons in the array determines their display order
+        /// from leading to trailing in the interface.
+        #[unsafe(method(actionButtons))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn actionButtons(&self) -> Retained<NSArray<CPButton>>;
+
+        #[cfg(feature = "CPButton")]
+        /// Setter for [`actionButtons`][Self::actionButtons].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setActionButtons:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setActionButtons(&self, action_buttons: &NSArray<CPButton>);
+
+        /// The maximum number of action buttons that can be displayed in the CPVoiceControlTemplate.
+        ///
+        /// This class property defines the upper limit for action buttons to ensure
+        /// proper layout and usability within the CarPlay interface constraints.
+        /// Any buttons beyond this limit in the actionButtons array will be ignored.
+        ///
+        ///
+        /// Returns: The maximum number of action buttons supported by this template.
+        #[unsafe(method(maximumActionButtonCount))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumActionButtonCount() -> NSInteger;
     );
 }
 
@@ -98,6 +133,7 @@ impl CPVoiceControlState {
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpvoicecontroltemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPVoiceControlTemplate;
@@ -165,6 +201,55 @@ impl CPVoiceControlTemplate {
         #[unsafe(method(activeStateIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn activeStateIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[cfg(feature = "CPBarButton")]
+        /// An array of bar buttons to be displayed on the leading side of the navigation bar.
+        ///
+        ///
+        /// Note: The navigation bar may display a maximum of 2 buttons in the leading space.
+        /// Setting more than 2 buttons to this property will only display the first 2 buttons.
+        #[unsafe(method(leadingNavigationBarButtons))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn leadingNavigationBarButtons(&self) -> Retained<NSArray<CPBarButton>>;
+
+        #[cfg(feature = "CPBarButton")]
+        /// Setter for [`leadingNavigationBarButtons`][Self::leadingNavigationBarButtons].
+        #[unsafe(method(setLeadingNavigationBarButtons:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLeadingNavigationBarButtons(
+            &self,
+            leading_navigation_bar_buttons: &NSArray<CPBarButton>,
+        );
+
+        #[cfg(feature = "CPBarButton")]
+        /// An array of bar buttons to be displayed on the trailing side of the navigation bar.
+        ///
+        ///
+        /// Note: The navigation bar may display a maximum of 2 buttons in the trailing space.
+        /// Setting more than 2 buttons to this property will only display the first 2 buttons.
+        #[unsafe(method(trailingNavigationBarButtons))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn trailingNavigationBarButtons(&self) -> Retained<NSArray<CPBarButton>>;
+
+        #[cfg(feature = "CPBarButton")]
+        /// Setter for [`trailingNavigationBarButtons`][Self::trailingNavigationBarButtons].
+        #[unsafe(method(setTrailingNavigationBarButtons:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTrailingNavigationBarButtons(
+            &self,
+            trailing_navigation_bar_buttons: &NSArray<CPBarButton>,
+        );
+
+        #[cfg(feature = "CPBarButton")]
+        #[unsafe(method(backButton))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn backButton(&self) -> Option<Retained<CPBarButton>>;
+
+        #[cfg(feature = "CPBarButton")]
+        /// Setter for [`backButton`][Self::backButton].
+        #[unsafe(method(setBackButton:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setBackButton(&self, back_button: Option<&CPBarButton>);
     );
 }
 

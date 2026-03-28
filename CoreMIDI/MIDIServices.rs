@@ -1526,6 +1526,16 @@ extern "C" {
     pub static kMIDIPropertyAssociatedEndpoint: &'static CFString;
 }
 
+extern "C" {
+    /// kMIDIPropertyUMPEnabled
+    ///
+    /// device property, MIDIUniqueID. If this property is present and set to 1 then the device is UMP capable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyumpenabled?language=objc)
+    #[cfg(feature = "objc2-core-foundation")]
+    pub static kMIDIPropertyUMPEnabled: &'static CFString;
+}
+
 extern "C-unwind" {
     /// Creates a MIDIClient object.
     ///

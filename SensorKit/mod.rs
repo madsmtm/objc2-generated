@@ -3820,7 +3820,9 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsample?language=objc)
+    /// A data sample from the photoplethysmogram (PPG) optical sensor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsample?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRPhotoplethysmogramOpticalSample;
@@ -3943,11 +3945,12 @@ impl SRPhotoplethysmogramOpticalSample {
         #[unsafe(method_family = none)]
         pub unsafe fn nanosecondsSinceStart(&self) -> i64;
 
-        /// The PPG waveform
+        /// The photoplethysmogram waveform in normalized units.
         ///
         ///
-        /// This may be
-        /// `nil`when the sensor data reading is invalid
+        /// The scale of the normalized signal may vary. For more information on how Apple Watch uses
+        /// photoplethysmography, see the “How Apple Watch measures your heart rate" section in
+        /// [Monitor your heart rate with Apple Watch](https://support.apple.com/en-us/120277).
         ///
         /// This property is not atomic.
         ///
@@ -3958,8 +3961,12 @@ impl SRPhotoplethysmogramOpticalSample {
         #[unsafe(method_family = none)]
         pub unsafe fn normalizedReflectance(&self) -> Option<Retained<NSNumber>>;
 
-        /// White noise estimation
+        /// An estimate of the white noise of the sensor.
         ///
+        ///
+        /// This value represents the white noise variance estimate per Hz in the ``normalizedReflectance``
+        /// signal (Normalized Units²/Hz). Apply the noise equivalent bandwidth factor to account for
+        /// in-band noise for your setup.
         ///
         /// This may be
         /// `nil`when the sensor data reading is invalid
@@ -3973,8 +3980,11 @@ impl SRPhotoplethysmogramOpticalSample {
         #[unsafe(method_family = none)]
         pub unsafe fn whiteNoise(&self) -> Option<Retained<NSNumber>>;
 
-        /// Pink noise estimation
+        /// An estimate of the pink noise of the sensor.
         ///
+        ///
+        /// The total pink noise variance estimate in the ``normalizedReflectance``
+        /// signal (Normalized Units²).
         ///
         /// This may be
         /// `nil`when the sensor data reading is invalid
@@ -3988,8 +3998,11 @@ impl SRPhotoplethysmogramOpticalSample {
         #[unsafe(method_family = none)]
         pub unsafe fn pinkNoise(&self) -> Option<Retained<NSNumber>>;
 
-        /// Estimated ambient noise intrusion
+        /// An estimated timeseries of ambient noise intrusion.
         ///
+        ///
+        /// The sensor's estimate of ambient noise intrusion in the ``normalizedReflectance``
+        /// signal (Normalized Units).
         ///
         /// This may be
         /// `nil`when the sensor data reading is invalid
@@ -4003,12 +4016,17 @@ impl SRPhotoplethysmogramOpticalSample {
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundNoise(&self) -> Option<Retained<NSNumber>>;
 
-        /// Estimated electronics noise floor level of the sensor
+        /// The white noise variance estimate in the background noise signal.
         ///
+        ///
+        /// This value represents the white noise variance estimate per Hz in the ``backgroundNoise``
+        /// signal (Normalized Units²/Hz). Apply the noise equivalent bandwidth factor to
+        /// account for in-band noise for your setup.
         ///
         /// To estimate the total ambient noise, subtract scaled background noise offset
         /// from the background noise. The scaling factor can be computed based on
         /// the researcher's digital filter setup.
+        ///
         /// This may be
         /// `nil`when the sensor data reading is invalid
         ///
@@ -4369,9 +4387,11 @@ unsafe impl RefEncode for SRAcousticSettingsAccessibilityBackgroundSoundsName {
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilityheadphoneaccommodationsmediaenhancetuning?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning(pub NSInteger);
 impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning {
+    #[doc(alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuningNone")]
+    pub const None: Self = Self(0);
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuningBalancedTone"
     )]
@@ -4397,11 +4417,13 @@ unsafe impl RefEncode for SRAcousticSettingsAccessibilityHeadphoneAccommodations
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilityheadphoneaccommodationsmediaenhanceboosting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting(
     pub NSInteger,
 );
 impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting {
+    #[doc(alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoostingNone")]
+    pub const None: Self = Self(0);
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoostingSlight"
     )]

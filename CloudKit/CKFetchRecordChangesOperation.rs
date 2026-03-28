@@ -8,16 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Use CKFetchRecordZoneChangesOperation instead of this class.
+    /// An operation that reports on the changed and deleted records in the specified record zone.
     ///
-    /// Any serverChangeTokens saved from a CKFetchRecordChangesOperation are usable as a serverRecordZoneChangeToken in CKFetchRecordZoneChangesOperation
+    /// {
+    /// Use ``CKFetchRecordZoneChangesOperation`` instead.
+    /// }
     ///
-    /// This operation will fetch records changes in the given record zone.
+    /// Use this type of operation object to optimize fetch operations for sets of records you manage locally. Specifically, use it when you maintain a local cache of your record data and need to synchronize that cache periodically with the server.
     ///
-    /// If a change token from a previous
-    /// `CKFetchRecordChangesOperation`is passed in, only the records that have changed since that token will be fetched.
-    /// If this is your first fetch or if you wish to re-fetch all records, pass nil for the change token.
-    /// Change tokens are opaque tokens and clients should not infer any behavior based on their content
+    /// To get the most benefit out of a `CKFetchRecordChangesOperation` object, you must maintain a local cache of the records from the specified zone. Each time you fetch changes from that zone, the server provides a token that identifies your request. With each subsequent fetch request, you initialize the operation object with the token from the previous request, and the server returns only the records with changes since that request.
+    ///
+    /// The blocks you assign to process the fetched records execute serially on an internal queue that the operation manages. You must provide blocks capable of executing on a background thread, so any tasks that require access to the main thread must redirect accordingly.
+    ///
+    /// If you assign a completion block to the
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/operation/completionblock> property of the operation object, the system calls the completion block after the operation executes and returns its results to you. You can use a completion block to perform housekeeping tasks for the operation, but don't use it to process the results of the operation. Any completion block you specify should handle the failure of the operation to complete its task, whether due to an error or an explicit cancellation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation?language=objc)
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
@@ -35,12 +40,26 @@ extern_conformance!(
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 impl CKFetchRecordChangesOperation {
     extern_methods!(
+        /// Creates an empty fetch record changes operation.
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "CKServerChangeToken"))]
+        /// Creates an operation for fetching changes in the specified record zone.
+        ///
+        /// - Parameters:
+        /// - recordZoneID: The zone that contains the records you want to fetch. You can fetch changes in a custom zone. CloudKit doesn't support syncing the default zone.
+        /// - previousServerChangeToken: The change token from a previous fetch operation. This is the token that the system passes to your ``CKFetchRecordChangesOperation/fetchRecordChangesCompletionBlock`` handler during a previous fetch operation. Use this token to limit the returned data to only those changes that occur after that fetch request. If you specify `nil` for this parameter, the operation object fetches all records and their contents.
+        ///
+        /// - Returns: An initialized operation object.
+        ///
+        /// When initializing the operation object, use the token from a previous fetch request if you have one. You can archive tokens and write them to disk for later use.
+        ///
+        /// The returned operation object retrieves all changed fields of the record, including any assets in those fields. If you want to minimize the amount of data that returns even further, configure the ``CKFetchRecordChangesOperation/desiredKeys`` property with the subset of keys that have values you want to fetch.
+        ///
+        /// After initializing the operation, associate at least one progress block with the operation object (excluding the completion block) to process the results.
         #[deprecated]
         #[unsafe(method(initWithRecordZoneID:previousServerChangeToken:))]
         #[unsafe(method_family = init)]
@@ -51,6 +70,10 @@ impl CKFetchRecordChangesOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// The ID of the record zone with the records you want to fetch.
+        ///
+        /// Typically, you set the value of this property when you initialize the operation object. If you intend to change the record zone, update the value before executing the operation or submitting it to a queue.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -75,6 +98,12 @@ impl CKFetchRecordChangesOperation {
         pub unsafe fn setRecordZoneID(&self, record_zone_id: Option<&CKRecordZoneID>);
 
         #[cfg(feature = "CKServerChangeToken")]
+        /// The token that identifies the starting point for retrieving changes.
+        ///
+        /// Each fetch request returns a unique token in addition to any changes. The token passes as a parameter to your ``CKFetchRecordChangesOperation/fetchRecordChangesCompletionBlock`` handler. During a subsequent fetch request, providing the previous token causes the server to return only the changes that occur after the previous fetch request. Tokens are opaque data objects that you can write to disk safely and reuse later.
+        ///
+        /// Typically, you set the value of this property when you initialize the operation object. If you intend to change the record zone, update the value of the property before executing the operation or submitting it to a queue.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -101,6 +130,16 @@ impl CKFetchRecordChangesOperation {
             previous_server_change_token: Option<&CKServerChangeToken>,
         );
 
+        /// The maximum number of changed records to report with this operation object.
+        ///
+        /// Use this property to limit the number of results in situations where you expect the number of changed records to be large. The default value is 0, which causes the server to return an appropriate number of results using dynamic conditions.
+        ///
+        /// When the number of returned results exceeds the results limit, the operation object sets the ``CKFetchRecordChangesOperation/moreComing`` property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> before executing the block in the ``CKFetchRecordChangesOperation/fetchRecordChangesCompletionBlock`` property. In your block, check the value of that property, and if it's
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>, create a new ``CKFetchRecordChangesOperation`` object to fetch more results.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -122,12 +161,13 @@ impl CKFetchRecordChangesOperation {
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
         #[cfg(feature = "CKRecord")]
-        /// Declares which user-defined keys should be fetched and added to the resulting CKRecords.
+        /// The fields to fetch for the requested records.
         ///
+        /// Use this property to limit the amount of data that the system retrieves for each record during the fetch operation. This property contains an array of strings, each of which contains the name of a field from the target records. When you retrieve a record, the returned records only include fields with names that match one of the keys in this property. The default value is `nil`, which causes the system to fetch all keys of the record.
         ///
-        /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
-        /// Defaults to
-        /// `nil.`
+        /// Because you can fetch records of different types, configure the array to include the merged set of all field names for the requested records and at least one field name from each record type.
+        ///
+        /// If you intend to specify the desired set of keys, set the value of this property before executing the operation or submitting it to a queue.
         ///
         /// This property is not atomic.
         ///
@@ -153,10 +193,15 @@ impl CKFetchRecordChangesOperation {
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// The block to execute with the contents of a changed record.
+        ///
+        /// The block returns no value and takes the following parameters:
+        ///
+        /// - term `record`: The changed record. If you specify a value for the ``CKFetchRecordChangesOperation/desiredKeys`` property, the record only contains the fields in the ``CKFetchRecordChangesOperation/desiredKeys`` property.
+        ///
+        /// The operation object executes this block once for each record in the zone with changes since the previous fetch request. Each time the block executes, it executes serially with respect to the other progress blocks of the operation. If no records change, the block doesn't execute.
+        ///
+        /// If you intend to use this block to process results, set it before executing the operation or submitting it to a queue.
         ///
         /// This property is not atomic.
         ///
@@ -187,10 +232,15 @@ impl CKFetchRecordChangesOperation {
         );
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// The block to execute with the ID of a deleted record.
+        ///
+        /// The block returns no value and takes the following parameters:
+        ///
+        /// - term `recordID`: The ID of the deleted record.
+        ///
+        /// The operation object executes this block once for each record the server deletes in the record zone after the previous fetch request. Each time the block executes, it executes serially with respect to the other progress blocks of the operation. If there aren't any deleted records, this block doesn't execute.
+        ///
+        /// If you intend to use this block to process results, set it before executing the operation or submitting it to a queue.
         ///
         /// This property is not atomic.
         ///
@@ -223,11 +273,11 @@ impl CKFetchRecordChangesOperation {
             >,
         );
 
-        /// If true, then the server wasn't able to return all the changes in this response.
+        /// A Boolean value that indicates whether more results are available.
         ///
-        ///
-        /// Will be set before fetchRecordChangesCompletionBlock is called.
-        /// Another CKFetchRecordChangesOperation operation should be run with the updated serverChangeToken token from this operation.
+        /// If the server is unable to deliver all of the changed results with this operation object, it sets this property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> before executing the block in the ``CKFetchRecordChangesOperation/fetchRecordChangesCompletionBlock`` property. To fetch the remaining changes, create a new ``CKFetchRecordChangesOperation`` object using the change token that the server returns.
         ///
         /// This property is not atomic.
         ///
@@ -240,21 +290,21 @@ impl CKFetchRecordChangesOperation {
         pub unsafe fn moreComing(&self) -> bool;
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
-        /// This block is called when the operation completes.
+        /// The block to execute when the system finishes processing all changes.
         ///
+        /// The block returns no value and takes the following parameters:
         ///
-        /// Clients are responsible for saving the change token at the end of the operation and passing it in to the next call to
-        /// `CKFetchRecordChangesOperation.`Note that a fetch can fail partway. If that happens, an updated change token may be returned in the completion block so that already fetched records don't need to be re-downloaded on a subsequent operation.
-        /// The
-        /// `clientChangeTokenData`from the most recent
-        /// `CKModifyRecordsOperation`is also returned, or nil if none was provided.
-        /// If the server returns a
-        /// `CKErrorChangeTokenExpired`error, the
-        /// `previousServerChangeToken`value was too old and the client should toss its local cache and re-fetch the changes in this record zone starting with a nil
-        /// `previousServerChangeToken.`Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// - term `serverChangeToken`: The new change token from the server. You can store this token locally and use it during subsequent fetch operations to limit the results to records that the system changes after executing the operation.
+        /// - term `clientChangeToken`: The most recent client change token from the device. If the change token isn't the most recent change token you provided, the server might not have received the associated changes.
+        /// - term `operationError`: An error object that contains information about a problem, or `nil` if the system successfully retrieves the changes.
+        ///
+        /// When implementing this block, check the ``CKFetchRecordChangesOperation/moreComing`` property of the operation object to verify that the server was able to deliver all results. If that property is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>, you must create another operation object using the value in the `serverChangeToken` parameter to fetch any remaining changes.
+        ///
+        /// The operation object executes this block only once at the conclusion of the operation. It executes after all individual change blocks, but before the operation's completion block. The block executes serially with respect to the other progress blocks of the operation.
+        ///
+        /// If you intend to use this block to process results, set it before executing the operation or submitting the operation object to a queue.
         ///
         /// This property is not atomic.
         ///

@@ -68,7 +68,7 @@ impl BAAssetPackManifest {
         ///
         /// The returned download objects can be scheduled with the download manager.
         /// - Returns: A collection of download objects.
-        /// - Remark: Use this method in your main app; use `-allDownloadsForContentRequest:` in your downloader extension.
+        /// - Remark: Use this method in your main application; use ``allDownloadsForContentRequest:`` in your downloader extension.
         #[unsafe(method(allDownloads))]
         #[unsafe(method_family = none)]
         pub unsafe fn allDownloads(&self) -> Retained<NSSet<BADownload>>;
@@ -79,7 +79,7 @@ impl BAAssetPackManifest {
         /// The returned download objects can be scheduled with the download manager.
         /// - Parameter contentRequest: The content request for the current extension invocation.
         /// - Returns: A collection of download objects.
-        /// - Remark: Use this method in your downloader extension; use `-allDownloads` instead in your main app.
+        /// - Remark: Use this method in your downloader extension; use ``allDownloads`` instead in your main application.
         #[unsafe(method(allDownloadsForContentRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn allDownloadsForContentRequest(

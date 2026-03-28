@@ -11,7 +11,9 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplateapplicationscenedelegate?language=objc)
     #[cfg(feature = "objc2-ui-kit")]
-    pub unsafe trait CPTemplateApplicationSceneDelegate: UISceneDelegate {
+    pub unsafe trait CPTemplateApplicationSceneDelegate:
+        UISceneDelegate + MainThreadOnly
+    {
         #[cfg(all(feature = "CPInterfaceController", feature = "CPWindow"))]
         /// The CarPlay screen has connected and is ready to present content.
         ///

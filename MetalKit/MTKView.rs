@@ -409,6 +409,13 @@ impl MTKView {
         #[unsafe(method(draw))]
         #[unsafe(method_family = none)]
         pub fn draw(&self);
+
+        /// Get the view's residency set.
+        ///
+        /// Get the view's residency set. The residency set contains all MTLTextures created by the view. Applications should use this residency set and the residency set of the view's underlying CAMetalLayer to ensure all required MTLTextures are resident before use.
+        #[unsafe(method(residencySet))]
+        #[unsafe(method_family = none)]
+        pub fn residencySet(&self) -> Retained<ProtocolObject<dyn MTLResidencySet>>;
     );
 }
 

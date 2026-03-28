@@ -60,7 +60,7 @@ extern_class!(
     /// share sheet to present the preview instantly, without fetching data over the
     /// network. In your implementation of
     /// <doc
-    /// ://com.apple.documentation/documentation/uikit/uiactivityitemsource/3144571-activityviewcontrollerlinkmetada>,
+    /// ://com.apple.documentation/documentation/UIKit/UIActivityItemSource/activityViewControllerLinkMetadata(_:)>,
     /// return the metadata object.
     ///
     /// ```swift

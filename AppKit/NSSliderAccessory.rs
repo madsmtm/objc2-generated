@@ -33,7 +33,9 @@ impl NSSliderAccessory {
             mtm: MainThreadMarker,
         ) -> Retained<NSSliderAccessory>;
 
-        /// The effect on interaction with the accessory. Defaults to `automaticBehavior`
+        /// The effect on interaction with the accessory.
+        ///
+        /// The default value is `automaticBehavior`.
         #[unsafe(method(behavior))]
         #[unsafe(method_family = none)]
         pub fn behavior(&self) -> Retained<NSSliderAccessoryBehavior>;
@@ -45,7 +47,7 @@ impl NSSliderAccessory {
         #[unsafe(method_family = none)]
         pub fn setBehavior(&self, behavior: &NSSliderAccessoryBehavior);
 
-        /// Whether or not the accessory is interactive and draws with an enabled appearance. Defaults to YES.
+        /// Determines whether or not the accessory is interactive and draws with an enabled appearance. Defaults to `true`.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub fn isEnabled(&self) -> bool;
@@ -110,7 +112,9 @@ extern_conformance!(
 
 impl NSSliderAccessoryBehavior {
     extern_methods!(
-        /// The behavior is automatically picked to be the system standard for the slider's current context, e.g. NSTouchBarItems have `.valueStep` behavior.
+        /// The behavior is automatically picked to be the system standard, given the slider's current context.
+        ///
+        /// For example, NSTouchBarItems have `.valueStep` behavior.
         #[unsafe(method(automaticBehavior))]
         #[unsafe(method_family = none)]
         pub fn automaticBehavior(mtm: MainThreadMarker) -> Retained<NSSliderAccessoryBehavior>;
@@ -125,7 +129,9 @@ impl NSSliderAccessoryBehavior {
         #[unsafe(method_family = none)]
         pub fn valueResetBehavior(mtm: MainThreadMarker) -> Retained<NSSliderAccessoryBehavior>;
 
-        /// The action is sent to the target on interaction. The optional first parameter is an NSSliderAccessory.
+        /// The action is sent to the target on interaction.
+        ///
+        /// Parameter `target`: An optional `NSSliderAccessory`.
         ///
         /// # Safety
         ///
@@ -140,7 +146,9 @@ impl NSSliderAccessoryBehavior {
         ) -> Retained<NSSliderAccessoryBehavior>;
 
         #[cfg(feature = "block2")]
-        /// The handler block is invoked on interaction. This variant is not codable and will assert in `-encodeWithCoder:`.
+        /// The handler block is invoked on interaction.
+        ///
+        /// This variant is not codable and will assert in `-encodeWithCoder:`.
         #[unsafe(method(behaviorWithHandler:))]
         #[unsafe(method_family = none)]
         pub fn behaviorWithHandler(

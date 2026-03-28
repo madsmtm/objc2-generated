@@ -35,6 +35,10 @@ impl MTLTensorDataType {
     pub const Int32: Self = Self(29);
     #[doc(alias = "MTLTensorDataTypeUInt32")]
     pub const UInt32: Self = Self(33);
+    #[doc(alias = "MTLTensorDataTypeInt4")]
+    pub const Int4: Self = Self(143);
+    #[doc(alias = "MTLTensorDataTypeUInt4")]
+    pub const UInt4: Self = Self(144);
 }
 
 unsafe impl Encode for MTLTensorDataType {
@@ -228,11 +232,12 @@ impl MTLTensorDescriptor {
 
         /// An array of strides, in elements, one for each dimension in the tensors you create with this descriptor, if applicable.
         ///
-        /// This property only applies to tensors you create from a buffer, otherwise it is nil. You are responsible for ensuring `strides` meets the following requirements:
-        /// - Elements of `strides`are in monotonically non-decreasing order.
+        /// You are responsible for ensuring `strides` meets the following requirements:
         /// - The first element of `strides` is one.
-        /// - For any `i` larger than zero, `strides[i]` is greater than or equal to `strides[i-1] * dimensions[i-1]`.
-        /// - If `usage` contains ``MTLTensorUsage/MTLTensorUsageMachineLearning``, the second element of `strides` is aligned to 64 bytes, and for any `i` larger than one, `strides[i]` is equal to `strides[i-1] * dimensions[i-1]`.
+        /// - If ``usage`` contains ``MTLTensorUsage/MTLTensorUsageMachineLearning``, the second element of `strides` is aligned to 64 bytes, and for any `i` larger than one, `strides[i]` is equal to `strides[i-1] * dimensions[i-1]`.
+        /// - If ``dataType`` is a sub-byte ``MTLTensorDataType``, for any `i` greater than or equal to 1, `strides[i]` is aligned to 128 bytes. This is not a requirement for non-sub-byte data types, but following this convention improves performance.
+        ///
+        /// Only set this property when creating tensors from a buffer.
         #[unsafe(method(strides))]
         #[unsafe(method_family = none)]
         pub fn strides(&self) -> Option<Retained<MTLTensorExtents>>;

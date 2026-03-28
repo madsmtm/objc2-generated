@@ -54,7 +54,7 @@ extern_class!(
     /// A resource's type also determines its life cycle.
     /// Resources based on block storage devices come into being when the system probes the media underlying the volumes and container.
     /// Other kinds of resources, like those based on URLs, might have different life cycles.
-    /// For example, a resource based on a `file://` URL might iniitalize when a person uses the "Connect to server" command in the macOS Finder.
+    /// For example, a resource based on a `file://` URL might initialize when a person uses the "Connect to server" command in the macOS Finder.
     ///
     /// ### Proxying resources
     ///
@@ -704,7 +704,7 @@ extern_protocol!(
         /// ://com.apple.documentation/documentation/Swift/Error> instead.
         /// - Returns: An
         /// <doc
-        /// ://com.apple.documentation/documentation/Foundation/NSProgress> object that you use to update progress as the check operation progresses. Return `nil` if starting the file system check encountered an error.
+        /// ://com.apple.documentation/documentation/Foundation/Progress> object that you use to update progress as the check operation progresses. Return `nil` if starting the file system check encountered an error.
         #[unsafe(method(startCheckWithTask:options:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn startCheckWithTask_options_error(
@@ -726,7 +726,7 @@ extern_protocol!(
         /// ://com.apple.documentation/documentation/Swift/Error> instead.
         /// - Returns: An
         /// <doc
-        /// ://com.apple.documentation/documentation/Foundation/NSProgress> object that you use to update progress as the format operation progresses. Return `nil` if starting to format the file system encountered an error.
+        /// ://com.apple.documentation/documentation/Foundation/Progress> object that you use to update progress as the format operation progresses. Return `nil` if starting to format the file system encountered an error.
         #[unsafe(method(startFormatWithTask:options:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn startFormatWithTask_options_error(

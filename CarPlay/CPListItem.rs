@@ -456,3 +456,12 @@ impl CPListItem {
         ) -> Retained<Self>;
     );
 }
+
+impl CPListItem {
+    extern_methods!();
+}
+
+#[cfg(feature = "CPPlaybackConfiguration")]
+extern_conformance!(
+    unsafe impl CPPlayableItem for CPListItem {}
+);

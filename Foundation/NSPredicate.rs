@@ -109,6 +109,14 @@ impl NSPredicate {
         #[unsafe(method(allowEvaluation))]
         #[unsafe(method_family = none)]
         pub fn allowEvaluation(&self);
+
+        #[cfg(all(feature = "NSError", feature = "NSPredicateValidating"))]
+        #[unsafe(method(allowEvaluationWithValidator:error:_))]
+        #[unsafe(method_family = none)]
+        pub fn allowEvaluationWithValidator_error(
+            &self,
+            validator: &ProtocolObject<dyn NSPredicateValidating>,
+        ) -> Result<(), Retained<NSError>>;
     );
 }
 

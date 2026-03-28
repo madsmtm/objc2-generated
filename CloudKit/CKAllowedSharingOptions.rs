@@ -7,20 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantaccessoption?language=objc)
+/// An object that controls participant access options.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantaccessoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSharingParticipantAccessOption(pub NSUInteger);
 bitflags::bitflags! {
     impl CKSharingParticipantAccessOption: NSUInteger {
-/// If specified, the system sharing UI will allow the user to share publicly i.e. anyone with the link has access.
+/// The permission option the system uses to control whether a user can share publicly.
         #[doc(alias = "CKSharingParticipantAccessOptionAnyoneWithLink")]
         const AnyoneWithLink = 1<<0;
-/// If specified, the system sharing UI will allow the user to share privately to specified recipients.
+/// The permission option the system uses to control whether a user can share privately.
         #[doc(alias = "CKSharingParticipantAccessOptionSpecifiedRecipientsOnly")]
         const SpecifiedRecipientsOnly = 1<<1;
-/// Allow the user to configure the share with either access option.
+/// The permission option the system uses to control whether a user can share publicly or privately.
         #[doc(alias = "CKSharingParticipantAccessOptionAny")]
         const Any = CKSharingParticipantAccessOption::AnyoneWithLink.0|CKSharingParticipantAccessOption::SpecifiedRecipientsOnly.0;
     }
@@ -34,20 +36,22 @@ unsafe impl RefEncode for CKSharingParticipantAccessOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantpermissionoption?language=objc)
+/// An object that controls participant permission options.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantpermissionoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSharingParticipantPermissionOption(pub NSUInteger);
 bitflags::bitflags! {
     impl CKSharingParticipantPermissionOption: NSUInteger {
-/// If specified, the system sharing UI will allow the user to grant participants read-only permissions.
+/// The permission option the system uses to control whether a user can grant read-only access.
         #[doc(alias = "CKSharingParticipantPermissionOptionReadOnly")]
         const ReadOnly = 1<<0;
-/// If specified, the system sharing UI will allow the user to grant participants read/write permissions.
+/// The permission option the system uses to control whether a user can grant write access.
         #[doc(alias = "CKSharingParticipantPermissionOptionReadWrite")]
         const ReadWrite = 1<<1;
-/// Allow the user to configure added share participants with either permission option.
+/// The permission option the system uses to control whether a user can grant read-only or write access.
         #[doc(alias = "CKSharingParticipantPermissionOptionAny")]
         const Any = CKSharingParticipantPermissionOption::ReadOnly.0|CKSharingParticipantPermissionOption::ReadWrite.0;
     }
@@ -62,7 +66,13 @@ unsafe impl RefEncode for CKSharingParticipantPermissionOption {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions?language=objc)
+    /// An object that controls participant access and permission options.
+    ///
+    /// Register an instance of this class with an
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/nsitemprovider> or when preparing a ``CKShareTransferRepresentation/ExportedShare`` before your app invokes the share sheet. The share sheet uses the registered `CKAllowedSharingOptions` object to let the user choose between the allowed options when sharing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKAllowedSharingOptions;
@@ -90,6 +100,11 @@ extern_conformance!(
 
 impl CKAllowedSharingOptions {
     extern_methods!(
+        /// Creates and initializes an allowed sharing options object.
+        ///
+        /// - Parameters:
+        /// - allowedParticipantPermissionOptions: The ``CKSharingParticipantPermissionOption`` setting.
+        /// - allowedParticipantAccessOptions: The ``CKSharingParticipantAccessOption`` setting.
         #[unsafe(method(initWithAllowedParticipantPermissionOptions:allowedParticipantAccessOptions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAllowedParticipantPermissionOptions_allowedParticipantAccessOptions(
@@ -98,6 +113,7 @@ impl CKAllowedSharingOptions {
             allowed_participant_access_options: CKSharingParticipantAccessOption,
         ) -> Retained<Self>;
 
+        /// The permission option the system uses to control whether a user can grant read-only or write access.
         #[unsafe(method(allowedParticipantPermissionOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedParticipantPermissionOptions(
@@ -112,6 +128,7 @@ impl CKAllowedSharingOptions {
             allowed_participant_permission_options: CKSharingParticipantPermissionOption,
         );
 
+        /// The permission option the system uses to control whether a user can share publicly or privately.
         #[unsafe(method(allowedParticipantAccessOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedParticipantAccessOptions(&self) -> CKSharingParticipantAccessOption;
@@ -124,9 +141,9 @@ impl CKAllowedSharingOptions {
             allowed_participant_access_options: CKSharingParticipantAccessOption,
         );
 
-        /// Default value is `NO`. If set, the system sharing UI will allow the user to choose whether added participants can invite others to the share.
-        /// Shares with ``CloudKit/CKShareParticipantRole/CKShareParticipantRoleAdministrator`` participants will be returned as read-only to devices running OS versions prior to this role being introduced.
-        /// Administrator participants on these read-only shares will be returned as ``CloudKit/CKShareParticipantRole/CKShareParticipantRolePrivateUser``.
+        /// Default value is NO. If set, the system sharing UI allows the user to choose whether added participants can invite others to the share.
+        /// CloudKit returns shares with ``CKShare/ParticipantRole/administrator-enum.case`` participants as read-only to devices running OS versions prior to this role being introduced.
+        /// CloudKit returns administrator participants on such read-only shares as ``CKShare/ParticipantRole/privateUser-enum.case``.
         #[unsafe(method(allowsParticipantsToInviteOthers))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsParticipantsToInviteOthers(&self) -> bool;
@@ -139,16 +156,14 @@ impl CKAllowedSharingOptions {
             allows_participants_to_invite_others: bool,
         );
 
-        /// Standard allowed options are most permissive i.e.
-        /// `allowedParticipantPermissionOptions`=
-        /// `CKSharingParticipantPermissionOptionAny`and
-        /// `allowedParticipantAccessOptions`=
-        /// `CKSharingParticipantAccessOptionAny`
+        /// An object set to the most permissive sharing options.
+        ///
+        /// The `standardOptions` has ``CKAllowedSharingOptions/allowedParticipantPermissionOptions`` set to ``CKSharingParticipantPermissionOption/any`` and ``CKAllowedSharingOptions/allowedParticipantAccessOptions`` set to ``CKSharingParticipantAccessOption/any``.
         #[unsafe(method(standardOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardOptions() -> Retained<CKAllowedSharingOptions>;
 
-        /// Default value is `NO`. If set, the system sharing UI will allow the user to configure whether access requests are enabled on the share.
+        /// Default value is NO. If set, the system sharing UI allows the user to configure whether participants can request access to the share.
         #[unsafe(method(allowsAccessRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAccessRequests(&self) -> bool;

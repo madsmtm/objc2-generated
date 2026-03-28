@@ -114,7 +114,7 @@ impl NSColorPickerTouchBarItem {
         #[unsafe(method_family = none)]
         pub unsafe fn setColorList(&self, color_list: Option<&NSColorList>);
 
-        /// The localized string labelling this item during user customization. The default value is the localized string of "Color Picker".
+        /// The localized string labeling this item during user customization. The default value is the localized string of "Color Picker".
         #[unsafe(method(customizationLabel))]
         #[unsafe(method_family = none)]
         pub fn customizationLabel(&self) -> Retained<NSString>;

@@ -669,7 +669,7 @@ impl MPSGraph {
         /// - Parameters:
         /// - incomingGradient: Incoming loss gradient tensor
         /// - weights: Forward pass weights tensor
-        /// - outputShapeTensor: 4D Int32 or Int64 tensor. Shape of the forward pass source tensor
+        /// - outputShapeTensor: 4-element 1D Int32 or Int64 tensor. Shape of the forward pass source tensor
         /// - forwardConvolutionDescriptor: Forward convolution 2D op ``descriptor``
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object

@@ -782,7 +782,7 @@ impl ODNodeRef {
     ///
     /// Parameter `node`: an ODNodeRef to use
     ///
-    /// Parameter `policy`: a valid ODPolicyType
+    /// Parameter `policyType`: a valid ODPolicyType
     ///
     /// Parameter `value`: a CFTypeRef to be set (should be of appropriate type for the policy)
     ///
@@ -826,7 +826,7 @@ impl ODNodeRef {
     ///
     /// Parameter `node`: an ODNodeRef to use
     ///
-    /// Parameter `policy`: a valid ODPolicyType
+    /// Parameter `policyType`: a valid ODPolicyType
     ///
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///

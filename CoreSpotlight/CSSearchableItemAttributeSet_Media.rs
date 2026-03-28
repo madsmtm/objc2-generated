@@ -43,15 +43,6 @@ impl CSSearchableItemAttributeSet {
         #[unsafe(method_family = none)]
         pub unsafe fn setProjects(&self, projects: Option<&NSArray<NSString>>);
 
-        #[unsafe(method(downloadedDate))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn downloadedDate(&self) -> Option<Retained<NSDate>>;
-
-        /// Setter for [`downloadedDate`][Self::downloadedDate].
-        #[unsafe(method(setDownloadedDate:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setDownloadedDate(&self, downloaded_date: Option<&NSDate>);
-
         #[unsafe(method(contentSources))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentSources(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -120,6 +111,15 @@ impl CSSearchableItemAttributeSet {
         #[unsafe(method(setAddedDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAddedDate(&self, added_date: Option<&NSDate>);
+
+        #[unsafe(method(downloadedDate))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn downloadedDate(&self) -> Option<Retained<NSDate>>;
+
+        /// Setter for [`downloadedDate`][Self::downloadedDate].
+        #[unsafe(method(setDownloadedDate:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDownloadedDate(&self, downloaded_date: Option<&NSDate>);
 
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]

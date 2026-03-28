@@ -61,16 +61,19 @@ extern_protocol!(
         #[cfg(feature = "MTLTensor")]
         /// Creates a tensor that shares storage with this buffer.
         ///
+        /// `offset` must be 0 when ``MTLTensorDescriptor/usage`` contains ``MTLTensorUsage/MTLTensorUsageMachineLearning``.
+        ///
+        /// When ``MTLTensorDescriptor/dataType`` is a sub-byte ``MTLTensorDataType``, `offset` must be aligned to 128 bytes.
+        /// Although only required for sub-byte types, applying 128-byte alignment for all ``MTLTensorDataType``
+        /// values improves performance.
+        ///
+        /// See ``MTLTensorDescriptor`` for more information.
+        ///
         /// - Parameters:
         /// - descriptor: A description of the properties for the new tensor.
         /// - offset: Offset into the buffer at which the data of the tensor begins.
         /// - error: If an error occurs during creation, Metal populates this parameter to provide you information about it.
-        ///
-        /// If the descriptor specifies `MTLTensorUsageMachineLearning` usage, you need to observe the following restrictions:
-        /// * pass in `0` for the `offset` parameter
-        /// * set the element stride the descriptor to `1`
-        /// * ensure that number of bytes per row is a multiple of `64`
-        /// * for dimensions greater than `2`, make sure `strides[dim] = strides[dim -1] * dimensions[dim - 1]`
+        /// - Returns: The created ``MTLTensor`` instance, or `nil` if the function failed.
         ///
         /// # Safety
         ///

@@ -145,7 +145,7 @@ impl NSButtonTouchBarItem {
         #[unsafe(method_family = none)]
         pub fn setEnabled(&self, enabled: bool);
 
-        /// The localized string labelling this item during user customization. The default value is empty string.
+        /// The localized string labeling this item during user customization. The default value is empty string.
         #[unsafe(method(customizationLabel))]
         #[unsafe(method_family = none)]
         pub fn customizationLabel(&self) -> Retained<NSString>;

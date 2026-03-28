@@ -116,9 +116,22 @@ extern_conformance!(
 
 impl CPTrip {
     extern_methods!(
+        #[cfg(feature = "CPNavigationWaypoint")]
+        /// Initialize a
+        /// `CPTrip`with an origin waypoint, destination waypoint, and route choices.
+        #[unsafe(method(initWithOriginWaypoint:destinationWaypoint:routeChoices:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithOriginWaypoint_destinationWaypoint_routeChoices(
+            this: Allocated<Self>,
+            origin: &CPNavigationWaypoint,
+            destination: &CPNavigationWaypoint,
+            route_choices: &NSArray<CPRouteChoice>,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "objc2-map-kit")]
         /// Initialize a
         /// `CPTrip`with an origin item, destination item, and route choices.
+        #[deprecated]
         #[unsafe(method(initWithOrigin:destination:routeChoices:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOrigin_destination_routeChoices(
@@ -134,15 +147,29 @@ impl CPTrip {
 
         #[cfg(feature = "objc2-map-kit")]
         /// `MKMapItem`representing the origin for the trip.
+        #[deprecated]
         #[unsafe(method(origin))]
         #[unsafe(method_family = none)]
         pub unsafe fn origin(&self) -> Retained<MKMapItem>;
 
         #[cfg(feature = "objc2-map-kit")]
         /// `MKMapItem`representing the destination for the trip.
+        #[deprecated]
         #[unsafe(method(destination))]
         #[unsafe(method_family = none)]
         pub unsafe fn destination(&self) -> Retained<MKMapItem>;
+
+        #[cfg(feature = "CPNavigationWaypoint")]
+        /// `CPNavigationWaypoint`representing the origin for the trip.
+        #[unsafe(method(originWaypoint))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn originWaypoint(&self) -> Retained<CPNavigationWaypoint>;
+
+        #[cfg(feature = "CPNavigationWaypoint")]
+        /// `CPNavigationWaypoint`representing the destination for the trip.
+        #[unsafe(method(destinationWaypoint))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn destinationWaypoint(&self) -> Retained<CPNavigationWaypoint>;
 
         /// Array of
         /// `CPRouteChoices`for the trip.
@@ -180,6 +207,31 @@ impl CPTrip {
         pub unsafe fn setDestinationNameVariants(
             &self,
             destination_name_variants: Option<&NSArray<NSString>>,
+        );
+
+        /// Set to
+        /// `true`to enable sharing of the destination of this trip.
+        #[unsafe(method(hasShareableDestination))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hasShareableDestination(&self) -> bool;
+
+        /// Setter for [`hasShareableDestination`][Self::hasShareableDestination].
+        #[unsafe(method(setHasShareableDestination:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setHasShareableDestination(&self, has_shareable_destination: bool);
+
+        /// Set to
+        /// `false`to disable route sharing for this trip when route sharing is not supported in the current region.
+        #[unsafe(method(routeSegmentsAvailableForRegion))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn routeSegmentsAvailableForRegion(&self) -> bool;
+
+        /// Setter for [`routeSegmentsAvailableForRegion`][Self::routeSegmentsAvailableForRegion].
+        #[unsafe(method(setRouteSegmentsAvailableForRegion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRouteSegmentsAvailableForRegion(
+            &self,
+            route_segments_available_for_region: bool,
         );
     );
 }

@@ -448,6 +448,17 @@ extern "C" {
     pub static kCTFontOpticalSizeAttribute: &'static CFString;
 }
 
+extern "C" {
+    /// kCTFontDescriptorLanguageAttribute
+    ///
+    /// The language identifier for font fallback selection.
+    ///
+    /// The value associated with this key is a CFStringRef. If specified in a font descriptor, it is used to select the appropriate font fallback list for the language. This key should not be confused with kCTLanguageAttributeName, which is defined in CTStringAttributes.h.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdescriptorlanguageattribute?language=objc)
+    pub static kCTFontDescriptorLanguageAttribute: &'static CFString;
+}
+
 impl CTFontDescriptor {
     /// Creates a new font descriptor with the provided PostScript name and size.
     ///

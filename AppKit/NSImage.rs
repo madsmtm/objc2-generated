@@ -127,8 +127,7 @@ impl NSImage {
             description: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
-        /// Creates a system symbol image with the specified name and value. The
-        /// `value`argument is only accommodated if the symbol supports variable rendering.
+        /// Creates a system symbol image with the specified name and value. The `value` argument is only accommodated if the symbol supports variable rendering.
         ///
         /// Parameter `name`: A name from the system’s SF Symbols catalog
         ///
@@ -145,8 +144,7 @@ impl NSImage {
             description: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
-        /// Creates a symbol image with the specified name and value. The
-        /// `value`argument is only accommodated if the symbol supports variable rendering.
+        /// Creates a symbol image with the specified name and value. The `value` argument is only accommodated if the symbol supports variable rendering.
         ///
         /// Parameter `name`: A name of a symbol image file in the main bundle’s catalog
         ///
@@ -160,8 +158,7 @@ impl NSImage {
             value: c_double,
         ) -> Option<Retained<Self>>;
 
-        /// Creates a symbol image with the specified name and value. The
-        /// `value`argument is only accommodated if the symbol supports variable rendering.
+        /// Creates a symbol image with the specified name and value. The `value` argument is only accommodated if the symbol supports variable rendering.
         ///
         /// Parameter `name`: A name of a symbol image file in the main bundle’s catalog
         ///
@@ -557,7 +554,9 @@ impl NSImage {
         #[unsafe(method_family = none)]
         pub fn symbolConfiguration(&self) -> Retained<NSImageSymbolConfiguration>;
 
-        /// Creates and returns a new image with the specified locale. If the receiver contains locale-sensitive representations, the returned image will prefer to draw using representations appropriate for the specified locale. If locale is `nil`, the returned image uses the default behavior of choosing representations appropriate for the system’s currently-configured locale.
+        /// Creates and returns a new image with the specified locale.
+        ///
+        /// If the receiver contains locale-sensitive representations, the returned image will prefer to draw using representations appropriate for the specified locale. If locale is `nil`, the returned image uses the default behavior of choosing representations appropriate for the system’s currently-configured locale.
         #[unsafe(method(imageWithLocale:))]
         #[unsafe(method_family = none)]
         pub fn imageWithLocale(&self, locale: Option<&NSLocale>) -> Retained<NSImage>;
@@ -1722,12 +1721,12 @@ impl NSImageSymbolConfiguration {
         #[unsafe(method_family = none)]
         pub fn configurationWithScale(scale: NSImageSymbolScale) -> Retained<Self>;
 
-        /// Create a configuration that specifies that the symbol should prefer its monochrome variant.
+        /// Creates a configuration that specifies that the symbol should prefer its monochrome variant.
         #[unsafe(method(configurationPreferringMonochrome))]
         #[unsafe(method_family = none)]
         pub fn configurationPreferringMonochrome() -> Retained<Self>;
 
-        /// Create a configuration that specifies that the symbol should prefer its hierarchical variant, if one exists.
+        /// Creates a configuration that specifies that the symbol should prefer its hierarchical variant, if one exists.
         ///
         /// If the symbol doesn’t support hierarchical, the result will be a monochrome (templated) symbol.
         #[unsafe(method(configurationPreferringHierarchical))]

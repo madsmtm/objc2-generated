@@ -98,6 +98,13 @@ impl CPSessionConfiguration {
             &self,
             delegate: Option<&ProtocolObject<dyn CPSessionConfigurationDelegate>>,
         );
+
+        /// The connected CarPlay system supports video playback.
+        ///
+        /// Note: Video playback will remain supported throughout the session but the availability of video playback may change at any time.
+        #[unsafe(method(supportsVideoPlayback))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportsVideoPlayback(&self) -> bool;
     );
 }
 

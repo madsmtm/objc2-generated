@@ -725,6 +725,21 @@ extern_protocol!(
         #[unsafe(method(insertInputSuggestion:))]
         #[unsafe(method_family = none)]
         fn insertInputSuggestion(&self, input_suggestion: &UIInputSuggestion);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The visible content region, excluding parts covered by view-specific UI.
+        ///
+        /// Account for scroll position, insets, and any custom UI elements (toolbars,
+        /// accessories, etc.) that obscure content. The system automatically accounts for
+        /// keyboard obscuring when editing.
+        ///
+        /// The rectangle is in the `textInputView` coordinate space.
+        ///
+        /// Returns: The visible content rectangle, or CGRectNull if there is no specific constraint.
+        #[optional]
+        #[unsafe(method(unobscuredContentRect))]
+        #[unsafe(method_family = none)]
+        fn unobscuredContentRect(&self) -> CGRect;
     }
 );
 

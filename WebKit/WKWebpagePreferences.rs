@@ -66,6 +66,30 @@ unsafe impl RefEncode for WKWebpagePreferencesUpgradeToHTTPSPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Security restriction modes for WebView content.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wksecurityrestrictionmode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct WKSecurityRestrictionMode(pub NSInteger);
+impl WKSecurityRestrictionMode {
+    #[doc(alias = "WKSecurityRestrictionModeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "WKSecurityRestrictionModeMaximizeCompatibility")]
+    pub const MaximizeCompatibility: Self = Self(1);
+    #[doc(alias = "WKSecurityRestrictionModeLockdown")]
+    pub const Lockdown: Self = Self(2);
+}
+
+unsafe impl Encode for WKSecurityRestrictionMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for WKSecurityRestrictionMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// A WKWebpagePreferences object is a collection of properties that
     /// determine the preferences to use when loading and rendering a page.
@@ -140,6 +164,28 @@ impl WKWebpagePreferences {
         pub unsafe fn setPreferredHTTPSNavigationPolicy(
             &self,
             preferred_https_navigation_policy: WKWebpagePreferencesUpgradeToHTTPSPolicy,
+        );
+
+        /// Security restriction mode for this navigation.
+        ///
+        /// Security restriction modes provide different levels of security hardening for high-risk browsing contexts.
+        /// WKSecurityRestrictionModeMaximizeCompatibility provides additional hardening while maintaining full web compatibility:
+        /// - JavaScript JIT compilation disabled (interpreter-only execution)
+        /// - Increased Memory Tagging Extension (MTE) coverage across allocations in the WebContent process
+        /// Setting a security restriction mode creates separate, isolated WebContent processes for the specified protection level.
+        /// This preference only applies to main frame navigations and will be ignored for subframe navigations. When set for a main frame, all subframe content and opened windows inherit the same security restrictions.
+        /// When the system has chosen WKSecurityRestrictionModeLockdown (e.g., in Lockdown Mode), attempts to set a less restrictive mode will fail silently.
+        /// The default value is WKSecurityRestrictionModeNone.
+        #[unsafe(method(securityRestrictionMode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn securityRestrictionMode(&self) -> WKSecurityRestrictionMode;
+
+        /// Setter for [`securityRestrictionMode`][Self::securityRestrictionMode].
+        #[unsafe(method(setSecurityRestrictionMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSecurityRestrictionMode(
+            &self,
+            security_restriction_mode: WKSecurityRestrictionMode,
         );
     );
 }

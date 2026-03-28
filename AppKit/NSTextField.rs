@@ -370,10 +370,10 @@ impl NSTextField {
             placeholder_attributed_strings: &NSArray<NSAttributedString>,
         );
 
-        /// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
+        /// Specifies the behavior for resolving ``NSTextAlignment/natural`` to the visual alignment.
         ///
-        /// When set to ``true``, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
-        /// The default value is ``false``.
+        /// When set to `true`, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
+        /// The default value is `false`.
         #[unsafe(method(resolvesNaturalAlignmentWithBaseWritingDirection))]
         #[unsafe(method_family = none)]
         pub fn resolvesNaturalAlignmentWithBaseWritingDirection(&self) -> bool;
@@ -543,8 +543,9 @@ extern_protocol!(
             feature = "NSTextView",
             feature = "NSView"
         ))]
-        /// Provides a customized list of candidates to the text view’s `candidateListTouchBarItem`. Invoked from `-updateCandidates`. `NSTextView` uses the candidates returned from this method and suppress its built-in candidate generation. Returning `nil` from this delegate method allows `NSTextView` to query candidates from `NSSpellChecker`.
-        /// - Returns: An array of objects that represent the elements of a selection.
+        /// Provides a customized list of candidates to the text view’s `candidateListTouchBarItem`. This method returns an array of objects that represent the elements of a selection.
+        ///
+        /// Invoked from `updateCandidates`. `NSTextView` uses the candidates returned from this method and suppress its built-in candidate generation. Returning `nil` from this delegate method allows `NSTextView` to query candidates from `NSSpellChecker`.
         #[optional]
         #[unsafe(method(textField:textView:candidatesForSelectedRange:))]
         #[unsafe(method_family = none)]
@@ -561,8 +562,7 @@ extern_protocol!(
             feature = "NSTextView",
             feature = "NSView"
         ))]
-        /// Allows customizing the candidate list queried from `NSSpellChecker`.
-        /// - Returns: An array of text objects to include in a text selection.
+        /// Allows customizing the candidate list queried from `NSSpellChecker`. This method returns array of text objects to include in a text selection.
         #[optional]
         #[unsafe(method(textField:textView:candidates:forSelectedRange:))]
         #[unsafe(method_family = none)]
@@ -585,7 +585,6 @@ extern_protocol!(
         /// - textField: The text field that sent the message.
         /// - textView: The text view that sent the message.
         /// - index: The index that represents the start of the candidate text to evaluate, or `NSNotFound` if no candidate is to be selected.
-        /// - Returns: `YES` if the framework selects the text. `YES` allows `textView` to insert the candidate into the text storage if it’s `NSString`, `NSAttributedString`, or `NSTextCheckingResult`.
         #[optional]
         #[unsafe(method(textField:textView:shouldSelectCandidateAtIndex:))]
         #[unsafe(method_family = none)]

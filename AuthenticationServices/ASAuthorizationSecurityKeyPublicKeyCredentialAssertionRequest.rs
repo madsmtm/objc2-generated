@@ -84,6 +84,22 @@ impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
         #[unsafe(method(setAppID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppID(&self, app_id: Option<&NSString>);
+
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
+        #[unsafe(method(prf))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prf(
+            &self,
+        ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFAssertionInput>>;
+
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
+        /// Setter for [`prf`][Self::prf].
+        #[unsafe(method(setPrf:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPrf(
+            &self,
+            prf: Option<&ASAuthorizationPublicKeyCredentialPRFAssertionInput>,
+        );
     );
 }
 

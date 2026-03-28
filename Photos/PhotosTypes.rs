@@ -433,6 +433,9 @@ impl PHAssetResourceUploadJobState {
     /// The job has failed to send over.
     #[doc(alias = "PHAssetResourceUploadJobStateSucceeded")]
     pub const Succeeded: Self = Self(4);
+    /// The job has sent over successfully.
+    #[doc(alias = "PHAssetResourceUploadJobStateCancelled")]
+    pub const Cancelled: Self = Self(5);
 }
 
 unsafe impl Encode for PHAssetResourceUploadJobState {
@@ -440,6 +443,29 @@ unsafe impl Encode for PHAssetResourceUploadJobState {
 }
 
 unsafe impl RefEncode for PHAssetResourceUploadJobState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// The types of an upload job
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjobtype?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct PHAssetResourceUploadJobType(pub i16);
+impl PHAssetResourceUploadJobType {
+    #[doc(alias = "PHAssetResourceUploadJobTypeUpload")]
+    pub const Upload: Self = Self(0);
+    /// An upload job type (will download the resource from iCloud if required. then upload)
+    #[doc(alias = "PHAssetResourceUploadJobTypeDownloadOnly")]
+    pub const DownloadOnly: Self = Self(1);
+}
+
+unsafe impl Encode for PHAssetResourceUploadJobType {
+    const ENCODING: Encoding = i16::ENCODING;
+}
+
+unsafe impl RefEncode for PHAssetResourceUploadJobType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 

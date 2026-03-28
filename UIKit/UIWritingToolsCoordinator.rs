@@ -74,9 +74,8 @@ impl UIWritingToolsCoordinatorState {
     /// The coordinator starts in the `inactive` state, and transitions
     /// immediately to the ``noninteractive`` or ``interactiveResting``
     /// state when someone chooses an option from the Writing Tools UI.
-    /// After the coordinator finishes incorporating any changes for the
-    /// current operation, it returns to the `inactive` state and waits
-    /// for the person to choose a different option or dismiss the Writing Tools UI.
+    /// The coordinator returns to the `inactive` state when the person
+    /// accepts the changes or dismisses the Writing Tools UI.
     #[doc(alias = "UIWritingToolsCoordinatorStateInactive")]
     pub const Inactive: Self = Self(0);
     /// A state that indicates Writing Tools is handling interactions in

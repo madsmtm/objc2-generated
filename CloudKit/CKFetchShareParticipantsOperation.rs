@@ -8,7 +8,67 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation?language=objc)
+    /// An operation that converts user identities into share participants.
+    ///
+    /// Participants are a fundamental part of sharing in CloudKit. A participant provides information about a user and their participation in a share, which includes their identity, acceptance status, role, and permissions. The acceptance status manages the user's visibilty of the shared records. The role and permissions control what actions the user can perform on those records.
+    ///
+    /// You don't create participants. Instead, create an instance of ``CKUserIdentity/LookupInfo`` for each user. Provide the user's email address or phone number, and then use this operation to convert them into participants that you can add to a share. CloudKit limits the number of participants in a share to 100, and each participant must have an active iCloud account.
+    ///
+    /// - Note:
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit/uicloudsharingcontroller> provides a consistent and familiar experience for managing a share's participants and their permissions. Only use this operation when you want to provide an app-specific approach.
+    ///
+    /// CloudKit queries iCloud for corresponding accounts as part of the operation. If it doesn't find an account, the server updates the participant's ``CKShare/Participant/userIdentity`` to reflect that by setting the ``CKUserIdentity/hasiCloudAccount`` property to
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false>. CloudKit associates a participant with their iCloud account when they accept the share.
+    ///
+    /// Anyone with the URL of a public share can become a participant in that share. For a private share, the owner manages its participants. A participant can't accept a private share unless the owner adds them first.
+    ///
+    /// To run the operation, add it to the container's operation queue. The operation executes its callbacks on a private serial queue.
+    ///
+    /// The following example demonstrates how to create the operation, configure it, and then execute it using the default container's operation queue:
+    ///
+    /// ```swift
+    /// func fetchParticipants(for lookupInfos: [CKUserIdentity.LookupInfo],
+    /// completion:
+    /// (Result
+    /// <
+    /// [CKShare.Participant], any Error>) -> Void) {
+    ///
+    /// var participants = [CKShare.Participant]()
+    ///
+    /// // Create the operation using the lookup objects
+    /// // that the caller provides to the method.
+    /// let operation = CKFetchShareParticipantsOperation(
+    /// userIdentityLookupInfos: lookupInfos)
+    ///
+    /// // Collect the participants as CloudKit generates them.
+    /// operation.shareParticipantFetchedBlock = { participant in
+    /// participants.append(participant)
+    /// }
+    ///
+    /// // If the operation fails, return the error to the caller.
+    /// // Otherwise, return the array of participants.
+    /// operation.fetchShareParticipantsCompletionBlock = { error in
+    /// if let error = error {
+    /// completion(.failure(error))
+    /// } else {
+    /// completion(.success(participants))
+    /// }
+    /// }
+    ///
+    /// // Set an appropriate QoS and add the operation to the
+    /// // container's queue to execute it.
+    /// operation.qualityOfService = .userInitiated
+    /// CKContainer.default().add(operation)
+    /// }
+    /// ```
+    ///
+    /// The operation calls ``shareParticipantFetchedBlock`` once for each item you provide, and CloudKit returns the participant, or an error if it can't generate a particpant. CloudKit also batches per-participant errors. If the operation completes with errors, it returns a ``CKError/partialFailure`` error. The error stores the individual errors in its
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/nserror/userinfo> dictionary. Use the ``CKPartialErrorsByItemIDKey`` key to extract them.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation?language=objc)
     #[unsafe(super(CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKOperation")]
@@ -23,11 +83,22 @@ extern_conformance!(
 #[cfg(feature = "CKOperation")]
 impl CKFetchShareParticipantsOperation {
     extern_methods!(
+        /// Creates an empty operation.
+        ///
+        /// You can use this operation only once.
+        ///
+        /// - Note: If you don't set ``CKFetchShareParticipantsOperation/userIdentityLookupInfos`` prior to executing the operation, it returns immediately with no results.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
+        /// Creates an operation for generating share participants from the specified user data.
+        ///
+        /// - Parameters:
+        /// - userIdentityLookupInfos: The user data for the participants. If you specify `nil`, you must assign a value to the ``CKFetchShareParticipantsOperation/userIdentityLookupInfos`` property before you execute this operation.
+        ///
+        /// After you create the operation, assign a handler to the ``CKFetchShareParticipantsOperation/fetchShareParticipantsCompletionBlock`` property to process the results.
         #[unsafe(method(initWithUserIdentityLookupInfos:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUserIdentityLookupInfos(
@@ -36,6 +107,12 @@ impl CKFetchShareParticipantsOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
+        /// The user data for the participants.
+        ///
+        /// Use this property to view or change the participants user data. If you intend to specify or change the value of this property, do so before you execute the operation or submit it to a queue.
+        ///
+        /// - Note: If you don't set ``CKFetchShareParticipantsOperation/userIdentityLookupInfos`` prior to executing the operation, it returns immediately with no results.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -63,15 +140,15 @@ impl CKFetchShareParticipantsOperation {
         );
 
         #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
-        /// Called once for each share participant created from a submitted user identity lookup info.
+        /// The closure to execute as the operation generates individual participants.
         ///
+        /// The closure returns no value and takes the following parameters:
         ///
-        /// If the replacement callback
-        /// `perShareParticipantCompletionBlock`is set, this callback block is ignored.
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// - The participant that the operation generates.
+        ///
+        /// The operation executes this closure once for each item of user data in the ``CKFetchShareParticipantsOperation/userIdentityLookupInfos`` property. Each time the closure executes, it executes serially with respect to the other closures of the operation.
+        ///
+        /// If you intend to use this closure to process results, set it before you execute the operation or submit the operation to a queue.
         ///
         /// This property is not atomic.
         ///
@@ -109,13 +186,17 @@ impl CKFetchShareParticipantsOperation {
             feature = "CKUserIdentityLookupInfo",
             feature = "block2"
         ))]
-        /// Called once for each lookup info.
+        /// The closure to execute as the operation generates individual participants.
         ///
+        /// The closure returns no value and takes the following parameters:
         ///
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// - The lookup info of the share participant.
+        /// - The generated share participant, or `nil` if CloudKit can't generate the share participant.
+        /// - If CloudKit can't generate the share participant, this parameter provides information about the failure; otherwise, it's `nil`.
+        ///
+        /// The operation executes this closure once for each item of user data in the ``CKFetchShareParticipantsOperation/userIdentityLookupInfos`` property. Each time the closure executes, it executes serially with respect to the other closures of the operation.
+        ///
+        /// If you intend to use this closure to process results, set it before you execute the operation or submit the operation to a queue.
         ///
         /// This property is not atomic.
         ///
@@ -161,24 +242,17 @@ impl CKFetchShareParticipantsOperation {
         );
 
         #[cfg(feature = "block2")]
-        /// This block is called when the operation completes.
+        /// The closure to execute when the operation finishes.
         ///
+        /// The closure returns no value and takes the following parameter:
         ///
-        /// The
+        /// - An error that contains information about a problem, or `nil` if CloudKit successfully generates the participants.
         ///
-        /// ```text
-        ///  -[NSOperation completionBlock]
-        /// ```
+        /// The operation executes this closure only once. The closure executes on a background queue, so any tasks that require access to the main queue must dispatch accordingly.
         ///
-        /// will also be called if both are set.
-        /// If the error is
-        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of lookup infos to errors keyed off of
-        /// `CKPartialErrorsByItemIDKey.`These errors are repeats of those sent back in previous
-        /// `perShareParticipantCompletionBlock`invocations
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// The closure reports an error of type ``CKError/Code/partialFailure`` when it can't generate some of the participants. The `userInfo` dictionary of the error contains a ``CKPartialErrorsByItemIDKey`` key that has a dictionary as its value. The keys of the dictionary identify the participants that CloudKit can't generate, and the corresponding values are errors that contain information about the failures.
+        ///
+        /// Set this property's value before you execute the operation or submit it to a queue.
         ///
         /// This property is not atomic.
         ///

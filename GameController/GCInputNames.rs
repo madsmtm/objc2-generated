@@ -155,6 +155,16 @@ extern "C" {
     pub static GCInputRightTrigger: Option<&'static GCInputButtonName>;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputleftsidebutton?language=objc)
+    pub static GCInputLeftSideButton: Option<&'static GCInputButtonName>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputrightsidebutton?language=objc)
+    pub static GCInputRightSideButton: Option<&'static GCInputButtonName>;
+}
+
 #[inline]
 pub unsafe extern "C-unwind" fn GCInputBackLeftButton(
     position: NSInteger,

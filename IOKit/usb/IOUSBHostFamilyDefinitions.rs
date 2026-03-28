@@ -105,8 +105,8 @@ pub const kUSBHostPropertySmcBusCurrentPoolID: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostpropertyforcepower?language=objc)
 pub const kUSBHostPropertyForcePower: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbForcePower\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostpropertyforcelinkspeed?language=objc)
-pub const kUSBHostPropertyForceLinkSpeed: &CStr =
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostpropertylinkspeed?language=objc)
+pub const kUSBHostPropertyLinkSpeed: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbLinkSpeed\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostpropertyforcehardwareexception?language=objc)
 pub const kUSBHostPropertyForceHardwareException: &CStr =
@@ -236,6 +236,9 @@ pub const kUSBHostDevicePropertyIdlePolicy: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertyversion?language=objc)
 pub const kUSBHostBillboardDevicePropertyVersion: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbBillboardVersion\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertysupportedmodes?language=objc)
+pub const kUSBHostBillboardDevicePropertySupportedModes: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbBillboardSupportedModes\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertypreferredmode?language=objc)
 pub const kUSBHostBillboardDevicePropertyPreferredMode: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbBillboardPreferredMode\0") };
@@ -257,45 +260,6 @@ pub const kUSBHostBillboardDevicePropertyAltModeFailed: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertyaltmodepowerfailed?language=objc)
 pub const kUSBHostBillboardDevicePropertyAltModePowerFailed: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbBillboardAltModePowerFailed\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertynumberofalternatemodes?language=objc)
-pub const kUSBHostBillboardDevicePropertyNumberOfAlternateModes: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"bNumberOfAlternateModes\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertypreferredalternatemode?language=objc)
-pub const kUSBHostBillboardDevicePropertyPreferredAlternateMode: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"bPreferredAlternateMode\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertyvconnpower?language=objc)
-pub const kUSBHostBillboardDevicePropertyVCONNPower: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"VCONNPower\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertyconfigured?language=objc)
-pub const kUSBHostBillboardDevicePropertyConfigured: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"bmConfigured\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertyadditionalfailureinfo?language=objc)
-pub const kUSBHostBillboardDevicePropertyAdditionalFailureInfo: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"bAdditonalFailureInfo\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertybcdversion?language=objc)
-pub const kUSBHostBillboardDevicePropertyBcdVersion: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"BcdVersion\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertysvid?language=objc)
-pub const kUSBHostBillboardDevicePropertySVID: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"wSVID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertyalternatemode?language=objc)
-pub const kUSBHostBillboardDevicePropertyAlternateMode: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"bAlternateMode\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertyalternatemodestringindex?language=objc)
-pub const kUSBHostBillboardDevicePropertyAlternateModeStringIndex: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"iAlternateModeString\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertyalternatemodestring?language=objc)
-pub const kUSBHostBillboardDevicePropertyAlternateModeString: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"AlternateModeString\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertyaddtionalinfourlindex?language=objc)
-pub const kUSBHostBillboardDevicePropertyAddtionalInfoURLIndex: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"iAddtionalInfoURL\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertyaddtionalinfourl?language=objc)
-pub const kUSBHostBillboardDevicePropertyAddtionalInfoURL: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"AddtionalInfoURL\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostbillboarddevicepropertydwalternatemodevdo?language=objc)
-pub const kUSBHostBillboardDevicePropertydwAlternateModeVdo: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"dwAlternateModeVdo\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostinterfacepropertyalternatesetting?language=objc)
 pub const kUSBHostInterfacePropertyAlternateSetting: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"bAlternateSetting\0") };
@@ -387,6 +351,18 @@ pub const kUSBHostPortPropertyProtocolRevision2: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostportpropertyprotocolrevision3?language=objc)
 pub const kUSBHostPortPropertyProtocolRevision3: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbProtocol (3.x)\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostportpropertyprotocolrevision4?language=objc)
+pub const kUSBHostPortPropertyProtocolRevision4: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbProtocol (4.0)\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostportpropertyusb2repeater?language=objc)
+pub const kUSBHostPortPropertyUSB2Repeater: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"Usb2Repeater\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostportpropertyusb2externalremotewake?language=objc)
+pub const kUSBHostPortPropertyUSB2ExternalRemoteWake: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"Usb2ExternalRemoteWake\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostportpropertytransportstate?language=objc)
+pub const kUSBHostPortPropertyTransportState: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbTransportState\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhosthubpropertypowersupply?language=objc)
 pub const kUSBHostHubPropertyPowerSupply: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"kUSBHubPowerSupply\0") };
@@ -537,8 +513,10 @@ impl tIOUSBHostConnectionSpeed {
     pub const IOUSBHostConnectionSpeedSuperPlus: Self = Self(5);
     #[doc(alias = "kIOUSBHostConnectionSpeedSuperPlusBy2")]
     pub const IOUSBHostConnectionSpeedSuperPlusBy2: Self = Self(6);
+    #[doc(alias = "kIOUSBHostConnectionSpeedOther")]
+    pub const IOUSBHostConnectionSpeedOther: Self = Self(7);
     #[doc(alias = "kIOUSBHostConnectionSpeedCount")]
-    pub const IOUSBHostConnectionSpeedCount: Self = Self(7);
+    pub const IOUSBHostConnectionSpeedCount: Self = Self(8);
 }
 
 #[cfg(feature = "objc2")]
@@ -650,6 +628,11 @@ impl tIOUSBHostPortStatus {
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedSuperPlusBy2")]
     pub const IOUSBHostPortStatusConnectedSpeedSuperPlusBy2: Self = Self(
         tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuperPlusBy2.0
+            << IOUSBHostFamilyBitRangePhase!(8, 10),
+    );
+    #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedOther")]
+    pub const IOUSBHostPortStatusConnectedSpeedOther: Self = Self(
+        tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedOther.0
             << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
     #[doc(alias = "kIOUSBHostPortStatusResetting")]

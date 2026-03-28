@@ -308,7 +308,9 @@ impl NSSplitViewController {
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
 impl NSSplitViewController {
     extern_methods!(
-        /// Animatedly collapses or uncollapses the first sidebar split view item in the receiver. Does nothing if the receiver does not contain any sidebars.
+        /// Collapses or expands the first sidebar in the split view controller using an animation.
+        ///
+        /// If the split view controller doesn't contain a sidebar, calling this method does nothing.
         ///
         /// # Safety
         ///
@@ -317,7 +319,9 @@ impl NSSplitViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn toggleSidebar(&self, sender: Option<&AnyObject>);
 
-        /// Animatedly collapses or uncollapses the first inspector split view item in the receiver. Does nothing if the receiver does not contain any inspectors.
+        /// Collapses or expands the first inspector in the split view controller using an animation.
+        ///
+        /// If the split view controller doesn't contain an inspector, calling this method does nothing.
         ///
         /// # Safety
         ///

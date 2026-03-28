@@ -400,6 +400,18 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsScreenshots(&self, allows_screenshots: bool);
 
+        /// A Boolean value that indicates whether to allow the emoji keyboard during an assessment.
+        ///
+        /// Users can access the emoji keyboard by tapping the emoji button on the keyboard. An assessment session disables access to the emoji keyboard by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsEmojiKeyboard`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsEmojiKeyboard))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsEmojiKeyboard(&self) -> bool;
+
+        /// Setter for [`allowsEmojiKeyboard`][Self::allowsEmojiKeyboard].
+        #[unsafe(method(setAllowsEmojiKeyboard:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsEmojiKeyboard(&self, allows_emoji_keyboard: bool);
+
         /// The app-specific configuration for the app that invokes the assessment.
         ///
         /// Use this property to get and customize the app-specific configuration that's applied to your own app. For example, you can set the `allowsNetworkAccess` property for your own app:

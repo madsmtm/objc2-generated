@@ -111,7 +111,7 @@ impl LARightStore {
         );
 
         #[cfg(feature = "block2")]
-        /// Removes right with provided identifier from persistant storage.
+        /// Removes right with provided identifier from persistent storage.
         ///
         /// Parameter `identifier`: Identifier of
         /// `LAPersistedRight`instance to remove.

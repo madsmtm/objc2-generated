@@ -64,5 +64,12 @@ impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {
         #[unsafe(method(appID))]
         #[unsafe(method_family = none)]
         pub unsafe fn appID(&self) -> bool;
+
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionOutput")]
+        #[unsafe(method(prf))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prf(
+            &self,
+        ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFAssertionOutput>>;
     );
 }

@@ -484,7 +484,10 @@ extern_protocol!(
     }
 );
 
-/// This is an exclusive value that cannot be combine with other NFCPollingOption values; this will override all other combinations.
+/// It will also detects applications listed in "com.apple.developer.nfc.readersession.iso7816.select-identifiers" if PACE detection fails.
+/// Tag's PACE support is indicated by the NFCISO7816Tag.paceSupport property.
+/// Prior to iOS 26.4 this is an exclusive value that cannot be combine with NFCPollingISO14443; it supersedes NFCPollingISO14443 and only returns PACE compatible tag.
+/// From iOS 26.4 this can be combine with all polling options; NFCISO7816Tag.paceSupport identifies PACE conformance of a detected ISO7816 compatible tag.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcpollingoption?language=objc)
 // NS_OPTIONS
@@ -510,6 +513,87 @@ unsafe impl Encode for NFCPollingOption {
 
 unsafe impl RefEncode for NFCPollingOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersessionconfiguration?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NFCTagReaderSessionConfiguration;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCTagReaderSessionConfiguration {}
+);
+
+impl NFCTagReaderSessionConfiguration {
+    extern_methods!(
+        /// Configures the RF polling of the reader session; multiple options can be OR'ed together.  This option affects the possible NFC tag type discover.
+        #[unsafe(method(polling))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn polling(&self) -> NFCPollingOption;
+
+        /// Setter for [`polling`][Self::polling].
+        #[unsafe(method(setPolling:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPolling(&self, polling: NFCPollingOption);
+
+        /// Application identifiers (subset of entries defined in "com.apple.developer.nfc.readersession.iso7816.select-identifiers") used during ISO7816 tag discovery.
+        #[unsafe(method(iso7816SelectIdentifiers))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn iso7816SelectIdentifiers(&self) -> Retained<NSArray<NSString>>;
+
+        /// Setter for [`iso7816SelectIdentifiers`][Self::iso7816SelectIdentifiers].
+        #[unsafe(method(setIso7816SelectIdentifiers:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setIso7816SelectIdentifiers(
+            &self,
+            iso7816_select_identifiers: &NSArray<NSString>,
+        );
+
+        /// System codes (subset of entries defined in "com.apple.developer.nfc.readersession.felica.systemcodes") used during FeliCa tag discovery.
+        #[unsafe(method(felicaSystemCodes))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn felicaSystemCodes(&self) -> Retained<NSArray<NSString>>;
+
+        /// Setter for [`felicaSystemCodes`][Self::felicaSystemCodes].
+        #[unsafe(method(setFelicaSystemCodes:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFelicaSystemCodes(&self, felica_system_codes: &NSArray<NSString>);
+
+        /// Parameter `option`: RF polling types to perform tag discovery.
+        ///
+        ///
+        /// Parameter `iso7816SelectIdentifiers`: List of ISO7816 Application Identifiers to be used in tag detection when NFCTagReaderSession is configured with NFCPollingISO14443 and/or NFCPollingPACE option.
+        /// Entries must be specified in "com.apple.developer.nfc.readersession.iso7816.select-identifiers" in Info.plist; all unknown / not matched entries will be dropped.
+        /// An empty NSArray indicates all applications specified in Info.plist will be used.  Repeated entries will get filter out via NSOrderedSet conversion.
+        ///
+        ///
+        /// Parameter `felicaSystemCodes`: List of FeliCa System Codes to be used in tag detection when NFCTagReaderSession is configured with NFCPollingISO18092 option.
+        /// Entries must be specified in "com.apple.developer.nfc.readersession.felica.systemcodes" in Info.plist; all unknown / not matched entries will be dropped.
+        /// An empty NSArray indicates all applications specified in Info.plist will be used.
+        #[unsafe(method(initWithPollingOption:iso7816SelectIdentifiers:felicaSystemCodes:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithPollingOption_iso7816SelectIdentifiers_felicaSystemCodes(
+            this: Allocated<Self>,
+            option: NFCPollingOption,
+            iso7816_select_identifiers: &NSArray<NSString>,
+            felica_system_codes: &NSArray<NSString>,
+        ) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl NFCTagReaderSessionConfiguration {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
 }
 
 extern_class!(
@@ -579,6 +663,47 @@ impl NFCTagReaderSession {
             delegate: &ProtocolObject<dyn NFCTagReaderSessionDelegate>,
             queue: Option<&DispatchQueue>,
         ) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Parameter `configuration`: Reader configuration for the session.  The configuration is applied when `[NFCTagReaderSession beginSession]` or `[NFCTagReaderSession restartPolling]` is called.
+        ///
+        /// Parameter `delegate`: The session will hold a weak ARC reference to this `NFCTagReaderSessionDelegate` object.
+        ///
+        /// Parameter `queue`: A dispatch queue where NFCTagReaderSessionDelegate delegate callbacks will be dispatched to.  A
+        /// <i>
+        /// nil
+        /// </i>
+        /// value will
+        /// cause the creation of a serial dispatch queue internally for the session.  The session object will retain the provided dispatch queue.
+        ///
+        ///
+        /// Returns: A new NFCTagReaderSession instance.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
+        #[unsafe(method(initWithConfiguration:delegate:queue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithConfiguration_delegate_queue(
+            this: Allocated<Self>,
+            configuration: &NFCTagReaderSessionConfiguration,
+            delegate: &ProtocolObject<dyn NFCTagReaderSessionDelegate>,
+            queue: &DispatchQueue,
+        ) -> Retained<Self>;
+
+        /// Parameter `configuration`: Reader configuration used for the polling restart.  The configuration does not persist in the current active session, i.e. `[NFCTagReaderSession restartPolling]` would use
+        /// the original configuration from session instance initialization.
+        ///
+        ///
+        /// Restart the polling sequence in this session to discover new tags using the provided configuration.  New tags discovered from polling will return in the subsequent
+        /// `[NFCTagReaderSessionDelegate tagReaderSession:didDetectTags:]` call. Tags that are returned previously by `[NFCTagReaderSessionDelegate tagReaderSession:didDetectTags:]` will become invalid,
+        /// and all references to these tags shall be removed to properly release the resources.  Calling this method on an invalidated session will have no effect; a new reader session is required to restart the reader.
+        #[unsafe(method(restartPollingWithConfiguration:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn restartPollingWithConfiguration(
+            &self,
+            configuration: &NFCTagReaderSessionConfiguration,
+        );
 
         /// Restart the polling sequence in this session to discover new tags.  New tags discovered from polling will return in the subsequent
         ///
@@ -2725,6 +2850,10 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn proprietaryApplicationDataCoding(&self) -> bool;
 
+        #[unsafe(method(supportsPACE))]
+        #[unsafe(method_family = none)]
+        unsafe fn supportsPACE(&self) -> bool;
+
         #[cfg(feature = "block2")]
         /// Parameter `apdu`: The command APDU object
         ///
@@ -3590,6 +3719,33 @@ impl NFCPaymentTagReaderSession {
             polling_option: NFCPollingOption,
             delegate: &ProtocolObject<dyn NFCTagReaderSessionDelegate>,
             queue: Option<&DispatchQueue>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Parameter `configuration`: Reader configuration for the session.  The configuration is applied when `[NFCTagReaderSession beginSession]` or `[NFCTagReaderSession restartPolling]` is called.
+        ///
+        /// Parameter `delegate`: The session will hold a weak ARC reference to this `NFCTagReaderSessionDelegate` object.
+        ///
+        /// Parameter `queue`: A dispatch queue where NFCTagReaderSessionDelegate delegate callbacks will be dispatched to.  A
+        /// <i>
+        /// nil
+        /// </i>
+        /// value will
+        /// cause the creation of a serial dispatch queue internally for the session.  The session object will retain the provided dispatch queue.
+        ///
+        ///
+        /// Returns: A new NFCTagReaderSession instance.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
+        #[unsafe(method(initWithConfiguration:delegate:queue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithConfiguration_delegate_queue(
+            this: Allocated<Self>,
+            configuration: &NFCTagReaderSessionConfiguration,
+            delegate: &ProtocolObject<dyn NFCTagReaderSessionDelegate>,
+            queue: &DispatchQueue,
         ) -> Retained<Self>;
     );
 }

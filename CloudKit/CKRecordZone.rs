@@ -7,23 +7,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonecapabilities?language=objc)
+/// The capabilities that a record zone supports.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonecapabilities?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKRecordZoneCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl CKRecordZoneCapabilities: NSUInteger {
-/// This zone supports `CKFetchRecordZoneChangesOperation`
+/// A capability for fetching only the changed records from a zone.
+///
+/// This capability makes the creation of offline caches more efficient. Instead of fetching the entire record every time, use ``CKFetchRecordZoneChangesOperation`` to fetch only the changed values, and use the data it returns to update your cache. This minimizes the amount of data you receive from the server.
         #[doc(alias = "CKRecordZoneCapabilityFetchChanges")]
         const FetchChanges = 1<<0;
-/// Batched changes to this zone happen atomically
+/// A capability that allows atomic changes of multiple records.
+///
+/// When you use a ``CKModifyRecordsOperation`` object to save records, if the server is unable to save the changes for one record, it doesn't save the changes for any of the records. Combining this capability with the ``CKModifyRecordsOperation/RecordSavePolicy/ifServerRecordUnchanged`` policy of the operation object prevents your app from overwriting changes to a group of records if one or more of the records on the server has recent changes.
         #[doc(alias = "CKRecordZoneCapabilityAtomic")]
         const Atomic = 1<<1;
-/// Records in this zone can be shared
+/// A capability for sharing a specific hierarchy of records.
+///
+/// CloudKit allows you to share record hierarchies from custom record zones that you create in the user's private database. For more information, see
+/// <doc
+/// :shared-records>.
         #[doc(alias = "CKRecordZoneCapabilitySharing")]
         const Sharing = 1<<2;
-/// This zone supports a single `CKShare` record that shares all records in the zone
+/// A capability for sharing the entire contents of a record zone.
+///
+/// CloudKit allows you to share custom record zones that you create in the user's private database. For more information, see
+/// <doc
+/// :shared-records>.
         #[doc(alias = "CKRecordZoneCapabilityZoneWideSharing")]
         const ZoneWideSharing = 1<<3;
     }
@@ -54,9 +68,9 @@ impl CKRecordZoneEncryptionScope {
     /// Note that:
     /// - Record zones using per-zone encryption only support zone-wide sharing.
     /// - Encryption scope can only be assigned at zone creation and cannot be changed for the lifetime of the zone.
-    /// - The server will not return zones using per-zone encryption to device OS versions older than the corresponding API availability version.
-    /// - An older OS trying to overwrite an existing zone using per-zone encryption due to a naming collision will result in a `.serverRejectedRequest` error.
-    /// - On device OS upgrade, your application is responsible for fetching database changes via `CKFetchDatabaseChangesOperation` with a nil sync token to ensure it has
+    /// - The server does not return zones using per-zone encryption to device OS versions older than the corresponding API availability version.
+    /// - An older OS trying to overwrite an existing zone using per-zone encryption due to a naming collision results in a `.serverRejectedRequest` error.
+    /// - On device OS upgrade, your application is responsible for fetching database changes via `CKFetchDatabaseChangesOperation` with a nil sync token to verify it has
     /// received all the zones available to it from the server.
     #[doc(alias = "CKRecordZoneEncryptionScopePerZone")]
     pub const PerZone: Self = Self(1);
@@ -71,12 +85,32 @@ unsafe impl RefEncode for CKRecordZoneEncryptionScope {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonedefaultname?language=objc)
+    /// The default record zone's name.
+    ///
+    /// Use this value when you need to refer to the default zone by name, such as when creating a zone ID. The default zone has no special capabilities.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonedefaultname?language=objc)
     pub static CKRecordZoneDefaultName: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone?language=objc)
+    /// A database partition that contains related records.
+    ///
+    /// Zones are an important part of how you organize your data. The public and private databases each have a single default zone. In the private database, you can use ``CKRecordZone`` objects to create additional custom zones as necessary. Use custom zones to arrange and encapsulate groups of related records in the private database. Custom zones support other capabilities too, such as the ability to write multiple records as a single atomic transaction.
+    ///
+    /// Treat each custom zone as a single unit of data that is separate from every other zone in the database. You can add records inside the zone. You can also create links between the records inside a zone by using the ``CKRecord/Reference`` class. However, the ``CKRecord/Reference`` class doesn't support cross-zone linking, so each reference object must point to a record in the same zone as the current record.
+    ///
+    /// Use the ``CKRecordZone`` class as-is and don't subclass it.
+    ///
+    /// ### Creating a Custom Record Zone
+    ///
+    /// Generally, you use instances of this class to create and manage custom zones. Although you can use this class to retrieve a database's default zone, most operations act on records in the default zone by default, so you rarely need to specify it explicitly.
+    ///
+    /// To create a custom zone, use ``CKRecordZone`` to create the zone object, and then save that zone to the user's private database using a ``CKModifyRecordZonesOperation`` object. You can't save any records in the zone until you save it to the database. When creating records, explicitly specify the zone ID if you want the records to reside in a specific zone; otherwise, they save to the default zone. You can't create custom zones in a public database.
+    ///
+    /// After creating a `CKRecordZone` object and saving it to the database, you don't interact with the object much. Instead, most interactions occur with its corresponding ``ID`` object, which you use to refer to the zone when creating records.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecordZone;
@@ -104,6 +138,13 @@ extern_conformance!(
 
 impl CKRecordZone {
     extern_methods!(
+        /// Returns the default record zone.
+        ///
+        /// Always use this method to retrieve the default zone for a database. You can use the returned object to specify the default zone for either the public or private database of a container. You don't need to save the returned zone object before using it. The owner of the zone is ``CKOwnerDefaultName``, which corresponds to the current user.
+        ///
+        /// The default zone of a database is a convenient place to store and access records. If you don't explicitly assign a zone to a record, CloudKit puts the record in the default zone.
+        ///
+        /// The disadvantage of using the default zone for storing records is that it doesn't have any special capabilities. You can't save a group of records to iCloud atomically in the default zone. Similarly, you can't use a ``CKFetchRecordChangesOperation`` object on records in the default zone.
         #[unsafe(method(defaultRecordZone))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultRecordZone() -> Retained<CKRecordZone>;
@@ -112,6 +153,18 @@ impl CKRecordZone {
 
         // +new (unavailable)
 
+        /// Creates a record zone object with the specified zone name.
+        ///
+        /// - Parameters:
+        /// - zoneName: The name of the new zone. Zone names inside a user's private database are unique, consist of up to 255 ASCII characters, and don't start with an underscore. One way to satisfy the uniqueness of zone names is to create a string from a Universally Unique Identifier (UUID), but you can also use other techniques.
+        ///
+        /// If this parameter is `nil` or is an empty string, the method throws an exception.
+        ///
+        /// - Returns: The new custom zone.
+        ///
+        /// Use this method to create a new record zone. The new zone has the name you provide and the zone's owner is the current user. After creating the zone, save it to the server using a ``CKModifyRecordZonesOperation`` object or the ``CKDatabase/save(_:completionHandler:)-32ffr`` method of ``CKDatabase``. You must save the zone to the server before you attempt to save any records to that zone.
+        ///
+        /// Don't use this method to create a `CKRecordZone` object that corresponds to a zone that already exists in the database. If the zone exists, fetch it using a ``CKFetchRecordZonesOperation`` object or the ``CKDatabase/fetch(withRecordZoneID:completionHandler:)`` method of ``CKDatabase``.
         #[unsafe(method(initWithZoneName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithZoneName(
@@ -120,6 +173,16 @@ impl CKRecordZone {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Creates a record zone object with the specified zone ID.
+        ///
+        /// - Parameters:
+        /// - zoneID: The ID for the new zone. This parameter must not be `nil`.
+        ///
+        /// - Returns: The custom record zone.
+        ///
+        /// Use this method when you want to create a new record zone from the information in a zone ID. After creating the zone, save it to the server using a ``CKModifyRecordZonesOperation`` object or the ``CKDatabase/save(_:completionHandler:)-32ffr`` method of ``CKDatabase``.
+        ///
+        /// Don't use this method to create a ``CKRecordZone`` object that corresponds to a zone that already exists in the database. If the zone exists, fetch it using a ``CKFetchRecordZonesOperation`` object or the ``CKDatabase/fetch(withRecordZoneID:completionHandler:)`` method of ``CKDatabase``.
         #[unsafe(method(initWithZoneID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithZoneID(
@@ -128,31 +191,44 @@ impl CKRecordZone {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// The unique ID of the zone.
+        ///
+        /// The zone ID contains the name of the zone and the name of the user who owns the zone. Use this property to access both of those values.
         #[unsafe(method(zoneID))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
-        /// Capabilities on locally-created record zones are not valid until the record zone is saved. Capabilities on record zones fetched from the server are valid.
+        /// The capabilities that the zone supports.
+        ///
+        /// The server determines the capabilities of the zone and sets the value of this property when you save the record zone. Always check this property before performing tasks that require a specific capability.
+        ///
+        /// Default zones don't support any special capabilities. Custom zones in a private database support the options that ``CKRecordZone/Capabilities`` provides.
         #[unsafe(method(capabilities))]
         #[unsafe(method_family = none)]
         pub unsafe fn capabilities(&self) -> CKRecordZoneCapabilities;
 
         #[cfg(feature = "CKReference")]
-        /// The share property on a record zone will only be set on zones fetched from the server and only if a
-        /// corresponding zone-wide share record for the zone exists on the server.
+        /// A reference to the record zone's share record.
         ///
-        /// You can create a zone-wide share for a zone using `-[CKShare initWithRecordZoneID:]`.
+        /// CloudKit sets this property only for fetched record zones that contain a share record; otherwise, it's `nil`.
         ///
-        /// Zone-wide sharing is only supported in zones with the `CKRecordZoneCapabilityZoneWideSharing` sharing capability.
-        /// You cannot share a zone if it already contains shared records.
+        /// To share a record zone, create a share record using the ``CKShare/init(recordZoneID:)`` method and then save it to the server. Shared record zones must have the ``CKRecordZone/Capabilities/zoneWideSharing`` capability, which CloudKit enables by default for new custom record zones in the user's private database.
+        ///
+        /// A record zone, and the records it contains, can take part in only a single share. CloudKit returns an error if you attempt to share an already-shared record zone, or if that record zone contains previously shared records.
+        ///
+        /// Record zone sharing errors include the following:
+        ///
+        /// - ``CKError/Code/serverRecordChanged``, which CloudKit returns if you try to share an already-shared record zone.
+        /// - ``CKError/Code/serverRejectedRequest``, which CloudKit returns if you try to share a record hierarchy from an already-shared record zone.
+        /// - ``CKError/Code/invalidArguments``, which CloudKit returns if you try to share a record zone that contains one or more shared hierarchies.
         #[unsafe(method(share))]
         #[unsafe(method_family = none)]
         pub unsafe fn share(&self) -> Option<Retained<CKReference>>;
 
-        /// The encryption scope determines the granularity at which encryption keys are stored within the zone.
+        /// The encryption scope determines the granularity at which CloudKit stores encryption keys within the zone.
         ///
         /// Zone encryption scope defaults to `CKRecordZoneEncryptionScopePerRecord` and can only be modified before zone creation. Attempting to change the encryption
-        /// scope of an existing zone is invalid and will result in an error.
+        /// scope of an existing zone is invalid and results in an error.
         ///
         /// Zones using `CKRecordZoneEncryptionScopePerZone` can only use zone-wide sharing and are not compatible with older device OS versions. Refer to `CKRecordZoneEncryptionScope` for more info.
         #[unsafe(method(encryptionScope))]

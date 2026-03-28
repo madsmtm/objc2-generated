@@ -319,6 +319,8 @@ pub use self::__PhotosTypes::PHAssetResourceUploadJobAction;
 #[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetResourceUploadJobState;
 #[cfg(feature = "PhotosTypes")]
+pub use self::__PhotosTypes::PHAssetResourceUploadJobType;
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetSourceType;
 #[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHCollectionEditOperation;

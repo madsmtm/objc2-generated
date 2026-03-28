@@ -69,7 +69,7 @@ impl CKShareAccessRequester {
 
         #[cfg(feature = "objc2-contacts")]
         #[cfg(not(target_os = "tvos"))]
-        /// A displayable `CNContact` representing the requester.
+        /// A displayable CNContact representing the requester.
         ///
         /// If the requester doesn't exist in the user's contacts or is not accessible, returns a newly created `CNContact`.
         /// This provides formatted requester information suitable for display in the application's UI.

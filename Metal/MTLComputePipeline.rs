@@ -296,7 +296,6 @@ impl MTLComputePipelineDescriptor {
 
         #[cfg(feature = "MTLTypes")]
         /// Sets the required threads-per-threadgroup during dispatches. The `threadsPerThreadgroup` argument of any dispatch must match this value if it is set.
-        /// Optional, unless the pipeline is going to use CooperativeTensors in which case this must be set.
         /// Setting this to a size of 0 in every dimension disables this property
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
@@ -344,9 +343,12 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
-        /// Provides access to this compute pipeline's reflection.
+        /// > Tip:
+        /// Verify the apps that need reflection information in production by testing them
+        /// without a frame capture, Metal API validation layer, or shader validation layer.
         ///
-        /// Reflection is `nil` if you create the pipeline state object directly from the ``MTLDevice`` protocol.
+        /// The property is `nil` when you create a pipeline state from an``MTLDevice`` instance,
+        /// such as with its ``MTLDevice/newComputePipelineStateWithDescriptor:options:completionHandler:`` method.
         #[unsafe(method(reflection))]
         #[unsafe(method_family = none)]
         fn reflection(&self) -> Option<Retained<MTLComputePipelineReflection>>;
@@ -372,7 +374,7 @@ extern_protocol!(
         /// - Parameters:
         /// - function: A binary function object representing the function binary to find.
         ///
-        /// - Returns: A function handle corresponding to the function if the binary function mathces a function in this
+        /// - Returns: A function handle corresponding to the function if the binary function matches a function in this
         /// pipeline state, otherwise `nil`.
         #[unsafe(method(functionHandleWithBinaryFunction:))]
         #[unsafe(method_family = none)]

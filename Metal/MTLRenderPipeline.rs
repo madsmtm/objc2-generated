@@ -1150,9 +1150,12 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
-        /// Obtains a reflection object for this render pipeline.
+        /// > Tip:
+        /// Verify the apps that need reflection information in production by testing them
+        /// without a frame capture, Metal API validation layer, or shader validation layer.
         ///
-        /// When you create the pipeline through an ``MTLDevice`` instance, reflection is `nil`.
+        /// The property is `nil` when you create a pipeline state from an``MTLDevice`` instance,
+        /// such as with its ``MTLDevice/newRenderPipelineStateWithDescriptor:error:`` method.
         #[unsafe(method(reflection))]
         #[unsafe(method_family = none)]
         fn reflection(&self) -> Option<Retained<MTLRenderPipelineReflection>>;
@@ -1763,7 +1766,6 @@ impl MTLTileRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLTypes")]
         /// Sets the required threads-per-threadgroup during tile dispatches. The `threadsPerTile` argument of any tile dispatch must match to this value if it is set.
-        /// Optional, unless the pipeline is going to use CooperativeTensors in which case this must be set.
         /// Setting this to a size of 0 in every dimension disables this property
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
@@ -2230,7 +2232,6 @@ impl MTLMeshRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLTypes")]
         /// Sets the required object threads-per-threadgroup during mesh draws. The `threadsPerObjectThreadgroup` argument of any draw must match to this value if it is set.
-        /// Optional, unless the pipeline is going to use CooperativeTensors in which case this must be set.
         /// Setting this to a size of 0 in every dimension disables this property
         #[unsafe(method(requiredThreadsPerObjectThreadgroup))]
         #[unsafe(method_family = none)]
@@ -2247,7 +2248,6 @@ impl MTLMeshRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLTypes")]
         /// Sets the required mesh threads-per-threadgroup during mesh draws. The `threadsPerMeshThreadgroup` argument of any draw must match to this value if it is set.
-        /// Optional, unless the pipeline is going to use CooperativeTensors in which case this must be set.
         /// Setting this to a size of 0 in every dimension disables this property
         #[unsafe(method(requiredThreadsPerMeshThreadgroup))]
         #[unsafe(method_family = none)]

@@ -338,6 +338,9 @@ mod __NSPortNameServer;
 #[cfg(feature = "NSPredicate")]
 #[path = "NSPredicate.rs"]
 mod __NSPredicate;
+#[cfg(feature = "NSPredicateValidating")]
+#[path = "NSPredicateValidating.rs"]
+mod __NSPredicateValidating;
 #[cfg(feature = "NSProcessInfo")]
 #[path = "NSProcessInfo.rs"]
 mod __NSProcessInfo;
@@ -2877,6 +2880,8 @@ pub use self::__NSPortNameServer::NSPortNameServer;
 pub use self::__NSPortNameServer::NSSocketPortNameServer;
 #[cfg(feature = "NSPredicate")]
 pub use self::__NSPredicate::NSPredicate;
+#[cfg(feature = "NSPredicateValidating")]
+pub use self::__NSPredicateValidating::NSPredicateValidating;
 #[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSActivityOptions;
 #[cfg(feature = "NSProcessInfo")]

@@ -251,6 +251,9 @@ impl IOUSBHostCIDeviceSpeed {
     #[cfg(feature = "objc2-io-kit")]
     pub const SuperPlusBy2: Self =
         Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuperPlusBy2.0);
+    #[doc(alias = "IOUSBHostCIDeviceSpeedOther")]
+    #[cfg(feature = "objc2-io-kit")]
+    pub const Other: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedOther.0);
 }
 
 unsafe impl Encode for IOUSBHostCIDeviceSpeed {

@@ -45,7 +45,7 @@ impl LAPersistedRight {
     extern_methods!(
         #[cfg(feature = "LARequirement")]
         /// Constructs a right that will be granted only when the given
-        /// `LAAuthenticationRequirement`is statisfied.
+        /// `LAAuthenticationRequirement`is satisfied.
         ///
         /// Parameter `requirement`: Requirement that needs to be satisfied to authorize the right
         ///

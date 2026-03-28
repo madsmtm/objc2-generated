@@ -7,11 +7,98 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationid?language=objc)
+/// A type that represents the ID of an operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationid?language=objc)
 pub type CKOperationID = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperation?language=objc)
+    /// The abstract base class for all operations that execute in a database.
+    ///
+    /// All CloudKit operations descend from `CKOperation`, which provides the infrastructure for executing tasks in one of your app's containers. Don't subclass or create instances of this class directly. Instead, create instances of one of its concrete subclasses.
+    ///
+    /// Use the properties of this class to configure the behavior of the operation before submitting it to a queue or executing it directly. CloudKit operations involve communicating with the iCloud servers to send and receive data. You can use the properties of this class to configure the behavior of those network requests to ensure the best performance for your app.
+    ///
+    /// - Important: `CKOperation` objects have a default quality of service level of
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/qualityofservice/default> (see
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/operation/qualityofservice>). Operations with this service level are discretionary, and the system schedules them for an optimal time according to battery level and other factors. On iPhone, discretionary activities pause when the device is in Low Power Mode. For information about quality of service levels, see [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html#//apple_ref/doc/uid/TP40015243-CH39) in [Energy Efficiency Guide for iOS Apps](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/index.html#//apple_ref/doc/uid/TP40015243) and [Prioritize Work at the Task Level](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/PrioritizeWorkAtTheTaskLevel.html#//apple_ref/doc/uid/TP40013929-CH35) in [Energy Efficiency Guide for Mac Apps](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html#//apple_ref/doc/uid/TP40013929).
+    ///
+    /// ### Long-Lived Operations
+    ///
+    /// A _long-lived operation_ is an operation that continues to run after the user closes the app. To specify a long-lived operation, set ``isLongLived`` to
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true>, provide a completion handler, and execute the operation. To get the identifiers of all running long-lived operations, use the ``CKContainer/allLongLivedOperationIDs()`` method that ``CKContainer`` provides. To get a specific long-lived operation, use the ``CKContainer/longLivedOperation(for:)`` method. Make sure you set the completion handler of a long-lived operation before you execute it so that the system can notify you when it completes and you can process the results. Do not execute an operation, change it to long-lived, and execute it again as a long-lived operation.
+    ///
+    /// {
+    /// ("Swift") {
+    /// ```swift
+    /// container.fetchAllLongLivedOperationIDs(completionHandler: { (operationIDs, error) in
+    /// if let error = error {
+    /// print("Error fetching long lived operations: \(error)")
+    /// // Handle error
+    /// return
+    /// }
+    /// guard let identifiers = operationIDs else { return }
+    /// for operationID in identifiers {
+    /// container.fetchLongLivedOperation(withID: operationID, completionHandler: { (operation, error) in
+    /// if let error = error {
+    /// print("Error fetching operation: \(operationID)\n\(error)")
+    /// // Handle error
+    /// return
+    /// }
+    /// guard let operation = operation else { return }
+    /// // Add callback handlers to operation
+    /// container.add(operation)
+    /// })
+    /// }
+    /// })
+    /// ```
+    /// }
+    /// ("Objective-C") {
+    /// ```objc
+    /// [container fetchAllLongLivedOperationIDsWithCompletionHandler:^(NSArray
+    /// <NSString
+    /// *> *_Nullable operationIDs, NSError *_Nullable error) {
+    /// if (error) {
+    /// // Handle error
+    /// return
+    /// }
+    /// for (NSString *operationID in operationIDs) {
+    /// [container fetchLongLivedOperationWithID:operationID completionHandler:^(CKOperation *_Nullable operation, NSError *_Nullable error) {
+    /// if (error) {
+    /// // Handle error
+    /// return
+    /// }
+    /// // Add callback handlers to operation
+    /// [container addOperation:operation];
+    /// }];
+    /// }
+    /// }];
+    /// ```
+    /// }
+    /// }
+    ///
+    /// The following is the typical life cycle of a long-lived operation:
+    ///
+    /// 1. The app creates a long-lived operation and executes it.
+    ///
+    /// The daemon starts saving and sending the callbacks to the running app.
+    /// 2. The app exits.
+    ///
+    /// The daemon continues running the long-lived operation and saves the callbacks.
+    /// 3. The app launches and fetches the long-lived operation.
+    ///
+    /// If the operation is running or if it completed within the previous 24 hours, the daemon returns a proxy for the long-lived operation. If the operation completed more than 24 hours previously, the daemon may stop returning it in fetch requests.
+    /// 4. The app runs the long-lived operation again.
+    ///
+    /// The daemon sends the app all the saved callbacks (it doesn't actually rerun the operation), and continues saving the callbacks and sending them to the running app.
+    /// 5. The app receives the completion callback or the app cancels the operation.
+    ///
+    /// The daemon stops including the operation in future fetch results.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperation?language=objc)
     #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKOperation;
@@ -23,14 +110,14 @@ extern_conformance!(
 
 impl CKOperation {
     extern_methods!(
+        /// Creates an operation.
+        ///
+        /// - Important: Don't use this method directly. Instead, create database operations using the initializers of the concrete subclasses.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// This defines per-operation configuration settings.
-        ///
-        ///
-        /// See the CKOperationConfiguration class description for info on how this configuration composes with CKOperationGroup.defaultConfiguration
+        /// The operation's configuration.
         ///
         /// This property is not atomic.
         ///
@@ -53,7 +140,7 @@ impl CKOperation {
         pub unsafe fn setConfiguration(&self, configuration: Option<&CKOperationConfiguration>);
 
         #[cfg(feature = "CKOperationGroup")]
-        /// The group this operation is associated with
+        /// The operation's group.
         ///
         /// This property is not atomic.
         ///
@@ -74,10 +161,11 @@ impl CKOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setGroup(&self, group: Option<&CKOperationGroup>);
 
-        /// This is an identifier unique to this CKOperation.
+        /// A unique identifier for a long-lived operation.
         ///
-        ///
-        /// This value is chosen by the system, and will be unique to this instance of a CKOperation.  This identifier will be sent to Apple's servers, and can be used to identify any server-side logging associated with this operation.
+        /// Pass this property's value to the ``CKContainer/longLivedOperation(for:)`` method to fetch the corresponding long-lived operation. For more information, see
+        /// <doc
+        /// :CKOperation#Long-Lived-Operations>.
         ///
         /// This property is not atomic.
         ///
@@ -89,14 +177,13 @@ impl CKOperation {
         pub unsafe fn operationID(&self) -> Retained<CKOperationID>;
 
         #[cfg(feature = "block2")]
-        /// This callback is called after a long lived operation has begun running and is persisted.
+        /// The closure to execute when the server begins to store callbacks for the long-lived operation.
         ///
+        /// If your app exits before CloudKit calls this property's value, the system doesn't include the operation's ID in the results of calls to the ``CKContainer/allLongLivedOperationIDs()`` method.
         ///
-        /// Once this callback is called the operation will continue running even if the current process exits.
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// For more information, see
+        /// <doc
+        /// :CKOperation#Long-Lived-Operations>.
         ///
         /// This property is not atomic.
         ///
@@ -135,25 +222,16 @@ impl CKOperation {
 }
 
 extern_class!(
-    /// An operation configuration is a set of properties that describes how your operation should behave.  All properties have a default value.  When determining what properties to apply to an operation, we consult the operation's configuration property, as well as the operation->group->defaultConfiguration property.  We combine them following these rules:
+    /// An object that describes how a CloudKit operation behaves.
     ///
-    /// ```text
-    ///    Group Default Configuration Value | Operation Configuration Value |        Value Applied To Operation
-    ///   -----------------------------------+-------------------------------+-----------------------------------------
-    ///              default value           |         default value         |                  default value
-    ///              default value           |         explicit value        |       operation.configuration explicit value
-    ///              explicit value          |         default value         | operation.group.defaultConfiguration explicit value
-    ///              explicit value          |         explicit value        |       operation.configuration explicit value
-    /// ```
+    /// All of the properties in `CKOperationConfiguration` have a default value. When determining which properties to apply to a CloudKit operation, consult the operation's configuration property, as well as the ``CKOperationGroup/defaultConfiguration`` property of the group that the operation belongs to. These properties combine through the following rules:
     ///
-    /// For example:
-    /// CKOperationGroup -> defaultConfiguration -> allowsCellularAccess explicitly set to NO
-    /// + CKOperation -> configuration -> allowsCellularAccess has default value of YES
-    /// = disallow cellular access
-    ///
-    /// CKOperationGroup -> defaultConfiguration -> allowsCellularAccess explicitly set to NO
-    /// + CKOperation -> configuration -> allowsCellularAccess explicitly set to YES
-    /// = allow cellular access
+    /// | Group default configuration value | Operation configuration value | Value applied to operation |
+    /// |---|---|---|
+    /// | default value | default value | default value |
+    /// | default value | explicit value | operation.configuration explicit value |
+    /// | explicit value | default value | group.defaultConfiguration explicit value |
+    /// | explicit value | explicit value | operation.configuration explicit value |
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationconfiguration?language=objc)
     #[unsafe(super(NSObject))]
@@ -168,7 +246,9 @@ extern_conformance!(
 impl CKOperationConfiguration {
     extern_methods!(
         #[cfg(feature = "CKContainer")]
-        /// If no container is set, [CKContainer defaultContainer] is used
+        /// The configuration's container.
+        ///
+        /// If you don't provide a container, CloudKit uses the default container that ``CKContainer`` provides.
         #[unsafe(method(container))]
         #[unsafe(method_family = none)]
         pub unsafe fn container(&self) -> Option<Retained<CKContainer>>;
@@ -179,31 +259,7 @@ impl CKOperationConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setContainer(&self, container: Option<&CKContainer>);
 
-        /// CKOperations behave differently depending on how you set qualityOfService.
-        ///
-        ///
-        /// ```text
-        ///   Quality of Service | timeoutIntervalForResource | Network Error Behavior | Discretionary Behavior
-        ///   -------------------+----------------------------+------------------------+-----------------------
-        ///   UserInteractive    | -1 (no enforcement)        | fail                   | nonDiscretionary
-        ///   UserInitiated      | -1 (no enforcement)        | fail                   | nonDiscretionary
-        ///   Default            | 1 week                     | fail                   | discretionary when app backgrounded
-        ///   Utility            | 1 week                     | internally retried     | discretionary when app backgrounded
-        ///   Background         | 1 week                     | internally retried     | discretionary
-        /// ```
-        ///
-        /// timeoutIntervalForResource
-        /// - the timeout interval for any network resources retrieved by this operation
-        /// - this can be overridden via CKOperationConfiguration's timeoutIntervalForResource property
-        ///
-        /// Network Error Behavior
-        /// - when a network request in service of a CKOperation fails due to a networking error, the operation may fail with that error, or internally retry the network request.  Only a subset of networking errors are retried, and limiting factors such as timeoutIntervalForResource are still applicable.
-        ///
-        /// Discretionary Behavior
-        /// - network requests in service of a CKOperation may be marked as discretionary
-        /// - discretionary network requests are scheduled at the description of the system for optimal performance
-        ///
-        /// CKOperations have a default qualityOfService of Default.
+        /// The priority that the system uses when it allocates resources to the operations that use this configuration.
         #[unsafe(method(qualityOfService))]
         #[unsafe(method_family = none)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
@@ -213,8 +269,7 @@ impl CKOperationConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
-        /// Defaults to
-        /// `YES`
+        /// A Boolean value that indicates whether operations that use this configuration can send data over the cellular network.
         #[unsafe(method(allowsCellularAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCellularAccess(&self) -> bool;
@@ -224,16 +279,7 @@ impl CKOperationConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
 
-        /// Long lived operations will continue running even if your process exits. If your process remains alive for the lifetime of the long lived operation its behavior is the same as a regular operation.
-        ///
-        /// Long lived operations can be fetched and replayed from the container via the
-        /// `fetchAllLongLivedOperations:`and
-        /// `fetchLongLivedOperationsWithIDs:`APIs. Your code should only fetch and re-enqueue long lived operations on app launch.
-        ///
-        /// Long lived operations persist until their -[NSOperation completionBlock] returns or until the operation is cancelled.
-        /// Long lived operations may be garbage collected 24 hours after they finish running if no client has replayed them.
-        ///
-        /// The default value for longLived is NO. Changing the value of longLived on an already started operation or on an outstanding long lived operation fetched from CKContainer has no effect.
+        /// A Boolean value that indicates whether the operations that use this configuration are long-lived.
         #[unsafe(method(isLongLived))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLongLived(&self) -> bool;
@@ -243,11 +289,9 @@ impl CKOperationConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setLongLived(&self, long_lived: bool);
 
-        /// If non-zero, overrides the timeout interval for any network requests issued by this operation.
-        /// The default value is 60.
+        /// The maximum amount of time that a request can take.
         ///
-        ///
-        /// See: NSURLSessionConfiguration.timeoutIntervalForRequest
+        /// - SeeAlso: `NSURLSessionConfiguration.timeoutIntervalForRequest`
         #[unsafe(method(timeoutIntervalForRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutIntervalForRequest(&self) -> NSTimeInterval;
@@ -260,11 +304,9 @@ impl CKOperationConfiguration {
             timeout_interval_for_request: NSTimeInterval,
         );
 
-        /// If set, overrides the timeout interval for any network resources retrieved by this operation.
-        /// If not explicitly set, defaults to a value based on the operation's
-        /// `qualityOfService`
+        /// The maximum amount of time that a resource request can take.
         ///
-        /// See: NSURLSessionConfiguration.timeoutIntervalForResource
+        /// - SeeAlso: `NSURLSessionConfiguration.timeoutIntervalForResource`
         #[unsafe(method(timeoutIntervalForResource))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutIntervalForResource(&self) -> NSTimeInterval;
@@ -293,11 +335,19 @@ impl CKOperationConfiguration {
 }
 
 /// CKOperationDeprecated.
-///
-/// These deprecated properties now read and write from the CKOperation's configuration
 impl CKOperation {
     extern_methods!(
         #[cfg(feature = "CKContainer")]
+        /// The operation's container.
+        ///
+        /// {
+        /// Use ``CKOperation/Configuration/container`` instead.
+        /// }
+        ///
+        /// The container defines where the operation executes. The ``CKContainer/add(_:)`` method of the ``CKContainer`` and ``CKDatabase`` classes implicitly set this property to their container.
+        ///
+        /// If you execute the operation yourself, either directly or using a custom operation queue, set the value of this property explicitly. If the value is `nil` when you execute an operation, the operation implicitly executes in your app's default container.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -319,6 +369,22 @@ impl CKOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setContainer(&self, container: Option<&CKContainer>);
 
+        /// A Boolean value that indicates whether the operation can send data over the cellular network.
+        ///
+        /// {
+        /// Use ``CKOperation/Configuration/allowsCellularAccess`` instead.
+        /// }
+        ///
+        /// When you send or receive many records, or when you send records with large assets, you might set this property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false> to avoid consuming too much of the user's cellular data bandwidth. The default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
+        ///
+        /// When this property is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false>, the operation fails if Wi-Fi isn't available.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -339,6 +405,22 @@ impl CKOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
 
+        /// A Boolean value that indicates whether the operation is long-lived.
+        ///
+        /// {
+        /// Use ``CKOperation/Configuration/isLongLived`` instead.
+        /// }
+        ///
+        /// Set this property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> to make the operation long-lived. The default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false>. If you change this property's value after you execute the operation, the change has no effect.
+        ///
+        /// For more information, see
+        /// <doc
+        /// :CKOperation#Long-Lived-Operations>.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -359,6 +441,16 @@ impl CKOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setLongLived(&self, long_lived: bool);
 
+        /// The timeout interval when waiting for additional data.
+        ///
+        /// {
+        /// Use ``CKOperation/Configuration/timeoutIntervalForRequest`` instead.
+        /// }
+        ///
+        /// This property determines the request timeout interval for the operation, which controls how long, in seconds, the operation waits for additional data to arrive before stopping. The timer for this value resets whenever new data arrives. When the timer reaches the interval without receiving any new data, it triggers a timeout.
+        ///
+        /// The default value is `60`.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -382,6 +474,16 @@ impl CKOperation {
             timeout_interval_for_request: NSTimeInterval,
         );
 
+        /// The maximum amount of time that a resource request can use.
+        ///
+        /// {
+        /// Use ``CKOperation/Configuration/timeoutIntervalForResource`` instead.
+        /// }
+        ///
+        /// This property determines the resource timeout interval for this operation, which controls how long, in seconds, to wait for the entire operation to complete before stopping. The resource timer starts when the operation executes and counts until either the operation completes or this timeout interval occurs, whichever comes first.
+        ///
+        /// The default value is `604800`, the number of seconds in 7 days.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety

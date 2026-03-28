@@ -24,6 +24,10 @@ unsafe impl RefEncode for CGVector {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for CGVector {}
+
+unsafe impl Sync for CGVector {}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgrectedge?language=objc)
 // NS_CLOSED_ENUM
 #[repr(u32)]
@@ -82,6 +86,10 @@ unsafe impl RefEncode for CGAffineTransform {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for CGAffineTransform {}
+
+unsafe impl Sync for CGAffineTransform {}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgaffinetransformcomponents?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -109,3 +117,7 @@ unsafe impl Encode for CGAffineTransformComponents {
 unsafe impl RefEncode for CGAffineTransformComponents {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+unsafe impl Send for CGAffineTransformComponents {}
+
+unsafe impl Sync for CGAffineTransformComponents {}

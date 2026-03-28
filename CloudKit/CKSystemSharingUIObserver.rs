@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksystemsharinguiobserver?language=objc)
+    /// An object the system uses to monitor changes in sharing.
+    ///
+    /// Initialize a `CKSystemSharingUIObserver` instance with your ``CKContainer`` when preparing to share an item using the share sheet. Use your implementation to update the local state of a shared item when your app receives a ``CKShare``, or to delete a locally cached share when the system notifies your app about a share deletion.
+    ///
+    /// The system only propagates changes on the local device using `CKSystemSharingUIObserver`. The system doesn't notify your app about any remote changes on the server. For more information about how to keep your local cache in sync with remote changes, see
+    /// <doc
+    /// :remote-records>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksystemsharinguiobserver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSystemSharingUIObserver;
@@ -25,6 +33,10 @@ impl CKSystemSharingUIObserver {
         // +new (unavailable)
 
         #[cfg(feature = "CKContainer")]
+        /// Creates and initializes an observer using the provided container.
+        ///
+        /// - Parameters:
+        /// - container: The ``CKContainer`` for the sharing observer.
         #[unsafe(method(initWithContainer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainer(
@@ -38,20 +50,13 @@ impl CKSystemSharingUIObserver {
             feature = "CKShare",
             feature = "block2"
         ))]
-        /// Called on success or failure of a
-        /// `CKShare`save after user modifications via the system sharing UI
+        /// A callback block the system invokes after the success or failure of a share save by the system sharing UI.
         ///
+        /// Following a successful share save by the system sharing UI in the provided ``CKContainer``, the system invokes this callback with a `nonnull` ``CKRecord/ID``, a `nonnull` share, and a `nil` error.
         ///
-        /// Following a successful share save by the system sharing UI in the provided
-        /// `CKContainer,`this callback will be invoked with a nonnull
-        /// `recordID,`a nonnull
-        /// `share,`and a nil
-        /// `error.`Following a save failure due to a per-item error (
-        /// `CKErrorServerRecordChanged,`for example), this callback will be invoked with a nonnull
-        /// `recordID,`a nil
-        /// `share,`and a nonnull
-        /// `error`Each
-        /// `CKSystemSharingUIObserver`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// If a save failure occurs due to a per-item error like ``CKError/Code/serverRecordChanged``, the system invokes this callback with a `nonnull` ``CKRecord/ID``, a `nil` share, and a `nonnull` error.
+        ///
+        /// Each ``CKSystemSharingUIObserver`` instance has a private serial queue. The system uses this queue for all callback block invocations.
         ///
         /// # Safety
         ///
@@ -83,12 +88,11 @@ impl CKSystemSharingUIObserver {
         );
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
-        /// Called on success or failure of a
-        /// `CKShare`delete when the user decides to stop sharing via the system sharing UI
+        /// A callback block the system invokes after the success or failure of a share delete by the system sharing UI.
         ///
+        /// The system invokes this block on the success or failure of a ``CKShare`` delete when the user decides to stop sharing through the system sharing UI.
         ///
-        /// Each
-        /// `CKSystemSharingUIObserver`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// Each ``CKSystemSharingUIObserver`` instance has a private serial queue. The system uses this queue for all callback block invocations.
         ///
         /// # Safety
         ///

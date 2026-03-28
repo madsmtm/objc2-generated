@@ -28,7 +28,7 @@ extern_conformance!(
 #[cfg(feature = "NSTouchBarItem")]
 impl NSStepperTouchBarItem {
     extern_methods!(
-        /// Creates an `NSStepperTouchBarItem` with a `formatter` to display the stepper's value as text
+        /// Creates a `NSStepperTouchBarItem` with a `formatter` to display the stepper's value as text.
         ///
         ///
         /// Parameter `formatter`: A formatter used to display a textual representation of the stepper's value
@@ -41,7 +41,7 @@ impl NSStepperTouchBarItem {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// Creates an `NSStepperTouchBarItem` using the result of `drawingHandler` to display the stepper's value as an image
+        /// Creates a `NSStepperTouchBarItem` using the result of `drawingHandler` to display the stepper's value as an image.
         ///
         ///
         /// Parameter `drawingHandler`: A block that draws a graphical representation of the stepper's value in the specified rectangle. The coordinates of this rectangle are specified in points.
@@ -53,7 +53,9 @@ impl NSStepperTouchBarItem {
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        /// The stepper's maximum value. The default is 59.0.
+        /// The stepper's maximum value.
+        ///
+        /// The default is `59.0`.
         #[unsafe(method(maxValue))]
         #[unsafe(method_family = none)]
         pub fn maxValue(&self) -> c_double;
@@ -63,7 +65,9 @@ impl NSStepperTouchBarItem {
         #[unsafe(method_family = none)]
         pub fn setMaxValue(&self, max_value: c_double);
 
-        /// The stepper's minimum value. The default is 0.0.
+        /// The stepper's minimum value.
+        ///
+        /// The default is `0.0`.
         #[unsafe(method(minValue))]
         #[unsafe(method_family = none)]
         pub fn minValue(&self) -> c_double;
@@ -73,7 +77,9 @@ impl NSStepperTouchBarItem {
         #[unsafe(method_family = none)]
         pub fn setMinValue(&self, min_value: c_double);
 
-        /// The stepper's increment value. The default is 1.0.
+        /// The stepper's increment value.
+        ///
+        /// The default value is `1.0`.
         #[unsafe(method(increment))]
         #[unsafe(method_family = none)]
         pub fn increment(&self) -> c_double;
@@ -123,7 +129,9 @@ impl NSStepperTouchBarItem {
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
-        /// The localized string labelling this item during user customization. The default value is empty string.
+        /// The localized string labeling this item during user customization.
+        ///
+        /// The default value is empty string.
         #[unsafe(method(customizationLabel))]
         #[unsafe(method_family = none)]
         pub fn customizationLabel(&self) -> Retained<NSString>;

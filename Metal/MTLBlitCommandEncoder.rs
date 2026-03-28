@@ -403,6 +403,7 @@ extern_protocol!(
         /// - `counters_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `counters_buffer` contents should be of the correct type.
         /// - `countersBufferOffset` might not be bounds-checked.
+        #[deprecated = "Access counters are no longer supported in Metal"]
         #[optional]
         #[unsafe(method(getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:))]
         #[unsafe(method_family = none)]
@@ -430,6 +431,7 @@ extern_protocol!(
         /// - `texture` may need to be synchronized.
         /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - This might not be bounds-checked.
+        #[deprecated = "Access counters are no longer supported in Metal"]
         #[optional]
         #[unsafe(method(resetTextureAccessCounters:region:mipLevel:slice:))]
         #[unsafe(method_family = none)]

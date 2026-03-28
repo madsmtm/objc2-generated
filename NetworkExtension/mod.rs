@@ -8167,6 +8167,8 @@ impl NERelayManagerClientError {
     pub const ServerCertificateExpired: Self = Self(9);
     #[doc(alias = "NERelayManagerClientErrorOther")]
     pub const Other: Self = Self(10);
+    #[doc(alias = "NERelayManagerClientErrorPvDConfigurationTruncated")]
+    pub const PvDConfigurationTruncated: Self = Self(11);
 }
 
 unsafe impl Encode for NERelayManagerClientError {

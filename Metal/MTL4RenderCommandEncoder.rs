@@ -896,7 +896,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn setArgumentTable_atStages(
             &self,
-            argument_table: &ProtocolObject<dyn MTL4ArgumentTable>,
+            argument_table: Option<&ProtocolObject<dyn MTL4ArgumentTable>>,
             stages: MTLRenderStages,
         );
 

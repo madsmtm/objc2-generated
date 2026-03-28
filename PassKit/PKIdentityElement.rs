@@ -131,6 +131,26 @@ impl PKIdentityElement {
         #[unsafe(method_family = none)]
         pub unsafe fn sexElement() -> Retained<PKIdentityElement>;
 
+        /// The signature or usual mark of the mobile document holder.
+        #[unsafe(method(signatureUsualMarkElement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn signatureUsualMarkElement() -> Retained<PKIdentityElement>;
+
+        /// The place where the mobile document holder was born.
+        #[unsafe(method(placeOfBirthElement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn placeOfBirthElement() -> Retained<PKIdentityElement>;
+
+        /// The mobile document holder's nationality.
+        #[unsafe(method(nationalityElement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn nationalityElement() -> Retained<PKIdentityElement>;
+
+        /// Indicates whether the mobile document holder has temporary lawful status based on information from the U.S. Department of Homeland Security (DHS).
+        #[unsafe(method(dhsTemporaryLawfulStatusElement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dhsTemporaryLawfulStatusElement() -> Retained<PKIdentityElement>;
+
         /// Boolean indicating whether the user's age is at least the given age.
         /// For example, ageThresholdElementWithAge:21 will return true if the user is at least 21 years old.
         /// This value is only available for a given age if it was provided by the issuer. If this value

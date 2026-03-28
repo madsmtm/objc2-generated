@@ -142,6 +142,35 @@ impl AVPlayerLayer {
         #[unsafe(method(copyDisplayedPixelBuffer))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyDisplayedPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Starts displaying a caption preview with the specified accessibility profile.
+        ///
+        /// This method enables a preview mode that displays sample caption text using the visual appearance settings from the specified accessibility profile. The preview replaces any currently active subtitles and/or closed captions while active. The sample caption text position can be specified to avoid UI controls.
+        ///
+        /// - Parameters:
+        /// - profileID: The identifier of the accessibility profile to use for caption appearance.
+        /// Profile IDs can be obtained from `MACaptionAppearanceCopyProfileIDs()`.
+        /// This determines font, color, background, and other visual characteristics.
+        /// - position: A CGPoint that defines the position (in points) of the caption preview relative to the default positioning of content captions (centered near the bottom of the video). Position values can be negative. (0, 0) represents the default positioning.
+        /// - text: Optional custom text to display in the preview. If `nil`, a standard localized preview message will be shown.
+        ///
+        /// - Note: You must call ``stopShowingCaptionPreview`` to exit the preview.
+        #[unsafe(method(setCaptionPreviewProfileID:position:text:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCaptionPreviewProfileID_position_text(
+            &self,
+            profile_id: &NSString,
+            position: CGPoint,
+            text: Option<&NSString>,
+        );
+
+        /// Stops showing the caption preview.
+        ///
+        /// This method stops the caption preview and restores any currently active subtitles and/or closed captions.
+        #[unsafe(method(stopShowingCaptionPreview))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn stopShowingCaptionPreview(&self);
     );
 }
 

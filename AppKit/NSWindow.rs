@@ -1974,12 +1974,14 @@ impl NSWindow {
         pub fn tabGroup(&self) -> Option<Retained<NSWindowTabGroup>>;
 
         #[cfg(feature = "block2")]
-        /// Attempt to move window sharing (i.e. within a SharePlay session) from the receiver to another window. In response to this request, the user may choose to transfer sharing to the new window, or simply stop sharing the content.
+        /// Attempts to move window sharing (i.e. within a SharePlay session) from the receiver to another window. In response to this request, the user may choose to transfer sharing to the new window, or simply stop sharing the content.
+        ///
+        /// In the event of a failed transfer request, a non-`nil` error contains details about the failure.
+        ///
         ///
         /// Parameter `window`: A window that is replacing the reciever in representing the user's current activity.
         ///
         /// Parameter `completionHandler`: A completion block that is called after the request finishes.
-        /// `error`In the event of a failed transfer request, a non-nil error contains details about the failure.
         #[unsafe(method(transferWindowSharingToWindow:completionHandler:))]
         #[unsafe(method_family = none)]
         pub fn transferWindowSharingToWindow_completionHandler(
@@ -2221,6 +2223,10 @@ impl NSWindow {
     extern_methods!(
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
+        /// Returns a new display link whose callback will be invoked in-sync with the display the window is on.
+        ///
+        /// If the window is not on any display the callback will not be invoked.
+        ///
         /// # Safety
         ///
         /// - `target` should be of the correct type.
@@ -2466,7 +2472,7 @@ extern_protocol!(
         unsafe fn window_didDecodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
 
         #[cfg(all(feature = "NSPreviewRepresentingActivityItem", feature = "NSResponder"))]
-        /// Preview representable activity items, used for sharing and collaboration.
+        /// A collection of Preview-representable activity items, used for sharing and collaboration.
         #[optional]
         #[unsafe(method(previewRepresentableActivityItemsForWindow:))]
         #[unsafe(method_family = none)]

@@ -54,14 +54,14 @@ impl PKAddCarKeyPassConfiguration {
 
         #[unsafe(method(manufacturerIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn manufacturerIdentifier(&self) -> Retained<NSString>;
+        pub unsafe fn manufacturerIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`manufacturerIdentifier`][Self::manufacturerIdentifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setManufacturerIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setManufacturerIdentifier(&self, manufacturer_identifier: &NSString);
+        pub unsafe fn setManufacturerIdentifier(&self, manufacturer_identifier: Option<&NSString>);
 
         #[unsafe(method(provisioningTemplateIdentifier))]
         #[unsafe(method_family = none)]
@@ -74,6 +74,17 @@ impl PKAddCarKeyPassConfiguration {
             &self,
             provisioning_template_identifier: Option<&NSString>,
         );
+
+        #[unsafe(method(productPlanIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn productPlanIdentifier(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`productPlanIdentifier`][Self::productPlanIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setProductPlanIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setProductPlanIdentifier(&self, product_plan_identifier: Option<&NSString>);
     );
 }
 

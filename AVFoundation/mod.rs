@@ -3030,6 +3030,10 @@ pub use self::__AVPlayer::AVPlayerRateDidChangeReasonAudioSessionInterrupted;
 #[cfg(feature = "AVPlayer")]
 pub use self::__AVPlayer::AVPlayerRateDidChangeReasonKey;
 #[cfg(feature = "AVPlayer")]
+pub use self::__AVPlayer::AVPlayerRateDidChangeReasonPlayheadReachedLiveEdge;
+#[cfg(feature = "AVPlayer")]
+pub use self::__AVPlayer::AVPlayerRateDidChangeReasonReversePlaybackReachedStartOfSeekableRange;
+#[cfg(feature = "AVPlayer")]
 pub use self::__AVPlayer::AVPlayerRateDidChangeReasonSetRateCalled;
 #[cfg(feature = "AVPlayer")]
 pub use self::__AVPlayer::AVPlayerRateDidChangeReasonSetRateFailed;
@@ -3101,6 +3105,14 @@ pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMo
 pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledEventKey;
 #[cfg(feature = "AVPlayerInterstitialEventController")]
 pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledNotification;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorScheduleRequestCompletedNotification;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorScheduleRequestErrorKey;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorScheduleRequestIdentifierKey;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorScheduleRequestResponseKey;
 #[cfg(feature = "AVPlayerInterstitialEventController")]
 pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventNoCue;
 #[cfg(feature = "AVPlayerInterstitialEventController")]

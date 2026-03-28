@@ -107,6 +107,24 @@ impl CPNavigationSession {
             route_information: &CPRouteInformation,
         );
 
+        #[cfg(all(feature = "CPRerouteReason", feature = "CPRouteSegment"))]
+        /// Resume the current trip with updated route segments
+        ///
+        ///
+        /// Parameter `routeSegments`: The updated route segments for the current trip
+        ///
+        /// Parameter `currentSegment`: The current route segment
+        ///
+        /// Parameter `rerouteReason`: The reason for the reroute
+        #[unsafe(method(resumeTripWithUpdatedRouteSegments:currentSegment:rerouteReason:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn resumeTripWithUpdatedRouteSegments_currentSegment_rerouteReason(
+            &self,
+            route_segments: &NSArray<CPRouteSegment>,
+            current_segment: &CPRouteSegment,
+            reroute_reason: CPRerouteReason,
+        );
+
         /// Finish the trip.
         #[unsafe(method(finishTrip))]
         #[unsafe(method_family = none)]
@@ -162,6 +180,13 @@ impl CPNavigationSession {
         #[unsafe(method_family = none)]
         pub unsafe fn addLaneGuidances(&self, lane_guidances: &NSArray<CPLaneGuidance>);
 
+        #[cfg(feature = "CPRouteSegment")]
+        /// Use this method to add CPRouteSegments in chronological order to the navigation session.
+        /// CPRouteSegment objects must be added as soon as they are available.
+        #[unsafe(method(addRouteSegments:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addRouteSegments(&self, route_segments: &NSArray<CPRouteSegment>);
+
         /// Set this property with variants of the current road name. From most to least verbose.
         #[unsafe(method(currentRoadNameVariants))]
         #[unsafe(method_family = none)]
@@ -209,5 +234,23 @@ impl CPNavigationSession {
             estimates: &CPTravelEstimates,
             maneuver: &CPManeuver,
         );
+
+        #[cfg(feature = "CPRouteSegment")]
+        /// The route segments associated with this navigation session.
+        #[unsafe(method(routeSegments))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn routeSegments(&self) -> Retained<NSArray<CPRouteSegment>>;
+
+        #[cfg(feature = "CPRouteSegment")]
+        /// The current route segment.
+        #[unsafe(method(currentSegment))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn currentSegment(&self) -> Retained<CPRouteSegment>;
+
+        #[cfg(feature = "CPRouteSegment")]
+        /// Setter for [`currentSegment`][Self::currentSegment].
+        #[unsafe(method(setCurrentSegment:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCurrentSegment(&self, current_segment: &CPRouteSegment);
     );
 }

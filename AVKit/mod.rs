@@ -32,6 +32,9 @@ mod __AVKitDefines;
 #[cfg(feature = "AVKitTypes")]
 #[path = "AVKitTypes.rs"]
 mod __AVKitTypes;
+#[cfg(feature = "AVLegibleMediaOptionsMenuController")]
+#[path = "AVLegibleMediaOptionsMenuController.rs"]
+mod __AVLegibleMediaOptionsMenuController;
 #[cfg(feature = "AVPictureInPictureController")]
 #[path = "AVPictureInPictureController.rs"]
 mod __AVPictureInPictureController;
@@ -59,6 +62,18 @@ pub use self::__AVCaptureView::AVCaptureViewDelegate;
 pub use self::__AVKitTypes::AVDisplayDynamicRange;
 #[cfg(feature = "AVKitTypes")]
 pub use self::__AVKitTypes::AVVideoFrameAnalysisType;
+#[cfg(feature = "AVLegibleMediaOptionsMenuController")]
+pub use self::__AVLegibleMediaOptionsMenuController::AVLegibleMediaOptionsMenuContents;
+#[cfg(feature = "AVLegibleMediaOptionsMenuController")]
+pub use self::__AVLegibleMediaOptionsMenuController::AVLegibleMediaOptionsMenuController;
+#[cfg(feature = "AVLegibleMediaOptionsMenuController")]
+pub use self::__AVLegibleMediaOptionsMenuController::AVLegibleMediaOptionsMenuControllerDelegate;
+#[cfg(feature = "AVLegibleMediaOptionsMenuController")]
+pub use self::__AVLegibleMediaOptionsMenuController::AVLegibleMediaOptionsMenuState;
+#[cfg(feature = "AVLegibleMediaOptionsMenuController")]
+pub use self::__AVLegibleMediaOptionsMenuController::AVLegibleMediaOptionsMenuStateChangeReason;
+#[cfg(feature = "AVLegibleMediaOptionsMenuController")]
+pub use self::__AVLegibleMediaOptionsMenuController::AVLegibleMediaOptionsMenuType;
 #[cfg(feature = "AVPictureInPictureController")]
 pub use self::__AVPictureInPictureController::AVPictureInPictureController;
 #[cfg(feature = "AVPictureInPictureController")]

@@ -17,6 +17,10 @@ extern_class!(
     pub struct ASPasswordCredentialIdentity;
 );
 
+unsafe impl Send for ASPasswordCredentialIdentity {}
+
+unsafe impl Sync for ASPasswordCredentialIdentity {}
+
 #[cfg(feature = "ASCredentialIdentity")]
 extern_conformance!(
     unsafe impl ASCredentialIdentity for ASPasswordCredentialIdentity {}
@@ -83,6 +87,12 @@ impl ASPasswordCredentialIdentity {
         /// Get the service identifier.
         ///
         /// Returns: The service identifier for this credential identity.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(serviceIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceIdentifier(&self) -> Retained<ASCredentialServiceIdentifier>;
@@ -90,6 +100,12 @@ impl ASPasswordCredentialIdentity {
         /// Get the user.
         ///
         /// Returns: The user string.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(user))]
         #[unsafe(method_family = none)]
         pub unsafe fn user(&self) -> Retained<NSString>;
@@ -99,6 +115,12 @@ impl ASPasswordCredentialIdentity {
         /// Returns: The record identifier.
         ///
         /// You can utilize the record identifier to uniquely identify the credential identity in your local database.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordIdentifier(&self) -> Option<Retained<NSString>>;
@@ -109,11 +131,21 @@ impl ASPasswordCredentialIdentity {
         /// if two identities have the same service identifier. A credential identity with a larger rank value
         /// precedes one with a smaller value if both credential identities have the same service identifier.
         /// The default value of this property is 0.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(rank))]
         #[unsafe(method_family = none)]
         pub unsafe fn rank(&self) -> NSInteger;
 
         /// Setter for [`rank`][Self::rank].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRank:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRank(&self, rank: NSInteger);

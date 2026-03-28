@@ -468,6 +468,8 @@ pub use self::__GCInputNames::GCInputLeftPaddle;
 #[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputLeftShoulder;
 #[cfg(feature = "GCInputNames")]
+pub use self::__GCInputNames::GCInputLeftSideButton;
+#[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputLeftThumbstick;
 #[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputLeftThumbstickButton;
@@ -485,6 +487,8 @@ pub use self::__GCInputNames::GCInputRightBumper;
 pub use self::__GCInputNames::GCInputRightPaddle;
 #[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputRightShoulder;
+#[cfg(feature = "GCInputNames")]
+pub use self::__GCInputNames::GCInputRightSideButton;
 #[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputRightThumbstick;
 #[cfg(feature = "GCInputNames")]

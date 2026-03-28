@@ -423,8 +423,6 @@ impl AVCaptureDeviceInput {
         ///
         ///
         /// The receiver's multichannelAudioMode property can only be set to a certain mode if this method returns YES for that mode.
-        ///
-        /// Multichannel audio modes are not supported when used in conjunction with AVCaptureMultiCamSession.
         #[unsafe(method(isMultichannelAudioModeSupported:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMultichannelAudioModeSupported(
@@ -434,10 +432,7 @@ impl AVCaptureDeviceInput {
 
         /// Indicates the multichannel audio mode to apply when recording audio.
         ///
-        ///
-        /// This property only takes effect when audio is being routed through the built-in microphone, and is ignored if an external microphone is in use.
-        ///
-        /// The default value is AVCaptureMultichannelAudioModeNone, in which case the default single channel audio recording is used.
+        /// This property only takes effect when audio is being routed through the built-in microphone, and is ignored if an external microphone is in use. The default value is ``AVCaptureMultichannelAudioModeNone``, in which case the default single channel audio recording is used. In an ``AVCaptureMultiCamSession``, when audio mode is set to any value other than ``AVCaptureMultichannelAudioModeNone``, only one ``sourceDevicePosition`` is allowed for audio ports.
         #[unsafe(method(multichannelAudioMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn multichannelAudioMode(&self) -> AVCaptureMultichannelAudioMode;
@@ -470,6 +465,25 @@ impl AVCaptureDeviceInput {
         #[unsafe(method(setWindNoiseRemovalEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWindNoiseRemovalEnabled(&self, wind_noise_removal_enabled: bool);
+
+        /// Whether or not audio zoom is supported.
+        ///
+        /// This property returns `true` if the device supports audio zoom.
+        #[unsafe(method(isAudioZoomSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isAudioZoomSupported(&self) -> bool;
+
+        /// Whether or not audio zoom is enabled.
+        ///
+        /// Setting this property to `true` throws an exception if ``isAudioZoomSupported`` is `false`. Default is `true` when supported. When enabled, the sound field narrows or expands to match the field of view of the video device's zoom factor. Set this property to `false` if you want to capture the full sound field regardless of video zoom. This property only takes effect when added to a session with a video device, and ``AVCaptureMultichannelAudioMode`` is set to any value other than ``AVCaptureMultichannelAudioModeNone``. When using multiple cameras in ``AVCaptureMultiCamSession``, audio zoom is determined by the zoom factor of the preferred camera. The preferred camera is selected to match the mic position, either front or back. If more than one camera is available in that position, the camera with the widest field of view is chosen with virtual cameras preferred over single camera ones. If no camera is found to match the mic position, audio zoom is unavailable.
+        #[unsafe(method(isAudioZoomEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isAudioZoomEnabled(&self) -> bool;
+
+        /// Setter for [`isAudioZoomEnabled`][Self::isAudioZoomEnabled].
+        #[unsafe(method(setAudioZoomEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAudioZoomEnabled(&self, audio_zoom_enabled: bool);
 
         /// A BOOL value specifying whether Cinematic Video capture is supported.
         ///

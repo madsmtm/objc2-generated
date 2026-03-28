@@ -28,6 +28,9 @@ impl CKModifyBadgeOperation {
 #[cfg(feature = "CKOperation")]
 impl CKModifyBadgeOperation {
     extern_methods!(
+        /// Creates an operation.
+        ///
+        /// - Important: Don't use this method directly. Instead, create database operations using the initializers of the concrete subclasses.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

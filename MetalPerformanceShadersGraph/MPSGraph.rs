@@ -126,6 +126,9 @@ bitflags::bitflags! {
 /// Execute winograd transform intermediate as FP16.
         #[doc(alias = "MPSGraphReducedPrecisionFastMathAllowFP16Conv2DWinogradTransformIntermediate")]
         const AllowFP16Conv2DWinogradTransformIntermediate = 1<<1;
+/// Allow conversion of operands to FP19 or TF32 from FP32 when needed by dropping 13 mantissa bits.
+        #[doc(alias = "MPSGraphReducedPrecisionFastMathAllowConvertingOperandsFromFP32ToFP19")]
+        const AllowConvertingOperandsFromFP32ToFP19 = 1<<2;
 /// Curated list allowing intermediates for multi-pass GPU kernels to be FP16.
         #[doc(alias = "MPSGraphReducedPrecisionFastMathAllowFP16Intermediates")]
         const AllowFP16Intermediates = MPSGraphReducedPrecisionFastMath::AllowFP16Conv2DWinogradTransformIntermediate.0;
@@ -244,6 +247,11 @@ impl MPSGraphCompilationDescriptor {
         #[unsafe(method(disableTypeInference))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableTypeInference(&self);
+
+        /// Turns on Automatic Layout Conversion (for conv like operations) for GPU.
+        #[unsafe(method(convertLayoutToNHWC))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn convertLayoutToNHWC(&self);
 
         /// The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
         #[unsafe(method(optimizationLevel))]

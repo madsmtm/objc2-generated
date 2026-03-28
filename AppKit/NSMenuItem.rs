@@ -67,6 +67,7 @@ impl NSMenuItem {
         pub fn separatorItem(mtm: MainThreadMarker) -> Retained<NSMenuItem>;
 
         /// Creates a menu item representing a section header with the provided title.
+        ///
         /// Section header items are used to provide context to a grouping of menu items.
         /// Items created using this method are non-interactive and do not perform an action.
         #[unsafe(method(sectionHeaderWithTitle:))]
@@ -432,12 +433,9 @@ impl NSMenuItem {
         pub fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[cfg(feature = "NSMenuItemBadge")]
-        /// A badge used to provide additional quantitative information specific to
-        /// the menu item, such as the number of available updates.
+        /// A badge used to provide additional quantitative information specific to the menu item, such as the number of available updates.
         ///
-        ///
-        /// Note: The default value of this property is
-        /// `nil.`
+        /// The default value of this property is `nil`.
         #[unsafe(method(badge))]
         #[unsafe(method_family = none)]
         pub fn badge(&self) -> Option<Retained<NSMenuItemBadge>>;

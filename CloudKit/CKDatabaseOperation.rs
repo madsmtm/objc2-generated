@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabaseoperation?language=objc)
+    /// The abstract base class for operations that act upon databases in CloudKit.
+    ///
+    /// Database operations typically involve fetching and saving records and other database objects, as well as executing queries on the contents of the database. Use this class's ``database`` property to tell the operation which database to use when you execute it. Don't subclass this class or create instances of it. Instead, create instances of one of its concrete subclasses.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabaseoperation?language=objc)
     #[unsafe(super(CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKOperation")]
@@ -24,17 +28,11 @@ extern_conformance!(
 impl CKDatabaseOperation {
     extern_methods!(
         #[cfg(feature = "CKDatabase")]
-        /// The database on which to perform the operation.
+        /// The database that the operation uses.
         ///
+        /// For operations that you execute in a custom queue, use this property to specify the target database. Setting the database also sets the corresponding container, which it inherits from ``CKOperation``. If this property's value is `nil`, the operation targets the user's private database.
         ///
-        /// If no database is set,
-        ///
-        /// ```text
-        ///  [self.container privateCloudDatabase]
-        /// ```
-        ///
-        /// is used.
-        /// This will also set the container property of the operation's configuration to match the container of the passed-in database.
+        /// The default value is `nil`.
         ///
         /// This property is not atomic.
         ///
@@ -61,6 +59,9 @@ impl CKDatabaseOperation {
 #[cfg(feature = "CKOperation")]
 impl CKDatabaseOperation {
     extern_methods!(
+        /// Creates an operation.
+        ///
+        /// - Important: Don't use this method directly. Instead, create database operations using the initializers of the concrete subclasses.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

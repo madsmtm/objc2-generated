@@ -206,6 +206,10 @@ impl FSItem {
 extern_class!(
     /// Attributes of an item, such as size, creation and modification times, and user and group identifiers.
     ///
+    /// > Important: FSKit internally maintains a unique sequence number for each set of attributes to determine the most up-to-date set of attributes of a given ``FSItem``.
+    /// To prevent an older set of attributes from having a newer sequence number, all attributes of a given ``FSItemAttributes`` object should be populated within the same synchronization context.
+    /// This synchronization context should prevent any other thread from populating another ``FSItemAttributes`` object of the given ``FSItem``.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemattributes?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]

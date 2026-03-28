@@ -47,10 +47,11 @@ extern_conformance!(
 impl NSTabViewItem {
     extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-        /// Creates an autoreleased TabViewItem that wraps the provided ViewController. The viewController is set as the tab view item’s
-        /// `-viewController`property, which sets several of the tab view item’s other properties.
+        /// Creates an autoreleased `TabViewItem` that wraps the provided view controller.
         ///
-        /// Parameter `viewController`: The view controller to wrap, used to set the viewController property
+        /// The view controller is set as the tab view item’s `viewController` property, which sets several of the tab view item’s other properties.
+        ///
+        /// Parameter `viewController`: The view controller to wrap, used to set the `viewController` property
         #[unsafe(method(tabViewItemWithViewController:))]
         #[unsafe(method_family = none)]
         pub fn tabViewItemWithViewController(view_controller: &NSViewController) -> Retained<Self>;
@@ -103,7 +104,9 @@ impl NSTabViewItem {
         pub fn setLabel(&self, label: &NSString);
 
         #[cfg(feature = "NSImage")]
-        /// Get and set the image for this tab view item. The image may only be used in certain tab view styles and options.  The default value is nil.
+        /// Gets and set the image for this tab view item. The image may only be used in certain tab view styles and options.
+        ///
+        /// The default value is `nil`.
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub fn image(&self) -> Option<Retained<NSImage>>;

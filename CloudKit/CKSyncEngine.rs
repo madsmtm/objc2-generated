@@ -8,118 +8,93 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// `CKSyncEngine` encapsulates the logic of syncing data with a CloudKit database.
+    /// An object that manages the synchronization of local and remote record data.
     ///
-    /// Syncing with CloudKit involves many moving pieces.
-    /// Apps need to schedule syncs, create and batch operations, subscribe to database changes,
-    /// listen for push notifications, store sync state, handle a multitude of errors, and more.
-    /// `CKSyncEngine` is designed to encapsulate this logic in a higher-level API.
+    /// Use ``CKSyncEngine`` to handle your app's CloudKit sync operations and benefit from the performance and reliability it provides.
+    /// To use the class, create an instance early in your app's launch process and specify a database to sync.
+    /// Thereafter, and depending on good system conditions, the sync engine periodically pushes and pulls database and record zone changes on the app's behalf.
+    /// To participate in those sync operations and to provide the engine with the changes to send, create an object that conforms to ``CKSyncEngineDelegate-3c38p`` and assign an instance of it to the engine's configuration.
+    /// You can have multiple instances of ``CKSyncEngine`` in a single process, each targeting a different database. For example, you may have one syncing a person's private database and another syncing their shared database.
     ///
-    /// # Start Your Sync Engine
+    /// Because periodic sync relies on good system conditions — adequate battery charge, an active network connection, a signed-in iCloud account, and so on — the engine's sync schedule is indeterminate.
+    /// If you need to sync immediately, like when your app requires it has the most recent changes before continuing, use the ``fetchChangesWithOptions:completionHandler:`` and ``sendChangesWithOptions:completionHandler:`` methods.
     ///
-    /// Generally, you should initialize your `CKSyncEngine` soon after your process launches.
-    /// The sync engine will perform work in the background on your behalf, and it needs to be initialized
-    /// so that it can properly listen for push notifications and handle scheduled sync tasks.
+    /// The sync engine uses an opaque type to track its internal state, and it's your responsibility to persist that state to disk and make it available across app launches so the engine can function properly.
+    /// For more information, see ``CKSyncEngineDelegate/syncEngine:handleEvent:`` and ``CKSyncEngineStateUpdateEvent``.
     ///
-    /// When initializing your sync engine, you need to provide an object conforming to the `CKSyncEngineDelegate` protocol.
-    /// This protocol is the main method of communication between the sync engine and your app.
-    /// You also need to provide your last known version of the ``CKSyncEngine/State/Serialization``.
-    /// See ``CKSyncEngine/State`` and ``CKSyncEngine/Event/StateUpdate`` for more details on the sync engine state.
+    /// ``CKSyncEngine`` requires the CloudKit and Remote notifications entitlements.
+    /// For more information, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/xcode/configuring-icloud-services> and
+    /// <doc
+    /// ://com.apple.documentation/documentation/xcode/configuring-background-execution-modes>.
     ///
-    /// Note that before using `CKSyncEngine` in your app, you need to add the CloudKit and remote notification capabilities.
+    /// - Important: Don't use ``CKSyncEngine`` to sync your app's public database.
     ///
-    /// # Sending Changes to the Server
+    /// ### Send changes to iCloud
     ///
-    /// In order to send changes to the server, you first need to tell the sync engine you have pending changes to send.
-    /// You can do this by adding pending changes to the sync engine's ``CKSyncEngine/state`` property.
+    /// A sync engine requires you to tell it about any changes to send, which you do by invoking the ``CKSyncEngineState/addPendingDatabaseChanges:`` and ``CKSyncEngineState/addPendingRecordZoneChanges:`` methods on the engine's ``state`` property.
+    /// If there are no scheduled sync operations when you invoke these methods, the engine automatically schedules one.
+    /// Database changes don't require any additional input, but the sync engine does expect you to provide the individual record zone changes — in batches — and return them from your delegate's implementation of ``CKSyncEngineDelegate/syncEngine:nextRecordZoneChangeBatchForContext:``.
+    /// After the engine sends the changes, it notifies your delegate about their success (or failure) by dispatching events of type ``CKSyncEngineSentDatabaseChangesEvent`` and ``CKSyncEngineSentRecordZoneChangesEvent``.
     ///
-    /// When you add pending changes to the state, the sync engine will schedule a task to sync.
-    /// When the sync task runs, the sync engine will start sending changes to the server.
-    /// The sync engine will automatically send database changes from ``CKSyncEngine/State/pendingDatabaseChanges``, but you need to provide the record zone changes yourself.
-    /// In order to send record zone changes, you need to return them from `-[CKSyncEngineDelegate syncEngine:nextRecordZoneChangeBatchForContext:]`.
+    /// ### Fetch changes from iCloud
     ///
-    /// When the sync engine finishes sending a batch of changes to the server,
-    /// your `CKSyncEngineDelegate` will receive ``CKSyncEngine/Event/sentDatabaseChanges(_:)`` and ``CKSyncEngine/Event/sentRecordZoneChanges(_:)`` events.
-    /// These events will notify you of the success or failure of the changes you tried to send.
+    /// By default, a sync engine attempts to discover an existing ``CKDatabaseSubscription`` for the associated database and uses that to receive silent notifications about remote record changes.
+    /// If the engine doesn't find a subscription, it automatically creates one to use. On receipt of a notification, the engine schedules a sync operation to fetch the related changes.
+    /// When that operation runs, the engine dispatches an instance of ``CKSyncEngineWillFetchChangesEvent`` to your delegate.
+    /// As it receives fetched changes, the engine dispatches ``CKSyncEngineFetchedDatabaseChangesEvent`` and ``CKSyncEngineFetchedRecordZoneChangesEvent``, accordingly.
+    /// After the operation finishes, the sync engine notifies your delegate by dispatching an instance of ``CKSyncEngineDidFetchChangesEvent``.
+    /// You handle all dispatched events in your delegate's implementation of ``CKSyncEngineDelegate/syncEngine:handleEvent:``.
     ///
-    /// At a high level, sending changes to the server happens with the following order of operations:
+    /// ### Sync Scheduling
     ///
-    /// 1. You add pending changes to ``CKSyncEngine/state``.
-    /// 2. You receive ``CKSyncEngine/Event/willSendChanges(_:)`` in `-[CKSyncEngineDelegate syncEngine:handleEvent:]`
-    /// 3. If there are pending database changes, the sync engine sends the next batch.
-    /// 4. If any database changes were sent, your delegate receives``CKSyncEngine/Event/sentDatabaseChanges(_:)``.
-    /// 5. Repeat from step 3 until all pending database changes are sent, then move on to record zone changes in step 6.
-    /// 6. The sync engine asks for the next batch of record zone changes by calling `-[CKSyncEngineDelegate syncEngine:nextRecordZoneChangeBatchForContext:]`.
-    /// 7. The sync engine sends the next record zone change batch to the server.
-    /// 8. If any record zone changes were sent, your delegate receives ``CKSyncEngine/Event/sentRecordZoneChanges(_:)``.
-    /// 9. If you added any pending database changes during steps 6-8, the sync engine repeats from step 3. Otherwise, it repeats from step 6.
-    /// 10. When all pending changes are sent, your delegate receives ``CKSyncEngine/Event/didSendChanges(_:)``.
+    /// #### Automatic sync
     ///
-    /// # Fetching Changes from the Server
-    ///
-    /// The sync engine will automatically listen for remote notifications, and it will fetch changes from the server when necessary.
-    /// Generally, you'll receive events in this order:
-    ///
-    /// 1. Your delegate receives ``CKSyncEngine/Event/willFetchChanges(_:)``.
-    /// 2. If there are new database changes to fetch, you receive batches of them in ``CKSyncEngine/Event/fetchedDatabaseChanges(_:)`` events.
-    /// 3. If there are new record zone changes to fetch, you will receive ``CKSyncEngine/Event/willFetchRecordZoneChanges(_:)`` for each zone that has new changes.
-    /// 4. The sync engine fetches record zone changes and gives you batches of them in ``CKSyncEngine/Event/fetchedRecordZoneChanges(_:)`` events.
-    /// 5. Your delegate receives ``CKSyncEngine/Event/didFetchRecordZoneChanges(_:)`` for each zone that had changes to fetch.
-    /// 6. Your delegate receives ``CKSyncEngine/Event/didFetchChanges(_:)``, indicating that sync engine has finished fetching changes.
-    ///
-    /// # Sync Scheduling
-    ///
-    /// ## Automatic sync
-    ///
-    /// By default, the sync engine will automatically schedule sync tasks on your behalf.
-    /// If the user is signed in, the device has a network connection, and the system is generally in a good state, these scheduled syncs will happen relatively quickly.
+    /// By default, the sync engine automatically schedules sync tasks on your behalf.
+    /// If the user is signed in, the device has a network connection, and the system is generally in a good state, these scheduled syncs happen relatively quickly.
     /// However, if the device has no network, is low on power, or is otherwise under a heavy load, these automatic syncs might be delayed.
     /// Similarly, if the user isn't signed in to an account, the sync engine won't perform any sync tasks at all.
     ///
-    /// ## Manual sync
+    /// #### Manual sync
     ///
-    /// Generally, you should rely on this automatic sync behavior, but there may be some cases where you want to manually trigger a sync.
-    /// For example, if you have a pull-to-refresh UI, you can call ``CKSyncEngine/fetchChanges(_:)`` to tell the sync engine to fetch immediately.
-    /// Or if you want to provide some sort of "backup now" button, you can call ``CKSyncEngine/sendChanges(_:)`` to send to the server immediately.
+    /// There may be some cases where you want to manually trigger a sync.
+    /// For example, if you have a pull-to-refresh UI, you can call ``fetchChangesWithOptions:completionHandler:`` to tell the sync engine to fetch immediately.
+    /// Or, if you have a "backup now" UI, you can call ``sendChangesWithOptions:completionHandler:`` to send to the server immediately.
     ///
-    /// ### Testing
+    /// ### Error Handling
     ///
-    /// These manual sync functions might also be useful during automated testing.
-    /// When writing automated tests, you can turn off automatic sync via ``CKSyncEngine/Configuration/automaticallySync``.
-    /// Then, you'll have complete control over the ordering of sync events.
-    /// This allows you to interject behavior in the sync flow and simulate specific sequences of events.
-    ///
-    /// # Error Handling
-    ///
-    /// There are some transient errors that the sync engine will handle automatically behind the scenes.
-    /// The sync engine will retry the operations for these transient errors automatically when it makes sense to do so.
+    /// There are some transient errors that the sync engine handles automatically behind the scenes.
+    /// The sync engine retries the operations for these transient errors automatically when it makes sense to do so.
     /// Specifically, the sync engine will handle the following errors on your behalf:
     ///
-    /// * ``CKError/notAuthenticated``
-    /// * ``CKError/accountTemporarilyUnavailable``
-    /// * ``CKError/networkFailure``
-    /// * ``CKError/networkUnavailable``
-    /// * ``CKError/requestRateLimited``
-    /// * ``CKError/serviceUnavailable``
-    /// * ``CKError/zoneBusy``
+    /// * ``CKError/Code/notAuthenticated``
+    /// * ``CKError/Code/accountTemporarilyUnavailable``
+    /// * ``CKError/Code/networkFailure``
+    /// * ``CKError/Code/networkUnavailable``
+    /// * ``CKError/Code/requestRateLimited``
+    /// * ``CKError/Code/serviceUnavailable``
+    /// * ``CKError/Code/zoneBusy``
     ///
-    /// When the sync engine encounters one of these errors, it will wait for the system to be in a good state and try again.
-    /// For example, if the server sends back a `.requestRateLimited` error, the sync engine will respect this throttle and try again after the retry-after time.
+    /// When the sync engine encounters one of these errors, it waits for the system to be in a good state, and tries again.
+    /// For example, if the server sends back a ``CKError/Code/requestRateLimited`` error, the sync engine respects this throttle and tries again after the error's retry-after time.
     ///
-    /// `CKSyncEngine` will _not_ handle errors that require application-specific logic.
-    /// For example, if you try to save a record and get a ``CKError/serverRecordChanged``, you need to handle that error yourself.
+    /// `CKSyncEngine` does _not_ handle errors that require application-specific logic.
+    /// For example, if you try to save a record and get a ``CKError/Code/serverRecordChanged``, you need to handle that error yourself.
     /// There are plenty of errors that the sync engine cannot handle on your behalf, see ``CKError`` for a list of all the possible errors.
     ///
-    /// # Accounts
+    /// ### Accounts
     ///
-    /// `CKSyncEngine` monitors for account status, and it will only sync if there's an account signed in.
+    /// `CKSyncEngine` monitors for account status, and it only syncs if there's an account signed in.
     /// Because of this, you can initialize your `CKSyncEngine` at any time, regardless of account status.
-    /// If there is no account, or if the user disabled sync in settings, the sync engine will stay dormant in the background.
-    /// Once an account is available, the sync engine will start syncing automatically.
+    /// If there is no account, or if the user disabled sync in settings, the sync engine stays dormant in the background.
+    /// Once an account is available, the sync engine starts syncing automatically.
     ///
-    /// It will also listen for when the user signs in or out of their account.
-    /// When it notices an account change, it will send an ``CKSyncEngine/Event/accountChange(_:)`` to your delegate.
+    /// The sync engine listens for when the user signs in or out of their account.
+    /// When it notices an account change, it sends an ``CKSyncEngineAccountChangeEvent`` to your delegate.
     /// It's your responsibility to react appropriately to this change and update your local persistence.
+    ///
+    /// - Tip: A sample code project for ``CKSyncEngine`` is available on GitHub here: [CloudKit Samples: CKSyncEngine](https://github.com/apple/sample-cloudkit-sync-engine).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengine?language=objc)
     #[unsafe(super(NSObject))]
@@ -138,8 +113,12 @@ extern_conformance!(
 impl CKSyncEngine {
     extern_methods!(
         #[cfg(feature = "CKSyncEngineConfiguration")]
-        /// Initializes a `CKSyncEngine` with the given configuration.
-        /// See properties on ``CKSyncEngineConfiguration`` for more details on all the options.
+        /// Creates a sync engine with the specified configuration.
+        ///
+        /// - Parameters:
+        /// - configuration: The attributes of the new sync engine, such as the associated database and the object to use as the engine's delegate. For more information, see ``CKSyncEngineConfiguration``.
+        ///
+        /// - Returns: A configured sync engine.
         #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
@@ -152,28 +131,35 @@ impl CKSyncEngine {
         // +new (unavailable)
 
         #[cfg(feature = "CKDatabase")]
-        /// The database this sync engine will sync with.
+        /// The associated database.
+        ///
+        /// Multiple sync engines can run in the same process, each targeting a different database.
+        /// For example, you may use one sync engine for a person's private database and another for their shared database.
         #[unsafe(method(database))]
         #[unsafe(method_family = none)]
         pub unsafe fn database(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKSyncEngineState")]
         /// A collection of state properties used to efficiently manage sync engine operation.
-        /// See ``CKSyncEngineState`` for more details.
+        ///
+        /// - SeeAlso: ``CKSyncEngineState``
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> Retained<CKSyncEngineState>;
 
         #[cfg(feature = "block2")]
-        /// Fetches changes from the server immediately, bypassing the system scheduler.
+        /// Fetches pending remote changes from the server.
         ///
-        /// By default, the sync engine will automatically fetch changes from the server for you, and you should not have to call this function.
-        /// However, you can call this if for some reason you need to ensure all changes have been fetched from the server before proceeding.
-        /// For example, you might use this in your tests to simulate specific sync scenarios.
+        /// - Parameters:
+        /// - completionHandler: The block to execute when the fetch completes.
         ///
-        /// Fetching changes from the server might result in some events being posted to your delegate via `handleEvent`.
-        /// For example, you might receive a `CKSyncEngineWillFetchChangesEvent` or `CKSyncEngineDidFetchChangesEvent`.
-        /// This will not complete until all the relevant events have been handled by your delegate.
+        /// If the fetch fails, the completion handler's `error` parameter is an object that describes that failure; otherwise, it's `nil`.
+        ///
+        /// Use this method to request the sync engine immediately fetches all pending remote changes before your app continues.
+        /// This isn't necessary in normal use, as the engine automatically syncs your app's records.
+        /// It is useful, however, in scenarios where you require more control over sync, such as pull-to-refresh or unit tests.
+        ///
+        /// - Note: The sync engine invokes the completion handler only after your sync delegate finishes processing all related fetch events.
         ///
         /// # Safety
         ///
@@ -186,8 +172,19 @@ impl CKSyncEngine {
         );
 
         #[cfg(feature = "block2")]
-        /// Fetches changes from the server with the specified options.
-        /// See ``fetchChangesWithCompletionHandler:`` for more information.
+        /// Fetches pending remote changes from the server using the specified options.
+        ///
+        /// - Parameters:
+        /// - options: The options to use when fetching changes. For more information, see ``CKSyncEngineFetchChangesOptions``.
+        /// - completionHandler: The block to execute when the fetch completes.
+        ///
+        /// If the fetch fails, the completion handler's `error` parameter is an object that describes that failure; otherwise, it's `nil`.
+        ///
+        /// Use this method to request the sync engine immediately fetches all pending remote changes before your app continues.
+        /// This isn't necessary in normal use, as the engine automatically syncs your app's records.
+        /// It is useful, however, in scenarios where you require more control over sync, such as pull-to-refresh or unit tests.
+        ///
+        /// - Note: The sync engine invokes the completion handler only after your sync delegate finishes processing all related fetch events.
         ///
         /// # Safety
         ///
@@ -201,15 +198,18 @@ impl CKSyncEngine {
         );
 
         #[cfg(feature = "block2")]
-        /// Sends any pending changes to the server immediately, bypassing the system scheduler.
+        /// Sends pending local changes to the server.
         ///
-        /// By default, the sync engine will automatically send changes to the server for you, and you should not have to call this function.
-        /// However, you can call this if for some reason you need to ensure all changes have been sent to the server before proceeding.
-        /// For example, you might consider using this in your tests to simulate specific sync scenarios.
+        /// - Parameters:
+        /// - completionHandler: The block to execute when the send completes.
         ///
-        /// Sending changes to the server might result in some events being posted to your delegate via `handleEvent`.
-        /// For example, you might receive a `CKSyncEngineWillSendChangesEvent` or `CKSyncEngineDidSendChangesEvent`.
-        /// This function will not return until all the relevant events have been handled by your delegate.
+        /// If the send fails, the completion handler's `error` parameter is an object that describes that failure; otherwise, it's `nil`.
+        ///
+        /// Use this method to request the sync engine sends all pending local changes to the server before your app continues.
+        /// This isn't necessary in normal use, as the engine automatically syncs your app's records.
+        /// It is useful, however, in scenarios where you require greater control over sync, such as a "Backup now" button or unit tests.
+        ///
+        /// - Note: The sync engine invokes the completion handler only after your sync delegate finishes processing all related send events.
         ///
         /// # Safety
         ///
@@ -222,8 +222,19 @@ impl CKSyncEngine {
         );
 
         #[cfg(feature = "block2")]
-        /// Sends pending changes to the server with the specified options.
-        /// See discussion in ``sendChangesWithCompletionHandler:`` for more information.
+        /// Sends pending local changes to the server using the specified options.
+        ///
+        /// - Parameters:
+        /// - options: The options to use when sending changes. For more information, see ``CKSyncEngineSendChangesOptions``.
+        /// - completionHandler: The block to execute when the send completes.
+        ///
+        /// If the send fails, the completion handler's `error` parameter is an object that describes that failure; otherwise, it's `nil`.
+        ///
+        /// Use this method to request the sync engine sends all pending local changes to the server before your app continues.
+        /// This isn't necessary in normal use, as the engine automatically syncs your app's records.
+        /// It is useful, however, in scenarios where you require greater control over sync, such as a "Backup now" button or unit tests.
+        ///
+        /// - Note: The sync engine invokes the completion handler only after your sync delegate finishes processing all related send events.
         ///
         /// # Safety
         ///
@@ -237,9 +248,9 @@ impl CKSyncEngine {
         );
 
         #[cfg(feature = "block2")]
-        /// Cancels any currently executing or pending sync operations.
+        /// Cancels any in-progress or pending sync operations.
         ///
-        /// Note that cancellation does not happen synchronously, and it's possible some in-flight operations will succeed.
+        /// The sync engine processes cancelation requests asynchronously, meaning it's possible for in-progress operations to complete even after this method returns.
         ///
         /// # Safety
         ///
@@ -254,20 +265,25 @@ impl CKSyncEngine {
 }
 
 extern_protocol!(
-    /// An interface by which `CKSyncEngine` communicates with your application.
+    /// An interface for providing record data to a sync engine and customizing that engine's behavior.
+    ///
+    /// - Important: ``CKSyncEngine-4b4w9`` delivers events serially, which means the delegate doesn't receive the next event until it finishes handling the current one.
+    /// To maintain this ordering, don't call sync engine methods from your delegate that may cause the engine to generate additional events.
+    /// For example, don't invoke ``CKSyncEngine/fetchChangesWithCompletionHandler:`` or ``CKSyncEngine/sendChangesWithCompletionHandler:`` from within ``syncEngine:handleEvent:``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginedelegate?language=objc)
     pub unsafe trait CKSyncEngineDelegate: NSObjectProtocol {
         #[cfg(feature = "CKSyncEngineEvent")]
-        /// Called when an event occurs during the sync engine's operation.
+        /// Tells the delegate to handle the specified sync event.
         ///
-        /// This is how you receive updates about local state changes, fetched changes, sent changes, and more.
-        /// See ``CKSyncEngineEventType`` and ``CKSyncEngineEvent`` for all the possible events that might be posted.
+        /// - Parameters:
+        /// - syncEngine: The sync engine that generates the event.
+        /// - event: Information about the event. An event may occur for a number of reasons, such as when new data is available or when the device's iCloud account changes. For more information, see ``CKSyncEngineEvent``.
         ///
-        /// ## Event ordering
+        /// - Important: If `event` is an instance of ``CKSyncEngineStateUpdateEvent``, you must persist the attached state to disk alongside your app data.
+        /// The sync engine requires you to provide it with the most recent serialized state at initialization, and it's your responsibility to make sure this is available across app launches.
         ///
-        /// Events will be given to your delegate serially.
-        /// You will not receive the next event until you have returned from this function for the previous event.
+        /// The sync engines provides events serially; your delegate won't receive the subsequent event until it finishes processing the current one and returns from this method.
         #[unsafe(method(syncEngine:handleEvent:))]
         #[unsafe(method_family = none)]
         unsafe fn syncEngine_handleEvent(
@@ -277,43 +293,16 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CKSyncEngineRecordZoneChangeBatch")]
-        /// Called to get the next batch of record zone changes to send to the server.
+        /// Asks the delegate to provide the next set of record changes to send to the server.
         ///
-        /// The sync engine will call this function when it's about to to send changes to the server.
-        /// This might happen during an automatically scheduled sync or as a result of you calling `sendChanges`.
-        /// Provide the next batch of record zone changes to send by returning them from this function.
+        /// - Parameters:
+        /// - syncEngine: The sync engine requesting changes.
+        /// - context: The reason for the sync engine's request, and any additional options that request is using.
         ///
-        /// Once the sync engine starts sending changes, it will continue until there are no more pending changes to send.
-        /// You can return `nil` to indicate that you have no more pending changes for now.
-        /// The next time the sync engine tries to sync, it will call this again to get any new pending changes.
+        /// - Returns: If there are pending record changes, a batch of those changes for the sync engine to process; otherwise, `nil` to indicate there are no changes to send.
         ///
-        /// ## Sending changes for specific zones
-        ///
-        /// When you call ``CKSyncEngine/sendChanges(_:)`` for a specific set of zone IDs, you should make sure to only send changes for those zones.
-        /// You can do this by checking the `zoneIDs` property on ``CKSyncEngineSendChangesContext/options``.
-        ///
-        /// For example, you might have some code like this:
-        ///
-        /// ```objc
-        /// - (CKSyncEngineRecordZoneChangeBatch *)syncEngine:(CKSyncEngine *)syncEngine nextRecordZoneChangeBatchForContext:(CKSyncEngineSendChangesContext *)context {
-        /// CKSyncEngineSendChangesScope *scope = context.options.scope;
-        ///
-        /// NSMutableArray
-        /// <CKSyncEnginePendingRecordZoneChange
-        /// *> *pendingChanges = [NSMutableArray new];
-        /// for (CKSyncEnginePendingRecordZoneChange *pendingChange in syncEngine.state.pendingRecordZoneChanges) {
-        /// if ([scope containsPendingRecordZoneChange:pendingChange]) {
-        /// [filteredChanges addObject:pendingChange];
-        /// }
-        /// }
-        ///
-        /// CKSyncEngineRecordZoneChangeBatch *batch = [[CKSyncEngineRecordZoneChangeBatch alloc] initWithPendingChanges:pendingChangesToSave recordProvider:^CKRecord * _Nullable(CKRecordID *recordID) {
-        /// return [self recordToSaveForRecordID:recordID];
-        /// }];
-        ///
-        /// return batch;
-        /// }
-        /// ```
+        /// In your implementation, ask the sync engine's state for any pending record zone changes and then return a change batch containing an instance of ``CKRecord`` for each record identifier the state provides.
+        /// For both scheduled and manual send operations, the sync engine calls this method repeatedly until your app has no more changes and returns `nil`.
         #[unsafe(method(syncEngine:nextRecordZoneChangeBatchForContext:))]
         #[unsafe(method_family = none)]
         unsafe fn syncEngine_nextRecordZoneChangeBatchForContext(
@@ -322,18 +311,17 @@ extern_protocol!(
             context: &CKSyncEngineSendChangesContext,
         ) -> Option<Retained<CKSyncEngineRecordZoneChangeBatch>>;
 
-        /// Returns a custom set of options for `CKSyncEngine` to use while fetching changes.
+        /// Returns a custom set of options for CKSyncEngine to use while fetching changes.
         ///
         /// While `CKSyncEngine` fetches changes from the server, it calls this function to determine priority and other options for fetching changes.
-        /// This allows you to configure your fetches dynamically while the state changes in your app.
         ///
         /// For example, you can use this to prioritize fetching the object currently showing in the UI.
         /// You can also use this to prioritize specific zones during initial sync.
         ///
-        /// By default, `CKSyncEngine` will use whatever options are in the context.
+        /// By default, `CKSyncEngine` uses whatever options are in the context.
         /// You can return `context.options` if you don't want to perform any customization.
         ///
-        /// This callback will be called in between each server request while fetching changes.
+        /// This callback is called in between each server request while fetching changes.
         /// This allows the fetching mechanism to react dynamically while your app state changes.
         ///
         /// An example implementation might look something like this:
@@ -368,7 +356,7 @@ extern_protocol!(
         /// [prioritizedZoneIDs addObject:topLevelZoneID];
         ///
         /// options.prioritizedZoneIDs = prioritizedZoneIDs;
-        /// return options
+        /// return options;
         /// }
         /// ```
         #[optional]
@@ -383,7 +371,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A set of options to use when fetching changes from the server.
+    /// A set of options to use with a fetch operation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchchangesoptions?language=objc)
     #[unsafe(super(NSObject))]
@@ -422,10 +410,11 @@ impl CKSyncEngineFetchChangesOptions {
         pub unsafe fn setScope(&self, scope: &CKSyncEngineFetchChangesScope);
 
         #[cfg(feature = "CKOperationGroup")]
-        /// The operation group to use for the underlying operations when fetching changes.
+        /// The operation group to use for the underlying CloudKit operations.
         ///
-        /// You might set an operation group with a particular name in order to help you analyze telemetry in the CloudKit Console.
-        /// If you don't provide an operation group, a default one will be created for you.
+        /// - Tip: Providing a specific operation group helps you to identify and analyze the telemetry of fetch operations in CloudKit Console.
+        ///
+        /// The default value is `nil`.
         #[unsafe(method(operationGroup))]
         #[unsafe(method_family = none)]
         pub unsafe fn operationGroup(&self) -> Retained<CKOperationGroup>;
@@ -437,14 +426,14 @@ impl CKSyncEngineFetchChangesOptions {
         pub unsafe fn setOperationGroup(&self, operation_group: &CKOperationGroup);
 
         #[cfg(feature = "CKRecordZoneID")]
-        /// A list of zones that should be prioritized over others while fetching changes.
+        /// A list of zones that are prioritized over others while fetching changes.
         ///
-        /// `CKSyncEngine` will fetch changes for the zones in this list first before any other zones.
+        /// `CKSyncEngine` fetches changes for the zones in this list first.
         /// You might use this to prioritize a specific set of zones for initial sync.
         /// You could also prioritize the object currently showing in the UI by putting it first in this list.
         ///
-        /// Any zones not included in this list will be prioritized in a default manner.
-        /// If a zone in this list has no changes to fetch, then that zone will be ignored.
+        /// Any zones not included in this list are prioritized in a default manner.
+        /// If a zone in this list has no changes to fetch, then that zone is ignored.
         #[unsafe(method(prioritizedZoneIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn prioritizedZoneIDs(&self) -> Retained<NSArray<CKRecordZoneID>>;
@@ -458,7 +447,8 @@ impl CKSyncEngineFetchChangesOptions {
         pub unsafe fn setPrioritizedZoneIDs(&self, prioritized_zone_i_ds: &NSArray<CKRecordZoneID>);
 
         /// Initializes a set of options with the specific scope.
-        /// If no scope is provided, the default scope will include everything.
+        ///
+        /// If you provide a `nil` scope, the default scope is used. The default scope includes everything.
         #[unsafe(method(initWithScope:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithScope(
@@ -510,6 +500,7 @@ impl CKSyncEngineFetchChangesScope {
     extern_methods!(
         #[cfg(feature = "CKRecordZoneID")]
         /// A specific set of zone IDs to include in the scope.
+        ///
         /// For example, if you want to fetch changes for a specific set of zones, you can specify them here.
         /// If `nil`, this scope includes all zones except those in `excludedZoneIDs`.
         #[unsafe(method(zoneIDs))]
@@ -518,6 +509,7 @@ impl CKSyncEngineFetchChangesScope {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// A specific set of zone IDs to exclude from this scope.
+        ///
         /// If you know that you don't want to fetch changes for a particular set of zones, you can set those zones here.
         #[unsafe(method(excludedZoneIDs))]
         #[unsafe(method_family = none)]
@@ -563,7 +555,7 @@ impl CKSyncEngineFetchChangesScope {
 }
 
 extern_class!(
-    /// A set of options to use when sending changes to the server.
+    /// A set of options to use with a send operation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesendchangesoptions?language=objc)
     #[unsafe(super(NSObject))]
@@ -602,10 +594,11 @@ impl CKSyncEngineSendChangesOptions {
         pub unsafe fn setScope(&self, scope: &CKSyncEngineSendChangesScope);
 
         #[cfg(feature = "CKOperationGroup")]
-        /// The operation group to use for the underlying operations when sending changes.
+        /// The operation group to use for the underlying CloudKit operations.
         ///
-        /// You might set an operation group with a particular name in order to help you analyze telemetry in the CloudKit Console.
-        /// If you don't provide an operation group, a default one will be created for you.
+        /// - Tip: Providing a specific operation group helps you to identify and analyze the telemetry of send operations in CloudKit Console.
+        ///
+        /// The default value is `nil`.
         #[unsafe(method(operationGroup))]
         #[unsafe(method_family = none)]
         pub unsafe fn operationGroup(&self) -> Retained<CKOperationGroup>;
@@ -617,6 +610,7 @@ impl CKSyncEngineSendChangesOptions {
         pub unsafe fn setOperationGroup(&self, operation_group: &CKOperationGroup);
 
         /// Initializes a set of options with the specific scope.
+        ///
         /// If no scope is provided, the default scope will include everything.
         #[unsafe(method(initWithScope:))]
         #[unsafe(method_family = init)]
@@ -641,7 +635,7 @@ impl CKSyncEngineSendChangesOptions {
 }
 
 extern_class!(
-    /// A scope in which the sync engine will send changes to  the server.
+    /// A scope in which the sync engine will send changes to the server.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesendchangesscope?language=objc)
     #[unsafe(super(NSObject))]
@@ -671,8 +665,8 @@ impl CKSyncEngineSendChangesScope {
         /// The scope of zone IDs in which to send changes.
         ///
         /// If you only want to send changes for a particular set of zones, you can initialize your scope with those zone IDs.
-        /// When creating the next batch of changes to send to the server, consult this and only send changes within these zones.
-        /// If this and `recordIDs` are `nil`, then you should send all changes.
+        /// When creating the next batch of changes to send to the server, consult this, and only send changes within these zones.
+        /// If this and ``recordIDs`` are `nil`, then you should send all changes.
         #[unsafe(method(zoneIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoneIDs(&self) -> Option<Retained<NSSet<CKRecordZoneID>>>;
@@ -681,7 +675,7 @@ impl CKSyncEngineSendChangesScope {
         /// A specific set of zone IDs to exclude from this scope.
         /// If you know that you don't want to send changes for a particular set of zones, you can set those zones here.
         ///
-        /// Note that if `zoneIDs` is set, then  `excludedZoneIDs` will always be empty.
+        /// - Note: a scope with a non-nil ``zoneIDs`` always has an empty `excludedZoneIDs`.
         #[unsafe(method(excludedZoneIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedZoneIDs(&self) -> Retained<NSSet<CKRecordZoneID>>;
@@ -690,15 +684,15 @@ impl CKSyncEngineSendChangesScope {
         /// The scope of record IDs in which to send changes.
         ///
         /// If you only want to send changes for a particular set of records, you can initialize your scope with those records IDs.
-        /// When creating the next batch of changes to send to the server, consult this property and only send changes for these record IDs.
-        /// If this and `zoneIDs` are `nil`, then you should send all changes.
+        /// When creating the next batch of changes to send to the server, consult this property, and only send changes for these record IDs.
+        /// If this and ``zoneIDs`` are `nil`, then you should send all changes.
         #[unsafe(method(recordIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordIDs(&self) -> Option<Retained<NSSet<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Creates a scope that contains only the given zone IDs.
-        /// If `zoneIDs` is nil, then this scope contains all zones.
+        /// If `zoneIDs` is `nil`, then this scope contains all zones.
         #[unsafe(method(initWithZoneIDs:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithZoneIDs(
@@ -755,16 +749,20 @@ impl CKSyncEngineSendChangesScope {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesyncreason?language=objc)
+/// Describes the reason for a sync operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesyncreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEngineSyncReason(pub NSInteger);
 impl CKSyncEngineSyncReason {
-    /// This sync was scheduled automatically by the sync engine.
+    /// The sync engine automatically scheduled this sync.
     #[doc(alias = "CKSyncEngineSyncReasonScheduled")]
     pub const Scheduled: Self = Self(0);
-    /// This sync was requested manually by calling ``CKSyncEngine/fetchChanges(_:)`` or ``CKSyncEngine/sendChanges(_:)``.
+    /// A manual sync operation.
+    ///
+    /// The sync engine uses this reason only when your app invokes the ``CKSyncEngine/fetchChangesWithCompletionHandler:`` and ``CKSyncEngine/sendChangesWithCompletionHandler:`` methods and their variants.
     #[doc(alias = "CKSyncEngineSyncReasonManual")]
     pub const Manual: Self = Self(1);
 }
@@ -781,9 +779,8 @@ extern_class!(
     /// The context of an attempt to fetch changes from the server.
     ///
     /// The sync engine might attempt to fetch changes to the server for many reasons.
-    /// For example, if you call ``CKSyncEngine/fetchChanges(_:)``, it'll try to fetch changes immediately.
-    /// Or if it receives a push notification, it'll schedule a sync and fetch changes when the scheduler task runs.
-    /// This object represents one of those attempts to fetch changes.
+    /// For example, if you call ``CKSyncEngine/fetchChangesWithCompletionHandler:``, it tries to fetch changes immediately.
+    /// Or if it receives a push notification, it schedules a sync and fetch changes when the scheduler task runs.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchchangescontext?language=objc)
     #[unsafe(super(NSObject))]
@@ -820,10 +817,8 @@ impl CKSyncEngineFetchChangesContext {
 extern_class!(
     /// The context of an attempt to send changes to the server.
     ///
-    /// The sync engine might attempt to send changes to the server for many reasons.
-    /// For example, if you call ``CKSyncEngine/sendChanges(_:)``, it'll try to send changes immediately.
-    /// Or if you add pending changes to the state, it'll schedule a sync and send changes when the scheduler task runs.
-    /// This object represents one of those attempts to send changes.
+    /// A sync engine has two ways to send changes to iCloud — periodically, in cooperation with the system scheduler, and manually, whenever your app invokes the ``CKSyncEngine/sendChangesWithCompletionHandler:`` method.
+    /// This object provides information about a single attempt to send changes that includes both the reason for the attempt and any additional options in use by the attempt.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesendchangescontext?language=objc)
     #[unsafe(super(NSObject))]
@@ -845,12 +840,12 @@ impl CKSyncEngineSendChangesContext {
 
         // +new (unavailable)
 
-        /// The reason why the sync engine is attempting to send changes.
+        /// The reason for the send operation.
         #[unsafe(method(reason))]
         #[unsafe(method_family = none)]
         pub unsafe fn reason(&self) -> CKSyncEngineSyncReason;
 
-        /// The options being used for this attempt to send changes.
+        /// The additional options for the send operation.
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Retained<CKSyncEngineSendChangesOptions>;

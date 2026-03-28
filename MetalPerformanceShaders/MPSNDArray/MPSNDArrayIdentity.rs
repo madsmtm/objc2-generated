@@ -91,7 +91,7 @@ impl MPSNDArrayIdentity {
         #[cfg(feature = "MPSCoreTypes")]
         /// Do a reshape operation, either by trying to alias the array, returning an arrayview, or by copying.
         ///
-        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel, or to create a temporary array alias.
+        /// Parameter `cmdBuf`: `MTLCommandBuffer` into which to encode the kernel, or to create a temporary array alias.
         ///
         /// Parameter `sourceArray`: Source array. If this function returns a non-nil result, then the readCount of `sourceArray` is decremented.
         ///
@@ -113,6 +113,23 @@ impl MPSNDArrayIdentity {
             destination_array: Option<&MPSNDArray>,
         ) -> Option<Retained<MPSNDArray>>;
 
+        /// Do a reshape operation, either by trying to alias the array, returning an arrayview, or by copying.
+        ///
+        /// Parameter `cmdBuf`: `MTLCommandBuffer` into which to encode the kernel, or to create a temporary array alias.
+        ///
+        /// Parameter `sourceArray`: Source array. If this function returns a non-nil result, then the readCount of `sourceArray` is decremented.
+        ///
+        /// Parameter `numberOfDimensions`: The number of dimensions of the NDArray.
+        ///
+        /// Parameter `dimensionSizes`: The extents of each dimensions of the NDArray.
+        ///
+        /// Parameter `destinationArray`: If not nil, then the result of reshape will be copied to this. Shape of `destinationArray` must match `shape`.
+        ///
+        /// Returns: If `destinationArray` is not nil, then `destinationArray`. Otherwise aliasing is tried, and if aliasing is not possible
+        /// due to existing slices or transposes nil is returned. If aliasing is successful, then a new arrayview of `sourceArray`
+        /// is returned; If `sourceArray` is a `MPSTemporaryArray` then a `MPSTemporaryArray` is returned referencing the same data,
+        /// otherwise a `MPSNDArray` type result is returned.
+        ///
         /// # Safety
         ///
         /// `dimension_sizes` must be a valid pointer.
@@ -128,6 +145,22 @@ impl MPSNDArrayIdentity {
         ) -> Option<Retained<MPSNDArray>>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Do a reshape operation, either by trying to alias the array, returning an arrayview, or by copying.
+        ///
+        /// Parameter `encoder`: The `MTLComputeCommandEncoder` that the kernel will be encoded with.
+        ///
+        /// Parameter `cmdBuf`: `MTLCommandBuffer` into which to encode the kernel, or to create a temporary array alias.
+        ///
+        /// Parameter `sourceArray`: Source array. If this function returns a non-nil result, then the readCount of `sourceArray` is decremented.
+        ///
+        /// Parameter `shape`: The new shape, given in TF dimension ordering (as always with MPSShape).
+        ///
+        /// Parameter `destinationArray`: If not nil, then the result of reshape will be copied to this. Shape of `destinationArray` must match `shape`.
+        ///
+        /// Returns: If `destinationArray` is not nil, then `destinationArray`. Otherwise aliasing is tried, and if aliasing is not possible
+        /// due to existing slices or transposes nil is returned. If aliasing is successful, then a new arrayview of `sourceArray`
+        /// is returned; If `sourceArray` is a `MPSTemporaryArray` then a `MPSTemporaryArray` is returned referencing the same data,
+        /// otherwise a `MPSNDArray` type result is returned.
         #[unsafe(method(reshapeWithCommandEncoder:commandBuffer:sourceArray:shape:destinationArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithCommandEncoder_commandBuffer_sourceArray_shape_destinationArray(
@@ -139,6 +172,25 @@ impl MPSNDArrayIdentity {
             destination_array: Option<&MPSNDArray>,
         ) -> Option<Retained<MPSNDArray>>;
 
+        /// Do a reshape operation, either by trying to alias the array, returning an arrayview, or by copying.
+        ///
+        /// Parameter `encoder`: The `MTLComputeCommandEncoder` that the kernel will be encoded with.
+        ///
+        /// Parameter `cmdBuf`: `MTLCommandBuffer` into which to encode the kernel, or to create a temporary array alias.
+        ///
+        /// Parameter `sourceArray`: Source array. If this function returns a non-nil result, then the readCount of `sourceArray` is decremented.
+        ///
+        /// Parameter `numberOfDimensions`: The number of dimensions of the NDArray.
+        ///
+        /// Parameter `dimensionSizes`: The extents of each dimensions of the NDArray.
+        ///
+        /// Parameter `destinationArray`: If not nil, then the result of reshape will be copied to this. Shape of `destinationArray` must match `shape`.
+        ///
+        /// Returns: If `destinationArray` is not nil, then `destinationArray`. Otherwise aliasing is tried, and if aliasing is not possible
+        /// due to existing slices or transposes nil is returned. If aliasing is successful, then a new arrayview of `sourceArray`
+        /// is returned; If `sourceArray` is a `MPSTemporaryArray` then a `MPSTemporaryArray` is returned referencing the same data,
+        /// otherwise a `MPSNDArray` type result is returned.
+        ///
         /// # Safety
         ///
         /// `dimension_sizes` must be a valid pointer.

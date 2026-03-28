@@ -97,7 +97,7 @@ impl MDLVertexAttributeData {
 extern_class!(
     /// A vertex buffer with info to interpret vertex data
     ///
-    /// Includes a collection of submeshs which have indexbuffer and
+    /// Includes a collection of submeshes which have indexbuffer and
     /// material information
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmesh?language=objc)
@@ -416,8 +416,8 @@ impl MDLMesh {
         /// Uses the attribute named MDLVertexAttributePosition and
         /// textureCoordinateAttributeName to calculate tangent and bitangent
         /// attributes. The mesh's vertexDescriptor will be updated to reflect
-        /// the new attributes if necessary. The basis may not be orthogonal; to gaurantee an orthogonal
-        /// tangent basis please use addOrthTanBasisForTextureCoordinateAttibuteNamed selector.
+        /// the new attributes if necessary. The basis may not be orthogonal; to guarantee an orthogonal
+        /// tangent basis please use addOrthTanBasisForTextureCoordinateAttributeNamed selector.
         #[unsafe(method(addTangentBasisForTextureCoordinateAttributeNamed:tangentAttributeNamed:bitangentAttributeNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTangentBasisForTextureCoordinateAttributeNamed_tangentAttributeNamed_bitangentAttributeNamed(
@@ -493,7 +493,7 @@ impl MDLMesh {
         ///
         /// If any vertices are shared on multiple faces, duplicate those
         /// vertices so faces do not share vertices. The vertex buffer and index
-        /// buffers on submeshes may grow to accomadate any vertices added.
+        /// buffers on submeshes may grow to accommodate any vertices added.
         #[deprecated]
         #[unsafe(method(makeVerticesUnique))]
         #[unsafe(method_family = none)]
@@ -503,7 +503,7 @@ impl MDLMesh {
         ///
         /// If any vertices are shared on multiple faces, duplicate those
         /// vertices so faces do not share vertices. The vertex buffer and index
-        /// buffers on submeshes may grow to accomadate any vertices added.
+        /// buffers on submeshes may grow to accommodate any vertices added.
         #[unsafe(method(makeVerticesUniqueAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeVerticesUniqueAndReturnError(&self) -> Result<(), Retained<NSError>>;

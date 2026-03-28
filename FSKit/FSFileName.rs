@@ -21,7 +21,7 @@ extern_class!(
     /// Without encoding information, the `FSModule` can only pass back the names it finds on disk.
     /// In this case, the behavior of upper layers such as
     /// <doc
-    /// ://com.apple.documentation/documentation/Foundation/NSFileManager> is unspecified.
+    /// ://com.apple.documentation/documentation/Foundation/FileManager> is unspecified.
     /// However, the `FSModule` must support looking up such names and using them as the source name of rename operations.
     /// The `FSModule` must also be able to support filenames that are derivatives of filenames returned from directory enumeration.
     /// Derivative filenames include Apple Double filenames (`"._Name"`), and editor backup filenames.

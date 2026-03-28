@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation?language=objc)
+    /// An operation for modifying one or more subscriptions.
+    ///
+    /// After you create or change the configuration of a subscription, use this operation to save those changes to the server. You can also use this operation to permanently delete subscriptions.
+    ///
+    /// If you assign a handler to the
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/operation/completionblock> property, the operation calls it after it executes and passes it the results. Use the handler to perform any housekeeping tasks for the operation. The handler you specify should manage any failures, whether due to an error or an explicit cancellation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation?language=objc)
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
@@ -23,11 +31,19 @@ extern_conformance!(
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 impl CKModifySubscriptionsOperation {
     extern_methods!(
+        /// Creates an empty modify subscriptions operation.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
+        /// Creates an operation for saving and deleting the specified subscriptions.
+        ///
+        /// - Parameters:
+        /// - subscriptionsToSave: The subscriptions to save or update. You can specify `nil` for this parameter.
+        /// - subscriptionIDsToDelete: The IDs of the subscriptions to delete. You can specify `nil` for this parameter.
+        ///
+        /// The subscriptions that you want to save or delete must reside in the same container. CloudKit creates a subscription if you save one that doesn't already exist. CloudKit returns an error if you try to delete a subscription that doesn't exist.
         #[unsafe(method(initWithSubscriptionsToSave:subscriptionIDsToDelete:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSubscriptionsToSave_subscriptionIDsToDelete(
@@ -37,6 +53,10 @@ impl CKModifySubscriptionsOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
+        /// The subscriptions to save to the database.
+        ///
+        /// This property contains the subscriptions that you want to save. Its initial value is the array that you pass to the ``CKModifySubscriptionsOperation/init(subscriptionsToSave:subscriptionIDsToDelete:)`` method. Modify this property as necessary before you execute the operation or submit it to a queue. After CloudKit saves the subscriptions, it begins generating push notifications according to their criteria.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -62,6 +82,10 @@ impl CKModifySubscriptionsOperation {
         );
 
         #[cfg(feature = "CKSubscription")]
+        /// The IDs of the subscriptions that you want to delete.
+        ///
+        /// This property contains the IDs of the subscriptions that you want to delete. Its initial value is the array that you pass to the ``CKModifySubscriptionsOperation/init(subscriptionsToSave:subscriptionIDsToDelete:)`` method. Modify this property as necessary before you execute the operation or submit it to a queue.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -88,13 +112,17 @@ impl CKModifySubscriptionsOperation {
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
-        /// Called on success or failure of a subscription save
+        /// The closure to execute when CloudKit saves a subscription.
         ///
+        /// This property is a closure that returns no value and has the following parameters:
         ///
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// - The ID of the subscription that CloudKit saves.
+        /// - The subscription that CloudKit saves, or `nil` if CloudKit can't save the subscription.
+        /// - If CloudKit can't save the subscription, an error that provides information about the failure; otherwise, `nil`.
+        ///
+        /// The closure executes once for each subscription in the ``CKModifySubscriptionsOperation/subscriptionsToSave`` property. Each time the closure executes, it executes serially with respect to the other subscription completion blocks of the operation.
+        ///
+        /// If you intend to use this closure to process results, set it before you execute the operation or submit the operation to a queue.
         ///
         /// This property is not atomic.
         ///
@@ -132,13 +160,16 @@ impl CKModifySubscriptionsOperation {
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
-        /// Called on success or failure of a subscription deletion
+        /// The closure to execute when CloudKit deletes a subscription.
         ///
+        /// This property is a closure that returns no value and has the following parameters:
         ///
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// - The ID of the subscription that CloudKit deletes.
+        /// - If CloudKit can't delete the subscription, an error that provides information about the failure; otherwise, `nil`.
+        ///
+        /// The closure executes once for each subscription in the ``CKModifySubscriptionsOperation/subscriptionIDsToDelete-14x82`` property. Each time the closure executes, it executes serially with respect to the other subscription completion blocks of the operation.
+        ///
+        /// If you intend to use this closure to process results, set it before you execute the operation or submit the operation to a queue.
         ///
         /// This property is not atomic.
         ///
@@ -171,26 +202,21 @@ impl CKModifySubscriptionsOperation {
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
-        /// This block is called when the operation completes.
+        /// The block to execute after the operation modifies the subscriptions.
         ///
+        /// The block returns no value and takes the following parameters:
         ///
-        /// The
+        /// - term `savedSubscriptions`: The subscriptions to save.
+        /// - term `deletedSubscriptionIDs`: The IDs of the subscriptions to delete.
+        /// - term `operationError`: An error that contains information about a problem, or `nil` if CloudKit successfully modifies the subscriptions.
         ///
-        /// ```text
-        ///  -[NSOperation completionBlock]
-        /// ```
+        /// The operation executes this block only once, and it's your only opportunity to process the results. The block executes on a background queue, so any tasks that require access to the main queue must dispatch accordingly.
         ///
-        /// will also be called if both are set.
-        /// If the error is
-        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of subscriptionIDs to errors keyed off of
-        /// `CKPartialErrorsByItemIDKey.``savedSubscriptions,``deletedSubscriptionIDs`and any
-        /// `CKPartialErrorsByItemIDKey`errors are repeats of the data sent back in previous
-        /// `perSubscriptionSaveBlock`and
-        /// `perSubscriptionDeleteBlock`invocations
-        /// Each
-        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
-        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
-        /// should not be concurrently used outside of blocks assigned to this operation.
+        /// The block reports an error of type ``CKError/Code/partialFailure`` when it can't modify some of the subscriptions. The
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nserror/userinfo> dictionary of the error contains a ``CKPartialErrorsByItemIDKey`` key that has a dictionary as its value. The keys of the dictionary are the IDs of the subscriptions that CloudKit can't modify, and the corresponding values are errors that contain information about the failures.
+        ///
+        /// Set this property's value before you execute the operation or submit it to a queue.
         ///
         /// This property is not atomic.
         ///

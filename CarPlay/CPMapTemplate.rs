@@ -397,6 +397,74 @@ extern_protocol!(
             map_template: &CPMapTemplate,
         ) -> bool;
 
+        #[cfg(feature = "CPTemplate")]
+        /// Determines if the template should provide route sharing information to the vehicle. Apps that participate in route sharing will donate navigation information to the vehicle including the current route, a list of waypoints, and other metadata that allows the vehicle to track the user's preferred route to their destination.
+        ///
+        /// Returns: YES if the template should provide route sharing, otherwise NO
+        #[optional]
+        #[unsafe(method(mapTemplateShouldProvideRouteSharing:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplateShouldProvideRouteSharing(&self, map_template: &CPMapTemplate)
+            -> bool;
+
+        #[cfg(all(
+            feature = "CPNavigationWaypoint",
+            feature = "CPRouteSegment",
+            feature = "CPTemplate",
+            feature = "CPTravelEstimates",
+            feature = "block2"
+        ))]
+        /// Called when the built-in navigation system sends a waypoint to the device for a specific segment.
+        #[optional]
+        #[unsafe(method(mapTemplate:didRequestToInsertWaypoint:intoSegment:completion:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didRequestToInsertWaypoint_intoSegment_completion(
+            &self,
+            map_template: &CPMapTemplate,
+            waypoint: &CPNavigationWaypoint,
+            segment: &CPRouteSegment,
+            completion: &block2::DynBlock<dyn Fn(NonNull<CPTravelEstimates>)>,
+        );
+
+        #[cfg(all(
+            feature = "CPNavigationWaypoint",
+            feature = "CPRouteSegment",
+            feature = "CPTemplate"
+        ))]
+        /// Called when the user responds to a proposal to add a waypoint as a stop on their route. If the waypoint is accepted, perform a reroute to update the route accordingly for the specified segment to include this new destination.
+        #[optional]
+        #[unsafe(method(mapTemplate:mapTemplateWaypoint:accepted:forSegment:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_mapTemplateWaypoint_accepted_forSegment(
+            &self,
+            map_template: &CPMapTemplate,
+            waypoint: &CPNavigationWaypoint,
+            accepted: bool,
+            segment: Option<&CPRouteSegment>,
+        );
+
+        #[cfg(all(feature = "CPRouteSource", feature = "CPTemplate"))]
+        /// Called when the route source status has been updated by the built-in system.
+        #[optional]
+        #[unsafe(method(mapTemplate:didReceiveUpdatedRouteSource:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didReceiveUpdatedRouteSource(
+            &self,
+            map_template: &CPMapTemplate,
+            route_source: CPRouteSource,
+        );
+
+        #[cfg(all(feature = "CPNavigationWaypoint", feature = "CPTemplate"))]
+        /// Called when a navigation request is received. Show a trip preview corresponding to this destination and start navigation if the destination is accepted by the user.
+        #[optional]
+        #[unsafe(method(mapTemplate:didReceiveRequestForDestination:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didReceiveRequestForDestination(
+            &self,
+            map_template: &CPMapTemplate,
+            waypoint: &CPNavigationWaypoint,
+        );
+
         #[cfg(all(feature = "CPManeuver", feature = "CPTemplate"))]
         /// Determines if the maneuver should be presented as a notification when the app is in the background.
         ///
@@ -440,6 +508,40 @@ extern_protocol!(
             map_template: &CPMapTemplate,
             navigation_alert: &CPNavigationAlert,
         ) -> bool;
+
+        #[cfg(all(feature = "CPTemplate", feature = "CPTrip"))]
+        /// Called when a trip's destination is about to be shared to the vehicle
+        #[optional]
+        #[unsafe(method(mapTemplate:willShareDestinationForTrip:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_willShareDestinationForTrip(
+            &self,
+            map_template: &CPMapTemplate,
+            trip: &CPTrip,
+        );
+
+        #[cfg(all(feature = "CPTemplate", feature = "CPTrip"))]
+        /// Called when a vehicle failed to handle a shared trip's destination
+        #[optional]
+        #[unsafe(method(mapTemplate:didFailToShareDestinationForTrip:error:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didFailToShareDestinationForTrip_error(
+            &self,
+            map_template: &CPMapTemplate,
+            trip: &CPTrip,
+            error: &NSError,
+        );
+
+        #[cfg(all(feature = "CPTemplate", feature = "CPTrip"))]
+        /// Called when a vehicle successfully handled a shared trip's destination
+        #[optional]
+        #[unsafe(method(mapTemplate:didShareDestinationForTrip:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didShareDestinationForTrip(
+            &self,
+            map_template: &CPMapTemplate,
+            trip: &CPTrip,
+        );
 
         #[cfg(feature = "CPTemplate")]
         /// This will be called when the pan interface appears on the map interface.

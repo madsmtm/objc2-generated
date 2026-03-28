@@ -465,6 +465,35 @@ unsafe impl RefEncode for MTLCounterSamplingPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Enumeration of kinds of errors that methods on MTLDevice can produce.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldeviceerror?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct MTLDeviceError(pub NSInteger);
+impl MTLDeviceError {
+    /// Indicates the absence of any problems.
+    #[doc(alias = "MTLDeviceErrorNone")]
+    pub const None: Self = Self(0);
+    /// Indicates the requested feature is not supported by the current device.
+    #[doc(alias = "MTLDeviceErrorNotSupported")]
+    pub const NotSupported: Self = Self(1);
+}
+
+unsafe impl Encode for MTLDeviceError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLDeviceError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldeviceerrordomain?language=objc)
+    pub static MTLDeviceErrorDomain: &'static NSErrorDomain;
+}
+
 /// Represent a memory size and alignment in bytes.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsizeandalign?language=objc)
@@ -1833,6 +1862,11 @@ extern_protocol!(
             &self,
             descriptor: &MTLBinaryArchiveDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLBinaryArchive>>, Retained<NSError>>;
+
+        /// A Boolean value that indicates whether the device supports placement sparse resources.
+        #[unsafe(method(supportsPlacementSparse))]
+        #[unsafe(method_family = none)]
+        fn supportsPlacementSparse(&self) -> bool;
 
         /// Query device support for using ray tracing from compute pipelines.
         ///

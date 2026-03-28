@@ -10,8 +10,8 @@ use crate::*;
 extern_class!(
     /// A class that manages asset packs.
     ///
-    /// The first time that your code refers to the shared manager, Background Assets considers that your app is opting into automatic system management of your asset packs.
-    /// - Important: When using the asset-pack manager, make sure that you also adopt the corresponding managed extension protocol. For apps that use Apple hosting, the corresponding protocol is `SKDownloaderExtension` from StoreKit. For other apps, the corresponding protocol is ``BAManagedDownloaderExtension``. Not adopting the right protocol is a programmer error.
+    /// The first time that your code refers to the shared manager, Background Assets considers that your application is opting into automatic system management of your asset packs.
+    /// - Important: When using the asset-pack manager, make sure that you also adopt the corresponding managed extension protocol. For applications that use Apple hosting, the corresponding protocol is `SKDownloaderExtension` from StoreKit. For other applications, the corresponding protocol is ``BAManagedDownloaderExtension``. Not adopting the right protocol is a programmer error.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackmanager?language=objc)
     #[unsafe(super(NSObject))]
@@ -68,7 +68,7 @@ impl BAAssetPackManager {
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
         /// Gets the asset pack with the given identifier.
         ///
-        /// If no asset pack with the given identifier is found, then the block will receive an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound`` as its code for the `error` parameter. This method might attempt to get the latest asset-pack information from the server.
+        /// If no asset pack with the given identifier is found, then the block will receive an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound`` as its code for the `error` parameter. This method might attempt to get the latest asset-pack information from the server. To force the system to get the latest information from the server unconditionally, send ``checkForUpdatesWithCompletionHandler:`` to the shared asset-pack manager.
         /// - Parameters:
         /// - assetPackIdentifier: The asset pack’s identifier.
         /// - completionHandler: A block that receives the asset pack or an error if one occurs.
@@ -80,25 +80,68 @@ impl BAAssetPackManager {
             completion_handler: &block2::DynBlock<dyn Fn(*mut BAAssetPack, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "BAAssetPackStatus", feature = "block2"))]
-        /// Gets the status of the asset pack with the specified identifier.
+        #[cfg(all(
+            feature = "BAAssetPack",
+            feature = "BAAssetPackStatus",
+            feature = "block2"
+        ))]
+        /// Gets an asset pack’s status.
         ///
-        /// If no asset pack with the specified identifier is found, then the block will receive an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound`` as its code for the `error` parameter. This method attempts to get the latest asset-pack information from the server. No updates or removals are automatically triggered.
+        /// This method checks whether any version of the specified asset pack is currently downloaded. If one is, then it determines the version relationship between the downloaded asset pack and the specified asset pack. If they have different version numbers, then the status value that it passes to `completionHandler` will contain ``BAAssetPackStatus/BAAssetPackStatusOutOfDate``. The status value will contain ``BAAssetPackStatus/BAAssetPackStatusUpdateAvailable`` only if the relevant asset pack on the server hasn’t been further updated since the initialization of the provided ``BAAssetPack`` instance.
+        ///
+        /// For example, consider the following sequence of events, assuming that version 1 of the relevant asset pack is already available locally:
+        /// 1.    Your application calls ``getAssetPackWithIdentifier:completionHandler:`` to obtain a ``BAAssetPack`` instance.
+        /// 2.    The asset pack is updated to version 2 on the server.
+        /// 3.    Your application calls this method, passing the ``BAAssetPack`` instance from step 1.
+        ///
+        /// In this case, the status value will indicate that the downloaded asset pack is up to date. Generally, you shouldn’t need to handle this type of situation explicitly because the system automatically polls for updates periodically in the background.
+        ///
+        /// This method doesn’t automatically trigger any downloads, updates, or removals.
         /// - Parameters:
-        /// - assetPackIdentifier: The asset pack’s identifier.
-        /// - completionHandler: A block that receives the status of the asset pack or an error if one occurs.
-        #[unsafe(method(getStatusOfAssetPackWithIdentifier:completionHandler:))]
+        /// - assetPack: The asset pack.
+        /// - completionHandler: A block that receives the asset pack’s status or an error if one occurs.
+        #[unsafe(method(getStatusRelativeToAssetPack:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getStatusOfAssetPackWithIdentifier_completionHandler(
+        pub unsafe fn getStatusRelativeToAssetPack_completionHandler(
             &self,
-            asset_pack_identifier: &NSString,
+            asset_pack: &BAAssetPack,
             completion_handler: &block2::DynBlock<dyn Fn(BAAssetPackStatus, *mut NSError)>,
         );
+
+        #[cfg(all(feature = "BAAssetPackStatus", feature = "block2"))]
+        /// Gets an asset pack’s local status.
+        ///
+        /// This method checks only status values that are determinable offline. It doesn’t induce any network traffic or automatically trigger any downloads, updates, or removals. The following status values are determinable offline:
+        /// - ``BAAssetPackStatus/BAAssetPackStatusOutOfDate`` (in some situations)
+        /// - ``BAAssetPackStatus/BAAssetPackStatusObsolete`` (in some situations)
+        /// - ``BAAssetPackStatus/BAAssetPackStatusDownloaded``
+        ///
+        /// Because this method doesn’t communicate with the server, it can’t determine whether a particular asset pack exists in the first place. Instead, it returns an empty status value when provided a nonexistent asset-pack ID, which is indistinguishable from the situation in which the asset pack does indeed exist but hasn’t yet been downloaded. Use ``getStatusOfAssetPackWithIdentifier:completionHandler:`` to get a full view of an asset pack’s status.
+        /// - Parameters:
+        /// - assetPackIdentifier: The asset pack’s identifier.
+        /// - completionHandler: A block that receives the asset pack’s local status.
+        #[unsafe(method(getLocalStatusOfAssetPackWithIdentifier:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getLocalStatusOfAssetPackWithIdentifier_completionHandler(
+            &self,
+            asset_pack_identifier: &NSString,
+            completion_handler: &block2::DynBlock<dyn Fn(BAAssetPackStatus)>,
+        );
+
+        /// Checks whether the asset pack with the specified identifier is available locally.
+        /// - Parameter assetPackIdentifier: The asset pack’s identifier.
+        /// - Returns: Whether the asset pack is available locally.
+        #[unsafe(method(assetPackIsAvailableLocallyWithIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn assetPackIsAvailableLocallyWithIdentifier(
+            &self,
+            asset_pack_identifier: &NSString,
+        ) -> bool;
 
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
         /// Ensures that the specified asset pack be available locally.
         ///
-        /// This method checks if the asset pack is currently downloaded. If it isn’t, then it schedules it to be downloaded and calls the block with `nil` for the block’s `error` parameter when the download completes. It’s guaranteed that the requested asset pack will be available locally once the block is called with `nil` for its `error` parameter. If a non-`nil` value is provided to the block’s `error` parameter, then the asset pack is **not** guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to `delegate`.
+        /// This method checks if the asset pack is currently downloaded. If it isn’t, then it schedules it to be downloaded and calls the block with `nil` for the block’s `error` parameter when the download completes. It’s guaranteed that the requested asset pack will be available locally once the block is called with `nil` for its `error` parameter. If a non-`nil` value is provided to the block’s `error` parameter, then the asset pack is **not** guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``delegate``.
         /// - Parameters:
         /// - assetPack: The asset pack the local availability of which to ensure.
         /// - completionHandler: A block that’s called when the asset pack is available locally or that receives an error if one occurs.
@@ -107,6 +150,23 @@ impl BAAssetPackManager {
         pub unsafe fn ensureLocalAvailabilityOfAssetPack_completionHandler(
             &self,
             asset_pack: &BAAssetPack,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
+        /// Ensures that the specified asset pack be available locally.
+        ///
+        /// This method checks if the asset pack is currently downloaded. If it isn’t, then it schedules it to be downloaded and calls the block with `nil` for the block’s `error` parameter when the download completes. It’s guaranteed that the requested asset pack will be available locally once the block is called with `nil` for its `error` parameter. If a non-`nil` value is provided to the block’s `error` parameter, then the asset pack is **not** guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``delegate``.
+        /// - Parameters:
+        /// - assetPack: The asset pack the local availability of which to ensure.
+        /// - shouldUpdate: Whether to require that the latest version be available locally. When `YES` is passed to this parameter, the method will wait for the update (if there indeed is one available) to be downloaded before returning. When `NO` is passed, the method won’t check for updates and won’t attempt to download any.
+        /// - completionHandler: A block that’s called when the asset pack is available locally or that receives an error if one occurs.
+        #[unsafe(method(ensureLocalAvailabilityOfAssetPack:requireLatestVersion:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn ensureLocalAvailabilityOfAssetPack_requireLatestVersion_completionHandler(
+            &self,
+            asset_pack: &BAAssetPack,
+            should_update: bool,
             completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
@@ -167,6 +227,22 @@ impl BAAssetPackManager {
             &self,
             asset_pack_identifier: &NSString,
             completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+        );
+
+        #[cfg(all(feature = "BAAssetPackStatus", feature = "block2"))]
+        /// Gets an asset pack’s status.
+        ///
+        /// If no asset pack with the specified identifier is found, then the block will receive an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound`` as its code for the `error` parameter. This method attempts to get the latest asset-pack information from the server. It doesn’t automatically trigger any downloads, updates, or removals.
+        /// - Parameters:
+        /// - assetPackIdentifier: The asset pack’s identifier.
+        /// - completionHandler: A block that receives the asset pack’s status or an error if one occurs.
+        #[deprecated]
+        #[unsafe(method(getStatusOfAssetPackWithIdentifier:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getStatusOfAssetPackWithIdentifier_completionHandler(
+            &self,
+            asset_pack_identifier: &NSString,
+            completion_handler: &block2::DynBlock<dyn Fn(BAAssetPackStatus, *mut NSError)>,
         );
     );
 }
