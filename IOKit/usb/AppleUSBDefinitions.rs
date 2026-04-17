@@ -12,16 +12,6 @@ pub const kIOUSBLinkSpeedLow: c_ulong = 1500 * 1000;
 pub const kIOUSBLinkSpeedFull: c_ulong = 12 * 1000 * 1000;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeedhigh?language=objc)
 pub const kIOUSBLinkSpeedHigh: c_ulong = 480 * 1000 * 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeed5gbps?language=objc)
-pub const kIOUSBLinkSpeed5Gbps: c_ulong = 5 * 1000 * 1000 * 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeed10gbps?language=objc)
-pub const kIOUSBLinkSpeed10Gbps: c_ulong = 10 * 1000 * 1000 * 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeed20gbps?language=objc)
-pub const kIOUSBLinkSpeed20Gbps: c_ulong = 20 * 1000 * 1000 * 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeed40gbps?language=objc)
-pub const kIOUSBLinkSpeed40Gbps: c_ulong = 40 * 1000 * 1000 * 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousblinkspeed80gbps?language=objc)
-pub const kIOUSBLinkSpeed80Gbps: c_ulong = 80 * 1000 * 1000 * 1000;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbapplevendorid?language=objc)
 pub const kIOUSBAppleVendorID: c_uint = 0x05AC;

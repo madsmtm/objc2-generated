@@ -157,16 +157,6 @@ pub use self::__AppleUSBDefinitions::kIOUSBInterfaceSuspendLowPower;
 #[cfg(feature = "AppleUSBDefinitions")]
 pub use self::__AppleUSBDefinitions::kIOUSBInterfaceSuspendRemoteWakeEnable;
 #[cfg(feature = "AppleUSBDefinitions")]
-pub use self::__AppleUSBDefinitions::kIOUSBLinkSpeed10Gbps;
-#[cfg(feature = "AppleUSBDefinitions")]
-pub use self::__AppleUSBDefinitions::kIOUSBLinkSpeed20Gbps;
-#[cfg(feature = "AppleUSBDefinitions")]
-pub use self::__AppleUSBDefinitions::kIOUSBLinkSpeed40Gbps;
-#[cfg(feature = "AppleUSBDefinitions")]
-pub use self::__AppleUSBDefinitions::kIOUSBLinkSpeed5Gbps;
-#[cfg(feature = "AppleUSBDefinitions")]
-pub use self::__AppleUSBDefinitions::kIOUSBLinkSpeed80Gbps;
-#[cfg(feature = "AppleUSBDefinitions")]
 pub use self::__AppleUSBDefinitions::kIOUSBLinkSpeedFull;
 #[cfg(feature = "AppleUSBDefinitions")]
 pub use self::__AppleUSBDefinitions::kIOUSBLinkSpeedHigh;
