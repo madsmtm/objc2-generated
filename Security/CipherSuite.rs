@@ -363,6 +363,8 @@ impl SSLCiphersuiteGroup {
     pub const ATS: Self = Self(3);
     #[doc(alias = "kSSLCiphersuiteGroupATSCompatibility")]
     pub const ATSCompatibility: Self = Self(4);
+    #[doc(alias = "kSSLCiphersuiteGroupATSFCP_v2_1")]
+    pub const ATSFCP_v2_1: Self = Self(5);
 }
 
 #[cfg(feature = "objc2")]

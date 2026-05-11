@@ -334,6 +334,8 @@ impl AVCaptureDeviceInput {
         ///
         /// - Note: Setting this property may cause a lengthy reconfiguration of the receiver, similar to setting ``AVCaptureDevice/activeFormat`` or ``AVCaptureSession/sessionPreset``.
         ///
+        /// - Note: When using this property, set the exposure duration with ``AVCaptureDevice/setExposureModeCustomWithDuration:ISO:completionHandler:`` to one half the frame duration (or less) to maintain full dynamic range.
+        ///
         /// - Important: If you set this property to a valid value while the receiver's ``AVCaptureDevice/minSupportedLockedVideoFrameDuration`` is `kCMTimeInvalid`, it throws an `NSInvalidArgumentException`.
         ///
         /// - Important: If you set this property while the receiver's  ``lockedVideoFrameDurationSupported`` property returns `false`, it throws an `NSInvalidArgumentException`.
@@ -377,6 +379,8 @@ impl AVCaptureDeviceInput {
         /// Once your ``AVExternalSyncDevice/status`` changes to ``AVExternalSyncDeviceStatusActiveSync``, your input's  ``AVCaptureInput/activeExternalSyncVideoFrameDuration`` property reports the up-to-date frame duration. ``AVCaptureInput/activeExternalSyncVideoFrameDuration`` is also reflected in the ``AVCaptureDevice/activeVideoMinFrameDuration`` and ``AVCaptureDevice/activeVideoMaxFrameDuration`` of your input's associated device.
         ///
         /// - Note: Calling this method may cause a lengthy reconfiguration of the receiver, similar to setting a new active format or ``AVCaptureSession/sessionPreset``.
+        ///
+        /// - Note: When using this property, set the exposure duration with ``AVCaptureDevice/setExposureModeCustomWithDuration:ISO:completionHandler:`` to one half the frame duration (or less) to maintain full dynamic range.
         ///
         /// - Important: Calling this method throws an `NSInvalidArgumentException` if ``AVCaptureDeviceInput/externalSyncSupported`` returns `false`.
         ///

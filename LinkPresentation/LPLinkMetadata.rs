@@ -181,8 +181,7 @@ impl LPLinkMetadata {
         ///
         /// This may reference a remote video file that
         /// <doc
-        /// ://com.apple.documentation/documentation/avfoundation> can stream,
-        /// or a YouTube video URL.
+        /// ://com.apple.documentation/documentation/avfoundation> can stream.
         #[unsafe(method(remoteVideoURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteVideoURL(&self) -> Option<Retained<NSURL>>;

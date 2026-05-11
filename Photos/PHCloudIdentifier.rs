@@ -37,6 +37,8 @@ impl PHCloudIdentifier {
         #[unsafe(method_family = none)]
         pub unsafe fn notFoundIdentifier() -> Retained<PHCloudIdentifier>;
 
+        /// For use in serialization
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -46,7 +48,7 @@ impl PHCloudIdentifier {
         #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
-        /// For use in serialization
+        /// Deserialization
         #[unsafe(method(initWithStringValue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStringValue(
@@ -90,6 +92,8 @@ extern_conformance!(
 
 impl PHCloudIdentifierMapping {
     extern_methods!(
+        /// The cloud identifier of the resource found for this local identifier
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -99,7 +103,9 @@ impl PHCloudIdentifierMapping {
         #[unsafe(method_family = none)]
         pub unsafe fn cloudIdentifier(&self) -> Option<Retained<PHCloudIdentifier>>;
 
-        /// The cloud identifier of the resource found for this local identifier
+        /// error An error indicating why the
+        /// `cloudIdentifier`is nil.
+        /// `PHPhotosErrorIdentifierNotFound`if no resource could be found for the provided local identifier.
         ///
         /// This property is not atomic.
         ///
@@ -146,6 +152,9 @@ extern_conformance!(
 
 impl PHLocalIdentifierMapping {
     extern_methods!(
+        /// The
+        /// `NSString`representing the local identifier of the resource found for this cloud identifier, or nil if the match was not found.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -155,8 +164,11 @@ impl PHLocalIdentifierMapping {
         #[unsafe(method_family = none)]
         pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
 
-        /// The
-        /// `NSString`representing the local identifier of the resource found for this cloud identifier, or nil if the match was not found.
+        /// An error indicating why the
+        /// `localIdentifier`is nil.
+        /// `PHPhotosErrorIdentifierNotFound`if no resource could be found for the provided cloud identifier.
+        /// `PHPhotosErrorMultipleLocalIdentifiersFound`if the cloud identifier matched more than one photo library resource, so there were multiple local identifiers found. The array of matching local identifiers can be retrieved from the error's user info via the
+        /// `PHLocalIdentifiersErrorKey`
         ///
         /// This property is not atomic.
         ///

@@ -200,6 +200,8 @@ impl tls_ciphersuite_group_t {
     pub const ats: Self = Self(3);
     #[doc(alias = "tls_ciphersuite_group_ats_compatibility")]
     pub const ats_compatibility: Self = Self(4);
+    #[doc(alias = "tls_ciphersuite_group_ats_fcp_v2_1")]
+    pub const ats_fcp_v2_1: Self = Self(5);
 }
 
 #[cfg(feature = "objc2")]

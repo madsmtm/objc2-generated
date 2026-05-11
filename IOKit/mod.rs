@@ -8180,6 +8180,8 @@ pub use self::__pwr_mgt::kIOPMSettingProModeDefer;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kIOPMSettingReduceBrightnessKey;
 #[cfg(feature = "pwr_mgt")]
+pub use self::__pwr_mgt::kIOPMSettingRestartOnPowerConnectKey;
+#[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kIOPMSettingRestartOnPowerLossKey;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kIOPMSettingSleepOnPowerButtonKey;

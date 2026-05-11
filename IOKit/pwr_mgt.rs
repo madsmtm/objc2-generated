@@ -268,6 +268,9 @@ pub const kIOPMSettingWakeOnRingKey: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingrestartonpowerlosskey?language=objc)
 pub const kIOPMSettingRestartOnPowerLossKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Automatic Restart On Power Loss\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingrestartonpowerconnectkey?language=objc)
+pub const kIOPMSettingRestartOnPowerConnectKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"Automatic Restart On Power Connect\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingwakeonacchangekey?language=objc)
 pub const kIOPMSettingWakeOnACChangeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Wake On AC Change\0") };

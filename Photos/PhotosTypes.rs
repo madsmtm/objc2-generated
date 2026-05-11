@@ -422,18 +422,19 @@ unsafe impl RefEncode for PHAssetResourceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetResourceUploadJobState(pub NSInteger);
 impl PHAssetResourceUploadJobState {
+    /// The job has been registered.
     #[doc(alias = "PHAssetResourceUploadJobStateRegistered")]
     pub const Registered: Self = Self(1);
-    /// The job has been registered.
+    /// A request has been made to send the asset resource to the destination, but has not yet been fulfilled.
     #[doc(alias = "PHAssetResourceUploadJobStatePending")]
     pub const Pending: Self = Self(2);
-    /// A request has been made to send the asset resource to the destination, but has not yet been fulfilled.
+    /// The job has failed to send over.
     #[doc(alias = "PHAssetResourceUploadJobStateFailed")]
     pub const Failed: Self = Self(3);
-    /// The job has failed to send over.
+    /// The job has sent over successfully.
     #[doc(alias = "PHAssetResourceUploadJobStateSucceeded")]
     pub const Succeeded: Self = Self(4);
-    /// The job has sent over successfully.
+    /// The job has been cancelled.
     #[doc(alias = "PHAssetResourceUploadJobStateCancelled")]
     pub const Cancelled: Self = Self(5);
 }
@@ -454,9 +455,10 @@ unsafe impl RefEncode for PHAssetResourceUploadJobState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetResourceUploadJobType(pub i16);
 impl PHAssetResourceUploadJobType {
+    /// An upload job type (will download the resource from iCloud if required. then upload)
     #[doc(alias = "PHAssetResourceUploadJobTypeUpload")]
     pub const Upload: Self = Self(0);
-    /// An upload job type (will download the resource from iCloud if required. then upload)
+    /// A download job type (will download the resource from iCloud if required)
     #[doc(alias = "PHAssetResourceUploadJobTypeDownloadOnly")]
     pub const DownloadOnly: Self = Self(1);
 }
@@ -490,11 +492,16 @@ impl PHAssetResourceUploadJobAction {
     pub const Acknowledge: Self = Self(1);
     /// A job to retry processing.
     ///
-    /// An retryable job has a ``PHAssetResourceUploadJob/state`` of `failed` and hasn't previously been retried.
+    /// A retryable job has a ``PHAssetResourceUploadJob/state`` of `failed` and hasn't previously been retried.
     ///
     /// Call ``PHAssetResourceUploadJobChangeRequest/retryWithDestination:`` to retry the job.
     #[doc(alias = "PHAssetResourceUploadJobActionRetry")]
     pub const Retry: Self = Self(2);
+    /// A job to process.
+    ///
+    /// A processable job has a ``PHAssetResourceUploadJob/state`` of `registered` or `pending`.
+    #[doc(alias = "PHAssetResourceUploadJobActionProcess")]
+    pub const Process: Self = Self(3);
 }
 
 unsafe impl Encode for PHAssetResourceUploadJobAction {

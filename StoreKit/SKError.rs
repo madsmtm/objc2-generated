@@ -59,6 +59,8 @@ impl SKErrorCode {
     pub const UnsupportedPlatform: Self = Self(19);
     #[doc(alias = "SKErrorOverlayPresentedInBackgroundScene")]
     pub const OverlayPresentedInBackgroundScene: Self = Self(20);
+    #[doc(alias = "SKErrorPaymentMethodBindingConfigurationRequired")]
+    pub const PaymentMethodBindingConfigurationRequired: Self = Self(21);
 }
 
 unsafe impl Encode for SKErrorCode {
