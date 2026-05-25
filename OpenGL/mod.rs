@@ -40,18 +40,18 @@ mod __IOSurface;
 pub use self::__CGLCurrent::CGLGetCurrentContext;
 #[cfg(all(feature = "CGLCurrent", feature = "CGLTypes"))]
 pub use self::__CGLCurrent::CGLSetCurrentContext;
-#[cfg(all(feature = "CGLDevice", feature = "CGLTypes"))]
-pub use self::__CGLDevice::CGLGetShareGroup;
-#[cfg(feature = "CGLDevice")]
-pub use self::__CGLDevice::CGLShareGroupObj;
-#[cfg(feature = "CGLDevice")]
-pub use self::__CGLDevice::CGLShareGroupRec;
 #[cfg(feature = "CGLDevice")]
 pub(crate) use self::__CGLDevice::_cl_device_id;
 #[cfg(feature = "CGLDevice")]
 pub use self::__CGLDevice::cl_device_id;
 #[cfg(feature = "CGLDevice")]
 pub use self::__CGLDevice::CGLGetDeviceFromGLRenderer;
+#[cfg(all(feature = "CGLDevice", feature = "CGLTypes"))]
+pub use self::__CGLDevice::CGLGetShareGroup;
+#[cfg(feature = "CGLDevice")]
+pub use self::__CGLDevice::CGLShareGroupObj;
+#[cfg(feature = "CGLDevice")]
+pub use self::__CGLDevice::CGLShareGroupRec;
 #[cfg(feature = "CGLRenderers")]
 pub use self::__CGLRenderers::kCGLRendererATIRadeon8500ID;
 #[cfg(feature = "CGLRenderers")]

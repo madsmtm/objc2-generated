@@ -385,6 +385,8 @@ pub use self::__AuthorizationDB::AuthorizationRightRemove;
 #[cfg(all(feature = "Authorization", feature = "AuthorizationDB"))]
 pub use self::__AuthorizationDB::AuthorizationRightSet;
 #[cfg(feature = "AuthorizationPlugin")]
+pub(crate) use self::__AuthorizationPlugin::__OpaqueAuthorizationEngine;
+#[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::kAuthorizationCallbacksVersion;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::kAuthorizationPluginInterfaceVersion;
@@ -414,8 +416,6 @@ pub use self::__AuthorizationPlugin::AuthorizationSessionId;
 pub use self::__AuthorizationPlugin::AuthorizationValue;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationValueVector;
-#[cfg(feature = "AuthorizationPlugin")]
-pub(crate) use self::__AuthorizationPlugin::__OpaqueAuthorizationEngine;
 #[cfg(feature = "AuthorizationTags")]
 pub use self::__AuthorizationTags::kAuthorizationEnvironmentIcon;
 #[cfg(feature = "AuthorizationTags")]
@@ -3999,6 +3999,14 @@ pub use self::__SecureTransport::SSLWriteFunc;
     feature = "SecAsn1Types",
     feature = "certextensions",
     feature = "cssmconfig",
+    feature = "cssmtype",
+    feature = "x509defs"
+))]
+pub(crate) use self::__certextensions::__CE_DistributionPointName_dpn;
+#[cfg(all(
+    feature = "SecAsn1Types",
+    feature = "certextensions",
+    feature = "cssmconfig",
     feature = "cssmtype"
 ))]
 pub use self::__certextensions::CE_AccessDescription;
@@ -4192,14 +4200,6 @@ pub use self::__certextensions::CE_QC_Statements;
 pub use self::__certextensions::CE_SemanticsInformation;
 #[cfg(all(feature = "SecAsn1Types", feature = "certextensions"))]
 pub use self::__certextensions::CE_SubjectKeyID;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "certextensions",
-    feature = "cssmconfig",
-    feature = "cssmtype",
-    feature = "x509defs"
-))]
-pub(crate) use self::__certextensions::__CE_DistributionPointName_dpn;
 #[cfg(all(feature = "cssmaci", feature = "cssmconfig", feature = "cssmtype"))]
 pub use self::__cssmaci::cssm_spi_ac_funcs;
 #[cfg(all(feature = "cssmaci", feature = "cssmconfig", feature = "cssmtype"))]

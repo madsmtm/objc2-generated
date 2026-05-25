@@ -2028,6 +2028,8 @@ pub use self::__NSAppearance::NSAppearanceNameVibrantLight;
 #[cfg(feature = "NSAppleScriptExtensions")]
 pub use self::__NSAppleScriptExtensions::NSAppleScriptNSExtensions;
 #[cfg(feature = "NSApplication")]
+pub(crate) use self::__NSApplication::_NSModalSession;
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAboutPanelOptionApplicationIcon;
 #[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAboutPanelOptionApplicationName;
@@ -2297,8 +2299,6 @@ pub use self::__NSApplication::NSUpdateDynamicServices;
 pub use self::__NSApplication::NSUpdateWindowsRunLoopOrdering;
 #[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSWindowListOptions;
-#[cfg(feature = "NSApplication")]
-pub(crate) use self::__NSApplication::_NSModalSession;
 #[cfg(all(
     feature = "NSArrayController",
     feature = "NSController",

@@ -551,6 +551,8 @@ pub use self::__CGDirectDisplay::CGShieldingWindowLevel;
 pub use self::__CGDirectDisplayMetal::CGDirectDisplayCopyCurrentMetalDevice;
 #[cfg(feature = "CGDirectPalette")]
 pub use self::__CGDirectPalette::CGDeviceColor;
+#[cfg(feature = "CGDisplayConfiguration")]
+pub(crate) use self::__CGDisplayConfiguration::_CGDisplayConfigRef;
 #[cfg(all(feature = "CGDisplayConfiguration", feature = "CGError"))]
 pub use self::__CGDisplayConfiguration::CGBeginDisplayConfiguration;
 #[cfg(all(feature = "CGDisplayConfiguration", feature = "CGError"))]
@@ -699,8 +701,6 @@ pub use self::__CGDisplayConfiguration::CGDisplayUsesOpenGLAcceleration;
 pub use self::__CGDisplayConfiguration::CGDisplayVendorNumber;
 #[cfg(feature = "CGDisplayConfiguration")]
 pub use self::__CGDisplayConfiguration::CGRestorePermanentDisplayConfiguration;
-#[cfg(feature = "CGDisplayConfiguration")]
-pub(crate) use self::__CGDisplayConfiguration::_CGDisplayConfigRef;
 #[cfg(feature = "CGDisplayFade")]
 pub use self::__CGDisplayFade::kCGDisplayBlendNormal;
 #[cfg(feature = "CGDisplayFade")]
@@ -798,6 +798,8 @@ pub use self::__CGEvent::CGRequestListenEventAccess;
 #[cfg(feature = "CGEvent")]
 pub use self::__CGEvent::CGRequestPostEventAccess;
 #[cfg(feature = "CGEventTypes")]
+pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
+#[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::kCGEventMaskForAllEvents;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::kCGNotifyEventTapAdded;
@@ -845,8 +847,6 @@ pub use self::__CGEventTypes::CGMouseButton;
 pub use self::__CGEventTypes::CGScrollEventUnit;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGScrollPhase;
-#[cfg(feature = "CGEventTypes")]
-pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontIndexInvalid;
 #[cfg(feature = "CGFont")]

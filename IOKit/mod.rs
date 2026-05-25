@@ -6863,6 +6863,14 @@ pub use self::__hid::IOHIDValueMultipleCallback;
 pub use self::__hid::IOHIDValueOptions;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDValueScaleType;
+#[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_NXEvent_location;
+#[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_NXParsedKeyMapping_;
+#[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_NXTabletPointData_tilt;
+#[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_evOffsets;
 #[cfg(all(feature = "graphics", feature = "hidsystem"))]
 pub use self::__hidsystem::evioLLEvent;
 #[cfg(feature = "hidsystem")]
@@ -7243,14 +7251,6 @@ pub use self::__hidsystem::NXSize;
 pub use self::__hidsystem::NXTabletPointData;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::NXTabletProximityData;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_NXEvent_location;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_NXParsedKeyMapping_;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_NXTabletPointData_tilt;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_evOffsets;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::EVENT_SYSTEM_VERSION;
 #[cfg(feature = "network")]

@@ -52,6 +52,8 @@ pub use self::__DictionaryServices::DCSDictionary;
 #[cfg(feature = "DictionaryServices")]
 pub use self::__DictionaryServices::DCSGetTermRangeInString;
 #[cfg(feature = "FSEvents")]
+pub(crate) use self::__FSEvents::__FSEventStream;
+#[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::kFSEventStreamCreateDeviceState;
 #[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::kFSEventStreamCreateFlagFileEvents;
@@ -177,8 +179,6 @@ pub use self::__FSEvents::FSEventsGetCurrentEventId;
 pub use self::__FSEvents::FSEventsGetLastEventIdForDeviceBeforeTime;
 #[cfg(all(feature = "FSEvents", feature = "libc"))]
 pub use self::__FSEvents::FSEventsPurgeEventsForDeviceUpToEventId;
-#[cfg(feature = "FSEvents")]
-pub(crate) use self::__FSEvents::__FSEventStream;
 #[cfg(feature = "LaunchServices")]
 pub use self::__LaunchServices::*;
 #[cfg(feature = "Metadata")]

@@ -711,6 +711,8 @@ pub use self::__NSAppleEventDescriptor::NSAppleEventDescriptor;
 #[cfg(feature = "NSAppleEventDescriptor")]
 pub use self::__NSAppleEventDescriptor::NSAppleEventSendOptions;
 #[cfg(feature = "NSAppleEventManager")]
+pub(crate) use self::__NSAppleEventManager::__NSAppleEventManagerSuspension;
+#[cfg(feature = "NSAppleEventManager")]
 pub use self::__NSAppleEventManager::NSAppleEventManager;
 #[cfg(feature = "NSAppleEventManager")]
 pub use self::__NSAppleEventManager::NSAppleEventManagerSuspensionID;
@@ -724,8 +726,6 @@ pub use self::__NSAppleEventManager::NSAppleEventManagerWillProcessFirstEventNot
 pub use self::__NSAppleEventManager::NSAppleEventTimeOutDefault;
 #[cfg(feature = "NSAppleEventManager")]
 pub use self::__NSAppleEventManager::NSAppleEventTimeOutNone;
-#[cfg(feature = "NSAppleEventManager")]
-pub(crate) use self::__NSAppleEventManager::__NSAppleEventManagerSuspension;
 #[cfg(feature = "NSAppleScript")]
 pub use self::__NSAppleScript::NSAppleScript;
 #[cfg(all(feature = "NSAppleScript", feature = "NSString"))]
