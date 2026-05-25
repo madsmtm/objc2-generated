@@ -97,6 +97,8 @@ pub use self::__SCDynamicStoreCopyDHCPInfo::DHCPInfoGetLeaseExpirationTime;
 pub use self::__SCDynamicStoreCopyDHCPInfo::DHCPInfoGetLeaseStartTime;
 #[cfg(feature = "SCDynamicStoreCopyDHCPInfo")]
 pub use self::__SCDynamicStoreCopyDHCPInfo::DHCPInfoGetOptionData;
+#[cfg(all(feature = "SCNetwork", feature = "libc"))]
+pub(crate) use self::__SCNetwork::__SCNetworkCheckReachabilityByAddress;
 #[cfg(feature = "SCNetwork")]
 pub use self::__SCNetwork::kSCNetworkFlagsConnectionAutomatic;
 #[cfg(feature = "SCNetwork")]
@@ -111,8 +113,6 @@ pub use self::__SCNetwork::kSCNetworkFlagsIsLocalAddress;
 pub use self::__SCNetwork::kSCNetworkFlagsReachable;
 #[cfg(feature = "SCNetwork")]
 pub use self::__SCNetwork::kSCNetworkFlagsTransientConnection;
-#[cfg(all(feature = "SCNetwork", feature = "libc"))]
-pub use self::__SCNetwork::SCNetworkCheckReachabilityByAddress;
 #[cfg(feature = "SCNetwork")]
 pub use self::__SCNetwork::SCNetworkCheckReachabilityByName;
 #[cfg(feature = "SCNetwork")]

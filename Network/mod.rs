@@ -1125,7 +1125,7 @@ impl NWEndpoint {
     #[doc(alias = "nw_endpoint_create_address")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub unsafe fn new_address(address: NonNull<libc::sockaddr>) -> NWRetained<NWEndpoint> {
+    pub(crate) unsafe fn __new_address(address: NonNull<libc::sockaddr>) -> NWRetained<NWEndpoint> {
         extern "C-unwind" {
             fn nw_endpoint_create_address(
                 address: NonNull<libc::sockaddr>,
@@ -1169,7 +1169,7 @@ impl NWEndpoint {
     #[doc(alias = "nw_endpoint_get_address")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub fn address(&self) -> NonNull<libc::sockaddr> {
+    pub(crate) fn __address(&self) -> NonNull<libc::sockaddr> {
         extern "C-unwind" {
             fn nw_endpoint_get_address(endpoint: &NWEndpoint) -> Option<NonNull<libc::sockaddr>>;
         }

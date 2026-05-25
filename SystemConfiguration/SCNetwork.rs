@@ -55,10 +55,11 @@ pub type SCNetworkConnectionFlags = u32;
 /// # Safety
 ///
 /// `address` must be a valid pointer.
+#[doc(alias = "SCNetworkCheckReachabilityByAddress")]
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByAddress(
+pub(crate) unsafe extern "C-unwind" fn __SCNetworkCheckReachabilityByAddress(
     address: NonNull<libc::sockaddr>,
     addrlen: libc::socklen_t,
     flags: &mut SCNetworkConnectionFlags,

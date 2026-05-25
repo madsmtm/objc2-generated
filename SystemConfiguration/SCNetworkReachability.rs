@@ -214,7 +214,7 @@ impl SCNetworkReachability {
     #[cfg(feature = "libc")]
     #[deprecated]
     #[inline]
-    pub unsafe fn with_address(
+    pub(crate) unsafe fn __with_address(
         allocator: Option<&CFAllocator>,
         address: NonNull<libc::sockaddr>,
     ) -> Option<CFRetained<SCNetworkReachability>> {
@@ -250,7 +250,7 @@ impl SCNetworkReachability {
     #[cfg(feature = "libc")]
     #[deprecated]
     #[inline]
-    pub unsafe fn with_address_pair(
+    pub(crate) unsafe fn __with_address_pair(
         allocator: Option<&CFAllocator>,
         local_address: *const libc::sockaddr,
         remote_address: *const libc::sockaddr,
