@@ -101,6 +101,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetMessageAttributeIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleSetMessageAttribute:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSetMessageAttribute_completion(
@@ -126,6 +130,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetMessageAttributeIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSetMessageAttribute:completion:))]
         #[unsafe(method_family = none)]
@@ -152,6 +160,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveAttributeForSetMessageAttribute:withCompletion:))]
         #[unsafe(method_family = none)]

@@ -87,6 +87,10 @@ impl ASCredentialIdentityStore {
         /// Call this method to find out the current state of the store before attempting to call other store methods.
         /// Use the provided ASCredentialIdentityStoreState to find out if the store is enabled and whether it supports incremental
         /// updates.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(getCredentialIdentityStoreStateWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCredentialIdentityStoreStateWithCompletion(
@@ -108,6 +112,10 @@ impl ASCredentialIdentityStore {
         /// Pass ASCredentialIdentityTypesAll to get credential identities of all types.
         ///
         /// Call this method to get a list of all credential identities saved in the store for your extension.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getCredentialIdentitiesForService:credentialIdentityTypes:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCredentialIdentitiesForService_credentialIdentityTypes_completionHandler(
@@ -133,6 +141,10 @@ impl ASCredentialIdentityStore {
         /// identities.
         /// If some credential identities in credentialIdentities already exist in the store, they will be replaced by
         /// those from credentialIdentities.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(saveCredentialIdentities:completion:))]
         #[unsafe(method_family = none)]
@@ -156,6 +168,10 @@ impl ASCredentialIdentityStore {
         /// identities.
         /// If some credential identities in credentialIdentities already exist in the store, they will be replaced by
         /// those from credentialIdentities.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(saveCredentialIdentityEntries:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveCredentialIdentityEntries_completion(
@@ -175,6 +191,10 @@ impl ASCredentialIdentityStore {
         ///
         /// Use this method only if the store supports incremental updates to remove previously added
         /// credentials to the store.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(removeCredentialIdentities:completion:))]
         #[unsafe(method_family = none)]
@@ -195,6 +215,10 @@ impl ASCredentialIdentityStore {
         ///
         /// Use this method only if the store supports incremental updates to remove previously added
         /// credentials to the store.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(removeCredentialIdentityEntries:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCredentialIdentityEntries_completion(
@@ -209,6 +233,10 @@ impl ASCredentialIdentityStore {
         /// Parameter `completion`: optional completion handler to be called after removing all existing credential identities.
         /// If the operation fails, an error with domain ASCredentialIdentityStoreErrorDomain will be provided and none of
         /// the existing credential identities will be removed from the store.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(removeAllCredentialIdentitiesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllCredentialIdentitiesWithCompletion(
@@ -227,6 +255,10 @@ impl ASCredentialIdentityStore {
         /// store and replace them with the provided array of credential identities. If the operation fails, an
         /// error with domain ASCredentialIdentityStoreErrorDomain will be provided and none of the new credential
         /// identities will be saved.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(replaceCredentialIdentitiesWithIdentities:completion:))]
         #[unsafe(method_family = none)]
@@ -247,6 +279,10 @@ impl ASCredentialIdentityStore {
         /// store and replace them with the provided array of credential identities. If the operation fails, an
         /// error with domain ASCredentialIdentityStoreErrorDomain will be provided and none of the new credential
         /// identities will be saved.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(replaceCredentialIdentityEntries:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceCredentialIdentityEntries_completion(

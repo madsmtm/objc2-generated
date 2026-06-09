@@ -213,6 +213,10 @@ impl AVCapturePhotoOutput {
         /// If you call this method while your AVCaptureSession is not running, your completionHandler does not fire immediately. It only fires once you've called -[AVCaptureSession startRunning], and the needed resources have actually been prepared. If you call -setPreparedPhotoSettingsArray:completionHandler: with an array of settings, and then call it a second time, your first prepare call's completionHandler fires immediately with prepared == NO.
         ///
         /// Prepared settings persist across session starts/stops and committed configuration changes. This property participates in -[AVCaptureSession beginConfiguration] / -[AVCaptureSession commitConfiguration] deferred work behavior. That is, if you call -[AVCaptureSession beginConfiguration], change your session's input/output topology, and call this method, preparation is deferred until you call -[AVCaptureSession commitConfiguration], enabling you to atomically commit a new configuration as well as prepare to take photos in that new configuration.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setPreparedPhotoSettingsArray:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreparedPhotoSettingsArray_completionHandler(

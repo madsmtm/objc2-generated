@@ -111,6 +111,9 @@ impl PHAssetResourceManager {
         ) -> PHAssetResourceDataRequestID;
 
         #[cfg(all(feature = "PHAssetResource", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeDataForAssetResource:toFile:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeDataForAssetResource_toFile_options_completionHandler(

@@ -115,6 +115,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetProfileInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetProfileInCarIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSetProfileInCar:completion:))]
         #[unsafe(method_family = none)]
@@ -141,6 +145,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetProfileInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetProfileInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSetProfileInCar:completion:))]
@@ -168,6 +176,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetProfileInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveProfileNumberForSetProfileInCar:withCompletion:))]
@@ -184,6 +196,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveProfileNameForSetProfileInCar:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -199,6 +214,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForSetProfileInCar:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -214,6 +232,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "The property doesn't need to be resolved"]
         #[optional]
         #[unsafe(method(resolveDefaultProfileForSetProfileInCar:withCompletion:))]

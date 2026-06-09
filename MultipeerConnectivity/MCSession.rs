@@ -268,6 +268,9 @@ extern_protocol!(
 impl MCSession {
     extern_methods!(
         #[cfg(all(feature = "MCPeerID", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(nearbyConnectionDataForPeer:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nearbyConnectionDataForPeer_withCompletionHandler(

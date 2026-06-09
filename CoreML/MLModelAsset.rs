@@ -102,6 +102,10 @@ impl MLModelAsset {
         /// let modelDescription = try await modelAsset.modelDescription()
         /// print(modelDescription)
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(modelDescriptionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelDescriptionWithCompletionHandler(
@@ -119,6 +123,10 @@ impl MLModelAsset {
         /// let modelDescription = try await modelAsset.modelDescription(of: "my_function")
         /// print(modelDescription)
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(modelDescriptionOfFunctionNamed:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelDescriptionOfFunctionNamed_completionHandler(
@@ -139,6 +147,10 @@ impl MLModelAsset {
         /// let functionNames = try await modelAsset.functionNames
         /// print(functionNames) // For example, ["my_function1", "my_function2"];
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(functionNamesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn functionNamesWithCompletionHandler(

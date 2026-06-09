@@ -30,6 +30,10 @@ impl CNAssetInfo {
     extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
         /// Check if asset is cinematic asynchronously.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(checkIfCinematic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkIfCinematic_completionHandler(
@@ -39,6 +43,10 @@ impl CNAssetInfo {
 
         #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
         /// Load cinematic asset information asynchronously.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFromAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromAsset_completionHandler(

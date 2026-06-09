@@ -79,6 +79,10 @@ impl HKHeartbeatSeriesBuilder {
         /// Parameter `completion`: The completion callback handler returns the status of the save. If the completion
         /// handler success is NO, then error is non-nil. An error here is considered fatal and
         /// the series builder will be complete.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addHeartbeatWithTimeIntervalSinceSeriesStartDate:precededByGap:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addHeartbeatWithTimeIntervalSinceSeriesStartDate_precededByGap_completion(
@@ -105,7 +109,8 @@ impl HKHeartbeatSeriesBuilder {
         ///
         /// # Safety
         ///
-        /// `metadata` generic should be of the correct type.
+        /// - `metadata` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(addMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMetadata_completion(
@@ -134,6 +139,10 @@ impl HKHeartbeatSeriesBuilder {
         /// including database inaccessibility during device lock. Subsequent requests for the
         /// HKHeartbeatSeriesSample can be made through HKSampleQuery or similar queries. To
         /// retrieve the data stored with an HKHeartbeatSeriesSample use HKHeartbeatSeriesQuery.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(finishSeriesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithCompletion(

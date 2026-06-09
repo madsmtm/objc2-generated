@@ -87,6 +87,10 @@ impl AVAudioRoutingArbiter {
         /// Indicating that the system default audio device has been changed as a result of the arbitration operation.
         /// error
         /// An error object that indicates why the request failed, or nil if the request was successful.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(beginArbitrationWithCategory:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginArbitrationWithCategory_completionHandler(

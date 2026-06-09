@@ -101,6 +101,10 @@ extern_protocol!(
         /// Informs delegate that the user has requested skipping forward or backward by the time indicated by the interval.
         ///
         /// Clients may choose to seek by a different interval for efficiency reasons (for example, seeking to a keyframe) or if the requested interval falls outside of the playable timeline. Clients must invoke the completion handler to indicate the seek operation has finished or failed. By the time the completion handler has been invoked, the timebase should reflect the current time and playback rate. Failure to invoke this completion handler is an application error and will result in playback UI permanently stuck in a “seeking” state.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(pictureInPictureController:skipByInterval:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn pictureInPictureController_skipByInterval_completionHandler(

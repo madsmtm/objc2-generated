@@ -59,6 +59,9 @@ impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestAuthorizationForPublicKeyCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationForPublicKeyCredentials(
@@ -72,6 +75,9 @@ impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
             feature = "ASAuthorizationWebBrowserPlatformPublicKeyCredential",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(platformCredentialsForRelyingParty:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn platformCredentialsForRelyingParty_completionHandler(

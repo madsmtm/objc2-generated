@@ -335,6 +335,10 @@ extern_protocol!(
         /// Reports the status of decoding the sampleBuffer.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil. Errors outside of MediaExtensionErrorDomain will be reported as kVTVideoDecoderUnknownErr to the VTDecompressionSession client.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(decodeFrameFromSampleBuffer:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn decodeFrameFromSampleBuffer_options_completionHandler(

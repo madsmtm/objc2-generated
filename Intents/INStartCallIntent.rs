@@ -133,6 +133,10 @@ extern_protocol!(
         ///
         ///
         /// See: INStartCallIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleStartCall:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleStartCall_completion(
@@ -158,6 +162,10 @@ extern_protocol!(
         ///
         ///
         /// See: INStartCallIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmStartCall:completion:))]
         #[unsafe(method_family = none)]
@@ -184,6 +192,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCallRecordToCallBackForStartCall:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -199,6 +211,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDestinationTypeForStartCall:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -215,6 +230,9 @@ extern_protocol!(
             feature = "INStartCallContactResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveContactsForStartCall:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -233,6 +251,9 @@ extern_protocol!(
             feature = "INStartCallCallCapabilityResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCallCapabilityForStartCall:withCompletion:))]
         #[unsafe(method_family = none)]

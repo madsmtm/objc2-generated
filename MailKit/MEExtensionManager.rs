@@ -28,6 +28,10 @@ impl MEExtensionManager {
 
         #[cfg(feature = "block2")]
         /// This will call on Mail to reload the content rule list associated with the given identifier. Mail May throttle reloading the content blocker to once every few minutes.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(reloadContentBlockerWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadContentBlockerWithIdentifier_completionHandler(
@@ -37,6 +41,10 @@ impl MEExtensionManager {
 
         #[cfg(feature = "block2")]
         /// This will call on Mail to reload the currently visible messages.  Mail may throttle reloading visible messages.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(reloadVisibleMessagesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadVisibleMessagesWithCompletionHandler(

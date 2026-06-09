@@ -131,6 +131,10 @@ extern_protocol!(
         ///
         ///
         /// See: INTransferMoneyIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INTransferMoneyIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleTransferMoney:completion:))]
         #[unsafe(method_family = none)]
@@ -157,6 +161,10 @@ extern_protocol!(
         ///
         ///
         /// See: INTransferMoneyIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INTransferMoneyIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmTransferMoney:completion:))]
@@ -184,6 +192,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INTransferMoneyIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveFromAccountForTransferMoney:withCompletion:))]
@@ -200,6 +212,9 @@ extern_protocol!(
             feature = "INPaymentAccountResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INTransferMoneyIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveToAccountForTransferMoney:withCompletion:))]
@@ -216,6 +231,9 @@ extern_protocol!(
             feature = "INPaymentAmountResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INTransferMoneyIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTransactionAmountForTransferMoney:withCompletion:))]
@@ -232,6 +250,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INTransferMoneyIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTransactionScheduledDateForTransferMoney:withCompletion:))]
@@ -248,6 +269,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INTransferMoneyIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTransactionNoteForTransferMoney:withCompletion:))]

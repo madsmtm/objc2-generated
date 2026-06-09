@@ -362,6 +362,9 @@ impl GKTurnBasedMatch {
         pub unsafe fn exchangeMaxInitiatedExchangesPerPlayer(&self) -> NSUInteger;
 
         #[cfg(all(feature = "GKMatchmaker", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(findMatchForRequest:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findMatchForRequest_withCompletionHandler(
@@ -370,6 +373,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadMatchesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMatchesWithCompletionHandler(
@@ -379,6 +385,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadMatchWithID:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMatchWithID_withCompletionHandler(
@@ -389,6 +398,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(rematchWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rematchWithCompletionHandler(
@@ -399,6 +411,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(acceptInviteWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptInviteWithCompletionHandler(
@@ -409,6 +424,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(declineInviteWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn declineInviteWithCompletionHandler(
@@ -417,6 +435,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeWithCompletionHandler(
@@ -425,6 +446,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadMatchDataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMatchDataWithCompletionHandler(
@@ -433,6 +457,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(endTurnWithNextParticipants:turnTimeout:matchData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endTurnWithNextParticipants_turnTimeout_matchData_completionHandler(
@@ -444,6 +471,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:matchData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn participantQuitInTurnWithOutcome_nextParticipants_turnTimeout_matchData_completionHandler(
@@ -456,6 +486,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(participantQuitOutOfTurnWithOutcome:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn participantQuitOutOfTurnWithOutcome_withCompletionHandler(
@@ -465,6 +498,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(endMatchInTurnWithMatchData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endMatchInTurnWithMatchData_completionHandler(
@@ -474,6 +510,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(all(feature = "GKAchievement", feature = "GKScore", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(endMatchInTurnWithMatchData:scores:achievements:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -488,7 +527,8 @@ impl GKTurnBasedMatch {
         #[cfg(all(feature = "GKLeaderboardScore", feature = "block2"))]
         /// # Safety
         ///
-        /// `achievements` generic should be of the correct type.
+        /// - `achievements` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(endMatchInTurnWithMatchData:leaderboardScores:achievements:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endMatchInTurnWithMatchData_leaderboardScores_achievements_completionHandler(
@@ -500,6 +540,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveCurrentTurnWithMatchData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveCurrentTurnWithMatchData_completionHandler(
@@ -509,6 +552,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveMergedMatchData:withResolvedExchanges:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveMergedMatchData_withResolvedExchanges_completionHandler(
@@ -519,6 +565,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendExchangeToParticipants_data_localizableMessageKey_arguments_timeout_completionHandler(
@@ -534,6 +583,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendReminderToParticipants:localizableMessageKey:arguments:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendReminderToParticipants_localizableMessageKey_arguments_completionHandler(
@@ -545,6 +597,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(endTurnWithNextParticipant:matchData:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -556,6 +611,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(participantQuitInTurnWithOutcome:nextParticipant:matchData:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -672,6 +730,9 @@ impl GKTurnBasedExchange {
         pub unsafe fn replies(&self) -> Option<Retained<NSArray<GKTurnBasedExchangeReply>>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(cancelWithLocalizableMessageKey:arguments:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelWithLocalizableMessageKey_arguments_completionHandler(
@@ -682,6 +743,9 @@ impl GKTurnBasedExchange {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(replyWithLocalizableMessageKey:arguments:data:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replyWithLocalizableMessageKey_arguments_data_completionHandler(

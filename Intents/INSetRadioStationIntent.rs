@@ -124,6 +124,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetRadioStationIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSetRadioStation:completion:))]
         #[unsafe(method_family = none)]
@@ -150,6 +154,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetRadioStationIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSetRadioStation:completion:))]
@@ -177,6 +185,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRadioTypeForSetRadioStation:withCompletion:))]
@@ -193,6 +205,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveFrequencyForSetRadioStation:withCompletion:))]
@@ -209,6 +224,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveStationNameForSetRadioStation:withCompletion:))]
@@ -225,6 +243,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveChannelForSetRadioStation:withCompletion:))]
@@ -241,6 +262,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolvePresetNumberForSetRadioStation:withCompletion:))]

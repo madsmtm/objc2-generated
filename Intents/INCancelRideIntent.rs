@@ -91,6 +91,10 @@ extern_protocol!(
         ///
         ///
         /// See: INCancelRideIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleCancelRide:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleCancelRide_completion(
@@ -116,6 +120,10 @@ extern_protocol!(
         ///
         ///
         /// See: INCancelRideIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmCancelRide:completion:))]
         #[unsafe(method_family = none)]

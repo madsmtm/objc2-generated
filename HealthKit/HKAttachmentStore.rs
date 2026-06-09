@@ -58,7 +58,8 @@ impl HKAttachmentStore {
         ///
         /// # Safety
         ///
-        /// `metadata` generic should be of the correct type.
+        /// - `metadata` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(addAttachmentToObject:name:contentType:URL:metadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAttachmentToObject_name_contentType_URL_metadata_completion(
@@ -79,6 +80,10 @@ impl HKAttachmentStore {
         /// Parameter `object`: The object from which to remove the attachment.
         ///
         /// Parameter `completion`: Called once the remove operation finishes.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(removeAttachment:fromObject:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAttachment_fromObject_completion(
@@ -94,6 +99,10 @@ impl HKAttachmentStore {
         /// Parameter `object`: The object for which to retrieve attachments.
         ///
         /// Parameter `completion`: Called with a list of attachments or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(getAttachmentsForObject:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAttachmentsForObject_completion(

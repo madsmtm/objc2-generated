@@ -49,6 +49,10 @@ impl AVAudioUnit {
         /// The returned AVAudioUnit instance normally will be of a subclass (AVAudioUnitEffect,
         /// AVAudioUnitGenerator, AVAudioUnitMIDIInstrument, or AVAudioUnitTimeEffect), selected
         /// according to the component's type.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(instantiateWithComponentDescription:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateWithComponentDescription_options_completionHandler(

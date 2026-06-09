@@ -21,6 +21,9 @@ extern_conformance!(
 impl PKIssuerProvisioningExtensionHandler {
     extern_methods!(
         #[cfg(all(feature = "PKIssuerProvisioningExtensionStatus", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(statusWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusWithCompletion(
@@ -29,6 +32,9 @@ impl PKIssuerProvisioningExtensionHandler {
         );
 
         #[cfg(all(feature = "PKIssuerProvisioningExtensionPassEntry", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(passEntriesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn passEntriesWithCompletion(
@@ -39,6 +45,9 @@ impl PKIssuerProvisioningExtensionHandler {
         );
 
         #[cfg(all(feature = "PKIssuerProvisioningExtensionPassEntry", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(remotePassEntriesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remotePassEntriesWithCompletion(
@@ -49,6 +58,9 @@ impl PKIssuerProvisioningExtensionHandler {
         );
 
         #[cfg(all(feature = "PKAddPaymentPassRequest", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(generateAddPaymentPassRequestForPassEntryWithIdentifier:configuration:certificateChain:nonce:nonceSignature:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateAddPaymentPassRequestForPassEntryWithIdentifier_configuration_certificateChain_nonce_nonceSignature_completionHandler(

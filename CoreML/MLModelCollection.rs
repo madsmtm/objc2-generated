@@ -76,6 +76,10 @@ impl MLModelCollection {
         /// Parameter `identifier`: The model collection identifier, as managed in Core ML Model Deployment.
         ///
         /// Parameter `completionHandler`: The completion handler, invoked with YES on success or NSError on failure.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use Background Assets or NSURLSession instead."]
         #[unsafe(method(endAccessingModelCollectionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]

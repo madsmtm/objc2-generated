@@ -66,6 +66,10 @@ impl HMCameraStream {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateAudioStreamSetting:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateAudioStreamSetting_completionHandler(

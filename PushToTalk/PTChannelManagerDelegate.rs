@@ -231,7 +231,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `push_payload` generic should be of the correct type.
+        /// - `push_payload` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[optional]
         #[unsafe(method(incomingServiceUpdatePushForChannelManager:channelUUID:pushPayload:isHighPriority:remainingHighPriorityBudget:withCompletionHandler:))]
         #[unsafe(method_family = none)]

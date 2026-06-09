@@ -102,6 +102,10 @@ impl HMTrigger {
         ///
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
@@ -120,6 +124,10 @@ impl HMTrigger {
         ///
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addActionSet:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addActionSet_completionHandler(
@@ -137,6 +145,10 @@ impl HMTrigger {
         ///
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(removeActionSet:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeActionSet_completionHandler(
@@ -162,6 +174,10 @@ impl HMTrigger {
         ///
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(enable:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enable_completionHandler(

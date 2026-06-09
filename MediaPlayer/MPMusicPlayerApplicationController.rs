@@ -96,6 +96,9 @@ extern_conformance!(
 impl MPMusicPlayerApplicationController {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(performQueueTransaction:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performQueueTransaction_completionHandler(

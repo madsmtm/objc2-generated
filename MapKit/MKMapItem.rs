@@ -161,7 +161,8 @@ impl MKMapItem {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `launch_options` generic should be of the correct type.
+        /// - `launch_options` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(openInMapsWithLaunchOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openInMapsWithLaunchOptions_completionHandler(
@@ -173,7 +174,8 @@ impl MKMapItem {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `launch_options` generic should be of the correct type.
+        /// - `launch_options` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(openMapsWithItems:launchOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openMapsWithItems_launchOptions_completionHandler(

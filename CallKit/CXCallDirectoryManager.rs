@@ -47,6 +47,9 @@ impl CXCallDirectoryManager {
         pub unsafe fn sharedInstance() -> Retained<CXCallDirectoryManager>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(reloadExtensionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadExtensionWithIdentifier_completionHandler(
@@ -56,6 +59,9 @@ impl CXCallDirectoryManager {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(getEnabledStatusForExtensionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getEnabledStatusForExtensionWithIdentifier_completionHandler(
@@ -65,6 +71,9 @@ impl CXCallDirectoryManager {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(openSettingsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openSettingsWithCompletionHandler(

@@ -17,6 +17,10 @@ extern_protocol!(
         ))]
         /// Called when a player intends to play for a specific game activity.
         /// A completion handler block is provided to indicate whether the activity was successfully handled.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(player:wantsToPlayGameActivity:completionHandler:))]
         #[unsafe(method_family = none)]

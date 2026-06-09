@@ -83,6 +83,10 @@ extern_protocol!(
         ///
         ///
         /// See: INListCarsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleListCars:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleListCars_completion(
@@ -108,6 +112,10 @@ extern_protocol!(
         ///
         ///
         /// See: INListCarsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmListCars:completion:))]
         #[unsafe(method_family = none)]

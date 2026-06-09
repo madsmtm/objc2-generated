@@ -73,6 +73,9 @@ impl MPMediaLibrary {
         pub unsafe fn authorizationStatus() -> MPMediaLibraryAuthorizationStatus;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorization(
@@ -80,6 +83,9 @@ impl MPMediaLibrary {
         );
 
         #[cfg(all(feature = "MPMediaEntity", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(addItemWithProductID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addItemWithProductID_completionHandler(
@@ -102,6 +108,10 @@ impl MPMediaLibrary {
         ///
         ///
         /// The UUID should typically be pre-generated to avoid creating a new playlist with every call.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getPlaylistWithUUID:creationMetadata:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPlaylistWithUUID_creationMetadata_completionHandler(

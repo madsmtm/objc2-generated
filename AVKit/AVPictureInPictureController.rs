@@ -298,6 +298,10 @@ extern_protocol!(
         /// Parameter `completionHandler`: The completion handler the delegate needs to call after restore.
         ///
         /// Delegate can implement this method to restore the user interface before Picture in Picture stops.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(pictureInPictureController:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:))]
         #[unsafe(method_family = none)]

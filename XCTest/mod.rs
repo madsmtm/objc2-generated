@@ -117,9 +117,13 @@ impl XCTest {
         /// Parameter `completion`: A block which must be called to signal completion of set up.
         /// May be called asynchronously. If the block's `error` argument is non-nil, the specified error
         /// is recorded as a thrown error issue.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(setUpWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setUpWithCompletionHandler(
+        pub unsafe fn setUpWithCompletionHandler(
             &self,
             completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
@@ -154,9 +158,13 @@ impl XCTest {
         /// Parameter `completion`: A block which must be called to signal completion of tear down.
         /// May be called asynchronously. If the block's `error` argument is non-nil, the specified error
         /// is recorded as a thrown error issue.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(tearDownWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn tearDownWithCompletionHandler(
+        pub unsafe fn tearDownWithCompletionHandler(
             &self,
             completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );

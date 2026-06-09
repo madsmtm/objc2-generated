@@ -84,6 +84,10 @@ impl ASAuthorizationAppleIDProvider {
         /// Note: If credentialState is
         ///
         /// See: ASAuthorizationAppleIDProviderCredentialNotFound, an error will also be passed in the completion block.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(getCredentialStateForUserID:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCredentialStateForUserID_completion(

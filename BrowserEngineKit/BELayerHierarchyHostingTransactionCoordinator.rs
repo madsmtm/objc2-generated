@@ -79,6 +79,10 @@ impl BELayerHierarchyHostingTransactionCoordinator {
         /// - The block is responsible for disposing of `copiedPort` - failure to manage its lifecycle will leak the port. Note that some functions (like ``coordinatorWithPort:data:error:``) will assume control of the right for you.
         /// - `copiedPort` will be `MACH_PORT_NULL` if the receiver is already invalidated.
         /// - The port and data should ultimately be consumed together and _only_ once by ``coordinatorWithPort:data:error:``.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(encodeWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeWithBlock(

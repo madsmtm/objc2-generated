@@ -289,7 +289,8 @@ impl FSBlockDeviceResource {
         ///
         /// # Safety
         ///
-        /// `buffer` must be a valid pointer.
+        /// - `buffer` must be a valid pointer.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(readInto:startingAt:length:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readInto_startingAt_length_completionHandler(
@@ -342,7 +343,8 @@ impl FSBlockDeviceResource {
         ///
         /// # Safety
         ///
-        /// `buffer` must be a valid pointer.
+        /// - `buffer` must be a valid pointer.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(writeFrom:startingAt:length:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeFrom_startingAt_length_completionHandler(

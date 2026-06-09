@@ -126,6 +126,10 @@ extern_protocol!(
         ///
         ///
         /// See: INAddTasksIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleAddTasks:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleAddTasks_completion(
@@ -151,6 +155,10 @@ extern_protocol!(
         ///
         ///
         /// See: INAddTasksIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmAddTasks:completion:))]
         #[unsafe(method_family = none)]
@@ -177,6 +185,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "resolveTargetTaskListForAddTasks:withCompletion: is deprecated. Use resolveTargetTaskListForAddTasks:completion: instead"]
         #[optional]
         #[unsafe(method(resolveTargetTaskListForAddTasks:withCompletion:))]
@@ -194,6 +206,9 @@ extern_protocol!(
             feature = "INTaskListResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTargetTaskListForAddTasks:completion:))]
         #[unsafe(method_family = none)]
@@ -211,6 +226,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTaskTitlesForAddTasks:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -228,6 +246,9 @@ extern_protocol!(
             feature = "INSpatialEventTriggerResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSpatialEventTriggerForAddTasks:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -243,6 +264,9 @@ extern_protocol!(
             feature = "INTemporalEventTriggerResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "resolveTemporalEventTriggerForAddTasks:withCompletion: is deprecated. Use resolveTemporalEventTriggerForAddTasks:completion: instead"]
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerForAddTasks:withCompletion:))]
@@ -260,6 +284,9 @@ extern_protocol!(
             feature = "INTemporalEventTriggerResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerForAddTasks:completion:))]
         #[unsafe(method_family = none)]
@@ -277,6 +304,9 @@ extern_protocol!(
             feature = "INTaskPriorityResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePriorityForAddTasks:withCompletion:))]
         #[unsafe(method_family = none)]

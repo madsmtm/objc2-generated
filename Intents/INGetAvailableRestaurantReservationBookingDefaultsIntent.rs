@@ -102,6 +102,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetAvailableRestaurantReservationBookingDefaultsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleGetAvailableRestaurantReservationBookingDefaults:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetAvailableRestaurantReservationBookingDefaults_completion(
@@ -129,6 +133,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetAvailableRestaurantReservationBookingDefaultsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetAvailableRestaurantReservationBookingDefaults:completion:))]
         #[unsafe(method_family = none)]
@@ -157,6 +165,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetAvailableRestaurantReservationBookingDefaultsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRestaurantForGetAvailableRestaurantReservationBookingDefaults:withCompletion:))]
         #[unsafe(method_family = none)]

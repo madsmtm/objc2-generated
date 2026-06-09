@@ -970,6 +970,10 @@ extern_protocol!(
         /// Execution time:
         /// ---------------
         /// This call is not expected to take more than a few seconds to complete.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(importDidFinishWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -1033,6 +1037,10 @@ extern_protocol!(
         /// Execution time:
         /// ---------------
         /// This call is not expected to take more than a few seconds to complete.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(materializedItemsDidChangeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -1087,6 +1095,10 @@ extern_protocol!(
         /// Execution time:
         /// ---------------
         /// This call is not expected to take more than a few seconds to complete.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(pendingItemsDidChangeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -1521,6 +1533,10 @@ extern_protocol!(
         ///
         /// If your extension does not implement this protocol, domains on external volumes will automatically be
         /// connected and instantiated in your extension.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(shouldConnectExternalDomainWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn shouldConnectExternalDomainWithCompletionHandler(

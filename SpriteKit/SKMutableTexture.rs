@@ -81,6 +81,10 @@ impl SKMutableTexture {
 
         #[cfg(feature = "block2")]
         /// Modify the created mutable texture.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(modifyPixelDataWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifyPixelDataWithBlock(

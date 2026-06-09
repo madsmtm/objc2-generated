@@ -147,9 +147,13 @@ impl NSPasteboardItem {
         /// - Parameters:
         /// - patterns: The patterns to detect on the pasteboard item.
         /// - completionHandler: A block that the system invokes after detecting patterns on the pasteboard item. The block receives either a set with the patterns the system finds on the pasteboard item or an error if detection fails.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(detectPatternsForPatterns:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn detectPatternsForPatterns_completionHandler(
+        pub unsafe fn detectPatternsForPatterns_completionHandler(
             &self,
             patterns: &NSSet<NSPasteboardDetectionPattern>,
             completion_handler: &block2::DynBlock<
@@ -220,9 +224,13 @@ impl NSPasteboardItem {
         /// - Parameters:
         /// - patterns: The patterns to detect on the pasteboard item.
         /// - completionHandler: A block the system invokes after detecting patterns on the pasteboard item. The block returns either a dictionary with the patterns the system finds on the pasteboard item or an error if detection fails. The dictionary keys specify the matched patterns, and the values specify the corresponding content of the pasteboard.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(detectValuesForPatterns:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn detectValuesForPatterns_completionHandler(
+        pub unsafe fn detectValuesForPatterns_completionHandler(
             &self,
             patterns: &NSSet<NSPasteboardDetectionPattern>,
             completion_handler: &block2::DynBlock<
@@ -280,9 +288,13 @@ impl NSPasteboardItem {
         /// - Parameters:
         /// - types: The metadata types to detect on the pasteboard item.
         /// - completionHandler: A block the system invokes after detecting metadata on the pasteboard item. The block receives either a dictionary with the metadata types the system finds on the pasteboard item or an error if detection fails. The dictionary keys specify the matched metadata types, and the values specify the corresponding metadata.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(detectMetadataForTypes:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn detectMetadataForTypes_completionHandler(
+        pub unsafe fn detectMetadataForTypes_completionHandler(
             &self,
             types: &NSSet<NSPasteboardMetadataType>,
             completion_handler: &block2::DynBlock<

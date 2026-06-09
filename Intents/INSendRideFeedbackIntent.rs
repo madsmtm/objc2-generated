@@ -115,6 +115,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSendRideFeedbackIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleSendRideFeedback:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSendRideFeedback_completion(
@@ -140,6 +144,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSendRideFeedbackIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSendRideFeedback:completion:))]
         #[unsafe(method_family = none)]

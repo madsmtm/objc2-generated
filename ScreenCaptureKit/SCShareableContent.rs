@@ -231,9 +231,13 @@ impl SCShareableContent {
         /// Parameter `completionHandler`: the call back that will hand you back a SCShareableContent object
         ///
         /// this method will create a SCShareableContent object that is called on the supplied queue. The SCShareableContent will contain the windows, displays and applications that are available to capture
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getShareableContentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn getShareableContentWithCompletionHandler(
+        pub unsafe fn getShareableContentWithCompletionHandler(
             completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
         );
 
@@ -243,9 +247,13 @@ impl SCShareableContent {
         /// Parameter `completionHandler`: the call back that will hand you back a SCShareableContent object
         ///
         /// this method will create a SCShareableContent object that is called on the supplied queue. The SCShareableContent will contain redacted information about windows, displays and applications that are available to capture by current process without user consent via TCC
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getCurrentProcessShareableContentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn getCurrentProcessShareableContentWithCompletionHandler(
+        pub unsafe fn getCurrentProcessShareableContentWithCompletionHandler(
             completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
         );
 
@@ -259,9 +267,13 @@ impl SCShareableContent {
         /// Parameter `completionHandler`: the call back that will hand you back a SCShareableContent object
         ///
         /// this method will create a SCShareableContent object that is called on the supplied queue. The SCShareableContent will contain the windows, displays and applications that are available to capture
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getShareableContentExcludingDesktopWindows:onScreenWindowsOnly:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnly_completionHandler(
+        pub unsafe fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnly_completionHandler(
             exclude_desktop_windows: bool,
             on_screen_windows_only: bool,
             completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
@@ -277,9 +289,13 @@ impl SCShareableContent {
         /// Parameter `completionHandler`: the call back that will hand you back a SCShareableContent object
         ///
         /// this method will create a SCShareableContent object that is called on the supplied queue. The SCShareableContent will contain the windows, displays and applications that are available to capture
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getShareableContentExcludingDesktopWindows:onScreenWindowsOnlyBelowWindow:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnlyBelowWindow_completionHandler(
+        pub unsafe fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnlyBelowWindow_completionHandler(
             exclude_desktop_windows: bool,
             window: &SCWindow,
             completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
@@ -295,9 +311,13 @@ impl SCShareableContent {
         /// Parameter `completionHandler`: the call back that will hand you back a SCShareableContent object
         ///
         /// this method will create a SCShareableContent object that is called on the supplied queue. The SCShareableContent will contain the windows, displays and applications that are available to capture
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getShareableContentExcludingDesktopWindows:onScreenWindowsOnlyAboveWindow:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnlyAboveWindow_completionHandler(
+        pub unsafe fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnlyAboveWindow_completionHandler(
             exclude_desktop_windows: bool,
             window: &SCWindow,
             completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,

@@ -197,6 +197,10 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Use updateEvents:completionHandler: instead"]
         #[unsafe(method(addEvent:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -216,6 +220,10 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Use updateEvents:completionHandler: instead"]
         #[unsafe(method(removeEvent:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -235,6 +243,10 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateEvents:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateEvents_completionHandler(
@@ -253,6 +265,10 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateEndEvents:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateEndEvents_completionHandler(
@@ -271,6 +287,10 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request,
         /// error will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updatePredicate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatePredicate_completionHandler(
@@ -289,6 +309,10 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request,
         /// error will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateRecurrences:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateRecurrences_completionHandler(
@@ -307,6 +331,10 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateExecuteOnce:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateExecuteOnce_completionHandler(

@@ -94,6 +94,10 @@ extern_protocol!(
         ///
         ///
         /// See: INHangUpCallIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleHangUpCall:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleHangUpCall_completion(
@@ -119,6 +123,10 @@ extern_protocol!(
         ///
         ///
         /// See: INHangUpCallIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmHangUpCall:completion:))]
         #[unsafe(method_family = none)]

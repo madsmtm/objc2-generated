@@ -25,6 +25,9 @@ extern_conformance!(
 impl CLMonitor {
     extern_methods!(
         #[cfg(all(feature = "CLMonitorConfiguration", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestMonitorWithConfiguration:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestMonitorWithConfiguration_completion(

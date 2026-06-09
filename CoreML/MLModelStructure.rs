@@ -56,6 +56,10 @@ impl MLModelStructure {
         /// Parameter `url`: The location of its on-disk representation (.mlmodelc directory).
         ///
         /// Parameter `handler`: When the model structure is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLModelStructure instance or NSError object.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(loadContentsOfURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadContentsOfURL_completionHandler(
@@ -70,6 +74,10 @@ impl MLModelStructure {
         /// Parameter `asset`: The model asset.
         ///
         /// Parameter `handler`: When the model structure is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLModelStructure instance or NSError object.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(loadModelAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadModelAsset_completionHandler(

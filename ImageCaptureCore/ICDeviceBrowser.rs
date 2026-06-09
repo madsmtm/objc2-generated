@@ -250,6 +250,10 @@ impl ICDeviceBrowser {
 
         #[cfg(feature = "block2")]
         /// This method requests the user’s permission, if needed, for accessing the conents of an external media device.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(requestContentsAuthorizationWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestContentsAuthorizationWithCompletion(
@@ -264,6 +268,10 @@ impl ICDeviceBrowser {
 
         #[cfg(feature = "block2")]
         /// This method requests the user’s permission, if needed, for controlling the attached camera device.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(requestControlAuthorizationWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestControlAuthorizationWithCompletion(
@@ -273,6 +281,10 @@ impl ICDeviceBrowser {
 
         #[cfg(feature = "block2")]
         /// This method resets the authorization status for the application accessing the conents of an external media device.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(resetContentsAuthorizationWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetContentsAuthorizationWithCompletion(
@@ -284,6 +296,10 @@ impl ICDeviceBrowser {
         /// This method resets the authorization status for the application controlling the attached camera device.
         ///
         /// If the application already has been granted camera access, this will reset only the presentation dialog letting the user know the app has permission, not the camera access itself.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(resetControlAuthorizationWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetControlAuthorizationWithCompletion(

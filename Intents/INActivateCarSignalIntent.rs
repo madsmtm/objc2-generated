@@ -102,6 +102,10 @@ extern_protocol!(
         ///
         ///
         /// See: INActivateCarSignalIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleActivateCarSignal:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleActivateCarSignal_completion(
@@ -127,6 +131,10 @@ extern_protocol!(
         ///
         ///
         /// See: INActivateCarSignalIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmActivateCarSignal:completion:))]
         #[unsafe(method_family = none)]
@@ -153,6 +161,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForActivateCarSignal:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -168,6 +180,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSignalsForActivateCarSignal:withCompletion:))]
         #[unsafe(method_family = none)]

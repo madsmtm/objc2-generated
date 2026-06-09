@@ -63,6 +63,10 @@ impl SFSafariPage {
 
         #[cfg(all(feature = "SFSafariPageProperties", feature = "block2"))]
         /// This calls the completion handler with the properties of the page.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getPagePropertiesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPagePropertiesWithCompletionHandler(
@@ -72,6 +76,10 @@ impl SFSafariPage {
 
         #[cfg(all(feature = "SFSafariTab", feature = "block2"))]
         /// This calls the completion handler with the tab containing this page. This will return a non-nil tab for any pages being preloaded by Safari.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getContainingTabWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getContainingTabWithCompletionHandler(
@@ -82,6 +90,10 @@ impl SFSafariPage {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Gets a screenshot of the currently visible area of the page.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getScreenshotOfVisibleAreaWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getScreenshotOfVisibleAreaWithCompletionHandler(

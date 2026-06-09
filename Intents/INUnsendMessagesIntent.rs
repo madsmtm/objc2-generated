@@ -94,6 +94,10 @@ extern_protocol!(
         ///
         ///
         /// See: INUnsendMessagesIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleUnsendMessages:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleUnsendMessages_completion(
@@ -119,6 +123,10 @@ extern_protocol!(
         ///
         ///
         /// See: INUnsendMessagesIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmUnsendMessages:completion:))]
         #[unsafe(method_family = none)]

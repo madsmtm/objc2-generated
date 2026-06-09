@@ -25,6 +25,10 @@ impl HMHomeManager {
         /// An error will be returned if this method is used before available homes have
         /// been retrieved by the HMHomeManager, i.e. before the homeManagerDidUpdateHomes:
         /// delegate method has been invoked.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(findVendorAccessoryWithHAPPublicKey:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findVendorAccessoryWithHAPPublicKey_completionHandler(

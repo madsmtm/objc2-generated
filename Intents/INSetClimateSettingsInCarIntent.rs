@@ -173,6 +173,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetClimateSettingsInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSetClimateSettingsInCar:completion:))]
         #[unsafe(method_family = none)]
@@ -199,6 +203,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetClimateSettingsInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSetClimateSettingsInCar:completion:))]
@@ -226,6 +234,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableFanForSetClimateSettingsInCar:withCompletion:))]
@@ -242,6 +254,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableAirConditionerForSetClimateSettingsInCar:withCompletion:))]
@@ -258,6 +273,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableClimateControlForSetClimateSettingsInCar:withCompletion:))]
@@ -274,6 +292,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableAutoModeForSetClimateSettingsInCar:withCompletion:))]
@@ -290,6 +311,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveAirCirculationModeForSetClimateSettingsInCar:withCompletion:))]
@@ -306,6 +330,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveFanSpeedIndexForSetClimateSettingsInCar:withCompletion:))]
@@ -322,6 +349,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveFanSpeedPercentageForSetClimateSettingsInCar:withCompletion:))]
@@ -338,6 +368,9 @@ extern_protocol!(
             feature = "INRelativeSettingResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRelativeFanSpeedSettingForSetClimateSettingsInCar:withCompletion:))]
@@ -354,6 +387,9 @@ extern_protocol!(
             feature = "INTemperatureResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTemperatureForSetClimateSettingsInCar:withCompletion:))]
@@ -370,6 +406,9 @@ extern_protocol!(
             feature = "INRelativeSettingResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRelativeTemperatureSettingForSetClimateSettingsInCar:withCompletion:))]
@@ -386,6 +425,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveClimateZoneForSetClimateSettingsInCar:withCompletion:))]
@@ -402,6 +444,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForSetClimateSettingsInCar:withCompletion:))]
         #[unsafe(method_family = none)]

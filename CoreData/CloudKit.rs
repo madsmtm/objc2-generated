@@ -21,6 +21,9 @@ impl NSPersistentCloudKitContainer {
             feature = "block2",
             feature = "objc2-cloud-kit"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(acceptShareInvitationsFromMetadata:intoPersistentStore:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptShareInvitationsFromMetadata_intoPersistentStore_completion(
@@ -37,6 +40,9 @@ impl NSPersistentCloudKitContainer {
             feature = "block2",
             feature = "objc2-cloud-kit"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(purgeObjectsAndRecordsInZoneWithID:inPersistentStore:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn purgeObjectsAndRecordsInZoneWithID_inPersistentStore_completion(
@@ -51,6 +57,9 @@ impl NSPersistentCloudKitContainer {
             feature = "block2",
             feature = "objc2-cloud-kit"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(persistUpdatedShare:inPersistentStore:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistUpdatedShare_inPersistentStore_completion(
@@ -65,6 +74,9 @@ impl NSPersistentCloudKitContainer {
             feature = "block2",
             feature = "objc2-cloud-kit"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchParticipantsMatchingLookupInfos_intoPersistentStore_completion(
@@ -96,6 +108,9 @@ impl NSPersistentCloudKitContainer {
             feature = "block2",
             feature = "objc2-cloud-kit"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(shareManagedObjects:toShare:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shareManagedObjects_toShare_completion(

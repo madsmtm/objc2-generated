@@ -100,7 +100,8 @@ impl VSAccountManager {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(checkAccessStatusWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkAccessStatusWithOptions_completionHandler(

@@ -47,6 +47,9 @@ impl VSUserAccountManager {
         pub unsafe fn sharedUserAccountManager() -> Retained<VSUserAccountManager>;
 
         #[cfg(all(feature = "VSUserAccount", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateUserAccount:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateUserAccount_completion(
@@ -56,6 +59,9 @@ impl VSUserAccountManager {
         );
 
         #[cfg(all(feature = "VSUserAccount", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(queryUserAccountsWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryUserAccountsWithOptions_completion(
@@ -66,6 +72,10 @@ impl VSUserAccountManager {
 
         #[cfg(all(feature = "VSAutoSignInToken", feature = "block2"))]
         /// Query the auto sign in token and authorization state.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(queryAutoSignInTokenWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryAutoSignInTokenWithCompletionHandler(
@@ -75,6 +85,10 @@ impl VSUserAccountManager {
 
         #[cfg(feature = "block2")]
         /// Deletes the auto sign in token.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(deleteAutoSignInTokenWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAutoSignInTokenWithCompletionHandler(

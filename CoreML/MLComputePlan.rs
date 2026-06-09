@@ -72,6 +72,10 @@ impl MLComputePlan {
         /// Parameter `configuration`: The model configuration.
         ///
         /// Parameter `handler`: When the compute plan is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLComputePlan instance or NSError object.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(loadContentsOfURL:configuration:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadContentsOfURL_configuration_completionHandler(
@@ -93,6 +97,10 @@ impl MLComputePlan {
         /// Parameter `configuration`: The model configuration.
         ///
         /// Parameter `handler`: When the compute plan is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLComputePlan instance or NSError object.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(loadModelAsset:configuration:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadModelAsset_configuration_completionHandler(

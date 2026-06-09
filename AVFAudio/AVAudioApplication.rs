@@ -178,6 +178,10 @@ impl AVAudioApplication {
         /// denied.  Otherwise, it presents a dialog to notify the user and allow them to choose, and calls
         /// the block once the UI has been dismissed.  'granted' indicates whether permission has been
         /// granted. Note that the block may be called in a different thread context.
+        ///
+        /// # Safety
+        ///
+        /// `response` block must be sendable.
         #[unsafe(method(requestRecordPermissionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestRecordPermissionWithCompletionHandler(
@@ -200,6 +204,10 @@ impl AVAudioApplication {
         /// user and allow them to choose, and calls the block once the UI has been dismissed.
         /// 'granted' indicates whether permission has been granted. Note that the block may be
         /// called in a different thread context.
+        ///
+        /// # Safety
+        ///
+        /// `response` block must be sendable.
         #[unsafe(method(requestMicrophoneInjectionPermissionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestMicrophoneInjectionPermissionWithCompletionHandler(

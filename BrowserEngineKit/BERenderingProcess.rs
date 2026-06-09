@@ -42,6 +42,10 @@ impl BERenderingProcess {
         /// - `interruptionHandler` : A block that is called if the extension process terminates.
         /// - `completion` : A block called with a new ``BERenderingProcess`` when the extension process has
         /// launched or with an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(renderingProcessWithInterruptionHandler:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingProcessWithInterruptionHandler_completion(
@@ -59,6 +63,10 @@ impl BERenderingProcess {
         /// - `interruptionHandler` : A block that is called if the extension process terminates.
         /// - `completion` : A block called with a new ``BERenderingProcess`` when the extension process has
         /// launched or with an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(renderingProcessWithBundleID:interruptionHandler:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingProcessWithBundleID_interruptionHandler_completion(

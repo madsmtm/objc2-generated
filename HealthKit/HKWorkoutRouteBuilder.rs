@@ -71,6 +71,10 @@ impl HKWorkoutRouteBuilder {
         /// NO, then error is non-nil. An error here is considered fatal and the series builder will be complete.
         /// If data was previously saved, then the HKWorkoutRoute may be retrieved by the
         /// finishRouteWithMetadata: method.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(insertRouteData:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertRouteData_completion(
@@ -96,7 +100,8 @@ impl HKWorkoutRouteBuilder {
         ///
         /// # Safety
         ///
-        /// `metadata` generic should be of the correct type.
+        /// - `metadata` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(addMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMetadata_completion(
@@ -135,7 +140,8 @@ impl HKWorkoutRouteBuilder {
         ///
         /// # Safety
         ///
-        /// `metadata` generic should be of the correct type.
+        /// - `metadata` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(finishRouteWithWorkout:metadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishRouteWithWorkout_metadata_completion(

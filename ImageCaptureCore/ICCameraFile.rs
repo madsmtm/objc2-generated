@@ -183,7 +183,8 @@ impl ICCameraFile {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(requestThumbnailDataWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestThumbnailDataWithOptions_completion(
@@ -203,7 +204,8 @@ impl ICCameraFile {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(requestMetadataDictionaryWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestMetadataDictionaryWithOptions_completion(
@@ -249,6 +251,10 @@ impl ICCameraFile {
         /// Parameter `completion`: Completion block called with an NSData* object representing the data, and an NSError* for status.
         ///
         /// Note: The completion block will execute on an any available queue, often this will not be the main queue.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(requestReadDataAtOffset:length:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestReadDataAtOffset_length_completion(
@@ -265,6 +271,10 @@ impl ICCameraFile {
         /// Parameter `completion`: Completion block called with an NSURL*, and an NSError* for status.
         ///
         /// Note: The completion block will execute on an any available queue, often this will not be the main queue.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(requestSecurityScopedURLWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestSecurityScopedURLWithCompletion(
@@ -278,6 +288,10 @@ impl ICCameraFile {
         /// Parameter `completion`: Completion block called with an NSString*, and an NSError* for status.
         ///
         /// Note: The completion block will execute on an any available queue, often this will not be the main queue.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(requestFingerprintWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestFingerprintWithCompletion(

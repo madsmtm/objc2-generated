@@ -80,6 +80,10 @@ impl PTChannelManager {
             feature = "block2"
         ))]
         /// You must instantiate a channel manager upon launching your app, otherwise the system will tear down channels and their ability to receive pushes. By providing a restoration delegate, you can decide whether to rejoin or leave any previously active channels that the system knows about. Once the channel restoration process is completed, you will be given the PTChannelManager instance.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(channelManagerWithDelegate:restorationDelegate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelManagerWithDelegate_restorationDelegate_completionHandler(
@@ -132,6 +136,10 @@ impl PTChannelManager {
 
         #[cfg(all(feature = "PTChannelDescriptor", feature = "block2"))]
         /// Updates the channel descriptor
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setChannelDescriptor:forChannelUUID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannelDescriptor_forChannelUUID_completionHandler(
@@ -143,6 +151,10 @@ impl PTChannelManager {
 
         #[cfg(all(feature = "PTParticipant", feature = "block2"))]
         /// When receiving incoming audio from a remote participant, set the participant to a nonnull value, which will update the system user interface and block transmitting. When the user has stopped speaking, set the participant to nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setActiveRemoteParticipant:forChannelUUID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActiveRemoteParticipant_forChannelUUID_completionHandler(
@@ -154,6 +166,10 @@ impl PTChannelManager {
 
         #[cfg(feature = "block2")]
         /// The default value for service status is PTServiceStatusReady. If your underlying network connection is experiencing issues, set the appropriate service status. The service status will be reflected in the system user interface.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setServiceStatus:forChannelUUID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServiceStatus_forChannelUUID_completionHandler(
@@ -165,6 +181,10 @@ impl PTChannelManager {
 
         #[cfg(feature = "block2")]
         /// The default value for transmission mode is PTTransmissionModeHalfDuplex. If your application support one of the other transmission modes set it using this function. The system user interface will be updated to reflect the transmission mode.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setTransmissionMode:forChannelUUID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransmissionMode_forChannelUUID_completionHandler(
@@ -176,6 +196,10 @@ impl PTChannelManager {
 
         #[cfg(feature = "block2")]
         /// The default channel behavior is to map supported accessory button events to begin/end transmission actions. If your application does not wish to map these button events to transmission actions you can disable them by setting the enabled value to false.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setAccessoryButtonEventsEnabled:forChannelUUID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryButtonEventsEnabled_forChannelUUID_completionHandler(

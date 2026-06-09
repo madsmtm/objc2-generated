@@ -146,6 +146,10 @@ impl APActivationPayload {
         /// more information, see
         /// <doc
         /// ://com.apple.documentation/documentation/corelocation/getting_the_current_location_of_a_device>.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(confirmAcquiredInRegion:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmAcquiredInRegion_completionHandler(

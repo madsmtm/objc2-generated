@@ -106,6 +106,10 @@ impl TVUserManager {
         /// The system will present a panel to the user which allows the user to configure all the preferred profiles for this application for all users on the system.  Once the user dismisses the panel, the completion callback will give the new settings, which should be saved by the application.  The application should invoke this method from some place in its user interface, perhaps a button in the app's "settings" area.
         /// The completion block is executed on an arbitrary dispatch queue / thread.
         /// If invoked from within an extension, no UI will be presented and the dictionary parameter to the callback will be empty.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "User Management capability get-current-user is no longer supported. Please use runs-as-current-user-with-user-independent-keychain and kSecUseUserIndependentKeychain for sharing keychain items across users."]
         #[unsafe(method(presentProfilePreferencePanelWithCurrentSettings:availableProfiles:completion:))]
         #[unsafe(method_family = none)]
@@ -128,6 +132,10 @@ impl TVUserManager {
         /// An application uses this method to confirm with the system that the application should adopt a profile chosen from a profile picker as the preferred profile for that user identifier. The system will usually then ask the user with some user interface what the user wants to do. If the answer is NO, the application should not store the chosen profile as the user's preferred profile. An application should only ask this once per user identifier and profile pair, so even if the answer is NO, the application needs to record that the system has been asked, for that identifier + profile pair.
         /// The completion block is executed on an arbitrary dispatch queue / thread.
         /// If invoked from within an extension, no UI will be presented and the result will always be NO.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "User Management capability get-current-user is no longer supported. Please use runs-as-current-user-with-user-independent-keychain and kSecUseUserIndependentKeychain for sharing keychain items across users."]
         #[unsafe(method(shouldStorePreferenceForCurrentUserToProfile:completion:))]
         #[unsafe(method_family = none)]

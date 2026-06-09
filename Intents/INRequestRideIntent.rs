@@ -132,6 +132,10 @@ extern_protocol!(
         ///
         ///
         /// See: INRequestRideIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleRequestRide:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleRequestRide_completion(
@@ -157,6 +161,10 @@ extern_protocol!(
         ///
         ///
         /// See: INRequestRideIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmRequestRide:completion:))]
         #[unsafe(method_family = none)]
@@ -183,6 +191,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePickupLocationForRequestRide:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -198,6 +210,9 @@ extern_protocol!(
             feature = "INPlacemarkResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDropOffLocationForRequestRide:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -213,6 +228,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRideOptionNameForRequestRide:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -228,6 +246,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePartySizeForRequestRide:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -243,6 +264,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveScheduledPickupTimeForRequestRide:withCompletion:))]
         #[unsafe(method_family = none)]

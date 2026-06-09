@@ -71,6 +71,10 @@ impl SACrashDetectionManager {
         ///
         ///
         /// Parameter `handler`: Completion handler invoked with the status of the authorization request.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(requestAuthorizationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationWithCompletionHandler(

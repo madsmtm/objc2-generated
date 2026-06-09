@@ -114,6 +114,10 @@ impl ASAuthorizationProviderExtensionAuthorizationRequest {
 
         #[cfg(feature = "block2")]
         /// Asks authorization service to show extension view controller. If the controller cannot be shown an error is returned.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(presentAuthorizationViewControllerWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentAuthorizationViewControllerWithCompletion(

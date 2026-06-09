@@ -30,6 +30,10 @@ impl ASAccountAuthenticationModificationExtensionContext {
         /// Calling this method will cause the system Sign in with Apple upgrade sheet
         /// to appear. If extension UI is showing when this method is called, the extension UI will be
         /// dismissed before the sheet is presented.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getSignInWithAppleUpgradeAuthorizationWithState:nonce:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSignInWithAppleUpgradeAuthorizationWithState_nonce_completionHandler(

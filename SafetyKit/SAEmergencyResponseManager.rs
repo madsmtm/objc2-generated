@@ -98,6 +98,10 @@ impl SAEmergencyResponseManager {
         /// Requests will fail with SAErrorNotAuthorized if user has not authorized the app to receive and handle any emergency events.
         /// Requests will fail with SAErrorNotAvailable if invoked outside of the limited time window after an emergency event is detected.
         /// Use the SAEmergencyResponseDelegate to monitor the progress of the voice call.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(dialVoiceCallToPhoneNumber:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dialVoiceCallToPhoneNumber_completionHandler(

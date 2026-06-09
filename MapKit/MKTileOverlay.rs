@@ -143,6 +143,9 @@ impl MKTileOverlay {
         pub unsafe fn URLForTilePath(&self, path: MKTileOverlayPath) -> Retained<NSURL>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `result` block must be sendable.
         #[unsafe(method(loadTileAtPath:result:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTileAtPath_result(

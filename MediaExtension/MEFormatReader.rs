@@ -185,6 +185,10 @@ extern_protocol!(
         /// The returned MEFileInfo object.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFileInfoWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFileInfoWithCompletionHandler(
@@ -202,6 +206,10 @@ extern_protocol!(
         /// The returned NSArray of AVMetadataItem objects.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadMetadataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadMetadataWithCompletionHandler(
@@ -221,6 +229,10 @@ extern_protocol!(
         /// The returned NSArray of METrackReader objects.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackReadersWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadTrackReadersWithCompletionHandler(
@@ -240,6 +252,10 @@ extern_protocol!(
         /// The returned MEFormatReaderParseAdditionalFragmentsStatus flags with status information.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil. Returns an error of MEFormatReaderErrorUnsupportedFeature if the MEFormatReaderInstantiationOptions property allowIncrementalFragmentParsing was not set to YES at creation time. Returns an error of MEFormatReaderErrorParsingFailure if there was a parsing failure.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(parseAdditionalFragmentsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -381,6 +397,10 @@ extern_protocol!(
         /// The returned METrackInfo object if the method succeeds, otherwise nil.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackInfoWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadTrackInfoWithCompletionHandler(
@@ -400,6 +420,10 @@ extern_protocol!(
         /// The returned MESampleCursor if the method succeeds, otherwise nil.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(generateSampleCursorAtPresentationTimeStamp:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn generateSampleCursorAtPresentationTimeStamp_completionHandler(
@@ -420,6 +444,10 @@ extern_protocol!(
         /// The returned MESampleCursor if the method succeeds, otherwise nil.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(generateSampleCursorAtFirstSampleInDecodeOrderWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn generateSampleCursorAtFirstSampleInDecodeOrderWithCompletionHandler(
@@ -439,6 +467,10 @@ extern_protocol!(
         /// The returned MESampleCursor if the method succeeds, otherwise nil.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(generateSampleCursorAtLastSampleInDecodeOrderWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn generateSampleCursorAtLastSampleInDecodeOrderWithCompletionHandler(
@@ -458,6 +490,10 @@ extern_protocol!(
         /// A valid duration if the method succeeds, otherwise kCMTimeInvalid.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadUneditedDurationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -476,6 +512,10 @@ extern_protocol!(
         /// A valid data length if the method succeeds, otherwise 0.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadTotalSampleDataLengthWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -492,6 +532,10 @@ extern_protocol!(
         /// A valid data rate if the method succeeds, otherwise 0.0.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadEstimatedDataRateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -510,6 +554,10 @@ extern_protocol!(
         /// An NSArray of AVMetadataItem objects if the method succeeds, otherwise nil.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadMetadataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -865,6 +913,10 @@ extern_protocol!(
         /// The final count of steps taken.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(stepInDecodeOrderByCount:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn stepInDecodeOrderByCount_completionHandler(
@@ -888,6 +940,10 @@ extern_protocol!(
         /// The final count of steps taken.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(stepInPresentationOrderByCount:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn stepInPresentationOrderByCount_completionHandler(
@@ -910,6 +966,10 @@ extern_protocol!(
         /// YES if the request attempted to advance the cursor beyond the track limits, otherwise NO.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(stepByDecodeTime:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn stepByDecodeTime_completionHandler(
@@ -932,6 +992,10 @@ extern_protocol!(
         /// YES if the request attempted to advance the cursor beyond the track limits, otherwise NO.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(stepByPresentationTime:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn stepByPresentationTime_completionHandler(
@@ -1097,6 +1161,10 @@ extern_protocol!(
         /// A CMSampleBufferRef with the newly created sample buffer. If the sample cursor is implemented in Objective-C, it is the responsibility of the sample cursor implementation to balance the creation of this sample buffer by calling CFRelease.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadSampleBufferContainingSamplesToEndCursor:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -1117,6 +1185,10 @@ extern_protocol!(
         /// The returned NSDictionary should conform to a CFPropertyList.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadPostDecodeProcessingMetadataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -1779,7 +1851,8 @@ impl MEByteSource {
         ///
         /// # Safety
         ///
-        /// `dest` must be a valid pointer.
+        /// - `dest` must be a valid pointer.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(readDataOfLength:fromOffset:toDestination:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readDataOfLength_fromOffset_toDestination_completionHandler(
@@ -1804,6 +1877,10 @@ impl MEByteSource {
         /// The NSData object holding the data that have been read. The NSData length property will indicate the actual number of bytes read.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil. Returns MEErrorEndOfStream if no more bytes can be read.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(readDataOfLength:fromOffset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readDataOfLength_fromOffset_completionHandler(

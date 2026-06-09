@@ -36,6 +36,10 @@ impl TKSmartCardSlotManager {
 
         #[cfg(feature = "block2")]
         /// Instantiates smartcard reader slot of specified name.  If specified name is not registered, reports nil.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(getSlotWithName:reply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSlotWithName_reply(
@@ -536,6 +540,10 @@ impl TKSmartCardUserInteraction {
 
         #[cfg(feature = "block2")]
         /// Runs the interaction.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(runWithReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runWithReply(&self, reply: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>);
@@ -880,6 +888,10 @@ impl TKSmartCard {
         /// Parameter `success`: Signals whether session was successfully started.
         ///
         /// Parameter `error`: More information about error preventing the transaction to start
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(beginSessionWithReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSessionWithReply(
@@ -895,6 +907,10 @@ impl TKSmartCard {
         /// Parameter `reponse`: Response part of APDU, or nil if communication with the card failed
         ///
         /// Parameter `error`: Error details when communication with the card failed
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(transmitRequest:reply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transmitRequest_reply(
@@ -1023,6 +1039,10 @@ impl TKSmartCard {
         /// Parameter `sw`: SW1SW2 result code, first two bytes of returned card's reply.
         ///
         /// Parameter `error`: Contains error details when nil is returned.  Specific error is also filled in if there was no communication error, but card returned other SW code than 0x9000.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(sendIns:p1:p2:data:le:reply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendIns_p1_p2_data_le_reply(

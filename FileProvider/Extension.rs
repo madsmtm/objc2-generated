@@ -58,6 +58,10 @@ impl NSFileProviderExtension {
         /// writePlaceholderAtURL:withMetadata:error:] with the URL returned by
         /// +[NSFileProviderManager placeholderURLForURL:], then call the completion
         /// handler.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(providePlaceholderAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn providePlaceholderAtURL_completionHandler(
@@ -69,6 +73,10 @@ impl NSFileProviderExtension {
         #[cfg(feature = "block2")]
         /// Should ensure that the actual file is in the position returned by
         /// URLForItemWithPersistentIdentifier:, then call the completion handler.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(startProvidingItemAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startProvidingItemAtURL_completionHandler(
@@ -260,6 +268,10 @@ impl NSFileProviderManager {
         /// }
         /// with a topic of "<your application identifier>.pushkit.fileprovider" will be
         /// translated into a call to signalEnumeratorForContainerItemIdentifier:completionHandler:.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(signalEnumeratorForContainerItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn signalEnumeratorForContainerItemIdentifier_completionHandler(
@@ -293,6 +305,10 @@ impl NSFileProviderManager {
         ///
         /// On iOS, for replicated domains, the extension process will never be granted access to the user
         /// visible location, this function will always fail with `NSFileReadNoPermissionError`.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getUserVisibleURLForItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getUserVisibleURLForItemIdentifier_completionHandler(
@@ -312,6 +328,10 @@ impl NSFileProviderManager {
         /// applicable. Calling this method on a file which doesn't reside in your
         /// provider/domain, or which hasn't yet been assigned an identifier by
         /// the provider will return the Cocoa error NSFileNoSuchFileError.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getIdentifierForUserVisibleFileAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getIdentifierForUserVisibleFileAtURL_completionHandler(
@@ -330,6 +350,10 @@ impl NSFileProviderManager {
         /// A given item can only have one task registered at a time. The task must be
         /// suspended at the time of calling.
         /// The task's progress is displayed on the item when the task is executed.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(registerURLSessionTask:forItemWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerURLSessionTask_forItemWithIdentifier_completionHandler(
@@ -420,6 +444,10 @@ impl NSFileProviderManager {
         /// When the domain is backed by a NSFileProviderReplicatedExtension, the system will create
         /// a disk location where the domain will be replicated. If that location already exists on disk
         /// this call will fail with the code NSFileWriteFileExistsError.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(addDomain:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addDomain_completionHandler(
@@ -429,6 +457,10 @@ impl NSFileProviderManager {
 
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         /// Remove a domain.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeDomain:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeDomain_completionHandler(
@@ -438,6 +470,10 @@ impl NSFileProviderManager {
 
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         /// Remove a domain with options
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeDomain:mode:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeDomain_mode_completionHandler(
@@ -448,6 +484,10 @@ impl NSFileProviderManager {
 
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         /// Get all registered domains.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getDomainsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDomainsWithCompletionHandler(
@@ -458,6 +498,10 @@ impl NSFileProviderManager {
 
         #[cfg(feature = "block2")]
         /// Remove all registered domains.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeAllDomainsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllDomainsWithCompletionHandler(
@@ -473,6 +517,10 @@ impl NSFileProviderManager {
         /// - NSFileProviderErrorServerUnreachable
         /// - NSFileProviderErrorCannotSynchronize
         /// - NSFileProviderErrorExcludedFromSync
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(signalErrorResolved:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn signalErrorResolved_completionHandler(
@@ -644,6 +692,10 @@ impl NSFileProviderManager {
         /// In case -[NSFileProviderManager reimportItemsBelowItemWithIdentifier:completionHandler:]
         /// is called before the end of the import, a single call to importDidFinishWithCompletionHandler
         /// will be received for both the import and the scan.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(importDomain:fromDirectoryAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn importDomain_fromDirectoryAtURL_completionHandler(
@@ -688,6 +740,10 @@ impl NSFileProviderManager {
         /// a NSFileProviderErrorNoSuchItem error. The same error will be reported if the reimport request
         /// happens quickly after a previous import / reimport and the corresponding item hasn't been
         /// reimported yet.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(reimportItemsBelowItemWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reimportItemsBelowItemWithIdentifier_completionHandler(
@@ -707,6 +763,10 @@ impl NSFileProviderManager {
         /// modifyItem call will be scheduled.
         /// The completion handler may be called with an error. If the provider passes the `.content` field when the item
         /// is not downloaded, or when the item is a folder, then the system will return CocoaError(.ubiquitousFileUnavailable).
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestModificationOfFields:forItemWithIdentifier:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestModificationOfFields_forItemWithIdentifier_options_completionHandler(
@@ -743,6 +803,10 @@ impl NSFileProviderManager {
         /// - NSPOSIXErrorDomain.EBUSY : if the item has open file descriptors on it.
         /// - NSPOSIXErrorDomain.EMLINK : if the item has several hardlinks.
         /// - other NSPOSIXErrorDomain error codes if the system was unable to access or manipulate the corresponding file.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(evictItemWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn evictItemWithIdentifier_completionHandler(
@@ -773,6 +837,10 @@ impl NSFileProviderManager {
         /// In case a change cannot be applied to the provider, the call will fail with NSFileProviderErrorCannotSynchronize
         /// including the NSFileProviderErrorItemKey with the identifier of the item that could not be synced if that item
         /// is known by the provider.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(waitForChangesOnItemsBelowItemWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn waitForChangesOnItemsBelowItemWithIdentifier_completionHandler(
@@ -795,6 +863,10 @@ impl NSFileProviderManager {
         ///
         /// The completion handler is called when both sets of changes are caught up to at least the time
         /// of the call. This is useful to enforce a consistent state for testing.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(waitForStabilizationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn waitForStabilizationWithCompletionHandler(
@@ -828,6 +900,9 @@ unsafe impl RefEncode for NSFileProviderManagerDisconnectionOptions {
 impl NSFileProviderManager {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(disconnectWithReason:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disconnectWithReason_options_completionHandler(
@@ -838,6 +913,9 @@ impl NSFileProviderManager {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(reconnectWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reconnectWithCompletionHandler(
@@ -869,6 +947,10 @@ impl NSFileProviderManager {
         /// dataless directory, it will trigger an enumeration of the directory, causing a
         /// materialization of the directory one level down only. All the children of the
         /// directory will remain dataless after the enumeration.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestDownloadForItemWithIdentifier:requestedRange:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestDownloadForItemWithIdentifier_requestedRange_completionHandler(
@@ -995,6 +1077,10 @@ impl NSFileProviderManager {
         ///
         /// It is important to note that even if the call is allowed, it might not trigger diagnostic collection
         /// nor prompt to the user depending on the system state and other throttling parameters
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestDiagnosticCollectionForItemWithIdentifier:errorReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestDiagnosticCollectionForItemWithIdentifier_errorReason_completionHandler(

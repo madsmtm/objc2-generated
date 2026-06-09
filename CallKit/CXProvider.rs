@@ -246,6 +246,10 @@ impl CXProvider {
         /// If completion is invoked with a non-nil `error`, the incoming call has been disallowed by the system and will not be displayed, so the provider should not proceed with the call.
         ///
         /// Completion block will be called on delegate queue, if specified, otherwise on a private serial queue.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(reportNewIncomingCallWithUUID:update:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportNewIncomingCallWithUUID_update_completion(
@@ -294,7 +298,8 @@ impl CXProvider {
         ///
         /// # Safety
         ///
-        /// `dictionary_payload` generic should be of the correct type.
+        /// - `dictionary_payload` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(reportNewIncomingVoIPPushPayload:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportNewIncomingVoIPPushPayload_completion(

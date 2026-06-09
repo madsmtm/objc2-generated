@@ -129,6 +129,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchCallHistoryIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchCallHistoryIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSearchCallHistory:completion:))]
         #[unsafe(method_family = none)]
@@ -155,6 +159,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchCallHistoryIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchCallHistoryIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSearchCallHistory:completion:))]
@@ -182,6 +190,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchCallHistoryIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveCallTypeForSearchCallHistory:withCompletion:))]
@@ -198,6 +210,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchCallHistoryIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveDateCreatedForSearchCallHistory:withCompletion:))]
@@ -214,6 +229,9 @@ extern_protocol!(
             feature = "INPersonResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchCallHistoryIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRecipientForSearchCallHistory:withCompletion:))]
@@ -230,6 +248,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCallTypesForSearchCallHistory:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -245,6 +266,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveUnseenForSearchCallHistory:withCompletion:))]
         #[unsafe(method_family = none)]

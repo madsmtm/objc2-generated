@@ -96,6 +96,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetCarPowerLevelStatusIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleGetCarPowerLevelStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetCarPowerLevelStatus_completion(
@@ -140,6 +144,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetCarPowerLevelStatusIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetCarPowerLevelStatus:completion:))]
         #[unsafe(method_family = none)]
@@ -166,6 +174,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForGetCarPowerLevelStatus:withCompletion:))]
         #[unsafe(method_family = none)]

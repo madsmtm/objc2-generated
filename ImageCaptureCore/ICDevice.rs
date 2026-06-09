@@ -406,7 +406,8 @@ impl ICDevice {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(requestOpenSessionWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestOpenSessionWithOptions_completion(
@@ -424,7 +425,8 @@ impl ICDevice {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(requestCloseSessionWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestCloseSessionWithOptions_completion(
@@ -439,6 +441,10 @@ impl ICDevice {
         /// This request will execute the completion handler provided upon return.
         ///
         /// Note: The completion block will execute on an any available queue, often this will not be the main queue.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(requestEjectWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestEjectWithCompletion(

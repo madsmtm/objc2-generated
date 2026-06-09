@@ -963,9 +963,13 @@ extern_protocol!(
         /// Returns a pointer to a function object obtained by applying the constant values to the named function.
         ///
         /// This method is asynchronous since it is will call the compiler.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(newFunctionWithName:constantValues:completionHandler:))]
         #[unsafe(method_family = none)]
-        fn newFunctionWithName_constantValues_completionHandler(
+        unsafe fn newFunctionWithName_constantValues_completionHandler(
             &self,
             name: &NSString,
             constant_values: &MTLFunctionConstantValues,
@@ -1004,9 +1008,13 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLFunctionDescriptor", feature = "block2"))]
         /// Create a new MTLFunction object asynchronously.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(newFunctionWithDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
-        fn newFunctionWithDescriptor_completionHandler(
+        unsafe fn newFunctionWithDescriptor_completionHandler(
             &self,
             descriptor: &MTLFunctionDescriptor,
             completion_handler: &block2::DynBlock<
@@ -1025,9 +1033,13 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLFunctionDescriptor", feature = "block2"))]
         /// Create a new MTLFunction object asynchronously.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(newIntersectionFunctionWithDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
-        fn newIntersectionFunctionWithDescriptor_completionHandler(
+        unsafe fn newIntersectionFunctionWithDescriptor_completionHandler(
             &self,
             descriptor: &MTLIntersectionFunctionDescriptor,
             completion_handler: &block2::DynBlock<

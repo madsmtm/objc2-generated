@@ -38,6 +38,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "PKConstants", feature = "PKPayment", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Use paymentAuthorizationController:didAuthorizePayment:handler: instead to provide more granular errors"]
         #[optional]
         #[unsafe(method(paymentAuthorizationController:didAuthorizePayment:completion:))]
@@ -136,6 +139,9 @@ extern_protocol!(
             feature = "PKShippingMethod",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Use paymentAuthorizationController:didSelectShippingMethod:handler: instead to provide more granular errors"]
         #[optional]
         #[unsafe(method(paymentAuthorizationController:didSelectShippingMethod:completion:))]
@@ -156,6 +162,9 @@ extern_protocol!(
             feature = "PKShippingMethod",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Use paymentAuthorizationController:didSelectShippingContact:handler: instead to provide more granular errors"]
         #[optional]
         #[unsafe(method(paymentAuthorizationController:didSelectShippingContact:completion:))]
@@ -178,6 +187,9 @@ extern_protocol!(
             feature = "PKPaymentSummaryItem",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Use paymentAuthorizationController:didSelectPaymentMethod:handler: instead to provide more granular errors"]
         #[optional]
         #[unsafe(method(paymentAuthorizationController:didSelectPaymentMethod:completion:))]
@@ -258,6 +270,9 @@ impl PKPaymentAuthorizationController {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(presentWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentWithCompletion(
@@ -266,6 +281,9 @@ impl PKPaymentAuthorizationController {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(dismissWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissWithCompletion(&self, completion: Option<&block2::DynBlock<dyn Fn()>>);

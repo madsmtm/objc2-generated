@@ -101,6 +101,10 @@ extern_protocol!(
         ///
         ///
         /// See: INAnswerCallIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleAnswerCall:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleAnswerCall_completion(
@@ -126,6 +130,10 @@ extern_protocol!(
         ///
         ///
         /// See: INAnswerCallIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmAnswerCall:completion:))]
         #[unsafe(method_family = none)]

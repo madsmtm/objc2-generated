@@ -159,6 +159,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForPhotosIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForPhotosIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSearchForPhotos:completion:))]
         #[unsafe(method_family = none)]
@@ -185,6 +189,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForPhotosIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForPhotosIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSearchForPhotos:completion:))]
@@ -212,6 +220,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForPhotosIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveDateCreatedForSearchForPhotos:withCompletion:))]
@@ -228,6 +240,9 @@ extern_protocol!(
             feature = "INPlacemarkResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForPhotosIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveLocationCreatedForSearchForPhotos:withCompletion:))]
@@ -244,6 +259,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForPhotosIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveAlbumNameForSearchForPhotos:withCompletion:))]
@@ -260,6 +278,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated]
         #[optional]
         #[unsafe(method(resolveSearchTermsForSearchForPhotos:withCompletion:))]
@@ -276,6 +297,9 @@ extern_protocol!(
             feature = "INPersonResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForPhotosIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolvePeopleInPhotoForSearchForPhotos:withCompletion:))]

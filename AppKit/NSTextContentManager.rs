@@ -57,9 +57,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(synchronizeToBackingStore:))]
         #[unsafe(method_family = none)]
-        fn synchronizeToBackingStore(
+        unsafe fn synchronizeToBackingStore(
             &self,
             completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
@@ -181,9 +184,12 @@ impl NSTextContentManager {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(synchronizeTextLayoutManagers:))]
         #[unsafe(method_family = none)]
-        pub fn synchronizeTextLayoutManagers(
+        pub unsafe fn synchronizeTextLayoutManagers(
             &self,
             completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );

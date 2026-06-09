@@ -58,9 +58,12 @@ impl NSWorkspace {
         pub fn openURL(&self, url: &NSURL) -> bool;
 
         #[cfg(all(feature = "NSRunningApplication", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(openURL:configuration:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn openURL_configuration_completionHandler(
+        pub unsafe fn openURL_configuration_completionHandler(
             &self,
             url: &NSURL,
             configuration: &NSWorkspaceOpenConfiguration,
@@ -70,9 +73,12 @@ impl NSWorkspace {
         );
 
         #[cfg(all(feature = "NSRunningApplication", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(openURLs:withApplicationAtURL:configuration:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn openURLs_withApplicationAtURL_configuration_completionHandler(
+        pub unsafe fn openURLs_withApplicationAtURL_configuration_completionHandler(
             &self,
             urls: &NSArray<NSURL>,
             application_url: &NSURL,
@@ -83,9 +89,12 @@ impl NSWorkspace {
         );
 
         #[cfg(all(feature = "NSRunningApplication", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(openApplicationAtURL:configuration:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn openApplicationAtURL_configuration_completionHandler(
+        pub unsafe fn openApplicationAtURL_configuration_completionHandler(
             &self,
             application_url: &NSURL,
             configuration: &NSWorkspaceOpenConfiguration,
@@ -154,9 +163,12 @@ impl NSWorkspace {
         pub fn fileLabelColors(&self) -> Retained<NSArray<NSColor>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(recycleURLs:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn recycleURLs_completionHandler(
+        pub unsafe fn recycleURLs_completionHandler(
             &self,
             ur_ls: &NSArray<NSURL>,
             handler: Option<
@@ -165,9 +177,12 @@ impl NSWorkspace {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(duplicateURLs:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn duplicateURLs_completionHandler(
+        pub unsafe fn duplicateURLs_completionHandler(
             &self,
             ur_ls: &NSArray<NSURL>,
             handler: Option<
@@ -229,9 +244,12 @@ impl NSWorkspace {
         pub fn URLsForApplicationsToOpenURL(&self, url: &NSURL) -> Retained<NSArray<NSURL>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setDefaultApplicationAtURL:toOpenContentTypeOfFileAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler(
+        pub unsafe fn setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler(
             &self,
             application_url: &NSURL,
             url: &NSURL,
@@ -239,9 +257,12 @@ impl NSWorkspace {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler(
+        pub unsafe fn setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler(
             &self,
             application_url: &NSURL,
             url_scheme: &NSString,
@@ -249,9 +270,12 @@ impl NSWorkspace {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setDefaultApplicationAtURL:toOpenFileAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler(
+        pub unsafe fn setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler(
             &self,
             application_url: &NSURL,
             url: &NSURL,
@@ -278,9 +302,12 @@ impl NSWorkspace {
 
         #[cfg(all(feature = "block2", feature = "objc2-uniform-type-identifiers"))]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setDefaultApplicationAtURL:toOpenContentType:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setDefaultApplicationAtURL_toOpenContentType_completionHandler(
+        pub unsafe fn setDefaultApplicationAtURL_toOpenContentType_completionHandler(
             &self,
             application_url: &NSURL,
             content_type: &UTType,
@@ -592,9 +619,12 @@ impl DefaultRetained for NSWorkspaceAuthorization {
 impl NSWorkspace {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestAuthorizationOfType:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn requestAuthorizationOfType_completionHandler(
+        pub unsafe fn requestAuthorizationOfType_completionHandler(
             &self,
             r#type: NSWorkspaceAuthorizationType,
             completion_handler: &block2::DynBlock<

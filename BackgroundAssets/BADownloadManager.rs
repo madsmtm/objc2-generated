@@ -39,6 +39,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "BADownload", feature = "block2"))]
         /// A download has tried to start but gotten a challenge quest.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(download:didReceiveChallenge:completionHandler:))]
         #[unsafe(method_family = none)]

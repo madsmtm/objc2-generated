@@ -506,6 +506,10 @@ impl MPSAccelerationStructure {
         /// the vertex buffer, index buffer, etc. must be completed (and, for managed buffers,
         /// synchronized). Any prior intersection tests must also be completed before the acceleration
         /// structure can be rebuilt.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(rebuildWithCompletionHandler:))]
         #[unsafe(method_family = none)]

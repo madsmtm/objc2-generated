@@ -21,6 +21,9 @@ extern_conformance!(
 impl CTCellularPlanStatus {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getTokenWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTokenWithCompletion(
@@ -28,6 +31,9 @@ impl CTCellularPlanStatus {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(checkValidityOfToken:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkValidityOfToken_completionHandler(

@@ -79,6 +79,10 @@ impl VZLinuxRosettaDirectoryShare {
         /// The call prompts the user through the download and install flow for Rosetta. This call is successful if the error is nil.
         ///
         /// See: +[VZLinuxRosettaDirectoryShare availability]
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(installRosettaWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn installRosettaWithCompletionHandler(

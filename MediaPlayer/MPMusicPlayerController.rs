@@ -212,6 +212,9 @@ impl MPMusicPlayerController {
         pub unsafe fn appendQueueDescriptor(&self, descriptor: &MPMusicPlayerQueueDescriptor);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(prepareToPlayWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareToPlayWithCompletionHandler(

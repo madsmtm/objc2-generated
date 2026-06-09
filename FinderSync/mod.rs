@@ -167,6 +167,9 @@ impl FIFinderSyncController {
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(setLastUsedDate:forItemWithURL:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLastUsedDate_forItemWithURL_completion(
@@ -181,6 +184,9 @@ impl FIFinderSyncController {
         pub unsafe fn tagDataForItemWithURL(&self, item_url: &NSURL) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(setTagData:forItemWithURL:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTagData_forItemWithURL_completion(
@@ -385,6 +391,9 @@ extern_protocol!(
         ) -> Result<Retained<NSXPCListenerEndpoint>, Retained<NSError>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(valuesForAttributes:forItemWithURL:completion:))]
         #[unsafe(method_family = none)]

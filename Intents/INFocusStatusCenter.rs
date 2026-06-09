@@ -57,6 +57,9 @@ impl INFocusStatusCenter {
         pub unsafe fn authorizationStatus(&self) -> INFocusStatusAuthorizationStatus;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestAuthorizationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationWithCompletionHandler(

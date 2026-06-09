@@ -144,6 +144,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetUserCurrentRestaurantReservationBookingsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleGetUserCurrentRestaurantReservationBookings:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetUserCurrentRestaurantReservationBookings_completion(
@@ -171,6 +175,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetUserCurrentRestaurantReservationBookingsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetUserCurrentRestaurantReservationBookings:completion:))]
         #[unsafe(method_family = none)]
@@ -199,6 +207,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetUserCurrentRestaurantReservationBookingsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRestaurantForGetUserCurrentRestaurantReservationBookings:withCompletion:))]
         #[unsafe(method_family = none)]

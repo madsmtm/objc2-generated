@@ -124,7 +124,8 @@ impl PHLivePhotoEditingContext {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `handler` block must be sendable.
         #[unsafe(method(prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareLivePhotoForPlaybackWithTargetSize_options_completionHandler(
@@ -140,7 +141,8 @@ impl PHLivePhotoEditingContext {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `handler` block must be sendable.
         #[unsafe(method(saveLivePhotoToOutput:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveLivePhotoToOutput_options_completionHandler(

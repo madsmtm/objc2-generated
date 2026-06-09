@@ -246,6 +246,10 @@ impl SMAppService {
         ///
         ///
         /// See: SMAppService:unregisterAndReturnError
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(unregisterWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterWithCompletionHandler(

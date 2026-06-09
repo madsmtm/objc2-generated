@@ -29,6 +29,10 @@ pub unsafe trait NSExtensionContextRPBroadcastExtension:
         /// Load information about the broadcasting app.
         ///
         /// Parameter `handler`: block which will be supplied a bundleID, displayName and an optional appIcon.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(loadBroadcastingApplicationInfoWithCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn loadBroadcastingApplicationInfoWithCompletion(

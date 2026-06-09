@@ -100,6 +100,10 @@ extern_protocol!(
         ///
         ///
         /// See: INStartVideoCallIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[unsafe(method(handleStartVideoCall:completion:))]
         #[unsafe(method_family = none)]
@@ -126,6 +130,10 @@ extern_protocol!(
         ///
         ///
         /// See: INStartVideoCallIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[optional]
         #[unsafe(method(confirmStartVideoCall:completion:))]
@@ -153,6 +161,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[optional]
         #[unsafe(method(resolveContactsForStartVideoCall:withCompletion:))]

@@ -30,6 +30,10 @@ impl GKAchievement {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// Asynchronously load all achievements for the local player
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadAchievementsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAchievementsWithCompletionHandler(
@@ -43,6 +47,10 @@ impl GKAchievement {
         /// Possible reasons for error:
         /// 1. Local player not authenticated
         /// 2. Communications failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(resetAchievementsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetAchievementsWithCompletionHandler(
@@ -73,6 +81,10 @@ impl GKAchievement {
         /// 1. Local player not authenticated
         /// 2. Communications failure
         /// 3. Reported Achievement does not exist
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(reportAchievements:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportAchievements_withCompletionHandler(
@@ -147,6 +159,9 @@ impl GKAchievement {
 impl GKAchievement {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(reportAchievementWithCompletionHandler:))]
         #[unsafe(method_family = none)]

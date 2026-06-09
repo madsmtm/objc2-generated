@@ -261,6 +261,10 @@ impl TVApplicationController {
         ///
         /// Parameter `completion`: Invoked after the evaluation block has been executed.
         /// evaluated is YES if the block was evaluated; NO otherwise.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(evaluateInJavaScriptContext:completion:))]
         #[unsafe(method_family = none)]

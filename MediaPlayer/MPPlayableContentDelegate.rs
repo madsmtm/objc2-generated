@@ -22,6 +22,10 @@ extern_protocol!(
         /// This method is called when a media player interface wants to play a requested
         /// content item. The application should call the completion handler with an
         /// appropriate error if there was an error beginning playback for the item.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[unsafe(method(playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:))]
@@ -40,6 +44,10 @@ extern_protocol!(
         /// received or if the playable content manager requests to play something else.
         /// The app should call the provided completion handler once it is ready to play
         /// something.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use Intents framework for initiating playback queues."]
         #[optional]
         #[unsafe(method(playableContentManager:initializePlaybackQueueWithCompletionHandler:))]
@@ -63,7 +71,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `content_items` generic should be of the correct type.
+        /// - `content_items` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[deprecated = "Use Intents framework for initiating playback queues."]
         #[optional]
         #[unsafe(method(playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:))]

@@ -21,6 +21,9 @@ extern_conformance!(
 impl SFContentBlockerManager {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(reloadContentBlockerWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadContentBlockerWithIdentifier_completionHandler(
@@ -29,6 +32,9 @@ impl SFContentBlockerManager {
         );
 
         #[cfg(all(feature = "SFContentBlockerState", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getStateOfContentBlockerWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getStateOfContentBlockerWithIdentifier_completionHandler(

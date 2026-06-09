@@ -77,6 +77,9 @@ impl NSCoreDataCoreSpotlightDelegate {
         pub unsafe fn stopSpotlightIndexing(&self);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteSpotlightIndexWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSpotlightIndexWithCompletionHandler(

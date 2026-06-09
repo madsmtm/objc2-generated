@@ -96,6 +96,9 @@ impl CSSearchableIndex {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "CSSearchableItem", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(indexSearchableItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexSearchableItems_completionHandler(
@@ -105,6 +108,9 @@ impl CSSearchableIndex {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteSearchableItemsWithIdentifiers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSearchableItemsWithIdentifiers_completionHandler(
@@ -114,6 +120,9 @@ impl CSSearchableIndex {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteSearchableItemsWithDomainIdentifiers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSearchableItemsWithDomainIdentifiers_completionHandler(
@@ -123,6 +132,9 @@ impl CSSearchableIndex {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteAllSearchableItemsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAllSearchableItemsWithCompletionHandler(
@@ -153,6 +165,9 @@ impl CSSearchableIndex {
         pub unsafe fn beginIndexBatch(&self);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(endIndexBatchWithExpectedClientState:newClientState:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endIndexBatchWithExpectedClientState_newClientState_completionHandler(
@@ -163,6 +178,9 @@ impl CSSearchableIndex {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(endIndexBatchWithClientState:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endIndexBatchWithClientState_completionHandler(
@@ -172,6 +190,9 @@ impl CSSearchableIndex {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchLastClientStateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchLastClientStateWithCompletionHandler(
@@ -185,6 +206,9 @@ impl CSSearchableIndex {
 impl CSSearchableIndex {
     extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-uniform-type-identifiers"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchDataForBundleIdentifier_itemIdentifier_contentType_completionHandler(

@@ -118,6 +118,10 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// This is called when Safari is about to load a page that the extension has stated it wants to add additional headers for.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(additionalRequestHeadersForURL:completionHandler:))]
         #[unsafe(method_family = none)]

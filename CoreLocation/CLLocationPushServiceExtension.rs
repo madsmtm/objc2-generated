@@ -13,7 +13,8 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `payload` generic should be of the correct type.
+        /// - `payload` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(didReceiveLocationPushPayload:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn didReceiveLocationPushPayload_completion(

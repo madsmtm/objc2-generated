@@ -25,6 +25,9 @@ extern_conformance!(
 impl GKNotificationBanner {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]
         #[unsafe(method(showBannerWithTitle:message:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -35,6 +38,9 @@ impl GKNotificationBanner {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]
         #[unsafe(method(showBannerWithTitle:message:duration:completionHandler:))]
         #[unsafe(method_family = none)]

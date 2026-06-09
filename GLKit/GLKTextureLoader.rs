@@ -369,7 +369,8 @@ impl GLKTextureLoader {
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// `queue` possibly has additional threading requirements.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(textureWithContentsOfFile:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfFile_options_queue_completionHandler(
@@ -383,7 +384,8 @@ impl GLKTextureLoader {
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// `queue` possibly has additional threading requirements.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(textureWithContentsOfURL:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfURL_options_queue_completionHandler(
@@ -401,7 +403,8 @@ impl GLKTextureLoader {
         ))]
         /// # Safety
         ///
-        /// `queue` possibly has additional threading requirements.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(textureWithName:scaleFactor:bundle:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithName_scaleFactor_bundle_options_queue_completionHandler(
@@ -417,7 +420,8 @@ impl GLKTextureLoader {
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// `queue` possibly has additional threading requirements.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(textureWithContentsOfData:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfData_options_queue_completionHandler(
@@ -435,7 +439,8 @@ impl GLKTextureLoader {
         ))]
         /// # Safety
         ///
-        /// `queue` possibly has additional threading requirements.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(textureWithCGImage:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithCGImage_options_queue_completionHandler(
@@ -451,6 +456,7 @@ impl GLKTextureLoader {
         ///
         /// - `paths` generic should be of the correct type.
         /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(cubeMapWithContentsOfFiles:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFiles_options_queue_completionHandler(
@@ -464,7 +470,8 @@ impl GLKTextureLoader {
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// `queue` possibly has additional threading requirements.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(cubeMapWithContentsOfFile:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFile_options_queue_completionHandler(
@@ -478,7 +485,8 @@ impl GLKTextureLoader {
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// `queue` possibly has additional threading requirements.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(cubeMapWithContentsOfURL:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfURL_options_queue_completionHandler(

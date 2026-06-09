@@ -111,6 +111,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetDefrosterSettingsInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetDefrosterSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSetDefrosterSettingsInCar:completion:))]
         #[unsafe(method_family = none)]
@@ -139,6 +143,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetDefrosterSettingsInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetDefrosterSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSetDefrosterSettingsInCar:completion:))]
@@ -168,6 +176,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetDefrosterSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableForSetDefrosterSettingsInCar:withCompletion:))]
@@ -184,6 +196,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetDefrosterSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveDefrosterForSetDefrosterSettingsInCar:withCompletion:))]
@@ -200,6 +215,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForSetDefrosterSettingsInCar:withCompletion:))]
         #[unsafe(method_family = none)]

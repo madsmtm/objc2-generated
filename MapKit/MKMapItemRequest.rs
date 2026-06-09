@@ -33,6 +33,9 @@ impl MKMapItemRequest {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMapItem", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getMapItemWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getMapItemWithCompletionHandler(

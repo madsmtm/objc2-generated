@@ -72,6 +72,10 @@ impl GKLocalPlayer {
         /// Possible reasons for error:
         /// 1. Communications problem
         /// 2. Unauthenticated player
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadRecentPlayersWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadRecentPlayersWithCompletionHandler(
@@ -86,6 +90,10 @@ impl GKLocalPlayer {
         /// Possible reasons for error:
         /// 1. Communications problem
         /// 2. Unauthenticated player
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadChallengableFriendsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadChallengableFriendsWithCompletionHandler(
@@ -100,6 +108,10 @@ impl GKLocalPlayer {
         /// Possible reasons for error:
         /// 1. Communications problem
         /// 2. Unauthenticated player
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchItemsForIdentityVerificationSignature:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchItemsForIdentityVerificationSignature(
@@ -204,6 +216,9 @@ extern "C" {
 impl GKLocalPlayer {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(setDefaultLeaderboardCategoryID:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -214,6 +229,9 @@ impl GKLocalPlayer {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadDefaultLeaderboardCategoryIDWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -223,6 +241,9 @@ impl GKLocalPlayer {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(authenticateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -232,6 +253,9 @@ impl GKLocalPlayer {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadFriendPlayersWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -247,6 +271,10 @@ impl GKLocalPlayer {
         /// Possible reasons for error:
         /// 1. Communications problem
         /// 2. Unauthenticated player
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(generateIdentityVerificationSignatureWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -263,6 +291,10 @@ impl GKLocalPlayer {
         /// 1. Communications problem
         /// 2. Unauthenticated player
         /// 3. Leaderboard not present
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported"]
         #[unsafe(method(loadDefaultLeaderboardIdentifierWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -277,6 +309,10 @@ impl GKLocalPlayer {
         /// 1. Communications problem
         /// 2. Unauthenticated player
         /// 3. Leaderboard not present
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported"]
         #[unsafe(method(setDefaultLeaderboardIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -294,6 +330,10 @@ impl GKLocalPlayer {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// This method is obsolete. It will never be invoked and its implementation does nothing**
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadFriendsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -341,6 +381,9 @@ unsafe impl RefEncode for GKFriendsAuthorizationStatus {
 impl GKLocalPlayer {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFriendsAuthorizationStatus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFriendsAuthorizationStatus(
@@ -351,6 +394,9 @@ impl GKLocalPlayer {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFriends:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFriends(
@@ -359,6 +405,9 @@ impl GKLocalPlayer {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFriendsWithIdentifiers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFriendsWithIdentifiers_completionHandler(

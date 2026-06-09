@@ -153,6 +153,10 @@ impl HMTimerTrigger {
         /// The NSError provides more information on the status of the request,
         /// error will be nil on success. HMErrorCodeDateMustBeOnSpecifiedBoundaries will
         /// be returned if the fireDate includes a seconds value other than 0.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateFireDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateFireDate_completionHandler(
@@ -162,6 +166,9 @@ impl HMTimerTrigger {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Use HMEventTrigger with HMCalendarEvent for triggers based on a time-zone-relative time of day"]
         #[unsafe(method(updateTimeZone:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -189,6 +196,10 @@ impl HMTimerTrigger {
         /// 5 minutes;
         /// HMErrorCodeRecurrenceTooLarge is returned if the recurrence interval is
         /// greater than 5 weeks. *                   error will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateRecurrence:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateRecurrence_completionHandler(

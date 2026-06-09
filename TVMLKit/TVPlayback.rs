@@ -585,6 +585,9 @@ impl TVPlayer {
         pub unsafe fn previousMediaItem(&self) -> Option<Retained<TVMediaItem>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(dispatchEvent:userInfo:completion:))]
         #[unsafe(method_family = none)]

@@ -452,6 +452,10 @@ impl GCController {
         /// See: stopWirelessControllerDiscovery
         ///
         /// See: controllers
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(startWirelessControllerDiscoveryWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWirelessControllerDiscoveryWithCompletionHandler(

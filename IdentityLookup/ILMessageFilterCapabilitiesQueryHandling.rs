@@ -32,6 +32,10 @@ extern_protocol!(
         /// Parameter `context`: Extension context.
         ///
         /// Parameter `completion`: Completion block for returning a response.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleCapabilitiesQueryRequest:context:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleCapabilitiesQueryRequest_context_completion(

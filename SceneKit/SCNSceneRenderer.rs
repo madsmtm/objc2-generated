@@ -330,7 +330,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `objects` generic should be of the correct type.
+        /// - `objects` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(prepareObjects:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn prepareObjects_withCompletionHandler(

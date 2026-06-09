@@ -102,6 +102,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSaveProfileInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSaveProfileInCarIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSaveProfileInCar:completion:))]
         #[unsafe(method_family = none)]
@@ -128,6 +132,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSaveProfileInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSaveProfileInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSaveProfileInCar:completion:))]
@@ -155,6 +163,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSaveProfileInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveProfileNumberForSaveProfileInCar:withCompletion:))]
@@ -171,6 +183,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveProfileNameForSaveProfileInCar:withCompletion:))]
         #[unsafe(method_family = none)]

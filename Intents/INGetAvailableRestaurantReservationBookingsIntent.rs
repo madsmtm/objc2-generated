@@ -172,6 +172,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetAvailableRestaurantReservationBookingsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleGetAvailableRestaurantReservationBookings:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetAvailableRestaurantReservationBookings_completion(
@@ -199,6 +203,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetAvailableRestaurantReservationBookingsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetAvailableRestaurantReservationBookings:completion:))]
         #[unsafe(method_family = none)]
@@ -227,6 +235,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetAvailableRestaurantReservationBookingsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRestaurantForGetAvailableRestaurantReservationBookings:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -242,6 +254,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePartySizeForGetAvailableRestaurantReservationBookings:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -257,6 +272,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePreferredBookingDateComponentsForGetAvailableRestaurantReservationBookings:withCompletion:))]
         #[unsafe(method_family = none)]

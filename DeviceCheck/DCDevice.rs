@@ -100,6 +100,10 @@ impl DCDevice {
         /// - completion: A completion block that includes the following parameters:
         /// - `token`:  An ephemeral token that identifies the current device.
         /// - `error`: The error that occurred, if any.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(generateTokenWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateTokenWithCompletionHandler(

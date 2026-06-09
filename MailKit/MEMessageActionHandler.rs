@@ -24,6 +24,10 @@ extern_protocol!(
         /// `MEMessageActionDecision.invokeAgainWithBody`and this method will be invoked again once the full body is available.
         ///
         /// Parameter `message`: - The message for which the action will be performed. Might or might not contain the full message body data.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(decideActionForMessage:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn decideActionForMessage_completionHandler(

@@ -139,9 +139,13 @@ impl UIImageReader {
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
         /// Asynchronously generate an image from the given file URL. If an image could not be generated, the completion will be called with nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(imageWithContentsOfFileURL:completion:))]
         #[unsafe(method_family = none)]
-        pub fn imageWithContentsOfFileURL_completion(
+        pub unsafe fn imageWithContentsOfFileURL_completion(
             &self,
             url: &NSURL,
             completion: &block2::DynBlock<dyn Fn(*mut UIImage)>,
@@ -149,9 +153,13 @@ impl UIImageReader {
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
         /// Asynchronously generate an image from the given data. If an image could not be generated, the completion will be called with nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(imageWithData:completion:))]
         #[unsafe(method_family = none)]
-        pub fn imageWithData_completion(
+        pub unsafe fn imageWithData_completion(
             &self,
             data: &NSData,
             completion: &block2::DynBlock<dyn Fn(*mut UIImage)>,

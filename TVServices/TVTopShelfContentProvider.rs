@@ -25,6 +25,10 @@ impl TVTopShelfContentProvider {
         /// If the completion handler is not called in a timely manner or is called with empty content the system will display the static image instead.
         ///
         /// - parameter completionHandler: You must call this handler and should do so as soon as possible. The handler can be called on any queue.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTopShelfContentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTopShelfContentWithCompletionHandler(

@@ -219,7 +219,8 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(newTextureWithContentsOfURL:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithContentsOfURL_options_completionHandler(
@@ -257,7 +258,8 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(newTextureWithName:scaleFactor:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_completionHandler(
@@ -308,7 +310,8 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler(
@@ -332,7 +335,8 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(newTexturesWithContentsOfURLs:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithContentsOfURLs_options_completionHandler(
@@ -374,7 +378,8 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(newTexturesWithNames:scaleFactor:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithNames_scaleFactor_bundle_options_completionHandler(
@@ -433,7 +438,8 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(newTexturesWithNames:scaleFactor:displayGamut:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler(
@@ -457,7 +463,8 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(newTextureWithData:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithData_options_completionHandler(
@@ -478,7 +485,8 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(newTextureWithCGImage:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithCGImage_options_completionHandler(
@@ -499,7 +507,8 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(newTextureWithMDLTexture:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithMDLTexture_options_completionHandler(

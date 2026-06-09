@@ -198,6 +198,10 @@ extern_protocol!(
         /// - operationID: A unique identifier of the blockmap call. Any value other than `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift) indicates the beginning of an I/O operation. A value of `0` or ``FSOperationID/unspecified`` indicates the kernel maps the file without performing I/O. In this case, FSKit doesn't perform a corresponding call to ``completeIO(for:offset:length:status:flags:operationID:replyHandler:)``.
         /// - packer: An extent packer you use to pack the requested range of the file's allocated disk space. FSKit sends all of the packed extents to the kernel when it invokes `reply`.
         /// - reply: A block or closure to indicate success or failure. If mapping fails, pass an error as the one parameter to the reply handler. If mapping succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(blockmapFile:offset:length:flags:operationID:packer:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn blockmapFile_offset_length_flags_operationID_packer_replyHandler(
@@ -227,6 +231,10 @@ extern_protocol!(
         /// - flags: Flags that affect the behavior of the complete I/O operation.
         /// - operationID: A unique identifier of the blockmap call. Any value other than `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift) corresponds to a previous call to ``blockmapFile(_:offset:length:flags:operationID:packer:replyHandler:)`` with the same `operationID`.
         /// - reply: A block or closure to indicate success or failure. If completing I/O fails, pass an error as the one parameter to the reply handler. If completing I/O succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(completeIOForFile:offset:length:status:flags:operationID:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn completeIOForFile_offset_length_status_flags_operationID_replyHandler(
@@ -257,6 +265,10 @@ extern_protocol!(
         /// - attributes: Attributes to apply to the new file.
         /// - packer: An extent packer you use to pack the file's allocated disk space.
         /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass the newly created ``FSItem`` and its ``FSFileName``, along with a `nil` error. If creation fails, pass the relevant error as the third parameter; FSKit ignores any ``FSItem`` or ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; instead, return a tuple of the ``FSItem`` and its ``FSFileName`` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(createFileNamed:inDirectory:attributes:packer:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn createFileNamed_inDirectory_attributes_packer_replyHandler(
@@ -280,6 +292,10 @@ extern_protocol!(
         /// - directory: The directory in which to look up the file.
         /// - packer: An extent packer you use to pack the file's allocated disk space.
         /// - reply: A block or closure to indicate success or failure. If lookup succeeds, pass the found ``FSItem`` and its ``FSFileName``, along with a `nil` error. If lookup fails, pass the relevant error as the third parameter; FSKit ignores any ``FSItem`` or ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; instead, return a tuple of the ``FSItem`` and its ``FSFileName`` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(lookupItemNamed:inDirectory:packer:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn lookupItemNamed_inDirectory_packer_replyHandler(
@@ -309,6 +325,10 @@ extern_protocol!(
         /// - flags: Flags that affect the preallocation behavior.
         /// - packer: An extent packer you use to pack the file's preallocated disk space.
         /// - reply: A block or closure to indicate success or failure. If preallocation succeeds, pass the amount of bytes allocated and a nil error. If preallocation fails, pass the relevant error as the second parameter; FSKit ignores any byte count in this case. For an `async` Swift implementation, there’s no reply handler; simply return the allocated byte count or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[optional]
         #[unsafe(method(preallocateSpaceForFile:atOffset:length:flags:packer:replyHandler:))]
         #[unsafe(method_family = none)]

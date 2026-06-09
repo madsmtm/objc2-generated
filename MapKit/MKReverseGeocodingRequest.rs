@@ -57,6 +57,9 @@ impl MKReverseGeocodingRequest {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "MKMapItem", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getMapItemsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getMapItemsWithCompletionHandler(

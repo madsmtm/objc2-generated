@@ -99,6 +99,10 @@ extern_protocol!(
         ///
         ///
         /// See: INEditMessageIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleEditMessage:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleEditMessage_completion(
@@ -124,6 +128,10 @@ extern_protocol!(
         ///
         ///
         /// See: INEditMessageIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmEditMessage:completion:))]
         #[unsafe(method_family = none)]
@@ -150,6 +158,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveEditedContentForEditMessage:withCompletion:))]
         #[unsafe(method_family = none)]

@@ -141,6 +141,10 @@ impl LARight {
         /// Invalidates a previously authorized right.
         ///
         /// Parameter `handler`: Completion handler called after the right is deauthorized.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(deauthorizeWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deauthorizeWithCompletion(&self, handler: &block2::DynBlock<dyn Fn()>);

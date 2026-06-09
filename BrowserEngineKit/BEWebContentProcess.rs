@@ -40,6 +40,10 @@ impl BEWebContentProcess {
         /// - `interruptionHandler` : A block that is called if the extension process terminates.
         /// - `completion` : A block called with a new ``BEWebContentProcess`` when the extension process has
         /// launched or with an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(webContentProcessWithInterruptionHandler:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn webContentProcessWithInterruptionHandler_completion(
@@ -57,6 +61,10 @@ impl BEWebContentProcess {
         /// - `interruptionHandler` : A block that is called if the extension process terminates.
         /// - `completion` : A block called with a new ``BEWebContentProcess`` when the extension process has
         /// launched or with an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(webContentProcessWithBundleID:interruptionHandler:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn webContentProcessWithBundleID_interruptionHandler_completion(

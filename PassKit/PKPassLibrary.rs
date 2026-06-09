@@ -217,6 +217,9 @@ impl PKPassLibrary {
         pub unsafe fn replacePassWithPass(&self, pass: &PKPass) -> bool;
 
         #[cfg(all(feature = "PKObject", feature = "PKPass", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addPasses:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPasses_withCompletionHandler(
@@ -312,6 +315,9 @@ impl PKPassLibrary {
             feature = "PKSecureElementPass",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(activateSecureElementPass:withActivationData:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateSecureElementPass_withActivationData_completion(
@@ -327,6 +333,9 @@ impl PKPassLibrary {
             feature = "PKSecureElementPass",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(signData:withSecureElementPass:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn signData_withSecureElementPass_completion(
@@ -342,6 +351,9 @@ impl PKPassLibrary {
             feature = "PKSecureElementPass",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(encryptedServiceProviderDataForSecureElementPass:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encryptedServiceProviderDataForSecureElementPass_completion(
@@ -356,6 +368,9 @@ impl PKPassLibrary {
             feature = "PKSecureElementPass",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(serviceProviderDataForSecureElementPass:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceProviderDataForSecureElementPass_completion(
@@ -372,6 +387,9 @@ impl PKPassLibrary {
         ) -> PKPassLibraryAuthorizationStatus;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(requestAuthorizationForCapability:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationForCapability_completion(

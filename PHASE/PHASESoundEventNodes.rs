@@ -957,6 +957,10 @@ impl PHASEPushStreamNode {
         ///
         /// Parameter `completionHandler`: The completionHandler to be called as per the specified completion callback type
         /// or when the player is stopped, at which point the buffer can be recycled.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(scheduleBuffer:completionCallbackType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBuffer_completionCallbackType_completionHandler(
@@ -1002,6 +1006,10 @@ impl PHASEPushStreamNode {
         ///
         /// Parameter `completionHandler`: The completionHandler to be called as per the callback type specified or when
         /// the player is stopped, at which point the buffer can be recycled.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(scheduleBuffer:atTime:options:completionCallbackType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBuffer_atTime_options_completionCallbackType_completionHandler(

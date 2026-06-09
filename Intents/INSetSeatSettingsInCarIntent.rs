@@ -140,6 +140,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetSeatSettingsInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSetSeatSettingsInCar:completion:))]
         #[unsafe(method_family = none)]
@@ -166,6 +170,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetSeatSettingsInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSetSeatSettingsInCar:completion:))]
@@ -193,6 +201,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableHeatingForSetSeatSettingsInCar:withCompletion:))]
@@ -209,6 +221,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableCoolingForSetSeatSettingsInCar:withCompletion:))]
@@ -225,6 +240,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableMassageForSetSeatSettingsInCar:withCompletion:))]
@@ -241,6 +259,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveSeatForSetSeatSettingsInCar:withCompletion:))]
@@ -257,6 +278,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveLevelForSetSeatSettingsInCar:withCompletion:))]
@@ -273,6 +297,9 @@ extern_protocol!(
             feature = "INRelativeSettingResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRelativeLevelSettingForSetSeatSettingsInCar:withCompletion:))]
@@ -289,6 +316,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForSetSeatSettingsInCar:withCompletion:))]
         #[unsafe(method_family = none)]

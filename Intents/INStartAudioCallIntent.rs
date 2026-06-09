@@ -105,6 +105,10 @@ extern_protocol!(
         ///
         ///
         /// See: INStartAudioCallIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[unsafe(method(handleStartAudioCall:completion:))]
         #[unsafe(method_family = none)]
@@ -131,6 +135,10 @@ extern_protocol!(
         ///
         ///
         /// See: INStartAudioCallIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[optional]
         #[unsafe(method(confirmStartAudioCall:completion:))]
@@ -158,6 +166,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDestinationTypeForStartAudioCall:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -173,6 +185,9 @@ extern_protocol!(
             feature = "INPersonResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[optional]
         #[unsafe(method(resolveContactsForStartAudioCall:withCompletion:))]

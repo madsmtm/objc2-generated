@@ -456,6 +456,10 @@ impl ICCameraDevice {
         /// This method asynchronously sends a PTP command to a camera.
         ///
         /// The response, data, and any error message will be returned the block.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(requestSendPTPCommand:outData:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestSendPTPCommand_outData_completion(

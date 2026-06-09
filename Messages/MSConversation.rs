@@ -64,6 +64,10 @@ impl MSConversation {
         /// Parameter `message`: The MSMessage instance describing the message to be sent.
         ///
         /// Parameter `completionHandler`: A completion handler called when the message has been staged or if there was an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(insertMessage:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertMessage_completionHandler(
@@ -78,6 +82,10 @@ impl MSConversation {
         /// Parameter `sticker`: The sticker to be inserted.
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(insertSticker:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertSticker_completionHandler(
@@ -94,6 +102,10 @@ impl MSConversation {
         /// Parameter `text`: The text to be inserted.
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(insertText:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertText_completionHandler(
@@ -113,6 +125,10 @@ impl MSConversation {
         /// Parameter `filename`: If you supply a string here, the message UI uses it for the attachment. Use an alternate filename to better describe the attachment or to make the name more readable.
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(insertAttachment:withAlternateFilename:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertAttachment_withAlternateFilename_completionHandler(
@@ -131,6 +147,10 @@ impl MSConversation {
         /// Parameter `message`: The MSMessage instance describing the message to be sent.
         ///
         /// Parameter `completionHandler`: A completion handler called when the message has been staged or if there was an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendMessage:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendMessage_completionHandler(
@@ -147,6 +167,10 @@ impl MSConversation {
         /// Parameter `sticker`: The sticker to be inserted.
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendSticker:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendSticker_completionHandler(
@@ -164,6 +188,10 @@ impl MSConversation {
         /// Parameter `text`: The text to be inserted.
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendText:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendText_completionHandler(
@@ -183,6 +211,10 @@ impl MSConversation {
         /// Parameter `filename`: If you supply a string here, the message UI uses it for the attachment. Use an alternate filename to better describe the attachment or to make the name more readable.
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendAttachment:withAlternateFilename:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendAttachment_withAlternateFilename_completionHandler(

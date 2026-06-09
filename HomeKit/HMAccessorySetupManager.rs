@@ -46,6 +46,10 @@ impl HMAccessorySetupManager {
         ///
         /// Parameter `completion`: A block that is invoked once the setup process finishes. On failure, the result will be
         /// nil and the error will provide additional information
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(performAccessorySetupUsingRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performAccessorySetupUsingRequest_completionHandler(

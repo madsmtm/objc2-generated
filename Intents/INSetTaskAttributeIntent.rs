@@ -133,6 +133,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetTaskAttributeIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleSetTaskAttribute:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSetTaskAttribute_completion(
@@ -158,6 +162,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetTaskAttributeIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSetTaskAttribute:completion:))]
         #[unsafe(method_family = none)]
@@ -184,6 +192,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTargetTaskForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -199,6 +211,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTaskTitleForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -214,6 +229,9 @@ extern_protocol!(
             feature = "INTaskStatusResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveStatusForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -229,6 +247,9 @@ extern_protocol!(
             feature = "INTaskPriorityResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePriorityForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -244,6 +265,9 @@ extern_protocol!(
             feature = "INSpatialEventTriggerResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSpatialEventTriggerForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -259,6 +283,9 @@ extern_protocol!(
             feature = "INTemporalEventTriggerResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "resolveTemporalEventTriggerForSetTaskAttribute:withCompletion: is deprecated. Use resolveTemporalEventTriggerForSetTaskAttribute:completion: instead"]
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerForSetTaskAttribute:withCompletion:))]
@@ -276,6 +303,9 @@ extern_protocol!(
             feature = "INTemporalEventTriggerResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerForSetTaskAttribute:completion:))]
         #[unsafe(method_family = none)]

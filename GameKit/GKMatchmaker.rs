@@ -476,6 +476,10 @@ impl GKMatchmaker {
         /// Possible reasons for error:
         /// 1. Communications failure
         /// 2. Invite cancelled
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(matchForInvite:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchForInvite_completionHandler(
@@ -491,6 +495,10 @@ impl GKMatchmaker {
         /// 2. Unauthenticated player
         /// 3. Timeout
         /// Note that the players property on the returned GKMatch instance will only contain connected players. It will initially be empty as players are connecting. Implement the GKMatchDelegate method match:player:didChangeConnectionState: to listen for updates to the GKMatch instance's players property.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(findMatchForRequest:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findMatchForRequest_withCompletionHandler(
@@ -506,6 +514,10 @@ impl GKMatchmaker {
         /// 1. Communications failure
         /// 2. Unauthenticated player
         /// 3. Timeout
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(findPlayersForHostedRequest:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findPlayersForHostedRequest_withCompletionHandler(
@@ -518,6 +530,10 @@ impl GKMatchmaker {
 
         #[cfg(feature = "block2")]
         /// Automatching or invites for host-client rule-based match request.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(findMatchedPlayers:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findMatchedPlayers_withCompletionHandler(
@@ -531,6 +547,10 @@ impl GKMatchmaker {
         /// Possible reasons for error:
         /// 1. Communications failure
         /// 2. Timeout
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(addPlayersToMatch:matchRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPlayersToMatch_matchRequest_completionHandler(
@@ -561,6 +581,10 @@ impl GKMatchmaker {
         /// Query the server for recent activity in the specified player group. A larger value indicates that a given group has seen more recent activity. Error will be nil on success.
         /// Possible reasons for error:
         /// 1. Communications failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(queryPlayerGroupActivity:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryPlayerGroupActivity_withCompletionHandler(
@@ -573,6 +597,10 @@ impl GKMatchmaker {
         /// Query the server for recent activity for all the player groups of that game. Error will be nil on success.
         /// Possible reasons for error:
         /// 1. Communications failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(queryActivityWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryActivityWithCompletionHandler(
@@ -582,6 +610,10 @@ impl GKMatchmaker {
 
         #[cfg(feature = "block2")]
         /// Query the server for recent activity for the specified queue.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(queryQueueActivity:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryQueueActivity_withCompletionHandler(
@@ -683,6 +715,10 @@ impl GKMatchmaker {
 
         #[cfg(feature = "block2")]
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(findPlayersForHostedMatchRequest:withCompletionHandler:))]
         #[unsafe(method_family = none)]

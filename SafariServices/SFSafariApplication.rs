@@ -39,6 +39,10 @@ impl SFSafariApplication {
 
         #[cfg(all(feature = "SFSafariWindow", feature = "block2"))]
         /// Calls the completion handler with the active browser window.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getActiveWindowWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getActiveWindowWithCompletionHandler(
@@ -47,6 +51,10 @@ impl SFSafariApplication {
 
         #[cfg(all(feature = "SFSafariWindow", feature = "block2"))]
         /// Calls the completion handler with all currently open windows ordered front to back.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getAllWindowsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAllWindowsWithCompletionHandler(
@@ -55,6 +63,10 @@ impl SFSafariApplication {
 
         #[cfg(all(feature = "SFSafariWindow", feature = "block2"))]
         /// Opens a new window with a tab containing the URL to pass in.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(openWindowWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openWindowWithURL_completionHandler(
@@ -70,6 +82,10 @@ impl SFSafariApplication {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Gets an NSRunningApplication instance with information about the app that this extension is connected to.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getHostApplicationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getHostApplicationWithCompletionHandler(
@@ -78,6 +94,10 @@ impl SFSafariApplication {
 
         #[cfg(feature = "block2")]
         /// Opens Safari Extensions preferences and selects extension with the identifier.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(showPreferencesForExtensionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showPreferencesForExtensionWithIdentifier_completionHandler(
@@ -88,7 +108,8 @@ impl SFSafariApplication {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `user_info` generic should be of the correct type.
+        /// - `user_info` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(dispatchMessageWithName:toExtensionWithIdentifier:userInfo:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatchMessageWithName_toExtensionWithIdentifier_userInfo_completionHandler(

@@ -282,6 +282,9 @@ extern_conformance!(
 impl PKAddShareablePassConfiguration {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Use configurationForPassMetadata:primaryAction:completion:"]
         #[unsafe(method(configurationForPassMetadata:provisioningPolicyIdentifier:primaryAction:completion:))]
         #[unsafe(method_family = none)]
@@ -295,6 +298,9 @@ impl PKAddShareablePassConfiguration {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(configurationForPassMetadata:primaryAction:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationForPassMetadata_primaryAction_completion(

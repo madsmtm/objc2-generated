@@ -112,6 +112,10 @@ extern_protocol!(
         ///
         ///
         /// See: INAddMediaIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleAddMedia:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleAddMedia_completion(
@@ -137,6 +141,10 @@ extern_protocol!(
         ///
         ///
         /// See: INAddMediaIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmAddMedia:completion:))]
         #[unsafe(method_family = none)]
@@ -164,6 +172,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveMediaItemsForAddMedia:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -182,6 +194,9 @@ extern_protocol!(
             feature = "INMediaDestinationResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveMediaDestinationForAddMedia:withCompletion:))]
         #[unsafe(method_family = none)]

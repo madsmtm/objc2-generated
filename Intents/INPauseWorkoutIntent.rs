@@ -96,6 +96,10 @@ extern_protocol!(
         ///
         ///
         /// See: INPauseWorkoutIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handlePauseWorkout:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handlePauseWorkout_completion(
@@ -121,6 +125,10 @@ extern_protocol!(
         ///
         ///
         /// See: INPauseWorkoutIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmPauseWorkout:completion:))]
         #[unsafe(method_family = none)]
@@ -147,6 +155,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveWorkoutNameForPauseWorkout:withCompletion:))]
         #[unsafe(method_family = none)]

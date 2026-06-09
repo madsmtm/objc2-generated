@@ -106,6 +106,9 @@ impl GKGameSession {
         pub unsafe fn badgedPlayers(&self) -> Retained<NSArray<GKCloudPlayer>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -117,6 +120,9 @@ impl GKGameSession {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(loadSessionsInContainer:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -128,6 +134,9 @@ impl GKGameSession {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(loadSessionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -137,6 +146,9 @@ impl GKGameSession {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(removeSessionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -146,6 +158,9 @@ impl GKGameSession {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(getShareURLWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -155,6 +170,9 @@ impl GKGameSession {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(loadDataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -174,6 +192,9 @@ impl GKGameSession {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(setConnectionState:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -193,6 +214,9 @@ impl GKGameSession {
         ) -> Retained<NSArray<GKCloudPlayer>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(sendData:withTransportType:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -208,6 +232,9 @@ impl GKGameSession {
             feature = "GKCloudPlayer",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -226,6 +253,9 @@ impl GKGameSession {
             feature = "GKCloudPlayer",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(clearBadgeForPlayers:completionHandler:))]
         #[unsafe(method_family = none)]

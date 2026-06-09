@@ -49,6 +49,10 @@ impl VZMacOSRestoreImage {
         ///
         /// VZMacOSRestoreImage can load IPSW installation media from a local file. If the fileURL parameter does not refer to
         /// a local file, an exception will be raised.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFileURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFileURL_completionHandler(
@@ -69,6 +73,10 @@ impl VZMacOSRestoreImage {
         /// file referred to by the URL property should be downloaded locally (using NSURLSession or similar API). After
         /// the restore image has been downloaded, a VZMacOSInstaller can be initialized using a URL referring to the
         /// local file.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchLatestSupportedWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchLatestSupportedWithCompletionHandler(

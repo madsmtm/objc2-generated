@@ -34,6 +34,9 @@ extern_protocol!(
     #[deprecated = "Use WidgetKit instead. Today View extensions have been deprecated."]
     pub unsafe trait NCWidgetProviding: NSExtensionRequestHandling {
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use WidgetKit instead. Today View extensions have been deprecated."]
         #[optional]
         #[unsafe(method(widgetPerformUpdateWithCompletionHandler:))]

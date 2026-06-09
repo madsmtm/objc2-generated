@@ -104,6 +104,10 @@ extern_protocol!(
         ///
         ///
         /// See: INListRideOptionsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleListRideOptions:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleListRideOptions_completion(
@@ -129,6 +133,10 @@ extern_protocol!(
         ///
         ///
         /// See: INListRideOptionsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmListRideOptions:completion:))]
         #[unsafe(method_family = none)]
@@ -155,6 +163,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePickupLocationForListRideOptions:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -170,6 +182,9 @@ extern_protocol!(
             feature = "INPlacemarkResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDropOffLocationForListRideOptions:withCompletion:))]
         #[unsafe(method_family = none)]

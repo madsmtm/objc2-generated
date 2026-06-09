@@ -125,6 +125,10 @@ impl CNAssetSpatialAudioInfo {
         /// Parameter `completionHandler`: Completion handler to return the result
         ///
         /// Returns: Boolean
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(checkIfContainsSpatialAudio:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkIfContainsSpatialAudio_completionHandler(
@@ -140,6 +144,10 @@ impl CNAssetSpatialAudioInfo {
         /// Parameter `completionHandler`: Completion handler to return the result
         ///
         /// Returns: An instance of CNAssetSpatialAudioInfo delivered via the completion handler or an error on failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFromAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromAsset_completionHandler(

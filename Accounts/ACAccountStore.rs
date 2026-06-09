@@ -106,6 +106,7 @@ impl ACAccountStore {
         /// # Safety
         ///
         /// - `account` might not allow `None`.
+        /// - `completion_handler` block must be sendable.
         /// - `completion_handler` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(saveAccount:withCompletionHandler:))]
@@ -120,6 +121,7 @@ impl ACAccountStore {
         /// # Safety
         ///
         /// - `account_type` might not allow `None`.
+        /// - `handler` block must be sendable.
         /// - `handler` might not allow `None`.
         #[deprecated]
         #[unsafe(method(requestAccessToAccountsWithType:withCompletionHandler:))]
@@ -136,6 +138,7 @@ impl ACAccountStore {
         /// - `account_type` might not allow `None`.
         /// - `options` generic should be of the correct type.
         /// - `options` might not allow `None`.
+        /// - `completion` block must be sendable.
         /// - `completion` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(requestAccessToAccountsWithType:options:completion:))]
@@ -151,6 +154,7 @@ impl ACAccountStore {
         /// # Safety
         ///
         /// - `account` might not allow `None`.
+        /// - `completion_handler` block must be sendable.
         /// - `completion_handler` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(renewCredentialsForAccount:completion:))]
@@ -165,6 +169,7 @@ impl ACAccountStore {
         /// # Safety
         ///
         /// - `account` might not allow `None`.
+        /// - `completion_handler` block must be sendable.
         /// - `completion_handler` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(removeAccount:withCompletionHandler:))]

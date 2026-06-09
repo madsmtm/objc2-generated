@@ -26,6 +26,10 @@ impl SFSafariExtension {
 
         #[cfg(feature = "block2")]
         /// Calls the completion handler with the base URI of the extension.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getBaseURIWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getBaseURIWithCompletionHandler(

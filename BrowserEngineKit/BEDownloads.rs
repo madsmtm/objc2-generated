@@ -81,6 +81,9 @@ impl BEDownloadMonitor {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(beginMonitoring:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginMonitoring(
@@ -89,6 +92,9 @@ impl BEDownloadMonitor {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(resumeMonitoring:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeMonitoring_completionHandler(

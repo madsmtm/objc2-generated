@@ -112,6 +112,10 @@ extern_protocol!(
         ///
         ///
         /// See: INUpdateMediaAffinityIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleUpdateMediaAffinity:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleUpdateMediaAffinity_completion(
@@ -137,6 +141,10 @@ extern_protocol!(
         ///
         ///
         /// See: INUpdateMediaAffinityIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmUpdateMediaAffinity:completion:))]
         #[unsafe(method_family = none)]
@@ -164,6 +172,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveMediaItemsForUpdateMediaAffinity:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -181,6 +193,9 @@ extern_protocol!(
             feature = "INMediaAffinityTypeResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveAffinityTypeForUpdateMediaAffinity:withCompletion:))]
         #[unsafe(method_family = none)]

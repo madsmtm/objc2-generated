@@ -366,6 +366,10 @@ impl CKContainer {
         /// - completionHandler: The handler to execute with the outcome.
         ///
         /// Use this method to determine the extra capabilities that the user grants to your app. If your app doesn't have a specific permission, calling this method yields ``CKContainer/ApplicationPermissionStatus/initialState``. In response, call the ``CKContainer/requestApplicationPermission:completionHandler:`` method to prompt the user to provide their permission.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(statusForApplicationPermission:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -387,6 +391,10 @@ impl CKContainer {
         /// The first time you request a permission on any of the user's devices, the user receives a prompt to grant or deny the request. After the user grants or denies a permission, subsequent requests for the same permission (on the same or separate devices), don't prompt the user again.
         ///
         /// This method runs asynchronously, and the system calls your completion handler on an arbitary queue and provides the outcome.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(requestApplicationPermission:completionHandler:))]
         #[unsafe(method_family = none)]

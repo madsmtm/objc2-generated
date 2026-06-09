@@ -42,6 +42,10 @@ impl SFSafariTab {
 
         #[cfg(all(feature = "SFSafariPage", feature = "block2"))]
         /// This calls the completion handler passing the active page in the tab.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getActivePageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getActivePageWithCompletionHandler(
@@ -51,6 +55,10 @@ impl SFSafariTab {
 
         #[cfg(all(feature = "SFSafariPage", feature = "block2"))]
         /// This calls the completion handler passing all the pages in the tab. This includes the active page and any pages being preloaded by Safari.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getPagesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPagesWithCompletionHandler(
@@ -60,6 +68,10 @@ impl SFSafariTab {
 
         #[cfg(all(feature = "SFSafariWindow", feature = "block2"))]
         /// This calls completion handler with the window containing this tab. If the tab is pinned, the window is nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getContainingWindowWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getContainingWindowWithCompletionHandler(
@@ -69,6 +81,10 @@ impl SFSafariTab {
 
         #[cfg(feature = "block2")]
         /// Activates this tab in the window it belongs to.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(activateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateWithCompletionHandler(

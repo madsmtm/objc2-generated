@@ -40,6 +40,10 @@ impl FSClient {
         /// In Swift, you can either call this method and pass a completion handler closure, or get the value of the `installedExtensions` property with the `async` keyword.
         ///
         /// - Parameter completionHandler: A block or closure that executes when FSKit finishes its fetch process. If the fetch succeeds, the first parameter contains an array of ``FSModuleIdentity`` instances that identify installed modules. If the fetch fails, the second parameter contains an error detailing the failure.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchInstalledExtensionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchInstalledExtensionsWithCompletionHandler(

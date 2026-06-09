@@ -156,6 +156,10 @@ impl GKLeaderboard {
         #[cfg(feature = "block2")]
         /// Loads classic and recurring leaderboards associated with the supplied App Store Connect leaderboard IDs.
         /// If leaderboardIDs is nil, this loads all classic and recurring leaderboards for this game.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadLeaderboardsWithIDs:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithIDs_completionHandler(
@@ -167,6 +171,10 @@ impl GKLeaderboard {
 
         #[cfg(feature = "block2")]
         /// Loads the occurrence preceding this occurrence for a recurring leaderboard in which the local player submitted a score. If no previous occurrence is found that the player submitted a score to, then the most recent previous occurrence is returned.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadPreviousOccurrenceWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPreviousOccurrenceWithCompletionHandler(
@@ -180,6 +188,10 @@ impl GKLeaderboard {
         /// context - developer supplied metadata associated with the player's score
         /// player - the player for whom this score is being submitted
         /// leaderboardIDs - one or more leaderboard IDs defined in App Store Connect
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(submitScore:context:player:leaderboardIDs:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitScore_context_player_leaderboardIDs_completionHandler(
@@ -195,6 +207,10 @@ impl GKLeaderboard {
         /// score - earned by the player
         /// context - developer supplied metadata associated with the player's score
         /// player - the player for whom this score is being submitted
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(submitScore:context:player:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitScore_context_player_completionHandler(
@@ -214,6 +230,10 @@ impl GKLeaderboard {
         /// localPlayerEntry - entry for the local player
         /// entries - requested entries matching supplied parameters
         /// totalPlayerCount - total player count matching specified scope
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadEntriesForPlayerScope:timeScope:range:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadEntriesForPlayerScope_timeScope_range_completionHandler(
@@ -243,6 +263,10 @@ impl GKLeaderboard {
         /// Upon completion, will return:
         /// localPlayerEntry - entry for the local player
         /// entries - requested entries matching supplied parameters
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadEntriesForPlayers:timeScope:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadEntriesForPlayers_timeScope_completionHandler(
@@ -281,6 +305,9 @@ impl GKLeaderboard {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadCategoriesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -293,6 +320,9 @@ impl GKLeaderboard {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(setDefaultLeaderboard:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -408,6 +438,10 @@ impl GKLeaderboard {
         /// 1. Communications problem
         /// 2. Unauthenticated player
         /// 3. Leaderboard not present
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadLeaderboardsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -425,6 +459,10 @@ impl GKLeaderboard {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Asynchronously load the image. Error will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadImageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(

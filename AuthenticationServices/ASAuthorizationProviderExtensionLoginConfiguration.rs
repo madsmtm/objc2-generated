@@ -291,6 +291,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Parameter `issuer`: The issuer for the requests, used to validate responses.
         ///
         /// Parameter `completion`: The completion called when it is complete or the error.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(configurationWithOpenIDConfigurationURL:clientID:issuer:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithOpenIDConfigurationURL_clientID_issuer_completion(

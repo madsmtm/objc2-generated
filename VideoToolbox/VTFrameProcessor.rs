@@ -99,6 +99,10 @@ impl VTFrameProcessor {
         /// - completionHandler: This completion handler is called when frame processing is completed. The completion handler
         /// receives the same parameters object that you provided to the original call, as well as an `NSError` which contains
         /// an error code if processing was not successful.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(processWithParameters:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn processWithParameters_completionHandler(

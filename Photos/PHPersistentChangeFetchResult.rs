@@ -24,6 +24,9 @@ impl PHPersistentChangeFetchResult {
         // -init (unavailable)
 
         #[cfg(all(feature = "PHPersistentChange", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(enumerateChangesWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateChangesWithBlock(

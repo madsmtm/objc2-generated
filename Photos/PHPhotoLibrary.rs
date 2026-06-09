@@ -104,6 +104,9 @@ impl PHPhotoLibrary {
         ) -> PHAuthorizationStatus;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(requestAuthorizationForAccessLevel:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationForAccessLevel_handler(
@@ -145,6 +148,9 @@ impl PHPhotoLibrary {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(performChanges:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performChanges_completionHandler(

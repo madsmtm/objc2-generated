@@ -33,6 +33,10 @@ impl QLThumbnailProvider {
         /// Parameter `handler`: Call the completion handler with a QLThumbnailReply if you can provide a thumbnail, or with an NSError if you cannot.
         /// If an error is passed or reply is nil, no thumbnail will be drawn.
         /// The handler can be called asynchronously after the method has returned.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(provideThumbnailForFileRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn provideThumbnailForFileRequest_completionHandler(

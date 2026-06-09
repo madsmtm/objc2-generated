@@ -107,6 +107,10 @@ extern_protocol!(
         ///
         ///
         /// See: INAppendToNoteIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INAppendToNoteIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleAppendToNote:completion:))]
         #[unsafe(method_family = none)]
@@ -133,6 +137,10 @@ extern_protocol!(
         ///
         ///
         /// See: INAppendToNoteIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INAppendToNoteIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmAppendToNote:completion:))]
@@ -160,6 +168,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INAppendToNoteIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTargetNoteForAppendToNote:withCompletion:))]
@@ -176,6 +188,9 @@ extern_protocol!(
             feature = "INNoteContentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INAppendToNoteIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveContentForAppendToNote:withCompletion:))]

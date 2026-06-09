@@ -77,6 +77,10 @@ impl EPDeveloperTool {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(requestDeveloperToolAccessWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestDeveloperToolAccessWithCompletionHandler(

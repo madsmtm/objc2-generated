@@ -84,6 +84,10 @@ impl NSFileProviderExtension {
         /// Other errors will be presented to the user, but are unexpected.  If you want to
         /// prevent imports in a given directory, then the directory item's capacities
         /// should exclude NSFileProviderItemCapabilitiesAllowsAddingSubItems.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(importDocumentAtURL:toParentItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn importDocumentAtURL_toParentItemIdentifier_completionHandler(
@@ -110,6 +114,10 @@ impl NSFileProviderExtension {
         /// Errors (including collision errors) are handled as documented for the import
         /// method above.  Directory creation is gated by the capabilities of the
         /// destination directory, with NSFileProviderItemCapabilitiesAllowsAddingSubItems.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(createDirectoryWithName:inParentItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createDirectoryWithName_inParentItemIdentifier_completionHandler(
@@ -132,6 +140,10 @@ impl NSFileProviderExtension {
         /// Errors (including collision errors) are handled as documented for the import
         /// method above.  Renames are gated by the capabilities of the renamed item, with
         /// NSFileProviderItemCapabilitiesAllowsRenaming.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(renameItemWithIdentifier:toName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renameItemWithIdentifier_toName_completionHandler(
@@ -152,6 +164,10 @@ impl NSFileProviderExtension {
         /// method above.  Moves are gated by the capabilities of both the moved item with
         /// NSFileProviderItemCapabilitiesAllowsReparenting, and the destination directory
         /// with NSFileProviderItemCapabilitiesAllowsAddingSubItems.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(reparentItemWithIdentifier:toParentItemWithIdentifier:newName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reparentItemWithIdentifier_toParentItemWithIdentifier_newName_completionHandler(
@@ -181,6 +197,10 @@ impl NSFileProviderExtension {
         ///
         /// Trash is gated by the capabilities of the trashed item with
         /// NSFileProviderItemCapabilitiesAllowsTrashing.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(trashItemWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn trashItemWithIdentifier_completionHandler(
@@ -202,6 +222,10 @@ impl NSFileProviderExtension {
         ///
         /// Untrash is gated by the capabilities of the destination directory, with
         /// NSFileProviderItemCapabilitiesAllowsAddingSubItems.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(untrashItemWithIdentifier:toParentItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn untrashItemWithIdentifier_toParentItemIdentifier_completionHandler(
@@ -220,6 +244,10 @@ impl NSFileProviderExtension {
         ///
         /// Delete is gated by the capabilities of the removed item with
         /// NSFileProviderItemCapabilitiesAllowsDeleting.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteItemWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteItemWithIdentifier_completionHandler(
@@ -241,6 +269,10 @@ impl NSFileProviderExtension {
         ///
         /// The error parameter is here for debugging purposes alone; it won't be presented
         /// to the user or otherwise handled, but it will be logged.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setLastUsedDate:forItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLastUsedDate_forItemIdentifier_completionHandler(
@@ -265,6 +297,10 @@ impl NSFileProviderExtension {
         ///
         /// On shared items, tags should sync across the devices of any one participant but
         /// shouldn't sync across users.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setTagData:forItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTagData_forItemIdentifier_completionHandler(
@@ -288,6 +324,10 @@ impl NSFileProviderExtension {
         /// The file provider is asked to persist the new favorite rank on disk, then call
         /// the completion callback with the updated favorite rank.  At a later point, the
         /// file provider should sync the new favorite rank to their server.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(setFavoriteRank:forItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFavoriteRank_forItemIdentifier_completionHandler(

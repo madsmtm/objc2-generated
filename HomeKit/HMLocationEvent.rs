@@ -91,6 +91,10 @@ impl HMLocationEvent {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "No longer supported."]
         #[unsafe(method(updateRegion:completionHandler:))]
         #[unsafe(method_family = none)]

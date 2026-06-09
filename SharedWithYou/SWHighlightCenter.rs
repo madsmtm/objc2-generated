@@ -82,6 +82,10 @@ impl SWHighlightCenter {
         /// Parameter `URL`: The URL used to find the SWHighlight
         ///
         /// Parameter `completionHandler`: an SWHighlight if it  was fetched. The completion handler will always be invoked on the main queue
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getHighlightForURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getHighlightForURL_completionHandler(
@@ -112,6 +116,10 @@ impl SWHighlightCenter {
         /// Parameter `URL`: The URL used to find the SWCollaborationHighlight
         ///
         /// Parameter `completionHandler`: an SWCollaborationHighlight if it was fetched. The completion handler will always be invoked on the main queue
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getCollaborationHighlightForURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCollaborationHighlightForURL_completionHandler(
@@ -154,6 +162,10 @@ impl SWHighlightCenter {
         /// Parameter `collaborationHighlight`: The corresponding collaboration highlight.
         ///
         /// Parameter `completionHandler`: Signed data along with proof of inclusion for merkle if signing succeeded, otherwise an error. The completion handler will always be invoked on main queue
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getSignedIdentityProofForCollaborationHighlight:usingData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSignedIdentityProofForCollaborationHighlight_usingData_completionHandler(

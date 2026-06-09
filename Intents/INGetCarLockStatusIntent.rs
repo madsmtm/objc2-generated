@@ -96,6 +96,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetCarLockStatusIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleGetCarLockStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetCarLockStatus_completion(
@@ -121,6 +125,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetCarLockStatusIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetCarLockStatus:completion:))]
         #[unsafe(method_family = none)]
@@ -147,6 +155,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForGetCarLockStatus:withCompletion:))]
         #[unsafe(method_family = none)]

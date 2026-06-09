@@ -29,6 +29,10 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Adds an action to the list of actions executed by the node. Your block is called when the action completes.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(runAction:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn runAction_completionHandler(

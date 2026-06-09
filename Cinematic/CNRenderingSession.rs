@@ -58,6 +58,10 @@ impl CNRenderingSessionAttributes {
     extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
         /// Load rendering session attributes from an asset asynchronously.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFromAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromAsset_completionHandler(

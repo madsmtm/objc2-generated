@@ -133,6 +133,10 @@ impl AVExternalStorageDevice {
         /// This call will not block while the user is being asked for access, allowing the client to continue running. Until access has been granted, trying to capture into detected external storage devices will result in an error. The user is only asked for permission the first time the client requests access, later calls use the authorization status selected by the user.
         ///
         /// The completion handler is called on an arbitrary dispatch queue. It is the client's responsibility to ensure that any UIKit-related updates are called on the main queue or main thread as a result.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(requestAccessWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAccessWithCompletionHandler(handler: &block2::DynBlock<dyn Fn(Bool)>);

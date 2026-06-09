@@ -174,6 +174,10 @@ extern_protocol!(
         /// the route succeeds, and
         /// <doc
         /// ://com.apple.documentation/documentation/objectivec/no>, otherwise.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(customRoutingController:handleEvent:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn customRoutingController_handleEvent_completionHandler(

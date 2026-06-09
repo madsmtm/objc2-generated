@@ -113,6 +113,10 @@ extern_protocol!(
         ///
         ///
         /// See: INDeleteTasksIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INDeleteTasksIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleDeleteTasks:completion:))]
         #[unsafe(method_family = none)]
@@ -139,6 +143,10 @@ extern_protocol!(
         ///
         ///
         /// See: INDeleteTasksIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INDeleteTasksIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmDeleteTasks:completion:))]
@@ -167,6 +175,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INDeleteTasksIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTaskListForDeleteTasks:withCompletion:))]
@@ -184,6 +196,9 @@ extern_protocol!(
             feature = "INTaskResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INDeleteTasksIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTasksForDeleteTasks:withCompletion:))]

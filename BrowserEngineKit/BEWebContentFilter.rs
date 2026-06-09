@@ -40,6 +40,10 @@ impl BEWebContentFilter {
         ///
         /// This method performs a lazy initialization of some objects, so the
         /// first call could take longer than subsequent calls.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(evaluateURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn evaluateURL_completionHandler(
@@ -56,6 +60,10 @@ impl BEWebContentFilter {
         /// Parameter `completionHandler`: The completion block to be called when the add
         /// operation is complete, with result of the operation. Result is YES if the url is added
         /// successfully, and NO if it isn't.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(allowURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowURL_completionHandler(

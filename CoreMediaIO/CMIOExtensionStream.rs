@@ -595,6 +595,10 @@ impl CMIOExtensionStream {
         /// Parameter `completionHandler`: A block that will be called when the operation is completed.
         /// If the capture request is successful, the "sampleBuffer" parameter contains a valid CMSampleBuffer, the "sampleBufferSequenceNumber" parameter is the sample buffer sequence number,
         /// the "discontinuity" parameter is the discontinuity flag, the "hasMoreSampleBuffers" parameter indicates whether or not more sample buffers are available, the "error" parameter is nil.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(consumeSampleBufferFromClient:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn consumeSampleBufferFromClient_completionHandler(

@@ -27,6 +27,10 @@ impl NSColorSampler {
         /// Begins or attaches to an existing color sampling session which presents UI to the user for selecting a color from their screen. The handler will be called on the main thread when the user completes the session (either by selection, or cancelation). In the event of user-cancellation, `colorSelectionHandler` will be called with `nil`.
         ///
         /// The calling NSColorSampler instance is retained until the sampling session is completed.
+        ///
+        /// # Safety
+        ///
+        /// `selection_handler` block must be sendable.
         #[unsafe(method(showSamplerWithSelectionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showSamplerWithSelectionHandler(

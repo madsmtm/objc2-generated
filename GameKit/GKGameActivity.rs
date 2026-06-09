@@ -367,6 +367,10 @@ impl GKGameActivity {
         /// returns the match object in the completion handler or any error that occurred.
         /// An error occurs if this activity doesn't support party code, or has an unsupported range of players, which
         /// is used to be configured as match request's `minPlayers` and `maxPlayers`.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(findMatchWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findMatchWithCompletionHandler(
@@ -381,6 +385,10 @@ impl GKGameActivity {
         /// information, and returns the players in the completion handler or any error that occurred.
         /// An error occurs if this activity doesn't support party code, or has unsupported range of players, which is
         /// used to be configured as match request's `minPlayers` and `maxPlayers`.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(findPlayersForHostedMatchWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findPlayersForHostedMatchWithCompletionHandler(
@@ -398,6 +406,10 @@ impl GKGameActivity {
         ///
         /// You can call this method before you initialize Game Center to avoid activating the system banner or
         /// welcome experience.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(checkPendingGameActivityExistenceWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkPendingGameActivityExistenceWithCompletionHandler(

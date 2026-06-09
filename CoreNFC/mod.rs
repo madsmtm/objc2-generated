@@ -735,6 +735,10 @@ impl NFCTagReaderSession {
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(connectToTag:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectToTag_completionHandler(
@@ -951,6 +955,10 @@ impl NFCNDEFReaderSession {
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(connectToTag:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectToTag_completionHandler(
@@ -1352,6 +1360,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(stayQuietWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn stayQuietWithCompletionHandler(
@@ -1379,6 +1391,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(readSingleBlockWithRequestFlags:blockNumber:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn readSingleBlockWithRequestFlags_blockNumber_completionHandler(
@@ -1408,6 +1424,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeSingleBlockWithRequestFlags:blockNumber:dataBlock:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn writeSingleBlockWithRequestFlags_blockNumber_dataBlock_completionHandler(
@@ -1436,6 +1456,10 @@ extern_protocol!(
         ///                           enforced by default and the tag's UID is sent with the command; setting RequestFlagSelect to flags will disable the Address flag.
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(lockBlockWithRequestFlags:blockNumber:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn lockBlockWithRequestFlags_blockNumber_completionHandler(
@@ -1466,6 +1490,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(readMultipleBlocksWithRequestFlags:blockRange:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn readMultipleBlocksWithRequestFlags_blockRange_completionHandler(
@@ -1496,6 +1524,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeMultipleBlocksWithRequestFlags:blockRange:dataBlocks:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn writeMultipleBlocksWithRequestFlags_blockRange_dataBlocks_completionHandler(
@@ -1522,6 +1554,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(selectWithRequestFlags:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn selectWithRequestFlags_completionHandler(
@@ -1546,6 +1582,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(resetToReadyWithRequestFlags:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn resetToReadyWithRequestFlags_completionHandler(
@@ -1572,6 +1612,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeAFIWithRequestFlag:afi:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn writeAFIWithRequestFlag_afi_completionHandler(
@@ -1597,6 +1641,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(lockAFIWithRequestFlag:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn lockAFIWithRequestFlag_completionHandler(
@@ -1623,6 +1671,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeDSFIDWithRequestFlag:dsfid:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn writeDSFIDWithRequestFlag_dsfid_completionHandler(
@@ -1672,6 +1724,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(lockDSFIDWithRequestFlag:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn lockDSFIDWithRequestFlag_completionHandler(
@@ -1727,6 +1783,10 @@ extern_protocol!(
         ///                           enforced by default and the tag's UID is sent with the command; setting RequestFlagSelect to flags will disable the Address flag.
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getSystemInfoAndUIDWithRequestFlag:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn getSystemInfoAndUIDWithRequestFlag_completionHandler(
@@ -1764,6 +1824,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getMultipleBlockSecurityStatusWithRequestFlag:blockRange:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn getMultipleBlockSecurityStatusWithRequestFlag_blockRange_completionHandler(
@@ -1782,6 +1846,10 @@ extern_protocol!(
         ///
         ///
         /// Fast read multiple blocks command (0x2D command code) as defined in ISO15693-3 specification.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(fastReadMultipleBlocksWithRequestFlag:blockRange:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn fastReadMultipleBlocksWithRequestFlag_blockRange_completionHandler(
@@ -1812,6 +1880,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(customCommandWithRequestFlag:customCommandCode:customRequestParameters:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn customCommandWithRequestFlag_customCommandCode_customRequestParameters_completionHandler(
@@ -1841,6 +1913,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(extendedReadSingleBlockWithRequestFlags:blockNumber:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn extendedReadSingleBlockWithRequestFlags_blockNumber_completionHandler(
@@ -1870,6 +1946,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(extendedWriteSingleBlockWithRequestFlags:blockNumber:dataBlock:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn extendedWriteSingleBlockWithRequestFlags_blockNumber_dataBlock_completionHandler(
@@ -1898,6 +1978,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(extendedLockBlockWithRequestFlags:blockNumber:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn extendedLockBlockWithRequestFlags_blockNumber_completionHandler(
@@ -1927,6 +2011,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(extendedReadMultipleBlocksWithRequestFlags:blockRange:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn extendedReadMultipleBlocksWithRequestFlags_blockRange_completionHandler(
@@ -1957,6 +2045,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(extendedWriteMultipleBlocksWithRequestFlags:blockRange:dataBlocks:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn extendedWriteMultipleBlocksWithRequestFlags_blockRange_dataBlocks_completionHandler(
@@ -1987,6 +2079,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(authenticateWithRequestFlags:cryptoSuiteIdentifier:message:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn authenticateWithRequestFlags_cryptoSuiteIdentifier_message_completionHandler(
@@ -2019,6 +2115,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(keyUpdateWithRequestFlags:keyIdentifier:message:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn keyUpdateWithRequestFlags_keyIdentifier_message_completionHandler(
@@ -2050,6 +2150,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(challengeWithRequestFlags:cryptoSuiteIdentifier:message:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn challengeWithRequestFlags_cryptoSuiteIdentifier_message_completionHandler(
@@ -2076,6 +2180,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(readBufferWithRequestFlags:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn readBufferWithRequestFlags_completionHandler(
@@ -2105,6 +2213,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(extendedGetMultipleBlockSecurityStatusWithRequestFlag:blockRange:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn extendedGetMultipleBlockSecurityStatusWithRequestFlag_blockRange_completionHandler(
@@ -2121,6 +2233,10 @@ extern_protocol!(
         ///
         ///
         /// Fast read multiple blocks command (0x3D command code) as defined in ISO15693-3 specification.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(extendedFastReadMultipleBlocksWithRequestFlag:blockRange:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn extendedFastReadMultipleBlocksWithRequestFlag_blockRange_completionHandler(
@@ -2142,6 +2258,10 @@ extern_protocol!(
         ///
         /// Send a command according to the ISO15693-3 specification.  The request data frame is concatenation of 8 bits request flag, 8 bits command code, and optional data.
         /// Total length of the data frame cannot exceed 256 bytes.  The 8 bits response flag and the data are returned in the completion handler.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendRequestWithFlag:commandCode:data:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn sendRequestWithFlag_commandCode_data_completionHandler(
@@ -2283,6 +2403,10 @@ extern_protocol!(
         ///
         ///
         /// Query the NDEF support status of the tag.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(queryNDEFStatusWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn queryNDEFStatusWithCompletionHandler(
@@ -2296,6 +2420,10 @@ extern_protocol!(
         ///
         ///
         /// Reads NDEF message from the tag.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(readNDEFWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn readNDEFWithCompletionHandler(
@@ -2308,6 +2436,10 @@ extern_protocol!(
         ///
         ///
         /// Writes a NDEF message to the tag.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeNDEF:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn writeNDEF_completionHandler(
@@ -2328,6 +2460,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeLockWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn writeLockWithCompletionHandler(
@@ -2502,6 +2638,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(pollingWithSystemCode:requestCode:timeSlot:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn pollingWithSystemCode_requestCode_timeSlot_completionHandler(
@@ -2524,6 +2664,10 @@ extern_protocol!(
         ///
         ///
         /// Request Service command defined by FeliCa card specification.  Refer to the FeliCa specification for details.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestServiceWithNodeCodeList:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn requestServiceWithNodeCodeList_completionHandler(
@@ -2538,6 +2682,10 @@ extern_protocol!(
         ///
         ///
         /// Request Response command defined by FeliCa card specification.  Refer to the FeliCa specification for details.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestResponseWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn requestResponseWithCompletionHandler(
@@ -2557,6 +2705,10 @@ extern_protocol!(
         ///
         ///
         /// Read Without Encryption command defined by FeliCa card specification.  Refer to the FeliCa specification for details.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(readWithoutEncryptionWithServiceCodeList:blockList:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn readWithoutEncryptionWithServiceCodeList_blockList_completionHandler(
@@ -2583,6 +2735,10 @@ extern_protocol!(
         ///
         ///
         /// Write Without Encryption command defined by FeliCa card specification.  Refer to the FeliCa specification for details.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeWithoutEncryptionWithServiceCodeList:blockList:blockData:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn writeWithoutEncryptionWithServiceCodeList_blockList_blockData_completionHandler(
@@ -2599,6 +2755,10 @@ extern_protocol!(
         ///
         ///
         /// Request System Code command defined by FeliCa card specification.  Refer to the FeliCa specification for details.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestSystemCodeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn requestSystemCodeWithCompletionHandler(
@@ -2617,6 +2777,10 @@ extern_protocol!(
         ///
         ///
         /// Request Service V2 command defined by FeliCa card specification.  Refer to the FeliCa specification for details.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestServiceV2WithNodeCodeList:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn requestServiceV2WithNodeCodeList_completionHandler(
@@ -2642,6 +2806,10 @@ extern_protocol!(
         ///
         /// Request Specification Version command defined by FeliCa card specification.  This command supports response format version `00`h.
         /// Refer to the FeliCa specification for details.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestSpecificationVersionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn requestSpecificationVersionWithCompletionHandler(
@@ -2657,6 +2825,10 @@ extern_protocol!(
         ///
         ///
         /// Reset Mode command defined by FeliCa card specification.  Refer to the FeliCa specification for details.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(resetModeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn resetModeWithCompletionHandler(
@@ -2679,6 +2851,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendFeliCaCommandPacket:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn sendFeliCaCommandPacket_completionHandler(
@@ -2870,6 +3046,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendCommandAPDU:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn sendCommandAPDU_completionHandler(
@@ -2949,6 +3129,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendMiFareCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn sendMiFareCommand_completionHandler(
@@ -2971,6 +3155,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendMiFareISO7816Command:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn sendMiFareISO7816Command_completionHandler(

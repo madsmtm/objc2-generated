@@ -133,6 +133,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForBillsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSearchForBills:completion:))]
         #[unsafe(method_family = none)]
@@ -159,6 +163,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForBillsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSearchForBills:completion:))]
@@ -186,6 +194,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveBillPayeeForSearchForBills:withCompletion:))]
@@ -202,6 +214,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolvePaymentDateRangeForSearchForBills:withCompletion:))]
@@ -218,6 +233,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveBillTypeForSearchForBills:withCompletion:))]
@@ -234,6 +252,9 @@ extern_protocol!(
             feature = "INPaymentStatusResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveStatusForSearchForBills:withCompletion:))]
@@ -250,6 +271,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveDueDateRangeForSearchForBills:withCompletion:))]

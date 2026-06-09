@@ -180,6 +180,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForMessagesIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleSearchForMessages:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSearchForMessages_completion(
@@ -205,6 +209,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForMessagesIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSearchForMessages:completion:))]
         #[unsafe(method_family = none)]
@@ -231,6 +239,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRecipientsForSearchForMessages:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -246,6 +258,9 @@ extern_protocol!(
             feature = "INPersonResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSendersForSearchForMessages:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -261,6 +276,9 @@ extern_protocol!(
             feature = "INMessageAttributeOptionsResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveAttributesForSearchForMessages:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -278,6 +296,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDateTimeRangeForSearchForMessages:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -293,6 +314,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "resolveGroupNamesForSearchForMessages:withCompletion: is deprecated. Use resolveSpeakableGroupNamesForSearchForMessages:withCompletion: instead"]
         #[optional]
         #[unsafe(method(resolveGroupNamesForSearchForMessages:withCompletion:))]
@@ -309,6 +333,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSpeakableGroupNamesForSearchForMessages:withCompletion:))]
         #[unsafe(method_family = none)]

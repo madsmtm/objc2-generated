@@ -219,6 +219,10 @@ impl GSSyncedDirectory {
         /// Triggers an upload of the directory for any changes that were pending.
         ///
         /// Calls the completion block with `YES` if there were pending uploads; otherwise with `NO`.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(triggerPendingUploadWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerPendingUploadWithCompletionHandler(
@@ -244,6 +248,10 @@ impl GSSyncedDirectory {
         /// Waits for the directory sync to complete, without showing any user interface.
         ///
         /// Use this method to wait if your app displays its own syncing UI.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(finishSyncingWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishSyncingWithCompletionHandler(

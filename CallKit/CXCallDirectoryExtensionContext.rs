@@ -125,6 +125,9 @@ impl CXCallDirectoryExtensionContext {
         pub unsafe fn removeAllIdentificationEntries(&self);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(completeRequestWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeRequestWithCompletionHandler(

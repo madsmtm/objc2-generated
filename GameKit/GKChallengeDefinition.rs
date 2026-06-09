@@ -123,6 +123,10 @@ impl GKChallengeDefinition {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Loads the image set on the challenge definition, which may be `nil` if none was set.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadImageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
@@ -151,6 +155,10 @@ impl GKChallengeDefinition {
         #[cfg(feature = "block2")]
         /// Loads all the challenge definitions for the current game, returns an empty array if none exist.
         /// - Important: Archived challenge definitions are excluded.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadChallengeDefinitionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadChallengeDefinitionsWithCompletionHandler(
@@ -161,6 +169,10 @@ impl GKChallengeDefinition {
 
         #[cfg(feature = "block2")]
         /// Indicates if this definition has active challenges associated with it.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(hasActiveChallengesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasActiveChallengesWithCompletionHandler(

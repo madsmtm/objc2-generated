@@ -63,6 +63,10 @@ impl GKChallenge {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// Query challenges for the current game issued to the local player -- equivalent GKChallenge objects are not guaranteed to be pointer equivalent across calls, but equal GKChallenge objects will have equal hashes
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadReceivedChallengesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -248,6 +252,10 @@ impl GKScore {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// Use this alternative to reportScores:withCompletionHandler: to allow only certain specific challenges to be completed. Pass nil to avoid completing any challenges.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(reportScores:withEligibleChallenges:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -258,6 +266,9 @@ impl GKScore {
         );
 
         #[cfg(all(feature = "GKLeaderboardScore", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(reportLeaderboardScores:withEligibleChallenges:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -275,6 +286,10 @@ impl GKAchievement {
     extern_methods!(
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Given a list of players, return a subset of that list containing only players that are eligible to receive a challenge for the achievement.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(selectChallengeablePlayers:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -288,6 +303,10 @@ impl GKAchievement {
 
         #[cfg(feature = "block2")]
         /// Use this alternative to reportAchievements:withCompletionHandler: to allow only certain specific challenges to be completed. Pass nil to avoid completing any challenges.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(reportAchievements:withEligibleChallenges:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -331,6 +350,10 @@ impl GKAchievement {
 
         #[cfg(feature = "block2")]
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "This method is obsolete."]
         #[unsafe(method(selectChallengeablePlayerIDs:withCompletionHandler:))]
         #[unsafe(method_family = none)]

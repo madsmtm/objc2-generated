@@ -53,6 +53,9 @@ impl SKProductStorePromotionController {
         pub unsafe fn defaultController() -> Retained<Self>;
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Get visibility from Product.PromotionInfo.currentOrder."]
         #[unsafe(method(fetchStorePromotionVisibilityForProduct:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -65,6 +68,9 @@ impl SKProductStorePromotionController {
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use Product.PromotionInfo.updateProductVisibility(_:for:)."]
         #[unsafe(method(updateStorePromotionVisibility:forProduct:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -76,6 +82,9 @@ impl SKProductStorePromotionController {
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use Product.PromotionInfo.currentOrder."]
         #[unsafe(method(fetchStorePromotionOrderWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -87,6 +96,9 @@ impl SKProductStorePromotionController {
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use Product.PromotionInfo.updateProductOrder(byID:)."]
         #[unsafe(method(updateStorePromotionOrder:completionHandler:))]
         #[unsafe(method_family = none)]

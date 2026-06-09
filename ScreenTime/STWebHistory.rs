@@ -99,6 +99,10 @@ impl STWebHistory {
         ///
         /// - Parameters:
         /// - interval: The date interval of web history you want to fetch.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchHistoryDuringInterval:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchHistoryDuringInterval_completionHandler(
@@ -110,6 +114,10 @@ impl STWebHistory {
         #[cfg(feature = "block2")]
         /// Fetches all web history associated with the bundle identifier and profile identifier
         /// you specified during initialization.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchAllHistoryWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllHistoryWithCompletionHandler(

@@ -83,6 +83,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetRideStatusIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleGetRideStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetRideStatus_completion(
@@ -122,6 +126,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetRideStatusIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetRideStatus:completion:))]
         #[unsafe(method_family = none)]

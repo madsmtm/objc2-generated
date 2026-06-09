@@ -107,6 +107,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSnoozeTasksIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleSnoozeTasks:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSnoozeTasks_completion(
@@ -132,6 +136,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSnoozeTasksIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSnoozeTasks:completion:))]
         #[unsafe(method_family = none)]
@@ -159,6 +167,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTasksForSnoozeTasks:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -176,6 +188,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveNextTriggerTimeForSnoozeTasks:withCompletion:))]
         #[unsafe(method_family = none)]

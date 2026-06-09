@@ -140,6 +140,10 @@ extern_protocol!(
         ///
         ///
         /// See: INPlayMediaIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handlePlayMedia:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handlePlayMedia_completion(
@@ -165,6 +169,10 @@ extern_protocol!(
         ///
         ///
         /// See: INPlayMediaIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmPlayMedia:completion:))]
         #[unsafe(method_family = none)]
@@ -192,6 +200,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveMediaItemsForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -209,6 +221,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePlayShuffledForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -224,6 +239,9 @@ extern_protocol!(
             feature = "INPlaybackRepeatModeResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePlaybackRepeatModeForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -239,6 +257,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveResumePlaybackForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -254,6 +275,9 @@ extern_protocol!(
             feature = "INPlaybackQueueLocationResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePlaybackQueueLocationForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -270,6 +294,9 @@ extern_protocol!(
             feature = "INPlayMediaPlaybackSpeedResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePlaybackSpeedForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]

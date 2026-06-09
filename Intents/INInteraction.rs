@@ -100,6 +100,9 @@ impl INInteraction {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(donateInteractionWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn donateInteractionWithCompletion(
@@ -108,6 +111,9 @@ impl INInteraction {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(deleteAllInteractionsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAllInteractionsWithCompletion(
@@ -115,6 +121,9 @@ impl INInteraction {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(deleteInteractionsWithIdentifiers:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteInteractionsWithIdentifiers_completion(
@@ -123,6 +132,9 @@ impl INInteraction {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(deleteInteractionsWithGroupIdentifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteInteractionsWithGroupIdentifier_completion(

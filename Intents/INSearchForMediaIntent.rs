@@ -102,6 +102,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForMediaIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleSearchForMedia:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSearchForMedia_completion(
@@ -127,6 +131,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForMediaIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSearchForMedia:completion:))]
         #[unsafe(method_family = none)]
@@ -154,6 +162,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveMediaItemsForSearchForMedia:withCompletion:))]
         #[unsafe(method_family = none)]

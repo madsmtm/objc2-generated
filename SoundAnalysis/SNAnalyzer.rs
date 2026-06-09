@@ -188,6 +188,10 @@ impl SNAudioFileAnalyzer {
         /// Analyzes the audio file asynchronously
         ///
         /// This function executes asynchronously, calling the completion after the entire file has completed analysis. Any errors produced during analysis will flow downstream to the request observers. If the cancelAnalysis method is called, the completionHandler will still be called, but with didReachEndOfFile set to NO.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(analyzeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn analyzeWithCompletionHandler(

@@ -35,6 +35,10 @@ impl GKAchievementDescription {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// Asynchronously load all achievement descriptions
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadAchievementDescriptionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAchievementDescriptionsWithCompletionHandler(
@@ -130,6 +134,9 @@ impl GKAchievementDescription {
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadImageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(

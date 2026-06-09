@@ -24,6 +24,10 @@ extern_protocol!(
         /// content items to display.
         /// Client applications should always call the completion handler after loading
         /// has finished, if this method is implemented.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[unsafe(method(beginLoadingChildItemsAtIndexPath:completionHandler:))]
@@ -54,6 +58,10 @@ extern_protocol!(
         /// to be retrieved.
         /// Client applications should always call the completion handler after loading
         /// has finished, if this method is implemented.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[unsafe(method(contentItemForIdentifier:completionHandler:))]

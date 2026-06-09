@@ -124,6 +124,9 @@ impl MPMediaPlaylist {
         pub unsafe fn authorDisplayName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(addItemWithProductID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addItemWithProductID_completionHandler(
@@ -133,6 +136,9 @@ impl MPMediaPlaylist {
         );
 
         #[cfg(all(feature = "MPMediaItem", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(addMediaItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMediaItems_completionHandler(

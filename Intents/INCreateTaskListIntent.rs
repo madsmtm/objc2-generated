@@ -114,6 +114,10 @@ extern_protocol!(
         ///
         ///
         /// See: INCreateTaskListIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INCreateTaskListIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleCreateTaskList:completion:))]
         #[unsafe(method_family = none)]
@@ -140,6 +144,10 @@ extern_protocol!(
         ///
         ///
         /// See: INCreateTaskListIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INCreateTaskListIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmCreateTaskList:completion:))]
@@ -167,6 +175,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INCreateTaskListIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTitleForCreateTaskList:withCompletion:))]
@@ -183,6 +195,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INCreateTaskListIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTaskTitlesForCreateTaskList:withCompletion:))]
@@ -201,6 +216,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INCreateTaskListIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveGroupNameForCreateTaskList:withCompletion:))]

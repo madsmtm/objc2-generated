@@ -253,6 +253,10 @@ impl SKTexture {
         /// Parameter `textures`: an array of SKTextures to be preloaded
         ///
         /// Parameter `completionHandler`: will be called upon the preload completion
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(preloadTextures:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preloadTextures_withCompletionHandler(
@@ -262,6 +266,10 @@ impl SKTexture {
 
         #[cfg(feature = "block2")]
         /// Request that this texture be loaded into vram on the next render update, with a callback handler.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(preloadWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preloadWithCompletionHandler(

@@ -631,6 +631,10 @@ impl AVSpeechSynthesizer {
         /// Call this method before performing any other tasks associated with speech synthesis using personal voices. This method executes asynchronously, returning shortly after you call it. At some point later, the system calls the provided handler block with the results.
         ///
         /// When your app's authorization status is PersonalVoiceAuthorizationStatus.notDetermined, this method causes the system to prompt the user to grant or deny permission for your app to use personal voices. The user's response is saved so that future calls to this method do not prompt the user again.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(requestPersonalVoiceAuthorizationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestPersonalVoiceAuthorizationWithCompletionHandler(

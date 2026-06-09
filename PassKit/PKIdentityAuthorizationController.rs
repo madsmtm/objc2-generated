@@ -25,6 +25,10 @@ impl PKIdentityAuthorizationController {
         #[cfg(all(feature = "PKIdentityDocumentDescriptor", feature = "block2"))]
         /// Determines if a document can be requested, taking into account the entitlement of the
         /// calling process as well as the state of this device.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(checkCanRequestDocument:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkCanRequestDocument_completion(
@@ -47,6 +51,10 @@ impl PKIdentityAuthorizationController {
         /// will be returned.
         /// Only one request can be in progress at a time, otherwise PKIdentityErrorRequestAlreadyInProgress
         /// will be returned.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(requestDocument:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestDocument_completion(

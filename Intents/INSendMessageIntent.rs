@@ -140,6 +140,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSendMessageIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleSendMessage:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSendMessage_completion(
@@ -165,6 +169,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSendMessageIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSendMessage:completion:))]
         #[unsafe(method_family = none)]
@@ -191,6 +199,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "resolveRecipientsForSendMessage:withCompletion: is deprecated. Use resolveRecipientsForSendMessage:completion: instead"]
         #[optional]
         #[unsafe(method(resolveRecipientsForSendMessage:withCompletion:))]
@@ -208,6 +220,9 @@ extern_protocol!(
             feature = "INSendMessageRecipientResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRecipientsForSendMessage:completion:))]
         #[unsafe(method_family = none)]
@@ -225,6 +240,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "resolveGroupNameForSendMessage:withCompletion: is deprecated. Use resolveSpeakableGroupNameForSendMessage:withCompletion: instead"]
         #[optional]
         #[unsafe(method(resolveGroupNameForSendMessage:withCompletion:))]
@@ -241,6 +259,9 @@ extern_protocol!(
             feature = "INOutgoingMessageTypeResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveOutgoingMessageTypeForSendMessage:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -256,6 +277,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveContentForSendMessage:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -271,6 +295,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSpeakableGroupNameForSendMessage:withCompletion:))]
         #[unsafe(method_family = none)]

@@ -132,6 +132,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
@@ -175,6 +179,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addAccessory:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAccessory_completionHandler(
@@ -193,6 +201,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(removeAccessory:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAccessory_completionHandler(
@@ -218,6 +230,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(assignAccessory:toRoom:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assignAccessory_toRoom_completionHandler(
@@ -257,6 +273,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(unblockAccessory:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unblockAccessory_completionHandler(
@@ -273,6 +293,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Use -[HMAccessorySetupManager performAccessorySetupUsingRequest:completionHandler:] instead"]
         #[unsafe(method(addAndSetupAccessoriesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -295,6 +319,10 @@ impl HMHome {
         /// Accessories provides the list of added accessories.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "Use -[HMAccessorySetupManager performAccessorySetupUsingRequest:completionHandler:] instead"]
         #[unsafe(method(addAndSetupAccessoriesWithPayload:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -357,6 +385,10 @@ impl HMHome {
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success. If the user does not have administrator privileges the error code will be set to
         /// HMErrorCodeInsufficientPrivileges.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(manageUsersWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn manageUsersWithCompletionHandler(
@@ -373,6 +405,10 @@ impl HMHome {
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success. The userInfo dictionary will contain the HMUserFailedAccessoriesKey which provides
         /// more details on the accessories that failed to add the user.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(addUserWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -392,6 +428,10 @@ impl HMHome {
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success. The userInfo dictionary will contain the HMUserFailedAccessoriesKey which provides
         /// more details on the accessories that failed to remove the user.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(removeUser:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -442,6 +482,10 @@ impl HMHome {
         /// The HMRoom is the new room added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addRoomWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRoomWithName_completionHandler(
@@ -465,6 +509,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(removeRoom:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRoom_completionHandler(
@@ -511,6 +559,10 @@ impl HMHome {
         /// The HMZone is the new zone added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addZoneWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addZoneWithName_completionHandler(
@@ -529,6 +581,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(removeZone:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeZone_completionHandler(
@@ -565,6 +621,10 @@ impl HMHome {
         /// The HMServiceGroup is the new service group added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addServiceGroupWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addServiceGroupWithName_completionHandler(
@@ -583,6 +643,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(removeServiceGroup:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeServiceGroup_completionHandler(
@@ -619,6 +683,10 @@ impl HMHome {
         /// The HMActionSet parameter is the new action set added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addActionSetWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addActionSetWithName_completionHandler(
@@ -637,6 +705,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(removeActionSet:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeActionSet_completionHandler(
@@ -655,6 +727,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(executeActionSet:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeActionSet_completionHandler(
@@ -714,6 +790,10 @@ impl HMHome {
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         /// Errors when no Home Hub is associated with the home
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addTrigger:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTrigger_completionHandler(
@@ -732,6 +812,10 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(removeTrigger:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTrigger_completionHandler(

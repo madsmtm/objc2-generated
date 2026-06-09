@@ -137,9 +137,12 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         );
 
         #[cfg(all(feature = "NSDiffableDataSource", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(applySnapshot:animatingDifferences:completion:))]
         #[unsafe(method_family = none)]
-        pub fn applySnapshot_animatingDifferences_completion(
+        pub unsafe fn applySnapshot_animatingDifferences_completion(
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
             animating_differences: bool,

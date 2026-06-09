@@ -40,6 +40,9 @@ extern_conformance!(
 impl SKAdNetwork {
     extern_methods!(
         #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(startImpression:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startImpression_completionHandler(
@@ -48,6 +51,9 @@ impl SKAdNetwork {
         );
 
         #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(endImpression:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endImpression_completionHandler(
@@ -66,6 +72,9 @@ impl SKAdNetwork {
         pub unsafe fn updateConversionValue(conversion_value: NSInteger);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updatePostbackConversionValue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatePostbackConversionValue_completionHandler(
@@ -74,6 +83,9 @@ impl SKAdNetwork {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updatePostbackConversionValue:coarseValue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatePostbackConversionValue_coarseValue_completionHandler(
@@ -83,6 +95,9 @@ impl SKAdNetwork {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatePostbackConversionValue_coarseValue_lockWindow_completionHandler(

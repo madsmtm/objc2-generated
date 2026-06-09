@@ -137,6 +137,10 @@ impl DCAppAttestService {
         /// stores the key in the Secure Enclave.
         /// - `error`:  A ``DeviceCheck/DCError-swift.struct`` instance that indicates the
         /// reason for failure, or `nil` on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(generateKeyWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateKeyWithCompletionHandler(
@@ -208,6 +212,10 @@ impl DCAppAttestService {
         /// associated with `keyId`. Send this to your server for processing.
         /// - `error`: A ``DeviceCheck/DCError-swift.struct`` instance that indicates the reason for
         /// failure, or `nil` on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(attestKey:clientDataHash:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attestKey_clientDataHash_completionHandler(
@@ -261,6 +269,10 @@ impl DCAppAttestService {
         /// the following parameters:
         /// - `assertionObject`: A data structure that you send to your server for processing.
         /// - `error` : A ``DeviceCheck/DCError-swift.struct`` instance that indicates the reason for failure, or `nil` on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(generateAssertion:clientDataHash:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateAssertion_clientDataHash_completionHandler(

@@ -87,6 +87,9 @@ impl SKCloudServiceController {
         pub unsafe fn authorizationStatus() -> SKCloudServiceAuthorizationStatus;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use MusicAuthorization.request() from MusicKit."]
         #[unsafe(method(requestAuthorization:))]
         #[unsafe(method_family = none)]
@@ -95,6 +98,9 @@ impl SKCloudServiceController {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use MusicSubscription.current from MusicKit."]
         #[unsafe(method(requestCapabilitiesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -104,6 +110,9 @@ impl SKCloudServiceController {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use MusicDataRequest.currentCountryCode from MusicKit."]
         #[unsafe(method(requestStorefrontCountryCodeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -113,6 +122,9 @@ impl SKCloudServiceController {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use Storefront.current.id."]
         #[unsafe(method(requestStorefrontIdentifierWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -122,6 +134,9 @@ impl SKCloudServiceController {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use MusicKit."]
         #[unsafe(method(requestUserTokenForDeveloperToken:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -132,6 +147,9 @@ impl SKCloudServiceController {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(requestPersonalizationTokenForClientToken:withCompletionHandler:))]
         #[unsafe(method_family = none)]

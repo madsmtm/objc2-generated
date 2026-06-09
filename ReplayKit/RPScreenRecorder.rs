@@ -106,6 +106,10 @@ impl RPScreenRecorder {
         /// Parameter `url`: Output URL for app recording movie.
         ///
         /// handler Called when  movie is written to specified output URL. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue stopping the recording and writing the output URL.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(stopRecordingWithOutputURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopRecordingWithOutputURL_completionHandler(
@@ -128,6 +132,10 @@ impl RPScreenRecorder {
         /// Starts screen and audio capture and continually calls the supplied handler with the current sampleBuffer and bufferType and passed it back to the application. Note that before recording actually starts, the user may be prompted with UI to confirm recording.
         ///
         /// handler Called continually with sampleBuffers and the bufferType. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue starting the capture.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(startCaptureWithHandler:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startCaptureWithHandler_completionHandler(
@@ -155,6 +163,10 @@ impl RPScreenRecorder {
         /// Start clip recording buffering with a completion handler. Note that before recording actually starts, the user may be prompted with UI to confirm recording.
         ///
         /// handler Called after clip recording is started. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue starting clip record buffering.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(startClipBufferingWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startClipBufferingWithCompletionHandler(
@@ -166,6 +178,10 @@ impl RPScreenRecorder {
         /// Stop clip recording buffering with a completion handler.
         ///
         /// handler Called after clip recording session is stopped. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue stopping clip record buffering.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(stopClipBufferingWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopClipBufferingWithCompletionHandler(
@@ -181,6 +197,10 @@ impl RPScreenRecorder {
         /// Parameter `duration`: Length of time in seconds for clip recording, capped at either the elapsed time, or a maximum of 15 seconds, depending on which is the shorter amount of time
         ///
         /// Must be called after startClipBufferingWithCompletionHandler:, otherwise this will return an error. Exports clip recording from newest samples in buffer for duration. handler Will be called after asset is finished writing to output path. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue generating the clip recording.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(exportClipToURL:duration:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportClipToURL_duration_completionHandler(

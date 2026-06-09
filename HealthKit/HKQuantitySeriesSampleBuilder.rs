@@ -167,7 +167,8 @@ impl HKQuantitySeriesSampleBuilder {
         ///
         /// # Safety
         ///
-        /// `metadata` generic should be of the correct type.
+        /// - `metadata` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(finishSeriesWithMetadata:endDate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithMetadata_endDate_completion(
@@ -215,7 +216,8 @@ impl HKQuantitySeriesSampleBuilder {
         ///
         /// # Safety
         ///
-        /// `metadata` generic should be of the correct type.
+        /// - `metadata` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(finishSeriesWithMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithMetadata_completion(

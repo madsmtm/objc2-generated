@@ -146,7 +146,8 @@ impl HMCharacteristic {
         ///
         /// # Safety
         ///
-        /// `value` should be of the correct type.
+        /// - `value` should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(writeValue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeValue_completionHandler(
@@ -162,6 +163,10 @@ impl HMCharacteristic {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(readValueWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readValueWithCompletionHandler(
@@ -180,6 +185,10 @@ impl HMCharacteristic {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(enableNotification:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableNotification_completionHandler(
@@ -198,6 +207,10 @@ impl HMCharacteristic {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateAuthorizationData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateAuthorizationData_completionHandler(

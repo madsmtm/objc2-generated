@@ -194,6 +194,10 @@ impl BGTaskScheduler {
         /// - Parameters:
         /// - completionHandler: The completion handler called with the pending tasks.
         /// - Note: The handler may execute on a background thread.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getPendingTaskRequestsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPendingTaskRequestsWithCompletionHandler(

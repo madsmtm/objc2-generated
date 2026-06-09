@@ -985,6 +985,10 @@ extern_protocol!(
         /// - Parameters:
         /// - options: Options to apply to the mount. These can include security-scoped file paths. There are no defined options currently.
         /// - reply: A block or closure to indicate success or failure. If mounting fails, pass an error as the one parameter to the reply handler. If mounting succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(mountWithOptions:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn mountWithOptions_replyHandler(
@@ -1000,6 +1004,10 @@ extern_protocol!(
         ///
         /// - Parameters:
         /// - reply: A block or closure to indicate success or failure. If unmounting fails, pass an error as the one parameter to the reply handler. If unmounting succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(unmountWithReplyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn unmountWithReplyHandler(&self, reply: &block2::DynBlock<dyn Fn()>);
@@ -1012,6 +1020,10 @@ extern_protocol!(
         /// - Parameters:
         /// - flags: Timing flags, as defined in `mount.h.` These flags let the file system know whether to run the operation in a blocking or nonblocking fashion.
         /// - reply: A block or closure to indicate success or failure. If synchronization fails, pass an error as the one parameter to the reply handler. If synchronization succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(synchronizeWithFlags:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn synchronizeWithFlags_replyHandler(
@@ -1031,6 +1043,10 @@ extern_protocol!(
         /// - desiredAttributes: A requested set of attributes to get. The implementation inspects the request's ``FSItemGetAttributesRequest/wantedAttributes`` to determine which attributes to populate.
         /// - item: The item to get attributes for.
         /// - reply: A block or closure to indicate success or failure. If getting attributes succeeds, pass an ``FSItemAttributes`` with the requested attributes populated and a `nil` error. If getting attributes fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItemAttributes`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItemAttributes`` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(getAttributes:ofItem:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn getAttributes_ofItem_replyHandler(
@@ -1060,6 +1076,10 @@ extern_protocol!(
         /// - newAttributes: A request containing the attributes to set.
         /// - item: The item on which to set the attributes.
         /// - reply: A block or closure to indicate success or failure. If setting attributes succeeds, pass an ``FSItemAttributes`` with the item's updated attributes and a `nil` error. If setting attributes fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItemAttributes`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItemAttributes`` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(setAttributes:onItem:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setAttributes_onItem_replyHandler(
@@ -1082,6 +1102,10 @@ extern_protocol!(
         /// - name: The name of the item to look up.
         /// - directory: The directory in which to look up the item.
         /// - reply: A block or closure to indicate success or failure. If lookup succeeds, pass the found ``FSItem`` and its ``FSFileName`` (as saved within the file system), along with a `nil` error. If lookup fails, pass the relevant error as the third parameter; any ``FSItem`` or ``FSFileName`` are ignored in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItem`` and ``FSFileName`` as a tuple or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(lookupItemNamed:inDirectory:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn lookupItemNamed_inDirectory_replyHandler(
@@ -1101,6 +1125,10 @@ extern_protocol!(
         /// - Parameters:
         /// - item: The item to reclaim.
         /// - reply: A block or closure to indicate success or failure. If removal fails, pass an error as the one parameter to the reply handler. If removal succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(reclaimItem:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn reclaimItem_replyHandler(
@@ -1115,6 +1143,10 @@ extern_protocol!(
         /// - Parameters:
         /// - item: The symbolic link to read from. FSKit guarantees this item is of type ``FSItem/ItemType/symlink``.
         /// - reply: A block or closure to indicate success or failure. If reading succeeds, pass the link's contents as an ``FSFileName`` and a `nil` error. If reading fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(readSymbolicLink:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn readSymbolicLink_replyHandler(
@@ -1136,6 +1168,10 @@ extern_protocol!(
         /// - directory: The directory in which to create the item.
         /// - newAttributes: Attributes to apply to the new item.
         /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass the newly-created ``FSItem`` and its ``FSFileName``, along with a `nil` error. If creation fails, pass the relevant error as the third parameter; FSKit ignores any ``FSItem`` or ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return a tuple of the ``FSItem`` and its ``FSFileName`` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(createItemNamed:type:inDirectory:attributes:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn createItemNamed_type_inDirectory_attributes_replyHandler(
@@ -1160,6 +1196,10 @@ extern_protocol!(
         /// - newAttributes: Attributes to apply to the new item.
         /// - contents: The contents of the new symbolic link.
         /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass the newly-created ``FSItem`` and a `nil` error. If creation fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItem`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItem`` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(createSymbolicLinkNamed:inDirectory:attributes:linkContents:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn createSymbolicLinkNamed_inDirectory_attributes_linkContents_replyHandler(
@@ -1187,6 +1227,10 @@ extern_protocol!(
         /// - name: The name for the new link.
         /// - directory: The directory in which to create the link.
         /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass an ``FSFileName`` of the newly-created link and a `nil` error. If creation fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(createLinkToItem:named:inDirectory:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn createLinkToItem_named_inDirectory_replyHandler(
@@ -1208,6 +1252,10 @@ extern_protocol!(
         /// - name: The name of the item to remove.
         /// - directory: The directory from which to remove the item.
         /// - reply: A block or closure to indicate success or failure. If removal fails, pass an error as the one parameter to the reply handler. If removal succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(removeItem:named:fromDirectory:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn removeItem_named_fromDirectory_replyHandler(
@@ -1257,6 +1305,10 @@ extern_protocol!(
         /// - destinationDirectory: The directory to contain the renamed object, which may be the same as `sourceDirectory`.
         /// - overItem: The file system object if the destination exists, as discovered in a prior lookup. If this parameter is non-`nil`, mark `overItem` as deleted, so the file system can free its allocated space on the next call to ``reclaimItem(_:replyHandler:)``. After doing so, ensure the operation finishes without errors.
         /// - reply: A block or closure to indicate success or failure. If renaming succeeds, pass the ``FSFileName`` as it exists within `destinationDirectory` and a `nil` error. If renaming fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(renameItem:inDirectory:named:toNewName:inDirectory:overItem:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn renameItem_inDirectory_named_toNewName_inDirectory_overItem_replyHandler(
@@ -1294,6 +1346,10 @@ extern_protocol!(
         /// - attributes: The desired attributes to provide, or `nil` if the caller doesn't require attributes.
         /// - packer: An object that your implementation uses to enumerate directory items, packing one item per callback to `enumerateDirectory`.
         /// - reply: A block or closure to indicate success or failure. If enumeration succeeds, pass the current verifier and a `nil` error. If enumeration fails, pass the relevant error as the second parameter; FSKit ignores any verifier in this case. For an `async` Swift implementation, there's no reply handler; simply return the current verifier or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(enumerateDirectory:startingAtCookie:verifier:providingAttributes:usingPacker:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn enumerateDirectory_startingAtCookie_verifier_providingAttributes_usingPacker_replyHandler(
@@ -1318,6 +1374,10 @@ extern_protocol!(
         /// - Parameters:
         /// - options: Options to apply to the activation. These can include security-scoped file paths. There are no defined options currently.
         /// - reply: A block or closure to indicate success or failure. If activation succeeds, pass the root ``FSItem`` and a `nil` error. If activation fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItem`` in this case. In Swift, `reply` takes only the ``FSItem`` as the parameter; you signal any error with a `throw`. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItem`` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(activateWithOptions:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn activateWithOptions_replyHandler(
@@ -1341,6 +1401,10 @@ extern_protocol!(
         /// - Parameters:
         /// - options: Options to apply to the deactivation.
         /// - reply: A block or closure to indicate success or failure. If activation fails, pass an error as the one parameter to the reply handler. If activation succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(deactivateWithOptions:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn deactivateWithOptions_replyHandler(
@@ -1425,6 +1489,10 @@ extern_protocol!(
         /// - name: The extended attribute name.
         /// - item: The item for which to get the extended attribute.
         /// - reply: A block or closure to indicate success or failure. If getting the attribute succeeds, pass an data instance containing the extended attribute data and a `nil` error. If getting the attribute fails, pass the relevant error as the second parameter; FSKit ignores any data in this case. For an `async` Swift implementation, there's no reply handler; simply return the data or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(getXattrNamed:ofItem:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn getXattrNamed_ofItem_replyHandler(
@@ -1443,6 +1511,10 @@ extern_protocol!(
         /// - item: The item on which to set the extended attribute.
         /// - policy: The policy to apply when setting the attribute. See ``FSSetXattrPolicy`` for possible values.
         /// - reply: A block or closure to indicate success or failure. If setting the attribute fails, pass an error as the one parameter to the reply handler. If setting the attribute succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(setXattrNamed:toData:onItem:policy:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setXattrNamed_toData_onItem_policy_replyHandler(
@@ -1460,6 +1532,10 @@ extern_protocol!(
         /// - Parameters:
         /// - item: The item from which to get extended attributes.
         /// - reply: A block or closure to indicate success or failure. If getting the list of extended attributes succeeds, pass the xattrs as an array of ``FSFileName`` instances and a `nil` error. If getting the attriubtes fails, pass `nil` along with the relevant error. For an `async` Swift implementation, there's no reply handler; simply return the byte count or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(listXattrsOfItem:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn listXattrsOfItem_replyHandler(
@@ -1534,6 +1610,10 @@ extern_protocol!(
         /// - item: The item to open.
         /// - modes: The set of mode flags to open the item with.
         /// - reply: A block or closure to indicate success or failure. If opening fails, pass an error as the one parameter to the reply handler. If opening succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(openItem:withModes:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn openItem_withModes_replyHandler(
@@ -1550,6 +1630,10 @@ extern_protocol!(
         /// - item: The item to close.
         /// - modes: The set of mode flags to keep after this close.
         /// - reply: A block or closure to indicate success or failure. If closing fails, pass an error as the one parameter to the reply handler. If closing succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(closeItem:keepingModes:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn closeItem_keepingModes_replyHandler(
@@ -1588,6 +1672,10 @@ extern_protocol!(
         /// - length: The number of bytes to read.
         /// - buffer: A buffer to receive the bytes read from the file.
         /// - reply: A block or closure to indicate success or failure. If reading succeeds, pass the number of bytes read and a `nil` error. If reading fails, pass the number of bytes read prior to the error along with the relevant error. For an `async` Swift implementation, there's no reply handler; simply return the byte count or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(readFromFile:offset:length:intoBuffer:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn readFromFile_offset_length_intoBuffer_replyHandler(
@@ -1613,6 +1701,10 @@ extern_protocol!(
         /// - item: The item to which to write. FSKit guarantees this item will be of type ``FSItem/ItemType/file``.
         /// - offset: The offset in the file from which to start writing.
         /// - reply: A block or closure to indicate success or failure. If writing succeeds, pass the number of bytes written and a `nil` error. If writing fails, pass the number of bytes written prior to the error along with the relevant error. For an `async` Swift implementation, there's no reply handler; simply return the byte count or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(writeContents:toFile:atOffset:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn writeContents_toFile_atOffset_replyHandler(
@@ -1723,6 +1815,10 @@ extern_protocol!(
         /// - theItem: The item for which to check access.
         /// - access: A mask indicating a set of access types for which to check.
         /// - reply: A block or closure to indicate success or failure. If the access check succeeds, pass a Boolean value to indicate whether the file system grants access, followed by a `nil` error. If the access check fails, pass the relevant error as the second parameter; FSKit ignores the Boolean parameter in this case. For an `async` Swift implementation, there's no reply handler; simply return the `Bool` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(checkAccessToItem:requestedAccess:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn checkAccessToItem_requestedAccess_replyHandler(
@@ -1760,6 +1856,10 @@ extern_protocol!(
         /// - Parameters:
         /// - name: The new volume name.
         /// - reply: A block or closure to indicate success or failure. If renaming succeeds, pass an ``FSFileName`` of the new volume name and a `nil` error. If renaming fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(setVolumeName:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setVolumeName_replyHandler(
@@ -1843,6 +1943,10 @@ extern_protocol!(
         /// - length: The length of the space in bytes.
         /// - flags: Flags that affect the preallocation behavior.
         /// - reply: A block or closure to indicate success or failure. If preallocation succeeds, pass the amount of bytes allocated and a `nil` error. If preallocation fails, pass the relevant error as the second parameter; FSKit ignores any byte count in this case. For an `async` Swift implementation, there's no reply handler; simply return the allocated byte count or throw an error.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(preallocateSpaceForItem:atOffset:length:flags:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn preallocateSpaceForItem_atOffset_length_flags_replyHandler(
@@ -1926,6 +2030,10 @@ extern_protocol!(
         /// - Parameters:
         /// - item: The item to deactivate.
         /// - reply: A block or closure to indicate success or failure. If deactivation fails, pass an error as the one parameter to the reply handler. If deactivation succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(deactivateItem:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn deactivateItem_replyHandler(

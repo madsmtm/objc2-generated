@@ -48,6 +48,10 @@ impl ASCredentialProviderExtensionContext {
         /// non-expiration invocation of the completionHandler.
         ///
         /// Calling this method will eventually dismiss the associated view controller.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(completeAssertionRequestWithSelectedPasskeyCredential:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeAssertionRequestWithSelectedPasskeyCredential_completionHandler(
@@ -66,6 +70,10 @@ impl ASCredentialProviderExtensionContext {
         /// non-expiration invocation of the completionHandler.
         ///
         /// Calling this method will eventually dismiss the associated view controller.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(completeRegistrationRequestWithSelectedPasskeyCredential:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeRegistrationRequestWithSelectedPasskeyCredential_completionHandler(
@@ -84,6 +92,10 @@ impl ASCredentialProviderExtensionContext {
         /// non-expiration invocation of the completionHandler.
         ///
         /// Calling this method will eventually dismiss the associated view controller.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(completeOneTimeCodeRequestWithSelectedCredential:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeOneTimeCodeRequestWithSelectedCredential_completionHandler(
@@ -97,6 +109,10 @@ impl ASCredentialProviderExtensionContext {
         /// - parameter completionHandler: An optional block your extension can provide to perform any cleanup work after the system has captured the results.
         /// The expired parameter is true if the system decides to prematurely end a previous non-expiration invocation of the completion handler.
         /// - note: You are responsible for updating the ASCredentialIdentityStore.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(completeSavePasswordRequestWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeSavePasswordRequestWithCompletionHandler(
@@ -110,6 +126,10 @@ impl ASCredentialProviderExtensionContext {
         /// These results should be returned in priority order.
         /// - parameter completionHandler: An optional block your extension can provide to perform any cleanup work after the system has captured the results.
         /// The expired parameter is true if the system decides to prematurely end a previous non-expiration invocation of the completion handler.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(completeGeneratePasswordRequestWithResults:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeGeneratePasswordRequestWithResults_completionHandler(

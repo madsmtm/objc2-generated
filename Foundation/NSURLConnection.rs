@@ -660,7 +660,8 @@ impl NSURLConnection {
         ///
         /// # Safety
         ///
-        /// `queue` possibly has additional threading requirements.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` block must be sendable.
         #[deprecated = "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h"]
         #[unsafe(method(sendAsynchronousRequest:queue:completionHandler:))]
         #[unsafe(method_family = none)]

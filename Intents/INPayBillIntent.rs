@@ -147,6 +147,10 @@ extern_protocol!(
         ///
         ///
         /// See: INPayBillIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INPayBillIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handlePayBill:completion:))]
         #[unsafe(method_family = none)]
@@ -173,6 +177,10 @@ extern_protocol!(
         ///
         ///
         /// See: INPayBillIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INPayBillIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmPayBill:completion:))]
@@ -200,6 +208,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INPayBillIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveBillPayeeForPayBill:withCompletion:))]
@@ -216,6 +228,9 @@ extern_protocol!(
             feature = "INPaymentAccountResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INPayBillIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveFromAccountForPayBill:withCompletion:))]
@@ -232,6 +247,9 @@ extern_protocol!(
             feature = "INPaymentAmountResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INPayBillIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTransactionAmountForPayBill:withCompletion:))]
@@ -248,6 +266,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INPayBillIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTransactionScheduledDateForPayBill:withCompletion:))]
@@ -264,6 +285,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INPayBillIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTransactionNoteForPayBill:withCompletion:))]
@@ -280,6 +304,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INPayBillIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveBillTypeForPayBill:withCompletion:))]
@@ -296,6 +323,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INPayBillIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveDueDateForPayBill:withCompletion:))]

@@ -79,6 +79,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetRestaurantGuestIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleGetRestaurantGuest:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetRestaurantGuest_completion(
@@ -104,6 +108,10 @@ extern_protocol!(
         ///
         ///
         /// See: INGetRestaurantGuestIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetRestaurantGuest:completion:))]
         #[unsafe(method_family = none)]

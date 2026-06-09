@@ -166,6 +166,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForNotebookItemsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleSearchForNotebookItems:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSearchForNotebookItems_completion(
@@ -191,6 +195,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForNotebookItemsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSearchForNotebookItems:completion:))]
         #[unsafe(method_family = none)]
@@ -217,6 +225,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTitleForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -232,6 +244,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveContentForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -247,6 +262,9 @@ extern_protocol!(
             feature = "INNotebookItemTypeResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveItemTypeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -262,6 +280,9 @@ extern_protocol!(
             feature = "INTaskStatusResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveStatusForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -277,6 +298,9 @@ extern_protocol!(
             feature = "INPlacemarkResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveLocationForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -292,6 +316,9 @@ extern_protocol!(
             feature = "INLocationSearchTypeResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveLocationSearchTypeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -307,6 +334,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDateTimeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -322,6 +352,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDateSearchTypeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -337,6 +370,9 @@ extern_protocol!(
             feature = "INTemporalEventTriggerTypeOptionsResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerTypesForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -354,6 +390,9 @@ extern_protocol!(
             feature = "INTaskPriorityResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTaskPriorityForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]

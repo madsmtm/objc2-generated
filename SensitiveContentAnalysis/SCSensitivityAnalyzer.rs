@@ -72,6 +72,10 @@ impl SCSensitivityAnalyzer {
         /// Parameter `fileURL`: Image file location on disk
         ///
         /// Parameter `completionHandler`: Block to be called on completion (callback is called on unspecified queue)
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(analyzeImageFile:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn analyzeImageFile_completionHandler(
@@ -90,6 +94,10 @@ impl SCSensitivityAnalyzer {
         /// Parameter `image`: CGImage reference
         ///
         /// Parameter `completionHandler`: Block to be called on completion (callback is called on unspecified queue)
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(analyzeCGImage:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn analyzeCGImage_completionHandler(

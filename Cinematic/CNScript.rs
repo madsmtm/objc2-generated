@@ -41,6 +41,10 @@ impl CNScript {
         /// - changes: optional changes since asset was recorded. Can be obtained from a previous editing session. If `nil`, the asset is loaded as originally recorded.
         /// - progress: optional progress object to track progress or cancel loading. Represents just the loading of this asset. Create with desired total unit count or use zero to have the unit count filled in automatically.  If `nil`, no progress is reported.
         /// - completionHandler: called with the loaded cinematic script when done, or with with an error if it fails. If progress is canceled before it completes, the completion handler is called with an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFromAsset:changes:progress:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromAsset_changes_progress_completionHandler(

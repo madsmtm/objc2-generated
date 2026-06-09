@@ -107,6 +107,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSendPaymentIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleSendPayment:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSendPayment_completion(
@@ -132,6 +136,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSendPaymentIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSendPayment:completion:))]
         #[unsafe(method_family = none)]
@@ -158,6 +166,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "resolvePayeeForSendPayment:withCompletion: is deprecated. Use resolvePayeeForSendPayment:completion: instead"]
         #[optional]
         #[unsafe(method(resolvePayeeForSendPayment:withCompletion:))]
@@ -175,6 +187,9 @@ extern_protocol!(
             feature = "INSendPaymentPayeeResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePayeeForSendPayment:completion:))]
         #[unsafe(method_family = none)]
@@ -190,6 +205,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "resolveCurrencyAmountForSendPayment:withCompletion: is deprecated. Use resolveCurrencyAmountForSendPayment:completion: instead"]
         #[optional]
         #[unsafe(method(resolveCurrencyAmountForSendPayment:withCompletion:))]
@@ -207,6 +225,9 @@ extern_protocol!(
             feature = "INSendPaymentCurrencyAmountResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCurrencyAmountForSendPayment:completion:))]
         #[unsafe(method_family = none)]
@@ -224,6 +245,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveNoteForSendPayment:withCompletion:))]
         #[unsafe(method_family = none)]

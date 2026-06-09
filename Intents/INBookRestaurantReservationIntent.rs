@@ -182,6 +182,10 @@ extern_protocol!(
         ///
         ///
         /// See: INBookRestaurantReservationIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleBookRestaurantReservation:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleBookRestaurantReservation_completion(
@@ -209,6 +213,10 @@ extern_protocol!(
         ///
         ///
         /// See: INEndWorkoutIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmBookRestaurantReservation:completion:))]
         #[unsafe(method_family = none)]
@@ -237,6 +245,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRestaurantForBookRestaurantReservation:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -252,6 +264,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveBookingDateComponentsForBookRestaurantReservation:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -267,6 +282,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePartySizeForBookRestaurantReservation:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -282,6 +300,9 @@ extern_protocol!(
             feature = "INRestaurantGuestResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveGuestForBookRestaurantReservation:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -297,6 +318,9 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveGuestProvidedSpecialRequestTextForBookRestaurantReservation:withCompletion:))]
         #[unsafe(method_family = none)]

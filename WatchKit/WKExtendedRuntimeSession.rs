@@ -163,6 +163,10 @@ impl WKExtendedRuntimeSession {
         /// supported session type. This prompt will only be shown to the user once per application.
         /// The completion handler will be called with an error if the application's session type does not support auto-launch,
         /// or if the app is not foreground and has not yet triggered a prompt.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(requestAutoLaunchAuthorizationStatusWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAutoLaunchAuthorizationStatusWithCompletion(

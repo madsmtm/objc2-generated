@@ -348,6 +348,9 @@ impl CLLocationManager {
         pub unsafe fn requestAlwaysAuthorization(&self);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestTemporaryFullAccuracyAuthorizationWithPurposeKey_completion(
@@ -396,6 +399,9 @@ impl CLLocationManager {
         pub unsafe fn stopMonitoringSignificantLocationChanges(&self);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(startMonitoringLocationPushesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringLocationPushesWithCompletion(
@@ -492,6 +498,9 @@ impl CLLocationManager {
         pub unsafe fn deferredLocationUpdatesAvailable() -> bool;
 
         #[cfg(all(feature = "CLLocation", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(requestHistoricalLocationsWithPurposeKey:sampleCount:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestHistoricalLocationsWithPurposeKey_sampleCount_completionHandler(

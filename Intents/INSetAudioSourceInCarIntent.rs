@@ -107,6 +107,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetAudioSourceInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetAudioSourceInCarIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSetAudioSourceInCar:completion:))]
         #[unsafe(method_family = none)]
@@ -133,6 +137,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSetAudioSourceInCarIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetAudioSourceInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSetAudioSourceInCar:completion:))]
@@ -160,6 +168,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetAudioSourceInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveAudioSourceForSetAudioSourceInCar:withCompletion:))]
@@ -176,6 +188,9 @@ extern_protocol!(
             feature = "INRelativeReferenceResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[deprecated = "INSetAudioSourceInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRelativeAudioSourceReferenceForSetAudioSourceInCar:withCompletion:))]

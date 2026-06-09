@@ -226,6 +226,10 @@ impl ASAuthorizationProviderExtensionLoginManager {
 
         #[cfg(feature = "block2")]
         /// Requests AppSSOAgent reauthenticate the current user for the current extension.  This is used when the tokens are revoked, or expired and need to be requested again.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(userNeedsReauthenticationWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn userNeedsReauthenticationWithCompletion(
@@ -273,6 +277,10 @@ impl ASAuthorizationProviderExtensionLoginManager {
         /// Parameter `completion`: A closure that the method calls upon completion with the following parameters:
         /// * attestationCertificates An array of certificates that verify the validity of the key associated with the keyType. Send this to your server for processing.
         /// * error A DCError instance that indicates the reason for failure, or nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(attestKey:clientDataHash:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attestKey_clientDataHash_completion(
@@ -292,6 +300,10 @@ impl ASAuthorizationProviderExtensionLoginManager {
         /// Parameter `completion`: A closure that the method calls upon completion with the following parameters:
         /// * attestationCertificates An array of certificates that verify the validity of the pending key associated with the keyType. Send this to your server for processing.
         /// * error A DCError instance that indicates the reason for failure, or nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(attestPendingKey:clientDataHash:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attestPendingKey_clientDataHash_completion(
@@ -303,6 +315,10 @@ impl ASAuthorizationProviderExtensionLoginManager {
 
         #[cfg(feature = "block2")]
         /// Asks authorization service to show extension view controller for registration. If the controller cannot be shown an error is returned.  This is only valid during registration.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(presentRegistrationViewControllerWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentRegistrationViewControllerWithCompletion(

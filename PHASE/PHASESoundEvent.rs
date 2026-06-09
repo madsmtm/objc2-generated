@@ -77,6 +77,10 @@ impl PHASESoundEvent {
         /// This function notifies the engine to begin preparing a sound event, then returns immediately.
         /// Once the sound event is prepared (or has failed to prepare), you will receive a callback via the completion.
         /// If you call startWithCompletion() before receiving the callback, the sound event will start as soon as it's prepared.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(prepareWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareWithCompletion(
@@ -92,6 +96,10 @@ impl PHASESoundEvent {
         /// This function notifies the engine to start the sound event, then returns immediately.
         /// Once the sound event is playing (or has failed to start), you will receive a callback via the completion.
         /// Playback will begin immediately if the sound event has been prepared; otherwise, it will start as soon as it is finished preparing.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(startWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletion(
@@ -118,6 +126,10 @@ impl PHASESoundEvent {
         /// Playback will begin at the requested time if the sound event has finished preparing in time.
         /// You may wait for preparation to finish with the [PHASESoundEvent prepare:completion] method before calling startAtTime, to ensure that the sound event will start at the desired time.
         /// However if the desired time is far enough into the future to allow for preparation to happen, you may skip calling prepare entirely and just call startAtTime.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(startAtTime:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAtTime_completion(
@@ -136,6 +148,10 @@ impl PHASESoundEvent {
         /// Nodes that are sleeping will seek, and will resume at the correct time when they wake up.
         ///
         /// Note: The time is scaled by unitsPerSecond internally, so can be provided at the client's native time scale.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(seekToTime:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_completion(
@@ -165,6 +181,10 @@ impl PHASESoundEvent {
         /// The time parameter is in seconds and will be scaled by unitsPerSecond.
         /// The time in the AVAudioTime structure is not scaled by unitsPerSecond.
         /// The engineTime parameter will use the sample time if valid, if not, then the host time if valid.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(seekToTime:resumeAtEngineTime:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_resumeAtEngineTime_completion(

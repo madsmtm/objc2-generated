@@ -202,6 +202,10 @@ extern_protocol!(
         /// - term `dismiss`: The response you want to take for the notification. For a list of
         /// possible options, see
         /// ``UserNotificationsUI/UNNotificationContentExtensionResponseOption``.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(didReceiveNotificationResponse:completionHandler:))]
         #[unsafe(method_family = none)]

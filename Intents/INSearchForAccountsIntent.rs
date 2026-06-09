@@ -118,6 +118,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForAccountsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleSearchForAccounts:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSearchForAccounts_completion(
@@ -143,6 +147,10 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForAccountsIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSearchForAccounts:completion:))]
         #[unsafe(method_family = none)]
@@ -169,6 +177,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveAccountNicknameForSearchForAccounts:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -184,6 +196,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveAccountTypeForSearchForAccounts:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -199,6 +214,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveOrganizationNameForSearchForAccounts:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -214,6 +232,9 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRequestedBalanceTypeForSearchForAccounts:withCompletion:))]
         #[unsafe(method_family = none)]

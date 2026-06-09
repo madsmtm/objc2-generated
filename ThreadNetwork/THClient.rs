@@ -70,6 +70,10 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(retrieveAllCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrieveAllCredentials(
@@ -101,6 +105,10 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(retrieveAllActiveCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrieveAllActiveCredentials(
@@ -131,6 +139,10 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(deleteCredentialsForBorderAgent:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteCredentialsForBorderAgent_completion(
@@ -161,6 +173,10 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(retrieveCredentialsForBorderAgent:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrieveCredentialsForBorderAgent_completion(
@@ -199,6 +215,10 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(storeCredentialsForBorderAgent:activeOperationalDataSet:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn storeCredentialsForBorderAgent_activeOperationalDataSet_completion(
@@ -229,6 +249,10 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(retrievePreferredCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrievePreferredCredentials(
@@ -258,6 +282,10 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(retrieveCredentialsForExtendedPANID:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrieveCredentialsForExtendedPANID_completion(
@@ -287,6 +315,10 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(checkPreferredNetworkForActiveOperationalDataset:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkPreferredNetworkForActiveOperationalDataset_completion(
@@ -313,6 +345,10 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(isPreferredNetworkAvailableWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPreferredNetworkAvailableWithCompletion(

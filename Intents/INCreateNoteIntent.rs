@@ -108,6 +108,10 @@ extern_protocol!(
         ///
         ///
         /// See: INCreateNoteIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(handleCreateNote:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleCreateNote_completion(
@@ -133,6 +137,10 @@ extern_protocol!(
         ///
         ///
         /// See: INCreateNoteIntentResponse
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmCreateNote:completion:))]
         #[unsafe(method_family = none)]
@@ -159,6 +167,10 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTitleForCreateNote:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -174,6 +186,9 @@ extern_protocol!(
             feature = "INNoteContentResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveContentForCreateNote:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -189,6 +204,9 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveGroupNameForCreateNote:withCompletion:))]
         #[unsafe(method_family = none)]
