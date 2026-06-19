@@ -25,6 +25,11 @@ extern_conformance!(
 
 impl SKPaymentQueue {
     extern_methods!(
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported."]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -35,6 +40,10 @@ impl SKPaymentQueue {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
@@ -44,6 +53,11 @@ impl SKPaymentQueue {
         );
 
         #[cfg(feature = "SKStorefront")]
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Storefront.current."]
         #[unsafe(method(storefront))]
         #[unsafe(method_family = none)]

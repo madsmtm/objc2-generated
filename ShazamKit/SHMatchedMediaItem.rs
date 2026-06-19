@@ -82,6 +82,12 @@ impl SHMatchedMediaItem {
         /// A value of `0.0` indicates that the query and matched audio are at the same frequency. Other values indicate that the query audio is playing at a different frequency. For example, if the original recording plays at `100` Hz, a value of `0.05` indicates that the query recording plays at `105` Hz.
         ///
         /// No match returns if the frequency skew is too large.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(frequencySkew))]
         #[unsafe(method_family = none)]
         pub unsafe fn frequencySkew(&self) -> c_float;
@@ -89,11 +95,23 @@ impl SHMatchedMediaItem {
         /// The timecode in the reference recording that matches the start of the query, in seconds.
         ///
         /// The value can be negative if the query signature contains unrecognizable data before the data that corresponds to the start of the matched reference item.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(matchOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchOffset(&self) -> NSTimeInterval;
 
         /// The updated timecode in the reference recording that matches the current playback position of the query audio, in seconds.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(predictedCurrentMatchOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn predictedCurrentMatchOffset(&self) -> NSTimeInterval;
@@ -101,6 +119,12 @@ impl SHMatchedMediaItem {
         /// The level of confidence in the match result.
         ///
         /// The value ranges from 0.0 to 1.0, where 1.0 indicates the highest level of confidence.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(confidence))]
         #[unsafe(method_family = none)]
         pub unsafe fn confidence(&self) -> c_float;

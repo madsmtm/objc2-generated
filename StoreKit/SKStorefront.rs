@@ -24,11 +24,21 @@ extern_conformance!(
 
 impl SKStorefront {
     extern_methods!(
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use 'Storefront.countryCode'."]
         #[unsafe(method(countryCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn countryCode(&self) -> Retained<NSString>;
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use 'Storefront.id'."]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]

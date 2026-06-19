@@ -184,21 +184,45 @@ extern_conformance!(
 impl SHMediaItem {
     extern_methods!(
         /// The Shazam ID for the song.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(shazamID))]
         #[unsafe(method_family = none)]
         pub unsafe fn shazamID(&self) -> Option<Retained<NSString>>;
 
         /// A title for the media item.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// A subtitle for the media item.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subtitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// The name of the artist for the media item, such as the performer of a song.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(artist))]
         #[unsafe(method_family = none)]
         pub unsafe fn artist(&self) -> Option<Retained<NSString>>;
@@ -206,16 +230,34 @@ impl SHMediaItem {
         /// An array of genre names for the media item.
         ///
         /// The array is empty if there are no media items.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(genres))]
         #[unsafe(method_family = none)]
         pub unsafe fn genres(&self) -> Retained<NSArray<NSString>>;
 
         /// The Apple Music ID for the song.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(appleMusicID))]
         #[unsafe(method_family = none)]
         pub unsafe fn appleMusicID(&self) -> Option<Retained<NSString>>;
 
         /// A link to the Apple Music page that contains the full information for the song.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(appleMusicURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn appleMusicURL(&self) -> Option<Retained<NSURL>>;
@@ -223,43 +265,91 @@ impl SHMediaItem {
         /// A link to the Shazam Music catalog page that contains the full information for the song.
         ///
         /// This link opens the Shazam app or App Clip if it's available on the device.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(webURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn webURL(&self) -> Option<Retained<NSURL>>;
 
         /// The URL for artwork for the media item, such as an album cover.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(artworkURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn artworkURL(&self) -> Option<Retained<NSURL>>;
 
         /// The URL for a video for the media item, such as a music video.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(videoURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoURL(&self) -> Option<Retained<NSURL>>;
 
         /// A Boolean value that indicates whether the media item contains explicit content.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(explicitContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn explicitContent(&self) -> bool;
 
         /// The International Standard Recording Code (ISRC) for the media item.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isrc))]
         #[unsafe(method_family = none)]
         pub unsafe fn isrc(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "SHRange")]
         /// An array of ranges that indicate the offsets within the reference signature that this media item describes.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(timeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRanges(&self) -> Retained<NSArray<SHRange>>;
 
         #[cfg(feature = "SHRange")]
         /// An array of ranges that indicate the frequency skews in the reference signature that this media item describes.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(frequencySkewRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn frequencySkewRanges(&self) -> Retained<NSArray<SHRange>>;
 
         /// The date the media item was created.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(creationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;

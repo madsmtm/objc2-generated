@@ -43,11 +43,23 @@ extern_conformance!(
 impl SHRange {
     extern_methods!(
         /// The lowerBound of this time range
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(lowerBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowerBound(&self) -> c_double;
 
         /// The range's upper bound.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(upperBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn upperBound(&self) -> c_double;

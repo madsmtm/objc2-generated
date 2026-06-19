@@ -37,12 +37,24 @@ impl SHMatch {
     extern_methods!(
         #[cfg(all(feature = "SHMatchedMediaItem", feature = "SHMediaItem"))]
         /// An array of the media items in the catalog that match the query signature, in order of the quality of the match.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mediaItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaItems(&self) -> Retained<NSArray<SHMatchedMediaItem>>;
 
         #[cfg(feature = "SHSignature")]
         /// The query signature for the match.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(querySignature))]
         #[unsafe(method_family = none)]
         pub unsafe fn querySignature(&self) -> Retained<SHSignature>;

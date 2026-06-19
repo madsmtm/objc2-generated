@@ -63,6 +63,12 @@ impl CNMutablePostalAddress {
     extern_methods!(
         /// multi-street address is delimited with carriage returns “
         /// \n”
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(street))]
         #[unsafe(method_family = none)]
         pub unsafe fn street(&self) -> Retained<NSString>;
@@ -70,10 +76,19 @@ impl CNMutablePostalAddress {
         /// Setter for [`street`][Self::street].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setStreet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStreet(&self, street: &NSString);
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subLocality))]
         #[unsafe(method_family = none)]
         pub unsafe fn subLocality(&self) -> Retained<NSString>;
@@ -81,10 +96,19 @@ impl CNMutablePostalAddress {
         /// Setter for [`subLocality`][Self::subLocality].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSubLocality:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubLocality(&self, sub_locality: &NSString);
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(city))]
         #[unsafe(method_family = none)]
         pub unsafe fn city(&self) -> Retained<NSString>;
@@ -92,10 +116,19 @@ impl CNMutablePostalAddress {
         /// Setter for [`city`][Self::city].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setCity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCity(&self, city: &NSString);
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subAdministrativeArea))]
         #[unsafe(method_family = none)]
         pub unsafe fn subAdministrativeArea(&self) -> Retained<NSString>;
@@ -103,10 +136,19 @@ impl CNMutablePostalAddress {
         /// Setter for [`subAdministrativeArea`][Self::subAdministrativeArea].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSubAdministrativeArea:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubAdministrativeArea(&self, sub_administrative_area: &NSString);
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> Retained<NSString>;
@@ -114,10 +156,19 @@ impl CNMutablePostalAddress {
         /// Setter for [`state`][Self::state].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setState(&self, state: &NSString);
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(postalCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn postalCode(&self) -> Retained<NSString>;
@@ -125,10 +176,19 @@ impl CNMutablePostalAddress {
         /// Setter for [`postalCode`][Self::postalCode].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPostalCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPostalCode(&self, postal_code: &NSString);
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(country))]
         #[unsafe(method_family = none)]
         pub unsafe fn country(&self) -> Retained<NSString>;
@@ -136,10 +196,19 @@ impl CNMutablePostalAddress {
         /// Setter for [`country`][Self::country].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setCountry:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCountry(&self, country: &NSString);
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(ISOCountryCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn ISOCountryCode(&self) -> Retained<NSString>;
@@ -147,6 +216,10 @@ impl CNMutablePostalAddress {
         /// Setter for [`ISOCountryCode`][Self::ISOCountryCode].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setISOCountryCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setISOCountryCode(&self, iso_country_code: &NSString);

@@ -1031,6 +1031,12 @@ impl CIImage {
         #[cfg(feature = "objc2-core-foundation")]
         /// Returns a rectangle the defines the bounds of non-(0,0,0,0) pixels in the image.
         /// > Note: the ``extent`` of `CIImage`` may be infinite or have a non-zero origin.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(extent))]
         #[unsafe(method_family = none)]
         pub unsafe fn extent(&self) -> CGRect;
