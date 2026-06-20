@@ -218,17 +218,12 @@ extern "C-unwind" {
     /// requested.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `out_size` must be a valid pointer or null.
-    /// - `out_writable` must be a valid pointer or null.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareGetPropertyInfo(
         in_property_id: AudioHardwarePropertyID,
-        out_size: *mut u32,
-        out_writable: *mut Boolean,
+        out_size: Option<&mut u32>,
+        out_writable: Option<&mut Boolean>,
     ) -> OSStatus;
 }
 
@@ -251,13 +246,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `io_property_data_size` must be a valid pointer.
-    /// - `out_property_data` must be a valid pointer.
+    /// `out_property_data` must be a valid pointer.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareGetProperty(
         in_property_id: AudioHardwarePropertyID,
-        io_property_data_size: NonNull<u32>,
+        io_property_data_size: &mut u32,
         out_property_data: NonNull<c_void>,
     ) -> OSStatus;
 }
@@ -569,14 +563,13 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_start_time` must be a valid pointer.
-    /// - `out_data` must be a valid pointer.
+    /// `out_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioDeviceRead(
         in_device: AudioDeviceID,
-        in_start_time: NonNull<AudioTimeStamp>,
-        out_data: NonNull<AudioBufferList>,
+        in_start_time: &AudioTimeStamp,
+        out_data: &mut AudioBufferList,
     ) -> OSStatus;
 }
 
@@ -602,11 +595,6 @@ extern "C-unwind" {
 /// requested.
 ///
 /// Returns: An OSStatus indicating success or failure.
-///
-/// # Safety
-///
-/// - `out_size` must be a valid pointer or null.
-/// - `out_writable` must be a valid pointer or null.
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -615,8 +603,8 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetPropertyInfo(
     in_channel: u32,
     is_input: bool,
     in_property_id: AudioDevicePropertyID,
-    out_size: *mut u32,
-    out_writable: *mut Boolean,
+    out_size: Option<&mut u32>,
+    out_writable: Option<&mut Boolean>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioDeviceGetPropertyInfo(
@@ -624,8 +612,8 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetPropertyInfo(
             in_channel: u32,
             is_input: Boolean,
             in_property_id: AudioDevicePropertyID,
-            out_size: *mut u32,
-            out_writable: *mut Boolean,
+            out_size: Option<&mut u32>,
+            out_writable: Option<&mut Boolean>,
         ) -> OSStatus;
     }
     unsafe {
@@ -663,8 +651,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetPropertyInfo(
 ///
 /// # Safety
 ///
-/// - `io_property_data_size` must be a valid pointer.
-/// - `out_property_data` must be a valid pointer.
+/// `out_property_data` must be a valid pointer.
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -673,7 +660,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetProperty(
     in_channel: u32,
     is_input: bool,
     in_property_id: AudioDevicePropertyID,
-    io_property_data_size: NonNull<u32>,
+    io_property_data_size: &mut u32,
     out_property_data: NonNull<c_void>,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -682,7 +669,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetProperty(
             in_channel: u32,
             is_input: Boolean,
             in_property_id: AudioDevicePropertyID,
-            io_property_data_size: NonNull<u32>,
+            io_property_data_size: &mut u32,
             out_property_data: NonNull<c_void>,
         ) -> OSStatus;
     }
@@ -726,14 +713,13 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetProperty(
 ///
 /// # Safety
 ///
-/// - `in_when` must be a valid pointer or null.
-/// - `in_property_data` must be a valid pointer.
+/// `in_property_data` must be a valid pointer.
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioDeviceSetProperty(
     in_device: AudioDeviceID,
-    in_when: *const AudioTimeStamp,
+    in_when: Option<&AudioTimeStamp>,
     in_channel: u32,
     is_input: bool,
     in_property_id: AudioDevicePropertyID,
@@ -743,7 +729,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceSetProperty(
     extern "C-unwind" {
         fn AudioDeviceSetProperty(
             in_device: AudioDeviceID,
-            in_when: *const AudioTimeStamp,
+            in_when: Option<&AudioTimeStamp>,
             in_channel: u32,
             is_input: Boolean,
             in_property_id: AudioDevicePropertyID,
@@ -944,19 +930,14 @@ extern "C-unwind" {
     /// requested.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `out_size` must be a valid pointer or null.
-    /// - `out_writable` must be a valid pointer or null.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamGetPropertyInfo(
         in_stream: AudioStreamID,
         in_channel: u32,
         in_property_id: AudioDevicePropertyID,
-        out_size: *mut u32,
-        out_writable: *mut Boolean,
+        out_size: Option<&mut u32>,
+        out_writable: Option<&mut Boolean>,
     ) -> OSStatus;
 }
 
@@ -982,15 +963,14 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `io_property_data_size` must be a valid pointer.
-    /// - `out_property_data` must be a valid pointer.
+    /// `out_property_data` must be a valid pointer.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamGetProperty(
         in_stream: AudioStreamID,
         in_channel: u32,
         in_property_id: AudioDevicePropertyID,
-        io_property_data_size: NonNull<u32>,
+        io_property_data_size: &mut u32,
         out_property_data: NonNull<c_void>,
     ) -> OSStatus;
 }
@@ -1022,13 +1002,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_when` must be a valid pointer or null.
-    /// - `in_property_data` must be a valid pointer.
+    /// `in_property_data` must be a valid pointer.
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioStreamSetProperty(
         in_stream: AudioStreamID,
-        in_when: *const AudioTimeStamp,
+        in_when: Option<&AudioTimeStamp>,
         in_channel: u32,
         in_property_id: AudioDevicePropertyID,
         in_property_data_size: u32,
