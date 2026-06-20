@@ -29,14 +29,13 @@ impl AMWorkspace {
         /// - `input` should be of the correct type.
         /// - `input` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(runWorkflowAtPath:withInput:error:))]
+        #[unsafe(method(runWorkflowAtPath:withInput:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn runWorkflowAtPath_withInput_error(
             &self,
             path: Option<&NSString>,
             input: Option<&AnyObject>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<AnyObject>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
     );
 }
 

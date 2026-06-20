@@ -83,7 +83,7 @@ impl ODQuery {
         /// - `in_return_attribute_or_list` should be of the correct type.
         /// - `in_return_attribute_or_list` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:))]
+        #[unsafe(method(queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
             in_node: Option<&ODNode>,
@@ -93,8 +93,7 @@ impl ODQuery {
             in_query_value_or_list: Option<&AnyObject>,
             in_return_attribute_or_list: Option<&AnyObject>,
             in_maximum_results: NSInteger,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<ODQuery>>;
+        ) -> Result<Retained<ODQuery>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "CFOpenDirectory",
@@ -119,7 +118,7 @@ impl ODQuery {
         /// - `in_return_attribute_or_list` should be of the correct type.
         /// - `in_return_attribute_or_list` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(initWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:))]
+        #[unsafe(method(initWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
             this: Allocated<Self>,
@@ -130,8 +129,7 @@ impl ODQuery {
             in_query_value_or_list: Option<&AnyObject>,
             in_return_attribute_or_list: Option<&AnyObject>,
             in_maximum_results: NSInteger,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<Self>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// Returns results from a provided ODQuery synchronously
         ///
@@ -143,13 +141,12 @@ impl ODQuery {
         /// # Safety
         ///
         /// `out_error` might not allow `None`.
-        #[unsafe(method(resultsAllowingPartial:error:))]
+        #[unsafe(method(resultsAllowingPartial:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultsAllowingPartial_error(
             &self,
             in_allow_partial_results: bool,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSArray>>;
+        ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
         /// The currently set delegate
         ///

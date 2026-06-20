@@ -88,12 +88,11 @@ impl ODSession {
         /// - `in_options` generic should be of the correct type.
         /// - `in_options` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(sessionWithOptions:error:))]
+        #[unsafe(method(sessionWithOptions:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithOptions_error(
             in_options: Option<&NSDictionary>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<Self>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// Creates an instance of ODSession directed over Proxy to another host
         ///
@@ -113,13 +112,12 @@ impl ODSession {
         /// - `in_options` generic should be of the correct type.
         /// - `in_options` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(initWithOptions:error:))]
+        #[unsafe(method(initWithOptions:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOptions_error(
             this: Allocated<Self>,
             in_options: Option<&NSDictionary>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<Self>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// Returns the node names that are registered on this ODSession
         ///
@@ -129,12 +127,11 @@ impl ODSession {
         /// # Safety
         ///
         /// `out_error` might not allow `None`.
-        #[unsafe(method(nodeNamesAndReturnError:))]
+        #[unsafe(method(nodeNamesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeNamesAndReturnError(
             &self,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSArray>>;
+        ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
         /// Returns a list of names as NSStrings for all available configuration templates.
         ///
@@ -165,13 +162,12 @@ impl ODSession {
         /// # Safety
         ///
         /// `error` might not allow `None`.
-        #[unsafe(method(configurationAuthorizationAllowingUserInteraction:error:))]
+        #[unsafe(method(configurationAuthorizationAllowingUserInteraction:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationAuthorizationAllowingUserInteraction_error(
             &self,
             allow_interaction: bool,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<SFAuthorization>>;
+        ) -> Result<Retained<SFAuthorization>, Retained<NSError>>;
 
         #[cfg(feature = "ODConfiguration")]
         /// Reads the configuration for a given nodename.

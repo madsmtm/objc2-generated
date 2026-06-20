@@ -37,13 +37,12 @@ impl ODNode {
         ///
         /// - `in_session` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(nodeWithSession:type:error:))]
+        #[unsafe(method(nodeWithSession:type:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithSession_type_error(
             in_session: Option<&ODSession>,
             in_type: ODNodeType,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<Self>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "ODSession")]
         /// Create an autoreleased ODNode with the given name, optionally in a specific session.
@@ -56,13 +55,12 @@ impl ODNode {
         /// - `in_session` might not allow `None`.
         /// - `in_name` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(nodeWithSession:name:error:))]
+        #[unsafe(method(nodeWithSession:name:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithSession_name_error(
             in_session: Option<&ODSession>,
             in_name: Option<&NSString>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<Self>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "CFOpenDirectory",
@@ -78,14 +76,13 @@ impl ODNode {
         ///
         /// - `in_session` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(initWithSession:type:error:))]
+        #[unsafe(method(initWithSession:type:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSession_type_error(
             this: Allocated<Self>,
             in_session: Option<&ODSession>,
             in_type: ODNodeType,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<Self>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "ODSession")]
         /// Initialize an ODNode instance with the given name, optionally in a specific session.
@@ -98,14 +95,13 @@ impl ODNode {
         /// - `in_session` might not allow `None`.
         /// - `in_name` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(initWithSession:name:error:))]
+        #[unsafe(method(initWithSession:name:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSession_name_error(
             this: Allocated<Self>,
             in_session: Option<&ODSession>,
             in_name: Option<&NSString>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<Self>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// Returns NSArray of node names for this node, which may contain sub-nodes or search policy nodes
         ///
@@ -116,12 +112,11 @@ impl ODNode {
         /// # Safety
         ///
         /// `out_error` might not allow `None`.
-        #[unsafe(method(subnodeNamesAndReturnError:))]
+        #[unsafe(method(subnodeNamesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn subnodeNamesAndReturnError(
             &self,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSArray>>;
+        ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
         /// Will return NSArray of names of subnodes that are not currently reachable.
         ///
@@ -132,12 +127,11 @@ impl ODNode {
         /// # Safety
         ///
         /// `out_error` might not allow `None`.
-        #[unsafe(method(unreachableSubnodeNamesAndReturnError:))]
+        #[unsafe(method(unreachableSubnodeNamesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn unreachableSubnodeNamesAndReturnError(
             &self,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSArray>>;
+        ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
         /// The node name.
         ///
@@ -157,13 +151,12 @@ impl ODNode {
         /// - `in_keys` generic should be of the correct type.
         /// - `in_keys` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(nodeDetailsForKeys:error:))]
+        #[unsafe(method(nodeDetailsForKeys:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeDetailsForKeys_error(
             &self,
             in_keys: Option<&NSArray>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSDictionary>>;
+        ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         /// Returns a NSArray of the record types supported by this node.
         ///
@@ -174,12 +167,11 @@ impl ODNode {
         /// # Safety
         ///
         /// `out_error` might not allow `None`.
-        #[unsafe(method(supportedRecordTypesAndReturnError:))]
+        #[unsafe(method(supportedRecordTypesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRecordTypesAndReturnError(
             &self,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSArray>>;
+        ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Will return a list of attribute types supported for that attribute if possible
@@ -192,13 +184,12 @@ impl ODNode {
         ///
         /// - `in_record_type` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(supportedAttributesForRecordType:error:))]
+        #[unsafe(method(supportedAttributesForRecordType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedAttributesForRecordType_error(
             &self,
             in_record_type: Option<&ODRecordType>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSArray>>;
+        ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Sets the credentials for interaction with the ODNode
@@ -287,15 +278,14 @@ impl ODNode {
         /// - `in_attributes` generic should be of the correct type.
         /// - `in_attributes` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(createRecordWithRecordType:name:attributes:error:))]
+        #[unsafe(method(createRecordWithRecordType:name:attributes:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn createRecordWithRecordType_name_attributes_error(
             &self,
             in_record_type: Option<&ODRecordType>,
             in_record_name: Option<&NSString>,
             in_attributes: Option<&NSDictionary>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<ODRecord>>;
+        ) -> Result<Retained<ODRecord>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "CFOpenDirectory",
@@ -315,15 +305,14 @@ impl ODNode {
         /// - `in_attributes` should be of the correct type.
         /// - `in_attributes` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(recordWithRecordType:name:attributes:error:))]
+        #[unsafe(method(recordWithRecordType:name:attributes:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordWithRecordType_name_attributes_error(
             &self,
             in_record_type: Option<&ODRecordType>,
             in_record_name: Option<&NSString>,
             in_attributes: Option<&AnyObject>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<ODRecord>>;
+        ) -> Result<Retained<ODRecord>, Retained<NSError>>;
 
         /// Sends a custom code to the node; input and output data formats are specific to the call.
         ///
@@ -334,14 +323,13 @@ impl ODNode {
         ///
         /// - `in_send_data` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(customCall:sendData:error:))]
+        #[unsafe(method(customCall:sendData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn customCall_sendData_error(
             &self,
             in_custom_code: NSInteger,
             in_send_data: Option<&NSData>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSData>>;
+        ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         /// Sends a custom function call to the node; data is a type specific to the call.
         ///
@@ -355,14 +343,13 @@ impl ODNode {
         /// - `payload` should be of the correct type.
         /// - `payload` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(customFunction:payload:error:))]
+        #[unsafe(method(customFunction:payload:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn customFunction_payload_error(
             &self,
             function: Option<&NSString>,
             payload: Option<&AnyObject>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<AnyObject>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(feature = "ODConfiguration")]
         /// Returns an ODConfiguration object for the node.
@@ -381,12 +368,11 @@ impl ODNode {
         ///
         /// `error` might not allow `None`.
         #[deprecated = "use accountPoliciesAndReturnError:"]
-        #[unsafe(method(policiesAndReturnError:))]
+        #[unsafe(method(policiesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn policiesAndReturnError(
             &self,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSDictionary>>;
+        ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         /// This will return a dictionary of supported policies.
         ///
@@ -398,12 +384,11 @@ impl ODNode {
         ///
         /// `error` might not allow `None`.
         #[deprecated]
-        #[unsafe(method(supportedPoliciesAndReturnError:))]
+        #[unsafe(method(supportedPoliciesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedPoliciesAndReturnError(
             &self,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSDictionary>>;
+        ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         /// This will set the policy for the node.
         ///
@@ -571,12 +556,11 @@ impl ODNode {
         /// # Safety
         ///
         /// `error` might not allow `None`.
-        #[unsafe(method(accountPoliciesAndReturnError:))]
+        #[unsafe(method(accountPoliciesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountPoliciesAndReturnError(
             &self,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSDictionary>>;
+        ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         /// Validates a password against the node's password content policies.
         ///

@@ -104,12 +104,11 @@ impl ODRecord {
         ///
         /// `out_error` might not allow `None`.
         #[deprecated = "use effectivePoliciesAndReturnError"]
-        #[unsafe(method(passwordPolicyAndReturnError:))]
+        #[unsafe(method(passwordPolicyAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordPolicyAndReturnError(
             &self,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSDictionary>>;
+        ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         /// Verifies the password provided is valid for the record
         ///
@@ -216,13 +215,12 @@ impl ODRecord {
         /// - `in_attributes` generic should be of the correct type.
         /// - `in_attributes` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(recordDetailsForAttributes:error:))]
+        #[unsafe(method(recordDetailsForAttributes:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordDetailsForAttributes_error(
             &self,
             in_attributes: Option<&NSArray>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSDictionary>>;
+        ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Returns an NSArray of NSString or NSData values of the attribute
@@ -234,13 +232,12 @@ impl ODRecord {
         ///
         /// - `in_attribute` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(valuesForAttribute:error:))]
+        #[unsafe(method(valuesForAttribute:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn valuesForAttribute_error(
             &self,
             in_attribute: Option<&ODAttributeType>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSArray>>;
+        ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Will take a mixture of NSData or NSString or an NSArray of either type when setting the values of an attribute
@@ -339,12 +336,11 @@ impl ODRecord {
         ///
         /// `error` might not allow `None`.
         #[deprecated = "use accountPoliciesAndReturnError:"]
-        #[unsafe(method(policiesAndReturnError:))]
+        #[unsafe(method(policiesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn policiesAndReturnError(
             &self,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSDictionary>>;
+        ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         /// This will copy any policies configured for the record.
         ///
@@ -354,12 +350,11 @@ impl ODRecord {
         ///
         /// `error` might not allow `None`.
         #[deprecated = "use authenticationAllowedAndReturnError: and similar methods"]
-        #[unsafe(method(effectivePoliciesAndReturnError:))]
+        #[unsafe(method(effectivePoliciesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectivePoliciesAndReturnError(
             &self,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSDictionary>>;
+        ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         /// This will return a dictionary of supported policies.
         ///
@@ -371,12 +366,11 @@ impl ODRecord {
         ///
         /// `error` might not allow `None`.
         #[deprecated]
-        #[unsafe(method(supportedPoliciesAndReturnError:))]
+        #[unsafe(method(supportedPoliciesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedPoliciesAndReturnError(
             &self,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSDictionary>>;
+        ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         /// This will set the policy for the record.
         ///
@@ -547,12 +541,11 @@ impl ODRecord {
         /// # Safety
         ///
         /// `error` might not allow `None`.
-        #[unsafe(method(accountPoliciesAndReturnError:))]
+        #[unsafe(method(accountPoliciesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountPoliciesAndReturnError(
             &self,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Option<Retained<NSDictionary>>;
+        ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         /// Determines if policies allow the account to authenticate.
         ///
