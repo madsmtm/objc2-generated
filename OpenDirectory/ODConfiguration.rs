@@ -27,17 +27,17 @@ pub const ODPacketEncryptionSSL: c_uint = 3;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odtrusttypejoined?language=objc)
-    pub static ODTrustTypeJoined: Option<&'static NSString>;
+    pub static ODTrustTypeJoined: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odtrusttypeusingcredentials?language=objc)
-    pub static ODTrustTypeUsingCredentials: Option<&'static NSString>;
+    pub static ODTrustTypeUsingCredentials: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odtrusttypeanonymous?language=objc)
-    pub static ODTrustTypeAnonymous: Option<&'static NSString>;
+    pub static ODTrustTypeAnonymous: &'static NSString;
 }
 
 extern_class!(

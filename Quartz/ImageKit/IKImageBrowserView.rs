@@ -867,135 +867,135 @@ unsafe impl NSObjectIKImageBrowserDelegate for NSObject {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserpathrepresentationtype?language=objc)
-    pub static IKImageBrowserPathRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserPathRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsernsurlrepresentationtype?language=objc)
-    pub static IKImageBrowserNSURLRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserNSURLRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsernsimagerepresentationtype?language=objc)
-    pub static IKImageBrowserNSImageRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserNSImageRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercgimagerepresentationtype?language=objc)
-    pub static IKImageBrowserCGImageRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserCGImageRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercgimagesourcerepresentationtype?language=objc)
-    pub static IKImageBrowserCGImageSourceRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserCGImageSourceRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsernsdatarepresentationtype?language=objc)
-    pub static IKImageBrowserNSDataRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserNSDataRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsernsbitmapimagerepresentationtype?language=objc)
-    pub static IKImageBrowserNSBitmapImageRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserNSBitmapImageRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserqtmovierepresentationtype?language=objc)
-    pub static IKImageBrowserQTMovieRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserQTMovieRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserqtmoviepathrepresentationtype?language=objc)
-    pub static IKImageBrowserQTMoviePathRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserQTMoviePathRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserqccompositionrepresentationtype?language=objc)
-    pub static IKImageBrowserQCCompositionRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserQCCompositionRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserqccompositionpathrepresentationtype?language=objc)
-    pub static IKImageBrowserQCCompositionPathRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserQCCompositionPathRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserquicklookpathrepresentationtype?language=objc)
-    pub static IKImageBrowserQuickLookPathRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserQuickLookPathRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsericonrefpathrepresentationtype?language=objc)
-    pub static IKImageBrowserIconRefPathRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserIconRefPathRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsericonrefrepresentationtype?language=objc)
-    pub static IKImageBrowserIconRefRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserIconRefRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserpdfpagerepresentationtype?language=objc)
-    pub static IKImageBrowserPDFPageRepresentationType: Option<&'static NSString>;
+    pub static IKImageBrowserPDFPageRepresentationType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserbackgroundcolorkey?language=objc)
-    pub static IKImageBrowserBackgroundColorKey: Option<&'static NSString>;
+    pub static IKImageBrowserBackgroundColorKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserselectioncolorkey?language=objc)
-    pub static IKImageBrowserSelectionColorKey: Option<&'static NSString>;
+    pub static IKImageBrowserSelectionColorKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellsoutlinecolorkey?language=objc)
-    pub static IKImageBrowserCellsOutlineColorKey: Option<&'static NSString>;
+    pub static IKImageBrowserCellsOutlineColorKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellstitleattributeskey?language=objc)
-    pub static IKImageBrowserCellsTitleAttributesKey: Option<&'static NSString>;
+    pub static IKImageBrowserCellsTitleAttributesKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellshighlightedtitleattributeskey?language=objc)
-    pub static IKImageBrowserCellsHighlightedTitleAttributesKey: Option<&'static NSString>;
+    pub static IKImageBrowserCellsHighlightedTitleAttributesKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellssubtitleattributeskey?language=objc)
-    pub static IKImageBrowserCellsSubtitleAttributesKey: Option<&'static NSString>;
+    pub static IKImageBrowserCellsSubtitleAttributesKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergrouprangekey?language=objc)
-    pub static IKImageBrowserGroupRangeKey: Option<&'static NSString>;
+    pub static IKImageBrowserGroupRangeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergroupbackgroundcolorkey?language=objc)
-    pub static IKImageBrowserGroupBackgroundColorKey: Option<&'static NSString>;
+    pub static IKImageBrowserGroupBackgroundColorKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergrouptitlekey?language=objc)
-    pub static IKImageBrowserGroupTitleKey: Option<&'static NSString>;
+    pub static IKImageBrowserGroupTitleKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergroupstylekey?language=objc)
-    pub static IKImageBrowserGroupStyleKey: Option<&'static NSString>;
+    pub static IKImageBrowserGroupStyleKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergroupheaderlayer?language=objc)
-    pub static IKImageBrowserGroupHeaderLayer: Option<&'static NSString>;
+    pub static IKImageBrowserGroupHeaderLayer: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergroupfooterlayer?language=objc)
-    pub static IKImageBrowserGroupFooterLayer: Option<&'static NSString>;
+    pub static IKImageBrowserGroupFooterLayer: &'static NSString;
 }

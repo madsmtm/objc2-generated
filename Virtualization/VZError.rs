@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerrordomain?language=objc)
-    pub static VZErrorDomain: Option<&'static NSErrorDomain>;
+    pub static VZErrorDomain: &'static NSErrorDomain;
 }
 
 /// Error type returned by the Virtualization framework.

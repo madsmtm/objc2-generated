@@ -57,7 +57,7 @@ pub type UISceneSessionRole = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerrordomain?language=objc)
-    pub static UISceneErrorDomain: Option<&'static NSErrorDomain>;
+    pub static UISceneErrorDomain: &'static NSErrorDomain;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerrorcode?language=objc)

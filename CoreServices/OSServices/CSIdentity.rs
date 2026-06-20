@@ -46,7 +46,7 @@ cf_objc2_type!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentitygenerateposixname?language=objc)
-    pub static kCSIdentityGeneratePosixName: Option<&'static CFString>;
+    pub static kCSIdentityGeneratePosixName: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityclassuser?language=objc)

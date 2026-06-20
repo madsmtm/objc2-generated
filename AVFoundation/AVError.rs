@@ -7,62 +7,62 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfoundationerrordomain?language=objc)
-    pub static AVFoundationErrorDomain: Option<&'static NSErrorDomain>;
+    pub static AVFoundationErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrordevicekey?language=objc)
-    pub static AVErrorDeviceKey: Option<&'static NSString>;
+    pub static AVErrorDeviceKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrortimekey?language=objc)
-    pub static AVErrorTimeKey: Option<&'static NSString>;
+    pub static AVErrorTimeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorfilesizekey?language=objc)
-    pub static AVErrorFileSizeKey: Option<&'static NSString>;
+    pub static AVErrorFileSizeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorpidkey?language=objc)
-    pub static AVErrorPIDKey: Option<&'static NSString>;
+    pub static AVErrorPIDKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorrecordingsuccessfullyfinishedkey?language=objc)
-    pub static AVErrorRecordingSuccessfullyFinishedKey: Option<&'static NSString>;
+    pub static AVErrorRecordingSuccessfullyFinishedKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrormediatypekey?language=objc)
-    pub static AVErrorMediaTypeKey: Option<&'static NSString>;
+    pub static AVErrorMediaTypeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrormediasubtypekey?language=objc)
-    pub static AVErrorMediaSubTypeKey: Option<&'static NSString>;
+    pub static AVErrorMediaSubTypeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorpresentationtimestampkey?language=objc)
-    pub static AVErrorPresentationTimeStampKey: Option<&'static NSString>;
+    pub static AVErrorPresentationTimeStampKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorpersistenttrackidkey?language=objc)
-    pub static AVErrorPersistentTrackIDKey: Option<&'static NSString>;
+    pub static AVErrorPersistentTrackIDKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorfiletypekey?language=objc)
-    pub static AVErrorFileTypeKey: Option<&'static NSString>;
+    pub static AVErrorFileTypeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrordiscontinuityflagskey?language=objc)
-    pub static AVErrorDiscontinuityFlagsKey: Option<&'static NSString>;
+    pub static AVErrorDiscontinuityFlagsKey: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror?language=objc)

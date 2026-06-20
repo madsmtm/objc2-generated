@@ -39,23 +39,22 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithmlowqualityzerolatency?language=objc)
     #[deprecated = "Use AVAudioTimePitchAlgorithmTimeDomain instead"]
-    pub static AVAudioTimePitchAlgorithmLowQualityZeroLatency:
-        Option<&'static AVAudioTimePitchAlgorithm>;
+    pub static AVAudioTimePitchAlgorithmLowQualityZeroLatency: &'static AVAudioTimePitchAlgorithm;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithmtimedomain?language=objc)
-    pub static AVAudioTimePitchAlgorithmTimeDomain: Option<&'static AVAudioTimePitchAlgorithm>;
+    pub static AVAudioTimePitchAlgorithmTimeDomain: &'static AVAudioTimePitchAlgorithm;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithmspectral?language=objc)
-    pub static AVAudioTimePitchAlgorithmSpectral: Option<&'static AVAudioTimePitchAlgorithm>;
+    pub static AVAudioTimePitchAlgorithmSpectral: &'static AVAudioTimePitchAlgorithm;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithmvarispeed?language=objc)
-    pub static AVAudioTimePitchAlgorithmVarispeed: Option<&'static AVAudioTimePitchAlgorithm>;
+    pub static AVAudioTimePitchAlgorithmVarispeed: &'static AVAudioTimePitchAlgorithm;
 }
 
 /// These constants can be used to specify values for allowedAudioSpatializationFormats.

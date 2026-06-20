@@ -254,35 +254,35 @@ unsafe impl NSObjectQuartzFilterManagerDelegate for NSObject {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfilterapplicationdomain?language=objc)
-    pub static kQuartzFilterApplicationDomain: Option<&'static NSString>;
+    pub static kQuartzFilterApplicationDomain: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfilterpdfworkflowdomain?language=objc)
-    pub static kQuartzFilterPDFWorkflowDomain: Option<&'static NSString>;
+    pub static kQuartzFilterPDFWorkflowDomain: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfilterprintingdomain?language=objc)
-    pub static kQuartzFilterPrintingDomain: Option<&'static NSString>;
+    pub static kQuartzFilterPrintingDomain: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfiltermanagerdidaddfilternotification?language=objc)
-    pub static kQuartzFilterManagerDidAddFilterNotification: Option<&'static NSString>;
+    pub static kQuartzFilterManagerDidAddFilterNotification: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfiltermanagerdidremovefilternotification?language=objc)
-    pub static kQuartzFilterManagerDidRemoveFilterNotification: Option<&'static NSString>;
+    pub static kQuartzFilterManagerDidRemoveFilterNotification: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfiltermanagerdidmodifyfilternotification?language=objc)
-    pub static kQuartzFilterManagerDidModifyFilterNotification: Option<&'static NSString>;
+    pub static kQuartzFilterManagerDidModifyFilterNotification: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfiltermanagerdidselectfilternotification?language=objc)
-    pub static kQuartzFilterManagerDidSelectFilterNotification: Option<&'static NSString>;
+    pub static kQuartzFilterManagerDidSelectFilterNotification: &'static NSString;
 }

@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityerrordomain?language=objc)
-    pub static kCSIdentityErrorDomain: Option<&'static CFString>;
+    pub static kCSIdentityErrorDomain: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityunknownauthorityerr?language=objc)

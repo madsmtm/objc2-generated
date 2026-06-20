@@ -8,7 +8,7 @@ use crate::*;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icrunloopmode?language=objc)
     #[deprecated = "ICRunLoopMode has been deprecated and may break in future releases."]
-    pub static ICRunLoopMode: Option<&'static NSString>;
+    pub static ICRunLoopMode: &'static NSString;
 }
 
 extern "C" {
@@ -31,7 +31,7 @@ extern "C" {
     /// 88            8888888888    8888888888            88
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icerrordomain?language=objc)
-    pub static ICErrorDomain: Option<&'static NSErrorDomain>;
+    pub static ICErrorDomain: &'static NSErrorDomain;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icexiforientationtype?language=objc)

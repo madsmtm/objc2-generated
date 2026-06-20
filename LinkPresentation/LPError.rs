@@ -9,7 +9,7 @@ extern "C" {
     /// The domain for Link Presentation errors.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperrordomain?language=objc)
-    pub static LPErrorDomain: Option<&'static NSErrorDomain>;
+    pub static LPErrorDomain: &'static NSErrorDomain;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperrorcode?language=objc)

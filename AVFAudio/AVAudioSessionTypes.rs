@@ -15,21 +15,21 @@ extern "C" {
     /// Continuity microphone for appletv.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportcontinuitymicrophone?language=objc)
-    pub static AVAudioSessionPortContinuityMicrophone: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortContinuityMicrophone: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Line level input on a dock connector
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportlinein?language=objc)
-    pub static AVAudioSessionPortLineIn: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortLineIn: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Built-in microphone on an iOS device
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbuiltinmic?language=objc)
-    pub static AVAudioSessionPortBuiltInMic: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortBuiltInMic: &'static AVAudioSessionPort;
 }
 
 extern "C" {
@@ -37,126 +37,126 @@ extern "C" {
     /// microphone.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportheadsetmic?language=objc)
-    pub static AVAudioSessionPortHeadsetMic: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortHeadsetMic: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Line level output on a dock connector
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportlineout?language=objc)
-    pub static AVAudioSessionPortLineOut: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortLineOut: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Headphone or headset output
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportheadphones?language=objc)
-    pub static AVAudioSessionPortHeadphones: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortHeadphones: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Output on a Bluetooth A2DP device
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbluetootha2dp?language=objc)
-    pub static AVAudioSessionPortBluetoothA2DP: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortBluetoothA2DP: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// The speaker you hold to your ear when on a phone call
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbuiltinreceiver?language=objc)
-    pub static AVAudioSessionPortBuiltInReceiver: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortBuiltInReceiver: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Built-in speaker on an iOS device
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbuiltinspeaker?language=objc)
-    pub static AVAudioSessionPortBuiltInSpeaker: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortBuiltInSpeaker: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Output via High-Definition Multimedia Interface
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionporthdmi?language=objc)
-    pub static AVAudioSessionPortHDMI: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortHDMI: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Output on a remote Air Play device
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportairplay?language=objc)
-    pub static AVAudioSessionPortAirPlay: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortAirPlay: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Output on a Bluetooth Low Energy device
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbluetoothle?language=objc)
-    pub static AVAudioSessionPortBluetoothLE: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortBluetoothLE: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Input or output on a Bluetooth Hands-Free Profile device
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbluetoothhfp?language=objc)
-    pub static AVAudioSessionPortBluetoothHFP: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortBluetoothHFP: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Input or output on a Universal Serial Bus device
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportusbaudio?language=objc)
-    pub static AVAudioSessionPortUSBAudio: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortUSBAudio: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Input or output via Car Audio
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportcaraudio?language=objc)
-    pub static AVAudioSessionPortCarAudio: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortCarAudio: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Input or output that does not correspond to real audio hardware
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportvirtual?language=objc)
-    pub static AVAudioSessionPortVirtual: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortVirtual: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Input or output connected via the PCI (Peripheral Component Interconnect) bus
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportpci?language=objc)
-    pub static AVAudioSessionPortPCI: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortPCI: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Input or output connected via FireWire
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportfirewire?language=objc)
-    pub static AVAudioSessionPortFireWire: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortFireWire: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Input or output connected via DisplayPort
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportdisplayport?language=objc)
-    pub static AVAudioSessionPortDisplayPort: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortDisplayPort: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Input or output connected via AVB (Audio Video Bridging)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportavb?language=objc)
-    pub static AVAudioSessionPortAVB: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortAVB: &'static AVAudioSessionPort;
 }
 
 extern "C" {
     /// Input or output connected via Thunderbolt
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportthunderbolt?language=objc)
-    pub static AVAudioSessionPortThunderbolt: Option<&'static AVAudioSessionPort>;
+    pub static AVAudioSessionPortThunderbolt: &'static AVAudioSessionPort;
 }
 
 /// A category defines a broad set of behaviors for a session.
@@ -170,35 +170,35 @@ extern "C" {
     /// Mixes with other music.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryambient?language=objc)
-    pub static AVAudioSessionCategoryAmbient: Option<&'static AVAudioSessionCategory>;
+    pub static AVAudioSessionCategoryAmbient: &'static AVAudioSessionCategory;
 }
 
 extern "C" {
     /// Use this category for background sounds.  Other music will stop playing.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategorysoloambient?language=objc)
-    pub static AVAudioSessionCategorySoloAmbient: Option<&'static AVAudioSessionCategory>;
+    pub static AVAudioSessionCategorySoloAmbient: &'static AVAudioSessionCategory;
 }
 
 extern "C" {
     /// Use this category for music tracks.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryplayback?language=objc)
-    pub static AVAudioSessionCategoryPlayback: Option<&'static AVAudioSessionCategory>;
+    pub static AVAudioSessionCategoryPlayback: &'static AVAudioSessionCategory;
 }
 
 extern "C" {
     /// Use this category when recording audio.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryrecord?language=objc)
-    pub static AVAudioSessionCategoryRecord: Option<&'static AVAudioSessionCategory>;
+    pub static AVAudioSessionCategoryRecord: &'static AVAudioSessionCategory;
 }
 
 extern "C" {
     /// Use this category when recording and playing back audio.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryplayandrecord?language=objc)
-    pub static AVAudioSessionCategoryPlayAndRecord: Option<&'static AVAudioSessionCategory>;
+    pub static AVAudioSessionCategoryPlayAndRecord: &'static AVAudioSessionCategory;
 }
 
 extern "C" {
@@ -207,7 +207,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryaudioprocessing?language=objc)
     #[deprecated = "No longer supported"]
-    pub static AVAudioSessionCategoryAudioProcessing: Option<&'static AVAudioSessionCategory>;
+    pub static AVAudioSessionCategoryAudioProcessing: &'static AVAudioSessionCategory;
 }
 
 extern "C" {
@@ -226,7 +226,7 @@ extern "C" {
     /// outputs connected.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategorymultiroute?language=objc)
-    pub static AVAudioSessionCategoryMultiRoute: Option<&'static AVAudioSessionCategory>;
+    pub static AVAudioSessionCategoryMultiRoute: &'static AVAudioSessionCategory;
 }
 
 /// Modes modify the audio category in order to introduce behavior that is tailored to the specific
@@ -240,7 +240,7 @@ extern "C" {
     /// The default mode
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodedefault?language=objc)
-    pub static AVAudioSessionModeDefault: Option<&'static AVAudioSessionMode>;
+    pub static AVAudioSessionModeDefault: &'static AVAudioSessionMode;
 }
 
 extern "C" {
@@ -253,7 +253,7 @@ extern "C" {
     /// - Dynamic processing on input and output will be disabled resulting in a lower output playback level.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevoicechat?language=objc)
-    pub static AVAudioSessionModeVoiceChat: Option<&'static AVAudioSessionMode>;
+    pub static AVAudioSessionModeVoiceChat: &'static AVAudioSessionMode;
 }
 
 extern "C" {
@@ -263,7 +263,7 @@ extern "C" {
     /// a GKVoiceChat object, use AVAudioSessionModeVoiceChat instead.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodegamechat?language=objc)
-    pub static AVAudioSessionModeGameChat: Option<&'static AVAudioSessionMode>;
+    pub static AVAudioSessionModeGameChat: &'static AVAudioSessionMode;
 }
 
 extern "C" {
@@ -271,7 +271,7 @@ extern "C" {
     /// Modifies the audio routing options and may engage appropriate system-supplied signal processing.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevideorecording?language=objc)
-    pub static AVAudioSessionModeVideoRecording: Option<&'static AVAudioSessionMode>;
+    pub static AVAudioSessionModeVideoRecording: &'static AVAudioSessionMode;
 }
 
 extern "C" {
@@ -280,7 +280,7 @@ extern "C" {
     /// This mode disables some dynamics processing on input and output resulting in a lower output playback level.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodemeasurement?language=objc)
-    pub static AVAudioSessionModeMeasurement: Option<&'static AVAudioSessionMode>;
+    pub static AVAudioSessionModeMeasurement: &'static AVAudioSessionMode;
 }
 
 extern "C" {
@@ -289,7 +289,7 @@ extern "C" {
     /// Content using this mode is eligible for Enhance Dialogue processing on supported routes with capable hardware
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodemovieplayback?language=objc)
-    pub static AVAudioSessionModeMoviePlayback: Option<&'static AVAudioSessionMode>;
+    pub static AVAudioSessionModeMoviePlayback: &'static AVAudioSessionMode;
 }
 
 extern "C" {
@@ -302,7 +302,7 @@ extern "C" {
     /// - Dynamic processing on input and output will be disabled resulting in a lower output playback level.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevideochat?language=objc)
-    pub static AVAudioSessionModeVideoChat: Option<&'static AVAudioSessionMode>;
+    pub static AVAudioSessionModeVideoChat: &'static AVAudioSessionMode;
 }
 
 extern "C" {
@@ -311,7 +311,7 @@ extern "C" {
     /// audio books.  For more information, see the related category option AVAudioSessionCategoryOptionInterruptSpokenAudioAndMixWithOthers.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodespokenaudio?language=objc)
-    pub static AVAudioSessionModeSpokenAudio: Option<&'static AVAudioSessionMode>;
+    pub static AVAudioSessionModeSpokenAudio: &'static AVAudioSessionMode;
 }
 
 extern "C" {
@@ -321,7 +321,7 @@ extern "C" {
     /// AVAudioSessionCategoryOptionDuckOthers and AVAudioSessionCategoryOptionInterruptSpokenAudioAndMixWithOthers
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevoiceprompt?language=objc)
-    pub static AVAudioSessionModeVoicePrompt: Option<&'static AVAudioSessionMode>;
+    pub static AVAudioSessionModeVoicePrompt: &'static AVAudioSessionMode;
 }
 
 extern "C" {
@@ -337,7 +337,7 @@ extern "C" {
     /// - if the session is output muted, system may prevent interrupting other active audio apps.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodeshortformvideo?language=objc)
-    pub static AVAudioSessionModeShortFormVideo: Option<&'static AVAudioSessionMode>;
+    pub static AVAudioSessionModeShortFormVideo: &'static AVAudioSessionMode;
 }
 
 extern "C" {
@@ -356,7 +356,7 @@ extern "C" {
     /// - System may engage appropriate signal processing for output routes
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodedualroute?language=objc)
-    pub static AVAudioSessionModeDualRoute: Option<&'static AVAudioSessionMode>;
+    pub static AVAudioSessionModeDualRoute: &'static AVAudioSessionMode;
 }
 
 extern "C" {
@@ -370,7 +370,7 @@ extern "C" {
     /// within the info dictionary under the key AVAudioSessionInterruptionReasonKey.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionnotification?language=objc)
-    pub static AVAudioSessionInterruptionNotification: Option<&'static NSNotificationName>;
+    pub static AVAudioSessionInterruptionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
@@ -380,7 +380,7 @@ extern "C" {
     /// of the previous audio route.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangenotification?language=objc)
-    pub static AVAudioSessionRouteChangeNotification: Option<&'static NSNotificationName>;
+    pub static AVAudioSessionRouteChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
@@ -392,7 +392,7 @@ extern "C" {
     /// QA1749.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmediaserviceswerelostnotification?language=objc)
-    pub static AVAudioSessionMediaServicesWereLostNotification: Option<&'static NSNotificationName>;
+    pub static AVAudioSessionMediaServicesWereLostNotification: &'static NSNotificationName;
 }
 
 extern "C" {
@@ -404,8 +404,7 @@ extern "C" {
     /// QA1749.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmediaserviceswereresetnotification?language=objc)
-    pub static AVAudioSessionMediaServicesWereResetNotification:
-        Option<&'static NSNotificationName>;
+    pub static AVAudioSessionMediaServicesWereResetNotification: &'static NSNotificationName;
 }
 
 extern "C" {
@@ -418,8 +417,7 @@ extern "C" {
     /// property secondaryAudioShouldBeSilencedHint.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsilencesecondaryaudiohintnotification?language=objc)
-    pub static AVAudioSessionSilenceSecondaryAudioHintNotification:
-        Option<&'static NSNotificationName>;
+    pub static AVAudioSessionSilenceSecondaryAudioHintNotification: &'static NSNotificationName;
 }
 
 extern "C" {
@@ -436,22 +434,21 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionspatialplaybackcapabilitieschangednotification?language=objc)
     pub static AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification:
-        Option<&'static NSNotificationName>;
+        &'static NSNotificationName;
 }
 
 extern "C" {
     /// Notification sent to registered listeners when the resolved rendering mode changes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingmodechangenotification?language=objc)
-    pub static AVAudioSessionRenderingModeChangeNotification: Option<&'static NSNotificationName>;
+    pub static AVAudioSessionRenderingModeChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// Notification sent to registered listeners when the rendering capabilities change.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingcapabilitieschangenotification?language=objc)
-    pub static AVAudioSessionRenderingCapabilitiesChangeNotification:
-        Option<&'static NSNotificationName>;
+    pub static AVAudioSessionRenderingCapabilitiesChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
@@ -462,7 +459,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectioncapabilitieschangenotification?language=objc)
     pub static AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification:
-        Option<&'static NSNotificationName>;
+        &'static NSNotificationName;
 }
 
 extern "C" {
@@ -471,7 +468,7 @@ extern "C" {
     /// The userInfo dictionary will contain the updated output mute value as accessed by ``AVAudioSessionMuteStateKey``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionoutputmutestatechangenotification?language=objc)
-    pub static AVAudioSessionOutputMuteStateChangeNotification: Option<&'static NSNotificationName>;
+    pub static AVAudioSessionOutputMuteStateChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
@@ -479,15 +476,14 @@ extern "C" {
     /// Value is `NSNumber` type with boolean value 0 for unmuted or value 1 for muted (samples zeroed out)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmutestatekey?language=objc)
-    pub static AVAudioSessionMuteStateKey: Option<&'static NSString>;
+    pub static AVAudioSessionMuteStateKey: &'static NSString;
 }
 
 extern "C" {
     /// Notification sent to registered listeners when the application's output is muted and user hints to unmute.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionuserintenttounmuteoutputnotification?language=objc)
-    pub static AVAudioSessionUserIntentToUnmuteOutputNotification:
-        Option<&'static NSNotificationName>;
+    pub static AVAudioSessionUserIntentToUnmuteOutputNotification: &'static NSNotificationName;
 }
 
 extern "C" {
@@ -495,7 +491,7 @@ extern "C" {
     /// value is an NSNumber whose boolean value indicates if spatial audio enabled.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionspatialaudioenabledkey?language=objc)
-    pub static AVAudioSessionSpatialAudioEnabledKey: Option<&'static NSString>;
+    pub static AVAudioSessionSpatialAudioEnabledKey: &'static NSString;
 }
 
 extern "C" {
@@ -503,21 +499,21 @@ extern "C" {
     /// Value is an NSNumber representing an AVAudioSessionInterruptionType
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptiontypekey?language=objc)
-    pub static AVAudioSessionInterruptionTypeKey: Option<&'static NSString>;
+    pub static AVAudioSessionInterruptionTypeKey: &'static NSString;
 }
 
 extern "C" {
     /// Only present for end interruption events.  Value is of type AVAudioSessionInterruptionOptions.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionoptionkey?language=objc)
-    pub static AVAudioSessionInterruptionOptionKey: Option<&'static NSString>;
+    pub static AVAudioSessionInterruptionOptionKey: &'static NSString;
 }
 
 extern "C" {
     /// Only present in begin interruption events. Value is of type AVAudioSessionInterruptionReason.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionreasonkey?language=objc)
-    pub static AVAudioSessionInterruptionReasonKey: Option<&'static NSString>;
+    pub static AVAudioSessionInterruptionReasonKey: &'static NSString;
 }
 
 extern "C" {
@@ -535,7 +531,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionwassuspendedkey?language=objc)
     #[deprecated = "No longer supported - see AVAudioSessionInterruptionReasonKey"]
-    pub static AVAudioSessionInterruptionWasSuspendedKey: Option<&'static NSString>;
+    pub static AVAudioSessionInterruptionWasSuspendedKey: &'static NSString;
 }
 
 extern "C" {
@@ -543,14 +539,14 @@ extern "C" {
     /// value is an NSNumber representing an AVAudioSessionRouteChangeReason
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangereasonkey?language=objc)
-    pub static AVAudioSessionRouteChangeReasonKey: Option<&'static NSString>;
+    pub static AVAudioSessionRouteChangeReasonKey: &'static NSString;
 }
 
 extern "C" {
     /// value is AVAudioSessionRouteDescription *
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangepreviousroutekey?language=objc)
-    pub static AVAudioSessionRouteChangePreviousRouteKey: Option<&'static NSString>;
+    pub static AVAudioSessionRouteChangePreviousRouteKey: &'static NSString;
 }
 
 extern "C" {
@@ -558,7 +554,7 @@ extern "C" {
     /// value is an NSNumber representing an AVAudioSessionSilenceSecondaryAudioHintType
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsilencesecondaryaudiohinttypekey?language=objc)
-    pub static AVAudioSessionSilenceSecondaryAudioHintTypeKey: Option<&'static NSString>;
+    pub static AVAudioSessionSilenceSecondaryAudioHintTypeKey: &'static NSString;
 }
 
 extern "C" {
@@ -566,7 +562,7 @@ extern "C" {
     /// Contains a payload of NSInteger representing the new resolved rendering mode
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingmodenewrenderingmodekey?language=objc)
-    pub static AVAudioSessionRenderingModeNewRenderingModeKey: Option<&'static NSString>;
+    pub static AVAudioSessionRenderingModeNewRenderingModeKey: &'static NSString;
 }
 
 extern "C" {
@@ -576,7 +572,7 @@ extern "C" {
     /// Value is an NSNumber whose boolean value indicates if microphone injection is available.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectionisavailablekey?language=objc)
-    pub static AVAudioSessionMicrophoneInjectionIsAvailableKey: Option<&'static NSString>;
+    pub static AVAudioSessionMicrophoneInjectionIsAvailableKey: &'static NSString;
 }
 
 extern "C" {
@@ -585,7 +581,7 @@ extern "C" {
     /// There is no payload (userInfo dictionary) associated with the ``AVAudioSessionAvailableInputsChangeNotification`` notification.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionavailableinputschangenotification?language=objc)
-    pub static AVAudioSessionAvailableInputsChangeNotification: Option<&'static NSNotificationName>;
+    pub static AVAudioSessionAvailableInputsChangeNotification: &'static NSNotificationName;
 }
 
 /// For use with activateWithOptions:completionHandler:

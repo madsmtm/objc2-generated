@@ -10,7 +10,7 @@ use crate::*;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerrordomain?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static VTFrameProcessorErrorDomain: Option<&'static NSErrorDomain>;
+    pub static VTFrameProcessorErrorDomain: &'static NSErrorDomain;
 }
 
 /// `VTFrameProcessor` error codes.

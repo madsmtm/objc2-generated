@@ -79,29 +79,29 @@ impl DefaultRetained for NSExtensionContext {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey?language=objc)
     #[cfg(feature = "NSString")]
-    pub static NSExtensionItemsAndErrorsKey: Option<&'static NSString>;
+    pub static NSExtensionItemsAndErrorsKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostwillenterforegroundnotification?language=objc)
     #[cfg(feature = "NSString")]
-    pub static NSExtensionHostWillEnterForegroundNotification: Option<&'static NSString>;
+    pub static NSExtensionHostWillEnterForegroundNotification: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostdidenterbackgroundnotification?language=objc)
     #[cfg(feature = "NSString")]
-    pub static NSExtensionHostDidEnterBackgroundNotification: Option<&'static NSString>;
+    pub static NSExtensionHostDidEnterBackgroundNotification: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostwillresignactivenotification?language=objc)
     #[cfg(feature = "NSString")]
-    pub static NSExtensionHostWillResignActiveNotification: Option<&'static NSString>;
+    pub static NSExtensionHostWillResignActiveNotification: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostdidbecomeactivenotification?language=objc)
     #[cfg(feature = "NSString")]
-    pub static NSExtensionHostDidBecomeActiveNotification: Option<&'static NSString>;
+    pub static NSExtensionHostDidBecomeActiveNotification: &'static NSString;
 }

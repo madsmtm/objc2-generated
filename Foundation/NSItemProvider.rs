@@ -509,13 +509,13 @@ impl NSItemProvider {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionjavascriptpreprocessingresultskey?language=objc)
     #[cfg(feature = "NSString")]
-    pub static NSExtensionJavaScriptPreprocessingResultsKey: Option<&'static NSString>;
+    pub static NSExtensionJavaScriptPreprocessingResultsKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionjavascriptfinalizeargumentkey?language=objc)
     #[cfg(feature = "NSString")]
-    pub static NSExtensionJavaScriptFinalizeArgumentKey: Option<&'static NSString>;
+    pub static NSExtensionJavaScriptFinalizeArgumentKey: &'static NSString;
 }
 
 extern "C" {

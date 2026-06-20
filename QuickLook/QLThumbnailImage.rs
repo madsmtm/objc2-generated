@@ -57,12 +57,12 @@ extern "C" {
     /// If kCFBooleanTrue, QL will produce an icon (ie a thumbnail and all the icon decor, like shadows, curled corner, etc.).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptioniconmodekey?language=objc)
-    pub static kQLThumbnailOptionIconModeKey: Option<&'static CFString>;
+    pub static kQLThumbnailOptionIconModeKey: &'static CFString;
 }
 
 extern "C" {
     /// This is the user scale factor (as a CFNumber). If absent, default value is 1.0
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptionscalefactorkey?language=objc)
-    pub static kQLThumbnailOptionScaleFactorKey: Option<&'static CFString>;
+    pub static kQLThumbnailOptionScaleFactorKey: &'static CFString;
 }

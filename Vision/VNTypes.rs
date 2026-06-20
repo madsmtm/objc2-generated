@@ -51,7 +51,7 @@ extern "C" {
     /// All requests will have this compute stage.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncomputestagemain?language=objc)
-    pub static VNComputeStageMain: Option<&'static VNComputeStage>;
+    pub static VNComputeStageMain: &'static VNComputeStage;
 }
 
 extern "C" {
@@ -60,7 +60,7 @@ extern "C" {
     /// This is an optional compute stage that some requests may expose.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncomputestagepostprocessing?language=objc)
-    pub static VNComputeStagePostProcessing: Option<&'static VNComputeStage>;
+    pub static VNComputeStagePostProcessing: &'static VNComputeStage;
 }
 
 /// Barcode symbologies that are supported by the Vision framework.
@@ -74,122 +74,122 @@ pub type VNBarcodeSymbology = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologyaztec?language=objc)
-    pub static VNBarcodeSymbologyAztec: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyAztec: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologycode39?language=objc)
-    pub static VNBarcodeSymbologyCode39: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyCode39: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologycode39checksum?language=objc)
-    pub static VNBarcodeSymbologyCode39Checksum: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyCode39Checksum: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologycode39fullascii?language=objc)
-    pub static VNBarcodeSymbologyCode39FullASCII: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyCode39FullASCII: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologycode39fullasciichecksum?language=objc)
-    pub static VNBarcodeSymbologyCode39FullASCIIChecksum: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyCode39FullASCIIChecksum: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologycode93?language=objc)
-    pub static VNBarcodeSymbologyCode93: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyCode93: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologycode93i?language=objc)
-    pub static VNBarcodeSymbologyCode93i: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyCode93i: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologycode128?language=objc)
-    pub static VNBarcodeSymbologyCode128: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyCode128: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologydatamatrix?language=objc)
-    pub static VNBarcodeSymbologyDataMatrix: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyDataMatrix: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologyean8?language=objc)
-    pub static VNBarcodeSymbologyEAN8: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyEAN8: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologyean13?language=objc)
-    pub static VNBarcodeSymbologyEAN13: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyEAN13: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologyi2of5?language=objc)
-    pub static VNBarcodeSymbologyI2of5: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyI2of5: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologyi2of5checksum?language=objc)
-    pub static VNBarcodeSymbologyI2of5Checksum: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyI2of5Checksum: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologyitf14?language=objc)
-    pub static VNBarcodeSymbologyITF14: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyITF14: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologypdf417?language=objc)
-    pub static VNBarcodeSymbologyPDF417: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyPDF417: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologyqr?language=objc)
-    pub static VNBarcodeSymbologyQR: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyQR: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologyupce?language=objc)
-    pub static VNBarcodeSymbologyUPCE: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyUPCE: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologycodabar?language=objc)
-    pub static VNBarcodeSymbologyCodabar: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyCodabar: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologygs1databar?language=objc)
-    pub static VNBarcodeSymbologyGS1DataBar: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyGS1DataBar: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologygs1databarexpanded?language=objc)
-    pub static VNBarcodeSymbologyGS1DataBarExpanded: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyGS1DataBarExpanded: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologygs1databarlimited?language=objc)
-    pub static VNBarcodeSymbologyGS1DataBarLimited: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyGS1DataBarLimited: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologymicropdf417?language=objc)
-    pub static VNBarcodeSymbologyMicroPDF417: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyMicroPDF417: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologymicroqr?language=objc)
-    pub static VNBarcodeSymbologyMicroQR: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyMicroQR: &'static VNBarcodeSymbology;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbologymsiplessey?language=objc)
-    pub static VNBarcodeSymbologyMSIPlessey: Option<&'static VNBarcodeSymbology>;
+    pub static VNBarcodeSymbologyMSIPlessey: &'static VNBarcodeSymbology;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnelementtype?language=objc)
@@ -222,13 +222,13 @@ pub type VNVideoProcessingOption = NSString;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessingoptionframecadence?language=objc)
     #[deprecated]
-    pub static VNVideoProcessingOptionFrameCadence: Option<&'static VNVideoProcessingOption>;
+    pub static VNVideoProcessingOptionFrameCadence: &'static VNVideoProcessingOption;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessingoptiontimeinterval?language=objc)
     #[deprecated]
-    pub static VNVideoProcessingOptionTimeInterval: Option<&'static VNVideoProcessingOption>;
+    pub static VNVideoProcessingOptionTimeInterval: &'static VNVideoProcessingOption;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnchirality?language=objc)
@@ -316,151 +316,151 @@ pub type VNAnimalBodyPoseObservationJointName = VNRecognizedPointKey;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamelefteartop?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameLeftEarTop:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamerighteartop?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameRightEarTop:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnameleftearmiddle?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameLeftEarMiddle:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamerightearmiddle?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameRightEarMiddle:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnameleftearbottom?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameLeftEarBottom:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamerightearbottom?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameRightEarBottom:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamelefteye?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameLeftEye:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamerighteye?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameRightEye:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamenose?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameNose:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnameneck?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameNeck:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnameleftfrontelbow?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameLeftFrontElbow:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamerightfrontelbow?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameRightFrontElbow:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnameleftfrontknee?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameLeftFrontKnee:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamerightfrontknee?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameRightFrontKnee:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnameleftfrontpaw?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameLeftFrontPaw:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamerightfrontpaw?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameRightFrontPaw:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnameleftbackelbow?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameLeftBackElbow:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamerightbackelbow?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameRightBackElbow:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnameleftbackknee?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameLeftBackKnee:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamerightbackknee?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameRightBackKnee:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnameleftbackpaw?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameLeftBackPaw:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnamerightbackpaw?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameRightBackPaw:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnametailtop?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameTailTop:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnametailmiddle?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameTailMiddle:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointnametailbottom?language=objc)
     pub static VNAnimalBodyPoseObservationJointNameTailBottom:
-        Option<&'static VNAnimalBodyPoseObservationJointName>;
+        &'static VNAnimalBodyPoseObservationJointName;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointsgroupname?language=objc)
@@ -470,37 +470,37 @@ pub type VNAnimalBodyPoseObservationJointsGroupName = VNRecognizedPointGroupKey;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointsgroupnamehead?language=objc)
     pub static VNAnimalBodyPoseObservationJointsGroupNameHead:
-        Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
+        &'static VNAnimalBodyPoseObservationJointsGroupName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointsgroupnametrunk?language=objc)
     pub static VNAnimalBodyPoseObservationJointsGroupNameTrunk:
-        Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
+        &'static VNAnimalBodyPoseObservationJointsGroupName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointsgroupnameforelegs?language=objc)
     pub static VNAnimalBodyPoseObservationJointsGroupNameForelegs:
-        Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
+        &'static VNAnimalBodyPoseObservationJointsGroupName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointsgroupnamehindlegs?language=objc)
     pub static VNAnimalBodyPoseObservationJointsGroupNameHindlegs:
-        Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
+        &'static VNAnimalBodyPoseObservationJointsGroupName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointsgroupnametail?language=objc)
     pub static VNAnimalBodyPoseObservationJointsGroupNameTail:
-        Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
+        &'static VNAnimalBodyPoseObservationJointsGroupName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservationjointsgroupnameall?language=objc)
     pub static VNAnimalBodyPoseObservationJointsGroupNameAll:
-        Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
+        &'static VNAnimalBodyPoseObservationJointsGroupName;
 }
 
 /// Human Body 3D Pose Joints that are suppported by Vision framework
@@ -512,103 +512,103 @@ pub type VNHumanBodyPose3DObservationJointName = VNRecognizedPointKey;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnameroot?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameRoot:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnamerighthip?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameRightHip:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnamerightknee?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameRightKnee:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnamerightankle?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameRightAnkle:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnamelefthip?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameLeftHip:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnameleftknee?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameLeftKnee:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnameleftankle?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameLeftAnkle:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnamespine?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameSpine:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnamecentershoulder?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameCenterShoulder:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnamecenterhead?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameCenterHead:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnametophead?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameTopHead:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnameleftshoulder?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameLeftShoulder:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnameleftelbow?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameLeftElbow:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnameleftwrist?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameLeftWrist:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnamerightshoulder?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameRightShoulder:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnamerightelbow?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameRightElbow:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointnamerightwrist?language=objc)
     pub static VNHumanBodyPose3DObservationJointNameRightWrist:
-        Option<&'static VNHumanBodyPose3DObservationJointName>;
+        &'static VNHumanBodyPose3DObservationJointName;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointsgroupname?language=objc)
@@ -618,41 +618,41 @@ pub type VNHumanBodyPose3DObservationJointsGroupName = VNRecognizedPointGroupKey
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointsgroupnamehead?language=objc)
     pub static VNHumanBodyPose3DObservationJointsGroupNameHead:
-        Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
+        &'static VNHumanBodyPose3DObservationJointsGroupName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointsgroupnametorso?language=objc)
     pub static VNHumanBodyPose3DObservationJointsGroupNameTorso:
-        Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
+        &'static VNHumanBodyPose3DObservationJointsGroupName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointsgroupnameleftarm?language=objc)
     pub static VNHumanBodyPose3DObservationJointsGroupNameLeftArm:
-        Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
+        &'static VNHumanBodyPose3DObservationJointsGroupName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointsgroupnamerightarm?language=objc)
     pub static VNHumanBodyPose3DObservationJointsGroupNameRightArm:
-        Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
+        &'static VNHumanBodyPose3DObservationJointsGroupName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointsgroupnameleftleg?language=objc)
     pub static VNHumanBodyPose3DObservationJointsGroupNameLeftLeg:
-        Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
+        &'static VNHumanBodyPose3DObservationJointsGroupName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointsgroupnamerightleg?language=objc)
     pub static VNHumanBodyPose3DObservationJointsGroupNameRightLeg:
-        Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
+        &'static VNHumanBodyPose3DObservationJointsGroupName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointsgroupnameall?language=objc)
     pub static VNHumanBodyPose3DObservationJointsGroupNameAll:
-        Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
+        &'static VNHumanBodyPose3DObservationJointsGroupName;
 }

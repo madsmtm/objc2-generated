@@ -59,7 +59,7 @@ unsafe impl RefEncode for WebCacheModel {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webpreferenceschangednotification?language=objc)
     #[deprecated]
-    pub static WebPreferencesChangedNotification: Option<&'static NSString>;
+    pub static WebPreferencesChangedNotification: &'static NSString;
 }
 
 extern_class!(

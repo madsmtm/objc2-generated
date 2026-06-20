@@ -10,50 +10,50 @@ pub type INPersonHandleLabel = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelhome?language=objc)
-    pub static INPersonHandleLabelHome: Option<&'static INPersonHandleLabel>;
+    pub static INPersonHandleLabelHome: &'static INPersonHandleLabel;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelwork?language=objc)
-    pub static INPersonHandleLabelWork: Option<&'static INPersonHandleLabel>;
+    pub static INPersonHandleLabelWork: &'static INPersonHandleLabel;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabeliphone?language=objc)
-    pub static INPersonHandleLabeliPhone: Option<&'static INPersonHandleLabel>;
+    pub static INPersonHandleLabeliPhone: &'static INPersonHandleLabel;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelmobile?language=objc)
-    pub static INPersonHandleLabelMobile: Option<&'static INPersonHandleLabel>;
+    pub static INPersonHandleLabelMobile: &'static INPersonHandleLabel;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelmain?language=objc)
-    pub static INPersonHandleLabelMain: Option<&'static INPersonHandleLabel>;
+    pub static INPersonHandleLabelMain: &'static INPersonHandleLabel;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelhomefax?language=objc)
-    pub static INPersonHandleLabelHomeFax: Option<&'static INPersonHandleLabel>;
+    pub static INPersonHandleLabelHomeFax: &'static INPersonHandleLabel;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelworkfax?language=objc)
-    pub static INPersonHandleLabelWorkFax: Option<&'static INPersonHandleLabel>;
+    pub static INPersonHandleLabelWorkFax: &'static INPersonHandleLabel;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelpager?language=objc)
-    pub static INPersonHandleLabelPager: Option<&'static INPersonHandleLabel>;
+    pub static INPersonHandleLabelPager: &'static INPersonHandleLabel;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelother?language=objc)
-    pub static INPersonHandleLabelOther: Option<&'static INPersonHandleLabel>;
+    pub static INPersonHandleLabelOther: &'static INPersonHandleLabel;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelschool?language=objc)
-    pub static INPersonHandleLabelSchool: Option<&'static INPersonHandleLabel>;
+    pub static INPersonHandleLabelSchool: &'static INPersonHandleLabel;
 }

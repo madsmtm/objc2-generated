@@ -86,7 +86,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_discontinuityflags?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_DiscontinuityFlags: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_DiscontinuityFlags: &'static CFString;
 }
 
 extern "C" {
@@ -98,7 +98,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_sequencenumber?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_SequenceNumber: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_SequenceNumber: &'static CFString;
 }
 
 extern "C" {
@@ -108,7 +108,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_hdv1_packdata?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_HDV1_PackData: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_HDV1_PackData: &'static CFString;
 }
 
 extern "C" {
@@ -118,7 +118,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_hdv2_vaux?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_HDV2_VAUX: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_HDV2_VAUX: &'static CFString;
 }
 
 extern "C" {
@@ -128,7 +128,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_caaudiotimestamp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_CAAudioTimeStamp: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_CAAudioTimeStamp: &'static CFString;
 }
 
 extern "C" {
@@ -138,7 +138,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_smptetime?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_SMPTETime: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_SMPTETime: &'static CFString;
 }
 
 extern "C" {
@@ -155,7 +155,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_nativesmpteframecount?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_NativeSMPTEFrameCount: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_NativeSMPTEFrameCount: &'static CFString;
 }
 
 extern "C" {
@@ -165,8 +165,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_numberofvideoframesinbuffer?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_NumberOfVideoFramesInBuffer:
-        Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_NumberOfVideoFramesInBuffer: &'static CFString;
 }
 
 extern "C" {
@@ -177,7 +176,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_numberofvideoframesingop?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_NumberOfVideoFramesInGOP: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_NumberOfVideoFramesInGOP: &'static CFString;
 }
 
 extern "C" {
@@ -189,8 +188,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_muxedsourcepresentationtimestamp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_MuxedSourcePresentationTimeStamp:
-        Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_MuxedSourcePresentationTimeStamp: &'static CFString;
 }
 
 extern "C" {
@@ -200,7 +198,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_hosttime?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_HostTime: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_HostTime: &'static CFString;
 }
 
 extern "C" {
@@ -210,7 +208,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_repeatedbuffercontents?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_RepeatedBufferContents: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_RepeatedBufferContents: &'static CFString;
 }
 
 extern "C" {
@@ -222,8 +220,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_sourceaudioformatdescription?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_SourceAudioFormatDescription:
-        Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_SourceAudioFormatDescription: &'static CFString;
 }
 
 extern "C" {
@@ -234,7 +231,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_pulldowncadenceinfo?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_PulldownCadenceInfo: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_PulldownCadenceInfo: &'static CFString;
 }
 
 extern "C" {
@@ -245,7 +242,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_closedcaptionsamplebuffer?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_ClosedCaptionSampleBuffer: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_ClosedCaptionSampleBuffer: &'static CFString;
 }
 
 extern "C" {
@@ -254,7 +251,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_clientsequenceid?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_ClientSequenceID: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_ClientSequenceID: &'static CFString;
 }
 
 extern "C" {
@@ -276,7 +273,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_mouseandkeyboardmodifiers?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers: &'static CFString;
 }
 
 extern "C" {
@@ -288,7 +285,7 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorpositionx?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorPositionX:
-        Option<&'static CFString>;
+        &'static CFString;
 }
 
 extern "C" {
@@ -300,7 +297,7 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorpositiony?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorPositionY:
-        Option<&'static CFString>;
+        &'static CFString;
 }
 
 extern "C" {
@@ -312,7 +309,7 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_mousebuttonstate?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_MouseButtonState:
-        Option<&'static CFString>;
+        &'static CFString;
 }
 
 extern "C" {
@@ -324,7 +321,7 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorisvisible?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorIsVisible:
-        Option<&'static CFString>;
+        &'static CFString;
 }
 
 extern "C" {
@@ -336,7 +333,7 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorframerect?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorFrameRect:
-        Option<&'static CFString>;
+        &'static CFString;
 }
 
 extern "C" {
@@ -347,7 +344,7 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorreference?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorReference:
-        Option<&'static CFString>;
+        &'static CFString;
 }
 
 extern "C" {
@@ -360,7 +357,7 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorseed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorSeed:
-        Option<&'static CFString>;
+        &'static CFString;
 }
 
 extern "C" {
@@ -371,7 +368,7 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorscale?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorScale:
-        Option<&'static CFString>;
+        &'static CFString;
 }
 
 extern "C" {
@@ -383,7 +380,7 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorisdrawninframebuffer?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorIsDrawnInFramebuffer:
-        Option<&'static CFString>;
+        &'static CFString;
 }
 
 extern "C" {
@@ -395,7 +392,7 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_keyboardmodifiers?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_KeyboardModifiers:
-        Option<&'static CFString>;
+        &'static CFString;
 }
 
 extern "C" {
@@ -407,7 +404,7 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_keyboardmodifiersevent?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_KeyboardModifiersEvent:
-        Option<&'static CFString>;
+        &'static CFString;
 }
 
 extern "C" {
@@ -416,8 +413,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_pixelbufferoverlaidbystaticimage?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_PixelBufferOverlaidByStaticImage:
-        Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_PixelBufferOverlaidByStaticImage: &'static CFString;
 }
 
 extern "C" {
@@ -427,7 +423,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_nodatamarker?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOSampleBufferAttachmentKey_NoDataMarker: Option<&'static CFString>;
+    pub static kCMIOSampleBufferAttachmentKey_NoDataMarker: &'static CFString;
 }
 
 extern "C" {
@@ -436,7 +432,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioblockbufferattachmentkey_cvpixelbufferreference?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kCMIOBlockBufferAttachmentKey_CVPixelBufferReference: Option<&'static CFString>;
+    pub static kCMIOBlockBufferAttachmentKey_CVPixelBufferReference: &'static CFString;
 }
 
 extern "C-unwind" {

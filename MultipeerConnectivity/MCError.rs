@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerrordomain?language=objc)
-    pub static MCErrorDomain: Option<&'static NSString>;
+    pub static MCErrorDomain: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerrorcode?language=objc)

@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/eperrordomain?language=objc)
-    pub static EPErrorDomain: Option<&'static NSErrorDomain>;
+    pub static EPErrorDomain: &'static NSErrorDomain;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/eperror?language=objc)

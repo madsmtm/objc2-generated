@@ -929,7 +929,7 @@ impl CFURL {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlkeysofunsetvalueskey?language=objc)
-    pub static kCFURLKeysOfUnsetValuesKey: Option<&'static CFString>;
+    pub static kCFURLKeysOfUnsetValuesKey: &'static CFString;
 }
 
 impl CFURL {
@@ -981,669 +981,669 @@ impl CFURL {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlnamekey?language=objc)
-    pub static kCFURLNameKey: Option<&'static CFString>;
+    pub static kCFURLNameKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllocalizednamekey?language=objc)
-    pub static kCFURLLocalizedNameKey: Option<&'static CFString>;
+    pub static kCFURLLocalizedNameKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisregularfilekey?language=objc)
-    pub static kCFURLIsRegularFileKey: Option<&'static CFString>;
+    pub static kCFURLIsRegularFileKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisdirectorykey?language=objc)
-    pub static kCFURLIsDirectoryKey: Option<&'static CFString>;
+    pub static kCFURLIsDirectoryKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlissymboliclinkkey?language=objc)
-    pub static kCFURLIsSymbolicLinkKey: Option<&'static CFString>;
+    pub static kCFURLIsSymbolicLinkKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisvolumekey?language=objc)
-    pub static kCFURLIsVolumeKey: Option<&'static CFString>;
+    pub static kCFURLIsVolumeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlispackagekey?language=objc)
-    pub static kCFURLIsPackageKey: Option<&'static CFString>;
+    pub static kCFURLIsPackageKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisapplicationkey?language=objc)
-    pub static kCFURLIsApplicationKey: Option<&'static CFString>;
+    pub static kCFURLIsApplicationKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlapplicationisscriptablekey?language=objc)
-    pub static kCFURLApplicationIsScriptableKey: Option<&'static CFString>;
+    pub static kCFURLApplicationIsScriptableKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlissystemimmutablekey?language=objc)
-    pub static kCFURLIsSystemImmutableKey: Option<&'static CFString>;
+    pub static kCFURLIsSystemImmutableKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisuserimmutablekey?language=objc)
-    pub static kCFURLIsUserImmutableKey: Option<&'static CFString>;
+    pub static kCFURLIsUserImmutableKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlishiddenkey?language=objc)
-    pub static kCFURLIsHiddenKey: Option<&'static CFString>;
+    pub static kCFURLIsHiddenKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhashiddenextensionkey?language=objc)
-    pub static kCFURLHasHiddenExtensionKey: Option<&'static CFString>;
+    pub static kCFURLHasHiddenExtensionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcreationdatekey?language=objc)
-    pub static kCFURLCreationDateKey: Option<&'static CFString>;
+    pub static kCFURLCreationDateKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcontentaccessdatekey?language=objc)
-    pub static kCFURLContentAccessDateKey: Option<&'static CFString>;
+    pub static kCFURLContentAccessDateKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcontentmodificationdatekey?language=objc)
-    pub static kCFURLContentModificationDateKey: Option<&'static CFString>;
+    pub static kCFURLContentModificationDateKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlattributemodificationdatekey?language=objc)
-    pub static kCFURLAttributeModificationDateKey: Option<&'static CFString>;
+    pub static kCFURLAttributeModificationDateKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileidentifierkey?language=objc)
-    pub static kCFURLFileIdentifierKey: Option<&'static CFString>;
+    pub static kCFURLFileIdentifierKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilecontentidentifierkey?language=objc)
-    pub static kCFURLFileContentIdentifierKey: Option<&'static CFString>;
+    pub static kCFURLFileContentIdentifierKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlmaysharefilecontentkey?language=objc)
-    pub static kCFURLMayShareFileContentKey: Option<&'static CFString>;
+    pub static kCFURLMayShareFileContentKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlmayhaveextendedattributeskey?language=objc)
-    pub static kCFURLMayHaveExtendedAttributesKey: Option<&'static CFString>;
+    pub static kCFURLMayHaveExtendedAttributesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlispurgeablekey?language=objc)
-    pub static kCFURLIsPurgeableKey: Option<&'static CFString>;
+    pub static kCFURLIsPurgeableKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlissparsekey?language=objc)
-    pub static kCFURLIsSparseKey: Option<&'static CFString>;
+    pub static kCFURLIsSparseKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllinkcountkey?language=objc)
-    pub static kCFURLLinkCountKey: Option<&'static CFString>;
+    pub static kCFURLLinkCountKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlparentdirectoryurlkey?language=objc)
-    pub static kCFURLParentDirectoryURLKey: Option<&'static CFString>;
+    pub static kCFURLParentDirectoryURLKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeurlkey?language=objc)
-    pub static kCFURLVolumeURLKey: Option<&'static CFString>;
+    pub static kCFURLVolumeURLKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltypeidentifierkey?language=objc)
     #[deprecated = "Use NSURLContentTypeKey instead"]
-    pub static kCFURLTypeIdentifierKey: Option<&'static CFString>;
+    pub static kCFURLTypeIdentifierKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllocalizedtypedescriptionkey?language=objc)
-    pub static kCFURLLocalizedTypeDescriptionKey: Option<&'static CFString>;
+    pub static kCFURLLocalizedTypeDescriptionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllabelnumberkey?language=objc)
-    pub static kCFURLLabelNumberKey: Option<&'static CFString>;
+    pub static kCFURLLabelNumberKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllabelcolorkey?language=objc)
     #[deprecated = "Use NSURLLabelColorKey"]
-    pub static kCFURLLabelColorKey: Option<&'static CFString>;
+    pub static kCFURLLabelColorKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllocalizedlabelkey?language=objc)
-    pub static kCFURLLocalizedLabelKey: Option<&'static CFString>;
+    pub static kCFURLLocalizedLabelKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurleffectiveiconkey?language=objc)
     #[deprecated = "Use NSURLEffectiveIconKey"]
-    pub static kCFURLEffectiveIconKey: Option<&'static CFString>;
+    pub static kCFURLEffectiveIconKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcustomiconkey?language=objc)
     #[deprecated = "Use NSURLCustomIconKey"]
-    pub static kCFURLCustomIconKey: Option<&'static CFString>;
+    pub static kCFURLCustomIconKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourceidentifierkey?language=objc)
-    pub static kCFURLFileResourceIdentifierKey: Option<&'static CFString>;
+    pub static kCFURLFileResourceIdentifierKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeidentifierkey?language=objc)
-    pub static kCFURLVolumeIdentifierKey: Option<&'static CFString>;
+    pub static kCFURLVolumeIdentifierKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlpreferredioblocksizekey?language=objc)
-    pub static kCFURLPreferredIOBlockSizeKey: Option<&'static CFString>;
+    pub static kCFURLPreferredIOBlockSizeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisreadablekey?language=objc)
-    pub static kCFURLIsReadableKey: Option<&'static CFString>;
+    pub static kCFURLIsReadableKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurliswritablekey?language=objc)
-    pub static kCFURLIsWritableKey: Option<&'static CFString>;
+    pub static kCFURLIsWritableKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisexecutablekey?language=objc)
-    pub static kCFURLIsExecutableKey: Option<&'static CFString>;
+    pub static kCFURLIsExecutableKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilesecuritykey?language=objc)
-    pub static kCFURLFileSecurityKey: Option<&'static CFString>;
+    pub static kCFURLFileSecurityKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisexcludedfrombackupkey?language=objc)
-    pub static kCFURLIsExcludedFromBackupKey: Option<&'static CFString>;
+    pub static kCFURLIsExcludedFromBackupKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltagnameskey?language=objc)
-    pub static kCFURLTagNamesKey: Option<&'static CFString>;
+    pub static kCFURLTagNamesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlpathkey?language=objc)
-    pub static kCFURLPathKey: Option<&'static CFString>;
+    pub static kCFURLPathKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcanonicalpathkey?language=objc)
-    pub static kCFURLCanonicalPathKey: Option<&'static CFString>;
+    pub static kCFURLCanonicalPathKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlismounttriggerkey?language=objc)
-    pub static kCFURLIsMountTriggerKey: Option<&'static CFString>;
+    pub static kCFURLIsMountTriggerKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlgenerationidentifierkey?language=objc)
-    pub static kCFURLGenerationIdentifierKey: Option<&'static CFString>;
+    pub static kCFURLGenerationIdentifierKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurldocumentidentifierkey?language=objc)
-    pub static kCFURLDocumentIdentifierKey: Option<&'static CFString>;
+    pub static kCFURLDocumentIdentifierKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurladdedtodirectorydatekey?language=objc)
-    pub static kCFURLAddedToDirectoryDateKey: Option<&'static CFString>;
+    pub static kCFURLAddedToDirectoryDateKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlquarantinepropertieskey?language=objc)
-    pub static kCFURLQuarantinePropertiesKey: Option<&'static CFString>;
+    pub static kCFURLQuarantinePropertiesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypekey?language=objc)
-    pub static kCFURLFileResourceTypeKey: Option<&'static CFString>;
+    pub static kCFURLFileResourceTypeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypenamedpipe?language=objc)
-    pub static kCFURLFileResourceTypeNamedPipe: Option<&'static CFString>;
+    pub static kCFURLFileResourceTypeNamedPipe: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypecharacterspecial?language=objc)
-    pub static kCFURLFileResourceTypeCharacterSpecial: Option<&'static CFString>;
+    pub static kCFURLFileResourceTypeCharacterSpecial: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypedirectory?language=objc)
-    pub static kCFURLFileResourceTypeDirectory: Option<&'static CFString>;
+    pub static kCFURLFileResourceTypeDirectory: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypeblockspecial?language=objc)
-    pub static kCFURLFileResourceTypeBlockSpecial: Option<&'static CFString>;
+    pub static kCFURLFileResourceTypeBlockSpecial: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetyperegular?language=objc)
-    pub static kCFURLFileResourceTypeRegular: Option<&'static CFString>;
+    pub static kCFURLFileResourceTypeRegular: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypesymboliclink?language=objc)
-    pub static kCFURLFileResourceTypeSymbolicLink: Option<&'static CFString>;
+    pub static kCFURLFileResourceTypeSymbolicLink: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypesocket?language=objc)
-    pub static kCFURLFileResourceTypeSocket: Option<&'static CFString>;
+    pub static kCFURLFileResourceTypeSocket: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypeunknown?language=objc)
-    pub static kCFURLFileResourceTypeUnknown: Option<&'static CFString>;
+    pub static kCFURLFileResourceTypeUnknown: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilesizekey?language=objc)
-    pub static kCFURLFileSizeKey: Option<&'static CFString>;
+    pub static kCFURLFileSizeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileallocatedsizekey?language=objc)
-    pub static kCFURLFileAllocatedSizeKey: Option<&'static CFString>;
+    pub static kCFURLFileAllocatedSizeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltotalfilesizekey?language=objc)
-    pub static kCFURLTotalFileSizeKey: Option<&'static CFString>;
+    pub static kCFURLTotalFileSizeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltotalfileallocatedsizekey?language=objc)
-    pub static kCFURLTotalFileAllocatedSizeKey: Option<&'static CFString>;
+    pub static kCFURLTotalFileAllocatedSizeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisaliasfilekey?language=objc)
-    pub static kCFURLIsAliasFileKey: Option<&'static CFString>;
+    pub static kCFURLIsAliasFileKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectionkey?language=objc)
-    pub static kCFURLFileProtectionKey: Option<&'static CFString>;
+    pub static kCFURLFileProtectionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectionnone?language=objc)
-    pub static kCFURLFileProtectionNone: Option<&'static CFString>;
+    pub static kCFURLFileProtectionNone: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncomplete?language=objc)
-    pub static kCFURLFileProtectionComplete: Option<&'static CFString>;
+    pub static kCFURLFileProtectionComplete: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncompleteunlessopen?language=objc)
-    pub static kCFURLFileProtectionCompleteUnlessOpen: Option<&'static CFString>;
+    pub static kCFURLFileProtectionCompleteUnlessOpen: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncompleteuntilfirstuserauthentication?language=objc)
-    pub static kCFURLFileProtectionCompleteUntilFirstUserAuthentication: Option<&'static CFString>;
+    pub static kCFURLFileProtectionCompleteUntilFirstUserAuthentication: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncompletewhenuserinactive?language=objc)
-    pub static kCFURLFileProtectionCompleteWhenUserInactive: Option<&'static CFString>;
+    pub static kCFURLFileProtectionCompleteWhenUserInactive: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurldirectoryentrycountkey?language=objc)
-    pub static kCFURLDirectoryEntryCountKey: Option<&'static CFString>;
+    pub static kCFURLDirectoryEntryCountKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumelocalizedformatdescriptionkey?language=objc)
-    pub static kCFURLVolumeLocalizedFormatDescriptionKey: Option<&'static CFString>;
+    pub static kCFURLVolumeLocalizedFormatDescriptionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumetotalcapacitykey?language=objc)
-    pub static kCFURLVolumeTotalCapacityKey: Option<&'static CFString>;
+    pub static kCFURLVolumeTotalCapacityKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeavailablecapacitykey?language=objc)
-    pub static kCFURLVolumeAvailableCapacityKey: Option<&'static CFString>;
+    pub static kCFURLVolumeAvailableCapacityKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeavailablecapacityforimportantusagekey?language=objc)
-    pub static kCFURLVolumeAvailableCapacityForImportantUsageKey: Option<&'static CFString>;
+    pub static kCFURLVolumeAvailableCapacityForImportantUsageKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeavailablecapacityforopportunisticusagekey?language=objc)
-    pub static kCFURLVolumeAvailableCapacityForOpportunisticUsageKey: Option<&'static CFString>;
+    pub static kCFURLVolumeAvailableCapacityForOpportunisticUsageKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeresourcecountkey?language=objc)
-    pub static kCFURLVolumeResourceCountKey: Option<&'static CFString>;
+    pub static kCFURLVolumeResourceCountKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportspersistentidskey?language=objc)
-    pub static kCFURLVolumeSupportsPersistentIDsKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsPersistentIDsKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportssymboliclinkskey?language=objc)
-    pub static kCFURLVolumeSupportsSymbolicLinksKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsSymbolicLinksKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportshardlinkskey?language=objc)
-    pub static kCFURLVolumeSupportsHardLinksKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsHardLinksKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsjournalingkey?language=objc)
-    pub static kCFURLVolumeSupportsJournalingKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsJournalingKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisjournalingkey?language=objc)
-    pub static kCFURLVolumeIsJournalingKey: Option<&'static CFString>;
+    pub static kCFURLVolumeIsJournalingKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportssparsefileskey?language=objc)
-    pub static kCFURLVolumeSupportsSparseFilesKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsSparseFilesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportszerorunskey?language=objc)
-    pub static kCFURLVolumeSupportsZeroRunsKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsZeroRunsKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportscasesensitivenameskey?language=objc)
-    pub static kCFURLVolumeSupportsCaseSensitiveNamesKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsCaseSensitiveNamesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportscasepreservednameskey?language=objc)
-    pub static kCFURLVolumeSupportsCasePreservedNamesKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsCasePreservedNamesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsrootdirectorydateskey?language=objc)
-    pub static kCFURLVolumeSupportsRootDirectoryDatesKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsRootDirectoryDatesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsvolumesizeskey?language=objc)
-    pub static kCFURLVolumeSupportsVolumeSizesKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsVolumeSizesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsrenamingkey?language=objc)
-    pub static kCFURLVolumeSupportsRenamingKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsRenamingKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsadvisoryfilelockingkey?language=objc)
-    pub static kCFURLVolumeSupportsAdvisoryFileLockingKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsAdvisoryFileLockingKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsextendedsecuritykey?language=objc)
-    pub static kCFURLVolumeSupportsExtendedSecurityKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsExtendedSecurityKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisbrowsablekey?language=objc)
-    pub static kCFURLVolumeIsBrowsableKey: Option<&'static CFString>;
+    pub static kCFURLVolumeIsBrowsableKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumemaximumfilesizekey?language=objc)
-    pub static kCFURLVolumeMaximumFileSizeKey: Option<&'static CFString>;
+    pub static kCFURLVolumeMaximumFileSizeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisejectablekey?language=objc)
-    pub static kCFURLVolumeIsEjectableKey: Option<&'static CFString>;
+    pub static kCFURLVolumeIsEjectableKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisremovablekey?language=objc)
-    pub static kCFURLVolumeIsRemovableKey: Option<&'static CFString>;
+    pub static kCFURLVolumeIsRemovableKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisinternalkey?language=objc)
-    pub static kCFURLVolumeIsInternalKey: Option<&'static CFString>;
+    pub static kCFURLVolumeIsInternalKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisautomountedkey?language=objc)
-    pub static kCFURLVolumeIsAutomountedKey: Option<&'static CFString>;
+    pub static kCFURLVolumeIsAutomountedKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeislocalkey?language=objc)
-    pub static kCFURLVolumeIsLocalKey: Option<&'static CFString>;
+    pub static kCFURLVolumeIsLocalKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisreadonlykey?language=objc)
-    pub static kCFURLVolumeIsReadOnlyKey: Option<&'static CFString>;
+    pub static kCFURLVolumeIsReadOnlyKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumecreationdatekey?language=objc)
-    pub static kCFURLVolumeCreationDateKey: Option<&'static CFString>;
+    pub static kCFURLVolumeCreationDateKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeurlforremountingkey?language=objc)
-    pub static kCFURLVolumeURLForRemountingKey: Option<&'static CFString>;
+    pub static kCFURLVolumeURLForRemountingKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeuuidstringkey?language=objc)
-    pub static kCFURLVolumeUUIDStringKey: Option<&'static CFString>;
+    pub static kCFURLVolumeUUIDStringKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumenamekey?language=objc)
-    pub static kCFURLVolumeNameKey: Option<&'static CFString>;
+    pub static kCFURLVolumeNameKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumelocalizednamekey?language=objc)
-    pub static kCFURLVolumeLocalizedNameKey: Option<&'static CFString>;
+    pub static kCFURLVolumeLocalizedNameKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisencryptedkey?language=objc)
-    pub static kCFURLVolumeIsEncryptedKey: Option<&'static CFString>;
+    pub static kCFURLVolumeIsEncryptedKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisrootfilesystemkey?language=objc)
-    pub static kCFURLVolumeIsRootFileSystemKey: Option<&'static CFString>;
+    pub static kCFURLVolumeIsRootFileSystemKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportscompressionkey?language=objc)
-    pub static kCFURLVolumeSupportsCompressionKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsCompressionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsfilecloningkey?language=objc)
-    pub static kCFURLVolumeSupportsFileCloningKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsFileCloningKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsswaprenamingkey?language=objc)
-    pub static kCFURLVolumeSupportsSwapRenamingKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsSwapRenamingKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsexclusiverenamingkey?language=objc)
-    pub static kCFURLVolumeSupportsExclusiveRenamingKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsExclusiveRenamingKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsimmutablefileskey?language=objc)
-    pub static kCFURLVolumeSupportsImmutableFilesKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsImmutableFilesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsaccesspermissionskey?language=objc)
-    pub static kCFURLVolumeSupportsAccessPermissionsKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsAccessPermissionsKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsfileprotectionkey?language=objc)
-    pub static kCFURLVolumeSupportsFileProtectionKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSupportsFileProtectionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumetypenamekey?language=objc)
-    pub static kCFURLVolumeTypeNameKey: Option<&'static CFString>;
+    pub static kCFURLVolumeTypeNameKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesubtypekey?language=objc)
-    pub static kCFURLVolumeSubtypeKey: Option<&'static CFString>;
+    pub static kCFURLVolumeSubtypeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumemountfromlocationkey?language=objc)
-    pub static kCFURLVolumeMountFromLocationKey: Option<&'static CFString>;
+    pub static kCFURLVolumeMountFromLocationKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisubiquitousitemkey?language=objc)
-    pub static kCFURLIsUbiquitousItemKey: Option<&'static CFString>;
+    pub static kCFURLIsUbiquitousItemKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemhasunresolvedconflictskey?language=objc)
-    pub static kCFURLUbiquitousItemHasUnresolvedConflictsKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemHasUnresolvedConflictsKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisdownloadedkey?language=objc)
     #[deprecated = "Use kCFURLUbiquitousItemDownloadingStatusKey instead"]
-    pub static kCFURLUbiquitousItemIsDownloadedKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemIsDownloadedKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisdownloadingkey?language=objc)
-    pub static kCFURLUbiquitousItemIsDownloadingKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemIsDownloadingKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisuploadedkey?language=objc)
-    pub static kCFURLUbiquitousItemIsUploadedKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemIsUploadedKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisuploadingkey?language=objc)
-    pub static kCFURLUbiquitousItemIsUploadingKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemIsUploadingKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitempercentdownloadedkey?language=objc)
     #[deprecated = "Use NSMetadataQuery and NSMetadataUbiquitousItemPercentDownloadedKey on NSMetadataItem instead"]
-    pub static kCFURLUbiquitousItemPercentDownloadedKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemPercentDownloadedKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitempercentuploadedkey?language=objc)
     #[deprecated = "Use NSMetadataQuery and NSMetadataUbiquitousItemPercentUploadedKey on NSMetadataItem instead"]
-    pub static kCFURLUbiquitousItemPercentUploadedKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemPercentUploadedKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatuskey?language=objc)
-    pub static kCFURLUbiquitousItemDownloadingStatusKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemDownloadingStatusKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingerrorkey?language=objc)
-    pub static kCFURLUbiquitousItemDownloadingErrorKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemDownloadingErrorKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemuploadingerrorkey?language=objc)
-    pub static kCFURLUbiquitousItemUploadingErrorKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemUploadingErrorKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisexcludedfromsynckey?language=objc)
-    pub static kCFURLUbiquitousItemIsExcludedFromSyncKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemIsExcludedFromSyncKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatusnotdownloaded?language=objc)
-    pub static kCFURLUbiquitousItemDownloadingStatusNotDownloaded: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemDownloadingStatusNotDownloaded: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatusdownloaded?language=objc)
-    pub static kCFURLUbiquitousItemDownloadingStatusDownloaded: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemDownloadingStatusDownloaded: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatuscurrent?language=objc)
-    pub static kCFURLUbiquitousItemDownloadingStatusCurrent: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemDownloadingStatusCurrent: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemsupportedsynccontrolskey?language=objc)
-    pub static kCFURLUbiquitousItemSupportedSyncControlsKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemSupportedSyncControlsKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemissyncpausedkey?language=objc)
-    pub static kCFURLUbiquitousItemIsSyncPausedKey: Option<&'static CFString>;
+    pub static kCFURLUbiquitousItemIsSyncPausedKey: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions?language=objc)

@@ -28,7 +28,7 @@ extern "C" {
     /// It is an error to add any other AVVideoSettings.h keys to an uncompressed video settings dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodeckey?language=objc)
-    pub static AVVideoCodecKey: Option<&'static NSString>;
+    pub static AVVideoCodecKey: &'static NSString;
 }
 
 /// The type of the strings used to specify a video codec type (for instance, as values for the AVVideoCodecKey key in a video settings dictionary).
@@ -39,107 +39,107 @@ pub type AVVideoCodecType = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypehevc?language=objc)
-    pub static AVVideoCodecTypeHEVC: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeHEVC: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeh264?language=objc)
-    pub static AVVideoCodecTypeH264: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeH264: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypejpeg?language=objc)
-    pub static AVVideoCodecTypeJPEG: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeJPEG: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypejpegxl?language=objc)
-    pub static AVVideoCodecTypeJPEGXL: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeJPEGXL: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores4444?language=objc)
-    pub static AVVideoCodecTypeAppleProRes4444: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeAppleProRes4444: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores4444xq?language=objc)
-    pub static AVVideoCodecTypeAppleProRes4444XQ: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeAppleProRes4444XQ: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores422?language=objc)
-    pub static AVVideoCodecTypeAppleProRes422: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeAppleProRes422: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores422hq?language=objc)
-    pub static AVVideoCodecTypeAppleProRes422HQ: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeAppleProRes422HQ: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores422lt?language=objc)
-    pub static AVVideoCodecTypeAppleProRes422LT: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeAppleProRes422LT: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores422proxy?language=objc)
-    pub static AVVideoCodecTypeAppleProRes422Proxy: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeAppleProRes422Proxy: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleproresraw?language=objc)
-    pub static AVVideoCodecTypeAppleProResRAW: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeAppleProResRAW: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleproresrawhq?language=objc)
-    pub static AVVideoCodecTypeAppleProResRAWHQ: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeAppleProResRAWHQ: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypehevcwithalpha?language=objc)
-    pub static AVVideoCodecTypeHEVCWithAlpha: Option<&'static AVVideoCodecType>;
+    pub static AVVideoCodecTypeHEVCWithAlpha: &'static AVVideoCodecType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodechevc?language=objc)
     #[deprecated]
-    pub static AVVideoCodecHEVC: Option<&'static NSString>;
+    pub static AVVideoCodecHEVC: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodech264?language=objc)
     #[deprecated]
-    pub static AVVideoCodecH264: Option<&'static NSString>;
+    pub static AVVideoCodecH264: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodecjpeg?language=objc)
     #[deprecated]
-    pub static AVVideoCodecJPEG: Option<&'static NSString>;
+    pub static AVVideoCodecJPEG: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodecappleprores4444?language=objc)
     #[deprecated]
-    pub static AVVideoCodecAppleProRes4444: Option<&'static NSString>;
+    pub static AVVideoCodecAppleProRes4444: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodecappleprores422?language=objc)
     #[deprecated]
-    pub static AVVideoCodecAppleProRes422: Option<&'static NSString>;
+    pub static AVVideoCodecAppleProRes422: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideowidthkey?language=objc)
-    pub static AVVideoWidthKey: Option<&'static NSString>;
+    pub static AVVideoWidthKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoheightkey?language=objc)
-    pub static AVVideoHeightKey: Option<&'static NSString>;
+    pub static AVVideoHeightKey: &'static NSString;
 }
 
 extern "C" {
@@ -150,17 +150,17 @@ extern "C" {
     /// Note that prior to macOS 10.9 and iOS 7.0, this key could only be specified as part of the dictionary given for AVVideoCompressionPropertiesKey.  As of macOS 10.9 and iOS 7.0, the top level of an AVVideoSettings dictionary is the preferred place to specify this key.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideopixelaspectratiokey?language=objc)
-    pub static AVVideoPixelAspectRatioKey: Option<&'static NSString>;
+    pub static AVVideoPixelAspectRatioKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideopixelaspectratiohorizontalspacingkey?language=objc)
-    pub static AVVideoPixelAspectRatioHorizontalSpacingKey: Option<&'static NSString>;
+    pub static AVVideoPixelAspectRatioHorizontalSpacingKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideopixelaspectratioverticalspacingkey?language=objc)
-    pub static AVVideoPixelAspectRatioVerticalSpacingKey: Option<&'static NSString>;
+    pub static AVVideoPixelAspectRatioVerticalSpacingKey: &'static NSString;
 }
 
 extern "C" {
@@ -173,147 +173,147 @@ extern "C" {
     /// Note that prior to macOS 10.9 and iOS 7.0, this key could only be specified as part of the dictionary given for AVVideoCompressionPropertiesKey.  As of macOS 10.9 and iOS 7.0, the top level of an AVVideoSettings dictionary is the preferred place to specify this key.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocleanaperturekey?language=objc)
-    pub static AVVideoCleanApertureKey: Option<&'static NSString>;
+    pub static AVVideoCleanApertureKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocleanaperturewidthkey?language=objc)
-    pub static AVVideoCleanApertureWidthKey: Option<&'static NSString>;
+    pub static AVVideoCleanApertureWidthKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocleanapertureheightkey?language=objc)
-    pub static AVVideoCleanApertureHeightKey: Option<&'static NSString>;
+    pub static AVVideoCleanApertureHeightKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocleanaperturehorizontaloffsetkey?language=objc)
-    pub static AVVideoCleanApertureHorizontalOffsetKey: Option<&'static NSString>;
+    pub static AVVideoCleanApertureHorizontalOffsetKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocleanapertureverticaloffsetkey?language=objc)
-    pub static AVVideoCleanApertureVerticalOffsetKey: Option<&'static NSString>;
+    pub static AVVideoCleanApertureVerticalOffsetKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoscalingmodekey?language=objc)
-    pub static AVVideoScalingModeKey: Option<&'static NSString>;
+    pub static AVVideoScalingModeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoscalingmodefit?language=objc)
-    pub static AVVideoScalingModeFit: Option<&'static NSString>;
+    pub static AVVideoScalingModeFit: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoscalingmoderesize?language=objc)
-    pub static AVVideoScalingModeResize: Option<&'static NSString>;
+    pub static AVVideoScalingModeResize: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoscalingmoderesizeaspect?language=objc)
-    pub static AVVideoScalingModeResizeAspect: Option<&'static NSString>;
+    pub static AVVideoScalingModeResizeAspect: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoscalingmoderesizeaspectfill?language=objc)
-    pub static AVVideoScalingModeResizeAspectFill: Option<&'static NSString>;
+    pub static AVVideoScalingModeResizeAspectFill: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocolorpropertieskey?language=objc)
-    pub static AVVideoColorPropertiesKey: Option<&'static NSString>;
+    pub static AVVideoColorPropertiesKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocolorprimarieskey?language=objc)
-    pub static AVVideoColorPrimariesKey: Option<&'static NSString>;
+    pub static AVVideoColorPrimariesKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocolorprimaries_itu_r_709_2?language=objc)
-    pub static AVVideoColorPrimaries_ITU_R_709_2: Option<&'static NSString>;
+    pub static AVVideoColorPrimaries_ITU_R_709_2: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocolorprimaries_ebu_3213?language=objc)
-    pub static AVVideoColorPrimaries_EBU_3213: Option<&'static NSString>;
+    pub static AVVideoColorPrimaries_EBU_3213: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocolorprimaries_smpte_c?language=objc)
-    pub static AVVideoColorPrimaries_SMPTE_C: Option<&'static NSString>;
+    pub static AVVideoColorPrimaries_SMPTE_C: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocolorprimaries_p3_d65?language=objc)
-    pub static AVVideoColorPrimaries_P3_D65: Option<&'static NSString>;
+    pub static AVVideoColorPrimaries_P3_D65: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocolorprimaries_itu_r_2020?language=objc)
-    pub static AVVideoColorPrimaries_ITU_R_2020: Option<&'static NSString>;
+    pub static AVVideoColorPrimaries_ITU_R_2020: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideotransferfunctionkey?language=objc)
-    pub static AVVideoTransferFunctionKey: Option<&'static NSString>;
+    pub static AVVideoTransferFunctionKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideotransferfunction_itu_r_709_2?language=objc)
-    pub static AVVideoTransferFunction_ITU_R_709_2: Option<&'static NSString>;
+    pub static AVVideoTransferFunction_ITU_R_709_2: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideotransferfunction_smpte_240m_1995?language=objc)
-    pub static AVVideoTransferFunction_SMPTE_240M_1995: Option<&'static NSString>;
+    pub static AVVideoTransferFunction_SMPTE_240M_1995: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideotransferfunction_smpte_st_2084_pq?language=objc)
-    pub static AVVideoTransferFunction_SMPTE_ST_2084_PQ: Option<&'static NSString>;
+    pub static AVVideoTransferFunction_SMPTE_ST_2084_PQ: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideotransferfunction_itu_r_2100_hlg?language=objc)
-    pub static AVVideoTransferFunction_ITU_R_2100_HLG: Option<&'static NSString>;
+    pub static AVVideoTransferFunction_ITU_R_2100_HLG: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideotransferfunction_linear?language=objc)
-    pub static AVVideoTransferFunction_Linear: Option<&'static NSString>;
+    pub static AVVideoTransferFunction_Linear: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideotransferfunction_iec_srgb?language=objc)
-    pub static AVVideoTransferFunction_IEC_sRGB: Option<&'static NSString>;
+    pub static AVVideoTransferFunction_IEC_sRGB: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoycbcrmatrixkey?language=objc)
-    pub static AVVideoYCbCrMatrixKey: Option<&'static NSString>;
+    pub static AVVideoYCbCrMatrixKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoycbcrmatrix_itu_r_709_2?language=objc)
-    pub static AVVideoYCbCrMatrix_ITU_R_709_2: Option<&'static NSString>;
+    pub static AVVideoYCbCrMatrix_ITU_R_709_2: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoycbcrmatrix_itu_r_601_4?language=objc)
-    pub static AVVideoYCbCrMatrix_ITU_R_601_4: Option<&'static NSString>;
+    pub static AVVideoYCbCrMatrix_ITU_R_601_4: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoycbcrmatrix_smpte_240m_1995?language=objc)
-    pub static AVVideoYCbCrMatrix_SMPTE_240M_1995: Option<&'static NSString>;
+    pub static AVVideoYCbCrMatrix_SMPTE_240M_1995: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoycbcrmatrix_itu_r_2020?language=objc)
-    pub static AVVideoYCbCrMatrix_ITU_R_2020: Option<&'static NSString>;
+    pub static AVVideoYCbCrMatrix_ITU_R_2020: &'static NSString;
 }
 
 extern "C" {
@@ -326,7 +326,7 @@ extern "C" {
     /// `false`, permits implicit color conversions to occur to a non-wide gamut color space.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoallowwidecolorkey?language=objc)
-    pub static AVVideoAllowWideColorKey: Option<&'static NSString>;
+    pub static AVVideoAllowWideColorKey: &'static NSString;
 }
 
 extern "C" {
@@ -337,32 +337,32 @@ extern "C" {
     /// Most keys can only be used for certain encoders.  Look at individual keys for details.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompressionpropertieskey?language=objc)
-    pub static AVVideoCompressionPropertiesKey: Option<&'static NSString>;
+    pub static AVVideoCompressionPropertiesKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaveragebitratekey?language=objc)
-    pub static AVVideoAverageBitRateKey: Option<&'static NSString>;
+    pub static AVVideoAverageBitRateKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoqualitykey?language=objc)
-    pub static AVVideoQualityKey: Option<&'static NSString>;
+    pub static AVVideoQualityKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideomaxkeyframeintervalkey?language=objc)
-    pub static AVVideoMaxKeyFrameIntervalKey: Option<&'static NSString>;
+    pub static AVVideoMaxKeyFrameIntervalKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideomaxkeyframeintervaldurationkey?language=objc)
-    pub static AVVideoMaxKeyFrameIntervalDurationKey: Option<&'static NSString>;
+    pub static AVVideoMaxKeyFrameIntervalDurationKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoappleprorawbitdepthkey?language=objc)
-    pub static AVVideoAppleProRAWBitDepthKey: Option<&'static NSString>;
+    pub static AVVideoAppleProRAWBitDepthKey: &'static NSString;
 }
 
 extern "C" {
@@ -377,72 +377,72 @@ extern "C" {
     /// `true`, which means that the encoder decides whether to enable frame reordering.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoallowframereorderingkey?language=objc)
-    pub static AVVideoAllowFrameReorderingKey: Option<&'static NSString>;
+    pub static AVVideoAllowFrameReorderingKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelkey?language=objc)
-    pub static AVVideoProfileLevelKey: Option<&'static NSString>;
+    pub static AVVideoProfileLevelKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264baseline30?language=objc)
-    pub static AVVideoProfileLevelH264Baseline30: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264Baseline30: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264baseline31?language=objc)
-    pub static AVVideoProfileLevelH264Baseline31: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264Baseline31: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264baseline41?language=objc)
-    pub static AVVideoProfileLevelH264Baseline41: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264Baseline41: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264baselineautolevel?language=objc)
-    pub static AVVideoProfileLevelH264BaselineAutoLevel: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264BaselineAutoLevel: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264main30?language=objc)
-    pub static AVVideoProfileLevelH264Main30: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264Main30: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264main31?language=objc)
-    pub static AVVideoProfileLevelH264Main31: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264Main31: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264main32?language=objc)
-    pub static AVVideoProfileLevelH264Main32: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264Main32: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264main41?language=objc)
-    pub static AVVideoProfileLevelH264Main41: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264Main41: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264mainautolevel?language=objc)
-    pub static AVVideoProfileLevelH264MainAutoLevel: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264MainAutoLevel: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264high40?language=objc)
-    pub static AVVideoProfileLevelH264High40: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264High40: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264high41?language=objc)
-    pub static AVVideoProfileLevelH264High41: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264High41: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoprofilelevelh264highautolevel?language=objc)
-    pub static AVVideoProfileLevelH264HighAutoLevel: Option<&'static NSString>;
+    pub static AVVideoProfileLevelH264HighAutoLevel: &'static NSString;
 }
 
 extern "C" {
@@ -451,17 +451,17 @@ extern "C" {
     /// If supported by an H.264 encoder, this property controls whether the encoder should use Context-based Adaptive Variable Length Coding (CAVLC) or Context-based Adaptive Binary Arithmetic Coding (CABAC).  CABAC generally gives better compression at the expense of higher computational overhead.  The default value is encoder-specific and may change depending on other encoder settings.  Care should be taken when using this property -- changes may result in a configuration which is not compatible with a requested Profile and Level.  Results in this case are undefined, and could include encode errors or a non-compliant output stream.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoh264entropymodekey?language=objc)
-    pub static AVVideoH264EntropyModeKey: Option<&'static NSString>;
+    pub static AVVideoH264EntropyModeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoh264entropymodecavlc?language=objc)
-    pub static AVVideoH264EntropyModeCAVLC: Option<&'static NSString>;
+    pub static AVVideoH264EntropyModeCAVLC: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoh264entropymodecabac?language=objc)
-    pub static AVVideoH264EntropyModeCABAC: Option<&'static NSString>;
+    pub static AVVideoH264EntropyModeCABAC: &'static NSString;
 }
 
 extern "C" {
@@ -470,7 +470,7 @@ extern "C" {
     /// The frame rate is measured in frames per second. This is not used to control the frame rate; it is provided as a hint to the video encoder so that it can set up internal configuration before compression begins. The actual frame rate will depend on frame durations and may vary. This should be set if an AutoLevel AVVideoProfileLevelKey is used, or if the source content has a high frame rate (higher than 30 fps). The encoder might have to drop frames to satisfy bit stream requirements if this key is not specified.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoexpectedsourceframeratekey?language=objc)
-    pub static AVVideoExpectedSourceFrameRateKey: Option<&'static NSString>;
+    pub static AVVideoExpectedSourceFrameRateKey: &'static NSString;
 }
 
 extern "C" {
@@ -485,7 +485,7 @@ extern "C" {
     /// 30 forKey:AVVideoAverageNonDroppableFrameRateKey];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaveragenondroppableframeratekey?language=objc)
-    pub static AVVideoAverageNonDroppableFrameRateKey: Option<&'static NSString>;
+    pub static AVVideoAverageNonDroppableFrameRateKey: &'static NSString;
 }
 
 extern "C" {
@@ -496,7 +496,7 @@ extern "C" {
     /// Most keys can only be used for certain decoders.  Look at individual keys for details.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideodecompressionpropertieskey?language=objc)
-    pub static AVVideoDecompressionPropertiesKey: Option<&'static NSString>;
+    pub static AVVideoDecompressionPropertiesKey: &'static NSString;
 }
 
 extern "C" {
@@ -506,7 +506,7 @@ extern "C" {
     /// The value for this key is a dictionary containing kVTVideoEncoderSpecification_* keys specified in the VideoToolbox framework.  This key should be specified at the top level of an AVVideoSettings dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoencoderspecificationkey?language=objc)
-    pub static AVVideoEncoderSpecificationKey: Option<&'static NSString>;
+    pub static AVVideoEncoderSpecificationKey: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaperturemode?language=objc)
@@ -519,7 +519,7 @@ extern "C" {
     /// An image's clean aperture is a region of video free from transition artifacts caused by the encoding of the signal.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaperturemodecleanaperture?language=objc)
-    pub static AVVideoApertureModeCleanAperture: Option<&'static AVVideoApertureMode>;
+    pub static AVVideoApertureModeCleanAperture: &'static AVVideoApertureMode;
 }
 
 extern "C" {
@@ -528,7 +528,7 @@ extern "C" {
     /// The image is not cropped to the clean aperture region, but it is scaled according to the pixel aspect ratio. Use this option when you want to see all the pixels in your video, including the edges.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaperturemodeproductionaperture?language=objc)
-    pub static AVVideoApertureModeProductionAperture: Option<&'static AVVideoApertureMode>;
+    pub static AVVideoApertureModeProductionAperture: &'static AVVideoApertureMode;
 }
 
 extern "C" {
@@ -537,5 +537,5 @@ extern "C" {
     /// The image is not cropped to the clean aperture region and is not scaled according to the pixel aspect ratio. The encoded dimensions of the image description are displayed.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaperturemodeencodedpixels?language=objc)
-    pub static AVVideoApertureModeEncodedPixels: Option<&'static AVVideoApertureMode>;
+    pub static AVVideoApertureModeEncodedPixels: &'static AVVideoApertureMode;
 }

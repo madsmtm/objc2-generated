@@ -87,7 +87,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmdomainsystemlaunchd?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kSMDomainSystemLaunchd: Option<&'static CFString>;
+    pub static kSMDomainSystemLaunchd: &'static CFString;
 }
 
 extern "C" {
@@ -103,7 +103,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmdomainuserlaunchd?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kSMDomainUserLaunchd: Option<&'static CFString>;
+    pub static kSMDomainUserLaunchd: &'static CFString;
 }
 
 /// Copy the job description dictionary for the given job label.

@@ -6,46 +6,46 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskmintermlength?language=objc)
-    pub static kSKMinTermLength: Option<&'static CFString>;
+    pub static kSKMinTermLength: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksksubstitutions?language=objc)
-    pub static kSKSubstitutions: Option<&'static CFString>;
+    pub static kSKSubstitutions: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskstopwords?language=objc)
-    pub static kSKStopWords: Option<&'static CFString>;
+    pub static kSKStopWords: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskproximityindexing?language=objc)
-    pub static kSKProximityIndexing: Option<&'static CFString>;
+    pub static kSKProximityIndexing: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskmaximumterms?language=objc)
-    pub static kSKMaximumTerms: Option<&'static CFString>;
+    pub static kSKMaximumTerms: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksktermchars?language=objc)
-    pub static kSKTermChars: Option<&'static CFString>;
+    pub static kSKTermChars: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskstarttermchars?language=objc)
-    pub static kSKStartTermChars: Option<&'static CFString>;
+    pub static kSKStartTermChars: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskendtermchars?language=objc)
-    pub static kSKEndTermChars: Option<&'static CFString>;
+    pub static kSKEndTermChars: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksklanguagetypes?language=objc)
     #[deprecated = "No longer supported"]
-    pub static kSKLanguageTypes: Option<&'static CFString>;
+    pub static kSKLanguageTypes: &'static CFString;
 }

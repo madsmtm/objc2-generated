@@ -18,7 +18,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputallowdraftmodekey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputAllowDraftModeKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputAllowDraftModeKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -26,7 +26,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputdecoderversionkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputDecoderVersionKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputDecoderVersionKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -34,7 +34,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisupporteddecoderversionskey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCISupportedDecoderVersionsKey: Option<&'static CIRAWFilterOption>;
+    pub static kCISupportedDecoderVersionsKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -43,7 +43,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputbaselineexposurekey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputBaselineExposureKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputBaselineExposureKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -52,7 +52,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputboostkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputBoostKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputBoostKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -61,7 +61,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputboostshadowamountkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputBoostShadowAmountKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputBoostShadowAmountKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -70,7 +70,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputdisablegamutmapkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputDisableGamutMapKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputDisableGamutMapKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -78,7 +78,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputneutralchromaticityxkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputNeutralChromaticityXKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputNeutralChromaticityXKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -86,7 +86,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputneutralchromaticityykey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputNeutralChromaticityYKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputNeutralChromaticityYKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -94,7 +94,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputneutraltemperaturekey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputNeutralTemperatureKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputNeutralTemperatureKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -102,7 +102,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputneutraltintkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputNeutralTintKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputNeutralTintKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -111,7 +111,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputneutrallocationkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputNeutralLocationKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputNeutralLocationKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -119,7 +119,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputscalefactorkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputScaleFactorKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputScaleFactorKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -127,7 +127,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputignoreimageorientationkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputIgnoreImageOrientationKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputIgnoreImageOrientationKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -135,7 +135,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputimageorientationkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputImageOrientationKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputImageOrientationKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -143,7 +143,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputenablesharpeningkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputEnableSharpeningKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputEnableSharpeningKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -151,7 +151,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputenablechromaticnoisetrackingkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputEnableChromaticNoiseTrackingKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputEnableChromaticNoiseTrackingKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -159,7 +159,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputnoisereductionamountkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputNoiseReductionAmountKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputNoiseReductionAmountKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -167,7 +167,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputmoireamountkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputMoireAmountKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputMoireAmountKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -175,7 +175,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputenablevendorlenscorrectionkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputEnableVendorLensCorrectionKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputEnableVendorLensCorrectionKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -183,7 +183,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputluminancenoisereductionamountkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputLuminanceNoiseReductionAmountKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputLuminanceNoiseReductionAmountKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -191,7 +191,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputcolornoisereductionamountkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputColorNoiseReductionAmountKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputColorNoiseReductionAmountKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -199,7 +199,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputnoisereductionsharpnessamountkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputNoiseReductionSharpnessAmountKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputNoiseReductionSharpnessAmountKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -207,7 +207,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputnoisereductioncontrastamountkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputNoiseReductionContrastAmountKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputNoiseReductionContrastAmountKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -215,7 +215,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputnoisereductiondetailamountkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputNoiseReductionDetailAmountKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputNoiseReductionDetailAmountKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -223,7 +223,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputenableedrmodekey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputEnableEDRModeKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputEnableEDRModeKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -231,7 +231,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputlocaltonemapamountkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputLocalToneMapAmountKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputLocalToneMapAmountKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -239,7 +239,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputlinearspacefilter?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIInputLinearSpaceFilter: Option<&'static CIRAWFilterOption>;
+    pub static kCIInputLinearSpaceFilter: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -248,7 +248,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcioutputnativesizekey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIOutputNativeSizeKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIOutputNativeSizeKey: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -258,7 +258,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciactivekeys?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIActiveKeys: Option<&'static CIRAWFilterOption>;
+    pub static kCIActiveKeys: &'static CIRAWFilterOption;
 }
 
 extern "C" {
@@ -266,7 +266,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcipropertieskey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
-    pub static kCIPropertiesKey: Option<&'static CIRAWFilterOption>;
+    pub static kCIPropertiesKey: &'static CIRAWFilterOption;
 }
 
 /// CIRAWFilter.

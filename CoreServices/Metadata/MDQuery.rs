@@ -1274,7 +1274,7 @@ extern "C" {
     /// by a query before the kMDQueryDidFinishNotification.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryprogressnotification?language=objc)
-    pub static kMDQueryProgressNotification: Option<&'static CFString>;
+    pub static kMDQueryProgressNotification: &'static CFString;
 }
 
 extern "C" {
@@ -1288,7 +1288,7 @@ extern "C" {
     /// any change in the result list of a query.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdquerydidfinishnotification?language=objc)
-    pub static kMDQueryDidFinishNotification: Option<&'static CFString>;
+    pub static kMDQueryDidFinishNotification: &'static CFString;
 }
 
 extern "C" {
@@ -1304,7 +1304,7 @@ extern "C" {
     /// kMDQueryDidUpdateNotification.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdquerydidupdatenotification?language=objc)
-    pub static kMDQueryDidUpdateNotification: Option<&'static CFString>;
+    pub static kMDQueryDidUpdateNotification: &'static CFString;
 }
 
 extern "C" {
@@ -1316,7 +1316,7 @@ extern "C" {
     /// put in the list.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryupdateaddeditems?language=objc)
-    pub static kMDQueryUpdateAddedItems: Option<&'static CFString>;
+    pub static kMDQueryUpdateAddedItems: &'static CFString;
 }
 
 extern "C" {
@@ -1334,7 +1334,7 @@ extern "C" {
     /// change.]]
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryupdatechangeditems?language=objc)
-    pub static kMDQueryUpdateChangedItems: Option<&'static CFString>;
+    pub static kMDQueryUpdateChangedItems: &'static CFString;
 }
 
 extern "C" {
@@ -1350,7 +1350,7 @@ extern "C" {
     /// of the result, but this semantic may change.]]
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryupdateremoveditems?language=objc)
-    pub static kMDQueryUpdateRemovedItems: Option<&'static CFString>;
+    pub static kMDQueryUpdateRemovedItems: &'static CFString;
 }
 
 extern "C" {
@@ -1379,7 +1379,7 @@ extern "C" {
     /// for example).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryresultcontentrelevance?language=objc)
-    pub static kMDQueryResultContentRelevance: Option<&'static CFString>;
+    pub static kMDQueryResultContentRelevance: &'static CFString;
 }
 
 impl MDQuery {
@@ -1429,7 +1429,7 @@ extern "C" {
     /// the current user's home directory
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopehome?language=objc)
-    pub static kMDQueryScopeHome: Option<&'static CFString>;
+    pub static kMDQueryScopeHome: &'static CFString;
 }
 
 extern "C" {
@@ -1438,7 +1438,7 @@ extern "C" {
     /// home directory (which may be on a remote volume).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopecomputer?language=objc)
-    pub static kMDQueryScopeComputer: Option<&'static CFString>;
+    pub static kMDQueryScopeComputer: &'static CFString;
 }
 
 extern "C" {
@@ -1446,7 +1446,7 @@ extern "C" {
     /// that the search should include all user mounted remote volumes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopenetwork?language=objc)
-    pub static kMDQueryScopeNetwork: Option<&'static CFString>;
+    pub static kMDQueryScopeNetwork: &'static CFString;
 }
 
 extern "C" {
@@ -1455,7 +1455,7 @@ extern "C" {
     /// indexed user mounted remote volumes, plus the user's home directory.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopeallindexed?language=objc)
-    pub static kMDQueryScopeAllIndexed: Option<&'static CFString>;
+    pub static kMDQueryScopeAllIndexed: &'static CFString;
 }
 
 extern "C" {
@@ -1464,7 +1464,7 @@ extern "C" {
     /// home directory (which may be on a remote volume).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopecomputerindexed?language=objc)
-    pub static kMDQueryScopeComputerIndexed: Option<&'static CFString>;
+    pub static kMDQueryScopeComputerIndexed: &'static CFString;
 }
 
 extern "C" {
@@ -1472,7 +1472,7 @@ extern "C" {
     /// that the search should include indexed user mounted remote volumes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopenetworkindexed?language=objc)
-    pub static kMDQueryScopeNetworkIndexed: Option<&'static CFString>;
+    pub static kMDQueryScopeNetworkIndexed: &'static CFString;
 }
 
 impl MDQuery {

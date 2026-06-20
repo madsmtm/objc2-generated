@@ -227,15 +227,15 @@ impl SFAuthorizationPluginView {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationpluginviewusernamekey?language=objc)
-    pub static SFAuthorizationPluginViewUserNameKey: Option<&'static NSString>;
+    pub static SFAuthorizationPluginViewUserNameKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationpluginviewusershortnamekey?language=objc)
-    pub static SFAuthorizationPluginViewUserShortNameKey: Option<&'static NSString>;
+    pub static SFAuthorizationPluginViewUserShortNameKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfdisplayviewexception?language=objc)
-    pub static SFDisplayViewException: Option<&'static NSString>;
+    pub static SFDisplayViewException: &'static NSString;
 }

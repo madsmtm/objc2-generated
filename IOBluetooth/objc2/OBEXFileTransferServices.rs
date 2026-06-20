@@ -374,7 +374,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogressbytestransferredkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kFTSProgressBytesTransferredKey: Option<&'static CFString>;
+    pub static kFTSProgressBytesTransferredKey: &'static CFString;
 }
 
 extern "C" {
@@ -383,7 +383,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogressbytestotalkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kFTSProgressBytesTotalKey: Option<&'static CFString>;
+    pub static kFTSProgressBytesTotalKey: &'static CFString;
 }
 
 extern "C" {
@@ -392,13 +392,13 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogresspercentagekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kFTSProgressPercentageKey: Option<&'static CFString>;
+    pub static kFTSProgressPercentageKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogressprecentagekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kFTSProgressPrecentageKey: Option<&'static CFString>;
+    pub static kFTSProgressPrecentageKey: &'static CFString;
 }
 
 extern "C" {
@@ -407,7 +407,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogressestimatedtimekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kFTSProgressEstimatedTimeKey: Option<&'static CFString>;
+    pub static kFTSProgressEstimatedTimeKey: &'static CFString;
 }
 
 extern "C" {
@@ -416,7 +416,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogresstimeelapsedkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kFTSProgressTimeElapsedKey: Option<&'static CFString>;
+    pub static kFTSProgressTimeElapsedKey: &'static CFString;
 }
 
 extern "C" {
@@ -425,7 +425,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogresstransferratekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kFTSProgressTransferRateKey: Option<&'static CFString>;
+    pub static kFTSProgressTransferRateKey: &'static CFString;
 }
 
 extern "C" {
@@ -434,7 +434,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftslistingnamekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kFTSListingNameKey: Option<&'static CFString>;
+    pub static kFTSListingNameKey: &'static CFString;
 }
 
 extern "C" {
@@ -443,7 +443,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftslistingtypekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kFTSListingTypeKey: Option<&'static CFString>;
+    pub static kFTSListingTypeKey: &'static CFString;
 }
 
 extern "C" {
@@ -452,7 +452,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftslistingsizekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kFTSListingSizeKey: Option<&'static CFString>;
+    pub static kFTSListingSizeKey: &'static CFString;
 }
 
 /// The type values associated with the kFTSListingTypeKey dictionary value

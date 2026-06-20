@@ -289,5 +289,5 @@ impl CFTimeZone {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftimezonesystemtimezonedidchangenotification?language=objc)
     #[cfg(feature = "CFNotificationCenter")]
-    pub static kCFTimeZoneSystemTimeZoneDidChangeNotification: Option<&'static CFNotificationName>;
+    pub static kCFTimeZoneSystemTimeZoneDidChangeNotification: &'static CFNotificationName;
 }

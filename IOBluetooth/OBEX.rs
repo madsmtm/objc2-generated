@@ -2211,139 +2211,139 @@ pub unsafe extern "C-unwind" fn OBEXCreateVEvent(
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyname?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyName: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeytype?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyType: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeydescription?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyDescription: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyDescription: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeytimeiso?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyTimeISO: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyTimeISO: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeytime4byte?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyTime4Byte: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyTime4Byte: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeytarget?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyTarget: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyTarget: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyhttp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyHTTP: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyHTTP: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeybody?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyBody: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyBody: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyendofbody?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyEndOfBody: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyEndOfBody: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeywho?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyWho: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyWho: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyappparameters?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyAppParameters: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyAppParameters: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyauthorizationchallenge?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyAuthorizationChallenge: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyAuthorizationChallenge: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyauthorizationresponse?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyAuthorizationResponse: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyAuthorizationResponse: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyobjectclass?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyObjectClass: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyObjectClass: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeycount?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyCount: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyCount: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeylength?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyLength: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyLength: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyconnectionid?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyConnectionID: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyConnectionID: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeybytesequence?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyByteSequence: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyByteSequence: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyunknownunicodetext?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyUnknownUnicodeText: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyUnknownUnicodeText: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyunknownbytesequence?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyUnknownByteSequence: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyUnknownByteSequence: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyunknown1bytequantity?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyUnknown1ByteQuantity: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyUnknown1ByteQuantity: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyunknown4bytequantity?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyUnknown4ByteQuantity: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyUnknown4ByteQuantity: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyuserdefined?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kOBEXHeaderIDKeyUserDefined: Option<&'static CFString>;
+    pub static kOBEXHeaderIDKeyUserDefined: &'static CFString;
 }
 
 /// Take a data blob and looks for OBEX headers.

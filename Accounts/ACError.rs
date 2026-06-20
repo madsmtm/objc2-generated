@@ -8,7 +8,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrordomain?language=objc)
-    pub static ACErrorDomain: Option<&'static NSString>;
+    pub static ACErrorDomain: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorcode?language=objc)

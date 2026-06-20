@@ -7,29 +7,29 @@ use crate::*;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypetwitter?language=objc)
     #[deprecated]
-    pub static SLServiceTypeTwitter: Option<&'static NSString>;
+    pub static SLServiceTypeTwitter: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypefacebook?language=objc)
     #[deprecated]
-    pub static SLServiceTypeFacebook: Option<&'static NSString>;
+    pub static SLServiceTypeFacebook: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypesinaweibo?language=objc)
     #[deprecated]
-    pub static SLServiceTypeSinaWeibo: Option<&'static NSString>;
+    pub static SLServiceTypeSinaWeibo: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypetencentweibo?language=objc)
     #[deprecated]
-    pub static SLServiceTypeTencentWeibo: Option<&'static NSString>;
+    pub static SLServiceTypeTencentWeibo: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypelinkedin?language=objc)
     #[deprecated]
-    pub static SLServiceTypeLinkedIn: Option<&'static NSString>;
+    pub static SLServiceTypeLinkedIn: &'static NSString;
 }

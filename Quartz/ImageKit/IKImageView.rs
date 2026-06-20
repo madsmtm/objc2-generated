@@ -18,57 +18,57 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodenone?language=objc)
-    pub static IKToolModeNone: Option<&'static NSString>;
+    pub static IKToolModeNone: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodemove?language=objc)
-    pub static IKToolModeMove: Option<&'static NSString>;
+    pub static IKToolModeMove: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodeselect?language=objc)
-    pub static IKToolModeSelect: Option<&'static NSString>;
+    pub static IKToolModeSelect: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodeselectrect?language=objc)
-    pub static IKToolModeSelectRect: Option<&'static NSString>;
+    pub static IKToolModeSelectRect: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodeselectellipse?language=objc)
-    pub static IKToolModeSelectEllipse: Option<&'static NSString>;
+    pub static IKToolModeSelectEllipse: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodeselectlasso?language=objc)
-    pub static IKToolModeSelectLasso: Option<&'static NSString>;
+    pub static IKToolModeSelectLasso: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodecrop?language=objc)
-    pub static IKToolModeCrop: Option<&'static NSString>;
+    pub static IKToolModeCrop: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmoderotate?language=objc)
-    pub static IKToolModeRotate: Option<&'static NSString>;
+    pub static IKToolModeRotate: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodeannotate?language=objc)
-    pub static IKToolModeAnnotate: Option<&'static NSString>;
+    pub static IKToolModeAnnotate: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikoverlaytypebackground?language=objc)
-    pub static IKOverlayTypeBackground: Option<&'static NSString>;
+    pub static IKOverlayTypeBackground: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikoverlaytypeimage?language=objc)
-    pub static IKOverlayTypeImage: Option<&'static NSString>;
+    pub static IKOverlayTypeImage: &'static NSString;
 }
 
 extern_class!(

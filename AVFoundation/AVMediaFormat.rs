@@ -10,47 +10,47 @@ pub type AVMediaType = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypevideo?language=objc)
-    pub static AVMediaTypeVideo: Option<&'static AVMediaType>;
+    pub static AVMediaTypeVideo: &'static AVMediaType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypeaudio?language=objc)
-    pub static AVMediaTypeAudio: Option<&'static AVMediaType>;
+    pub static AVMediaTypeAudio: &'static AVMediaType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypetext?language=objc)
-    pub static AVMediaTypeText: Option<&'static AVMediaType>;
+    pub static AVMediaTypeText: &'static AVMediaType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypeclosedcaption?language=objc)
-    pub static AVMediaTypeClosedCaption: Option<&'static AVMediaType>;
+    pub static AVMediaTypeClosedCaption: &'static AVMediaType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypesubtitle?language=objc)
-    pub static AVMediaTypeSubtitle: Option<&'static AVMediaType>;
+    pub static AVMediaTypeSubtitle: &'static AVMediaType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypetimecode?language=objc)
-    pub static AVMediaTypeTimecode: Option<&'static AVMediaType>;
+    pub static AVMediaTypeTimecode: &'static AVMediaType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypemetadata?language=objc)
-    pub static AVMediaTypeMetadata: Option<&'static AVMediaType>;
+    pub static AVMediaTypeMetadata: &'static AVMediaType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypemuxed?language=objc)
-    pub static AVMediaTypeMuxed: Option<&'static AVMediaType>;
+    pub static AVMediaTypeMuxed: &'static AVMediaType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypehaptic?language=objc)
-    pub static AVMediaTypeHaptic: Option<&'static AVMediaType>;
+    pub static AVMediaTypeHaptic: &'static AVMediaType;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorange?language=objc)
@@ -61,21 +61,21 @@ extern "C" {
     /// Indicates that the video range as SDR
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorangesdr?language=objc)
-    pub static AVVideoRangeSDR: Option<&'static AVVideoRange>;
+    pub static AVVideoRangeSDR: &'static AVVideoRange;
 }
 
 extern "C" {
     /// Indicates that the video range as HLG
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorangehlg?language=objc)
-    pub static AVVideoRangeHLG: Option<&'static AVVideoRange>;
+    pub static AVVideoRangeHLG: &'static AVVideoRange;
 }
 
 extern "C" {
     /// Indicates that the video range as PQ
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorangepq?language=objc)
-    pub static AVVideoRangePQ: Option<&'static AVVideoRange>;
+    pub static AVVideoRangePQ: &'static AVVideoRange;
 }
 
 extern "C" {
@@ -113,12 +113,12 @@ extern "C" {
     /// between a AVMediaTypeMetadata port and the movie file output using AVCaptureSession's -addConnection API.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypemetadataobject?language=objc)
-    pub static AVMediaTypeMetadataObject: Option<&'static AVMediaType>;
+    pub static AVMediaTypeMetadataObject: &'static AVMediaType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypedepthdata?language=objc)
-    pub static AVMediaTypeDepthData: Option<&'static AVMediaType>;
+    pub static AVMediaTypeDepthData: &'static AVMediaType;
 }
 
 extern "C" {
@@ -126,7 +126,7 @@ extern "C" {
     /// A track with this media type contain video samples the media type of the format description of which is AVMediaTypeVideo.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypeauxiliarypicture?language=objc)
-    pub static AVMediaTypeAuxiliaryPicture: Option<&'static AVMediaType>;
+    pub static AVMediaTypeAuxiliaryPicture: &'static AVMediaType;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristic?language=objc)
@@ -140,7 +140,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicvisual?language=objc)
-    pub static AVMediaCharacteristicVisual: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicVisual: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -150,7 +150,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicaudible?language=objc)
-    pub static AVMediaCharacteristicAudible: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicAudible: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -160,7 +160,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiclegible?language=objc)
-    pub static AVMediaCharacteristicLegible: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicLegible: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -170,7 +170,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicframebased?language=objc)
-    pub static AVMediaCharacteristicFrameBased: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicFrameBased: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -179,7 +179,7 @@ extern "C" {
     /// A wide color space such as AVVideo*_P3_D65 contains additional dynamic range that may benefit from special treatment when compositing. Care should be taken to avoid clamping. Non-wide spaces include AVVideo*_ITU_R_709_2 and AVVideo*_SMPTE_C.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicuseswidegamutcolorspace?language=objc)
-    pub static AVMediaCharacteristicUsesWideGamutColorSpace: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicUsesWideGamutColorSpace: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -192,7 +192,7 @@ extern "C" {
     /// Note for content authors: the presence of this characteristic is strictly inferred from the format description of the associated track.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainshdrvideo?language=objc)
-    pub static AVMediaCharacteristicContainsHDRVideo: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicContainsHDRVideo: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -201,7 +201,7 @@ extern "C" {
     /// To determine whether alpha is straight or pre-multiplied, look for the format description extension with key kCMFormatDescriptionExtension_AlphaChannelMode.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainsalphachannel?language=objc)
-    pub static AVMediaCharacteristicContainsAlphaChannel: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicContainsAlphaChannel: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -216,7 +216,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicismainprogramcontent?language=objc)
-    pub static AVMediaCharacteristicIsMainProgramContent: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicIsMainProgramContent: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -232,7 +232,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicisauxiliarycontent?language=objc)
-    pub static AVMediaCharacteristicIsAuxiliaryContent: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicIsAuxiliaryContent: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -248,7 +248,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicisoriginalcontent?language=objc)
-    pub static AVMediaCharacteristicIsOriginalContent: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicIsOriginalContent: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -263,8 +263,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainsonlyforcedsubtitles?language=objc)
-    pub static AVMediaCharacteristicContainsOnlyForcedSubtitles:
-        Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicContainsOnlyForcedSubtitles: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -287,7 +286,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristictranscribesspokendialogforaccessibility?language=objc)
     pub static AVMediaCharacteristicTranscribesSpokenDialogForAccessibility:
-        Option<&'static AVMediaCharacteristic>;
+        &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -310,7 +309,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicdescribesmusicandsoundforaccessibility?language=objc)
     pub static AVMediaCharacteristicDescribesMusicAndSoundForAccessibility:
-        Option<&'static AVMediaCharacteristic>;
+        &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -326,8 +325,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicenhancesspeechintelligibility?language=objc)
-    pub static AVMediaCharacteristicEnhancesSpeechIntelligibility:
-        Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicEnhancesSpeechIntelligibility: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -345,7 +343,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiceasytoread?language=objc)
-    pub static AVMediaCharacteristicEasyToRead: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicEasyToRead: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -361,8 +359,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicdescribesvideoforaccessibility?language=objc)
-    pub static AVMediaCharacteristicDescribesVideoForAccessibility:
-        Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicDescribesVideoForAccessibility: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -376,7 +373,7 @@ extern "C" {
     /// See the discussion of the tagging of tracks with media characteristics below.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiclanguagetranslation?language=objc)
-    pub static AVMediaCharacteristicLanguageTranslation: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicLanguageTranslation: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -391,7 +388,7 @@ extern "C" {
     /// See the discussion of the tagging of tracks with media characteristics below.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicdubbedtranslation?language=objc)
-    pub static AVMediaCharacteristicDubbedTranslation: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicDubbedTranslation: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -406,7 +403,7 @@ extern "C" {
     /// See the discussion of the tagging of tracks with media characteristics below.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicvoiceovertranslation?language=objc)
-    pub static AVMediaCharacteristicVoiceOverTranslation: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicVoiceOverTranslation: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -421,7 +418,7 @@ extern "C" {
     /// See the discussion of the tagging of tracks with media characteristics below.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristictactileminimal?language=objc)
-    pub static AVMediaCharacteristicTactileMinimal: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicTactileMinimal: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -434,8 +431,7 @@ extern "C" {
     /// Note for content authors: the presence of this characteristic is strictly inferred from the format description of the associated track.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainsstereomultiviewvideo?language=objc)
-    pub static AVMediaCharacteristicContainsStereoMultiviewVideo:
-        Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicContainsStereoMultiviewVideo: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -448,8 +444,7 @@ extern "C" {
     /// Note for content authors: the presence of this characteristic is strictly inferred from the format description of the associated track.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccarriesvideostereometadata?language=objc)
-    pub static AVMediaCharacteristicCarriesVideoStereoMetadata:
-        Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicCarriesVideoStereoMetadata: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -462,8 +457,7 @@ extern "C" {
     /// Note for content authors: the presence of this characteristic is strictly inferred from the format description of the associated track.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicindicateshorizontalfieldofview?language=objc)
-    pub static AVMediaCharacteristicIndicatesHorizontalFieldOfView:
-        Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicIndicatesHorizontalFieldOfView: &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -477,7 +471,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicindicatesnonrectilinearprojection?language=objc)
     pub static AVMediaCharacteristicIndicatesNonRectilinearProjection:
-        Option<&'static AVMediaCharacteristic>;
+        &'static AVMediaCharacteristic;
 }
 
 extern "C" {
@@ -494,7 +488,7 @@ extern "C" {
     /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicmachinegenerated?language=objc)
-    pub static AVMediaCharacteristicMachineGenerated: Option<&'static AVMediaCharacteristic>;
+    pub static AVMediaCharacteristicMachineGenerated: &'static AVMediaCharacteristic;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletype?language=objc)
@@ -510,7 +504,7 @@ extern "C" {
     /// Files are identified with the .mov and .qt extensions.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypequicktimemovie?language=objc)
-    pub static AVFileTypeQuickTimeMovie: Option<&'static AVFileType>;
+    pub static AVFileTypeQuickTimeMovie: &'static AVFileType;
 }
 
 extern "C" {
@@ -522,7 +516,7 @@ extern "C" {
     /// Files are identified with the .qta extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypequicktimeaudio?language=objc)
-    pub static AVFileTypeQuickTimeAudio: Option<&'static AVFileType>;
+    pub static AVFileTypeQuickTimeAudio: &'static AVFileType;
 }
 
 extern "C" {
@@ -534,7 +528,7 @@ extern "C" {
     /// Files are identified with the .mp4 extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypempeg4?language=objc)
-    pub static AVFileTypeMPEG4: Option<&'static AVFileType>;
+    pub static AVFileTypeMPEG4: &'static AVFileType;
 }
 
 extern "C" {
@@ -544,7 +538,7 @@ extern "C" {
     /// Files are identified with the .m4v extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeapplem4v?language=objc)
-    pub static AVFileTypeAppleM4V: Option<&'static AVFileType>;
+    pub static AVFileTypeAppleM4V: &'static AVFileType;
 }
 
 extern "C" {
@@ -554,7 +548,7 @@ extern "C" {
     /// Files are identified with the .m4a extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeapplem4a?language=objc)
-    pub static AVFileTypeAppleM4A: Option<&'static AVFileType>;
+    pub static AVFileTypeAppleM4A: &'static AVFileType;
 }
 
 extern "C" {
@@ -566,7 +560,7 @@ extern "C" {
     /// Files are identified with the .3gp, .3gpp, and .sdv extensions.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletype3gpp?language=objc)
-    pub static AVFileType3GPP: Option<&'static AVFileType>;
+    pub static AVFileType3GPP: &'static AVFileType;
 }
 
 extern "C" {
@@ -578,7 +572,7 @@ extern "C" {
     /// Files are identified with the .3g2, .3gp2 extensions.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletype3gpp2?language=objc)
-    pub static AVFileType3GPP2: Option<&'static AVFileType>;
+    pub static AVFileType3GPP2: &'static AVFileType;
 }
 
 extern "C" {
@@ -590,7 +584,7 @@ extern "C" {
     /// Files are identified with the .caf extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypecoreaudioformat?language=objc)
-    pub static AVFileTypeCoreAudioFormat: Option<&'static AVFileType>;
+    pub static AVFileTypeCoreAudioFormat: &'static AVFileType;
 }
 
 extern "C" {
@@ -602,7 +596,7 @@ extern "C" {
     /// Files are identified with the .wav, .wave, and .bwf extensions.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypewave?language=objc)
-    pub static AVFileTypeWAVE: Option<&'static AVFileType>;
+    pub static AVFileTypeWAVE: &'static AVFileType;
 }
 
 extern "C" {
@@ -614,7 +608,7 @@ extern "C" {
     /// Files are identified with the .aif and .aiff extensions.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeaiff?language=objc)
-    pub static AVFileTypeAIFF: Option<&'static AVFileType>;
+    pub static AVFileTypeAIFF: &'static AVFileType;
 }
 
 extern "C" {
@@ -626,7 +620,7 @@ extern "C" {
     /// Files are identified with the .aifc and .cdda extensions.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeaifc?language=objc)
-    pub static AVFileTypeAIFC: Option<&'static AVFileType>;
+    pub static AVFileTypeAIFC: &'static AVFileType;
 }
 
 extern "C" {
@@ -638,7 +632,7 @@ extern "C" {
     /// Files are identified with the .amr extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeamr?language=objc)
-    pub static AVFileTypeAMR: Option<&'static AVFileType>;
+    pub static AVFileTypeAMR: &'static AVFileType;
 }
 
 extern "C" {
@@ -650,7 +644,7 @@ extern "C" {
     /// Files are identified with the .mp3 extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypempeglayer3?language=objc)
-    pub static AVFileTypeMPEGLayer3: Option<&'static AVFileType>;
+    pub static AVFileTypeMPEGLayer3: &'static AVFileType;
 }
 
 extern "C" {
@@ -662,7 +656,7 @@ extern "C" {
     /// Files are identified with the .au and .snd extensions.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypesunau?language=objc)
-    pub static AVFileTypeSunAU: Option<&'static AVFileType>;
+    pub static AVFileTypeSunAU: &'static AVFileType;
 }
 
 extern "C" {
@@ -674,7 +668,7 @@ extern "C" {
     /// Files are identified with the .ac3 extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeac3?language=objc)
-    pub static AVFileTypeAC3: Option<&'static AVFileType>;
+    pub static AVFileTypeAC3: &'static AVFileType;
 }
 
 extern "C" {
@@ -686,7 +680,7 @@ extern "C" {
     /// Files are identified with the .eac3 extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeenhancedac3?language=objc)
-    pub static AVFileTypeEnhancedAC3: Option<&'static AVFileType>;
+    pub static AVFileTypeEnhancedAC3: &'static AVFileType;
 }
 
 extern "C" {
@@ -698,7 +692,7 @@ extern "C" {
     /// Files are identified with the .jpg or .jpeg extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypejpeg?language=objc)
-    pub static AVFileTypeJPEG: Option<&'static AVFileType>;
+    pub static AVFileTypeJPEG: &'static AVFileType;
 }
 
 extern "C" {
@@ -710,7 +704,7 @@ extern "C" {
     /// Files are identified with the .dng extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypedng?language=objc)
-    pub static AVFileTypeDNG: Option<&'static AVFileType>;
+    pub static AVFileTypeDNG: &'static AVFileType;
 }
 
 extern "C" {
@@ -722,7 +716,7 @@ extern "C" {
     /// Files are identified with the .heic extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeheic?language=objc)
-    pub static AVFileTypeHEIC: Option<&'static AVFileType>;
+    pub static AVFileTypeHEIC: &'static AVFileType;
 }
 
 extern "C" {
@@ -734,7 +728,7 @@ extern "C" {
     /// Files are identified with the .avci extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeavci?language=objc)
-    pub static AVFileTypeAVCI: Option<&'static AVFileType>;
+    pub static AVFileTypeAVCI: &'static AVFileType;
 }
 
 extern "C" {
@@ -746,7 +740,7 @@ extern "C" {
     /// Files are identified with the .heif extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeheif?language=objc)
-    pub static AVFileTypeHEIF: Option<&'static AVFileType>;
+    pub static AVFileTypeHEIF: &'static AVFileType;
 }
 
 extern "C" {
@@ -758,7 +752,7 @@ extern "C" {
     /// Files are identified with the .tiff or .tif extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypetiff?language=objc)
-    pub static AVFileTypeTIFF: Option<&'static AVFileType>;
+    pub static AVFileTypeTIFF: &'static AVFileType;
 }
 
 extern "C" {
@@ -770,7 +764,7 @@ extern "C" {
     /// Files are identified with the .itt extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeappleitt?language=objc)
-    pub static AVFileTypeAppleiTT: Option<&'static AVFileType>;
+    pub static AVFileTypeAppleiTT: &'static AVFileType;
 }
 
 extern "C" {
@@ -782,7 +776,7 @@ extern "C" {
     /// Files are identified with the .scc extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypescc?language=objc)
-    pub static AVFileTypeSCC: Option<&'static AVFileType>;
+    pub static AVFileTypeSCC: &'static AVFileType;
 }
 
 extern "C" {
@@ -794,7 +788,7 @@ extern "C" {
     /// Files are identified with the .ahap extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeahap?language=objc)
-    pub static AVFileTypeAHAP: Option<&'static AVFileType>;
+    pub static AVFileTypeAHAP: &'static AVFileType;
 }
 
 extern "C" {
@@ -806,7 +800,7 @@ extern "C" {
     /// Files are identified with the .dcm extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypedicom?language=objc)
-    pub static AVFileTypeDICOM: Option<&'static AVFileType>;
+    pub static AVFileTypeDICOM: &'static AVFileType;
 }
 
 extern "C" {
@@ -817,7 +811,7 @@ extern "C" {
     /// com.apple.streamingkeydelivery.contentkey".
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avstreamingkeydeliverycontentkeytype?language=objc)
-    pub static AVStreamingKeyDeliveryContentKeyType: Option<&'static NSString>;
+    pub static AVStreamingKeyDeliveryContentKeyType: &'static NSString;
 }
 
 extern "C" {
@@ -828,7 +822,7 @@ extern "C" {
     /// com.apple.streamingkeydelivery.persistentcontentkey".
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avstreamingkeydeliverypersistentcontentkeytype?language=objc)
-    pub static AVStreamingKeyDeliveryPersistentContentKeyType: Option<&'static NSString>;
+    pub static AVStreamingKeyDeliveryPersistentContentKeyType: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeprofile?language=objc)
@@ -841,7 +835,7 @@ extern "C" {
     /// The profile that is suitable for Apple HTTP Live Streaming.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeprofilempeg4applehls?language=objc)
-    pub static AVFileTypeProfileMPEG4AppleHLS: Option<&'static AVFileTypeProfile>;
+    pub static AVFileTypeProfileMPEG4AppleHLS: &'static AVFileTypeProfile;
 }
 
 extern "C" {
@@ -850,5 +844,5 @@ extern "C" {
     /// The profile that is compliance with CMAF format.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeprofilempeg4cmafcompliant?language=objc)
-    pub static AVFileTypeProfileMPEG4CMAFCompliant: Option<&'static AVFileTypeProfile>;
+    pub static AVFileTypeProfileMPEG4CMAFCompliant: &'static AVFileTypeProfile;
 }

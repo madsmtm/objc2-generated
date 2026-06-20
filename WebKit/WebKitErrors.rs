@@ -8,25 +8,25 @@ use crate::*;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webkiterrordomain?language=objc)
     #[deprecated]
-    pub static WebKitErrorDomain: Option<&'static NSString>;
+    pub static WebKitErrorDomain: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webkiterrormimetypekey?language=objc)
     #[deprecated]
-    pub static WebKitErrorMIMETypeKey: Option<&'static NSString>;
+    pub static WebKitErrorMIMETypeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webkiterrorpluginnamekey?language=objc)
     #[deprecated]
-    pub static WebKitErrorPlugInNameKey: Option<&'static NSString>;
+    pub static WebKitErrorPlugInNameKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webkiterrorpluginpageurlstringkey?language=objc)
     #[deprecated]
-    pub static WebKitErrorPlugInPageURLStringKey: Option<&'static NSString>;
+    pub static WebKitErrorPlugInPageURLStringKey: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webkiterrorcannotshowmimetype?language=objc)

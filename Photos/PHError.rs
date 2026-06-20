@@ -7,14 +7,14 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserrordomain?language=objc)
-    pub static PHPhotosErrorDomain: Option<&'static NSErrorDomain>;
+    pub static PHPhotosErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
     /// Array of NSString values representing local identifiers related to the specific error
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifierserrorkey?language=objc)
-    pub static PHLocalIdentifiersErrorKey: Option<&'static NSErrorUserInfoKey>;
+    pub static PHLocalIdentifiersErrorKey: &'static NSErrorUserInfoKey;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror?language=objc)

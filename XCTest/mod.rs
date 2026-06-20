@@ -1206,7 +1206,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestobserverclasskey?language=objc)
     #[deprecated]
-    pub static XCTestObserverClassKey: Option<&'static NSString>;
+    pub static XCTestObserverClassKey: &'static NSString;
 }
 
 extern_class!(
@@ -1561,37 +1561,37 @@ impl DefaultRetained for XCTestProbe {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestedunitpath?language=objc)
     #[deprecated]
-    pub static XCTestedUnitPath: Option<&'static NSString>;
+    pub static XCTestedUnitPath: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopekey?language=objc)
     #[deprecated]
-    pub static XCTestScopeKey: Option<&'static NSString>;
+    pub static XCTestScopeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopeall?language=objc)
     #[deprecated]
-    pub static XCTestScopeAll: Option<&'static NSString>;
+    pub static XCTestScopeAll: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopenone?language=objc)
     #[deprecated]
-    pub static XCTestScopeNone: Option<&'static NSString>;
+    pub static XCTestScopeNone: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopeself?language=objc)
     #[deprecated]
-    pub static XCTestScopeSelf: Option<&'static NSString>;
+    pub static XCTestScopeSelf: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesttoolkey?language=objc)
     #[deprecated]
-    pub static XCTestToolKey: Option<&'static NSString>;
+    pub static XCTestToolKey: &'static NSString;
 }
 
 extern_class!(

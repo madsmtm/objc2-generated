@@ -16,7 +16,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreferencepreferred?language=objc)
     pub static ASAuthorizationPublicKeyCredentialUserVerificationPreferencePreferred:
-        Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
+        &'static ASAuthorizationPublicKeyCredentialUserVerificationPreference;
 }
 
 extern "C" {
@@ -24,7 +24,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreferencerequired?language=objc)
     pub static ASAuthorizationPublicKeyCredentialUserVerificationPreferenceRequired:
-        Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
+        &'static ASAuthorizationPublicKeyCredentialUserVerificationPreference;
 }
 
 extern "C" {
@@ -32,7 +32,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreferencediscouraged?language=objc)
     pub static ASAuthorizationPublicKeyCredentialUserVerificationPreferenceDiscouraged:
-        Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
+        &'static ASAuthorizationPublicKeyCredentialUserVerificationPreference;
 }
 
 /// A string indicating the type of attestation the authenticator should attempt to perform.
@@ -46,7 +46,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkindnone?language=objc)
     pub static ASAuthorizationPublicKeyCredentialAttestationKindNone:
-        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
+        &'static ASAuthorizationPublicKeyCredentialAttestationKind;
 }
 
 extern "C" {
@@ -54,7 +54,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkinddirect?language=objc)
     pub static ASAuthorizationPublicKeyCredentialAttestationKindDirect:
-        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
+        &'static ASAuthorizationPublicKeyCredentialAttestationKind;
 }
 
 extern "C" {
@@ -62,7 +62,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkindindirect?language=objc)
     pub static ASAuthorizationPublicKeyCredentialAttestationKindIndirect:
-        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
+        &'static ASAuthorizationPublicKeyCredentialAttestationKind;
 }
 
 extern "C" {
@@ -70,7 +70,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkindenterprise?language=objc)
     pub static ASAuthorizationPublicKeyCredentialAttestationKindEnterprise:
-        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
+        &'static ASAuthorizationPublicKeyCredentialAttestationKind;
 }
 
 /// A string used to indicate a preference for whether the authenticator should itself store the private key for a credential.
@@ -84,7 +84,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreferencediscouraged?language=objc)
     pub static ASAuthorizationPublicKeyCredentialResidentKeyPreferenceDiscouraged:
-        Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
+        &'static ASAuthorizationPublicKeyCredentialResidentKeyPreference;
 }
 
 extern "C" {
@@ -92,7 +92,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreferencepreferred?language=objc)
     pub static ASAuthorizationPublicKeyCredentialResidentKeyPreferencePreferred:
-        Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
+        &'static ASAuthorizationPublicKeyCredentialResidentKeyPreference;
 }
 
 extern "C" {
@@ -100,7 +100,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreferencerequired?language=objc)
     pub static ASAuthorizationPublicKeyCredentialResidentKeyPreferenceRequired:
-        Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
+        &'static ASAuthorizationPublicKeyCredentialResidentKeyPreference;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattachment?language=objc)

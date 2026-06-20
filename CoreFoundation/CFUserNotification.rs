@@ -285,102 +285,100 @@ pub const kCFUserNotificationUseRadioButtonsFlag: CFOptionFlags = 1 << 6;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationiconurlkey?language=objc)
-    pub static kCFUserNotificationIconURLKey: Option<&'static CFString>;
+    pub static kCFUserNotificationIconURLKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationsoundurlkey?language=objc)
-    pub static kCFUserNotificationSoundURLKey: Option<&'static CFString>;
+    pub static kCFUserNotificationSoundURLKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationlocalizationurlkey?language=objc)
-    pub static kCFUserNotificationLocalizationURLKey: Option<&'static CFString>;
+    pub static kCFUserNotificationLocalizationURLKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalertheaderkey?language=objc)
-    pub static kCFUserNotificationAlertHeaderKey: Option<&'static CFString>;
+    pub static kCFUserNotificationAlertHeaderKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalertmessagekey?language=objc)
-    pub static kCFUserNotificationAlertMessageKey: Option<&'static CFString>;
+    pub static kCFUserNotificationAlertMessageKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationdefaultbuttontitlekey?language=objc)
-    pub static kCFUserNotificationDefaultButtonTitleKey: Option<&'static CFString>;
+    pub static kCFUserNotificationDefaultButtonTitleKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalternatebuttontitlekey?language=objc)
-    pub static kCFUserNotificationAlternateButtonTitleKey: Option<&'static CFString>;
+    pub static kCFUserNotificationAlternateButtonTitleKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationotherbuttontitlekey?language=objc)
-    pub static kCFUserNotificationOtherButtonTitleKey: Option<&'static CFString>;
+    pub static kCFUserNotificationOtherButtonTitleKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationprogressindicatorvaluekey?language=objc)
-    pub static kCFUserNotificationProgressIndicatorValueKey: Option<&'static CFString>;
+    pub static kCFUserNotificationProgressIndicatorValueKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationpopuptitleskey?language=objc)
-    pub static kCFUserNotificationPopUpTitlesKey: Option<&'static CFString>;
+    pub static kCFUserNotificationPopUpTitlesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationtextfieldtitleskey?language=objc)
-    pub static kCFUserNotificationTextFieldTitlesKey: Option<&'static CFString>;
+    pub static kCFUserNotificationTextFieldTitlesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationcheckboxtitleskey?language=objc)
-    pub static kCFUserNotificationCheckBoxTitlesKey: Option<&'static CFString>;
+    pub static kCFUserNotificationCheckBoxTitlesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationtextfieldvalueskey?language=objc)
-    pub static kCFUserNotificationTextFieldValuesKey: Option<&'static CFString>;
+    pub static kCFUserNotificationTextFieldValuesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationpopupselectionkey?language=objc)
-    pub static kCFUserNotificationPopUpSelectionKey: Option<&'static CFString>;
+    pub static kCFUserNotificationPopUpSelectionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalerttopmostkey?language=objc)
-    pub static kCFUserNotificationAlertTopMostKey: Option<&'static CFString>;
+    pub static kCFUserNotificationAlertTopMostKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationkeyboardtypeskey?language=objc)
-    pub static kCFUserNotificationKeyboardTypesKey: Option<&'static CFString>;
+    pub static kCFUserNotificationKeyboardTypesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalertaccessibilityidentifierkey?language=objc)
-    pub static kCFUserNotificationAlertAccessibilityIdentifierKey: Option<&'static CFString>;
+    pub static kCFUserNotificationAlertAccessibilityIdentifierKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationdefaultbuttonaccessibilityidentifierkey?language=objc)
-    pub static kCFUserNotificationDefaultButtonAccessibilityIdentifierKey:
-        Option<&'static CFString>;
+    pub static kCFUserNotificationDefaultButtonAccessibilityIdentifierKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalternatebuttonaccessibilityidentifierkey?language=objc)
-    pub static kCFUserNotificationAlternateButtonAccessibilityIdentifierKey:
-        Option<&'static CFString>;
+    pub static kCFUserNotificationAlternateButtonAccessibilityIdentifierKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationotherbuttonaccessibilityidentifierkey?language=objc)
-    pub static kCFUserNotificationOtherButtonAccessibilityIdentifierKey: Option<&'static CFString>;
+    pub static kCFUserNotificationOtherButtonAccessibilityIdentifierKey: &'static CFString;
 }

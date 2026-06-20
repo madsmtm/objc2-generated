@@ -111,35 +111,35 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayDescriptionForAttribute(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributedisplayvalues?language=objc)
-    pub static kMDAttributeDisplayValues: Option<&'static CFString>;
+    pub static kMDAttributeDisplayValues: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributeallvalues?language=objc)
-    pub static kMDAttributeAllValues: Option<&'static CFString>;
+    pub static kMDAttributeAllValues: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributereadonlyvalues?language=objc)
-    pub static kMDAttributeReadOnlyValues: Option<&'static CFString>;
+    pub static kMDAttributeReadOnlyValues: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdexporteravaliable?language=objc)
-    pub static kMDExporterAvaliable: Option<&'static CFString>;
+    pub static kMDExporterAvaliable: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributename?language=objc)
-    pub static kMDAttributeName: Option<&'static CFString>;
+    pub static kMDAttributeName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributetype?language=objc)
-    pub static kMDAttributeType: Option<&'static CFString>;
+    pub static kMDAttributeType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributemultivalued?language=objc)
-    pub static kMDAttributeMultiValued: Option<&'static CFString>;
+    pub static kMDAttributeMultiValued: &'static CFString;
 }

@@ -185,7 +185,7 @@ extern "C" {
     /// The NSErrorDomain for general PHASE errors
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseerrordomain?language=objc)
-    pub static PHASEErrorDomain: Option<&'static NSErrorDomain>;
+    pub static PHASEErrorDomain: &'static NSErrorDomain;
 }
 
 /// General PHASE error codes
@@ -214,7 +214,7 @@ extern "C" {
     /// The NSErrorDomain for PHASE sound event errors.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerrordomain?language=objc)
-    pub static PHASESoundEventErrorDomain: Option<&'static NSErrorDomain>;
+    pub static PHASESoundEventErrorDomain: &'static NSErrorDomain;
 }
 
 /// Sound event error.
@@ -251,7 +251,7 @@ extern "C" {
     /// The NSErrorDomain for PHASE Asset errors
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterrordomain?language=objc)
-    pub static PHASEAssetErrorDomain: Option<&'static NSErrorDomain>;
+    pub static PHASEAssetErrorDomain: &'static NSErrorDomain;
 }
 
 /// Asset error

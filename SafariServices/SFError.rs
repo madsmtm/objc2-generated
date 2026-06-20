@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sferrordomain?language=objc)
-    pub static SFErrorDomain: Option<&'static NSString>;
+    pub static SFErrorDomain: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sferrorcode?language=objc)

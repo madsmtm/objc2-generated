@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mediaextensionerrordomain?language=objc)
-    pub static MediaExtensionErrorDomain: Option<&'static NSErrorDomain>;
+    pub static MediaExtensionErrorDomain: &'static NSErrorDomain;
 }
 
 /// MediaExtension framework error codes.

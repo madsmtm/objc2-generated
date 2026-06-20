@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterrordomain?language=objc)
-    pub static INIntentErrorDomain: Option<&'static NSString>;
+    pub static INIntentErrorDomain: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterrorcode?language=objc)

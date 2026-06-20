@@ -1618,35 +1618,35 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorwritablekey?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static JSPropertyDescriptorWritableKey: Option<&'static NSString>;
+    pub static JSPropertyDescriptorWritableKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorenumerablekey?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static JSPropertyDescriptorEnumerableKey: Option<&'static NSString>;
+    pub static JSPropertyDescriptorEnumerableKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorconfigurablekey?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static JSPropertyDescriptorConfigurableKey: Option<&'static NSString>;
+    pub static JSPropertyDescriptorConfigurableKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorvaluekey?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static JSPropertyDescriptorValueKey: Option<&'static NSString>;
+    pub static JSPropertyDescriptorValueKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorgetkey?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static JSPropertyDescriptorGetKey: Option<&'static NSString>;
+    pub static JSPropertyDescriptorGetKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorsetkey?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static JSPropertyDescriptorSetKey: Option<&'static NSString>;
+    pub static JSPropertyDescriptorSetKey: &'static NSString;
 }

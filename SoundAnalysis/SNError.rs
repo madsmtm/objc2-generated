@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerrordomain?language=objc)
-    pub static SNErrorDomain: Option<&'static NSString>;
+    pub static SNErrorDomain: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerrorcode?language=objc)

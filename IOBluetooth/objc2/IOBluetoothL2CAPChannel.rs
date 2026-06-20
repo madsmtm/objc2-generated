@@ -661,11 +661,11 @@ extern_protocol!(
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelpublishednotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothL2CAPChannelPublishedNotification: Option<&'static NSString>;
+    pub static IOBluetoothL2CAPChannelPublishedNotification: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelterminatednotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothL2CAPChannelTerminatedNotification: Option<&'static NSString>;
+    pub static IOBluetoothL2CAPChannelTerminatedNotification: &'static NSString;
 }

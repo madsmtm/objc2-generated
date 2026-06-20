@@ -13,7 +13,7 @@ extern "C" {
     /// Key to request the desired size of controls in a filter UIView - defined values are IKUISizeMini, IKUISizeSmall and IKUISizeRegular.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuisizeflavor?language=objc)
-    pub static IKUISizeFlavor: Option<&'static NSString>;
+    pub static IKUISizeFlavor: &'static NSString;
 }
 
 extern "C" {
@@ -22,7 +22,7 @@ extern "C" {
     /// Constant for requesting controls in mini size.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuisizemini?language=objc)
-    pub static IKUISizeMini: Option<&'static NSString>;
+    pub static IKUISizeMini: &'static NSString;
 }
 
 extern "C" {
@@ -31,7 +31,7 @@ extern "C" {
     /// Constant for requesting controls in small size.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuisizesmall?language=objc)
-    pub static IKUISizeSmall: Option<&'static NSString>;
+    pub static IKUISizeSmall: &'static NSString;
 }
 
 extern "C" {
@@ -40,7 +40,7 @@ extern "C" {
     /// Constant for requesting controls in regular or normal size.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuisizeregular?language=objc)
-    pub static IKUISizeRegular: Option<&'static NSString>;
+    pub static IKUISizeRegular: &'static NSString;
 }
 
 extern "C" {
@@ -49,7 +49,7 @@ extern "C" {
     /// Maximum allowed dimensions of the view for the filter UI. If width or height is zero it means that that dimension of the view is not restricted.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuimaxsize?language=objc)
-    pub static IKUImaxSize: Option<&'static NSString>;
+    pub static IKUImaxSize: &'static NSString;
 }
 
 extern "C" {
@@ -58,7 +58,7 @@ extern "C" {
     /// Allow the filter to provide a view with controls of a different size and set than requested, if it cannot provide a view for the requested flavor.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuiflavorallowfallback?language=objc)
-    pub static IKUIFlavorAllowFallback: Option<&'static NSString>;
+    pub static IKUIFlavorAllowFallback: &'static NSString;
 }
 
 mod private_CIFilterIKFilterUIAddition {

@@ -1853,7 +1853,7 @@ unsafe impl ConcreteType for CFNull {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnull?language=objc)
-    pub static kCFNull: Option<&'static CFNull>;
+    pub static kCFNull: &'static CFNull;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocator?language=objc)

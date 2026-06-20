@@ -9,7 +9,7 @@ use crate::*;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domxpathexception?language=objc)
     #[deprecated]
-    pub static DOMXPathException: Option<&'static NSString>;
+    pub static DOMXPathException: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domxpathexceptioncode?language=objc)

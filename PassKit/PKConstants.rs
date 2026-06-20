@@ -11,12 +11,12 @@ pub type PKEncryptionScheme = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkencryptionschemeecc_v2?language=objc)
-    pub static PKEncryptionSchemeECC_V2: Option<&'static PKEncryptionScheme>;
+    pub static PKEncryptionSchemeECC_V2: &'static PKEncryptionScheme;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkencryptionschemersa_v2?language=objc)
-    pub static PKEncryptionSchemeRSA_V2: Option<&'static PKEncryptionScheme>;
+    pub static PKEncryptionSchemeRSA_V2: &'static PKEncryptionScheme;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork?language=objc)
@@ -25,200 +25,200 @@ pub type PKPaymentNetwork = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkamex?language=objc)
-    pub static PKPaymentNetworkAmex: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkAmex: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkbancomat?language=objc)
-    pub static PKPaymentNetworkBancomat: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkBancomat: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkpagobancomat?language=objc)
     #[deprecated = "Use PKPaymentNetworkBancomat instead."]
-    pub static PKPaymentNetworkPagoBancomat: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkPagoBancomat: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkbancontact?language=objc)
-    pub static PKPaymentNetworkBancontact: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkBancontact: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkcartebancaire?language=objc)
     #[deprecated = "Use PKPaymentNetworkCartesBancaires instead."]
-    pub static PKPaymentNetworkCarteBancaire: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkCarteBancaire: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkcartebancaires?language=objc)
     #[deprecated = "Use PKPaymentNetworkCartesBancaires instead."]
-    pub static PKPaymentNetworkCarteBancaires: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkCarteBancaires: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkcartesbancaires?language=objc)
-    pub static PKPaymentNetworkCartesBancaires: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkCartesBancaires: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkchinaunionpay?language=objc)
-    pub static PKPaymentNetworkChinaUnionPay: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkChinaUnionPay: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkdankort?language=objc)
-    pub static PKPaymentNetworkDankort: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkDankort: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkdiscover?language=objc)
-    pub static PKPaymentNetworkDiscover: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkDiscover: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkeftpos?language=objc)
-    pub static PKPaymentNetworkEftpos: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkEftpos: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkelectron?language=objc)
-    pub static PKPaymentNetworkElectron: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkElectron: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkelo?language=objc)
-    pub static PKPaymentNetworkElo: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkElo: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkidcredit?language=objc)
-    pub static PKPaymentNetworkIDCredit: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkIDCredit: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkinterac?language=objc)
-    pub static PKPaymentNetworkInterac: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkInterac: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkjcb?language=objc)
-    pub static PKPaymentNetworkJCB: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkJCB: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkmada?language=objc)
-    pub static PKPaymentNetworkMada: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkMada: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkmaestro?language=objc)
-    pub static PKPaymentNetworkMaestro: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkMaestro: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkmastercard?language=objc)
-    pub static PKPaymentNetworkMasterCard: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkMasterCard: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkmir?language=objc)
-    pub static PKPaymentNetworkMir: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkMir: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkprivatelabel?language=objc)
-    pub static PKPaymentNetworkPrivateLabel: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkPrivateLabel: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkquicpay?language=objc)
-    pub static PKPaymentNetworkQuicPay: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkQuicPay: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworksuica?language=objc)
-    pub static PKPaymentNetworkSuica: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkSuica: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkvisa?language=objc)
-    pub static PKPaymentNetworkVisa: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkVisa: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkvpay?language=objc)
-    pub static PKPaymentNetworkVPay: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkVPay: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkbarcode?language=objc)
-    pub static PKPaymentNetworkBarcode: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkBarcode: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkgirocard?language=objc)
-    pub static PKPaymentNetworkGirocard: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkGirocard: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkwaon?language=objc)
-    pub static PKPaymentNetworkWaon: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkWaon: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworknanaco?language=objc)
-    pub static PKPaymentNetworkNanaco: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkNanaco: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkpostfinance?language=objc)
-    pub static PKPaymentNetworkPostFinance: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkPostFinance: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworktmoney?language=objc)
-    pub static PKPaymentNetworkTmoney: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkTmoney: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkmeeza?language=objc)
-    pub static PKPaymentNetworkMeeza: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkMeeza: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworknapas?language=objc)
-    pub static PKPaymentNetworkNAPAS: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkNAPAS: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkbankaxept?language=objc)
-    pub static PKPaymentNetworkBankAxept: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkBankAxept: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkhimyan?language=objc)
-    pub static PKPaymentNetworkHimyan: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkHimyan: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkjaywan?language=objc)
-    pub static PKPaymentNetworkJaywan: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkJaywan: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkmydebit?language=objc)
-    pub static PKPaymentNetworkMyDebit: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkMyDebit: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkconecs?language=objc)
-    pub static PKPaymentNetworkConecs: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkConecs: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkelcorteingles?language=objc)
-    pub static PKPaymentNetworkElCorteIngles: Option<&'static PKPaymentNetwork>;
+    pub static PKPaymentNetworkElCorteIngles: &'static PKPaymentNetwork;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfield?language=objc)
@@ -227,27 +227,27 @@ pub type PKContactField = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfieldpostaladdress?language=objc)
-    pub static PKContactFieldPostalAddress: Option<&'static PKContactField>;
+    pub static PKContactFieldPostalAddress: &'static PKContactField;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfieldemailaddress?language=objc)
-    pub static PKContactFieldEmailAddress: Option<&'static PKContactField>;
+    pub static PKContactFieldEmailAddress: &'static PKContactField;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfieldphonenumber?language=objc)
-    pub static PKContactFieldPhoneNumber: Option<&'static PKContactField>;
+    pub static PKContactFieldPhoneNumber: &'static PKContactField;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfieldname?language=objc)
-    pub static PKContactFieldName: Option<&'static PKContactField>;
+    pub static PKContactFieldName: &'static PKContactField;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfieldphoneticname?language=objc)
-    pub static PKContactFieldPhoneticName: Option<&'static PKContactField>;
+    pub static PKContactFieldPhoneticName: &'static PKContactField;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus?language=objc)

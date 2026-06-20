@@ -35,22 +35,22 @@ unsafe impl RefEncode for IKImageBrowserCellState {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellbackgroundlayer?language=objc)
-    pub static IKImageBrowserCellBackgroundLayer: Option<&'static NSString>;
+    pub static IKImageBrowserCellBackgroundLayer: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellforegroundlayer?language=objc)
-    pub static IKImageBrowserCellForegroundLayer: Option<&'static NSString>;
+    pub static IKImageBrowserCellForegroundLayer: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellselectionlayer?language=objc)
-    pub static IKImageBrowserCellSelectionLayer: Option<&'static NSString>;
+    pub static IKImageBrowserCellSelectionLayer: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellplaceholderlayer?language=objc)
-    pub static IKImageBrowserCellPlaceHolderLayer: Option<&'static NSString>;
+    pub static IKImageBrowserCellPlaceHolderLayer: &'static NSString;
 }
 
 extern_class!(

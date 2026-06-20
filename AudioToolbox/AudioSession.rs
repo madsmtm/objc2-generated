@@ -85,43 +85,42 @@ extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_routechangekey_reason?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSession_RouteChangeKey_Reason: Option<&'static CFString>;
+    pub static kAudioSession_RouteChangeKey_Reason: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_previousroutedescription?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSession_AudioRouteChangeKey_PreviousRouteDescription:
-        Option<&'static CFString>;
+    pub static kAudioSession_AudioRouteChangeKey_PreviousRouteDescription: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_currentroutedescription?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSession_AudioRouteChangeKey_CurrentRouteDescription: Option<&'static CFString>;
+    pub static kAudioSession_AudioRouteChangeKey_CurrentRouteDescription: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_inputs?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSession_AudioRouteKey_Inputs: Option<&'static CFString>;
+    pub static kAudioSession_AudioRouteKey_Inputs: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_outputs?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSession_AudioRouteKey_Outputs: Option<&'static CFString>;
+    pub static kAudioSession_AudioRouteKey_Outputs: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_type?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSession_AudioRouteKey_Type: Option<&'static CFString>;
+    pub static kAudioSession_AudioRouteKey_Type: &'static CFString;
 }
 
 extern "C" {
@@ -142,35 +141,35 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_linein?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionInputRoute_LineIn: Option<&'static CFString>;
+    pub static kAudioSessionInputRoute_LineIn: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_builtinmic?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionInputRoute_BuiltInMic: Option<&'static CFString>;
+    pub static kAudioSessionInputRoute_BuiltInMic: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_headsetmic?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionInputRoute_HeadsetMic: Option<&'static CFString>;
+    pub static kAudioSessionInputRoute_HeadsetMic: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_bluetoothhfp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionInputRoute_BluetoothHFP: Option<&'static CFString>;
+    pub static kAudioSessionInputRoute_BluetoothHFP: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_usbaudio?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionInputRoute_USBAudio: Option<&'static CFString>;
+    pub static kAudioSessionInputRoute_USBAudio: &'static CFString;
 }
 
 extern "C" {
@@ -199,91 +198,91 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_lineout?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionOutputRoute_LineOut: Option<&'static CFString>;
+    pub static kAudioSessionOutputRoute_LineOut: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_headphones?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionOutputRoute_Headphones: Option<&'static CFString>;
+    pub static kAudioSessionOutputRoute_Headphones: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_bluetoothhfp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionOutputRoute_BluetoothHFP: Option<&'static CFString>;
+    pub static kAudioSessionOutputRoute_BluetoothHFP: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_bluetootha2dp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionOutputRoute_BluetoothA2DP: Option<&'static CFString>;
+    pub static kAudioSessionOutputRoute_BluetoothA2DP: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_builtinreceiver?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionOutputRoute_BuiltInReceiver: Option<&'static CFString>;
+    pub static kAudioSessionOutputRoute_BuiltInReceiver: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_builtinspeaker?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionOutputRoute_BuiltInSpeaker: Option<&'static CFString>;
+    pub static kAudioSessionOutputRoute_BuiltInSpeaker: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_usbaudio?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionOutputRoute_USBAudio: Option<&'static CFString>;
+    pub static kAudioSessionOutputRoute_USBAudio: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_hdmi?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionOutputRoute_HDMI: Option<&'static CFString>;
+    pub static kAudioSessionOutputRoute_HDMI: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_airplay?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSessionOutputRoute_AirPlay: Option<&'static CFString>;
+    pub static kAudioSessionOutputRoute_AirPlay: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_inputsourcekey_id?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSession_InputSourceKey_ID: Option<&'static CFString>;
+    pub static kAudioSession_InputSourceKey_ID: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_inputsourcekey_description?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSession_InputSourceKey_Description: Option<&'static CFString>;
+    pub static kAudioSession_InputSourceKey_Description: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_outputdestinationkey_id?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSession_OutputDestinationKey_ID: Option<&'static CFString>;
+    pub static kAudioSession_OutputDestinationKey_ID: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_outputdestinationkey_description?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
-    pub static kAudioSession_OutputDestinationKey_Description: Option<&'static CFString>;
+    pub static kAudioSession_OutputDestinationKey_Description: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninterruptiontype_shouldresume?language=objc)

@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerrordomain?language=objc)
-    pub static CNErrorDomain: Option<&'static NSString>;
+    pub static CNErrorDomain: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerrorcode?language=objc)
@@ -86,26 +86,26 @@ extern "C" {
     /// When available an array of one or more CNContact, CNGroup, CNContainer, CNSaveRequest, or CNFetchRequest objects for which the error code applies.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordskey?language=objc)
-    pub static CNErrorUserInfoAffectedRecordsKey: Option<&'static NSString>;
+    pub static CNErrorUserInfoAffectedRecordsKey: &'static NSString;
 }
 
 extern "C" {
     /// When available an array of one or more NSString objects for which the error code applies.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordidentifierskey?language=objc)
-    pub static CNErrorUserInfoAffectedRecordIdentifiersKey: Option<&'static NSString>;
+    pub static CNErrorUserInfoAffectedRecordIdentifiersKey: &'static NSString;
 }
 
 extern "C" {
     /// An array of NSErrors for CNErrorCodeValidationMultipleErrors.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfovalidationerrorskey?language=objc)
-    pub static CNErrorUserInfoValidationErrorsKey: Option<&'static NSString>;
+    pub static CNErrorUserInfoValidationErrorsKey: &'static NSString;
 }
 
 extern "C" {
     /// An array of key paths associated with a given error. For validation errors this will contain key paths to specific object properties.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfokeypathskey?language=objc)
-    pub static CNErrorUserInfoKeyPathsKey: Option<&'static NSString>;
+    pub static CNErrorUserInfoKeyPathsKey: &'static NSString;
 }

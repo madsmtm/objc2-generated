@@ -267,7 +267,7 @@ extern "C" {
     /// Send when the user clicked on a filter in the Filter Browser. The name of the selected filter is send as the object in the notification
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserfilterselectednotification?language=objc)
-    pub static IKFilterBrowserFilterSelectedNotification: Option<&'static NSString>;
+    pub static IKFilterBrowserFilterSelectedNotification: &'static NSString;
 }
 
 extern "C" {
@@ -276,7 +276,7 @@ extern "C" {
     /// Send when the user made a double click on a filter in the Filter Browser. The name of the selected filter is send as the object in the notification
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserfilterdoubleclicknotification?language=objc)
-    pub static IKFilterBrowserFilterDoubleClickNotification: Option<&'static NSString>;
+    pub static IKFilterBrowserFilterDoubleClickNotification: &'static NSString;
 }
 
 extern "C" {
@@ -285,7 +285,7 @@ extern "C" {
     /// Send before a filter is previewed allowing for setting parameters of that filter. The selected CIFilter object is send as the object in the notification
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserwillpreviewfilternotification?language=objc)
-    pub static IKFilterBrowserWillPreviewFilterNotification: Option<&'static NSString>;
+    pub static IKFilterBrowserWillPreviewFilterNotification: &'static NSString;
 }
 
 extern "C" {
@@ -294,7 +294,7 @@ extern "C" {
     /// BOOL - Determines if the filter browser should show the category list
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowsershowcategories?language=objc)
-    pub static IKFilterBrowserShowCategories: Option<&'static NSString>;
+    pub static IKFilterBrowserShowCategories: &'static NSString;
 }
 
 extern "C" {
@@ -303,7 +303,7 @@ extern "C" {
     /// BOOL - Determines if the filter browser should show the preview well
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowsershowpreview?language=objc)
-    pub static IKFilterBrowserShowPreview: Option<&'static NSString>;
+    pub static IKFilterBrowserShowPreview: &'static NSString;
 }
 
 extern "C" {
@@ -312,7 +312,7 @@ extern "C" {
     /// NSArray - The categories in this array will not be displayed in the browser
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserexcludecategories?language=objc)
-    pub static IKFilterBrowserExcludeCategories: Option<&'static NSString>;
+    pub static IKFilterBrowserExcludeCategories: &'static NSString;
 }
 
 extern "C" {
@@ -321,7 +321,7 @@ extern "C" {
     /// NSArray - The filters in this array will not be displayed in the browser
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserexcludefilters?language=objc)
-    pub static IKFilterBrowserExcludeFilters: Option<&'static NSString>;
+    pub static IKFilterBrowserExcludeFilters: &'static NSString;
 }
 
 extern "C" {
@@ -330,5 +330,5 @@ extern "C" {
     /// CIImage* - You can also set the inputImage among other parameters during the IKFilterBrowserWillPreviewFilterNotification. This image will be set before the notification is called. Setting the image to nil falls back to the image suplied by the framework.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserdefaultinputimage?language=objc)
-    pub static IKFilterBrowserDefaultInputImage: Option<&'static NSString>;
+    pub static IKFilterBrowserDefaultInputImage: &'static NSString;
 }

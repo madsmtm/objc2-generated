@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerrordomain?language=objc)
-    pub static UNErrorDomain: Option<&'static NSString>;
+    pub static UNErrorDomain: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerrorcode?language=objc)

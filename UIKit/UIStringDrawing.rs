@@ -8,25 +8,25 @@ use crate::*;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributefont?language=objc)
     #[deprecated]
-    pub static UITextAttributeFont: Option<&'static NSString>;
+    pub static UITextAttributeFont: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributetextcolor?language=objc)
     #[deprecated]
-    pub static UITextAttributeTextColor: Option<&'static NSString>;
+    pub static UITextAttributeTextColor: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributetextshadowcolor?language=objc)
     #[deprecated = "Use NSShadowAttributeName with an NSShadow instance as the value"]
-    pub static UITextAttributeTextShadowColor: Option<&'static NSString>;
+    pub static UITextAttributeTextShadowColor: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributetextshadowoffset?language=objc)
     #[deprecated = "Use NSShadowAttributeName with an NSShadow instance as the value"]
-    pub static UITextAttributeTextShadowOffset: Option<&'static NSString>;
+    pub static UITextAttributeTextShadowOffset: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode?language=objc)

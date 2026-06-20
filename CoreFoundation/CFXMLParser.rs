@@ -637,20 +637,20 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByUnescapingEntities(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrordescription?language=objc)
-    pub static kCFXMLTreeErrorDescription: Option<&'static CFString>;
+    pub static kCFXMLTreeErrorDescription: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrorlinenumber?language=objc)
-    pub static kCFXMLTreeErrorLineNumber: Option<&'static CFString>;
+    pub static kCFXMLTreeErrorLineNumber: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrorlocation?language=objc)
-    pub static kCFXMLTreeErrorLocation: Option<&'static CFString>;
+    pub static kCFXMLTreeErrorLocation: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrorstatuscode?language=objc)
-    pub static kCFXMLTreeErrorStatusCode: Option<&'static CFString>;
+    pub static kCFXMLTreeErrorStatusCode: &'static CFString;
 }

@@ -29,12 +29,12 @@ cf_objc2_type!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue?language=objc)
-    pub static kCFBooleanTrue: Option<&'static CFBoolean>;
+    pub static kCFBooleanTrue: &'static CFBoolean;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse?language=objc)
-    pub static kCFBooleanFalse: Option<&'static CFBoolean>;
+    pub static kCFBooleanFalse: &'static CFBoolean;
 }
 
 unsafe impl ConcreteType for CFBoolean {
@@ -132,17 +132,17 @@ cf_objc2_type!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberpositiveinfinity?language=objc)
-    pub static kCFNumberPositiveInfinity: Option<&'static CFNumber>;
+    pub static kCFNumberPositiveInfinity: &'static CFNumber;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumbernegativeinfinity?language=objc)
-    pub static kCFNumberNegativeInfinity: Option<&'static CFNumber>;
+    pub static kCFNumberNegativeInfinity: &'static CFNumber;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumbernan?language=objc)
-    pub static kCFNumberNaN: Option<&'static CFNumber>;
+    pub static kCFNumberNaN: &'static CFNumber;
 }
 
 unsafe impl ConcreteType for CFNumber {

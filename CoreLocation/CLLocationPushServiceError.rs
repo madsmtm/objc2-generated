@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerrordomain?language=objc)
-    pub static CLLocationPushServiceErrorDomain: Option<&'static NSErrorDomain>;
+    pub static CLLocationPushServiceErrorDomain: &'static NSErrorDomain;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerror?language=objc)

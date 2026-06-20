@@ -10,51 +10,51 @@ pub type INCarChargingConnectorType = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarchargingconnectortypej1772?language=objc)
-    pub static INCarChargingConnectorTypeJ1772: Option<&'static INCarChargingConnectorType>;
+    pub static INCarChargingConnectorTypeJ1772: &'static INCarChargingConnectorType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarchargingconnectortypeccs1?language=objc)
-    pub static INCarChargingConnectorTypeCCS1: Option<&'static INCarChargingConnectorType>;
+    pub static INCarChargingConnectorTypeCCS1: &'static INCarChargingConnectorType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarchargingconnectortypeccs2?language=objc)
-    pub static INCarChargingConnectorTypeCCS2: Option<&'static INCarChargingConnectorType>;
+    pub static INCarChargingConnectorTypeCCS2: &'static INCarChargingConnectorType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarchargingconnectortypechademo?language=objc)
-    pub static INCarChargingConnectorTypeCHAdeMO: Option<&'static INCarChargingConnectorType>;
+    pub static INCarChargingConnectorTypeCHAdeMO: &'static INCarChargingConnectorType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarchargingconnectortypegbtac?language=objc)
-    pub static INCarChargingConnectorTypeGBTAC: Option<&'static INCarChargingConnectorType>;
+    pub static INCarChargingConnectorTypeGBTAC: &'static INCarChargingConnectorType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarchargingconnectortypegbtdc?language=objc)
-    pub static INCarChargingConnectorTypeGBTDC: Option<&'static INCarChargingConnectorType>;
+    pub static INCarChargingConnectorTypeGBTDC: &'static INCarChargingConnectorType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarchargingconnectortypetesla?language=objc)
     #[deprecated = "INCarChargingConnectorTypeTesla is deprecated. Please adopt INCarChargingConnectorTypeNACSDC instead"]
-    pub static INCarChargingConnectorTypeTesla: Option<&'static INCarChargingConnectorType>;
+    pub static INCarChargingConnectorTypeTesla: &'static INCarChargingConnectorType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarchargingconnectortypemennekes?language=objc)
-    pub static INCarChargingConnectorTypeMennekes: Option<&'static INCarChargingConnectorType>;
+    pub static INCarChargingConnectorTypeMennekes: &'static INCarChargingConnectorType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarchargingconnectortypenacsdc?language=objc)
-    pub static INCarChargingConnectorTypeNACSDC: Option<&'static INCarChargingConnectorType>;
+    pub static INCarChargingConnectorTypeNACSDC: &'static INCarChargingConnectorType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarchargingconnectortypenacsac?language=objc)
-    pub static INCarChargingConnectorTypeNACSAC: Option<&'static INCarChargingConnectorType>;
+    pub static INCarChargingConnectorTypeNACSAC: &'static INCarChargingConnectorType;
 }

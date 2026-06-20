@@ -12,7 +12,7 @@ extern "C" {
     /// EventKit Framework.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerrordomain?language=objc)
-    pub static EKErrorDomain: Option<&'static NSString>;
+    pub static EKErrorDomain: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerrorcode?language=objc)

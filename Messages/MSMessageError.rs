@@ -7,12 +7,12 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/messages/msstickerserrordomain?language=objc)
-    pub static MSStickersErrorDomain: Option<&'static NSString>;
+    pub static MSStickersErrorDomain: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageserrordomain?language=objc)
-    pub static MSMessagesErrorDomain: Option<&'static NSString>;
+    pub static MSMessagesErrorDomain: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode?language=objc)

@@ -50,5 +50,5 @@ extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/nspasteboardtypecollaborationmetadata?language=objc)
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
-    pub static NSPasteboardTypeCollaborationMetadata: Option<&'static NSPasteboardType>;
+    pub static NSPasteboardTypeCollaborationMetadata: &'static NSPasteboardType;
 }

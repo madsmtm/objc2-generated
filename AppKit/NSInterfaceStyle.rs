@@ -55,5 +55,5 @@ impl NSResponder {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinterfacestyledefault?language=objc)
     #[deprecated]
-    pub static NSInterfaceStyleDefault: Option<&'static NSString>;
+    pub static NSInterfaceStyleDefault: &'static NSString;
 }

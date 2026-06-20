@@ -188,11 +188,11 @@ unsafe impl NSObjectIOBluetoothHostControllerDelegate for NSObject {}
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhostcontrollerpoweredonnotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHostControllerPoweredOnNotification: Option<&'static NSString>;
+    pub static IOBluetoothHostControllerPoweredOnNotification: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhostcontrollerpoweredoffnotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHostControllerPoweredOffNotification: Option<&'static NSString>;
+    pub static IOBluetoothHostControllerPoweredOffNotification: &'static NSString;
 }

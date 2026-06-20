@@ -11,27 +11,27 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfplugindynamicregistrationkey?language=objc)
-    pub static kCFPlugInDynamicRegistrationKey: Option<&'static CFString>;
+    pub static kCFPlugInDynamicRegistrationKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfplugindynamicregisterfunctionkey?language=objc)
-    pub static kCFPlugInDynamicRegisterFunctionKey: Option<&'static CFString>;
+    pub static kCFPlugInDynamicRegisterFunctionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpluginunloadfunctionkey?language=objc)
-    pub static kCFPlugInUnloadFunctionKey: Option<&'static CFString>;
+    pub static kCFPlugInUnloadFunctionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpluginfactorieskey?language=objc)
-    pub static kCFPlugInFactoriesKey: Option<&'static CFString>;
+    pub static kCFPlugInFactoriesKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfplugintypeskey?language=objc)
-    pub static kCFPlugInTypesKey: Option<&'static CFString>;
+    pub static kCFPlugInTypesKey: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugindynamicregisterfunction?language=objc)

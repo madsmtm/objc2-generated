@@ -208,18 +208,18 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clklaunchedtimelineentrydatekey?language=objc)
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
-    pub static CLKLaunchedTimelineEntryDateKey: Option<&'static NSString>;
+    pub static CLKLaunchedTimelineEntryDateKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clklaunchedcomplicationidentifierkey?language=objc)
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
-    pub static CLKLaunchedComplicationIdentifierKey: Option<&'static NSString>;
+    pub static CLKLaunchedComplicationIdentifierKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkdefaultcomplicationidentifier?language=objc)
-    pub static CLKDefaultComplicationIdentifier: Option<&'static NSString>;
+    pub static CLKDefaultComplicationIdentifier: &'static NSString;
 }
 
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]

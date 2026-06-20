@@ -26,17 +26,17 @@ pub const NSHangOnEveryExceptionMask: c_uint = NSHangOnUncaughtExceptionMask
     | NSHangOnOtherExceptionMask;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsuncaughtsystemexceptionexception?language=objc)
-    pub static NSUncaughtSystemExceptionException: Option<&'static NSString>;
+    pub static NSUncaughtSystemExceptionException: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsuncaughtruntimeerrorexception?language=objc)
-    pub static NSUncaughtRuntimeErrorException: Option<&'static NSString>;
+    pub static NSUncaughtRuntimeErrorException: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsstacktracekey?language=objc)
-    pub static NSStackTraceKey: Option<&'static NSString>;
+    pub static NSStackTraceKey: &'static NSString;
 }
 
 impl NSExceptionHandler {

@@ -13,7 +13,7 @@ extern "C" {
     /// if you don't provide this key.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtmotionestimationsessioncreationoption_motionvectorsize?language=objc)
-    pub static kVTMotionEstimationSessionCreationOption_MotionVectorSize: Option<&'static CFString>;
+    pub static kVTMotionEstimationSessionCreationOption_MotionVectorSize: &'static CFString;
 }
 
 extern "C" {
@@ -25,8 +25,7 @@ extern "C" {
     /// passes. The default is `kCFBooleanFalse`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtmotionestimationsessioncreationoption_usemultipasssearch?language=objc)
-    pub static kVTMotionEstimationSessionCreationOption_UseMultiPassSearch:
-        Option<&'static CFString>;
+    pub static kVTMotionEstimationSessionCreationOption_UseMultiPassSearch: &'static CFString;
 }
 
 extern "C" {
@@ -35,7 +34,7 @@ extern "C" {
     /// Renamed to `kVTMotionEstimationSessionCreationOption_UseMultiPassSearch`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtmotionestimationsessioncreationoption_detecttruemotion?language=objc)
-    pub static kVTMotionEstimationSessionCreationOption_DetectTrueMotion: Option<&'static CFString>;
+    pub static kVTMotionEstimationSessionCreationOption_DetectTrueMotion: &'static CFString;
 }
 
 extern "C" {
@@ -46,5 +45,5 @@ extern "C" {
     /// and resource tracking.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtmotionestimationsessioncreationoption_label?language=objc)
-    pub static kVTMotionEstimationSessionCreationOption_Label: Option<&'static CFString>;
+    pub static kVTMotionEstimationSessionCreationOption_Label: &'static CFString;
 }

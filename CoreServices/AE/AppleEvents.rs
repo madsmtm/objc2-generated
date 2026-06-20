@@ -311,22 +311,22 @@ extern "C-unwind" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessurlkey?language=objc)
-    pub static kAERemoteProcessURLKey: Option<&'static CFString>;
+    pub static kAERemoteProcessURLKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessnamekey?language=objc)
-    pub static kAERemoteProcessNameKey: Option<&'static CFString>;
+    pub static kAERemoteProcessNameKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessuseridkey?language=objc)
-    pub static kAERemoteProcessUserIDKey: Option<&'static CFString>;
+    pub static kAERemoteProcessUserIDKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessprocessidkey?language=objc)
-    pub static kAERemoteProcessProcessIDKey: Option<&'static CFString>;
+    pub static kAERemoteProcessProcessIDKey: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercontext?language=objc)

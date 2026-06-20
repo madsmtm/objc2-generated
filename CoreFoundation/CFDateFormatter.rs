@@ -340,146 +340,145 @@ impl CFDateFormatter {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterislenient?language=objc)
-    pub static kCFDateFormatterIsLenient: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterIsLenient: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattertimezone?language=objc)
-    pub static kCFDateFormatterTimeZone: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterTimeZone: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattercalendarname?language=objc)
-    pub static kCFDateFormatterCalendarName: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterCalendarName: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterdefaultformat?language=objc)
-    pub static kCFDateFormatterDefaultFormat: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterDefaultFormat: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattertwodigitstartdate?language=objc)
-    pub static kCFDateFormatterTwoDigitStartDate: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterTwoDigitStartDate: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterdefaultdate?language=objc)
-    pub static kCFDateFormatterDefaultDate: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterDefaultDate: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattercalendar?language=objc)
-    pub static kCFDateFormatterCalendar: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterCalendar: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattererasymbols?language=objc)
-    pub static kCFDateFormatterEraSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterEraSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattermonthsymbols?language=objc)
-    pub static kCFDateFormatterMonthSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterMonthSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortmonthsymbols?language=objc)
-    pub static kCFDateFormatterShortMonthSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterShortMonthSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterweekdaysymbols?language=objc)
-    pub static kCFDateFormatterWeekdaySymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterWeekdaySymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortweekdaysymbols?language=objc)
-    pub static kCFDateFormatterShortWeekdaySymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterShortWeekdaySymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatteramsymbol?language=objc)
-    pub static kCFDateFormatterAMSymbol: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterAMSymbol: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterpmsymbol?language=objc)
-    pub static kCFDateFormatterPMSymbol: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterPMSymbol: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterlongerasymbols?language=objc)
-    pub static kCFDateFormatterLongEraSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterLongEraSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterveryshortmonthsymbols?language=objc)
-    pub static kCFDateFormatterVeryShortMonthSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterVeryShortMonthSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterstandalonemonthsymbols?language=objc)
-    pub static kCFDateFormatterStandaloneMonthSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterStandaloneMonthSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortstandalonemonthsymbols?language=objc)
-    pub static kCFDateFormatterShortStandaloneMonthSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterShortStandaloneMonthSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterveryshortstandalonemonthsymbols?language=objc)
-    pub static kCFDateFormatterVeryShortStandaloneMonthSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterVeryShortStandaloneMonthSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterveryshortweekdaysymbols?language=objc)
-    pub static kCFDateFormatterVeryShortWeekdaySymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterVeryShortWeekdaySymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterstandaloneweekdaysymbols?language=objc)
-    pub static kCFDateFormatterStandaloneWeekdaySymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterStandaloneWeekdaySymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortstandaloneweekdaysymbols?language=objc)
-    pub static kCFDateFormatterShortStandaloneWeekdaySymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterShortStandaloneWeekdaySymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterveryshortstandaloneweekdaysymbols?language=objc)
-    pub static kCFDateFormatterVeryShortStandaloneWeekdaySymbols:
-        Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterVeryShortStandaloneWeekdaySymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterquartersymbols?language=objc)
-    pub static kCFDateFormatterQuarterSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterQuarterSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortquartersymbols?language=objc)
-    pub static kCFDateFormatterShortQuarterSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterShortQuarterSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterstandalonequartersymbols?language=objc)
-    pub static kCFDateFormatterStandaloneQuarterSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterStandaloneQuarterSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortstandalonequartersymbols?language=objc)
-    pub static kCFDateFormatterShortStandaloneQuarterSymbols: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterShortStandaloneQuarterSymbols: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattergregorianstartdate?language=objc)
-    pub static kCFDateFormatterGregorianStartDate: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterGregorianStartDate: &'static CFDateFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterdoesrelativedateformattingkey?language=objc)
-    pub static kCFDateFormatterDoesRelativeDateFormattingKey: Option<&'static CFDateFormatterKey>;
+    pub static kCFDateFormatterDoesRelativeDateFormattingKey: &'static CFDateFormatterKey;
 }

@@ -11,5 +11,5 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeysharerecipients?language=objc)
     #[cfg(feature = "UIActivityItemsConfigurationReading")]
     pub static UIActivityItemsConfigurationMetadataKeyShareRecipients:
-        Option<&'static UIActivityItemsConfigurationMetadataKey>;
+        &'static UIActivityItemsConfigurationMetadataKey;
 }

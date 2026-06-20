@@ -374,107 +374,107 @@ impl CFLocale {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecurrentlocaledidchangenotification?language=objc)
     #[cfg(feature = "CFNotificationCenter")]
-    pub static kCFLocaleCurrentLocaleDidChangeNotification: Option<&'static CFNotificationName>;
+    pub static kCFLocaleCurrentLocaleDidChangeNotification: &'static CFNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocaleidentifier?language=objc)
-    pub static kCFLocaleIdentifier: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleIdentifier: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalelanguagecode?language=objc)
-    pub static kCFLocaleLanguageCode: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleLanguageCode: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecountrycode?language=objc)
-    pub static kCFLocaleCountryCode: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleCountryCode: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalescriptcode?language=objc)
-    pub static kCFLocaleScriptCode: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleScriptCode: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalevariantcode?language=objc)
-    pub static kCFLocaleVariantCode: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleVariantCode: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocaleexemplarcharacterset?language=objc)
-    pub static kCFLocaleExemplarCharacterSet: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleExemplarCharacterSet: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecalendaridentifier?language=objc)
-    pub static kCFLocaleCalendarIdentifier: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleCalendarIdentifier: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecalendar?language=objc)
-    pub static kCFLocaleCalendar: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleCalendar: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecollationidentifier?language=objc)
-    pub static kCFLocaleCollationIdentifier: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleCollationIdentifier: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocaleusesmetricsystem?language=objc)
-    pub static kCFLocaleUsesMetricSystem: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleUsesMetricSystem: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalemeasurementsystem?language=objc)
-    pub static kCFLocaleMeasurementSystem: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleMeasurementSystem: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocaledecimalseparator?language=objc)
-    pub static kCFLocaleDecimalSeparator: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleDecimalSeparator: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalegroupingseparator?language=objc)
-    pub static kCFLocaleGroupingSeparator: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleGroupingSeparator: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecurrencysymbol?language=objc)
-    pub static kCFLocaleCurrencySymbol: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleCurrencySymbol: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecurrencycode?language=objc)
-    pub static kCFLocaleCurrencyCode: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleCurrencyCode: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecollatoridentifier?language=objc)
-    pub static kCFLocaleCollatorIdentifier: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleCollatorIdentifier: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalequotationbegindelimiterkey?language=objc)
-    pub static kCFLocaleQuotationBeginDelimiterKey: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleQuotationBeginDelimiterKey: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalequotationenddelimiterkey?language=objc)
-    pub static kCFLocaleQuotationEndDelimiterKey: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleQuotationEndDelimiterKey: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalealternatequotationbegindelimiterkey?language=objc)
-    pub static kCFLocaleAlternateQuotationBeginDelimiterKey: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleAlternateQuotationBeginDelimiterKey: &'static CFLocaleKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalealternatequotationenddelimiterkey?language=objc)
-    pub static kCFLocaleAlternateQuotationEndDelimiterKey: Option<&'static CFLocaleKey>;
+    pub static kCFLocaleAlternateQuotationEndDelimiterKey: &'static CFLocaleKey;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier?language=objc)
@@ -483,120 +483,120 @@ pub type CFCalendarIdentifier = CFString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfgregoriancalendar?language=objc)
-    pub static kCFGregorianCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFGregorianCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbuddhistcalendar?language=objc)
-    pub static kCFBuddhistCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFBuddhistCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfchinesecalendar?language=objc)
-    pub static kCFChineseCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFChineseCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfhebrewcalendar?language=objc)
-    pub static kCFHebrewCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFHebrewCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfislamiccalendar?language=objc)
-    pub static kCFIslamicCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFIslamicCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfislamiccivilcalendar?language=objc)
-    pub static kCFIslamicCivilCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFIslamicCivilCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfjapanesecalendar?language=objc)
-    pub static kCFJapaneseCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFJapaneseCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfrepublicofchinacalendar?language=objc)
-    pub static kCFRepublicOfChinaCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFRepublicOfChinaCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpersiancalendar?language=objc)
-    pub static kCFPersianCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFPersianCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfindiancalendar?language=objc)
-    pub static kCFIndianCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFIndianCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfiso8601calendar?language=objc)
-    pub static kCFISO8601Calendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFISO8601Calendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfislamictabularcalendar?language=objc)
-    pub static kCFIslamicTabularCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFIslamicTabularCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfislamicummalquracalendar?language=objc)
-    pub static kCFIslamicUmmAlQuraCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFIslamicUmmAlQuraCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbanglacalendar?language=objc)
-    pub static kCFBanglaCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFBanglaCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfgujaraticalendar?language=objc)
-    pub static kCFGujaratiCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFGujaratiCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfkannadacalendar?language=objc)
-    pub static kCFKannadaCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFKannadaCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfmalayalamcalendar?language=objc)
-    pub static kCFMalayalamCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFMalayalamCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfmarathicalendar?language=objc)
-    pub static kCFMarathiCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFMarathiCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfodiacalendar?language=objc)
-    pub static kCFOdiaCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFOdiaCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftamilcalendar?language=objc)
-    pub static kCFTamilCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFTamilCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftelugucalendar?language=objc)
-    pub static kCFTeluguCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFTeluguCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfvikramcalendar?language=objc)
-    pub static kCFVikramCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFVikramCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdangicalendar?language=objc)
-    pub static kCFDangiCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFDangiCalendar: &'static CFCalendarIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfvietnamesecalendar?language=objc)
-    pub static kCFVietnameseCalendar: Option<&'static CFCalendarIdentifier>;
+    pub static kCFVietnameseCalendar: &'static CFCalendarIdentifier;
 }

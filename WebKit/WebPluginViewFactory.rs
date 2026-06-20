@@ -13,7 +13,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginbaseurlkey?language=objc)
     #[deprecated]
-    pub static WebPlugInBaseURLKey: Option<&'static NSString>;
+    pub static WebPlugInBaseURLKey: &'static NSString;
 }
 
 extern "C" {
@@ -25,7 +25,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginattributeskey?language=objc)
     #[deprecated]
-    pub static WebPlugInAttributesKey: Option<&'static NSString>;
+    pub static WebPlugInAttributesKey: &'static NSString;
 }
 
 extern "C" {
@@ -35,7 +35,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webplugincontainerkey?language=objc)
     #[deprecated]
-    pub static WebPlugInContainerKey: Option<&'static NSString>;
+    pub static WebPlugInContainerKey: &'static NSString;
 }
 
 extern "C" {
@@ -43,7 +43,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webplugincontainingelementkey?language=objc)
     #[deprecated]
-    pub static WebPlugInContainingElementKey: Option<&'static NSString>;
+    pub static WebPlugInContainingElementKey: &'static NSString;
 }
 
 extern "C" {
@@ -54,7 +54,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginshouldloadmainresourcekey?language=objc)
     #[deprecated]
-    pub static WebPlugInShouldLoadMainResourceKey: Option<&'static NSString>;
+    pub static WebPlugInShouldLoadMainResourceKey: &'static NSString;
 }
 
 extern_protocol!(

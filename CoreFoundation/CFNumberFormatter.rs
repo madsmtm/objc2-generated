@@ -297,197 +297,197 @@ impl CFNumberFormatter {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattercurrencycode?language=objc)
-    pub static kCFNumberFormatterCurrencyCode: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterCurrencyCode: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterdecimalseparator?language=objc)
-    pub static kCFNumberFormatterDecimalSeparator: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterDecimalSeparator: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattercurrencydecimalseparator?language=objc)
-    pub static kCFNumberFormatterCurrencyDecimalSeparator: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterCurrencyDecimalSeparator: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatteralwaysshowdecimalseparator?language=objc)
-    pub static kCFNumberFormatterAlwaysShowDecimalSeparator: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterAlwaysShowDecimalSeparator: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattergroupingseparator?language=objc)
-    pub static kCFNumberFormatterGroupingSeparator: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterGroupingSeparator: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterusegroupingseparator?language=objc)
-    pub static kCFNumberFormatterUseGroupingSeparator: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterUseGroupingSeparator: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpercentsymbol?language=objc)
-    pub static kCFNumberFormatterPercentSymbol: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterPercentSymbol: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterzerosymbol?language=objc)
-    pub static kCFNumberFormatterZeroSymbol: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterZeroSymbol: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatternansymbol?language=objc)
-    pub static kCFNumberFormatterNaNSymbol: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterNaNSymbol: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterinfinitysymbol?language=objc)
-    pub static kCFNumberFormatterInfinitySymbol: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterInfinitySymbol: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterminussign?language=objc)
-    pub static kCFNumberFormatterMinusSign: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterMinusSign: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterplussign?language=objc)
-    pub static kCFNumberFormatterPlusSign: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterPlusSign: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattercurrencysymbol?language=objc)
-    pub static kCFNumberFormatterCurrencySymbol: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterCurrencySymbol: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterexponentsymbol?language=objc)
-    pub static kCFNumberFormatterExponentSymbol: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterExponentSymbol: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterminintegerdigits?language=objc)
-    pub static kCFNumberFormatterMinIntegerDigits: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterMinIntegerDigits: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattermaxintegerdigits?language=objc)
-    pub static kCFNumberFormatterMaxIntegerDigits: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterMaxIntegerDigits: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterminfractiondigits?language=objc)
-    pub static kCFNumberFormatterMinFractionDigits: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterMinFractionDigits: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattermaxfractiondigits?language=objc)
-    pub static kCFNumberFormatterMaxFractionDigits: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterMaxFractionDigits: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattergroupingsize?language=objc)
-    pub static kCFNumberFormatterGroupingSize: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterGroupingSize: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattersecondarygroupingsize?language=objc)
-    pub static kCFNumberFormatterSecondaryGroupingSize: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterSecondaryGroupingSize: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterroundingmode?language=objc)
-    pub static kCFNumberFormatterRoundingMode: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterRoundingMode: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterroundingincrement?language=objc)
-    pub static kCFNumberFormatterRoundingIncrement: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterRoundingIncrement: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterformatwidth?language=objc)
-    pub static kCFNumberFormatterFormatWidth: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterFormatWidth: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpaddingposition?language=objc)
-    pub static kCFNumberFormatterPaddingPosition: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterPaddingPosition: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpaddingcharacter?language=objc)
-    pub static kCFNumberFormatterPaddingCharacter: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterPaddingCharacter: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterdefaultformat?language=objc)
-    pub static kCFNumberFormatterDefaultFormat: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterDefaultFormat: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattermultiplier?language=objc)
-    pub static kCFNumberFormatterMultiplier: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterMultiplier: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpositiveprefix?language=objc)
-    pub static kCFNumberFormatterPositivePrefix: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterPositivePrefix: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpositivesuffix?language=objc)
-    pub static kCFNumberFormatterPositiveSuffix: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterPositiveSuffix: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatternegativeprefix?language=objc)
-    pub static kCFNumberFormatterNegativePrefix: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterNegativePrefix: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatternegativesuffix?language=objc)
-    pub static kCFNumberFormatterNegativeSuffix: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterNegativeSuffix: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpermillsymbol?language=objc)
-    pub static kCFNumberFormatterPerMillSymbol: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterPerMillSymbol: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterinternationalcurrencysymbol?language=objc)
-    pub static kCFNumberFormatterInternationalCurrencySymbol: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterInternationalCurrencySymbol: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattercurrencygroupingseparator?language=objc)
-    pub static kCFNumberFormatterCurrencyGroupingSeparator: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterCurrencyGroupingSeparator: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterislenient?language=objc)
-    pub static kCFNumberFormatterIsLenient: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterIsLenient: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterusesignificantdigits?language=objc)
-    pub static kCFNumberFormatterUseSignificantDigits: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterUseSignificantDigits: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterminsignificantdigits?language=objc)
-    pub static kCFNumberFormatterMinSignificantDigits: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterMinSignificantDigits: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattermaxsignificantdigits?language=objc)
-    pub static kCFNumberFormatterMaxSignificantDigits: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterMaxSignificantDigits: &'static CFNumberFormatterKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattermingroupingdigits?language=objc)
-    pub static kCFNumberFormatterMinGroupingDigits: Option<&'static CFNumberFormatterKey>;
+    pub static kCFNumberFormatterMinGroupingDigits: &'static CFNumberFormatterKey;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode?language=objc)

@@ -14,7 +14,7 @@ extern "C" {
     /// Indicates the output media type of a caption conversion operation. For example, AVMediaTypeClosedCaption.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionmediatypekey?language=objc)
-    pub static AVCaptionMediaTypeKey: Option<&'static AVCaptionSettingsKey>;
+    pub static AVCaptionMediaTypeKey: &'static AVCaptionSettingsKey;
 }
 
 extern "C" {
@@ -25,7 +25,7 @@ extern "C" {
     /// c608" instead of [NSNumber numberWithInt:kCMClosedCaptionFormatType_CEA608].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionmediasubtypekey?language=objc)
-    pub static AVCaptionMediaSubTypeKey: Option<&'static AVCaptionSettingsKey>;
+    pub static AVCaptionMediaSubTypeKey: &'static AVCaptionSettingsKey;
 }
 
 extern "C" {
@@ -36,7 +36,7 @@ extern "C" {
     /// For example, if the time code steps for every 1001 / 30000 seconds, the value should be CMTime(value: 1001, scale: 30000).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiontimecodeframedurationkey?language=objc)
-    pub static AVCaptionTimeCodeFrameDurationKey: Option<&'static AVCaptionSettingsKey>;
+    pub static AVCaptionTimeCodeFrameDurationKey: &'static AVCaptionSettingsKey;
 }
 
 extern "C" {
@@ -48,5 +48,5 @@ extern "C" {
     /// The default is NO.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionusedropframetimecodekey?language=objc)
-    pub static AVCaptionUseDropFrameTimeCodeKey: Option<&'static AVCaptionSettingsKey>;
+    pub static AVCaptionUseDropFrameTimeCodeKey: &'static AVCaptionSettingsKey;
 }

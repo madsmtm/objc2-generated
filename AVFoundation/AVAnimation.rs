@@ -27,7 +27,7 @@ extern "C" {
     /// property of an AVPlayerLayer or AVCaptureVideoPreviewLayer instance.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravityresizeaspect?language=objc)
-    pub static AVLayerVideoGravityResizeAspect: Option<&'static AVLayerVideoGravity>;
+    pub static AVLayerVideoGravityResizeAspect: &'static AVLayerVideoGravity;
 }
 
 extern "C" {
@@ -37,7 +37,7 @@ extern "C" {
     /// property of an AVPlayerLayer or AVCaptureVideoPreviewLayer instance.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravityresizeaspectfill?language=objc)
-    pub static AVLayerVideoGravityResizeAspectFill: Option<&'static AVLayerVideoGravity>;
+    pub static AVLayerVideoGravityResizeAspectFill: &'static AVLayerVideoGravity;
 }
 
 extern "C" {
@@ -47,5 +47,5 @@ extern "C" {
     /// property of an AVPlayerLayer or AVCaptureVideoPreviewLayer instance.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravityresize?language=objc)
-    pub static AVLayerVideoGravityResize: Option<&'static AVLayerVideoGravity>;
+    pub static AVLayerVideoGravityResize: &'static AVLayerVideoGravity;
 }

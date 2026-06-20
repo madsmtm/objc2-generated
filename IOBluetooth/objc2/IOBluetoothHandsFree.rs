@@ -140,91 +140,91 @@ unsafe impl RefEncode for IOBluetoothHandsFreeCodecID {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorservice?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeIndicatorService: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeIndicatorService: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorcall?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeIndicatorCall: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeIndicatorCall: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorcallsetup?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeIndicatorCallSetup: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeIndicatorCallSetup: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorcallheld?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeIndicatorCallHeld: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeIndicatorCallHeld: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorsignal?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeIndicatorSignal: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeIndicatorSignal: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorroam?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeIndicatorRoam: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeIndicatorRoam: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorbattchg?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeIndicatorBattChg: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeIndicatorBattChg: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallindex?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeCallIndex: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeCallIndex: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecalldirection?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeCallDirection: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeCallDirection: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallstatus?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeCallStatus: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeCallStatus: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallmode?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeCallMode: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeCallMode: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallmultiparty?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeCallMultiparty: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeCallMultiparty: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallnumber?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeCallNumber: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeCallNumber: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecalltype?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeCallType: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeCallType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallname?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothHandsFreeCallName: Option<&'static NSString>;
+    pub static IOBluetoothHandsFreeCallName: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsmsmode?language=objc)
@@ -298,55 +298,55 @@ unsafe impl RefEncode for IOBluetoothHandsFreePDUMessageStatus {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduserviccenteraddress?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothPDUServicCenterAddress: Option<&'static NSString>;
+    pub static IOBluetoothPDUServicCenterAddress: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduservicecenteraddresstype?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothPDUServiceCenterAddressType: Option<&'static NSString>;
+    pub static IOBluetoothPDUServiceCenterAddressType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpdutype?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothPDUType: Option<&'static NSString>;
+    pub static IOBluetoothPDUType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduoriginatingaddress?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothPDUOriginatingAddress: Option<&'static NSString>;
+    pub static IOBluetoothPDUOriginatingAddress: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduoriginatingaddresstype?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothPDUOriginatingAddressType: Option<&'static NSString>;
+    pub static IOBluetoothPDUOriginatingAddressType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduprotocolid?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothPDUProtocolID: Option<&'static NSString>;
+    pub static IOBluetoothPDUProtocolID: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpdutimestamp?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothPDUTimestamp: Option<&'static NSString>;
+    pub static IOBluetoothPDUTimestamp: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduencoding?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothPDUEncoding: Option<&'static NSString>;
+    pub static IOBluetoothPDUEncoding: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduuserdata?language=objc)
     #[cfg(feature = "objc2-foundation")]
-    pub static IOBluetoothPDUUserData: Option<&'static NSString>;
+    pub static IOBluetoothPDUUserData: &'static NSString;
 }
 
 extern_class!(

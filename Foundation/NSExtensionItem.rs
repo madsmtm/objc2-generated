@@ -123,17 +123,17 @@ impl DefaultRetained for NSExtensionItem {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattributedtitlekey?language=objc)
     #[cfg(feature = "NSString")]
-    pub static NSExtensionItemAttributedTitleKey: Option<&'static NSString>;
+    pub static NSExtensionItemAttributedTitleKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattributedcontenttextkey?language=objc)
     #[cfg(feature = "NSString")]
-    pub static NSExtensionItemAttributedContentTextKey: Option<&'static NSString>;
+    pub static NSExtensionItemAttributedContentTextKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattachmentskey?language=objc)
     #[cfg(feature = "NSString")]
-    pub static NSExtensionItemAttachmentsKey: Option<&'static NSString>;
+    pub static NSExtensionItemAttachmentsKey: &'static NSString;
 }

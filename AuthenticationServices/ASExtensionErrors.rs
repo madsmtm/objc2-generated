@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerrordomain?language=objc)
-    pub static ASExtensionErrorDomain: Option<&'static NSErrorDomain>;
+    pub static ASExtensionErrorDomain: &'static NSErrorDomain;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerrorcode?language=objc)
@@ -42,5 +42,5 @@ extern "C" {
     /// A key that specifies an error string to be shown to the user when an extension request fails.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionlocalizedfailurereasonerrorkey?language=objc)
-    pub static ASExtensionLocalizedFailureReasonErrorKey: Option<&'static NSErrorUserInfoKey>;
+    pub static ASExtensionLocalizedFailureReasonErrorKey: &'static NSErrorUserInfoKey;
 }

@@ -30,8 +30,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/nsprocessinfoperformanceprofiledidchangenotification?language=objc)
-    pub static NSProcessInfoPerformanceProfileDidChangeNotification:
-        Option<&'static NSNotificationName>;
+    pub static NSProcessInfoPerformanceProfileDidChangeNotification: &'static NSNotificationName;
 }
 
 mod private_NSProcessInfoNSDeviceCertification {

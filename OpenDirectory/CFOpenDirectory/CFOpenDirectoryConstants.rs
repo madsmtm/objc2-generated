@@ -15,7 +15,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessionproxyaddress?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODSessionProxyAddress: Option<&'static CFString>;
+    pub static kODSessionProxyAddress: &'static CFString;
 }
 
 extern "C" {
@@ -26,7 +26,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessionproxyport?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODSessionProxyPort: Option<&'static CFString>;
+    pub static kODSessionProxyPort: &'static CFString;
 }
 
 extern "C" {
@@ -36,7 +36,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessionproxyusername?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODSessionProxyUsername: Option<&'static CFString>;
+    pub static kODSessionProxyUsername: &'static CFString;
 }
 
 extern "C" {
@@ -46,7 +46,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessionproxypassword?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODSessionProxyPassword: Option<&'static CFString>;
+    pub static kODSessionProxyPassword: &'static CFString;
 }
 
 extern "C" {
@@ -56,7 +56,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionquerytimeout?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionQueryTimeout: Option<&'static CFString>;
+    pub static kODModuleConfigOptionQueryTimeout: &'static CFString;
 }
 
 extern "C" {
@@ -66,7 +66,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionconnectionsetuptimeout?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionConnectionSetupTimeout: Option<&'static CFString>;
+    pub static kODModuleConfigOptionConnectionSetupTimeout: &'static CFString;
 }
 
 extern "C" {
@@ -76,7 +76,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionconnectionidledisconnect?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionConnectionIdleDisconnect: Option<&'static CFString>;
+    pub static kODModuleConfigOptionConnectionIdleDisconnect: &'static CFString;
 }
 
 extern "C" {
@@ -86,7 +86,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionpacketsigning?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionPacketSigning: Option<&'static CFString>;
+    pub static kODModuleConfigOptionPacketSigning: &'static CFString;
 }
 
 extern "C" {
@@ -96,7 +96,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionpacketencryption?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionPacketEncryption: Option<&'static CFString>;
+    pub static kODModuleConfigOptionPacketEncryption: &'static CFString;
 }
 
 extern "C" {
@@ -106,7 +106,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionmaninthemiddle?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionManInTheMiddle: Option<&'static CFString>;
+    pub static kODModuleConfigOptionManInTheMiddle: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypeauthentication?language=objc)
@@ -133,7 +133,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodeoptionsqueryskippedsubnode?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODNodeOptionsQuerySkippedSubnode: Option<&'static CFString>;
+    pub static kODNodeOptionsQuerySkippedSubnode: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchany?language=objc)
@@ -190,7 +190,7 @@ extern "C" {
     /// Identifies records that represent each possible attribute type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeattributetypes?language=objc)
-    pub static kODRecordTypeAttributeTypes: Option<&'static ODRecordType>;
+    pub static kODRecordTypeAttributeTypes: &'static ODRecordType;
 }
 
 extern "C" {
@@ -199,7 +199,7 @@ extern "C" {
     /// Record type of AFP server records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeafpserver?language=objc)
-    pub static kODRecordTypeAFPServer: Option<&'static ODRecordType>;
+    pub static kODRecordTypeAFPServer: &'static ODRecordType;
 }
 
 extern "C" {
@@ -208,7 +208,7 @@ extern "C" {
     /// Used to represent alias records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypealiases?language=objc)
-    pub static kODRecordTypeAliases: Option<&'static ODRecordType>;
+    pub static kODRecordTypeAliases: &'static ODRecordType;
 }
 
 extern "C" {
@@ -217,7 +217,7 @@ extern "C" {
     /// Used to store augmented record data.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeaugments?language=objc)
-    pub static kODRecordTypeAugments: Option<&'static ODRecordType>;
+    pub static kODRecordTypeAugments: &'static ODRecordType;
 }
 
 extern "C" {
@@ -226,7 +226,7 @@ extern "C" {
     /// Used to store automount record data.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeautomount?language=objc)
-    pub static kODRecordTypeAutomount: Option<&'static ODRecordType>;
+    pub static kODRecordTypeAutomount: &'static ODRecordType;
 }
 
 extern "C" {
@@ -235,7 +235,7 @@ extern "C" {
     /// Used to store automountMap record data.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeautomountmap?language=objc)
-    pub static kODRecordTypeAutomountMap: Option<&'static ODRecordType>;
+    pub static kODRecordTypeAutomountMap: &'static ODRecordType;
 }
 
 extern "C" {
@@ -244,7 +244,7 @@ extern "C" {
     /// Used to discover automated server setup information.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeautoserversetup?language=objc)
-    pub static kODRecordTypeAutoServerSetup: Option<&'static ODRecordType>;
+    pub static kODRecordTypeAutoServerSetup: &'static ODRecordType;
 }
 
 extern "C" {
@@ -253,7 +253,7 @@ extern "C" {
     /// Record in the local node for storing bootp info.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypebootp?language=objc)
-    pub static kODRecordTypeBootp: Option<&'static ODRecordType>;
+    pub static kODRecordTypeBootp: &'static ODRecordType;
 }
 
 extern "C" {
@@ -262,7 +262,7 @@ extern "C" {
     /// Record type that contains certificate authority information.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypecertificateauthorities?language=objc)
-    pub static kODRecordTypeCertificateAuthorities: Option<&'static ODRecordType>;
+    pub static kODRecordTypeCertificateAuthorities: &'static ODRecordType;
 }
 
 extern "C" {
@@ -271,7 +271,7 @@ extern "C" {
     /// Identifies computer list records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypecomputerlists?language=objc)
-    pub static kODRecordTypeComputerLists: Option<&'static ODRecordType>;
+    pub static kODRecordTypeComputerLists: &'static ODRecordType;
 }
 
 extern "C" {
@@ -280,7 +280,7 @@ extern "C" {
     /// Identifies computer group records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypecomputergroups?language=objc)
-    pub static kODRecordTypeComputerGroups: Option<&'static ODRecordType>;
+    pub static kODRecordTypeComputerGroups: &'static ODRecordType;
 }
 
 extern "C" {
@@ -289,7 +289,7 @@ extern "C" {
     /// Identifies computer records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypecomputers?language=objc)
-    pub static kODRecordTypeComputers: Option<&'static ODRecordType>;
+    pub static kODRecordTypeComputers: &'static ODRecordType;
 }
 
 extern "C" {
@@ -298,7 +298,7 @@ extern "C" {
     /// Identifies configuration records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeconfiguration?language=objc)
-    pub static kODRecordTypeConfiguration: Option<&'static ODRecordType>;
+    pub static kODRecordTypeConfiguration: &'static ODRecordType;
 }
 
 extern "C" {
@@ -307,7 +307,7 @@ extern "C" {
     /// Record in the node for storing ethernets.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeethernets?language=objc)
-    pub static kODRecordTypeEthernets: Option<&'static ODRecordType>;
+    pub static kODRecordTypeEthernets: &'static ODRecordType;
 }
 
 extern "C" {
@@ -317,7 +317,7 @@ extern "C" {
     /// used for service discovery.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypefilemakerservers?language=objc)
-    pub static kODRecordTypeFileMakerServers: Option<&'static ODRecordType>;
+    pub static kODRecordTypeFileMakerServers: &'static ODRecordType;
 }
 
 extern "C" {
@@ -326,7 +326,7 @@ extern "C" {
     /// Identifies ftp server records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeftpserver?language=objc)
-    pub static kODRecordTypeFTPServer: Option<&'static ODRecordType>;
+    pub static kODRecordTypeFTPServer: &'static ODRecordType;
 }
 
 extern "C" {
@@ -335,7 +335,7 @@ extern "C" {
     /// Identifies group records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypegroups?language=objc)
-    pub static kODRecordTypeGroups: Option<&'static ODRecordType>;
+    pub static kODRecordTypeGroups: &'static ODRecordType;
 }
 
 extern "C" {
@@ -344,7 +344,7 @@ extern "C" {
     /// Record in the local node for storing host services.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypehostservices?language=objc)
-    pub static kODRecordTypeHostServices: Option<&'static ODRecordType>;
+    pub static kODRecordTypeHostServices: &'static ODRecordType;
 }
 
 extern "C" {
@@ -353,7 +353,7 @@ extern "C" {
     /// Identifies host records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypehosts?language=objc)
-    pub static kODRecordTypeHosts: Option<&'static ODRecordType>;
+    pub static kODRecordTypeHosts: &'static ODRecordType;
 }
 
 extern "C" {
@@ -362,7 +362,7 @@ extern "C" {
     /// Identifies LDAP server records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeldapserver?language=objc)
-    pub static kODRecordTypeLDAPServer: Option<&'static ODRecordType>;
+    pub static kODRecordTypeLDAPServer: &'static ODRecordType;
 }
 
 extern "C" {
@@ -371,7 +371,7 @@ extern "C" {
     /// Location record type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypelocations?language=objc)
-    pub static kODRecordTypeLocations: Option<&'static ODRecordType>;
+    pub static kODRecordTypeLocations: &'static ODRecordType;
 }
 
 extern "C" {
@@ -380,7 +380,7 @@ extern "C" {
     /// Identifies mount records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypemounts?language=objc)
-    pub static kODRecordTypeMounts: Option<&'static ODRecordType>;
+    pub static kODRecordTypeMounts: &'static ODRecordType;
 }
 
 extern "C" {
@@ -389,7 +389,7 @@ extern "C" {
     /// Identifies NFS records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypenfs?language=objc)
-    pub static kODRecordTypeNFS: Option<&'static ODRecordType>;
+    pub static kODRecordTypeNFS: &'static ODRecordType;
 }
 
 extern "C" {
@@ -398,7 +398,7 @@ extern "C" {
     /// Record in the local node for storing net domains.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypenetdomains?language=objc)
-    pub static kODRecordTypeNetDomains: Option<&'static ODRecordType>;
+    pub static kODRecordTypeNetDomains: &'static ODRecordType;
 }
 
 extern "C" {
@@ -407,7 +407,7 @@ extern "C" {
     /// Record in the local node for storing net groups.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypenetgroups?language=objc)
-    pub static kODRecordTypeNetGroups: Option<&'static ODRecordType>;
+    pub static kODRecordTypeNetGroups: &'static ODRecordType;
 }
 
 extern "C" {
@@ -416,7 +416,7 @@ extern "C" {
     /// Identifies network records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypenetworks?language=objc)
-    pub static kODRecordTypeNetworks: Option<&'static ODRecordType>;
+    pub static kODRecordTypeNetworks: &'static ODRecordType;
 }
 
 extern "C" {
@@ -425,7 +425,7 @@ extern "C" {
     /// Record type that contains "People" records used for contact information.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypepeople?language=objc)
-    pub static kODRecordTypePeople: Option<&'static ODRecordType>;
+    pub static kODRecordTypePeople: &'static ODRecordType;
 }
 
 extern "C" {
@@ -434,7 +434,7 @@ extern "C" {
     /// The computer record type used for presets in record creation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypepresetcomputers?language=objc)
-    pub static kODRecordTypePresetComputers: Option<&'static ODRecordType>;
+    pub static kODRecordTypePresetComputers: &'static ODRecordType;
 }
 
 extern "C" {
@@ -443,7 +443,7 @@ extern "C" {
     /// The computer group record type used for presets in record creation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypepresetcomputergroups?language=objc)
-    pub static kODRecordTypePresetComputerGroups: Option<&'static ODRecordType>;
+    pub static kODRecordTypePresetComputerGroups: &'static ODRecordType;
 }
 
 extern "C" {
@@ -452,7 +452,7 @@ extern "C" {
     /// The computer list record type used for presets in record creation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypepresetcomputerlists?language=objc)
-    pub static kODRecordTypePresetComputerLists: Option<&'static ODRecordType>;
+    pub static kODRecordTypePresetComputerLists: &'static ODRecordType;
 }
 
 extern "C" {
@@ -461,7 +461,7 @@ extern "C" {
     /// The group record type used for presets in record creation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypepresetgroups?language=objc)
-    pub static kODRecordTypePresetGroups: Option<&'static ODRecordType>;
+    pub static kODRecordTypePresetGroups: &'static ODRecordType;
 }
 
 extern "C" {
@@ -470,7 +470,7 @@ extern "C" {
     /// The user record type used for presets in record creation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypepresetusers?language=objc)
-    pub static kODRecordTypePresetUsers: Option<&'static ODRecordType>;
+    pub static kODRecordTypePresetUsers: &'static ODRecordType;
 }
 
 extern "C" {
@@ -479,7 +479,7 @@ extern "C" {
     /// Identifies print service records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeprintservice?language=objc)
-    pub static kODRecordTypePrintService: Option<&'static ODRecordType>;
+    pub static kODRecordTypePrintService: &'static ODRecordType;
 }
 
 extern "C" {
@@ -488,7 +488,7 @@ extern "C" {
     /// Record in the local node for storing quota usage for a user.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeprintserviceuser?language=objc)
-    pub static kODRecordTypePrintServiceUser: Option<&'static ODRecordType>;
+    pub static kODRecordTypePrintServiceUser: &'static ODRecordType;
 }
 
 extern "C" {
@@ -497,7 +497,7 @@ extern "C" {
     /// Identifies printer records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeprinters?language=objc)
-    pub static kODRecordTypePrinters: Option<&'static ODRecordType>;
+    pub static kODRecordTypePrinters: &'static ODRecordType;
 }
 
 extern "C" {
@@ -506,7 +506,7 @@ extern "C" {
     /// Identifies protocol records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeprotocols?language=objc)
-    pub static kODRecordTypeProtocols: Option<&'static ODRecordType>;
+    pub static kODRecordTypeProtocols: &'static ODRecordType;
 }
 
 extern "C" {
@@ -515,7 +515,7 @@ extern "C" {
     /// Identifies quicktime streaming server records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeqtsserver?language=objc)
-    pub static kODRecordTypeQTSServer: Option<&'static ODRecordType>;
+    pub static kODRecordTypeQTSServer: &'static ODRecordType;
 }
 
 extern "C" {
@@ -524,7 +524,7 @@ extern "C" {
     /// Specifically to return query information inline such as skipped nodes
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypequeryinformation?language=objc)
-    pub static kODRecordTypeQueryInformation: Option<&'static ODRecordType>;
+    pub static kODRecordTypeQueryInformation: &'static ODRecordType;
 }
 
 extern "C" {
@@ -533,7 +533,7 @@ extern "C" {
     /// Identifies records that represent each possible record type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtyperecordtypes?language=objc)
-    pub static kODRecordTypeRecordTypes: Option<&'static ODRecordType>;
+    pub static kODRecordTypeRecordTypes: &'static ODRecordType;
 }
 
 extern "C" {
@@ -542,7 +542,7 @@ extern "C" {
     /// Identifies resources used in group services.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtyperesources?language=objc)
-    pub static kODRecordTypeResources: Option<&'static ODRecordType>;
+    pub static kODRecordTypeResources: &'static ODRecordType;
 }
 
 extern "C" {
@@ -551,7 +551,7 @@ extern "C" {
     /// Identifies remote procedure call records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtyperpc?language=objc)
-    pub static kODRecordTypeRPC: Option<&'static ODRecordType>;
+    pub static kODRecordTypeRPC: &'static ODRecordType;
 }
 
 extern "C" {
@@ -560,7 +560,7 @@ extern "C" {
     /// Identifies SMB server records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypesmbserver?language=objc)
-    pub static kODRecordTypeSMBServer: Option<&'static ODRecordType>;
+    pub static kODRecordTypeSMBServer: &'static ODRecordType;
 }
 
 extern "C" {
@@ -569,7 +569,7 @@ extern "C" {
     /// Identifies generic server records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeserver?language=objc)
-    pub static kODRecordTypeServer: Option<&'static ODRecordType>;
+    pub static kODRecordTypeServer: &'static ODRecordType;
 }
 
 extern "C" {
@@ -578,7 +578,7 @@ extern "C" {
     /// Identifies directory based service records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeservices?language=objc)
-    pub static kODRecordTypeServices: Option<&'static ODRecordType>;
+    pub static kODRecordTypeServices: &'static ODRecordType;
 }
 
 extern "C" {
@@ -587,7 +587,7 @@ extern "C" {
     /// Share point record type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypesharepoints?language=objc)
-    pub static kODRecordTypeSharePoints: Option<&'static ODRecordType>;
+    pub static kODRecordTypeSharePoints: &'static ODRecordType;
 }
 
 extern "C" {
@@ -596,7 +596,7 @@ extern "C" {
     /// Identifies user records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypeusers?language=objc)
-    pub static kODRecordTypeUsers: Option<&'static ODRecordType>;
+    pub static kODRecordTypeUsers: &'static ODRecordType;
 }
 
 extern "C" {
@@ -605,7 +605,7 @@ extern "C" {
     /// Identifies web server records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodrecordtypewebserver?language=objc)
-    pub static kODRecordTypeWebServer: Option<&'static ODRecordType>;
+    pub static kODRecordTypeWebServer: &'static ODRecordType;
 }
 
 extern "C" {
@@ -614,7 +614,7 @@ extern "C" {
     /// Used in requesting all attribute types in a search.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeallattributes?language=objc)
-    pub static kODAttributeTypeAllAttributes: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAllAttributes: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -623,7 +623,7 @@ extern "C" {
     /// Used in requesting all standard attribute types in a query.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypestandardonly?language=objc)
-    pub static kODAttributeTypeStandardOnly: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeStandardOnly: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -632,7 +632,7 @@ extern "C" {
     /// Used in requesting all native attribute types in a search.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenativeonly?language=objc)
-    pub static kODAttributeTypeNativeOnly: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNativeOnly: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -641,7 +641,7 @@ extern "C" {
     /// Searches a configured list of attributes; by default: RecordName, FullName, EMailAddress.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemetaambiguousname?language=objc)
-    pub static kODAttributeTypeMetaAmbiguousName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMetaAmbiguousName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -650,7 +650,7 @@ extern "C" {
     /// Attributes that have been augmented.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemetaaugmentedattributes?language=objc)
-    pub static kODAttributeTypeMetaAugmentedAttributes: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMetaAugmentedAttributes: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -659,7 +659,7 @@ extern "C" {
     /// Native record name, e.g. LDAP DN
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemetarecordname?language=objc)
-    pub static kODAttributeTypeMetaRecordName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMetaRecordName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -668,7 +668,7 @@ extern "C" {
     /// XML plist indicating what an admin user can edit. Found in kODRecordTypeUsers records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeadminlimits?language=objc)
-    pub static kODAttributeTypeAdminLimits: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAdminLimits: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -682,7 +682,7 @@ extern "C" {
     /// REALM
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypealtsecurityidentities?language=objc)
-    pub static kODAttributeTypeAltSecurityIdentities: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAltSecurityIdentities: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -691,7 +691,7 @@ extern "C" {
     /// Used to identify the authentication hint phrase.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeauthenticationhint?language=objc)
-    pub static kODAttributeTypeAuthenticationHint: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAuthenticationHint: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -700,7 +700,7 @@ extern "C" {
     /// Used to indicated recommended attribute types for a record type in the Config node.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypealltypes?language=objc)
-    pub static kODAttributeTypeAllTypes: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAllTypes: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -712,7 +712,7 @@ extern "C" {
     /// Usually found in kODRecordTypeCertificateAuthorities records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeauthorityrevocationlist?language=objc)
-    pub static kODAttributeTypeAuthorityRevocationList: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAuthorityRevocationList: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -722,7 +722,7 @@ extern "C" {
     /// Format is x.208 standard YYYYMMDDHHMMSSZ which we will require as GMT time.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypebirthday?language=objc)
-    pub static kODAttributeTypeBirthday: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeBirthday: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -733,7 +733,7 @@ extern "C" {
     /// Usually found in kODRecordTypeCertificateAuthority records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecacertificate?language=objc)
-    pub static kODAttributeTypeCACertificate: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeCACertificate: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -744,7 +744,7 @@ extern "C" {
     /// Example: 50
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecapacity?language=objc)
-    pub static kODAttributeTypeCapacity: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeCapacity: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -755,7 +755,7 @@ extern "C" {
     /// Usually found in kODRecordTypeCertificateAuthority records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecertificaterevocationlist?language=objc)
-    pub static kODAttributeTypeCertificateRevocationList: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeCertificateRevocationList: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -764,7 +764,7 @@ extern "C" {
     /// Attribute used for unformatted comment.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecomment?language=objc)
-    pub static kODAttributeTypeComment: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeComment: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -774,7 +774,7 @@ extern "C" {
     /// Usually found in group records (kODRecordTypeGroups)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecontactguid?language=objc)
-    pub static kODAttributeTypeContactGUID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeContactGUID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -784,7 +784,7 @@ extern "C" {
     /// Found in host or machine records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecontactperson?language=objc)
-    pub static kODAttributeTypeContactPerson: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeContactPerson: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -794,7 +794,7 @@ extern "C" {
     /// Format is x.208 standard YYYYMMDDHHMMSSZ which should be GMT time.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecreationtimestamp?language=objc)
-    pub static kODAttributeTypeCreationTimestamp: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeCreationTimestamp: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -806,7 +806,7 @@ extern "C" {
     /// Usually found in kODRecordTypeCertificateAuthority records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecrosscertificatepair?language=objc)
-    pub static kODAttributeTypeCrossCertificatePair: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeCrossCertificatePair: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -815,7 +815,7 @@ extern "C" {
     /// Attribute for checksum/meta data
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypedatastamp?language=objc)
-    pub static kODAttributeTypeDataStamp: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeDataStamp: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -824,7 +824,7 @@ extern "C" {
     /// Full name of a record (e.g., "John Doe", "John Doe's Computer")
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypefullname?language=objc)
-    pub static kODAttributeTypeFullName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeFullName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -833,7 +833,7 @@ extern "C" {
     /// DNS Resolver domain attribute.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypednsdomain?language=objc)
-    pub static kODAttributeTypeDNSDomain: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeDNSDomain: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -842,7 +842,7 @@ extern "C" {
     /// DNS Resolver nameserver attribute.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypednsnameserver?language=objc)
-    pub static kODAttributeTypeDNSNameServer: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeDNSNameServer: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -852,7 +852,7 @@ extern "C" {
     /// Found in computer records (kODRecordTypeComputers).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeenetaddress?language=objc)
-    pub static kODAttributeTypeENetAddress: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeENetAddress: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -861,7 +861,7 @@ extern "C" {
     /// Used for expiration date or time depending on association.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeexpire?language=objc)
-    pub static kODAttributeTypeExpire: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeExpire: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -870,7 +870,7 @@ extern "C" {
     /// Used for first name of user or person record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypefirstname?language=objc)
-    pub static kODAttributeTypeFirstName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeFirstName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -881,7 +881,7 @@ extern "C" {
     /// 32 uppercase hex characters and four hyphen characters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeguid?language=objc)
-    pub static kODAttributeTypeGUID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeGUID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -891,7 +891,7 @@ extern "C" {
     /// kODRecordTypeComputers.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypehardwareuuid?language=objc)
-    pub static kODAttributeTypeHardwareUUID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeHardwareUUID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -901,7 +901,7 @@ extern "C" {
     /// Found in user records (kODRecordTypeUsers).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypehomedirectoryquota?language=objc)
-    pub static kODAttributeTypeHomeDirectoryQuota: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeHomeDirectoryQuota: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -912,7 +912,7 @@ extern "C" {
     /// that the hard limit is approaching.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypehomedirectorysoftquota?language=objc)
-    pub static kODAttributeTypeHomeDirectorySoftQuota: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeHomeDirectorySoftQuota: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -922,7 +922,7 @@ extern "C" {
     /// Typically found in kODRecordTypeGroups records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypehomelocowner?language=objc)
-    pub static kODAttributeTypeHomeLocOwner: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeHomeLocOwner: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -931,7 +931,7 @@ extern "C" {
     /// Used to track internet alias.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeinternetalias?language=objc)
-    pub static kODAttributeTypeInternetAlias: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeInternetAlias: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -940,7 +940,7 @@ extern "C" {
     /// Contents of the kdc.conf file.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypekdcconfigdata?language=objc)
-    pub static kODAttributeTypeKDCConfigData: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeKDCConfigData: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -949,7 +949,7 @@ extern "C" {
     /// This is used to store the principals in host records (i.e., "host", "vnc", etc.)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypekerberosservices?language=objc)
-    pub static kODAttributeTypeKerberosServices: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeKerberosServices: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -958,7 +958,7 @@ extern "C" {
     /// Used for the last name of user or person record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypelastname?language=objc)
-    pub static kODAttributeTypeLastName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeLastName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -967,7 +967,7 @@ extern "C" {
     /// Search base suffix for a LDAP server.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeldapsearchbasesuffix?language=objc)
-    pub static kODAttributeTypeLDAPSearchBaseSuffix: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeLDAPSearchBaseSuffix: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -978,7 +978,7 @@ extern "C" {
     /// kODRecordTypeLDAPServer, and kODRecordTypeWebServer.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypelocation?language=objc)
-    pub static kODAttributeTypeLocation: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeLocation: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -987,7 +987,7 @@ extern "C" {
     /// Represents the GUID for a record's map.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemapguid?language=objc)
-    pub static kODAttributeTypeMapGUID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMapGUID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -996,7 +996,7 @@ extern "C" {
     /// Used by ManagedClient.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemcxflags?language=objc)
-    pub static kODAttributeTypeMCXFlags: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMCXFlags: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1005,7 +1005,7 @@ extern "C" {
     /// Used by ManagedClient.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemcxsettings?language=objc)
-    pub static kODAttributeTypeMCXSettings: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMCXSettings: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1014,7 +1014,7 @@ extern "C" {
     /// Holds the mail account config data.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemailattribute?language=objc)
-    pub static kODAttributeTypeMailAttribute: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMailAttribute: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1024,7 +1024,7 @@ extern "C" {
     /// kODRecordTypeAutomountMap.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemetaautomountmap?language=objc)
-    pub static kODAttributeTypeMetaAutomountMap: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMetaAutomountMap: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1033,7 +1033,7 @@ extern "C" {
     /// Used for the middle name of user or person record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemiddlename?language=objc)
-    pub static kODAttributeTypeMiddleName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMiddleName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1043,7 +1043,7 @@ extern "C" {
     /// Format is x.208 standard YYYYMMDDHHMMSSZ which is required as GMT time.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemodificationtimestamp?language=objc)
-    pub static kODAttributeTypeModificationTimestamp: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeModificationTimestamp: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1052,7 +1052,7 @@ extern "C" {
     /// Defines a user's home directory mount point on the local machine.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenfshomedirectory?language=objc)
-    pub static kODAttributeTypeNFSHomeDirectory: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNFSHomeDirectory: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1061,7 +1061,7 @@ extern "C" {
     /// Note attribute.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenote?language=objc)
-    pub static kODAttributeTypeNote: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNote: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1071,7 +1071,7 @@ extern "C" {
     /// e.g., Mac OS X or Mac OS X Server
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeoperatingsystem?language=objc)
-    pub static kODAttributeTypeOperatingSystem: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeOperatingSystem: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1081,7 +1081,7 @@ extern "C" {
     /// e.g., 10.6
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeoperatingsystemversion?language=objc)
-    pub static kODAttributeTypeOperatingSystemVersion: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeOperatingSystemVersion: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1091,7 +1091,7 @@ extern "C" {
     /// Typically the value is a LDAP distinguished name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeowner?language=objc)
-    pub static kODAttributeTypeOwner: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeOwner: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1101,7 +1101,7 @@ extern "C" {
     /// Found in group records (kODRecordTypeGroups).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeownerguid?language=objc)
-    pub static kODAttributeTypeOwnerGUID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeOwnerGUID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1110,7 +1110,7 @@ extern "C" {
     /// Holds the password or credential value.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepassword?language=objc)
-    pub static kODAttributeTypePassword: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePassword: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1119,7 +1119,7 @@ extern "C" {
     /// Holds marker data to indicate possible authentication redirection.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepasswordplus?language=objc)
-    pub static kODAttributeTypePasswordPlus: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePasswordPlus: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1129,7 +1129,7 @@ extern "C" {
     /// Used in user presets record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepasswordpolicyoptions?language=objc)
-    pub static kODAttributeTypePasswordPolicyOptions: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePasswordPolicyOptions: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1138,7 +1138,7 @@ extern "C" {
     /// Represents the attribute for storing the password server's replication information.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepasswordserverlist?language=objc)
-    pub static kODAttributeTypePasswordServerList: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePasswordServerList: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1149,7 +1149,7 @@ extern "C" {
     /// with a given directory node. Found in a config record named PasswordServer.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepasswordserverlocation?language=objc)
-    pub static kODAttributeTypePasswordServerLocation: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePasswordServerLocation: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1159,7 +1159,7 @@ extern "C" {
     /// Found in user records (kODRecordTypeUsers).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepicture?language=objc)
-    pub static kODAttributeTypePicture: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePicture: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1170,7 +1170,7 @@ extern "C" {
     /// kODRecordTypeLDAPServer, and kODRecordTypeWebServer.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeport?language=objc)
-    pub static kODAttributeTypePort: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePort: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1181,7 +1181,7 @@ extern "C" {
     /// by default. Found in kODRecordTypePresetUsers records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepresetuserisadmin?language=objc)
-    pub static kODAttributeTypePresetUserIsAdmin: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePresetUserIsAdmin: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1191,7 +1191,7 @@ extern "C" {
     /// Added to computer group record type (kODRecordTypeComputerGroups)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprimarycomputerguid?language=objc)
-    pub static kODAttributeTypePrimaryComputerGUID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrimaryComputerGUID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1200,7 +1200,7 @@ extern "C" {
     /// The GUID of the computer list with which this computer record is associated.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprimarycomputerlist?language=objc)
-    pub static kODAttributeTypePrimaryComputerList: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrimaryComputerList: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1212,7 +1212,7 @@ extern "C" {
     /// represented as a string.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprimarygroupid?language=objc)
-    pub static kODAttributeTypePrimaryGroupID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrimaryGroupID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1222,7 +1222,7 @@ extern "C" {
     /// This is used when configuring a printer.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprinter1284deviceid?language=objc)
-    pub static kODAttributeTypePrinter1284DeviceID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrinter1284DeviceID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1231,7 +1231,7 @@ extern "C" {
     /// Standard attribute type for kODRecordTypePrinters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprinterlprhost?language=objc)
-    pub static kODAttributeTypePrinterLPRHost: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrinterLPRHost: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1240,7 +1240,7 @@ extern "C" {
     /// Standard attribute type for kODRecordTypePrinters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprinterlprqueue?language=objc)
-    pub static kODAttributeTypePrinterLPRQueue: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrinterLPRQueue: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1252,7 +1252,7 @@ extern "C" {
     /// is based on the IPP Printing Specification RFC and IETF IPP-LDAP Printer Record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprintermakeandmodel?language=objc)
-    pub static kODAttributeTypePrinterMakeAndModel: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrinterMakeAndModel: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1261,7 +1261,7 @@ extern "C" {
     /// Standard attribute type for kODRecordTypePrinters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprintertype?language=objc)
-    pub static kODAttributeTypePrinterType: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrinterType: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1273,7 +1273,7 @@ extern "C" {
     /// is based on the IPP Printing Specification RFC and IETF IPP-LDAP Printer Record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprinteruri?language=objc)
-    pub static kODAttributeTypePrinterURI: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrinterURI: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1284,7 +1284,7 @@ extern "C" {
     /// Printing Specification RFC and IETF IPP-LDAP Printer Record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprinterxrisupported?language=objc)
-    pub static kODAttributeTypePrinterXRISupported: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrinterXRISupported: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1293,7 +1293,7 @@ extern "C" {
     /// Standard attribute type for kODRecordTypePrinters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprintserviceinfotext?language=objc)
-    pub static kODAttributeTypePrintServiceInfoText: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrintServiceInfoText: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1302,7 +1302,7 @@ extern "C" {
     /// Standard attribute type for kODRecordTypePrinters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprintserviceinfoxml?language=objc)
-    pub static kODAttributeTypePrintServiceInfoXML: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrintServiceInfoXML: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1313,7 +1313,7 @@ extern "C" {
     /// statistics records (kODRecordTypePrintServiceUser).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprintserviceuserdata?language=objc)
-    pub static kODAttributeTypePrintServiceUserData: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrintServiceUserData: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1322,7 +1322,7 @@ extern "C" {
     /// Used by Managed Client
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetyperealuserid?language=objc)
-    pub static kODAttributeTypeRealUserID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeRealUserID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1333,7 +1333,7 @@ extern "C" {
     /// Relative Distinguished Name for LDAP record creation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetyperelativednprefix?language=objc)
-    pub static kODAttributeTypeRelativeDNPrefix: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeRelativeDNPrefix: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1342,7 +1342,7 @@ extern "C" {
     /// Account control flag.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbacctflags?language=objc)
-    pub static kODAttributeTypeSMBAcctFlags: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBAcctFlags: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1351,7 +1351,7 @@ extern "C" {
     /// Constant for supporting PDC SMB interaction with DirectoryService.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbgrouprid?language=objc)
-    pub static kODAttributeTypeSMBGroupRID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBGroupRID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1368,7 +1368,7 @@ extern "C" {
     /// sharepoint).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbhome?language=objc)
-    pub static kODAttributeTypeSMBHome: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBHome: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1377,7 +1377,7 @@ extern "C" {
     /// Drive letter for homedirectory mount point.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbhomedrive?language=objc)
-    pub static kODAttributeTypeSMBHomeDrive: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBHomeDrive: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1386,7 +1386,7 @@ extern "C" {
     /// Attribute in support of SMB interaction.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbkickofftime?language=objc)
-    pub static kODAttributeTypeSMBKickoffTime: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBKickoffTime: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1395,7 +1395,7 @@ extern "C" {
     /// Attribute in support of SMB interaction.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmblogofftime?language=objc)
-    pub static kODAttributeTypeSMBLogoffTime: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBLogoffTime: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1404,7 +1404,7 @@ extern "C" {
     /// Attribute in support of SMB interaction.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmblogontime?language=objc)
-    pub static kODAttributeTypeSMBLogonTime: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBLogonTime: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1416,7 +1416,7 @@ extern "C" {
     /// (kODRecordTypeUsers, kODRecordTypeGroups, kODRecordTypeComputers).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbprimarygroupsid?language=objc)
-    pub static kODAttributeTypeSMBPrimaryGroupSID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBPrimaryGroupSID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1425,7 +1425,7 @@ extern "C" {
     /// Attribute in support of SMB interaction.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbpwdlastset?language=objc)
-    pub static kODAttributeTypeSMBPWDLastSet: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBPWDLastSet: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1434,7 +1434,7 @@ extern "C" {
     /// Desktop management info (dock, desktop links, etc).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbprofilepath?language=objc)
-    pub static kODAttributeTypeSMBProfilePath: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBProfilePath: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1443,7 +1443,7 @@ extern "C" {
     /// Attribute in support of SMB interaction.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbrid?language=objc)
-    pub static kODAttributeTypeSMBRID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBRID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1452,7 +1452,7 @@ extern "C" {
     /// Login script path.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbscriptpath?language=objc)
-    pub static kODAttributeTypeSMBScriptPath: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBScriptPath: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1463,7 +1463,7 @@ extern "C" {
     /// kODRecordTypeGroups, kODRecordTypeComputers).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbsid?language=objc)
-    pub static kODAttributeTypeSMBSID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBSID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1472,7 +1472,7 @@ extern "C" {
     /// List of workstations user can login from (machine account names).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesmbuserworkstations?language=objc)
-    pub static kODAttributeTypeSMBUserWorkstations: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSMBUserWorkstations: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1484,7 +1484,7 @@ extern "C" {
     /// might have a service type of "http" or "https".
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeservicetype?language=objc)
-    pub static kODAttributeTypeServiceType: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeServiceType: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1493,7 +1493,7 @@ extern "C" {
     /// Used for Setup Assistant automatic population.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesetupadvertising?language=objc)
-    pub static kODAttributeTypeSetupAdvertising: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSetupAdvertising: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1502,7 +1502,7 @@ extern "C" {
     /// Used for Setup Assistant automatic population.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesetupautoregister?language=objc)
-    pub static kODAttributeTypeSetupAutoRegister: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSetupAutoRegister: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1511,7 +1511,7 @@ extern "C" {
     /// Used for Setup Assistant automatic population.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesetuplocation?language=objc)
-    pub static kODAttributeTypeSetupLocation: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSetupLocation: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1520,7 +1520,7 @@ extern "C" {
     /// Used for Setup Assistant automatic population.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesetupoccupation?language=objc)
-    pub static kODAttributeTypeSetupOccupation: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSetupOccupation: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1530,7 +1530,7 @@ extern "C" {
     /// Format is an unsigned 32 bit representing seconds. ie. 300 is 5 minutes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypetimetolive?language=objc)
-    pub static kODAttributeTypeTimeToLive: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeTimeToLive: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1539,7 +1539,7 @@ extern "C" {
     /// Used to describe a node's trust information.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypetrustinformation?language=objc)
-    pub static kODAttributeTypeTrustInformation: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeTrustInformation: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1549,7 +1549,7 @@ extern "C" {
     /// Format is a signed integer represented as a string.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeuniqueid?language=objc)
-    pub static kODAttributeTypeUniqueID: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeUniqueID: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1561,7 +1561,7 @@ extern "C" {
     /// by a third party.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeusercertificate?language=objc)
-    pub static kODAttributeTypeUserCertificate: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeUserCertificate: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1572,7 +1572,7 @@ extern "C" {
     /// and other related information and is encrypted with a passphrase.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeuserpkcs12data?language=objc)
-    pub static kODAttributeTypeUserPKCS12Data: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeUserPKCS12Data: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1581,7 +1581,7 @@ extern "C" {
     /// Used to represent the user's shell setting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeusershell?language=objc)
-    pub static kODAttributeTypeUserShell: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeUserShell: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1594,7 +1594,7 @@ extern "C" {
     /// emails.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeusersmimecertificate?language=objc)
-    pub static kODAttributeTypeUserSMIMECertificate: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeUserSMIMECertificate: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1603,7 +1603,7 @@ extern "C" {
     /// Attribute used to support mount records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypevfsdumpfreq?language=objc)
-    pub static kODAttributeTypeVFSDumpFreq: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeVFSDumpFreq: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1612,7 +1612,7 @@ extern "C" {
     /// Attribute used to support mount records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypevfslinkdir?language=objc)
-    pub static kODAttributeTypeVFSLinkDir: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeVFSLinkDir: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1621,7 +1621,7 @@ extern "C" {
     /// Attribute used to support mount records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypevfspassno?language=objc)
-    pub static kODAttributeTypeVFSPassNo: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeVFSPassNo: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1630,7 +1630,7 @@ extern "C" {
     /// Attribute used to support mount records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypevfstype?language=objc)
-    pub static kODAttributeTypeVFSType: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeVFSType: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1641,7 +1641,7 @@ extern "C" {
     /// Example: http://example.com/blog/jsmith
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypewebloguri?language=objc)
-    pub static kODAttributeTypeWeblogURI: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeWeblogURI: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1650,7 +1650,7 @@ extern "C" {
     /// XML plist used.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypexmlplist?language=objc)
-    pub static kODAttributeTypeXMLPlist: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeXMLPlist: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1660,7 +1660,7 @@ extern "C" {
     /// in protocol records (kODRecordTypeProtocols)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprotocolnumber?language=objc)
-    pub static kODAttributeTypeProtocolNumber: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeProtocolNumber: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1670,7 +1670,7 @@ extern "C" {
     /// in RPC records (kODRecordTypeRPC)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetyperpcnumber?language=objc)
-    pub static kODAttributeTypeRPCNumber: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeRPCNumber: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1680,7 +1680,7 @@ extern "C" {
     /// in network records (kODRecordTypeNetworks)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenetworknumber?language=objc)
-    pub static kODAttributeTypeNetworkNumber: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNetworkNumber: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1689,7 +1689,7 @@ extern "C" {
     /// Attribute type which stores directory access control directives.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeaccesscontrolentry?language=objc)
-    pub static kODAttributeTypeAccessControlEntry: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAccessControlEntry: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1698,7 +1698,7 @@ extern "C" {
     /// Line one of multiple lines of address data for a user.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeaddressline1?language=objc)
-    pub static kODAttributeTypeAddressLine1: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAddressLine1: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1707,7 +1707,7 @@ extern "C" {
     /// Line two of multiple lines of address data for a user.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeaddressline2?language=objc)
-    pub static kODAttributeTypeAddressLine2: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAddressLine2: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1716,7 +1716,7 @@ extern "C" {
     /// Line three of multiple lines of address data for a user.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeaddressline3?language=objc)
-    pub static kODAttributeTypeAddressLine3: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAddressLine3: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1725,7 +1725,7 @@ extern "C" {
     /// Area code of a user's phone number.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeareacode?language=objc)
-    pub static kODAttributeTypeAreaCode: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAreaCode: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1746,7 +1746,7 @@ extern "C" {
     /// "DisabledUser"            - is an account that has been disabled
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeauthenticationauthority?language=objc)
-    pub static kODAttributeTypeAuthenticationAuthority: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAuthenticationAuthority: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1757,7 +1757,7 @@ extern "C" {
     /// Typically found in User records (kODRecordTypeUsers).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeautomountinformation?language=objc)
-    pub static kODAttributeTypeAutomountInformation: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAutomountInformation: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1766,7 +1766,7 @@ extern "C" {
     /// Attribute type in host or machine records for storing boot params.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypebootparams?language=objc)
-    pub static kODAttributeTypeBootParams: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeBootParams: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1777,7 +1777,7 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypebuilding?language=objc)
-    pub static kODAttributeTypeBuilding: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeBuilding: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1786,7 +1786,7 @@ extern "C" {
     /// the URI for a record's calendar
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeserviceslocator?language=objc)
-    pub static kODAttributeTypeServicesLocator: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeServicesLocator: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1797,7 +1797,7 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecity?language=objc)
-    pub static kODAttributeTypeCity: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeCity: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1807,7 +1807,7 @@ extern "C" {
     /// Example: Apple Inc.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecompany?language=objc)
-    pub static kODAttributeTypeCompany: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeCompany: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1816,7 +1816,7 @@ extern "C" {
     /// List of computers.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecomputers?language=objc)
-    pub static kODAttributeTypeComputers: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeComputers: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1827,7 +1827,7 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecountry?language=objc)
-    pub static kODAttributeTypeCountry: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeCountry: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1838,7 +1838,7 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypedepartment?language=objc)
-    pub static kODAttributeTypeDepartment: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeDepartment: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1847,7 +1847,7 @@ extern "C" {
     /// DNS Resolver nameserver attribute.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypednsname?language=objc)
-    pub static kODAttributeTypeDNSName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeDNSName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1856,7 +1856,7 @@ extern "C" {
     /// Email address of usually a user record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeemailaddress?language=objc)
-    pub static kODAttributeTypeEMailAddress: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeEMailAddress: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1869,7 +1869,7 @@ extern "C" {
     /// mymail.com
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeemailcontacts?language=objc)
-    pub static kODAttributeTypeEMailContacts: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeEMailContacts: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1880,7 +1880,7 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypefaxnumber?language=objc)
-    pub static kODAttributeTypeFaxNumber: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeFaxNumber: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1889,7 +1889,7 @@ extern "C" {
     /// List of groups.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypegroup?language=objc)
-    pub static kODAttributeTypeGroup: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeGroup: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1898,7 +1898,7 @@ extern "C" {
     /// Attribute type in group records containing lists of GUID values for members other than groups.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypegroupmembers?language=objc)
-    pub static kODAttributeTypeGroupMembers: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeGroupMembers: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1907,7 +1907,7 @@ extern "C" {
     /// Usually a list of users that below to a given group record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypegroupmembership?language=objc)
-    pub static kODAttributeTypeGroupMembership: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeGroupMembership: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1917,7 +1917,7 @@ extern "C" {
     /// Found in group records (kODRecordTypeGroups).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypegroupservices?language=objc)
-    pub static kODAttributeTypeGroupServices: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeGroupServices: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1926,7 +1926,7 @@ extern "C" {
     /// Home telephone number of a user or person.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypehomephonenumber?language=objc)
-    pub static kODAttributeTypeHomePhoneNumber: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeHomePhoneNumber: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1935,7 +1935,7 @@ extern "C" {
     /// HTML location.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypehtml?language=objc)
-    pub static kODAttributeTypeHTML: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeHTML: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1944,7 +1944,7 @@ extern "C" {
     /// Network home directory URL.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypehomedirectory?language=objc)
-    pub static kODAttributeTypeHomeDirectory: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeHomeDirectory: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1956,7 +1956,7 @@ extern "C" {
     /// Usually found in user records (kODRecordTypeUsers).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeimhandle?language=objc)
-    pub static kODAttributeTypeIMHandle: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeIMHandle: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1965,7 +1965,7 @@ extern "C" {
     /// IP address expressed either as domain or IP notation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeipaddress?language=objc)
-    pub static kODAttributeTypeIPAddress: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeIPAddress: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1978,7 +1978,7 @@ extern "C" {
     /// necessary because not all directories return attribute values in a guaranteed order.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeipaddressandenetaddress?language=objc)
-    pub static kODAttributeTypeIPAddressAndENetAddress: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeIPAddressAndENetAddress: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1988,7 +1988,7 @@ extern "C" {
     /// Usually found on kODRecordTypeComputers and kODRecordTypeHosts.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeipv6address?language=objc)
-    pub static kODAttributeTypeIPv6Address: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeIPv6Address: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -1999,7 +1999,7 @@ extern "C" {
     /// kODRecordTypePeople, kODRecordTypeGroups).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypejpegphoto?language=objc)
-    pub static kODAttributeTypeJPEGPhoto: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeJPEGPhoto: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2010,7 +2010,7 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypejobtitle?language=objc)
-    pub static kODAttributeTypeJobTitle: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeJobTitle: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2019,7 +2019,7 @@ extern "C" {
     /// KDC master key RSA encrypted with realm public key.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypekdcauthkey?language=objc)
-    pub static kODAttributeTypeKDCAuthKey: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeKDCAuthKey: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2028,7 +2028,7 @@ extern "C" {
     /// Keywords using for searching capability.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypekeywords?language=objc)
-    pub static kODAttributeTypeKeywords: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeKeywords: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2037,7 +2037,7 @@ extern "C" {
     /// List of LDAP server URLs which can each be used to read directory data.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeldapreadreplicas?language=objc)
-    pub static kODAttributeTypeLDAPReadReplicas: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeLDAPReadReplicas: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2046,7 +2046,7 @@ extern "C" {
     /// List of LDAP server URLs which can each be used to write directory data.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeldapwritereplicas?language=objc)
-    pub static kODAttributeTypeLDAPWriteReplicas: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeLDAPWriteReplicas: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2057,7 +2057,7 @@ extern "C" {
     /// Example: 7.7,10.6
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemapcoordinates?language=objc)
-    pub static kODAttributeTypeMapCoordinates: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMapCoordinates: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2068,7 +2068,7 @@ extern "C" {
     /// Example: http://example.com/bldg1
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemapuri?language=objc)
-    pub static kODAttributeTypeMapURI: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMapURI: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2077,7 +2077,7 @@ extern "C" {
     /// Data contained in this attribute type is a fully qualified MIME Type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemime?language=objc)
-    pub static kODAttributeTypeMIME: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMIME: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2088,7 +2088,7 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemobilenumber?language=objc)
-    pub static kODAttributeTypeMobileNumber: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMobileNumber: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2097,7 +2097,7 @@ extern "C" {
     /// Attribute type in group records for the list of GUID values for nested groups.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenestedgroups?language=objc)
-    pub static kODAttributeTypeNestedGroups: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNestedGroups: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2107,7 +2107,7 @@ extern "C" {
     /// Found in user and host records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenetgroups?language=objc)
-    pub static kODAttributeTypeNetGroups: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNetGroups: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2118,7 +2118,7 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenickname?language=objc)
-    pub static kODAttributeTypeNickName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNickName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2127,7 +2127,7 @@ extern "C" {
     /// Usually the organization info of a user.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeorganizationinfo?language=objc)
-    pub static kODAttributeTypeOrganizationInfo: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeOrganizationInfo: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2136,7 +2136,7 @@ extern "C" {
     /// Usually the organization of a user.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeorganizationname?language=objc)
-    pub static kODAttributeTypeOrganizationName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeOrganizationName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2147,7 +2147,7 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepagernumber?language=objc)
-    pub static kODAttributeTypePagerNumber: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePagerNumber: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2158,7 +2158,7 @@ extern "C" {
     /// Example: home fax:408-555-4444
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypephonecontacts?language=objc)
-    pub static kODAttributeTypePhoneContacts: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePhoneContacts: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2167,7 +2167,7 @@ extern "C" {
     /// Telephone number of a user.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypephonenumber?language=objc)
-    pub static kODAttributeTypePhoneNumber: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePhoneNumber: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2176,7 +2176,7 @@ extern "C" {
     /// Pretty Good Privacy public encryption key.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepgppublickey?language=objc)
-    pub static kODAttributeTypePGPPublicKey: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePGPPublicKey: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2185,7 +2185,7 @@ extern "C" {
     /// The postal address usually excluding postal code.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepostaladdress?language=objc)
-    pub static kODAttributeTypePostalAddress: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePostalAddress: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2195,7 +2195,7 @@ extern "C" {
     /// Found in user records (kODRecordTypeUsers) and resource records (kODRecordTypeResources).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepostaladdresscontacts?language=objc)
-    pub static kODAttributeTypePostalAddressContacts: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePostalAddressContacts: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2204,7 +2204,7 @@ extern "C" {
     /// The postal code such as zip code in the USA.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepostalcode?language=objc)
-    pub static kODAttributeTypePostalCode: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePostalCode: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2216,21 +2216,21 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenameprefix?language=objc)
-    pub static kODAttributeTypeNamePrefix: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNamePrefix: &'static ODAttributeType;
 }
 
 extern "C" {
     /// Profiles associated with the record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprofiles?language=objc)
-    pub static kODAttributeTypeProfiles: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeProfiles: &'static ODAttributeType;
 }
 
 extern "C" {
     /// Timestamp for the profiles associated with the record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprofilestimestamp?language=objc)
-    pub static kODAttributeTypeProfilesTimestamp: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeProfilesTimestamp: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2239,7 +2239,7 @@ extern "C" {
     /// List of protocols.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprotocols?language=objc)
-    pub static kODAttributeTypeProtocols: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeProtocols: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2248,7 +2248,7 @@ extern "C" {
     /// List of names/keys for this record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetyperecordname?language=objc)
-    pub static kODAttributeTypeRecordName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeRecordName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2259,7 +2259,7 @@ extern "C" {
     /// Example: brother:John
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetyperelationships?language=objc)
-    pub static kODAttributeTypeRelationships: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeRelationships: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2268,7 +2268,7 @@ extern "C" {
     /// attribute that defines a resource record's info.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetyperesourceinfo?language=objc)
-    pub static kODAttributeTypeResourceInfo: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeResourceInfo: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2279,7 +2279,7 @@ extern "C" {
     /// Example: ConferenceRoom
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetyperesourcetype?language=objc)
-    pub static kODAttributeTypeResourceType: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeResourceType: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2288,7 +2288,7 @@ extern "C" {
     /// The state or province of a country.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypestate?language=objc)
-    pub static kODAttributeTypeState: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeState: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2299,7 +2299,7 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypestreet?language=objc)
-    pub static kODAttributeTypeStreet: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeStreet: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2311,7 +2311,7 @@ extern "C" {
     /// kODRecordTypePeople).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenamesuffix?language=objc)
-    pub static kODAttributeTypeNameSuffix: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNameSuffix: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2320,7 +2320,7 @@ extern "C" {
     /// List of URLs.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeurl?language=objc)
-    pub static kODAttributeTypeURL: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeURL: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2329,7 +2329,7 @@ extern "C" {
     /// Used in support of mount records.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypevfsopts?language=objc)
-    pub static kODAttributeTypeVFSOpts: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeVFSOpts: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2338,7 +2338,7 @@ extern "C" {
     /// Alias attribute, contain pointer to another node/record/attribute.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypealias?language=objc)
-    pub static kODAttributeTypeAlias: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAlias: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2347,7 +2347,7 @@ extern "C" {
     /// An authentication credential, to be used to authenticate to a Directory.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeauthcredential?language=objc)
-    pub static kODAttributeTypeAuthCredential: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAuthCredential: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2356,7 +2356,7 @@ extern "C" {
     /// Timestamp used in local account caching.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecopytimestamp?language=objc)
-    pub static kODAttributeTypeCopyTimestamp: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeCopyTimestamp: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2365,7 +2365,7 @@ extern "C" {
     /// Date of record creation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypedaterecordcreated?language=objc)
-    pub static kODAttributeTypeDateRecordCreated: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeDateRecordCreated: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2374,7 +2374,7 @@ extern "C" {
     /// Supports Kerberized SMB Server services.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypekerberosrealm?language=objc)
-    pub static kODAttributeTypeKerberosRealm: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeKerberosRealm: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2383,7 +2383,7 @@ extern "C" {
     /// Supports Kerberized SMB Server services.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypentdomaincomputeraccount?language=objc)
-    pub static kODAttributeTypeNTDomainComputerAccount: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNTDomainComputerAccount: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2392,7 +2392,7 @@ extern "C" {
     /// Home directory URL used in local account caching.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeoriginalhomedirectory?language=objc)
-    pub static kODAttributeTypeOriginalHomeDirectory: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeOriginalHomeDirectory: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2401,7 +2401,7 @@ extern "C" {
     /// NFS home directory used in local account caching.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeoriginalnfshomedirectory?language=objc)
-    pub static kODAttributeTypeOriginalNFSHomeDirectory: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeOriginalNFSHomeDirectory: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2410,7 +2410,7 @@ extern "C" {
     /// Nodename used in local account caching.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeoriginalnodename?language=objc)
-    pub static kODAttributeTypeOriginalNodeName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeOriginalNodeName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2419,7 +2419,7 @@ extern "C" {
     /// Supports Kerberized SMB Server services.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprimaryntdomain?language=objc)
-    pub static kODAttributeTypePrimaryNTDomain: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrimaryNTDomain: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2428,7 +2428,7 @@ extern "C" {
     /// Contains the password aging policy data for an authentication capable record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepwdagingpolicy?language=objc)
-    pub static kODAttributeTypePwdAgingPolicy: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePwdAgingPolicy: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2440,7 +2440,7 @@ extern "C" {
     /// Note that ReadWrite does not imply fully readable or writable
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypereadonlynode?language=objc)
-    pub static kODAttributeTypeReadOnlyNode: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeReadOnlyNode: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2449,7 +2449,7 @@ extern "C" {
     /// Data of Create, Modify, Backup time in UTC.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypetimepackage?language=objc)
-    pub static kODAttributeTypeTimePackage: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeTimePackage: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2458,7 +2458,7 @@ extern "C" {
     /// checksum/meta data.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypetotalsize?language=objc)
-    pub static kODAttributeTypeTotalSize: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeTotalSize: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2467,7 +2467,7 @@ extern "C" {
     /// Authentication method for an authentication capable record.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeauthmethod?language=objc)
-    pub static kODAttributeTypeAuthMethod: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAuthMethod: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2476,7 +2476,7 @@ extern "C" {
     /// Meta attribute returning registered node name by directory node plugin.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypemetanodelocation?language=objc)
-    pub static kODAttributeTypeMetaNodeLocation: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeMetaNodeLocation: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2487,7 +2487,7 @@ extern "C" {
     /// looking up aliases in this neighborhood.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenodepath?language=objc)
-    pub static kODAttributeTypeNodePath: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNodePath: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2499,7 +2499,7 @@ extern "C" {
     /// Has never been supported.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeplugininfo?language=objc)
-    pub static kODAttributeTypePlugInInfo: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePlugInInfo: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2508,7 +2508,7 @@ extern "C" {
     /// Attribute for a Record or a Directory Node.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetyperecordtype?language=objc)
-    pub static kODAttributeTypeRecordType: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeRecordType: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2517,7 +2517,7 @@ extern "C" {
     /// List of attribute types.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeschema?language=objc)
-    pub static kODAttributeTypeSchema: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSchema: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2528,7 +2528,7 @@ extern "C" {
     /// of that node.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesubnodes?language=objc)
-    pub static kODAttributeTypeSubNodes: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSubNodes: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2541,7 +2541,7 @@ extern "C" {
     /// triplet (e.g., host,user,domain).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenetgrouptriplet?language=objc)
-    pub static kODAttributeTypeNetGroupTriplet: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNetGroupTriplet: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2550,7 +2550,7 @@ extern "C" {
     /// Search path used by the search node.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesearchpath?language=objc)
-    pub static kODAttributeTypeSearchPath: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSearchPath: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2559,7 +2559,7 @@ extern "C" {
     /// Search policy for the search node.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypesearchpolicy?language=objc)
-    pub static kODAttributeTypeSearchPolicy: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeSearchPolicy: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2568,7 +2568,7 @@ extern "C" {
     /// Automatic search path defined by the search node.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeautomaticsearchpath?language=objc)
-    pub static kODAttributeTypeAutomaticSearchPath: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAutomaticSearchPath: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2577,7 +2577,7 @@ extern "C" {
     /// Local only search path defined by the search node.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypelocalonlysearchpath?language=objc)
-    pub static kODAttributeTypeLocalOnlySearchPath: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeLocalOnlySearchPath: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2586,7 +2586,7 @@ extern "C" {
     /// Admin user configured custom search path defined by the search node.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecustomsearchpath?language=objc)
-    pub static kODAttributeTypeCustomSearchPath: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeCustomSearchPath: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2595,7 +2595,7 @@ extern "C" {
     /// Any extended options supported by the node during creation
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenodeoptions?language=objc)
-    pub static kODAttributeTypeNodeOptions: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNodeOptions: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2604,37 +2604,37 @@ extern "C" {
     /// Contains the SASL realm associated with this node (if any)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenodesaslrealm?language=objc)
-    pub static kODAttributeTypeNodeSASLRealm: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNodeSASLRealm: &'static ODAttributeType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeadvertisedservices?language=objc)
-    pub static kODAttributeTypeAdvertisedServices: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAdvertisedServices: &'static ODAttributeType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypelocalerelay?language=objc)
-    pub static kODAttributeTypeLocaleRelay: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeLocaleRelay: &'static ODAttributeType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypelocalesubnets?language=objc)
-    pub static kODAttributeTypeLocaleSubnets: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeLocaleSubnets: &'static ODAttributeType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenetworkinterfaces?language=objc)
-    pub static kODAttributeTypeNetworkInterfaces: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNetworkInterfaces: &'static ODAttributeType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeparentlocales?language=objc)
-    pub static kODAttributeTypeParentLocales: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeParentLocales: &'static ODAttributeType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprimarylocale?language=objc)
-    pub static kODAttributeTypePrimaryLocale: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePrimaryLocale: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2643,7 +2643,7 @@ extern "C" {
     /// Build version for reference.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypebuildversion?language=objc)
-    pub static kODAttributeTypeBuildVersion: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeBuildVersion: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2652,7 +2652,7 @@ extern "C" {
     /// Config avail tag.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeconfigavailable?language=objc)
-    pub static kODAttributeTypeConfigAvailable: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeConfigAvailable: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2661,7 +2661,7 @@ extern "C" {
     /// Config file name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeconfigfile?language=objc)
-    pub static kODAttributeTypeConfigFile: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeConfigFile: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2670,7 +2670,7 @@ extern "C" {
     /// Core FW version for reference.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypecorefwversion?language=objc)
-    pub static kODAttributeTypeCoreFWVersion: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeCoreFWVersion: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2679,7 +2679,7 @@ extern "C" {
     /// Functional state of plugin for example.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypefunctionalstate?language=objc)
-    pub static kODAttributeTypeFunctionalState: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeFunctionalState: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2688,7 +2688,7 @@ extern "C" {
     /// Framework version for reference.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypefwversion?language=objc)
-    pub static kODAttributeTypeFWVersion: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeFWVersion: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2697,7 +2697,7 @@ extern "C" {
     /// Plugin index for reference.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepluginindex?language=objc)
-    pub static kODAttributeTypePluginIndex: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePluginIndex: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2708,7 +2708,7 @@ extern "C" {
     /// from the Configure node.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenumtablelist?language=objc)
-    pub static kODAttributeTypeNumTableList: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNumTableList: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2717,7 +2717,7 @@ extern "C" {
     /// Version label.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeversion?language=objc)
-    pub static kODAttributeTypeVersion: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeVersion: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2726,7 +2726,7 @@ extern "C" {
     /// PID value.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypepidvalue?language=objc)
-    pub static kODAttributeTypePIDValue: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypePIDValue: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2735,7 +2735,7 @@ extern "C" {
     /// Process Name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeprocessname?language=objc)
-    pub static kODAttributeTypeProcessName: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeProcessName: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2744,7 +2744,7 @@ extern "C" {
     /// Total count of references for a process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypetotalrefcount?language=objc)
-    pub static kODAttributeTypeTotalRefCount: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeTotalRefCount: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2753,7 +2753,7 @@ extern "C" {
     /// Directory reference count for a process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypedirrefcount?language=objc)
-    pub static kODAttributeTypeDirRefCount: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeDirRefCount: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2762,7 +2762,7 @@ extern "C" {
     /// Node reference count for a process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenoderefcount?language=objc)
-    pub static kODAttributeTypeNodeRefCount: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNodeRefCount: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2771,7 +2771,7 @@ extern "C" {
     /// Record reference count for a process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetyperecrefcount?language=objc)
-    pub static kODAttributeTypeRecRefCount: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeRecRefCount: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2780,7 +2780,7 @@ extern "C" {
     /// Attribute List reference count for a process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeattrlistrefcount?language=objc)
-    pub static kODAttributeTypeAttrListRefCount: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAttrListRefCount: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2789,7 +2789,7 @@ extern "C" {
     /// Attr List Value reference count for a process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeattrlistvaluerefcount?language=objc)
-    pub static kODAttributeTypeAttrListValueRefCount: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAttrListValueRefCount: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2798,7 +2798,7 @@ extern "C" {
     /// All the directory references for a process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypedirrefs?language=objc)
-    pub static kODAttributeTypeDirRefs: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeDirRefs: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2807,7 +2807,7 @@ extern "C" {
     /// All the node references for a process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypenoderefs?language=objc)
-    pub static kODAttributeTypeNodeRefs: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeNodeRefs: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2816,7 +2816,7 @@ extern "C" {
     /// All the record references for a process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetyperecrefs?language=objc)
-    pub static kODAttributeTypeRecRefs: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeRecRefs: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2825,7 +2825,7 @@ extern "C" {
     /// All the attribute list references for a process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeattrlistrefs?language=objc)
-    pub static kODAttributeTypeAttrListRefs: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAttrListRefs: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2834,7 +2834,7 @@ extern "C" {
     /// All the attribute list value references for a process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypeattrlistvaluerefs?language=objc)
-    pub static kODAttributeTypeAttrListValueRefs: Option<&'static ODAttributeType>;
+    pub static kODAttributeTypeAttrListValueRefs: &'static ODAttributeType;
 }
 
 extern "C" {
@@ -2851,7 +2851,7 @@ extern "C" {
     /// 8 bytes of random
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtype2wayrandom?language=objc)
-    pub static kODAuthenticationType2WayRandom: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationType2WayRandom: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -2866,7 +2866,7 @@ extern "C" {
     /// new password encrypted with old (should be 8 chars)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtype2wayrandomchangepasswd?language=objc)
-    pub static kODAuthenticationType2WayRandomChangePasswd: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationType2WayRandomChangePasswd: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -2880,7 +2880,7 @@ extern "C" {
     /// client response in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypeapop?language=objc)
-    pub static kODAuthenticationTypeAPOP: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeAPOP: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -2894,7 +2894,7 @@ extern "C" {
     /// client response data
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypecram_md5?language=objc)
-    pub static kODAuthenticationTypeCRAM_MD5: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeCRAM_MD5: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -2908,7 +2908,7 @@ extern "C" {
     /// new password in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypechangepasswd?language=objc)
-    pub static kODAuthenticationTypeChangePasswd: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeChangePasswd: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -2921,7 +2921,7 @@ extern "C" {
     /// password in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypecleartext?language=objc)
-    pub static kODAuthenticationTypeClearText: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeClearText: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -2934,7 +2934,7 @@ extern "C" {
     /// password in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypecleartextreadonly?language=objc)
-    pub static kODAuthenticationTypeClearTextReadOnly: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeClearTextReadOnly: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -2951,7 +2951,7 @@ extern "C" {
     /// This method may not be supported by all plug-ins or for all users.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypecrypt?language=objc)
-    pub static kODAuthenticationTypeCrypt: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeCrypt: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -2966,7 +2966,7 @@ extern "C" {
     /// HTTP method in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypedigest_md5?language=objc)
-    pub static kODAuthenticationTypeDIGEST_MD5: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeDIGEST_MD5: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -2981,7 +2981,7 @@ extern "C" {
     /// user's Password Server ID in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypedeleteuser?language=objc)
-    pub static kODAuthenticationTypeDeleteUser: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeDeleteUser: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -2995,7 +2995,7 @@ extern "C" {
     /// user name or Password Server ID in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypegeteffectivepolicy?language=objc)
-    pub static kODAuthenticationTypeGetEffectivePolicy: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeGetEffectivePolicy: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3010,7 +3010,7 @@ extern "C" {
     /// password in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypegetglobalpolicy?language=objc)
-    pub static kODAuthenticationTypeGetGlobalPolicy: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeGetGlobalPolicy: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3022,7 +3022,7 @@ extern "C" {
     /// user name in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypegetkerberosprincipal?language=objc)
-    pub static kODAuthenticationTypeGetKerberosPrincipal: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeGetKerberosPrincipal: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3042,7 +3042,7 @@ extern "C" {
     /// format as standardized as possible.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypegetpolicy?language=objc)
-    pub static kODAuthenticationTypeGetPolicy: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeGetPolicy: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3058,7 +3058,7 @@ extern "C" {
     /// Password Server ID in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypegetuserdata?language=objc)
-    pub static kODAuthenticationTypeGetUserData: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeGetUserData: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3074,7 +3074,7 @@ extern "C" {
     /// user's Password Server ID in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypegetusername?language=objc)
-    pub static kODAuthenticationTypeGetUserName: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeGetUserName: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3087,7 +3087,7 @@ extern "C" {
     /// krb5_data containing a service ticket
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypekerberostickets?language=objc)
-    pub static kODAuthenticationTypeKerberosTickets: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeKerberosTickets: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3101,7 +3101,7 @@ extern "C" {
     /// key size, 8 or 16 (packed as a byte, not a string)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypemppeprimarykeys?language=objc)
-    pub static kODAuthenticationTypeMPPEPrimaryKeys: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeMPPEPrimaryKeys: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3109,7 +3109,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypemppemasterkeys?language=objc)
     #[deprecated]
-    pub static kODAuthenticationTypeMPPEMasterKeys: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeMPPEMasterKeys: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3129,7 +3129,7 @@ extern "C" {
     /// digest for the client's challenge
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypemschap2?language=objc)
-    pub static kODAuthenticationTypeMSCHAP2: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeMSCHAP2: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3147,7 +3147,7 @@ extern "C" {
     /// the SMB domain in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypentlmv2?language=objc)
-    pub static kODAuthenticationTypeNTLMv2: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeNTLMv2: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3169,7 +3169,7 @@ extern "C" {
     /// authenticator password in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypentlmv2withsessionkey?language=objc)
-    pub static kODAuthenticationTypeNTLMv2WithSessionKey: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeNTLMv2WithSessionKey: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3185,7 +3185,7 @@ extern "C" {
     /// user's password
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypenewuser?language=objc)
-    pub static kODAuthenticationTypeNewUser: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeNewUser: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3202,7 +3202,7 @@ extern "C" {
     /// policy string in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypenewuserwithpolicy?language=objc)
-    pub static kODAuthenticationTypeNewUserWithPolicy: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeNewUserWithPolicy: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3217,7 +3217,7 @@ extern "C" {
     /// The plug-in may choose to use a cleartext authentication method if necessary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypenodenativecleartextok?language=objc)
-    pub static kODAuthenticationTypeNodeNativeClearTextOK: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeNodeNativeClearTextOK: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3232,7 +3232,7 @@ extern "C" {
     /// The plug-in must not use an authentication method that sends the password in cleartext.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypenodenativenocleartext?language=objc)
-    pub static kODAuthenticationTypeNodeNativeNoClearText: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeNodeNativeNoClearText: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3248,7 +3248,7 @@ extern "C" {
     /// value, either the old 20-byte SHA1 or the new seeded 24-byte SHA1.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypereadsecurehash?language=objc)
-    pub static kODAuthenticationTypeReadSecureHash: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeReadSecureHash: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3263,7 +3263,7 @@ extern "C" {
     /// client response buffer
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesmbntv2usersessionkey?language=objc)
-    pub static kODAuthenticationTypeSMBNTv2UserSessionKey: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSMBNTv2UserSessionKey: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3277,7 +3277,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesmbworkstationcredentialsessionkey?language=objc)
     pub static kODAuthenticationTypeSMBWorkstationCredentialSessionKey:
-        Option<&'static ODAuthenticationType>;
+        &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3291,7 +3291,7 @@ extern "C" {
     /// 24 byte client response
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesmb_lm_key?language=objc)
-    pub static kODAuthenticationTypeSMB_LM_Key: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSMB_LM_Key: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3305,7 +3305,7 @@ extern "C" {
     /// 24 byte client response
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesmb_nt_key?language=objc)
-    pub static kODAuthenticationTypeSMB_NT_Key: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSMB_NT_Key: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3321,7 +3321,7 @@ extern "C" {
     /// MD4( ntHash )
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesmb_nt_usersessionkey?language=objc)
-    pub static kODAuthenticationTypeSMB_NT_UserSessionKey: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSMB_NT_UserSessionKey: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3340,8 +3340,7 @@ extern "C" {
     /// MD4( ntHash )
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesmb_nt_withusersessionkey?language=objc)
-    pub static kODAuthenticationTypeSMB_NT_WithUserSessionKey:
-        Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSMB_NT_WithUserSessionKey: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3355,7 +3354,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesecurehash?language=objc)
     #[deprecated]
-    pub static kODAuthenticationTypeSecureHash: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSecureHash: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3368,8 +3367,7 @@ extern "C" {
     /// hashed certificate data (40 hex characters)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesetcertificatehashascurrent?language=objc)
-    pub static kODAuthenticationTypeSetCertificateHashAsCurrent:
-        Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSetCertificateHashAsCurrent: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3383,7 +3381,7 @@ extern "C" {
     /// policy string in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesetglobalpolicy?language=objc)
-    pub static kODAuthenticationTypeSetGlobalPolicy: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSetGlobalPolicy: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3399,7 +3397,7 @@ extern "C" {
     /// LAN Manager hash buffer
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesetlmhash?language=objc)
-    pub static kODAuthenticationTypeSetLMHash: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSetLMHash: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3415,7 +3413,7 @@ extern "C" {
     /// NT hash buffer
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesetnthash?language=objc)
-    pub static kODAuthenticationTypeSetNTHash: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSetNTHash: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3430,7 +3428,7 @@ extern "C" {
     /// authenticator's password in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesetpassword?language=objc)
-    pub static kODAuthenticationTypeSetPassword: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSetPassword: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3443,7 +3441,7 @@ extern "C" {
     /// new password in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesetpasswordascurrent?language=objc)
-    pub static kODAuthenticationTypeSetPasswordAsCurrent: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSetPasswordAsCurrent: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3458,7 +3456,7 @@ extern "C" {
     /// policy data
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesetpolicy?language=objc)
-    pub static kODAuthenticationTypeSetPolicy: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSetPolicy: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3471,7 +3469,7 @@ extern "C" {
     /// policy data
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesetpolicyascurrent?language=objc)
-    pub static kODAuthenticationTypeSetPolicyAsCurrent: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSetPolicyAsCurrent: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3487,7 +3485,7 @@ extern "C" {
     /// user data
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesetuserdata?language=objc)
-    pub static kODAuthenticationTypeSetUserData: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSetUserData: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3503,7 +3501,7 @@ extern "C" {
     /// user's short name in UTF8 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesetusername?language=objc)
-    pub static kODAuthenticationTypeSetUserName: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSetUserName: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3516,7 +3514,7 @@ extern "C" {
     /// NT hash
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesetworkstationpassword?language=objc)
-    pub static kODAuthenticationTypeSetWorkstationPassword: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeSetWorkstationPassword: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3528,7 +3526,7 @@ extern "C" {
     /// externalized AuthorizationRef
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypewithauthorizationref?language=objc)
-    pub static kODAuthenticationTypeWithAuthorizationRef: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeWithAuthorizationRef: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3541,7 +3539,7 @@ extern "C" {
     /// salted SHA1 hash
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypewritesecurehash?language=objc)
-    pub static kODAuthenticationTypeWriteSecureHash: Option<&'static ODAuthenticationType>;
+    pub static kODAuthenticationTypeWriteSecureHash: &'static ODAuthenticationType;
 }
 
 extern "C" {
@@ -3550,7 +3548,7 @@ extern "C" {
     /// Boolean signifying the password must not contain the name of the account.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypepasswordcannotbeaccountname?language=objc)
-    pub static kODPolicyTypePasswordCannotBeAccountName: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypePasswordCannotBeAccountName: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3559,7 +3557,7 @@ extern "C" {
     /// Should be set to a CFBooleanRef/NSNumber accordingly to signify the password should be changed at next logon.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypepasswordchangerequired?language=objc)
-    pub static kODPolicyTypePasswordChangeRequired: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypePasswordChangeRequired: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3569,7 +3567,7 @@ extern "C" {
     /// set to 0 if no history is tracked.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypepasswordhistory?language=objc)
-    pub static kODPolicyTypePasswordHistory: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypePasswordHistory: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3578,7 +3576,7 @@ extern "C" {
     /// A CFNumber/NSNumber signifying the minimum number of characters a password must contain.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypepasswordminimumnumberofcharacters?language=objc)
-    pub static kODPolicyTypePasswordMinimumNumberOfCharacters: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypePasswordMinimumNumberOfCharacters: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3587,7 +3585,7 @@ extern "C" {
     /// A CFNumber/NSNumber signifying the maximum number of characters a password can contain.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypepasswordmaximumnumberofcharacters?language=objc)
-    pub static kODPolicyTypePasswordMaximumNumberOfCharacters: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypePasswordMaximumNumberOfCharacters: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3596,7 +3594,7 @@ extern "C" {
     /// The value for the policy should be a CFNumberRef/NSNumber accordingly.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypepasswordmaximumageinminutes?language=objc)
-    pub static kODPolicyTypePasswordMaximumAgeInMinutes: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypePasswordMaximumAgeInMinutes: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3607,7 +3605,7 @@ extern "C" {
     /// the maximum supported by that module.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypepasswordrequiresalpha?language=objc)
-    pub static kODPolicyTypePasswordRequiresAlpha: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypePasswordRequiresAlpha: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3616,7 +3614,7 @@ extern "C" {
     /// Boolean signifying if password requires mixed case characters both upper and lower characters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypepasswordrequiresmixedcase?language=objc)
-    pub static kODPolicyTypePasswordRequiresMixedCase: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypePasswordRequiresMixedCase: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3627,7 +3625,7 @@ extern "C" {
     /// the maximum supported by that module.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypepasswordrequiresnumeric?language=objc)
-    pub static kODPolicyTypePasswordRequiresNumeric: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypePasswordRequiresNumeric: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3638,7 +3636,7 @@ extern "C" {
     /// the maximum supported by that module.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypepasswordrequiressymbol?language=objc)
-    pub static kODPolicyTypePasswordRequiresSymbol: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypePasswordRequiresSymbol: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3648,7 +3646,7 @@ extern "C" {
     /// their own password.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypepasswordselfmodification?language=objc)
-    pub static kODPolicyTypePasswordSelfModification: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypePasswordSelfModification: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3657,7 +3655,7 @@ extern "C" {
     /// A CFDate/NSDate signifying when an account expires will be deactivated.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypeaccountexpiresondate?language=objc)
-    pub static kODPolicyTypeAccountExpiresOnDate: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypeAccountExpiresOnDate: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3666,7 +3664,7 @@ extern "C" {
     /// A CFNumber/NSNumber signifying the number of times a bad password can be entered before the account is locked out.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypeaccountmaximumfailedlogins?language=objc)
-    pub static kODPolicyTypeAccountMaximumFailedLogins: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypeAccountMaximumFailedLogins: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3677,7 +3675,7 @@ extern "C" {
     /// being changed is required.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypeaccountmaximumminutesuntildisabled?language=objc)
-    pub static kODPolicyTypeAccountMaximumMinutesUntilDisabled: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypeAccountMaximumMinutesUntilDisabled: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3686,7 +3684,7 @@ extern "C" {
     /// The value for the policy should be a CFNumberRef/NSNumber accordingly.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypeaccountminutesuntilfailedloginreset?language=objc)
-    pub static kODPolicyTypeAccountMinutesUntilFailedLoginReset: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypeAccountMinutesUntilFailedLoginReset: &'static ODPolicyType;
 }
 
 extern "C" {
@@ -3695,7 +3693,7 @@ extern "C" {
     /// A CFNumber/NSNumber signifying the number of minutes before an account has not been used before it is deactivated.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicytypeaccountmaximumminutesofnonuse?language=objc)
-    pub static kODPolicyTypeAccountMaximumMinutesOfNonUse: Option<&'static ODPolicyType>;
+    pub static kODPolicyTypeAccountMaximumMinutesOfNonUse: &'static ODPolicyType;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodexpirationtimeexpired?language=objc)
@@ -3715,7 +3713,7 @@ extern "C" {
     /// GUID to a string that describes the policy (e.g. "max num chars").
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicykeyidentifier?language=objc)
-    pub static kODPolicyKeyIdentifier: Option<&'static ODPolicyKeyType>;
+    pub static kODPolicyKeyIdentifier: &'static ODPolicyKeyType;
 }
 
 extern "C" {
@@ -3728,7 +3726,7 @@ extern "C" {
     /// provide additional data to be used in the policy format string.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicykeyparameters?language=objc)
-    pub static kODPolicyKeyParameters: Option<&'static ODPolicyKeyType>;
+    pub static kODPolicyKeyParameters: &'static ODPolicyKeyType;
 }
 
 extern "C" {
@@ -3741,7 +3739,7 @@ extern "C" {
     /// evaluation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicykeycontent?language=objc)
-    pub static kODPolicyKeyContent: Option<&'static ODPolicyKeyType>;
+    pub static kODPolicyKeyContent: &'static ODPolicyKeyType;
 }
 
 extern "C" {
@@ -3760,7 +3758,7 @@ extern "C" {
     /// content.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicykeycontentdescription?language=objc)
-    pub static kODPolicyKeyContentDescription: Option<&'static ODPolicyKeyType>;
+    pub static kODPolicyKeyContentDescription: &'static ODPolicyKeyType;
 }
 
 extern "C" {
@@ -3776,7 +3774,7 @@ extern "C" {
     /// kODPolicyKeyPolicySatisfied
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicykeyevaluationdetails?language=objc)
-    pub static kODPolicyKeyEvaluationDetails: Option<&'static ODPolicyKeyType>;
+    pub static kODPolicyKeyEvaluationDetails: &'static ODPolicyKeyType;
 }
 
 extern "C" {
@@ -3788,7 +3786,7 @@ extern "C" {
     /// satisfied and false if not.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicykeypolicysatisfied?language=objc)
-    pub static kODPolicyKeyPolicySatisfied: Option<&'static ODPolicyKeyType>;
+    pub static kODPolicyKeyPolicySatisfied: &'static ODPolicyKeyType;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odpolicycategorytype?language=objc)
@@ -3805,7 +3803,7 @@ extern "C" {
     /// dictionaries.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicycategoryauthentication?language=objc)
-    pub static kODPolicyCategoryAuthentication: Option<&'static ODPolicyCategoryType>;
+    pub static kODPolicyCategoryAuthentication: &'static ODPolicyCategoryType;
 }
 
 extern "C" {
@@ -3819,7 +3817,7 @@ extern "C" {
     /// policy dictionaries.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicycategorypasswordcontent?language=objc)
-    pub static kODPolicyCategoryPasswordContent: Option<&'static ODPolicyCategoryType>;
+    pub static kODPolicyCategoryPasswordContent: &'static ODPolicyCategoryType;
 }
 
 extern "C" {
@@ -3828,7 +3826,7 @@ extern "C" {
     /// Category for policies controlling when password require changing.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicycategorypasswordchange?language=objc)
-    pub static kODPolicyCategoryPasswordChange: Option<&'static ODPolicyCategoryType>;
+    pub static kODPolicyCategoryPasswordChange: &'static ODPolicyCategoryType;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odpolicyattributetype?language=objc)
@@ -3850,7 +3848,7 @@ extern "C" {
     /// , kODPolicyAttributeRecordName, kODPolicyAttributePassword];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributerecordname?language=objc)
-    pub static kODPolicyAttributeRecordName: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeRecordName: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -3873,7 +3871,7 @@ extern "C" {
     /// kODPolicyAttributePassword];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributerecordtype?language=objc)
-    pub static kODPolicyAttributeRecordType: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeRecordType: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -3891,7 +3889,7 @@ extern "C" {
     /// matches '.{8,}+'", kODPolicyAttributePassword];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributepassword?language=objc)
-    pub static kODPolicyAttributePassword: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributePassword: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -3912,7 +3910,7 @@ extern "C" {
     /// , kODPolicyAttributePasswordHashes, kODPolicyAttributePasswordHistory];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributepasswordhashes?language=objc)
-    pub static kODPolicyAttributePasswordHashes: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributePasswordHashes: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -3934,7 +3932,7 @@ extern "C" {
     /// , kODPolicyAttributePasswordHashes, kODPolicyAttributePasswordHistory];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributepasswordhistory?language=objc)
-    pub static kODPolicyAttributePasswordHistory: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributePasswordHistory: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -3946,7 +3944,7 @@ extern "C" {
     /// Should not be used in a policy string.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributepasswordhistorydepth?language=objc)
-    pub static kODPolicyAttributePasswordHistoryDepth: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributePasswordHistoryDepth: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -3970,7 +3968,7 @@ extern "C" {
     /// kODPolicyAttributeCurrentTime instead.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributecurrentdate?language=objc)
-    pub static kODPolicyAttributeCurrentDate: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeCurrentDate: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4006,7 +4004,7 @@ extern "C" {
     /// kODPolicyAttributeExpiresEveryNDays];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributecurrenttime?language=objc)
-    pub static kODPolicyAttributeCurrentTime: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeCurrentTime: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4039,7 +4037,7 @@ extern "C" {
     /// kODPolicyAttributeExpiresAtTimeOfDay];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributecurrenttimeofday?language=objc)
-    pub static kODPolicyAttributeCurrentTimeOfDay: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeCurrentTimeOfDay: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4075,7 +4073,7 @@ extern "C" {
     /// kODPolicyAttributeExpiresOnDayOfWeek];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributecurrentdayofweek?language=objc)
-    pub static kODPolicyAttributeCurrentDayOfWeek: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeCurrentDayOfWeek: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4098,7 +4096,7 @@ extern "C" {
     /// kODPolicyAttributeMaximumFailedAuthentications];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributefailedauthentications?language=objc)
-    pub static kODPolicyAttributeFailedAuthentications: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeFailedAuthentications: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4131,8 +4129,7 @@ extern "C" {
     /// kODPolicyAttributeMaximumFailedAuthentications] };
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributemaximumfailedauthentications?language=objc)
-    pub static kODPolicyAttributeMaximumFailedAuthentications:
-        Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeMaximumFailedAuthentications: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4154,8 +4151,7 @@ extern "C" {
     /// kODPolicyAttributeLastFailedAuthenticationTime];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributelastfailedauthenticationtime?language=objc)
-    pub static kODPolicyAttributeLastFailedAuthenticationTime:
-        Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeLastFailedAuthenticationTime: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4185,7 +4181,7 @@ extern "C" {
     /// kODPolicyAttributeLastAuthenticationTime];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributelastauthenticationtime?language=objc)
-    pub static kODPolicyAttributeLastAuthenticationTime: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeLastAuthenticationTime: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4219,7 +4215,7 @@ extern "C" {
     /// kODPolicyAttributeExpiresEveryNDays];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributelastpasswordchangetime?language=objc)
-    pub static kODPolicyAttributeLastPasswordChangeTime: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeLastPasswordChangeTime: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4265,7 +4261,7 @@ extern "C" {
     /// kODPolicyAttributeNewPasswordRequiredTime]};
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributenewpasswordrequiredtime?language=objc)
-    pub static kODPolicyAttributeNewPasswordRequiredTime: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeNewPasswordRequiredTime: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4307,7 +4303,7 @@ extern "C" {
     /// kODPolicyAttributeDaysUntilExpiration]};
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributecreationtime?language=objc)
-    pub static kODPolicyAttributeCreationTime: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeCreationTime: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4351,7 +4347,7 @@ extern "C" {
     /// kODPolicyAttributeExpiresEveryNDays]};
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributeexpireseveryndays?language=objc)
-    pub static kODPolicyAttributeExpiresEveryNDays: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeExpiresEveryNDays: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4387,7 +4383,7 @@ extern "C" {
     /// kODPolicyAttributeEnableOnDate]};
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributeenableondate?language=objc)
-    pub static kODPolicyAttributeEnableOnDate: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeEnableOnDate: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4424,7 +4420,7 @@ extern "C" {
     /// kODPolicyAttributeExpiresOnDate]};
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributeexpiresondate?language=objc)
-    pub static kODPolicyAttributeExpiresOnDate: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeExpiresOnDate: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4471,7 +4467,7 @@ extern "C" {
     /// kODPolicyAttributeExpiresOnDayOfWeek]};
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributeenableondayofweek?language=objc)
-    pub static kODPolicyAttributeEnableOnDayOfWeek: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeEnableOnDayOfWeek: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4488,7 +4484,7 @@ extern "C" {
     /// day of the week.  See the example above for kODPolicyAttributeEnableOnDayOfWeek.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributeexpiresondayofweek?language=objc)
-    pub static kODPolicyAttributeExpiresOnDayOfWeek: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeExpiresOnDayOfWeek: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4534,7 +4530,7 @@ extern "C" {
     /// kODPolicyAttributeExpiresAtTimeOfDay]};
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributeenableattimeofday?language=objc)
-    pub static kODPolicyAttributeEnableAtTimeOfDay: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeEnableAtTimeOfDay: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4551,7 +4547,7 @@ extern "C" {
     /// above for kODPolicyAttributeEnableAtTimeOfDay.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributeexpiresattimeofday?language=objc)
-    pub static kODPolicyAttributeExpiresAtTimeOfDay: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeExpiresAtTimeOfDay: &'static ODPolicyAttributeType;
 }
 
 extern "C" {
@@ -4597,7 +4593,7 @@ extern "C" {
     /// kODPolicyAttributeDaysUntilExpiration]};
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributedaysuntilexpiration?language=objc)
-    pub static kODPolicyAttributeDaysUntilExpiration: Option<&'static ODPolicyAttributeType>;
+    pub static kODPolicyAttributeDaysUntilExpiration: &'static ODPolicyAttributeType;
 }
 
 /// Errors specific to the framework and to underlying calls
@@ -4757,5 +4753,5 @@ extern "C" {
     /// During backoff authentication attempts are ignored.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodbackoffseconds?language=objc)
-    pub static kODBackOffSeconds: Option<&'static ODErrorUserInfoKeyType>;
+    pub static kODBackOffSeconds: &'static ODErrorUserInfoKeyType;
 }

@@ -10,40 +10,40 @@ pub type PKInkType = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypepen?language=objc)
-    pub static PKInkTypePen: Option<&'static PKInkType>;
+    pub static PKInkTypePen: &'static PKInkType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypepencil?language=objc)
-    pub static PKInkTypePencil: Option<&'static PKInkType>;
+    pub static PKInkTypePencil: &'static PKInkType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypemarker?language=objc)
-    pub static PKInkTypeMarker: Option<&'static PKInkType>;
+    pub static PKInkTypeMarker: &'static PKInkType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypemonoline?language=objc)
-    pub static PKInkTypeMonoline: Option<&'static PKInkType>;
+    pub static PKInkTypeMonoline: &'static PKInkType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypefountainpen?language=objc)
-    pub static PKInkTypeFountainPen: Option<&'static PKInkType>;
+    pub static PKInkTypeFountainPen: &'static PKInkType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypewatercolor?language=objc)
-    pub static PKInkTypeWatercolor: Option<&'static PKInkType>;
+    pub static PKInkTypeWatercolor: &'static PKInkType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypereed?language=objc)
-    pub static PKInkTypeReed: Option<&'static PKInkType>;
+    pub static PKInkTypeReed: &'static PKInkType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypecrayon?language=objc)
-    pub static PKInkTypeCrayon: Option<&'static PKInkType>;
+    pub static PKInkTypeCrayon: &'static PKInkType;
 }

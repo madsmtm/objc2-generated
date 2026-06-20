@@ -990,5 +990,5 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/koderrordomainframework?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODErrorDomainFramework: Option<&'static CFString>;
+    pub static kODErrorDomainFramework: &'static CFString;
 }

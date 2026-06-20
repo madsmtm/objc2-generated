@@ -199,7 +199,7 @@ unsafe impl ConcreteType for CFWriteStream {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertydatawritten?language=objc)
-    pub static kCFStreamPropertyDataWritten: Option<&'static CFStreamPropertyKey>;
+    pub static kCFStreamPropertyDataWritten: &'static CFStreamPropertyKey;
 }
 
 impl CFReadStream {
@@ -320,27 +320,27 @@ extern "C-unwind" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertyappendtofile?language=objc)
-    pub static kCFStreamPropertyAppendToFile: Option<&'static CFStreamPropertyKey>;
+    pub static kCFStreamPropertyAppendToFile: &'static CFStreamPropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertyfilecurrentoffset?language=objc)
-    pub static kCFStreamPropertyFileCurrentOffset: Option<&'static CFStreamPropertyKey>;
+    pub static kCFStreamPropertyFileCurrentOffset: &'static CFStreamPropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocketnativehandle?language=objc)
-    pub static kCFStreamPropertySocketNativeHandle: Option<&'static CFStreamPropertyKey>;
+    pub static kCFStreamPropertySocketNativeHandle: &'static CFStreamPropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocketremotehostname?language=objc)
-    pub static kCFStreamPropertySocketRemoteHostName: Option<&'static CFStreamPropertyKey>;
+    pub static kCFStreamPropertySocketRemoteHostName: &'static CFStreamPropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocketremoteportnumber?language=objc)
-    pub static kCFStreamPropertySocketRemotePortNumber: Option<&'static CFStreamPropertyKey>;
+    pub static kCFStreamPropertySocketRemotePortNumber: &'static CFStreamPropertyKey;
 }
 
 extern "C" {

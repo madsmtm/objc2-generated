@@ -14,7 +14,7 @@ extern "C" {
     /// the address to connect to via proxy, used when making the options dictionary
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyaddress?language=objc)
-    pub static ODSessionProxyAddress: Option<&'static NSString>;
+    pub static ODSessionProxyAddress: &'static NSString;
 }
 
 extern "C" {
@@ -24,7 +24,7 @@ extern "C" {
     /// is optional and should not be passed normally.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyport?language=objc)
-    pub static ODSessionProxyPort: Option<&'static NSString>;
+    pub static ODSessionProxyPort: &'static NSString;
 }
 
 extern "C" {
@@ -33,7 +33,7 @@ extern "C" {
     /// the username to connect with via proxy, used when making the options dictionary
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyusername?language=objc)
-    pub static ODSessionProxyUsername: Option<&'static NSString>;
+    pub static ODSessionProxyUsername: &'static NSString;
 }
 
 extern "C" {
@@ -42,7 +42,7 @@ extern "C" {
     /// the password to connect with via proxy, used when making the options dictionary
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxypassword?language=objc)
-    pub static ODSessionProxyPassword: Option<&'static NSString>;
+    pub static ODSessionProxyPassword: &'static NSString;
 }
 
 extern_class!(

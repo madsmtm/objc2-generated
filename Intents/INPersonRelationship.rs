@@ -10,65 +10,65 @@ pub type INPersonRelationship = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipfather?language=objc)
-    pub static INPersonRelationshipFather: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipFather: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipmother?language=objc)
-    pub static INPersonRelationshipMother: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipMother: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipparent?language=objc)
-    pub static INPersonRelationshipParent: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipParent: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipbrother?language=objc)
-    pub static INPersonRelationshipBrother: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipBrother: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipsister?language=objc)
-    pub static INPersonRelationshipSister: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipSister: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipchild?language=objc)
-    pub static INPersonRelationshipChild: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipChild: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipfriend?language=objc)
-    pub static INPersonRelationshipFriend: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipFriend: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipspouse?language=objc)
-    pub static INPersonRelationshipSpouse: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipSpouse: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshippartner?language=objc)
-    pub static INPersonRelationshipPartner: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipPartner: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipassistant?language=objc)
-    pub static INPersonRelationshipAssistant: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipAssistant: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipmanager?language=objc)
-    pub static INPersonRelationshipManager: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipManager: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipson?language=objc)
-    pub static INPersonRelationshipSon: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipSon: &'static INPersonRelationship;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationshipdaughter?language=objc)
-    pub static INPersonRelationshipDaughter: Option<&'static INPersonRelationship>;
+    pub static INPersonRelationshipDaughter: &'static INPersonRelationship;
 }

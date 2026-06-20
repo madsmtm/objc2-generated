@@ -6,5 +6,5 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swcollaborationmetadatatypeidentifier?language=objc)
-    pub static SWCollaborationMetadataTypeIdentifier: Option<&'static NSString>;
+    pub static SWCollaborationMetadataTypeIdentifier: &'static NSString;
 }

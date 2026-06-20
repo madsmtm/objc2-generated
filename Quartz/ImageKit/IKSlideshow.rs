@@ -188,75 +188,75 @@ impl IKSlideshow {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowmodeimages?language=objc)
-    pub static IKSlideshowModeImages: Option<&'static NSString>;
+    pub static IKSlideshowModeImages: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowmodepdf?language=objc)
-    pub static IKSlideshowModePDF: Option<&'static NSString>;
+    pub static IKSlideshowModePDF: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowmodeother?language=objc)
-    pub static IKSlideshowModeOther: Option<&'static NSString>;
+    pub static IKSlideshowModeOther: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowwraparound?language=objc)
-    pub static IKSlideshowWrapAround: Option<&'static NSString>;
+    pub static IKSlideshowWrapAround: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowstartpaused?language=objc)
-    pub static IKSlideshowStartPaused: Option<&'static NSString>;
+    pub static IKSlideshowStartPaused: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowstartindex?language=objc)
-    pub static IKSlideshowStartIndex: Option<&'static NSString>;
+    pub static IKSlideshowStartIndex: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowscreen?language=objc)
-    pub static IKSlideshowScreen: Option<&'static NSString>;
+    pub static IKSlideshowScreen: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowaudiofile?language=objc)
-    pub static IKSlideshowAudioFile: Option<&'static NSString>;
+    pub static IKSlideshowAudioFile: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowpdfdisplaybox?language=objc)
-    pub static IKSlideshowPDFDisplayBox: Option<&'static NSString>;
+    pub static IKSlideshowPDFDisplayBox: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowpdfdisplaymode?language=objc)
-    pub static IKSlideshowPDFDisplayMode: Option<&'static NSString>;
+    pub static IKSlideshowPDFDisplayMode: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowpdfdisplaysasbook?language=objc)
-    pub static IKSlideshowPDFDisplaysAsBook: Option<&'static NSString>;
+    pub static IKSlideshowPDFDisplaysAsBook: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ik_iphotobundleidentifier?language=objc)
-    pub static IK_iPhotoBundleIdentifier: Option<&'static NSString>;
+    pub static IK_iPhotoBundleIdentifier: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ik_aperturebundleidentifier?language=objc)
-    pub static IK_ApertureBundleIdentifier: Option<&'static NSString>;
+    pub static IK_ApertureBundleIdentifier: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ik_mailbundleidentifier?language=objc)
-    pub static IK_MailBundleIdentifier: Option<&'static NSString>;
+    pub static IK_MailBundleIdentifier: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ik_photosbundleidentifier?language=objc)
-    pub static IK_PhotosBundleIdentifier: Option<&'static NSString>;
+    pub static IK_PhotosBundleIdentifier: &'static NSString;
 }

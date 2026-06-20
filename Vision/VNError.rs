@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrordomain?language=objc)
-    pub static VNErrorDomain: Option<&'static NSString>;
+    pub static VNErrorDomain: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode?language=objc)

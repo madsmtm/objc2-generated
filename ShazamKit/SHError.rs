@@ -9,7 +9,7 @@ extern "C" {
     /// The error domain for specific errors for ShazamKit.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherrordomain?language=objc)
-    pub static SHErrorDomain: Option<&'static NSErrorDomain>;
+    pub static SHErrorDomain: &'static NSErrorDomain;
 }
 
 /// An error type that you create, or the system creates, to indicate problems with a catalog, match attempt, or signature, or when saving to a user's Shazam library.

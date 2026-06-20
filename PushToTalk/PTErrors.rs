@@ -7,12 +7,12 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptinstantiationerrordomain?language=objc)
-    pub static PTInstantiationErrorDomain: Option<&'static NSErrorDomain>;
+    pub static PTInstantiationErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerrordomain?language=objc)
-    pub static PTChannelErrorDomain: Option<&'static NSErrorDomain>;
+    pub static PTChannelErrorDomain: &'static NSErrorDomain;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptinstantiationerror?language=objc)

@@ -10,7 +10,7 @@ extern "C" {
     /// This property is not supported by all RAWProcessors
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingpropertykey_metaldeviceregistryid?language=objc)
-    pub static kVTRAWProcessingPropertyKey_MetalDeviceRegistryID: Option<&'static CFString>;
+    pub static kVTRAWProcessingPropertyKey_MetalDeviceRegistryID: &'static CFString;
 }
 
 extern "C" {
@@ -19,7 +19,7 @@ extern "C" {
     /// This property may not be supported by all RAW Processors. Only color-related keys from CVImageBuffer.h are permitted in the returned dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingpropertykey_outputcolorattachments?language=objc)
-    pub static kVTRAWProcessingPropertyKey_OutputColorAttachments: Option<&'static CFString>;
+    pub static kVTRAWProcessingPropertyKey_OutputColorAttachments: &'static CFString;
 }
 
 extern "C" {
@@ -28,5 +28,5 @@ extern "C" {
     /// This property is not supported by all RAWProcessors. The metadata returned represents a fully-formed sidecar file, and should be compatible with the MediaExtension FormatReader.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingpropertykey_metadataforsidecarfile?language=objc)
-    pub static kVTRAWProcessingPropertyKey_MetadataForSidecarFile: Option<&'static CFString>;
+    pub static kVTRAWProcessingPropertyKey_MetadataForSidecarFile: &'static CFString;
 }

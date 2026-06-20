@@ -7,17 +7,17 @@ use crate::*;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakershowaddressbookpicture?language=objc)
     #[deprecated]
-    pub static IKPictureTakerShowAddressBookPicture: Option<&'static NSString>;
+    pub static IKPictureTakerShowAddressBookPicture: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakershowemptypicture?language=objc)
     #[deprecated]
-    pub static IKPictureTakerShowEmptyPicture: Option<&'static NSString>;
+    pub static IKPictureTakerShowEmptyPicture: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakercropareasizekey?language=objc)
     #[deprecated]
-    pub static IKPictureTakerCropAreaSizeKey: Option<&'static NSString>;
+    pub static IKPictureTakerCropAreaSizeKey: &'static NSString;
 }

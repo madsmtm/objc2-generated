@@ -11,7 +11,7 @@ extern "C" {
     /// This error domain is used as the domain for all NSError instances stemming from the MetricKit Framework.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerrordomain?language=objc)
-    pub static MXErrorDomain: Option<&'static NSErrorDomain>;
+    pub static MXErrorDomain: &'static NSErrorDomain;
 }
 
 /// Error codes for NSError values stemming from the MetricKit Framework.

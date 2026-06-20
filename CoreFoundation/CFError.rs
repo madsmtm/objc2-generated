@@ -47,62 +47,62 @@ unsafe impl ConcreteType for CFError {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrordomainposix?language=objc)
-    pub static kCFErrorDomainPOSIX: Option<&'static CFErrorDomain>;
+    pub static kCFErrorDomainPOSIX: &'static CFErrorDomain;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrordomainosstatus?language=objc)
-    pub static kCFErrorDomainOSStatus: Option<&'static CFErrorDomain>;
+    pub static kCFErrorDomainOSStatus: &'static CFErrorDomain;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrordomainmach?language=objc)
-    pub static kCFErrorDomainMach: Option<&'static CFErrorDomain>;
+    pub static kCFErrorDomainMach: &'static CFErrorDomain;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrordomaincocoa?language=objc)
-    pub static kCFErrorDomainCocoa: Option<&'static CFErrorDomain>;
+    pub static kCFErrorDomainCocoa: &'static CFErrorDomain;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizeddescriptionkey?language=objc)
-    pub static kCFErrorLocalizedDescriptionKey: Option<&'static CFString>;
+    pub static kCFErrorLocalizedDescriptionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedfailurekey?language=objc)
-    pub static kCFErrorLocalizedFailureKey: Option<&'static CFString>;
+    pub static kCFErrorLocalizedFailureKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedfailurereasonkey?language=objc)
-    pub static kCFErrorLocalizedFailureReasonKey: Option<&'static CFString>;
+    pub static kCFErrorLocalizedFailureReasonKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedrecoverysuggestionkey?language=objc)
-    pub static kCFErrorLocalizedRecoverySuggestionKey: Option<&'static CFString>;
+    pub static kCFErrorLocalizedRecoverySuggestionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrordescriptionkey?language=objc)
-    pub static kCFErrorDescriptionKey: Option<&'static CFString>;
+    pub static kCFErrorDescriptionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorunderlyingerrorkey?language=objc)
-    pub static kCFErrorUnderlyingErrorKey: Option<&'static CFString>;
+    pub static kCFErrorUnderlyingErrorKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorurlkey?language=objc)
-    pub static kCFErrorURLKey: Option<&'static CFString>;
+    pub static kCFErrorURLKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorfilepathkey?language=objc)
-    pub static kCFErrorFilePathKey: Option<&'static CFString>;
+    pub static kCFErrorFilePathKey: &'static CFString;
 }
 
 impl CFError {

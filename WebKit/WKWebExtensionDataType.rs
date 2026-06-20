@@ -14,19 +14,19 @@ extern "C" {
     /// Specifies local storage, including `browser.storage.local`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiondatatypelocal?language=objc)
-    pub static WKWebExtensionDataTypeLocal: Option<&'static WKWebExtensionDataType>;
+    pub static WKWebExtensionDataTypeLocal: &'static WKWebExtensionDataType;
 }
 
 extern "C" {
     /// Specifies session storage, including `browser.storage.session`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiondatatypesession?language=objc)
-    pub static WKWebExtensionDataTypeSession: Option<&'static WKWebExtensionDataType>;
+    pub static WKWebExtensionDataTypeSession: &'static WKWebExtensionDataType;
 }
 
 extern "C" {
     /// Specifies synchronized storage, including `browser.storage.sync`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiondatatypesynchronized?language=objc)
-    pub static WKWebExtensionDataTypeSynchronized: Option<&'static WKWebExtensionDataType>;
+    pub static WKWebExtensionDataTypeSynchronized: &'static WKWebExtensionDataType;
 }

@@ -667,35 +667,35 @@ impl CFSocket {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketcommandkey?language=objc)
-    pub static kCFSocketCommandKey: Option<&'static CFString>;
+    pub static kCFSocketCommandKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketnamekey?language=objc)
-    pub static kCFSocketNameKey: Option<&'static CFString>;
+    pub static kCFSocketNameKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketvaluekey?language=objc)
-    pub static kCFSocketValueKey: Option<&'static CFString>;
+    pub static kCFSocketValueKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketresultkey?language=objc)
-    pub static kCFSocketResultKey: Option<&'static CFString>;
+    pub static kCFSocketResultKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketerrorkey?language=objc)
-    pub static kCFSocketErrorKey: Option<&'static CFString>;
+    pub static kCFSocketErrorKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketregistercommand?language=objc)
-    pub static kCFSocketRegisterCommand: Option<&'static CFString>;
+    pub static kCFSocketRegisterCommand: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketretrievecommand?language=objc)
-    pub static kCFSocketRetrieveCommand: Option<&'static CFString>;
+    pub static kCFSocketRetrieveCommand: &'static CFString;
 }

@@ -364,52 +364,52 @@ extern "C" {
     /// Type is a CFString. This attribute is read-only.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelbundleurl?language=objc)
-    pub static kMDLabelBundleURL: Option<&'static CFString>;
+    pub static kMDLabelBundleURL: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelcontentchangedate?language=objc)
-    pub static kMDLabelContentChangeDate: Option<&'static CFString>;
+    pub static kMDLabelContentChangeDate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabeldisplayname?language=objc)
-    pub static kMDLabelDisplayName: Option<&'static CFString>;
+    pub static kMDLabelDisplayName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelicondata?language=objc)
-    pub static kMDLabelIconData: Option<&'static CFString>;
+    pub static kMDLabelIconData: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabeliconuuid?language=objc)
-    pub static kMDLabelIconUUID: Option<&'static CFString>;
+    pub static kMDLabelIconUUID: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelismutuallyexclusivesetmember?language=objc)
-    pub static kMDLabelIsMutuallyExclusiveSetMember: Option<&'static CFString>;
+    pub static kMDLabelIsMutuallyExclusiveSetMember: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelkind?language=objc)
-    pub static kMDLabelKind: Option<&'static CFString>;
+    pub static kMDLabelKind: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelsetsfindercolor?language=objc)
-    pub static kMDLabelSetsFinderColor: Option<&'static CFString>;
+    pub static kMDLabelSetsFinderColor: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabeluuid?language=objc)
-    pub static kMDLabelUUID: Option<&'static CFString>;
+    pub static kMDLabelUUID: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelvisibility?language=objc)
-    pub static kMDLabelVisibility: Option<&'static CFString>;
+    pub static kMDLabelVisibility: &'static CFString;
 }
 
 extern "C" {
@@ -422,41 +422,41 @@ extern "C" {
     /// The value is a CFString constant, either "Public" (kMDPublicVisibility) or "Private" (kMDPrivateVisibility).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelkindismutuallyexclusivesetkey?language=objc)
-    pub static kMDLabelKindIsMutuallyExclusiveSetKey: Option<&'static CFString>;
+    pub static kMDLabelKindIsMutuallyExclusiveSetKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelkindvisibilitykey?language=objc)
-    pub static kMDLabelKindVisibilityKey: Option<&'static CFString>;
+    pub static kMDLabelKindVisibilityKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdprivatevisibility?language=objc)
-    pub static kMDPrivateVisibility: Option<&'static CFString>;
+    pub static kMDPrivateVisibility: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdpublicvisibility?language=objc)
-    pub static kMDPublicVisibility: Option<&'static CFString>;
+    pub static kMDPublicVisibility: &'static CFString;
 }
 
 extern "C" {
     /// The name of the notification sent when a label has been added. The notification object is the subject MDLabelRef. All label notifications are distributed to processes owned by the same uid that have initialized the Metadata framework label APIs.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabeladdednotification?language=objc)
-    pub static kMDLabelAddedNotification: Option<&'static CFString>;
+    pub static kMDLabelAddedNotification: &'static CFString;
 }
 
 extern "C" {
     /// The name of the notification sent when a label has been changed. The notification object is the subject MDLabelRef. The label's new attributes can be retrieved using MDLabelCopyAttribute().
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelchangednotification?language=objc)
-    pub static kMDLabelChangedNotification: Option<&'static CFString>;
+    pub static kMDLabelChangedNotification: &'static CFString;
 }
 
 extern "C" {
     /// The name of the notification sent when a label has been deleted. The notification object is the subject MDLabelRef. The label's kMDLabelIconUUID, kMDLabelKind, kMDLabelKindBundleURL and kMDLabelUUID attributes can still be retrieved using MDLabelCopyAttribute(), and the label may still be passed to MDLabelCopyAttributeName().
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelremovednotification?language=objc)
-    pub static kMDLabelRemovedNotification: Option<&'static CFString>;
+    pub static kMDLabelRemovedNotification: &'static CFString;
 }

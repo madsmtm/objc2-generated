@@ -1541,82 +1541,82 @@ impl CFMutableString {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformstripcombiningmarks?language=objc)
-    pub static kCFStringTransformStripCombiningMarks: Option<&'static CFString>;
+    pub static kCFStringTransformStripCombiningMarks: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformtolatin?language=objc)
-    pub static kCFStringTransformToLatin: Option<&'static CFString>;
+    pub static kCFStringTransformToLatin: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformfullwidthhalfwidth?language=objc)
-    pub static kCFStringTransformFullwidthHalfwidth: Option<&'static CFString>;
+    pub static kCFStringTransformFullwidthHalfwidth: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinkatakana?language=objc)
-    pub static kCFStringTransformLatinKatakana: Option<&'static CFString>;
+    pub static kCFStringTransformLatinKatakana: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinhiragana?language=objc)
-    pub static kCFStringTransformLatinHiragana: Option<&'static CFString>;
+    pub static kCFStringTransformLatinHiragana: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformhiraganakatakana?language=objc)
-    pub static kCFStringTransformHiraganaKatakana: Option<&'static CFString>;
+    pub static kCFStringTransformHiraganaKatakana: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformmandarinlatin?language=objc)
-    pub static kCFStringTransformMandarinLatin: Option<&'static CFString>;
+    pub static kCFStringTransformMandarinLatin: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinhangul?language=objc)
-    pub static kCFStringTransformLatinHangul: Option<&'static CFString>;
+    pub static kCFStringTransformLatinHangul: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinarabic?language=objc)
-    pub static kCFStringTransformLatinArabic: Option<&'static CFString>;
+    pub static kCFStringTransformLatinArabic: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinhebrew?language=objc)
-    pub static kCFStringTransformLatinHebrew: Option<&'static CFString>;
+    pub static kCFStringTransformLatinHebrew: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinthai?language=objc)
-    pub static kCFStringTransformLatinThai: Option<&'static CFString>;
+    pub static kCFStringTransformLatinThai: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatincyrillic?language=objc)
-    pub static kCFStringTransformLatinCyrillic: Option<&'static CFString>;
+    pub static kCFStringTransformLatinCyrillic: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatingreek?language=objc)
-    pub static kCFStringTransformLatinGreek: Option<&'static CFString>;
+    pub static kCFStringTransformLatinGreek: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformtoxmlhex?language=objc)
-    pub static kCFStringTransformToXMLHex: Option<&'static CFString>;
+    pub static kCFStringTransformToXMLHex: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformtounicodename?language=objc)
-    pub static kCFStringTransformToUnicodeName: Option<&'static CFString>;
+    pub static kCFStringTransformToUnicodeName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformstripdiacritics?language=objc)
-    pub static kCFStringTransformStripDiacritics: Option<&'static CFString>;
+    pub static kCFStringTransformStripDiacritics: &'static CFString;
 }
 
 impl CFString {

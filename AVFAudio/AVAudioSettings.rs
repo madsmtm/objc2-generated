@@ -7,137 +7,137 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avformatidkey?language=objc)
-    pub static AVFormatIDKey: Option<&'static NSString>;
+    pub static AVFormatIDKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsampleratekey?language=objc)
-    pub static AVSampleRateKey: Option<&'static NSString>;
+    pub static AVSampleRateKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avnumberofchannelskey?language=objc)
-    pub static AVNumberOfChannelsKey: Option<&'static NSString>;
+    pub static AVNumberOfChannelsKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avlinearpcmbitdepthkey?language=objc)
-    pub static AVLinearPCMBitDepthKey: Option<&'static NSString>;
+    pub static AVLinearPCMBitDepthKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avlinearpcmisbigendiankey?language=objc)
-    pub static AVLinearPCMIsBigEndianKey: Option<&'static NSString>;
+    pub static AVLinearPCMIsBigEndianKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avlinearpcmisfloatkey?language=objc)
-    pub static AVLinearPCMIsFloatKey: Option<&'static NSString>;
+    pub static AVLinearPCMIsFloatKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avlinearpcmisnoninterleaved?language=objc)
-    pub static AVLinearPCMIsNonInterleaved: Option<&'static NSString>;
+    pub static AVLinearPCMIsNonInterleaved: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiofiletypekey?language=objc)
-    pub static AVAudioFileTypeKey: Option<&'static NSString>;
+    pub static AVAudioFileTypeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderaudioqualitykey?language=objc)
-    pub static AVEncoderAudioQualityKey: Option<&'static NSString>;
+    pub static AVEncoderAudioQualityKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderaudioqualityforvbrkey?language=objc)
-    pub static AVEncoderAudioQualityForVBRKey: Option<&'static NSString>;
+    pub static AVEncoderAudioQualityForVBRKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderbitratekey?language=objc)
-    pub static AVEncoderBitRateKey: Option<&'static NSString>;
+    pub static AVEncoderBitRateKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderbitrateperchannelkey?language=objc)
-    pub static AVEncoderBitRatePerChannelKey: Option<&'static NSString>;
+    pub static AVEncoderBitRatePerChannelKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderbitratestrategykey?language=objc)
-    pub static AVEncoderBitRateStrategyKey: Option<&'static NSString>;
+    pub static AVEncoderBitRateStrategyKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderbitdepthhintkey?language=objc)
-    pub static AVEncoderBitDepthHintKey: Option<&'static NSString>;
+    pub static AVEncoderBitDepthHintKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderdynamicrangecontrolconfigurationkey?language=objc)
-    pub static AVEncoderDynamicRangeControlConfigurationKey: Option<&'static NSString>;
+    pub static AVEncoderDynamicRangeControlConfigurationKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencodercontentsourcekey?language=objc)
-    pub static AVEncoderContentSourceKey: Option<&'static NSString>;
+    pub static AVEncoderContentSourceKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderaspfrequencykey?language=objc)
-    pub static AVEncoderASPFrequencyKey: Option<&'static NSString>;
+    pub static AVEncoderASPFrequencyKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteralgorithmkey?language=objc)
-    pub static AVSampleRateConverterAlgorithmKey: Option<&'static NSString>;
+    pub static AVSampleRateConverterAlgorithmKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteraudioqualitykey?language=objc)
-    pub static AVSampleRateConverterAudioQualityKey: Option<&'static NSString>;
+    pub static AVSampleRateConverterAudioQualityKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avchannellayoutkey?language=objc)
-    pub static AVChannelLayoutKey: Option<&'static NSString>;
+    pub static AVChannelLayoutKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiobitratestrategy_constant?language=objc)
-    pub static AVAudioBitRateStrategy_Constant: Option<&'static NSString>;
+    pub static AVAudioBitRateStrategy_Constant: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiobitratestrategy_longtermaverage?language=objc)
-    pub static AVAudioBitRateStrategy_LongTermAverage: Option<&'static NSString>;
+    pub static AVAudioBitRateStrategy_LongTermAverage: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiobitratestrategy_variableconstrained?language=objc)
-    pub static AVAudioBitRateStrategy_VariableConstrained: Option<&'static NSString>;
+    pub static AVAudioBitRateStrategy_VariableConstrained: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiobitratestrategy_variable?language=objc)
-    pub static AVAudioBitRateStrategy_Variable: Option<&'static NSString>;
+    pub static AVAudioBitRateStrategy_Variable: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteralgorithm_normal?language=objc)
-    pub static AVSampleRateConverterAlgorithm_Normal: Option<&'static NSString>;
+    pub static AVSampleRateConverterAlgorithm_Normal: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteralgorithm_mastering?language=objc)
-    pub static AVSampleRateConverterAlgorithm_Mastering: Option<&'static NSString>;
+    pub static AVSampleRateConverterAlgorithm_Mastering: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteralgorithm_minimumphase?language=objc)
-    pub static AVSampleRateConverterAlgorithm_MinimumPhase: Option<&'static NSString>;
+    pub static AVSampleRateConverterAlgorithm_MinimumPhase: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioquality?language=objc)

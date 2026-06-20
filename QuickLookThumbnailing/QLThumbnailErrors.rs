@@ -7,7 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerrordomain?language=objc)
-    pub static QLThumbnailErrorDomain: Option<&'static NSErrorDomain>;
+    pub static QLThumbnailErrorDomain: &'static NSErrorDomain;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror?language=objc)

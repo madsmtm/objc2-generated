@@ -43,37 +43,37 @@ cf_objc2_type!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleinfodictionaryversionkey?language=objc)
-    pub static kCFBundleInfoDictionaryVersionKey: Option<&'static CFString>;
+    pub static kCFBundleInfoDictionaryVersionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleexecutablekey?language=objc)
-    pub static kCFBundleExecutableKey: Option<&'static CFString>;
+    pub static kCFBundleExecutableKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleidentifierkey?language=objc)
-    pub static kCFBundleIdentifierKey: Option<&'static CFString>;
+    pub static kCFBundleIdentifierKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleversionkey?language=objc)
-    pub static kCFBundleVersionKey: Option<&'static CFString>;
+    pub static kCFBundleVersionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundledevelopmentregionkey?language=objc)
-    pub static kCFBundleDevelopmentRegionKey: Option<&'static CFString>;
+    pub static kCFBundleDevelopmentRegionKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundlenamekey?language=objc)
-    pub static kCFBundleNameKey: Option<&'static CFString>;
+    pub static kCFBundleNameKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundlelocalizationskey?language=objc)
-    pub static kCFBundleLocalizationsKey: Option<&'static CFString>;
+    pub static kCFBundleLocalizationsKey: &'static CFString;
 }
 
 impl CFBundle {

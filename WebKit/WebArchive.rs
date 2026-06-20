@@ -11,7 +11,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webarchivepboardtype?language=objc)
     #[deprecated]
-    pub static WebArchivePboardType: Option<&'static NSString>;
+    pub static WebArchivePboardType: &'static NSString;
 }
 
 extern_class!(

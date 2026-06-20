@@ -246,60 +246,60 @@ impl IKPictureTaker {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerallowsvideocapturekey?language=objc)
-    pub static IKPictureTakerAllowsVideoCaptureKey: Option<&'static NSString>;
+    pub static IKPictureTakerAllowsVideoCaptureKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerallowsfilechoosingkey?language=objc)
-    pub static IKPictureTakerAllowsFileChoosingKey: Option<&'static NSString>;
+    pub static IKPictureTakerAllowsFileChoosingKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakershowrecentpicturekey?language=objc)
-    pub static IKPictureTakerShowRecentPictureKey: Option<&'static NSString>;
+    pub static IKPictureTakerShowRecentPictureKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerupdaterecentpicturekey?language=objc)
-    pub static IKPictureTakerUpdateRecentPictureKey: Option<&'static NSString>;
+    pub static IKPictureTakerUpdateRecentPictureKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerallowseditingkey?language=objc)
-    pub static IKPictureTakerAllowsEditingKey: Option<&'static NSString>;
+    pub static IKPictureTakerAllowsEditingKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakershoweffectskey?language=objc)
-    pub static IKPictureTakerShowEffectsKey: Option<&'static NSString>;
+    pub static IKPictureTakerShowEffectsKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerinformationaltextkey?language=objc)
-    pub static IKPictureTakerInformationalTextKey: Option<&'static NSString>;
+    pub static IKPictureTakerInformationalTextKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerimagetransformskey?language=objc)
-    pub static IKPictureTakerImageTransformsKey: Option<&'static NSString>;
+    pub static IKPictureTakerImageTransformsKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakeroutputimagemaxsizekey?language=objc)
-    pub static IKPictureTakerOutputImageMaxSizeKey: Option<&'static NSString>;
+    pub static IKPictureTakerOutputImageMaxSizeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakershowaddressbookpicturekey?language=objc)
-    pub static IKPictureTakerShowAddressBookPictureKey: Option<&'static NSString>;
+    pub static IKPictureTakerShowAddressBookPictureKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakershowemptypicturekey?language=objc)
-    pub static IKPictureTakerShowEmptyPictureKey: Option<&'static NSString>;
+    pub static IKPictureTakerShowEmptyPictureKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerremainopenaftervalidatekey?language=objc)
-    pub static IKPictureTakerRemainOpenAfterValidateKey: Option<&'static NSString>;
+    pub static IKPictureTakerRemainOpenAfterValidateKey: &'static NSString;
 }

@@ -548,437 +548,437 @@ extern "C" {
     /// The name may be user provided.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemattributechangedate?language=objc)
-    pub static kMDItemAttributeChangeDate: Option<&'static CFString>;
+    pub static kMDItemAttributeChangeDate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontenttype?language=objc)
-    pub static kMDItemContentType: Option<&'static CFString>;
+    pub static kMDItemContentType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontenttypetree?language=objc)
-    pub static kMDItemContentTypeTree: Option<&'static CFString>;
+    pub static kMDItemContentTypeTree: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemkeywords?language=objc)
-    pub static kMDItemKeywords: Option<&'static CFString>;
+    pub static kMDItemKeywords: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtitle?language=objc)
-    pub static kMDItemTitle: Option<&'static CFString>;
+    pub static kMDItemTitle: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemauthors?language=objc)
-    pub static kMDItemAuthors: Option<&'static CFString>;
+    pub static kMDItemAuthors: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemeditors?language=objc)
-    pub static kMDItemEditors: Option<&'static CFString>;
+    pub static kMDItemEditors: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemparticipants?language=objc)
-    pub static kMDItemParticipants: Option<&'static CFString>;
+    pub static kMDItemParticipants: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemprojects?language=objc)
-    pub static kMDItemProjects: Option<&'static CFString>;
+    pub static kMDItemProjects: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdownloadeddate?language=objc)
-    pub static kMDItemDownloadedDate: Option<&'static CFString>;
+    pub static kMDItemDownloadedDate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemwherefroms?language=objc)
-    pub static kMDItemWhereFroms: Option<&'static CFString>;
+    pub static kMDItemWhereFroms: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcomment?language=objc)
-    pub static kMDItemComment: Option<&'static CFString>;
+    pub static kMDItemComment: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcopyright?language=objc)
-    pub static kMDItemCopyright: Option<&'static CFString>;
+    pub static kMDItemCopyright: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlastuseddate?language=objc)
-    pub static kMDItemLastUsedDate: Option<&'static CFString>;
+    pub static kMDItemLastUsedDate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontentcreationdate?language=objc)
-    pub static kMDItemContentCreationDate: Option<&'static CFString>;
+    pub static kMDItemContentCreationDate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontentmodificationdate?language=objc)
-    pub static kMDItemContentModificationDate: Option<&'static CFString>;
+    pub static kMDItemContentModificationDate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdateadded?language=objc)
-    pub static kMDItemDateAdded: Option<&'static CFString>;
+    pub static kMDItemDateAdded: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdurationseconds?language=objc)
-    pub static kMDItemDurationSeconds: Option<&'static CFString>;
+    pub static kMDItemDurationSeconds: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontactkeywords?language=objc)
-    pub static kMDItemContactKeywords: Option<&'static CFString>;
+    pub static kMDItemContactKeywords: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemversion?language=objc)
-    pub static kMDItemVersion: Option<&'static CFString>;
+    pub static kMDItemVersion: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempixelheight?language=objc)
-    pub static kMDItemPixelHeight: Option<&'static CFString>;
+    pub static kMDItemPixelHeight: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemxmpcredit?language=objc)
-    pub static kMDItemXMPCredit: Option<&'static CFString>;
+    pub static kMDItemXMPCredit: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemxmpdigitalsourcetype?language=objc)
-    pub static kMDItemXMPDigitalSourceType: Option<&'static CFString>;
+    pub static kMDItemXMPDigitalSourceType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempixelwidth?language=objc)
-    pub static kMDItemPixelWidth: Option<&'static CFString>;
+    pub static kMDItemPixelWidth: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempixelcount?language=objc)
-    pub static kMDItemPixelCount: Option<&'static CFString>;
+    pub static kMDItemPixelCount: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcolorspace?language=objc)
-    pub static kMDItemColorSpace: Option<&'static CFString>;
+    pub static kMDItemColorSpace: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditembitspersample?language=objc)
-    pub static kMDItemBitsPerSample: Option<&'static CFString>;
+    pub static kMDItemBitsPerSample: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemflashonoff?language=objc)
-    pub static kMDItemFlashOnOff: Option<&'static CFString>;
+    pub static kMDItemFlashOnOff: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfocallength?language=objc)
-    pub static kMDItemFocalLength: Option<&'static CFString>;
+    pub static kMDItemFocalLength: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemacquisitionmake?language=objc)
-    pub static kMDItemAcquisitionMake: Option<&'static CFString>;
+    pub static kMDItemAcquisitionMake: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemacquisitionmodel?language=objc)
-    pub static kMDItemAcquisitionModel: Option<&'static CFString>;
+    pub static kMDItemAcquisitionModel: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemisospeed?language=objc)
-    pub static kMDItemISOSpeed: Option<&'static CFString>;
+    pub static kMDItemISOSpeed: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemorientation?language=objc)
-    pub static kMDItemOrientation: Option<&'static CFString>;
+    pub static kMDItemOrientation: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlayernames?language=objc)
-    pub static kMDItemLayerNames: Option<&'static CFString>;
+    pub static kMDItemLayerNames: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemwhitebalance?language=objc)
-    pub static kMDItemWhiteBalance: Option<&'static CFString>;
+    pub static kMDItemWhiteBalance: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaperture?language=objc)
-    pub static kMDItemAperture: Option<&'static CFString>;
+    pub static kMDItemAperture: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemprofilename?language=objc)
-    pub static kMDItemProfileName: Option<&'static CFString>;
+    pub static kMDItemProfileName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemresolutionwidthdpi?language=objc)
-    pub static kMDItemResolutionWidthDPI: Option<&'static CFString>;
+    pub static kMDItemResolutionWidthDPI: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemresolutionheightdpi?language=objc)
-    pub static kMDItemResolutionHeightDPI: Option<&'static CFString>;
+    pub static kMDItemResolutionHeightDPI: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexposuremode?language=objc)
-    pub static kMDItemExposureMode: Option<&'static CFString>;
+    pub static kMDItemExposureMode: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexposuretimeseconds?language=objc)
-    pub static kMDItemExposureTimeSeconds: Option<&'static CFString>;
+    pub static kMDItemExposureTimeSeconds: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexifversion?language=objc)
-    pub static kMDItemEXIFVersion: Option<&'static CFString>;
+    pub static kMDItemEXIFVersion: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcameraowner?language=objc)
-    pub static kMDItemCameraOwner: Option<&'static CFString>;
+    pub static kMDItemCameraOwner: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfocallength35mm?language=objc)
-    pub static kMDItemFocalLength35mm: Option<&'static CFString>;
+    pub static kMDItemFocalLength35mm: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlensmodel?language=objc)
-    pub static kMDItemLensModel: Option<&'static CFString>;
+    pub static kMDItemLensModel: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexifgpsversion?language=objc)
-    pub static kMDItemEXIFGPSVersion: Option<&'static CFString>;
+    pub static kMDItemEXIFGPSVersion: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaltitude?language=objc)
-    pub static kMDItemAltitude: Option<&'static CFString>;
+    pub static kMDItemAltitude: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlatitude?language=objc)
-    pub static kMDItemLatitude: Option<&'static CFString>;
+    pub static kMDItemLatitude: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlongitude?language=objc)
-    pub static kMDItemLongitude: Option<&'static CFString>;
+    pub static kMDItemLongitude: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemspeed?language=objc)
-    pub static kMDItemSpeed: Option<&'static CFString>;
+    pub static kMDItemSpeed: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtimestamp?language=objc)
-    pub static kMDItemTimestamp: Option<&'static CFString>;
+    pub static kMDItemTimestamp: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpstrack?language=objc)
-    pub static kMDItemGPSTrack: Option<&'static CFString>;
+    pub static kMDItemGPSTrack: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemimagedirection?language=objc)
-    pub static kMDItemImageDirection: Option<&'static CFString>;
+    pub static kMDItemImageDirection: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemnamedlocation?language=objc)
-    pub static kMDItemNamedLocation: Option<&'static CFString>;
+    pub static kMDItemNamedLocation: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsstatus?language=objc)
-    pub static kMDItemGPSStatus: Option<&'static CFString>;
+    pub static kMDItemGPSStatus: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsmeasuremode?language=objc)
-    pub static kMDItemGPSMeasureMode: Option<&'static CFString>;
+    pub static kMDItemGPSMeasureMode: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdop?language=objc)
-    pub static kMDItemGPSDOP: Option<&'static CFString>;
+    pub static kMDItemGPSDOP: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsmapdatum?language=objc)
-    pub static kMDItemGPSMapDatum: Option<&'static CFString>;
+    pub static kMDItemGPSMapDatum: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdestlatitude?language=objc)
-    pub static kMDItemGPSDestLatitude: Option<&'static CFString>;
+    pub static kMDItemGPSDestLatitude: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdestlongitude?language=objc)
-    pub static kMDItemGPSDestLongitude: Option<&'static CFString>;
+    pub static kMDItemGPSDestLongitude: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdestbearing?language=objc)
-    pub static kMDItemGPSDestBearing: Option<&'static CFString>;
+    pub static kMDItemGPSDestBearing: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdestdistance?language=objc)
-    pub static kMDItemGPSDestDistance: Option<&'static CFString>;
+    pub static kMDItemGPSDestDistance: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsprocessingmethod?language=objc)
-    pub static kMDItemGPSProcessingMethod: Option<&'static CFString>;
+    pub static kMDItemGPSProcessingMethod: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsareainformation?language=objc)
-    pub static kMDItemGPSAreaInformation: Option<&'static CFString>;
+    pub static kMDItemGPSAreaInformation: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdatestamp?language=objc)
-    pub static kMDItemGPSDateStamp: Option<&'static CFString>;
+    pub static kMDItemGPSDateStamp: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdifferental?language=objc)
-    pub static kMDItemGPSDifferental: Option<&'static CFString>;
+    pub static kMDItemGPSDifferental: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmediaextensions?language=objc)
-    pub static kMDItemMediaExtensions: Option<&'static CFString>;
+    pub static kMDItemMediaExtensions: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcodecs?language=objc)
-    pub static kMDItemCodecs: Option<&'static CFString>;
+    pub static kMDItemCodecs: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmediatypes?language=objc)
-    pub static kMDItemMediaTypes: Option<&'static CFString>;
+    pub static kMDItemMediaTypes: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemstreamable?language=objc)
-    pub static kMDItemStreamable: Option<&'static CFString>;
+    pub static kMDItemStreamable: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtotalbitrate?language=objc)
-    pub static kMDItemTotalBitRate: Option<&'static CFString>;
+    pub static kMDItemTotalBitRate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemvideobitrate?language=objc)
-    pub static kMDItemVideoBitRate: Option<&'static CFString>;
+    pub static kMDItemVideoBitRate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudiobitrate?language=objc)
-    pub static kMDItemAudioBitRate: Option<&'static CFString>;
+    pub static kMDItemAudioBitRate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdeliverytype?language=objc)
-    pub static kMDItemDeliveryType: Option<&'static CFString>;
+    pub static kMDItemDeliveryType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemalbum?language=objc)
-    pub static kMDItemAlbum: Option<&'static CFString>;
+    pub static kMDItemAlbum: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemhasalphachannel?language=objc)
-    pub static kMDItemHasAlphaChannel: Option<&'static CFString>;
+    pub static kMDItemHasAlphaChannel: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemredeyeonoff?language=objc)
-    pub static kMDItemRedEyeOnOff: Option<&'static CFString>;
+    pub static kMDItemRedEyeOnOff: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmeteringmode?language=objc)
-    pub static kMDItemMeteringMode: Option<&'static CFString>;
+    pub static kMDItemMeteringMode: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmaxaperture?language=objc)
-    pub static kMDItemMaxAperture: Option<&'static CFString>;
+    pub static kMDItemMaxAperture: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfnumber?language=objc)
-    pub static kMDItemFNumber: Option<&'static CFString>;
+    pub static kMDItemFNumber: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexposureprogram?language=objc)
-    pub static kMDItemExposureProgram: Option<&'static CFString>;
+    pub static kMDItemExposureProgram: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexposuretimestring?language=objc)
-    pub static kMDItemExposureTimeString: Option<&'static CFString>;
+    pub static kMDItemExposureTimeString: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemheadline?language=objc)
-    pub static kMDItemHeadline: Option<&'static CFString>;
+    pub static kMDItemHeadline: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditeminstructions?language=objc)
-    pub static kMDItemInstructions: Option<&'static CFString>;
+    pub static kMDItemInstructions: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcity?language=objc)
-    pub static kMDItemCity: Option<&'static CFString>;
+    pub static kMDItemCity: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemstateorprovince?language=objc)
-    pub static kMDItemStateOrProvince: Option<&'static CFString>;
+    pub static kMDItemStateOrProvince: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcountry?language=objc)
-    pub static kMDItemCountry: Option<&'static CFString>;
+    pub static kMDItemCountry: &'static CFString;
 }
 
 extern "C" {
@@ -1045,100 +1045,100 @@ extern "C" {
     /// Number indicating which finder label is in use (0-7). Type is a CFNumber.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsname?language=objc)
-    pub static kMDItemFSName: Option<&'static CFString>;
+    pub static kMDItemFSName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdisplayname?language=objc)
-    pub static kMDItemDisplayName: Option<&'static CFString>;
+    pub static kMDItemDisplayName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempath?language=objc)
-    pub static kMDItemPath: Option<&'static CFString>;
+    pub static kMDItemPath: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfssize?language=objc)
-    pub static kMDItemFSSize: Option<&'static CFString>;
+    pub static kMDItemFSSize: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfscreationdate?language=objc)
-    pub static kMDItemFSCreationDate: Option<&'static CFString>;
+    pub static kMDItemFSCreationDate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfscontentchangedate?language=objc)
-    pub static kMDItemFSContentChangeDate: Option<&'static CFString>;
+    pub static kMDItemFSContentChangeDate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsowneruserid?language=objc)
-    pub static kMDItemFSOwnerUserID: Option<&'static CFString>;
+    pub static kMDItemFSOwnerUserID: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsownergroupid?language=objc)
-    pub static kMDItemFSOwnerGroupID: Option<&'static CFString>;
+    pub static kMDItemFSOwnerGroupID: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsexists?language=objc)
     #[deprecated = "No longer supported"]
-    pub static kMDItemFSExists: Option<&'static CFString>;
+    pub static kMDItemFSExists: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsisreadable?language=objc)
     #[deprecated = "No longer supported"]
-    pub static kMDItemFSIsReadable: Option<&'static CFString>;
+    pub static kMDItemFSIsReadable: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsiswriteable?language=objc)
     #[deprecated = "No longer supported"]
-    pub static kMDItemFSIsWriteable: Option<&'static CFString>;
+    pub static kMDItemFSIsWriteable: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfshascustomicon?language=objc)
-    pub static kMDItemFSHasCustomIcon: Option<&'static CFString>;
+    pub static kMDItemFSHasCustomIcon: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsisextensionhidden?language=objc)
-    pub static kMDItemFSIsExtensionHidden: Option<&'static CFString>;
+    pub static kMDItemFSIsExtensionHidden: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsisstationery?language=objc)
-    pub static kMDItemFSIsStationery: Option<&'static CFString>;
+    pub static kMDItemFSIsStationery: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsinvisible?language=objc)
-    pub static kMDItemFSInvisible: Option<&'static CFString>;
+    pub static kMDItemFSInvisible: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfslabel?language=objc)
-    pub static kMDItemFSLabel: Option<&'static CFString>;
+    pub static kMDItemFSLabel: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsnodecount?language=objc)
-    pub static kMDItemFSNodeCount: Option<&'static CFString>;
+    pub static kMDItemFSNodeCount: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemhtmlcontent?language=objc)
-    pub static kMDItemHTMLContent: Option<&'static CFString>;
+    pub static kMDItemHTMLContent: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtextcontent?language=objc)
-    pub static kMDItemTextContent: Option<&'static CFString>;
+    pub static kMDItemTextContent: &'static CFString;
 }
 
 extern "C" {
@@ -1200,67 +1200,67 @@ extern "C" {
     /// Type is a CFNumber
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudiosamplerate?language=objc)
-    pub static kMDItemAudioSampleRate: Option<&'static CFString>;
+    pub static kMDItemAudioSampleRate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudiochannelcount?language=objc)
-    pub static kMDItemAudioChannelCount: Option<&'static CFString>;
+    pub static kMDItemAudioChannelCount: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtempo?language=objc)
-    pub static kMDItemTempo: Option<&'static CFString>;
+    pub static kMDItemTempo: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemkeysignature?language=objc)
-    pub static kMDItemKeySignature: Option<&'static CFString>;
+    pub static kMDItemKeySignature: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtimesignature?language=objc)
-    pub static kMDItemTimeSignature: Option<&'static CFString>;
+    pub static kMDItemTimeSignature: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudioencodingapplication?language=objc)
-    pub static kMDItemAudioEncodingApplication: Option<&'static CFString>;
+    pub static kMDItemAudioEncodingApplication: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcomposer?language=objc)
-    pub static kMDItemComposer: Option<&'static CFString>;
+    pub static kMDItemComposer: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlyricist?language=objc)
-    pub static kMDItemLyricist: Option<&'static CFString>;
+    pub static kMDItemLyricist: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudiotracknumber?language=objc)
-    pub static kMDItemAudioTrackNumber: Option<&'static CFString>;
+    pub static kMDItemAudioTrackNumber: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrecordingdate?language=objc)
-    pub static kMDItemRecordingDate: Option<&'static CFString>;
+    pub static kMDItemRecordingDate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmusicalgenre?language=objc)
-    pub static kMDItemMusicalGenre: Option<&'static CFString>;
+    pub static kMDItemMusicalGenre: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemisgeneralmidisequence?language=objc)
-    pub static kMDItemIsGeneralMIDISequence: Option<&'static CFString>;
+    pub static kMDItemIsGeneralMIDISequence: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrecordingyear?language=objc)
-    pub static kMDItemRecordingYear: Option<&'static CFString>;
+    pub static kMDItemRecordingYear: &'static CFString;
 }
 
 extern "C" {
@@ -1331,57 +1331,57 @@ extern "C" {
     /// or by a third party. Type is a  CFArray of CFString.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemorganizations?language=objc)
-    pub static kMDItemOrganizations: Option<&'static CFString>;
+    pub static kMDItemOrganizations: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlanguages?language=objc)
-    pub static kMDItemLanguages: Option<&'static CFString>;
+    pub static kMDItemLanguages: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrights?language=objc)
-    pub static kMDItemRights: Option<&'static CFString>;
+    pub static kMDItemRights: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempublishers?language=objc)
-    pub static kMDItemPublishers: Option<&'static CFString>;
+    pub static kMDItemPublishers: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontributors?language=objc)
-    pub static kMDItemContributors: Option<&'static CFString>;
+    pub static kMDItemContributors: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcoverage?language=objc)
-    pub static kMDItemCoverage: Option<&'static CFString>;
+    pub static kMDItemCoverage: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemsubject?language=objc)
-    pub static kMDItemSubject: Option<&'static CFString>;
+    pub static kMDItemSubject: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtheme?language=objc)
-    pub static kMDItemTheme: Option<&'static CFString>;
+    pub static kMDItemTheme: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdescription?language=objc)
-    pub static kMDItemDescription: Option<&'static CFString>;
+    pub static kMDItemDescription: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemidentifier?language=objc)
-    pub static kMDItemIdentifier: Option<&'static CFString>;
+    pub static kMDItemIdentifier: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudiences?language=objc)
-    pub static kMDItemAudiences: Option<&'static CFString>;
+    pub static kMDItemAudiences: &'static CFString;
 }
 
 extern "C" {
@@ -1439,77 +1439,77 @@ extern "C" {
     /// Type is an Array of CFStrings.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemnumberofpages?language=objc)
-    pub static kMDItemNumberOfPages: Option<&'static CFString>;
+    pub static kMDItemNumberOfPages: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempagewidth?language=objc)
-    pub static kMDItemPageWidth: Option<&'static CFString>;
+    pub static kMDItemPageWidth: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempageheight?language=objc)
-    pub static kMDItemPageHeight: Option<&'static CFString>;
+    pub static kMDItemPageHeight: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemsecuritymethod?language=objc)
-    pub static kMDItemSecurityMethod: Option<&'static CFString>;
+    pub static kMDItemSecurityMethod: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcreator?language=objc)
-    pub static kMDItemCreator: Option<&'static CFString>;
+    pub static kMDItemCreator: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemencodingapplications?language=objc)
-    pub static kMDItemEncodingApplications: Option<&'static CFString>;
+    pub static kMDItemEncodingApplications: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemduedate?language=objc)
-    pub static kMDItemDueDate: Option<&'static CFString>;
+    pub static kMDItemDueDate: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemstarrating?language=objc)
-    pub static kMDItemStarRating: Option<&'static CFString>;
+    pub static kMDItemStarRating: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemphonenumbers?language=objc)
-    pub static kMDItemPhoneNumbers: Option<&'static CFString>;
+    pub static kMDItemPhoneNumbers: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditememailaddresses?language=objc)
-    pub static kMDItemEmailAddresses: Option<&'static CFString>;
+    pub static kMDItemEmailAddresses: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditeminstantmessageaddresses?language=objc)
-    pub static kMDItemInstantMessageAddresses: Option<&'static CFString>;
+    pub static kMDItemInstantMessageAddresses: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemkind?language=objc)
-    pub static kMDItemKind: Option<&'static CFString>;
+    pub static kMDItemKind: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrecipients?language=objc)
-    pub static kMDItemRecipients: Option<&'static CFString>;
+    pub static kMDItemRecipients: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfindercomment?language=objc)
-    pub static kMDItemFinderComment: Option<&'static CFString>;
+    pub static kMDItemFinderComment: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfonts?language=objc)
-    pub static kMDItemFonts: Option<&'static CFString>;
+    pub static kMDItemFonts: &'static CFString;
 }
 
 extern "C" {
@@ -1566,43 +1566,43 @@ extern "C" {
     /// If this item is a bundle, then this is the CFBundleIdentifier
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemappleloopsrootkey?language=objc)
-    pub static kMDItemAppleLoopsRootKey: Option<&'static CFString>;
+    pub static kMDItemAppleLoopsRootKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemappleloopskeyfiltertype?language=objc)
-    pub static kMDItemAppleLoopsKeyFilterType: Option<&'static CFString>;
+    pub static kMDItemAppleLoopsKeyFilterType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemappleloopsloopmode?language=objc)
-    pub static kMDItemAppleLoopsLoopMode: Option<&'static CFString>;
+    pub static kMDItemAppleLoopsLoopMode: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemappleloopdescriptors?language=objc)
-    pub static kMDItemAppleLoopDescriptors: Option<&'static CFString>;
+    pub static kMDItemAppleLoopDescriptors: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmusicalinstrumentcategory?language=objc)
-    pub static kMDItemMusicalInstrumentCategory: Option<&'static CFString>;
+    pub static kMDItemMusicalInstrumentCategory: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmusicalinstrumentname?language=objc)
-    pub static kMDItemMusicalInstrumentName: Option<&'static CFString>;
+    pub static kMDItemMusicalInstrumentName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcfbundleidentifier?language=objc)
-    pub static kMDItemCFBundleIdentifier: Option<&'static CFString>;
+    pub static kMDItemCFBundleIdentifier: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemsupportfiletype?language=objc)
     #[deprecated = "No longer supported"]
-    pub static kMDItemSupportFileType: Option<&'static CFString>;
+    pub static kMDItemSupportFileType: &'static CFString;
 }
 
 extern "C" {
@@ -1656,109 +1656,109 @@ extern "C" {
     /// Array of categories the item application is a member of.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditeminformation?language=objc)
-    pub static kMDItemInformation: Option<&'static CFString>;
+    pub static kMDItemInformation: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdirector?language=objc)
-    pub static kMDItemDirector: Option<&'static CFString>;
+    pub static kMDItemDirector: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemproducer?language=objc)
-    pub static kMDItemProducer: Option<&'static CFString>;
+    pub static kMDItemProducer: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgenre?language=objc)
-    pub static kMDItemGenre: Option<&'static CFString>;
+    pub static kMDItemGenre: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemperformers?language=objc)
-    pub static kMDItemPerformers: Option<&'static CFString>;
+    pub static kMDItemPerformers: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemoriginalformat?language=objc)
-    pub static kMDItemOriginalFormat: Option<&'static CFString>;
+    pub static kMDItemOriginalFormat: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemoriginalsource?language=objc)
-    pub static kMDItemOriginalSource: Option<&'static CFString>;
+    pub static kMDItemOriginalSource: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemauthoremailaddresses?language=objc)
-    pub static kMDItemAuthorEmailAddresses: Option<&'static CFString>;
+    pub static kMDItemAuthorEmailAddresses: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrecipientemailaddresses?language=objc)
-    pub static kMDItemRecipientEmailAddresses: Option<&'static CFString>;
+    pub static kMDItemRecipientEmailAddresses: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemauthoraddresses?language=objc)
-    pub static kMDItemAuthorAddresses: Option<&'static CFString>;
+    pub static kMDItemAuthorAddresses: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrecipientaddresses?language=objc)
-    pub static kMDItemRecipientAddresses: Option<&'static CFString>;
+    pub static kMDItemRecipientAddresses: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemurl?language=objc)
-    pub static kMDItemURL: Option<&'static CFString>;
+    pub static kMDItemURL: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabelicon?language=objc)
     #[deprecated = "No longer supported"]
-    pub static kMDItemLabelIcon: Option<&'static CFString>;
+    pub static kMDItemLabelIcon: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabelid?language=objc)
     #[deprecated = "No longer supported"]
-    pub static kMDItemLabelID: Option<&'static CFString>;
+    pub static kMDItemLabelID: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabelkind?language=objc)
     #[deprecated = "No longer supported"]
-    pub static kMDItemLabelKind: Option<&'static CFString>;
+    pub static kMDItemLabelKind: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabeluuid?language=objc)
     #[deprecated = "No longer supported"]
-    pub static kMDItemLabelUUID: Option<&'static CFString>;
+    pub static kMDItemLabelUUID: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemislikelyjunk?language=objc)
-    pub static kMDItemIsLikelyJunk: Option<&'static CFString>;
+    pub static kMDItemIsLikelyJunk: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexecutablearchitectures?language=objc)
-    pub static kMDItemExecutableArchitectures: Option<&'static CFString>;
+    pub static kMDItemExecutableArchitectures: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexecutableplatform?language=objc)
-    pub static kMDItemExecutablePlatform: Option<&'static CFString>;
+    pub static kMDItemExecutablePlatform: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemapplicationcategories?language=objc)
-    pub static kMDItemApplicationCategories: Option<&'static CFString>;
+    pub static kMDItemApplicationCategories: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemisapplicationmanaged?language=objc)
-    pub static kMDItemIsApplicationManaged: Option<&'static CFString>;
+    pub static kMDItemIsApplicationManaged: &'static CFString;
 }

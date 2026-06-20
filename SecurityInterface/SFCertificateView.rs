@@ -221,5 +221,5 @@ impl SFCertificateView {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfcertificateviewdisclosurestatedidchange?language=objc)
-    pub static SFCertificateViewDisclosureStateDidChange: Option<&'static NSString>;
+    pub static SFCertificateViewDisclosureStateDidChange: &'static NSString;
 }
