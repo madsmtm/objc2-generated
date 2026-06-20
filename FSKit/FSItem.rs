@@ -187,9 +187,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for FSItem {}
 );
 
-impl FSItem {
-    extern_methods!();
-}
+impl FSItem {}
 
 /// Methods declared on superclass `NSObject`.
 impl FSItem {

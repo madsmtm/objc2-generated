@@ -194,9 +194,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for MPMediaPredicate {}
 );
 
-impl MPMediaPredicate {
-    extern_methods!();
-}
+impl MPMediaPredicate {}
 
 /// Methods declared on superclass `NSObject`.
 impl MPMediaPredicate {

@@ -260,9 +260,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "TKToken")]
-impl TKSmartCardTokenDriver {
-    extern_methods!();
-}
+impl TKSmartCardTokenDriver {}
 
 /// Methods declared on superclass `NSObject`.
 #[cfg(feature = "TKToken")]

@@ -291,9 +291,7 @@ extern_conformance!(
     unsafe impl NSUserInterfaceItemIdentification for IKImageBrowserView {}
 );
 
-impl IKImageBrowserView {
-    extern_methods!();
-}
+impl IKImageBrowserView {}
 
 /// Methods declared on superclass `NSView`.
 impl IKImageBrowserView {

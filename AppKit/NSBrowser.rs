@@ -383,7 +383,9 @@ impl NSBrowser {
         #[unsafe(method(clickedRow))]
         #[unsafe(method_family = none)]
         pub fn clickedRow(&self) -> NSInteger;
+    );
 
+    extern_methods!(
         #[unsafe(method(selectedColumn))]
         #[unsafe(method_family = none)]
         pub fn selectedColumn(&self) -> NSInteger;
@@ -626,7 +628,9 @@ impl NSBrowser {
         #[unsafe(method(columnsAutosaveName))]
         #[unsafe(method_family = none)]
         pub fn columnsAutosaveName(&self) -> Retained<NSBrowserColumnsAutosaveName>;
+    );
 
+    extern_methods!(
         /// Setter for [`columnsAutosaveName`][Self::columnsAutosaveName].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.

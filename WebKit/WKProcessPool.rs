@@ -33,9 +33,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for WKProcessPool {}
 );
 
-impl WKProcessPool {
-    extern_methods!();
-}
+impl WKProcessPool {}
 
 /// Methods declared on superclass `NSObject`.
 impl WKProcessPool {

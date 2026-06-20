@@ -98,9 +98,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for WKApplicationRefreshBackgroundTask {}
 );
 
-impl WKApplicationRefreshBackgroundTask {
-    extern_methods!();
-}
+impl WKApplicationRefreshBackgroundTask {}
 
 /// Methods declared on superclass `NSObject`.
 impl WKApplicationRefreshBackgroundTask {
@@ -233,9 +231,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for WKWatchConnectivityRefreshBackgroundTask {}
 );
 
-impl WKWatchConnectivityRefreshBackgroundTask {
-    extern_methods!();
-}
+impl WKWatchConnectivityRefreshBackgroundTask {}
 
 /// Methods declared on superclass `NSObject`.
 impl WKWatchConnectivityRefreshBackgroundTask {
@@ -261,9 +257,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for WKRelevantShortcutRefreshBackgroundTask {}
 );
 
-impl WKRelevantShortcutRefreshBackgroundTask {
-    extern_methods!();
-}
+impl WKRelevantShortcutRefreshBackgroundTask {}
 
 /// Methods declared on superclass `NSObject`.
 impl WKRelevantShortcutRefreshBackgroundTask {
@@ -289,9 +283,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for WKIntentDidRunRefreshBackgroundTask {}
 );
 
-impl WKIntentDidRunRefreshBackgroundTask {
-    extern_methods!();
-}
+impl WKIntentDidRunRefreshBackgroundTask {}
 
 /// Methods declared on superclass `NSObject`.
 impl WKIntentDidRunRefreshBackgroundTask {
@@ -321,9 +313,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for WKBluetoothAlertRefreshBackgroundTask {}
 );
 
-impl WKBluetoothAlertRefreshBackgroundTask {
-    extern_methods!();
-}
+impl WKBluetoothAlertRefreshBackgroundTask {}
 
 /// Methods declared on superclass `NSObject`.
 impl WKBluetoothAlertRefreshBackgroundTask {

@@ -262,7 +262,9 @@ impl CSSearchableItemAttributeSet {
         #[unsafe(method(setPublishers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPublishers(&self, publishers: Option<&NSArray<NSString>>);
+    );
 
+    extern_methods!(
         #[unsafe(method(contributors))]
         #[unsafe(method_family = none)]
         pub unsafe fn contributors(&self) -> Option<Retained<NSArray<NSString>>>;

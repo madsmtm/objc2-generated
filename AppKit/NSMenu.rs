@@ -416,7 +416,9 @@ impl NSMenu {
         #[unsafe(method(setAllowsContextMenuPlugIns:))]
         #[unsafe(method_family = none)]
         pub fn setAllowsContextMenuPlugIns(&self, allows_context_menu_plug_ins: bool);
+    );
 
+    extern_methods!(
         #[unsafe(method(automaticallyInsertsWritingToolsItems))]
         #[unsafe(method_family = none)]
         pub fn automaticallyInsertsWritingToolsItems(&self) -> bool;

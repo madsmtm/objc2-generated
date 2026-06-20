@@ -45,9 +45,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-impl VNImageRegistrationRequest {
-    extern_methods!();
-}
+impl VNImageRegistrationRequest {}
 
 /// Methods declared on superclass `VNTargetedImageRequest`.
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]

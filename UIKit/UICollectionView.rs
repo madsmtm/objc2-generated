@@ -1408,7 +1408,9 @@ impl UICollectionView {
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(layoutAttributesForSupplementaryElementOfKind:atIndexPath:))]
         #[unsafe(method_family = none)]
@@ -1671,9 +1673,7 @@ impl UICollectionView {
 
 /// UIDragAndDrop.
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-impl UICollectionView {
-    extern_methods!();
-}
+impl UICollectionView {}
 
 #[cfg(all(
     feature = "UIResponder",

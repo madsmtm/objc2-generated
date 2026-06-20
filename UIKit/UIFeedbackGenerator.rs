@@ -48,9 +48,7 @@ impl UIFeedbackGenerator {
     );
 }
 
-impl UIFeedbackGenerator {
-    extern_methods!();
-}
+impl UIFeedbackGenerator {}
 
 #[cfg(feature = "UIInteraction")]
 extern_conformance!(

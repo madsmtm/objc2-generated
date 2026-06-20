@@ -499,7 +499,9 @@ impl NSSpellChecker {
         #[unsafe(method(isAutomaticPeriodSubstitutionEnabled))]
         #[unsafe(method_family = none)]
         pub fn isAutomaticPeriodSubstitutionEnabled() -> bool;
+    );
 
+    extern_methods!(
         #[unsafe(method(isAutomaticTextCompletionEnabled))]
         #[unsafe(method_family = none)]
         pub fn isAutomaticTextCompletionEnabled() -> bool;

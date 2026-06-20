@@ -20,9 +20,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "PKPaymentSummaryItem")]
-impl PKInstantFundsOutFeeSummaryItem {
-    extern_methods!();
-}
+impl PKInstantFundsOutFeeSummaryItem {}
 
 /// Methods declared on superclass `PKPaymentSummaryItem`.
 #[cfg(feature = "PKPaymentSummaryItem")]

@@ -218,9 +218,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for _XCTestCaseInterruptionException {}
 );
 
-impl _XCTestCaseInterruptionException {
-    extern_methods!();
-}
+impl _XCTestCaseInterruptionException {}
 
 /// Methods declared on superclass `NSException`.
 impl _XCTestCaseInterruptionException {
@@ -672,9 +670,7 @@ impl XCTestCase {
 ///      }
 ///  
 /// ```
-impl XCTestCase {
-    extern_methods!();
-}
+impl XCTestCase {}
 
 extern_conformance!(
     unsafe impl XCTActivity for XCTestCase {}
@@ -1625,9 +1621,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for _XCTSkipFailureException {}
 );
 
-impl _XCTSkipFailureException {
-    extern_methods!();
-}
+impl _XCTSkipFailureException {}
 
 /// Methods declared on superclass `NSException`.
 impl _XCTSkipFailureException {

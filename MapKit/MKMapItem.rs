@@ -255,9 +255,7 @@ extern "C" {
 }
 
 /// MKMapItemSerialization.
-impl MKMapItem {
-    extern_methods!();
-}
+impl MKMapItem {}
 
 extern_conformance!(
     unsafe impl NSSecureCoding for MKMapItem {}

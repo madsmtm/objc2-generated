@@ -55,9 +55,7 @@ extern_conformance!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-impl CAInterDeviceAudioViewController {
-    extern_methods!();
-}
+impl CAInterDeviceAudioViewController {}
 
 /// Methods declared on superclass `NSViewController`.
 #[cfg(feature = "objc2-app-kit")]

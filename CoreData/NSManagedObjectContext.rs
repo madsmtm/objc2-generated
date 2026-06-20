@@ -499,7 +499,9 @@ impl NSManagedObjectContext {
         #[unsafe(method(setStalenessInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStalenessInterval(&self, staleness_interval: NSTimeInterval);
+    );
 
+    extern_methods!(
         #[unsafe(method(mergePolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn mergePolicy(&self) -> Retained<AnyObject>;

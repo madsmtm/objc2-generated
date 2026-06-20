@@ -289,7 +289,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method(setBorderTopWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderTopWidth(&self, border_top_width: Option<&NSString>);
+    );
 
+    extern_methods!(
         #[unsafe(method(borderRightWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderRightWidth(&self) -> Option<Retained<NSString>>;
@@ -564,7 +566,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method(setFontSizeAdjust:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontSizeAdjust(&self, font_size_adjust: Option<&NSString>);
+    );
 
+    extern_methods!(
         #[unsafe(method(fontStretch))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontStretch(&self) -> Option<Retained<NSString>>;
@@ -839,7 +843,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method(setOutline:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutline(&self, outline: Option<&NSString>);
+    );
 
+    extern_methods!(
         #[unsafe(method(outlineColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn outlineColor(&self) -> Option<Retained<NSString>>;
@@ -1114,7 +1120,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method(setSpeak:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeak(&self, speak: Option<&NSString>);
+    );
 
+    extern_methods!(
         #[unsafe(method(speakHeader))]
         #[unsafe(method_family = none)]
         pub unsafe fn speakHeader(&self) -> Option<Retained<NSString>>;

@@ -26,9 +26,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-impl MPSNDArrayGradientState {
-    extern_methods!();
-}
+impl MPSNDArrayGradientState {}
 
 /// Methods declared on superclass `MPSState`.
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]

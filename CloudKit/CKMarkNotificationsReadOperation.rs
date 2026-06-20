@@ -20,9 +20,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "CKOperation")]
-impl CKMarkNotificationsReadOperation {
-    extern_methods!();
-}
+impl CKMarkNotificationsReadOperation {}
 
 /// Methods declared on superclass `CKOperation`.
 #[cfg(feature = "CKOperation")]

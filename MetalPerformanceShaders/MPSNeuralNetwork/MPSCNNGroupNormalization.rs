@@ -550,9 +550,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSCNNGroupNormalizationGradient {
-    extern_methods!();
-}
+impl MPSCNNGroupNormalizationGradient {}
 
 /// Methods declared on superclass `MPSCNNGradientKernel`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

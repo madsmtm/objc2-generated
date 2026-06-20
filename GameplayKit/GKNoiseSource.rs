@@ -32,9 +32,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for GKNoiseSource {}
 );
 
-impl GKNoiseSource {
-    extern_methods!();
-}
+impl GKNoiseSource {}
 
 /// Methods declared on superclass `NSObject`.
 impl GKNoiseSource {

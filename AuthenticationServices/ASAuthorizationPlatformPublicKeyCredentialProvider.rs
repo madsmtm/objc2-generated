@@ -95,9 +95,7 @@ impl ASAuthorizationPlatformPublicKeyCredentialProvider {
     );
 }
 
-impl ASAuthorizationPlatformPublicKeyCredentialProvider {
-    extern_methods!();
-}
+impl ASAuthorizationPlatformPublicKeyCredentialProvider {}
 
 #[cfg(feature = "ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider")]
 extern_conformance!(

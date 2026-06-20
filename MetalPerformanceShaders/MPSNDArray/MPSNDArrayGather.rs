@@ -41,9 +41,7 @@ extern_conformance!(
     feature = "MPSNDArrayGradientState",
     feature = "MPSState"
 ))]
-impl MPSNDArrayGatherGradientState {
-    extern_methods!();
-}
+impl MPSNDArrayGatherGradientState {}
 
 /// Methods declared on superclass `MPSState`.
 #[cfg(all(
@@ -429,9 +427,7 @@ extern_conformance!(
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-impl MPSNDArrayGatherGradient {
-    extern_methods!();
-}
+impl MPSNDArrayGatherGradient {}
 
 /// Methods declared on superclass `MPSNDArrayBinaryPrimaryGradientKernel`.
 #[cfg(all(

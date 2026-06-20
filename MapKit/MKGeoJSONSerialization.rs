@@ -93,9 +93,7 @@ impl MKGeoJSONFeature {
 
 /// MKGeoJSONSerialization.
 #[cfg(all(feature = "MKPointAnnotation", feature = "MKShape"))]
-impl MKPointAnnotation {
-    extern_methods!();
-}
+impl MKPointAnnotation {}
 
 #[cfg(all(feature = "MKPointAnnotation", feature = "MKShape"))]
 extern_conformance!(
@@ -104,9 +102,7 @@ extern_conformance!(
 
 /// MKGeoJSONSerialization.
 #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
-impl MKMultiPoint {
-    extern_methods!();
-}
+impl MKMultiPoint {}
 
 #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
 extern_conformance!(
@@ -115,9 +111,7 @@ extern_conformance!(
 
 /// MKGeoJSONSerialization.
 #[cfg(all(feature = "MKMultiPolyline", feature = "MKShape"))]
-impl MKMultiPolyline {
-    extern_methods!();
-}
+impl MKMultiPolyline {}
 
 #[cfg(all(feature = "MKMultiPolyline", feature = "MKShape"))]
 extern_conformance!(
@@ -126,9 +120,7 @@ extern_conformance!(
 
 /// MKGeoJSONSerialization.
 #[cfg(all(feature = "MKMultiPolygon", feature = "MKShape"))]
-impl MKMultiPolygon {
-    extern_methods!();
-}
+impl MKMultiPolygon {}
 
 #[cfg(all(feature = "MKMultiPolygon", feature = "MKShape"))]
 extern_conformance!(
@@ -137,9 +129,7 @@ extern_conformance!(
 
 /// MKGeoJSONSerialization.
 #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
-impl MKPolyline {
-    extern_methods!();
-}
+impl MKPolyline {}
 
 #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
 extern_conformance!(
@@ -148,9 +138,7 @@ extern_conformance!(
 
 /// MKGeoJSONSerialization.
 #[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon", feature = "MKShape"))]
-impl MKPolygon {
-    extern_methods!();
-}
+impl MKPolygon {}
 
 #[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon", feature = "MKShape"))]
 extern_conformance!(

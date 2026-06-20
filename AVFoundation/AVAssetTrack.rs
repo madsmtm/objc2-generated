@@ -578,9 +578,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for AVFragmentedAssetTrack {}
 );
 
-impl AVFragmentedAssetTrack {
-    extern_methods!();
-}
+impl AVFragmentedAssetTrack {}
 
 /// Methods declared on superclass `AVAssetTrack`.
 impl AVFragmentedAssetTrack {

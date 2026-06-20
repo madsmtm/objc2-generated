@@ -1477,7 +1477,9 @@ impl NSURLSessionConfiguration {
             &self,
             should_use_extended_background_idle_mode: bool,
         );
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         #[unsafe(method(protocolClasses))]
         #[unsafe(method_family = none)]

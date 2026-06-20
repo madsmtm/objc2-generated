@@ -756,7 +756,9 @@ impl WebView {
             mime_type: Option<&NSString>,
             mtm: MainThreadMarker,
         );
+    );
 
+    extern_methods!(
         /// The group name for this WebView.
         ///
         /// JavaScript may access named frames within the same group.

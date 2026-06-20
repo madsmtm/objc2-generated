@@ -321,7 +321,9 @@ impl CIRAWFilter {
         #[unsafe(method(localToneMapAmount))]
         #[unsafe(method_family = none)]
         pub unsafe fn localToneMapAmount(&self) -> c_float;
+    );
 
+    extern_methods!(
         /// Setter for [`localToneMapAmount`][Self::localToneMapAmount].
         #[unsafe(method(setLocalToneMapAmount:))]
         #[unsafe(method_family = none)]

@@ -54,9 +54,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitSplitViewControllerLayoutEnvironment {}
 );
 
-impl UITraitSplitViewControllerLayoutEnvironment {
-    extern_methods!();
-}
+impl UITraitSplitViewControllerLayoutEnvironment {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitSplitViewControllerLayoutEnvironment {

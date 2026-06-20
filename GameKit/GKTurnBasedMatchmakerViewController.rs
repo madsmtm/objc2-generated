@@ -59,9 +59,7 @@ extern_conformance!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-impl GKTurnBasedMatchmakerViewController {
-    extern_methods!();
-}
+impl GKTurnBasedMatchmakerViewController {}
 
 /// Methods declared on superclass `NSViewController`.
 #[cfg(feature = "objc2-app-kit")]

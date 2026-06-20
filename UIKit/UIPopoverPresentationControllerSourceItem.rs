@@ -23,9 +23,7 @@ extern_protocol!(
 
 /// UIPopoverPresentationControllerSourceItem.
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-impl UIView {
-    extern_methods!();
-}
+impl UIView {}
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 extern_conformance!(
@@ -34,9 +32,7 @@ extern_conformance!(
 
 /// UIPopoverPresentationControllerSourceItem.
 #[cfg(feature = "UILayoutGuide")]
-impl UILayoutGuide {
-    extern_methods!();
-}
+impl UILayoutGuide {}
 
 #[cfg(feature = "UILayoutGuide")]
 extern_conformance!(
@@ -45,9 +41,7 @@ extern_conformance!(
 
 /// UIPopoverPresentationControllerSourceItem.
 #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-impl UIBarButtonItem {
-    extern_methods!();
-}
+impl UIBarButtonItem {}
 
 #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
 extern_conformance!(
@@ -56,9 +50,7 @@ extern_conformance!(
 
 /// UIPopoverPresentationControllerSourceItem.
 #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
-impl UITabBarItem {
-    extern_methods!();
-}
+impl UITabBarItem {}
 
 #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
 extern_conformance!(

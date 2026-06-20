@@ -1224,9 +1224,7 @@ impl AVPlayer {
 }
 
 /// AVPlayerSpatialAudioExperience.
-impl AVPlayer {
-    extern_methods!();
-}
+impl AVPlayer {}
 
 /// AVPlayerRoutingPlaybackArbitrationSupport.
 impl AVPlayer {

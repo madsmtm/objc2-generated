@@ -308,9 +308,7 @@ extern_conformance!(
     unsafe impl NSUserInterfaceItemIdentification for IOBluetoothAccessibilityIgnoredTextFieldCell {}
 );
 
-impl IOBluetoothAccessibilityIgnoredTextFieldCell {
-    extern_methods!();
-}
+impl IOBluetoothAccessibilityIgnoredTextFieldCell {}
 
 /// Methods declared on superclass `NSTextFieldCell`.
 impl IOBluetoothAccessibilityIgnoredTextFieldCell {
@@ -388,9 +386,7 @@ extern_conformance!(
     unsafe impl NSUserInterfaceItemIdentification for IOBluetoothAccessibilityIgnoredImageCell {}
 );
 
-impl IOBluetoothAccessibilityIgnoredImageCell {
-    extern_methods!();
-}
+impl IOBluetoothAccessibilityIgnoredImageCell {}
 
 /// Methods declared on superclass `NSCell`.
 impl IOBluetoothAccessibilityIgnoredImageCell {

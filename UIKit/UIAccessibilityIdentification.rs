@@ -26,9 +26,7 @@ extern_protocol!(
 
 /// UIAccessibility.
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-impl UIView {
-    extern_methods!();
-}
+impl UIView {}
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 extern_conformance!(
@@ -37,9 +35,7 @@ extern_conformance!(
 
 /// UIAccessibility.
 #[cfg(feature = "UIBarItem")]
-impl UIBarItem {
-    extern_methods!();
-}
+impl UIBarItem {}
 
 #[cfg(feature = "UIBarItem")]
 extern_conformance!(
@@ -48,9 +44,7 @@ extern_conformance!(
 
 /// UIAccessibility.
 #[cfg(feature = "UIAlertController")]
-impl UIAlertAction {
-    extern_methods!();
-}
+impl UIAlertAction {}
 
 #[cfg(feature = "UIAlertController")]
 extern_conformance!(
@@ -59,9 +53,7 @@ extern_conformance!(
 
 /// UIAccessibility.
 #[cfg(feature = "UIMenuElement")]
-impl UIMenuElement {
-    extern_methods!();
-}
+impl UIMenuElement {}
 
 #[cfg(feature = "UIMenuElement")]
 extern_conformance!(
@@ -70,6 +62,4 @@ extern_conformance!(
 
 /// UIAccessibility.
 #[cfg(feature = "UIImage")]
-impl UIImage {
-    extern_methods!();
-}
+impl UIImage {}

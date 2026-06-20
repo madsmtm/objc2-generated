@@ -474,9 +474,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MDLAnimatedVector2 {}
 );
 
-impl MDLAnimatedVector2 {
-    extern_methods!();
-}
+impl MDLAnimatedVector2 {}
 
 /// Methods declared on superclass `NSObject`.
 impl MDLAnimatedVector2 {
@@ -510,9 +508,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MDLAnimatedVector3 {}
 );
 
-impl MDLAnimatedVector3 {
-    extern_methods!();
-}
+impl MDLAnimatedVector3 {}
 
 /// Methods declared on superclass `NSObject`.
 impl MDLAnimatedVector3 {
@@ -546,9 +542,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MDLAnimatedVector4 {}
 );
 
-impl MDLAnimatedVector4 {
-    extern_methods!();
-}
+impl MDLAnimatedVector4 {}
 
 /// Methods declared on superclass `NSObject`.
 impl MDLAnimatedVector4 {
@@ -582,9 +576,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MDLAnimatedQuaternion {}
 );
 
-impl MDLAnimatedQuaternion {
-    extern_methods!();
-}
+impl MDLAnimatedQuaternion {}
 
 /// Methods declared on superclass `NSObject`.
 impl MDLAnimatedQuaternion {
@@ -618,9 +610,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MDLAnimatedMatrix4x4 {}
 );
 
-impl MDLAnimatedMatrix4x4 {
-    extern_methods!();
-}
+impl MDLAnimatedMatrix4x4 {}
 
 /// Methods declared on superclass `NSObject`.
 impl MDLAnimatedMatrix4x4 {

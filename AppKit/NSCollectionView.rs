@@ -737,7 +737,9 @@ impl NSCollectionView {
         #[unsafe(method(indexPathForItemAtPoint:))]
         #[unsafe(method_family = none)]
         pub fn indexPathForItemAtPoint(&self, point: NSPoint) -> Option<Retained<NSIndexPath>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[unsafe(method(supplementaryViewForElementKind:atIndexPath:))]
         #[unsafe(method_family = none)]

@@ -677,7 +677,9 @@ impl NSCalendar {
         #[unsafe(method(startOfDayForDate:))]
         #[unsafe(method_family = none)]
         pub fn startOfDayForDate(&self, date: &NSDate) -> Retained<NSDate>;
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "NSDate", feature = "NSTimeZone"))]
         #[unsafe(method(componentsInTimeZone:fromDate:))]
         #[unsafe(method_family = none)]

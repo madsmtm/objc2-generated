@@ -649,7 +649,9 @@ impl AVCapturePhotoOutput {
         #[unsafe(method(maxBracketedCapturePhotoCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxBracketedCapturePhotoCount(&self) -> NSUInteger;
+    );
 
+    extern_methods!(
         /// Indicates whether the receiver supports lens stabilization during bracketed captures.
         ///
         ///
@@ -1877,7 +1879,9 @@ impl AVCapturePhotoSettings {
         #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
+    );
 
+    extern_methods!(
         /// Setter for [`metadata`][Self::metadata].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.

@@ -112,9 +112,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for NSPersistentStoreResult {}
 );
 
-impl NSPersistentStoreResult {
-    extern_methods!();
-}
+impl NSPersistentStoreResult {}
 
 /// Methods declared on superclass `NSObject`.
 impl NSPersistentStoreResult {

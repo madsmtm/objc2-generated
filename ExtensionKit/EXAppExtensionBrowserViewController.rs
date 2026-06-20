@@ -65,9 +65,7 @@ extern_conformance!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-impl EXAppExtensionBrowserViewController {
-    extern_methods!();
-}
+impl EXAppExtensionBrowserViewController {}
 
 /// Methods declared on superclass `NSViewController`.
 #[cfg(feature = "objc2-app-kit")]

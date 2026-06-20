@@ -546,7 +546,9 @@ impl UISplitViewController {
         #[unsafe(method(minimumSecondaryColumnWidth))]
         #[unsafe(method_family = none)]
         pub fn minimumSecondaryColumnWidth(&self) -> CGFloat;
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumSecondaryColumnWidth`][Self::minimumSecondaryColumnWidth].
         #[unsafe(method(setMinimumSecondaryColumnWidth:))]

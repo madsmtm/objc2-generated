@@ -440,7 +440,9 @@ impl SKNode {
         #[unsafe(method(removeChildrenInArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeChildrenInArray(&self, nodes: &NSArray<SKNode>);
+    );
 
+    extern_methods!(
         #[unsafe(method(removeAllChildren))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllChildren(&self);

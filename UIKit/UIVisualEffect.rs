@@ -34,9 +34,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for UIVisualEffect {}
 );
 
-impl UIVisualEffect {
-    extern_methods!();
-}
+impl UIVisualEffect {}
 
 /// Methods declared on superclass `NSObject`.
 impl UIVisualEffect {

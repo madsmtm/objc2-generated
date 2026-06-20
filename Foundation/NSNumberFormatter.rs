@@ -488,7 +488,9 @@ impl NSNumberFormatter {
             &self,
             text_attributes_for_not_a_number: Option<&NSDictionary<NSString, AnyObject>>,
         );
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(positiveInfinitySymbol))]
         #[unsafe(method_family = none)]
@@ -810,7 +812,9 @@ impl NSNumberFormatter {
         #[unsafe(method(setMinimumIntegerDigits:))]
         #[unsafe(method_family = none)]
         pub fn setMinimumIntegerDigits(&self, minimum_integer_digits: NSUInteger);
+    );
 
+    extern_methods!(
         #[unsafe(method(maximumIntegerDigits))]
         #[unsafe(method_family = none)]
         pub fn maximumIntegerDigits(&self) -> NSUInteger;

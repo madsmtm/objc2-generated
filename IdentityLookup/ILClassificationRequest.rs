@@ -27,9 +27,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for ILClassificationRequest {}
 );
 
-impl ILClassificationRequest {
-    extern_methods!();
-}
+impl ILClassificationRequest {}
 
 /// Methods declared on superclass `NSObject`.
 impl ILClassificationRequest {

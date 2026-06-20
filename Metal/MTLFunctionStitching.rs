@@ -65,9 +65,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MTLFunctionStitchingAttributeAlwaysInline {}
 );
 
-impl MTLFunctionStitchingAttributeAlwaysInline {
-    extern_methods!();
-}
+impl MTLFunctionStitchingAttributeAlwaysInline {}
 
 /// Methods declared on superclass `NSObject`.
 impl MTLFunctionStitchingAttributeAlwaysInline {

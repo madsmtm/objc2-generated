@@ -849,7 +849,9 @@ impl NSWindow {
         #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
         pub fn frame(&self) -> NSRect;
+    );
 
+    extern_methods!(
         /// Subclasses can override
         /// `animationResizeTime:`to control the total time for the frame change.
         /// `newFrame`is the rect passed into
@@ -1101,7 +1103,9 @@ impl NSWindow {
         #[unsafe(method(orderOut:))]
         #[unsafe(method_family = none)]
         pub fn orderOut(&self, sender: Option<&AnyObject>);
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSGraphics")]
         #[unsafe(method(orderWindow:relativeTo:))]
         #[unsafe(method_family = none)]
@@ -1349,7 +1353,9 @@ impl NSWindow {
         #[unsafe(method(screen))]
         #[unsafe(method_family = none)]
         pub fn screen(&self) -> Option<Retained<NSScreen>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSScreen")]
         #[unsafe(method(deepestScreen))]
         #[unsafe(method_family = none)]
@@ -1611,7 +1617,9 @@ impl NSWindow {
         #[unsafe(method(sheets))]
         #[unsafe(method_family = none)]
         pub fn sheets(&self) -> Retained<NSArray<NSWindow>>;
+    );
 
+    extern_methods!(
         /// Returns the top-most sheet if there is one or more sheets, or nil if there is no sheet.
         #[unsafe(method(attachedSheet))]
         #[unsafe(method_family = none)]
@@ -1917,7 +1925,9 @@ impl NSWindow {
         #[unsafe(method(tabbingIdentifier))]
         #[unsafe(method_family = none)]
         pub fn tabbingIdentifier(&self) -> Retained<NSWindowTabbingIdentifier>;
+    );
 
+    extern_methods!(
         /// Setter for [`tabbingIdentifier`][Self::tabbingIdentifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.

@@ -387,9 +387,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNGradientStateNode {}
 );
 
-impl MPSNNGradientStateNode {
-    extern_methods!();
-}
+impl MPSNNGradientStateNode {}
 
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSNNGradientStateNode {
@@ -418,9 +416,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSCNNConvolutionGradientStateNode {}
 );
 
-impl MPSCNNConvolutionGradientStateNode {
-    extern_methods!();
-}
+impl MPSCNNConvolutionGradientStateNode {}
 
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSCNNConvolutionGradientStateNode {
@@ -454,9 +450,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSCNNConvolutionTransposeGradientStateNode {}
 );
 
-impl MPSCNNConvolutionTransposeGradientStateNode {
-    extern_methods!();
-}
+impl MPSCNNConvolutionTransposeGradientStateNode {}
 
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSCNNConvolutionTransposeGradientStateNode {
@@ -485,9 +479,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNBinaryGradientStateNode {}
 );
 
-impl MPSNNBinaryGradientStateNode {
-    extern_methods!();
-}
+impl MPSNNBinaryGradientStateNode {}
 
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSNNBinaryGradientStateNode {
@@ -516,9 +508,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNMultiaryGradientStateNode {}
 );
 
-impl MPSNNMultiaryGradientStateNode {
-    extern_methods!();
-}
+impl MPSNNMultiaryGradientStateNode {}
 
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSNNMultiaryGradientStateNode {
@@ -547,9 +537,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNArithmeticGradientStateNode {}
 );
 
-impl MPSNNArithmeticGradientStateNode {
-    extern_methods!();
-}
+impl MPSNNArithmeticGradientStateNode {}
 
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSNNArithmeticGradientStateNode {
@@ -3370,9 +3358,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionRowMinNode {}
 );
 
-impl MPSNNReductionRowMinNode {
-    extern_methods!();
-}
+impl MPSNNReductionRowMinNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionRowMinNode {
@@ -3427,9 +3413,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionColumnMinNode {}
 );
 
-impl MPSNNReductionColumnMinNode {
-    extern_methods!();
-}
+impl MPSNNReductionColumnMinNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionColumnMinNode {
@@ -3484,9 +3468,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsMinNode {}
 );
 
-impl MPSNNReductionFeatureChannelsMinNode {
-    extern_methods!();
-}
+impl MPSNNReductionFeatureChannelsMinNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionFeatureChannelsMinNode {
@@ -3541,9 +3523,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsArgumentMinNode {}
 );
 
-impl MPSNNReductionFeatureChannelsArgumentMinNode {
-    extern_methods!();
-}
+impl MPSNNReductionFeatureChannelsArgumentMinNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionFeatureChannelsArgumentMinNode {
@@ -3598,9 +3578,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionRowMaxNode {}
 );
 
-impl MPSNNReductionRowMaxNode {
-    extern_methods!();
-}
+impl MPSNNReductionRowMaxNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionRowMaxNode {
@@ -3655,9 +3633,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionColumnMaxNode {}
 );
 
-impl MPSNNReductionColumnMaxNode {
-    extern_methods!();
-}
+impl MPSNNReductionColumnMaxNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionColumnMaxNode {
@@ -3712,9 +3688,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsMaxNode {}
 );
 
-impl MPSNNReductionFeatureChannelsMaxNode {
-    extern_methods!();
-}
+impl MPSNNReductionFeatureChannelsMaxNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionFeatureChannelsMaxNode {
@@ -3769,9 +3743,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsArgumentMaxNode {}
 );
 
-impl MPSNNReductionFeatureChannelsArgumentMaxNode {
-    extern_methods!();
-}
+impl MPSNNReductionFeatureChannelsArgumentMaxNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionFeatureChannelsArgumentMaxNode {
@@ -3826,9 +3798,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionRowMeanNode {}
 );
 
-impl MPSNNReductionRowMeanNode {
-    extern_methods!();
-}
+impl MPSNNReductionRowMeanNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionRowMeanNode {
@@ -3883,9 +3853,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionColumnMeanNode {}
 );
 
-impl MPSNNReductionColumnMeanNode {
-    extern_methods!();
-}
+impl MPSNNReductionColumnMeanNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionColumnMeanNode {
@@ -3940,9 +3908,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsMeanNode {}
 );
 
-impl MPSNNReductionFeatureChannelsMeanNode {
-    extern_methods!();
-}
+impl MPSNNReductionFeatureChannelsMeanNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionFeatureChannelsMeanNode {
@@ -3997,9 +3963,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionSpatialMeanNode {}
 );
 
-impl MPSNNReductionSpatialMeanNode {
-    extern_methods!();
-}
+impl MPSNNReductionSpatialMeanNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionSpatialMeanNode {
@@ -4054,9 +4018,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionRowSumNode {}
 );
 
-impl MPSNNReductionRowSumNode {
-    extern_methods!();
-}
+impl MPSNNReductionRowSumNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionRowSumNode {
@@ -4111,9 +4073,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNReductionColumnSumNode {}
 );
 
-impl MPSNNReductionColumnSumNode {
-    extern_methods!();
-}
+impl MPSNNReductionColumnSumNode {}
 
 /// Methods declared on superclass `MPSNNUnaryReductionNode`.
 impl MPSNNReductionColumnSumNode {
@@ -4380,9 +4340,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSCNNPoolingAverageNode {}
 );
 
-impl MPSCNNPoolingAverageNode {
-    extern_methods!();
-}
+impl MPSCNNPoolingAverageNode {}
 
 /// Methods declared on superclass `MPSCNNPoolingNode`.
 impl MPSCNNPoolingAverageNode {
@@ -4508,9 +4466,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSCNNPoolingL2NormNode {}
 );
 
-impl MPSCNNPoolingL2NormNode {
-    extern_methods!();
-}
+impl MPSCNNPoolingL2NormNode {}
 
 /// Methods declared on superclass `MPSCNNPoolingNode`.
 impl MPSCNNPoolingL2NormNode {
@@ -4636,9 +4592,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSCNNPoolingMaxNode {}
 );
 
-impl MPSCNNPoolingMaxNode {
-    extern_methods!();
-}
+impl MPSCNNPoolingMaxNode {}
 
 /// Methods declared on superclass `MPSCNNPoolingNode`.
 impl MPSCNNPoolingMaxNode {
@@ -5018,9 +4972,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSCNNPoolingMaxGradientNode {}
 );
 
-impl MPSCNNPoolingMaxGradientNode {
-    extern_methods!();
-}
+impl MPSCNNPoolingMaxGradientNode {}
 
 /// Methods declared on superclass `MPSCNNPoolingGradientNode`.
 impl MPSCNNPoolingMaxGradientNode {
@@ -5122,9 +5074,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSCNNPoolingAverageGradientNode {}
 );
 
-impl MPSCNNPoolingAverageGradientNode {
-    extern_methods!();
-}
+impl MPSCNNPoolingAverageGradientNode {}
 
 /// Methods declared on superclass `MPSCNNPoolingGradientNode`.
 impl MPSCNNPoolingAverageGradientNode {
@@ -5226,9 +5176,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSCNNPoolingL2NormGradientNode {}
 );
 
-impl MPSCNNPoolingL2NormGradientNode {
-    extern_methods!();
-}
+impl MPSCNNPoolingL2NormGradientNode {}
 
 /// Methods declared on superclass `MPSCNNPoolingGradientNode`.
 impl MPSCNNPoolingL2NormGradientNode {
@@ -6673,9 +6621,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNBilinearScaleNode {}
 );
 
-impl MPSNNBilinearScaleNode {
-    extern_methods!();
-}
+impl MPSNNBilinearScaleNode {}
 
 /// Methods declared on superclass `MPSNNScaleNode`.
 impl MPSNNBilinearScaleNode {
@@ -6773,9 +6719,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNLanczosScaleNode {}
 );
 
-impl MPSNNLanczosScaleNode {
-    extern_methods!();
-}
+impl MPSNNLanczosScaleNode {}
 
 /// Methods declared on superclass `MPSNNScaleNode`.
 impl MPSNNLanczosScaleNode {
@@ -7064,9 +7008,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNAdditionNode {}
 );
 
-impl MPSNNAdditionNode {
-    extern_methods!();
-}
+impl MPSNNAdditionNode {}
 
 /// Methods declared on superclass `MPSNNBinaryArithmeticNode`.
 impl MPSNNAdditionNode {
@@ -7144,9 +7086,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNSubtractionNode {}
 );
 
-impl MPSNNSubtractionNode {
-    extern_methods!();
-}
+impl MPSNNSubtractionNode {}
 
 /// Methods declared on superclass `MPSNNBinaryArithmeticNode`.
 impl MPSNNSubtractionNode {
@@ -7224,9 +7164,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNMultiplicationNode {}
 );
 
-impl MPSNNMultiplicationNode {
-    extern_methods!();
-}
+impl MPSNNMultiplicationNode {}
 
 /// Methods declared on superclass `MPSNNBinaryArithmeticNode`.
 impl MPSNNMultiplicationNode {
@@ -7304,9 +7242,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNDivisionNode {}
 );
 
-impl MPSNNDivisionNode {
-    extern_methods!();
-}
+impl MPSNNDivisionNode {}
 
 /// Methods declared on superclass `MPSNNBinaryArithmeticNode`.
 impl MPSNNDivisionNode {
@@ -7655,9 +7591,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNAdditionGradientNode {}
 );
 
-impl MPSNNAdditionGradientNode {
-    extern_methods!();
-}
+impl MPSNNAdditionGradientNode {}
 
 /// Methods declared on superclass `MPSNNArithmeticGradientNode`.
 impl MPSNNAdditionGradientNode {
@@ -7761,9 +7695,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNSubtractionGradientNode {}
 );
 
-impl MPSNNSubtractionGradientNode {
-    extern_methods!();
-}
+impl MPSNNSubtractionGradientNode {}
 
 /// Methods declared on superclass `MPSNNArithmeticGradientNode`.
 impl MPSNNSubtractionGradientNode {
@@ -7867,9 +7799,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNMultiplicationGradientNode {}
 );
 
-impl MPSNNMultiplicationGradientNode {
-    extern_methods!();
-}
+impl MPSNNMultiplicationGradientNode {}
 
 /// Methods declared on superclass `MPSNNArithmeticGradientNode`.
 impl MPSNNMultiplicationGradientNode {
@@ -8134,9 +8064,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSNNLabelsNode {}
 );
 
-impl MPSNNLabelsNode {
-    extern_methods!();
-}
+impl MPSNNLabelsNode {}
 
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSNNLabelsNode {

@@ -250,9 +250,7 @@ impl UITabBarItem {
 
 /// SpringLoading.
 #[cfg(feature = "UIBarItem")]
-impl UITabBarItem {
-    extern_methods!();
-}
+impl UITabBarItem {}
 
 #[cfg(all(feature = "UIBarItem", feature = "UISpringLoadedInteractionSupporting"))]
 extern_conformance!(

@@ -95,9 +95,7 @@ impl BEWebContentProcess {
 }
 
 /// BEExtensionProcessConformance.
-impl BEWebContentProcess {
-    extern_methods!();
-}
+impl BEWebContentProcess {}
 
 #[cfg(feature = "BEExtensionProcess")]
 extern_conformance!(

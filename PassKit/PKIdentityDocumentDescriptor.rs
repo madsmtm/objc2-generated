@@ -60,9 +60,7 @@ extern_conformance!(
     unsafe impl PKIdentityDocumentDescriptor for PKIdentityDriversLicenseDescriptor {}
 );
 
-impl PKIdentityDriversLicenseDescriptor {
-    extern_methods!();
-}
+impl PKIdentityDriversLicenseDescriptor {}
 
 /// Methods declared on superclass `NSObject`.
 impl PKIdentityDriversLicenseDescriptor {
@@ -140,9 +138,7 @@ extern_conformance!(
     unsafe impl PKIdentityDocumentDescriptor for PKIdentityPhotoIDDescriptor {}
 );
 
-impl PKIdentityPhotoIDDescriptor {
-    extern_methods!();
-}
+impl PKIdentityPhotoIDDescriptor {}
 
 /// Methods declared on superclass `NSObject`.
 impl PKIdentityPhotoIDDescriptor {

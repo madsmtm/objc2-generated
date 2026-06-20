@@ -363,9 +363,7 @@ impl UIDocument {
     );
 }
 
-impl UIDocument {
-    extern_methods!();
-}
+impl UIDocument {}
 
 #[cfg(feature = "UINavigationItem")]
 extern_conformance!(

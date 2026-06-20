@@ -411,9 +411,7 @@ impl NSToolbarItem {
     );
 }
 
-impl NSToolbarItem {
-    extern_methods!();
-}
+impl NSToolbarItem {}
 
 #[cfg(feature = "NSMenu")]
 extern_conformance!(

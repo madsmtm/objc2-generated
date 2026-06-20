@@ -32,9 +32,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "VZGraphicsDevice")]
-impl VZMacGraphicsDevice {
-    extern_methods!();
-}
+impl VZMacGraphicsDevice {}
 
 /// Methods declared on superclass `VZGraphicsDevice`.
 #[cfg(feature = "VZGraphicsDevice")]

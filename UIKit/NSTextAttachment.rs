@@ -375,9 +375,7 @@ extern_protocol!(
 );
 
 /// NSTextAttachment_Deprecation.
-impl NSTextAttachment {
-    extern_methods!();
-}
+impl NSTextAttachment {}
 
 extern_conformance!(
     unsafe impl NSTextAttachmentContainer for NSTextAttachment {}

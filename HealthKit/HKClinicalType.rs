@@ -127,9 +127,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "HKObjectType")]
-impl HKClinicalType {
-    extern_methods!();
-}
+impl HKClinicalType {}
 
 /// Methods declared on superclass `HKObjectType`.
 #[cfg(feature = "HKObjectType")]

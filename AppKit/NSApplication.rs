@@ -779,7 +779,9 @@ impl NSApplication {
             argument: Option<&AnyObject>,
             mtm: MainThreadMarker,
         );
+    );
 
+    extern_methods!(
         /// If an application delegate returns NSTerminateLater from -applicationShouldTerminate:, -replyToApplicationShouldTerminate: must be called with YES or NO once the application decides if it can terminate.
         #[unsafe(method(replyToApplicationShouldTerminate:))]
         #[unsafe(method_family = none)]

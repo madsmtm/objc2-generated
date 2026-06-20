@@ -430,7 +430,9 @@ impl NSImage {
         #[unsafe(method(alignmentRect))]
         #[unsafe(method_family = none)]
         pub fn alignmentRect(&self) -> NSRect;
+    );
 
+    extern_methods!(
         /// Setter for [`alignmentRect`][Self::alignmentRect].
         #[unsafe(method(setAlignmentRect:))]
         #[unsafe(method_family = none)]
@@ -588,9 +590,7 @@ impl DefaultRetained for NSImage {
     }
 }
 
-impl NSImage {
-    extern_methods!();
-}
+impl NSImage {}
 
 extern_conformance!(
     unsafe impl NSCopying for NSImage {}
@@ -614,9 +614,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NSImage {}
 );
 
-impl NSImage {
-    extern_methods!();
-}
+impl NSImage {}
 
 extern_conformance!(
     unsafe impl NSItemProviderReading for NSImage {}

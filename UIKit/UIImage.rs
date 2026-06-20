@@ -519,7 +519,9 @@ impl UIImage {
         #[unsafe(method(imageAsset))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageAsset(&self) -> Option<Retained<UIImageAsset>>;
+    );
 
+    extern_methods!(
         #[unsafe(method(imageFlippedForRightToLeftLayoutDirection))]
         #[unsafe(method_family = none)]
         pub fn imageFlippedForRightToLeftLayoutDirection(&self) -> Retained<UIImage>;
@@ -738,9 +740,7 @@ impl UIImage {
 }
 
 /// NSItemProvider.
-impl UIImage {
-    extern_methods!();
-}
+impl UIImage {}
 
 extern_conformance!(
     unsafe impl NSItemProviderReading for UIImage {}

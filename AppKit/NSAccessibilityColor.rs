@@ -18,9 +18,7 @@ extern_protocol!(
 
 /// NSAccessibilityColorConformance.
 #[cfg(feature = "NSColor")]
-impl NSColor {
-    extern_methods!();
-}
+impl NSColor {}
 
 #[cfg(feature = "NSColor")]
 extern_conformance!(

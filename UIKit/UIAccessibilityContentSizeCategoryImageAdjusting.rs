@@ -26,9 +26,7 @@ extern_protocol!(
 
 /// UIAccessibilityContentSizeCategoryImageAdjusting.
 #[cfg(all(feature = "UIImageView", feature = "UIResponder", feature = "UIView"))]
-impl UIImageView {
-    extern_methods!();
-}
+impl UIImageView {}
 
 #[cfg(all(feature = "UIImageView", feature = "UIResponder", feature = "UIView"))]
 extern_conformance!(
@@ -42,9 +40,7 @@ extern_conformance!(
     feature = "UIResponder",
     feature = "UIView"
 ))]
-impl UIButton {
-    extern_methods!();
-}
+impl UIButton {}
 
 #[cfg(all(
     feature = "UIButton",
@@ -58,6 +54,4 @@ extern_conformance!(
 
 /// UIAccessibilityContentSizeCategoryImageAdjusting.
 #[cfg(feature = "NSTextAttachment")]
-impl NSTextAttachment {
-    extern_methods!();
-}
+impl NSTextAttachment {}

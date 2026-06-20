@@ -66,9 +66,7 @@ extern_conformance!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-impl DOMComment {
-    extern_methods!();
-}
+impl DOMComment {}
 
 /// Methods declared on superclass `DOMObject`.
 #[cfg(all(

@@ -626,7 +626,9 @@ impl WKInterfaceController {
         #[unsafe(method(handleUserActivity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleUserActivity(&self, user_info: Option<&NSDictionary>);
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-ui-kit")]
         /// # Safety
         ///

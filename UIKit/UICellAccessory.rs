@@ -178,9 +178,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for UICellAccessoryDisclosureIndicator {}
 );
 
-impl UICellAccessoryDisclosureIndicator {
-    extern_methods!();
-}
+impl UICellAccessoryDisclosureIndicator {}
 
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryDisclosureIndicator {
@@ -316,9 +314,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for UICellAccessoryCheckmark {}
 );
 
-impl UICellAccessoryCheckmark {
-    extern_methods!();
-}
+impl UICellAccessoryCheckmark {}
 
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryCheckmark {

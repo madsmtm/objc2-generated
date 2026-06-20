@@ -1457,9 +1457,7 @@ extern_conformance!(
     unsafe impl VNRequestRevisionProviding for VNImageAlignmentObservation {}
 );
 
-impl VNImageAlignmentObservation {
-    extern_methods!();
-}
+impl VNImageAlignmentObservation {}
 
 /// Methods declared on superclass `NSObject`.
 impl VNImageAlignmentObservation {
@@ -1564,9 +1562,7 @@ extern_conformance!(
     unsafe impl VNRequestRevisionProviding for VNImageHomographicAlignmentObservation {}
 );
 
-impl VNImageHomographicAlignmentObservation {
-    extern_methods!();
-}
+impl VNImageHomographicAlignmentObservation {}
 
 /// Methods declared on superclass `NSObject`.
 impl VNImageHomographicAlignmentObservation {

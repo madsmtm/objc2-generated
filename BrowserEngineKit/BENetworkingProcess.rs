@@ -85,9 +85,7 @@ impl BENetworkingProcess {
 }
 
 /// BEExtensionProcessConformance.
-impl BENetworkingProcess {
-    extern_methods!();
-}
+impl BENetworkingProcess {}
 
 #[cfg(feature = "BEExtensionProcess")]
 extern_conformance!(

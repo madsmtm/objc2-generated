@@ -156,9 +156,7 @@ extern_conformance!(
     feature = "NSTextField",
     feature = "NSView"
 ))]
-impl NSSecureTextField {
-    extern_methods!();
-}
+impl NSSecureTextField {}
 
 /// Methods declared on superclass `NSControl`.
 #[cfg(all(

@@ -21,9 +21,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for GCControllerInputState {}
 );
 
-impl GCControllerInputState {
-    extern_methods!();
-}
+impl GCControllerInputState {}
 
 /// Methods declared on superclass `NSObject`.
 impl GCControllerInputState {

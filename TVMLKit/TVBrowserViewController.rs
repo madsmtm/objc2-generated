@@ -28,9 +28,7 @@ extern_conformance!(
     unsafe impl UIViewControllerAnimatedTransitioning for TVBrowserTransitionAnimator {}
 );
 
-impl TVBrowserTransitionAnimator {
-    extern_methods!();
-}
+impl TVBrowserTransitionAnimator {}
 
 /// Methods declared on superclass `NSObject`.
 impl TVBrowserTransitionAnimator {

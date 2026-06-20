@@ -22,9 +22,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for AVMusicEvent {}
 );
 
-impl AVMusicEvent {
-    extern_methods!();
-}
+impl AVMusicEvent {}
 
 /// Methods declared on superclass `NSObject`.
 impl AVMusicEvent {

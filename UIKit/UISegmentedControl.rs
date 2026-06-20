@@ -514,9 +514,7 @@ impl UISegmentedControl {
 
 /// SpringLoading.
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-impl UISegmentedControl {
-    extern_methods!();
-}
+impl UISegmentedControl {}
 
 #[cfg(all(
     feature = "UIControl",

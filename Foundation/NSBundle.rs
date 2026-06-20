@@ -374,7 +374,9 @@ impl NSBundle {
         #[unsafe(method(infoDictionary))]
         #[unsafe(method_family = none)]
         pub fn infoDictionary(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(localizedInfoDictionary))]
         #[unsafe(method_family = none)]

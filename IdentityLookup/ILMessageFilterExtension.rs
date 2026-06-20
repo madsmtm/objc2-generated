@@ -18,9 +18,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for ILMessageFilterExtension {}
 );
 
-impl ILMessageFilterExtension {
-    extern_methods!();
-}
+impl ILMessageFilterExtension {}
 
 /// Methods declared on superclass `NSObject`.
 impl ILMessageFilterExtension {

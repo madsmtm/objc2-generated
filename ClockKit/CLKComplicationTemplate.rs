@@ -3666,9 +3666,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircular {}
 );
 
-impl CLKComplicationTemplateGraphicCircular {
-    extern_methods!();
-}
+impl CLKComplicationTemplateGraphicCircular {}
 
 /// Methods declared on superclass `CLKComplicationTemplate`.
 impl CLKComplicationTemplateGraphicCircular {
@@ -5073,9 +5071,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircular {}
 );
 
-impl CLKComplicationTemplateGraphicExtraLargeCircular {
-    extern_methods!();
-}
+impl CLKComplicationTemplateGraphicExtraLargeCircular {}
 
 /// Methods declared on superclass `CLKComplicationTemplate`.
 impl CLKComplicationTemplateGraphicExtraLargeCircular {

@@ -412,9 +412,7 @@ impl DefaultRetained for UIColor {
 }
 
 /// UINSItemProvider.
-impl UIColor {
-    extern_methods!();
-}
+impl UIColor {}
 
 extern_conformance!(
     unsafe impl NSItemProviderReading for UIColor {}

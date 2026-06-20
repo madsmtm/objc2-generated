@@ -918,9 +918,7 @@ extern "C" {
 
 /// AVPlayerInterstitialSupport.
 #[cfg(feature = "AVPlayer")]
-impl AVPlayer {
-    extern_methods!();
-}
+impl AVPlayer {}
 
 /// AVPlayerInterstitialSupport.
 #[cfg(feature = "AVPlayerItem")]

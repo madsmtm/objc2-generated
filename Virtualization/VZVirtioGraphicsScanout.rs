@@ -36,9 +36,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "VZGraphicsDisplay")]
-impl VZVirtioGraphicsScanout {
-    extern_methods!();
-}
+impl VZVirtioGraphicsScanout {}
 
 /// Methods declared on superclass `VZGraphicsDisplay`.
 #[cfg(feature = "VZGraphicsDisplay")]

@@ -367,7 +367,9 @@ impl DOMHTMLInputElement {
         #[unsafe(method(setSelectionRange:end:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionRange_end(&self, start: c_int, end: c_int);
+    );
 
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(click))]
         #[unsafe(method_family = none)]

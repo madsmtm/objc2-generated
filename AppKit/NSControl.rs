@@ -346,7 +346,9 @@ impl NSControl {
         #[unsafe(method(usesSingleLineMode))]
         #[unsafe(method_family = none)]
         pub fn usesSingleLineMode(&self) -> bool;
+    );
 
+    extern_methods!(
         /// Setter for [`usesSingleLineMode`][Self::usesSingleLineMode].
         #[unsafe(method(setUsesSingleLineMode:))]
         #[unsafe(method_family = none)]

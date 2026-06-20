@@ -837,7 +837,9 @@ impl MPSGraph {
             secondary_tensor: &MPSGraphTensor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Returns the elementwise minimum of the input tensors, while propagating `NaN` values.
         ///

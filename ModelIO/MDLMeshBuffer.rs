@@ -365,9 +365,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MDLMeshBufferDataAllocator {}
 );
 
-impl MDLMeshBufferDataAllocator {
-    extern_methods!();
-}
+impl MDLMeshBufferDataAllocator {}
 
 /// Methods declared on superclass `NSObject`.
 impl MDLMeshBufferDataAllocator {

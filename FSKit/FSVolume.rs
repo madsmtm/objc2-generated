@@ -157,9 +157,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "FSEntityIdentifier")]
-impl FSVolumeIdentifier {
-    extern_methods!();
-}
+impl FSVolumeIdentifier {}
 
 /// Methods declared on superclass `FSEntityIdentifier`.
 #[cfg(feature = "FSEntityIdentifier")]

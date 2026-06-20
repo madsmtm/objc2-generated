@@ -33,9 +33,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "UITargetedPreview")]
-impl UIDragPreviewTarget {
-    extern_methods!();
-}
+impl UIDragPreviewTarget {}
 
 /// Methods declared on superclass `UIPreviewTarget`.
 #[cfg(feature = "UITargetedPreview")]

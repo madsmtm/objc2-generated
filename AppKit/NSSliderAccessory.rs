@@ -72,9 +72,7 @@ impl NSSliderAccessory {
     );
 }
 
-impl NSSliderAccessory {
-    extern_methods!();
-}
+impl NSSliderAccessory {}
 
 #[cfg(feature = "NSAccessibilityProtocols")]
 extern_conformance!(

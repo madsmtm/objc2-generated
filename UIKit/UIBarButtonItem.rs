@@ -551,7 +551,9 @@ impl UIBarButtonItem {
         #[unsafe(method(setSharesBackground:))]
         #[unsafe(method_family = none)]
         pub fn setSharesBackground(&self, shares_background: bool);
+    );
 
+    extern_methods!(
         /// An identifier used to match bar button items across transitions in a navigation bar or toolbar.
         ///
         /// When the set of bar button items in a navigation bar or toolbar changes (for example, when pushing
@@ -765,9 +767,7 @@ impl UIBarButtonItem {
 
 /// SpringLoading.
 #[cfg(feature = "UIBarItem")]
-impl UIBarButtonItem {
-    extern_methods!();
-}
+impl UIBarButtonItem {}
 
 #[cfg(all(feature = "UIBarItem", feature = "UISpringLoadedInteractionSupporting"))]
 extern_conformance!(

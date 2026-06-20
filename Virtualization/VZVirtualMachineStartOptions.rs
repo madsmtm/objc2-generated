@@ -21,9 +21,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for VZVirtualMachineStartOptions {}
 );
 
-impl VZVirtualMachineStartOptions {
-    extern_methods!();
-}
+impl VZVirtualMachineStartOptions {}
 
 /// Methods declared on superclass `NSObject`.
 impl VZVirtualMachineStartOptions {

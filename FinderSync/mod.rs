@@ -443,9 +443,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for FIFinderSync {}
 );
 
-impl FIFinderSync {
-    extern_methods!();
-}
+impl FIFinderSync {}
 
 /// Methods declared on superclass `NSObject`.
 impl FIFinderSync {

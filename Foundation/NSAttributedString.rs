@@ -855,14 +855,10 @@ unsafe impl RefEncode for NSAttributedStringFormattingOptions {
 }
 
 /// NSAttributedStringFormatting.
-impl NSAttributedString {
-    extern_methods!();
-}
+impl NSAttributedString {}
 
 /// NSMutableAttributedStringFormatting.
-impl NSMutableAttributedString {
-    extern_methods!();
-}
+impl NSMutableAttributedString {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreplacementindexattributename?language=objc)

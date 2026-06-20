@@ -27,9 +27,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "HMEvent")]
-impl HMTimeEvent {
-    extern_methods!();
-}
+impl HMTimeEvent {}
 
 /// Methods declared on superclass `HMEvent`.
 #[cfg(feature = "HMEvent")]

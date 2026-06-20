@@ -39,9 +39,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for GLKMeshBufferAllocator {}
 );
 
-impl GLKMeshBufferAllocator {
-    extern_methods!();
-}
+impl GLKMeshBufferAllocator {}
 
 /// Methods declared on superclass `NSObject`.
 impl GLKMeshBufferAllocator {

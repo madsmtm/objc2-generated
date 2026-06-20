@@ -2034,9 +2034,7 @@ impl AVPlayerItemErrorLogEvent {
 }
 
 /// AVMetricEventStreamPublisher.
-impl AVPlayerItem {
-    extern_methods!();
-}
+impl AVPlayerItem {}
 
 #[cfg(feature = "AVMetrics")]
 extern_conformance!(

@@ -199,9 +199,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-impl NSScrubberSelectionView {
-    extern_methods!();
-}
+impl NSScrubberSelectionView {}
 
 /// Methods declared on superclass `NSView`.
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -307,9 +305,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-impl NSScrubberItemView {
-    extern_methods!();
-}
+impl NSScrubberItemView {}
 
 /// Methods declared on superclass `NSView`.
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]

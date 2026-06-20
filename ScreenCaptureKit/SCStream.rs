@@ -680,7 +680,9 @@ impl SCStreamConfiguration {
         #[unsafe(method(setIgnoreGlobalClipDisplay:))]
         #[unsafe(method_family = none)]
         pub fn setIgnoreGlobalClipDisplay(&self, ignore_global_clip_display: bool);
+    );
 
+    extern_methods!(
         /// SCStreamProperty to ignore global clipping when on single window share. When set to true, single window captures that are partially off the screen will not be clipped. (will ignore window placement in display context).
         #[unsafe(method(ignoreGlobalClipSingleWindow))]
         #[unsafe(method_family = none)]

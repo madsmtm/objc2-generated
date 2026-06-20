@@ -460,7 +460,9 @@ impl SCNNode {
         #[unsafe(method(insertChildNode:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertChildNode_atIndex(&self, child: &SCNNode, index: NSUInteger);
+    );
 
+    extern_methods!(
         /// Removes the node from the childNodes array of the receiver’s parentNode.
         #[unsafe(method(removeFromParentNode))]
         #[unsafe(method_family = none)]
@@ -927,9 +929,7 @@ extern_protocol!(
 );
 
 /// SIMD.
-impl SCNNode {
-    extern_methods!();
-}
+impl SCNNode {}
 
 /// Focus.
 impl SCNNode {

@@ -787,7 +787,9 @@ impl WKWebExtensionContext {
             url: &NSURL,
             tab: Option<&ProtocolObject<dyn WKWebExtensionTab>>,
         ) -> WKWebExtensionContextPermissionStatus;
+    );
 
+    extern_methods!(
         /// Sets the permission status of a URL with a distant future expiration date.
         ///
         /// Parameter `status`: The new permission status to set for the given URL.

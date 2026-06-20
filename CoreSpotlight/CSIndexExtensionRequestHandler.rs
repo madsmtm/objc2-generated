@@ -26,9 +26,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for CSIndexExtensionRequestHandler {}
 );
 
-impl CSIndexExtensionRequestHandler {
-    extern_methods!();
-}
+impl CSIndexExtensionRequestHandler {}
 
 /// Methods declared on superclass `NSObject`.
 impl CSIndexExtensionRequestHandler {

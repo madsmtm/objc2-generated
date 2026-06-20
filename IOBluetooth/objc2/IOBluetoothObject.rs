@@ -28,9 +28,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for IOBluetoothObject {}
 );
 
-impl IOBluetoothObject {
-    extern_methods!();
-}
+impl IOBluetoothObject {}
 
 /// Methods declared on superclass `NSObject`.
 impl IOBluetoothObject {

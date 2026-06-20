@@ -730,7 +730,9 @@ impl NSFileManager {
         #[unsafe(method(displayNameAtPath:))]
         #[unsafe(method_family = none)]
         pub fn displayNameAtPath(&self, path: &NSString) -> Retained<NSString>;
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(componentsToDisplayForPath:))]
         #[unsafe(method_family = none)]

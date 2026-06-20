@@ -28,9 +28,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "VZUSBController")]
-impl VZXHCIController {
-    extern_methods!();
-}
+impl VZXHCIController {}
 
 /// Methods declared on superclass `VZUSBController`.
 #[cfg(feature = "VZUSBController")]

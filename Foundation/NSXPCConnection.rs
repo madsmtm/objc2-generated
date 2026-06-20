@@ -496,9 +496,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NSXPCListenerEndpoint {}
 );
 
-impl NSXPCListenerEndpoint {
-    extern_methods!();
-}
+impl NSXPCListenerEndpoint {}
 
 /// Methods declared on superclass `NSObject`.
 impl NSXPCListenerEndpoint {

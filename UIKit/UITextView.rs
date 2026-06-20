@@ -978,7 +978,9 @@ impl UITextView {
         #[unsafe(method(borderStyle))]
         #[unsafe(method_family = none)]
         pub fn borderStyle(&self) -> UITextViewBorderStyle;
+    );
 
+    extern_methods!(
         /// Setter for [`borderStyle`][Self::borderStyle].
         #[unsafe(method(setBorderStyle:))]
         #[unsafe(method_family = none)]
@@ -1109,9 +1111,7 @@ impl UITextView {
 }
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-impl UITextView {
-    extern_methods!();
-}
+impl UITextView {}
 
 #[cfg(all(
     feature = "UIFindInteraction",

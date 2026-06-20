@@ -1020,9 +1020,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NSPurgeableData {}
 );
 
-impl NSPurgeableData {
-    extern_methods!();
-}
+impl NSPurgeableData {}
 
 /// Methods declared on superclass `NSObject`.
 impl NSPurgeableData {

@@ -6,6 +6,4 @@ use crate::*;
 
 /// AVAudioSession.
 #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-impl UIScene {
-    extern_methods!();
-}
+impl UIScene {}

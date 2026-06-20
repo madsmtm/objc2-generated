@@ -51,9 +51,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSCNNSoftMax {
-    extern_methods!();
-}
+impl MPSCNNSoftMax {}
 
 /// Methods declared on superclass `MPSCNNKernel`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -313,9 +311,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSCNNLogSoftMax {
-    extern_methods!();
-}
+impl MPSCNNLogSoftMax {}
 
 /// Methods declared on superclass `MPSCNNKernel`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

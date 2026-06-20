@@ -286,9 +286,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-impl MPSMatrixLogSoftMax {
-    extern_methods!();
-}
+impl MPSMatrixLogSoftMax {}
 
 /// Methods declared on superclass `MPSMatrixSoftMax`.
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -642,9 +640,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-impl MPSMatrixLogSoftMaxGradient {
-    extern_methods!();
-}
+impl MPSMatrixLogSoftMaxGradient {}
 
 /// Methods declared on superclass `MPSMatrixSoftMaxGradient`.
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]

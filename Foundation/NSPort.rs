@@ -382,9 +382,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for NSMessagePort {}
 );
 
-impl NSMessagePort {
-    extern_methods!();
-}
+impl NSMessagePort {}
 
 /// Methods declared on superclass `NSObject`.
 impl NSMessagePort {

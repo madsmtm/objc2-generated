@@ -553,7 +553,9 @@ impl UIScrollView {
         #[unsafe(method(setScrollIndicatorInsets:))]
         #[unsafe(method_family = none)]
         pub fn setScrollIndicatorInsets(&self, scroll_indicator_insets: UIEdgeInsets);
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(decelerationRate))]
         #[unsafe(method_family = none)]

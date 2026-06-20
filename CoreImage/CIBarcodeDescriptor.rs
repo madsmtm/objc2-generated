@@ -38,9 +38,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for CIBarcodeDescriptor {}
 );
 
-impl CIBarcodeDescriptor {
-    extern_methods!();
-}
+impl CIBarcodeDescriptor {}
 
 /// Methods declared on superclass `NSObject`.
 impl CIBarcodeDescriptor {

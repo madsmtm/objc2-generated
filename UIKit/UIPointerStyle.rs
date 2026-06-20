@@ -181,9 +181,7 @@ extern_conformance!(
     unsafe impl UIHoverEffect for UIPointerHighlightEffect {}
 );
 
-impl UIPointerHighlightEffect {
-    extern_methods!();
-}
+impl UIPointerHighlightEffect {}
 
 /// Methods declared on superclass `UIPointerEffect`.
 impl UIPointerHighlightEffect {
@@ -230,9 +228,7 @@ extern_conformance!(
     unsafe impl UIHoverEffect for UIPointerLiftEffect {}
 );
 
-impl UIPointerLiftEffect {
-    extern_methods!();
-}
+impl UIPointerLiftEffect {}
 
 /// Methods declared on superclass `UIPointerEffect`.
 impl UIPointerLiftEffect {

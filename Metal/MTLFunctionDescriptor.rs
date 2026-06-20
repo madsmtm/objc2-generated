@@ -192,9 +192,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MTLIntersectionFunctionDescriptor {}
 );
 
-impl MTLIntersectionFunctionDescriptor {
-    extern_methods!();
-}
+impl MTLIntersectionFunctionDescriptor {}
 
 /// Methods declared on superclass `NSObject`.
 impl MTLIntersectionFunctionDescriptor {

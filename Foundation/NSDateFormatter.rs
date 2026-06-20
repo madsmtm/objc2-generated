@@ -397,7 +397,9 @@ impl NSDateFormatter {
             &self,
             very_short_month_symbols: Option<&NSArray<NSString>>,
         );
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(standaloneMonthSymbols))]
         #[unsafe(method_family = none)]

@@ -299,9 +299,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for PKPaymentRequestShippingMethodUpdate {}
 );
 
-impl PKPaymentRequestShippingMethodUpdate {
-    extern_methods!();
-}
+impl PKPaymentRequestShippingMethodUpdate {}
 
 /// Methods declared on superclass `PKPaymentRequestUpdate`.
 impl PKPaymentRequestShippingMethodUpdate {

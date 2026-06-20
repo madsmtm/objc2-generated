@@ -106,9 +106,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-impl UIStandardTextCursorView {
-    extern_methods!();
-}
+impl UIStandardTextCursorView {}
 
 /// Methods declared on superclass `UIView`.
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]

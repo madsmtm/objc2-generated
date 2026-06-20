@@ -28,9 +28,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for WebDownload {}
 );
 
-impl WebDownload {
-    extern_methods!();
-}
+impl WebDownload {}
 
 /// Methods declared on superclass `NSURLDownload`.
 impl WebDownload {

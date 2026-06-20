@@ -931,7 +931,9 @@ impl IOBluetoothDevice {
         #[unsafe(method(getLinkType))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLinkType(&self) -> BluetoothLinkType;
+    );
 
+    extern_methods!(
         #[cfg(feature = "Bluetooth")]
         /// Get the encryption mode for the baseband connection.
         ///

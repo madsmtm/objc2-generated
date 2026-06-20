@@ -179,9 +179,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageAreaMin {
-    extern_methods!();
-}
+impl MPSImageAreaMin {}
 
 /// Methods declared on superclass `MPSImageAreaMax`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -492,9 +490,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageErode {
-    extern_methods!();
-}
+impl MPSImageErode {}
 
 /// Methods declared on superclass `MPSImageDilate`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

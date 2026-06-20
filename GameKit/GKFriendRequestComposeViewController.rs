@@ -60,9 +60,7 @@ extern_conformance!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-impl GKFriendRequestComposeViewController {
-    extern_methods!();
-}
+impl GKFriendRequestComposeViewController {}
 
 /// Methods declared on superclass `NSViewController`.
 #[cfg(feature = "objc2-app-kit")]

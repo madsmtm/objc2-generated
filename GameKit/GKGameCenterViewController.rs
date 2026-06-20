@@ -91,9 +91,7 @@ extern_conformance!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-impl GKGameCenterViewController {
-    extern_methods!();
-}
+impl GKGameCenterViewController {}
 
 /// Methods declared on superclass `NSViewController`.
 #[cfg(feature = "objc2-app-kit")]

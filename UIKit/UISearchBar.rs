@@ -457,7 +457,9 @@ impl UISearchBar {
             background_image: Option<&UIImage>,
             state: UIControlState,
         );
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
         #[unsafe(method(searchFieldBackgroundImageForState:))]
         #[unsafe(method_family = none)]

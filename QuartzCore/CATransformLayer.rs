@@ -35,9 +35,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "CALayer")]
-impl CATransformLayer {
-    extern_methods!();
-}
+impl CATransformLayer {}
 
 /// Methods declared on superclass `CALayer`.
 #[cfg(feature = "CALayer")]

@@ -31,9 +31,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "UIPreviewParameters")]
-impl UIDragPreviewParameters {
-    extern_methods!();
-}
+impl UIDragPreviewParameters {}
 
 /// Methods declared on superclass `UIPreviewParameters`.
 #[cfg(feature = "UIPreviewParameters")]

@@ -413,7 +413,9 @@ impl DOMElement {
         #[unsafe(method(webkitRequestFullScreen:))]
         #[unsafe(method_family = none)]
         pub unsafe fn webkitRequestFullScreen(&self, flags: c_ushort);
+    );
 
+    extern_methods!(
         /// # Safety
         ///
         /// `selectors` might not allow `None`.

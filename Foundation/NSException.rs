@@ -205,9 +205,7 @@ impl NSException {
 }
 
 /// NSExceptionRaisingConveniences.
-impl NSException {
-    extern_methods!();
-}
+impl NSException {}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuncaughtexceptionhandler?language=objc)
 pub type NSUncaughtExceptionHandler = core::ffi::c_void;

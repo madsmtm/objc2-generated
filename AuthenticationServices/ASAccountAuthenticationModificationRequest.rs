@@ -16,9 +16,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationRequest {}
 );
 
-impl ASAccountAuthenticationModificationRequest {
-    extern_methods!();
-}
+impl ASAccountAuthenticationModificationRequest {}
 
 /// Methods declared on superclass `NSObject`.
 impl ASAccountAuthenticationModificationRequest {

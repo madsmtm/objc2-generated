@@ -21,9 +21,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for INExtension {}
 );
 
-impl INExtension {
-    extern_methods!();
-}
+impl INExtension {}
 
 /// Methods declared on superclass `NSObject`.
 impl INExtension {

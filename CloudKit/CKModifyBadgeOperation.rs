@@ -20,9 +20,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "CKOperation")]
-impl CKModifyBadgeOperation {
-    extern_methods!();
-}
+impl CKModifyBadgeOperation {}
 
 /// Methods declared on superclass `CKOperation`.
 #[cfg(feature = "CKOperation")]

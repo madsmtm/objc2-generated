@@ -133,9 +133,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for GKGraphNode2D {}
 );
 
-impl GKGraphNode2D {
-    extern_methods!();
-}
+impl GKGraphNode2D {}
 
 /// Methods declared on superclass `NSObject`.
 impl GKGraphNode2D {
@@ -171,9 +169,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for GKGraphNode3D {}
 );
 
-impl GKGraphNode3D {
-    extern_methods!();
-}
+impl GKGraphNode3D {}
 
 /// Methods declared on superclass `NSObject`.
 impl GKGraphNode3D {
@@ -209,9 +205,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for GKGridGraphNode {}
 );
 
-impl GKGridGraphNode {
-    extern_methods!();
-}
+impl GKGridGraphNode {}
 
 /// Methods declared on superclass `NSObject`.
 impl GKGridGraphNode {

@@ -23,9 +23,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for QLPreviewProvider {}
 );
 
-impl QLPreviewProvider {
-    extern_methods!();
-}
+impl QLPreviewProvider {}
 
 /// Methods declared on superclass `NSObject`.
 impl QLPreviewProvider {

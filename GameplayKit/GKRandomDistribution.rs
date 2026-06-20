@@ -282,9 +282,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for GKShuffledDistribution {}
 );
 
-impl GKShuffledDistribution {
-    extern_methods!();
-}
+impl GKShuffledDistribution {}
 
 /// Methods declared on superclass `GKRandomDistribution`.
 impl GKShuffledDistribution {

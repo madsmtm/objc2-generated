@@ -798,9 +798,7 @@ extern "C" {
 
 /// DefaultApplication.
 #[cfg(feature = "UIResponder")]
-impl UIApplication {
-    extern_methods!();
-}
+impl UIApplication {}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionskey?language=objc)
 // NS_TYPED_ENUM

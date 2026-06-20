@@ -78,9 +78,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for UNPushNotificationTrigger {}
 );
 
-impl UNPushNotificationTrigger {
-    extern_methods!();
-}
+impl UNPushNotificationTrigger {}
 
 /// Methods declared on superclass `UNNotificationTrigger`.
 impl UNPushNotificationTrigger {

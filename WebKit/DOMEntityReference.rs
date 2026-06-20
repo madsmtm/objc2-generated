@@ -60,9 +60,7 @@ extern_conformance!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-impl DOMEntityReference {
-    extern_methods!();
-}
+impl DOMEntityReference {}
 
 /// Methods declared on superclass `DOMObject`.
 #[cfg(all(

@@ -436,7 +436,9 @@ impl MKMapView {
         #[unsafe(method(setShowsCompass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsCompass(&self, shows_compass: bool);
+    );
 
+    extern_methods!(
         #[unsafe(method(showsScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsScale(&self) -> bool;

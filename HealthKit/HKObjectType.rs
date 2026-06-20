@@ -178,9 +178,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKCharacteristicType {}
 );
 
-impl HKCharacteristicType {
-    extern_methods!();
-}
+impl HKCharacteristicType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKCharacteristicType {
@@ -346,9 +344,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKCategoryType {}
 );
 
-impl HKCategoryType {
-    extern_methods!();
-}
+impl HKCategoryType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKCategoryType {
@@ -399,9 +395,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKCorrelationType {}
 );
 
-impl HKCorrelationType {
-    extern_methods!();
-}
+impl HKCorrelationType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKCorrelationType {
@@ -452,9 +446,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKDocumentType {}
 );
 
-impl HKDocumentType {
-    extern_methods!();
-}
+impl HKDocumentType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKDocumentType {
@@ -570,9 +562,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKWorkoutType {}
 );
 
-impl HKWorkoutType {
-    extern_methods!();
-}
+impl HKWorkoutType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKWorkoutType {
@@ -684,9 +674,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKActivitySummaryType {}
 );
 
-impl HKActivitySummaryType {
-    extern_methods!();
-}
+impl HKActivitySummaryType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKActivitySummaryType {
@@ -737,9 +725,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKAudiogramSampleType {}
 );
 
-impl HKAudiogramSampleType {
-    extern_methods!();
-}
+impl HKAudiogramSampleType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKAudiogramSampleType {
@@ -790,9 +776,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKElectrocardiogramType {}
 );
 
-impl HKElectrocardiogramType {
-    extern_methods!();
-}
+impl HKElectrocardiogramType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKElectrocardiogramType {
@@ -843,9 +827,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKMedicationDoseEventType {}
 );
 
-impl HKMedicationDoseEventType {
-    extern_methods!();
-}
+impl HKMedicationDoseEventType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKMedicationDoseEventType {
@@ -896,9 +878,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKPrescriptionType {}
 );
 
-impl HKPrescriptionType {
-    extern_methods!();
-}
+impl HKPrescriptionType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKPrescriptionType {
@@ -949,9 +929,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKScoredAssessmentType {}
 );
 
-impl HKScoredAssessmentType {
-    extern_methods!();
-}
+impl HKScoredAssessmentType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKScoredAssessmentType {
@@ -1002,9 +980,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKStateOfMindType {}
 );
 
-impl HKStateOfMindType {
-    extern_methods!();
-}
+impl HKStateOfMindType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKStateOfMindType {
@@ -1055,9 +1031,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for HKUserAnnotatedMedicationType {}
 );
 
-impl HKUserAnnotatedMedicationType {
-    extern_methods!();
-}
+impl HKUserAnnotatedMedicationType {}
 
 /// Methods declared on superclass `HKObjectType`.
 impl HKUserAnnotatedMedicationType {

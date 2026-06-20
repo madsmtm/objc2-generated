@@ -428,7 +428,9 @@ impl NSMatrix {
         #[unsafe(method(renewRows:columns:))]
         #[unsafe(method_family = none)]
         pub fn renewRows_columns(&self, new_rows: NSInteger, new_cols: NSInteger);
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSCell")]
         #[unsafe(method(putCell:atRow:column:))]
         #[unsafe(method_family = none)]

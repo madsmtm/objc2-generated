@@ -197,9 +197,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for AVMetadataHumanBodyObject {}
 );
 
-impl AVMetadataHumanBodyObject {
-    extern_methods!();
-}
+impl AVMetadataHumanBodyObject {}
 
 /// Methods declared on superclass `AVMetadataObject`.
 impl AVMetadataHumanBodyObject {
@@ -247,9 +245,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for AVMetadataHumanFullBodyObject {}
 );
 
-impl AVMetadataHumanFullBodyObject {
-    extern_methods!();
-}
+impl AVMetadataHumanFullBodyObject {}
 
 /// Methods declared on superclass `AVMetadataObject`.
 impl AVMetadataHumanFullBodyObject {
@@ -293,9 +289,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for AVMetadataCatHeadObject {}
 );
 
-impl AVMetadataCatHeadObject {
-    extern_methods!();
-}
+impl AVMetadataCatHeadObject {}
 
 /// Methods declared on superclass `AVMetadataObject`.
 impl AVMetadataCatHeadObject {
@@ -343,9 +337,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for AVMetadataCatBodyObject {}
 );
 
-impl AVMetadataCatBodyObject {
-    extern_methods!();
-}
+impl AVMetadataCatBodyObject {}
 
 /// Methods declared on superclass `AVMetadataObject`.
 impl AVMetadataCatBodyObject {
@@ -389,9 +381,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for AVMetadataDogHeadObject {}
 );
 
-impl AVMetadataDogHeadObject {
-    extern_methods!();
-}
+impl AVMetadataDogHeadObject {}
 
 /// Methods declared on superclass `AVMetadataObject`.
 impl AVMetadataDogHeadObject {
@@ -439,9 +429,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for AVMetadataDogBodyObject {}
 );
 
-impl AVMetadataDogBodyObject {
-    extern_methods!();
-}
+impl AVMetadataDogBodyObject {}
 
 /// Methods declared on superclass `AVMetadataObject`.
 impl AVMetadataDogBodyObject {

@@ -7,9 +7,7 @@ use crate::*;
 
 /// NSItemProvider.
 #[cfg(feature = "CNContact")]
-impl CNContact {
-    extern_methods!();
-}
+impl CNContact {}
 
 #[cfg(feature = "CNContact")]
 extern_conformance!(

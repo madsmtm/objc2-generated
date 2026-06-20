@@ -71,9 +71,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitListEnvironment {}
 );
 
-impl UITraitListEnvironment {
-    extern_methods!();
-}
+impl UITraitListEnvironment {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitListEnvironment {

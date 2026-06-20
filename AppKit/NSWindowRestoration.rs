@@ -32,9 +32,7 @@ extern_protocol!(
 
 /// NSWindowRestoration.
 #[cfg(feature = "NSDocumentController")]
-impl NSDocumentController {
-    extern_methods!();
-}
+impl NSDocumentController {}
 
 #[cfg(feature = "NSDocumentController")]
 extern_conformance!(

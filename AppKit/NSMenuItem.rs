@@ -357,7 +357,9 @@ impl NSMenuItem {
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
+    );
 
+    extern_methods!(
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub fn action(&self) -> Option<Sel>;

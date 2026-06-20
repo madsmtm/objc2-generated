@@ -457,9 +457,7 @@ impl CPListItem {
     );
 }
 
-impl CPListItem {
-    extern_methods!();
-}
+impl CPListItem {}
 
 #[cfg(feature = "CPPlaybackConfiguration")]
 extern_conformance!(

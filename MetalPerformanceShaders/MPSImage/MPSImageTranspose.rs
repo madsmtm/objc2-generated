@@ -45,9 +45,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageTranspose {
-    extern_methods!();
-}
+impl MPSImageTranspose {}
 
 /// Methods declared on superclass `MPSUnaryImageKernel`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

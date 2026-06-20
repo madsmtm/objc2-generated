@@ -308,7 +308,9 @@ impl NSResponder {
         #[unsafe(method(showContextHelp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showContextHelp(&self, sender: Option<&AnyObject>);
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(helpRequested:))]
         #[unsafe(method_family = none)]
@@ -1153,9 +1155,7 @@ extern_protocol!(
 );
 
 /// NSStandardKeyBindingMethods.
-impl NSResponder {
-    extern_methods!();
-}
+impl NSResponder {}
 
 extern_conformance!(
     unsafe impl NSStandardKeyBindingResponding for NSResponder {}

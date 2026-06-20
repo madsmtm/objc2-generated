@@ -16,9 +16,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for PHChangeRequest {}
 );
 
-impl PHChangeRequest {
-    extern_methods!();
-}
+impl PHChangeRequest {}
 
 /// Methods declared on superclass `NSObject`.
 impl PHChangeRequest {

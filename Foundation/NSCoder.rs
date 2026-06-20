@@ -525,7 +525,9 @@ impl NSCoder {
             &self,
             key: &NSString,
         ) -> Option<Retained<AnyObject>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSSet")]
         #[unsafe(method(allowedClasses))]
         #[unsafe(method_family = none)]

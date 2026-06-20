@@ -303,9 +303,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for AVAssetResourceRenewalRequest {}
 );
 
-impl AVAssetResourceRenewalRequest {
-    extern_methods!();
-}
+impl AVAssetResourceRenewalRequest {}
 
 /// Methods declared on superclass `AVAssetResourceLoadingRequest`.
 impl AVAssetResourceRenewalRequest {

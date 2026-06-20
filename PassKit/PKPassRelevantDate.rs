@@ -28,6 +28,4 @@ impl PKPassRelevantDate {
     );
 }
 
-impl PKPassRelevantDate {
-    extern_methods!();
-}
+impl PKPassRelevantDate {}

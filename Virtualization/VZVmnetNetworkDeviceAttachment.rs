@@ -29,9 +29,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "VZNetworkDeviceAttachment")]
-impl VZVmnetNetworkDeviceAttachment {
-    extern_methods!();
-}
+impl VZVmnetNetworkDeviceAttachment {}
 
 /// Methods declared on superclass `VZNetworkDeviceAttachment`.
 #[cfg(feature = "VZNetworkDeviceAttachment")]

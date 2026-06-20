@@ -117,9 +117,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for BGProcessingTask {}
 );
 
-impl BGProcessingTask {
-    extern_methods!();
-}
+impl BGProcessingTask {}
 
 /// Methods declared on superclass `BGTask`.
 impl BGProcessingTask {
@@ -148,9 +146,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for BGHealthResearchTask {}
 );
 
-impl BGHealthResearchTask {
-    extern_methods!();
-}
+impl BGHealthResearchTask {}
 
 /// Methods declared on superclass `BGTask`.
 impl BGHealthResearchTask {
@@ -185,9 +181,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for BGAppRefreshTask {}
 );
 
-impl BGAppRefreshTask {
-    extern_methods!();
-}
+impl BGAppRefreshTask {}
 
 /// Methods declared on superclass `BGTask`.
 impl BGAppRefreshTask {

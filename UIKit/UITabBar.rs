@@ -464,9 +464,7 @@ extern_protocol!(
 
 /// SpringLoading.
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-impl UITabBar {
-    extern_methods!();
-}
+impl UITabBar {}
 
 #[cfg(all(
     feature = "UIResponder",

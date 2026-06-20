@@ -565,9 +565,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageTent {
-    extern_methods!();
-}
+impl MPSImageTent {}
 
 /// Methods declared on superclass `MPSImageBox`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -1464,9 +1462,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageGaussianPyramid {
-    extern_methods!();
-}
+impl MPSImageGaussianPyramid {}
 
 /// Methods declared on superclass `MPSImagePyramid`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -1863,9 +1859,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageLaplacianPyramidSubtract {
-    extern_methods!();
-}
+impl MPSImageLaplacianPyramidSubtract {}
 
 /// Methods declared on superclass `MPSImagePyramid`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -2034,9 +2028,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageLaplacianPyramidAdd {
-    extern_methods!();
-}
+impl MPSImageLaplacianPyramidAdd {}
 
 /// Methods declared on superclass `MPSImagePyramid`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

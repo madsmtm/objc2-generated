@@ -724,9 +724,7 @@ extern_conformance!(
 );
 
 /// UIPasteConfigurationSupporting.
-impl UIResponder {
-    extern_methods!();
-}
+impl UIResponder {}
 
 #[cfg(feature = "UIPasteConfigurationSupporting")]
 extern_conformance!(

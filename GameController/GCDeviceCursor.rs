@@ -22,9 +22,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
-impl GCDeviceCursor {
-    extern_methods!();
-}
+impl GCDeviceCursor {}
 
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]

@@ -456,7 +456,9 @@ impl NSLayoutManager {
         #[unsafe(method(isValidGlyphIndex:))]
         #[unsafe(method_family = none)]
         pub fn isValidGlyphIndex(&self, glyph_index: NSUInteger) -> bool;
+    );
 
+    extern_methods!(
         #[unsafe(method(propertyForGlyphAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn propertyForGlyphAtIndex(&self, glyph_index: NSUInteger) -> NSGlyphProperty;
@@ -903,7 +905,9 @@ impl NSLayoutManager {
             line_glyph_range: NSRange,
             container_origin: NSPoint,
         );
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSAttributedString")]
         #[unsafe(method(strikethroughGlyphRange:strikethroughType:lineFragmentRect:lineFragmentGlyphRange:containerOrigin:))]
         #[unsafe(method_family = none)]

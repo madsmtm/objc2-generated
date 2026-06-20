@@ -225,9 +225,7 @@ impl NSSliderCell {
 
 /// NSSliderCellVerticalGetter.
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-impl NSSliderCell {
-    extern_methods!();
-}
+impl NSSliderCell {}
 
 /// NSTickMarkSupport.
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]

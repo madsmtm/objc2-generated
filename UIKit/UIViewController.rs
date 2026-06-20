@@ -520,7 +520,9 @@ impl UIViewController {
         #[unsafe(method(interactionActivityTrackingBaseName))]
         #[unsafe(method_family = none)]
         pub fn interactionActivityTrackingBaseName(&self) -> Option<Retained<NSString>>;
+    );
 
+    extern_methods!(
         /// Setter for [`interactionActivityTrackingBaseName`][Self::interactionActivityTrackingBaseName].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.

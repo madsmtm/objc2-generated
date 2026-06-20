@@ -1508,7 +1508,9 @@ impl UITableView {
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<UITableViewCell>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "UITableViewCell")]
         #[unsafe(method(visibleCells))]
         #[unsafe(method_family = none)]
@@ -1802,7 +1804,9 @@ impl UITableView {
         #[unsafe(method(setSeparatorEffect:))]
         #[unsafe(method_family = none)]
         pub fn setSeparatorEffect(&self, separator_effect: Option<&UIVisualEffect>);
+    );
 
+    extern_methods!(
         #[unsafe(method(cellLayoutMarginsFollowReadableWidth))]
         #[unsafe(method_family = none)]
         pub fn cellLayoutMarginsFollowReadableWidth(&self) -> bool;
@@ -2015,9 +2019,7 @@ impl UITableView {
 
 /// UIDragAndDrop.
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-impl UITableView {
-    extern_methods!();
-}
+impl UITableView {}
 
 #[cfg(all(
     feature = "UIResponder",

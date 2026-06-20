@@ -128,9 +128,7 @@ impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
 }
 
 #[cfg(feature = "ASAuthorizationRequest")]
-impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
-    extern_methods!();
-}
+impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
 
 #[cfg(all(
     feature = "ASAuthorizationRequest",

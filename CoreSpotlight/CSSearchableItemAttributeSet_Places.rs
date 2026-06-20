@@ -260,7 +260,9 @@ impl CSSearchableItemAttributeSet {
         #[unsafe(method(setGPSDestDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGPSDestDistance(&self, gps_dest_distance: Option<&NSNumber>);
+    );
 
+    extern_methods!(
         #[unsafe(method(GPSProcessingMethod))]
         #[unsafe(method_family = none)]
         pub unsafe fn GPSProcessingMethod(&self) -> Option<Retained<NSString>>;

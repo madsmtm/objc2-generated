@@ -232,9 +232,7 @@ impl NSSlider {
 
 /// NSSliderVerticalGetter.
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-impl NSSlider {
-    extern_methods!();
-}
+impl NSSlider {}
 
 /// NSTickMarkSupport.
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]

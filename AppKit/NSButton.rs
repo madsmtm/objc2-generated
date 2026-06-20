@@ -502,7 +502,9 @@ impl NSButton {
             &self,
             symbol_configuration: Option<&NSImageSymbolConfiguration>,
         );
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSCell")]
         /// The button's state. Buttons support the off and on states, and an additional mixed state depending on the value of the `allowsMixedState` property.
         #[unsafe(method(state))]

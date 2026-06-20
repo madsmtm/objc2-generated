@@ -27,9 +27,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MTL4FunctionDescriptor {}
 );
 
-impl MTL4FunctionDescriptor {
-    extern_methods!();
-}
+impl MTL4FunctionDescriptor {}
 
 /// Methods declared on superclass `NSObject`.
 impl MTL4FunctionDescriptor {

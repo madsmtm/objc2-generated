@@ -466,7 +466,9 @@ impl PKPaymentRequest {
         #[unsafe(method(multiTokenContexts))]
         #[unsafe(method_family = none)]
         pub unsafe fn multiTokenContexts(&self) -> Retained<NSArray<PKPaymentTokenContext>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "PKPaymentTokenContext")]
         /// Setter for [`multiTokenContexts`][Self::multiTokenContexts].
         ///

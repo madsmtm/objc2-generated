@@ -41,9 +41,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
-impl CLBeaconIdentityConstraint {
-    extern_methods!();
-}
+impl CLBeaconIdentityConstraint {}
 
 /// Methods declared on superclass `CLBeaconIdentityCondition`.
 #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]

@@ -35,9 +35,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerItemMediaDataCollector {}
 );
 
-impl AVPlayerItemMediaDataCollector {
-    extern_methods!();
-}
+impl AVPlayerItemMediaDataCollector {}
 
 /// Methods declared on superclass `NSObject`.
 impl AVPlayerItemMediaDataCollector {

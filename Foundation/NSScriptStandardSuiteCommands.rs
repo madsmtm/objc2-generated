@@ -201,9 +201,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "NSScriptCommand")]
-impl NSCountCommand {
-    extern_methods!();
-}
+impl NSCountCommand {}
 
 /// Methods declared on superclass `NSScriptCommand`.
 #[cfg(feature = "NSScriptCommand")]
@@ -431,9 +429,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "NSScriptCommand")]
-impl NSExistsCommand {
-    extern_methods!();
-}
+impl NSExistsCommand {}
 
 /// Methods declared on superclass `NSScriptCommand`.
 #[cfg(feature = "NSScriptCommand")]
@@ -501,9 +497,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "NSScriptCommand")]
-impl NSGetCommand {
-    extern_methods!();
-}
+impl NSGetCommand {}
 
 /// Methods declared on superclass `NSScriptCommand`.
 #[cfg(feature = "NSScriptCommand")]

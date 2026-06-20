@@ -97,9 +97,7 @@ impl BERenderingProcess {
 }
 
 /// BEExtensionProcessConformance.
-impl BERenderingProcess {
-    extern_methods!();
-}
+impl BERenderingProcess {}
 
 #[cfg(feature = "BEExtensionProcess")]
 extern_conformance!(

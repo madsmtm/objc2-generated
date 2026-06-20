@@ -490,7 +490,9 @@ impl SCNLight {
         #[unsafe(method(spotInnerAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn spotInnerAngle(&self) -> CGFloat;
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`spotInnerAngle`][Self::spotInnerAngle].
         #[unsafe(method(setSpotInnerAngle:))]

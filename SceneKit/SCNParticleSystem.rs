@@ -801,7 +801,9 @@ impl SCNParticleSystem {
         #[unsafe(method(setParticleLifeSpanVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleLifeSpanVariation(&self, particle_life_span_variation: CGFloat);
+    );
 
+    extern_methods!(
         #[unsafe(method(systemSpawnedOnDying))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemSpawnedOnDying(&self) -> Option<Retained<SCNParticleSystem>>;
@@ -1070,7 +1072,9 @@ impl SCNParticleSystem {
         #[unsafe(method(setParticleDiesOnCollision:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleDiesOnCollision(&self, particle_dies_on_collision: bool);
+    );
 
+    extern_methods!(
         #[cfg(feature = "SCNNode")]
         #[unsafe(method(colliderNodes))]
         #[unsafe(method_family = none)]

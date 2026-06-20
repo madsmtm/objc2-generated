@@ -16,9 +16,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for PKObject {}
 );
 
-impl PKObject {
-    extern_methods!();
-}
+impl PKObject {}
 
 /// Methods declared on superclass `NSObject`.
 impl PKObject {

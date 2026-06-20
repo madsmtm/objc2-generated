@@ -344,7 +344,9 @@ impl SCNPhysicsBody {
         #[unsafe(method(resetTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetTransform(&self);
+    );
 
+    extern_methods!(
         #[unsafe(method(setResting:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResting(&self, resting: bool);

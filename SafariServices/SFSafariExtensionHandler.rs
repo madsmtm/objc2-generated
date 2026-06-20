@@ -26,9 +26,7 @@ extern_conformance!(
     unsafe impl SFSafariExtensionHandling for SFSafariExtensionHandler {}
 );
 
-impl SFSafariExtensionHandler {
-    extern_methods!();
-}
+impl SFSafariExtensionHandler {}
 
 /// Methods declared on superclass `NSObject`.
 impl SFSafariExtensionHandler {

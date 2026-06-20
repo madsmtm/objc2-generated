@@ -682,9 +682,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "AVAssetTrack")]
-impl AVFragmentedMovieTrack {
-    extern_methods!();
-}
+impl AVFragmentedMovieTrack {}
 
 /// Methods declared on superclass `AVAssetTrack`.
 #[cfg(feature = "AVAssetTrack")]

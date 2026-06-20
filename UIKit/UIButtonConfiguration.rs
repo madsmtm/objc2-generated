@@ -520,7 +520,9 @@ impl UIButtonConfiguration {
         #[unsafe(method(attributedSubtitle))]
         #[unsafe(method_family = none)]
         pub fn attributedSubtitle(&self) -> Option<Retained<NSAttributedString>>;
+    );
 
+    extern_methods!(
         /// Setter for [`attributedSubtitle`][Self::attributedSubtitle].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.

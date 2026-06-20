@@ -400,7 +400,9 @@ impl WebPreferences {
         #[unsafe(method(tabsToLinks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tabsToLinks(&self) -> bool;
+    );
 
+    extern_methods!(
         /// Setter for [`tabsToLinks`][Self::tabsToLinks].
         #[deprecated]
         #[unsafe(method(setTabsToLinks:))]

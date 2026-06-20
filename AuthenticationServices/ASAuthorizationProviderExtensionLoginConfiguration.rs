@@ -664,7 +664,9 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         #[unsafe(method(setGroupRequestClaimName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroupRequestClaimName(&self, group_request_claim_name: Option<&NSString>);
+    );
 
+    extern_methods!(
         /// The claim name for group responses in the id_token.
         #[unsafe(method(groupResponseClaimName))]
         #[unsafe(method_family = none)]

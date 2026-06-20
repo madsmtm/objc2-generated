@@ -249,9 +249,7 @@ impl UITab {
 }
 
 /// UIPopoverPresentationControllerSourceItem.
-impl UITab {
-    extern_methods!();
-}
+impl UITab {}
 
 #[cfg(feature = "UIPopoverPresentationControllerSourceItem")]
 extern_conformance!(
@@ -259,9 +257,7 @@ extern_conformance!(
 );
 
 /// UISpringLoadedInteractionSupporting.
-impl UITab {
-    extern_methods!();
-}
+impl UITab {}
 
 #[cfg(feature = "UISpringLoadedInteractionSupporting")]
 extern_conformance!(
@@ -269,9 +265,7 @@ extern_conformance!(
 );
 
 /// UIAccessibility.
-impl UITab {
-    extern_methods!();
-}
+impl UITab {}
 
 #[cfg(feature = "UIAccessibilityIdentification")]
 extern_conformance!(

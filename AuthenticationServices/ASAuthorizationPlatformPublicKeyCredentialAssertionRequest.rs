@@ -108,9 +108,7 @@ impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
 }
 
 #[cfg(feature = "ASAuthorizationRequest")]
-impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
-    extern_methods!();
-}
+impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
 
 #[cfg(all(
     feature = "ASAuthorizationRequest",
@@ -124,9 +122,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "ASAuthorizationRequest")]
-impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
-    extern_methods!();
-}
+impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
 
 #[cfg(all(
     feature = "ASAuthorizationRequest",

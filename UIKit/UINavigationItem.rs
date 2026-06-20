@@ -554,7 +554,9 @@ impl UINavigationItem {
         #[unsafe(method(leftBarButtonItem))]
         #[unsafe(method_family = none)]
         pub fn leftBarButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Setter for [`leftBarButtonItem`][Self::leftBarButtonItem].
         #[unsafe(method(setLeftBarButtonItem:))]

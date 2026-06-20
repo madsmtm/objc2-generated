@@ -90,9 +90,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitTabAccessoryEnvironment {}
 );
 
-impl UITraitTabAccessoryEnvironment {
-    extern_methods!();
-}
+impl UITraitTabAccessoryEnvironment {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitTabAccessoryEnvironment {

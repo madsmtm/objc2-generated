@@ -34,9 +34,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for GLKEffectProperty {}
 );
 
-impl GLKEffectProperty {
-    extern_methods!();
-}
+impl GLKEffectProperty {}
 
 /// Methods declared on superclass `NSObject`.
 impl GLKEffectProperty {

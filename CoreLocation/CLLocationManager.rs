@@ -393,7 +393,9 @@ impl CLLocationManager {
         #[unsafe(method(startMonitoringSignificantLocationChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringSignificantLocationChanges(&self);
+    );
 
+    extern_methods!(
         #[unsafe(method(stopMonitoringSignificantLocationChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoringSignificantLocationChanges(&self);

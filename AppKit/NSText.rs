@@ -381,7 +381,9 @@ impl NSText {
         #[unsafe(method(isVerticallyResizable))]
         #[unsafe(method_family = none)]
         pub fn isVerticallyResizable(&self) -> bool;
+    );
 
+    extern_methods!(
         /// Setter for [`isVerticallyResizable`][Self::isVerticallyResizable].
         #[unsafe(method(setVerticallyResizable:))]
         #[unsafe(method_family = none)]

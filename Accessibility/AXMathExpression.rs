@@ -21,9 +21,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for AXMathExpression {}
 );
 
-impl AXMathExpression {
-    extern_methods!();
-}
+impl AXMathExpression {}
 
 /// Methods declared on superclass `NSObject`.
 impl AXMathExpression {

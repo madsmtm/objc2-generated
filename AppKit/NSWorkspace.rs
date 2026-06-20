@@ -592,9 +592,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for NSWorkspaceAuthorization {}
 );
 
-impl NSWorkspaceAuthorization {
-    extern_methods!();
-}
+impl NSWorkspaceAuthorization {}
 
 /// Methods declared on superclass `NSObject`.
 impl NSWorkspaceAuthorization {

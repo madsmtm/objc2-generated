@@ -57,9 +57,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for SKWarpGeometry {}
 );
 
-impl SKWarpGeometry {
-    extern_methods!();
-}
+impl SKWarpGeometry {}
 
 /// Methods declared on superclass `NSObject`.
 impl SKWarpGeometry {

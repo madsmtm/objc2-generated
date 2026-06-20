@@ -99,9 +99,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitUserInterfaceIdiom {}
 );
 
-impl UITraitUserInterfaceIdiom {
-    extern_methods!();
-}
+impl UITraitUserInterfaceIdiom {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitUserInterfaceIdiom {
@@ -136,9 +134,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitUserInterfaceStyle {}
 );
 
-impl UITraitUserInterfaceStyle {
-    extern_methods!();
-}
+impl UITraitUserInterfaceStyle {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitUserInterfaceStyle {
@@ -173,9 +169,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitLayoutDirection {}
 );
 
-impl UITraitLayoutDirection {
-    extern_methods!();
-}
+impl UITraitLayoutDirection {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitLayoutDirection {
@@ -210,9 +204,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitDisplayScale {}
 );
 
-impl UITraitDisplayScale {
-    extern_methods!();
-}
+impl UITraitDisplayScale {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitDisplayScale {
@@ -247,9 +239,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitHorizontalSizeClass {}
 );
 
-impl UITraitHorizontalSizeClass {
-    extern_methods!();
-}
+impl UITraitHorizontalSizeClass {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitHorizontalSizeClass {
@@ -284,9 +274,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitVerticalSizeClass {}
 );
 
-impl UITraitVerticalSizeClass {
-    extern_methods!();
-}
+impl UITraitVerticalSizeClass {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitVerticalSizeClass {
@@ -321,9 +309,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitForceTouchCapability {}
 );
 
-impl UITraitForceTouchCapability {
-    extern_methods!();
-}
+impl UITraitForceTouchCapability {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitForceTouchCapability {
@@ -358,9 +344,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitPreferredContentSizeCategory {}
 );
 
-impl UITraitPreferredContentSizeCategory {
-    extern_methods!();
-}
+impl UITraitPreferredContentSizeCategory {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitPreferredContentSizeCategory {
@@ -395,9 +379,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitDisplayGamut {}
 );
 
-impl UITraitDisplayGamut {
-    extern_methods!();
-}
+impl UITraitDisplayGamut {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitDisplayGamut {
@@ -432,9 +414,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitAccessibilityContrast {}
 );
 
-impl UITraitAccessibilityContrast {
-    extern_methods!();
-}
+impl UITraitAccessibilityContrast {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitAccessibilityContrast {
@@ -469,9 +449,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitUserInterfaceLevel {}
 );
 
-impl UITraitUserInterfaceLevel {
-    extern_methods!();
-}
+impl UITraitUserInterfaceLevel {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitUserInterfaceLevel {
@@ -506,9 +484,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitLegibilityWeight {}
 );
 
-impl UITraitLegibilityWeight {
-    extern_methods!();
-}
+impl UITraitLegibilityWeight {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitLegibilityWeight {
@@ -543,9 +519,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitActiveAppearance {}
 );
 
-impl UITraitActiveAppearance {
-    extern_methods!();
-}
+impl UITraitActiveAppearance {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitActiveAppearance {
@@ -580,9 +554,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitToolbarItemPresentationSize {}
 );
 
-impl UITraitToolbarItemPresentationSize {
-    extern_methods!();
-}
+impl UITraitToolbarItemPresentationSize {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitToolbarItemPresentationSize {
@@ -617,9 +589,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitImageDynamicRange {}
 );
 
-impl UITraitImageDynamicRange {
-    extern_methods!();
-}
+impl UITraitImageDynamicRange {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitImageDynamicRange {
@@ -654,9 +624,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitTypesettingLanguage {}
 );
 
-impl UITraitTypesettingLanguage {
-    extern_methods!();
-}
+impl UITraitTypesettingLanguage {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitTypesettingLanguage {
@@ -691,9 +659,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitSceneCaptureState {}
 );
 
-impl UITraitSceneCaptureState {
-    extern_methods!();
-}
+impl UITraitSceneCaptureState {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitSceneCaptureState {
@@ -728,9 +694,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitHDRHeadroomUsageLimit {}
 );
 
-impl UITraitHDRHeadroomUsageLimit {
-    extern_methods!();
-}
+impl UITraitHDRHeadroomUsageLimit {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitHDRHeadroomUsageLimit {
@@ -765,9 +729,7 @@ extern_conformance!(
     unsafe impl UITraitDefinition for UITraitResolvesNaturalAlignmentWithBaseWritingDirection {}
 );
 
-impl UITraitResolvesNaturalAlignmentWithBaseWritingDirection {
-    extern_methods!();
-}
+impl UITraitResolvesNaturalAlignmentWithBaseWritingDirection {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITraitResolvesNaturalAlignmentWithBaseWritingDirection {

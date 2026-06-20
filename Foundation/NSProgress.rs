@@ -368,7 +368,9 @@ impl NSProgress {
         #[unsafe(method(fileCompletedCount))]
         #[unsafe(method_family = none)]
         pub fn fileCompletedCount(&self) -> Option<Retained<NSNumber>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSValue")]
         /// Setter for [`fileCompletedCount`][Self::fileCompletedCount].
         ///

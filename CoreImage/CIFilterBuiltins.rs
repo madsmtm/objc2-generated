@@ -9077,7 +9077,9 @@ impl CIFilter {
         #[unsafe(method(linearDodgeBlendModeFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn linearDodgeBlendModeFilter() -> Retained<CIFilter>;
+    );
 
+    extern_methods!(
         #[unsafe(method(linearLightBlendModeFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn linearLightBlendModeFilter() -> Retained<CIFilter>;
@@ -9277,7 +9279,9 @@ impl CIFilter {
         #[unsafe(method(documentEnhancerFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn documentEnhancerFilter() -> Retained<CIFilter>;
+    );
 
+    extern_methods!(
         #[unsafe(method(falseColorFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn falseColorFilter() -> Retained<CIFilter>;
@@ -9477,7 +9481,9 @@ impl CIFilter {
         #[unsafe(method(sixfoldRotatedTileFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn sixfoldRotatedTileFilter() -> Retained<CIFilter>;
+    );
 
+    extern_methods!(
         #[unsafe(method(triangleKaleidoscopeFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn triangleKaleidoscopeFilter() -> Retained<CIFilter>;
@@ -9677,7 +9683,9 @@ impl CIFilter {
         #[unsafe(method(lineOverlayFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineOverlayFilter() -> Retained<CIFilter>;
+    );
 
+    extern_methods!(
         #[unsafe(method(mixFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn mixFilter() -> Retained<CIFilter>;

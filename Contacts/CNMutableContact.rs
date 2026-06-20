@@ -369,7 +369,9 @@ impl CNMutableContact {
         #[unsafe(method(setBirthday:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBirthday(&self, birthday: Option<&NSDateComponents>);
+    );
 
+    extern_methods!(
         /// The alternate birthday (Lunisolar).
         ///
         /// Only uses day, month, year and calendar components. Needs to have at least a day and a month. Calendar must be Chinese, Hebrew or Islamic.

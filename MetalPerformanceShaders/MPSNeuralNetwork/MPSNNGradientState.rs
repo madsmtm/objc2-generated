@@ -26,9 +26,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-impl MPSNNGradientState {
-    extern_methods!();
-}
+impl MPSNNGradientState {}
 
 /// Methods declared on superclass `MPSState`.
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -176,9 +174,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-impl MPSNNBinaryGradientState {
-    extern_methods!();
-}
+impl MPSNNBinaryGradientState {}
 
 /// Methods declared on superclass `MPSState`.
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -321,9 +317,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-impl MPSNNMultiaryGradientState {
-    extern_methods!();
-}
+impl MPSNNMultiaryGradientState {}
 
 /// Methods declared on superclass `MPSState`.
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]

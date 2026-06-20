@@ -433,7 +433,9 @@ impl NSColor {
         #[unsafe(method(linkColor))]
         #[unsafe(method_family = none)]
         pub fn linkColor() -> Retained<NSColor>;
+    );
 
+    extern_methods!(
         #[unsafe(method(placeholderTextColor))]
         #[unsafe(method_family = none)]
         pub fn placeholderTextColor() -> Retained<NSColor>;
@@ -642,7 +644,9 @@ impl NSColor {
         #[unsafe(method(highlightColor))]
         #[unsafe(method_family = none)]
         pub fn highlightColor() -> Retained<NSColor>;
+    );
 
+    extern_methods!(
         #[unsafe(method(shadowColor))]
         #[unsafe(method_family = none)]
         pub fn shadowColor() -> Retained<NSColor>;

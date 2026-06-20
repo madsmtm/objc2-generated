@@ -30,9 +30,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for SCNPhysicsBehavior {}
 );
 
-impl SCNPhysicsBehavior {
-    extern_methods!();
-}
+impl SCNPhysicsBehavior {}
 
 /// Methods declared on superclass `NSObject`.
 impl SCNPhysicsBehavior {

@@ -75,9 +75,7 @@ impl ASAuthorizationSecurityKeyPublicKeyCredentialProvider {
     );
 }
 
-impl ASAuthorizationSecurityKeyPublicKeyCredentialProvider {
-    extern_methods!();
-}
+impl ASAuthorizationSecurityKeyPublicKeyCredentialProvider {}
 
 #[cfg(feature = "ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider")]
 extern_conformance!(

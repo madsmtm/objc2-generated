@@ -397,7 +397,9 @@ impl NSBezierPath {
         #[unsafe(method(fill))]
         #[unsafe(method_family = none)]
         pub fn fill(&self);
+    );
 
+    extern_methods!(
         #[unsafe(method(addClip))]
         #[unsafe(method_family = none)]
         pub fn addClip(&self);

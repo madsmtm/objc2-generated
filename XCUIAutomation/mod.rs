@@ -1133,9 +1133,7 @@ impl XCUIElement {
 }
 
 /// XCUIScreenshotProviding.
-impl XCUIElement {
-    extern_methods!();
-}
+impl XCUIElement {}
 
 extern_conformance!(
     unsafe impl XCUIScreenshotProviding for XCUIElement {}
@@ -1390,9 +1388,7 @@ extern_protocol!(
 );
 
 /// XCUIElementSnapshotProviding.
-impl XCUIElement {
-    extern_methods!();
-}
+impl XCUIElement {}
 
 extern_conformance!(
     unsafe impl XCUIElementSnapshotProviding for XCUIElement {}

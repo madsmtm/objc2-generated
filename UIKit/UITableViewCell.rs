@@ -613,7 +613,9 @@ impl UITableViewCell {
         #[unsafe(method(setEditingAccessoryView:))]
         #[unsafe(method_family = none)]
         pub fn setEditingAccessoryView(&self, editing_accessory_view: Option<&UIView>);
+    );
 
+    extern_methods!(
         #[unsafe(method(indentationLevel))]
         #[unsafe(method_family = none)]
         pub fn indentationLevel(&self) -> NSInteger;

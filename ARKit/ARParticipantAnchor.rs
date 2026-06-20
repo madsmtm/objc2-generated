@@ -59,9 +59,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-impl ARParticipantAnchor {
-    extern_methods!();
-}
+impl ARParticipantAnchor {}
 
 /// Methods declared on superclass `ARAnchor`.
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]

@@ -19,9 +19,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for GKOctreeNode {}
 );
 
-impl GKOctreeNode {
-    extern_methods!();
-}
+impl GKOctreeNode {}
 
 /// Methods declared on superclass `NSObject`.
 impl GKOctreeNode {

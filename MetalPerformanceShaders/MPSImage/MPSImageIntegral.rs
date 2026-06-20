@@ -54,9 +54,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageIntegral {
-    extern_methods!();
-}
+impl MPSImageIntegral {}
 
 /// Methods declared on superclass `MPSUnaryImageKernel`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -189,9 +187,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageIntegralOfSquares {
-    extern_methods!();
-}
+impl MPSImageIntegralOfSquares {}
 
 /// Methods declared on superclass `MPSUnaryImageKernel`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

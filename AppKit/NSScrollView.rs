@@ -392,7 +392,9 @@ impl NSScrollView {
         #[unsafe(method(scrollerKnobStyle))]
         #[unsafe(method_family = none)]
         pub fn scrollerKnobStyle(&self) -> NSScrollerKnobStyle;
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSScroller")]
         /// Setter for [`scrollerKnobStyle`][Self::scrollerKnobStyle].
         #[unsafe(method(setScrollerKnobStyle:))]

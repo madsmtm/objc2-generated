@@ -622,7 +622,9 @@ impl NSTextView {
         #[unsafe(method(setNeedsDisplayInRect:avoidAdditionalLayout:))]
         #[unsafe(method_family = none)]
         pub fn setNeedsDisplayInRect_avoidAdditionalLayout(&self, rect: NSRect, flag: bool);
+    );
 
+    extern_methods!(
         #[unsafe(method(shouldDrawInsertionPoint))]
         #[unsafe(method_family = none)]
         pub fn shouldDrawInsertionPoint(&self) -> bool;
@@ -1220,7 +1222,9 @@ impl NSTextView {
         #[unsafe(method(breakUndoCoalescing))]
         #[unsafe(method_family = none)]
         pub fn breakUndoCoalescing(&self);
+    );
 
+    extern_methods!(
         #[unsafe(method(isCoalescingUndo))]
         #[unsafe(method_family = none)]
         pub fn isCoalescingUndo(&self) -> bool;

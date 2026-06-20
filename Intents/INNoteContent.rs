@@ -33,9 +33,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for INNoteContent {}
 );
 
-impl INNoteContent {
-    extern_methods!();
-}
+impl INNoteContent {}
 
 /// Methods declared on superclass `NSObject`.
 impl INNoteContent {

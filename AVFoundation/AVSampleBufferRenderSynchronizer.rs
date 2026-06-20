@@ -301,6 +301,4 @@ impl AVSampleBufferRenderSynchronizer {
 }
 
 /// AVSampleBufferRenderSynchronizerSpatialAudioExperience.
-impl AVSampleBufferRenderSynchronizer {
-    extern_methods!();
-}
+impl AVSampleBufferRenderSynchronizer {}

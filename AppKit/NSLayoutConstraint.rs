@@ -339,9 +339,7 @@ impl NSLayoutConstraint {
     );
 }
 
-impl NSLayoutConstraint {
-    extern_methods!();
-}
+impl NSLayoutConstraint {}
 
 #[cfg(feature = "NSAnimation")]
 extern_conformance!(

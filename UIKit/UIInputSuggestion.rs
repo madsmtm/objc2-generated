@@ -18,9 +18,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for UIInputSuggestion {}
 );
 
-impl UIInputSuggestion {
-    extern_methods!();
-}
+impl UIInputSuggestion {}
 
 /// Methods declared on superclass `NSObject`.
 impl UIInputSuggestion {

@@ -92,9 +92,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
-impl GCDirectionalGamepad {
-    extern_methods!();
-}
+impl GCDirectionalGamepad {}
 
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]

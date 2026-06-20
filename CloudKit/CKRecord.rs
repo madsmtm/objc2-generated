@@ -554,9 +554,7 @@ extern_conformance!(
 
 /// CKRecordValue.
 #[cfg(feature = "CKReference")]
-impl CKReference {
-    extern_methods!();
-}
+impl CKReference {}
 
 #[cfg(feature = "CKReference")]
 extern_conformance!(
@@ -565,9 +563,7 @@ extern_conformance!(
 
 /// CKRecordValue.
 #[cfg(feature = "CKAsset")]
-impl CKAsset {
-    extern_methods!();
-}
+impl CKAsset {}
 
 #[cfg(feature = "CKAsset")]
 extern_conformance!(

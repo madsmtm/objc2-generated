@@ -542,7 +542,9 @@ impl PDFDocument {
             end_point: NSPoint,
             granularity: PDFSelectionGranularity,
         ) -> Option<Retained<PDFSelection>>;
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "PDFPage", feature = "PDFSelection"))]
         #[unsafe(method(selectionFromPage:atCharacterIndex:toPage:atCharacterIndex:))]
         #[unsafe(method_family = none)]

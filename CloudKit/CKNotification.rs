@@ -39,9 +39,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for CKNotificationID {}
 );
 
-impl CKNotificationID {
-    extern_methods!();
-}
+impl CKNotificationID {}
 
 /// Methods declared on superclass `NSObject`.
 impl CKNotificationID {

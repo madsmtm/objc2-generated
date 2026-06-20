@@ -780,7 +780,9 @@ impl SKAction {
             root: &SKNode,
             velocity: CGFloat,
         ) -> Retained<SKAction>;
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Creates an action that performs an inverse kinematic reach.

@@ -197,6 +197,4 @@ impl NSURLCredential {
 }
 
 /// NSServerTrust.
-impl NSURLCredential {
-    extern_methods!();
-}
+impl NSURLCredential {}

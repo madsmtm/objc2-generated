@@ -94,9 +94,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-impl UIEventAttributionView {
-    extern_methods!();
-}
+impl UIEventAttributionView {}
 
 /// Methods declared on superclass `UIView`.
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]

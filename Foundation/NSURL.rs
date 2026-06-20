@@ -1421,7 +1421,9 @@ impl NSURL {
         #[unsafe(method(removeCachedResourceValueForKey:))]
         #[unsafe(method_family = none)]
         pub fn removeCachedResourceValueForKey(&self, key: &NSURLResourceKey);
+    );
 
+    extern_methods!(
         #[unsafe(method(removeAllCachedResourceValues))]
         #[unsafe(method_family = none)]
         pub fn removeAllCachedResourceValues(&self);
@@ -1577,9 +1579,7 @@ impl NSURL {
 }
 
 /// NSItemProvider.
-impl NSURL {
-    extern_methods!();
-}
+impl NSURL {}
 
 #[cfg(feature = "NSItemProvider")]
 extern_conformance!(
@@ -2025,7 +2025,9 @@ impl NSURLComponents {
         #[unsafe(method(setQueryItems:))]
         #[unsafe(method_family = none)]
         pub fn setQueryItems(&self, query_items: Option<&NSArray<NSURLQueryItem>>);
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         #[unsafe(method(percentEncodedQueryItems))]
         #[unsafe(method_family = none)]

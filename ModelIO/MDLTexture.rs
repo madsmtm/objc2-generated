@@ -768,9 +768,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MDLColorSwatchTexture {}
 );
 
-impl MDLColorSwatchTexture {
-    extern_methods!();
-}
+impl MDLColorSwatchTexture {}
 
 /// Methods declared on superclass `MDLTexture`.
 impl MDLColorSwatchTexture {
@@ -861,9 +859,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MDLNoiseTexture {}
 );
 
-impl MDLNoiseTexture {
-    extern_methods!();
-}
+impl MDLNoiseTexture {}
 
 /// Methods declared on superclass `MDLTexture`.
 impl MDLNoiseTexture {

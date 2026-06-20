@@ -646,7 +646,9 @@ impl NSTableView {
         #[unsafe(method(editedRow))]
         #[unsafe(method_family = none)]
         pub fn editedRow(&self) -> NSInteger;
+    );
 
+    extern_methods!(
         #[unsafe(method(clickedColumn))]
         #[unsafe(method_family = none)]
         pub fn clickedColumn(&self) -> NSInteger;
@@ -913,7 +915,9 @@ impl NSTableView {
         #[unsafe(method(columnAtPoint:))]
         #[unsafe(method_family = none)]
         pub fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
+    );
 
+    extern_methods!(
         #[unsafe(method(rowAtPoint:))]
         #[unsafe(method_family = none)]
         pub fn rowAtPoint(&self, point: NSPoint) -> NSInteger;

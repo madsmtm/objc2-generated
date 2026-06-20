@@ -773,9 +773,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for UITextPosition {}
 );
 
-impl UITextPosition {
-    extern_methods!();
-}
+impl UITextPosition {}
 
 /// Methods declared on superclass `NSObject`.
 impl UITextPosition {

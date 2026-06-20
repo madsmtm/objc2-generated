@@ -464,7 +464,9 @@ impl NSXMLNode {
             xquery: &NSString,
             constants: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Result<Retained<NSArray>, Retained<NSError>>;
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
         #[unsafe(method(objectsForXQuery:error:_))]
         #[unsafe(method_family = none)]

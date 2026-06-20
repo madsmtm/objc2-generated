@@ -185,6 +185,4 @@ impl SCNHitTestResult {
 }
 
 /// SIMD.
-impl SCNHitTestResult {
-    extern_methods!();
-}
+impl SCNHitTestResult {}

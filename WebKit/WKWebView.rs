@@ -765,7 +765,9 @@ impl WKWebView {
         #[unsafe(method(allowsLinkPreview))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsLinkPreview(&self) -> bool;
+    );
 
+    extern_methods!(
         /// Setter for [`allowsLinkPreview`][Self::allowsLinkPreview].
         #[unsafe(method(setAllowsLinkPreview:))]
         #[unsafe(method_family = none)]
@@ -1187,9 +1189,7 @@ extern_conformance!(
 /// WKNSTextFinderClient.
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-impl WKWebView {
-    extern_methods!();
-}
+impl WKWebView {}
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

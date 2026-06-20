@@ -22,9 +22,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for GKObstacle {}
 );
 
-impl GKObstacle {
-    extern_methods!();
-}
+impl GKObstacle {}
 
 /// Methods declared on superclass `NSObject`.
 impl GKObstacle {

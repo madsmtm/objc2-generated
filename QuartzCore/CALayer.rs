@@ -429,7 +429,9 @@ impl CALayer {
         #[unsafe(method(convertRect:toLayer:))]
         #[unsafe(method_family = none)]
         pub fn convertRect_toLayer(&self, r: CGRect, l: Option<&CALayer>) -> CGRect;
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(convertTime:fromLayer:))]
         #[unsafe(method_family = none)]
@@ -693,7 +695,9 @@ impl CALayer {
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub fn backgroundColor(&self) -> Option<Retained<CGColor>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[unsafe(method(setBackgroundColor:))]
@@ -965,7 +969,9 @@ impl CALayer {
         pub fn actions(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, ProtocolObject<dyn CAAction>>>>;
+    );
 
+    extern_methods!(
         /// Setter for [`actions`][Self::actions].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.

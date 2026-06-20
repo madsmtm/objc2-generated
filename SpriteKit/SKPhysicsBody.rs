@@ -381,7 +381,9 @@ impl SKPhysicsBody {
         #[unsafe(method(velocity))]
         #[unsafe(method_family = none)]
         pub unsafe fn velocity(&self) -> CGVector;
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`velocity`][Self::velocity].
         #[unsafe(method(setVelocity:))]

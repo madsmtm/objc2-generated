@@ -38,9 +38,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for BEAccessibilityTextMarker {}
 );
 
-impl BEAccessibilityTextMarker {
-    extern_methods!();
-}
+impl BEAccessibilityTextMarker {}
 
 /// Methods declared on superclass `NSObject`.
 impl BEAccessibilityTextMarker {

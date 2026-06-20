@@ -68,9 +68,7 @@ extern_conformance!(
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-impl MKUserLocationView {
-    extern_methods!();
-}
+impl MKUserLocationView {}
 
 /// Methods declared on superclass `MKAnnotationView`.
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]

@@ -252,7 +252,9 @@ impl CSSearchableItemAttributeSet {
         #[unsafe(method(setHasAlphaChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHasAlphaChannel(&self, has_alpha_channel: Option<&NSNumber>);
+    );
 
+    extern_methods!(
         #[unsafe(method(isRedEyeOn))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRedEyeOn(&self) -> Option<Retained<NSNumber>>;

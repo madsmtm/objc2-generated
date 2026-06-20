@@ -30,9 +30,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for MSSession {}
 );
 
-impl MSSession {
-    extern_methods!();
-}
+impl MSSession {}
 
 /// Methods declared on superclass `NSObject`.
 impl MSSession {

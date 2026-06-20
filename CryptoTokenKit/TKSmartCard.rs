@@ -685,9 +685,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for TKSmartCardUserInteractionForSecurePINVerification {}
 );
 
-impl TKSmartCardUserInteractionForSecurePINVerification {
-    extern_methods!();
-}
+impl TKSmartCardUserInteractionForSecurePINVerification {}
 
 /// Methods declared on superclass `NSObject`.
 impl TKSmartCardUserInteractionForSecurePINVerification {

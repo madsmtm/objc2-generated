@@ -1193,9 +1193,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NSSymbolMagicReplaceContentTransition {}
 );
 
-impl NSSymbolMagicReplaceContentTransition {
-    extern_methods!();
-}
+impl NSSymbolMagicReplaceContentTransition {}
 
 /// Methods declared on superclass `NSSymbolContentTransition`.
 impl NSSymbolMagicReplaceContentTransition {

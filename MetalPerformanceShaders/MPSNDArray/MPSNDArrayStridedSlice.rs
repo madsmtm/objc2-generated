@@ -247,9 +247,7 @@ extern_conformance!(
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-impl MPSNDArrayStridedSliceGradient {
-    extern_methods!();
-}
+impl MPSNDArrayStridedSliceGradient {}
 
 /// Methods declared on superclass `MPSNDArrayUnaryGradientKernel`.
 #[cfg(all(

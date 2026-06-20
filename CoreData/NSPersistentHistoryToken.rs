@@ -33,9 +33,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NSPersistentHistoryToken {}
 );
 
-impl NSPersistentHistoryToken {
-    extern_methods!();
-}
+impl NSPersistentHistoryToken {}
 
 /// Methods declared on superclass `NSObject`.
 impl NSPersistentHistoryToken {

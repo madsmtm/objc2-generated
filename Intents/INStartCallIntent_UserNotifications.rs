@@ -6,6 +6,4 @@ use crate::*;
 
 /// UserNotifications.
 #[cfg(all(feature = "INIntent", feature = "INStartCallIntent"))]
-impl INStartCallIntent {
-    extern_methods!();
-}
+impl INStartCallIntent {}

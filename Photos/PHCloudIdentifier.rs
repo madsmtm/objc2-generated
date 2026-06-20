@@ -194,9 +194,7 @@ impl PHLocalIdentifierMapping {
     );
 }
 
-impl PHCloudIdentifier {
-    extern_methods!();
-}
+impl PHCloudIdentifier {}
 
 extern_conformance!(
     unsafe impl NSCopying for PHCloudIdentifier {}

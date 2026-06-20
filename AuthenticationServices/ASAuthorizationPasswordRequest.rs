@@ -39,9 +39,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "ASAuthorizationRequest")]
-impl ASAuthorizationPasswordRequest {
-    extern_methods!();
-}
+impl ASAuthorizationPasswordRequest {}
 
 /// Methods declared on superclass `ASAuthorizationRequest`.
 #[cfg(feature = "ASAuthorizationRequest")]

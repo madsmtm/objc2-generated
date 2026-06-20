@@ -41,9 +41,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "INIntent")]
-impl INGetRestaurantGuestIntent {
-    extern_methods!();
-}
+impl INGetRestaurantGuestIntent {}
 
 /// Methods declared on superclass `NSObject`.
 #[cfg(feature = "INIntent")]

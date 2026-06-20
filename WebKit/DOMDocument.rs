@@ -416,7 +416,9 @@ impl DOMDocument {
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
         ) -> Option<Retained<DOMNodeList>>;
+    );
 
+    extern_methods!(
         /// # Safety
         ///
         /// `source` might not allow `None`.

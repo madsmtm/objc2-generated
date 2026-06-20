@@ -308,9 +308,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPChangePlaybackPositionCommand {}
 );
 
-impl MPChangePlaybackPositionCommand {
-    extern_methods!();
-}
+impl MPChangePlaybackPositionCommand {}
 
 /// Methods declared on superclass `MPRemoteCommand`.
 impl MPChangePlaybackPositionCommand {

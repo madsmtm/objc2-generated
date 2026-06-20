@@ -376,7 +376,9 @@ impl SKEmitterNode {
         #[unsafe(method(setYAcceleration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setYAcceleration(&self, y_acceleration: CGFloat);
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The rate at which new particles are generated, in particles per second. Defaults to 0.0.
         #[unsafe(method(particleBirthRate))]
@@ -685,7 +687,9 @@ impl SKEmitterNode {
         #[unsafe(method(setParticleZPositionRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleZPositionRange(&self, particle_z_position_range: CGFloat);
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The rate at which to modify the z-position for each particle. Defaults to 0.0.
         #[deprecated]

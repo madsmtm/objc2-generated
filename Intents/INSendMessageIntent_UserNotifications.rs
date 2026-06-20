@@ -6,6 +6,4 @@ use crate::*;
 
 /// UserNotifications.
 #[cfg(all(feature = "INIntent", feature = "INSendMessageIntent"))]
-impl INSendMessageIntent {
-    extern_methods!();
-}
+impl INSendMessageIntent {}

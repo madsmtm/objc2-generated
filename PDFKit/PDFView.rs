@@ -476,7 +476,9 @@ impl PDFView {
         #[unsafe(method(setMaxScaleFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxScaleFactor(&self, max_scale_factor: CGFloat);
+    );
 
+    extern_methods!(
         #[unsafe(method(autoScales))]
         #[unsafe(method_family = none)]
         pub unsafe fn autoScales(&self) -> bool;

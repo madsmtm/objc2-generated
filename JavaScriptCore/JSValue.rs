@@ -922,7 +922,9 @@ impl JSValue {
         #[unsafe(method(compareDouble:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compareDouble(&self, other: c_double) -> JSRelationCondition;
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// Invoke a JSValue as a function.
         ///

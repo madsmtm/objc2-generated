@@ -112,9 +112,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for CPNowPlayingShuffleButton {}
 );
 
-impl CPNowPlayingShuffleButton {
-    extern_methods!();
-}
+impl CPNowPlayingShuffleButton {}
 
 /// Methods declared on superclass `CPNowPlayingButton`.
 impl CPNowPlayingShuffleButton {
@@ -162,9 +160,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for CPNowPlayingAddToLibraryButton {}
 );
 
-impl CPNowPlayingAddToLibraryButton {
-    extern_methods!();
-}
+impl CPNowPlayingAddToLibraryButton {}
 
 /// Methods declared on superclass `CPNowPlayingButton`.
 impl CPNowPlayingAddToLibraryButton {
@@ -214,9 +210,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for CPNowPlayingMoreButton {}
 );
 
-impl CPNowPlayingMoreButton {
-    extern_methods!();
-}
+impl CPNowPlayingMoreButton {}
 
 /// Methods declared on superclass `CPNowPlayingButton`.
 impl CPNowPlayingMoreButton {
@@ -264,9 +258,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for CPNowPlayingPlaybackRateButton {}
 );
 
-impl CPNowPlayingPlaybackRateButton {
-    extern_methods!();
-}
+impl CPNowPlayingPlaybackRateButton {}
 
 /// Methods declared on superclass `CPNowPlayingButton`.
 impl CPNowPlayingPlaybackRateButton {
@@ -314,9 +306,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for CPNowPlayingRepeatButton {}
 );
 
-impl CPNowPlayingRepeatButton {
-    extern_methods!();
-}
+impl CPNowPlayingRepeatButton {}
 
 /// Methods declared on superclass `CPNowPlayingButton`.
 impl CPNowPlayingRepeatButton {

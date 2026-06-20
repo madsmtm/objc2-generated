@@ -49,9 +49,7 @@ extern_conformance!(
 
 /// NSFetchedResultSupport.
 #[cfg(feature = "NSManagedObject")]
-impl NSManagedObject {
-    extern_methods!();
-}
+impl NSManagedObject {}
 
 #[cfg(feature = "NSManagedObject")]
 extern_conformance!(
@@ -60,9 +58,7 @@ extern_conformance!(
 
 /// NSFetchedResultSupport.
 #[cfg(feature = "NSManagedObjectID")]
-impl NSManagedObjectID {
-    extern_methods!();
-}
+impl NSManagedObjectID {}
 
 #[cfg(feature = "NSManagedObjectID")]
 extern_conformance!(

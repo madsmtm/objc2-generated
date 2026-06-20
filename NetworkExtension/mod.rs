@@ -4609,9 +4609,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for NEFilterPacketContext {}
 );
 
-impl NEFilterPacketContext {
-    extern_methods!();
-}
+impl NEFilterPacketContext {}
 
 /// Methods declared on superclass `NSObject`.
 impl NEFilterPacketContext {
@@ -7399,9 +7397,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for NEEthernetTunnelProvider {}
 );
 
-impl NEEthernetTunnelProvider {
-    extern_methods!();
-}
+impl NEEthernetTunnelProvider {}
 
 /// Methods declared on superclass `NSObject`.
 impl NEEthernetTunnelProvider {
@@ -7623,9 +7619,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NEOnDemandRuleConnect {}
 );
 
-impl NEOnDemandRuleConnect {
-    extern_methods!();
-}
+impl NEOnDemandRuleConnect {}
 
 /// Methods declared on superclass `NSObject`.
 impl NEOnDemandRuleConnect {
@@ -7673,9 +7667,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NEOnDemandRuleDisconnect {}
 );
 
-impl NEOnDemandRuleDisconnect {
-    extern_methods!();
-}
+impl NEOnDemandRuleDisconnect {}
 
 /// Methods declared on superclass `NSObject`.
 impl NEOnDemandRuleDisconnect {
@@ -7723,9 +7715,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NEOnDemandRuleIgnore {}
 );
 
-impl NEOnDemandRuleIgnore {
-    extern_methods!();
-}
+impl NEOnDemandRuleIgnore {}
 
 /// Methods declared on superclass `NSObject`.
 impl NEOnDemandRuleIgnore {
@@ -8750,9 +8740,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for NETransparentProxyProvider {}
 );
 
-impl NETransparentProxyProvider {
-    extern_methods!();
-}
+impl NETransparentProxyProvider {}
 
 /// Methods declared on superclass `NSObject`.
 impl NETransparentProxyProvider {
@@ -10418,9 +10406,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NEEndpoint {}
 );
 
-impl NEEndpoint {
-    extern_methods!();
-}
+impl NEEndpoint {}
 
 /// Methods declared on superclass `NSObject`.
 impl NEEndpoint {

@@ -982,7 +982,9 @@ impl NSEvent {
         #[unsafe(method(systemTabletID))]
         #[unsafe(method_family = none)]
         pub fn systemTabletID(&self) -> NSUInteger;
+    );
 
+    extern_methods!(
         #[unsafe(method(vendorPointingDeviceType))]
         #[unsafe(method_family = none)]
         pub fn vendorPointingDeviceType(&self) -> NSUInteger;

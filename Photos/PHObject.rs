@@ -78,9 +78,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for PHObjectPlaceholder {}
 );
 
-impl PHObjectPlaceholder {
-    extern_methods!();
-}
+impl PHObjectPlaceholder {}
 
 /// Methods declared on superclass `NSObject`.
 impl PHObjectPlaceholder {

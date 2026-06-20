@@ -16,9 +16,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for CNFetchRequest {}
 );
 
-impl CNFetchRequest {
-    extern_methods!();
-}
+impl CNFetchRequest {}
 
 /// Methods declared on superclass `NSObject`.
 impl CNFetchRequest {

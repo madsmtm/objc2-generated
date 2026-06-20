@@ -1636,7 +1636,9 @@ impl MPSCNNBinaryKernel {
             out_state: &mut Option<Retained<MPSStateBatch>>,
             is_temporary: bool,
         ) -> Retained<MPSImageBatch>;
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
         /// Allocate a MPSState (subclass) to hold the results from a -encodeBatchToCommandBuffer... operation
         ///

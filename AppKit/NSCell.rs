@@ -533,7 +533,9 @@ impl NSCell {
         #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
         pub fn stringValue(&self) -> Retained<NSString>;
+    );
 
+    extern_methods!(
         /// Setter for [`stringValue`][Self::stringValue].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -854,7 +856,9 @@ impl NSCell {
         #[unsafe(method(defaultMenu))]
         #[unsafe(method_family = none)]
         pub fn defaultMenu(mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
+    );
 
+    extern_methods!(
         #[unsafe(method(sendsActionOnEndEditing))]
         #[unsafe(method_family = none)]
         pub fn sendsActionOnEndEditing(&self) -> bool;

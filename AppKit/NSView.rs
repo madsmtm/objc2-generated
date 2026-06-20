@@ -451,7 +451,9 @@ impl NSView {
         #[unsafe(method(setBoundsRotation:))]
         #[unsafe(method_family = none)]
         pub fn setBoundsRotation(&self, bounds_rotation: CGFloat);
+    );
 
+    extern_methods!(
         #[unsafe(method(translateOriginToPoint:))]
         #[unsafe(method_family = none)]
         pub fn translateOriginToPoint(&self, translation: NSPoint);
@@ -675,7 +677,9 @@ impl NSView {
             rect: NSRect,
             context: &NSGraphicsContext,
         );
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
         #[unsafe(method(bitmapImageRepForCachingDisplayInRect:))]
         #[unsafe(method_family = none)]
@@ -935,7 +939,9 @@ impl NSView {
         #[unsafe(method(shadow))]
         #[unsafe(method_family = none)]
         pub fn shadow(&self) -> Option<Retained<NSShadow>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSShadow")]
         /// Setter for [`shadow`][Self::shadow].
         ///

@@ -32,9 +32,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for VNVideoProcessorCadence {}
 );
 
-impl VNVideoProcessorCadence {
-    extern_methods!();
-}
+impl VNVideoProcessorCadence {}
 
 /// Methods declared on superclass `NSObject`.
 impl VNVideoProcessorCadence {

@@ -1083,7 +1083,9 @@ impl AUAudioUnit {
         #[unsafe(method(setCurrentPreset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentPreset(&self, current_preset: Option<&AUAudioUnitPreset>);
+    );
 
+    extern_methods!(
         /// The audio unit's processing latency, in seconds.
         ///
         /// This property reflects the delay between when an impulse in the unit's audio unit stream
@@ -2038,6 +2040,4 @@ extern_protocol!(
 );
 
 /// IntendedSpatialExperience.
-impl AUAudioUnit {
-    extern_methods!();
-}
+impl AUAudioUnit {}

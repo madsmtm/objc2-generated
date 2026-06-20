@@ -43,9 +43,7 @@ extern_conformance!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-impl CABTLEMIDIWindowController {
-    extern_methods!();
-}
+impl CABTLEMIDIWindowController {}
 
 /// Methods declared on superclass `NSWindowController`.
 #[cfg(feature = "objc2-app-kit")]

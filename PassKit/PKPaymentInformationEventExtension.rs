@@ -27,9 +27,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for PKPaymentInformationEventExtension {}
 );
 
-impl PKPaymentInformationEventExtension {
-    extern_methods!();
-}
+impl PKPaymentInformationEventExtension {}
 
 /// Methods declared on superclass `NSObject`.
 impl PKPaymentInformationEventExtension {

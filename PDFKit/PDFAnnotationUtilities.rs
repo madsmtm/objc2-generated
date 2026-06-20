@@ -601,7 +601,9 @@ impl PDFAnnotation {
         #[unsafe(method(setChoices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChoices(&self, choices: Option<&NSArray<NSString>>);
+    );
 
+    extern_methods!(
         #[unsafe(method(values))]
         #[unsafe(method_family = none)]
         pub unsafe fn values(&self) -> Option<Retained<NSArray<NSString>>>;

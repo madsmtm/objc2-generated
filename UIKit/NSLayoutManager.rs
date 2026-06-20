@@ -449,7 +449,9 @@ impl NSLayoutManager {
             flag: bool,
             glyph_index: NSUInteger,
         );
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setAttachmentSize:forGlyphRange:))]
         #[unsafe(method_family = none)]

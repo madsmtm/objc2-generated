@@ -87,9 +87,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for CNChangeHistoryDropEverythingEvent {}
 );
 
-impl CNChangeHistoryDropEverythingEvent {
-    extern_methods!();
-}
+impl CNChangeHistoryDropEverythingEvent {}
 
 /// Methods declared on superclass `NSObject`.
 impl CNChangeHistoryDropEverythingEvent {

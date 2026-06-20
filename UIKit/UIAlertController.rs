@@ -313,9 +313,7 @@ impl UIAlertController {
 
 /// SpringLoading.
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-impl UIAlertController {
-    extern_methods!();
-}
+impl UIAlertController {}
 
 #[cfg(all(
     feature = "UIResponder",

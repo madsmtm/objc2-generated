@@ -24,9 +24,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSGraphObject {}
 );
 
-impl MPSGraphObject {
-    extern_methods!();
-}
+impl MPSGraphObject {}
 
 /// Methods declared on superclass `NSObject`.
 impl MPSGraphObject {
@@ -62,9 +60,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MPSGraphType {}
 );
 
-impl MPSGraphType {
-    extern_methods!();
-}
+impl MPSGraphType {}
 
 /// Methods declared on superclass `NSObject`.
 impl MPSGraphType {

@@ -585,7 +585,9 @@ impl UIButton {
         #[unsafe(method(currentTitleShadowColor))]
         #[unsafe(method_family = none)]
         pub fn currentTitleShadowColor(&self) -> Option<Retained<UIColor>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "UIImage")]
         #[unsafe(method(currentImage))]
         #[unsafe(method_family = none)]
@@ -804,9 +806,7 @@ impl UIButton {
 
 /// SpringLoading.
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-impl UIButton {
-    extern_methods!();
-}
+impl UIButton {}
 
 #[cfg(all(
     feature = "UIControl",

@@ -32,9 +32,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for FSUnaryFileSystem {}
 );
 
-impl FSUnaryFileSystem {
-    extern_methods!();
-}
+impl FSUnaryFileSystem {}
 
 /// Methods declared on superclass `NSObject`.
 impl FSUnaryFileSystem {

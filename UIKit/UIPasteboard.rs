@@ -579,7 +579,9 @@ impl UIPasteboard {
                 dyn Fn(*mut NSSet<UIPasteboardDetectionPattern>, *mut NSError),
             >,
         );
+    );
 
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Detects patterns in the specified pasteboard items.
         ///

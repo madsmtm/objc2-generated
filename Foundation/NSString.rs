@@ -640,7 +640,9 @@ impl NSString {
             opts: NSStringEnumerationOptions,
             block: &block2::DynBlock<dyn Fn(*mut NSString, NSRange, NSRange, NonNull<Bool>)>,
         );
+    );
 
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(enumerateLinesUsingBlock:))]
         #[unsafe(method_family = none)]
@@ -1009,7 +1011,9 @@ impl NSString {
             url: &NSURL,
             enc: NSStringEncoding,
         ) -> Result<Retained<Self>, Retained<NSError>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSError")]
         #[unsafe(method(stringWithContentsOfFile:encoding:error:_))]
         #[unsafe(method_family = none)]
@@ -1325,9 +1329,7 @@ impl NSString {
 }
 
 /// NSItemProvider.
-impl NSString {
-    extern_methods!();
-}
+impl NSString {}
 
 #[cfg(feature = "NSItemProvider")]
 extern_conformance!(
@@ -1738,9 +1740,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NSSimpleCString {}
 );
 
-impl NSSimpleCString {
-    extern_methods!();
-}
+impl NSSimpleCString {}
 
 /// Methods declared on superclass `NSString`.
 impl NSSimpleCString {
@@ -1799,9 +1799,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NSConstantString {}
 );
 
-impl NSConstantString {
-    extern_methods!();
-}
+impl NSConstantString {}
 
 /// Methods declared on superclass `NSString`.
 impl NSConstantString {

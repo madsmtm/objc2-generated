@@ -22,9 +22,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for CMSensorDataList {}
 );
 
-impl CMSensorDataList {
-    extern_methods!();
-}
+impl CMSensorDataList {}
 
 /// Methods declared on superclass `NSObject`.
 impl CMSensorDataList {

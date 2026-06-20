@@ -115,9 +115,7 @@ impl PHLivePhoto {
 }
 
 /// NSItemProvider.
-impl PHLivePhoto {
-    extern_methods!();
-}
+impl PHLivePhoto {}
 
 extern_conformance!(
     unsafe impl NSItemProviderReading for PHLivePhoto {}

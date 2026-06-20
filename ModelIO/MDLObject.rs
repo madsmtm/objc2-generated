@@ -279,9 +279,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MDLObjectContainer {}
 );
 
-impl MDLObjectContainer {
-    extern_methods!();
-}
+impl MDLObjectContainer {}
 
 /// Methods declared on superclass `NSObject`.
 impl MDLObjectContainer {

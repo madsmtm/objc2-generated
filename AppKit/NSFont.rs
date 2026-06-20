@@ -344,7 +344,9 @@ impl NSFont {
         #[unsafe(method(advancementForCGGlyph:))]
         #[unsafe(method_family = none)]
         pub fn advancementForCGGlyph(&self, glyph: CGGlyph) -> NSSize;
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         /// # Safety

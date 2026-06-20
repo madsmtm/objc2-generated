@@ -27,9 +27,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for MSMessageLayout {}
 );
 
-impl MSMessageLayout {
-    extern_methods!();
-}
+impl MSMessageLayout {}
 
 /// Methods declared on superclass `NSObject`.
 impl MSMessageLayout {

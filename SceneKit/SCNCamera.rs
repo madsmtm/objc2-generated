@@ -411,7 +411,9 @@ impl SCNCamera {
         #[unsafe(method(setExposureOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExposureOffset(&self, exposure_offset: CGFloat);
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the average gray level desired in the final image. Defaults to 0.18.
         #[unsafe(method(averageGray))]

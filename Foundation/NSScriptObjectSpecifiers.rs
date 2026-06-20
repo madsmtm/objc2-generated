@@ -438,9 +438,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for NSMiddleSpecifier {}
 );
 
-impl NSMiddleSpecifier {
-    extern_methods!();
-}
+impl NSMiddleSpecifier {}
 
 /// Methods declared on superclass `NSScriptObjectSpecifier`.
 impl NSMiddleSpecifier {
@@ -701,9 +699,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for NSPropertySpecifier {}
 );
 
-impl NSPropertySpecifier {
-    extern_methods!();
-}
+impl NSPropertySpecifier {}
 
 /// Methods declared on superclass `NSScriptObjectSpecifier`.
 impl NSPropertySpecifier {
@@ -780,9 +776,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for NSRandomSpecifier {}
 );
 
-impl NSRandomSpecifier {
-    extern_methods!();
-}
+impl NSRandomSpecifier {}
 
 /// Methods declared on superclass `NSScriptObjectSpecifier`.
 impl NSRandomSpecifier {

@@ -239,9 +239,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for UISceneDestructionRequestOptions {}
 );
 
-impl UISceneDestructionRequestOptions {
-    extern_methods!();
-}
+impl UISceneDestructionRequestOptions {}
 
 /// Methods declared on superclass `NSObject`.
 impl UISceneDestructionRequestOptions {

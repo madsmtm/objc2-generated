@@ -401,7 +401,9 @@ impl NSAppleEventDescriptor {
         #[unsafe(method(removeDescriptorAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn removeDescriptorAtIndex(&self, index: NSInteger);
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(setDescriptor:forKeyword:))]

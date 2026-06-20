@@ -766,7 +766,9 @@ impl CIImage {
             this: Allocated<Self>,
             pixel_buffer: &CVPixelBuffer,
         ) -> Retained<Self>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-video")]
         /// # Safety
         ///

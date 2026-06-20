@@ -2003,9 +2003,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-impl MPSRNNMatrixTrainingState {
-    extern_methods!();
-}
+impl MPSRNNMatrixTrainingState {}
 
 /// Methods declared on superclass `MPSState`.
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]

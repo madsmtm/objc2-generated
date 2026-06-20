@@ -515,7 +515,9 @@ impl UITextField {
         #[unsafe(method(clearButtonRectForBounds:))]
         #[unsafe(method_family = none)]
         pub fn clearButtonRectForBounds(&self, bounds: CGRect) -> CGRect;
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(leftViewRectForBounds:))]
         #[unsafe(method_family = none)]
@@ -622,9 +624,7 @@ impl UITextField {
 }
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-impl UITextField {
-    extern_methods!();
-}
+impl UITextField {}
 
 #[cfg(all(
     feature = "UIControl",

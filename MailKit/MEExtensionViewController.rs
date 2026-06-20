@@ -42,9 +42,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
-impl MEExtensionViewController {
-    extern_methods!();
-}
+impl MEExtensionViewController {}
 
 /// Methods declared on superclass `NSViewController`.
 #[cfg(feature = "objc2-app-kit")]

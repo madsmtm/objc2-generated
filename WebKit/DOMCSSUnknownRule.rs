@@ -50,9 +50,7 @@ extern_conformance!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-impl DOMCSSUnknownRule {
-    extern_methods!();
-}
+impl DOMCSSUnknownRule {}
 
 /// Methods declared on superclass `DOMObject`.
 #[cfg(all(

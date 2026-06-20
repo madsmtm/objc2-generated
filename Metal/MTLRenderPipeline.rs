@@ -879,7 +879,9 @@ impl MTLRenderPipelineDescriptor {
         pub fn fragmentPreloadedLibraries(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "MTLDynamicLibrary")]
         /// Setter for [`fragmentPreloadedLibraries`][Self::fragmentPreloadedLibraries].
         ///
@@ -2224,7 +2226,9 @@ impl MTLMeshRenderPipelineDescriptor {
         #[unsafe(method(shaderValidation))]
         #[unsafe(method_family = none)]
         pub fn shaderValidation(&self) -> MTLShaderValidation;
+    );
 
+    extern_methods!(
         #[cfg(feature = "MTLPipeline")]
         /// Setter for [`shaderValidation`][Self::shaderValidation].
         #[unsafe(method(setShaderValidation:))]

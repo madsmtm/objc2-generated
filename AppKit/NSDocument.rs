@@ -460,7 +460,9 @@ impl NSDocument {
             did_autosave_selector: Option<Sel>,
             context_info: *mut c_void,
         );
+    );
 
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(autosaveWithImplicitCancellability:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -828,7 +830,9 @@ impl NSDocument {
         #[unsafe(method(undoManager))]
         #[unsafe(method_family = none)]
         pub fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
+    );
 
+    extern_methods!(
         /// Setter for [`undoManager`][Self::undoManager].
         #[unsafe(method(setUndoManager:))]
         #[unsafe(method_family = none)]

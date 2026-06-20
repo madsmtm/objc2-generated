@@ -206,9 +206,7 @@ extern_protocol!(
     }
 );
 
-impl OSLogEntry {
-    extern_methods!();
-}
+impl OSLogEntry {}
 
 extern_conformance!(
     unsafe impl NSSecureCoding for OSLogEntry {}
@@ -272,9 +270,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for OSLogEntryBoundary {}
 );
 
-impl OSLogEntryBoundary {
-    extern_methods!();
-}
+impl OSLogEntryBoundary {}
 
 /// Methods declared on superclass `NSObject`.
 impl OSLogEntryBoundary {
@@ -485,9 +481,7 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for OSLogEnumerator {}
 );
 
-impl OSLogEnumerator {
-    extern_methods!();
-}
+impl OSLogEnumerator {}
 
 /// Methods declared on superclass `NSObject`.
 impl OSLogEnumerator {

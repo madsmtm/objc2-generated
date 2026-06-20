@@ -35,9 +35,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "MTLAccelerationStructure")]
-impl MTL4AccelerationStructureDescriptor {
-    extern_methods!();
-}
+impl MTL4AccelerationStructureDescriptor {}
 
 /// Methods declared on superclass `NSObject`.
 #[cfg(feature = "MTLAccelerationStructure")]

@@ -289,7 +289,9 @@ impl CAEmitterCell {
         #[unsafe(method(redSpeed))]
         #[unsafe(method_family = none)]
         pub fn redSpeed(&self) -> c_float;
+    );
 
+    extern_methods!(
         /// Setter for [`redSpeed`][Self::redSpeed].
         #[unsafe(method(setRedSpeed:))]
         #[unsafe(method_family = none)]

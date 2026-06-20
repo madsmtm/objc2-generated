@@ -493,7 +493,9 @@ impl IKImageView {
         #[unsafe(method(convertImagePointToViewPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertImagePointToViewPoint(&self, image_point: NSPoint) -> NSPoint;
+    );
 
+    extern_methods!(
         /// Converts an image rectangle to an image view rectangle.
         #[unsafe(method(convertImageRectToViewRect:))]
         #[unsafe(method_family = none)]

@@ -189,9 +189,7 @@ extern_conformance!(
 );
 
 #[cfg(feature = "NSCell")]
-impl NSTextAttachmentCell {
-    extern_methods!();
-}
+impl NSTextAttachmentCell {}
 
 /// Methods declared on superclass `NSCell`.
 #[cfg(feature = "NSCell")]

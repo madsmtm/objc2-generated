@@ -39,9 +39,7 @@ extern_conformance!(
 );
 
 #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]
-impl HKHeartbeatSeriesSample {
-    extern_methods!();
-}
+impl HKHeartbeatSeriesSample {}
 
 /// Methods declared on superclass `HKObject`.
 #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]

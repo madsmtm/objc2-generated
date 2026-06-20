@@ -334,6 +334,4 @@ impl NSURLProtectionSpace {
 /// NSServerTrustValidationSpace.
 ///
 /// This category supplies additional information for use by the client to evaluate whether to trust a given server during a security handshake.
-impl NSURLProtectionSpace {
-    extern_methods!();
-}
+impl NSURLProtectionSpace {}

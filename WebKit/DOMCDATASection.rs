@@ -79,9 +79,7 @@ extern_conformance!(
     feature = "DOMText",
     feature = "WebScriptObject"
 ))]
-impl DOMCDATASection {
-    extern_methods!();
-}
+impl DOMCDATASection {}
 
 /// Methods declared on superclass `DOMObject`.
 #[cfg(all(

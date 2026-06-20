@@ -731,7 +731,9 @@ impl AVCaptureSession {
         #[unsafe(method(automaticallyRunsDeferredStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyRunsDeferredStart(&self) -> bool;
+    );
 
+    extern_methods!(
         /// Setter for [`automaticallyRunsDeferredStart`][Self::automaticallyRunsDeferredStart].
         #[unsafe(method(setAutomaticallyRunsDeferredStart:))]
         #[unsafe(method_family = none)]

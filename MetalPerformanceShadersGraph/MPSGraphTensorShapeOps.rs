@@ -1270,7 +1270,9 @@ impl MPSGraph {
             axes_tensor: &MPSGraphTensor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates an expand-dimensions operation and returns the result tensor.
         ///
