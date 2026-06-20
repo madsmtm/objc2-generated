@@ -1791,10 +1791,13 @@ pub extern "C-unwind" fn CFShow(obj: Option<&CFType>) {
     unsafe { CFShow(obj) }
 }
 
-#[inline]
-pub extern "C-unwind" fn CFShowStr(str: Option<&CFString>) {
-    extern "C-unwind" {
-        fn CFShowStr(str: Option<&CFString>);
+impl CFString {
+    #[doc(alias = "CFShowStr")]
+    #[inline]
+    pub fn show(str: Option<&CFString>) {
+        extern "C-unwind" {
+            fn CFShowStr(str: Option<&CFString>);
+        }
+        unsafe { CFShowStr(str) }
     }
-    unsafe { CFShowStr(str) }
 }

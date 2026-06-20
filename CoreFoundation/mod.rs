@@ -1011,8 +1011,6 @@ pub use self::__CFString::kCFStringTransformToXMLHex;
 #[cfg(feature = "CFString")]
 pub use self::__CFString::CFShow;
 #[cfg(feature = "CFString")]
-pub use self::__CFString::CFShowStr;
-#[cfg(feature = "CFString")]
 pub use self::__CFString::CFStringBuiltInEncodings;
 #[cfg(feature = "CFString")]
 pub use self::__CFString::CFStringCompareFlags;
@@ -2223,12 +2221,15 @@ impl CFAllocator {
     }
 }
 
-#[inline]
-pub extern "C-unwind" fn CFGetTypeID(cf: &CFType) -> CFTypeID {
-    extern "C-unwind" {
-        fn CFGetTypeID(cf: &CFType) -> CFTypeID;
+impl CFType {
+    #[doc(alias = "CFGetTypeID")]
+    #[inline]
+    pub fn type_id(&self) -> CFTypeID {
+        extern "C-unwind" {
+            fn CFGetTypeID(cf: &CFType) -> CFTypeID;
+        }
+        unsafe { CFGetTypeID(self) }
     }
-    unsafe { CFGetTypeID(cf) }
 }
 
 #[inline]
@@ -2242,45 +2243,52 @@ pub extern "C-unwind" fn CFCopyTypeIDDescription(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[inline]
-pub extern "C-unwind" fn CFGetRetainCount(cf: &CFType) -> CFIndex {
-    extern "C-unwind" {
-        fn CFGetRetainCount(cf: &CFType) -> CFIndex;
+impl CFType {
+    #[doc(alias = "CFGetRetainCount")]
+    #[inline]
+    pub(crate) fn __retain_count(&self) -> CFIndex {
+        extern "C-unwind" {
+            fn CFGetRetainCount(cf: &CFType) -> CFIndex;
+        }
+        unsafe { CFGetRetainCount(self) }
     }
-    unsafe { CFGetRetainCount(cf) }
-}
 
-#[inline]
-pub extern "C-unwind" fn CFEqual(cf1: &CFType, cf2: &CFType) -> bool {
-    extern "C-unwind" {
-        fn CFEqual(cf1: &CFType, cf2: &CFType) -> Boolean;
+    #[doc(alias = "CFEqual")]
+    #[inline]
+    pub(crate) fn __equal(&self, cf2: &CFType) -> bool {
+        extern "C-unwind" {
+            fn CFEqual(cf1: &CFType, cf2: &CFType) -> Boolean;
+        }
+        let ret = unsafe { CFEqual(self, cf2) };
+        ret != 0
     }
-    let ret = unsafe { CFEqual(cf1, cf2) };
-    ret != 0
-}
 
-#[inline]
-pub extern "C-unwind" fn CFHash(cf: &CFType) -> CFHashCode {
-    extern "C-unwind" {
-        fn CFHash(cf: &CFType) -> CFHashCode;
+    #[doc(alias = "CFHash")]
+    #[inline]
+    pub(crate) fn __hash(&self) -> CFHashCode {
+        extern "C-unwind" {
+            fn CFHash(cf: &CFType) -> CFHashCode;
+        }
+        unsafe { CFHash(self) }
     }
-    unsafe { CFHash(cf) }
-}
 
-#[inline]
-pub extern "C-unwind" fn CFCopyDescription(cf: Option<&CFType>) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CFCopyDescription(cf: Option<&CFType>) -> Option<NonNull<CFString>>;
+    #[doc(alias = "CFCopyDescription")]
+    #[inline]
+    pub fn description(cf: Option<&CFType>) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CFCopyDescription(cf: Option<&CFType>) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFCopyDescription(cf) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFCopyDescription(cf) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub extern "C-unwind" fn CFGetAllocator(cf: Option<&CFType>) -> Option<CFRetained<CFAllocator>> {
-    extern "C-unwind" {
-        fn CFGetAllocator(cf: Option<&CFType>) -> Option<NonNull<CFAllocator>>;
+    #[doc(alias = "CFGetAllocator")]
+    #[inline]
+    pub fn allocator(cf: Option<&CFType>) -> Option<CFRetained<CFAllocator>> {
+        extern "C-unwind" {
+            fn CFGetAllocator(cf: Option<&CFType>) -> Option<NonNull<CFAllocator>>;
+        }
+        let ret = unsafe { CFGetAllocator(cf) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { CFGetAllocator(cf) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
