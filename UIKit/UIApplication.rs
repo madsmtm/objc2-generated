@@ -220,7 +220,7 @@ impl UIApplication {
     extern_methods!(
         #[unsafe(method(sharedApplication))]
         #[unsafe(method_family = none)]
-        pub fn sharedApplication(mtm: MainThreadMarker) -> Retained<UIApplication>;
+        pub fn sharedApplication(mtm: MainThreadMarker) -> Option<Retained<UIApplication>>;
 
         /// # Safety
         ///

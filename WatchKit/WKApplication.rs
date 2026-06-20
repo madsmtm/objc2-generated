@@ -31,7 +31,7 @@ impl WKApplication {
     extern_methods!(
         #[unsafe(method(sharedApplication))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedApplication(mtm: MainThreadMarker) -> Retained<WKApplication>;
+        pub unsafe fn sharedApplication(mtm: MainThreadMarker) -> Option<Retained<WKApplication>>;
 
         // -init (unavailable)
 

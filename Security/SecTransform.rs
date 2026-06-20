@@ -592,7 +592,7 @@ pub unsafe extern "C-unwind" fn SecTransformFindByName(
 pub unsafe extern "C-unwind" fn SecTransformExecute(
     transform_ref: &SecTransform,
     error_ref: *mut *mut CFError,
-) -> CFRetained<CFType> {
+) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn SecTransformExecute(
             transform_ref: &SecTransform,
@@ -600,8 +600,7 @@ pub unsafe extern "C-unwind" fn SecTransformExecute(
         ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { SecTransformExecute(transform_ref, error_ref) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// A SecMessageBlock is used by a transform instance to

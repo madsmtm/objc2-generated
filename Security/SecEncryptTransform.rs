@@ -185,7 +185,7 @@ extern "C" {
 pub unsafe extern "C-unwind" fn SecEncryptTransformCreate(
     key_ref: &SecKey,
     error: *mut *mut CFError,
-) -> CFRetained<SecTransform> {
+) -> Option<CFRetained<SecTransform>> {
     extern "C-unwind" {
         fn SecEncryptTransformCreate(
             key_ref: &SecKey,
@@ -193,8 +193,7 @@ pub unsafe extern "C-unwind" fn SecEncryptTransformCreate(
         ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecEncryptTransformCreate(key_ref, error) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates an encryption SecTransform  object.
@@ -221,7 +220,7 @@ pub unsafe extern "C-unwind" fn SecEncryptTransformCreate(
 pub unsafe extern "C-unwind" fn SecDecryptTransformCreate(
     key_ref: &SecKey,
     error: *mut *mut CFError,
-) -> CFRetained<SecTransform> {
+) -> Option<CFRetained<SecTransform>> {
     extern "C-unwind" {
         fn SecDecryptTransformCreate(
             key_ref: &SecKey,
@@ -229,8 +228,7 @@ pub unsafe extern "C-unwind" fn SecDecryptTransformCreate(
         ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecDecryptTransformCreate(key_ref, error) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the CFTypeID for a decrypt transform.

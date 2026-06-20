@@ -1144,7 +1144,7 @@ impl NSURL {
             path: &CStr,
             is_dir: bool,
             base_url: Option<&NSURL>,
-        ) -> Retained<Self>;
+        ) -> Option<Retained<Self>>;
 
         #[unsafe(method(fileURLWithFileSystemRepresentation:isDirectory:relativeToURL:))]
         #[unsafe(method_family = none)]
