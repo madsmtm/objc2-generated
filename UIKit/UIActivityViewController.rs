@@ -18,6 +18,7 @@ bitflags::bitflags! {
         const None = 0;
         #[doc(alias = "UIActivitySectionTypesPeopleSuggestions")]
         const PeopleSuggestions = 1<<0;
+        const _ = !0;
     }
 }
 

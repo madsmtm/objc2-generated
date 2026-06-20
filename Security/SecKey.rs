@@ -165,6 +165,7 @@ bitflags::bitflags! {
         #[doc(alias = "kSecPaddingPKCS1SHA512")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA512 = 0x8006;
+        const _ = !0;
     }
 }
 

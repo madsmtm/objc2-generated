@@ -105,6 +105,7 @@ bitflags::bitflags! {
 /// A content hugging mode where section headers in the table view tightly hug their content
         #[doc(alias = "UITableViewContentHuggingElementsSectionHeaders")]
         const SectionHeaders = 1<<0;
+        const _ = !0;
     }
 }
 

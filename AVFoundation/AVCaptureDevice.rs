@@ -813,6 +813,7 @@ bitflags::bitflags! {
         const FocusModeChanged = 1<<1;
         #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionExposureModeChanged")]
         const ExposureModeChanged = 1<<2;
+        const _ = !0;
     }
 }
 

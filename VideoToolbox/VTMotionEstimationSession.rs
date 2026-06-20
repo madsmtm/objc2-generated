@@ -26,6 +26,7 @@ bitflags::bitflags! {
 /// processor to deliver better performance.
         #[doc(alias = "kVTMotionEstimationFrameFlags_CurrentBufferWillBeNextReferenceBuffer")]
         const CurrentBufferWillBeNextReferenceBuffer = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -50,6 +51,7 @@ bitflags::bitflags! {
     impl VTMotionEstimationInfoFlags: u32 {
         #[doc(alias = "kVTMotionEstimationInfoFlags_Reserved0")]
         const Reserved0 = 1<<0;
+        const _ = !0;
     }
 }
 

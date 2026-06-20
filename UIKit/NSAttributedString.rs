@@ -153,6 +153,7 @@ bitflags::bitflags! {
         const PatternDashDotDot = 0x0400;
         #[doc(alias = "NSUnderlineStyleByWord")]
         const ByWord = 0x8000;
+        const _ = !0;
     }
 }
 

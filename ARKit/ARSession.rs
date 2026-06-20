@@ -42,6 +42,7 @@ bitflags::bitflags! {
 /// The session will reset scene reconstruction.
         #[doc(alias = "ARSessionRunOptionResetSceneReconstruction")]
         const ResetSceneReconstruction = 1<<3;
+        const _ = !0;
     }
 }
 

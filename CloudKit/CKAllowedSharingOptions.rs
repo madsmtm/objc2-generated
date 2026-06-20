@@ -25,6 +25,7 @@ bitflags::bitflags! {
 /// The permission option the system uses to control whether a user can share publicly or privately.
         #[doc(alias = "CKSharingParticipantAccessOptionAny")]
         const Any = CKSharingParticipantAccessOption::AnyoneWithLink.0|CKSharingParticipantAccessOption::SpecifiedRecipientsOnly.0;
+        const _ = !0;
     }
 }
 
@@ -54,6 +55,7 @@ bitflags::bitflags! {
 /// The permission option the system uses to control whether a user can grant read-only or write access.
         #[doc(alias = "CKSharingParticipantPermissionOptionAny")]
         const Any = CKSharingParticipantPermissionOption::ReadOnly.0|CKSharingParticipantPermissionOption::ReadWrite.0;
+        const _ = !0;
     }
 }
 

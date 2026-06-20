@@ -72,6 +72,7 @@ bitflags::bitflags! {
         const Table = 1<<3;
         #[doc(alias = "NSWritingToolsResultPresentationIntent")]
         const PresentationIntent = 1<<4;
+        const _ = !0;
     }
 }
 

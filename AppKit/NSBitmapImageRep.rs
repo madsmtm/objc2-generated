@@ -124,6 +124,7 @@ bitflags::bitflags! {
         const SixteenBitBigEndian = 1<<10;
         #[doc(alias = "NSBitmapFormatThirtyTwoBitBigEndian")]
         const ThirtyTwoBitBigEndian = 1<<11;
+        const _ = !0;
     }
 }
 

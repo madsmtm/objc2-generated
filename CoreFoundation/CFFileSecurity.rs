@@ -221,6 +221,7 @@ bitflags::bitflags! {
         const GroupUUID = 1<<4;
         #[doc(alias = "kCFFileSecurityClearAccessControlList")]
         const AccessControlList = 1<<5;
+        const _ = !0;
     }
 }
 

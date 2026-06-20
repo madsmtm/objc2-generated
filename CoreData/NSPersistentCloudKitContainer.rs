@@ -21,6 +21,7 @@ bitflags::bitflags! {
         const DryRun = 1<<1;
         #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsPrintSchema")]
         const PrintSchema = 1<<2;
+        const _ = !0;
     }
 }
 

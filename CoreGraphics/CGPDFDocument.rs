@@ -49,6 +49,7 @@ bitflags::bitflags! {
         const AllowsCommenting = 1<<6;
         #[doc(alias = "kCGPDFAllowsFormFieldEntry")]
         const AllowsFormFieldEntry = 1<<7;
+        const _ = !0;
     }
 }
 

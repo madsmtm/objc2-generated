@@ -70,6 +70,7 @@ bitflags::bitflags! {
         const none = 0;
         #[doc(alias = "cp_supported_color_formats_options_progressive_immersion_enabled")]
         const progressive_immersion_enabled = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -228,6 +229,7 @@ bitflags::bitflags! {
         const foveation_enabled = 1<<0;
         #[doc(alias = "cp_supported_layouts_options_progressive_immersion_enabled")]
         const progressive_immersion_enabled = 1<<1;
+        const _ = !0;
     }
 }
 

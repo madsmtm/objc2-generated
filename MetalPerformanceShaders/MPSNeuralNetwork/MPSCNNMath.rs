@@ -1007,6 +1007,7 @@ bitflags::bitflags! {
         const Greater = 4;
         #[doc(alias = "MPSNNComparisonTypeGreaterOrEqual")]
         const GreaterOrEqual = 5;
+        const _ = !0;
     }
 }
 

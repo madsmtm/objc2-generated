@@ -268,6 +268,7 @@ bitflags::bitflags! {
         const SystemDomainMask = 8;
         #[doc(alias = "NSAllDomainsMask")]
         const AllDomainsMask = 0x0ffff;
+        const _ = !0;
     }
 }
 

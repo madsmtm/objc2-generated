@@ -330,6 +330,7 @@ bitflags::bitflags! {
 /// "Shake mouse pointer to locate" is disabled for this application.
         #[doc(alias = "NSApplicationPresentationDisableCursorLocationAssistance")]
         const DisableCursorLocationAssistance = 1<<12;
+        const _ = !0;
     }
 }
 
@@ -351,6 +352,7 @@ bitflags::bitflags! {
 /// If set, at least part of any window owned by this application is visible. If not set, all parts of all windows owned by this application are completely occluded. The menu bar does not count as a window owned by this application, so if only the menu bar is showing then the application is considered not visible. Status items, however, have windows owned by your application. If the status item is present in the menu bar, your application will be considered visible as long as the menu bar is visible.
         #[doc(alias = "NSApplicationOcclusionStateVisible")]
         const Visible = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -372,6 +374,7 @@ bitflags::bitflags! {
 /// Onscreen application windows in front to back order. By default, -[NSApp windows] is used.
         #[doc(alias = "NSWindowListOrderedFrontToBack")]
         const OrderedFrontToBack = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -1681,6 +1684,7 @@ bitflags::bitflags! {
         const Sound = 1<<1;
         #[doc(alias = "NSRemoteNotificationTypeAlert")]
         const Alert = 1<<2;
+        const _ = !0;
     }
 }
 

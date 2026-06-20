@@ -30,6 +30,7 @@ bitflags::bitflags! {
         const PropertyIsCached = 1;
         #[doc(alias = "kAudioFileStreamPropertyFlag_CacheProperty")]
         const CacheProperty = 2;
+        const _ = !0;
     }
 }
 
@@ -54,6 +55,7 @@ bitflags::bitflags! {
     impl AudioFileStreamParseFlags: u32 {
         #[doc(alias = "kAudioFileStreamParseFlag_Discontinuity")]
         const Discontinuity = 1;
+        const _ = !0;
     }
 }
 
@@ -76,6 +78,7 @@ bitflags::bitflags! {
     impl AudioFileStreamSeekFlags: u32 {
         #[doc(alias = "kAudioFileStreamSeekFlag_OffsetIsEstimated")]
         const OffsetIsEstimated = 1;
+        const _ = !0;
     }
 }
 

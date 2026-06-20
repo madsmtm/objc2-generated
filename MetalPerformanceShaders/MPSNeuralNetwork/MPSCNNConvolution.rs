@@ -2170,6 +2170,7 @@ bitflags::bitflags! {
         const GradientWithWeightsAndBias = 2;
         #[doc(alias = "MPSCNNConvolutionGradientOptionAll")]
         const All = MPSCNNConvolutionGradientOption::GradientWithData.0|MPSCNNConvolutionGradientOption::GradientWithWeightsAndBias.0;
+        const _ = !0;
     }
 }
 

@@ -2797,6 +2797,7 @@ bitflags::bitflags! {
         const ManuallyStart = 1<<0;
         #[doc(alias = "XCTMeasurementInvocationManuallyStop")]
         const ManuallyStop = 1<<1;
+        const _ = !0;
     }
 }
 

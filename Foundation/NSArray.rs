@@ -153,6 +153,7 @@ bitflags::bitflags! {
         const LastEqual = 1<<9;
         #[doc(alias = "NSBinarySearchingInsertionIndex")]
         const InsertionIndex = 1<<10;
+        const _ = !0;
     }
 }
 

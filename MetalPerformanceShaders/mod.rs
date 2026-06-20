@@ -180,6 +180,7 @@ bitflags::bitflags! {
 /// Skip removable devices
         #[doc(alias = "MPSDeviceOptionsSkipRemovable")]
         const SkipRemovable = 2;
+        const _ = !0;
     }
 }
 

@@ -116,6 +116,7 @@ bitflags::bitflags! {
         const InvertColors = 1<<3;
         #[doc(alias = "UIGuidedAccessAccessibilityFeatureGrayscaleDisplay")]
         const GrayscaleDisplay = 1<<4;
+        const _ = !0;
     }
 }
 

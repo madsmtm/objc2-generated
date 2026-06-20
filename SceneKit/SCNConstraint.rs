@@ -226,6 +226,7 @@ bitflags::bitflags! {
         const Z = 0x1<<2;
         #[doc(alias = "SCNBillboardAxisAll")]
         const All = SCNBillboardAxis::X.0|SCNBillboardAxis::Y.0|SCNBillboardAxis::Z.0;
+        const _ = !0;
     }
 }
 

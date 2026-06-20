@@ -18,6 +18,7 @@ bitflags::bitflags! {
         const EditedAttributes = 1<<0;
         #[doc(alias = "NSTextStorageEditedCharacters")]
         const EditedCharacters = 1<<1;
+        const _ = !0;
     }
 }
 

@@ -19,6 +19,7 @@ bitflags::bitflags! {
         const NaturalScale = 1<<1;
         #[doc(alias = "NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit")]
         const TemperatureWithoutUnit = 1<<2;
+        const _ = !0;
     }
 }
 

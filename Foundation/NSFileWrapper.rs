@@ -17,6 +17,7 @@ bitflags::bitflags! {
         const Immediate = 1<<0;
         #[doc(alias = "NSFileWrapperReadingWithoutMapping")]
         const WithoutMapping = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -39,6 +40,7 @@ bitflags::bitflags! {
         const Atomic = 1<<0;
         #[doc(alias = "NSFileWrapperWritingWithNameUpdating")]
         const WithNameUpdating = 1<<1;
+        const _ = !0;
     }
 }
 

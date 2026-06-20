@@ -26,6 +26,7 @@ bitflags::bitflags! {
         const Down = 1<<2;
         #[doc(alias = "GCPhysicalInputSourceDirectionLeft")]
         const Left = 1<<3;
+        const _ = !0;
     }
 }
 

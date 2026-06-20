@@ -50,6 +50,7 @@ bitflags::bitflags! {
         const TailSegmentExtended = 1<<3;
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsUpstreamAffinity")]
         const UpstreamAffinity = 1<<4;
+        const _ = !0;
     }
 }
 

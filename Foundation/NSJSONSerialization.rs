@@ -25,6 +25,7 @@ bitflags::bitflags! {
         #[doc(alias = "NSJSONReadingAllowFragments")]
 #[deprecated]
         const AllowFragments = NSJSONReadingOptions::FragmentsAllowed.0;
+        const _ = !0;
     }
 }
 
@@ -51,6 +52,7 @@ bitflags::bitflags! {
         const FragmentsAllowed = 1<<2;
         #[doc(alias = "NSJSONWritingWithoutEscapingSlashes")]
         const WithoutEscapingSlashes = 1<<3;
+        const _ = !0;
     }
 }
 

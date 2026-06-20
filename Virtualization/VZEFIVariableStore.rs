@@ -17,6 +17,7 @@ bitflags::bitflags! {
     impl VZEFIVariableStoreInitializationOptions: NSUInteger {
         #[doc(alias = "VZEFIVariableStoreInitializationOptionAllowOverwrite")]
         const AllowOverwrite = 1<<0;
+        const _ = !0;
     }
 }
 

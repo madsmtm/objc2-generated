@@ -97,6 +97,7 @@ bitflags::bitflags! {
         const ConnectCallBack = 4;
         #[doc(alias = "kCFSocketWriteCallBack")]
         const WriteCallBack = 8;
+        const _ = !0;
     }
 }
 

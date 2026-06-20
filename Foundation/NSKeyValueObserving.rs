@@ -21,6 +21,7 @@ bitflags::bitflags! {
         const Initial = 0x04;
         #[doc(alias = "NSKeyValueObservingOptionPrior")]
         const Prior = 0x08;
+        const _ = !0;
     }
 }
 

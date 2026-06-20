@@ -62,6 +62,7 @@ bitflags::bitflags! {
         const NonMonotonic = 1<<1;
         #[doc(alias = "kCTRunStatusHasNonIdentityMatrix")]
         const HasNonIdentityMatrix = 1<<2;
+        const _ = !0;
     }
 }
 

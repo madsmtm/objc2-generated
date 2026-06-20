@@ -33,6 +33,7 @@ bitflags::bitflags! {
         const None = 0;
         #[doc(alias = "UIDataDetectorTypeAll")]
         const All = NSUIntegerMax as _;
+        const _ = !0;
     }
 }
 

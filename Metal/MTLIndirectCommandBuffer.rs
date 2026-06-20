@@ -32,6 +32,7 @@ bitflags::bitflags! {
         const DrawMeshThreadgroups = 1<<7;
         #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreads")]
         const DrawMeshThreads = 1<<8;
+        const _ = !0;
     }
 }
 

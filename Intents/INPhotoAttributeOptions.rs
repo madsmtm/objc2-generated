@@ -94,6 +94,7 @@ bitflags::bitflags! {
         const BouncePhoto = 1<<27;
         #[doc(alias = "INPhotoAttributeOptionLongExposurePhoto")]
         const LongExposurePhoto = 1<<28;
+        const _ = !0;
     }
 }
 

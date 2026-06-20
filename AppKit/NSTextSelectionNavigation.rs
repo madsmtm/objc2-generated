@@ -80,6 +80,7 @@ bitflags::bitflags! {
         const Visual = 1<<1;
         #[doc(alias = "NSTextSelectionNavigationModifierMultiple")]
         const Multiple = 1<<2;
+        const _ = !0;
     }
 }
 

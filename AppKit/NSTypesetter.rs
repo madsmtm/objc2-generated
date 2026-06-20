@@ -481,6 +481,7 @@ bitflags::bitflags! {
         const ParagraphBreakAction = 1<<4;
         #[doc(alias = "NSTypesetterContainerBreakAction")]
         const ContainerBreakAction = 1<<5;
+        const _ = !0;
     }
 }
 

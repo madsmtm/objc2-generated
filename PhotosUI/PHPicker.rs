@@ -133,6 +133,7 @@ bitflags::bitflags! {
 /// Show intervention UI explaining potential risks for kids or teens if a sensitive asset is selected. Analysis and intervention will only be performed if "Communication Safety" is enabled in ScreenTime.
         #[doc(alias = "PHPickerCapabilitiesSensitivityAnalysisIntervention")]
         const SensitivityAnalysisIntervention = 1<<4;
+        const _ = !0;
     }
 }
 

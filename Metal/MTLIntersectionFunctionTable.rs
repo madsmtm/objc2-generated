@@ -86,6 +86,7 @@ bitflags::bitflags! {
 /// The intersection function uses the intersection function buffer user_data pointer
         #[doc(alias = "MTLIntersectionFunctionSignatureUserData")]
         const UserData = 1<<9;
+        const _ = !0;
     }
 }
 

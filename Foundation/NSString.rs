@@ -36,6 +36,7 @@ bitflags::bitflags! {
         const ForcedOrderingSearch = 512;
         #[doc(alias = "NSRegularExpressionSearch")]
         const RegularExpressionSearch = 1024;
+        const _ = !0;
     }
 }
 
@@ -108,6 +109,7 @@ bitflags::bitflags! {
         const AllowLossy = 1;
         #[doc(alias = "NSStringEncodingConversionExternalRepresentation")]
         const ExternalRepresentation = 2;
+        const _ = !0;
     }
 }
 
@@ -246,6 +248,7 @@ bitflags::bitflags! {
         const SubstringNotRequired = 1<<9;
         #[doc(alias = "NSStringEnumerationLocalized")]
         const Localized = 1<<10;
+        const _ = !0;
     }
 }
 

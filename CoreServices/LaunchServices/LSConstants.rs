@@ -144,6 +144,7 @@ bitflags::bitflags! {
 /// claim to do it all
         #[doc(alias = "kLSRolesAll")]
         const All = 0xFFFFFFFF;
+        const _ = !0;
     }
 }
 

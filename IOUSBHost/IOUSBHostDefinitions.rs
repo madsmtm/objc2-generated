@@ -82,6 +82,7 @@ bitflags::bitflags! {
     impl IOUSBHostIsochronousTransferOptions: u32 {
         #[doc(alias = "IOUSBHostIsochronousTransferOptionsNone")]
         const None = 0;
+        const _ = !0;
     }
 }
 
@@ -113,6 +114,7 @@ bitflags::bitflags! {
         const None = 0;
         #[doc(alias = "IOUSBHostIsochronousTransactionOptionsWrap")]
         const Wrap = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -280,6 +282,7 @@ bitflags::bitflags! {
         const DeviceCapture = 1<<0;
         #[doc(alias = "IOUSBHostObjectInitOptionsDeviceSeize")]
         const DeviceSeize = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -320,6 +323,7 @@ bitflags::bitflags! {
         const None = 0;
         #[doc(alias = "IOUSBHostObjectDestroyOptionsDeviceSurrender")]
         const DeviceSurrender = 1<<0;
+        const _ = !0;
     }
 }
 

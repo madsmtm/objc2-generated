@@ -312,6 +312,7 @@ bitflags::bitflags! {
         const Thick = 0x02;
         #[doc(alias = "kCTUnderlineStyleDouble")]
         const Double = 0x09;
+        const _ = !0;
     }
 }
 
@@ -349,6 +350,7 @@ bitflags::bitflags! {
         const PatternDashDot = 0x0300;
         #[doc(alias = "kCTUnderlinePatternDashDotDot")]
         const PatternDashDotDot = 0x0400;
+        const _ = !0;
     }
 }
 

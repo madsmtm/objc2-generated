@@ -30,6 +30,7 @@ bitflags::bitflags! {
         const NSMappedRead = NSDataReadingOptions::Mapped.0;
 #[deprecated]
         const NSUncachedRead = NSDataReadingOptions::Uncached.0;
+        const _ = !0;
     }
 }
 
@@ -66,6 +67,7 @@ bitflags::bitflags! {
         const FileProtectionMask = 0xf0000000;
 #[deprecated]
         const NSAtomicWrite = NSDataWritingOptions::Atomic.0;
+        const _ = !0;
     }
 }
 
@@ -90,6 +92,7 @@ bitflags::bitflags! {
         const Backwards = 1<<0;
         #[doc(alias = "NSDataSearchAnchored")]
         const Anchored = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -118,6 +121,7 @@ bitflags::bitflags! {
         const EncodingEndLineWithCarriageReturn = 1<<4;
         #[doc(alias = "NSDataBase64EncodingEndLineWithLineFeed")]
         const EncodingEndLineWithLineFeed = 1<<5;
+        const _ = !0;
     }
 }
 
@@ -138,6 +142,7 @@ bitflags::bitflags! {
     impl NSDataBase64DecodingOptions: NSUInteger {
         #[doc(alias = "NSDataBase64DecodingIgnoreUnknownCharacters")]
         const IgnoreUnknownCharacters = 1<<0;
+        const _ = !0;
     }
 }
 

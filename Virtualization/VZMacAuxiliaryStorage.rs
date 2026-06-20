@@ -18,6 +18,7 @@ bitflags::bitflags! {
 /// Overwrite an existing auxiliary storage.
         #[doc(alias = "VZMacAuxiliaryStorageInitializationOptionAllowOverwrite")]
         const AllowOverwrite = 1<<0;
+        const _ = !0;
     }
 }
 

@@ -20,6 +20,7 @@ bitflags::bitflags! {
         const ShowsOrientation = 1<<3;
         #[doc(alias = "NSPDFPanelRequestsParentDirectory")]
         const RequestsParentDirectory = 1<<24;
+        const _ = !0;
     }
 }
 

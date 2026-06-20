@@ -27,6 +27,7 @@ bitflags::bitflags! {
         const InProgress = 1<<6;
         #[doc(alias = "INCallRecordTypeOptionOnHold")]
         const OnHold = 1<<7;
+        const _ = !0;
     }
 }
 

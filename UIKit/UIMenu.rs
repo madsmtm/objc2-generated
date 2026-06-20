@@ -30,6 +30,7 @@ bitflags::bitflags! {
 /// Indicates that this menu should be rendered as a palette.
         #[doc(alias = "UIMenuOptionsDisplayAsPalette")]
         const DisplayAsPalette = 1<<7;
+        const _ = !0;
     }
 }
 

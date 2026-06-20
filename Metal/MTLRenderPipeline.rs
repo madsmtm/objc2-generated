@@ -121,6 +121,7 @@ bitflags::bitflags! {
 /// Until you specialize this value in the pipeline state, it behaves as `MTLColorWriteMaskAll`.
         #[doc(alias = "MTLColorWriteMaskUnspecialized")]
         const Unspecialized = 0x10;
+        const _ = !0;
     }
 }
 

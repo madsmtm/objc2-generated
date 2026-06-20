@@ -27,6 +27,7 @@ bitflags::bitflags! {
         #[doc(alias = "UIUserNotificationTypeAlert")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const Alert = 1<<2;
+        const _ = !0;
     }
 }
 

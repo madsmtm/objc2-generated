@@ -308,6 +308,7 @@ bitflags::bitflags! {
         const Recording = 4;
         #[doc(alias = "AUHostTransportStateCycling")]
         const Cycling = 8;
+        const _ = !0;
     }
 }
 

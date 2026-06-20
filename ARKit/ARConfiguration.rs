@@ -69,6 +69,7 @@ bitflags::bitflags! {
 /// See: - [ARFrame smoothedSceneDepth]
         #[doc(alias = "ARFrameSemanticSmoothedSceneDepth")]
         const SmoothedSceneDepth = 1<<4;
+        const _ = !0;
     }
 }
 
@@ -166,6 +167,7 @@ bitflags::bitflags! {
 /// Scene reconstruction generates a mesh of the world with classification for each face.
         #[doc(alias = "ARSceneReconstructionMeshWithClassification")]
         const MeshWithClassification = (1<<1)|(1<<0);
+        const _ = !0;
     }
 }
 

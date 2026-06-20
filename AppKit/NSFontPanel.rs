@@ -36,6 +36,7 @@ bitflags::bitflags! {
         const ModesMaskStandardModes = 0xFFFF;
         #[doc(alias = "NSFontPanelModesMaskAllModes")]
         const ModesMaskAllModes = 0xFFFFFFFF;
+        const _ = !0;
     }
 }
 

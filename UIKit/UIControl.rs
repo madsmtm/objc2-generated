@@ -61,6 +61,7 @@ bitflags::bitflags! {
         const SystemReserved = 0xF0000000;
         #[doc(alias = "UIControlEventAllEvents")]
         const AllEvents = 0xFFFFFFFF;
+        const _ = !0;
     }
 }
 
@@ -145,6 +146,7 @@ bitflags::bitflags! {
         const Application = 0x00FF0000;
         #[doc(alias = "UIControlStateReserved")]
         const Reserved = 0xFF000000;
+        const _ = !0;
     }
 }
 

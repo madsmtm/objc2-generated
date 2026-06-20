@@ -118,6 +118,7 @@ bitflags::bitflags! {
         const AlignAllEdgesOutward = NSAlignmentOptions::AlignMinXOutward.0|NSAlignmentOptions::AlignMaxXOutward.0|NSAlignmentOptions::AlignMinYOutward.0|NSAlignmentOptions::AlignMaxYOutward.0;
         #[doc(alias = "NSAlignAllEdgesNearest")]
         const AlignAllEdgesNearest = NSAlignmentOptions::AlignMinXNearest.0|NSAlignmentOptions::AlignMaxXNearest.0|NSAlignmentOptions::AlignMinYNearest.0|NSAlignmentOptions::AlignMaxYNearest.0;
+        const _ = !0;
     }
 }
 

@@ -43,6 +43,7 @@ bitflags::bitflags! {
         const ImageArea = 1<<8;
         #[doc(alias = "kPDFAnyArea")]
         const AnyArea = NSIntegerMax as _;
+        const _ = !0;
     }
 }
 

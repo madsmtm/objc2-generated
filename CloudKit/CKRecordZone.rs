@@ -40,6 +40,7 @@ bitflags::bitflags! {
 /// :shared-records>.
         #[doc(alias = "CKRecordZoneCapabilityZoneWideSharing")]
         const ZoneWideSharing = 1<<3;
+        const _ = !0;
     }
 }
 

@@ -114,6 +114,7 @@ bitflags::bitflags! {
         const MIDI1 = 1;
         #[doc(alias = "kMIDIUMPProtocolOptionsMIDI2")]
         const MIDI2 = 1<<1;
+        const _ = !0;
     }
 }
 

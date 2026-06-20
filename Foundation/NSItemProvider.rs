@@ -39,6 +39,7 @@ bitflags::bitflags! {
     impl NSItemProviderFileOptions: NSInteger {
         #[doc(alias = "NSItemProviderFileOptionOpenInPlace")]
         const OpenInPlace = 1;
+        const _ = !0;
     }
 }
 

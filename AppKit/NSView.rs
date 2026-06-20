@@ -36,6 +36,7 @@ bitflags::bitflags! {
         const ViewHeightSizable = 16;
         #[doc(alias = "NSViewMaxYMargin")]
         const ViewMaxYMargin = 32;
+        const _ = !0;
     }
 }
 

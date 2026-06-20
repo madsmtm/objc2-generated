@@ -167,6 +167,7 @@ bitflags::bitflags! {
         const ReuseDuringUnlock = 1<<2;
         #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyPasswordFallback")]
         const PasswordFallback = 1<<3;
+        const _ = !0;
     }
 }
 

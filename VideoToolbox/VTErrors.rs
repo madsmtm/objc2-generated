@@ -127,6 +127,7 @@ bitflags::bitflags! {
         const Frame_1xRealTimePlayback = 1<<2;
 #[doc(alias = "kVTDecodeFrame_EnableTemporalProcessing")]
         const Frame_EnableTemporalProcessing = 1<<3;
+        const _ = !0;
     }
 }
 
@@ -176,6 +177,7 @@ bitflags::bitflags! {
         const SkippedLeadingFrameDropped = 1<<3;
         #[doc(alias = "kVTDecodeInfo_FrameInterrupted")]
         const FrameInterrupted = 1<<4;
+        const _ = !0;
     }
 }
 
@@ -200,6 +202,7 @@ bitflags::bitflags! {
         const Asynchronous = 1<<0;
         #[doc(alias = "kVTEncodeInfo_FrameDropped")]
         const FrameDropped = 1<<1;
+        const _ = !0;
     }
 }
 

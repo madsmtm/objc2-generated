@@ -37,6 +37,7 @@ bitflags::bitflags! {
         const DrawsBeforeStartLocation = 1<<0;
         #[doc(alias = "kCGGradientDrawsAfterEndLocation")]
         const DrawsAfterEndLocation = 1<<1;
+        const _ = !0;
     }
 }
 

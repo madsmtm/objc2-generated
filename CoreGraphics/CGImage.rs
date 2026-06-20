@@ -183,6 +183,7 @@ bitflags::bitflags! {
         #[doc(alias = "kCGBitmapByteOrder32Big")]
 #[deprecated]
         const ByteOrder32Big = CGImageByteOrderInfo::Order32Big.0;
+        const _ = !0;
     }
 }
 

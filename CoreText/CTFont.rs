@@ -305,6 +305,7 @@ bitflags::bitflags! {
         const PreventAutoDownload = 1<<1;
         #[doc(alias = "kCTFontOptionsPreferSystemFont")]
         const PreferSystemFont = 1<<2;
+        const _ = !0;
     }
 }
 
@@ -2186,6 +2187,7 @@ bitflags::bitflags! {
         #[doc(alias = "kCTFontTableOptionExcludeSynthetic")]
 #[deprecated = "Unsupported"]
         const ExcludeSynthetic = 1<<0;
+        const _ = !0;
     }
 }
 

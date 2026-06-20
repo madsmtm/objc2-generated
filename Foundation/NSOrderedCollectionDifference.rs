@@ -24,6 +24,7 @@ bitflags::bitflags! {
 /// This is useful when diffing based on identity instead of equality.
         #[doc(alias = "NSOrderedCollectionDifferenceCalculationInferMoves")]
         const InferMoves = 1<<2;
+        const _ = !0;
     }
 }
 

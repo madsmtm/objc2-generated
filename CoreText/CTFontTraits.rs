@@ -106,6 +106,7 @@ bitflags::bitflags! {
         const CompositeTrait = CTFontSymbolicTraits::TraitComposite.0;
         #[doc(alias = "kCTFontClassMaskTrait")]
         const ClassMaskTrait = CTFontSymbolicTraits::TraitClassMask.0;
+        const _ = !0;
     }
 }
 
@@ -174,6 +175,7 @@ bitflags::bitflags! {
         const ScriptsClass = CTFontStylisticClass::ClassScripts.0;
         #[doc(alias = "kCTFontSymbolicClass")]
         const SymbolicClass = CTFontStylisticClass::ClassSymbolic.0;
+        const _ = !0;
     }
 }
 

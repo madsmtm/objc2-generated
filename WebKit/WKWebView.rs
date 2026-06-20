@@ -93,6 +93,7 @@ bitflags::bitflags! {
     impl WKWebViewDataType: NSUInteger {
         #[doc(alias = "WKWebViewDataTypeSessionStorage")]
         const SessionStorage = 1<<0;
+        const _ = !0;
     }
 }
 

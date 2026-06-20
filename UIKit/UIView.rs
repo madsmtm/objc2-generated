@@ -125,6 +125,7 @@ bitflags::bitflags! {
         const FlexibleHeight = 1<<4;
         #[doc(alias = "UIViewAutoresizingFlexibleBottomMargin")]
         const FlexibleBottomMargin = 1<<5;
+        const _ = !0;
     }
 }
 
@@ -203,6 +204,7 @@ bitflags::bitflags! {
 /// This animation option implicitly applies to any nested animation scopes, even if they don't explicitly use this option.
         #[doc(alias = "UIViewAnimationOptionFlushUpdates")]
         const FlushUpdates = 1<<28;
+        const _ = !0;
     }
 }
 
@@ -245,6 +247,7 @@ bitflags::bitflags! {
         const CalculationModeCubic = 3<<10;
         #[doc(alias = "UIViewKeyframeAnimationOptionCalculationModeCubicPaced")]
         const CalculationModeCubicPaced = 4<<10;
+        const _ = !0;
     }
 }
 

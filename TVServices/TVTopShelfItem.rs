@@ -22,6 +22,7 @@ bitflags::bitflags! {
 /// Variant used when the device is running in 2x.
         #[doc(alias = "TVTopShelfItemImageTraitScreenScale2x")]
         const ScreenScale2x = 2<<0;
+        const _ = !0;
     }
 }
 

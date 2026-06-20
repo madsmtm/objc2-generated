@@ -48,6 +48,7 @@ bitflags::bitflags! {
         const LayerHeightSizable = 1<<4;
         #[doc(alias = "kCALayerMaxYMargin")]
         const LayerMaxYMargin = 1<<5;
+        const _ = !0;
     }
 }
 
@@ -117,6 +118,7 @@ bitflags::bitflags! {
         const LayerBottomEdge = 1<<2;
         #[doc(alias = "kCALayerTopEdge")]
         const LayerTopEdge = 1<<3;
+        const _ = !0;
     }
 }
 
@@ -143,6 +145,7 @@ bitflags::bitflags! {
         const LayerMinXMaxYCorner = 1<<2;
         #[doc(alias = "kCALayerMaxXMaxYCorner")]
         const LayerMaxXMaxYCorner = 1<<3;
+        const _ = !0;
     }
 }
 

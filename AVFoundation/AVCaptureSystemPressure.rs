@@ -80,6 +80,7 @@ bitflags::bitflags! {
         const DepthModuleTemperature = 1<<2;
         #[doc(alias = "AVCaptureSystemPressureFactorCameraTemperature")]
         const CameraTemperature = 1<<3;
+        const _ = !0;
     }
 }
 

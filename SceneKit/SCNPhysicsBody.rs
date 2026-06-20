@@ -44,6 +44,7 @@ bitflags::bitflags! {
         const Static = 1<<1;
         #[doc(alias = "SCNPhysicsCollisionCategoryAll")]
         const All = !0;
+        const _ = !0;
     }
 }
 

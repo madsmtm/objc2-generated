@@ -69,6 +69,7 @@ bitflags::bitflags! {
         const PropertyExchangeSupported = 1<<3;
         #[doc(alias = "kMIDICICategoryOptionsProcessInquirySupported")]
         const ProcessInquirySupported = 1<<4;
+        const _ = !0;
     }
 }
 

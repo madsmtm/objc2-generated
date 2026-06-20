@@ -64,6 +64,7 @@ bitflags::bitflags! {
         const ErrorOccurred = 1<<3;
         #[doc(alias = "NSStreamEventEndEncountered")]
         const EndEncountered = 1<<4;
+        const _ = !0;
     }
 }
 

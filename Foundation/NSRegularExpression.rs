@@ -27,6 +27,7 @@ bitflags::bitflags! {
         const UseUnixLineSeparators = 1<<5;
         #[doc(alias = "NSRegularExpressionUseUnicodeWordBoundaries")]
         const UseUnicodeWordBoundaries = 1<<6;
+        const _ = !0;
     }
 }
 
@@ -149,6 +150,7 @@ bitflags::bitflags! {
         const WithTransparentBounds = 1<<3;
         #[doc(alias = "NSMatchingWithoutAnchoringBounds")]
         const WithoutAnchoringBounds = 1<<4;
+        const _ = !0;
     }
 }
 
@@ -177,6 +179,7 @@ bitflags::bitflags! {
         const RequiredEnd = 1<<3;
         #[doc(alias = "NSMatchingInternalError")]
         const InternalError = 1<<4;
+        const _ = !0;
     }
 }
 

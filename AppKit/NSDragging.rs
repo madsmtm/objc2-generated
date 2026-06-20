@@ -36,6 +36,7 @@ bitflags::bitflags! {
         #[doc(alias = "NSDragOperationAll")]
 #[deprecated]
         const All = NSDragOperation::All_Obsolete.0;
+        const _ = !0;
     }
 }
 
@@ -104,6 +105,7 @@ bitflags::bitflags! {
         const Concurrent = NSEnumerationOptions::Concurrent.0;
         #[doc(alias = "NSDraggingItemEnumerationClearNonenumeratedImages")]
         const ClearNonenumeratedImages = 1<<16;
+        const _ = !0;
     }
 }
 
@@ -359,6 +361,7 @@ bitflags::bitflags! {
         const ContinuousActivation = 1<<1;
         #[doc(alias = "NSSpringLoadingNoHover")]
         const NoHover = 1<<3;
+        const _ = !0;
     }
 }
 

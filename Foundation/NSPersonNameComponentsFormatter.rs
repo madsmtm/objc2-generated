@@ -41,6 +41,7 @@ bitflags::bitflags! {
     impl NSPersonNameComponentsFormatterOptions: NSUInteger {
         #[doc(alias = "NSPersonNameComponentsFormatterPhonetic")]
         const Phonetic = 1<<1;
+        const _ = !0;
     }
 }
 

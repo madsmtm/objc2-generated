@@ -17,6 +17,7 @@ bitflags::bitflags! {
         const Keyboard = 1<<0;
         #[doc(alias = "CPLimitableUserInterfaceLists")]
         const Lists = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -39,6 +40,7 @@ bitflags::bitflags! {
         const Light = 1<<0;
         #[doc(alias = "CPContentStyleDark")]
         const Dark = 1<<1;
+        const _ = !0;
     }
 }
 

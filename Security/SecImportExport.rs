@@ -97,6 +97,7 @@ bitflags::bitflags! {
     impl SecItemImportExportFlags: u32 {
         #[doc(alias = "kSecItemPemArmour")]
         const PemArmour = 0x00000001;
+        const _ = !0;
     }
 }
 
@@ -123,6 +124,7 @@ bitflags::bitflags! {
         const SecurePassphrase = 0x00000002;
         #[doc(alias = "kSecKeyNoAccessControl")]
         const NoAccessControl = 0x00000004;
+        const _ = !0;
     }
 }
 

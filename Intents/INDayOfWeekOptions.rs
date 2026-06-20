@@ -25,6 +25,7 @@ bitflags::bitflags! {
         const Saturday = 1<<5;
         #[doc(alias = "INDayOfWeekOptionSunday")]
         const Sunday = 1<<6;
+        const _ = !0;
     }
 }
 

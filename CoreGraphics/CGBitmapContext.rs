@@ -117,6 +117,7 @@ bitflags::bitflags! {
         const Lab = 1<<3;
         #[doc(alias = "kCGColorModelDeviceN")]
         const DeviceN = 1<<4;
+        const _ = !0;
     }
 }
 

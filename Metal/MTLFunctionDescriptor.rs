@@ -44,6 +44,7 @@ bitflags::bitflags! {
 /// This function option can only be used for functions that are compiled with `MTLFunctionOptionCompileToBinary`.
         #[doc(alias = "MTLFunctionOptionPipelineIndependent")]
         const PipelineIndependent = 1<<3;
+        const _ = !0;
     }
 }
 

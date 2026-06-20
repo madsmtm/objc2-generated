@@ -176,6 +176,7 @@ bitflags::bitflags! {
         #[doc(alias = "NSStringDrawingOneShot")]
 #[deprecated]
         const OneShot = 1<<4;
+        const _ = !0;
     }
 }
 

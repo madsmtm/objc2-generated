@@ -23,6 +23,7 @@ bitflags::bitflags! {
 /// To include it in the picker, create a new ``ASDiscoveredDisplayItem`` for it and call ``ASAccessorySession/updatePicker(showing:completionHandler:)``.
         #[doc(alias = "ASPickerDisplaySettingsOptionFilterDiscoveryResults")]
         const FilterDiscoveryResults = 1<<0;
+        const _ = !0;
     }
 }
 

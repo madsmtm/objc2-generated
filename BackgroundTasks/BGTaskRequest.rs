@@ -312,6 +312,7 @@ bitflags::bitflags! {
 /// - Important: Applications must have the `com.apple.developer.background-tasks.continued-processing.gpu`  entitlement to submit a task request with this resource.
         #[doc(alias = "BGContinuedProcessingTaskRequestResourcesGPU")]
         const GPU = 1<<0;
+        const _ = !0;
     }
 }
 

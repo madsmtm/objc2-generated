@@ -84,6 +84,7 @@ bitflags::bitflags! {
         const XMagneticNorthZVertical = 1<<2;
         #[doc(alias = "CMAttitudeReferenceFrameXTrueNorthZVertical")]
         const XTrueNorthZVertical = 1<<3;
+        const _ = !0;
     }
 }
 

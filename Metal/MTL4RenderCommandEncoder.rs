@@ -45,6 +45,7 @@ bitflags::bitflags! {
 /// stitch the work a render command encoder encodes with a prior "suspending" render command encoder.
         #[doc(alias = "MTL4RenderEncoderOptionResuming")]
         const Resuming = 1<<1;
+        const _ = !0;
     }
 }
 

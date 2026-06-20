@@ -41,6 +41,7 @@ bitflags::bitflags! {
         const CoalescingOnName = 1;
         #[doc(alias = "NSNotificationCoalescingOnSender")]
         const CoalescingOnSender = 2;
+        const _ = !0;
     }
 }
 

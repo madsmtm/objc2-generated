@@ -22,6 +22,7 @@ bitflags::bitflags! {
 /// All horizontal directions (left and right).
         #[doc(alias = "NSHorizontalDirectionsAll")]
         const All = NSHorizontalDirections::Left.0|NSHorizontalDirections::Right.0;
+        const _ = !0;
     }
 }
 
@@ -51,6 +52,7 @@ bitflags::bitflags! {
 /// All vertical directions (up and down).
         #[doc(alias = "NSVerticalDirectionsAll")]
         const All = NSVerticalDirections::Up.0|NSVerticalDirections::Down.0;
+        const _ = !0;
     }
 }
 

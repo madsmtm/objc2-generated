@@ -23,6 +23,7 @@ bitflags::bitflags! {
         const EpochEnd = 1<<1;
         #[doc(alias = "MLUpdateProgressEventMiniBatchEnd")]
         const MiniBatchEnd = 1<<2;
+        const _ = !0;
     }
 }
 

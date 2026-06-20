@@ -52,6 +52,7 @@ bitflags::bitflags! {
         const Commit = 1<<0;
         #[doc(alias = "kSCPreferencesNotificationApply")]
         const Apply = 1<<1;
+        const _ = !0;
     }
 }
 

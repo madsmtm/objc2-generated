@@ -224,6 +224,7 @@ bitflags::bitflags! {
         #[doc(alias = "kCFGregorianAllUnits")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const AllUnits = 0x00FFFFFF;
+        const _ = !0;
     }
 }
 

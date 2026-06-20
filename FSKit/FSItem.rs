@@ -73,6 +73,7 @@ bitflags::bitflags! {
 /// The inhibit kernel offloaded I/O attribute.
         #[doc(alias = "FSItemAttributeInhibitKernelOffloadedIO")]
         const InhibitKernelOffloadedIO = 1<<17;
+        const _ = !0;
     }
 }
 

@@ -967,6 +967,7 @@ bitflags::bitflags! {
         #[doc(alias = "AVPlayerHDRModeDolbyVision")]
 #[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
         const DolbyVision = 0x4;
+        const _ = !0;
     }
 }
 

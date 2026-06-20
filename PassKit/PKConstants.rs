@@ -372,6 +372,7 @@ bitflags::bitflags! {
         const NFC = 1<<0;
         #[doc(alias = "PKRadioTechnologyBluetooth")]
         const Bluetooth = 1<<1;
+        const _ = !0;
     }
 }
 

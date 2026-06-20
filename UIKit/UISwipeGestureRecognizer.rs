@@ -22,6 +22,7 @@ bitflags::bitflags! {
         const Up = 1<<2;
         #[doc(alias = "UISwipeGestureRecognizerDirectionDown")]
         const Down = 1<<3;
+        const _ = !0;
     }
 }
 

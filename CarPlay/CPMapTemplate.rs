@@ -28,6 +28,7 @@ bitflags::bitflags! {
         const Up = 1<<2;
         #[doc(alias = "CPPanDirectionDown")]
         const Down = 1<<3;
+        const _ = !0;
     }
 }
 
@@ -56,6 +57,7 @@ bitflags::bitflags! {
         const SymbolOnly = 3;
         #[doc(alias = "CPManeuverDisplayStyleInstructionOnly")]
         const InstructionOnly = 4;
+        const _ = !0;
     }
 }
 

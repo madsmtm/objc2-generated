@@ -344,6 +344,7 @@ bitflags::bitflags! {
 /// implies `RichText`, `List`, and `Table`, and Writing Tools may provide text with presentation intent attributes. Writing Tools will use `NSPresentationIntent` instead of `NSTextList` and `NSTextTable` to represent lists and tables.
         #[doc(alias = "UIWritingToolsResultPresentationIntent")]
         const PresentationIntent = 1<<4;
+        const _ = !0;
     }
 }
 

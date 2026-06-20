@@ -262,6 +262,7 @@ bitflags::bitflags! {
         const AddMovieHeaderToDestination = 0;
         #[doc(alias = "AVMovieWritingTruncateDestinationToMovieHeaderOnly")]
         const TruncateDestinationToMovieHeaderOnly = 1<<0;
+        const _ = !0;
     }
 }
 

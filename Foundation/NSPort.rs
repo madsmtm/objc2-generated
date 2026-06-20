@@ -198,6 +198,7 @@ bitflags::bitflags! {
         const DeallocateSendRight = 1<<0;
         #[doc(alias = "NSMachPortDeallocateReceiveRight")]
         const DeallocateReceiveRight = 1<<1;
+        const _ = !0;
     }
 }
 

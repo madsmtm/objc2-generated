@@ -236,6 +236,7 @@ bitflags::bitflags! {
         const LatencyCritical = 0xFF00000000;
         #[doc(alias = "NSActivityUserInteractive")]
         const UserInteractive = NSActivityOptions::UserInitiated.0|NSActivityOptions::LatencyCritical.0;
+        const _ = !0;
     }
 }
 

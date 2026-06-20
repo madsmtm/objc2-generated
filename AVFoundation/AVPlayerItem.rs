@@ -867,6 +867,7 @@ bitflags::bitflags! {
 /// Directs the item to permit the use of variants with lossless audio encodings, if sufficient bandwidth is available for their use.
         #[doc(alias = "AVVariantPreferenceScalabilityToLosslessAudio")]
         const ScalabilityToLosslessAudio = 1<<0;
+        const _ = !0;
     }
 }
 

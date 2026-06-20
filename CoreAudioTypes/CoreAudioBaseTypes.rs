@@ -553,6 +553,7 @@ bitflags::bitflags! {
         const Valid = 1<<0;
         #[doc(alias = "kSMPTETimeRunning")]
         const Running = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -659,6 +660,7 @@ bitflags::bitflags! {
         const SMPTETimeValid = 1<<4;
         #[doc(alias = "kAudioTimeStampSampleHostTimeValid")]
         const SampleHostTimeValid = AudioTimeStampFlags::SampleTimeValid.0|AudioTimeStampFlags::HostTimeValid.0;
+        const _ = !0;
     }
 }
 
@@ -1072,6 +1074,7 @@ bitflags::bitflags! {
         const Bit_CenterTopRear = 1<<25;
         #[doc(alias = "kAudioChannelBit_RightTopRear")]
         const Bit_RightTopRear = 1<<26;
+        const _ = !0;
     }
 }
 
@@ -1114,6 +1117,7 @@ bitflags::bitflags! {
         const SphericalCoordinates = 1<<1;
         #[doc(alias = "kAudioChannelFlags_Meters")]
         const Meters = 1<<2;
+        const _ = !0;
     }
 }
 

@@ -147,6 +147,7 @@ bitflags::bitflags! {
 /// You combine this option with one or more of the other subscription options. This option applies only to query-based subscriptions. CloudKit deletes the subscription after it sends the push notification. If you want to generate subsequent push notifications using the same criteria, create and save a new subscription.
         #[doc(alias = "CKQuerySubscriptionOptionsFiresOnce")]
         const FiresOnce = 1<<3;
+        const _ = !0;
     }
 }
 

@@ -68,6 +68,7 @@ bitflags::bitflags! {
         const YearMonthDay = 0x00e0;
         #[doc(alias = "NSDatePickerElementFlagEra")]
         const Era = 0x0100;
+        const _ = !0;
     }
 }
 

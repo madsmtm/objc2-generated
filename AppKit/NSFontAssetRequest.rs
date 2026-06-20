@@ -16,6 +16,7 @@ bitflags::bitflags! {
     impl NSFontAssetRequestOptions: NSUInteger {
         #[doc(alias = "NSFontAssetRequestOptionUsesStandardUI")]
         const UsesStandardUI = 1<<0;
+        const _ = !0;
     }
 }
 

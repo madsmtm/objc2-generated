@@ -214,6 +214,7 @@ bitflags::bitflags! {
         const PreserveAlternateTracks = 1<<0;
         #[doc(alias = "AVAssetTrackGroupOutputHandlingDefaultPolicy")]
         const DefaultPolicy = AVAssetTrackGroupOutputHandling::None.0;
+        const _ = !0;
     }
 }
 

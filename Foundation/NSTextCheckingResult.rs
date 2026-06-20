@@ -38,6 +38,7 @@ bitflags::bitflags! {
         const PhoneNumber = 1<<11;
         #[doc(alias = "NSTextCheckingTypeTransitInformation")]
         const TransitInformation = 1<<12;
+        const _ = !0;
     }
 }
 

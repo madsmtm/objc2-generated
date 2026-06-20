@@ -131,6 +131,7 @@ bitflags::bitflags! {
         #[doc(alias = "WebDragDestinationActionAny")]
 #[deprecated]
         const Any = c_uint::MAX as _;
+        const _ = !0;
     }
 }
 
@@ -170,6 +171,7 @@ bitflags::bitflags! {
         #[doc(alias = "WebDragSourceActionAny")]
 #[deprecated]
         const Any = c_uint::MAX as _;
+        const _ = !0;
     }
 }
 

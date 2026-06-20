@@ -164,6 +164,7 @@ bitflags::bitflags! {
         const ShowingEditControlMask = 1<<0;
         #[doc(alias = "UITableViewCellStateShowingDeleteConfirmationMask")]
         const ShowingDeleteConfirmationMask = 1<<1;
+        const _ = !0;
     }
 }
 

@@ -89,6 +89,7 @@ bitflags::bitflags! {
         #[doc(alias = "UIRemoteNotificationTypeNewsstandContentAvailability")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const NewsstandContentAvailability = 1<<3;
+        const _ = !0;
     }
 }
 

@@ -35,6 +35,7 @@ bitflags::bitflags! {
         const UseYBOrHigher = 0x0FF<<8;
         #[doc(alias = "NSByteCountFormatterUseAll")]
         const UseAll = 0x0FFFF;
+        const _ = !0;
     }
 }
 

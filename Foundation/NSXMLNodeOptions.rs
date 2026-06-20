@@ -67,6 +67,7 @@ bitflags::bitflags! {
         const NodePreserveQuotes = NSXMLNodeOptions::NodeUseSingleQuotes.0|NSXMLNodeOptions::NodeUseDoubleQuotes.0;
         #[doc(alias = "NSXMLNodePreserveAll")]
         const NodePreserveAll = NSXMLNodeOptions::NodePreserveNamespaceOrder.0|NSXMLNodeOptions::NodePreserveAttributeOrder.0|NSXMLNodeOptions::NodePreserveEntities.0|NSXMLNodeOptions::NodePreservePrefixes.0|NSXMLNodeOptions::NodePreserveCDATA.0|NSXMLNodeOptions::NodePreserveEmptyElements.0|NSXMLNodeOptions::NodePreserveQuotes.0|NSXMLNodeOptions::NodePreserveWhitespace.0|NSXMLNodeOptions::NodePreserveDTD.0|NSXMLNodeOptions::NodePreserveCharacterReferences.0|0xFFF00000;
+        const _ = !0;
     }
 }
 

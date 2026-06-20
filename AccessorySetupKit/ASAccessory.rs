@@ -45,6 +45,7 @@ bitflags::bitflags! {
 /// An option to change an accessory's SSID along with its display name.
         #[doc(alias = "ASAccessoryRenameSSID")]
         const SSID = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -76,6 +77,7 @@ bitflags::bitflags! {
 /// The accessory supports Bluetooth Low Energy HID service.
         #[doc(alias = "ASAccessorySupportBluetoothHID")]
         const BluetoothHID = 1<<3;
+        const _ = !0;
     }
 }
 

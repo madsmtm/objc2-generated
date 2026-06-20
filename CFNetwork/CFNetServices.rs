@@ -133,6 +133,7 @@ bitflags::bitflags! {
     impl CFNetServiceRegisterFlags: CFOptionFlags {
         #[doc(alias = "kCFNetServiceFlagNoAutoRename")]
         const FlagNoAutoRename = 1;
+        const _ = !0;
     }
 }
 
@@ -164,6 +165,7 @@ bitflags::bitflags! {
         const FlagIsRegistrationDomain = 4;
         #[doc(alias = "kCFNetServiceFlagRemove")]
         const FlagRemove = 8;
+        const _ = !0;
     }
 }
 

@@ -54,6 +54,7 @@ bitflags::bitflags! {
 /// deletion was requested.
         #[doc(alias = "NSFileProviderCreateItemDeletionConflicted")]
         const DeletionConflicted = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -77,6 +78,7 @@ bitflags::bitflags! {
 /// The deletion of the item is recursive.
         #[doc(alias = "NSFileProviderDeleteItemRecursive")]
         const Recursive = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -106,6 +108,7 @@ bitflags::bitflags! {
 /// This flag is not functional prior to macOS 13.3.
         #[doc(alias = "NSFileProviderMaterializationFlagsKnownSparseRanges")]
         const KnownSparseRanges = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -131,6 +134,7 @@ bitflags::bitflags! {
 /// If the provider cannot supply this version, it should fail with NSFileProviderErrorVersionNoLongerAvailable.
         #[doc(alias = "NSFileProviderFetchContentsOptionsStrictVersioning")]
         const StrictVersioning = 1<<0;
+        const _ = !0;
     }
 }
 

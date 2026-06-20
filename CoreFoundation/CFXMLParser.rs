@@ -48,6 +48,7 @@ bitflags::bitflags! {
         const AllOptions = 0x00FFFFFF;
         #[doc(alias = "kCFXMLParserNoOptions")]
         const NoOptions = 0;
+        const _ = !0;
     }
 }
 
@@ -104,6 +105,7 @@ bitflags::bitflags! {
         const ErrorMalformedParsedCharacterData = 14;
         #[doc(alias = "kCFXMLErrorNoData")]
         const ErrorNoData = 15;
+        const _ = !0;
     }
 }
 

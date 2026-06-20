@@ -40,6 +40,7 @@ bitflags::bitflags! {
         const ShowEffectsView = 1<<0;
         #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowWhileTracking")]
         const ShowWhileTracking = 1<<1;
+        const _ = !0;
     }
 }
 

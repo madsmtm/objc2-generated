@@ -128,6 +128,7 @@ bitflags::bitflags! {
         const WithFullTime = CFISO8601DateFormatOptions::WithTime.0|CFISO8601DateFormatOptions::WithColonSeparatorInTime.0|CFISO8601DateFormatOptions::WithTimeZone.0|CFISO8601DateFormatOptions::WithColonSeparatorInTimeZone.0;
         #[doc(alias = "kCFISO8601DateFormatWithInternetDateTime")]
         const WithInternetDateTime = CFISO8601DateFormatOptions::WithFullDate.0|CFISO8601DateFormatOptions::WithFullTime.0;
+        const _ = !0;
     }
 }
 

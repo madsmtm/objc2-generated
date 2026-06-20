@@ -504,6 +504,7 @@ bitflags::bitflags! {
         const ISO18092 = 0x4;
         #[doc(alias = "NFCPollingPACE")]
         const PACE = 0x8;
+        const _ = !0;
     }
 }
 
@@ -1030,6 +1031,7 @@ bitflags::bitflags! {
         const RequestFlagAddress = NFCISO15693RequestFlag::Address.0;
 #[deprecated]
         const RequestFlagOption = NFCISO15693RequestFlag::Option.0;
+        const _ = !0;
     }
 }
 
@@ -1065,6 +1067,7 @@ bitflags::bitflags! {
         const BlockSecurityStatusBit6 = 1<<5;
         #[doc(alias = "NFCISO15693ResponseFlagWaitTimeExtension")]
         const WaitTimeExtension = 1<<6;
+        const _ = !0;
     }
 }
 

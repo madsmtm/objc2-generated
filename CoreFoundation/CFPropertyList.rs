@@ -19,6 +19,7 @@ bitflags::bitflags! {
         const MutableContainers = 1<<0;
         #[doc(alias = "kCFPropertyListMutableContainersAndLeaves")]
         const MutableContainersAndLeaves = 1<<1;
+        const _ = !0;
     }
 }
 

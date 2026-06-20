@@ -622,6 +622,7 @@ bitflags::bitflags! {
         const Orientation = 1<<0;
         #[doc(alias = "PHASEAutomaticHeadTrackingFlagPosition")]
         const Position = 1<<1;
+        const _ = !0;
     }
 }
 

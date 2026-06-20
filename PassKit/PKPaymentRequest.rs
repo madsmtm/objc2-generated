@@ -24,6 +24,7 @@ bitflags::bitflags! {
         const CapabilityDebit = 1<<3;
         #[doc(alias = "PKMerchantCapabilityInstantFundsOut")]
         const CapabilityInstantFundsOut = 1<<7;
+        const _ = !0;
     }
 }
 
@@ -69,6 +70,7 @@ bitflags::bitflags! {
         #[doc(alias = "PKAddressFieldAll")]
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
         const All = PKAddressField::PostalAddress.0|PKAddressField::Phone.0|PKAddressField::Email.0|PKAddressField::Name.0;
+        const _ = !0;
     }
 }
 

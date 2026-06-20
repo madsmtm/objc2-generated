@@ -177,6 +177,7 @@ bitflags::bitflags! {
 /// Indicates that only references to media data stored within the asset's container file should be allowed.
         #[doc(alias = "AVAssetReferenceRestrictionDefaultPolicy")]
         const DefaultPolicy = AVAssetReferenceRestrictions::ForbidLocalReferenceToRemote.0;
+        const _ = !0;
     }
 }
 

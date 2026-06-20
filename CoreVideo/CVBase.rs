@@ -148,6 +148,7 @@ bitflags::bitflags! {
         const Valid = 1<<0;
         #[doc(alias = "kCVSMPTETimeRunning")]
         const Running = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -174,6 +175,7 @@ bitflags::bitflags! {
     impl CVTimeFlags: i32 {
         #[doc(alias = "kCVTimeIsIndefinite")]
         const IsIndefinite = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -309,6 +311,7 @@ bitflags::bitflags! {
         const VideoHostTimeValid = CVTimeStampFlags::VideoTimeValid.0|CVTimeStampFlags::HostTimeValid.0;
         #[doc(alias = "kCVTimeStampIsInterlaced")]
         const IsInterlaced = CVTimeStampFlags::TopField.0|CVTimeStampFlags::BottomField.0;
+        const _ = !0;
     }
 }
 

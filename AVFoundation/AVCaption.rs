@@ -835,6 +835,7 @@ bitflags::bitflags! {
         const LineThrough = 1<<1;
         #[doc(alias = "AVCaptionDecorationOverline")]
         const Overline = 1<<2;
+        const _ = !0;
     }
 }
 

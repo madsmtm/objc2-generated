@@ -33,6 +33,7 @@ bitflags::bitflags! {
         const InVisibleRect = 0x200;
         #[doc(alias = "NSTrackingEnabledDuringMouseDrag")]
         const EnabledDuringMouseDrag = 0x400;
+        const _ = !0;
     }
 }
 

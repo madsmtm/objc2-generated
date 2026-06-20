@@ -97,6 +97,7 @@ bitflags::bitflags! {
         const Primary = 1<<0;
         #[doc(alias = "UIEventButtonMaskSecondary")]
         const Secondary = 1<<1;
+        const _ = !0;
     }
 }
 

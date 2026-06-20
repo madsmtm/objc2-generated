@@ -72,6 +72,7 @@ bitflags::bitflags! {
         const SolidHorizontalGridLineMask = 1<<1;
         #[doc(alias = "NSTableViewDashedHorizontalGridLineMask")]
         const DashedHorizontalGridLineMask = 1<<3;
+        const _ = !0;
     }
 }
 
@@ -226,6 +227,7 @@ bitflags::bitflags! {
         const SlideLeft = 0x30;
         #[doc(alias = "NSTableViewAnimationSlideRight")]
         const SlideRight = 0x40;
+        const _ = !0;
     }
 }
 

@@ -24,6 +24,7 @@ bitflags::bitflags! {
         const StencilFromDepthStencil = 1<<1;
         #[doc(alias = "MTLBlitOptionRowLinearPVRTC")]
         const RowLinearPVRTC = 1<<2;
+        const _ = !0;
     }
 }
 

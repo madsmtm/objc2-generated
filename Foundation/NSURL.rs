@@ -971,6 +971,7 @@ bitflags::bitflags! {
         const SecurityScopeAllowOnlyReadAccess = 1<<12;
         #[doc(alias = "NSURLBookmarkCreationWithoutImplicitSecurityScope")]
         const WithoutImplicitSecurityScope = 1<<29;
+        const _ = !0;
     }
 }
 
@@ -997,6 +998,7 @@ bitflags::bitflags! {
         const WithSecurityScope = 1<<10;
         #[doc(alias = "NSURLBookmarkResolutionWithoutImplicitStartAccessing")]
         const WithoutImplicitStartAccessing = 1<<15;
+        const _ = !0;
     }
 }
 

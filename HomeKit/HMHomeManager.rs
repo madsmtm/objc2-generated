@@ -22,6 +22,7 @@ bitflags::bitflags! {
         const Restricted = 1<<1;
         #[doc(alias = "HMHomeManagerAuthorizationStatusAuthorized")]
         const Authorized = 1<<2;
+        const _ = !0;
     }
 }
 

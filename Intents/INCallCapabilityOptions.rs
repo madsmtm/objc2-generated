@@ -15,6 +15,7 @@ bitflags::bitflags! {
         const AudioCall = 1<<0;
         #[doc(alias = "INCallCapabilityOptionVideoCall")]
         const VideoCall = 1<<1;
+        const _ = !0;
     }
 }
 

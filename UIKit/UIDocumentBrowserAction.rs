@@ -18,6 +18,7 @@ bitflags::bitflags! {
         const Menu = 1;
         #[doc(alias = "UIDocumentBrowserActionAvailabilityNavigationBar")]
         const NavigationBar = 1<<1;
+        const _ = !0;
     }
 }
 

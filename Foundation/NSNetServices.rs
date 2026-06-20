@@ -63,6 +63,7 @@ bitflags::bitflags! {
         const NoAutoRename = 1<<0;
         #[doc(alias = "NSNetServiceListenForConnections")]
         const ListenForConnections = 1<<1;
+        const _ = !0;
     }
 }
 

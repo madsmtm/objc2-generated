@@ -535,6 +535,7 @@ bitflags::bitflags! {
         const Tx = 1<<3;
         #[doc(alias = "kCWCipherKeyFlagsRx")]
         const Rx = 1<<4;
+        const _ = !0;
     }
 }
 

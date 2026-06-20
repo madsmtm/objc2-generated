@@ -38,6 +38,7 @@ bitflags::bitflags! {
         const None = 0;
         #[doc(alias = "BETextReplacementOptionsAddUnderline")]
         const AddUnderline = 1<<0;
+        const _ = !0;
     }
 }
 

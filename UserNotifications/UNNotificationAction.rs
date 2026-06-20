@@ -19,6 +19,7 @@ bitflags::bitflags! {
         const Destructive = 1<<1;
         #[doc(alias = "UNNotificationActionOptionForeground")]
         const Foreground = 1<<2;
+        const _ = !0;
     }
 }
 

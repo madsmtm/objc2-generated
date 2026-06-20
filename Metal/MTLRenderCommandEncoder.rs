@@ -342,6 +342,7 @@ bitflags::bitflags! {
         const Object = 1<<3;
         #[doc(alias = "MTLRenderStageMesh")]
         const Mesh = 1<<4;
+        const _ = !0;
     }
 }
 

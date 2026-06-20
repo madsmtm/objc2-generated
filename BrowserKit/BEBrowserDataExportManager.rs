@@ -36,6 +36,7 @@ bitflags::bitflags! {
         const History = 1<<2;
         #[doc(alias = "BEExportDataTypesExtensions")]
         const Extensions = 1<<3;
+        const _ = !0;
     }
 }
 

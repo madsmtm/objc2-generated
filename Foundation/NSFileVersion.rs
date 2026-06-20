@@ -15,6 +15,7 @@ bitflags::bitflags! {
     impl NSFileVersionAddingOptions: NSUInteger {
         #[doc(alias = "NSFileVersionAddingByMoving")]
         const ByMoving = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -35,6 +36,7 @@ bitflags::bitflags! {
     impl NSFileVersionReplacingOptions: NSUInteger {
         #[doc(alias = "NSFileVersionReplacingByMoving")]
         const ByMoving = 1<<0;
+        const _ = !0;
     }
 }
 

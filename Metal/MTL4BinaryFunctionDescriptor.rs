@@ -23,6 +23,7 @@ bitflags::bitflags! {
 /// all pipeline states. The function needs to be linked to the pipeline that will use this function.
         #[doc(alias = "MTL4BinaryFunctionOptionPipelineIndependent")]
         const PipelineIndependent = 1<<1;
+        const _ = !0;
     }
 }
 

@@ -40,6 +40,7 @@ bitflags::bitflags! {
         const FixedPitchFontMask = 0x00000400;
         #[doc(alias = "NSUnitalicFontMask")]
         const UnitalicFontMask = 0x01000000;
+        const _ = !0;
     }
 }
 
@@ -60,6 +61,7 @@ bitflags::bitflags! {
     impl NSFontCollectionOptions: NSUInteger {
         #[doc(alias = "NSFontCollectionApplicationOnlyMask")]
         const ApplicationOnlyMask = 1<<0;
+        const _ = !0;
     }
 }
 

@@ -81,6 +81,7 @@ bitflags::bitflags! {
         const UseOpticalBounds = 1<<4;
         #[doc(alias = "kCTLineBoundsIncludeLanguageExtents")]
         const IncludeLanguageExtents = 1<<5;
+        const _ = !0;
     }
 }
 

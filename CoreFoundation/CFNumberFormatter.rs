@@ -200,6 +200,7 @@ bitflags::bitflags! {
     impl CFNumberFormatterOptionFlags: CFOptionFlags {
         #[doc(alias = "kCFNumberFormatterParseIntegersOnly")]
         const ParseIntegersOnly = 1;
+        const _ = !0;
     }
 }
 

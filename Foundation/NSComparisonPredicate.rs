@@ -18,6 +18,7 @@ bitflags::bitflags! {
         const DiacriticInsensitivePredicateOption = 0x02;
         #[doc(alias = "NSNormalizedPredicateOption")]
         const NormalizedPredicateOption = 0x04;
+        const _ = !0;
     }
 }
 

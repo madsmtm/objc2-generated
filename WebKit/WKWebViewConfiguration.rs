@@ -55,6 +55,7 @@ bitflags::bitflags! {
         const Video = 1<<1;
         #[doc(alias = "WKAudiovisualMediaTypeAll")]
         const All = NSUIntegerMax as _;
+        const _ = !0;
     }
 }
 

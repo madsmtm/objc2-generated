@@ -123,6 +123,7 @@ bitflags::bitflags! {
 /// A mode in which autocorrect checks punctuation as the user types.
         #[doc(alias = "AEAutocorrectModePunctuation")]
         const Punctuation = 1<<1;
+        const _ = !0;
     }
 }
 

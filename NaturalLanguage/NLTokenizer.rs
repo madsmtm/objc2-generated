@@ -44,6 +44,7 @@ bitflags::bitflags! {
         const Symbolic = 1<<1;
         #[doc(alias = "NLTokenizerAttributeEmoji")]
         const Emoji = 1<<2;
+        const _ = !0;
     }
 }
 

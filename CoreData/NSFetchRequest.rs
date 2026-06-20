@@ -22,6 +22,7 @@ bitflags::bitflags! {
         const DictionaryResultType = 0x02;
         #[doc(alias = "NSCountResultType")]
         const CountResultType = 0x04;
+        const _ = !0;
     }
 }
 

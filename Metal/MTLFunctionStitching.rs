@@ -29,6 +29,7 @@ bitflags::bitflags! {
 /// This flag is required for inspecting and consuming binary archives with stitched libraries via the metal-source tool. It is not required for recompilation, nor for storing stitched libraries in binary archives. Set this flag only if you intend to use metal-source on a serialized binary archive.
         #[doc(alias = "MTLStitchedLibraryOptionStoreLibraryInMetalPipelinesScript")]
         const StoreLibraryInMetalPipelinesScript = 1<<1;
+        const _ = !0;
     }
 }
 

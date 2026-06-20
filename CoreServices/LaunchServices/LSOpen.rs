@@ -33,6 +33,7 @@ bitflags::bitflags! {
         const AndHide = 0x00100000;
         #[doc(alias = "kLSLaunchAndHideOthers")]
         const AndHideOthers = 0x00200000;
+        const _ = !0;
     }
 }
 

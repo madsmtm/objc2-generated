@@ -177,6 +177,7 @@ bitflags::bitflags! {
         #[doc(alias = "MTLResourceOptionCPUCacheModeWriteCombined")]
 #[deprecated]
         const OptionCPUCacheModeWriteCombined = MTLResourceOptions::CPUCacheModeWriteCombined.0;
+        const _ = !0;
     }
 }
 

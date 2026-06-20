@@ -105,6 +105,7 @@ bitflags::bitflags! {
         const Location = 1<<3;
         #[doc(alias = "UITouchPropertyRoll")]
         const Roll = 1<<4;
+        const _ = !0;
     }
 }
 

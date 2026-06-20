@@ -249,6 +249,7 @@ bitflags::bitflags! {
         #[doc(alias = "MPSRayMaskOptionInstance")]
 #[deprecated]
         const Instance = 2;
+        const _ = !0;
     }
 }
 

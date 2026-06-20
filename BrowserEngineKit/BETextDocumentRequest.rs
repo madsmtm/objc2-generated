@@ -25,6 +25,7 @@ bitflags::bitflags! {
         const OptionMarkedTextRects = 1<<5;
         #[doc(alias = "BETextDocumentOptionAutocorrectedRanges")]
         const OptionAutocorrectedRanges = 1<<7;
+        const _ = !0;
     }
 }
 

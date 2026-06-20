@@ -100,6 +100,7 @@ bitflags::bitflags! {
 /// support removing this mode from a domain on which it has been enabled.
         #[doc(alias = "NSFileProviderDomainTestingModeInteractive")]
         const Interactive = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -124,6 +125,7 @@ bitflags::bitflags! {
         const Desktop = 1<<0;
         #[doc(alias = "NSFileProviderDocuments")]
         const Documents = 1<<1;
+        const _ = !0;
     }
 }
 

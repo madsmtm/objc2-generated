@@ -26,6 +26,7 @@ bitflags::bitflags! {
 /// data previously encoded shall be copied.
         #[doc(alias = "MTLAccelerationStructureRefitOptionPerPrimitiveData")]
         const PerPrimitiveData = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -66,6 +67,7 @@ bitflags::bitflags! {
 /// the cost of increased build time or reduced intersection performance.
         #[doc(alias = "MTLAccelerationStructureUsageMinimizeMemory")]
         const MinimizeMemory = 1<<5;
+        const _ = !0;
     }
 }
 
@@ -101,6 +103,7 @@ bitflags::bitflags! {
 /// Geometry is non-opaque
         #[doc(alias = "MTLAccelerationStructureInstanceOptionNonOpaque")]
         const NonOpaque = 1<<3;
+        const _ = !0;
     }
 }
 

@@ -21,6 +21,7 @@ bitflags::bitflags! {
         const ExcludeQuickDrawElementsIconCreationOption = 1<<1;
         #[doc(alias = "NSExclude10_4ElementsIconCreationOption")]
         const Exclude10_4ElementsIconCreationOption = 1<<2;
+        const _ = !0;
     }
 }
 
@@ -827,6 +828,7 @@ bitflags::bitflags! {
         #[doc(alias = "NSWorkspaceLaunchPreferringClassic")]
 #[deprecated = "The Classic environment is no longer supported."]
         const PreferringClassic = 0x00040000;
+        const _ = !0;
     }
 }
 

@@ -43,6 +43,7 @@ bitflags::bitflags! {
         const NotifyEncryptionRequired = 0x100;
         #[doc(alias = "CBCharacteristicPropertyIndicateEncryptionRequired")]
         const IndicateEncryptionRequired = 0x200;
+        const _ = !0;
     }
 }
 
@@ -142,6 +143,7 @@ bitflags::bitflags! {
         const ReadEncryptionRequired = 0x04;
         #[doc(alias = "CBAttributePermissionsWriteEncryptionRequired")]
         const WriteEncryptionRequired = 0x08;
+        const _ = !0;
     }
 }
 

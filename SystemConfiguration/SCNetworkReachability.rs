@@ -163,6 +163,7 @@ bitflags::bitflags! {
         const IsWWAN = 1<<18;
         #[doc(alias = "kSCNetworkReachabilityFlagsConnectionAutomatic")]
         const ConnectionAutomatic = SCNetworkReachabilityFlags::ConnectionOnTraffic.0;
+        const _ = !0;
     }
 }
 

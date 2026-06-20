@@ -45,6 +45,7 @@ bitflags::bitflags! {
         const AnyVideo = 0xff00;
         #[doc(alias = "MPMediaTypeAny")]
         const Any = !0;
+        const _ = !0;
     }
 }
 

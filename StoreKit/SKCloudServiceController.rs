@@ -56,6 +56,7 @@ bitflags::bitflags! {
         #[doc(alias = "SKCloudServiceCapabilityAddToCloudMusicLibrary")]
 #[deprecated = "Use MusicSubscription from MusicKit."]
         const AddToCloudMusicLibrary = 1<<8;
+        const _ = !0;
     }
 }
 

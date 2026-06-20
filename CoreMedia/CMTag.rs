@@ -220,6 +220,7 @@ bitflags::bitflags! {
         const LeftEye = 1<<0;
         #[doc(alias = "kCMStereoView_RightEye")]
         const RightEye = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -278,6 +279,7 @@ bitflags::bitflags! {
         const StereoOrderReversed = 1<<0;
         #[doc(alias = "kCMStereoViewInterpretation_AdditionalViews")]
         const AdditionalViews = 1<<1;
+        const _ = !0;
     }
 }
 

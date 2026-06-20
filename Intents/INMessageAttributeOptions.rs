@@ -21,6 +21,7 @@ bitflags::bitflags! {
         const Unflagged = 1<<3;
         #[doc(alias = "INMessageAttributeOptionPlayed")]
         const Played = 1<<4;
+        const _ = !0;
     }
 }
 

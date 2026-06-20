@@ -227,6 +227,7 @@ bitflags::bitflags! {
     impl CVPixelBufferLockFlags: CVOptionFlags {
         #[doc(alias = "kCVPixelBufferLock_ReadOnly")]
         const ReadOnly = 0x00000001;
+        const _ = !0;
     }
 }
 

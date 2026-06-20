@@ -21,6 +21,7 @@ bitflags::bitflags! {
         const ImmediatelyAvailableMetadataOnly = 1<<2;
         #[doc(alias = "NSFileCoordinatorReadingForUploading")]
         const ForUploading = 1<<3;
+        const _ = !0;
     }
 }
 
@@ -49,6 +50,7 @@ bitflags::bitflags! {
         const ForReplacing = 1<<3;
         #[doc(alias = "NSFileCoordinatorWritingContentIndependentMetadataOnly")]
         const ContentIndependentMetadataOnly = 1<<4;
+        const _ = !0;
     }
 }
 

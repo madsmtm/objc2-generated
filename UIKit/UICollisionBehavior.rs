@@ -22,6 +22,7 @@ bitflags::bitflags! {
         const Boundaries = 1<<1;
         #[doc(alias = "UICollisionBehaviorModeEverything")]
         const Everything = NSUIntegerMax as _;
+        const _ = !0;
     }
 }
 

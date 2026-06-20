@@ -184,6 +184,7 @@ bitflags::bitflags! {
         const PixelFormatView = 0x0010;
         #[doc(alias = "MTLTextureUsageShaderAtomic")]
         const ShaderAtomic = 0x0020;
+        const _ = !0;
     }
 }
 

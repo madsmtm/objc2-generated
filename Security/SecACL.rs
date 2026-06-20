@@ -26,6 +26,7 @@ bitflags::bitflags! {
         const Invalid = 0x0040;
         #[doc(alias = "kSecKeychainPromptInvalidAct")]
         const InvalidAct = 0x0080;
+        const _ = !0;
     }
 }
 

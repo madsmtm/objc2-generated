@@ -22,6 +22,7 @@ bitflags::bitflags! {
 /// The resource has been created in App Store Connect but isn't yet associated with a released version of an App.
         #[doc(alias = "GKReleaseStatePrereleased")]
         const Prereleased = 2;
+        const _ = !0;
     }
 }
 

@@ -66,6 +66,7 @@ bitflags::bitflags! {
         const ClassScripts = 10<<28;
         #[doc(alias = "NSFontDescriptorClassSymbolic")]
         const ClassSymbolic = 12<<28;
+        const _ = !0;
     }
 }
 

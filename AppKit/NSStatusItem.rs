@@ -23,6 +23,7 @@ bitflags::bitflags! {
         const RemovalAllowed = 1<<1;
         #[doc(alias = "NSStatusItemBehaviorTerminationOnRemoval")]
         const TerminationOnRemoval = 1<<2;
+        const _ = !0;
     }
 }
 

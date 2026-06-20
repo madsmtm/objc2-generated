@@ -26,6 +26,7 @@ bitflags::bitflags! {
         const JoinNames = 1<<4;
         #[doc(alias = "NLTaggerJoinContractions")]
         const JoinContractions = 1<<5;
+        const _ = !0;
     }
 }
 

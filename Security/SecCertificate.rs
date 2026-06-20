@@ -779,6 +779,7 @@ bitflags::bitflags! {
         const Critical = 1<<31;
         #[doc(alias = "kSecKeyUsageAll")]
         const All = 0x7FFFFFFF;
+        const _ = !0;
     }
 }
 

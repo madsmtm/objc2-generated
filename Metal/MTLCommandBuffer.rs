@@ -163,6 +163,7 @@ bitflags::bitflags! {
         const None = 0;
         #[doc(alias = "MTLCommandBufferErrorOptionEncoderExecutionStatus")]
         const EncoderExecutionStatus = 1<<0;
+        const _ = !0;
     }
 }
 

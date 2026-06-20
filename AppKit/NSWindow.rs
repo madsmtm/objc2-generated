@@ -54,6 +54,7 @@ bitflags::bitflags! {
         const NonactivatingPanel = 1<<7;
         #[doc(alias = "NSWindowStyleMaskHUDWindow")]
         const HUDWindow = 1<<13;
+        const _ = !0;
     }
 }
 
@@ -179,6 +180,7 @@ bitflags::bitflags! {
         const Auxiliary = 1<<17;
         #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllApplications")]
         const CanJoinAllApplications = 1<<18;
+        const _ = !0;
     }
 }
 
@@ -229,6 +231,7 @@ bitflags::bitflags! {
         const AllApplications = 1<<0;
         #[doc(alias = "NSWindowNumberListAllSpaces")]
         const AllSpaces = 1<<4;
+        const _ = !0;
     }
 }
 
@@ -249,6 +252,7 @@ bitflags::bitflags! {
     impl NSWindowOcclusionState: NSUInteger {
         #[doc(alias = "NSWindowOcclusionStateVisible")]
         const Visible = 1<<1;
+        const _ = !0;
     }
 }
 

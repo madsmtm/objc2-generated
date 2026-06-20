@@ -33,6 +33,7 @@ bitflags::bitflags! {
         const CenteredHorizontally = 1<<4;
         #[doc(alias = "UICollectionViewScrollPositionRight")]
         const Right = 1<<5;
+        const _ = !0;
     }
 }
 

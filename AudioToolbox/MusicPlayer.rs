@@ -60,6 +60,7 @@ bitflags::bitflags! {
         const SMF_PreserveTracks = 0;
         #[doc(alias = "kMusicSequenceLoadSMF_ChannelsToTracks")]
         const SMF_ChannelsToTracks = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -157,6 +158,7 @@ bitflags::bitflags! {
         const Default = 0;
         #[doc(alias = "kMusicSequenceFileFlags_EraseFile")]
         const EraseFile = 1;
+        const _ = !0;
     }
 }
 

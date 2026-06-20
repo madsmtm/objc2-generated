@@ -51,6 +51,7 @@ bitflags::bitflags! {
         const EarlyReflections = 1<<1;
         #[doc(alias = "PHASESpatialPipelineFlagLateReverb")]
         const LateReverb = 1<<2;
+        const _ = !0;
     }
 }
 

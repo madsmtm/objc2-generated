@@ -26,6 +26,7 @@ bitflags::bitflags! {
         const AllowReadOnly = 1<<2;
         #[doc(alias = "UICloudSharingPermissionAllowReadWrite")]
         const AllowReadWrite = 1<<3;
+        const _ = !0;
     }
 }
 

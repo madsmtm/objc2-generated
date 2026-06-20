@@ -140,6 +140,7 @@ bitflags::bitflags! {
 /// CFStringTokenizerGetCurrentSubTokens.
         #[doc(alias = "kCFStringTokenizerTokenIsCJWordMask")]
         const IsCJWordMask = 1<<5;
+        const _ = !0;
     }
 }
 

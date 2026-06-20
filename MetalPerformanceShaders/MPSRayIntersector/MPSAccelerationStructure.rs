@@ -59,6 +59,7 @@ bitflags::bitflags! {
         #[doc(alias = "MPSAccelerationStructureUsagePreferCPUBuild")]
 #[deprecated]
         const PreferCPUBuild = 8;
+        const _ = !0;
     }
 }
 

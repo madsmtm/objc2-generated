@@ -18,6 +18,7 @@ bitflags::bitflags! {
         const None = 0;
         #[doc(alias = "VSUserAccountQueryAllDevices")]
         const AllDevices = 1;
+        const _ = !0;
     }
 }
 

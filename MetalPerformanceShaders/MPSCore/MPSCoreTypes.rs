@@ -62,6 +62,7 @@ bitflags::bitflags! {
 /// ```
         #[doc(alias = "MPSKernelOptionsVerbose")]
         const Verbose = 1<<4;
+        const _ = !0;
     }
 }
 
@@ -294,6 +295,7 @@ bitflags::bitflags! {
 /// The view must alias the original.  Typical usage for views used for destination slicing.
         #[doc(alias = "MPSAliasingStrategyPreferNonTemporaryMemory")]
         const PreferNonTemporaryMemory = 1<<3;
+        const _ = !0;
     }
 }
 

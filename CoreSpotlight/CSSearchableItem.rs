@@ -45,6 +45,7 @@ bitflags::bitflags! {
         const Summarization = 1<<1;
         #[doc(alias = "CSSearchableItemUpdateListenerOptionPriority")]
         const Priority = 1<<2;
+        const _ = !0;
     }
 }
 

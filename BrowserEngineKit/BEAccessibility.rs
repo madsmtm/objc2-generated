@@ -64,6 +64,7 @@ bitflags::bitflags! {
         const Alert = 1<<10;
         #[doc(alias = "BEAccessibilityContainerTypeDescriptionList")]
         const DescriptionList = 1<<11;
+        const _ = !0;
     }
 }
 

@@ -30,6 +30,7 @@ bitflags::bitflags! {
         const SupportsDialects = 0x0080;
         #[doc(alias = "OSASupportsEventHandling")]
         const SupportsEventHandling = 0x0100;
+        const _ = !0;
     }
 }
 

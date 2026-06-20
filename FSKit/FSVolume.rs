@@ -49,6 +49,7 @@ bitflags::bitflags! {
 /// An option to force deactivation.
         #[doc(alias = "FSDeactivateOptionsForce")]
         const Force = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -101,6 +102,7 @@ bitflags::bitflags! {
 /// An option to request a read-only mount.
         #[doc(alias = "FSMountOptionsReadOnly")]
         const ReadOnly = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -1565,6 +1567,7 @@ bitflags::bitflags! {
 /// This mode is equivalent to POSIX `FRWITE`.
         #[doc(alias = "FSVolumeOpenModesWrite")]
         const Write = 2;
+        const _ = !0;
     }
 }
 
@@ -1777,6 +1780,7 @@ bitflags::bitflags! {
 /// The file system allows taking ownership of a file.
         #[doc(alias = "FSAccessTakeOwnership")]
         const TakeOwnership = 1<<13;
+        const _ = !0;
     }
 }
 
@@ -1896,6 +1900,7 @@ bitflags::bitflags! {
 /// This flag is currently set for all ``FSVolume/PreallocateOperations/preallocateSpace(for:at:length:flags:replyHandler:)`` calls.
         #[doc(alias = "FSPreallocateFlagsFromEOF")]
         const FromEOF = 0x00000010;
+        const _ = !0;
     }
 }
 
@@ -1994,6 +1999,7 @@ bitflags::bitflags! {
 /// It is only meaningful for volumes that conform to ``FSVolume/PreallocateOperations``.
         #[doc(alias = "FSItemDeactivationForPreallocatedItems")]
         const ForPreallocatedItems = 1<<1;
+        const _ = !0;
     }
 }
 

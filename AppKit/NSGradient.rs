@@ -20,6 +20,7 @@ bitflags::bitflags! {
         const DrawsBeforeStartingLocation = 1<<0;
         #[doc(alias = "NSGradientDrawsAfterEndingLocation")]
         const DrawsAfterEndingLocation = 1<<1;
+        const _ = !0;
     }
 }
 

@@ -55,6 +55,7 @@ bitflags::bitflags! {
         const Modified = 1<<0;
         #[doc(alias = "kPasteboardClientIsOwner")]
         const ClientIsOwner = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -89,6 +90,7 @@ bitflags::bitflags! {
         const SystemTranslated = 1<<8;
         #[doc(alias = "kPasteboardFlavorPromised")]
         const Promised = 1<<9;
+        const _ = !0;
     }
 }
 

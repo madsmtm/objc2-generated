@@ -256,6 +256,7 @@ bitflags::bitflags! {
         const SilentOnTouch = 1<<0;
         #[doc(alias = "UIAccessibilityDirectTouchOptionRequiresActivation")]
         const RequiresActivation = 1<<1;
+        const _ = !0;
     }
 }
 

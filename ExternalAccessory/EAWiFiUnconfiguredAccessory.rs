@@ -24,6 +24,7 @@ bitflags::bitflags! {
         const SupportsAirPrint = 1<<1;
         #[doc(alias = "EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit")]
         const SupportsHomeKit = 1<<2;
+        const _ = !0;
     }
 }
 

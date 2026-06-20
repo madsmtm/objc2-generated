@@ -129,6 +129,7 @@ bitflags::bitflags! {
     impl AXCopyMultipleAttributeOptions: u32 {
         #[doc(alias = "kAXCopyMultipleAttributeOptionStopOnError")]
         const StopOnError = 0x1;
+        const _ = !0;
     }
 }
 

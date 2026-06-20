@@ -55,6 +55,7 @@ bitflags::bitflags! {
         const DropAll = NSDateComponentsFormatterZeroFormattingBehavior::DropLeading.0|NSDateComponentsFormatterZeroFormattingBehavior::DropMiddle.0|NSDateComponentsFormatterZeroFormattingBehavior::DropTrailing.0;
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorPad")]
         const Pad = 1<<16;
+        const _ = !0;
     }
 }
 

@@ -223,6 +223,7 @@ bitflags::bitflags! {
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsAll")]
 #[deprecated = "This capability is no longer supported, and does not contain all capabilities. Please migrate to directly specifying each of the individual capabilities that should be allowed for the item."]
         const AllowsAll = NSFileProviderItemCapabilities::AllowsReading.0|NSFileProviderItemCapabilities::AllowsWriting.0|NSFileProviderItemCapabilities::AllowsReparenting.0|NSFileProviderItemCapabilities::AllowsRenaming.0|NSFileProviderItemCapabilities::AllowsTrashing.0|NSFileProviderItemCapabilities::AllowsDeleting.0;
+        const _ = !0;
     }
 }
 
@@ -268,6 +269,7 @@ bitflags::bitflags! {
         const ExtendedAttributes = 1<<9;
         #[doc(alias = "NSFileProviderItemTypeAndCreator")]
         const TypeAndCreator = 1<<10;
+        const _ = !0;
     }
 }
 
@@ -305,6 +307,7 @@ bitflags::bitflags! {
 /// The extension of the item should not be presented in the file viewers.
         #[doc(alias = "NSFileProviderFileSystemPathExtensionHidden")]
         const PathExtensionHidden = 1<<4;
+        const _ = !0;
     }
 }
 

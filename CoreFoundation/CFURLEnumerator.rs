@@ -59,6 +59,7 @@ bitflags::bitflags! {
         const IncludeDirectoriesPostOrder = 1<<5;
         #[doc(alias = "kCFURLEnumeratorGenerateRelativePathURLs")]
         const GenerateRelativePathURLs = 1<<6;
+        const _ = !0;
     }
 }
 

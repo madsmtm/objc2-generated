@@ -48,6 +48,7 @@ bitflags::bitflags! {
 /// Whether the movie or show supports audio descriptions.
         #[doc(alias = "TVTopShelfCarouselItemAudioDescription")]
         const AudioDescription = 1<<15;
+        const _ = !0;
     }
 }
 

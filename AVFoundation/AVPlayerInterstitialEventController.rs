@@ -30,6 +30,7 @@ bitflags::bitflags! {
 /// Indicates that advancing the currentTime within an interstitial item, either by seeking ahead or by setting the playback rate to a value greater than the item's asset's preferredRate, is not permitted.
         #[doc(alias = "AVPlayerInterstitialEventRestrictionDefaultPolicy")]
         const DefaultPolicy = AVPlayerInterstitialEventRestrictions::None.0;
+        const _ = !0;
     }
 }
 

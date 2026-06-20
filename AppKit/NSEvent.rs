@@ -267,6 +267,7 @@ bitflags::bitflags! {
         const MouseCancelled = 1<<NSEventType::MouseCancelled.0;
         #[doc(alias = "NSEventMaskAny")]
         const Any = NSUIntegerMax as _;
+        const _ = !0;
     }
 }
 
@@ -403,6 +404,7 @@ bitflags::bitflags! {
         const Function = 1<<23;
         #[doc(alias = "NSEventModifierFlagDeviceIndependentFlagsMask")]
         const DeviceIndependentFlagsMask = 0xffff0000;
+        const _ = !0;
     }
 }
 
@@ -515,6 +517,7 @@ bitflags::bitflags! {
         const PenLowerSide = 2;
         #[doc(alias = "NSEventButtonMaskPenUpperSide")]
         const PenUpperSide = 4;
+        const _ = !0;
     }
 }
 
@@ -561,6 +564,7 @@ bitflags::bitflags! {
         const Cancelled = 0x1<<4;
         #[doc(alias = "NSEventPhaseMayBegin")]
         const MayBegin = 0x1<<5;
+        const _ = !0;
     }
 }
 
@@ -605,6 +609,7 @@ bitflags::bitflags! {
         const LockDirection = 0x1<<0;
         #[doc(alias = "NSEventSwipeTrackingClampGestureAmount")]
         const ClampGestureAmount = 0x1<<1;
+        const _ = !0;
     }
 }
 

@@ -25,6 +25,7 @@ bitflags::bitflags! {
         const SubLocality = 1<<4;
         #[doc(alias = "MKAddressFilterOptionPostalCode")]
         const PostalCode = 1<<5;
+        const _ = !0;
     }
 }
 

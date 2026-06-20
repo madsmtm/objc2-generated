@@ -47,6 +47,7 @@ bitflags::bitflags! {
         const Elastic = 1<<2;
         #[doc(alias = "NSGlyphPropertyNonBaseCharacter")]
         const NonBaseCharacter = 1<<3;
+        const _ = !0;
     }
 }
 
@@ -77,6 +78,7 @@ bitflags::bitflags! {
         const ParagraphBreak = 1<<4;
         #[doc(alias = "NSControlCharacterActionContainerBreak")]
         const ContainerBreak = 1<<5;
+        const _ = !0;
     }
 }
 

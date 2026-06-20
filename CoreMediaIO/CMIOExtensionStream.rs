@@ -90,6 +90,7 @@ bitflags::bitflags! {
         const Time = 1<<1;
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagSampleDropped")]
         const SampleDropped = 1<<6;
+        const _ = !0;
     }
 }
 

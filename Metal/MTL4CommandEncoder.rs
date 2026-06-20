@@ -28,6 +28,7 @@ bitflags::bitflags! {
 /// and on other systems it may be the GPU (device) memory coherence point.
         #[doc(alias = "MTL4VisibilityOptionResourceAlias")]
         const ResourceAlias = 1<<1;
+        const _ = !0;
     }
 }
 

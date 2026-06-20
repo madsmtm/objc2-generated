@@ -20,6 +20,7 @@ bitflags::bitflags! {
         const ReadOnly = 0x00000001;
         #[doc(alias = "kIOSurfaceLockAvoidSync")]
         const AvoidSync = 0x00000002;
+        const _ = !0;
     }
 }
 
@@ -52,6 +53,7 @@ bitflags::bitflags! {
         const PurgeableEmpty = 2;
         #[doc(alias = "kIOSurfacePurgeableKeepCurrent")]
         const PurgeableKeepCurrent = 3;
+        const _ = !0;
     }
 }
 

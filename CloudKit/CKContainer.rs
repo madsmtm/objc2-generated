@@ -296,6 +296,7 @@ bitflags::bitflags! {
         #[doc(alias = "CKApplicationPermissionUserDiscoverability")]
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         const UserDiscoverability = 1<<0;
+        const _ = !0;
     }
 }
 

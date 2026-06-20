@@ -40,6 +40,7 @@ bitflags::bitflags! {
         const IntegerPersonality = 5<<8;
         #[doc(alias = "NSPointerFunctionsCopyIn")]
         const CopyIn = 1<<16;
+        const _ = !0;
     }
 }
 

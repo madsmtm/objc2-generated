@@ -252,6 +252,7 @@ bitflags::bitflags! {
         const NSCalendarCalendarUnit = 1048576;
 #[deprecated]
         const NSTimeZoneCalendarUnit = 2097152;
+        const _ = !0;
     }
 }
 
@@ -286,6 +287,7 @@ bitflags::bitflags! {
         const MatchFirst = 1<<12;
         #[doc(alias = "NSCalendarMatchLast")]
         const MatchLast = 1<<13;
+        const _ = !0;
     }
 }
 

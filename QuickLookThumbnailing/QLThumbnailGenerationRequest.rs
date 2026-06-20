@@ -26,6 +26,7 @@ bitflags::bitflags! {
         const Thumbnail = 1<<2;
         #[doc(alias = "QLThumbnailGenerationRequestRepresentationTypeAll")]
         const All = NSUIntegerMax as _;
+        const _ = !0;
     }
 }
 

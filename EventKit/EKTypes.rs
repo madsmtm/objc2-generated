@@ -307,6 +307,7 @@ bitflags::bitflags! {
         const Tentative = 1<<2;
         #[doc(alias = "EKCalendarEventAvailabilityUnavailable")]
         const Unavailable = 1<<3;
+        const _ = !0;
     }
 }
 
@@ -381,6 +382,7 @@ bitflags::bitflags! {
         const Event = 1<<EKEntityType::Event.0;
         #[doc(alias = "EKEntityMaskReminder")]
         const Reminder = 1<<EKEntityType::Reminder.0;
+        const _ = !0;
     }
 }
 

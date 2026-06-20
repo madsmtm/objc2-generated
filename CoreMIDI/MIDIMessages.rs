@@ -271,6 +271,7 @@ bitflags::bitflags! {
     impl MIDIProgramChangeOptions: u8 {
         #[doc(alias = "kMIDIProgramChangeBankValid")]
         const BankValid = 0x1;
+        const _ = !0;
     }
 }
 
@@ -295,6 +296,7 @@ bitflags::bitflags! {
         const Reset = 0x1;
         #[doc(alias = "kMIDIPerNoteManagementDetach")]
         const Detach = 0x2;
+        const _ = !0;
     }
 }
 

@@ -68,6 +68,7 @@ bitflags::bitflags! {
         const SkipInternalAuth = 1<<9;
         #[doc(alias = "kAuthorizationFlagNoData")]
         const NoData = 1<<20;
+        const _ = !0;
     }
 }
 

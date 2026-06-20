@@ -133,6 +133,7 @@ bitflags::bitflags! {
         const Reverse = 1<<1;
         #[doc(alias = "NSAttributedStringEnumerationLongestEffectiveRangeNotRequired")]
         const LongestEffectiveRangeNotRequired = 1<<20;
+        const _ = !0;
     }
 }
 
@@ -488,6 +489,7 @@ bitflags::bitflags! {
         const InlineHTML = 1<<8;
         #[doc(alias = "NSInlinePresentationIntentBlockHTML")]
         const BlockHTML = 1<<9;
+        const _ = !0;
     }
 }
 
@@ -840,6 +842,7 @@ bitflags::bitflags! {
         const InsertArgumentAttributesWithoutMerging = 1<<0;
         #[doc(alias = "NSAttributedStringFormattingApplyReplacementIndexAttribute")]
         const ApplyReplacementIndexAttribute = 1<<1;
+        const _ = !0;
     }
 }
 

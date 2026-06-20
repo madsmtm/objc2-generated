@@ -323,6 +323,7 @@ bitflags::bitflags! {
         const OmitOther = 1<<3;
         #[doc(alias = "NSLinguisticTaggerJoinNames")]
         const JoinNames = 1<<4;
+        const _ = !0;
     }
 }
 

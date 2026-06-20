@@ -161,6 +161,7 @@ bitflags::bitflags! {
         const SpacingBaselineToBaseline = 1<<19;
         #[doc(alias = "NSLayoutFormatSpacingMask")]
         const SpacingMask = 0x1<<19;
+        const _ = !0;
     }
 }
 

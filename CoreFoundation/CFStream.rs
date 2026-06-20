@@ -86,6 +86,7 @@ bitflags::bitflags! {
         const ErrorOccurred = 8;
         #[doc(alias = "kCFStreamEventEndEncountered")]
         const EndEncountered = 16;
+        const _ = !0;
     }
 }
 

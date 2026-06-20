@@ -4056,6 +4056,7 @@ bitflags::bitflags! {
         const DoNotSaveProperties = 0x4;
         #[doc(alias = "kIOHIDManagerOptionIndependentDevices")]
         const IndependentDevices = 0x8;
+        const _ = !0;
     }
 }
 
@@ -9845,6 +9846,7 @@ bitflags::bitflags! {
         const None = 0x0;
         #[doc(alias = "kIOHIDTransactionOptionsWeakDevice")]
         const WeakDevice = 0x1;
+        const _ = !0;
     }
 }
 

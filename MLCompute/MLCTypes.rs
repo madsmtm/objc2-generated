@@ -178,6 +178,7 @@ bitflags::bitflags! {
 /// compute all gradients for the input.
         #[doc(alias = "MLCGraphCompilationOptionsComputeAllGradients")]
         const ComputeAllGradients = 0x08;
+        const _ = !0;
     }
 }
 
@@ -240,6 +241,7 @@ bitflags::bitflags! {
 /// can be visualized using the Logging Instrument in Xcode's Instruments. This information may not be available for all MLCDevice.
         #[doc(alias = "MLCExecutionOptionsPerLayerProfiling")]
         const PerLayerProfiling = 0x10;
+        const _ = !0;
     }
 }
 

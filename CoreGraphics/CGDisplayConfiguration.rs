@@ -117,6 +117,7 @@ bitflags::bitflags! {
         const ForSession = 1;
         #[doc(alias = "kCGConfigurePermanently")]
         const Permanently = 2;
+        const _ = !0;
     }
 }
 
@@ -178,6 +179,7 @@ bitflags::bitflags! {
         const UnMirrorFlag = 1<<11;
         #[doc(alias = "kCGDisplayDesktopShapeChangedFlag")]
         const DesktopShapeChangedFlag = 1<<12;
+        const _ = !0;
     }
 }
 

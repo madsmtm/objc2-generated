@@ -39,6 +39,7 @@ bitflags::bitflags! {
         const VisualSearch = 1<<3;
         #[doc(alias = "AVVideoFrameAnalysisTypeMachineReadableCode")]
         const MachineReadableCode = 1<<4;
+        const _ = !0;
     }
 }
 

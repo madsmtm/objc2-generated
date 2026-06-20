@@ -22,6 +22,7 @@ bitflags::bitflags! {
         const Smart = 1<<1;
         #[doc(alias = "MPMediaPlaylistAttributeGenius")]
         const Genius = 1<<2;
+        const _ = !0;
     }
 }
 

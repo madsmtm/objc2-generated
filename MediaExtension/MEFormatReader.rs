@@ -68,6 +68,7 @@ bitflags::bitflags! {
         const FragmentAdded = 1<<1;
         #[doc(alias = "MEFormatReaderParseAdditionalFragmentsStatusFragmentsComplete")]
         const FragmentsComplete = 1<<2;
+        const _ = !0;
     }
 }
 

@@ -40,6 +40,7 @@ bitflags::bitflags! {
         const Interrupts = 1<<2;
         #[doc(alias = "PHASEPushStreamBufferInterruptsAtLoop")]
         const InterruptsAtLoop = 1<<3;
+        const _ = !0;
     }
 }
 

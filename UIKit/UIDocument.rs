@@ -70,6 +70,7 @@ bitflags::bitflags! {
         const EditingDisabled = 1<<3;
         #[doc(alias = "UIDocumentStateProgressAvailable")]
         const ProgressAvailable = 1<<4;
+        const _ = !0;
     }
 }
 

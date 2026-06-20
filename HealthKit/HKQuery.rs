@@ -64,6 +64,7 @@ bitflags::bitflags! {
         const StrictStartDate = 1<<0;
         #[doc(alias = "HKQueryOptionStrictEndDate")]
         const StrictEndDate = 1<<1;
+        const _ = !0;
     }
 }
 

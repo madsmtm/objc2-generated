@@ -20,6 +20,7 @@ bitflags::bitflags! {
         const PointOfInterest = 1<<1;
         #[doc(alias = "MKLocalSearchResultTypePhysicalFeature")]
         const PhysicalFeature = 1<<2;
+        const _ = !0;
     }
 }
 

@@ -21,6 +21,7 @@ bitflags::bitflags! {
         const Cycling = 1<<3;
         #[doc(alias = "MKDirectionsTransportTypeAny")]
         const Any = 0x0FFFFFFF;
+        const _ = !0;
     }
 }
 

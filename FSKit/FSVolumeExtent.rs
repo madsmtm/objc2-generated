@@ -36,6 +36,7 @@ bitflags::bitflags! {
 /// A flag that describes a write operation.
         #[doc(alias = "FSBlockmapFlagsWrite")]
         const Write = 0x000200;
+        const _ = !0;
     }
 }
 
@@ -68,6 +69,7 @@ bitflags::bitflags! {
 /// A flag that requests that the file system module flush metadata I/O asynchronously.
         #[doc(alias = "FSCompleteIOFlagsAsync")]
         const Async = 0x000400;
+        const _ = !0;
     }
 }
 

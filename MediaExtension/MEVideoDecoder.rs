@@ -217,6 +217,7 @@ bitflags::bitflags! {
         const NoStatus = 0;
         #[doc(alias = "MEDecodeFrameFrameDropped")]
         const FrameDropped = 1<<0;
+        const _ = !0;
     }
 }
 

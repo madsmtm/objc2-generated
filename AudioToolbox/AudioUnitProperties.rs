@@ -1016,6 +1016,7 @@ bitflags::bitflags! {
         const Flag_IsReadable = 1<<30;
         #[doc(alias = "kAudioUnitParameterFlag_IsWritable")]
         const Flag_IsWritable = 1<<31;
+        const _ = !0;
     }
 }
 
@@ -1308,6 +1309,7 @@ bitflags::bitflags! {
         const Bipolar = 1<<4;
         #[doc(alias = "kAUParameterMIDIMapping_Bipolar_On")]
         const Bipolar_On = 1<<5;
+        const _ = !0;
     }
 }
 
@@ -2061,6 +2063,7 @@ bitflags::bitflags! {
         const SpatialMixerRenderingFlags_InterAuralDelay = 1<<0;
         #[doc(alias = "kSpatialMixerRenderingFlags_DistanceAttenuation")]
         const SpatialMixerRenderingFlags_DistanceAttenuation = 1<<2;
+        const _ = !0;
     }
 }
 
@@ -2220,6 +2223,7 @@ bitflags::bitflags! {
         const k3DMixerRenderingFlags_DistanceDiffusion = 1<<4;
         const k3DMixerRenderingFlags_LinearDistanceAttenuation = 1<<5;
         const k3DMixerRenderingFlags_ConstantReverbBlend = 1<<6;
+        const _ = !0;
     }
 }
 
@@ -2298,6 +2302,7 @@ bitflags::bitflags! {
         const ScheduledAudioSliceFlag_Interrupt = 0x10;
         #[doc(alias = "kScheduledAudioSliceFlag_InterruptAtLoop")]
         const ScheduledAudioSliceFlag_InterruptAtLoop = 0x20;
+        const _ = !0;
     }
 }
 

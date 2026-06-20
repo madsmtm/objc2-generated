@@ -98,6 +98,7 @@ bitflags::bitflags! {
         const None = 0;
         #[doc(alias = "MTLStoreActionOptionCustomSamplePositions")]
         const CustomSamplePositions = 1<<0;
+        const _ = !0;
     }
 }
 

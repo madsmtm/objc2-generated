@@ -59,6 +59,7 @@ bitflags::bitflags! {
         const URL = 1<<8;
         #[doc(alias = "WKWebExtensionTabChangedPropertiesZoomFactor")]
         const ZoomFactor = 1<<9;
+        const _ = !0;
     }
 }
 

@@ -25,6 +25,7 @@ bitflags::bitflags! {
         const ViewPropertiesDisplayFlag = 1<<1;
         #[doc(alias = "AUViewParametersDisplayFlag")]
         const ViewParametersDisplayFlag = 1<<2;
+        const _ = !0;
     }
 }
 

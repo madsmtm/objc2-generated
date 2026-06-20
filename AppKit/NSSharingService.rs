@@ -455,6 +455,7 @@ bitflags::bitflags! {
 /// The user is allowed to grant participants read/write permissions.
         #[doc(alias = "NSCloudKitSharingServiceAllowReadWrite")]
         const AllowReadWrite = 1<<5;
+        const _ = !0;
     }
 }
 

@@ -284,6 +284,7 @@ bitflags::bitflags! {
         const Backwards = 1<<0;
         #[doc(alias = "kCFDataSearchAnchored")]
         const Anchored = 1<<1;
+        const _ = !0;
     }
 }
 

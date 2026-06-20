@@ -45,6 +45,7 @@ bitflags::bitflags! {
         const Query = 1<<2;
         #[doc(alias = "MKLocalSearchCompleterResultTypePhysicalFeature")]
         const PhysicalFeature = 1<<3;
+        const _ = !0;
     }
 }
 

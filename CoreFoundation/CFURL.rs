@@ -1694,6 +1694,7 @@ bitflags::bitflags! {
         #[doc(alias = "kCFURLBookmarkCreationPreferFileIDResolutionMask")]
 #[deprecated = "kCFURLBookmarkCreationPreferFileIDResolutionMask does nothing and has no effect on bookmark resolution"]
         const PreferFileIDResolutionMask = 1<<8;
+        const _ = !0;
     }
 }
 
@@ -1726,6 +1727,7 @@ bitflags::bitflags! {
         const CFBookmarkResolutionWithoutUIMask = CFURLBookmarkResolutionOptions::CFURLBookmarkResolutionWithoutUIMask.0;
         #[doc(alias = "kCFBookmarkResolutionWithoutMountingMask")]
         const CFBookmarkResolutionWithoutMountingMask = CFURLBookmarkResolutionOptions::CFURLBookmarkResolutionWithoutMountingMask.0;
+        const _ = !0;
     }
 }
 

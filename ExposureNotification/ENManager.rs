@@ -73,6 +73,7 @@ bitflags::bitflags! {
 /// The app launched in the foreground to display information about the pre-authorized key release
         #[doc(alias = "ENActivityFlagsPreAuthorizedKeyReleaseNotificationTapped")]
         const PreAuthorizedKeyReleaseNotificationTapped = 1<<3;
+        const _ = !0;
     }
 }
 

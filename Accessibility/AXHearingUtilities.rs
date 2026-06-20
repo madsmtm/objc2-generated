@@ -21,6 +21,7 @@ bitflags::bitflags! {
         const Right = 1<<2;
         #[doc(alias = "AXHearingDeviceEarBoth")]
         const Both = AXHearingDeviceEar::Left.0|AXHearingDeviceEar::Right.0;
+        const _ = !0;
     }
 }
 

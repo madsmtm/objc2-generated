@@ -269,6 +269,7 @@ bitflags::bitflags! {
         const AttrAppleCodesigningHashAgilityV2 = 0x0020;
         #[doc(alias = "kCMSAttrAppleExpirationTime")]
         const AttrAppleExpirationTime = 0x0040;
+        const _ = !0;
     }
 }
 

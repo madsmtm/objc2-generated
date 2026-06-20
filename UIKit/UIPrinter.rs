@@ -37,6 +37,7 @@ bitflags::bitflags! {
         const LargeFormat = 1<<6;
         #[doc(alias = "UIPrinterJobTypePostcard")]
         const Postcard = 1<<7;
+        const _ = !0;
     }
 }
 

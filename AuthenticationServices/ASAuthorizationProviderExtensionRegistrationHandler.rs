@@ -54,6 +54,7 @@ bitflags::bitflags! {
         const UserKeyInvalid = 1<<5;
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsSetupAssistant")]
         const SetupAssistant = 1<<6;
+        const _ = !0;
     }
 }
 
@@ -106,6 +107,7 @@ bitflags::bitflags! {
         const SAML1_1 = 1<<2;
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML2_0")]
         const SAML2_0 = 1<<3;
+        const _ = !0;
     }
 }
 

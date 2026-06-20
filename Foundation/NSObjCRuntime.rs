@@ -300,6 +300,7 @@ bitflags::bitflags! {
         const Concurrent = 1<<0;
         #[doc(alias = "NSEnumerationReverse")]
         const Reverse = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -322,6 +323,7 @@ bitflags::bitflags! {
         const Concurrent = 1<<0;
         #[doc(alias = "NSSortStable")]
         const Stable = 1<<4;
+        const _ = !0;
     }
 }
 

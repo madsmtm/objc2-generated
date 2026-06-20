@@ -16,6 +16,7 @@ bitflags::bitflags! {
     impl NSTextListOptions: NSUInteger {
         #[doc(alias = "NSTextListPrependEnclosingMarker")]
         const PrependEnclosingMarker = 1<<0;
+        const _ = !0;
     }
 }
 

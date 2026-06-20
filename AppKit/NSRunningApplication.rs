@@ -26,6 +26,7 @@ bitflags::bitflags! {
         #[doc(alias = "NSApplicationActivateIgnoringOtherApps")]
 #[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
         const ActivateIgnoringOtherApps = 1<<1;
+        const _ = !0;
     }
 }
 

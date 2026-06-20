@@ -126,6 +126,7 @@ bitflags::bitflags! {
         const Exit = 1<<7;
         #[doc(alias = "kCFRunLoopAllActivities")]
         const AllActivities = 0x0FFFFFFF;
+        const _ = !0;
     }
 }
 

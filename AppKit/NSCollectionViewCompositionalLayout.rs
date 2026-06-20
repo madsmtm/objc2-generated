@@ -28,6 +28,7 @@ bitflags::bitflags! {
         const Trailing = 1<<3;
         #[doc(alias = "NSDirectionalRectEdgeAll")]
         const All = NSDirectionalRectEdge::Top.0|NSDirectionalRectEdge::Leading.0|NSDirectionalRectEdge::Bottom.0|NSDirectionalRectEdge::Trailing.0;
+        const _ = !0;
     }
 }
 

@@ -62,6 +62,7 @@ bitflags::bitflags! {
         const Alpha = 0x1<<0;
         #[doc(alias = "SCNColorMaskAll")]
         const All = 0xf;
+        const _ = !0;
     }
 }
 

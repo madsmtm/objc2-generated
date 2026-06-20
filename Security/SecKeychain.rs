@@ -248,6 +248,7 @@ bitflags::bitflags! {
         const TrustSettingsChangedEventMask = 1<<SecKeychainEvent::TrustSettingsChangedEvent.0;
         #[doc(alias = "kSecEveryEventMask")]
         const EveryEventMask = 0xffffffff;
+        const _ = !0;
     }
 }
 

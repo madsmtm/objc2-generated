@@ -227,6 +227,7 @@ bitflags::bitflags! {
     impl CVPixelBufferPoolFlushFlags: CVOptionFlags {
         #[doc(alias = "kCVPixelBufferPoolFlushExcessBuffers")]
         const ExcessBuffers = 1;
+        const _ = !0;
     }
 }
 

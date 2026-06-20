@@ -24,6 +24,7 @@ bitflags::bitflags! {
         #[doc(alias = "UNNotificationCategoryOptionAllowAnnouncement")]
 #[deprecated = "Announcement option is ignored"]
         const AllowAnnouncement = 1<<4;
+        const _ = !0;
     }
 }
 

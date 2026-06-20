@@ -86,6 +86,7 @@ bitflags::bitflags! {
 /// Set accumulator type to single precision float.
         #[doc(alias = "MPSNNConvolutionAccumulatorPrecisionOptionFloat")]
         const Float = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -113,6 +114,7 @@ bitflags::bitflags! {
 /// The weight update pass will be called immediately after the gradient pass is encoded, with a nonnull command buffer
         #[doc(alias = "MPSNNTrainingStyleUpdateDeviceGPU")]
         const UpdateDeviceGPU = 2;
+        const _ = !0;
     }
 }
 
@@ -146,6 +148,7 @@ bitflags::bitflags! {
 /// Bits used for  MPSCNNBatchNormalizationFlagsCalculateStatistics
         #[doc(alias = "MPSCNNBatchNormalizationFlagsCalculateStatisticsMask")]
         const CalculateStatisticsMask = 3;
+        const _ = !0;
     }
 }
 
@@ -216,6 +219,7 @@ bitflags::bitflags! {
 /// where a pixel would read beyond the padding area. Set this bit for Caffe emulation with average pooling.
         #[doc(alias = "MPSNNPaddingMethodExcludeEdges")]
         const ExcludeEdges = 1<<15;
+        const _ = !0;
     }
 }
 

@@ -84,6 +84,7 @@ bitflags::bitflags! {
         const Multichannel = 0x4;
         #[doc(alias = "AVAudioSpatializationFormatMonoStereoAndMultichannel")]
         const MonoStereoAndMultichannel = 0x7;
+        const _ = !0;
     }
 }
 

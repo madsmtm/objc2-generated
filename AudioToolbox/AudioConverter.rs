@@ -224,6 +224,7 @@ bitflags::bitflags! {
     impl AudioConverterOptions: u32 {
         #[doc(alias = "kAudioConverterOption_Unbuffered")]
         const Unbuffered = 1<<16;
+        const _ = !0;
     }
 }
 

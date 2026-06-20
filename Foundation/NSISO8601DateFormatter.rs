@@ -41,6 +41,7 @@ bitflags::bitflags! {
         const WithFullTime = 1632;
         #[doc(alias = "NSISO8601DateFormatWithInternetDateTime")]
         const WithInternetDateTime = 1907;
+        const _ = !0;
     }
 }
 

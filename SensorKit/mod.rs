@@ -2657,6 +2657,7 @@ bitflags::bitflags! {
         const OnCharger = 1<<1;
         #[doc(alias = "SRWristTemperatureConditionInMotion")]
         const InMotion = 1<<2;
+        const _ = !0;
     }
 }
 
@@ -3152,6 +3153,7 @@ bitflags::bitflags! {
         const Default = 0;
         #[doc(alias = "SRSpeechMetricsSessionFlagsBypassVoiceProcessing")]
         const BypassVoiceProcessing = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -3298,6 +3300,7 @@ bitflags::bitflags! {
         const DeviceUnlock = 1<<0;
         #[doc(alias = "SRFaceMetricsContextMessagingAppUsage")]
         const MessagingAppUsage = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -3625,6 +3628,7 @@ bitflags::bitflags! {
 /// Indicates ECG data was recorded when the crown was being touched
         #[doc(alias = "SRElectrocardiogramDataFlagsCrownTouched")]
         const CrownTouched = 1<<1;
+        const _ = !0;
     }
 }
 

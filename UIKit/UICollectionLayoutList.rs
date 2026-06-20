@@ -121,6 +121,7 @@ bitflags::bitflags! {
         const None = 0;
         #[doc(alias = "UICollectionLayoutListContentHuggingElementsSupplementaryHeader")]
         const SupplementaryHeader = 1<<0;
+        const _ = !0;
     }
 }
 

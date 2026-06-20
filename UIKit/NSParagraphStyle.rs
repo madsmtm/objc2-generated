@@ -52,6 +52,7 @@ bitflags::bitflags! {
         const HangulWordPriority = 1<<1;
         #[doc(alias = "NSLineBreakStrategyStandard")]
         const Standard = 0xFFFF;
+        const _ = !0;
     }
 }
 

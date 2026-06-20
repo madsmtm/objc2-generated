@@ -44,6 +44,7 @@ bitflags::bitflags! {
     impl NSXPCConnectionOptions: NSUInteger {
         #[doc(alias = "NSXPCConnectionPrivileged")]
         const Privileged = 1<<12;
+        const _ = !0;
     }
 }
 

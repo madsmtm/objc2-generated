@@ -18,6 +18,7 @@ bitflags::bitflags! {
         const MutableContainers = 1;
         #[doc(alias = "NSPropertyListMutableContainersAndLeaves")]
         const MutableContainersAndLeaves = 2;
+        const _ = !0;
     }
 }
 

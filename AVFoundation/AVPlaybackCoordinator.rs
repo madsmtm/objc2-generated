@@ -474,6 +474,7 @@ bitflags::bitflags! {
 /// Requests that the coordinator begin playback as soon as possible and ignore other participant's readiness and suspensions.
         #[doc(alias = "AVDelegatingPlaybackCoordinatorRateChangeOptionPlayImmediately")]
         const PlayImmediately = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -497,6 +498,7 @@ bitflags::bitflags! {
 /// Requests that the coordinator resume playback as soon as possible after the seek is complete and ignore other participant's readiness and suspensions.
         #[doc(alias = "AVDelegatingPlaybackCoordinatorSeekOptionResumeImmediately")]
         const ResumeImmediately = 1<<0;
+        const _ = !0;
     }
 }
 

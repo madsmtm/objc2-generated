@@ -70,6 +70,7 @@ bitflags::bitflags! {
 /// Indicates that the shape can be resized inwards or wards to be either smaller or larger, respectively.
         #[doc(alias = "NSCursorFrameResizeDirectionsAll")]
         const All = NSCursorFrameResizeDirections::Inward.0|NSCursorFrameResizeDirections::Outward.0;
+        const _ = !0;
     }
 }
 

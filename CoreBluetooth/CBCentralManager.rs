@@ -87,6 +87,7 @@ bitflags::bitflags! {
     impl CBCentralManagerFeature: NSUInteger {
         #[doc(alias = "CBCentralManagerFeatureExtendedScanAndConnect")]
         const ExtendedScanAndConnect = 1<<0;
+        const _ = !0;
     }
 }
 

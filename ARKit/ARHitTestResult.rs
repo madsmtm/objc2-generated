@@ -36,6 +36,7 @@ bitflags::bitflags! {
 /// Result type from intersecting with an existing plane anchor, taking into account the plane’s geometry.
         #[doc(alias = "ARHitTestResultTypeExistingPlaneUsingGeometry")]
         const ExistingPlaneUsingGeometry = 1<<5;
+        const _ = !0;
     }
 }
 

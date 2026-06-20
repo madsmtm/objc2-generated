@@ -26,6 +26,7 @@ bitflags::bitflags! {
         const MultipleApplications = 1<<3;
         #[doc(alias = "SCContentSharingPickerModeSingleDisplay")]
         const SingleDisplay = 1<<4;
+        const _ = !0;
     }
 }
 

@@ -938,6 +938,7 @@ bitflags::bitflags! {
     impl IOSurfaceMemoryLedgerFlags: u32 {
         #[doc(alias = "kIOSurfaceMemoryLedgerFlagNoFootprint")]
         const NoFootprint = 1<<0;
+        const _ = !0;
     }
 }
 

@@ -25,6 +25,7 @@ bitflags::bitflags! {
         const SleepWrapUpYourDay = 1<<5;
         #[doc(alias = "INShortcutAvailabilityOptionSleepYogaAndStretching")]
         const SleepYogaAndStretching = 1<<6;
+        const _ = !0;
     }
 }
 

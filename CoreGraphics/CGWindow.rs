@@ -145,6 +145,7 @@ bitflags::bitflags! {
         const OptionIncludingWindow = 1<<3;
         #[doc(alias = "kCGWindowListExcludeDesktopElements")]
         const ExcludeDesktopElements = 1<<4;
+        const _ = !0;
     }
 }
 
@@ -223,6 +224,7 @@ bitflags::bitflags! {
         const BestResolution = 1<<3;
         #[doc(alias = "kCGWindowImageNominalResolution")]
         const NominalResolution = 1<<4;
+        const _ = !0;
     }
 }
 

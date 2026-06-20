@@ -38,6 +38,7 @@ bitflags::bitflags! {
 /// A status value that indicates that the system finished downloading the asset pack.
         #[doc(alias = "BAAssetPackStatusDownloaded")]
         const Downloaded = 1<<6;
+        const _ = !0;
     }
 }
 

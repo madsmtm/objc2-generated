@@ -80,6 +80,7 @@ bitflags::bitflags! {
         const TrailingEdge = 1<<7;
         #[doc(alias = "NSCollectionViewScrollPositionNearestVerticalEdge")]
         const NearestVerticalEdge = 1<<8;
+        const _ = !0;
     }
 }
 

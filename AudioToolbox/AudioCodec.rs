@@ -372,6 +372,7 @@ bitflags::bitflags! {
         const MetaParameter = 1<<2;
         #[doc(alias = "kAudioSettingsFlags_UserInterfaceParameter")]
         const UserInterfaceParameter = 1<<3;
+        const _ = !0;
     }
 }
 

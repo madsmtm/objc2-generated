@@ -121,6 +121,7 @@ bitflags::bitflags! {
         const StayOpenApplet = 0x10000000;
         #[doc(alias = "OSAShowStartupScreen")]
         const ShowStartupScreen = 0x20000000;
+        const _ = !0;
     }
 }
 

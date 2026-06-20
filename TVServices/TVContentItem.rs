@@ -31,6 +31,7 @@ bitflags::bitflags! {
         const ScreenScale1x = 1<<12;
         #[doc(alias = "TVContentItemImageTraitScreenScale2x")]
         const ScreenScale2x = 2<<12;
+        const _ = !0;
     }
 }
 

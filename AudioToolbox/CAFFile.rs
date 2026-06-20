@@ -115,6 +115,7 @@ bitflags::bitflags! {
         const LinearPCMFormatFlagIsFloat = 1<<0;
         #[doc(alias = "kCAFLinearPCMFormatFlagIsLittleEndian")]
         const LinearPCMFormatFlagIsLittleEndian = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -385,6 +386,7 @@ bitflags::bitflags! {
         const PlayForward = 2;
         #[doc(alias = "kCAFRegionFlag_PlayBackward")]
         const PlayBackward = 4;
+        const _ = !0;
     }
 }
 

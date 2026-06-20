@@ -21,6 +21,7 @@ bitflags::bitflags! {
         const Uniform = 2;
         #[doc(alias = "MPSMatrixRandomDistributionNormal")]
         const Normal = 3;
+        const _ = !0;
     }
 }
 

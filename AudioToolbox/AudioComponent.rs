@@ -64,6 +64,7 @@ bitflags::bitflags! {
         const RequiresAsyncInstantiation = 8;
         #[doc(alias = "kAudioComponentFlag_CanLoadInProcess")]
         const CanLoadInProcess = 0x10;
+        const _ = !0;
     }
 }
 
@@ -111,6 +112,7 @@ bitflags::bitflags! {
         const LoadInProcess = 2;
         #[doc(alias = "kAudioComponentInstantiation_LoadedRemotely")]
         const LoadedRemotely = 1<<31;
+        const _ = !0;
     }
 }
 

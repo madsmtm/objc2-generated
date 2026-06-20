@@ -159,6 +159,7 @@ bitflags::bitflags! {
         const DirectionRightToLeft = 2<<16;
         #[doc(alias = "NSLayoutFormatDirectionMask")]
         const DirectionMask = 0x3<<16;
+        const _ = !0;
     }
 }
 

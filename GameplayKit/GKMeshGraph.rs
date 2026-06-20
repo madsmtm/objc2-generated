@@ -22,6 +22,7 @@ bitflags::bitflags! {
         const Centers = 1<<1;
         #[doc(alias = "GKMeshGraphTriangulationModeEdgeMidpoints")]
         const EdgeMidpoints = 1<<2;
+        const _ = !0;
     }
 }
 

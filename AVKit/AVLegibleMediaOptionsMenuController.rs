@@ -111,6 +111,7 @@ bitflags::bitflags! {
         const CaptionAppearance = 1<<1;
         #[doc(alias = "AVLegibleMediaOptionsMenuContentsAll")]
         const All = AVLegibleMediaOptionsMenuContents::Legible.0|AVLegibleMediaOptionsMenuContents::CaptionAppearance.0;
+        const _ = !0;
     }
 }
 

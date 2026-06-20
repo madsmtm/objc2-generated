@@ -25,6 +25,7 @@ bitflags::bitflags! {
 /// Requests reflection information for buffer types.
         #[doc(alias = "MTL4ShaderReflectionBufferTypeInfo")]
         const BufferTypeInfo = 1<<1;
+        const _ = !0;
     }
 }
 

@@ -473,6 +473,7 @@ bitflags::bitflags! {
         const Unique = 1<<0;
         #[doc(alias = "kCTFontCollectionCopyStandardSort")]
         const StandardSort = 1<<1;
+        const _ = !0;
     }
 }
 

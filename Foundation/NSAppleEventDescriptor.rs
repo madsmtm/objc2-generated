@@ -38,6 +38,7 @@ bitflags::bitflags! {
         const DontAnnotate = 65536;
         #[doc(alias = "NSAppleEventSendDefaultOptions")]
         const DefaultOptions = 35;
+        const _ = !0;
     }
 }
 

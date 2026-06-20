@@ -26,6 +26,7 @@ bitflags::bitflags! {
         const Image = 1<<1;
         #[doc(alias = "NSMediaLibraryMovie")]
         const Movie = 1<<2;
+        const _ = !0;
     }
 }
 

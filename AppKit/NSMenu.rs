@@ -664,6 +664,7 @@ bitflags::bitflags! {
         const ItemEnabled = 1<<4;
         #[doc(alias = "NSMenuPropertyItemAccessibilityDescription")]
         const ItemAccessibilityDescription = 1<<5;
+        const _ = !0;
     }
 }
 

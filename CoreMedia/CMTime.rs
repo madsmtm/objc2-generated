@@ -59,6 +59,7 @@ bitflags::bitflags! {
         const Indefinite = 1<<4;
         #[doc(alias = "kCMTimeFlags_ImpliedValueFlagsMask")]
         const ImpliedValueFlagsMask = CMTimeFlags::PositiveInfinity.0|CMTimeFlags::NegativeInfinity.0|CMTimeFlags::Indefinite.0;
+        const _ = !0;
     }
 }
 

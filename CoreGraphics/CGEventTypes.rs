@@ -189,6 +189,7 @@ bitflags::bitflags! {
         const MaskNumericPad = 2097152;
         #[doc(alias = "kCGEventFlagMaskNonCoalesced")]
         const MaskNonCoalesced = 256;
+        const _ = !0;
     }
 }
 

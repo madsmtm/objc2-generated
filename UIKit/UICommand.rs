@@ -26,6 +26,7 @@ bitflags::bitflags! {
         const Command = 1<<20;
         #[doc(alias = "UIKeyModifierNumericPad")]
         const NumericPad = 1<<21;
+        const _ = !0;
     }
 }
 

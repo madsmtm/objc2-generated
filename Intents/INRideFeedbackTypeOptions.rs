@@ -15,6 +15,7 @@ bitflags::bitflags! {
         const Rate = 1<<0;
         #[doc(alias = "INRideFeedbackTypeOptionTip")]
         const Tip = 1<<1;
+        const _ = !0;
     }
 }
 

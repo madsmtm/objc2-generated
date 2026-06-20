@@ -41,6 +41,7 @@ bitflags::bitflags! {
         const DiscreteMostRecent = HKStatisticsOptions::MostRecent.0;
         #[doc(alias = "HKStatisticsOptionDuration")]
         const Duration = 1<<6;
+        const _ = !0;
     }
 }
 

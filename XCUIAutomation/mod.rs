@@ -1009,6 +1009,7 @@ bitflags::bitflags! {
         const AlphaShift = XCUIKeyModifierFlags::CapsLock.0;
         #[doc(alias = "XCUIKeyModifierAlternate")]
         const Alternate = XCUIKeyModifierFlags::Option.0;
+        const _ = !0;
     }
 }
 
@@ -1469,6 +1470,7 @@ bitflags::bitflags! {
         const ParentChild = 1<<33;
         #[doc(alias = "XCUIAccessibilityAuditTypeAll")]
         const All = !0;
+        const _ = !0;
     }
 }
 

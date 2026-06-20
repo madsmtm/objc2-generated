@@ -91,6 +91,7 @@ bitflags::bitflags! {
         const All = UIInterfaceOrientationMask::Portrait.0|UIInterfaceOrientationMask::LandscapeLeft.0|UIInterfaceOrientationMask::LandscapeRight.0|UIInterfaceOrientationMask::PortraitUpsideDown.0;
         #[doc(alias = "UIInterfaceOrientationMaskAllButUpsideDown")]
         const AllButUpsideDown = UIInterfaceOrientationMask::Portrait.0|UIInterfaceOrientationMask::LandscapeLeft.0|UIInterfaceOrientationMask::LandscapeRight.0;
+        const _ = !0;
     }
 }
 

@@ -26,6 +26,7 @@ bitflags::bitflags! {
         const Any = UIPopoverArrowDirection::Up.0|UIPopoverArrowDirection::Down.0|UIPopoverArrowDirection::Left.0|UIPopoverArrowDirection::Right.0;
         #[doc(alias = "UIPopoverArrowDirectionUnknown")]
         const Unknown = NSUIntegerMax as _;
+        const _ = !0;
     }
 }
 

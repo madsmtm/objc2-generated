@@ -48,6 +48,7 @@ bitflags::bitflags! {
 /// This option allows the calling application to know when the uploaded version of the file is on the server.
         #[doc(alias = "NSFileProviderModifyItemIsImmediateUploadRequestByPresentingApplication")]
         const IsImmediateUploadRequestByPresentingApplication = 1<<2;
+        const _ = !0;
     }
 }
 

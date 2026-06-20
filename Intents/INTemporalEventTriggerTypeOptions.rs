@@ -17,6 +17,7 @@ bitflags::bitflags! {
         const ScheduledNonRecurring = 1<<1;
         #[doc(alias = "INTemporalEventTriggerTypeOptionScheduledRecurring")]
         const ScheduledRecurring = 1<<2;
+        const _ = !0;
     }
 }
 

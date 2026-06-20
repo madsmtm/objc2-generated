@@ -175,6 +175,7 @@ bitflags::bitflags! {
         const ChangeGrayCellMask = 4;
         #[doc(alias = "NSChangeBackgroundCellMask")]
         const ChangeBackgroundCellMask = 8;
+        const _ = !0;
     }
 }
 
@@ -1099,6 +1100,7 @@ bitflags::bitflags! {
         const EditableTextArea = 1<<1;
         #[doc(alias = "NSCellHitTrackableArea")]
         const TrackableArea = 1<<2;
+        const _ = !0;
     }
 }
 

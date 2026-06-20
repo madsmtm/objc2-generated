@@ -63,6 +63,7 @@ bitflags::bitflags! {
         #[doc(alias = "CLKComplicationTimeTravelDirectionBackward")]
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         const Backward = 1<<1;
+        const _ = !0;
     }
 }
 

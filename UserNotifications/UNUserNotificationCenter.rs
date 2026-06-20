@@ -34,6 +34,7 @@ bitflags::bitflags! {
         #[doc(alias = "UNAuthorizationOptionTimeSensitive")]
 #[deprecated = "Use time-sensitive entitlement"]
         const TimeSensitive = 1<<8;
+        const _ = !0;
     }
 }
 
@@ -219,6 +220,7 @@ bitflags::bitflags! {
         const List = 1<<3;
         #[doc(alias = "UNNotificationPresentationOptionBanner")]
         const Banner = 1<<4;
+        const _ = !0;
     }
 }
 

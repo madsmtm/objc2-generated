@@ -32,6 +32,7 @@ bitflags::bitflags! {
         const SlideBackward = 0x180;
         #[doc(alias = "NSViewControllerTransitionAllowUserInteraction")]
         const AllowUserInteraction = 0x1000;
+        const _ = !0;
     }
 }
 

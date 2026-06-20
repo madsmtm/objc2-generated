@@ -20,6 +20,7 @@ bitflags::bitflags! {
         const TypeAffine = 1;
         #[doc(alias = "MPSNDArrayQuantizationTypeLUT")]
         const TypeLUT = 2;
+        const _ = !0;
     }
 }
 

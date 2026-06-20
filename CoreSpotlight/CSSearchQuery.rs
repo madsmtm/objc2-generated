@@ -47,6 +47,7 @@ bitflags::bitflags! {
         const Default = 0;
         #[doc(alias = "CSSearchQuerySourceOptionAllowMail")]
         const AllowMail = 1<<0;
+        const _ = !0;
     }
 }
 

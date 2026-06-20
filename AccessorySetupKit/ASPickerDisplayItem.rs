@@ -29,6 +29,7 @@ bitflags::bitflags! {
 /// An option to ask the person setting up the accessory to finish additional setup in the app after the accessory is authorized.
         #[doc(alias = "ASPickerDisplayItemSetupFinishInApp")]
         const FinishInApp = 1<<2;
+        const _ = !0;
     }
 }
 

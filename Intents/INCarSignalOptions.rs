@@ -15,6 +15,7 @@ bitflags::bitflags! {
         const Audible = 1<<0;
         #[doc(alias = "INCarSignalOptionVisible")]
         const Visible = 1<<1;
+        const _ = !0;
     }
 }
 

@@ -358,6 +358,7 @@ bitflags::bitflags! {
         const StripDisallowedXattrs = 1<<24;
         #[doc(alias = "kSecCSMatchGuestRequirementInKernel")]
         const MatchGuestRequirementInKernel = 1<<23;
+        const _ = !0;
     }
 }
 
@@ -433,6 +434,7 @@ bitflags::bitflags! {
         const Runtime = 0x10000;
         #[doc(alias = "kSecCodeSignatureLinkerSigned")]
         const LinkerSigned = 0x20000;
+        const _ = !0;
     }
 }
 
@@ -508,6 +510,7 @@ bitflags::bitflags! {
         const Debugged = 0x10000000;
         #[doc(alias = "kSecCodeStatusPlatform")]
         const Platform = 0x04000000;
+        const _ = !0;
     }
 }
 

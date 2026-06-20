@@ -234,6 +234,7 @@ bitflags::bitflags! {
 /// Completion by timeout expiration.
         #[doc(alias = "TKSmartCardPINCompletionTimeout")]
         const Timeout = 1<<2;
+        const _ = !0;
     }
 }
 
@@ -263,6 +264,7 @@ bitflags::bitflags! {
 /// Confirmation (entry) of the current PIN requested.
         #[doc(alias = "TKSmartCardPINConfirmationCurrent")]
         const Current = 1<<1;
+        const _ = !0;
     }
 }
 

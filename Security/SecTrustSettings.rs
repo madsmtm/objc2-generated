@@ -28,6 +28,7 @@ bitflags::bitflags! {
         const UseKeyExchange = 0x00000020;
         #[doc(alias = "kSecTrustSettingsKeyUseAny")]
         const UseAny = 0xffffffff;
+        const _ = !0;
     }
 }
 

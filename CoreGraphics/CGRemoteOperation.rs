@@ -93,6 +93,7 @@ bitflags::bitflags! {
         const Move = 1<<0;
         #[doc(alias = "kCGScreenUpdateOperationReducedDirtyRectangleCount")]
         const ReducedDirtyRectangleCount = 1<<31;
+        const _ = !0;
     }
 }
 
@@ -280,6 +281,7 @@ bitflags::bitflags! {
         const PermitLocalKeyboardEvents = 0x00000002;
         #[doc(alias = "kCGEventFilterMaskPermitSystemDefinedEvents")]
         const PermitSystemDefinedEvents = 0x00000004;
+        const _ = !0;
     }
 }
 

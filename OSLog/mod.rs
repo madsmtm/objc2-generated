@@ -456,6 +456,7 @@ bitflags::bitflags! {
     impl OSLogEnumeratorOptions: NSUInteger {
         #[doc(alias = "OSLogEnumeratorReverse")]
         const Reverse = 0x01;
+        const _ = !0;
     }
 }
 

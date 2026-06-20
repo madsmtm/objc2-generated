@@ -122,6 +122,7 @@ bitflags::bitflags! {
         const BottomRight = 1<<3;
         #[doc(alias = "UIRectCornerAllCorners")]
         const AllCorners = !0;
+        const _ = !0;
     }
 }
 
@@ -152,6 +153,7 @@ bitflags::bitflags! {
         const Trailing = 1<<3;
         #[doc(alias = "NSDirectionalRectEdgeAll")]
         const All = NSDirectionalRectEdge::Top.0|NSDirectionalRectEdge::Leading.0|NSDirectionalRectEdge::Bottom.0|NSDirectionalRectEdge::Trailing.0;
+        const _ = !0;
     }
 }
 
@@ -189,6 +191,7 @@ bitflags::bitflags! {
         #[doc(alias = "UIDirectionalRectEdgeAll")]
 #[deprecated]
         const All = UIDirectionalRectEdge::Top.0|UIDirectionalRectEdge::Leading.0|UIDirectionalRectEdge::Bottom.0|UIDirectionalRectEdge::Trailing.0;
+        const _ = !0;
     }
 }
 

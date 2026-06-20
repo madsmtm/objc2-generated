@@ -79,6 +79,7 @@ bitflags::bitflags! {
         const Volatile = 1<<1;
         #[doc(alias = "kAuthorizationContextFlagSticky")]
         const Sticky = 1<<2;
+        const _ = !0;
     }
 }
 

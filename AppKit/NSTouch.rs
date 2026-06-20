@@ -27,6 +27,7 @@ bitflags::bitflags! {
         const Touching = NSTouchPhase::Began.0|NSTouchPhase::Moved.0|NSTouchPhase::Stationary.0;
         #[doc(alias = "NSTouchPhaseAny")]
         const Any = NSUIntegerMax as _;
+        const _ = !0;
     }
 }
 
@@ -69,6 +70,7 @@ bitflags::bitflags! {
         const Direct = 1<<NSTouchType::Direct.0;
         #[doc(alias = "NSTouchTypeMaskIndirect")]
         const Indirect = 1<<NSTouchType::Indirect.0;
+        const _ = !0;
     }
 }
 

@@ -198,6 +198,7 @@ bitflags::bitflags! {
         const YearForWeekOfYear = 1<<14;
         #[doc(alias = "kCFCalendarUnitDayOfYear")]
         const DayOfYear = 1<<16;
+        const _ = !0;
     }
 }
 

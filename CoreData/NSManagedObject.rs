@@ -26,6 +26,7 @@ bitflags::bitflags! {
         const Refresh = 1<<5;
         #[doc(alias = "NSSnapshotEventMergePolicy")]
         const MergePolicy = 1<<6;
+        const _ = !0;
     }
 }
 

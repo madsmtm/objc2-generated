@@ -135,6 +135,7 @@ bitflags::bitflags! {
 /// Default selection.
         #[doc(alias = "MPSGraphReducedPrecisionFastMathDefault")]
         const Default = MPSGraphReducedPrecisionFastMath::None.0;
+        const _ = !0;
     }
 }
 

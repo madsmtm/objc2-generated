@@ -42,6 +42,7 @@ bitflags::bitflags! {
         const Continuous = 1<<UIScrollType::Continuous.0;
         #[doc(alias = "UIScrollTypeMaskAll")]
         const All = UIScrollTypeMask::Discrete.0|UIScrollTypeMask::Continuous.0;
+        const _ = !0;
     }
 }
 

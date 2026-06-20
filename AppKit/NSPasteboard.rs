@@ -282,6 +282,7 @@ bitflags::bitflags! {
     impl NSPasteboardContentsOptions: NSUInteger {
         #[doc(alias = "NSPasteboardContentsCurrentHostOnly")]
         const CurrentHostOnly = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -733,6 +734,7 @@ bitflags::bitflags! {
     impl NSPasteboardWritingOptions: NSUInteger {
         #[doc(alias = "NSPasteboardWritingPromised")]
         const Promised = 1<<9;
+        const _ = !0;
     }
 }
 
@@ -787,6 +789,7 @@ bitflags::bitflags! {
         const AsPropertyList = 1<<1;
         #[doc(alias = "NSPasteboardReadingAsKeyedArchive")]
         const AsKeyedArchive = 1<<2;
+        const _ = !0;
     }
 }
 

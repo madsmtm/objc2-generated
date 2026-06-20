@@ -33,6 +33,7 @@ bitflags::bitflags! {
         const SMF_PreserveTracks = 0;
         #[doc(alias = "AVMusicSequenceLoadSMF_ChannelsToTracks")]
         const SMF_ChannelsToTracks = 1<<0;
+        const _ = !0;
     }
 }
 

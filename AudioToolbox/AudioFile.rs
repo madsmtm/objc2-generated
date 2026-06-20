@@ -181,6 +181,7 @@ bitflags::bitflags! {
         const EraseFile = 1;
         #[doc(alias = "kAudioFileFlags_DontPageAlignAudioData")]
         const DontPageAlignAudioData = 2;
+        const _ = !0;
     }
 }
 
@@ -381,6 +382,7 @@ bitflags::bitflags! {
         const PlayForward = 2;
         #[doc(alias = "kAudioFileRegionFlag_PlayBackward")]
         const PlayBackward = 4;
+        const _ = !0;
     }
 }
 
@@ -518,6 +520,7 @@ bitflags::bitflags! {
     impl AudioBytePacketTranslationFlags: u32 {
         #[doc(alias = "kBytePacketTranslationFlag_IsEstimate")]
         const BytePacketTranslationFlag_IsEstimate = 1;
+        const _ = !0;
     }
 }
 

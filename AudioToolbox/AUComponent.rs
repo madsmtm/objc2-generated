@@ -244,6 +244,7 @@ bitflags::bitflags! {
         const UnitRenderAction_PostRenderError = 1<<8;
         #[doc(alias = "kAudioUnitRenderAction_DoNotCheckRenderArgs")]
         const UnitRenderAction_DoNotCheckRenderArgs = 1<<9;
+        const _ = !0;
     }
 }
 

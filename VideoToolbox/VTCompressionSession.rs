@@ -612,6 +612,7 @@ bitflags::bitflags! {
     impl VTCompressionSessionOptionFlags: u32 {
         #[doc(alias = "kVTCompressionSessionBeginFinalPass")]
         const BeginFinalPass = 1<<0;
+        const _ = !0;
     }
 }
 

@@ -29,6 +29,7 @@ bitflags::bitflags! {
         const EnsuresLayout = 1<<2;
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment")]
         const EnsuresExtraLineFragment = 1<<3;
+        const _ = !0;
     }
 }
 

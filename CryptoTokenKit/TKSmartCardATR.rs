@@ -26,6 +26,7 @@ bitflags::bitflags! {
         const T15 = 1<<15;
         #[doc(alias = "TKSmartCardProtocolAny")]
         const Any = (1<<16)-1;
+        const _ = !0;
     }
 }
 

@@ -885,6 +885,7 @@ bitflags::bitflags! {
     impl NSFileProviderManagerDisconnectionOptions: NSUInteger {
         #[doc(alias = "NSFileProviderManagerDisconnectionOptionsTemporary")]
         const Temporary = 1<<0;
+        const _ = !0;
     }
 }
 
@@ -1010,6 +1011,7 @@ bitflags::bitflags! {
         const Network = 1<<4;
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonQuarantined")]
         const Quarantined = 1<<5;
+        const _ = !0;
     }
 }
 

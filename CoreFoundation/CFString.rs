@@ -735,6 +735,7 @@ bitflags::bitflags! {
         const CompareWidthInsensitive = 256;
         #[doc(alias = "kCFCompareForcedOrdering")]
         const CompareForcedOrdering = 512;
+        const _ = !0;
     }
 }
 

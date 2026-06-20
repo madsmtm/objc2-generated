@@ -182,6 +182,7 @@ bitflags::bitflags! {
 /// You can use tensors with this context in ``MTL4MachineLearningCommandEncoder`` instances.
         #[doc(alias = "MTLTensorUsageMachineLearning")]
         const MachineLearning = 1<<2;
+        const _ = !0;
     }
 }
 

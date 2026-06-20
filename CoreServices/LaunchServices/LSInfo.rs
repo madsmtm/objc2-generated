@@ -18,6 +18,7 @@ bitflags::bitflags! {
         const AcceptDefault = 0x00000001;
         #[doc(alias = "kLSAcceptAllowLoginUI")]
         const AcceptAllowLoginUI = 0x00000002;
+        const _ = !0;
     }
 }
 

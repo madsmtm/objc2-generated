@@ -33,6 +33,7 @@ bitflags::bitflags! {
 /// Set this mask to use ``MTL4PipelineDataSetSerializer.serializeAsArchiveAndFlush(toURL:error:)``.
         #[doc(alias = "MTL4PipelineDataSetSerializerConfigurationCaptureBinaries")]
         const CaptureBinaries = 1<<1;
+        const _ = !0;
     }
 }
 

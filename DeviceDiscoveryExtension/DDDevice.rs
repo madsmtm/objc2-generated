@@ -201,6 +201,7 @@ bitflags::bitflags! {
 /// Device supports bring up of classic transport profiles when low energy transport for peripheral is connected.
         #[doc(alias = "DDDeviceSupportsBluetoothHID")]
         const BluetoothHID = 1<<3;
+        const _ = !0;
     }
 }
 

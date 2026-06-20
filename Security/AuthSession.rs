@@ -33,6 +33,7 @@ bitflags::bitflags! {
         const sessionHasGraphicAccess = 0x0010;
         const sessionHasTTY = 0x0020;
         const sessionIsRemote = 0x1000;
+        const _ = !0;
     }
 }
 
@@ -57,6 +58,7 @@ pub struct SessionCreationFlags(pub u32);
 bitflags::bitflags! {
     impl SessionCreationFlags: u32 {
         const sessionKeepCurrentBootstrap = 0x8000;
+        const _ = !0;
     }
 }
 

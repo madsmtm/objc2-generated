@@ -2144,6 +2144,7 @@ bitflags::bitflags! {
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
         const DISPATCH_BLOCK_ENFORCE_QOS_CLASS = 0x20;
+        const _ = !0;
     }
 }
 

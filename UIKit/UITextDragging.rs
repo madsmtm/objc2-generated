@@ -18,6 +18,7 @@ bitflags::bitflags! {
         const OptionsNone = 0;
         #[doc(alias = "UITextDragOptionStripTextColorFromPreviews")]
         const OptionStripTextColorFromPreviews = 1<<0;
+        const _ = !0;
     }
 }
 

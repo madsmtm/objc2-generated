@@ -314,6 +314,7 @@ bitflags::bitflags! {
         const BufferTypeInfo = 1<<1;
         #[doc(alias = "MTLPipelineOptionFailOnBinaryArchiveMiss")]
         const FailOnBinaryArchiveMiss = 1<<2;
+        const _ = !0;
     }
 }
 

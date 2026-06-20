@@ -96,6 +96,7 @@ bitflags::bitflags! {
         const PrivateKeyUsage = 1<<30;
         #[doc(alias = "kSecAccessControlApplicationPassword")]
         const ApplicationPassword = 1<<31;
+        const _ = !0;
     }
 }
 

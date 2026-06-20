@@ -47,6 +47,7 @@ bitflags::bitflags! {
 /// This attribute has no effect on Mac Catalyst.
         #[doc(alias = "UIMenuElementAttributesKeepsMenuPresented")]
         const KeepsMenuPresented = 1<<3;
+        const _ = !0;
     }
 }
 

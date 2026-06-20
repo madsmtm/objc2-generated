@@ -311,6 +311,7 @@ bitflags::bitflags! {
         const VideoScreenRecording = 1<<19;
         #[doc(alias = "PHAssetMediaSubtypeVideoCinematic")]
         const VideoCinematic = 1<<21;
+        const _ = !0;
     }
 }
 
@@ -335,6 +336,7 @@ bitflags::bitflags! {
         const AutoPick = 1<<0;
         #[doc(alias = "PHAssetBurstSelectionTypeUserPick")]
         const UserPick = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -361,6 +363,7 @@ bitflags::bitflags! {
         const TypeCloudShared = 1<<1;
         #[doc(alias = "PHAssetSourceTypeiTunesSynced")]
         const TypeiTunesSynced = 1<<2;
+        const _ = !0;
     }
 }
 

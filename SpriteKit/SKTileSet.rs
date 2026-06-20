@@ -114,6 +114,7 @@ bitflags::bitflags! {
         const AdjacencyLowerLeftCorner = SKTileAdjacencyMask::AdjacencyUp.0|SKTileAdjacencyMask::AdjacencyRight.0|SKTileAdjacencyMask::AdjacencyLowerRight.0|SKTileAdjacencyMask::AdjacencyDown.0|SKTileAdjacencyMask::AdjacencyLowerLeft.0|SKTileAdjacencyMask::AdjacencyLeft.0|SKTileAdjacencyMask::AdjacencyUpperLeft.0;
         #[doc(alias = "SKTileAdjacencyUpperLeftCorner")]
         const AdjacencyUpperLeftCorner = SKTileAdjacencyMask::AdjacencyUp.0|SKTileAdjacencyMask::AdjacencyUpperRight.0|SKTileAdjacencyMask::AdjacencyRight.0|SKTileAdjacencyMask::AdjacencyDown.0|SKTileAdjacencyMask::AdjacencyLowerLeft.0|SKTileAdjacencyMask::AdjacencyLeft.0|SKTileAdjacencyMask::AdjacencyUpperLeft.0;
+        const _ = !0;
     }
 }
 

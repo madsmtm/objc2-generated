@@ -83,6 +83,7 @@ bitflags::bitflags! {
         const SelectionFlipped = 1<<1;
         #[doc(alias = "BEPhraseBoundaryChanged")]
         const PhraseBoundaryChanged = 1<<2;
+        const _ = !0;
     }
 }
 

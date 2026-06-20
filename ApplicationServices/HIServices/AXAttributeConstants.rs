@@ -30,6 +30,7 @@ bitflags::bitflags! {
         const Control = 1<<2;
         #[doc(alias = "kAXMenuItemModifierNoCommand")]
         const NoCommand = 1<<3;
+        const _ = !0;
     }
 }
 

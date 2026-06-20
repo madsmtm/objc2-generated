@@ -23,6 +23,7 @@ bitflags::bitflags! {
         const User = 1<<1;
         #[doc(alias = "NSFontCollectionVisibilityComputer")]
         const Computer = 1<<2;
+        const _ = !0;
     }
 }
 

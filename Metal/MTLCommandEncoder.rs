@@ -23,6 +23,7 @@ bitflags::bitflags! {
         #[doc(alias = "MTLResourceUsageSample")]
 #[deprecated]
         const Sample = 1<<2;
+        const _ = !0;
     }
 }
 
@@ -49,6 +50,7 @@ bitflags::bitflags! {
         const Textures = 1<<1;
         #[doc(alias = "MTLBarrierScopeRenderTargets")]
         const RenderTargets = 1<<2;
+        const _ = !0;
     }
 }
 
@@ -109,6 +111,7 @@ bitflags::bitflags! {
 /// Convenience mask representing all stages of GPU work.
         #[doc(alias = "MTLStageAll")]
         const All = NSIntegerMax as _;
+        const _ = !0;
     }
 }
 

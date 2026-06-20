@@ -941,6 +941,7 @@ bitflags::bitflags! {
         const UseTrustSettings = 0x00000020;
         #[doc(alias = "kSecTrustOptionImplicitAnchors")]
         const ImplicitAnchors = 0x00000040;
+        const _ = !0;
     }
 }
 

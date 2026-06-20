@@ -68,6 +68,7 @@ bitflags::bitflags! {
         const CrayonModeMask = 0x00000080;
         #[doc(alias = "NSColorPanelAllModesMask")]
         const AllModesMask = 0x0000ffff;
+        const _ = !0;
     }
 }
 

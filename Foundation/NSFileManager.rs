@@ -39,6 +39,7 @@ bitflags::bitflags! {
         const SkipHiddenVolumes = 1<<1;
         #[doc(alias = "NSVolumeEnumerationProduceFileReferenceURLs")]
         const ProduceFileReferenceURLs = 1<<2;
+        const _ = !0;
     }
 }
 
@@ -67,6 +68,7 @@ bitflags::bitflags! {
         const IncludesDirectoriesPostOrder = 1<<3;
         #[doc(alias = "NSDirectoryEnumerationProducesRelativePathURLs")]
         const ProducesRelativePathURLs = 1<<4;
+        const _ = !0;
     }
 }
 
@@ -89,6 +91,7 @@ bitflags::bitflags! {
         const UsingNewMetadataOnly = 1<<0;
         #[doc(alias = "NSFileManagerItemReplacementWithoutDeletingBackupItem")]
         const WithoutDeletingBackupItem = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -133,6 +136,7 @@ bitflags::bitflags! {
         const AllPartitionsAndEjectDisk = 1<<0;
         #[doc(alias = "NSFileManagerUnmountWithoutUI")]
         const WithoutUI = 1<<1;
+        const _ = !0;
     }
 }
 
@@ -173,6 +177,7 @@ bitflags::bitflags! {
 /// The file provider supports failing an upload if the local and server versions conflict.
         #[doc(alias = "NSFileManagerSupportedSyncControlsFailUploadOnConflict")]
         const FailUploadOnConflict = 1<<1;
+        const _ = !0;
     }
 }
 

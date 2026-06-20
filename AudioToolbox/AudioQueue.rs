@@ -226,6 +226,7 @@ bitflags::bitflags! {
         const StartOfStream = 1<<8;
         #[doc(alias = "kAudioQueueProcessingTap_EndOfStream")]
         const EndOfStream = 1<<9;
+        const _ = !0;
     }
 }
 

@@ -22,6 +22,7 @@ bitflags::bitflags! {
         const AutoresizingMask = 1<<0;
         #[doc(alias = "NSTableColumnUserResizingMask")]
         const UserResizingMask = 1<<1;
+        const _ = !0;
     }
 }
 

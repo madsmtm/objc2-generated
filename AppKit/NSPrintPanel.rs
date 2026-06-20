@@ -50,6 +50,7 @@ bitflags::bitflags! {
         const ShowsPageSetupAccessory = 1<<8;
         #[doc(alias = "NSPrintPanelShowsPreview")]
         const ShowsPreview = 1<<17;
+        const _ = !0;
     }
 }
 

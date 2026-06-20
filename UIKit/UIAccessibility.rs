@@ -1907,6 +1907,7 @@ bitflags::bitflags! {
         const Right = 1<<2;
         #[doc(alias = "UIAccessibilityHearingDeviceEarBoth")]
         const Both = UIAccessibilityHearingDeviceEar::Left.0|UIAccessibilityHearingDeviceEar::Right.0;
+        const _ = !0;
     }
 }
 

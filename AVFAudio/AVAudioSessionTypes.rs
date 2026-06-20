@@ -601,6 +601,7 @@ bitflags::bitflags! {
     impl AVAudioSessionActivationOptions: NSUInteger {
         #[doc(alias = "AVAudioSessionActivationOptionNone")]
         const None = 0;
+        const _ = !0;
     }
 }
 
@@ -877,6 +878,7 @@ bitflags::bitflags! {
 /// while recording, to avoid the recording session being interrupted by an incoming call ringtone.
         #[doc(alias = "AVAudioSessionCategoryOptionBluetoothHighQualityRecording")]
         const BluetoothHighQualityRecording = 1<<19;
+        const _ = !0;
     }
 }
 
@@ -926,6 +928,7 @@ bitflags::bitflags! {
 /// Indicates that you should resume playback now that the interruption has ended.
         #[doc(alias = "AVAudioSessionInterruptionOptionShouldResume")]
         const ShouldResume = 1;
+        const _ = !0;
     }
 }
 
@@ -994,6 +997,7 @@ bitflags::bitflags! {
 /// valid on session deactivation.
         #[doc(alias = "AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation")]
         const NotifyOthersOnDeactivation = 1;
+        const _ = !0;
     }
 }
 

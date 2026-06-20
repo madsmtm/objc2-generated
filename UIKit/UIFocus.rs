@@ -34,6 +34,7 @@ bitflags::bitflags! {
         const First = 1<<8;
         #[doc(alias = "UIFocusHeadingLast")]
         const Last = 1<<9;
+        const _ = !0;
     }
 }
 

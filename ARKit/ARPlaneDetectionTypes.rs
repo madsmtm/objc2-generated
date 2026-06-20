@@ -25,6 +25,7 @@ bitflags::bitflags! {
 /// Plane detection determines vertical planes in the scene.
         #[doc(alias = "ARPlaneDetectionVertical")]
         const Vertical = 1<<1;
+        const _ = !0;
     }
 }
 

@@ -106,6 +106,7 @@ bitflags::bitflags! {
         const ShowConstraints = 1<<9;
         #[doc(alias = "SCNDebugOptionShowCameras")]
         const ShowCameras = 1<<10;
+        const _ = !0;
     }
 }
 

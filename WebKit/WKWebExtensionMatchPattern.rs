@@ -57,6 +57,7 @@ bitflags::bitflags! {
         const IgnorePaths = 1<<1;
         #[doc(alias = "WKWebExtensionMatchPatternOptionsMatchBidirectionally")]
         const MatchBidirectionally = 1<<2;
+        const _ = !0;
     }
 }
 
