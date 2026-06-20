@@ -74,23 +74,19 @@ unsafe impl RefEncode for CFURLEnumeratorOptions {
 }
 
 impl CFURLEnumerator {
-    /// # Safety
-    ///
-    /// - `directory_url` might not allow `None`.
-    /// - `property_keys` might not allow `None`.
     #[doc(alias = "CFURLEnumeratorCreateForDirectoryURL")]
     #[cfg(all(feature = "CFArray", feature = "CFString", feature = "CFURL"))]
     #[inline]
-    pub unsafe fn new_for_directory_url(
+    pub fn new_for_directory_url(
         alloc: Option<&CFAllocator>,
-        directory_url: Option<&CFURL>,
+        directory_url: &CFURL,
         option: CFURLEnumeratorOptions,
         property_keys: Option<&CFArray<CFString>>,
     ) -> Option<CFRetained<CFURLEnumerator>> {
         extern "C-unwind" {
             fn CFURLEnumeratorCreateForDirectoryURL(
                 alloc: Option<&CFAllocator>,
-                directory_url: Option<&CFURL>,
+                directory_url: &CFURL,
                 option: CFURLEnumeratorOptions,
                 property_keys: Option<&CFArray<CFString>>,
             ) -> Option<NonNull<CFURLEnumerator>>;
@@ -101,13 +97,10 @@ impl CFURLEnumerator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `property_keys` might not allow `None`.
     #[doc(alias = "CFURLEnumeratorCreateForMountedVolumes")]
     #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
-    pub unsafe fn new_for_mounted_volumes(
+    pub fn new_for_mounted_volumes(
         alloc: Option<&CFAllocator>,
         option: CFURLEnumeratorOptions,
         property_keys: Option<&CFArray<CFString>>,
@@ -154,21 +147,19 @@ impl CFURLEnumerator {
     /// # Safety
     ///
     /// - `url` must be a valid pointer.
-    /// - `url` might not allow `None`.
     /// - `error` must be a valid pointer.
-    /// - `error` might not allow `None`.
     #[doc(alias = "CFURLEnumeratorGetNextURL")]
     #[cfg(all(feature = "CFError", feature = "CFURL"))]
     #[inline]
     pub unsafe fn next_url(
         &self,
-        url: Option<&mut *const CFURL>,
+        url: &mut *const CFURL,
         error: Option<&mut *mut CFError>,
     ) -> CFURLEnumeratorResult {
         extern "C-unwind" {
             fn CFURLEnumeratorGetNextURL(
                 enumerator: &CFURLEnumerator,
-                url: Option<&mut *const CFURL>,
+                url: &mut *const CFURL,
                 error: Option<&mut *mut CFError>,
             ) -> CFURLEnumeratorResult;
         }

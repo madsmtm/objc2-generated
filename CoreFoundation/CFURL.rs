@@ -68,7 +68,6 @@ impl CFURL {
     ///
     /// - `url_bytes` must be a valid pointer.
     /// - `encoding` should be set correctly.
-    /// - `base_url` might not allow `None`.
     #[doc(alias = "CFURLCreateWithBytes")]
     #[cfg(feature = "CFString")]
     #[inline]
@@ -95,21 +94,21 @@ impl CFURL {
     #[doc(alias = "CFURLCreateData")]
     #[cfg(all(feature = "CFData", feature = "CFString"))]
     #[inline]
-    pub fn new_data(
+    pub fn data(
+        &self,
         allocator: Option<&CFAllocator>,
-        url: Option<&CFURL>,
         encoding: CFStringEncoding,
         escape_whitespace: bool,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFURLCreateData(
                 allocator: Option<&CFAllocator>,
-                url: Option<&CFURL>,
+                url: &CFURL,
                 encoding: CFStringEncoding,
                 escape_whitespace: Boolean,
             ) -> Option<NonNull<CFData>>;
         }
-        let ret = unsafe { CFURLCreateData(allocator, url, encoding, escape_whitespace as _) };
+        let ret = unsafe { CFURLCreateData(allocator, self, encoding, escape_whitespace as _) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -117,13 +116,13 @@ impl CFURL {
     #[inline]
     pub(crate) fn __from_string(
         allocator: Option<&CFAllocator>,
-        url_string: Option<&CFString>,
+        url_string: &CFString,
         base_url: Option<&CFURL>,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFURLCreateWithString(
                 allocator: Option<&CFAllocator>,
-                url_string: Option<&CFString>,
+                url_string: &CFString,
                 base_url: Option<&CFURL>,
             ) -> Option<NonNull<CFURL>>;
         }
@@ -135,7 +134,6 @@ impl CFURL {
     ///
     /// - `relative_url_bytes` must be a valid pointer.
     /// - `encoding` should be set correctly.
-    /// - `base_url` might not allow `None`.
     #[doc(alias = "CFURLCreateAbsoluteURLWithBytes")]
     #[cfg(feature = "CFString")]
     #[inline]
@@ -174,14 +172,14 @@ impl CFURL {
     #[inline]
     pub fn with_file_system_path(
         allocator: Option<&CFAllocator>,
-        file_path: Option<&CFString>,
+        file_path: &CFString,
         path_style: CFURLPathStyle,
         is_directory: bool,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFURLCreateWithFileSystemPath(
                 allocator: Option<&CFAllocator>,
-                file_path: Option<&CFString>,
+                file_path: &CFString,
                 path_style: CFURLPathStyle,
                 is_directory: Boolean,
             ) -> Option<NonNull<CFURL>>;
@@ -221,7 +219,7 @@ impl CFURL {
     #[inline]
     pub fn with_file_system_path_relative_to_base(
         allocator: Option<&CFAllocator>,
-        file_path: Option<&CFString>,
+        file_path: &CFString,
         path_style: CFURLPathStyle,
         is_directory: bool,
         base_url: Option<&CFURL>,
@@ -229,7 +227,7 @@ impl CFURL {
         extern "C-unwind" {
             fn CFURLCreateWithFileSystemPathRelativeToBase(
                 allocator: Option<&CFAllocator>,
-                file_path: Option<&CFString>,
+                file_path: &CFString,
                 path_style: CFURLPathStyle,
                 is_directory: Boolean,
                 base_url: Option<&CFURL>,
@@ -249,8 +247,7 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `buffer` must be a valid pointer.
-    /// - `base_url` might not allow `None`.
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFURLCreateFromFileSystemRepresentationRelativeToBase")]
     #[inline]
     pub unsafe fn from_file_system_representation_relative_to_base(
@@ -318,12 +315,14 @@ impl CFURL {
 
     #[doc(alias = "CFURLGetString")]
     #[inline]
-    pub(crate) fn __string(&self) -> Option<CFRetained<CFString>> {
+    pub(crate) fn __string(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CFURLGetString(an_url: &CFURL) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFURLGetString(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFURLGetBaseURL")]
@@ -376,15 +375,9 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `is_absolute` might not allow `None`.
     #[doc(alias = "CFURLCopyStrictPath")]
     #[inline]
-    pub unsafe fn strict_path(
-        &self,
-        is_absolute: Option<&mut Boolean>,
-    ) -> Option<CFRetained<CFString>> {
+    pub fn strict_path(&self, is_absolute: Option<&mut Boolean>) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFURLCopyStrictPath(
                 an_url: &CFURL,
@@ -538,73 +531,78 @@ impl CFURL {
 
     #[doc(alias = "CFURLCreateCopyAppendingPathComponent")]
     #[inline]
-    pub fn new_copy_appending_path_component(
+    pub fn copy_appending_path_component(
+        &self,
         allocator: Option<&CFAllocator>,
-        url: Option<&CFURL>,
-        path_component: Option<&CFString>,
+        path_component: &CFString,
         is_directory: bool,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFURLCreateCopyAppendingPathComponent(
                 allocator: Option<&CFAllocator>,
-                url: Option<&CFURL>,
-                path_component: Option<&CFString>,
+                url: &CFURL,
+                path_component: &CFString,
                 is_directory: Boolean,
             ) -> Option<NonNull<CFURL>>;
         }
         let ret = unsafe {
-            CFURLCreateCopyAppendingPathComponent(allocator, url, path_component, is_directory as _)
+            CFURLCreateCopyAppendingPathComponent(
+                allocator,
+                self,
+                path_component,
+                is_directory as _,
+            )
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     #[doc(alias = "CFURLCreateCopyDeletingLastPathComponent")]
     #[inline]
-    pub fn new_copy_deleting_last_path_component(
+    pub fn copy_deleting_last_path_component(
+        &self,
         allocator: Option<&CFAllocator>,
-        url: Option<&CFURL>,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFURLCreateCopyDeletingLastPathComponent(
                 allocator: Option<&CFAllocator>,
-                url: Option<&CFURL>,
+                url: &CFURL,
             ) -> Option<NonNull<CFURL>>;
         }
-        let ret = unsafe { CFURLCreateCopyDeletingLastPathComponent(allocator, url) };
+        let ret = unsafe { CFURLCreateCopyDeletingLastPathComponent(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     #[doc(alias = "CFURLCreateCopyAppendingPathExtension")]
     #[inline]
-    pub fn new_copy_appending_path_extension(
+    pub fn copy_appending_path_extension(
+        &self,
         allocator: Option<&CFAllocator>,
-        url: Option<&CFURL>,
-        extension: Option<&CFString>,
+        extension: &CFString,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFURLCreateCopyAppendingPathExtension(
                 allocator: Option<&CFAllocator>,
-                url: Option<&CFURL>,
-                extension: Option<&CFString>,
+                url: &CFURL,
+                extension: &CFString,
             ) -> Option<NonNull<CFURL>>;
         }
-        let ret = unsafe { CFURLCreateCopyAppendingPathExtension(allocator, url, extension) };
+        let ret = unsafe { CFURLCreateCopyAppendingPathExtension(allocator, self, extension) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     #[doc(alias = "CFURLCreateCopyDeletingPathExtension")]
     #[inline]
-    pub fn new_copy_deleting_path_extension(
+    pub fn copy_deleting_path_extension(
+        &self,
         allocator: Option<&CFAllocator>,
-        url: Option<&CFURL>,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFURLCreateCopyDeletingPathExtension(
                 allocator: Option<&CFAllocator>,
-                url: Option<&CFURL>,
+                url: &CFURL,
             ) -> Option<NonNull<CFURL>>;
         }
-        let ret = unsafe { CFURLCreateCopyDeletingPathExtension(allocator, url) };
+        let ret = unsafe { CFURLCreateCopyDeletingPathExtension(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -664,9 +662,6 @@ unsafe impl RefEncode for CFURLComponentType {
 }
 
 impl CFURL {
-    /// # Safety
-    ///
-    /// `range_including_separators` might not allow `None`.
     #[doc(alias = "CFURLGetByteRangeForComponent")]
     #[inline]
     pub unsafe fn byte_range_for_component(
@@ -688,13 +683,13 @@ impl CFURL {
     #[inline]
     pub fn new_string_by_replacing_percent_escapes(
         allocator: Option<&CFAllocator>,
-        original_string: Option<&CFString>,
+        original_string: &CFString,
         characters_to_leave_escaped: Option<&CFString>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFURLCreateStringByReplacingPercentEscapes(
                 allocator: Option<&CFAllocator>,
-                original_string: Option<&CFString>,
+                original_string: &CFString,
                 characters_to_leave_escaped: Option<&CFString>,
             ) -> Option<NonNull<CFString>>;
         }
@@ -710,23 +705,21 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `orig_string` might not allow `None`.
-    /// - `chars_to_leave_escaped` might not allow `None`.
-    /// - `encoding` should be set correctly.
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFURLCreateStringByReplacingPercentEscapesUsingEncoding")]
     #[cfg(feature = "CFString")]
     #[deprecated = "Use [NSString stringByRemovingPercentEncoding] or CFURLCreateStringByReplacingPercentEscapes() instead, which always uses the recommended UTF-8 encoding."]
     #[inline]
     pub unsafe fn new_string_by_replacing_percent_escapes_using_encoding(
         allocator: Option<&CFAllocator>,
-        orig_string: Option<&CFString>,
+        orig_string: &CFString,
         chars_to_leave_escaped: Option<&CFString>,
         encoding: CFStringEncoding,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
                 allocator: Option<&CFAllocator>,
-                orig_string: Option<&CFString>,
+                orig_string: &CFString,
                 chars_to_leave_escaped: Option<&CFString>,
                 encoding: CFStringEncoding,
             ) -> Option<NonNull<CFString>>;
@@ -744,17 +737,14 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `original_string` might not allow `None`.
-    /// - `characters_to_leave_unescaped` might not allow `None`.
-    /// - `legal_url_characters_to_be_escaped` might not allow `None`.
-    /// - `encoding` should be set correctly.
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFURLCreateStringByAddingPercentEscapes")]
     #[cfg(feature = "CFString")]
     #[deprecated = "Use [NSString stringByAddingPercentEncodingWithAllowedCharacters:] instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent (since each URL component or subcomponent has different rules for what characters are valid)."]
     #[inline]
     pub unsafe fn new_string_by_adding_percent_escapes(
         allocator: Option<&CFAllocator>,
-        original_string: Option<&CFString>,
+        original_string: &CFString,
         characters_to_leave_unescaped: Option<&CFString>,
         legal_url_characters_to_be_escaped: Option<&CFString>,
         encoding: CFStringEncoding,
@@ -762,7 +752,7 @@ impl CFURL {
         extern "C-unwind" {
             fn CFURLCreateStringByAddingPercentEscapes(
                 allocator: Option<&CFAllocator>,
-                original_string: Option<&CFString>,
+                original_string: &CFString,
                 characters_to_leave_unescaped: Option<&CFString>,
                 legal_url_characters_to_be_escaped: Option<&CFString>,
                 encoding: CFStringEncoding,
@@ -792,71 +782,65 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `url` might not allow `None`.
-    /// - `error` must be a valid pointer.
-    /// - `error` might not allow `None`.
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateFileReferenceURL")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub unsafe fn new_file_reference_url(
+    pub unsafe fn file_reference_url(
+        &self,
         allocator: Option<&CFAllocator>,
-        url: Option<&CFURL>,
         error: Option<&mut *mut CFError>,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFURLCreateFileReferenceURL(
                 allocator: Option<&CFAllocator>,
-                url: Option<&CFURL>,
+                url: &CFURL,
                 error: Option<&mut *mut CFError>,
             ) -> Option<NonNull<CFURL>>;
         }
-        let ret = unsafe { CFURLCreateFileReferenceURL(allocator, url, error) };
+        let ret = unsafe { CFURLCreateFileReferenceURL(allocator, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     /// # Safety
     ///
-    /// - `url` might not allow `None`.
-    /// - `error` must be a valid pointer.
-    /// - `error` might not allow `None`.
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateFilePathURL")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub unsafe fn new_file_path_url(
+    pub unsafe fn file_path_url(
+        &self,
         allocator: Option<&CFAllocator>,
-        url: Option<&CFURL>,
         error: Option<&mut *mut CFError>,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFURLCreateFilePathURL(
                 allocator: Option<&CFAllocator>,
-                url: Option<&CFURL>,
+                url: &CFURL,
                 error: Option<&mut *mut CFError>,
             ) -> Option<NonNull<CFURL>>;
         }
-        let ret = unsafe { CFURLCreateFilePathURL(allocator, url, error) };
+        let ret = unsafe { CFURLCreateFilePathURL(allocator, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     /// # Safety
     ///
-    /// - `key` might not allow `None`.
     /// - `property_value_type_ref_ptr` must be a valid pointer.
     /// - `error` must be a valid pointer.
-    /// - `error` might not allow `None`.
     #[doc(alias = "CFURLCopyResourcePropertyForKey")]
     #[cfg(feature = "CFError")]
     #[inline]
     pub unsafe fn resource_property_for_key(
         &self,
-        key: Option<&CFString>,
+        key: &CFString,
         property_value_type_ref_ptr: *mut c_void,
         error: Option<&mut *mut CFError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLCopyResourcePropertyForKey(
                 url: &CFURL,
-                key: Option<&CFString>,
+                key: &CFString,
                 property_value_type_ref_ptr: *mut c_void,
                 error: Option<&mut *mut CFError>,
             ) -> Boolean;
@@ -869,9 +853,7 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `keys` might not allow `None`.
-    /// - `error` must be a valid pointer.
-    /// - `error` might not allow `None`.
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCopyResourcePropertiesForKeys")]
     #[cfg(all(
         feature = "CFArray",
@@ -882,13 +864,13 @@ impl CFURL {
     #[inline]
     pub unsafe fn resource_properties_for_keys(
         &self,
-        keys: Option<&CFArray<CFString>>,
+        keys: &CFArray<CFString>,
         error: Option<&mut *mut CFError>,
     ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CFURLCopyResourcePropertiesForKeys(
                 url: &CFURL,
-                keys: Option<&CFArray<CFString>>,
+                keys: &CFArray<CFString>,
                 error: Option<&mut *mut CFError>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
@@ -898,25 +880,22 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `key` might not allow `None`.
     /// - `property_value` should be of the correct type.
-    /// - `property_value` might not allow `None`.
     /// - `error` must be a valid pointer.
-    /// - `error` might not allow `None`.
     #[doc(alias = "CFURLSetResourcePropertyForKey")]
     #[cfg(feature = "CFError")]
     #[inline]
     pub unsafe fn set_resource_property_for_key(
         &self,
-        key: Option<&CFString>,
-        property_value: Option<&CFType>,
+        key: &CFString,
+        property_value: &CFType,
         error: Option<&mut *mut CFError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLSetResourcePropertyForKey(
                 url: &CFURL,
-                key: Option<&CFString>,
-                property_value: Option<&CFType>,
+                key: &CFString,
+                property_value: &CFType,
                 error: Option<&mut *mut CFError>,
             ) -> Boolean;
         }
@@ -927,21 +906,19 @@ impl CFURL {
     /// # Safety
     ///
     /// - `keyed_property_values` generic should be of the correct type.
-    /// - `keyed_property_values` might not allow `None`.
     /// - `error` must be a valid pointer.
-    /// - `error` might not allow `None`.
     #[doc(alias = "CFURLSetResourcePropertiesForKeys")]
     #[cfg(all(feature = "CFDictionary", feature = "CFError", feature = "CFString"))]
     #[inline]
     pub unsafe fn set_resource_properties_for_keys(
         &self,
-        keyed_property_values: Option<&CFDictionary<CFString, CFType>>,
+        keyed_property_values: &CFDictionary<CFString, CFType>,
         error: Option<&mut *mut CFError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLSetResourcePropertiesForKeys(
                 url: &CFURL,
-                keyed_property_values: Option<&CFDictionary<CFString, CFType>>,
+                keyed_property_values: &CFDictionary<CFString, CFType>,
                 error: Option<&mut *mut CFError>,
             ) -> Boolean;
         }
@@ -958,9 +935,9 @@ extern "C" {
 impl CFURL {
     #[doc(alias = "CFURLClearResourcePropertyCacheForKey")]
     #[inline]
-    pub fn clear_resource_property_cache_for_key(&self, key: Option<&CFString>) {
+    pub fn clear_resource_property_cache_for_key(&self, key: &CFString) {
         extern "C-unwind" {
-            fn CFURLClearResourcePropertyCacheForKey(url: &CFURL, key: Option<&CFString>);
+            fn CFURLClearResourcePropertyCacheForKey(url: &CFURL, key: &CFString);
         }
         unsafe { CFURLClearResourcePropertyCacheForKey(self, key) }
     }
@@ -976,16 +953,12 @@ impl CFURL {
 
     #[doc(alias = "CFURLSetTemporaryResourcePropertyForKey")]
     #[inline]
-    pub fn set_temporary_resource_property_for_key(
-        &self,
-        key: Option<&CFString>,
-        property_value: Option<&CFType>,
-    ) {
+    pub fn set_temporary_resource_property_for_key(&self, key: &CFString, property_value: &CFType) {
         extern "C-unwind" {
             fn CFURLSetTemporaryResourcePropertyForKey(
                 url: &CFURL,
-                key: Option<&CFString>,
-                property_value: Option<&CFType>,
+                key: &CFString,
+                property_value: &CFType,
             );
         }
         unsafe { CFURLSetTemporaryResourcePropertyForKey(self, key, property_value) }
@@ -993,8 +966,7 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `error` must be a valid pointer.
-    /// - `error` might not allow `None`.
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLResourceIsReachable")]
     #[cfg(feature = "CFError")]
     #[inline]

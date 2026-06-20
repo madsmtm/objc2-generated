@@ -10,13 +10,8 @@ use crate::*;
 impl CFURL {
     /// # Safety
     ///
-    /// - `url` might not allow `None`.
     /// - `resource_data` must be a valid pointer.
-    /// - `resource_data` might not allow `None`.
     /// - `properties` must be a valid pointer.
-    /// - `properties` might not allow `None`.
-    /// - `desired_properties` might not allow `None`.
-    /// - `error_code` might not allow `None`.
     #[doc(alias = "CFURLCreateDataAndPropertiesFromResource")]
     #[cfg(all(
         feature = "CFArray",
@@ -27,9 +22,9 @@ impl CFURL {
     ))]
     #[deprecated = "For resource data, use the CFReadStream API. For file resource properties, use CFURLCopyResourcePropertiesForKeys."]
     #[inline]
-    pub unsafe fn new_data_and_properties_from_resource(
+    pub unsafe fn data_and_properties_from_resource(
+        &self,
         alloc: Option<&CFAllocator>,
-        url: Option<&CFURL>,
         resource_data: Option<&mut *const CFData>,
         properties: Option<&mut *const CFDictionary<CFString, CFType>>,
         desired_properties: Option<&CFArray<CFString>>,
@@ -38,7 +33,7 @@ impl CFURL {
         extern "C-unwind" {
             fn CFURLCreateDataAndPropertiesFromResource(
                 alloc: Option<&CFAllocator>,
-                url: Option<&CFURL>,
+                url: &CFURL,
                 resource_data: Option<&mut *const CFData>,
                 properties: Option<&mut *const CFDictionary<CFString, CFType>>,
                 desired_properties: Option<&CFArray<CFString>>,
@@ -48,7 +43,7 @@ impl CFURL {
         let ret = unsafe {
             CFURLCreateDataAndPropertiesFromResource(
                 alloc,
-                url,
+                self,
                 resource_data,
                 properties,
                 desired_properties,
@@ -60,10 +55,7 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `data_to_write` might not allow `None`.
-    /// - `properties_to_write` generic should be of the correct type.
-    /// - `properties_to_write` might not allow `None`.
-    /// - `error_code` might not allow `None`.
+    /// `properties_to_write` generic should be of the correct type.
     #[doc(alias = "CFURLWriteDataAndPropertiesToResource")]
     #[cfg(all(
         feature = "CFData",
@@ -98,14 +90,11 @@ impl CFURL {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `error_code` might not allow `None`.
     #[doc(alias = "CFURLDestroyResource")]
     #[cfg(feature = "CFURL")]
     #[deprecated = "Use CFURLGetFileSystemRepresentation and removefile(3) instead."]
     #[inline]
-    pub unsafe fn destroy_resource(&self, error_code: Option<&mut i32>) -> bool {
+    pub fn destroy_resource(&self, error_code: Option<&mut i32>) -> bool {
         extern "C-unwind" {
             fn CFURLDestroyResource(url: &CFURL, error_code: Option<&mut i32>) -> Boolean;
         }
@@ -113,30 +102,25 @@ impl CFURL {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// - `url` might not allow `None`.
-    /// - `property` might not allow `None`.
-    /// - `error_code` might not allow `None`.
     #[doc(alias = "CFURLCreatePropertyFromResource")]
     #[cfg(feature = "CFURL")]
     #[deprecated = "For file resource properties, use CFURLCopyResourcePropertyForKey."]
     #[inline]
-    pub unsafe fn new_property_from_resource(
+    pub fn property_from_resource(
+        &self,
         alloc: Option<&CFAllocator>,
-        url: Option<&CFURL>,
-        property: Option<&CFString>,
+        property: &CFString,
         error_code: Option<&mut i32>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFURLCreatePropertyFromResource(
                 alloc: Option<&CFAllocator>,
-                url: Option<&CFURL>,
-                property: Option<&CFString>,
+                url: &CFURL,
+                property: &CFString,
                 error_code: Option<&mut i32>,
             ) -> Option<NonNull<CFType>>;
         }
-        let ret = unsafe { CFURLCreatePropertyFromResource(alloc, url, property, error_code) };
+        let ret = unsafe { CFURLCreatePropertyFromResource(alloc, self, property, error_code) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }

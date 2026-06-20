@@ -273,12 +273,12 @@ impl CFReadStream {
     #[inline]
     pub fn with_file(
         alloc: Option<&CFAllocator>,
-        file_url: Option<&CFURL>,
+        file_url: &CFURL,
     ) -> Option<CFRetained<CFReadStream>> {
         extern "C-unwind" {
             fn CFReadStreamCreateWithFile(
                 alloc: Option<&CFAllocator>,
-                file_url: Option<&CFURL>,
+                file_url: &CFURL,
             ) -> Option<NonNull<CFReadStream>>;
         }
         let ret = unsafe { CFReadStreamCreateWithFile(alloc, file_url) };
@@ -292,12 +292,12 @@ impl CFWriteStream {
     #[inline]
     pub fn with_file(
         alloc: Option<&CFAllocator>,
-        file_url: Option<&CFURL>,
+        file_url: &CFURL,
     ) -> Option<CFRetained<CFWriteStream>> {
         extern "C-unwind" {
             fn CFWriteStreamCreateWithFile(
                 alloc: Option<&CFAllocator>,
-                file_url: Option<&CFURL>,
+                file_url: &CFURL,
             ) -> Option<NonNull<CFWriteStream>>;
         }
         let ret = unsafe { CFWriteStreamCreateWithFile(alloc, file_url) };
@@ -309,13 +309,11 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `read_stream` must be a valid pointer.
-    /// - `read_stream` might not allow `None`.
     /// - `write_stream` must be a valid pointer.
-    /// - `write_stream` might not allow `None`.
     pub fn CFStreamCreateBoundPair(
         alloc: Option<&CFAllocator>,
-        read_stream: Option<&mut *mut CFReadStream>,
-        write_stream: Option<&mut *mut CFWriteStream>,
+        read_stream: &mut *mut CFReadStream,
+        write_stream: &mut *mut CFWriteStream,
         transfer_buffer_size: CFIndex,
     );
 }
@@ -436,9 +434,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `read_stream` must be a valid pointer.
-    /// - `read_stream` might not allow `None`.
     /// - `write_stream` must be a valid pointer.
-    /// - `write_stream` might not allow `None`.
     #[cfg(feature = "CFSocket")]
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithSocket(
@@ -452,15 +448,12 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `host` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
-    /// - `read_stream` might not allow `None`.
     /// - `write_stream` must be a valid pointer.
-    /// - `write_stream` might not allow `None`.
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithSocketToHost(
         alloc: Option<&CFAllocator>,
-        host: Option<&CFString>,
+        host: &CFString,
         port: u32,
         read_stream: Option<&mut *mut CFReadStream>,
         write_stream: Option<&mut *mut CFWriteStream>,
@@ -471,16 +464,13 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `signature` struct field `address` must be a valid pointer.
-    /// - `signature` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
-    /// - `read_stream` might not allow `None`.
     /// - `write_stream` must be a valid pointer.
-    /// - `write_stream` might not allow `None`.
     #[cfg(all(feature = "CFData", feature = "CFSocket"))]
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithPeerSocketSignature(
         alloc: Option<&CFAllocator>,
-        signature: Option<&CFSocketSignature>,
+        signature: &CFSocketSignature,
         read_stream: Option<&mut *mut CFReadStream>,
         write_stream: Option<&mut *mut CFWriteStream>,
     );
@@ -607,21 +597,14 @@ impl CFReadStream {
         unsafe { CFReadStreamRead(self, buffer, buffer_length) }
     }
 
-    /// # Safety
-    ///
-    /// `num_bytes_read` might not allow `None`.
     #[doc(alias = "CFReadStreamGetBuffer")]
     #[inline]
-    pub unsafe fn buffer(
-        &self,
-        max_bytes_to_read: CFIndex,
-        num_bytes_read: Option<&mut CFIndex>,
-    ) -> *const u8 {
+    pub fn buffer(&self, max_bytes_to_read: CFIndex, num_bytes_read: &mut CFIndex) -> *const u8 {
         extern "C-unwind" {
             fn CFReadStreamGetBuffer(
                 stream: &CFReadStream,
                 max_bytes_to_read: CFIndex,
-                num_bytes_read: Option<&mut CFIndex>,
+                num_bytes_read: &mut CFIndex,
             ) -> *const u8;
         }
         unsafe { CFReadStreamGetBuffer(self, max_bytes_to_read, num_bytes_read) }
@@ -659,14 +642,11 @@ impl CFWriteStream {
 impl CFReadStream {
     #[doc(alias = "CFReadStreamCopyProperty")]
     #[inline]
-    pub fn property(
-        &self,
-        property_name: Option<&CFStreamPropertyKey>,
-    ) -> Option<CFRetained<CFType>> {
+    pub fn property(&self, property_name: &CFStreamPropertyKey) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFReadStreamCopyProperty(
                 stream: &CFReadStream,
-                property_name: Option<&CFStreamPropertyKey>,
+                property_name: &CFStreamPropertyKey,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe { CFReadStreamCopyProperty(self, property_name) };
@@ -677,14 +657,11 @@ impl CFReadStream {
 impl CFWriteStream {
     #[doc(alias = "CFWriteStreamCopyProperty")]
     #[inline]
-    pub fn property(
-        &self,
-        property_name: Option<&CFStreamPropertyKey>,
-    ) -> Option<CFRetained<CFType>> {
+    pub fn property(&self, property_name: &CFStreamPropertyKey) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFWriteStreamCopyProperty(
                 stream: &CFWriteStream,
-                property_name: Option<&CFStreamPropertyKey>,
+                property_name: &CFStreamPropertyKey,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe { CFWriteStreamCopyProperty(self, property_name) };
@@ -695,20 +672,18 @@ impl CFWriteStream {
 impl CFReadStream {
     /// # Safety
     ///
-    /// - `property_name` might not allow `None`.
-    /// - `property_value` should be of the correct type.
-    /// - `property_value` might not allow `None`.
+    /// `property_value` should be of the correct type.
     #[doc(alias = "CFReadStreamSetProperty")]
     #[inline]
     pub unsafe fn set_property(
         &self,
-        property_name: Option<&CFStreamPropertyKey>,
+        property_name: &CFStreamPropertyKey,
         property_value: Option<&CFType>,
     ) -> bool {
         extern "C-unwind" {
             fn CFReadStreamSetProperty(
                 stream: &CFReadStream,
-                property_name: Option<&CFStreamPropertyKey>,
+                property_name: &CFStreamPropertyKey,
                 property_value: Option<&CFType>,
             ) -> Boolean;
         }
@@ -720,20 +695,18 @@ impl CFReadStream {
 impl CFWriteStream {
     /// # Safety
     ///
-    /// - `property_name` might not allow `None`.
-    /// - `property_value` should be of the correct type.
-    /// - `property_value` might not allow `None`.
+    /// `property_value` should be of the correct type.
     #[doc(alias = "CFWriteStreamSetProperty")]
     #[inline]
     pub unsafe fn set_property(
         &self,
-        property_name: Option<&CFStreamPropertyKey>,
+        property_name: &CFStreamPropertyKey,
         property_value: Option<&CFType>,
     ) -> bool {
         extern "C-unwind" {
             fn CFWriteStreamSetProperty(
                 stream: &CFWriteStream,
-                property_name: Option<&CFStreamPropertyKey>,
+                property_name: &CFStreamPropertyKey,
                 property_value: Option<&CFType>,
             ) -> Boolean;
         }
@@ -751,7 +724,6 @@ impl CFReadStream {
     /// - `client_context` struct field `retain` must be implemented correctly.
     /// - `client_context` struct field `release` must be implemented correctly.
     /// - `client_context` struct field `copyDescription` must be implemented correctly.
-    /// - `client_context` might not allow `None`.
     #[doc(alias = "CFReadStreamSetClient")]
     #[inline]
     pub unsafe fn set_client(
@@ -782,7 +754,6 @@ impl CFWriteStream {
     /// - `client_context` struct field `retain` must be implemented correctly.
     /// - `client_context` struct field `release` must be implemented correctly.
     /// - `client_context` struct field `copyDescription` must be implemented correctly.
-    /// - `client_context` might not allow `None`.
     #[doc(alias = "CFWriteStreamSetClient")]
     #[inline]
     pub unsafe fn set_client(
@@ -808,16 +779,12 @@ impl CFReadStream {
     #[doc(alias = "CFReadStreamScheduleWithRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
-    pub fn schedule_with_run_loop(
-        &self,
-        run_loop: Option<&CFRunLoop>,
-        run_loop_mode: Option<&CFRunLoopMode>,
-    ) {
+    pub fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFRunLoopMode) {
         extern "C-unwind" {
             fn CFReadStreamScheduleWithRunLoop(
                 stream: &CFReadStream,
-                run_loop: Option<&CFRunLoop>,
-                run_loop_mode: Option<&CFRunLoopMode>,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFRunLoopMode,
             );
         }
         unsafe { CFReadStreamScheduleWithRunLoop(self, run_loop, run_loop_mode) }
@@ -828,16 +795,12 @@ impl CFWriteStream {
     #[doc(alias = "CFWriteStreamScheduleWithRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
-    pub fn schedule_with_run_loop(
-        &self,
-        run_loop: Option<&CFRunLoop>,
-        run_loop_mode: Option<&CFRunLoopMode>,
-    ) {
+    pub fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFRunLoopMode) {
         extern "C-unwind" {
             fn CFWriteStreamScheduleWithRunLoop(
                 stream: &CFWriteStream,
-                run_loop: Option<&CFRunLoop>,
-                run_loop_mode: Option<&CFRunLoopMode>,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFRunLoopMode,
             );
         }
         unsafe { CFWriteStreamScheduleWithRunLoop(self, run_loop, run_loop_mode) }
@@ -848,16 +811,12 @@ impl CFReadStream {
     #[doc(alias = "CFReadStreamUnscheduleFromRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
-    pub fn unschedule_from_run_loop(
-        &self,
-        run_loop: Option<&CFRunLoop>,
-        run_loop_mode: Option<&CFRunLoopMode>,
-    ) {
+    pub fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFRunLoopMode) {
         extern "C-unwind" {
             fn CFReadStreamUnscheduleFromRunLoop(
                 stream: &CFReadStream,
-                run_loop: Option<&CFRunLoop>,
-                run_loop_mode: Option<&CFRunLoopMode>,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFRunLoopMode,
             );
         }
         unsafe { CFReadStreamUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
@@ -868,16 +827,12 @@ impl CFWriteStream {
     #[doc(alias = "CFWriteStreamUnscheduleFromRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
-    pub fn unschedule_from_run_loop(
-        &self,
-        run_loop: Option<&CFRunLoop>,
-        run_loop_mode: Option<&CFRunLoopMode>,
-    ) {
+    pub fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFRunLoopMode) {
         extern "C-unwind" {
             fn CFWriteStreamUnscheduleFromRunLoop(
                 stream: &CFWriteStream,
-                run_loop: Option<&CFRunLoop>,
-                run_loop_mode: Option<&CFRunLoopMode>,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFRunLoopMode,
             );
         }
         unsafe { CFWriteStreamUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
@@ -887,8 +842,7 @@ impl CFWriteStream {
 impl CFReadStream {
     /// # Safety
     ///
-    /// - `q` possibly has additional threading requirements.
-    /// - `q` might not allow `None`.
+    /// `q` possibly has additional threading requirements.
     #[doc(alias = "CFReadStreamSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -903,8 +857,7 @@ impl CFReadStream {
 impl CFWriteStream {
     /// # Safety
     ///
-    /// - `q` possibly has additional threading requirements.
-    /// - `q` might not allow `None`.
+    /// `q` possibly has additional threading requirements.
     #[doc(alias = "CFWriteStreamSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
