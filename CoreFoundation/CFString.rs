@@ -204,20 +204,19 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `c_str` might not allow `None`.
-    /// - `encoding` should be set correctly.
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFStringCreateWithCStringNoCopy")]
     #[inline]
     pub unsafe fn with_c_string_no_copy(
         alloc: Option<&CFAllocator>,
-        c_str: Option<&CStr>,
+        c_str: &CStr,
         encoding: CFStringEncoding,
         contents_deallocator: Option<&CFAllocator>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFStringCreateWithCStringNoCopy(
                 alloc: Option<&CFAllocator>,
-                c_str: *const c_char,
+                c_str: NonNull<c_char>,
                 encoding: CFStringEncoding,
                 contents_deallocator: Option<&CFAllocator>,
             ) -> Option<NonNull<CFString>>;
@@ -225,9 +224,7 @@ impl CFString {
         let ret = unsafe {
             CFStringCreateWithCStringNoCopy(
                 alloc,
-                c_str
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
+                NonNull::new(c_str.as_ptr().cast_mut()).unwrap(),
                 encoding,
                 contents_deallocator,
             )
@@ -297,40 +294,34 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `str` might not allow `None`.
     #[doc(alias = "CFStringCreateWithSubstring")]
     #[inline]
     pub unsafe fn with_substring(
+        &self,
         alloc: Option<&CFAllocator>,
-        str: Option<&CFString>,
         range: CFRange,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFStringCreateWithSubstring(
                 alloc: Option<&CFAllocator>,
-                str: Option<&CFString>,
+                str: &CFString,
                 range: CFRange,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CFStringCreateWithSubstring(alloc, str, range) };
+        let ret = unsafe { CFStringCreateWithSubstring(alloc, self, range) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     #[doc(alias = "CFStringCreateCopy")]
     #[inline]
-    pub fn new_copy(
-        alloc: Option<&CFAllocator>,
-        the_string: Option<&CFString>,
-    ) -> Option<CFRetained<CFString>> {
+    pub fn copy(&self, alloc: Option<&CFAllocator>) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFStringCreateCopy(
                 alloc: Option<&CFAllocator>,
-                the_string: Option<&CFString>,
+                the_string: &CFString,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CFStringCreateCopy(alloc, the_string) };
+        let ret = unsafe { CFStringCreateCopy(alloc, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }
@@ -357,13 +348,13 @@ impl CFMutableString {
     pub fn new_copy(
         alloc: Option<&CFAllocator>,
         max_length: CFIndex,
-        the_string: Option<&CFString>,
+        the_string: &CFString,
     ) -> Option<CFRetained<CFMutableString>> {
         extern "C-unwind" {
             fn CFStringCreateMutableCopy(
                 alloc: Option<&CFAllocator>,
                 max_length: CFIndex,
-                the_string: Option<&CFString>,
+                the_string: &CFString,
             ) -> Option<NonNull<CFMutableString>>;
         }
         let ret = unsafe { CFStringCreateMutableCopy(alloc, max_length, the_string) };
@@ -570,13 +561,13 @@ impl CFString {
     #[inline]
     pub fn from_external_representation(
         alloc: Option<&CFAllocator>,
-        data: Option<&CFData>,
+        data: &CFData,
         encoding: CFStringEncoding,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFStringCreateFromExternalRepresentation(
                 alloc: Option<&CFAllocator>,
-                data: Option<&CFData>,
+                data: &CFData,
                 encoding: CFStringEncoding,
             ) -> Option<NonNull<CFString>>;
         }
@@ -587,22 +578,21 @@ impl CFString {
     #[doc(alias = "CFStringCreateExternalRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
-    pub fn new_external_representation(
+    pub fn external_representation(
+        &self,
         alloc: Option<&CFAllocator>,
-        the_string: Option<&CFString>,
         encoding: CFStringEncoding,
         loss_byte: u8,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFStringCreateExternalRepresentation(
                 alloc: Option<&CFAllocator>,
-                the_string: Option<&CFString>,
+                the_string: &CFString,
                 encoding: CFStringEncoding,
                 loss_byte: u8,
             ) -> Option<NonNull<CFData>>;
         }
-        let ret =
-            unsafe { CFStringCreateExternalRepresentation(alloc, the_string, encoding, loss_byte) };
+        let ret = unsafe { CFStringCreateExternalRepresentation(alloc, self, encoding, loss_byte) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -683,27 +673,22 @@ impl CFString {
         unsafe { CFStringGetMaximumSizeOfFileSystemRepresentation(self) }
     }
 
-    /// # Safety
-    ///
-    /// `buffer` might not allow `None`.
     #[doc(alias = "CFStringCreateWithFileSystemRepresentation")]
     #[inline]
     pub unsafe fn with_file_system_representation(
         alloc: Option<&CFAllocator>,
-        buffer: Option<&CStr>,
+        buffer: &CStr,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFStringCreateWithFileSystemRepresentation(
                 alloc: Option<&CFAllocator>,
-                buffer: *const c_char,
+                buffer: NonNull<c_char>,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe {
             CFStringCreateWithFileSystemRepresentation(
                 alloc,
-                buffer
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
+                NonNull::new(buffer.as_ptr().cast_mut()).unwrap(),
             )
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -750,16 +735,12 @@ unsafe impl RefEncode for CFStringCompareFlags {
 }
 
 impl CFString {
-    /// # Safety
-    ///
-    /// - `the_string2` might not allow `None`.
-    /// - `locale` might not allow `None`.
     #[doc(alias = "CFStringCompareWithOptionsAndLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
     pub unsafe fn compare_with_options_and_locale(
         &self,
-        the_string2: Option<&CFString>,
+        the_string2: &CFString,
         range_to_compare: CFRange,
         compare_options: CFStringCompareFlags,
         locale: Option<&CFLocale>,
@@ -767,7 +748,7 @@ impl CFString {
         extern "C-unwind" {
             fn CFStringCompareWithOptionsAndLocale(
                 the_string1: &CFString,
-                the_string2: Option<&CFString>,
+                the_string2: &CFString,
                 range_to_compare: CFRange,
                 compare_options: CFStringCompareFlags,
                 locale: Option<&CFLocale>,
@@ -784,21 +765,18 @@ impl CFString {
         }
     }
 
-    /// # Safety
-    ///
-    /// `the_string2` might not allow `None`.
     #[doc(alias = "CFStringCompareWithOptions")]
     #[inline]
     pub unsafe fn compare_with_options(
         &self,
-        the_string2: Option<&CFString>,
+        the_string2: &CFString,
         range_to_compare: CFRange,
         compare_options: CFStringCompareFlags,
     ) -> CFComparisonResult {
         extern "C-unwind" {
             fn CFStringCompareWithOptions(
                 the_string1: &CFString,
-                the_string2: Option<&CFString>,
+                the_string2: &CFString,
                 range_to_compare: CFRange,
                 compare_options: CFStringCompareFlags,
             ) -> CFComparisonResult;
@@ -810,29 +788,25 @@ impl CFString {
     #[inline]
     pub fn compare(
         &self,
-        the_string2: Option<&CFString>,
+        the_string2: &CFString,
         compare_options: CFStringCompareFlags,
     ) -> CFComparisonResult {
         extern "C-unwind" {
             fn CFStringCompare(
                 the_string1: &CFString,
-                the_string2: Option<&CFString>,
+                the_string2: &CFString,
                 compare_options: CFStringCompareFlags,
             ) -> CFComparisonResult;
         }
         unsafe { CFStringCompare(self, the_string2, compare_options) }
     }
 
-    /// # Safety
-    ///
-    /// - `string_to_find` might not allow `None`.
-    /// - `locale` might not allow `None`.
     #[doc(alias = "CFStringFindWithOptionsAndLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
     pub unsafe fn find_with_options_and_locale(
         &self,
-        string_to_find: Option<&CFString>,
+        string_to_find: &CFString,
         range_to_search: CFRange,
         search_options: CFStringCompareFlags,
         locale: Option<&CFLocale>,
@@ -841,7 +815,7 @@ impl CFString {
         extern "C-unwind" {
             fn CFStringFindWithOptionsAndLocale(
                 the_string: &CFString,
-                string_to_find: Option<&CFString>,
+                string_to_find: &CFString,
                 range_to_search: CFRange,
                 search_options: CFStringCompareFlags,
                 locale: Option<&CFLocale>,
@@ -861,14 +835,11 @@ impl CFString {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `string_to_find` might not allow `None`.
     #[doc(alias = "CFStringFindWithOptions")]
     #[inline]
     pub unsafe fn find_with_options(
         &self,
-        string_to_find: Option<&CFString>,
+        string_to_find: &CFString,
         range_to_search: CFRange,
         search_options: CFStringCompareFlags,
         result: Option<&mut CFRange>,
@@ -876,7 +847,7 @@ impl CFString {
         extern "C-unwind" {
             fn CFStringFindWithOptions(
                 the_string: &CFString,
-                string_to_find: Option<&CFString>,
+                string_to_find: &CFString,
                 range_to_search: CFRange,
                 search_options: CFStringCompareFlags,
                 result: Option<&mut CFRange>,
@@ -894,25 +865,21 @@ impl CFString {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// - `the_string` might not allow `None`.
-    /// - `string_to_find` might not allow `None`.
     #[doc(alias = "CFStringCreateArrayWithFindResults")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    pub unsafe fn new_array_with_find_results(
+    pub unsafe fn array_with_find_results(
+        &self,
         alloc: Option<&CFAllocator>,
-        the_string: Option<&CFString>,
-        string_to_find: Option<&CFString>,
+        string_to_find: &CFString,
         range_to_search: CFRange,
         compare_options: CFStringCompareFlags,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CFStringCreateArrayWithFindResults(
                 alloc: Option<&CFAllocator>,
-                the_string: Option<&CFString>,
-                string_to_find: Option<&CFString>,
+                the_string: &CFString,
+                string_to_find: &CFString,
                 range_to_search: CFRange,
                 compare_options: CFStringCompareFlags,
             ) -> Option<NonNull<CFArray>>;
@@ -920,7 +887,7 @@ impl CFString {
         let ret = unsafe {
             CFStringCreateArrayWithFindResults(
                 alloc,
-                the_string,
+                self,
                 string_to_find,
                 range_to_search,
                 compare_options,
@@ -933,13 +900,13 @@ impl CFString {
     #[inline]
     pub fn find(
         &self,
-        string_to_find: Option<&CFString>,
+        string_to_find: &CFString,
         compare_options: CFStringCompareFlags,
     ) -> CFRange {
         extern "C-unwind" {
             fn CFStringFind(
                 the_string: &CFString,
-                string_to_find: Option<&CFString>,
+                string_to_find: &CFString,
                 compare_options: CFStringCompareFlags,
             ) -> CFRange;
         }
@@ -948,9 +915,9 @@ impl CFString {
 
     #[doc(alias = "CFStringHasPrefix")]
     #[inline]
-    pub fn has_prefix(&self, prefix: Option<&CFString>) -> bool {
+    pub fn has_prefix(&self, prefix: &CFString) -> bool {
         extern "C-unwind" {
-            fn CFStringHasPrefix(the_string: &CFString, prefix: Option<&CFString>) -> Boolean;
+            fn CFStringHasPrefix(the_string: &CFString, prefix: &CFString) -> Boolean;
         }
         let ret = unsafe { CFStringHasPrefix(self, prefix) };
         ret != 0
@@ -958,9 +925,9 @@ impl CFString {
 
     #[doc(alias = "CFStringHasSuffix")]
     #[inline]
-    pub fn has_suffix(&self, suffix: Option<&CFString>) -> bool {
+    pub fn has_suffix(&self, suffix: &CFString) -> bool {
         extern "C-unwind" {
-            fn CFStringHasSuffix(the_string: &CFString, suffix: Option<&CFString>) -> Boolean;
+            fn CFStringHasSuffix(the_string: &CFString, suffix: &CFString) -> Boolean;
         }
         let ret = unsafe { CFStringHasSuffix(self, suffix) };
         ret != 0
@@ -1023,16 +990,12 @@ impl CFString {
     ///
     /// Returns: true, if at least a character which is a member of the character
     /// set is found and result is filled, otherwise, false.
-    ///
-    /// # Safety
-    ///
-    /// `the_set` might not allow `None`.
     #[doc(alias = "CFStringFindCharacterFromSet")]
     #[cfg(feature = "CFCharacterSet")]
     #[inline]
     pub unsafe fn find_character_from_set(
         &self,
-        the_set: Option<&CFCharacterSet>,
+        the_set: &CFCharacterSet,
         range_to_search: CFRange,
         search_options: CFStringCompareFlags,
         result: Option<&mut CFRange>,
@@ -1040,7 +1003,7 @@ impl CFString {
         extern "C-unwind" {
             fn CFStringFindCharacterFromSet(
                 the_string: &CFString,
-                the_set: Option<&CFCharacterSet>,
+                the_set: &CFCharacterSet,
                 range_to_search: CFRange,
                 search_options: CFStringCompareFlags,
                 result: Option<&mut CFRange>,
@@ -1139,10 +1102,6 @@ impl CFString {
     ///
     /// Returns: an index in the string where it is appropriate to insert a hyphen, if
     /// one exists; else kCFNotFound
-    ///
-    /// # Safety
-    ///
-    /// `locale` might not allow `None`.
     #[doc(alias = "CFStringGetHyphenationLocationBeforeIndex")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1151,7 +1110,7 @@ impl CFString {
         location: CFIndex,
         limit_range: CFRange,
         options: CFOptionFlags,
-        locale: Option<&CFLocale>,
+        locale: &CFLocale,
         character: Option<&mut UTF32Char>,
     ) -> CFIndex {
         extern "C-unwind" {
@@ -1160,7 +1119,7 @@ impl CFString {
                 location: CFIndex,
                 limit_range: CFRange,
                 options: CFOptionFlags,
-                locale: Option<&CFLocale>,
+                locale: &CFLocale,
                 character: Option<&mut UTF32Char>,
             ) -> CFIndex;
         }
@@ -1179,33 +1138,28 @@ impl CFString {
     #[doc(alias = "CFStringIsHyphenationAvailableForLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub fn is_hyphenation_available_for_locale(locale: Option<&CFLocale>) -> bool {
+    pub fn is_hyphenation_available_for_locale(locale: &CFLocale) -> bool {
         extern "C-unwind" {
-            fn CFStringIsHyphenationAvailableForLocale(locale: Option<&CFLocale>) -> Boolean;
+            fn CFStringIsHyphenationAvailableForLocale(locale: &CFLocale) -> Boolean;
         }
         let ret = unsafe { CFStringIsHyphenationAvailableForLocale(locale) };
         ret != 0
     }
 
     /// * Exploding and joining strings with a separator string **
-    ///
-    /// # Safety
-    ///
-    /// - `the_array` might not allow `None`.
-    /// - `separator_string` might not allow `None`.
     #[doc(alias = "CFStringCreateByCombiningStrings")]
     #[cfg(feature = "CFArray")]
     #[inline]
     pub unsafe fn new_by_combining_strings(
         alloc: Option<&CFAllocator>,
-        the_array: Option<&CFArray<CFString>>,
-        separator_string: Option<&CFString>,
+        the_array: &CFArray<CFString>,
+        separator_string: &CFString,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFStringCreateByCombiningStrings(
                 alloc: Option<&CFAllocator>,
-                the_array: Option<&CFArray<CFString>>,
-                separator_string: Option<&CFString>,
+                the_array: &CFArray<CFString>,
+                separator_string: &CFString,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFStringCreateByCombiningStrings(alloc, the_array, separator_string) };
@@ -1215,20 +1169,19 @@ impl CFString {
     #[doc(alias = "CFStringCreateArrayBySeparatingStrings")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    pub fn new_array_by_separating_strings(
+    pub fn array_by_separating_strings(
+        &self,
         alloc: Option<&CFAllocator>,
-        the_string: Option<&CFString>,
-        separator_string: Option<&CFString>,
+        separator_string: &CFString,
     ) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn CFStringCreateArrayBySeparatingStrings(
                 alloc: Option<&CFAllocator>,
-                the_string: Option<&CFString>,
-                separator_string: Option<&CFString>,
+                the_string: &CFString,
+                separator_string: &CFString,
             ) -> Option<NonNull<CFArray<CFString>>>;
         }
-        let ret =
-            unsafe { CFStringCreateArrayBySeparatingStrings(alloc, the_string, separator_string) };
+        let ret = unsafe { CFStringCreateArrayBySeparatingStrings(alloc, self, separator_string) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -1256,181 +1209,129 @@ impl CFMutableString {
     /// * MutableString functions **
     #[doc(alias = "CFStringAppend")]
     #[inline]
-    pub fn append(the_string: Option<&CFMutableString>, appended_string: Option<&CFString>) {
+    pub fn append(&self, appended_string: &CFString) {
         extern "C-unwind" {
-            fn CFStringAppend(
-                the_string: Option<&CFMutableString>,
-                appended_string: Option<&CFString>,
-            );
+            fn CFStringAppend(the_string: &CFMutableString, appended_string: &CFString);
         }
-        unsafe { CFStringAppend(the_string, appended_string) }
+        unsafe { CFStringAppend(self, appended_string) }
     }
 
     /// # Safety
     ///
-    /// - `the_string` might not allow `None`.
-    /// - `chars` must be a valid pointer.
+    /// `chars` must be a valid pointer.
     #[doc(alias = "CFStringAppendCharacters")]
     #[inline]
-    pub unsafe fn append_characters(
-        the_string: Option<&CFMutableString>,
-        chars: *const UniChar,
-        num_chars: CFIndex,
-    ) {
+    pub unsafe fn append_characters(&self, chars: *const UniChar, num_chars: CFIndex) {
         extern "C-unwind" {
             fn CFStringAppendCharacters(
-                the_string: Option<&CFMutableString>,
+                the_string: &CFMutableString,
                 chars: *const UniChar,
                 num_chars: CFIndex,
             );
         }
-        unsafe { CFStringAppendCharacters(the_string, chars, num_chars) }
+        unsafe { CFStringAppendCharacters(self, chars, num_chars) }
     }
 
     /// # Safety
     ///
-    /// - `the_string` might not allow `None`.
     /// - `p_str` must be a valid pointer.
     /// - `encoding` should be set correctly.
     #[doc(alias = "CFStringAppendPascalString")]
     #[inline]
-    pub unsafe fn append_pascal_string(
-        the_string: Option<&CFMutableString>,
-        p_str: ConstStr255Param,
-        encoding: CFStringEncoding,
-    ) {
+    pub unsafe fn append_pascal_string(&self, p_str: ConstStr255Param, encoding: CFStringEncoding) {
         extern "C-unwind" {
             fn CFStringAppendPascalString(
-                the_string: Option<&CFMutableString>,
+                the_string: &CFMutableString,
                 p_str: ConstStr255Param,
                 encoding: CFStringEncoding,
             );
         }
-        unsafe { CFStringAppendPascalString(the_string, p_str, encoding) }
+        unsafe { CFStringAppendPascalString(self, p_str, encoding) }
     }
 
     /// # Safety
     ///
-    /// - `the_string` might not allow `None`.
-    /// - `c_str` might not allow `None`.
-    /// - `encoding` should be set correctly.
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFStringAppendCString")]
     #[inline]
-    pub unsafe fn append_c_string(
-        the_string: Option<&CFMutableString>,
-        c_str: Option<&CStr>,
-        encoding: CFStringEncoding,
-    ) {
+    pub unsafe fn append_c_string(&self, c_str: &CStr, encoding: CFStringEncoding) {
         extern "C-unwind" {
             fn CFStringAppendCString(
-                the_string: Option<&CFMutableString>,
-                c_str: *const c_char,
+                the_string: &CFMutableString,
+                c_str: NonNull<c_char>,
                 encoding: CFStringEncoding,
             );
         }
         unsafe {
             CFStringAppendCString(
-                the_string,
-                c_str
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
+                self,
+                NonNull::new(c_str.as_ptr().cast_mut()).unwrap(),
                 encoding,
             )
         }
     }
 
-    /// # Safety
-    ///
-    /// - `str` might not allow `None`.
-    /// - `inserted_str` might not allow `None`.
     #[doc(alias = "CFStringInsert")]
     #[inline]
-    pub unsafe fn insert(
-        str: Option<&CFMutableString>,
-        idx: CFIndex,
-        inserted_str: Option<&CFString>,
-    ) {
+    pub unsafe fn insert(&self, idx: CFIndex, inserted_str: &CFString) {
         extern "C-unwind" {
-            fn CFStringInsert(
-                str: Option<&CFMutableString>,
-                idx: CFIndex,
-                inserted_str: Option<&CFString>,
-            );
+            fn CFStringInsert(str: &CFMutableString, idx: CFIndex, inserted_str: &CFString);
         }
-        unsafe { CFStringInsert(str, idx, inserted_str) }
+        unsafe { CFStringInsert(self, idx, inserted_str) }
     }
 
-    /// # Safety
-    ///
-    /// `the_string` might not allow `None`.
     #[doc(alias = "CFStringDelete")]
     #[inline]
-    pub unsafe fn delete(the_string: Option<&CFMutableString>, range: CFRange) {
+    pub unsafe fn delete(&self, range: CFRange) {
         extern "C-unwind" {
-            fn CFStringDelete(the_string: Option<&CFMutableString>, range: CFRange);
+            fn CFStringDelete(the_string: &CFMutableString, range: CFRange);
         }
-        unsafe { CFStringDelete(the_string, range) }
+        unsafe { CFStringDelete(self, range) }
     }
 
-    /// # Safety
-    ///
-    /// - `the_string` might not allow `None`.
-    /// - `replacement` might not allow `None`.
     #[doc(alias = "CFStringReplace")]
     #[inline]
-    pub unsafe fn replace(
-        the_string: Option<&CFMutableString>,
-        range: CFRange,
-        replacement: Option<&CFString>,
-    ) {
+    pub unsafe fn replace(&self, range: CFRange, replacement: &CFString) {
         extern "C-unwind" {
             fn CFStringReplace(
-                the_string: Option<&CFMutableString>,
+                the_string: &CFMutableString,
                 range: CFRange,
-                replacement: Option<&CFString>,
+                replacement: &CFString,
             );
         }
-        unsafe { CFStringReplace(the_string, range, replacement) }
+        unsafe { CFStringReplace(self, range, replacement) }
     }
 
     #[doc(alias = "CFStringReplaceAll")]
     #[inline]
-    pub fn replace_all(the_string: Option<&CFMutableString>, replacement: Option<&CFString>) {
+    pub fn replace_all(&self, replacement: &CFString) {
         extern "C-unwind" {
-            fn CFStringReplaceAll(
-                the_string: Option<&CFMutableString>,
-                replacement: Option<&CFString>,
-            );
+            fn CFStringReplaceAll(the_string: &CFMutableString, replacement: &CFString);
         }
-        unsafe { CFStringReplaceAll(the_string, replacement) }
+        unsafe { CFStringReplaceAll(self, replacement) }
     }
 
-    /// # Safety
-    ///
-    /// - `the_string` might not allow `None`.
-    /// - `string_to_find` might not allow `None`.
-    /// - `replacement_string` might not allow `None`.
     #[doc(alias = "CFStringFindAndReplace")]
     #[inline]
     pub unsafe fn find_and_replace(
-        the_string: Option<&CFMutableString>,
-        string_to_find: Option<&CFString>,
-        replacement_string: Option<&CFString>,
+        &self,
+        string_to_find: &CFString,
+        replacement_string: &CFString,
         range_to_search: CFRange,
         compare_options: CFStringCompareFlags,
     ) -> CFIndex {
         extern "C-unwind" {
             fn CFStringFindAndReplace(
-                the_string: Option<&CFMutableString>,
-                string_to_find: Option<&CFString>,
-                replacement_string: Option<&CFString>,
+                the_string: &CFMutableString,
+                string_to_find: &CFString,
+                replacement_string: &CFString,
                 range_to_search: CFRange,
                 compare_options: CFStringCompareFlags,
             ) -> CFIndex;
         }
         unsafe {
             CFStringFindAndReplace(
-                the_string,
+                self,
                 string_to_find,
                 replacement_string,
                 range_to_search,
@@ -1441,96 +1342,86 @@ impl CFMutableString {
 
     /// # Safety
     ///
-    /// - `the_string` might not allow `None`.
-    /// - `chars` must be a valid pointer.
+    /// `chars` must be a valid pointer.
     #[doc(alias = "CFStringSetExternalCharactersNoCopy")]
     #[inline]
     pub unsafe fn set_external_characters_no_copy(
-        the_string: Option<&CFMutableString>,
+        &self,
         chars: *mut UniChar,
         length: CFIndex,
         capacity: CFIndex,
     ) {
         extern "C-unwind" {
             fn CFStringSetExternalCharactersNoCopy(
-                the_string: Option<&CFMutableString>,
+                the_string: &CFMutableString,
                 chars: *mut UniChar,
                 length: CFIndex,
                 capacity: CFIndex,
             );
         }
-        unsafe { CFStringSetExternalCharactersNoCopy(the_string, chars, length, capacity) }
+        unsafe { CFStringSetExternalCharactersNoCopy(self, chars, length, capacity) }
     }
 
-    /// # Safety
-    ///
-    /// - `the_string` might not allow `None`.
-    /// - `pad_string` might not allow `None`.
     #[doc(alias = "CFStringPad")]
     #[inline]
-    pub unsafe fn pad(
-        the_string: Option<&CFMutableString>,
-        pad_string: Option<&CFString>,
-        length: CFIndex,
-        index_into_pad: CFIndex,
-    ) {
+    pub unsafe fn pad(&self, pad_string: &CFString, length: CFIndex, index_into_pad: CFIndex) {
         extern "C-unwind" {
             fn CFStringPad(
-                the_string: Option<&CFMutableString>,
-                pad_string: Option<&CFString>,
+                the_string: &CFMutableString,
+                pad_string: &CFString,
                 length: CFIndex,
                 index_into_pad: CFIndex,
             );
         }
-        unsafe { CFStringPad(the_string, pad_string, length, index_into_pad) }
+        unsafe { CFStringPad(self, pad_string, length, index_into_pad) }
     }
 
     #[doc(alias = "CFStringTrim")]
     #[inline]
-    pub fn trim(the_string: Option<&CFMutableString>, trim_string: Option<&CFString>) {
+    pub fn trim(&self, trim_string: &CFString) {
         extern "C-unwind" {
-            fn CFStringTrim(the_string: Option<&CFMutableString>, trim_string: Option<&CFString>);
+            fn CFStringTrim(the_string: &CFMutableString, trim_string: &CFString);
         }
-        unsafe { CFStringTrim(the_string, trim_string) }
+        unsafe { CFStringTrim(self, trim_string) }
     }
 
     #[doc(alias = "CFStringTrimWhitespace")]
     #[inline]
-    pub fn trim_whitespace(the_string: Option<&CFMutableString>) {
+    pub fn trim_whitespace(&self) {
         extern "C-unwind" {
-            fn CFStringTrimWhitespace(the_string: Option<&CFMutableString>);
+            fn CFStringTrimWhitespace(the_string: &CFMutableString);
         }
-        unsafe { CFStringTrimWhitespace(the_string) }
+        unsafe { CFStringTrimWhitespace(self) }
     }
 
     #[doc(alias = "CFStringLowercase")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub fn lowercase(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>) {
+    pub fn lowercase(&self, locale: Option<&CFLocale>) {
         extern "C-unwind" {
-            fn CFStringLowercase(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>);
+            fn CFStringLowercase(the_string: &CFMutableString, locale: Option<&CFLocale>);
         }
-        unsafe { CFStringLowercase(the_string, locale) }
+        unsafe { CFStringLowercase(self, locale) }
     }
 
     #[doc(alias = "CFStringUppercase")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub fn uppercase(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>) {
+    pub fn uppercase(&self, locale: Option<&CFLocale>) {
         extern "C-unwind" {
-            fn CFStringUppercase(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>);
+            fn CFStringUppercase(the_string: &CFMutableString, locale: Option<&CFLocale>);
         }
-        unsafe { CFStringUppercase(the_string, locale) }
+        unsafe { CFStringUppercase(self, locale) }
     }
 
     #[doc(alias = "CFStringCapitalize")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub fn capitalize(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>) {
+    pub fn capitalize(&self, locale: Option<&CFLocale>) {
         extern "C-unwind" {
-            fn CFStringCapitalize(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>);
+            fn CFStringCapitalize(the_string: &CFMutableString, locale: Option<&CFLocale>);
         }
-        unsafe { CFStringCapitalize(the_string, locale) }
+        unsafe { CFStringCapitalize(self, locale) }
     }
 }
 
@@ -1575,10 +1466,6 @@ impl CFMutableString {
     /// Parameter `theForm`: The form into which the string is to be normalized.
     /// If this parameter is not a valid CFStringNormalizationForm value,
     /// the behavior is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `the_string` might not allow `None`.
     #[doc(alias = "CFStringNormalize")]
     #[inline]
     pub unsafe fn normalize(
@@ -1620,42 +1507,34 @@ impl CFMutableString {
     #[doc(alias = "CFStringFold")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub fn fold(
-        the_string: Option<&CFMutableString>,
-        the_flags: CFStringCompareFlags,
-        the_locale: Option<&CFLocale>,
-    ) {
+    pub fn fold(&self, the_flags: CFStringCompareFlags, the_locale: Option<&CFLocale>) {
         extern "C-unwind" {
             fn CFStringFold(
-                the_string: Option<&CFMutableString>,
+                the_string: &CFMutableString,
                 the_flags: CFStringCompareFlags,
                 the_locale: Option<&CFLocale>,
             );
         }
-        unsafe { CFStringFold(the_string, the_flags, the_locale) }
+        unsafe { CFStringFold(self, the_flags, the_locale) }
     }
 
-    /// # Safety
-    ///
-    /// - `string` might not allow `None`.
-    /// - `transform` might not allow `None`.
     #[doc(alias = "CFStringTransform")]
     #[inline]
     pub unsafe fn transform(
-        string: Option<&CFMutableString>,
+        &self,
         range: Option<&mut CFRange>,
-        transform: Option<&CFString>,
+        transform: &CFString,
         reverse: bool,
     ) -> bool {
         extern "C-unwind" {
             fn CFStringTransform(
-                string: Option<&CFMutableString>,
+                string: &CFMutableString,
                 range: Option<&mut CFRange>,
-                transform: Option<&CFString>,
+                transform: &CFString,
                 reverse: Boolean,
             ) -> Boolean;
         }
-        let ret = unsafe { CFStringTransform(string, range, transform, reverse as _) };
+        let ret = unsafe { CFStringTransform(self, range, transform, reverse as _) };
         ret != 0
     }
 }

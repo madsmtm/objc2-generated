@@ -85,9 +85,6 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `dict` might not allow `None`.
     #[doc(alias = "CFTimeZoneSetAbbreviationDictionary")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
@@ -98,23 +95,19 @@ impl CFTimeZone {
         unsafe { CFTimeZoneSetAbbreviationDictionary(dict) }
     }
 
-    /// # Safety
-    ///
-    /// - `name` might not allow `None`.
-    /// - `data` might not allow `None`.
     #[doc(alias = "CFTimeZoneCreate")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        name: Option<&CFString>,
-        data: Option<&CFData>,
+        name: &CFString,
+        data: &CFData,
     ) -> Option<CFRetained<CFTimeZone>> {
         extern "C-unwind" {
             fn CFTimeZoneCreate(
                 allocator: Option<&CFAllocator>,
-                name: Option<&CFString>,
-                data: Option<&CFData>,
+                name: &CFString,
+                data: &CFData,
             ) -> Option<NonNull<CFTimeZone>>;
         }
         let ret = unsafe { CFTimeZoneCreate(allocator, name, data) };
@@ -143,13 +136,13 @@ impl CFTimeZone {
     #[inline]
     pub fn with_name(
         allocator: Option<&CFAllocator>,
-        name: Option<&CFString>,
+        name: &CFString,
         try_abbrev: bool,
     ) -> Option<CFRetained<CFTimeZone>> {
         extern "C-unwind" {
             fn CFTimeZoneCreateWithName(
                 allocator: Option<&CFAllocator>,
-                name: Option<&CFString>,
+                name: &CFString,
                 try_abbrev: Boolean,
             ) -> Option<NonNull<CFTimeZone>>;
         }
@@ -279,13 +272,13 @@ impl CFTimeZone {
     pub fn localized_name(
         &self,
         style: CFTimeZoneNameStyle,
-        locale: Option<&CFLocale>,
+        locale: &CFLocale,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFTimeZoneCopyLocalizedName(
                 tz: &CFTimeZone,
                 style: CFTimeZoneNameStyle,
-                locale: Option<&CFLocale>,
+                locale: &CFLocale,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFTimeZoneCopyLocalizedName(self, style, locale) };

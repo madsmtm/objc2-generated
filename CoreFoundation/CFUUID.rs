@@ -153,12 +153,12 @@ impl CFUUID {
     #[inline]
     pub fn from_string(
         alloc: Option<&CFAllocator>,
-        uuid_str: Option<&CFString>,
+        uuid_str: &CFString,
     ) -> Option<CFRetained<CFUUID>> {
         extern "C-unwind" {
             fn CFUUIDCreateFromString(
                 alloc: Option<&CFAllocator>,
-                uuid_str: Option<&CFString>,
+                uuid_str: &CFString,
             ) -> Option<NonNull<CFUUID>>;
         }
         let ret = unsafe { CFUUIDCreateFromString(alloc, uuid_str) };
@@ -167,17 +167,14 @@ impl CFUUID {
 
     #[doc(alias = "CFUUIDCreateString")]
     #[inline]
-    pub fn new_string(
-        alloc: Option<&CFAllocator>,
-        uuid: Option<&CFUUID>,
-    ) -> Option<CFRetained<CFString>> {
+    pub fn string(&self, alloc: Option<&CFAllocator>) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFUUIDCreateString(
                 alloc: Option<&CFAllocator>,
-                uuid: Option<&CFUUID>,
+                uuid: &CFUUID,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CFUUIDCreateString(alloc, uuid) };
+        let ret = unsafe { CFUUIDCreateString(alloc, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

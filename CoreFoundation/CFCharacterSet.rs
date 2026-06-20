@@ -344,23 +344,16 @@ impl CFCharacterSet {
     /// undefined.
     ///
     /// Returns: A reference to the new CFCharacterSet.
-    ///
-    /// # Safety
-    ///
-    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateCopy")]
     #[inline]
-    pub unsafe fn new_copy(
-        alloc: Option<&CFAllocator>,
-        the_set: Option<&CFCharacterSet>,
-    ) -> Option<CFRetained<CFCharacterSet>> {
+    pub fn copy(&self, alloc: Option<&CFAllocator>) -> Option<CFRetained<CFCharacterSet>> {
         extern "C-unwind" {
             fn CFCharacterSetCreateCopy(
                 alloc: Option<&CFAllocator>,
-                the_set: Option<&CFCharacterSet>,
+                the_set: &CFCharacterSet,
             ) -> Option<NonNull<CFCharacterSet>>;
         }
-        let ret = unsafe { CFCharacterSetCreateCopy(alloc, the_set) };
+        let ret = unsafe { CFCharacterSetCreateCopy(alloc, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }
@@ -379,20 +372,16 @@ impl CFMutableCharacterSet {
     /// undefined.
     ///
     /// Returns: A reference to the new mutable CFCharacterSet.
-    ///
-    /// # Safety
-    ///
-    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateMutableCopy")]
     #[inline]
-    pub unsafe fn new_copy(
+    pub fn new_copy(
         alloc: Option<&CFAllocator>,
-        the_set: Option<&CFCharacterSet>,
+        the_set: &CFCharacterSet,
     ) -> Option<CFRetained<CFMutableCharacterSet>> {
         extern "C-unwind" {
             fn CFCharacterSetCreateMutableCopy(
                 alloc: Option<&CFAllocator>,
-                the_set: Option<&CFCharacterSet>,
+                the_set: &CFCharacterSet,
             ) -> Option<NonNull<CFMutableCharacterSet>>;
         }
         let ret = unsafe { CFCharacterSetCreateMutableCopy(alloc, the_set) };
@@ -490,23 +479,16 @@ impl CFMutableCharacterSet {
     /// character point range is from 0x00000 to 0x10FFFF.  If the
     /// range is outside of the valid Unicode character point,
     /// the behavior is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetAddCharactersInRange")]
     #[inline]
-    pub unsafe fn add_characters_in_range(
-        the_set: Option<&CFMutableCharacterSet>,
-        the_range: CFRange,
-    ) {
+    pub unsafe fn add_characters_in_range(&self, the_range: CFRange) {
         extern "C-unwind" {
             fn CFCharacterSetAddCharactersInRange(
-                the_set: Option<&CFMutableCharacterSet>,
+                the_set: &CFMutableCharacterSet,
                 the_range: CFRange,
             );
         }
-        unsafe { CFCharacterSetAddCharactersInRange(the_set, the_range) }
+        unsafe { CFCharacterSetAddCharactersInRange(self, the_range) }
     }
 
     /// Removes the given range from the charaacter set.
@@ -605,20 +587,13 @@ impl CFMutableCharacterSet {
     /// Parameter `theOtherSet`: The character set with which the union is
     /// formed.  If this parameter is not a valid CFCharacterSet,
     /// the behavior is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetUnion")]
     #[inline]
-    pub unsafe fn union(the_set: Option<&CFMutableCharacterSet>, the_other_set: &CFCharacterSet) {
+    pub fn union(&self, the_other_set: &CFCharacterSet) {
         extern "C-unwind" {
-            fn CFCharacterSetUnion(
-                the_set: Option<&CFMutableCharacterSet>,
-                the_other_set: &CFCharacterSet,
-            );
+            fn CFCharacterSetUnion(the_set: &CFMutableCharacterSet, the_other_set: &CFCharacterSet);
         }
-        unsafe { CFCharacterSetUnion(the_set, the_other_set) }
+        unsafe { CFCharacterSetUnion(self, the_other_set) }
     }
 
     /// Forms the intersection with the given character set.
@@ -631,23 +606,16 @@ impl CFMutableCharacterSet {
     /// Parameter `theOtherSet`: The character set with which the intersection
     /// is formed.  If this parameter is not a valid CFCharacterSet,
     /// the behavior is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetIntersect")]
     #[inline]
-    pub unsafe fn intersect(
-        the_set: Option<&CFMutableCharacterSet>,
-        the_other_set: &CFCharacterSet,
-    ) {
+    pub fn intersect(&self, the_other_set: &CFCharacterSet) {
         extern "C-unwind" {
             fn CFCharacterSetIntersect(
-                the_set: Option<&CFMutableCharacterSet>,
+                the_set: &CFMutableCharacterSet,
                 the_other_set: &CFCharacterSet,
             );
         }
-        unsafe { CFCharacterSetIntersect(the_set, the_other_set) }
+        unsafe { CFCharacterSetIntersect(self, the_other_set) }
     }
 
     /// Inverts the content of the given character set.
@@ -655,16 +623,12 @@ impl CFMutableCharacterSet {
     /// Parameter `theSet`: The character set to be inverted.
     /// If this parameter is not a valid mutable CFCharacterSet,
     /// the behavior is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetInvert")]
     #[inline]
-    pub unsafe fn invert(the_set: Option<&CFMutableCharacterSet>) {
+    pub fn invert(&self) {
         extern "C-unwind" {
-            fn CFCharacterSetInvert(the_set: Option<&CFMutableCharacterSet>);
+            fn CFCharacterSetInvert(the_set: &CFMutableCharacterSet);
         }
-        unsafe { CFCharacterSetInvert(the_set) }
+        unsafe { CFCharacterSetInvert(self) }
     }
 }

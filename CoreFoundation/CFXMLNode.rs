@@ -362,15 +362,14 @@ unsafe impl ConcreteType for CFXMLNode {
 impl CFXMLNode {
     /// # Safety
     ///
-    /// - `data_string` might not allow `None`.
-    /// - `additional_info_ptr` must be a valid pointer.
+    /// `additional_info_ptr` must be a valid pointer.
     #[doc(alias = "CFXMLNodeCreate")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
     pub unsafe fn new(
         alloc: Option<&CFAllocator>,
         xml_type: CFXMLNodeTypeCode,
-        data_string: Option<&CFString>,
+        data_string: &CFString,
         additional_info_ptr: *const c_void,
         version: CFIndex,
     ) -> Option<CFRetained<CFXMLNode>> {
@@ -378,7 +377,7 @@ impl CFXMLNode {
             fn CFXMLNodeCreate(
                 alloc: Option<&CFAllocator>,
                 xml_type: CFXMLNodeTypeCode,
-                data_string: Option<&CFString>,
+                data_string: &CFString,
                 additional_info_ptr: *const c_void,
                 version: CFIndex,
             ) -> Option<NonNull<CFXMLNode>>;
@@ -388,23 +387,17 @@ impl CFXMLNode {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `orig_node` might not allow `None`.
     #[doc(alias = "CFXMLNodeCreateCopy")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub unsafe fn new_copy(
-        alloc: Option<&CFAllocator>,
-        orig_node: Option<&CFXMLNode>,
-    ) -> Option<CFRetained<CFXMLNode>> {
+    pub fn copy(&self, alloc: Option<&CFAllocator>) -> Option<CFRetained<CFXMLNode>> {
         extern "C-unwind" {
             fn CFXMLNodeCreateCopy(
                 alloc: Option<&CFAllocator>,
-                orig_node: Option<&CFXMLNode>,
+                orig_node: &CFXMLNode,
             ) -> Option<NonNull<CFXMLNode>>;
         }
-        let ret = unsafe { CFXMLNodeCreateCopy(alloc, orig_node) };
+        let ret = unsafe { CFXMLNodeCreateCopy(alloc, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -450,20 +443,17 @@ impl CFXMLNode {
     }
 }
 
-/// # Safety
-///
-/// `node` might not allow `None`.
 #[cfg(feature = "CFTree")]
 #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithNode(
+pub extern "C-unwind" fn CFXMLTreeCreateWithNode(
     allocator: Option<&CFAllocator>,
-    node: Option<&CFXMLNode>,
+    node: &CFXMLNode,
 ) -> Option<CFRetained<CFXMLTree>> {
     extern "C-unwind" {
         fn CFXMLTreeCreateWithNode(
             allocator: Option<&CFAllocator>,
-            node: Option<&CFXMLNode>,
+            node: &CFXMLNode,
         ) -> Option<NonNull<CFXMLTree>>;
     }
     let ret = unsafe { CFXMLTreeCreateWithNode(allocator, node) };

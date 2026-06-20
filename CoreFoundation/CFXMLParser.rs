@@ -248,8 +248,6 @@ unsafe impl ConcreteType for CFXMLParser {
 impl CFXMLParser {
     /// # Safety
     ///
-    /// - `xml_data` might not allow `None`.
-    /// - `data_source` might not allow `None`.
     /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `createXMLStructure` must be implemented correctly.
     /// - `call_backs` struct field `addChild` must be implemented correctly.
@@ -267,7 +265,7 @@ impl CFXMLParser {
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        xml_data: Option<&CFData>,
+        xml_data: &CFData,
         data_source: Option<&CFURL>,
         parse_options: CFOptionFlags,
         version_of_nodes: CFIndex,
@@ -277,7 +275,7 @@ impl CFXMLParser {
         extern "C-unwind" {
             fn CFXMLParserCreate(
                 allocator: Option<&CFAllocator>,
-                xml_data: Option<&CFData>,
+                xml_data: &CFData,
                 data_source: Option<&CFURL>,
                 parse_options: CFOptionFlags,
                 version_of_nodes: CFIndex,
@@ -301,7 +299,6 @@ impl CFXMLParser {
 
     /// # Safety
     ///
-    /// - `data_source` might not allow `None`.
     /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `createXMLStructure` must be implemented correctly.
     /// - `call_backs` struct field `addChild` must be implemented correctly.
@@ -319,7 +316,7 @@ impl CFXMLParser {
     #[inline]
     pub unsafe fn with_data_from_url(
         allocator: Option<&CFAllocator>,
-        data_source: Option<&CFURL>,
+        data_source: &CFURL,
         parse_options: CFOptionFlags,
         version_of_nodes: CFIndex,
         call_backs: &mut CFXMLParserCallBacks,
@@ -328,7 +325,7 @@ impl CFXMLParser {
         extern "C-unwind" {
             fn CFXMLParserCreateWithDataFromURL(
                 allocator: Option<&CFAllocator>,
-                data_source: Option<&CFURL>,
+                data_source: &CFURL,
                 parse_options: CFOptionFlags,
                 version_of_nodes: CFIndex,
                 call_backs: &mut CFXMLParserCallBacks,
@@ -373,17 +370,13 @@ impl CFXMLParser {
     /// - `call_backs` struct field `endXMLStructure` must be implemented correctly.
     /// - `call_backs` struct field `resolveExternalEntity` must be implemented correctly.
     /// - `call_backs` struct field `handleError` must be implemented correctly.
-    /// - `call_backs` might not allow `None`.
     #[doc(alias = "CFXMLParserGetCallBacks")]
     #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub unsafe fn call_backs(&self, call_backs: Option<&mut CFXMLParserCallBacks>) {
+    pub unsafe fn call_backs(&self, call_backs: &mut CFXMLParserCallBacks) {
         extern "C-unwind" {
-            fn CFXMLParserGetCallBacks(
-                parser: &CFXMLParser,
-                call_backs: Option<&mut CFXMLParserCallBacks>,
-            );
+            fn CFXMLParserGetCallBacks(parser: &CFXMLParser, call_backs: &mut CFXMLParserCallBacks);
         }
         unsafe { CFXMLParserGetCallBacks(self, call_backs) }
     }
@@ -451,22 +444,15 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `error_description` might not allow `None`.
     #[doc(alias = "CFXMLParserAbort")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub unsafe fn abort(
-        &self,
-        error_code: CFXMLParserStatusCode,
-        error_description: Option<&CFString>,
-    ) {
+    pub fn abort(&self, error_code: CFXMLParserStatusCode, error_description: &CFString) {
         extern "C-unwind" {
             fn CFXMLParserAbort(
                 parser: &CFXMLParser,
                 error_code: CFXMLParserStatusCode,
-                error_description: Option<&CFString>,
+                error_description: &CFString,
             );
         }
         unsafe { CFXMLParserAbort(self, error_code, error_description) }
@@ -484,10 +470,6 @@ impl CFXMLParser {
     }
 }
 
-/// # Safety
-///
-/// - `xml_data` might not allow `None`.
-/// - `data_source` might not allow `None`.
 #[cfg(all(
     feature = "CFData",
     feature = "CFTree",
@@ -496,9 +478,9 @@ impl CFXMLParser {
 ))]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
+pub extern "C-unwind" fn CFXMLTreeCreateFromData(
     allocator: Option<&CFAllocator>,
-    xml_data: Option<&CFData>,
+    xml_data: &CFData,
     data_source: Option<&CFURL>,
     parse_options: CFOptionFlags,
     version_of_nodes: CFIndex,
@@ -506,7 +488,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
     extern "C-unwind" {
         fn CFXMLTreeCreateFromData(
             allocator: Option<&CFAllocator>,
-            xml_data: Option<&CFData>,
+            xml_data: &CFData,
             data_source: Option<&CFURL>,
             parse_options: CFOptionFlags,
             version_of_nodes: CFIndex,
@@ -526,10 +508,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
 
 /// # Safety
 ///
-/// - `xml_data` might not allow `None`.
-/// - `data_source` might not allow `None`.
-/// - `error_dict` must be a valid pointer.
-/// - `error_dict` might not allow `None`.
+/// `error_dict` must be a valid pointer.
 #[cfg(all(
     feature = "CFData",
     feature = "CFDictionary",
@@ -541,8 +520,8 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
     allocator: Option<&CFAllocator>,
-    xml_data: Option<&CFData>,
-    data_source: Option<&CFURL>,
+    xml_data: &CFData,
+    data_source: &CFURL,
     parse_options: CFOptionFlags,
     version_of_nodes: CFIndex,
     error_dict: Option<&mut *const CFDictionary>,
@@ -550,8 +529,8 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
     extern "C-unwind" {
         fn CFXMLTreeCreateFromDataWithError(
             allocator: Option<&CFAllocator>,
-            xml_data: Option<&CFData>,
-            data_source: Option<&CFURL>,
+            xml_data: &CFData,
+            data_source: &CFURL,
             parse_options: CFOptionFlags,
             version_of_nodes: CFIndex,
             error_dict: Option<&mut *const CFDictionary>,
@@ -570,22 +549,19 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// # Safety
-///
-/// `data_source` might not allow `None`.
 #[cfg(all(feature = "CFTree", feature = "CFURL", feature = "CFXMLNode"))]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithDataFromURL(
+pub extern "C-unwind" fn CFXMLTreeCreateWithDataFromURL(
     allocator: Option<&CFAllocator>,
-    data_source: Option<&CFURL>,
+    data_source: &CFURL,
     parse_options: CFOptionFlags,
     version_of_nodes: CFIndex,
 ) -> Option<CFRetained<CFXMLTree>> {
     extern "C-unwind" {
         fn CFXMLTreeCreateWithDataFromURL(
             allocator: Option<&CFAllocator>,
-            data_source: Option<&CFURL>,
+            data_source: &CFURL,
             parse_options: CFOptionFlags,
             version_of_nodes: CFIndex,
         ) -> Option<NonNull<CFXMLTree>>;
@@ -596,20 +572,17 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithDataFromURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// # Safety
-///
-/// `xml_tree` might not allow `None`.
 #[cfg(all(feature = "CFData", feature = "CFTree", feature = "CFXMLNode"))]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFXMLTreeCreateXMLData(
+pub extern "C-unwind" fn CFXMLTreeCreateXMLData(
     allocator: Option<&CFAllocator>,
-    xml_tree: Option<&CFXMLTree>,
+    xml_tree: &CFXMLTree,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
         fn CFXMLTreeCreateXMLData(
             allocator: Option<&CFAllocator>,
-            xml_tree: Option<&CFXMLTree>,
+            xml_tree: &CFXMLTree,
         ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFXMLTreeCreateXMLData(allocator, xml_tree) };
@@ -618,21 +591,19 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateXMLData(
 
 /// # Safety
 ///
-/// - `string` might not allow `None`.
 /// - `entities_dictionary` generic must be of the correct type.
 /// - `entities_dictionary` generic must be of the correct type.
-/// - `entities_dictionary` might not allow `None`.
 #[cfg(feature = "CFDictionary")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
     allocator: Option<&CFAllocator>,
-    string: Option<&CFString>,
+    string: &CFString,
     entities_dictionary: Option<&CFDictionary>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFXMLCreateStringByEscapingEntities(
             allocator: Option<&CFAllocator>,
-            string: Option<&CFString>,
+            string: &CFString,
             entities_dictionary: Option<&CFDictionary>,
         ) -> Option<NonNull<CFString>>;
     }
@@ -643,21 +614,19 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
 
 /// # Safety
 ///
-/// - `string` might not allow `None`.
 /// - `entities_dictionary` generic must be of the correct type.
 /// - `entities_dictionary` generic must be of the correct type.
-/// - `entities_dictionary` might not allow `None`.
 #[cfg(feature = "CFDictionary")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLCreateStringByUnescapingEntities(
     allocator: Option<&CFAllocator>,
-    string: Option<&CFString>,
+    string: &CFString,
     entities_dictionary: Option<&CFDictionary>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFXMLCreateStringByUnescapingEntities(
             allocator: Option<&CFAllocator>,
-            string: Option<&CFString>,
+            string: &CFString,
             entities_dictionary: Option<&CFDictionary>,
         ) -> Option<NonNull<CFString>>;
     }

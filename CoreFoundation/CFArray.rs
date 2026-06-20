@@ -793,15 +793,14 @@ impl<T: Sized> CFMutableArray<T> {
     /// # Safety
     ///
     /// - `the_array` generic must be of the correct type.
-    /// - `the_array` might not allow `None`.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayAppendValue")]
     #[inline]
-    pub unsafe fn append_value(the_array: Option<&CFMutableArray<T>>, value: *const T) {
+    pub unsafe fn append_value(&self, value: *const T) {
         extern "C-unwind" {
-            fn CFArrayAppendValue(the_array: Option<&CFMutableArray>, value: *const c_void);
+            fn CFArrayAppendValue(the_array: &CFMutableArray, value: *const c_void);
         }
-        unsafe { CFArrayAppendValue(the_array.map(|obj| obj.as_opaque()), value.cast()) }
+        unsafe { CFArrayAppendValue(self.as_opaque(), value.cast()) }
     }
 
     /// Adds the value to the array, giving it the given index.
@@ -826,25 +825,18 @@ impl<T: Sized> CFMutableArray<T> {
     /// # Safety
     ///
     /// - `the_array` generic must be of the correct type.
-    /// - `the_array` might not allow `None`.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayInsertValueAtIndex")]
     #[inline]
-    pub unsafe fn insert_value_at_index(
-        the_array: Option<&CFMutableArray<T>>,
-        idx: CFIndex,
-        value: *const T,
-    ) {
+    pub unsafe fn insert_value_at_index(&self, idx: CFIndex, value: *const T) {
         extern "C-unwind" {
             fn CFArrayInsertValueAtIndex(
-                the_array: Option<&CFMutableArray>,
+                the_array: &CFMutableArray,
                 idx: CFIndex,
                 value: *const c_void,
             );
         }
-        unsafe {
-            CFArrayInsertValueAtIndex(the_array.map(|obj| obj.as_opaque()), idx, value.cast())
-        }
+        unsafe { CFArrayInsertValueAtIndex(self.as_opaque(), idx, value.cast()) }
     }
 
     /// Changes the value with the given index in the array.
@@ -869,23 +861,18 @@ impl<T: Sized> CFMutableArray<T> {
     /// # Safety
     ///
     /// - `the_array` generic must be of the correct type.
-    /// - `the_array` might not allow `None`.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFArraySetValueAtIndex")]
     #[inline]
-    pub unsafe fn set_value_at_index(
-        the_array: Option<&CFMutableArray<T>>,
-        idx: CFIndex,
-        value: *const T,
-    ) {
+    pub unsafe fn set_value_at_index(&self, idx: CFIndex, value: *const T) {
         extern "C-unwind" {
             fn CFArraySetValueAtIndex(
-                the_array: Option<&CFMutableArray>,
+                the_array: &CFMutableArray,
                 idx: CFIndex,
                 value: *const c_void,
             );
         }
-        unsafe { CFArraySetValueAtIndex(the_array.map(|obj| obj.as_opaque()), idx, value.cast()) }
+        unsafe { CFArraySetValueAtIndex(self.as_opaque(), idx, value.cast()) }
     }
 
     /// Removes the value with the given index from the array.
@@ -901,15 +888,14 @@ impl<T: Sized> CFMutableArray<T> {
     ///
     /// # Safety
     ///
-    /// - `the_array` generic must be of the correct type.
-    /// - `the_array` might not allow `None`.
+    /// `the_array` generic must be of the correct type.
     #[doc(alias = "CFArrayRemoveValueAtIndex")]
     #[inline]
-    pub unsafe fn remove_value_at_index(the_array: Option<&CFMutableArray<T>>, idx: CFIndex) {
+    pub unsafe fn remove_value_at_index(&self, idx: CFIndex) {
         extern "C-unwind" {
-            fn CFArrayRemoveValueAtIndex(the_array: Option<&CFMutableArray>, idx: CFIndex);
+            fn CFArrayRemoveValueAtIndex(the_array: &CFMutableArray, idx: CFIndex);
         }
-        unsafe { CFArrayRemoveValueAtIndex(the_array.map(|obj| obj.as_opaque()), idx) }
+        unsafe { CFArrayRemoveValueAtIndex(self.as_opaque(), idx) }
     }
 
     /// Removes all the values from the array, making it empty.
@@ -919,11 +905,11 @@ impl<T: Sized> CFMutableArray<T> {
     /// the behavior is undefined.
     #[doc(alias = "CFArrayRemoveAllValues")]
     #[inline]
-    pub fn remove_all_values(the_array: Option<&CFMutableArray<T>>) {
+    pub fn remove_all_values(&self) {
         extern "C-unwind" {
-            fn CFArrayRemoveAllValues(the_array: Option<&CFMutableArray>);
+            fn CFArrayRemoveAllValues(the_array: &CFMutableArray);
         }
-        unsafe { CFArrayRemoveAllValues(the_array.map(|obj| obj.as_opaque())) }
+        unsafe { CFArrayRemoveAllValues(self.as_opaque()) }
     }
 
     /// Replaces a range of values in the array.
@@ -962,32 +948,24 @@ impl<T: Sized> CFMutableArray<T> {
     /// # Safety
     ///
     /// - `the_array` generic must be of the correct type.
-    /// - `the_array` might not allow `None`.
     /// - `new_values` must be a valid pointer.
     #[doc(alias = "CFArrayReplaceValues")]
     #[inline]
     pub unsafe fn replace_values(
-        the_array: Option<&CFMutableArray<T>>,
+        &self,
         range: CFRange,
         new_values: *mut *const c_void,
         new_count: CFIndex,
     ) {
         extern "C-unwind" {
             fn CFArrayReplaceValues(
-                the_array: Option<&CFMutableArray>,
+                the_array: &CFMutableArray,
                 range: CFRange,
                 new_values: *mut *const c_void,
                 new_count: CFIndex,
             );
         }
-        unsafe {
-            CFArrayReplaceValues(
-                the_array.map(|obj| obj.as_opaque()),
-                range,
-                new_values,
-                new_count,
-            )
-        }
+        unsafe { CFArrayReplaceValues(self.as_opaque(), range, new_values, new_count) }
     }
 
     /// Exchanges the values at two indices of the array.
@@ -1008,23 +986,18 @@ impl<T: Sized> CFMutableArray<T> {
     ///
     /// # Safety
     ///
-    /// - `the_array` generic must be of the correct type.
-    /// - `the_array` might not allow `None`.
+    /// `the_array` generic must be of the correct type.
     #[doc(alias = "CFArrayExchangeValuesAtIndices")]
     #[inline]
-    pub unsafe fn exchange_values_at_indices(
-        the_array: Option<&CFMutableArray<T>>,
-        idx1: CFIndex,
-        idx2: CFIndex,
-    ) {
+    pub unsafe fn exchange_values_at_indices(&self, idx1: CFIndex, idx2: CFIndex) {
         extern "C-unwind" {
             fn CFArrayExchangeValuesAtIndices(
-                the_array: Option<&CFMutableArray>,
+                the_array: &CFMutableArray,
                 idx1: CFIndex,
                 idx2: CFIndex,
             );
         }
-        unsafe { CFArrayExchangeValuesAtIndices(the_array.map(|obj| obj.as_opaque()), idx1, idx2) }
+        unsafe { CFArrayExchangeValuesAtIndices(self.as_opaque(), idx1, idx2) }
     }
 
     /// Sorts the values in the array using the given comparison function.
@@ -1059,33 +1032,25 @@ impl<T: Sized> CFMutableArray<T> {
     /// # Safety
     ///
     /// - `the_array` generic must be of the correct type.
-    /// - `the_array` might not allow `None`.
     /// - `comparator` must be implemented correctly.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFArraySortValues")]
     #[inline]
     pub unsafe fn sort_values(
-        the_array: Option<&CFMutableArray<T>>,
+        &self,
         range: CFRange,
         comparator: CFComparatorFunction,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn CFArraySortValues(
-                the_array: Option<&CFMutableArray>,
+                the_array: &CFMutableArray,
                 range: CFRange,
                 comparator: CFComparatorFunction,
                 context: *mut c_void,
             );
         }
-        unsafe {
-            CFArraySortValues(
-                the_array.map(|obj| obj.as_opaque()),
-                range,
-                comparator,
-                context,
-            )
-        }
+        unsafe { CFArraySortValues(self.as_opaque(), range, comparator, context) }
     }
 
     /// Adds the values from an array to another array.
@@ -1116,28 +1081,17 @@ impl<T: Sized> CFMutableArray<T> {
     /// # Safety
     ///
     /// - `the_array` generic must be of the correct type.
-    /// - `the_array` might not allow `None`.
     /// - `other_array` generic must be of the correct type.
     #[doc(alias = "CFArrayAppendArray")]
     #[inline]
-    pub unsafe fn append_array(
-        the_array: Option<&CFMutableArray<T>>,
-        other_array: &CFArray,
-        other_range: CFRange,
-    ) {
+    pub unsafe fn append_array(&self, other_array: &CFArray, other_range: CFRange) {
         extern "C-unwind" {
             fn CFArrayAppendArray(
-                the_array: Option<&CFMutableArray>,
+                the_array: &CFMutableArray,
                 other_array: &CFArray,
                 other_range: CFRange,
             );
         }
-        unsafe {
-            CFArrayAppendArray(
-                the_array.map(|obj| obj.as_opaque()),
-                other_array,
-                other_range,
-            )
-        }
+        unsafe { CFArrayAppendArray(self.as_opaque(), other_array, other_range) }
     }
 }

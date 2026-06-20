@@ -205,79 +205,57 @@ impl CFBitVector {
 }
 
 impl CFMutableBitVector {
-    /// # Safety
-    ///
-    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorSetCount")]
     #[inline]
-    pub unsafe fn set_count(bv: Option<&CFMutableBitVector>, count: CFIndex) {
+    pub fn set_count(&self, count: CFIndex) {
         extern "C-unwind" {
-            fn CFBitVectorSetCount(bv: Option<&CFMutableBitVector>, count: CFIndex);
+            fn CFBitVectorSetCount(bv: &CFMutableBitVector, count: CFIndex);
         }
-        unsafe { CFBitVectorSetCount(bv, count) }
+        unsafe { CFBitVectorSetCount(self, count) }
     }
 
-    /// # Safety
-    ///
-    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorFlipBitAtIndex")]
     #[inline]
-    pub unsafe fn flip_bit_at_index(bv: Option<&CFMutableBitVector>, idx: CFIndex) {
+    pub fn flip_bit_at_index(&self, idx: CFIndex) {
         extern "C-unwind" {
-            fn CFBitVectorFlipBitAtIndex(bv: Option<&CFMutableBitVector>, idx: CFIndex);
+            fn CFBitVectorFlipBitAtIndex(bv: &CFMutableBitVector, idx: CFIndex);
         }
-        unsafe { CFBitVectorFlipBitAtIndex(bv, idx) }
+        unsafe { CFBitVectorFlipBitAtIndex(self, idx) }
     }
 
-    /// # Safety
-    ///
-    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorFlipBits")]
     #[inline]
-    pub unsafe fn flip_bits(bv: Option<&CFMutableBitVector>, range: CFRange) {
+    pub fn flip_bits(&self, range: CFRange) {
         extern "C-unwind" {
-            fn CFBitVectorFlipBits(bv: Option<&CFMutableBitVector>, range: CFRange);
+            fn CFBitVectorFlipBits(bv: &CFMutableBitVector, range: CFRange);
         }
-        unsafe { CFBitVectorFlipBits(bv, range) }
+        unsafe { CFBitVectorFlipBits(self, range) }
     }
 
-    /// # Safety
-    ///
-    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorSetBitAtIndex")]
     #[inline]
-    pub unsafe fn set_bit_at_index(bv: Option<&CFMutableBitVector>, idx: CFIndex, value: CFBit) {
+    pub fn set_bit_at_index(&self, idx: CFIndex, value: CFBit) {
         extern "C-unwind" {
-            fn CFBitVectorSetBitAtIndex(
-                bv: Option<&CFMutableBitVector>,
-                idx: CFIndex,
-                value: CFBit,
-            );
+            fn CFBitVectorSetBitAtIndex(bv: &CFMutableBitVector, idx: CFIndex, value: CFBit);
         }
-        unsafe { CFBitVectorSetBitAtIndex(bv, idx, value) }
+        unsafe { CFBitVectorSetBitAtIndex(self, idx, value) }
     }
 
-    /// # Safety
-    ///
-    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorSetBits")]
     #[inline]
-    pub unsafe fn set_bits(bv: Option<&CFMutableBitVector>, range: CFRange, value: CFBit) {
+    pub fn set_bits(&self, range: CFRange, value: CFBit) {
         extern "C-unwind" {
-            fn CFBitVectorSetBits(bv: Option<&CFMutableBitVector>, range: CFRange, value: CFBit);
+            fn CFBitVectorSetBits(bv: &CFMutableBitVector, range: CFRange, value: CFBit);
         }
-        unsafe { CFBitVectorSetBits(bv, range, value) }
+        unsafe { CFBitVectorSetBits(self, range, value) }
     }
 
-    /// # Safety
-    ///
-    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorSetAllBits")]
     #[inline]
-    pub unsafe fn set_all_bits(bv: Option<&CFMutableBitVector>, value: CFBit) {
+    pub fn set_all_bits(&self, value: CFBit) {
         extern "C-unwind" {
-            fn CFBitVectorSetAllBits(bv: Option<&CFMutableBitVector>, value: CFBit);
+            fn CFBitVectorSetAllBits(bv: &CFMutableBitVector, value: CFBit);
         }
-        unsafe { CFBitVectorSetAllBits(bv, value) }
+        unsafe { CFBitVectorSetAllBits(self, value) }
     }
 }

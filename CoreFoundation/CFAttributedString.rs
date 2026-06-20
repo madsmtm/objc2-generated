@@ -83,42 +83,35 @@ impl CFAttributedString {
     }
 
     /// Creates a sub-attributed string from the specified range. It's a programming error for range to specify characters outside the bounds of aStr.
-    ///
-    /// # Safety
-    ///
-    /// `a_str` might not allow `None`.
     #[doc(alias = "CFAttributedStringCreateWithSubstring")]
     #[inline]
     pub unsafe fn with_substring(
+        &self,
         alloc: Option<&CFAllocator>,
-        a_str: Option<&CFAttributedString>,
         range: CFRange,
     ) -> Option<CFRetained<CFAttributedString>> {
         extern "C-unwind" {
             fn CFAttributedStringCreateWithSubstring(
                 alloc: Option<&CFAllocator>,
-                a_str: Option<&CFAttributedString>,
+                a_str: &CFAttributedString,
                 range: CFRange,
             ) -> Option<NonNull<CFAttributedString>>;
         }
-        let ret = unsafe { CFAttributedStringCreateWithSubstring(alloc, a_str, range) };
+        let ret = unsafe { CFAttributedStringCreateWithSubstring(alloc, self, range) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     /// Creates an immutable attributed string copy.
     #[doc(alias = "CFAttributedStringCreateCopy")]
     #[inline]
-    pub fn new_copy(
-        alloc: Option<&CFAllocator>,
-        a_str: Option<&CFAttributedString>,
-    ) -> Option<CFRetained<CFAttributedString>> {
+    pub fn copy(&self, alloc: Option<&CFAllocator>) -> Option<CFRetained<CFAttributedString>> {
         extern "C-unwind" {
             fn CFAttributedStringCreateCopy(
                 alloc: Option<&CFAllocator>,
-                a_str: Option<&CFAttributedString>,
+                a_str: &CFAttributedString,
             ) -> Option<NonNull<CFAttributedString>>;
         }
-        let ret = unsafe { CFAttributedStringCreateCopy(alloc, a_str) };
+        let ret = unsafe { CFAttributedStringCreateCopy(alloc, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -255,13 +248,13 @@ impl CFMutableAttributedString {
     pub fn new_copy(
         alloc: Option<&CFAllocator>,
         max_length: CFIndex,
-        a_str: Option<&CFAttributedString>,
+        a_str: &CFAttributedString,
     ) -> Option<CFRetained<CFMutableAttributedString>> {
         extern "C-unwind" {
             fn CFAttributedStringCreateMutableCopy(
                 alloc: Option<&CFAllocator>,
                 max_length: CFIndex,
-                a_str: Option<&CFAttributedString>,
+                a_str: &CFAttributedString,
             ) -> Option<NonNull<CFMutableAttributedString>>;
         }
         let ret = unsafe { CFAttributedStringCreateMutableCopy(alloc, max_length, a_str) };
@@ -288,25 +281,17 @@ impl CFMutableAttributedString {
     /// Modifies the string for the attributed string, much like CFStringReplace().  It's an error for range to specify characters outside the bounds of aStr.
     ///
     /// (Note: This function is a convenience on CFAttributedStringGetMutableString(); however, until CFAttributedStringGetMutableString() is implemented, it remains the only way to edit the string of the attributed string.)
-    ///
-    /// # Safety
-    ///
-    /// `a_str` might not allow `None`.
     #[doc(alias = "CFAttributedStringReplaceString")]
     #[inline]
-    pub unsafe fn replace_string(
-        a_str: Option<&CFMutableAttributedString>,
-        range: CFRange,
-        replacement: &CFString,
-    ) {
+    pub unsafe fn replace_string(&self, range: CFRange, replacement: &CFString) {
         extern "C-unwind" {
             fn CFAttributedStringReplaceString(
-                a_str: Option<&CFMutableAttributedString>,
+                a_str: &CFMutableAttributedString,
                 range: CFRange,
                 replacement: &CFString,
             );
         }
-        unsafe { CFAttributedStringReplaceString(a_str, range, replacement) }
+        unsafe { CFAttributedStringReplaceString(self, range, replacement) }
     }
 
     /// Gets the string for the attributed string as a mutable string, allowing editing the character contents of the string as if it were an CFMutableString. Attributes corresponding to the edited range are appropriately modified. If, as a result of the edit, new characters are introduced into the string, they inherit the attributes of the first replaced character from range. If no existing characters are replaced by the edit, the new characters inherit the attributes of the character preceding range if it has any, otherwise of the character following range. If the initial string is empty, the attributes for the new characters are also empty.
@@ -314,15 +299,13 @@ impl CFMutableAttributedString {
     /// (Note: This function is not yet implemented and will return NULL except for toll-free bridged instances.)
     #[doc(alias = "CFAttributedStringGetMutableString")]
     #[inline]
-    pub fn mutable_string(
-        a_str: Option<&CFMutableAttributedString>,
-    ) -> Option<CFRetained<CFMutableString>> {
+    pub fn mutable_string(&self) -> Option<CFRetained<CFMutableString>> {
         extern "C-unwind" {
             fn CFAttributedStringGetMutableString(
-                a_str: Option<&CFMutableAttributedString>,
+                a_str: &CFMutableAttributedString,
             ) -> Option<NonNull<CFMutableString>>;
         }
-        let ret = unsafe { CFAttributedStringGetMutableString(a_str) };
+        let ret = unsafe { CFAttributedStringGetMutableString(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
@@ -330,27 +313,26 @@ impl CFMutableAttributedString {
     ///
     /// # Safety
     ///
-    /// - `a_str` might not allow `None`.
-    /// - `replacement` generic should be of the correct type.
+    /// `replacement` generic should be of the correct type.
     #[doc(alias = "CFAttributedStringSetAttributes")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn set_attributes(
-        a_str: Option<&CFMutableAttributedString>,
+        &self,
         range: CFRange,
         replacement: &CFDictionary<CFString, CFType>,
         clear_other_attributes: bool,
     ) {
         extern "C-unwind" {
             fn CFAttributedStringSetAttributes(
-                a_str: Option<&CFMutableAttributedString>,
+                a_str: &CFMutableAttributedString,
                 range: CFRange,
                 replacement: &CFDictionary<CFString, CFType>,
                 clear_other_attributes: Boolean,
             );
         }
         unsafe {
-            CFAttributedStringSetAttributes(a_str, range, replacement, clear_other_attributes as _)
+            CFAttributedStringSetAttributes(self, range, replacement, clear_other_attributes as _)
         }
     }
 
@@ -358,89 +340,71 @@ impl CFMutableAttributedString {
     ///
     /// # Safety
     ///
-    /// - `a_str` might not allow `None`.
-    /// - `value` should be of the correct type.
+    /// `value` should be of the correct type.
     #[doc(alias = "CFAttributedStringSetAttribute")]
     #[inline]
-    pub unsafe fn set_attribute(
-        a_str: Option<&CFMutableAttributedString>,
-        range: CFRange,
-        attr_name: &CFString,
-        value: &CFType,
-    ) {
+    pub unsafe fn set_attribute(&self, range: CFRange, attr_name: &CFString, value: &CFType) {
         extern "C-unwind" {
             fn CFAttributedStringSetAttribute(
-                a_str: Option<&CFMutableAttributedString>,
+                a_str: &CFMutableAttributedString,
                 range: CFRange,
                 attr_name: &CFString,
                 value: &CFType,
             );
         }
-        unsafe { CFAttributedStringSetAttribute(a_str, range, attr_name, value) }
+        unsafe { CFAttributedStringSetAttribute(self, range, attr_name, value) }
     }
 
     /// Removes the value of a single attribute over the specified range, which should be valid. It's OK for the attribute not the exist over the specified range.
-    ///
-    /// # Safety
-    ///
-    /// `a_str` might not allow `None`.
     #[doc(alias = "CFAttributedStringRemoveAttribute")]
     #[inline]
-    pub unsafe fn remove_attribute(
-        a_str: Option<&CFMutableAttributedString>,
-        range: CFRange,
-        attr_name: &CFString,
-    ) {
+    pub unsafe fn remove_attribute(&self, range: CFRange, attr_name: &CFString) {
         extern "C-unwind" {
             fn CFAttributedStringRemoveAttribute(
-                a_str: Option<&CFMutableAttributedString>,
+                a_str: &CFMutableAttributedString,
                 range: CFRange,
                 attr_name: &CFString,
             );
         }
-        unsafe { CFAttributedStringRemoveAttribute(a_str, range, attr_name) }
+        unsafe { CFAttributedStringRemoveAttribute(self, range, attr_name) }
     }
 
     /// Replaces the attributed substring over the specified range with the attributed string specified in replacement. range should be valid. To delete a range of the attributed string, call CFAttributedStringReplaceString() with empty string and specified range.
-    ///
-    /// # Safety
-    ///
-    /// `a_str` might not allow `None`.
     #[doc(alias = "CFAttributedStringReplaceAttributedString")]
     #[inline]
     pub unsafe fn replace_attributed_string(
-        a_str: Option<&CFMutableAttributedString>,
+        &self,
         range: CFRange,
         replacement: &CFAttributedString,
     ) {
         extern "C-unwind" {
             fn CFAttributedStringReplaceAttributedString(
-                a_str: Option<&CFMutableAttributedString>,
+                a_str: &CFMutableAttributedString,
                 range: CFRange,
                 replacement: &CFAttributedString,
             );
         }
-        unsafe { CFAttributedStringReplaceAttributedString(a_str, range, replacement) }
+        unsafe { CFAttributedStringReplaceAttributedString(self, range, replacement) }
     }
 
     /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
     #[doc(alias = "CFAttributedStringBeginEditing")]
     #[inline]
-    pub fn begin_editing(a_str: Option<&CFMutableAttributedString>) {
+    pub fn begin_editing(&self) {
         extern "C-unwind" {
-            fn CFAttributedStringBeginEditing(a_str: Option<&CFMutableAttributedString>);
+            fn CFAttributedStringBeginEditing(a_str: &CFMutableAttributedString);
         }
-        unsafe { CFAttributedStringBeginEditing(a_str) }
+        unsafe { CFAttributedStringBeginEditing(self) }
     }
 
     /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
     #[doc(alias = "CFAttributedStringEndEditing")]
     #[inline]
-    pub fn end_editing(a_str: Option<&CFMutableAttributedString>) {
+    pub fn end_editing(&self) {
         extern "C-unwind" {
-            fn CFAttributedStringEndEditing(a_str: Option<&CFMutableAttributedString>);
+            fn CFAttributedStringEndEditing(a_str: &CFMutableAttributedString);
         }
-        unsafe { CFAttributedStringEndEditing(a_str) }
+        unsafe { CFAttributedStringEndEditing(self) }
     }
 }
 

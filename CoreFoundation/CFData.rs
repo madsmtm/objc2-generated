@@ -104,17 +104,14 @@ impl CFData {
 
     #[doc(alias = "CFDataCreateCopy")]
     #[inline]
-    pub fn new_copy(
-        allocator: Option<&CFAllocator>,
-        the_data: Option<&CFData>,
-    ) -> Option<CFRetained<CFData>> {
+    pub fn copy(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFDataCreateCopy(
                 allocator: Option<&CFAllocator>,
-                the_data: Option<&CFData>,
+                the_data: &CFData,
             ) -> Option<NonNull<CFData>>;
         }
-        let ret = unsafe { CFDataCreateCopy(allocator, the_data) };
+        let ret = unsafe { CFDataCreateCopy(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }
@@ -178,11 +175,11 @@ impl CFData {
 impl CFMutableData {
     #[doc(alias = "CFDataGetMutableBytePtr")]
     #[inline]
-    pub fn mutable_byte_ptr(the_data: Option<&CFMutableData>) -> *mut u8 {
+    pub fn mutable_byte_ptr(&self) -> *mut u8 {
         extern "C-unwind" {
-            fn CFDataGetMutableBytePtr(the_data: Option<&CFMutableData>) -> *mut u8;
+            fn CFDataGetMutableBytePtr(the_data: &CFMutableData) -> *mut u8;
         }
-        unsafe { CFDataGetMutableBytePtr(the_data) }
+        unsafe { CFDataGetMutableBytePtr(self) }
     }
 }
 
@@ -203,73 +200,58 @@ impl CFData {
 impl CFMutableData {
     #[doc(alias = "CFDataSetLength")]
     #[inline]
-    pub fn set_length(the_data: Option<&CFMutableData>, length: CFIndex) {
+    pub fn set_length(&self, length: CFIndex) {
         extern "C-unwind" {
-            fn CFDataSetLength(the_data: Option<&CFMutableData>, length: CFIndex);
+            fn CFDataSetLength(the_data: &CFMutableData, length: CFIndex);
         }
-        unsafe { CFDataSetLength(the_data, length) }
+        unsafe { CFDataSetLength(self, length) }
     }
 
     #[doc(alias = "CFDataIncreaseLength")]
     #[inline]
-    pub fn increase_length(the_data: Option<&CFMutableData>, extra_length: CFIndex) {
+    pub fn increase_length(&self, extra_length: CFIndex) {
         extern "C-unwind" {
-            fn CFDataIncreaseLength(the_data: Option<&CFMutableData>, extra_length: CFIndex);
+            fn CFDataIncreaseLength(the_data: &CFMutableData, extra_length: CFIndex);
         }
-        unsafe { CFDataIncreaseLength(the_data, extra_length) }
+        unsafe { CFDataIncreaseLength(self, extra_length) }
     }
 
     /// # Safety
     ///
-    /// - `the_data` might not allow `None`.
-    /// - `bytes` must be a valid pointer.
+    /// `bytes` must be a valid pointer.
     #[doc(alias = "CFDataAppendBytes")]
     #[inline]
-    pub unsafe fn append_bytes(
-        the_data: Option<&CFMutableData>,
-        bytes: *const u8,
-        length: CFIndex,
-    ) {
+    pub unsafe fn append_bytes(&self, bytes: *const u8, length: CFIndex) {
         extern "C-unwind" {
-            fn CFDataAppendBytes(
-                the_data: Option<&CFMutableData>,
-                bytes: *const u8,
-                length: CFIndex,
-            );
+            fn CFDataAppendBytes(the_data: &CFMutableData, bytes: *const u8, length: CFIndex);
         }
-        unsafe { CFDataAppendBytes(the_data, bytes, length) }
+        unsafe { CFDataAppendBytes(self, bytes, length) }
     }
 
     /// # Safety
     ///
-    /// - `the_data` might not allow `None`.
-    /// - `new_bytes` must be a valid pointer.
+    /// `new_bytes` must be a valid pointer.
     #[doc(alias = "CFDataReplaceBytes")]
     #[inline]
-    pub unsafe fn replace_bytes(
-        the_data: Option<&CFMutableData>,
-        range: CFRange,
-        new_bytes: *const u8,
-        new_length: CFIndex,
-    ) {
+    pub unsafe fn replace_bytes(&self, range: CFRange, new_bytes: *const u8, new_length: CFIndex) {
         extern "C-unwind" {
             fn CFDataReplaceBytes(
-                the_data: Option<&CFMutableData>,
+                the_data: &CFMutableData,
                 range: CFRange,
                 new_bytes: *const u8,
                 new_length: CFIndex,
             );
         }
-        unsafe { CFDataReplaceBytes(the_data, range, new_bytes, new_length) }
+        unsafe { CFDataReplaceBytes(self, range, new_bytes, new_length) }
     }
 
     #[doc(alias = "CFDataDeleteBytes")]
     #[inline]
-    pub fn delete_bytes(the_data: Option<&CFMutableData>, range: CFRange) {
+    pub fn delete_bytes(&self, range: CFRange) {
         extern "C-unwind" {
-            fn CFDataDeleteBytes(the_data: Option<&CFMutableData>, range: CFRange);
+            fn CFDataDeleteBytes(the_data: &CFMutableData, range: CFRange);
         }
-        unsafe { CFDataDeleteBytes(the_data, range) }
+        unsafe { CFDataDeleteBytes(self, range) }
     }
 }
 

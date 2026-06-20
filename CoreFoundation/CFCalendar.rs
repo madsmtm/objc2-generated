@@ -55,12 +55,12 @@ impl CFCalendar {
     #[inline]
     pub fn with_identifier(
         allocator: Option<&CFAllocator>,
-        identifier: Option<&CFCalendarIdentifier>,
+        identifier: &CFCalendarIdentifier,
     ) -> Option<CFRetained<CFCalendar>> {
         extern "C-unwind" {
             fn CFCalendarCreateWithIdentifier(
                 allocator: Option<&CFAllocator>,
-                identifier: Option<&CFCalendarIdentifier>,
+                identifier: &CFCalendarIdentifier,
             ) -> Option<NonNull<CFCalendar>>;
         }
         let ret = unsafe { CFCalendarCreateWithIdentifier(allocator, identifier) };
@@ -105,20 +105,22 @@ impl CFCalendar {
     #[doc(alias = "CFCalendarCopyTimeZone")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub fn time_zone(&self) -> Option<CFRetained<CFTimeZone>> {
+    pub fn time_zone(&self) -> CFRetained<CFTimeZone> {
         extern "C-unwind" {
             fn CFCalendarCopyTimeZone(calendar: &CFCalendar) -> Option<NonNull<CFTimeZone>>;
         }
         let ret = unsafe { CFCalendarCopyTimeZone(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFCalendarSetTimeZone")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub fn set_time_zone(&self, tz: Option<&CFTimeZone>) {
+    pub fn set_time_zone(&self, tz: &CFTimeZone) {
         extern "C-unwind" {
-            fn CFCalendarSetTimeZone(calendar: &CFCalendar, tz: Option<&CFTimeZone>);
+            fn CFCalendarSetTimeZone(calendar: &CFCalendar, tz: &CFTimeZone);
         }
         unsafe { CFCalendarSetTimeZone(self, tz) }
     }

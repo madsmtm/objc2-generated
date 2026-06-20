@@ -87,11 +87,11 @@ impl CFDate {
 
     #[doc(alias = "CFDateGetTimeIntervalSinceDate")]
     #[inline]
-    pub fn time_interval_since_date(&self, other_date: Option<&CFDate>) -> CFTimeInterval {
+    pub fn time_interval_since_date(&self, other_date: &CFDate) -> CFTimeInterval {
         extern "C-unwind" {
             fn CFDateGetTimeIntervalSinceDate(
                 the_date: &CFDate,
-                other_date: Option<&CFDate>,
+                other_date: &CFDate,
             ) -> CFTimeInterval;
         }
         unsafe { CFDateGetTimeIntervalSinceDate(self, other_date) }

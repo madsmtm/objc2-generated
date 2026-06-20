@@ -2013,17 +2013,16 @@ impl CFAllocator {
     /// - `context` struct field `reallocate` must be implemented correctly.
     /// - `context` struct field `deallocate` must be implemented correctly.
     /// - `context` struct field `preferredSize` must be implemented correctly.
-    /// - `context` might not allow `None`.
     #[doc(alias = "CFAllocatorCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        context: Option<&CFAllocatorContext>,
+        context: &CFAllocatorContext,
     ) -> Option<CFRetained<CFAllocator>> {
         extern "C-unwind" {
             fn CFAllocatorCreate(
                 allocator: Option<&CFAllocator>,
-                context: Option<&CFAllocatorContext>,
+                context: &CFAllocatorContext,
             ) -> Option<NonNull<CFAllocator>>;
         }
         let ret = unsafe { CFAllocatorCreate(allocator, context) };
@@ -2211,17 +2210,13 @@ impl CFAllocator {
     /// - `context` struct field `reallocate` must be implemented correctly.
     /// - `context` struct field `deallocate` must be implemented correctly.
     /// - `context` struct field `preferredSize` must be implemented correctly.
-    /// - `context` might not allow `None`.
     #[doc(alias = "CFAllocatorGetContext")]
     #[inline]
-    pub unsafe fn context(
-        allocator: Option<&CFAllocator>,
-        context: Option<&mut CFAllocatorContext>,
-    ) {
+    pub unsafe fn context(allocator: Option<&CFAllocator>, context: &mut CFAllocatorContext) {
         extern "C-unwind" {
             fn CFAllocatorGetContext(
                 allocator: Option<&CFAllocator>,
-                context: Option<&mut CFAllocatorContext>,
+                context: &mut CFAllocatorContext,
             );
         }
         unsafe { CFAllocatorGetContext(allocator, context) }
@@ -2229,9 +2224,9 @@ impl CFAllocator {
 }
 
 #[inline]
-pub extern "C-unwind" fn CFGetTypeID(cf: Option<&CFType>) -> CFTypeID {
+pub extern "C-unwind" fn CFGetTypeID(cf: &CFType) -> CFTypeID {
     extern "C-unwind" {
-        fn CFGetTypeID(cf: Option<&CFType>) -> CFTypeID;
+        fn CFGetTypeID(cf: &CFType) -> CFTypeID;
     }
     unsafe { CFGetTypeID(cf) }
 }
@@ -2248,26 +2243,26 @@ pub extern "C-unwind" fn CFCopyTypeIDDescription(
 }
 
 #[inline]
-pub extern "C-unwind" fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex {
+pub extern "C-unwind" fn CFGetRetainCount(cf: &CFType) -> CFIndex {
     extern "C-unwind" {
-        fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex;
+        fn CFGetRetainCount(cf: &CFType) -> CFIndex;
     }
     unsafe { CFGetRetainCount(cf) }
 }
 
 #[inline]
-pub extern "C-unwind" fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> bool {
+pub extern "C-unwind" fn CFEqual(cf1: &CFType, cf2: &CFType) -> bool {
     extern "C-unwind" {
-        fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> Boolean;
+        fn CFEqual(cf1: &CFType, cf2: &CFType) -> Boolean;
     }
     let ret = unsafe { CFEqual(cf1, cf2) };
     ret != 0
 }
 
 #[inline]
-pub extern "C-unwind" fn CFHash(cf: Option<&CFType>) -> CFHashCode {
+pub extern "C-unwind" fn CFHash(cf: &CFType) -> CFHashCode {
     extern "C-unwind" {
-        fn CFHash(cf: Option<&CFType>) -> CFHashCode;
+        fn CFHash(cf: &CFType) -> CFHashCode;
     }
     unsafe { CFHash(cf) }
 }
