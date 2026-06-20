@@ -293,11 +293,10 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_component` must be a valid pointer or null.
-    /// - `in_desc` must be a valid pointer.
+    /// `in_component` must be a valid pointer or null.
     pub fn AudioComponentFindNext(
         in_component: AudioComponent,
-        in_desc: NonNull<AudioComponentDescription>,
+        in_desc: &AudioComponentDescription,
     ) -> AudioComponent;
 }
 
@@ -313,11 +312,7 @@ extern "C-unwind" {
     ///
     /// Returns: a UInt32. 0 (zero) means no audio components were found that matched the
     /// search parameters.
-    ///
-    /// # Safety
-    ///
-    /// `in_desc` must be a valid pointer.
-    pub fn AudioComponentCount(in_desc: NonNull<AudioComponentDescription>) -> u32;
+    pub fn AudioComponentCount(in_desc: &AudioComponentDescription) -> u32;
 }
 
 extern "C-unwind" {
@@ -335,11 +330,11 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_component` must be a valid pointer.
-    /// - `out_name` must be a valid pointer.
+    /// - `out_name` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyName(
         in_component: AudioComponent,
-        out_name: NonNull<*const CFString>,
+        out_name: &mut *const CFString,
     ) -> OSStatus;
 }
 
@@ -357,11 +352,10 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_component` must be a valid pointer.
-    /// - `out_desc` must be a valid pointer.
+    /// `in_component` must be a valid pointer.
     pub fn AudioComponentGetDescription(
         in_component: AudioComponent,
-        out_desc: NonNull<AudioComponentDescription>,
+        out_desc: &mut AudioComponentDescription,
     ) -> OSStatus;
 }
 
@@ -376,11 +370,10 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_component` must be a valid pointer.
-    /// - `out_version` must be a valid pointer.
+    /// `in_component` must be a valid pointer.
     pub fn AudioComponentGetVersion(
         in_component: AudioComponent,
-        out_version: NonNull<u32>,
+        out_version: &mut u32,
     ) -> OSStatus;
 }
 
@@ -405,10 +398,10 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_component` must be a valid pointer.
-    /// - `out_instance` must be a valid pointer.
+    /// - `out_instance` must be a valid pointer or null.
     pub fn AudioComponentInstanceNew(
         in_component: AudioComponent,
-        out_instance: NonNull<AudioComponentInstance>,
+        out_instance: &mut AudioComponentInstance,
     ) -> OSStatus;
 }
 
@@ -528,11 +521,10 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_desc` must be a valid pointer.
-    /// - `in_factory` must be implemented correctly.
+    /// `in_factory` must be implemented correctly.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentRegister(
-        in_desc: NonNull<AudioComponentDescription>,
+        in_desc: &AudioComponentDescription,
         in_name: &CFString,
         in_version: u32,
         in_factory: AudioComponentFactoryFunction,
@@ -556,11 +548,11 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_component` must be a valid pointer.
-    /// - `out_configuration_info` must be a valid pointer.
+    /// - `out_configuration_info` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyConfigurationInfo(
         in_component: AudioComponent,
-        out_configuration_info: NonNull<*const CFDictionary>,
+        out_configuration_info: &mut *const CFDictionary<CFString, CFType>,
     ) -> OSStatus;
 }
 
@@ -608,14 +600,12 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_component` must be a valid pointer.
-    /// - `in_validation_parameters` generic must be of the correct type.
-    /// - `in_validation_parameters` generic must be of the correct type.
-    /// - `out_validation_result` must be a valid pointer.
+    /// - `in_validation_parameters` generic should be of the correct type.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentValidate(
         in_component: AudioComponent,
-        in_validation_parameters: Option<&CFDictionary>,
-        out_validation_result: NonNull<AudioComponentValidationResult>,
+        in_validation_parameters: Option<&CFDictionary<CFString, CFType>>,
+        out_validation_result: &mut AudioComponentValidationResult,
     ) -> OSStatus;
 }
 
@@ -659,12 +649,11 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_component` must be a valid pointer.
-    /// - `in_validation_parameters` generic must be of the correct type.
-    /// - `in_validation_parameters` generic must be of the correct type.
+    /// - `in_validation_parameters` generic should be of the correct type.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioComponentValidateWithResults(
         in_component: AudioComponent,
-        in_validation_parameters: Option<&CFDictionary>,
+        in_validation_parameters: Option<&CFDictionary<CFString, CFType>>,
         in_completion_handler: &block2::DynBlock<
             dyn Fn(AudioComponentValidationResult, NonNull<CFDictionary>),
         >,

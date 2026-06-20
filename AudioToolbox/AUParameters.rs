@@ -589,13 +589,9 @@ impl AUParameter {
         ///
         /// This is currently only supported for parameters whose flags include
         /// kAudioUnitParameterFlag_ValuesHaveStrings.
-        ///
-        /// # Safety
-        ///
-        /// `value` must be a valid pointer or null.
         #[unsafe(method(stringFromValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromValue(&self, value: *const AUValue) -> Retained<NSString>;
+        pub unsafe fn stringFromValue(&self, value: Option<&AUValue>) -> Retained<NSString>;
 
         /// Convert a textual representation of a value to a numeric one.
         ///

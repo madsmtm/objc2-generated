@@ -322,13 +322,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_specifier` must be a valid pointer or null.
-    /// - `out_property_data_size` must be a valid pointer.
+    /// `in_specifier` must be a valid pointer or null.
     pub fn AudioFormatGetPropertyInfo(
         in_property_id: AudioFormatPropertyID,
         in_specifier_size: u32,
         in_specifier: *const c_void,
-        out_property_data_size: NonNull<u32>,
+        out_property_data_size: &mut u32,
     ) -> OSStatus;
 }
 
@@ -351,13 +350,12 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_specifier` must be a valid pointer or null.
-    /// - `io_property_data_size` must be a valid pointer or null.
     /// - `out_property_data` must be a valid pointer or null.
     pub fn AudioFormatGetProperty(
         in_property_id: AudioFormatPropertyID,
         in_specifier_size: u32,
         in_specifier: *const c_void,
-        io_property_data_size: *mut u32,
+        io_property_data_size: Option<&mut u32>,
         out_property_data: *mut c_void,
     ) -> OSStatus;
 }

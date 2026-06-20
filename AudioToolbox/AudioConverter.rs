@@ -344,14 +344,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_source_format` must be a valid pointer.
-    /// - `in_destination_format` must be a valid pointer.
-    /// - `out_audio_converter` must be a valid pointer.
+    /// `out_audio_converter` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNew(
-        in_source_format: NonNull<AudioStreamBasicDescription>,
-        in_destination_format: NonNull<AudioStreamBasicDescription>,
-        out_audio_converter: NonNull<AudioConverterRef>,
+        in_source_format: &AudioStreamBasicDescription,
+        in_destination_format: &AudioStreamBasicDescription,
+        out_audio_converter: &mut AudioConverterRef,
     ) -> OSStatus;
 }
 
@@ -376,17 +374,15 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_source_format` must be a valid pointer.
-    /// - `in_destination_format` must be a valid pointer.
     /// - `in_class_descriptions` must be a valid pointer.
-    /// - `out_audio_converter` must be a valid pointer.
+    /// - `out_audio_converter` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNewSpecific(
-        in_source_format: NonNull<AudioStreamBasicDescription>,
-        in_destination_format: NonNull<AudioStreamBasicDescription>,
+        in_source_format: &AudioStreamBasicDescription,
+        in_destination_format: &AudioStreamBasicDescription,
         in_number_class_descriptions: u32,
         in_class_descriptions: NonNull<AudioClassDescription>,
-        out_audio_converter: NonNull<AudioConverterRef>,
+        out_audio_converter: &mut AudioConverterRef,
     ) -> OSStatus;
 }
 
@@ -409,15 +405,13 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_source_format` must be a valid pointer.
-    /// - `in_destination_format` must be a valid pointer.
-    /// - `out_audio_converter` must be a valid pointer.
+    /// `out_audio_converter` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNewWithOptions(
-        in_source_format: NonNull<AudioStreamBasicDescription>,
-        in_destination_format: NonNull<AudioStreamBasicDescription>,
+        in_source_format: &AudioStreamBasicDescription,
+        in_destination_format: &AudioStreamBasicDescription,
         in_options: AudioConverterOptions,
-        out_audio_converter: NonNull<AudioConverterRef>,
+        out_audio_converter: &mut AudioConverterRef,
     ) -> OSStatus;
 }
 
@@ -469,14 +463,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_audio_converter` must be a valid pointer.
-    /// - `out_size` must be a valid pointer or null.
-    /// - `out_writable` must be a valid pointer or null.
+    /// `in_audio_converter` must be a valid pointer.
     pub fn AudioConverterGetPropertyInfo(
         in_audio_converter: AudioConverterRef,
         in_property_id: AudioConverterPropertyID,
-        out_size: *mut u32,
-        out_writable: *mut Boolean,
+        out_size: Option<&mut u32>,
+        out_writable: Option<&mut Boolean>,
     ) -> OSStatus;
 }
 
@@ -498,12 +490,11 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_audio_converter` must be a valid pointer.
-    /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
     pub fn AudioConverterGetProperty(
         in_audio_converter: AudioConverterRef,
         in_property_id: AudioConverterPropertyID,
-        io_property_data_size: NonNull<u32>,
+        io_property_data_size: &mut u32,
         out_property_data: NonNull<c_void>,
     ) -> OSStatus;
 }
@@ -562,13 +553,12 @@ extern "C-unwind" {
     ///
     /// - `in_audio_converter` must be a valid pointer.
     /// - `in_input_data` must be a valid pointer.
-    /// - `io_output_data_size` must be a valid pointer.
     /// - `out_output_data` must be a valid pointer.
     pub fn AudioConverterConvertBuffer(
         in_audio_converter: AudioConverterRef,
         in_input_data_size: u32,
         in_input_data: NonNull<c_void>,
-        io_output_data_size: NonNull<u32>,
+        io_output_data_size: &mut u32,
         out_output_data: NonNull<c_void>,
     ) -> OSStatus;
 }
@@ -699,16 +689,15 @@ extern "C-unwind" {
     /// - `in_audio_converter` must be a valid pointer.
     /// - `in_input_data_proc` must be implemented correctly.
     /// - `in_input_data_proc_user_data` must be a valid pointer or null.
-    /// - `io_output_data_packet_size` must be a valid pointer.
-    /// - `out_output_data` must be a valid pointer.
+    /// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
     /// - `out_packet_description` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterFillComplexBuffer(
         in_audio_converter: AudioConverterRef,
         in_input_data_proc: AudioConverterComplexInputDataProc,
         in_input_data_proc_user_data: *mut c_void,
-        io_output_data_packet_size: NonNull<u32>,
-        out_output_data: NonNull<AudioBufferList>,
+        io_output_data_packet_size: &mut u32,
+        out_output_data: &mut AudioBufferList,
         out_packet_description: *mut AudioStreamPacketDescription,
     ) -> OSStatus;
 }
@@ -729,16 +718,15 @@ extern "C-unwind" {
     /// - `in_audio_converter` must be a valid pointer.
     /// - `in_input_data_proc` must be implemented correctly.
     /// - `in_input_data_proc_user_data` must be a valid pointer or null.
-    /// - `io_output_data_packet_size` must be a valid pointer.
-    /// - `out_output_data` must be a valid pointer.
+    /// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
     /// - `out_packet_description` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterFillComplexBufferRealtimeSafe(
         in_audio_converter: AudioConverterRef,
         in_input_data_proc: AudioConverterComplexInputDataProcRealtimeSafe,
         in_input_data_proc_user_data: *mut c_void,
-        io_output_data_packet_size: NonNull<u32>,
-        out_output_data: NonNull<AudioBufferList>,
+        io_output_data_packet_size: &mut u32,
+        out_output_data: &mut AudioBufferList,
         out_packet_description: *mut AudioStreamPacketDescription,
     ) -> OSStatus;
 }
@@ -791,8 +779,7 @@ extern "C-unwind" {
     /// - `in_audio_converter` must be a valid pointer.
     /// - `in_input_data_proc` must be implemented correctly.
     /// - `in_input_data_proc_user_data` must be a valid pointer or null.
-    /// - `io_output_data_packet_size` must be a valid pointer.
-    /// - `out_output_data` must be a valid pointer.
+    /// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
     /// - `out_packet_descriptions` must be a valid pointer or null.
     /// - `out_packet_dependencies` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
@@ -800,8 +787,8 @@ extern "C-unwind" {
         in_audio_converter: AudioConverterRef,
         in_input_data_proc: AudioConverterComplexInputDataProc,
         in_input_data_proc_user_data: *mut c_void,
-        io_output_data_packet_size: NonNull<u32>,
-        out_output_data: NonNull<AudioBufferList>,
+        io_output_data_packet_size: &mut u32,
+        out_output_data: &mut AudioBufferList,
         out_packet_descriptions: *mut AudioStreamPacketDescription,
         out_packet_dependencies: NonNull<AudioStreamPacketDependencyDescription>,
     ) -> OSStatus;
@@ -831,14 +818,14 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_audio_converter` must be a valid pointer.
-    /// - `in_input_data` must be a valid pointer.
-    /// - `out_output_data` must be a valid pointer.
+    /// - `in_input_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+    /// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterConvertComplexBuffer(
         in_audio_converter: AudioConverterRef,
         in_number_pcm_frames: u32,
-        in_input_data: NonNull<AudioBufferList>,
-        out_output_data: NonNull<AudioBufferList>,
+        in_input_data: &AudioBufferList,
+        out_output_data: &mut AudioBufferList,
     ) -> OSStatus;
 }
 
@@ -895,14 +882,13 @@ extern "C-unwind" {
     /// - `in_audio_converter` must be a valid pointer.
     /// - `in_input_data_proc` must be implemented correctly.
     /// - `in_input_data_proc_user_data` must be a valid pointer or null.
-    /// - `io_output_data_size` must be a valid pointer.
     /// - `out_output_data` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AudioConverterFillBuffer(
         in_audio_converter: AudioConverterRef,
         in_input_data_proc: AudioConverterInputDataProc,
         in_input_data_proc_user_data: *mut c_void,
-        io_output_data_size: NonNull<u32>,
+        io_output_data_size: &mut u32,
         out_output_data: NonNull<c_void>,
     ) -> OSStatus;
 }

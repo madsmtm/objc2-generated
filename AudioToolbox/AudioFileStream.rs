@@ -239,14 +239,14 @@ extern "C-unwind" {
     /// - `in_client_data` must be a valid pointer or null.
     /// - `in_property_listener_proc` must be implemented correctly.
     /// - `in_packets_proc` must be implemented correctly.
-    /// - `out_audio_file_stream` must be a valid pointer.
+    /// - `out_audio_file_stream` must be a valid pointer or null.
     #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
     pub fn AudioFileStreamOpen(
         in_client_data: *mut c_void,
         in_property_listener_proc: AudioFileStream_PropertyListenerProc,
         in_packets_proc: AudioFileStream_PacketsProc,
         in_file_type_hint: AudioFileTypeID,
-        out_audio_file_stream: NonNull<AudioFileStreamID>,
+        out_audio_file_stream: &mut AudioFileStreamID,
     ) -> OSStatus;
 }
 
@@ -299,14 +299,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_audio_file_stream` must be a valid pointer.
-    /// - `out_data_byte_offset` must be a valid pointer.
-    /// - `io_flags` must be a valid pointer.
+    /// `in_audio_file_stream` must be a valid pointer.
     pub fn AudioFileStreamSeek(
         in_audio_file_stream: AudioFileStreamID,
         in_packet_offset: i64,
-        out_data_byte_offset: NonNull<i64>,
-        io_flags: NonNull<AudioFileStreamSeekFlags>,
+        out_data_byte_offset: &mut i64,
+        io_flags: &mut AudioFileStreamSeekFlags,
     ) -> OSStatus;
 }
 
@@ -328,14 +326,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_audio_file_stream` must be a valid pointer.
-    /// - `out_property_data_size` must be a valid pointer or null.
-    /// - `out_writable` must be a valid pointer or null.
+    /// `in_audio_file_stream` must be a valid pointer.
     pub fn AudioFileStreamGetPropertyInfo(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
-        out_property_data_size: *mut u32,
-        out_writable: *mut Boolean,
+        out_property_data_size: Option<&mut u32>,
+        out_writable: Option<&mut Boolean>,
     ) -> OSStatus;
 }
 
@@ -358,12 +354,11 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_audio_file_stream` must be a valid pointer.
-    /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
     pub fn AudioFileStreamGetProperty(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
-        io_property_data_size: NonNull<u32>,
+        io_property_data_size: &mut u32,
         out_property_data: NonNull<c_void>,
     ) -> OSStatus;
 }

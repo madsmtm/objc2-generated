@@ -138,7 +138,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `out_listener` must be a valid pointer.
+    /// - `out_listener` must be a valid pointer or null.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
     #[cfg(all(
         feature = "AUComponent",
@@ -147,7 +147,7 @@ extern "C-unwind" {
         feature = "dispatch2"
     ))]
     pub fn AUListenerCreateWithDispatchQueue(
-        out_listener: NonNull<AUParameterListenerRef>,
+        out_listener: &mut AUParameterListenerRef,
         in_notification_interval: f32,
         in_dispatch_queue: &DispatchQueue,
         in_block: &AUParameterListenerBlock,
@@ -185,7 +185,7 @@ extern "C-unwind" {
     /// - `in_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer.
     /// - `in_run_loop` possibly has additional threading requirements.
-    /// - `out_listener` must be a valid pointer.
+    /// - `out_listener` must be a valid pointer or null.
     #[cfg(all(
         feature = "AUComponent",
         feature = "AudioComponent",
@@ -197,7 +197,7 @@ extern "C-unwind" {
         in_run_loop: Option<&CFRunLoop>,
         in_run_loop_mode: Option<&CFString>,
         in_notification_interval: f32,
-        out_listener: NonNull<AUParameterListenerRef>,
+        out_listener: &mut AUParameterListenerRef,
     ) -> OSStatus;
 }
 
@@ -231,12 +231,12 @@ extern "C-unwind" {
     ///
     /// - `in_listener` must be a valid pointer.
     /// - `in_object` must be a valid pointer or null.
-    /// - `in_parameter` must be a valid pointer.
+    /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUListenerAddParameter(
         in_listener: AUParameterListenerRef,
         in_object: *mut c_void,
-        in_parameter: NonNull<AudioUnitParameter>,
+        in_parameter: &AudioUnitParameter,
     ) -> OSStatus;
 }
 
@@ -253,12 +253,12 @@ extern "C-unwind" {
     ///
     /// - `in_listener` must be a valid pointer.
     /// - `in_object` must be a valid pointer or null.
-    /// - `in_parameter` must be a valid pointer.
+    /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUListenerRemoveParameter(
         in_listener: AUParameterListenerRef,
         in_object: *mut c_void,
-        in_parameter: NonNull<AudioUnitParameter>,
+        in_parameter: &AudioUnitParameter,
     ) -> OSStatus;
 }
 
@@ -288,12 +288,12 @@ extern "C-unwind" {
     ///
     /// - `in_sending_listener` must be a valid pointer or null.
     /// - `in_sending_object` must be a valid pointer or null.
-    /// - `in_parameter` must be a valid pointer.
+    /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterSet(
         in_sending_listener: AUParameterListenerRef,
         in_sending_object: *mut c_void,
-        in_parameter: NonNull<AudioUnitParameter>,
+        in_parameter: &AudioUnitParameter,
         in_value: AudioUnitParameterValue,
         in_buffer_offset_in_frames: u32,
     ) -> OSStatus;
@@ -328,12 +328,12 @@ extern "C-unwind" {
     ///
     /// - `in_sending_listener` must be a valid pointer or null.
     /// - `in_sending_object` must be a valid pointer or null.
-    /// - `in_parameter` must be a valid pointer.
+    /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterListenerNotify(
         in_sending_listener: AUParameterListenerRef,
         in_sending_object: *mut c_void,
-        in_parameter: NonNull<AudioUnitParameter>,
+        in_parameter: &AudioUnitParameter,
     ) -> OSStatus;
 }
 
@@ -350,11 +350,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `in_parameter` must be a valid pointer.
+    /// `in_parameter` struct field `mAudioUnit` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterValueFromLinear(
         in_linear_value: f32,
-        in_parameter: NonNull<AudioUnitParameter>,
+        in_parameter: &AudioUnitParameter,
     ) -> AudioUnitParameterValue;
 }
 
@@ -372,11 +372,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `in_parameter` must be a valid pointer.
+    /// `in_parameter` struct field `mAudioUnit` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterValueToLinear(
         in_parameter_value: AudioUnitParameterValue,
-        in_parameter: NonNull<AudioUnitParameter>,
+        in_parameter: &AudioUnitParameter,
     ) -> f32;
 }
 
@@ -413,20 +413,20 @@ extern "C-unwind" {
 ///
 /// # Safety
 ///
-/// - `in_parameter` must be a valid pointer.
+/// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
 /// - `in_text_buffer` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
 pub unsafe extern "C-unwind" fn AUParameterFormatValue(
     in_parameter_value: f64,
-    in_parameter: NonNull<AudioUnitParameter>,
+    in_parameter: &AudioUnitParameter,
     in_text_buffer: NonNull<c_char>,
     in_digits: u32,
 ) -> NonNull<c_char> {
     extern "C-unwind" {
         fn AUParameterFormatValue(
             in_parameter_value: f64,
-            in_parameter: NonNull<AudioUnitParameter>,
+            in_parameter: &AudioUnitParameter,
             in_text_buffer: NonNull<c_char>,
             in_digits: u32,
         ) -> Option<NonNull<c_char>>;

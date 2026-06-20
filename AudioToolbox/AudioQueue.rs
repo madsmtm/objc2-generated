@@ -694,20 +694,19 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_format` must be a valid pointer.
     /// - `in_callback_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer or null.
     /// - `in_callback_run_loop` possibly has additional threading requirements.
-    /// - `out_aq` must be a valid pointer.
+    /// - `out_aq` must be a valid pointer or null.
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioQueueNewOutput(
-        in_format: NonNull<AudioStreamBasicDescription>,
+        in_format: &AudioStreamBasicDescription,
         in_callback_proc: AudioQueueOutputCallback,
         in_user_data: *mut c_void,
         in_callback_run_loop: Option<&CFRunLoop>,
         in_callback_run_loop_mode: Option<&CFString>,
         in_flags: u32,
-        out_aq: NonNull<AudioQueueRef>,
+        out_aq: &mut AudioQueueRef,
     ) -> OSStatus;
 }
 
@@ -748,20 +747,19 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_format` must be a valid pointer.
     /// - `in_callback_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer or null.
     /// - `in_callback_run_loop` possibly has additional threading requirements.
-    /// - `out_aq` must be a valid pointer.
+    /// - `out_aq` must be a valid pointer or null.
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioQueueNewInput(
-        in_format: NonNull<AudioStreamBasicDescription>,
+        in_format: &AudioStreamBasicDescription,
         in_callback_proc: AudioQueueInputCallback,
         in_user_data: *mut c_void,
         in_callback_run_loop: Option<&CFRunLoop>,
         in_callback_run_loop_mode: Option<&CFString>,
         in_flags: u32,
-        out_aq: NonNull<AudioQueueRef>,
+        out_aq: &mut AudioQueueRef,
     ) -> OSStatus;
 }
 
@@ -791,8 +789,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `out_aq` must be a valid pointer.
-    /// - `in_format` must be a valid pointer.
+    /// - `out_aq` must be a valid pointer or null.
     /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
     #[cfg(all(
         feature = "block2",
@@ -800,8 +797,8 @@ extern "C-unwind" {
         feature = "objc2-core-audio-types"
     ))]
     pub fn AudioQueueNewOutputWithDispatchQueue(
-        out_aq: NonNull<AudioQueueRef>,
-        in_format: NonNull<AudioStreamBasicDescription>,
+        out_aq: &mut AudioQueueRef,
+        in_format: &AudioStreamBasicDescription,
         in_flags: u32,
         in_callback_dispatch_queue: &DispatchQueue,
         in_callback_block: &AudioQueueOutputCallbackBlock,
@@ -836,8 +833,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `out_aq` must be a valid pointer.
-    /// - `in_format` must be a valid pointer.
+    /// - `out_aq` must be a valid pointer or null.
     /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
     #[cfg(all(
         feature = "block2",
@@ -845,8 +841,8 @@ extern "C-unwind" {
         feature = "objc2-core-audio-types"
     ))]
     pub fn AudioQueueNewInputWithDispatchQueue(
-        out_aq: NonNull<AudioQueueRef>,
-        in_format: NonNull<AudioStreamBasicDescription>,
+        out_aq: &mut AudioQueueRef,
+        in_format: &AudioStreamBasicDescription,
         in_flags: u32,
         in_callback_dispatch_queue: &DispatchQueue,
         in_callback_block: &AudioQueueInputCallbackBlock,
@@ -906,12 +902,12 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_aq` must be a valid pointer.
-    /// - `out_buffer` must be a valid pointer.
+    /// - `out_buffer` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueAllocateBuffer(
         in_aq: AudioQueueRef,
         in_buffer_byte_size: u32,
-        out_buffer: NonNull<AudioQueueBufferRef>,
+        out_buffer: &mut AudioQueueBufferRef,
     ) -> OSStatus;
 }
 
@@ -938,13 +934,13 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_aq` must be a valid pointer.
-    /// - `out_buffer` must be a valid pointer.
+    /// - `out_buffer` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueAllocateBufferWithPacketDescriptions(
         in_aq: AudioQueueRef,
         in_buffer_byte_size: u32,
         in_number_packet_descriptions: u32,
-        out_buffer: NonNull<AudioQueueBufferRef>,
+        out_buffer: &mut AudioQueueBufferRef,
     ) -> OSStatus;
 }
 
@@ -1079,8 +1075,6 @@ extern "C-unwind" {
     /// - `in_buffer` must be a valid pointer.
     /// - `in_packet_descs` must be a valid pointer or null.
     /// - `in_param_values` must be a valid pointer or null.
-    /// - `in_start_time` must be a valid pointer or null.
-    /// - `out_actual_start_time` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueEnqueueBufferWithParameters(
         in_aq: AudioQueueRef,
@@ -1091,8 +1085,8 @@ extern "C-unwind" {
         in_trim_frames_at_end: u32,
         in_num_param_values: u32,
         in_param_values: *const AudioQueueParameterEvent,
-        in_start_time: *const AudioTimeStamp,
-        out_actual_start_time: *mut AudioTimeStamp,
+        in_start_time: Option<&AudioTimeStamp>,
+        out_actual_start_time: Option<&mut AudioTimeStamp>,
     ) -> OSStatus;
 }
 
@@ -1112,10 +1106,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_start_time` must be a valid pointer or null.
+    /// `in_aq` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueStart(in_aq: AudioQueueRef, in_start_time: *const AudioTimeStamp) -> OSStatus;
+    pub fn AudioQueueStart(
+        in_aq: AudioQueueRef,
+        in_start_time: Option<&AudioTimeStamp>,
+    ) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -1147,12 +1143,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `out_number_of_frames_prepared` must be a valid pointer or null.
+    /// `in_aq` must be a valid pointer.
     pub fn AudioQueuePrime(
         in_aq: AudioQueueRef,
         in_number_of_frames_to_prepare: u32,
-        out_number_of_frames_prepared: *mut u32,
+        out_number_of_frames_prepared: Option<&mut u32>,
     ) -> OSStatus;
 }
 
@@ -1284,12 +1279,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `out_value` must be a valid pointer.
+    /// `in_aq` must be a valid pointer.
     pub fn AudioQueueGetParameter(
         in_aq: AudioQueueRef,
         in_param_id: AudioQueueParameterID,
-        out_value: NonNull<AudioQueueParameterValue>,
+        out_value: &mut AudioQueueParameterValue,
     ) -> OSStatus;
 }
 
@@ -1332,12 +1326,11 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
-    /// - `io_data_size` must be a valid pointer.
     pub fn AudioQueueGetProperty(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
         out_data: NonNull<c_void>,
-        io_data_size: NonNull<u32>,
+        io_data_size: &mut u32,
     ) -> OSStatus;
 }
 
@@ -1381,12 +1374,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `out_data_size` must be a valid pointer.
+    /// `in_aq` must be a valid pointer.
     pub fn AudioQueueGetPropertySize(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
-        out_data_size: NonNull<u32>,
+        out_data_size: &mut u32,
     ) -> OSStatus;
 }
 
@@ -1464,10 +1456,10 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_aq` must be a valid pointer.
-    /// - `out_timeline` must be a valid pointer.
+    /// - `out_timeline` must be a valid pointer or null.
     pub fn AudioQueueCreateTimeline(
         in_aq: AudioQueueRef,
-        out_timeline: NonNull<AudioQueueTimelineRef>,
+        out_timeline: &mut AudioQueueTimelineRef,
     ) -> OSStatus;
 }
 
@@ -1524,14 +1516,12 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `in_timeline` must be a valid pointer or null.
-    /// - `out_time_stamp` must be a valid pointer or null.
-    /// - `out_timeline_discontinuity` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueGetCurrentTime(
         in_aq: AudioQueueRef,
         in_timeline: AudioQueueTimelineRef,
-        out_time_stamp: *mut AudioTimeStamp,
-        out_timeline_discontinuity: *mut Boolean,
+        out_time_stamp: Option<&mut AudioTimeStamp>,
+        out_timeline_discontinuity: Option<&mut Boolean>,
     ) -> OSStatus;
 }
 
@@ -1553,12 +1543,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `out_time_stamp` must be a valid pointer.
+    /// `in_aq` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceGetCurrentTime(
         in_aq: AudioQueueRef,
-        out_time_stamp: NonNull<AudioTimeStamp>,
+        out_time_stamp: &mut AudioTimeStamp,
     ) -> OSStatus;
 }
 
@@ -1590,14 +1579,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_time` must be a valid pointer.
-    /// - `out_time` must be a valid pointer.
+    /// `in_aq` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceTranslateTime(
         in_aq: AudioQueueRef,
-        in_time: NonNull<AudioTimeStamp>,
-        out_time: NonNull<AudioTimeStamp>,
+        in_time: &AudioTimeStamp,
+        out_time: &mut AudioTimeStamp,
     ) -> OSStatus;
 }
 
@@ -1614,12 +1601,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `io_requested_start_time` must be a valid pointer.
+    /// `in_aq` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceGetNearestStartTime(
         in_aq: AudioQueueRef,
-        io_requested_start_time: NonNull<AudioTimeStamp>,
+        io_requested_start_time: &mut AudioTimeStamp,
         in_flags: u32,
     ) -> OSStatus;
 }
@@ -1645,14 +1631,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_format` must be a valid pointer or null.
-    /// - `in_layout` must be a valid pointer or null.
+    /// `in_aq` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueSetOfflineRenderFormat(
         in_aq: AudioQueueRef,
-        in_format: *const AudioStreamBasicDescription,
-        in_layout: *const AudioChannelLayout,
+        in_format: Option<&AudioStreamBasicDescription>,
+        in_layout: Option<&AudioChannelLayout>,
     ) -> OSStatus;
 }
 
@@ -1674,12 +1658,11 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_aq` must be a valid pointer.
-    /// - `in_timestamp` must be a valid pointer.
     /// - `io_buffer` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueOfflineRender(
         in_aq: AudioQueueRef,
-        in_timestamp: NonNull<AudioTimeStamp>,
+        in_timestamp: &AudioTimeStamp,
         io_buffer: AudioQueueBufferRef,
         in_number_frames: u32,
     ) -> OSStatus;
@@ -1743,18 +1726,16 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
-    /// - `out_max_frames` must be a valid pointer.
-    /// - `out_processing_format` must be a valid pointer.
-    /// - `out_aq_tap` must be a valid pointer.
+    /// - `out_aq_tap` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueProcessingTapNew(
         in_aq: AudioQueueRef,
         in_callback: AudioQueueProcessingTapCallback,
         in_client_data: *mut c_void,
         in_flags: AudioQueueProcessingTapFlags,
-        out_max_frames: NonNull<u32>,
-        out_processing_format: NonNull<AudioStreamBasicDescription>,
-        out_aq_tap: NonNull<AudioQueueProcessingTapRef>,
+        out_max_frames: &mut u32,
+        out_processing_format: &mut AudioStreamBasicDescription,
+        out_aq_tap: &mut AudioQueueProcessingTapRef,
     ) -> OSStatus;
 }
 
@@ -1809,18 +1790,15 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_aq_tap` must be a valid pointer.
-    /// - `io_time_stamp` must be a valid pointer.
-    /// - `out_flags` must be a valid pointer.
-    /// - `out_number_frames` must be a valid pointer.
-    /// - `io_data` must be a valid pointer.
+    /// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueProcessingTapGetSourceAudio(
         in_aq_tap: AudioQueueProcessingTapRef,
         in_number_frames: u32,
-        io_time_stamp: NonNull<AudioTimeStamp>,
-        out_flags: NonNull<AudioQueueProcessingTapFlags>,
-        out_number_frames: NonNull<u32>,
-        io_data: NonNull<AudioBufferList>,
+        io_time_stamp: &mut AudioTimeStamp,
+        out_flags: &mut AudioQueueProcessingTapFlags,
+        out_number_frames: &mut u32,
+        io_data: &mut AudioBufferList,
     ) -> OSStatus;
 }
 
@@ -1848,12 +1826,10 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_aq_tap` must be a valid pointer.
-    /// - `out_queue_sample_time` must be a valid pointer.
-    /// - `out_queue_frame_count` must be a valid pointer.
+    /// `in_aq_tap` must be a valid pointer.
     pub fn AudioQueueProcessingTapGetQueueTime(
         in_aq_tap: AudioQueueProcessingTapRef,
-        out_queue_sample_time: NonNull<f64>,
-        out_queue_frame_count: NonNull<u32>,
+        out_queue_sample_time: &mut f64,
+        out_queue_frame_count: &mut u32,
     ) -> OSStatus;
 }

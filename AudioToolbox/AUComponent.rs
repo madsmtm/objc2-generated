@@ -714,17 +714,15 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `out_data_size` must be a valid pointer or null.
-    /// - `out_writable` must be a valid pointer or null.
+    /// `in_unit` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitGetPropertyInfo(
         in_unit: AudioUnit,
         in_id: AudioUnitPropertyID,
         in_scope: AudioUnitScope,
         in_element: AudioUnitElement,
-        out_data_size: *mut u32,
-        out_writable: *mut Boolean,
+        out_data_size: Option<&mut u32>,
+        out_writable: Option<&mut Boolean>,
     ) -> OSStatus;
 }
 
@@ -756,7 +754,6 @@ extern "C-unwind" {
     ///
     /// - `in_unit` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
-    /// - `io_data_size` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitGetProperty(
         in_unit: AudioUnit,
@@ -764,7 +761,7 @@ extern "C-unwind" {
         in_scope: AudioUnitScope,
         in_element: AudioUnitElement,
         out_data: NonNull<c_void>,
-        io_data_size: NonNull<u32>,
+        io_data_size: &mut u32,
     ) -> OSStatus;
 }
 
@@ -963,15 +960,14 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `out_value` must be a valid pointer.
+    /// `in_unit` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitGetParameter(
         in_unit: AudioUnit,
         in_id: AudioUnitParameterID,
         in_scope: AudioUnitScope,
         in_element: AudioUnitElement,
-        out_value: NonNull<AudioUnitParameterValue>,
+        out_value: &mut AudioUnitParameterValue,
     ) -> OSStatus;
 }
 
@@ -1057,17 +1053,15 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_unit` must be a valid pointer.
-    /// - `io_action_flags` must be a valid pointer or null.
-    /// - `in_time_stamp` must be a valid pointer.
-    /// - `io_data` must be a valid pointer.
+    /// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioUnitRender(
         in_unit: AudioUnit,
-        io_action_flags: *mut AudioUnitRenderActionFlags,
-        in_time_stamp: NonNull<AudioTimeStamp>,
+        io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
+        in_time_stamp: &AudioTimeStamp,
         in_output_bus_number: u32,
         in_number_frames: u32,
-        io_data: NonNull<AudioBufferList>,
+        io_data: &mut AudioBufferList,
     ) -> OSStatus;
 }
 
@@ -1092,15 +1086,13 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_unit` must be a valid pointer.
-    /// - `io_action_flags` must be a valid pointer or null.
-    /// - `in_time_stamp` must be a valid pointer.
     /// - `in_input_buffer_lists` must be a valid pointer.
     /// - `io_output_buffer_lists` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioUnitProcessMultiple(
         in_unit: AudioUnit,
-        io_action_flags: *mut AudioUnitRenderActionFlags,
-        in_time_stamp: NonNull<AudioTimeStamp>,
+        io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
+        in_time_stamp: &AudioTimeStamp,
         in_number_frames: u32,
         in_number_input_buffer_lists: u32,
         in_input_buffer_lists: NonNull<NonNull<AudioBufferList>>,
@@ -1211,11 +1203,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `audio_component_info` generic must be of the correct type.
+    /// `audio_component_info` generic generic should be of the correct type.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioUnitExtensionSetComponentList(
         extension_identifier: &CFString,
-        audio_component_info: Option<&CFArray>,
+        audio_component_info: Option<&CFArray<CFDictionary<CFString, CFType>>>,
     ) -> OSStatus;
 }
 
@@ -1230,11 +1222,11 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn AudioUnitExtensionCopyComponentList(
     extension_identifier: &CFString,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
     extern "C-unwind" {
         fn AudioUnitExtensionCopyComponentList(
             extension_identifier: &CFString,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
     }
     let ret = unsafe { AudioUnitExtensionCopyComponentList(extension_identifier) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

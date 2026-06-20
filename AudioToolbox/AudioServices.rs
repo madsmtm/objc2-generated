@@ -72,14 +72,10 @@ extern "C-unwind" {
     /// Parameter `inFileURL`: A CFURLRef for an AudioFile.
     ///
     /// Parameter `outSystemSoundID`: Returns a SystemSoundID.
-    ///
-    /// # Safety
-    ///
-    /// `out_system_sound_id` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioServicesCreateSystemSoundID(
         in_file_url: &CFURL,
-        out_system_sound_id: NonNull<SystemSoundID>,
+        out_system_sound_id: &mut SystemSoundID,
     ) -> OSStatus;
 }
 
@@ -150,15 +146,13 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_specifier` must be a valid pointer or null.
-    /// - `out_property_data_size` must be a valid pointer or null.
-    /// - `out_writable` must be a valid pointer or null.
+    /// `in_specifier` must be a valid pointer or null.
     pub fn AudioServicesGetPropertyInfo(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
         in_specifier: *const c_void,
-        out_property_data_size: *mut u32,
-        out_writable: *mut Boolean,
+        out_property_data_size: Option<&mut u32>,
+        out_writable: Option<&mut Boolean>,
     ) -> OSStatus;
 }
 
@@ -184,13 +178,12 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_specifier` must be a valid pointer or null.
-    /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer or null.
     pub fn AudioServicesGetProperty(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
         in_specifier: *const c_void,
-        io_property_data_size: NonNull<u32>,
+        io_property_data_size: &mut u32,
         out_property_data: *mut c_void,
     ) -> OSStatus;
 }
@@ -334,12 +327,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_details` generic must be of the correct type.
-    /// - `in_details` generic must be of the correct type.
+    /// `in_details` generic should be of the correct type.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioServicesPlaySystemSoundWithDetails(
         in_system_sound_id: SystemSoundID,
-        in_details: Option<&CFDictionary>,
+        in_details: Option<&CFDictionary<CFString, CFType>>,
         in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
     );
 }
@@ -357,12 +349,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_details` generic must be of the correct type.
-    /// - `in_details` generic must be of the correct type.
+    /// `in_details` generic should be of the correct type.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioServicesPlayAlertSoundWithDetails(
         in_system_sound_id: SystemSoundID,
-        in_details: Option<&CFDictionary>,
+        in_details: Option<&CFDictionary<CFString, CFType>>,
         in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
     );
 }

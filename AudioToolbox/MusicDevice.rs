@@ -268,13 +268,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `evt_list` must be a valid pointer.
+    /// `in_unit` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-midi"))]
     pub fn MusicDeviceMIDIEventList(
         in_unit: MusicDeviceComponent,
         in_offset_sample_frame: u32,
-        evt_list: NonNull<MIDIEventList>,
+        evt_list: &MIDIEventList,
     ) -> OSStatus;
 }
 
@@ -320,17 +319,15 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `out_note_instance_id` must be a valid pointer.
-    /// - `in_params` must be a valid pointer.
+    /// `in_unit` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn MusicDeviceStartNote(
         in_unit: MusicDeviceComponent,
         in_instrument: MusicDeviceInstrumentID,
         in_group_id: MusicDeviceGroupID,
-        out_note_instance_id: NonNull<NoteInstanceID>,
+        out_note_instance_id: &mut NoteInstanceID,
         in_offset_sample_frame: u32,
-        in_params: NonNull<MusicDeviceNoteParams>,
+        in_params: &MusicDeviceNoteParams,
     ) -> OSStatus;
 }
 

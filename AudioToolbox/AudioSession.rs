@@ -494,12 +494,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `io_data_size` must be a valid pointer.
+    /// - `io_data_size` might not allow `None`.
     /// - `out_data` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AudioSessionGetProperty(
         in_id: AudioSessionPropertyID,
-        io_data_size: *mut u32,
+        io_data_size: Option<&mut u32>,
         out_data: *mut c_void,
     ) -> OSStatus;
 }
@@ -545,11 +545,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `out_data_size` must be a valid pointer.
+    /// `out_data_size` might not allow `None`.
     #[deprecated = "no longer supported"]
     pub fn AudioSessionGetPropertySize(
         in_id: AudioSessionPropertyID,
-        out_data_size: *mut u32,
+        out_data_size: Option<&mut u32>,
     ) -> OSStatus;
 }
 
