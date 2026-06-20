@@ -228,72 +228,62 @@ impl CFDateFormatter {
         unsafe { CFDateFormatterSetFormat(self, format_string) }
     }
 
-    /// # Safety
-    ///
-    /// `formatter` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreateStringWithDate")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub unsafe fn new_string_with_date(
+    pub fn string_with_date(
+        &self,
         allocator: Option<&CFAllocator>,
-        formatter: Option<&CFDateFormatter>,
         date: &CFDate,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFDateFormatterCreateStringWithDate(
                 allocator: Option<&CFAllocator>,
-                formatter: Option<&CFDateFormatter>,
+                formatter: &CFDateFormatter,
                 date: &CFDate,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CFDateFormatterCreateStringWithDate(allocator, formatter, date) };
+        let ret = unsafe { CFDateFormatterCreateStringWithDate(allocator, self, date) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `formatter` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreateStringWithAbsoluteTime")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub unsafe fn new_string_with_absolute_time(
+    pub fn string_with_absolute_time(
+        &self,
         allocator: Option<&CFAllocator>,
-        formatter: Option<&CFDateFormatter>,
         at: CFAbsoluteTime,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFDateFormatterCreateStringWithAbsoluteTime(
                 allocator: Option<&CFAllocator>,
-                formatter: Option<&CFDateFormatter>,
+                formatter: &CFDateFormatter,
                 at: CFAbsoluteTime,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CFDateFormatterCreateStringWithAbsoluteTime(allocator, formatter, at) };
+        let ret = unsafe { CFDateFormatterCreateStringWithAbsoluteTime(allocator, self, at) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `formatter` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreateDateFromString")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub unsafe fn new_date_from_string(
+    pub fn date_from_string(
+        &self,
         allocator: Option<&CFAllocator>,
-        formatter: Option<&CFDateFormatter>,
         string: &CFString,
         rangep: Option<&mut CFRange>,
     ) -> Option<CFRetained<CFDate>> {
         extern "C-unwind" {
             fn CFDateFormatterCreateDateFromString(
                 allocator: Option<&CFAllocator>,
-                formatter: Option<&CFDateFormatter>,
+                formatter: &CFDateFormatter,
                 string: &CFString,
                 rangep: Option<&mut CFRange>,
             ) -> Option<NonNull<CFDate>>;
         }
-        let ret =
-            unsafe { CFDateFormatterCreateDateFromString(allocator, formatter, string, rangep) };
+        let ret = unsafe { CFDateFormatterCreateDateFromString(allocator, self, string, rangep) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

@@ -213,19 +213,19 @@ impl CFMachPort {
     #[doc(alias = "CFMachPortCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
-    pub fn new_run_loop_source(
+    pub fn run_loop_source(
+        &self,
         allocator: Option<&CFAllocator>,
-        port: Option<&CFMachPort>,
         order: CFIndex,
     ) -> Option<CFRetained<CFRunLoopSource>> {
         extern "C-unwind" {
             fn CFMachPortCreateRunLoopSource(
                 allocator: Option<&CFAllocator>,
-                port: Option<&CFMachPort>,
+                port: &CFMachPort,
                 order: CFIndex,
             ) -> Option<NonNull<CFRunLoopSource>>;
         }
-        let ret = unsafe { CFMachPortCreateRunLoopSource(allocator, port, order) };
+        let ret = unsafe { CFMachPortCreateRunLoopSource(allocator, self, order) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }

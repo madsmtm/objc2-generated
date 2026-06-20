@@ -296,7 +296,6 @@ impl<T: Sized> CFSet<T> {
     /// - `call_backs` struct field `copyDescription` must be implemented correctly.
     /// - `call_backs` struct field `equal` must be implemented correctly.
     /// - `call_backs` struct field `hash` must be implemented correctly.
-    /// - `call_backs` might not allow `None`.
     #[doc(alias = "CFSetCreate")]
     #[inline]
     pub unsafe fn new(
@@ -337,17 +336,14 @@ impl<T: Sized> CFSet<T> {
     /// Returns: A reference to the new immutable CFSet.
     #[doc(alias = "CFSetCreateCopy")]
     #[inline]
-    pub fn new_copy(
-        allocator: Option<&CFAllocator>,
-        the_set: Option<&CFSet<T>>,
-    ) -> Option<CFRetained<CFSet<T>>> {
+    pub fn copy(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CFSet<T>>> {
         extern "C-unwind" {
             fn CFSetCreateCopy(
                 allocator: Option<&CFAllocator>,
-                the_set: Option<&CFSet>,
+                the_set: &CFSet,
             ) -> Option<NonNull<CFSet>>;
         }
-        let ret = unsafe { CFSetCreateCopy(allocator, the_set.map(|obj| obj.as_opaque())) };
+        let ret = unsafe { CFSetCreateCopy(allocator, self.as_opaque()) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
@@ -406,7 +402,6 @@ impl<T: Sized> CFMutableSet<T> {
     /// - `call_backs` struct field `copyDescription` must be implemented correctly.
     /// - `call_backs` struct field `equal` must be implemented correctly.
     /// - `call_backs` struct field `hash` must be implemented correctly.
-    /// - `call_backs` might not allow `None`.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFSetCreateMutable")]
     #[inline]
@@ -458,20 +453,19 @@ impl<T: Sized> CFMutableSet<T> {
     /// # Safety
     ///
     /// - `the_set` generic must be of the correct type.
-    /// - `the_set` might not allow `None`.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFSetCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        the_set: Option<&CFSet>,
+        the_set: &CFSet,
     ) -> Option<CFRetained<CFMutableSet<T>>> {
         extern "C-unwind" {
             fn CFSetCreateMutableCopy(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                the_set: Option<&CFSet>,
+                the_set: &CFSet,
             ) -> Option<NonNull<CFMutableSet>>;
         }
         let ret = unsafe { CFSetCreateMutableCopy(allocator, capacity, the_set) };
@@ -707,15 +701,14 @@ impl<T: Sized> CFMutableSet<T> {
     /// # Safety
     ///
     /// - `the_set` generic must be of the correct type.
-    /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetAddValue")]
     #[inline]
-    pub unsafe fn add_value(the_set: Option<&CFMutableSet<T>>, value: *const T) {
+    pub unsafe fn add_value(&self, value: *const T) {
         extern "C-unwind" {
-            fn CFSetAddValue(the_set: Option<&CFMutableSet>, value: *const c_void);
+            fn CFSetAddValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        unsafe { CFSetAddValue(the_set.map(|obj| obj.as_opaque()), value.cast()) }
+        unsafe { CFSetAddValue(self.as_opaque(), value.cast()) }
     }
 
     /// Replaces the value in the set if it is present.
@@ -737,15 +730,14 @@ impl<T: Sized> CFMutableSet<T> {
     /// # Safety
     ///
     /// - `the_set` generic must be of the correct type.
-    /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetReplaceValue")]
     #[inline]
-    pub unsafe fn replace_value(the_set: Option<&CFMutableSet<T>>, value: *const T) {
+    pub unsafe fn replace_value(&self, value: *const T) {
         extern "C-unwind" {
-            fn CFSetReplaceValue(the_set: Option<&CFMutableSet>, value: *const c_void);
+            fn CFSetReplaceValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        unsafe { CFSetReplaceValue(the_set.map(|obj| obj.as_opaque()), value.cast()) }
+        unsafe { CFSetReplaceValue(self.as_opaque(), value.cast()) }
     }
 
     /// Replaces the value in the set if it is present, or adds the value to
@@ -768,15 +760,14 @@ impl<T: Sized> CFMutableSet<T> {
     /// # Safety
     ///
     /// - `the_set` generic must be of the correct type.
-    /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetSetValue")]
     #[inline]
-    pub unsafe fn set_value(the_set: Option<&CFMutableSet<T>>, value: *const T) {
+    pub unsafe fn set_value(&self, value: *const T) {
         extern "C-unwind" {
-            fn CFSetSetValue(the_set: Option<&CFMutableSet>, value: *const c_void);
+            fn CFSetSetValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        unsafe { CFSetSetValue(the_set.map(|obj| obj.as_opaque()), value.cast()) }
+        unsafe { CFSetSetValue(self.as_opaque(), value.cast()) }
     }
 
     /// Removes the specified value from the set.
@@ -794,15 +785,14 @@ impl<T: Sized> CFMutableSet<T> {
     /// # Safety
     ///
     /// - `the_set` generic must be of the correct type.
-    /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetRemoveValue")]
     #[inline]
-    pub unsafe fn remove_value(the_set: Option<&CFMutableSet<T>>, value: *const T) {
+    pub unsafe fn remove_value(&self, value: *const T) {
         extern "C-unwind" {
-            fn CFSetRemoveValue(the_set: Option<&CFMutableSet>, value: *const c_void);
+            fn CFSetRemoveValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        unsafe { CFSetRemoveValue(the_set.map(|obj| obj.as_opaque()), value.cast()) }
+        unsafe { CFSetRemoveValue(self.as_opaque(), value.cast()) }
     }
 
     /// Removes all the values from the set, making it empty.

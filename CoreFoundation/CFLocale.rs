@@ -136,12 +136,12 @@ impl CFLocale {
     #[inline]
     pub fn new_canonical_language_identifier_from_string(
         allocator: Option<&CFAllocator>,
-        locale_identifier: Option<&CFString>,
+        locale_identifier: &CFString,
     ) -> Option<CFRetained<CFLocaleIdentifier>> {
         extern "C-unwind" {
             fn CFLocaleCreateCanonicalLanguageIdentifierFromString(
                 allocator: Option<&CFAllocator>,
-                locale_identifier: Option<&CFString>,
+                locale_identifier: &CFString,
             ) -> Option<NonNull<CFLocaleIdentifier>>;
         }
         let ret = unsafe {
@@ -154,12 +154,12 @@ impl CFLocale {
     #[inline]
     pub fn new_canonical_locale_identifier_from_string(
         allocator: Option<&CFAllocator>,
-        locale_identifier: Option<&CFString>,
+        locale_identifier: &CFString,
     ) -> Option<CFRetained<CFLocaleIdentifier>> {
         extern "C-unwind" {
             fn CFLocaleCreateCanonicalLocaleIdentifierFromString(
                 allocator: Option<&CFAllocator>,
-                locale_identifier: Option<&CFString>,
+                locale_identifier: &CFString,
             ) -> Option<NonNull<CFLocaleIdentifier>>;
         }
         let ret = unsafe {
@@ -207,11 +207,11 @@ impl CFLocale {
     #[doc(alias = "CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier")]
     #[inline]
     pub fn windows_locale_code_from_locale_identifier(
-        locale_identifier: Option<&CFLocaleIdentifier>,
+        locale_identifier: &CFLocaleIdentifier,
     ) -> u32 {
         extern "C-unwind" {
             fn CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(
-                locale_identifier: Option<&CFLocaleIdentifier>,
+                locale_identifier: &CFLocaleIdentifier,
             ) -> u32;
         }
         unsafe { CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(locale_identifier) }
@@ -249,12 +249,10 @@ unsafe impl RefEncode for CFLocaleLanguageDirection {
 impl CFLocale {
     #[doc(alias = "CFLocaleGetLanguageCharacterDirection")]
     #[inline]
-    pub fn language_character_direction(
-        iso_lang_code: Option<&CFString>,
-    ) -> CFLocaleLanguageDirection {
+    pub fn language_character_direction(iso_lang_code: &CFString) -> CFLocaleLanguageDirection {
         extern "C-unwind" {
             fn CFLocaleGetLanguageCharacterDirection(
-                iso_lang_code: Option<&CFString>,
+                iso_lang_code: &CFString,
             ) -> CFLocaleLanguageDirection;
         }
         unsafe { CFLocaleGetLanguageCharacterDirection(iso_lang_code) }
@@ -262,10 +260,10 @@ impl CFLocale {
 
     #[doc(alias = "CFLocaleGetLanguageLineDirection")]
     #[inline]
-    pub fn language_line_direction(iso_lang_code: Option<&CFString>) -> CFLocaleLanguageDirection {
+    pub fn language_line_direction(iso_lang_code: &CFString) -> CFLocaleLanguageDirection {
         extern "C-unwind" {
             fn CFLocaleGetLanguageLineDirection(
-                iso_lang_code: Option<&CFString>,
+                iso_lang_code: &CFString,
             ) -> CFLocaleLanguageDirection;
         }
         unsafe { CFLocaleGetLanguageLineDirection(iso_lang_code) }
@@ -276,12 +274,12 @@ impl CFLocale {
     #[inline]
     pub fn new_components_from_locale_identifier(
         allocator: Option<&CFAllocator>,
-        locale_id: Option<&CFLocaleIdentifier>,
+        locale_id: &CFLocaleIdentifier,
     ) -> Option<CFRetained<CFDictionary<CFString, CFString>>> {
         extern "C-unwind" {
             fn CFLocaleCreateComponentsFromLocaleIdentifier(
                 allocator: Option<&CFAllocator>,
-                locale_id: Option<&CFLocaleIdentifier>,
+                locale_id: &CFLocaleIdentifier,
             ) -> Option<NonNull<CFDictionary<CFString, CFString>>>;
         }
         let ret = unsafe { CFLocaleCreateComponentsFromLocaleIdentifier(allocator, locale_id) };
@@ -309,12 +307,12 @@ impl CFLocale {
     #[inline]
     pub fn new(
         allocator: Option<&CFAllocator>,
-        locale_identifier: Option<&CFLocaleIdentifier>,
+        locale_identifier: &CFLocaleIdentifier,
     ) -> Option<CFRetained<CFLocale>> {
         extern "C-unwind" {
             fn CFLocaleCreate(
                 allocator: Option<&CFAllocator>,
-                locale_identifier: Option<&CFLocaleIdentifier>,
+                locale_identifier: &CFLocaleIdentifier,
             ) -> Option<NonNull<CFLocale>>;
         }
         let ret = unsafe { CFLocaleCreate(allocator, locale_identifier) };
@@ -323,17 +321,14 @@ impl CFLocale {
 
     #[doc(alias = "CFLocaleCreateCopy")]
     #[inline]
-    pub fn new_copy(
-        allocator: Option<&CFAllocator>,
-        locale: Option<&CFLocale>,
-    ) -> Option<CFRetained<CFLocale>> {
+    pub fn copy(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CFLocale>> {
         extern "C-unwind" {
             fn CFLocaleCreateCopy(
                 allocator: Option<&CFAllocator>,
-                locale: Option<&CFLocale>,
+                locale: &CFLocale,
             ) -> Option<NonNull<CFLocale>>;
         }
-        let ret = unsafe { CFLocaleCreateCopy(allocator, locale) };
+        let ret = unsafe { CFLocaleCreateCopy(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -349,12 +344,9 @@ impl CFLocale {
 
     #[doc(alias = "CFLocaleGetValue")]
     #[inline]
-    pub fn value(&self, key: Option<&CFLocaleKey>) -> Option<CFRetained<CFType>> {
+    pub fn value(&self, key: &CFLocaleKey) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
-            fn CFLocaleGetValue(
-                locale: &CFLocale,
-                key: Option<&CFLocaleKey>,
-            ) -> Option<NonNull<CFType>>;
+            fn CFLocaleGetValue(locale: &CFLocale, key: &CFLocaleKey) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe { CFLocaleGetValue(self, key) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -364,14 +356,14 @@ impl CFLocale {
     #[inline]
     pub fn display_name_for_property_value(
         &self,
-        key: Option<&CFLocaleKey>,
-        value: Option<&CFString>,
+        key: &CFLocaleKey,
+        value: &CFString,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFLocaleCopyDisplayNameForPropertyValue(
                 display_locale: &CFLocale,
-                key: Option<&CFLocaleKey>,
-                value: Option<&CFString>,
+                key: &CFLocaleKey,
+                value: &CFString,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFLocaleCopyDisplayNameForPropertyValue(self, key, value) };

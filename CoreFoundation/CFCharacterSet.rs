@@ -502,23 +502,16 @@ impl CFMutableCharacterSet {
     /// The valid character point range is from 0x00000 to 0x10FFFF.
     /// If the range is outside of the valid Unicode character point,
     /// the behavior is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetRemoveCharactersInRange")]
     #[inline]
-    pub unsafe fn remove_characters_in_range(
-        the_set: Option<&CFMutableCharacterSet>,
-        the_range: CFRange,
-    ) {
+    pub unsafe fn remove_characters_in_range(&self, the_range: CFRange) {
         extern "C-unwind" {
             fn CFCharacterSetRemoveCharactersInRange(
-                the_set: Option<&CFMutableCharacterSet>,
+                the_set: &CFMutableCharacterSet,
                 the_range: CFRange,
             );
         }
-        unsafe { CFCharacterSetRemoveCharactersInRange(the_set, the_range) }
+        unsafe { CFCharacterSetRemoveCharactersInRange(self, the_range) }
     }
 
     /// Adds the characters in the given string to the charaacter set.
@@ -530,23 +523,16 @@ impl CFMutableCharacterSet {
     /// Parameter `theString`: The string to add to the character set.
     /// If this parameter is not a valid CFString, the behavior
     /// is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetAddCharactersInString")]
     #[inline]
-    pub unsafe fn add_characters_in_string(
-        the_set: Option<&CFMutableCharacterSet>,
-        the_string: &CFString,
-    ) {
+    pub fn add_characters_in_string(&self, the_string: &CFString) {
         extern "C-unwind" {
             fn CFCharacterSetAddCharactersInString(
-                the_set: Option<&CFMutableCharacterSet>,
+                the_set: &CFMutableCharacterSet,
                 the_string: &CFString,
             );
         }
-        unsafe { CFCharacterSetAddCharactersInString(the_set, the_string) }
+        unsafe { CFCharacterSetAddCharactersInString(self, the_string) }
     }
 
     /// Removes the characters in the given string from the charaacter set.
@@ -558,23 +544,16 @@ impl CFMutableCharacterSet {
     /// Parameter `theString`: The string to remove from the character set.
     /// If this parameter is not a valid CFString, the behavior
     /// is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetRemoveCharactersInString")]
     #[inline]
-    pub unsafe fn remove_characters_in_string(
-        the_set: Option<&CFMutableCharacterSet>,
-        the_string: &CFString,
-    ) {
+    pub fn remove_characters_in_string(&self, the_string: &CFString) {
         extern "C-unwind" {
             fn CFCharacterSetRemoveCharactersInString(
-                the_set: Option<&CFMutableCharacterSet>,
+                the_set: &CFMutableCharacterSet,
                 the_string: &CFString,
             );
         }
-        unsafe { CFCharacterSetRemoveCharactersInString(the_set, the_string) }
+        unsafe { CFCharacterSetRemoveCharactersInString(self, the_string) }
     }
 
     /// Forms the union with the given character set.

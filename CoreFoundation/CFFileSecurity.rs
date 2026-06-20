@@ -52,17 +52,14 @@ impl CFFileSecurity {
 
     #[doc(alias = "CFFileSecurityCreateCopy")]
     #[inline]
-    pub fn new_copy(
-        allocator: Option<&CFAllocator>,
-        file_sec: Option<&CFFileSecurity>,
-    ) -> Option<CFRetained<CFFileSecurity>> {
+    pub fn copy(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CFFileSecurity>> {
         extern "C-unwind" {
             fn CFFileSecurityCreateCopy(
                 allocator: Option<&CFAllocator>,
-                file_sec: Option<&CFFileSecurity>,
+                file_sec: &CFFileSecurity,
             ) -> Option<NonNull<CFFileSecurity>>;
         }
-        let ret = unsafe { CFFileSecurityCreateCopy(allocator, file_sec) };
+        let ret = unsafe { CFFileSecurityCreateCopy(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -86,11 +83,11 @@ impl CFFileSecurity {
     #[doc(alias = "CFFileSecuritySetOwnerUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub fn set_owner_uuid(&self, owner_uuid: Option<&CFUUID>) -> bool {
+    pub fn set_owner_uuid(&self, owner_uuid: &CFUUID) -> bool {
         extern "C-unwind" {
             fn CFFileSecuritySetOwnerUUID(
                 file_sec: &CFFileSecurity,
-                owner_uuid: Option<&CFUUID>,
+                owner_uuid: &CFUUID,
             ) -> Boolean;
         }
         let ret = unsafe { CFFileSecuritySetOwnerUUID(self, owner_uuid) };
@@ -117,11 +114,11 @@ impl CFFileSecurity {
     #[doc(alias = "CFFileSecuritySetGroupUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub fn set_group_uuid(&self, group_uuid: Option<&CFUUID>) -> bool {
+    pub fn set_group_uuid(&self, group_uuid: &CFUUID) -> bool {
         extern "C-unwind" {
             fn CFFileSecuritySetGroupUUID(
                 file_sec: &CFFileSecurity,
-                group_uuid: Option<&CFUUID>,
+                group_uuid: &CFUUID,
             ) -> Boolean;
         }
         let ret = unsafe { CFFileSecuritySetGroupUUID(self, group_uuid) };

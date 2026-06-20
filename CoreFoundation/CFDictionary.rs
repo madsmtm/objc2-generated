@@ -431,17 +431,14 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
     /// Returns: A reference to the new immutable CFDictionary.
     #[doc(alias = "CFDictionaryCreateCopy")]
     #[inline]
-    pub fn new_copy(
-        allocator: Option<&CFAllocator>,
-        the_dict: Option<&CFDictionary<K, V>>,
-    ) -> Option<CFRetained<CFDictionary<K, V>>> {
+    pub fn copy(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CFDictionary<K, V>>> {
         extern "C-unwind" {
             fn CFDictionaryCreateCopy(
                 allocator: Option<&CFAllocator>,
-                the_dict: Option<&CFDictionary>,
+                the_dict: &CFDictionary,
             ) -> Option<NonNull<CFDictionary>>;
         }
-        let ret = unsafe { CFDictionaryCreateCopy(allocator, the_dict.map(|obj| obj.as_opaque())) };
+        let ret = unsafe { CFDictionaryCreateCopy(allocator, self.as_opaque()) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
@@ -592,7 +589,6 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
     ///
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
-    /// - `the_dict` might not allow `None`.
     /// - The returned generic must be of the correct type.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFDictionaryCreateMutableCopy")]
@@ -600,13 +596,13 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        the_dict: Option<&CFDictionary>,
+        the_dict: &CFDictionary,
     ) -> Option<CFRetained<CFMutableDictionary<K, V>>> {
         extern "C-unwind" {
             fn CFDictionaryCreateMutableCopy(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                the_dict: Option<&CFDictionary>,
+                the_dict: &CFDictionary,
             ) -> Option<NonNull<CFMutableDictionary>>;
         }
         let ret = unsafe { CFDictionaryCreateMutableCopy(allocator, capacity, the_dict) };
@@ -941,30 +937,19 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
     ///
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
-    /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryAddValue")]
     #[inline]
-    pub unsafe fn add_value(
-        the_dict: Option<&CFMutableDictionary<K, V>>,
-        key: *const K,
-        value: *const V,
-    ) {
+    pub unsafe fn add_value(&self, key: *const K, value: *const V) {
         extern "C-unwind" {
             fn CFDictionaryAddValue(
-                the_dict: Option<&CFMutableDictionary>,
+                the_dict: &CFMutableDictionary,
                 key: *const c_void,
                 value: *const c_void,
             );
         }
-        unsafe {
-            CFDictionaryAddValue(
-                the_dict.map(|obj| obj.as_opaque()),
-                key.cast(),
-                value.cast(),
-            )
-        }
+        unsafe { CFDictionaryAddValue(self.as_opaque(), key.cast(), value.cast()) }
     }
 
     /// Sets the value of the key in the dictionary.
@@ -992,30 +977,19 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
     ///
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
-    /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionarySetValue")]
     #[inline]
-    pub unsafe fn set_value(
-        the_dict: Option<&CFMutableDictionary<K, V>>,
-        key: *const K,
-        value: *const V,
-    ) {
+    pub unsafe fn set_value(&self, key: *const K, value: *const V) {
         extern "C-unwind" {
             fn CFDictionarySetValue(
-                the_dict: Option<&CFMutableDictionary>,
+                the_dict: &CFMutableDictionary,
                 key: *const c_void,
                 value: *const c_void,
             );
         }
-        unsafe {
-            CFDictionarySetValue(
-                the_dict.map(|obj| obj.as_opaque()),
-                key.cast(),
-                value.cast(),
-            )
-        }
+        unsafe { CFDictionarySetValue(self.as_opaque(), key.cast(), value.cast()) }
     }
 
     /// Replaces the value of the key in the dictionary.
@@ -1039,30 +1013,19 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
     ///
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
-    /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryReplaceValue")]
     #[inline]
-    pub unsafe fn replace_value(
-        the_dict: Option<&CFMutableDictionary<K, V>>,
-        key: *const K,
-        value: *const V,
-    ) {
+    pub unsafe fn replace_value(&self, key: *const K, value: *const V) {
         extern "C-unwind" {
             fn CFDictionaryReplaceValue(
-                the_dict: Option<&CFMutableDictionary>,
+                the_dict: &CFMutableDictionary,
                 key: *const c_void,
                 value: *const c_void,
             );
         }
-        unsafe {
-            CFDictionaryReplaceValue(
-                the_dict.map(|obj| obj.as_opaque()),
-                key.cast(),
-                value.cast(),
-            )
-        }
+        unsafe { CFDictionaryReplaceValue(self.as_opaque(), key.cast(), value.cast()) }
     }
 
     /// Removes the value of the key from the dictionary.
@@ -1080,15 +1043,14 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
     ///
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
-    /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryRemoveValue")]
     #[inline]
-    pub unsafe fn remove_value(the_dict: Option<&CFMutableDictionary<K, V>>, key: *const K) {
+    pub unsafe fn remove_value(&self, key: *const K) {
         extern "C-unwind" {
-            fn CFDictionaryRemoveValue(the_dict: Option<&CFMutableDictionary>, key: *const c_void);
+            fn CFDictionaryRemoveValue(the_dict: &CFMutableDictionary, key: *const c_void);
         }
-        unsafe { CFDictionaryRemoveValue(the_dict.map(|obj| obj.as_opaque()), key.cast()) }
+        unsafe { CFDictionaryRemoveValue(self.as_opaque(), key.cast()) }
     }
 
     /// Removes all the values from the dictionary, making it empty.
@@ -1098,10 +1060,10 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
     /// CFDictionary, the behavior is undefined.
     #[doc(alias = "CFDictionaryRemoveAllValues")]
     #[inline]
-    pub fn remove_all_values(the_dict: Option<&CFMutableDictionary<K, V>>) {
+    pub fn remove_all_values(&self) {
         extern "C-unwind" {
-            fn CFDictionaryRemoveAllValues(the_dict: Option<&CFMutableDictionary>);
+            fn CFDictionaryRemoveAllValues(the_dict: &CFMutableDictionary);
         }
-        unsafe { CFDictionaryRemoveAllValues(the_dict.map(|obj| obj.as_opaque())) }
+        unsafe { CFDictionaryRemoveAllValues(self.as_opaque()) }
     }
 }

@@ -195,19 +195,21 @@ impl CFRunLoop {
     #[doc(alias = "CFRunLoopCopyAllModes")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    pub fn all_modes(&self) -> Option<CFRetained<CFArray<CFRunLoopMode>>> {
+    pub fn all_modes(&self) -> CFRetained<CFArray<CFRunLoopMode>> {
         extern "C-unwind" {
             fn CFRunLoopCopyAllModes(rl: &CFRunLoop) -> Option<NonNull<CFArray<CFRunLoopMode>>>;
         }
         let ret = unsafe { CFRunLoopCopyAllModes(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFRunLoopAddCommonMode")]
     #[inline]
-    pub fn add_common_mode(&self, mode: Option<&CFRunLoopMode>) {
+    pub fn add_common_mode(&self, mode: &CFRunLoopMode) {
         extern "C-unwind" {
-            fn CFRunLoopAddCommonMode(rl: &CFRunLoop, mode: Option<&CFRunLoopMode>);
+            fn CFRunLoopAddCommonMode(rl: &CFRunLoop, mode: &CFRunLoopMode);
         }
         unsafe { CFRunLoopAddCommonMode(self, mode) }
     }
@@ -215,11 +217,11 @@ impl CFRunLoop {
     #[doc(alias = "CFRunLoopGetNextTimerFireDate")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub fn next_timer_fire_date(&self, mode: Option<&CFRunLoopMode>) -> CFAbsoluteTime {
+    pub fn next_timer_fire_date(&self, mode: &CFRunLoopMode) -> CFAbsoluteTime {
         extern "C-unwind" {
             fn CFRunLoopGetNextTimerFireDate(
                 rl: &CFRunLoop,
-                mode: Option<&CFRunLoopMode>,
+                mode: &CFRunLoopMode,
             ) -> CFAbsoluteTime;
         }
         unsafe { CFRunLoopGetNextTimerFireDate(self, mode) }
@@ -238,13 +240,13 @@ impl CFRunLoop {
     #[cfg(feature = "CFDate")]
     #[inline]
     pub fn run_in_mode(
-        mode: Option<&CFRunLoopMode>,
+        mode: &CFRunLoopMode,
         seconds: CFTimeInterval,
         return_after_source_handled: bool,
     ) -> CFRunLoopRunResult {
         extern "C-unwind" {
             fn CFRunLoopRunInMode(
-                mode: Option<&CFRunLoopMode>,
+                mode: &CFRunLoopMode,
                 seconds: CFTimeInterval,
                 return_after_source_handled: Boolean,
             ) -> CFRunLoopRunResult;
@@ -300,16 +302,12 @@ impl CFRunLoop {
 
     #[doc(alias = "CFRunLoopContainsSource")]
     #[inline]
-    pub fn contains_source(
-        &self,
-        source: Option<&CFRunLoopSource>,
-        mode: Option<&CFRunLoopMode>,
-    ) -> bool {
+    pub fn contains_source(&self, source: &CFRunLoopSource, mode: &CFRunLoopMode) -> bool {
         extern "C-unwind" {
             fn CFRunLoopContainsSource(
                 rl: &CFRunLoop,
-                source: Option<&CFRunLoopSource>,
-                mode: Option<&CFRunLoopMode>,
+                source: &CFRunLoopSource,
+                mode: &CFRunLoopMode,
             ) -> Boolean;
         }
         let ret = unsafe { CFRunLoopContainsSource(self, source, mode) };
@@ -318,25 +316,21 @@ impl CFRunLoop {
 
     #[doc(alias = "CFRunLoopAddSource")]
     #[inline]
-    pub fn add_source(&self, source: Option<&CFRunLoopSource>, mode: Option<&CFRunLoopMode>) {
+    pub fn add_source(&self, source: &CFRunLoopSource, mode: &CFRunLoopMode) {
         extern "C-unwind" {
-            fn CFRunLoopAddSource(
-                rl: &CFRunLoop,
-                source: Option<&CFRunLoopSource>,
-                mode: Option<&CFRunLoopMode>,
-            );
+            fn CFRunLoopAddSource(rl: &CFRunLoop, source: &CFRunLoopSource, mode: &CFRunLoopMode);
         }
         unsafe { CFRunLoopAddSource(self, source, mode) }
     }
 
     #[doc(alias = "CFRunLoopRemoveSource")]
     #[inline]
-    pub fn remove_source(&self, source: Option<&CFRunLoopSource>, mode: Option<&CFRunLoopMode>) {
+    pub fn remove_source(&self, source: &CFRunLoopSource, mode: &CFRunLoopMode) {
         extern "C-unwind" {
             fn CFRunLoopRemoveSource(
                 rl: &CFRunLoop,
-                source: Option<&CFRunLoopSource>,
-                mode: Option<&CFRunLoopMode>,
+                source: &CFRunLoopSource,
+                mode: &CFRunLoopMode,
             );
         }
         unsafe { CFRunLoopRemoveSource(self, source, mode) }
@@ -344,16 +338,12 @@ impl CFRunLoop {
 
     #[doc(alias = "CFRunLoopContainsObserver")]
     #[inline]
-    pub fn contains_observer(
-        &self,
-        observer: Option<&CFRunLoopObserver>,
-        mode: Option<&CFRunLoopMode>,
-    ) -> bool {
+    pub fn contains_observer(&self, observer: &CFRunLoopObserver, mode: &CFRunLoopMode) -> bool {
         extern "C-unwind" {
             fn CFRunLoopContainsObserver(
                 rl: &CFRunLoop,
-                observer: Option<&CFRunLoopObserver>,
-                mode: Option<&CFRunLoopMode>,
+                observer: &CFRunLoopObserver,
+                mode: &CFRunLoopMode,
             ) -> Boolean;
         }
         let ret = unsafe { CFRunLoopContainsObserver(self, observer, mode) };
@@ -362,12 +352,12 @@ impl CFRunLoop {
 
     #[doc(alias = "CFRunLoopAddObserver")]
     #[inline]
-    pub fn add_observer(&self, observer: Option<&CFRunLoopObserver>, mode: Option<&CFRunLoopMode>) {
+    pub fn add_observer(&self, observer: &CFRunLoopObserver, mode: &CFRunLoopMode) {
         extern "C-unwind" {
             fn CFRunLoopAddObserver(
                 rl: &CFRunLoop,
-                observer: Option<&CFRunLoopObserver>,
-                mode: Option<&CFRunLoopMode>,
+                observer: &CFRunLoopObserver,
+                mode: &CFRunLoopMode,
             );
         }
         unsafe { CFRunLoopAddObserver(self, observer, mode) }
@@ -375,16 +365,12 @@ impl CFRunLoop {
 
     #[doc(alias = "CFRunLoopRemoveObserver")]
     #[inline]
-    pub fn remove_observer(
-        &self,
-        observer: Option<&CFRunLoopObserver>,
-        mode: Option<&CFRunLoopMode>,
-    ) {
+    pub fn remove_observer(&self, observer: &CFRunLoopObserver, mode: &CFRunLoopMode) {
         extern "C-unwind" {
             fn CFRunLoopRemoveObserver(
                 rl: &CFRunLoop,
-                observer: Option<&CFRunLoopObserver>,
-                mode: Option<&CFRunLoopMode>,
+                observer: &CFRunLoopObserver,
+                mode: &CFRunLoopMode,
             );
         }
         unsafe { CFRunLoopRemoveObserver(self, observer, mode) }
@@ -392,16 +378,12 @@ impl CFRunLoop {
 
     #[doc(alias = "CFRunLoopContainsTimer")]
     #[inline]
-    pub fn contains_timer(
-        &self,
-        timer: Option<&CFRunLoopTimer>,
-        mode: Option<&CFRunLoopMode>,
-    ) -> bool {
+    pub fn contains_timer(&self, timer: &CFRunLoopTimer, mode: &CFRunLoopMode) -> bool {
         extern "C-unwind" {
             fn CFRunLoopContainsTimer(
                 rl: &CFRunLoop,
-                timer: Option<&CFRunLoopTimer>,
-                mode: Option<&CFRunLoopMode>,
+                timer: &CFRunLoopTimer,
+                mode: &CFRunLoopMode,
             ) -> Boolean;
         }
         let ret = unsafe { CFRunLoopContainsTimer(self, timer, mode) };
@@ -410,26 +392,18 @@ impl CFRunLoop {
 
     #[doc(alias = "CFRunLoopAddTimer")]
     #[inline]
-    pub fn add_timer(&self, timer: Option<&CFRunLoopTimer>, mode: Option<&CFRunLoopMode>) {
+    pub fn add_timer(&self, timer: &CFRunLoopTimer, mode: &CFRunLoopMode) {
         extern "C-unwind" {
-            fn CFRunLoopAddTimer(
-                rl: &CFRunLoop,
-                timer: Option<&CFRunLoopTimer>,
-                mode: Option<&CFRunLoopMode>,
-            );
+            fn CFRunLoopAddTimer(rl: &CFRunLoop, timer: &CFRunLoopTimer, mode: &CFRunLoopMode);
         }
         unsafe { CFRunLoopAddTimer(self, timer, mode) }
     }
 
     #[doc(alias = "CFRunLoopRemoveTimer")]
     #[inline]
-    pub fn remove_timer(&self, timer: Option<&CFRunLoopTimer>, mode: Option<&CFRunLoopMode>) {
+    pub fn remove_timer(&self, timer: &CFRunLoopTimer, mode: &CFRunLoopMode) {
         extern "C-unwind" {
-            fn CFRunLoopRemoveTimer(
-                rl: &CFRunLoop,
-                timer: Option<&CFRunLoopTimer>,
-                mode: Option<&CFRunLoopMode>,
-            );
+            fn CFRunLoopRemoveTimer(rl: &CFRunLoop, timer: &CFRunLoopTimer, mode: &CFRunLoopMode);
         }
         unsafe { CFRunLoopRemoveTimer(self, timer, mode) }
     }
@@ -704,9 +678,6 @@ impl CFRunLoopObserver {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `block` might not allow `None`.
     #[doc(alias = "CFRunLoopObserverCreateWithHandler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -885,9 +856,6 @@ impl CFRunLoopTimer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `block` might not allow `None`.
     #[doc(alias = "CFRunLoopTimerCreateWithHandler")]
     #[cfg(all(feature = "CFDate", feature = "block2"))]
     #[inline]

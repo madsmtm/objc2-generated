@@ -189,17 +189,12 @@ impl CFStringTokenizer {
     /// NULL if you want tokenizer to identify the locale automatically.
     ///
     /// Returns: A reference to the new CFStringTokenizer.
-    ///
-    /// # Safety
-    ///
-    /// - `string` might not allow `None`.
-    /// - `locale` might not allow `None`.
     #[doc(alias = "CFStringTokenizerCreate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
     pub unsafe fn new(
         alloc: Option<&CFAllocator>,
-        string: Option<&CFString>,
+        string: &CFString,
         range: CFRange,
         options: CFOptionFlags,
         locale: Option<&CFLocale>,
@@ -207,7 +202,7 @@ impl CFStringTokenizer {
         extern "C-unwind" {
             fn CFStringTokenizerCreate(
                 alloc: Option<&CFAllocator>,
-                string: Option<&CFString>,
+                string: &CFString,
                 range: CFRange,
                 options: CFOptionFlags,
                 locale: Option<&CFLocale>,
@@ -226,17 +221,13 @@ impl CFStringTokenizer {
     ///
     /// Parameter `range`: The range of characters within the string to be tokenized. The
     /// specified range must not exceed the length of the string.
-    ///
-    /// # Safety
-    ///
-    /// `string` might not allow `None`.
     #[doc(alias = "CFStringTokenizerSetString")]
     #[inline]
-    pub unsafe fn set_string(&self, string: Option<&CFString>, range: CFRange) {
+    pub unsafe fn set_string(&self, string: &CFString, range: CFRange) {
         extern "C-unwind" {
             fn CFStringTokenizerSetString(
                 tokenizer: &CFStringTokenizer,
-                string: Option<&CFString>,
+                string: &CFString,
                 range: CFRange,
             );
         }
@@ -374,7 +365,6 @@ impl CFStringTokenizer {
     ///
     /// - `ranges` must be a valid pointer.
     /// - `derived_sub_tokens` generic must be of the correct type.
-    /// - `derived_sub_tokens` might not allow `None`.
     #[doc(alias = "CFStringTokenizerGetCurrentSubTokens")]
     #[cfg(feature = "CFArray")]
     #[inline]

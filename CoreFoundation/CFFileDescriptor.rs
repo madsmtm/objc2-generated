@@ -188,19 +188,19 @@ impl CFFileDescriptor {
     #[doc(alias = "CFFileDescriptorCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
-    pub fn new_run_loop_source(
+    pub fn run_loop_source(
+        &self,
         allocator: Option<&CFAllocator>,
-        f: Option<&CFFileDescriptor>,
         order: CFIndex,
     ) -> Option<CFRetained<CFRunLoopSource>> {
         extern "C-unwind" {
             fn CFFileDescriptorCreateRunLoopSource(
                 allocator: Option<&CFAllocator>,
-                f: Option<&CFFileDescriptor>,
+                f: &CFFileDescriptor,
                 order: CFIndex,
             ) -> Option<NonNull<CFRunLoopSource>>;
         }
-        let ret = unsafe { CFFileDescriptorCreateRunLoopSource(allocator, f, order) };
+        let ret = unsafe { CFFileDescriptorCreateRunLoopSource(allocator, self, order) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }

@@ -113,7 +113,6 @@ impl CFNotificationCenter {
     ///
     /// - `observer` must be a valid pointer.
     /// - `call_back` must be implemented correctly.
-    /// - `name` might not allow `None`.
     /// - `object` must be a valid pointer.
     #[doc(alias = "CFNotificationCenterAddObserver")]
     #[cfg(feature = "CFDictionary")]
@@ -151,7 +150,6 @@ impl CFNotificationCenter {
     /// # Safety
     ///
     /// - `observer` must be a valid pointer.
-    /// - `name` might not allow `None`.
     /// - `object` must be a valid pointer.
     #[doc(alias = "CFNotificationCenterRemoveObserver")]
     #[inline]
@@ -189,17 +187,15 @@ impl CFNotificationCenter {
 
     /// # Safety
     ///
-    /// - `name` might not allow `None`.
-    /// - `object` must be a valid pointer.
+    /// - `object` must be a valid pointer or null.
     /// - `user_info` generic must be of the correct type.
     /// - `user_info` generic must be of the correct type.
-    /// - `user_info` might not allow `None`.
     #[doc(alias = "CFNotificationCenterPostNotification")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
     pub unsafe fn post_notification(
         &self,
-        name: Option<&CFNotificationName>,
+        name: &CFNotificationName,
         object: *const c_void,
         user_info: Option<&CFDictionary>,
         deliver_immediately: bool,
@@ -207,7 +203,7 @@ impl CFNotificationCenter {
         extern "C-unwind" {
             fn CFNotificationCenterPostNotification(
                 center: &CFNotificationCenter,
-                name: Option<&CFNotificationName>,
+                name: &CFNotificationName,
                 object: *const c_void,
                 user_info: Option<&CFDictionary>,
                 deliver_immediately: Boolean,
@@ -233,17 +229,15 @@ pub const kCFNotificationPostToAllSessions: CFOptionFlags = 1 << 1;
 impl CFNotificationCenter {
     /// # Safety
     ///
-    /// - `name` might not allow `None`.
-    /// - `object` must be a valid pointer.
+    /// - `object` must be a valid pointer or null.
     /// - `user_info` generic must be of the correct type.
     /// - `user_info` generic must be of the correct type.
-    /// - `user_info` might not allow `None`.
     #[doc(alias = "CFNotificationCenterPostNotificationWithOptions")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
     pub unsafe fn post_notification_with_options(
         &self,
-        name: Option<&CFNotificationName>,
+        name: &CFNotificationName,
         object: *const c_void,
         user_info: Option<&CFDictionary>,
         options: CFOptionFlags,
@@ -251,7 +245,7 @@ impl CFNotificationCenter {
         extern "C-unwind" {
             fn CFNotificationCenterPostNotificationWithOptions(
                 center: &CFNotificationCenter,
-                name: Option<&CFNotificationName>,
+                name: &CFNotificationName,
                 object: *const c_void,
                 user_info: Option<&CFDictionary>,
                 options: CFOptionFlags,

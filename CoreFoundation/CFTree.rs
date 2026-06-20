@@ -154,17 +154,16 @@ impl CFTree {
     /// - `context` struct field `retain` must be implemented correctly.
     /// - `context` struct field `release` must be implemented correctly.
     /// - `context` struct field `copyDescription` must be implemented correctly.
-    /// - `context` might not allow `None`.
     #[doc(alias = "CFTreeCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        context: Option<&CFTreeContext>,
+        context: &CFTreeContext,
     ) -> Option<CFRetained<CFTree>> {
         extern "C-unwind" {
             fn CFTreeCreate(
                 allocator: Option<&CFAllocator>,
-                context: Option<&CFTreeContext>,
+                context: &CFTreeContext,
             ) -> Option<NonNull<CFTree>>;
         }
         let ret = unsafe { CFTreeCreate(allocator, context) };
@@ -379,12 +378,11 @@ impl CFTree {
     /// - `context` struct field `retain` must be implemented correctly.
     /// - `context` struct field `release` must be implemented correctly.
     /// - `context` struct field `copyDescription` must be implemented correctly.
-    /// - `context` might not allow `None`.
     #[doc(alias = "CFTreeSetContext")]
     #[inline]
-    pub unsafe fn set_context(&self, context: Option<&CFTreeContext>) {
+    pub unsafe fn set_context(&self, context: &CFTreeContext) {
         extern "C-unwind" {
-            fn CFTreeSetContext(tree: &CFTree, context: Option<&CFTreeContext>);
+            fn CFTreeSetContext(tree: &CFTree, context: &CFTreeContext);
         }
         unsafe { CFTreeSetContext(self, context) }
     }
@@ -398,15 +396,11 @@ impl CFTree {
     /// If this parameter is not a valid CFTree, the behavior is undefined.
     /// If this parameter is a tree which is already a child of any tree,
     /// the behavior is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `new_child` might not allow `None`.
     #[doc(alias = "CFTreePrependChild")]
     #[inline]
-    pub unsafe fn prepend_child(&self, new_child: Option<&CFTree>) {
+    pub unsafe fn prepend_child(&self, new_child: &CFTree) {
         extern "C-unwind" {
-            fn CFTreePrependChild(tree: &CFTree, new_child: Option<&CFTree>);
+            fn CFTreePrependChild(tree: &CFTree, new_child: &CFTree);
         }
         unsafe { CFTreePrependChild(self, new_child) }
     }
@@ -420,15 +414,11 @@ impl CFTree {
     /// If this parameter is not a valid CFTree, the behavior is undefined.
     /// If this parameter is a tree which is already a child of any tree,
     /// the behavior is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `new_child` might not allow `None`.
     #[doc(alias = "CFTreeAppendChild")]
     #[inline]
-    pub unsafe fn append_child(&self, new_child: Option<&CFTree>) {
+    pub unsafe fn append_child(&self, new_child: &CFTree) {
         extern "C-unwind" {
-            fn CFTreeAppendChild(tree: &CFTree, new_child: Option<&CFTree>);
+            fn CFTreeAppendChild(tree: &CFTree, new_child: &CFTree);
         }
         unsafe { CFTreeAppendChild(self, new_child) }
     }
@@ -444,15 +434,11 @@ impl CFTree {
     /// If this parameter is not a valid CFTree, the behavior is undefined.
     /// If this parameter is a tree which is already a child of any tree,
     /// the behavior is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `new_sibling` might not allow `None`.
     #[doc(alias = "CFTreeInsertSibling")]
     #[inline]
-    pub unsafe fn insert_sibling(&self, new_sibling: Option<&CFTree>) {
+    pub unsafe fn insert_sibling(&self, new_sibling: &CFTree) {
         extern "C-unwind" {
-            fn CFTreeInsertSibling(tree: &CFTree, new_sibling: Option<&CFTree>);
+            fn CFTreeInsertSibling(tree: &CFTree, new_sibling: &CFTree);
         }
         unsafe { CFTreeInsertSibling(self, new_sibling) }
     }

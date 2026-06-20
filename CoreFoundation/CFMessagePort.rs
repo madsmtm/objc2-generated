@@ -102,7 +102,6 @@ unsafe impl ConcreteType for CFMessagePort {
 impl CFMessagePort {
     /// # Safety
     ///
-    /// - `name` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
@@ -138,12 +137,12 @@ impl CFMessagePort {
     #[inline]
     pub fn new_remote(
         allocator: Option<&CFAllocator>,
-        name: Option<&CFString>,
+        name: &CFString,
     ) -> Option<CFRetained<CFMessagePort>> {
         extern "C-unwind" {
             fn CFMessagePortCreateRemote(
                 allocator: Option<&CFAllocator>,
-                name: Option<&CFString>,
+                name: &CFString,
             ) -> Option<NonNull<CFMessagePort>>;
         }
         let ret = unsafe { CFMessagePortCreateRemote(allocator, name) };

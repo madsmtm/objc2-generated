@@ -141,51 +141,47 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterSetFormat(self, format_string) }
     }
 
-    /// # Safety
-    ///
-    /// `formatter` might not allow `None`.
     #[doc(alias = "CFNumberFormatterCreateStringWithNumber")]
     #[cfg(feature = "CFNumber")]
     #[inline]
-    pub unsafe fn new_string_with_number(
+    pub fn string_with_number(
+        &self,
         allocator: Option<&CFAllocator>,
-        formatter: Option<&CFNumberFormatter>,
         number: &CFNumber,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFNumberFormatterCreateStringWithNumber(
                 allocator: Option<&CFAllocator>,
-                formatter: Option<&CFNumberFormatter>,
+                formatter: &CFNumberFormatter,
                 number: &CFNumber,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CFNumberFormatterCreateStringWithNumber(allocator, formatter, number) };
+        let ret = unsafe { CFNumberFormatterCreateStringWithNumber(allocator, self, number) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     /// # Safety
     ///
-    /// - `formatter` might not allow `None`.
-    /// - `value_ptr` must be a valid pointer.
+    /// `value_ptr` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterCreateStringWithValue")]
     #[cfg(feature = "CFNumber")]
     #[inline]
-    pub unsafe fn new_string_with_value(
+    pub unsafe fn string_with_value(
+        &self,
         allocator: Option<&CFAllocator>,
-        formatter: Option<&CFNumberFormatter>,
         number_type: CFNumberType,
-        value_ptr: *const c_void,
+        value_ptr: NonNull<c_void>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFNumberFormatterCreateStringWithValue(
                 allocator: Option<&CFAllocator>,
-                formatter: Option<&CFNumberFormatter>,
+                formatter: &CFNumberFormatter,
                 number_type: CFNumberType,
-                value_ptr: *const c_void,
+                value_ptr: NonNull<c_void>,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe {
-            CFNumberFormatterCreateStringWithValue(allocator, formatter, number_type, value_ptr)
+            CFNumberFormatterCreateStringWithValue(allocator, self, number_type, value_ptr)
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -215,15 +211,12 @@ unsafe impl RefEncode for CFNumberFormatterOptionFlags {
 }
 
 impl CFNumberFormatter {
-    /// # Safety
-    ///
-    /// `formatter` might not allow `None`.
     #[doc(alias = "CFNumberFormatterCreateNumberFromString")]
     #[cfg(feature = "CFNumber")]
     #[inline]
-    pub unsafe fn new_number_from_string(
+    pub unsafe fn number_from_string(
+        &self,
         allocator: Option<&CFAllocator>,
-        formatter: Option<&CFNumberFormatter>,
         string: &CFString,
         rangep: &mut CFRange,
         options: CFOptionFlags,
@@ -231,14 +224,14 @@ impl CFNumberFormatter {
         extern "C-unwind" {
             fn CFNumberFormatterCreateNumberFromString(
                 allocator: Option<&CFAllocator>,
-                formatter: Option<&CFNumberFormatter>,
+                formatter: &CFNumberFormatter,
                 string: &CFString,
                 rangep: &mut CFRange,
                 options: CFOptionFlags,
             ) -> Option<NonNull<CFNumber>>;
         }
         let ret = unsafe {
-            CFNumberFormatterCreateNumberFromString(allocator, formatter, string, rangep, options)
+            CFNumberFormatterCreateNumberFromString(allocator, self, string, rangep, options)
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -253,7 +246,7 @@ impl CFNumberFormatter {
     pub unsafe fn value_from_string(
         &self,
         string: &CFString,
-        rangep: *mut CFRange,
+        rangep: NonNull<CFRange>,
         number_type: CFNumberType,
         value_ptr: *mut c_void,
     ) -> bool {
@@ -261,7 +254,7 @@ impl CFNumberFormatter {
             fn CFNumberFormatterGetValueFromString(
                 formatter: &CFNumberFormatter,
                 string: &CFString,
-                rangep: *mut CFRange,
+                rangep: NonNull<CFRange>,
                 number_type: CFNumberType,
                 value_ptr: *mut c_void,
             ) -> Boolean;
@@ -288,19 +281,13 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterSetProperty(self, key, value) }
     }
 
-    /// # Safety
-    ///
-    /// `key` might not allow `None`.
     #[doc(alias = "CFNumberFormatterCopyProperty")]
     #[inline]
-    pub unsafe fn property(
-        &self,
-        key: Option<&CFNumberFormatterKey>,
-    ) -> Option<CFRetained<CFType>> {
+    pub fn property(&self, key: &CFNumberFormatterKey) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFNumberFormatterCopyProperty(
                 formatter: &CFNumberFormatter,
-                key: Option<&CFNumberFormatterKey>,
+                key: &CFNumberFormatterKey,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe { CFNumberFormatterCopyProperty(self, key) };

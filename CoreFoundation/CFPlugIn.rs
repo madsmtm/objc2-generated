@@ -66,12 +66,12 @@ impl CFPlugIn {
     #[inline]
     pub fn new(
         allocator: Option<&CFAllocator>,
-        plug_in_url: Option<&CFURL>,
+        plug_in_url: &CFURL,
     ) -> Option<CFRetained<CFPlugIn>> {
         extern "C-unwind" {
             fn CFPlugInCreate(
                 allocator: Option<&CFAllocator>,
-                plug_in_url: Option<&CFURL>,
+                plug_in_url: &CFURL,
             ) -> Option<NonNull<CFPlugIn>>;
         }
         let ret = unsafe { CFPlugInCreate(allocator, plug_in_url) };
@@ -114,11 +114,11 @@ impl CFPlugIn {
     #[cfg(all(feature = "CFArray", feature = "CFUUID"))]
     #[inline]
     pub fn find_factories_for_plug_in_type(
-        type_uuid: Option<&CFUUID>,
+        type_uuid: &CFUUID,
     ) -> Option<CFRetained<CFArray<CFUUID>>> {
         extern "C-unwind" {
             fn CFPlugInFindFactoriesForPlugInType(
-                type_uuid: Option<&CFUUID>,
+                type_uuid: &CFUUID,
             ) -> Option<NonNull<CFArray<CFUUID>>>;
         }
         let ret = unsafe { CFPlugInFindFactoriesForPlugInType(type_uuid) };
@@ -129,13 +129,13 @@ impl CFPlugIn {
     #[cfg(all(feature = "CFArray", feature = "CFBundle", feature = "CFUUID"))]
     #[inline]
     pub fn find_factories_for_plug_in_type_in_plug_in(
-        type_uuid: Option<&CFUUID>,
-        plug_in: Option<&CFPlugIn>,
+        type_uuid: &CFUUID,
+        plug_in: &CFPlugIn,
     ) -> Option<CFRetained<CFArray<CFUUID>>> {
         extern "C-unwind" {
             fn CFPlugInFindFactoriesForPlugInTypeInPlugIn(
-                type_uuid: Option<&CFUUID>,
-                plug_in: Option<&CFPlugIn>,
+                type_uuid: &CFUUID,
+                plug_in: &CFPlugIn,
             ) -> Option<NonNull<CFArray<CFUUID>>>;
         }
         let ret = unsafe { CFPlugInFindFactoriesForPlugInTypeInPlugIn(type_uuid, plug_in) };
@@ -149,14 +149,14 @@ impl CFPlugInInstance {
     #[inline]
     pub fn create(
         allocator: Option<&CFAllocator>,
-        factory_uuid: Option<&CFUUID>,
-        type_uuid: Option<&CFUUID>,
+        factory_uuid: &CFUUID,
+        type_uuid: &CFUUID,
     ) -> *mut c_void {
         extern "C-unwind" {
             fn CFPlugInInstanceCreate(
                 allocator: Option<&CFAllocator>,
-                factory_uuid: Option<&CFUUID>,
-                type_uuid: Option<&CFUUID>,
+                factory_uuid: &CFUUID,
+                type_uuid: &CFUUID,
             ) -> *mut c_void;
         }
         unsafe { CFPlugInInstanceCreate(allocator, factory_uuid, type_uuid) }
@@ -168,13 +168,10 @@ impl CFPlugIn {
     #[doc(alias = "CFPlugInRegisterFactoryFunction")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub fn register_factory_function(
-        factory_uuid: Option<&CFUUID>,
-        func: CFPlugInFactoryFunction,
-    ) -> bool {
+    pub fn register_factory_function(factory_uuid: &CFUUID, func: CFPlugInFactoryFunction) -> bool {
         extern "C-unwind" {
             fn CFPlugInRegisterFactoryFunction(
-                factory_uuid: Option<&CFUUID>,
+                factory_uuid: &CFUUID,
                 func: CFPlugInFactoryFunction,
             ) -> Boolean;
         }
@@ -186,15 +183,15 @@ impl CFPlugIn {
     #[cfg(all(feature = "CFBundle", feature = "CFUUID"))]
     #[inline]
     pub fn register_factory_function_by_name(
-        factory_uuid: Option<&CFUUID>,
-        plug_in: Option<&CFPlugIn>,
-        function_name: Option<&CFString>,
+        factory_uuid: &CFUUID,
+        plug_in: &CFPlugIn,
+        function_name: &CFString,
     ) -> bool {
         extern "C-unwind" {
             fn CFPlugInRegisterFactoryFunctionByName(
-                factory_uuid: Option<&CFUUID>,
-                plug_in: Option<&CFPlugIn>,
-                function_name: Option<&CFString>,
+                factory_uuid: &CFUUID,
+                plug_in: &CFPlugIn,
+                function_name: &CFString,
             ) -> Boolean;
         }
         let ret =
@@ -205,9 +202,9 @@ impl CFPlugIn {
     #[doc(alias = "CFPlugInUnregisterFactory")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub fn unregister_factory(factory_uuid: Option<&CFUUID>) -> bool {
+    pub fn unregister_factory(factory_uuid: &CFUUID) -> bool {
         extern "C-unwind" {
-            fn CFPlugInUnregisterFactory(factory_uuid: Option<&CFUUID>) -> Boolean;
+            fn CFPlugInUnregisterFactory(factory_uuid: &CFUUID) -> Boolean;
         }
         let ret = unsafe { CFPlugInUnregisterFactory(factory_uuid) };
         ret != 0
@@ -216,15 +213,9 @@ impl CFPlugIn {
     #[doc(alias = "CFPlugInRegisterPlugInType")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub fn register_plug_in_type(
-        factory_uuid: Option<&CFUUID>,
-        type_uuid: Option<&CFUUID>,
-    ) -> bool {
+    pub fn register_plug_in_type(factory_uuid: &CFUUID, type_uuid: &CFUUID) -> bool {
         extern "C-unwind" {
-            fn CFPlugInRegisterPlugInType(
-                factory_uuid: Option<&CFUUID>,
-                type_uuid: Option<&CFUUID>,
-            ) -> Boolean;
+            fn CFPlugInRegisterPlugInType(factory_uuid: &CFUUID, type_uuid: &CFUUID) -> Boolean;
         }
         let ret = unsafe { CFPlugInRegisterPlugInType(factory_uuid, type_uuid) };
         ret != 0
@@ -233,15 +224,9 @@ impl CFPlugIn {
     #[doc(alias = "CFPlugInUnregisterPlugInType")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub fn unregister_plug_in_type(
-        factory_uuid: Option<&CFUUID>,
-        type_uuid: Option<&CFUUID>,
-    ) -> bool {
+    pub fn unregister_plug_in_type(factory_uuid: &CFUUID, type_uuid: &CFUUID) -> bool {
         extern "C-unwind" {
-            fn CFPlugInUnregisterPlugInType(
-                factory_uuid: Option<&CFUUID>,
-                type_uuid: Option<&CFUUID>,
-            ) -> Boolean;
+            fn CFPlugInUnregisterPlugInType(factory_uuid: &CFUUID, type_uuid: &CFUUID) -> Boolean;
         }
         let ret = unsafe { CFPlugInUnregisterPlugInType(factory_uuid, type_uuid) };
         ret != 0
@@ -250,9 +235,9 @@ impl CFPlugIn {
     #[doc(alias = "CFPlugInAddInstanceForFactory")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub fn add_instance_for_factory(factory_id: Option<&CFUUID>) {
+    pub fn add_instance_for_factory(factory_id: &CFUUID) {
         extern "C-unwind" {
-            fn CFPlugInAddInstanceForFactory(factory_id: Option<&CFUUID>);
+            fn CFPlugInAddInstanceForFactory(factory_id: &CFUUID);
         }
         unsafe { CFPlugInAddInstanceForFactory(factory_id) }
     }
@@ -260,9 +245,9 @@ impl CFPlugIn {
     #[doc(alias = "CFPlugInRemoveInstanceForFactory")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub fn remove_instance_for_factory(factory_id: Option<&CFUUID>) {
+    pub fn remove_instance_for_factory(factory_id: &CFUUID) {
         extern "C-unwind" {
-            fn CFPlugInRemoveInstanceForFactory(factory_id: Option<&CFUUID>);
+            fn CFPlugInRemoveInstanceForFactory(factory_id: &CFUUID);
         }
         unsafe { CFPlugInRemoveInstanceForFactory(factory_id) }
     }
