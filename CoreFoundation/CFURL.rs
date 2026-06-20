@@ -1719,11 +1719,7 @@ pub type CFURLBookmarkFileCreationOptions = CFOptionFlags;
 impl CFURL {
     /// # Safety
     ///
-    /// - `url` might not allow `None`.
-    /// - `resource_properties_to_include` might not allow `None`.
-    /// - `relative_to_url` might not allow `None`.
-    /// - `error` must be a valid pointer.
-    /// - `error` might not allow `None`.
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateBookmarkData")]
     #[cfg(all(
         feature = "CFArray",
@@ -1732,9 +1728,9 @@ impl CFURL {
         feature = "CFString"
     ))]
     #[inline]
-    pub unsafe fn new_bookmark_data(
+    pub unsafe fn bookmark_data(
+        &self,
         allocator: Option<&CFAllocator>,
-        url: Option<&CFURL>,
         options: CFURLBookmarkCreationOptions,
         resource_properties_to_include: Option<&CFArray<CFString>>,
         relative_to_url: Option<&CFURL>,
@@ -1743,7 +1739,7 @@ impl CFURL {
         extern "C-unwind" {
             fn CFURLCreateBookmarkData(
                 allocator: Option<&CFAllocator>,
-                url: Option<&CFURL>,
+                url: &CFURL,
                 options: CFURLBookmarkCreationOptions,
                 resource_properties_to_include: Option<&CFArray<CFString>>,
                 relative_to_url: Option<&CFURL>,
@@ -1753,7 +1749,7 @@ impl CFURL {
         let ret = unsafe {
             CFURLCreateBookmarkData(
                 allocator,
-                url,
+                self,
                 options,
                 resource_properties_to_include,
                 relative_to_url,
@@ -1765,12 +1761,7 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `bookmark` might not allow `None`.
-    /// - `relative_to_url` might not allow `None`.
-    /// - `resource_properties_to_include` might not allow `None`.
-    /// - `is_stale` might not allow `None`.
-    /// - `error` must be a valid pointer.
-    /// - `error` might not allow `None`.
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateByResolvingBookmarkData")]
     #[cfg(all(
         feature = "CFArray",
@@ -1781,7 +1772,7 @@ impl CFURL {
     #[inline]
     pub unsafe fn new_by_resolving_bookmark_data(
         allocator: Option<&CFAllocator>,
-        bookmark: Option<&CFData>,
+        bookmark: &CFData,
         options: CFURLBookmarkResolutionOptions,
         relative_to_url: Option<&CFURL>,
         resource_properties_to_include: Option<&CFArray<CFString>>,
@@ -1791,7 +1782,7 @@ impl CFURL {
         extern "C-unwind" {
             fn CFURLCreateByResolvingBookmarkData(
                 allocator: Option<&CFAllocator>,
-                bookmark: Option<&CFData>,
+                bookmark: &CFData,
                 options: CFURLBookmarkResolutionOptions,
                 relative_to_url: Option<&CFURL>,
                 resource_properties_to_include: Option<&CFArray<CFString>>,
@@ -1813,10 +1804,6 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// - `resource_properties_to_return` might not allow `None`.
-    /// - `bookmark` might not allow `None`.
     #[doc(alias = "CFURLCreateResourcePropertiesForKeysFromBookmarkData")]
     #[cfg(all(
         feature = "CFArray",
@@ -1825,16 +1812,16 @@ impl CFURL {
         feature = "CFString"
     ))]
     #[inline]
-    pub unsafe fn new_resource_properties_for_keys_from_bookmark_data(
+    pub fn new_resource_properties_for_keys_from_bookmark_data(
         allocator: Option<&CFAllocator>,
-        resource_properties_to_return: Option<&CFArray<CFString>>,
-        bookmark: Option<&CFData>,
+        resource_properties_to_return: &CFArray<CFString>,
+        bookmark: &CFData,
     ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CFURLCreateResourcePropertiesForKeysFromBookmarkData(
                 allocator: Option<&CFAllocator>,
-                resource_properties_to_return: Option<&CFArray<CFString>>,
-                bookmark: Option<&CFData>,
+                resource_properties_to_return: &CFArray<CFString>,
+                bookmark: &CFData,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe {
@@ -1847,23 +1834,19 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// - `resource_property_key` might not allow `None`.
-    /// - `bookmark` might not allow `None`.
     #[doc(alias = "CFURLCreateResourcePropertyForKeyFromBookmarkData")]
     #[cfg(feature = "CFData")]
     #[inline]
-    pub unsafe fn new_resource_property_for_key_from_bookmark_data(
+    pub fn new_resource_property_for_key_from_bookmark_data(
         allocator: Option<&CFAllocator>,
-        resource_property_key: Option<&CFString>,
-        bookmark: Option<&CFData>,
+        resource_property_key: &CFString,
+        bookmark: &CFData,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFURLCreateResourcePropertyForKeyFromBookmarkData(
                 allocator: Option<&CFAllocator>,
-                resource_property_key: Option<&CFString>,
-                bookmark: Option<&CFData>,
+                resource_property_key: &CFString,
+                bookmark: &CFData,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe {
@@ -1878,47 +1861,42 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `file_url` might not allow `None`.
-    /// - `error_ref` must be a valid pointer.
-    /// - `error_ref` might not allow `None`.
+    /// `error_ref` must be a valid pointer.
     #[doc(alias = "CFURLCreateBookmarkDataFromFile")]
     #[cfg(all(feature = "CFData", feature = "CFError"))]
     #[inline]
-    pub unsafe fn new_bookmark_data_from_file(
+    pub unsafe fn bookmark_data_from_file(
+        &self,
         allocator: Option<&CFAllocator>,
-        file_url: Option<&CFURL>,
         error_ref: Option<&mut *mut CFError>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFURLCreateBookmarkDataFromFile(
                 allocator: Option<&CFAllocator>,
-                file_url: Option<&CFURL>,
+                file_url: &CFURL,
                 error_ref: Option<&mut *mut CFError>,
             ) -> Option<NonNull<CFData>>;
         }
-        let ret = unsafe { CFURLCreateBookmarkDataFromFile(allocator, file_url, error_ref) };
+        let ret = unsafe { CFURLCreateBookmarkDataFromFile(allocator, self, error_ref) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     /// # Safety
     ///
-    /// - `bookmark_ref` might not allow `None`.
-    /// - `file_url` might not allow `None`.
-    /// - `error_ref` must be a valid pointer.
-    /// - `error_ref` might not allow `None`.
+    /// `error_ref` must be a valid pointer.
     #[doc(alias = "CFURLWriteBookmarkDataToFile")]
     #[cfg(all(feature = "CFData", feature = "CFError"))]
     #[inline]
     pub unsafe fn write_bookmark_data_to_file(
-        bookmark_ref: Option<&CFData>,
-        file_url: Option<&CFURL>,
+        bookmark_ref: &CFData,
+        file_url: &CFURL,
         options: CFURLBookmarkFileCreationOptions,
         error_ref: Option<&mut *mut CFError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLWriteBookmarkDataToFile(
-                bookmark_ref: Option<&CFData>,
-                file_url: Option<&CFURL>,
+                bookmark_ref: &CFData,
+                file_url: &CFURL,
                 options: CFURLBookmarkFileCreationOptions,
                 error_ref: Option<&mut *mut CFError>,
             ) -> Boolean;
@@ -1928,21 +1906,18 @@ impl CFURL {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `alias_record_data_ref` might not allow `None`.
     #[doc(alias = "CFURLCreateBookmarkDataFromAliasRecord")]
     #[cfg(feature = "CFData")]
     #[deprecated = "The Carbon Alias Manager is deprecated. This function should only be used to convert Carbon AliasRecords to bookmark data."]
     #[inline]
-    pub unsafe fn new_bookmark_data_from_alias_record(
+    pub fn new_bookmark_data_from_alias_record(
         allocator_ref: Option<&CFAllocator>,
-        alias_record_data_ref: Option<&CFData>,
+        alias_record_data_ref: &CFData,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFURLCreateBookmarkDataFromAliasRecord(
                 allocator_ref: Option<&CFAllocator>,
-                alias_record_data_ref: Option<&CFData>,
+                alias_record_data_ref: &CFData,
             ) -> Option<NonNull<CFData>>;
         }
         let ret =

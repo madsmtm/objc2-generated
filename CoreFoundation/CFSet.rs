@@ -802,10 +802,10 @@ impl<T: Sized> CFMutableSet<T> {
     /// the behavior is undefined.
     #[doc(alias = "CFSetRemoveAllValues")]
     #[inline]
-    pub fn remove_all_values(the_set: Option<&CFMutableSet<T>>) {
+    pub fn remove_all_values(&self) {
         extern "C-unwind" {
-            fn CFSetRemoveAllValues(the_set: Option<&CFMutableSet>);
+            fn CFSetRemoveAllValues(the_set: &CFMutableSet);
         }
-        unsafe { CFSetRemoveAllValues(the_set.map(|obj| obj.as_opaque())) }
+        unsafe { CFSetRemoveAllValues(self.as_opaque()) }
     }
 }

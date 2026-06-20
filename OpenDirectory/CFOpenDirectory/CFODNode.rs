@@ -123,24 +123,23 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// - `node` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODNodeCreateCopy")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn new_copy(
+    pub unsafe fn copy(
+        &self,
         allocator: Option<&CFAllocator>,
-        node: Option<&ODNodeRef>,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<ODNodeRef>> {
         extern "C-unwind" {
             fn ODNodeCreateCopy(
                 allocator: Option<&CFAllocator>,
-                node: Option<&ODNodeRef>,
+                node: &ODNodeRef,
                 error: *mut *mut CFError,
             ) -> Option<NonNull<ODNodeRef>>;
         }
-        let ret = unsafe { ODNodeCreateCopy(allocator, node, error) };
+        let ret = unsafe { ODNodeCreateCopy(allocator, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

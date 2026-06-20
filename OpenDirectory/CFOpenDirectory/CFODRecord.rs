@@ -185,25 +185,24 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// - `record` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordCopyPasswordPolicy")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordCopyEffectivePolicies"]
     #[inline]
     pub unsafe fn password_policy(
+        &self,
         allocator: Option<&CFAllocator>,
-        record: Option<&ODRecordRef>,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODRecordCopyPasswordPolicy(
                 allocator: Option<&CFAllocator>,
-                record: Option<&ODRecordRef>,
+                record: &ODRecordRef,
                 error: *mut *mut CFError,
             ) -> Option<NonNull<CFDictionary>>;
         }
-        let ret = unsafe { ODRecordCopyPasswordPolicy(allocator, record, error) };
+        let ret = unsafe { ODRecordCopyPasswordPolicy(allocator, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

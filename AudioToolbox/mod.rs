@@ -4510,21 +4510,17 @@ pub const kAudioHardwareServiceDeviceProperty_VirtualMasterBalance: AudioObjectP
 /// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
 ///
 /// Returns: A Boolean indicating whether or not the AudioObject has the given property.
-///
-/// # Safety
-///
-/// `in_address` might not allow `None`.
 #[cfg(feature = "objc2-core-audio")]
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioHardwareServiceHasProperty(
     in_object_id: AudioObjectID,
-    in_address: Option<&AudioObjectPropertyAddress>,
+    in_address: &AudioObjectPropertyAddress,
 ) -> bool {
     extern "C-unwind" {
         fn AudioHardwareServiceHasProperty(
             in_object_id: AudioObjectID,
-            in_address: Option<&AudioObjectPropertyAddress>,
+            in_address: &AudioObjectPropertyAddress,
         ) -> Boolean;
     }
     let ret = unsafe { AudioHardwareServiceHasProperty(in_object_id, in_address) };
@@ -4542,17 +4538,12 @@ extern "C-unwind" {
     /// Parameter `outIsSettable`: A Boolean indicating whether or not the property can be set.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `in_address` might not allow `None`.
-    /// - `out_is_settable` might not allow `None`.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceIsPropertySettable(
         in_object_id: AudioObjectID,
-        in_address: Option<&AudioObjectPropertyAddress>,
-        out_is_settable: Option<&mut Boolean>,
+        in_address: &AudioObjectPropertyAddress,
+        out_is_settable: &mut Boolean,
     ) -> OSStatus;
 }
 
@@ -4577,17 +4568,15 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_address` might not allow `None`.
-    /// - `in_qualifier_data` must be a valid pointer.
-    /// - `out_data_size` might not allow `None`.
+    /// `in_qualifier_data` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceGetPropertyDataSize(
         in_object_id: AudioObjectID,
-        in_address: Option<&AudioObjectPropertyAddress>,
+        in_address: &AudioObjectPropertyAddress,
         in_qualifier_data_size: u32,
         in_qualifier_data: *const c_void,
-        out_data_size: Option<&mut u32>,
+        out_data_size: &mut u32,
     ) -> OSStatus;
 }
 
@@ -4617,18 +4606,16 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_address` might not allow `None`.
-    /// - `in_qualifier_data` must be a valid pointer.
-    /// - `io_data_size` might not allow `None`.
+    /// - `in_qualifier_data` must be a valid pointer or null.
     /// - `out_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceGetPropertyData(
         in_object_id: AudioObjectID,
-        in_address: Option<&AudioObjectPropertyAddress>,
+        in_address: &AudioObjectPropertyAddress,
         in_qualifier_data_size: u32,
         in_qualifier_data: *const c_void,
-        io_data_size: Option<&mut u32>,
+        io_data_size: &mut u32,
         out_data: *mut c_void,
     ) -> OSStatus;
 }
@@ -4661,14 +4648,13 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_address` might not allow `None`.
     /// - `in_qualifier_data` must be a valid pointer.
     /// - `in_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceSetPropertyData(
         in_object_id: AudioObjectID,
-        in_address: Option<&AudioObjectPropertyAddress>,
+        in_address: &AudioObjectPropertyAddress,
         in_qualifier_data_size: u32,
         in_qualifier_data: *const c_void,
         in_data_size: u32,
@@ -4693,14 +4679,13 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_address` might not allow `None`.
     /// - `in_listener` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceAddPropertyListener(
         in_object_id: AudioObjectID,
-        in_address: Option<&AudioObjectPropertyAddress>,
+        in_address: &AudioObjectPropertyAddress,
         in_listener: AudioObjectPropertyListenerProc,
         in_client_data: *mut c_void,
     ) -> OSStatus;
@@ -4723,14 +4708,13 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_address` might not allow `None`.
     /// - `in_listener` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceRemovePropertyListener(
         in_object_id: AudioObjectID,
-        in_address: Option<&AudioObjectPropertyAddress>,
+        in_address: &AudioObjectPropertyAddress,
         in_listener: AudioObjectPropertyListenerProc,
         in_client_data: *mut c_void,
     ) -> OSStatus;

@@ -1749,15 +1749,10 @@ extern "C-unwind" {
     /// Parameter `outTapID`: The AudioObjectID of the newly created Tap.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `in_description` might not allow `None`.
-    /// - `out_tap_id` might not allow `None`.
     #[cfg(feature = "objc2")]
     pub fn AudioHardwareCreateProcessTap(
-        in_description: Option<&CATapDescription>,
-        out_tap_id: Option<&mut AudioObjectID>,
+        in_description: &CATapDescription,
+        out_tap_id: &mut AudioObjectID,
     ) -> OSStatus;
 }
 

@@ -315,16 +315,13 @@ impl HIMutableShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `in_shape` might not allow `None`.
     #[doc(alias = "HIShapeSetEmpty")]
     #[inline]
-    pub unsafe fn set_empty(in_shape: Option<&HIMutableShape>) -> OSStatus {
+    pub unsafe fn set_empty(&self) -> OSStatus {
         extern "C-unwind" {
-            fn HIShapeSetEmpty(in_shape: Option<&HIMutableShape>) -> OSStatus;
+            fn HIShapeSetEmpty(in_shape: &HIMutableShape) -> OSStatus;
         }
-        unsafe { HIShapeSetEmpty(in_shape) }
+        unsafe { HIShapeSetEmpty(self) }
     }
 
     /// # Safety
@@ -434,62 +431,34 @@ impl HIShape {
 }
 
 impl HIMutableShape {
-    /// # Safety
-    ///
-    /// `in_shape` might not allow `None`.
     #[doc(alias = "HIShapeOffset")]
     #[inline]
-    pub unsafe fn offset(
-        in_shape: Option<&HIMutableShape>,
-        in_dx: CGFloat,
-        in_dy: CGFloat,
-    ) -> OSStatus {
+    pub unsafe fn offset(&self, in_dx: CGFloat, in_dy: CGFloat) -> OSStatus {
         extern "C-unwind" {
-            fn HIShapeOffset(
-                in_shape: Option<&HIMutableShape>,
-                in_dx: CGFloat,
-                in_dy: CGFloat,
-            ) -> OSStatus;
+            fn HIShapeOffset(in_shape: &HIMutableShape, in_dx: CGFloat, in_dy: CGFloat)
+                -> OSStatus;
         }
-        unsafe { HIShapeOffset(in_shape, in_dx, in_dy) }
+        unsafe { HIShapeOffset(self, in_dx, in_dy) }
     }
 
-    /// # Safety
-    ///
-    /// `in_shape` might not allow `None`.
     #[doc(alias = "HIShapeInset")]
     #[inline]
-    pub unsafe fn inset(
-        in_shape: Option<&HIMutableShape>,
-        in_dx: CGFloat,
-        in_dy: CGFloat,
-    ) -> OSStatus {
+    pub unsafe fn inset(&self, in_dx: CGFloat, in_dy: CGFloat) -> OSStatus {
         extern "C-unwind" {
-            fn HIShapeInset(
-                in_shape: Option<&HIMutableShape>,
-                in_dx: CGFloat,
-                in_dy: CGFloat,
-            ) -> OSStatus;
+            fn HIShapeInset(in_shape: &HIMutableShape, in_dx: CGFloat, in_dy: CGFloat) -> OSStatus;
         }
-        unsafe { HIShapeInset(in_shape, in_dx, in_dy) }
+        unsafe { HIShapeInset(self, in_dx, in_dy) }
     }
 
     /// # Safety
     ///
-    /// - `in_shape` might not allow `None`.
-    /// - `in_rect` must be a valid pointer.
+    /// `in_rect` must be a valid pointer.
     #[doc(alias = "HIShapeUnionWithRect")]
     #[inline]
-    pub unsafe fn union_with_rect(
-        in_shape: Option<&HIMutableShape>,
-        in_rect: *const CGRect,
-    ) -> OSStatus {
+    pub unsafe fn union_with_rect(&self, in_rect: *const CGRect) -> OSStatus {
         extern "C-unwind" {
-            fn HIShapeUnionWithRect(
-                in_shape: Option<&HIMutableShape>,
-                in_rect: *const CGRect,
-            ) -> OSStatus;
+            fn HIShapeUnionWithRect(in_shape: &HIMutableShape, in_rect: *const CGRect) -> OSStatus;
         }
-        unsafe { HIShapeUnionWithRect(in_shape, in_rect) }
+        unsafe { HIShapeUnionWithRect(self, in_rect) }
     }
 }

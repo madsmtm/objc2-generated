@@ -175,7 +175,6 @@ impl MDQuery {
     ///
     /// # Safety
     ///
-    /// - `query` might not allow `None`.
     /// - `query_string` might not allow `None`.
     /// - `value_list_attrs` generic must be of the correct type.
     /// - `value_list_attrs` might not allow `None`.
@@ -183,9 +182,9 @@ impl MDQuery {
     /// - `sorting_attrs` might not allow `None`.
     #[doc(alias = "MDQueryCreateSubset")]
     #[inline]
-    pub unsafe fn new_subset(
+    pub unsafe fn subset(
+        &self,
         allocator: Option<&CFAllocator>,
-        query: Option<&MDQuery>,
         query_string: Option<&CFString>,
         value_list_attrs: Option<&CFArray>,
         sorting_attrs: Option<&CFArray>,
@@ -193,7 +192,7 @@ impl MDQuery {
         extern "C-unwind" {
             fn MDQueryCreateSubset(
                 allocator: Option<&CFAllocator>,
-                query: Option<&MDQuery>,
+                query: &MDQuery,
                 query_string: Option<&CFString>,
                 value_list_attrs: Option<&CFArray>,
                 sorting_attrs: Option<&CFArray>,
@@ -202,7 +201,7 @@ impl MDQuery {
         let ret = unsafe {
             MDQueryCreateSubset(
                 allocator,
-                query,
+                self,
                 query_string,
                 value_list_attrs,
                 sorting_attrs,

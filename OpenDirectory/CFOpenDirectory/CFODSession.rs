@@ -93,8 +93,7 @@ impl ODSessionRef {
     ///
     /// # Safety
     ///
-    /// - `session` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODSessionCopyNodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

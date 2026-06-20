@@ -116,22 +116,16 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `identity` might not allow `None`.
     #[doc(alias = "CSIdentityCreateCopy")]
     #[inline]
-    pub unsafe fn new_copy(
-        allocator: Option<&CFAllocator>,
-        identity: Option<&CSIdentity>,
-    ) -> Option<CFRetained<CSIdentity>> {
+    pub unsafe fn copy(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CSIdentity>> {
         extern "C-unwind" {
             fn CSIdentityCreateCopy(
                 allocator: Option<&CFAllocator>,
-                identity: Option<&CSIdentity>,
+                identity: &CSIdentity,
             ) -> Option<NonNull<CSIdentity>>;
         }
-        let ret = unsafe { CSIdentityCreateCopy(allocator, identity) };
+        let ret = unsafe { CSIdentityCreateCopy(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -273,22 +267,19 @@ impl CSIdentity {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `identity` might not allow `None`.
     #[doc(alias = "CSIdentityCreatePersistentReference")]
     #[inline]
-    pub unsafe fn new_persistent_reference(
+    pub unsafe fn persistent_reference(
+        &self,
         allocator: Option<&CFAllocator>,
-        identity: Option<&CSIdentity>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CSIdentityCreatePersistentReference(
                 allocator: Option<&CFAllocator>,
-                identity: Option<&CSIdentity>,
+                identity: &CSIdentity,
             ) -> Option<NonNull<CFData>>;
         }
-        let ret = unsafe { CSIdentityCreatePersistentReference(allocator, identity) };
+        let ret = unsafe { CSIdentityCreatePersistentReference(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -329,22 +320,19 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `group` might not allow `None`.
     #[doc(alias = "CSIdentityCreateGroupMembershipQuery")]
     #[inline]
-    pub unsafe fn new_group_membership_query(
+    pub unsafe fn group_membership_query(
+        &self,
         allocator: Option<&CFAllocator>,
-        group: Option<&CSIdentity>,
     ) -> Option<CFRetained<CSIdentityQuery>> {
         extern "C-unwind" {
             fn CSIdentityCreateGroupMembershipQuery(
                 allocator: Option<&CFAllocator>,
-                group: Option<&CSIdentity>,
+                group: &CSIdentity,
             ) -> Option<NonNull<CSIdentityQuery>>;
         }
-        let ret = unsafe { CSIdentityCreateGroupMembershipQuery(allocator, group) };
+        let ret = unsafe { CSIdentityCreateGroupMembershipQuery(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -121,7 +122,6 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `ticket` might not allow `None`.
     /// - `setup` must be implemented correctly.
     /// - `setup_context` must be a valid pointer.
     /// - `evaluate` must be implemented correctly.
@@ -130,7 +130,7 @@ extern "C-unwind" {
     #[cfg(feature = "SecTrust")]
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCreateWithTicket(
-        ticket: Option<&CFData>,
+        ticket: &CFData,
         setup: SecureDownloadTrustSetupCallback,
         setup_context: *mut c_void,
         evaluate: SecureDownloadTrustEvaluateCallback,
@@ -233,13 +233,10 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `download_ref` must be a valid pointer.
-    /// - `data` might not allow `None`.
+    /// `download_ref` must be a valid pointer.
     #[deprecated = "SecureDownload is not supported"]
-    pub fn SecureDownloadUpdateWithData(
-        download_ref: SecureDownloadRef,
-        data: Option<&CFData>,
-    ) -> OSStatus;
+    pub fn SecureDownloadUpdateWithData(download_ref: SecureDownloadRef, data: &CFData)
+        -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -282,11 +279,10 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `url` might not allow `None`.
-    /// - `ticket_location` must be a valid pointer.
+    /// `ticket_location` must be a valid pointer.
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyTicketLocation(
-        url: Option<&CFURL>,
+        url: &CFURL,
         ticket_location: *mut *const CFURL,
     ) -> OSStatus;
 }
