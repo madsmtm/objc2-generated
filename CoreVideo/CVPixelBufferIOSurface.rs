@@ -33,30 +33,34 @@ extern "C" {
     pub static kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey: &'static CFString;
 }
 
-/// Returns the IOSurface backing the pixel buffer, or NULL if it is not backed by an IOSurface.
-///
-/// Parameter `pixelBuffer`: Target PixelBuffer.
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "objc2-io-surface"
+    feature = "CVPixelBuffer"
 ))]
-#[cfg(not(target_os = "watchos"))]
-#[inline]
-pub extern "C-unwind" fn CVPixelBufferGetIOSurface(
-    pixel_buffer: Option<&CVPixelBuffer>,
-) -> Option<CFRetained<IOSurfaceRef>> {
-    extern "C-unwind" {
-        fn CVPixelBufferGetIOSurface(
-            pixel_buffer: Option<&CVPixelBuffer>,
-        ) -> Option<NonNull<IOSurfaceRef>>;
+impl CVPixelBuffer {
+    /// Returns the IOSurface backing the pixel buffer, or NULL if it is not backed by an IOSurface.
+    ///
+    /// Parameter `pixelBuffer`: Target PixelBuffer.
+    #[doc(alias = "CVPixelBufferGetIOSurface")]
+    #[cfg(all(
+        feature = "CVBuffer",
+        feature = "CVImageBuffer",
+        feature = "CVPixelBuffer",
+        feature = "objc2-io-surface"
+    ))]
+    #[cfg(not(target_os = "watchos"))]
+    #[inline]
+    pub fn io_surface(pixel_buffer: Option<&CVPixelBuffer>) -> Option<CFRetained<IOSurfaceRef>> {
+        extern "C-unwind" {
+            fn CVPixelBufferGetIOSurface(
+                pixel_buffer: Option<&CVPixelBuffer>,
+            ) -> Option<NonNull<IOSurfaceRef>>;
+        }
+        let ret = unsafe { CVPixelBufferGetIOSurface(pixel_buffer) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { CVPixelBufferGetIOSurface(pixel_buffer) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
     /// Call to create a single CVPixelBuffer for a passed-in IOSurface.
     ///
     /// The CVPixelBuffer will retain the IOSurface.
@@ -79,6 +83,7 @@ extern "C-unwind" {
     ///
     /// - `pixel_buffer_attributes` generic should be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
+    #[doc(alias = "CVPixelBufferCreateWithIOSurface")]
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -87,10 +92,28 @@ extern "C-unwind" {
         feature = "objc2-io-surface"
     ))]
     #[cfg(not(target_os = "watchos"))]
-    pub fn CVPixelBufferCreateWithIOSurface(
+    #[inline]
+    pub unsafe fn create_with_io_surface(
         allocator: Option<&CFAllocator>,
         surface: &IOSurfaceRef,
         pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
-    ) -> CVReturn;
+    ) -> CVReturn {
+        extern "C-unwind" {
+            fn CVPixelBufferCreateWithIOSurface(
+                allocator: Option<&CFAllocator>,
+                surface: &IOSurfaceRef,
+                pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
+                pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+            ) -> CVReturn;
+        }
+        unsafe {
+            CVPixelBufferCreateWithIOSurface(
+                allocator,
+                surface,
+                pixel_buffer_attributes,
+                pixel_buffer_out,
+            )
+        }
+    }
 }

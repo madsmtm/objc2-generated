@@ -31,7 +31,20 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltree?language=objc)
 #[doc(alias = "CFXMLTreeRef")]
 #[cfg(feature = "CFTree")]
-pub type CFXMLTree = CFTree;
+#[repr(C)]
+pub struct CFXMLTree {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+#[cfg(feature = "CFTree")]
+cf_type!(
+    unsafe impl CFXMLTree: CFTree {}
+);
+#[cfg(all(feature = "CFTree", feature = "objc2"))]
+cf_objc2_type!(
+    unsafe impl RefEncode<void> for CFXMLTree {}
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode?language=objc)
 // NS_ENUM
@@ -444,29 +457,34 @@ impl CFXMLNode {
 }
 
 #[cfg(feature = "CFTree")]
-#[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-#[inline]
-pub extern "C-unwind" fn CFXMLTreeCreateWithNode(
-    allocator: Option<&CFAllocator>,
-    node: &CFXMLNode,
-) -> Option<CFRetained<CFXMLTree>> {
-    extern "C-unwind" {
-        fn CFXMLTreeCreateWithNode(
-            allocator: Option<&CFAllocator>,
-            node: &CFXMLNode,
-        ) -> Option<NonNull<CFXMLTree>>;
+impl CFXMLTree {
+    #[doc(alias = "CFXMLTreeCreateWithNode")]
+    #[cfg(feature = "CFTree")]
+    #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
+    #[inline]
+    pub fn with_node(
+        allocator: Option<&CFAllocator>,
+        node: &CFXMLNode,
+    ) -> Option<CFRetained<CFXMLTree>> {
+        extern "C-unwind" {
+            fn CFXMLTreeCreateWithNode(
+                allocator: Option<&CFAllocator>,
+                node: &CFXMLNode,
+            ) -> Option<NonNull<CFXMLTree>>;
+        }
+        let ret = unsafe { CFXMLTreeCreateWithNode(allocator, node) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFXMLTreeCreateWithNode(allocator, node) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CFTree")]
-#[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-#[inline]
-pub extern "C-unwind" fn CFXMLTreeGetNode(xml_tree: &CFXMLTree) -> Option<CFRetained<CFXMLNode>> {
-    extern "C-unwind" {
-        fn CFXMLTreeGetNode(xml_tree: &CFXMLTree) -> Option<NonNull<CFXMLNode>>;
+    #[doc(alias = "CFXMLTreeGetNode")]
+    #[cfg(feature = "CFTree")]
+    #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
+    #[inline]
+    pub fn node(&self) -> Option<CFRetained<CFXMLNode>> {
+        extern "C-unwind" {
+            fn CFXMLTreeGetNode(xml_tree: &CFXMLTree) -> Option<NonNull<CFXMLNode>>;
+        }
+        let ret = unsafe { CFXMLTreeGetNode(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { CFXMLTreeGetNode(xml_tree) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

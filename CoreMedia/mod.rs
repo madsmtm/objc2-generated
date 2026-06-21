@@ -890,24 +890,6 @@ pub use self::__CMFormatDescription::kCMVideoCodecType_VP9;
 pub use self::__CMFormatDescription::CMAudioCodecType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMAudioFormatDescription;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-audio-types"))]
-pub use self::__CMFormatDescription::CMAudioFormatDescriptionCreate;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMAudioFormatDescriptionCreateSummary;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMAudioFormatDescriptionEqual;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-audio-types"))]
-pub use self::__CMFormatDescription::CMAudioFormatDescriptionGetChannelLayout;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-audio-types"))]
-pub use self::__CMFormatDescription::CMAudioFormatDescriptionGetFormatList;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMAudioFormatDescriptionGetMagicCookie;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-audio-types"))]
-pub use self::__CMFormatDescription::CMAudioFormatDescriptionGetMostCompatibleFormat;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-audio-types"))]
-pub use self::__CMFormatDescription::CMAudioFormatDescriptionGetRichestDecodableFormat;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-audio-types"))]
-pub use self::__CMFormatDescription::CMAudioFormatDescriptionGetStreamBasicDescription;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMAudioFormatDescriptionMask;
 #[cfg(feature = "CMFormatDescription")]
@@ -921,23 +903,9 @@ pub use self::__CMFormatDescription::CMMediaType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatDescription;
 #[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMMetadataFormatDescriptionCreateWithKeys;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMMetadataFormatDescriptionCreateWithMetadataSpecifications;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMMetadataFormatDescriptionGetIdentifiers;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMMetadataFormatDescriptionGetKeyWithLocalID;
-#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMuxedFormatDescription;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMMuxedFormatDescriptionCreate;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMuxedStreamType;
 #[cfg(feature = "CMFormatDescription")]
@@ -953,25 +921,11 @@ pub use self::__CMFormatDescription::CMTextDisplayFlags;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextFormatDescription;
 #[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMTextFormatDescriptionGetDefaultTextBox;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMTextFormatDescriptionGetDisplayFlags;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMTextFormatDescriptionGetFontName;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMTextFormatDescriptionGetJustification;
-#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextFormatType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextJustificationValue;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTimeCodeFormatDescription;
-#[cfg(all(feature = "CMFormatDescription", feature = "CMTime"))]
-pub use self::__CMFormatDescription::CMTimeCodeFormatDescriptionCreate;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMTimeCodeFormatDescriptionGetFrameQuanta;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMTimeCodeFormatDescriptionGetTimeCodeFlags;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTimeCodeFormatType;
 #[cfg(feature = "CMFormatDescription")]
@@ -980,30 +934,6 @@ pub use self::__CMFormatDescription::CMVideoCodecType;
 pub use self::__CMFormatDescription::CMVideoDimensions;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescription;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionCopyTagCollectionArray;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionCreate;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-video"))]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionCreateForImageBuffer;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionCreateFromH264ParameterSets;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionCreateFromHEVCParameterSets;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetCleanAperture;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetDimensions;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetH264ParameterSetAtIndex;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetHEVCParameterSetAtIndex;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetPresentationDimensions;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-video"))]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionMatchesImageBuffer;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMFormatDescriptionBridgeError_AllocationFailed;
 #[cfg(feature = "CMFormatDescriptionBridge")]
@@ -1034,56 +964,14 @@ pub use self::__CMFormatDescriptionBridge::kCMSoundDescriptionFlavor_ISOFamily;
 pub use self::__CMFormatDescriptionBridge::kCMSoundDescriptionFlavor_QuickTimeMovie;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMSoundDescriptionFlavor_QuickTimeMovieV2;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer;
-#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
-pub use self::__CMFormatDescriptionBridge::CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMClosedCaptionDescriptionFlavor;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer;
-#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
-pub use self::__CMFormatDescriptionBridge::CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData;
 #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescriptionBridge"))]
 pub use self::__CMFormatDescriptionBridge::CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMImageDescriptionFlavor;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMMetadataDescriptionFlavor;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer;
-#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
-pub use self::__CMFormatDescriptionBridge::CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMSoundDescriptionFlavor;
 #[cfg(feature = "CMFormatDescriptionBridge")]
@@ -1112,50 +1000,8 @@ pub use self::__CMFormatDescriptionBridge::CMSwapHostEndianTextDescriptionToBig;
 pub use self::__CMFormatDescriptionBridge::CMSwapHostEndianTimeCodeDescriptionToBig;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMTextDescriptionFlavor;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer;
-#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
-pub use self::__CMFormatDescriptionBridge::CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMTimeCodeDescriptionFlavor;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer;
-#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
-pub use self::__CMFormatDescriptionBridge::CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge"
-))]
-pub use self::__CMFormatDescriptionBridge::CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer;
-#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
-pub use self::__CMFormatDescriptionBridge::CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData;
 #[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::kCMMemoryPoolError_AllocationFailed;
 #[cfg(feature = "CMMemoryPool")]

@@ -59,7 +59,8 @@ extern "C" {
         &'static CMImageDescriptionFlavor;
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CMFormatDescription")]
+impl CMVideoFormatDescription {
     /// Creates a CMVideoFormatDescription from a big-endian ImageDescription data structure.
     ///
     ///
@@ -80,18 +81,39 @@ extern "C-unwind" {
     /// - `image_description_data` must be a valid pointer.
     /// - `string_encoding` should be set correctly.
     /// - `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData")]
     #[cfg(feature = "CMFormatDescription")]
-    pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
+    #[inline]
+    pub unsafe fn create_from_big_endian_image_description_data(
         allocator: Option<&CFAllocator>,
         image_description_data: NonNull<u8>,
         size: usize,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
         format_description_out: NonNull<*const CMVideoFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
+                allocator: Option<&CFAllocator>,
+                image_description_data: NonNull<u8>,
+                size: usize,
+                string_encoding: CFStringEncoding,
+                flavor: Option<&CMImageDescriptionFlavor>,
+                format_description_out: NonNull<*const CMVideoFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
+                allocator,
+                image_description_data,
+                size,
+                string_encoding,
+                flavor,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a CMVideoFormatDescription from a big-endian ImageDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -109,17 +131,36 @@ extern "C-unwind" {
     ///
     /// - `string_encoding` should be set correctly.
     /// - `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn create_from_big_endian_image_description_block_buffer(
         allocator: Option<&CFAllocator>,
         image_description_block_buffer: &CMBlockBuffer,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
         format_description_out: NonNull<*const CMVideoFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                image_description_block_buffer: &CMBlockBuffer,
+                string_encoding: CFStringEncoding,
+                flavor: Option<&CMImageDescriptionFlavor>,
+                format_description_out: NonNull<*const CMVideoFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(
+                allocator,
+                image_description_block_buffer,
+                string_encoding,
+                flavor,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Copies the contents of a CMVideoFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -142,14 +183,35 @@ extern "C-unwind" {
     ///
     /// - `string_encoding` should be set correctly.
     /// - `block_buffer_out` must be a valid pointer.
+    #[doc(alias = "CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn copy_as_big_endian_image_description_block_buffer(
+        &self,
         allocator: Option<&CFAllocator>,
-        video_format_description: &CMVideoFormatDescription,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
         block_buffer_out: NonNull<*mut CMBlockBuffer>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                video_format_description: &CMVideoFormatDescription,
+                string_encoding: CFStringEncoding,
+                flavor: Option<&CMImageDescriptionFlavor>,
+                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer(
+                allocator,
+                self,
+                string_encoding,
+                flavor,
+                block_buffer_out,
+            )
+        }
+    }
 }
 
 extern "C-unwind" {
@@ -226,7 +288,8 @@ extern "C" {
     pub static kCMSoundDescriptionFlavor_3GPFamily: &'static CMSoundDescriptionFlavor;
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CMFormatDescription")]
+impl CMAudioFormatDescription {
     /// Creates a CMAudioFormatDescription from a big-endian SoundDescription data structure.
     ///
     ///
@@ -244,17 +307,36 @@ extern "C-unwind" {
     ///
     /// - `sound_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData")]
     #[cfg(feature = "CMFormatDescription")]
-    pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(
+    #[inline]
+    pub unsafe fn create_from_big_endian_sound_description_data(
         allocator: Option<&CFAllocator>,
         sound_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMSoundDescriptionFlavor>,
         format_description_out: NonNull<*const CMAudioFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(
+                allocator: Option<&CFAllocator>,
+                sound_description_data: NonNull<u8>,
+                size: usize,
+                flavor: Option<&CMSoundDescriptionFlavor>,
+                format_description_out: NonNull<*const CMAudioFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(
+                allocator,
+                sound_description_data,
+                size,
+                flavor,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a CMAudioFormatDescription from a big-endian SoundDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -269,16 +351,33 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn create_from_big_endian_sound_description_block_buffer(
         allocator: Option<&CFAllocator>,
         sound_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMSoundDescriptionFlavor>,
         format_description_out: NonNull<*const CMAudioFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                sound_description_block_buffer: &CMBlockBuffer,
+                flavor: Option<&CMSoundDescriptionFlavor>,
+                format_description_out: NonNull<*const CMAudioFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer(
+                allocator,
+                sound_description_block_buffer,
+                flavor,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Copies the contents of a CMAudioFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -298,13 +397,32 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    #[doc(alias = "CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn copy_as_big_endian_sound_description_block_buffer(
+        &self,
         allocator: Option<&CFAllocator>,
-        audio_format_description: &CMAudioFormatDescription,
         flavor: Option<&CMSoundDescriptionFlavor>,
         block_buffer_out: NonNull<*mut CMBlockBuffer>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                audio_format_description: &CMAudioFormatDescription,
+                flavor: Option<&CMSoundDescriptionFlavor>,
+                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer(
+                allocator,
+                self,
+                flavor,
+                block_buffer_out,
+            )
+        }
+    }
 }
 
 /// Examine a big-endian SoundDescription data structure in a CMBlockBuffer, and report whether the sample tables will need to use the legacy CBR layout.
@@ -372,7 +490,8 @@ extern "C-unwind" {
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CMTextDescriptionFlavor = CFString;
 
-extern "C-unwind" {
+#[cfg(feature = "CMFormatDescription")]
+impl CMTextFormatDescription {
     /// Creates a CMTextFormatDescription from a big-endian TextDescription data structure.
     ///
     ///
@@ -392,18 +511,39 @@ extern "C-unwind" {
     ///
     /// - `text_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData")]
     #[cfg(feature = "CMFormatDescription")]
-    pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(
+    #[inline]
+    pub unsafe fn create_from_big_endian_text_description_data(
         allocator: Option<&CFAllocator>,
         text_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMTextDescriptionFlavor>,
         media_type: CMMediaType,
         format_description_out: NonNull<*const CMTextFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(
+                allocator: Option<&CFAllocator>,
+                text_description_data: NonNull<u8>,
+                size: usize,
+                flavor: Option<&CMTextDescriptionFlavor>,
+                media_type: CMMediaType,
+                format_description_out: NonNull<*const CMTextFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(
+                allocator,
+                text_description_data,
+                size,
+                flavor,
+                media_type,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a CMTextFormatDescription from a big-endian TextDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -420,17 +560,36 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn create_from_big_endian_text_description_block_buffer(
         allocator: Option<&CFAllocator>,
         text_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMTextDescriptionFlavor>,
         media_type: CMMediaType,
         format_description_out: NonNull<*const CMTextFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                text_description_block_buffer: &CMBlockBuffer,
+                flavor: Option<&CMTextDescriptionFlavor>,
+                media_type: CMMediaType,
+                format_description_out: NonNull<*const CMTextFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer(
+                allocator,
+                text_description_block_buffer,
+                flavor,
+                media_type,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Copies the contents of a CMTextFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -450,13 +609,32 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    #[doc(alias = "CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn copy_as_big_endian_text_description_block_buffer(
+        &self,
         allocator: Option<&CFAllocator>,
-        text_format_description: &CMTextFormatDescription,
         flavor: Option<&CMTextDescriptionFlavor>,
         block_buffer_out: NonNull<*mut CMBlockBuffer>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                text_format_description: &CMTextFormatDescription,
+                flavor: Option<&CMTextDescriptionFlavor>,
+                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer(
+                allocator,
+                self,
+                flavor,
+                block_buffer_out,
+            )
+        }
+    }
 }
 
 extern "C-unwind" {
@@ -497,7 +675,8 @@ extern "C-unwind" {
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CMClosedCaptionDescriptionFlavor = CFString;
 
-extern "C-unwind" {
+#[cfg(feature = "CMFormatDescription")]
+impl CMClosedCaptionFormatDescription {
     /// Creates a CMClosedCaptionFormatDescription from a big-endian ClosedCaptionDescription data structure.
     ///
     ///
@@ -515,17 +694,38 @@ extern "C-unwind" {
     ///
     /// - `closed_caption_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    #[doc(
+        alias = "CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData"
+    )]
     #[cfg(feature = "CMFormatDescription")]
-    pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(
+    #[inline]
+    pub unsafe fn create_from_big_endian_closed_caption_description_data(
         allocator: Option<&CFAllocator>,
         closed_caption_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
         format_description_out: NonNull<*const CMClosedCaptionFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(
+                allocator: Option<&CFAllocator>,
+                closed_caption_description_data: NonNull<u8>,
+                size: usize,
+                flavor: Option<&CMClosedCaptionDescriptionFlavor>,
+                format_description_out: NonNull<*const CMClosedCaptionFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(
+                allocator,
+                closed_caption_description_data,
+                size,
+                flavor,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a CMClosedCaptionFormatDescription from a big-endian ClosedCaptionDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -540,16 +740,35 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    #[doc(
+        alias = "CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer"
+    )]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn create_from_big_endian_closed_caption_description_block_buffer(
         allocator: Option<&CFAllocator>,
         closed_caption_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
         format_description_out: NonNull<*const CMClosedCaptionFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                closed_caption_description_block_buffer: &CMBlockBuffer,
+                flavor: Option<&CMClosedCaptionDescriptionFlavor>,
+                format_description_out: NonNull<*const CMClosedCaptionFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer(
+                allocator,
+                closed_caption_description_block_buffer,
+                flavor,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Copies the contents of a CMClosedCaptionFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -569,13 +788,34 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    #[doc(
+        alias = "CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer"
+    )]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn copy_as_big_endian_closed_caption_description_block_buffer(
+        &self,
         allocator: Option<&CFAllocator>,
-        closed_caption_format_description: &CMClosedCaptionFormatDescription,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
         block_buffer_out: NonNull<*mut CMBlockBuffer>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                closed_caption_format_description: &CMClosedCaptionFormatDescription,
+                flavor: Option<&CMClosedCaptionDescriptionFlavor>,
+                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer(
+                allocator,
+                self,
+                flavor,
+                block_buffer_out,
+            )
+        }
+    }
 }
 
 extern "C-unwind" {
@@ -616,7 +856,8 @@ extern "C-unwind" {
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CMTimeCodeDescriptionFlavor = CFString;
 
-extern "C-unwind" {
+#[cfg(feature = "CMFormatDescription")]
+impl CMTimeCodeFormatDescription {
     /// Creates a CMTimeCodeFormatDescription from a big-endian TimeCodeDescription data structure.
     ///
     ///
@@ -634,17 +875,36 @@ extern "C-unwind" {
     ///
     /// - `time_code_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData")]
     #[cfg(feature = "CMFormatDescription")]
-    pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(
+    #[inline]
+    pub unsafe fn create_from_big_endian_time_code_description_data(
         allocator: Option<&CFAllocator>,
         time_code_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
         format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(
+                allocator: Option<&CFAllocator>,
+                time_code_description_data: NonNull<u8>,
+                size: usize,
+                flavor: Option<&CMTimeCodeDescriptionFlavor>,
+                format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(
+                allocator,
+                time_code_description_data,
+                size,
+                flavor,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a CMTimeCodeFormatDescription from a big-endian TimeCodeDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -659,16 +919,33 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn create_from_big_endian_time_code_description_block_buffer(
         allocator: Option<&CFAllocator>,
         time_code_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
         format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                time_code_description_block_buffer: &CMBlockBuffer,
+                flavor: Option<&CMTimeCodeDescriptionFlavor>,
+                format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer(
+                allocator,
+                time_code_description_block_buffer,
+                flavor,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Copies the contents of a CMTimeCodeFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -688,13 +965,32 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    #[doc(alias = "CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn copy_as_big_endian_time_code_description_block_buffer(
+        &self,
         allocator: Option<&CFAllocator>,
-        time_code_format_description: &CMTimeCodeFormatDescription,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
         block_buffer_out: NonNull<*mut CMBlockBuffer>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                time_code_format_description: &CMTimeCodeFormatDescription,
+                flavor: Option<&CMTimeCodeDescriptionFlavor>,
+                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer(
+                allocator,
+                self,
+                flavor,
+                block_buffer_out,
+            )
+        }
+    }
 }
 
 extern "C-unwind" {
@@ -735,7 +1031,8 @@ extern "C-unwind" {
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CMMetadataDescriptionFlavor = CFString;
 
-extern "C-unwind" {
+#[cfg(feature = "CMFormatDescription")]
+impl CMMetadataFormatDescription {
     /// Creates a CMMetadataFormatDescription from a big-endian MetadataDescription data structure.
     ///
     ///
@@ -753,17 +1050,36 @@ extern "C-unwind" {
     ///
     /// - `metadata_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData")]
     #[cfg(feature = "CMFormatDescription")]
-    pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(
+    #[inline]
+    pub unsafe fn create_from_big_endian_metadata_description_data(
         allocator: Option<&CFAllocator>,
         metadata_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMMetadataDescriptionFlavor>,
         format_description_out: NonNull<*const CMMetadataFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(
+                allocator: Option<&CFAllocator>,
+                metadata_description_data: NonNull<u8>,
+                size: usize,
+                flavor: Option<&CMMetadataDescriptionFlavor>,
+                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(
+                allocator,
+                metadata_description_data,
+                size,
+                flavor,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a CMMetadataFormatDescription from a big-endian MetadataDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -778,16 +1094,33 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn create_from_big_endian_metadata_description_block_buffer(
         allocator: Option<&CFAllocator>,
         metadata_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMMetadataDescriptionFlavor>,
         format_description_out: NonNull<*const CMMetadataFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                metadata_description_block_buffer: &CMBlockBuffer,
+                flavor: Option<&CMMetadataDescriptionFlavor>,
+                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer(
+                allocator,
+                metadata_description_block_buffer,
+                flavor,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Copies the contents of a CMMetadataFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -807,13 +1140,32 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    #[doc(alias = "CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
-    pub fn CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer(
+    #[inline]
+    pub unsafe fn copy_as_big_endian_metadata_description_block_buffer(
+        &self,
         allocator: Option<&CFAllocator>,
-        metadata_format_description: &CMMetadataFormatDescription,
         flavor: Option<&CMMetadataDescriptionFlavor>,
         block_buffer_out: NonNull<*mut CMBlockBuffer>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer(
+                allocator: Option<&CFAllocator>,
+                metadata_format_description: &CMMetadataFormatDescription,
+                flavor: Option<&CMMetadataDescriptionFlavor>,
+                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer(
+                allocator,
+                self,
+                flavor,
+                block_buffer_out,
+            )
+        }
+    }
 }
 
 extern "C-unwind" {

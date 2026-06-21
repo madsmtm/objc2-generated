@@ -5,23 +5,28 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// Creates a read transform from a CFReadStreamRef
-///
-///
-/// Parameter `inputStream`: The stream that is to be opened and read from when
-/// the chain executes.
 #[cfg(feature = "SecTransform")]
-#[deprecated = "SecTransform is no longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecTransformCreateReadTransformWithReadStream(
-    input_stream: &CFReadStream,
-) -> CFRetained<SecTransform> {
-    extern "C-unwind" {
-        fn SecTransformCreateReadTransformWithReadStream(
-            input_stream: &CFReadStream,
-        ) -> Option<NonNull<SecTransform>>;
+impl SecTransform {
+    /// Creates a read transform from a CFReadStreamRef
+    ///
+    ///
+    /// Parameter `inputStream`: The stream that is to be opened and read from when
+    /// the chain executes.
+    #[doc(alias = "SecTransformCreateReadTransformWithReadStream")]
+    #[cfg(feature = "SecTransform")]
+    #[deprecated = "SecTransform is no longer supported"]
+    #[inline]
+    pub unsafe fn new_read_transform_with_read_stream(
+        input_stream: &CFReadStream,
+    ) -> CFRetained<SecTransform> {
+        extern "C-unwind" {
+            fn SecTransformCreateReadTransformWithReadStream(
+                input_stream: &CFReadStream,
+            ) -> Option<NonNull<SecTransform>>;
+        }
+        let ret = unsafe { SecTransformCreateReadTransformWithReadStream(input_stream) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { SecTransformCreateReadTransformWithReadStream(input_stream) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
 }

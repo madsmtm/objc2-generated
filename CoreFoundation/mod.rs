@@ -1178,10 +1178,6 @@ pub use self::__CFXMLNode::CFXMLNotationInfo;
 pub use self::__CFXMLNode::CFXMLProcessingInstructionInfo;
 #[cfg(all(feature = "CFTree", feature = "CFXMLNode"))]
 pub use self::__CFXMLNode::CFXMLTree;
-#[cfg(all(feature = "CFTree", feature = "CFXMLNode"))]
-pub use self::__CFXMLNode::CFXMLTreeCreateWithNode;
-#[cfg(all(feature = "CFTree", feature = "CFXMLNode"))]
-pub use self::__CFXMLNode::CFXMLTreeGetNode;
 #[cfg(feature = "CFXMLParser")]
 pub use self::__CFXMLParser::kCFXMLTreeErrorDescription;
 #[cfg(feature = "CFXMLParser")]
@@ -1230,37 +1226,6 @@ pub use self::__CFXMLParser::CFXMLParserResolveExternalEntityCallBack;
 pub use self::__CFXMLParser::CFXMLParserRetainCallBack;
 #[cfg(feature = "CFXMLParser")]
 pub use self::__CFXMLParser::CFXMLParserStatusCode;
-#[cfg(all(
-    feature = "CFData",
-    feature = "CFTree",
-    feature = "CFURL",
-    feature = "CFXMLNode",
-    feature = "CFXMLParser"
-))]
-pub use self::__CFXMLParser::CFXMLTreeCreateFromData;
-#[cfg(all(
-    feature = "CFData",
-    feature = "CFDictionary",
-    feature = "CFTree",
-    feature = "CFURL",
-    feature = "CFXMLNode",
-    feature = "CFXMLParser"
-))]
-pub use self::__CFXMLParser::CFXMLTreeCreateFromDataWithError;
-#[cfg(all(
-    feature = "CFTree",
-    feature = "CFURL",
-    feature = "CFXMLNode",
-    feature = "CFXMLParser"
-))]
-pub use self::__CFXMLParser::CFXMLTreeCreateWithDataFromURL;
-#[cfg(all(
-    feature = "CFData",
-    feature = "CFTree",
-    feature = "CFXMLNode",
-    feature = "CFXMLParser"
-))]
-pub use self::__CFXMLParser::CFXMLTreeCreateXMLData;
 #[cfg(feature = "CFURL")]
 pub use self::__CFURL::kCFURLAddedToDirectoryDateKey;
 #[cfg(feature = "CFURL")]

@@ -181,26 +181,6 @@ pub use self::__SCNetworkConfiguration::kSCNetworkProtocolTypeProxies;
 pub use self::__SCNetworkConfiguration::kSCNetworkProtocolTypeSMB;
 #[cfg(feature = "SCNetworkConfiguration")]
 pub use self::__SCNetworkConfiguration::SCBondInterface;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCBondInterfaceCopyAll;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCBondInterfaceCopyAvailableMemberInterfaces;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCBondInterfaceCopyStatus;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCBondInterfaceCreate;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCBondInterfaceGetMemberInterfaces;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCBondInterfaceGetOptions;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCBondInterfaceRemove;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCBondInterfaceSetLocalizedDisplayName;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCBondInterfaceSetMemberInterfaces;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCBondInterfaceSetOptions;
 #[cfg(feature = "SCNetworkConfiguration")]
 pub use self::__SCNetworkConfiguration::SCBondStatus;
 #[cfg(feature = "SCNetworkConfiguration")]
@@ -213,26 +193,6 @@ pub use self::__SCNetworkConfiguration::SCNetworkService;
 pub use self::__SCNetworkConfiguration::SCNetworkSet;
 #[cfg(feature = "SCNetworkConfiguration")]
 pub use self::__SCNetworkConfiguration::SCVLANInterface;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCVLANInterfaceCopyAll;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCVLANInterfaceCopyAvailablePhysicalInterfaces;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCVLANInterfaceCreate;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCVLANInterfaceGetOptions;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCVLANInterfaceGetPhysicalInterface;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCVLANInterfaceGetTag;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCVLANInterfaceRemove;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCVLANInterfaceSetLocalizedDisplayName;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCVLANInterfaceSetOptions;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCVLANInterfaceSetPhysicalInterfaceAndTag;
 #[cfg(feature = "SCNetworkConnection")]
 pub use self::__SCNetworkConnection::SCNetworkConnection;
 #[cfg(feature = "SCNetworkConnection")]

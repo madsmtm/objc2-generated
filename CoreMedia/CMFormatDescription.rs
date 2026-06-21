@@ -353,9 +353,25 @@ pub const kCMAudioCodecType_AAC_AudibleProtected: CMAudioCodecType = 0x61616163;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescription?language=objc)
 #[doc(alias = "CMAudioFormatDescriptionRef")]
-pub type CMAudioFormatDescription = CMFormatDescription;
+#[repr(C)]
+pub struct CMAudioFormatDescription {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
 
-extern "C-unwind" {
+cf_type!(
+    unsafe impl CMAudioFormatDescription: CMFormatDescription {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<void> for CMAudioFormatDescription {}
+);
+
+unsafe impl Send for CMAudioFormatDescription {}
+
+unsafe impl Sync for CMAudioFormatDescription {}
+
+impl CMAudioFormatDescription {
     /// Creates a format description for an audio media stream.
     ///
     /// The ASBD is required, the channel layout is optional, and the magic cookie is required
@@ -372,8 +388,10 @@ extern "C-unwind" {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMAudioFormatDescriptionCreate")]
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CMAudioFormatDescriptionCreate(
+    #[inline]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         asbd: NonNull<AudioStreamBasicDescription>,
         layout_size: usize,
@@ -382,22 +400,50 @@ extern "C-unwind" {
         magic_cookie: *const c_void,
         extensions: Option<&CFDictionary>,
         format_description_out: NonNull<*const CMAudioFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionCreate(
+                allocator: Option<&CFAllocator>,
+                asbd: NonNull<AudioStreamBasicDescription>,
+                layout_size: usize,
+                layout: *const AudioChannelLayout,
+                magic_cookie_size: usize,
+                magic_cookie: *const c_void,
+                extensions: Option<&CFDictionary>,
+                format_description_out: NonNull<*const CMAudioFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMAudioFormatDescriptionCreate(
+                allocator,
+                asbd,
+                layout_size,
+                layout,
+                magic_cookie_size,
+                magic_cookie,
+                extensions,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Returns a read-only pointer to the AudioStreamBasicDescription inside an audio CMFormatDescription.
     ///
     /// See CoreAudioTypes.h for the definition of AudioStreamBasicDescription.
     /// This API is specific to audio format descriptions, and will return NULL if
     /// used with a non-audio format descriptions.
+    #[doc(alias = "CMAudioFormatDescriptionGetStreamBasicDescription")]
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CMAudioFormatDescriptionGetStreamBasicDescription(
-        desc: &CMAudioFormatDescription,
-    ) -> *const AudioStreamBasicDescription;
-}
+    #[inline]
+    pub unsafe fn stream_basic_description(&self) -> *const AudioStreamBasicDescription {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionGetStreamBasicDescription(
+                desc: &CMAudioFormatDescription,
+            ) -> *const AudioStreamBasicDescription;
+        }
+        unsafe { CMAudioFormatDescriptionGetStreamBasicDescription(self) }
+    }
 
-extern "C-unwind" {
     /// Returns a read-only pointer to (and size of) the magic cookie inside an audio CMFormatDescription.
     ///
     /// The magic cookie is a completely opaque piece of data, written and read only by
@@ -411,13 +457,18 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `size_out` must be a valid pointer or null.
-    pub fn CMAudioFormatDescriptionGetMagicCookie(
-        desc: &CMAudioFormatDescription,
-        size_out: *mut usize,
-    ) -> *const c_void;
-}
+    #[doc(alias = "CMAudioFormatDescriptionGetMagicCookie")]
+    #[inline]
+    pub unsafe fn magic_cookie(&self, size_out: *mut usize) -> *const c_void {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionGetMagicCookie(
+                desc: &CMAudioFormatDescription,
+                size_out: *mut usize,
+            ) -> *const c_void;
+        }
+        unsafe { CMAudioFormatDescriptionGetMagicCookie(self, size_out) }
+    }
 
-extern "C-unwind" {
     /// Returns a read-only pointer to (and size of) the AudioChannelLayout inside an audio CMFormatDescription.
     ///
     /// See CoreAudioTypes.h for the definition of AudioChannelLayout.
@@ -431,14 +482,19 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `size_out` must be a valid pointer or null.
+    #[doc(alias = "CMAudioFormatDescriptionGetChannelLayout")]
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CMAudioFormatDescriptionGetChannelLayout(
-        desc: &CMAudioFormatDescription,
-        size_out: *mut usize,
-    ) -> *const AudioChannelLayout;
-}
+    #[inline]
+    pub unsafe fn channel_layout(&self, size_out: *mut usize) -> *const AudioChannelLayout {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionGetChannelLayout(
+                desc: &CMAudioFormatDescription,
+                size_out: *mut usize,
+            ) -> *const AudioChannelLayout;
+        }
+        unsafe { CMAudioFormatDescriptionGetChannelLayout(self, size_out) }
+    }
 
-extern "C-unwind" {
     /// Returns a read-only pointer to (and size of) the array of AudioFormatListItem structs inside an audio CMFormatDescription.
     ///
     /// This property is analogous to kAudioFormatProperty_FormatList (See AudioFormat.h) and follows
@@ -452,14 +508,19 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `size_out` must be a valid pointer or null.
+    #[doc(alias = "CMAudioFormatDescriptionGetFormatList")]
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CMAudioFormatDescriptionGetFormatList(
-        desc: &CMAudioFormatDescription,
-        size_out: *mut usize,
-    ) -> *const AudioFormatListItem;
-}
+    #[inline]
+    pub unsafe fn format_list(&self, size_out: *mut usize) -> *const AudioFormatListItem {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionGetFormatList(
+                desc: &CMAudioFormatDescription,
+                size_out: *mut usize,
+            ) -> *const AudioFormatListItem;
+        }
+        unsafe { CMAudioFormatDescriptionGetFormatList(self, size_out) }
+    }
 
-extern "C-unwind" {
     /// Returns a read-only pointer to the appropriate AudioFormatListItem inside an audio CMFormatDescription.
     ///
     /// This property performs validation on the formats represented by the audio in the description.  It
@@ -469,13 +530,18 @@ extern "C-unwind" {
     /// current system for this audio format.
     ///
     /// Returns: A read-only pointer to the appropriate AudioFormatListItem inside the audio format description.
+    #[doc(alias = "CMAudioFormatDescriptionGetRichestDecodableFormat")]
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CMAudioFormatDescriptionGetRichestDecodableFormat(
-        desc: &CMAudioFormatDescription,
-    ) -> *const AudioFormatListItem;
-}
+    #[inline]
+    pub unsafe fn richest_decodable_format(&self) -> *const AudioFormatListItem {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionGetRichestDecodableFormat(
+                desc: &CMAudioFormatDescription,
+            ) -> *const AudioFormatListItem;
+        }
+        unsafe { CMAudioFormatDescriptionGetRichestDecodableFormat(self) }
+    }
 
-extern "C-unwind" {
     /// Returns a read-only pointer to the appropriate AudioFormatListItem inside an audio CMFormatDescription.
     ///
     /// This property returns a pointer to the last AudioFormatListItem in the kAudioFormatProperty_FormatList
@@ -483,13 +549,18 @@ extern "C-unwind" {
     /// with a non-audio format description.
     ///
     /// Returns: A read-only pointer to the appropriate AudioFormatListItem inside the audio format description.
+    #[doc(alias = "CMAudioFormatDescriptionGetMostCompatibleFormat")]
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CMAudioFormatDescriptionGetMostCompatibleFormat(
-        desc: &CMAudioFormatDescription,
-    ) -> *const AudioFormatListItem;
-}
+    #[inline]
+    pub unsafe fn most_compatible_format(&self) -> *const AudioFormatListItem {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionGetMostCompatibleFormat(
+                desc: &CMAudioFormatDescription,
+            ) -> *const AudioFormatListItem;
+        }
+        unsafe { CMAudioFormatDescriptionGetMostCompatibleFormat(self) }
+    }
 
-extern "C-unwind" {
     /// Creates a summary audio format description from an array of audio format descriptions.
     ///
     /// The summary format description will be canonical LPCM and deep enough in
@@ -500,12 +571,31 @@ extern "C-unwind" {
     ///
     /// - `format_description_array` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
-    pub fn CMAudioFormatDescriptionCreateSummary(
+    #[doc(alias = "CMAudioFormatDescriptionCreateSummary")]
+    #[inline]
+    pub unsafe fn create_summary(
         allocator: Option<&CFAllocator>,
         format_description_array: &CFArray,
         flags: u32,
         format_description_out: NonNull<*const CMAudioFormatDescription>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionCreateSummary(
+                allocator: Option<&CFAllocator>,
+                format_description_array: &CFArray,
+                flags: u32,
+                format_description_out: NonNull<*const CMAudioFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMAudioFormatDescriptionCreateSummary(
+                allocator,
+                format_description_array,
+                flags,
+                format_description_out,
+            )
+        }
+    }
 }
 
 /// Mask bits passed to (and returned from) CMAudioFormatDescriptionEqual,
@@ -530,60 +620,79 @@ pub const kCMAudioFormatDescriptionMask_All: CMAudioFormatDescriptionMask =
         | kCMAudioFormatDescriptionMask_ChannelLayout
         | kCMAudioFormatDescriptionMask_Extensions;
 
-/// Evaluates equality for the specified parts of two audio format descriptions.
-///
-/// Bits in equalityMask specify the caller's interest in the equality of various parts of the descriptions.
-/// Bits set and returned in equalityMaskOut represent the subset of those parts that are equal.
-/// If there is any sort of error that prevents the comparison from occurring, false will be returned, and
-/// all bits in equalityMaskOut will be cleared. If you pass kCMAudioFormatDescriptionMask_All in equalityMask,
-/// and NULL for equalityMaskOut, this API is equivalent to CFEqual(desc1, desc2).
-///
-/// On releases up to macOS 12, iOS 15, tvOS 15 and watchOS 8, the kCMAudioFormatDescriptionMask_Extensions
-/// flag was ignored in equalityMask. So this API always treated two audio format descriptions as equal even
-/// when they had different extensions.
-///
-/// Starting with macOS 13, iOS 16, tvOS 16 and watchOS 9, kCMAudioFormatDescriptionMask_Extensions is correctly
-/// accounted for when determining equality of two audio format descriptions. This also affects CFEqual(desc1, desc2)
-/// as it will return false when two audio format descriptions have different extensions.
-///
-///
-/// Returns: The result of the comparison.  True if all parts in which the caller is interested are equal.
-/// False if any of the parts in which the caller is interested are not equal.
-///
-/// # Safety
-///
-/// `equality_mask_out` must be a valid pointer or null.
-#[inline]
-pub unsafe extern "C-unwind" fn CMAudioFormatDescriptionEqual(
-    format_description: &CMAudioFormatDescription,
-    other_format_description: &CMAudioFormatDescription,
-    equality_mask: CMAudioFormatDescriptionMask,
-    equality_mask_out: *mut CMAudioFormatDescriptionMask,
-) -> bool {
-    extern "C-unwind" {
-        fn CMAudioFormatDescriptionEqual(
-            format_description: &CMAudioFormatDescription,
-            other_format_description: &CMAudioFormatDescription,
-            equality_mask: CMAudioFormatDescriptionMask,
-            equality_mask_out: *mut CMAudioFormatDescriptionMask,
-        ) -> Boolean;
+impl CMAudioFormatDescription {
+    /// Evaluates equality for the specified parts of two audio format descriptions.
+    ///
+    /// Bits in equalityMask specify the caller's interest in the equality of various parts of the descriptions.
+    /// Bits set and returned in equalityMaskOut represent the subset of those parts that are equal.
+    /// If there is any sort of error that prevents the comparison from occurring, false will be returned, and
+    /// all bits in equalityMaskOut will be cleared. If you pass kCMAudioFormatDescriptionMask_All in equalityMask,
+    /// and NULL for equalityMaskOut, this API is equivalent to CFEqual(desc1, desc2).
+    ///
+    /// On releases up to macOS 12, iOS 15, tvOS 15 and watchOS 8, the kCMAudioFormatDescriptionMask_Extensions
+    /// flag was ignored in equalityMask. So this API always treated two audio format descriptions as equal even
+    /// when they had different extensions.
+    ///
+    /// Starting with macOS 13, iOS 16, tvOS 16 and watchOS 9, kCMAudioFormatDescriptionMask_Extensions is correctly
+    /// accounted for when determining equality of two audio format descriptions. This also affects CFEqual(desc1, desc2)
+    /// as it will return false when two audio format descriptions have different extensions.
+    ///
+    ///
+    /// Returns: The result of the comparison.  True if all parts in which the caller is interested are equal.
+    /// False if any of the parts in which the caller is interested are not equal.
+    ///
+    /// # Safety
+    ///
+    /// `equality_mask_out` must be a valid pointer or null.
+    #[doc(alias = "CMAudioFormatDescriptionEqual")]
+    #[inline]
+    pub unsafe fn equal(
+        &self,
+        other_format_description: &CMAudioFormatDescription,
+        equality_mask: CMAudioFormatDescriptionMask,
+        equality_mask_out: *mut CMAudioFormatDescriptionMask,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CMAudioFormatDescriptionEqual(
+                format_description: &CMAudioFormatDescription,
+                other_format_description: &CMAudioFormatDescription,
+                equality_mask: CMAudioFormatDescriptionMask,
+                equality_mask_out: *mut CMAudioFormatDescriptionMask,
+            ) -> Boolean;
+        }
+        let ret = unsafe {
+            CMAudioFormatDescriptionEqual(
+                self,
+                other_format_description,
+                equality_mask,
+                equality_mask_out,
+            )
+        };
+        ret != 0
     }
-    let ret = unsafe {
-        CMAudioFormatDescriptionEqual(
-            format_description,
-            other_format_description,
-            equality_mask,
-            equality_mask_out,
-        )
-    };
-    ret != 0
 }
 
 /// Synonym type used for manipulating video CMFormatDescriptions
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescription?language=objc)
 #[doc(alias = "CMVideoFormatDescriptionRef")]
-pub type CMVideoFormatDescription = CMFormatDescription;
+#[repr(C)]
+pub struct CMVideoFormatDescription {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+cf_type!(
+    unsafe impl CMVideoFormatDescription: CMFormatDescription {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<void> for CMVideoFormatDescription {}
+);
+
+unsafe impl Send for CMVideoFormatDescription {}
+
+unsafe impl Sync for CMVideoFormatDescription {}
 
 /// Four-character codes identifying the pixel format. Only some codec types are pixel formats.
 /// In general, CoreVideo CVPixelFormatType constants may be used too.
@@ -1565,7 +1674,7 @@ extern "C" {
     pub static kCMFormatDescriptionExtension_ConvertedFromExternalSphericalTags: &'static CFString;
 }
 
-extern "C-unwind" {
+impl CMVideoFormatDescription {
     /// Creates a format description for a video media stream.
     ///
     /// The caller owns the returned CMFormatDescription, and must release it when done with it. All input parameters
@@ -1576,17 +1685,38 @@ extern "C-unwind" {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
-    pub fn CMVideoFormatDescriptionCreate(
+    #[doc(alias = "CMVideoFormatDescriptionCreate")]
+    #[inline]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         codec_type: CMVideoCodecType,
         width: i32,
         height: i32,
         extensions: Option<&CFDictionary>,
         format_description_out: NonNull<*const CMVideoFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionCreate(
+                allocator: Option<&CFAllocator>,
+                codec_type: CMVideoCodecType,
+                width: i32,
+                height: i32,
+                extensions: Option<&CFDictionary>,
+                format_description_out: NonNull<*const CMVideoFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMVideoFormatDescriptionCreate(
+                allocator,
+                codec_type,
+                width,
+                height,
+                extensions,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a format description for a video media stream contained in CVImageBuffers of the type provided.
     ///
     /// This convenience function is equivalent to:
@@ -1604,15 +1734,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMVideoFormatDescriptionCreateForImageBuffer")]
     #[cfg(feature = "objc2-core-video")]
-    pub fn CMVideoFormatDescriptionCreateForImageBuffer(
+    #[inline]
+    pub unsafe fn create_for_image_buffer(
         allocator: Option<&CFAllocator>,
         image_buffer: &CVImageBuffer,
         format_description_out: NonNull<*const CMVideoFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionCreateForImageBuffer(
+                allocator: Option<&CFAllocator>,
+                image_buffer: &CVImageBuffer,
+                format_description_out: NonNull<*const CMVideoFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMVideoFormatDescriptionCreateForImageBuffer(
+                allocator,
+                image_buffer,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a format description for a video media stream described by H.264 parameter set NAL units.
     ///
     /// This function parses the dimensions provided by the parameter sets and creates a format description suitable for a raw H.264 stream.
@@ -1624,17 +1769,38 @@ extern "C-unwind" {
     /// - `parameter_set_pointers` must be a valid pointer.
     /// - `parameter_set_sizes` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
-    pub fn CMVideoFormatDescriptionCreateFromH264ParameterSets(
+    #[doc(alias = "CMVideoFormatDescriptionCreateFromH264ParameterSets")]
+    #[inline]
+    pub unsafe fn create_from_h264_parameter_sets(
         allocator: Option<&CFAllocator>,
         parameter_set_count: usize,
         parameter_set_pointers: NonNull<NonNull<u8>>,
         parameter_set_sizes: NonNull<usize>,
         nal_unit_header_length: c_int,
         format_description_out: NonNull<*const CMFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionCreateFromH264ParameterSets(
+                allocator: Option<&CFAllocator>,
+                parameter_set_count: usize,
+                parameter_set_pointers: NonNull<NonNull<u8>>,
+                parameter_set_sizes: NonNull<usize>,
+                nal_unit_header_length: c_int,
+                format_description_out: NonNull<*const CMFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMVideoFormatDescriptionCreateFromH264ParameterSets(
+                allocator,
+                parameter_set_count,
+                parameter_set_pointers,
+                parameter_set_sizes,
+                nal_unit_header_length,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a format description for a video media stream described by HEVC (H.265) parameter set NAL units.
     ///
     /// This function parses the dimensions provided by the parameter sets and creates a format description suitable for a raw H.265 stream.
@@ -1648,7 +1814,9 @@ extern "C-unwind" {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
-    pub fn CMVideoFormatDescriptionCreateFromHEVCParameterSets(
+    #[doc(alias = "CMVideoFormatDescriptionCreateFromHEVCParameterSets")]
+    #[inline]
+    pub unsafe fn create_from_hevc_parameter_sets(
         allocator: Option<&CFAllocator>,
         parameter_set_count: usize,
         parameter_set_pointers: NonNull<NonNull<u8>>,
@@ -1656,10 +1824,31 @@ extern "C-unwind" {
         nal_unit_header_length: c_int,
         extensions: Option<&CFDictionary>,
         format_description_out: NonNull<*const CMFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionCreateFromHEVCParameterSets(
+                allocator: Option<&CFAllocator>,
+                parameter_set_count: usize,
+                parameter_set_pointers: NonNull<NonNull<u8>>,
+                parameter_set_sizes: NonNull<usize>,
+                nal_unit_header_length: c_int,
+                extensions: Option<&CFDictionary>,
+                format_description_out: NonNull<*const CMFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMVideoFormatDescriptionCreateFromHEVCParameterSets(
+                allocator,
+                parameter_set_count,
+                parameter_set_pointers,
+                parameter_set_sizes,
+                nal_unit_header_length,
+                extensions,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Returns a parameter set contained in a H.264 format description.
     ///
     /// This function parses the AVC decoder configuration record contained in a H.264 video format description and returns the NAL unit at the given index from it.  These NAL units are typically parameter sets (e.g. SPS, PPS), but may contain others as specified by ISO/IEC 14496-15 (e.g. user-data SEI).
@@ -1673,17 +1862,38 @@ extern "C-unwind" {
     /// - `parameter_set_size_out` must be a valid pointer or null.
     /// - `parameter_set_count_out` must be a valid pointer or null.
     /// - `nal_unit_header_length_out` must be a valid pointer or null.
-    pub fn CMVideoFormatDescriptionGetH264ParameterSetAtIndex(
+    #[doc(alias = "CMVideoFormatDescriptionGetH264ParameterSetAtIndex")]
+    #[inline]
+    pub unsafe fn h264_parameter_set_at_index(
         video_desc: &CMFormatDescription,
         parameter_set_index: usize,
         parameter_set_pointer_out: *mut *const u8,
         parameter_set_size_out: *mut usize,
         parameter_set_count_out: *mut usize,
         nal_unit_header_length_out: *mut c_int,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionGetH264ParameterSetAtIndex(
+                video_desc: &CMFormatDescription,
+                parameter_set_index: usize,
+                parameter_set_pointer_out: *mut *const u8,
+                parameter_set_size_out: *mut usize,
+                parameter_set_count_out: *mut usize,
+                nal_unit_header_length_out: *mut c_int,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMVideoFormatDescriptionGetH264ParameterSetAtIndex(
+                video_desc,
+                parameter_set_index,
+                parameter_set_pointer_out,
+                parameter_set_size_out,
+                parameter_set_count_out,
+                nal_unit_header_length_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Returns a parameter set contained in a HEVC (H.265) format description.
     ///
     /// This function parses the HEVC decoder configuration record contained in a H.265 video format description and returns the NAL unit at the given index from it.  These NAL units are typically parameter sets (e.g. VPS, SPS, PPS), but may contain others as specified by ISO/IEC 14496-15 (e.g. user-data SEI).
@@ -1697,128 +1907,152 @@ extern "C-unwind" {
     /// - `parameter_set_size_out` must be a valid pointer or null.
     /// - `parameter_set_count_out` must be a valid pointer or null.
     /// - `nal_unit_header_length_out` must be a valid pointer or null.
-    pub fn CMVideoFormatDescriptionGetHEVCParameterSetAtIndex(
+    #[doc(alias = "CMVideoFormatDescriptionGetHEVCParameterSetAtIndex")]
+    #[inline]
+    pub unsafe fn hevc_parameter_set_at_index(
         video_desc: &CMFormatDescription,
         parameter_set_index: usize,
         parameter_set_pointer_out: *mut *const u8,
         parameter_set_size_out: *mut usize,
         parameter_set_count_out: *mut usize,
         nal_unit_header_length_out: *mut c_int,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionGetHEVCParameterSetAtIndex(
+                video_desc: &CMFormatDescription,
+                parameter_set_index: usize,
+                parameter_set_pointer_out: *mut *const u8,
+                parameter_set_size_out: *mut usize,
+                parameter_set_count_out: *mut usize,
+                nal_unit_header_length_out: *mut c_int,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMVideoFormatDescriptionGetHEVCParameterSetAtIndex(
+                video_desc,
+                parameter_set_index,
+                parameter_set_pointer_out,
+                parameter_set_size_out,
+                parameter_set_count_out,
+                nal_unit_header_length_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Returns the dimensions (in encoded pixels)
     ///
     /// This does not take into account pixel aspect ratio or clean aperture tags.
-    pub fn CMVideoFormatDescriptionGetDimensions(
-        video_desc: &CMVideoFormatDescription,
-    ) -> CMVideoDimensions;
-}
-
-/// Returns the dimensions, adjusted to take pixel aspect ratio and/or clean aperture into account.
-///
-/// Pixel aspect ratio is used to adjust the width, leaving the height alone.
-#[inline]
-pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetPresentationDimensions(
-    video_desc: &CMVideoFormatDescription,
-    use_pixel_aspect_ratio: bool,
-    use_clean_aperture: bool,
-) -> CGSize {
-    extern "C-unwind" {
-        fn CMVideoFormatDescriptionGetPresentationDimensions(
-            video_desc: &CMVideoFormatDescription,
-            use_pixel_aspect_ratio: Boolean,
-            use_clean_aperture: Boolean,
-        ) -> CGSize;
+    #[doc(alias = "CMVideoFormatDescriptionGetDimensions")]
+    #[inline]
+    pub unsafe fn dimensions(&self) -> CMVideoDimensions {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionGetDimensions(
+                video_desc: &CMVideoFormatDescription,
+            ) -> CMVideoDimensions;
+        }
+        unsafe { CMVideoFormatDescriptionGetDimensions(self) }
     }
-    unsafe {
-        CMVideoFormatDescriptionGetPresentationDimensions(
-            video_desc,
-            use_pixel_aspect_ratio as _,
-            use_clean_aperture as _,
-        )
-    }
-}
 
-/// Returns the clean aperture.
-///
-/// The clean aperture is a rectangle that defines the portion of the encoded pixel dimensions
-/// that represents image data valid for display.
-#[inline]
-pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetCleanAperture(
-    video_desc: &CMVideoFormatDescription,
-    origin_is_at_top_left: bool,
-) -> CGRect {
-    extern "C-unwind" {
-        fn CMVideoFormatDescriptionGetCleanAperture(
-            video_desc: &CMVideoFormatDescription,
-            origin_is_at_top_left: Boolean,
-        ) -> CGRect;
+    /// Returns the dimensions, adjusted to take pixel aspect ratio and/or clean aperture into account.
+    ///
+    /// Pixel aspect ratio is used to adjust the width, leaving the height alone.
+    #[doc(alias = "CMVideoFormatDescriptionGetPresentationDimensions")]
+    #[inline]
+    pub unsafe fn presentation_dimensions(
+        &self,
+        use_pixel_aspect_ratio: bool,
+        use_clean_aperture: bool,
+    ) -> CGSize {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionGetPresentationDimensions(
+                video_desc: &CMVideoFormatDescription,
+                use_pixel_aspect_ratio: Boolean,
+                use_clean_aperture: Boolean,
+            ) -> CGSize;
+        }
+        unsafe {
+            CMVideoFormatDescriptionGetPresentationDimensions(
+                self,
+                use_pixel_aspect_ratio as _,
+                use_clean_aperture as _,
+            )
+        }
     }
-    unsafe { CMVideoFormatDescriptionGetCleanAperture(video_desc, origin_is_at_top_left as _) }
-}
 
-/// Returns an array of the keys that are used both as CMVideoFormatDescription extensions
-/// and CVImageBuffer attachments and attributes.
-///
-/// When specifying a CMFormatDescription for a CMSampleBuffer, the format description must
-/// be consistent with formatting information attached to the CVImageBuffer. The width, height,
-/// and codecType must match (for CVPixelBuffers the codec type is given by
-/// CVPixelBufferGetPixelFormatType(pixelBuffer); for other CVImageBuffers, the codecType must be 0).
-/// The format description extensions must match the image buffer attachments for all the keys in the
-/// list returned by this function (if absent in either they must be absent in both).
-///
-/// Currently, the list is:
-///
-/// kCMFormatDescriptionExtension_CleanAperture
-/// kCMFormatDescriptionExtension_FieldCount
-/// kCMFormatDescriptionExtension_FieldDetail
-/// kCMFormatDescriptionExtension_PixelAspectRatio
-/// kCMFormatDescriptionExtension_ColorPrimaries
-/// kCMFormatDescriptionExtension_TransferFunction
-/// kCMFormatDescriptionExtension_GammaLevel
-/// kCMFormatDescriptionExtension_YCbCrMatrix
-/// kCMFormatDescriptionExtension_ICCProfile
-/// kCMFormatDescriptionExtension_ChromaLocationTopField
-/// kCMFormatDescriptionExtension_ChromaLocationBottomField
-/// kCMFormatDescriptionExtension_MasteringDisplayColorVolume
-/// kCMFormatDescriptionExtension_ContentLightLevelInfo
-#[inline]
-pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers(
-) -> CFRetained<CFArray> {
-    extern "C-unwind" {
-        fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers(
-        ) -> Option<NonNull<CFArray>>;
+    /// Returns the clean aperture.
+    ///
+    /// The clean aperture is a rectangle that defines the portion of the encoded pixel dimensions
+    /// that represents image data valid for display.
+    #[doc(alias = "CMVideoFormatDescriptionGetCleanAperture")]
+    #[inline]
+    pub unsafe fn clean_aperture(&self, origin_is_at_top_left: bool) -> CGRect {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionGetCleanAperture(
+                video_desc: &CMVideoFormatDescription,
+                origin_is_at_top_left: Boolean,
+            ) -> CGRect;
+        }
+        unsafe { CMVideoFormatDescriptionGetCleanAperture(self, origin_is_at_top_left as _) }
     }
-    let ret = unsafe { CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-/// Checks to see if a given format description matches an image buffer.
-///
-/// This function uses the keys returned by CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers
-/// to compares the extensions of the given format description to the attachments of the
-/// given image buffer (if an attachment is absent in either it must be absent in both).
-/// It also checks kCMFormatDescriptionExtension_BytesPerRow against CVPixelBufferGetBytesPerRow, if applicable.
-#[cfg(feature = "objc2-core-video")]
-#[inline]
-pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionMatchesImageBuffer(
-    desc: &CMVideoFormatDescription,
-    image_buffer: &CVImageBuffer,
-) -> bool {
-    extern "C-unwind" {
-        fn CMVideoFormatDescriptionMatchesImageBuffer(
-            desc: &CMVideoFormatDescription,
-            image_buffer: &CVImageBuffer,
-        ) -> Boolean;
+    /// Returns an array of the keys that are used both as CMVideoFormatDescription extensions
+    /// and CVImageBuffer attachments and attributes.
+    ///
+    /// When specifying a CMFormatDescription for a CMSampleBuffer, the format description must
+    /// be consistent with formatting information attached to the CVImageBuffer. The width, height,
+    /// and codecType must match (for CVPixelBuffers the codec type is given by
+    /// CVPixelBufferGetPixelFormatType(pixelBuffer); for other CVImageBuffers, the codecType must be 0).
+    /// The format description extensions must match the image buffer attachments for all the keys in the
+    /// list returned by this function (if absent in either they must be absent in both).
+    ///
+    /// Currently, the list is:
+    ///
+    /// kCMFormatDescriptionExtension_CleanAperture
+    /// kCMFormatDescriptionExtension_FieldCount
+    /// kCMFormatDescriptionExtension_FieldDetail
+    /// kCMFormatDescriptionExtension_PixelAspectRatio
+    /// kCMFormatDescriptionExtension_ColorPrimaries
+    /// kCMFormatDescriptionExtension_TransferFunction
+    /// kCMFormatDescriptionExtension_GammaLevel
+    /// kCMFormatDescriptionExtension_YCbCrMatrix
+    /// kCMFormatDescriptionExtension_ICCProfile
+    /// kCMFormatDescriptionExtension_ChromaLocationTopField
+    /// kCMFormatDescriptionExtension_ChromaLocationBottomField
+    /// kCMFormatDescriptionExtension_MasteringDisplayColorVolume
+    /// kCMFormatDescriptionExtension_ContentLightLevelInfo
+    #[doc(alias = "CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers")]
+    #[inline]
+    pub unsafe fn extension_keys_common_with_image_buffers() -> CFRetained<CFArray> {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers(
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
-    let ret = unsafe { CMVideoFormatDescriptionMatchesImageBuffer(desc, image_buffer) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Checks to see if a given format description matches an image buffer.
+    ///
+    /// This function uses the keys returned by CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers
+    /// to compares the extensions of the given format description to the attachments of the
+    /// given image buffer (if an attachment is absent in either it must be absent in both).
+    /// It also checks kCMFormatDescriptionExtension_BytesPerRow against CVPixelBufferGetBytesPerRow, if applicable.
+    #[doc(alias = "CMVideoFormatDescriptionMatchesImageBuffer")]
+    #[cfg(feature = "objc2-core-video")]
+    #[inline]
+    pub unsafe fn matches_image_buffer(&self, image_buffer: &CVImageBuffer) -> bool {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionMatchesImageBuffer(
+                desc: &CMVideoFormatDescription,
+                image_buffer: &CVImageBuffer,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CMVideoFormatDescriptionMatchesImageBuffer(self, image_buffer) };
+        ret != 0
+    }
+
     /// Copies the multi-image encoding properties as an array of CMTagCollections.
     ///
     /// Parameter `formatDescription`: CMVideoFormatDescription being interrogated.
@@ -1835,10 +2069,20 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `tag_collections_out` must be a valid pointer or null.
-    pub fn CMVideoFormatDescriptionCopyTagCollectionArray(
-        format_description: &CMVideoFormatDescription,
+    #[doc(alias = "CMVideoFormatDescriptionCopyTagCollectionArray")]
+    #[inline]
+    pub unsafe fn copy_tag_collection_array(
+        &self,
         tag_collections_out: *mut *const CFArray,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMVideoFormatDescriptionCopyTagCollectionArray(
+                format_description: &CMVideoFormatDescription,
+                tag_collections_out: *mut *const CFArray,
+            ) -> OSStatus;
+        }
+        unsafe { CMVideoFormatDescriptionCopyTagCollectionArray(self, tag_collections_out) }
+    }
 }
 
 /// Synonym type used for manipulating CMTaggedBufferGroup media CMFormatDescriptions
@@ -1860,7 +2104,23 @@ pub const kCMTaggedBufferGroupFormatType_TaggedBufferGroup: CMTaggedBufferGroupF
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmuxedformatdescription?language=objc)
 #[doc(alias = "CMMuxedFormatDescriptionRef")]
-pub type CMMuxedFormatDescription = CMFormatDescription;
+#[repr(C)]
+pub struct CMMuxedFormatDescription {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+cf_type!(
+    unsafe impl CMMuxedFormatDescription: CMFormatDescription {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<void> for CMMuxedFormatDescription {}
+);
+
+unsafe impl Send for CMMuxedFormatDescription {}
+
+unsafe impl Sync for CMMuxedFormatDescription {}
 
 /// Muxed media format/subtype.
 ///
@@ -1885,7 +2145,7 @@ pub const kCMMuxedStreamType_DV: CMMuxedStreamType = 0x64762020;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmuxedstreamtype_embeddeddevicescreenrecording?language=objc)
 pub const kCMMuxedStreamType_EmbeddedDeviceScreenRecording: CMMuxedStreamType = 0x69737220;
 
-extern "C-unwind" {
+impl CMMuxedFormatDescription {
     /// Creates a format description for a muxed media stream.
     ///
     /// A muxed format description does not know what the formats are of the substreams within the muxed stream.
@@ -1900,19 +2160,49 @@ extern "C-unwind" {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
-    pub fn CMMuxedFormatDescriptionCreate(
+    #[doc(alias = "CMMuxedFormatDescriptionCreate")]
+    #[inline]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         mux_type: CMMuxedStreamType,
         extensions: Option<&CFDictionary>,
         format_description_out: NonNull<*const CMMuxedFormatDescription>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMMuxedFormatDescriptionCreate(
+                allocator: Option<&CFAllocator>,
+                mux_type: CMMuxedStreamType,
+                extensions: Option<&CFDictionary>,
+                format_description_out: NonNull<*const CMMuxedFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMMuxedFormatDescriptionCreate(allocator, mux_type, extensions, format_description_out)
+        }
+    }
 }
 
 /// Synonym type used for manipulating closed-caption media CMFormatDescriptions
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformatdescription?language=objc)
 #[doc(alias = "CMClosedCaptionFormatDescriptionRef")]
-pub type CMClosedCaptionFormatDescription = CMFormatDescription;
+#[repr(C)]
+pub struct CMClosedCaptionFormatDescription {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+cf_type!(
+    unsafe impl CMClosedCaptionFormatDescription: CMFormatDescription {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<void> for CMClosedCaptionFormatDescription {}
+);
+
+unsafe impl Send for CMClosedCaptionFormatDescription {}
+
+unsafe impl Sync for CMClosedCaptionFormatDescription {}
 
 /// Closed-caption media format/subtype.
 /// Note:  use CMFormatDescriptionCreate to create a CMClosedCaptionFormatDescriptionRef.
@@ -1931,7 +2221,23 @@ pub const kCMClosedCaptionFormatType_ATSC: CMClosedCaptionFormatType = 0x6174636
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescription?language=objc)
 #[doc(alias = "CMTextFormatDescriptionRef")]
-pub type CMTextFormatDescription = CMFormatDescription;
+#[repr(C)]
+pub struct CMTextFormatDescription {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+cf_type!(
+    unsafe impl CMTextFormatDescription: CMFormatDescription {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<void> for CMTextFormatDescription {}
+);
+
+unsafe impl Send for CMTextFormatDescription {}
+
+unsafe impl Sync for CMTextFormatDescription {}
 
 /// Text media format/subtype.
 ///
@@ -2117,7 +2423,7 @@ extern "C" {
     pub static kCMFormatDescriptionExtension_AmbientViewingEnvironment: &'static CFString;
 }
 
-extern "C-unwind" {
+impl CMTextFormatDescription {
     /// Returns the displayFlags.
     ///
     /// These are the flags that control how the text appears. The function can return kCMFormatDescriptionError_ValueNotAvailable for formats without display flags.
@@ -2125,13 +2431,21 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `display_flags_out` must be a valid pointer.
-    pub fn CMTextFormatDescriptionGetDisplayFlags(
+    #[doc(alias = "CMTextFormatDescriptionGetDisplayFlags")]
+    #[inline]
+    pub unsafe fn display_flags(
         desc: &CMFormatDescription,
         display_flags_out: NonNull<CMTextDisplayFlags>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTextFormatDescriptionGetDisplayFlags(
+                desc: &CMFormatDescription,
+                display_flags_out: NonNull<CMTextDisplayFlags>,
+            ) -> OSStatus;
+        }
+        unsafe { CMTextFormatDescriptionGetDisplayFlags(desc, display_flags_out) }
+    }
 
-extern "C-unwind" {
     /// Returns horizontal and vertical justification.
     ///
     /// Values are kCMTextJustification_* constants. The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry text justification.
@@ -2140,46 +2454,62 @@ extern "C-unwind" {
     ///
     /// - `horizonta_justificationl_out` must be a valid pointer or null.
     /// - `vertical_justification_out` must be a valid pointer or null.
-    pub fn CMTextFormatDescriptionGetJustification(
+    #[doc(alias = "CMTextFormatDescriptionGetJustification")]
+    #[inline]
+    pub unsafe fn justification(
         desc: &CMFormatDescription,
         horizonta_justificationl_out: *mut CMTextJustificationValue,
         vertical_justification_out: *mut CMTextJustificationValue,
-    ) -> OSStatus;
-}
-
-/// Returns the default text box.
-///
-/// Within a text track, text is rendered within a text box.  There is a default text box set, which can be over-ridden by a sample. The function can return kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry a default text box.
-///
-/// # Safety
-///
-/// `default_text_box_out` must be a valid pointer.
-#[inline]
-pub unsafe extern "C-unwind" fn CMTextFormatDescriptionGetDefaultTextBox(
-    desc: &CMFormatDescription,
-    origin_is_at_top_left: bool,
-    height_of_text_track: CGFloat,
-    default_text_box_out: NonNull<CGRect>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CMTextFormatDescriptionGetDefaultTextBox(
-            desc: &CMFormatDescription,
-            origin_is_at_top_left: Boolean,
-            height_of_text_track: CGFloat,
-            default_text_box_out: NonNull<CGRect>,
-        ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTextFormatDescriptionGetJustification(
+                desc: &CMFormatDescription,
+                horizonta_justificationl_out: *mut CMTextJustificationValue,
+                vertical_justification_out: *mut CMTextJustificationValue,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTextFormatDescriptionGetJustification(
+                desc,
+                horizonta_justificationl_out,
+                vertical_justification_out,
+            )
+        }
     }
-    unsafe {
-        CMTextFormatDescriptionGetDefaultTextBox(
-            desc,
-            origin_is_at_top_left as _,
-            height_of_text_track,
-            default_text_box_out,
-        )
-    }
-}
 
-extern "C-unwind" {
+    /// Returns the default text box.
+    ///
+    /// Within a text track, text is rendered within a text box.  There is a default text box set, which can be over-ridden by a sample. The function can return kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry a default text box.
+    ///
+    /// # Safety
+    ///
+    /// `default_text_box_out` must be a valid pointer.
+    #[doc(alias = "CMTextFormatDescriptionGetDefaultTextBox")]
+    #[inline]
+    pub unsafe fn default_text_box(
+        desc: &CMFormatDescription,
+        origin_is_at_top_left: bool,
+        height_of_text_track: CGFloat,
+        default_text_box_out: NonNull<CGRect>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTextFormatDescriptionGetDefaultTextBox(
+                desc: &CMFormatDescription,
+                origin_is_at_top_left: Boolean,
+                height_of_text_track: CGFloat,
+                default_text_box_out: NonNull<CGRect>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTextFormatDescriptionGetDefaultTextBox(
+                desc,
+                origin_is_at_top_left as _,
+                height_of_text_track,
+                default_text_box_out,
+            )
+        }
+    }
+
     /// Returns the font name for a local font ID.
     ///
     /// Some format descriptions carry a mapping from local font IDs to font names. The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry such a font mapping table.
@@ -2187,11 +2517,22 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `font_name_out` must be a valid pointer.
-    pub fn CMTextFormatDescriptionGetFontName(
+    #[doc(alias = "CMTextFormatDescriptionGetFontName")]
+    #[inline]
+    pub unsafe fn font_name(
         desc: &CMFormatDescription,
         local_font_id: u16,
         font_name_out: NonNull<*const CFString>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTextFormatDescriptionGetFontName(
+                desc: &CMFormatDescription,
+                local_font_id: u16,
+                font_name_out: NonNull<*const CFString>,
+            ) -> OSStatus;
+        }
+        unsafe { CMTextFormatDescriptionGetFontName(desc, local_font_id, font_name_out) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsubtitleformattype?language=objc)
@@ -2206,7 +2547,23 @@ pub const kCMSubtitleFormatType_WebVTT: CMSubtitleFormatType = 0x77767474;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescription?language=objc)
 #[doc(alias = "CMTimeCodeFormatDescriptionRef")]
-pub type CMTimeCodeFormatDescription = CMFormatDescription;
+#[repr(C)]
+pub struct CMTimeCodeFormatDescription {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+cf_type!(
+    unsafe impl CMTimeCodeFormatDescription: CMFormatDescription {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<void> for CMTimeCodeFormatDescription {}
+);
+
+unsafe impl Send for CMTimeCodeFormatDescription {}
+
+unsafe impl Sync for CMTimeCodeFormatDescription {}
 
 /// The types of TimeCode.
 ///
@@ -2229,7 +2586,7 @@ pub const kCMTimeCodeFlag_24HourMax: u32 = 1 << 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimecodeflag_negtimesok?language=objc)
 pub const kCMTimeCodeFlag_NegTimesOK: u32 = 1 << 2;
 
-extern "C-unwind" {
+impl CMTimeCodeFormatDescription {
     /// Creates a format description for a timecode media.
     ///
     /// The caller owns the returned CMFormatDescription, and must release it when done with it. All input parameters
@@ -2240,8 +2597,10 @@ extern "C-unwind" {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
+    #[doc(alias = "CMTimeCodeFormatDescriptionCreate")]
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeCodeFormatDescriptionCreate(
+    #[inline]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         time_code_format_type: CMTimeCodeFormatType,
         frame_duration: CMTime,
@@ -2249,37 +2608,67 @@ extern "C-unwind" {
         flags: u32,
         extensions: Option<&CFDictionary>,
         format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimeCodeFormatDescriptionCreate(
+                allocator: Option<&CFAllocator>,
+                time_code_format_type: CMTimeCodeFormatType,
+                frame_duration: CMTime,
+                frame_quanta: u32,
+                flags: u32,
+                extensions: Option<&CFDictionary>,
+                format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTimeCodeFormatDescriptionCreate(
+                allocator,
+                time_code_format_type,
+                frame_duration,
+                frame_quanta,
+                flags,
+                extensions,
+                format_description_out,
+            )
+        }
+    }
 
-#[cfg(feature = "CMTime")]
-impl CMTime {
     /// Returns the duration of each frame (eg. 100/2997)
     #[doc(alias = "CMTimeCodeFormatDescriptionGetFrameDuration")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn code_format_description_get_frame_duration(
-        time_code_format_description: &CMTimeCodeFormatDescription,
-    ) -> CMTime {
+    pub unsafe fn frame_duration(&self) -> CMTime {
         extern "C-unwind" {
             fn CMTimeCodeFormatDescriptionGetFrameDuration(
                 time_code_format_description: &CMTimeCodeFormatDescription,
             ) -> CMTime;
         }
-        unsafe { CMTimeCodeFormatDescriptionGetFrameDuration(time_code_format_description) }
+        unsafe { CMTimeCodeFormatDescriptionGetFrameDuration(self) }
     }
-}
 
-extern "C-unwind" {
     /// Returns the frames/sec for timecode (eg. 30) OR frames/tick for counter mode
-    pub fn CMTimeCodeFormatDescriptionGetFrameQuanta(
-        time_code_format_description: &CMTimeCodeFormatDescription,
-    ) -> u32;
-}
+    #[doc(alias = "CMTimeCodeFormatDescriptionGetFrameQuanta")]
+    #[inline]
+    pub unsafe fn frame_quanta(&self) -> u32 {
+        extern "C-unwind" {
+            fn CMTimeCodeFormatDescriptionGetFrameQuanta(
+                time_code_format_description: &CMTimeCodeFormatDescription,
+            ) -> u32;
+        }
+        unsafe { CMTimeCodeFormatDescriptionGetFrameQuanta(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the flags for kCMTimeCodeFlag_DropFrame, kCMTimeCodeFlag_24HourMax, kCMTimeCodeFlag_NegTimesOK
-    pub fn CMTimeCodeFormatDescriptionGetTimeCodeFlags(desc: &CMTimeCodeFormatDescription) -> u32;
+    #[doc(alias = "CMTimeCodeFormatDescriptionGetTimeCodeFlags")]
+    #[inline]
+    pub unsafe fn time_code_flags(&self) -> u32 {
+        extern "C-unwind" {
+            fn CMTimeCodeFormatDescriptionGetTimeCodeFlags(
+                desc: &CMTimeCodeFormatDescription,
+            ) -> u32;
+        }
+        unsafe { CMTimeCodeFormatDescriptionGetTimeCodeFlags(self) }
+    }
 }
 
 extern "C" {
@@ -2301,7 +2690,23 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescription?language=objc)
 #[doc(alias = "CMMetadataFormatDescriptionRef")]
-pub type CMMetadataFormatDescription = CMFormatDescription;
+#[repr(C)]
+pub struct CMMetadataFormatDescription {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+cf_type!(
+    unsafe impl CMMetadataFormatDescription: CMFormatDescription {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<void> for CMMetadataFormatDescription {}
+);
+
+unsafe impl Send for CMMetadataFormatDescription {}
+
+unsafe impl Sync for CMMetadataFormatDescription {}
 
 /// The subtypes of Metadata media type.
 ///
@@ -2400,81 +2805,153 @@ extern "C" {
     pub static kCMMetadataFormatDescriptionMetadataSpecificationKey_SetupData: &'static CFString;
 }
 
-extern "C-unwind" {
+impl CMMetadataFormatDescription {
     /// # Safety
     ///
     /// - `keys` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
-    pub fn CMMetadataFormatDescriptionCreateWithKeys(
+    #[doc(alias = "CMMetadataFormatDescriptionCreateWithKeys")]
+    #[inline]
+    pub unsafe fn create_with_keys(
         allocator: Option<&CFAllocator>,
         metadata_type: CMMetadataFormatType,
         keys: Option<&CFArray>,
         format_description_out: NonNull<*const CMMetadataFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMMetadataFormatDescriptionCreateWithKeys(
+                allocator: Option<&CFAllocator>,
+                metadata_type: CMMetadataFormatType,
+                keys: Option<&CFArray>,
+                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMMetadataFormatDescriptionCreateWithKeys(
+                allocator,
+                metadata_type,
+                keys,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// # Safety
     ///
     /// - `metadata_specifications` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
-    pub fn CMMetadataFormatDescriptionCreateWithMetadataSpecifications(
+    #[doc(alias = "CMMetadataFormatDescriptionCreateWithMetadataSpecifications")]
+    #[inline]
+    pub unsafe fn create_with_metadata_specifications(
         allocator: Option<&CFAllocator>,
         metadata_type: CMMetadataFormatType,
         metadata_specifications: &CFArray,
         format_description_out: NonNull<*const CMMetadataFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMMetadataFormatDescriptionCreateWithMetadataSpecifications(
+                allocator: Option<&CFAllocator>,
+                metadata_type: CMMetadataFormatType,
+                metadata_specifications: &CFArray,
+                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMMetadataFormatDescriptionCreateWithMetadataSpecifications(
+                allocator,
+                metadata_type,
+                metadata_specifications,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// # Safety
     ///
     /// - `metadata_specifications` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
-    pub fn CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications(
+    #[doc(
+        alias = "CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications"
+    )]
+    #[inline]
+    pub unsafe fn create_with_metadata_format_description_and_metadata_specifications(
+        &self,
         allocator: Option<&CFAllocator>,
-        source_description: &CMMetadataFormatDescription,
         metadata_specifications: &CFArray,
         format_description_out: NonNull<*const CMMetadataFormatDescription>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications(
+                allocator: Option<&CFAllocator>,
+                source_description: &CMMetadataFormatDescription,
+                metadata_specifications: &CFArray,
+                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications(
+                allocator,
+                self,
+                metadata_specifications,
+                format_description_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
-    pub fn CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions(
+    #[doc(alias = "CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions")]
+    #[inline]
+    pub unsafe fn create_by_merging_metadata_format_descriptions(
+        &self,
         allocator: Option<&CFAllocator>,
-        source_description: &CMMetadataFormatDescription,
         other_source_description: &CMMetadataFormatDescription,
         format_description_out: NonNull<*const CMMetadataFormatDescription>,
-    ) -> OSStatus;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn CMMetadataFormatDescriptionGetKeyWithLocalID(
-    desc: &CMMetadataFormatDescription,
-    local_key_id: OSType,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CMMetadataFormatDescriptionGetKeyWithLocalID(
-            desc: &CMMetadataFormatDescription,
-            local_key_id: OSType,
-        ) -> Option<NonNull<CFDictionary>>;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions(
+                allocator: Option<&CFAllocator>,
+                source_description: &CMMetadataFormatDescription,
+                other_source_description: &CMMetadataFormatDescription,
+                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions(
+                allocator,
+                self,
+                other_source_description,
+                format_description_out,
+            )
+        }
     }
-    let ret = unsafe { CMMetadataFormatDescriptionGetKeyWithLocalID(desc, local_key_id) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn CMMetadataFormatDescriptionGetIdentifiers(
-    desc: &CMMetadataFormatDescription,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CMMetadataFormatDescriptionGetIdentifiers(
-            desc: &CMMetadataFormatDescription,
-        ) -> Option<NonNull<CFArray>>;
+    #[doc(alias = "CMMetadataFormatDescriptionGetKeyWithLocalID")]
+    #[inline]
+    pub unsafe fn key_with_local_id(
+        &self,
+        local_key_id: OSType,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CMMetadataFormatDescriptionGetKeyWithLocalID(
+                desc: &CMMetadataFormatDescription,
+                local_key_id: OSType,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CMMetadataFormatDescriptionGetKeyWithLocalID(self, local_key_id) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { CMMetadataFormatDescriptionGetIdentifiers(desc) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+
+    #[doc(alias = "CMMetadataFormatDescriptionGetIdentifiers")]
+    #[inline]
+    pub unsafe fn identifiers(&self) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CMMetadataFormatDescriptionGetIdentifiers(
+                desc: &CMMetadataFormatDescription,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CMMetadataFormatDescriptionGetIdentifiers(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
 }

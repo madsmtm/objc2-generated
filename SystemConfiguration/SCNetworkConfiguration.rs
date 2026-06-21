@@ -125,7 +125,19 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterface?language=objc)
 #[doc(alias = "SCBondInterfaceRef")]
-pub type SCBondInterface = SCNetworkInterface;
+#[repr(C)]
+pub struct SCBondInterface {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+cf_type!(
+    unsafe impl SCBondInterface: SCNetworkInterface {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<void> for SCBondInterface {}
+);
 
 /// This is the type of a reference to an object that represents
 /// the status of an Ethernet Bond interface.
@@ -177,7 +189,19 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterface?language=objc)
 #[doc(alias = "SCVLANInterfaceRef")]
-pub type SCVLANInterface = SCNetworkInterface;
+#[repr(C)]
+pub struct SCVLANInterface {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+cf_type!(
+    unsafe impl SCVLANInterface: SCNetworkInterface {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<void> for SCVLANInterface {}
+);
 
 /// This is the type of a reference to an object that represents
 /// a network protocol.
@@ -767,203 +791,198 @@ impl SCNetworkInterface {
     }
 }
 
-/// Returns all Ethernet Bond interfaces on the system.
-///
-/// Parameter `prefs`: The "preferences" session.
-///
-/// Returns: The list of Ethernet Bond interfaces on the system.
-/// You must release the returned value.
-#[cfg(feature = "SCPreferences")]
-#[inline]
-pub extern "C-unwind" fn SCBondInterfaceCopyAll(
-    prefs: &SCPreferences,
-) -> CFRetained<CFArray<SCBondInterface>> {
-    extern "C-unwind" {
-        fn SCBondInterfaceCopyAll(
-            prefs: &SCPreferences,
-        ) -> Option<NonNull<CFArray<SCBondInterface>>>;
+impl SCBondInterface {
+    /// Returns all Ethernet Bond interfaces on the system.
+    ///
+    /// Parameter `prefs`: The "preferences" session.
+    ///
+    /// Returns: The list of Ethernet Bond interfaces on the system.
+    /// You must release the returned value.
+    #[doc(alias = "SCBondInterfaceCopyAll")]
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    pub fn all(prefs: &SCPreferences) -> CFRetained<CFArray<SCBondInterface>> {
+        extern "C-unwind" {
+            fn SCBondInterfaceCopyAll(
+                prefs: &SCPreferences,
+            ) -> Option<NonNull<CFArray<SCBondInterface>>>;
+        }
+        let ret = unsafe { SCBondInterfaceCopyAll(prefs) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { SCBondInterfaceCopyAll(prefs) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Returns all network capable devices on the system
-/// that can be added to an Ethernet Bond interface.
-///
-/// Parameter `prefs`: The "preferences" session.
-///
-/// Returns: The list of interfaces.
-/// You must release the returned value.
-#[cfg(feature = "SCPreferences")]
-#[inline]
-pub extern "C-unwind" fn SCBondInterfaceCopyAvailableMemberInterfaces(
-    prefs: &SCPreferences,
-) -> CFRetained<CFArray<SCBondInterface>> {
-    extern "C-unwind" {
-        fn SCBondInterfaceCopyAvailableMemberInterfaces(
-            prefs: &SCPreferences,
-        ) -> Option<NonNull<CFArray<SCBondInterface>>>;
+    /// Returns all network capable devices on the system
+    /// that can be added to an Ethernet Bond interface.
+    ///
+    /// Parameter `prefs`: The "preferences" session.
+    ///
+    /// Returns: The list of interfaces.
+    /// You must release the returned value.
+    #[doc(alias = "SCBondInterfaceCopyAvailableMemberInterfaces")]
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    pub fn available_member_interfaces(
+        prefs: &SCPreferences,
+    ) -> CFRetained<CFArray<SCBondInterface>> {
+        extern "C-unwind" {
+            fn SCBondInterfaceCopyAvailableMemberInterfaces(
+                prefs: &SCPreferences,
+            ) -> Option<NonNull<CFArray<SCBondInterface>>>;
+        }
+        let ret = unsafe { SCBondInterfaceCopyAvailableMemberInterfaces(prefs) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { SCBondInterfaceCopyAvailableMemberInterfaces(prefs) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Create a new SCBondInterface interface.
-///
-/// Parameter `prefs`: The "preferences" session.
-///
-/// Returns: A reference to the new SCBondInterface.
-/// You must release the returned value.
-#[cfg(feature = "SCPreferences")]
-#[inline]
-pub extern "C-unwind" fn SCBondInterfaceCreate(
-    prefs: &SCPreferences,
-) -> Option<CFRetained<SCBondInterface>> {
-    extern "C-unwind" {
-        fn SCBondInterfaceCreate(prefs: &SCPreferences) -> Option<NonNull<SCBondInterface>>;
+    /// Create a new SCBondInterface interface.
+    ///
+    /// Parameter `prefs`: The "preferences" session.
+    ///
+    /// Returns: A reference to the new SCBondInterface.
+    /// You must release the returned value.
+    #[doc(alias = "SCBondInterfaceCreate")]
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    pub fn new(prefs: &SCPreferences) -> Option<CFRetained<SCBondInterface>> {
+        extern "C-unwind" {
+            fn SCBondInterfaceCreate(prefs: &SCPreferences) -> Option<NonNull<SCBondInterface>>;
+        }
+        let ret = unsafe { SCBondInterfaceCreate(prefs) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SCBondInterfaceCreate(prefs) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Removes the SCBondInterface from the configuration.
-///
-/// Parameter `bond`: The SCBondInterface interface.
-///
-/// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
-#[inline]
-pub extern "C-unwind" fn SCBondInterfaceRemove(bond: &SCBondInterface) -> bool {
-    extern "C-unwind" {
-        fn SCBondInterfaceRemove(bond: &SCBondInterface) -> Boolean;
+    /// Removes the SCBondInterface from the configuration.
+    ///
+    /// Parameter `bond`: The SCBondInterface interface.
+    ///
+    /// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
+    #[doc(alias = "SCBondInterfaceRemove")]
+    #[inline]
+    pub fn remove(&self) -> bool {
+        extern "C-unwind" {
+            fn SCBondInterfaceRemove(bond: &SCBondInterface) -> Boolean;
+        }
+        let ret = unsafe { SCBondInterfaceRemove(self) };
+        ret != 0
     }
-    let ret = unsafe { SCBondInterfaceRemove(bond) };
-    ret != 0
-}
 
-/// Returns the member interfaces for the specified Ethernet Bond interface.
-///
-/// Parameter `bond`: The SCBondInterface interface.
-///
-/// Returns: The list of interfaces.
-#[inline]
-pub extern "C-unwind" fn SCBondInterfaceGetMemberInterfaces(
-    bond: &SCBondInterface,
-) -> Option<CFRetained<CFArray<SCBondInterface>>> {
-    extern "C-unwind" {
-        fn SCBondInterfaceGetMemberInterfaces(
-            bond: &SCBondInterface,
-        ) -> Option<NonNull<CFArray<SCBondInterface>>>;
+    /// Returns the member interfaces for the specified Ethernet Bond interface.
+    ///
+    /// Parameter `bond`: The SCBondInterface interface.
+    ///
+    /// Returns: The list of interfaces.
+    #[doc(alias = "SCBondInterfaceGetMemberInterfaces")]
+    #[inline]
+    pub fn member_interfaces(&self) -> Option<CFRetained<CFArray<SCBondInterface>>> {
+        extern "C-unwind" {
+            fn SCBondInterfaceGetMemberInterfaces(
+                bond: &SCBondInterface,
+            ) -> Option<NonNull<CFArray<SCBondInterface>>>;
+        }
+        let ret = unsafe { SCBondInterfaceGetMemberInterfaces(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SCBondInterfaceGetMemberInterfaces(bond) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Returns the configuration settings associated with a Ethernet Bond interface.
-///
-/// Parameter `bond`: The SCBondInterface interface.
-///
-/// Returns: The configuration settings associated with the Ethernet Bond interface;
-/// NULL if no changes to the default configuration have been saved.
-#[inline]
-pub extern "C-unwind" fn SCBondInterfaceGetOptions(
-    bond: &SCBondInterface,
-) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
-    extern "C-unwind" {
-        fn SCBondInterfaceGetOptions(
-            bond: &SCBondInterface,
-        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
+    /// Returns the configuration settings associated with a Ethernet Bond interface.
+    ///
+    /// Parameter `bond`: The SCBondInterface interface.
+    ///
+    /// Returns: The configuration settings associated with the Ethernet Bond interface;
+    /// NULL if no changes to the default configuration have been saved.
+    #[doc(alias = "SCBondInterfaceGetOptions")]
+    #[inline]
+    pub fn options(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+        extern "C-unwind" {
+            fn SCBondInterfaceGetOptions(
+                bond: &SCBondInterface,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
+        }
+        let ret = unsafe { SCBondInterfaceGetOptions(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SCBondInterfaceGetOptions(bond) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Sets the member interfaces for the specified Ethernet Bond interface.
-///
-/// Parameter `bond`: The SCBondInterface interface.
-///
-/// Parameter `members`: The desired member interfaces.
-///
-/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-#[inline]
-pub extern "C-unwind" fn SCBondInterfaceSetMemberInterfaces(
-    bond: &SCBondInterface,
-    members: &CFArray<SCBondInterface>,
-) -> bool {
-    extern "C-unwind" {
-        fn SCBondInterfaceSetMemberInterfaces(
-            bond: &SCBondInterface,
-            members: &CFArray<SCBondInterface>,
-        ) -> Boolean;
+    /// Sets the member interfaces for the specified Ethernet Bond interface.
+    ///
+    /// Parameter `bond`: The SCBondInterface interface.
+    ///
+    /// Parameter `members`: The desired member interfaces.
+    ///
+    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+    #[doc(alias = "SCBondInterfaceSetMemberInterfaces")]
+    #[inline]
+    pub fn set_member_interfaces(&self, members: &CFArray<SCBondInterface>) -> bool {
+        extern "C-unwind" {
+            fn SCBondInterfaceSetMemberInterfaces(
+                bond: &SCBondInterface,
+                members: &CFArray<SCBondInterface>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCBondInterfaceSetMemberInterfaces(self, members) };
+        ret != 0
     }
-    let ret = unsafe { SCBondInterfaceSetMemberInterfaces(bond, members) };
-    ret != 0
-}
 
-/// Sets the localized display name for the specified Ethernet Bond interface.
-///
-/// Parameter `bond`: The SCBondInterface interface.
-///
-/// Parameter `newName`: The new display name.
-///
-/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-#[inline]
-pub extern "C-unwind" fn SCBondInterfaceSetLocalizedDisplayName(
-    bond: &SCBondInterface,
-    new_name: &CFString,
-) -> bool {
-    extern "C-unwind" {
-        fn SCBondInterfaceSetLocalizedDisplayName(
-            bond: &SCBondInterface,
-            new_name: &CFString,
-        ) -> Boolean;
+    /// Sets the localized display name for the specified Ethernet Bond interface.
+    ///
+    /// Parameter `bond`: The SCBondInterface interface.
+    ///
+    /// Parameter `newName`: The new display name.
+    ///
+    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+    #[doc(alias = "SCBondInterfaceSetLocalizedDisplayName")]
+    #[inline]
+    pub fn set_localized_display_name(&self, new_name: &CFString) -> bool {
+        extern "C-unwind" {
+            fn SCBondInterfaceSetLocalizedDisplayName(
+                bond: &SCBondInterface,
+                new_name: &CFString,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCBondInterfaceSetLocalizedDisplayName(self, new_name) };
+        ret != 0
     }
-    let ret = unsafe { SCBondInterfaceSetLocalizedDisplayName(bond, new_name) };
-    ret != 0
-}
 
-/// Sets the configuration settings for the specified Ethernet Bond interface.
-///
-/// Parameter `bond`: The SCBondInterface interface.
-///
-/// Parameter `newOptions`: The new configuration settings.
-///
-/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-///
-/// # Safety
-///
-/// `new_options` generic should be of the correct type.
-#[inline]
-pub unsafe extern "C-unwind" fn SCBondInterfaceSetOptions(
-    bond: &SCBondInterface,
-    new_options: &CFDictionary<CFString, CFType>,
-) -> bool {
-    extern "C-unwind" {
-        fn SCBondInterfaceSetOptions(
-            bond: &SCBondInterface,
-            new_options: &CFDictionary<CFString, CFType>,
-        ) -> Boolean;
+    /// Sets the configuration settings for the specified Ethernet Bond interface.
+    ///
+    /// Parameter `bond`: The SCBondInterface interface.
+    ///
+    /// Parameter `newOptions`: The new configuration settings.
+    ///
+    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+    ///
+    /// # Safety
+    ///
+    /// `new_options` generic should be of the correct type.
+    #[doc(alias = "SCBondInterfaceSetOptions")]
+    #[inline]
+    pub unsafe fn set_options(&self, new_options: &CFDictionary<CFString, CFType>) -> bool {
+        extern "C-unwind" {
+            fn SCBondInterfaceSetOptions(
+                bond: &SCBondInterface,
+                new_options: &CFDictionary<CFString, CFType>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCBondInterfaceSetOptions(self, new_options) };
+        ret != 0
     }
-    let ret = unsafe { SCBondInterfaceSetOptions(bond, new_options) };
-    ret != 0
-}
 
-/// Returns the status of the specified Ethernet Bond interface.
-///
-/// Parameter `bond`: The SCBondInterface interface.
-///
-/// Returns: The status associated with the interface.
-/// You must release the returned value.
-#[inline]
-pub extern "C-unwind" fn SCBondInterfaceCopyStatus(
-    bond: &SCBondInterface,
-) -> Option<CFRetained<SCBondStatus>> {
-    extern "C-unwind" {
-        fn SCBondInterfaceCopyStatus(bond: &SCBondInterface) -> Option<NonNull<SCBondStatus>>;
+    /// Returns the status of the specified Ethernet Bond interface.
+    ///
+    /// Parameter `bond`: The SCBondInterface interface.
+    ///
+    /// Returns: The status associated with the interface.
+    /// You must release the returned value.
+    #[doc(alias = "SCBondInterfaceCopyStatus")]
+    #[inline]
+    pub fn status(&self) -> Option<CFRetained<SCBondStatus>> {
+        extern "C-unwind" {
+            fn SCBondInterfaceCopyStatus(bond: &SCBondInterface) -> Option<NonNull<SCBondStatus>>;
+        }
+        let ret = unsafe { SCBondInterfaceCopyStatus(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SCBondInterfaceCopyStatus(bond) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 unsafe impl ConcreteType for SCBondStatus {
@@ -1027,221 +1046,220 @@ impl SCBondStatus {
     }
 }
 
-/// Returns all VLAN interfaces on the system.
-///
-/// Returns: The list of VLAN interfaces on the system.
-/// You must release the returned value.
-#[cfg(feature = "SCPreferences")]
-#[inline]
-pub extern "C-unwind" fn SCVLANInterfaceCopyAll(
-    prefs: &SCPreferences,
-) -> CFRetained<CFArray<SCVLANInterface>> {
-    extern "C-unwind" {
-        fn SCVLANInterfaceCopyAll(
-            prefs: &SCPreferences,
-        ) -> Option<NonNull<CFArray<SCVLANInterface>>>;
+impl SCVLANInterface {
+    /// Returns all VLAN interfaces on the system.
+    ///
+    /// Returns: The list of VLAN interfaces on the system.
+    /// You must release the returned value.
+    #[doc(alias = "SCVLANInterfaceCopyAll")]
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    pub fn all(prefs: &SCPreferences) -> CFRetained<CFArray<SCVLANInterface>> {
+        extern "C-unwind" {
+            fn SCVLANInterfaceCopyAll(
+                prefs: &SCPreferences,
+            ) -> Option<NonNull<CFArray<SCVLANInterface>>>;
+        }
+        let ret = unsafe { SCVLANInterfaceCopyAll(prefs) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { SCVLANInterfaceCopyAll(prefs) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Returns the network capable devices on the system
-/// that can be associated with a VLAN interface.
-///
-/// Returns: The list of interfaces.
-/// You must release the returned value.
-#[inline]
-pub extern "C-unwind" fn SCVLANInterfaceCopyAvailablePhysicalInterfaces(
-) -> CFRetained<CFArray<SCVLANInterface>> {
-    extern "C-unwind" {
-        fn SCVLANInterfaceCopyAvailablePhysicalInterfaces(
-        ) -> Option<NonNull<CFArray<SCVLANInterface>>>;
+    /// Returns the network capable devices on the system
+    /// that can be associated with a VLAN interface.
+    ///
+    /// Returns: The list of interfaces.
+    /// You must release the returned value.
+    #[doc(alias = "SCVLANInterfaceCopyAvailablePhysicalInterfaces")]
+    #[inline]
+    pub fn available_physical_interfaces() -> CFRetained<CFArray<SCVLANInterface>> {
+        extern "C-unwind" {
+            fn SCVLANInterfaceCopyAvailablePhysicalInterfaces(
+            ) -> Option<NonNull<CFArray<SCVLANInterface>>>;
+        }
+        let ret = unsafe { SCVLANInterfaceCopyAvailablePhysicalInterfaces() };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { SCVLANInterfaceCopyAvailablePhysicalInterfaces() };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Create a new SCVLANInterface interface.
-///
-/// Parameter `prefs`: The "preferences" session.
-///
-/// Parameter `physical`: The physical interface to associate with the VLAN.
-///
-/// Parameter `tag`: The tag to associate with the VLAN.
-///
-/// Returns: A reference to the new SCVLANInterface.
-/// You must release the returned value.
-///
-/// Note: the tag must be in the range (1
-/// <
-/// = tag
-/// <
-/// = 4094)
-#[cfg(feature = "SCPreferences")]
-#[inline]
-pub extern "C-unwind" fn SCVLANInterfaceCreate(
-    prefs: &SCPreferences,
-    physical: &SCNetworkInterface,
-    tag: &CFNumber,
-) -> Option<CFRetained<SCVLANInterface>> {
-    extern "C-unwind" {
-        fn SCVLANInterfaceCreate(
-            prefs: &SCPreferences,
-            physical: &SCNetworkInterface,
-            tag: &CFNumber,
-        ) -> Option<NonNull<SCVLANInterface>>;
+    /// Create a new SCVLANInterface interface.
+    ///
+    /// Parameter `prefs`: The "preferences" session.
+    ///
+    /// Parameter `physical`: The physical interface to associate with the VLAN.
+    ///
+    /// Parameter `tag`: The tag to associate with the VLAN.
+    ///
+    /// Returns: A reference to the new SCVLANInterface.
+    /// You must release the returned value.
+    ///
+    /// Note: the tag must be in the range (1
+    /// <
+    /// = tag
+    /// <
+    /// = 4094)
+    #[doc(alias = "SCVLANInterfaceCreate")]
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    pub fn new(
+        prefs: &SCPreferences,
+        physical: &SCNetworkInterface,
+        tag: &CFNumber,
+    ) -> Option<CFRetained<SCVLANInterface>> {
+        extern "C-unwind" {
+            fn SCVLANInterfaceCreate(
+                prefs: &SCPreferences,
+                physical: &SCNetworkInterface,
+                tag: &CFNumber,
+            ) -> Option<NonNull<SCVLANInterface>>;
+        }
+        let ret = unsafe { SCVLANInterfaceCreate(prefs, physical, tag) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SCVLANInterfaceCreate(prefs, physical, tag) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Removes the SCVLANInterface from the configuration.
-///
-/// Parameter `vlan`: The SCVLANInterface interface.
-///
-/// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
-#[inline]
-pub extern "C-unwind" fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) -> bool {
-    extern "C-unwind" {
-        fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) -> Boolean;
+    /// Removes the SCVLANInterface from the configuration.
+    ///
+    /// Parameter `vlan`: The SCVLANInterface interface.
+    ///
+    /// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
+    #[doc(alias = "SCVLANInterfaceRemove")]
+    #[inline]
+    pub fn remove(&self) -> bool {
+        extern "C-unwind" {
+            fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) -> Boolean;
+        }
+        let ret = unsafe { SCVLANInterfaceRemove(self) };
+        ret != 0
     }
-    let ret = unsafe { SCVLANInterfaceRemove(vlan) };
-    ret != 0
-}
 
-/// Returns the physical interface for the specified VLAN interface.
-///
-/// Parameter `vlan`: The SCVLANInterface interface.
-///
-/// Returns: The list of interfaces.
-#[inline]
-pub extern "C-unwind" fn SCVLANInterfaceGetPhysicalInterface(
-    vlan: &SCVLANInterface,
-) -> Option<CFRetained<SCNetworkInterface>> {
-    extern "C-unwind" {
-        fn SCVLANInterfaceGetPhysicalInterface(
-            vlan: &SCVLANInterface,
-        ) -> Option<NonNull<SCNetworkInterface>>;
+    /// Returns the physical interface for the specified VLAN interface.
+    ///
+    /// Parameter `vlan`: The SCVLANInterface interface.
+    ///
+    /// Returns: The list of interfaces.
+    #[doc(alias = "SCVLANInterfaceGetPhysicalInterface")]
+    #[inline]
+    pub fn physical_interface(&self) -> Option<CFRetained<SCNetworkInterface>> {
+        extern "C-unwind" {
+            fn SCVLANInterfaceGetPhysicalInterface(
+                vlan: &SCVLANInterface,
+            ) -> Option<NonNull<SCNetworkInterface>>;
+        }
+        let ret = unsafe { SCVLANInterfaceGetPhysicalInterface(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SCVLANInterfaceGetPhysicalInterface(vlan) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Returns the tag for the specified VLAN interface.
-///
-/// Parameter `vlan`: The SCVLANInterface interface.
-///
-/// Returns: The tag.
-#[inline]
-pub extern "C-unwind" fn SCVLANInterfaceGetTag(
-    vlan: &SCVLANInterface,
-) -> Option<CFRetained<CFNumber>> {
-    extern "C-unwind" {
-        fn SCVLANInterfaceGetTag(vlan: &SCVLANInterface) -> Option<NonNull<CFNumber>>;
+    /// Returns the tag for the specified VLAN interface.
+    ///
+    /// Parameter `vlan`: The SCVLANInterface interface.
+    ///
+    /// Returns: The tag.
+    #[doc(alias = "SCVLANInterfaceGetTag")]
+    #[inline]
+    pub fn tag(&self) -> Option<CFRetained<CFNumber>> {
+        extern "C-unwind" {
+            fn SCVLANInterfaceGetTag(vlan: &SCVLANInterface) -> Option<NonNull<CFNumber>>;
+        }
+        let ret = unsafe { SCVLANInterfaceGetTag(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SCVLANInterfaceGetTag(vlan) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Returns the configuration settings associated with the VLAN interface.
-///
-/// Parameter `vlan`: The SCVLANInterface interface.
-///
-/// Returns: The configuration settings associated with the VLAN interface;
-/// NULL if no changes to the default configuration have been saved.
-#[inline]
-pub extern "C-unwind" fn SCVLANInterfaceGetOptions(
-    vlan: &SCVLANInterface,
-) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
-    extern "C-unwind" {
-        fn SCVLANInterfaceGetOptions(
-            vlan: &SCVLANInterface,
-        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
+    /// Returns the configuration settings associated with the VLAN interface.
+    ///
+    /// Parameter `vlan`: The SCVLANInterface interface.
+    ///
+    /// Returns: The configuration settings associated with the VLAN interface;
+    /// NULL if no changes to the default configuration have been saved.
+    #[doc(alias = "SCVLANInterfaceGetOptions")]
+    #[inline]
+    pub fn options(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+        extern "C-unwind" {
+            fn SCVLANInterfaceGetOptions(
+                vlan: &SCVLANInterface,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
+        }
+        let ret = unsafe { SCVLANInterfaceGetOptions(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SCVLANInterfaceGetOptions(vlan) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Updates the specified VLAN interface.
-///
-/// Parameter `vlan`: The SCVLANInterface interface.
-///
-/// Parameter `physical`: The physical interface to associate with the VLAN.
-///
-/// Parameter `tag`: The tag to associate with the VLAN.
-///
-/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-///
-/// Note: the tag must be in the range (1
-/// <
-/// = tag
-/// <
-/// = 4094)
-#[inline]
-pub extern "C-unwind" fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
-    vlan: &SCVLANInterface,
-    physical: &SCNetworkInterface,
-    tag: &CFNumber,
-) -> bool {
-    extern "C-unwind" {
-        fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
-            vlan: &SCVLANInterface,
-            physical: &SCNetworkInterface,
-            tag: &CFNumber,
-        ) -> Boolean;
+    /// Updates the specified VLAN interface.
+    ///
+    /// Parameter `vlan`: The SCVLANInterface interface.
+    ///
+    /// Parameter `physical`: The physical interface to associate with the VLAN.
+    ///
+    /// Parameter `tag`: The tag to associate with the VLAN.
+    ///
+    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+    ///
+    /// Note: the tag must be in the range (1
+    /// <
+    /// = tag
+    /// <
+    /// = 4094)
+    #[doc(alias = "SCVLANInterfaceSetPhysicalInterfaceAndTag")]
+    #[inline]
+    pub fn set_physical_interface_and_tag(
+        &self,
+        physical: &SCNetworkInterface,
+        tag: &CFNumber,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
+                vlan: &SCVLANInterface,
+                physical: &SCNetworkInterface,
+                tag: &CFNumber,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCVLANInterfaceSetPhysicalInterfaceAndTag(self, physical, tag) };
+        ret != 0
     }
-    let ret = unsafe { SCVLANInterfaceSetPhysicalInterfaceAndTag(vlan, physical, tag) };
-    ret != 0
-}
 
-/// Sets the localized display name for the specified VLAN interface.
-///
-/// Parameter `vlan`: The SCVLANInterface interface.
-///
-/// Parameter `newName`: The new display name.
-///
-/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-#[inline]
-pub extern "C-unwind" fn SCVLANInterfaceSetLocalizedDisplayName(
-    vlan: &SCVLANInterface,
-    new_name: &CFString,
-) -> bool {
-    extern "C-unwind" {
-        fn SCVLANInterfaceSetLocalizedDisplayName(
-            vlan: &SCVLANInterface,
-            new_name: &CFString,
-        ) -> Boolean;
+    /// Sets the localized display name for the specified VLAN interface.
+    ///
+    /// Parameter `vlan`: The SCVLANInterface interface.
+    ///
+    /// Parameter `newName`: The new display name.
+    ///
+    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+    #[doc(alias = "SCVLANInterfaceSetLocalizedDisplayName")]
+    #[inline]
+    pub fn set_localized_display_name(&self, new_name: &CFString) -> bool {
+        extern "C-unwind" {
+            fn SCVLANInterfaceSetLocalizedDisplayName(
+                vlan: &SCVLANInterface,
+                new_name: &CFString,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCVLANInterfaceSetLocalizedDisplayName(self, new_name) };
+        ret != 0
     }
-    let ret = unsafe { SCVLANInterfaceSetLocalizedDisplayName(vlan, new_name) };
-    ret != 0
-}
 
-/// Sets the configuration settings for the specified VLAN interface.
-///
-/// Parameter `vlan`: The SCVLANInterface interface.
-///
-/// Parameter `newOptions`: The new configuration settings.
-///
-/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-///
-/// # Safety
-///
-/// `new_options` generic should be of the correct type.
-#[inline]
-pub unsafe extern "C-unwind" fn SCVLANInterfaceSetOptions(
-    vlan: &SCVLANInterface,
-    new_options: &CFDictionary<CFString, CFType>,
-) -> bool {
-    extern "C-unwind" {
-        fn SCVLANInterfaceSetOptions(
-            vlan: &SCVLANInterface,
-            new_options: &CFDictionary<CFString, CFType>,
-        ) -> Boolean;
+    /// Sets the configuration settings for the specified VLAN interface.
+    ///
+    /// Parameter `vlan`: The SCVLANInterface interface.
+    ///
+    /// Parameter `newOptions`: The new configuration settings.
+    ///
+    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+    ///
+    /// # Safety
+    ///
+    /// `new_options` generic should be of the correct type.
+    #[doc(alias = "SCVLANInterfaceSetOptions")]
+    #[inline]
+    pub unsafe fn set_options(&self, new_options: &CFDictionary<CFString, CFType>) -> bool {
+        extern "C-unwind" {
+            fn SCVLANInterfaceSetOptions(
+                vlan: &SCVLANInterface,
+                new_options: &CFDictionary<CFString, CFType>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCVLANInterfaceSetOptions(self, new_options) };
+        ret != 0
     }
-    let ret = unsafe { SCVLANInterfaceSetOptions(vlan, new_options) };
-    ret != 0
 }
 
 unsafe impl ConcreteType for SCNetworkProtocol {

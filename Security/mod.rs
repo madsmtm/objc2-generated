@@ -2622,18 +2622,12 @@ pub use self::__SecCustomTransform::SecTransformActionBlock;
 pub use self::__SecCustomTransform::SecTransformAttribute;
 #[cfg(all(feature = "SecCustomTransform", feature = "block2"))]
 pub use self::__SecCustomTransform::SecTransformAttributeActionBlock;
-#[cfg(all(feature = "SecCustomTransform", feature = "SecTransform"))]
-pub use self::__SecCustomTransform::SecTransformCreate;
 #[cfg(all(
     feature = "SecCustomTransform",
     feature = "SecTransform",
     feature = "block2"
 ))]
 pub use self::__SecCustomTransform::SecTransformCreateFP;
-#[cfg(feature = "SecCustomTransform")]
-pub use self::__SecCustomTransform::SecTransformCustomGetAttribute;
-#[cfg(feature = "SecCustomTransform")]
-pub use self::__SecCustomTransform::SecTransformCustomSetAttribute;
 #[cfg(all(feature = "SecCustomTransform", feature = "block2"))]
 pub use self::__SecCustomTransform::SecTransformDataBlock;
 #[cfg(feature = "SecCustomTransform")]
@@ -2642,22 +2636,6 @@ pub use self::__SecCustomTransform::SecTransformImplementationRef;
 pub use self::__SecCustomTransform::SecTransformInstanceBlock;
 #[cfg(feature = "SecCustomTransform")]
 pub use self::__SecCustomTransform::SecTransformMetaAttributeType;
-#[cfg(feature = "SecCustomTransform")]
-pub use self::__SecCustomTransform::SecTransformNoData;
-#[cfg(feature = "SecCustomTransform")]
-pub use self::__SecCustomTransform::SecTransformPushbackAttribute;
-#[cfg(all(
-    feature = "SecCustomTransform",
-    feature = "SecTransform",
-    feature = "block2"
-))]
-pub use self::__SecCustomTransform::SecTransformRegister;
-#[cfg(all(feature = "SecCustomTransform", feature = "block2"))]
-pub use self::__SecCustomTransform::SecTransformSetAttributeAction;
-#[cfg(all(feature = "SecCustomTransform", feature = "block2"))]
-pub use self::__SecCustomTransform::SecTransformSetDataAction;
-#[cfg(all(feature = "SecCustomTransform", feature = "block2"))]
-pub use self::__SecCustomTransform::SecTransformSetTransformAction;
 #[cfg(feature = "SecCustomTransform")]
 pub use self::__SecCustomTransform::SecTransformStringOrAttribute;
 #[cfg(feature = "SecDecodeTransform")]
@@ -3709,32 +3687,10 @@ pub use self::__SecTransform::kSecTransformTransformIsNotRegistered;
 pub use self::__SecTransform::kSecTransformTransformName;
 #[cfg(feature = "SecTransform")]
 pub use self::__SecTransform::SecGroupTransform;
-#[cfg(feature = "SecTransform")]
-pub use self::__SecTransform::SecGroupTransformGetTypeID;
 #[cfg(all(feature = "SecTransform", feature = "block2"))]
 pub use self::__SecTransform::SecMessageBlock;
 #[cfg(feature = "SecTransform")]
 pub use self::__SecTransform::SecTransform;
-#[cfg(feature = "SecTransform")]
-pub use self::__SecTransform::SecTransformConnectTransforms;
-#[cfg(feature = "SecTransform")]
-pub use self::__SecTransform::SecTransformCopyExternalRepresentation;
-#[cfg(feature = "SecTransform")]
-pub use self::__SecTransform::SecTransformCreateFromExternalRepresentation;
-#[cfg(feature = "SecTransform")]
-pub use self::__SecTransform::SecTransformCreateGroupTransform;
-#[cfg(feature = "SecTransform")]
-pub use self::__SecTransform::SecTransformExecute;
-#[cfg(feature = "SecTransform")]
-pub use self::__SecTransform::SecTransformFindByName;
-#[cfg(feature = "SecTransform")]
-pub use self::__SecTransform::SecTransformGetAttribute;
-#[cfg(feature = "SecTransform")]
-pub use self::__SecTransform::SecTransformGetTypeID;
-#[cfg(feature = "SecTransform")]
-pub use self::__SecTransform::SecTransformSetAttribute;
-#[cfg(all(feature = "SecTransform", feature = "SecTransformReadTransform"))]
-pub use self::__SecTransformReadTransform::SecTransformCreateReadTransformWithReadStream;
 #[cfg(feature = "SecTrust")]
 pub use self::__SecTrust::kSecPropertyTypeError;
 #[cfg(feature = "SecTrust")]

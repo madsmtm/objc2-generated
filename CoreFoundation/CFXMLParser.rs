@@ -470,123 +470,127 @@ impl CFXMLParser {
     }
 }
 
-#[cfg(all(
-    feature = "CFData",
-    feature = "CFTree",
-    feature = "CFURL",
-    feature = "CFXMLNode"
-))]
-#[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-#[inline]
-pub extern "C-unwind" fn CFXMLTreeCreateFromData(
-    allocator: Option<&CFAllocator>,
-    xml_data: &CFData,
-    data_source: Option<&CFURL>,
-    parse_options: CFOptionFlags,
-    version_of_nodes: CFIndex,
-) -> Option<CFRetained<CFXMLTree>> {
-    extern "C-unwind" {
-        fn CFXMLTreeCreateFromData(
-            allocator: Option<&CFAllocator>,
-            xml_data: &CFData,
-            data_source: Option<&CFURL>,
-            parse_options: CFOptionFlags,
-            version_of_nodes: CFIndex,
-        ) -> Option<NonNull<CFXMLTree>>;
+#[cfg(all(feature = "CFTree", feature = "CFXMLNode"))]
+impl CFXMLTree {
+    #[doc(alias = "CFXMLTreeCreateFromData")]
+    #[cfg(all(
+        feature = "CFData",
+        feature = "CFTree",
+        feature = "CFURL",
+        feature = "CFXMLNode"
+    ))]
+    #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
+    #[inline]
+    pub fn from_data(
+        allocator: Option<&CFAllocator>,
+        xml_data: &CFData,
+        data_source: Option<&CFURL>,
+        parse_options: CFOptionFlags,
+        version_of_nodes: CFIndex,
+    ) -> Option<CFRetained<CFXMLTree>> {
+        extern "C-unwind" {
+            fn CFXMLTreeCreateFromData(
+                allocator: Option<&CFAllocator>,
+                xml_data: &CFData,
+                data_source: Option<&CFURL>,
+                parse_options: CFOptionFlags,
+                version_of_nodes: CFIndex,
+            ) -> Option<NonNull<CFXMLTree>>;
+        }
+        let ret = unsafe {
+            CFXMLTreeCreateFromData(
+                allocator,
+                xml_data,
+                data_source,
+                parse_options,
+                version_of_nodes,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe {
-        CFXMLTreeCreateFromData(
-            allocator,
-            xml_data,
-            data_source,
-            parse_options,
-            version_of_nodes,
-        )
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// # Safety
-///
-/// `error_dict` must be a valid pointer.
-#[cfg(all(
-    feature = "CFData",
-    feature = "CFDictionary",
-    feature = "CFTree",
-    feature = "CFURL",
-    feature = "CFXMLNode"
-))]
-#[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-#[inline]
-pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
-    allocator: Option<&CFAllocator>,
-    xml_data: &CFData,
-    data_source: &CFURL,
-    parse_options: CFOptionFlags,
-    version_of_nodes: CFIndex,
-    error_dict: Option<&mut *const CFDictionary>,
-) -> Option<CFRetained<CFXMLTree>> {
-    extern "C-unwind" {
-        fn CFXMLTreeCreateFromDataWithError(
-            allocator: Option<&CFAllocator>,
-            xml_data: &CFData,
-            data_source: &CFURL,
-            parse_options: CFOptionFlags,
-            version_of_nodes: CFIndex,
-            error_dict: Option<&mut *const CFDictionary>,
-        ) -> Option<NonNull<CFXMLTree>>;
+    /// # Safety
+    ///
+    /// `error_dict` must be a valid pointer.
+    #[doc(alias = "CFXMLTreeCreateFromDataWithError")]
+    #[cfg(all(
+        feature = "CFData",
+        feature = "CFDictionary",
+        feature = "CFTree",
+        feature = "CFURL",
+        feature = "CFXMLNode"
+    ))]
+    #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
+    #[inline]
+    pub unsafe fn from_data_with_error(
+        allocator: Option<&CFAllocator>,
+        xml_data: &CFData,
+        data_source: &CFURL,
+        parse_options: CFOptionFlags,
+        version_of_nodes: CFIndex,
+        error_dict: Option<&mut *const CFDictionary>,
+    ) -> Option<CFRetained<CFXMLTree>> {
+        extern "C-unwind" {
+            fn CFXMLTreeCreateFromDataWithError(
+                allocator: Option<&CFAllocator>,
+                xml_data: &CFData,
+                data_source: &CFURL,
+                parse_options: CFOptionFlags,
+                version_of_nodes: CFIndex,
+                error_dict: Option<&mut *const CFDictionary>,
+            ) -> Option<NonNull<CFXMLTree>>;
+        }
+        let ret = unsafe {
+            CFXMLTreeCreateFromDataWithError(
+                allocator,
+                xml_data,
+                data_source,
+                parse_options,
+                version_of_nodes,
+                error_dict,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe {
-        CFXMLTreeCreateFromDataWithError(
-            allocator,
-            xml_data,
-            data_source,
-            parse_options,
-            version_of_nodes,
-            error_dict,
-        )
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(all(feature = "CFTree", feature = "CFURL", feature = "CFXMLNode"))]
-#[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-#[inline]
-pub extern "C-unwind" fn CFXMLTreeCreateWithDataFromURL(
-    allocator: Option<&CFAllocator>,
-    data_source: &CFURL,
-    parse_options: CFOptionFlags,
-    version_of_nodes: CFIndex,
-) -> Option<CFRetained<CFXMLTree>> {
-    extern "C-unwind" {
-        fn CFXMLTreeCreateWithDataFromURL(
-            allocator: Option<&CFAllocator>,
-            data_source: &CFURL,
-            parse_options: CFOptionFlags,
-            version_of_nodes: CFIndex,
-        ) -> Option<NonNull<CFXMLTree>>;
+    #[doc(alias = "CFXMLTreeCreateWithDataFromURL")]
+    #[cfg(all(feature = "CFTree", feature = "CFURL", feature = "CFXMLNode"))]
+    #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
+    #[inline]
+    pub fn with_data_from_url(
+        allocator: Option<&CFAllocator>,
+        data_source: &CFURL,
+        parse_options: CFOptionFlags,
+        version_of_nodes: CFIndex,
+    ) -> Option<CFRetained<CFXMLTree>> {
+        extern "C-unwind" {
+            fn CFXMLTreeCreateWithDataFromURL(
+                allocator: Option<&CFAllocator>,
+                data_source: &CFURL,
+                parse_options: CFOptionFlags,
+                version_of_nodes: CFIndex,
+            ) -> Option<NonNull<CFXMLTree>>;
+        }
+        let ret = unsafe {
+            CFXMLTreeCreateWithDataFromURL(allocator, data_source, parse_options, version_of_nodes)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe {
-        CFXMLTreeCreateWithDataFromURL(allocator, data_source, parse_options, version_of_nodes)
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(all(feature = "CFData", feature = "CFTree", feature = "CFXMLNode"))]
-#[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-#[inline]
-pub extern "C-unwind" fn CFXMLTreeCreateXMLData(
-    allocator: Option<&CFAllocator>,
-    xml_tree: &CFXMLTree,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn CFXMLTreeCreateXMLData(
-            allocator: Option<&CFAllocator>,
-            xml_tree: &CFXMLTree,
-        ) -> Option<NonNull<CFData>>;
+    #[doc(alias = "CFXMLTreeCreateXMLData")]
+    #[cfg(all(feature = "CFData", feature = "CFTree", feature = "CFXMLNode"))]
+    #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
+    #[inline]
+    pub fn xml_data(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn CFXMLTreeCreateXMLData(
+                allocator: Option<&CFAllocator>,
+                xml_tree: &CFXMLTree,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { CFXMLTreeCreateXMLData(allocator, self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFXMLTreeCreateXMLData(allocator, xml_tree) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// # Safety

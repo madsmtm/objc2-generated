@@ -304,22 +304,6 @@ pub use self::__CVImageBuffer::CVColorPrimariesGetIntegerCodePointForString;
 pub use self::__CVImageBuffer::CVColorPrimariesGetStringForIntegerCodePoint;
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub use self::__CVImageBuffer::CVImageBuffer;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-graphics"))]
-pub use self::__CVImageBuffer::CVImageBufferCreateColorSpaceFromAttachments;
-#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-pub use self::__CVImageBuffer::CVImageBufferGetCleanRect;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CVImageBuffer::CVImageBufferGetColorSpace;
-#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-pub use self::__CVImageBuffer::CVImageBufferGetDisplaySize;
-#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-pub use self::__CVImageBuffer::CVImageBufferGetEncodedSize;
-#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-pub use self::__CVImageBuffer::CVImageBufferIsFlipped;
 #[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::CVTransferFunctionGetIntegerCodePointForString;
 #[cfg(feature = "CVImageBuffer")]
@@ -348,29 +332,8 @@ pub use self::__CVMetalBufferCache::CVMetalBufferCache;
 pub use self::__CVMetalTexture::kCVMetalTextureStorageMode;
 #[cfg(feature = "CVMetalTexture")]
 pub use self::__CVMetalTexture::kCVMetalTextureUsage;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVMetalTexture"
-))]
+#[cfg(all(feature = "CVImageBuffer", feature = "CVMetalTexture"))]
 pub use self::__CVMetalTexture::CVMetalTexture;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVMetalTexture",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
-#[cfg(not(target_os = "watchos"))]
-pub use self::__CVMetalTexture::CVMetalTextureGetTexture;
-#[cfg(feature = "CVMetalTexture")]
-pub use self::__CVMetalTexture::CVMetalTextureGetTypeID;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVMetalTexture"
-))]
-pub use self::__CVMetalTexture::CVMetalTextureIsFlipped;
 #[cfg(feature = "CVMetalTextureCache")]
 pub use self::__CVMetalTextureCache::kCVMetalTextureCacheMaximumTextureAgeKey;
 #[cfg(feature = "CVMetalTextureCache")]
@@ -385,72 +348,16 @@ pub use self::__CVOpenGLBuffer::kCVOpenGLBufferMaximumMipmapLevel;
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferTarget;
 #[cfg(feature = "CVOpenGLBuffer")]
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferWidth;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLBuffer"
-))]
+#[cfg(all(feature = "CVImageBuffer", feature = "CVOpenGLBuffer"))]
 pub use self::__CVOpenGLBuffer::CVOpenGLBuffer;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLBuffer",
-    feature = "CVReturn",
-    feature = "objc2-open-gl"
-))]
-#[cfg(target_os = "macos")]
-pub use self::__CVOpenGLBuffer::CVOpenGLBufferAttach;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLBuffer",
-    feature = "CVReturn"
-))]
-pub use self::__CVOpenGLBuffer::CVOpenGLBufferCreate;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLBuffer"
-))]
-pub use self::__CVOpenGLBuffer::CVOpenGLBufferGetAttributes;
-#[cfg(feature = "CVOpenGLBuffer")]
-pub use self::__CVOpenGLBuffer::CVOpenGLBufferGetTypeID;
 #[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::kCVOpenGLBufferPoolMaximumBufferAgeKey;
 #[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::kCVOpenGLBufferPoolMinimumBufferCountKey;
 #[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPool;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLTexture"
-))]
+#[cfg(all(feature = "CVImageBuffer", feature = "CVOpenGLTexture"))]
 pub use self::__CVOpenGLTexture::CVOpenGLTexture;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLTexture",
-    feature = "objc2-open-gl"
-))]
-#[cfg(target_os = "macos")]
-pub use self::__CVOpenGLTexture::CVOpenGLTextureGetName;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLTexture",
-    feature = "objc2-open-gl"
-))]
-#[cfg(target_os = "macos")]
-pub use self::__CVOpenGLTexture::CVOpenGLTextureGetTarget;
-#[cfg(feature = "CVOpenGLTexture")]
-pub use self::__CVOpenGLTexture::CVOpenGLTextureGetTypeID;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLTexture"
-))]
-pub use self::__CVOpenGLTexture::CVOpenGLTextureIsFlipped;
 #[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeAutomatic;
 #[cfg(feature = "CVOpenGLTextureCache")]
@@ -727,156 +634,14 @@ pub use self::__CVPixelBuffer::kCVVersatileBayer_BayerPattern_GBRG;
 pub use self::__CVPixelBuffer::kCVVersatileBayer_BayerPattern_GRBG;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVVersatileBayer_BayerPattern_RGGB;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
+#[cfg(all(feature = "CVImageBuffer", feature = "CVPixelBuffer"))]
 pub use self::__CVPixelBuffer::CVPixelBuffer;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferCopyCreationAttributes;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "CVReturn"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferCreate;
-#[cfg(all(feature = "CVPixelBuffer", feature = "CVReturn"))]
-pub use self::__CVPixelBuffer::CVPixelBufferCreateResolvedAttributesDictionary;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "CVReturn"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferCreateWithBytes;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "CVReturn"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferCreateWithPlanarBytes;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "CVReturn"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferFillExtendedPixels;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetBaseAddress;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetBaseAddressOfPlane;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetBytesPerRow;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetBytesPerRowOfPlane;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetDataSize;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetExtendedPixels;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetHeight;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetHeightOfPlane;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetPixelFormatType;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetPlaneCount;
-#[cfg(feature = "CVPixelBuffer")]
-pub use self::__CVPixelBuffer::CVPixelBufferGetTypeID;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetWidth;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferGetWidthOfPlane;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferIsCompatibleWithAttributes;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferIsPlanar;
-#[cfg(all(
-    feature = "CVBase",
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "CVReturn"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferLockBaseAddress;
 #[cfg(all(feature = "CVBase", feature = "CVPixelBuffer"))]
 pub use self::__CVPixelBuffer::CVPixelBufferLockFlags;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::CVPixelBufferReleaseBytesCallback;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::CVPixelBufferReleasePlanarBytesCallback;
-#[cfg(all(
-    feature = "CVBase",
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "CVReturn"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferUnlockBaseAddress;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::CVPlanarComponentInfo;
 #[cfg(feature = "CVPixelBuffer")]
@@ -895,25 +660,6 @@ pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceOpenGLESTextureCo
 pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceOpenGLFBOCompatibilityKey;
 #[cfg(feature = "CVPixelBufferIOSurface")]
 pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceOpenGLTextureCompatibilityKey;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "CVPixelBufferIOSurface",
-    feature = "CVReturn",
-    feature = "objc2-io-surface"
-))]
-#[cfg(not(target_os = "watchos"))]
-pub use self::__CVPixelBufferIOSurface::CVPixelBufferCreateWithIOSurface;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "CVPixelBufferIOSurface",
-    feature = "objc2-io-surface"
-))]
-#[cfg(not(target_os = "watchos"))]
-pub use self::__CVPixelBufferIOSurface::CVPixelBufferGetIOSurface;
 #[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::kCVPixelBufferPoolAllocationThresholdKey;
 #[cfg(feature = "CVPixelBufferPool")]

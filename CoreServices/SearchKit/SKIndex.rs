@@ -322,7 +322,6 @@ pub type SKDocumentID = CFIndex;
 impl SKIndex {
     /// # Safety
     ///
-    /// - `in_document` should be of the correct type.
     /// - `in_document` might not allow `None`.
     /// - `in_document_text` might not allow `None`.
     #[doc(alias = "SKIndexAddDocumentWithText")]
@@ -350,7 +349,6 @@ impl SKIndex {
 
     /// # Safety
     ///
-    /// - `in_document` should be of the correct type.
     /// - `in_document` might not allow `None`.
     /// - `in_mime_type_hint` might not allow `None`.
     #[doc(alias = "SKIndexAddDocument")]
@@ -378,8 +376,7 @@ impl SKIndex {
 
     /// # Safety
     ///
-    /// - `in_document` should be of the correct type.
-    /// - `in_document` might not allow `None`.
+    /// `in_document` might not allow `None`.
     #[doc(alias = "SKIndexRemoveDocument")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -396,8 +393,7 @@ impl SKIndex {
 
     /// # Safety
     ///
-    /// - `in_document` should be of the correct type.
-    /// - `in_document` might not allow `None`.
+    /// `in_document` might not allow `None`.
     #[doc(alias = "SKIndexCopyDocumentProperties")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -417,7 +413,6 @@ impl SKIndex {
 
     /// # Safety
     ///
-    /// - `in_document` should be of the correct type.
     /// - `in_document` might not allow `None`.
     /// - `in_properties` generic must be of the correct type.
     /// - `in_properties` generic must be of the correct type.
@@ -442,8 +437,7 @@ impl SKIndex {
 
     /// # Safety
     ///
-    /// - `in_document` should be of the correct type.
-    /// - `in_document` might not allow `None`.
+    /// `in_document` might not allow `None`.
     #[doc(alias = "SKIndexGetDocumentState")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -459,8 +453,7 @@ impl SKIndex {
 
     /// # Safety
     ///
-    /// - `in_document` should be of the correct type.
-    /// - `in_document` might not allow `None`.
+    /// `in_document` might not allow `None`.
     #[doc(alias = "SKIndexGetDocumentID")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -493,7 +486,6 @@ impl SKIndex {
 
     /// # Safety
     ///
-    /// - `in_document` should be of the correct type.
     /// - `in_document` might not allow `None`.
     /// - `in_new_name` might not allow `None`.
     #[doc(alias = "SKIndexRenameDocument")]
@@ -517,9 +509,7 @@ impl SKIndex {
 
     /// # Safety
     ///
-    /// - `in_document` should be of the correct type.
     /// - `in_document` might not allow `None`.
-    /// - `in_new_parent` should be of the correct type.
     /// - `in_new_parent` might not allow `None`.
     #[doc(alias = "SKIndexMoveDocument")]
     #[cfg(feature = "SKDocument")]
@@ -544,8 +534,7 @@ impl SKIndex {
 impl SKIndexDocumentIterator {
     /// # Safety
     ///
-    /// - `in_parent_document` should be of the correct type.
-    /// - `in_parent_document` might not allow `None`.
+    /// `in_parent_document` might not allow `None`.
     #[doc(alias = "SKIndexDocumentIteratorCreate")]
     #[cfg(feature = "SKDocument")]
     #[inline]

@@ -134,7 +134,19 @@ unsafe impl RefEncode for SecTransformMetaAttributeType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformattribute?language=objc)
 #[doc(alias = "SecTransformAttributeRef")]
 #[deprecated = "SecTransform is no longer supported"]
-pub type SecTransformAttribute = CFType;
+#[repr(C)]
+pub struct SecTransformAttribute {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+cf_type!(
+    unsafe impl SecTransformAttribute {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<void> for SecTransformAttribute {}
+);
 
 /// This type signifies that either a CFStringRef or
 /// a SecTransformAttributeRef may be used.
@@ -304,173 +316,179 @@ unsafe impl RefEncode for OpaqueSecTransformImplementation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformimplementationref?language=objc)
 pub type SecTransformImplementationRef = *const OpaqueSecTransformImplementation;
 
-/// Be notified when a attribute is set. The supplied block is
-/// called when the attribute is set. This can be done for a
-/// specific named attribute or all attributes.
-///
-///
-/// Parameter `ref`: A SecTransformImplementationRef that is bound to an instance
-/// of a custom transform.
-///
-///
-/// Parameter `action`: The behavior to be set. This can be one of the following
-/// actions:
-///
-/// kSecTransformActionAttributeNotification - add a block that
-/// is called when an attribute is set. If the name is NULL,
-/// then the supplied block is called for all set attributes
-/// except for ones that have a specific block as a handler.
-///
-/// For example, if there is a handler for the attribute "foo"
-/// and for all attributes, the "foo" handler is called when the
-/// "foo" attribute is set, but all other attribute sets will
-/// call the NULL handler.
-///
-/// The kSecTransformActionProcessData action is a special case
-/// of a SecTransformSetAttributeAction action.  If this is
-/// called on the input attribute then it will overwrite any
-/// kSecTransformActionProcessData that was set.
-///
-/// kSecTransformActionAttributeValidation Add a block that is
-/// called to validate the input to an attribute.
-///
-///
-/// Parameter `attribute`: The name of the attribute that will be handled. An attribute
-/// reference may also be given here. A NULL name indicates that
-/// the supplied action is for all attributes.
-///
-///
-/// Parameter `newAction`: A SecTransformAttributeActionBlock which implements the
-/// behavior.
-///
-///
-/// Returns: A CFErrorRef if an error occured NULL otherwise.
-///
-///
-/// This function may be called multiple times for either a
-/// named attribute or for all attributes when the attribute
-/// parameter is NULL. Each time the API is called it overwrites
-/// what was there previously.
-///
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `attribute` should be of the correct type.
-/// - `new_action` block's return must be a valid pointer or null.
-#[cfg(feature = "block2")]
-#[deprecated = "SecTransform is no longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecTransformSetAttributeAction(
-    r#ref: SecTransformImplementationRef,
-    action: &CFString,
-    attribute: Option<&SecTransformStringOrAttribute>,
-    new_action: &SecTransformAttributeActionBlock,
-) -> Option<CFRetained<CFError>> {
-    extern "C-unwind" {
-        fn SecTransformSetAttributeAction(
-            r#ref: SecTransformImplementationRef,
-            action: &CFString,
-            attribute: Option<&SecTransformStringOrAttribute>,
-            new_action: &SecTransformAttributeActionBlock,
-        ) -> Option<NonNull<CFError>>;
+#[cfg(feature = "SecTransform")]
+impl SecTransform {
+    /// Be notified when a attribute is set. The supplied block is
+    /// called when the attribute is set. This can be done for a
+    /// specific named attribute or all attributes.
+    ///
+    ///
+    /// Parameter `ref`: A SecTransformImplementationRef that is bound to an instance
+    /// of a custom transform.
+    ///
+    ///
+    /// Parameter `action`: The behavior to be set. This can be one of the following
+    /// actions:
+    ///
+    /// kSecTransformActionAttributeNotification - add a block that
+    /// is called when an attribute is set. If the name is NULL,
+    /// then the supplied block is called for all set attributes
+    /// except for ones that have a specific block as a handler.
+    ///
+    /// For example, if there is a handler for the attribute "foo"
+    /// and for all attributes, the "foo" handler is called when the
+    /// "foo" attribute is set, but all other attribute sets will
+    /// call the NULL handler.
+    ///
+    /// The kSecTransformActionProcessData action is a special case
+    /// of a SecTransformSetAttributeAction action.  If this is
+    /// called on the input attribute then it will overwrite any
+    /// kSecTransformActionProcessData that was set.
+    ///
+    /// kSecTransformActionAttributeValidation Add a block that is
+    /// called to validate the input to an attribute.
+    ///
+    ///
+    /// Parameter `attribute`: The name of the attribute that will be handled. An attribute
+    /// reference may also be given here. A NULL name indicates that
+    /// the supplied action is for all attributes.
+    ///
+    ///
+    /// Parameter `newAction`: A SecTransformAttributeActionBlock which implements the
+    /// behavior.
+    ///
+    ///
+    /// Returns: A CFErrorRef if an error occured NULL otherwise.
+    ///
+    ///
+    /// This function may be called multiple times for either a
+    /// named attribute or for all attributes when the attribute
+    /// parameter is NULL. Each time the API is called it overwrites
+    /// what was there previously.
+    ///
+    /// # Safety
+    ///
+    /// - `ref` must be a valid pointer.
+    /// - `attribute` should be of the correct type.
+    /// - `new_action` block's return must be a valid pointer or null.
+    #[doc(alias = "SecTransformSetAttributeAction")]
+    #[cfg(feature = "block2")]
+    #[deprecated = "SecTransform is no longer supported"]
+    #[inline]
+    pub unsafe fn set_attribute_action(
+        r#ref: SecTransformImplementationRef,
+        action: &CFString,
+        attribute: Option<&SecTransformStringOrAttribute>,
+        new_action: &SecTransformAttributeActionBlock,
+    ) -> Option<CFRetained<CFError>> {
+        extern "C-unwind" {
+            fn SecTransformSetAttributeAction(
+                r#ref: SecTransformImplementationRef,
+                action: &CFString,
+                attribute: Option<&SecTransformStringOrAttribute>,
+                new_action: &SecTransformAttributeActionBlock,
+            ) -> Option<NonNull<CFError>>;
+        }
+        let ret = unsafe { SecTransformSetAttributeAction(r#ref, action, attribute, new_action) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SecTransformSetAttributeAction(r#ref, action, attribute, new_action) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Change the way a custom transform will do data processing.
-/// When the action parameter is kSecTransformActionProcessData
-/// The newAction block will change the way that input data is
-/// processed to become the output data. When the action
-/// parameter is kSecTransformActionInternalizeExtraData it will
-/// change the way a custom transform reads in data to be
-/// imported into the transform.
-///
-///
-/// Parameter `ref`: A SecTransformImplementationRef that is bound to an instance
-/// of a custom transform.
-///
-///
-/// Parameter `action`: The action being overridden.  This value should be one of the
-/// following:
-/// kSecTransformActionProcessData
-/// Change the way that input data is processed into the
-/// output data. The default behavior is to simply copy
-/// the input data to the output attribute.
-///
-/// The kSecTransformActionProcessData action is really
-/// a special case of a SecTransformSetAttributeAction
-/// action. If you call this method with
-/// kSecTransformActionProcessData it would overwrite
-/// any kSecTransformActionAttributeNotification action
-/// that was set proviously
-///
-/// kSecTransformActionInternalizeExtraData
-/// Change the way that custom externalized data is
-/// imported into the transform.  The default behavior
-/// is to do nothing.
-///
-///
-/// Parameter `newAction`: A SecTransformDataBlock which implements the behavior.
-///
-/// If the action parameter is kSecTransformActionProcessData then
-/// this block will be called to process the input data into the
-/// output data.
-///
-/// if the action parameter is kSecTransformActionInternalizeExtraData then
-/// this block will called to input custom data into the transform.
-///
-///
-/// Returns: A CFErrorRef is an error occured NULL otherwise.
-///
-///
-/// This API may be called multiple times.  Each time the API is called
-/// it overwrites what was there previously.
-///
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `new_action` block's return must be a valid pointer or null.
-#[cfg(feature = "block2")]
-#[deprecated = "SecTransform is no longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecTransformSetDataAction(
-    r#ref: SecTransformImplementationRef,
-    action: &CFString,
-    new_action: &SecTransformDataBlock,
-) -> Option<CFRetained<CFError>> {
-    extern "C-unwind" {
-        fn SecTransformSetDataAction(
-            r#ref: SecTransformImplementationRef,
-            action: &CFString,
-            new_action: &SecTransformDataBlock,
-        ) -> Option<NonNull<CFError>>;
+    /// Change the way a custom transform will do data processing.
+    /// When the action parameter is kSecTransformActionProcessData
+    /// The newAction block will change the way that input data is
+    /// processed to become the output data. When the action
+    /// parameter is kSecTransformActionInternalizeExtraData it will
+    /// change the way a custom transform reads in data to be
+    /// imported into the transform.
+    ///
+    ///
+    /// Parameter `ref`: A SecTransformImplementationRef that is bound to an instance
+    /// of a custom transform.
+    ///
+    ///
+    /// Parameter `action`: The action being overridden.  This value should be one of the
+    /// following:
+    /// kSecTransformActionProcessData
+    /// Change the way that input data is processed into the
+    /// output data. The default behavior is to simply copy
+    /// the input data to the output attribute.
+    ///
+    /// The kSecTransformActionProcessData action is really
+    /// a special case of a SecTransformSetAttributeAction
+    /// action. If you call this method with
+    /// kSecTransformActionProcessData it would overwrite
+    /// any kSecTransformActionAttributeNotification action
+    /// that was set proviously
+    ///
+    /// kSecTransformActionInternalizeExtraData
+    /// Change the way that custom externalized data is
+    /// imported into the transform.  The default behavior
+    /// is to do nothing.
+    ///
+    ///
+    /// Parameter `newAction`: A SecTransformDataBlock which implements the behavior.
+    ///
+    /// If the action parameter is kSecTransformActionProcessData then
+    /// this block will be called to process the input data into the
+    /// output data.
+    ///
+    /// if the action parameter is kSecTransformActionInternalizeExtraData then
+    /// this block will called to input custom data into the transform.
+    ///
+    ///
+    /// Returns: A CFErrorRef is an error occured NULL otherwise.
+    ///
+    ///
+    /// This API may be called multiple times.  Each time the API is called
+    /// it overwrites what was there previously.
+    ///
+    /// # Safety
+    ///
+    /// - `ref` must be a valid pointer.
+    /// - `new_action` block's return must be a valid pointer or null.
+    #[doc(alias = "SecTransformSetDataAction")]
+    #[cfg(feature = "block2")]
+    #[deprecated = "SecTransform is no longer supported"]
+    #[inline]
+    pub unsafe fn set_data_action(
+        r#ref: SecTransformImplementationRef,
+        action: &CFString,
+        new_action: &SecTransformDataBlock,
+    ) -> Option<CFRetained<CFError>> {
+        extern "C-unwind" {
+            fn SecTransformSetDataAction(
+                r#ref: SecTransformImplementationRef,
+                action: &CFString,
+                new_action: &SecTransformDataBlock,
+            ) -> Option<NonNull<CFError>>;
+        }
+        let ret = unsafe { SecTransformSetDataAction(r#ref, action, new_action) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SecTransformSetDataAction(r#ref, action, new_action) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `new_action` block's return must be a valid pointer or null.
-#[cfg(feature = "block2")]
-#[deprecated = "SecTransform is no longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecTransformSetTransformAction(
-    r#ref: SecTransformImplementationRef,
-    action: &CFString,
-    new_action: &SecTransformActionBlock,
-) -> Option<CFRetained<CFError>> {
-    extern "C-unwind" {
-        fn SecTransformSetTransformAction(
-            r#ref: SecTransformImplementationRef,
-            action: &CFString,
-            new_action: &SecTransformActionBlock,
-        ) -> Option<NonNull<CFError>>;
+    /// # Safety
+    ///
+    /// - `ref` must be a valid pointer.
+    /// - `new_action` block's return must be a valid pointer or null.
+    #[doc(alias = "SecTransformSetTransformAction")]
+    #[cfg(feature = "block2")]
+    #[deprecated = "SecTransform is no longer supported"]
+    #[inline]
+    pub unsafe fn set_transform_action(
+        r#ref: SecTransformImplementationRef,
+        action: &CFString,
+        new_action: &SecTransformActionBlock,
+    ) -> Option<CFRetained<CFError>> {
+        extern "C-unwind" {
+            fn SecTransformSetTransformAction(
+                r#ref: SecTransformImplementationRef,
+                action: &CFString,
+                new_action: &SecTransformActionBlock,
+            ) -> Option<NonNull<CFError>>;
+        }
+        let ret = unsafe { SecTransformSetTransformAction(r#ref, action, new_action) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SecTransformSetTransformAction(r#ref, action, new_action) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Allow a custom transform to get an attribute value
@@ -512,137 +530,143 @@ pub unsafe extern "C-unwind" fn SecTranformCustomGetAttribute(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// Allow a custom transform to get an attribute value
-///
-///
-/// Parameter `ref`: A SecTransformImplementationRef that is bound to an instance
-/// of a custom transform.
-///
-///
-/// Parameter `attribute`: The name or the attribute handle of the attribute whose
-/// value is to be retrieved.
-///
-///
-/// Parameter `type`: The type of data to be retrieved for the attribute.  See the
-/// discussion on SecTransformMetaAttributeType for details.
-///
-///
-/// Returns: The value of the attribute.
-///
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `attribute` should be of the correct type.
-#[deprecated = "SecTransform is no longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecTransformCustomGetAttribute(
-    r#ref: SecTransformImplementationRef,
-    attribute: &SecTransformStringOrAttribute,
-    r#type: SecTransformMetaAttributeType,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        #[link_name = "SecTranformCustomGetAttribute"]
-        fn SecTransformCustomGetAttribute(
-            r#ref: SecTransformImplementationRef,
-            attribute: &SecTransformStringOrAttribute,
-            r#type: SecTransformMetaAttributeType,
-        ) -> Option<NonNull<CFType>>;
+#[cfg(feature = "SecTransform")]
+impl SecTransform {
+    /// Allow a custom transform to get an attribute value
+    ///
+    ///
+    /// Parameter `ref`: A SecTransformImplementationRef that is bound to an instance
+    /// of a custom transform.
+    ///
+    ///
+    /// Parameter `attribute`: The name or the attribute handle of the attribute whose
+    /// value is to be retrieved.
+    ///
+    ///
+    /// Parameter `type`: The type of data to be retrieved for the attribute.  See the
+    /// discussion on SecTransformMetaAttributeType for details.
+    ///
+    ///
+    /// Returns: The value of the attribute.
+    ///
+    /// # Safety
+    ///
+    /// - `ref` must be a valid pointer.
+    /// - `attribute` should be of the correct type.
+    #[doc(alias = "SecTransformCustomGetAttribute")]
+    #[deprecated = "SecTransform is no longer supported"]
+    #[inline]
+    pub unsafe fn custom_get_attribute(
+        r#ref: SecTransformImplementationRef,
+        attribute: &SecTransformStringOrAttribute,
+        r#type: SecTransformMetaAttributeType,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            #[link_name = "SecTranformCustomGetAttribute"]
+            fn SecTransformCustomGetAttribute(
+                r#ref: SecTransformImplementationRef,
+                attribute: &SecTransformStringOrAttribute,
+                r#type: SecTransformMetaAttributeType,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { SecTransformCustomGetAttribute(r#ref, attribute, r#type) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SecTransformCustomGetAttribute(r#ref, attribute, r#type) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Allow a custom transform to set an attribute value
-///
-///
-/// Parameter `ref`: A SecTransformImplementationRef that is bound to an instance
-/// of a custom transform.
-///
-///
-/// Parameter `attribute`: The name or the attribute handle of the attribute whose
-/// value is to be set.
-///
-///
-/// Parameter `type`: The type of data to be retrieved for the attribute.  See the
-/// discussion on SecTransformMetaAttributeType for details.
-///
-///
-/// Parameter `value`: The new value for the attribute
-///
-///
-/// Returns: A CFErrorRef if an error occured , NULL otherwise.
-///
-///
-/// Unlike the SecTransformSetAttribute API this API can set
-/// attribute values while a transform is executing.  These
-/// values are limited to the custom transform instance that
-/// is bound to the ref parameter.
-///
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `attribute` should be of the correct type.
-/// - `value` should be of the correct type.
-#[deprecated = "SecTransform is no longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecTransformCustomSetAttribute(
-    r#ref: SecTransformImplementationRef,
-    attribute: &SecTransformStringOrAttribute,
-    r#type: SecTransformMetaAttributeType,
-    value: Option<&CFType>,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn SecTransformCustomSetAttribute(
-            r#ref: SecTransformImplementationRef,
-            attribute: &SecTransformStringOrAttribute,
-            r#type: SecTransformMetaAttributeType,
-            value: Option<&CFType>,
-        ) -> Option<NonNull<CFType>>;
+    /// Allow a custom transform to set an attribute value
+    ///
+    ///
+    /// Parameter `ref`: A SecTransformImplementationRef that is bound to an instance
+    /// of a custom transform.
+    ///
+    ///
+    /// Parameter `attribute`: The name or the attribute handle of the attribute whose
+    /// value is to be set.
+    ///
+    ///
+    /// Parameter `type`: The type of data to be retrieved for the attribute.  See the
+    /// discussion on SecTransformMetaAttributeType for details.
+    ///
+    ///
+    /// Parameter `value`: The new value for the attribute
+    ///
+    ///
+    /// Returns: A CFErrorRef if an error occured , NULL otherwise.
+    ///
+    ///
+    /// Unlike the SecTransformSetAttribute API this API can set
+    /// attribute values while a transform is executing.  These
+    /// values are limited to the custom transform instance that
+    /// is bound to the ref parameter.
+    ///
+    /// # Safety
+    ///
+    /// - `ref` must be a valid pointer.
+    /// - `attribute` should be of the correct type.
+    /// - `value` should be of the correct type.
+    #[doc(alias = "SecTransformCustomSetAttribute")]
+    #[deprecated = "SecTransform is no longer supported"]
+    #[inline]
+    pub unsafe fn custom_set_attribute(
+        r#ref: SecTransformImplementationRef,
+        attribute: &SecTransformStringOrAttribute,
+        r#type: SecTransformMetaAttributeType,
+        value: Option<&CFType>,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn SecTransformCustomSetAttribute(
+                r#ref: SecTransformImplementationRef,
+                attribute: &SecTransformStringOrAttribute,
+                r#type: SecTransformMetaAttributeType,
+                value: Option<&CFType>,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { SecTransformCustomSetAttribute(r#ref, attribute, r#type, value) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SecTransformCustomSetAttribute(r#ref, attribute, r#type, value) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Allows for putting a single value back for a specific
-/// attribute.  This will stop the flow of data into the
-/// specified attribute until any attribute is changed for the
-/// transform instance bound to the ref parameter.
-///
-///
-/// Parameter `ref`: A SecTransformImplementationRef that is bound to an instance
-/// of a custom transform.
-///
-///
-/// Parameter `attribute`: The name or the attribute handle of the attribute whose
-/// value is to be pushed back.
-///
-///
-/// Parameter `value`: The value being pushed back.
-///
-///
-/// Returns: A CFErrorRef if an error occured , NULL otherwise.
-///
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `attribute` should be of the correct type.
-/// - `value` should be of the correct type.
-#[deprecated = "SecTransform is no longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecTransformPushbackAttribute(
-    r#ref: SecTransformImplementationRef,
-    attribute: &SecTransformStringOrAttribute,
-    value: &CFType,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn SecTransformPushbackAttribute(
-            r#ref: SecTransformImplementationRef,
-            attribute: &SecTransformStringOrAttribute,
-            value: &CFType,
-        ) -> Option<NonNull<CFType>>;
+    /// Allows for putting a single value back for a specific
+    /// attribute.  This will stop the flow of data into the
+    /// specified attribute until any attribute is changed for the
+    /// transform instance bound to the ref parameter.
+    ///
+    ///
+    /// Parameter `ref`: A SecTransformImplementationRef that is bound to an instance
+    /// of a custom transform.
+    ///
+    ///
+    /// Parameter `attribute`: The name or the attribute handle of the attribute whose
+    /// value is to be pushed back.
+    ///
+    ///
+    /// Parameter `value`: The value being pushed back.
+    ///
+    ///
+    /// Returns: A CFErrorRef if an error occured , NULL otherwise.
+    ///
+    /// # Safety
+    ///
+    /// - `ref` must be a valid pointer.
+    /// - `attribute` should be of the correct type.
+    /// - `value` should be of the correct type.
+    #[doc(alias = "SecTransformPushbackAttribute")]
+    #[deprecated = "SecTransform is no longer supported"]
+    #[inline]
+    pub unsafe fn pushback_attribute(
+        r#ref: SecTransformImplementationRef,
+        attribute: &SecTransformStringOrAttribute,
+        value: &CFType,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn SecTransformPushbackAttribute(
+                r#ref: SecTransformImplementationRef,
+                attribute: &SecTransformStringOrAttribute,
+                value: &CFType,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { SecTransformPushbackAttribute(r#ref, attribute, value) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SecTransformPushbackAttribute(r#ref, attribute, value) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// A function pointer to a function that will create a
@@ -783,117 +807,124 @@ extern "C" {
     pub static kSecTransformActionAttributeValidation: &'static CFString;
 }
 
-/// Register a new custom transform so that it may be used to
-/// process data
-///
-///
-/// Parameter `uniqueName`: A unique name for this custom transform.  It is recommended
-/// that a reverse DNS name be used for the name of your custom
-/// transform
-///
-///
-/// Parameter `createTransformFunction`: A SecTransformCreateFP function pointer. The function must
-/// return a SecTransformInstanceBlock block that block_copy has
-/// been called on before returning the block. Failure to call
-/// block_copy will cause undefined behavior.
-///
-///
-/// Parameter `error`: This pointer is set if an error occurred.  This value
-/// may be NULL if you do not want an error returned.
-///
-///
-/// Returns: True if the custom transform was registered false otherwise
-///
-/// # Safety
-///
-/// - `create_transform_function` must be implemented correctly.
-/// - `error` must be a valid pointer or null.
-#[cfg(all(feature = "SecTransform", feature = "block2"))]
-#[deprecated = "SecTransform is no longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecTransformRegister(
-    unique_name: &CFString,
-    create_transform_function: SecTransformCreateFP,
-    error: *mut *mut CFError,
-) -> bool {
-    extern "C-unwind" {
-        fn SecTransformRegister(
-            unique_name: &CFString,
-            create_transform_function: SecTransformCreateFP,
-            error: *mut *mut CFError,
-        ) -> Boolean;
-    }
-    let ret = unsafe { SecTransformRegister(unique_name, create_transform_function, error) };
-    ret != 0
-}
-
-/// Creates a transform computation object.
-///
-///
-/// Parameter `name`: The type of transform to create, must have been registered
-/// by SecTransformRegister, or be a system pre-defined
-/// transform type.
-///
-///
-/// Parameter `error`: A pointer to a CFErrorRef.  This pointer is set if an error
-/// occurred.  This value may be NULL if you do not want an
-/// error returned.
-///
-///
-/// Returns: A pointer to a SecTransformRef object.  This object must be
-/// released with CFRelease when you are done with it.  This
-/// function returns NULL if an error occurred.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[cfg(feature = "SecTransform")]
-#[deprecated = "SecTransform is no longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecTransformCreate(
-    name: &CFString,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<SecTransform>> {
-    extern "C-unwind" {
-        fn SecTransformCreate(
-            name: &CFString,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<SecTransform>>;
+impl SecTransform {
+    /// Register a new custom transform so that it may be used to
+    /// process data
+    ///
+    ///
+    /// Parameter `uniqueName`: A unique name for this custom transform.  It is recommended
+    /// that a reverse DNS name be used for the name of your custom
+    /// transform
+    ///
+    ///
+    /// Parameter `createTransformFunction`: A SecTransformCreateFP function pointer. The function must
+    /// return a SecTransformInstanceBlock block that block_copy has
+    /// been called on before returning the block. Failure to call
+    /// block_copy will cause undefined behavior.
+    ///
+    ///
+    /// Parameter `error`: This pointer is set if an error occurred.  This value
+    /// may be NULL if you do not want an error returned.
+    ///
+    ///
+    /// Returns: True if the custom transform was registered false otherwise
+    ///
+    /// # Safety
+    ///
+    /// - `create_transform_function` must be implemented correctly.
+    /// - `error` must be a valid pointer or null.
+    #[doc(alias = "SecTransformRegister")]
+    #[cfg(all(feature = "SecTransform", feature = "block2"))]
+    #[deprecated = "SecTransform is no longer supported"]
+    #[inline]
+    pub unsafe fn register(
+        unique_name: &CFString,
+        create_transform_function: SecTransformCreateFP,
+        error: *mut *mut CFError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SecTransformRegister(
+                unique_name: &CFString,
+                create_transform_function: SecTransformCreateFP,
+                error: *mut *mut CFError,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SecTransformRegister(unique_name, create_transform_function, error) };
+        ret != 0
     }
-    let ret = unsafe { SecTransformCreate(name, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns back A CFTypeRef from inside a processData
-/// override that says that while no data is being returned
-/// the transform is still active and awaiting data.
-///
-///
-/// Returns: A 'special' value that allows that specifies that the
-/// transform is still active and awaiting data.
-///
-///
-/// The standard behavior for the ProcessData override is that
-/// it will receive a CFDataRef and it processes that data and
-/// returns a CFDataRef that contains the processed data. When
-/// there is no more data to process the ProcessData override
-/// block is called one last time with a NULL CFDataRef.  The
-/// ProcessData block should/must return the NULL CFDataRef to
-/// complete the processing.  This model does not work well for
-/// some transforms. For example a digest transform needs to see
-/// ALL of the data that is being digested before it can send
-/// out the digest value.
-///
-/// If a ProcessData block has no data to return, it can return
-/// SecTransformNoData(), which informs the transform system
-/// that there is no data to pass on to the next transform.
-#[deprecated = "SecTransform is no longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecTransformNoData() -> CFRetained<CFType> {
-    extern "C-unwind" {
-        fn SecTransformNoData() -> Option<NonNull<CFType>>;
+    /// Creates a transform computation object.
+    ///
+    ///
+    /// Parameter `name`: The type of transform to create, must have been registered
+    /// by SecTransformRegister, or be a system pre-defined
+    /// transform type.
+    ///
+    ///
+    /// Parameter `error`: A pointer to a CFErrorRef.  This pointer is set if an error
+    /// occurred.  This value may be NULL if you do not want an
+    /// error returned.
+    ///
+    ///
+    /// Returns: A pointer to a SecTransformRef object.  This object must be
+    /// released with CFRelease when you are done with it.  This
+    /// function returns NULL if an error occurred.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
+    #[doc(alias = "SecTransformCreate")]
+    #[cfg(feature = "SecTransform")]
+    #[deprecated = "SecTransform is no longer supported"]
+    #[inline]
+    pub unsafe fn new(
+        name: &CFString,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<SecTransform>> {
+        extern "C-unwind" {
+            fn SecTransformCreate(
+                name: &CFString,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<SecTransform>>;
+        }
+        let ret = unsafe { SecTransformCreate(name, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecTransformNoData() };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
+
+    /// Returns back A CFTypeRef from inside a processData
+    /// override that says that while no data is being returned
+    /// the transform is still active and awaiting data.
+    ///
+    ///
+    /// Returns: A 'special' value that allows that specifies that the
+    /// transform is still active and awaiting data.
+    ///
+    ///
+    /// The standard behavior for the ProcessData override is that
+    /// it will receive a CFDataRef and it processes that data and
+    /// returns a CFDataRef that contains the processed data. When
+    /// there is no more data to process the ProcessData override
+    /// block is called one last time with a NULL CFDataRef.  The
+    /// ProcessData block should/must return the NULL CFDataRef to
+    /// complete the processing.  This model does not work well for
+    /// some transforms. For example a digest transform needs to see
+    /// ALL of the data that is being digested before it can send
+    /// out the digest value.
+    ///
+    /// If a ProcessData block has no data to return, it can return
+    /// SecTransformNoData(), which informs the transform system
+    /// that there is no data to pass on to the next transform.
+    #[doc(alias = "SecTransformNoData")]
+    #[deprecated = "SecTransform is no longer supported"]
+    #[inline]
+    pub unsafe fn no_data() -> CFRetained<CFType> {
+        extern "C-unwind" {
+            fn SecTransformNoData() -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { SecTransformNoData() };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
+    }
 }
