@@ -631,9 +631,6 @@ pub const kAudioStereoPanControlPropertyValue: AudioObjectPropertySelector = 0x7
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostereopancontrolpropertypanningchannels?language=objc)
 pub const kAudioStereoPanControlPropertyPanningChannels: AudioObjectPropertySelector = 0x73706363;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectsystemobject?language=objc)
-pub const kAudioObjectSystemObject: c_int = 1;
-
 /// Clients register an AudioObjectPropertyListenerProc with an AudioObject in order
 /// to receive notifications when the properties of the object change.
 ///

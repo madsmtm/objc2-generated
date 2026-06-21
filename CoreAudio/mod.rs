@@ -550,8 +550,6 @@ pub use self::__AudioHardware::kAudioObjectPropertySelectorWildcard;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioObjectPropertySerialNumber;
 #[cfg(feature = "AudioHardware")]
-pub use self::__AudioHardware::kAudioObjectSystemObject;
-#[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioObjectUnknown;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioPhantomPowerControlClassID;
