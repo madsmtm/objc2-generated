@@ -21,12 +21,16 @@ unsafe impl RefEncode for CGLShareGroupRec {
 /// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglsharegroupobj?language=objc)
 pub type CGLShareGroupObj = *mut CGLShareGroupRec;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ctx` must be a valid pointer.
-    #[cfg(feature = "CGLTypes")]
-    pub fn CGLGetShareGroup(ctx: CGLContextObj) -> CGLShareGroupObj;
+/// # Safety
+///
+/// `ctx` must be a valid pointer.
+#[cfg(feature = "CGLTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGLGetShareGroup(ctx: CGLContextObj) -> CGLShareGroupObj {
+    extern "C-unwind" {
+        fn CGLGetShareGroup(ctx: CGLContextObj) -> CGLShareGroupObj;
+    }
+    unsafe { CGLGetShareGroup(ctx) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opengl/_cl_device_id?language=objc)
@@ -44,6 +48,10 @@ unsafe impl RefEncode for _cl_device_id {
 /// [Apple's documentation](https://developer.apple.com/documentation/opengl/cl_device_id?language=objc)
 pub type cl_device_id = *mut _cl_device_id;
 
-extern "C-unwind" {
-    pub fn CGLGetDeviceFromGLRenderer(renderer_id: GLint) -> cl_device_id;
+#[inline]
+pub unsafe extern "C-unwind" fn CGLGetDeviceFromGLRenderer(renderer_id: GLint) -> cl_device_id {
+    extern "C-unwind" {
+        fn CGLGetDeviceFromGLRenderer(renderer_id: GLint) -> cl_device_id;
+    }
+    unsafe { CGLGetDeviceFromGLRenderer(renderer_id) }
 }

@@ -85,15 +85,23 @@ pub extern "C-unwind" fn CFPreferencesGetAppIntegerValue(
     unsafe { CFPreferencesGetAppIntegerValue(key, application_id, key_exists_and_has_valid_format) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `value` should be of the correct type.
-    pub fn CFPreferencesSetAppValue(
-        key: &CFString,
-        value: Option<&CFPropertyList>,
-        application_id: &CFString,
-    );
+/// # Safety
+///
+/// `value` should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesSetAppValue(
+    key: &CFString,
+    value: Option<&CFPropertyList>,
+    application_id: &CFString,
+) {
+    extern "C-unwind" {
+        fn CFPreferencesSetAppValue(
+            key: &CFString,
+            value: Option<&CFPropertyList>,
+            application_id: &CFString,
+        );
+    }
+    unsafe { CFPreferencesSetAppValue(key, value, application_id) }
 }
 
 #[inline]
@@ -171,31 +179,59 @@ pub extern "C-unwind" fn CFPreferencesCopyMultiple(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `value` should be of the correct type.
-    pub fn CFPreferencesSetValue(
-        key: &CFString,
-        value: Option<&CFPropertyList>,
-        application_id: &CFString,
-        user_name: &CFString,
-        host_name: &CFString,
-    );
+/// # Safety
+///
+/// `value` should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesSetValue(
+    key: &CFString,
+    value: Option<&CFPropertyList>,
+    application_id: &CFString,
+    user_name: &CFString,
+    host_name: &CFString,
+) {
+    extern "C-unwind" {
+        fn CFPreferencesSetValue(
+            key: &CFString,
+            value: Option<&CFPropertyList>,
+            application_id: &CFString,
+            user_name: &CFString,
+            host_name: &CFString,
+        );
+    }
+    unsafe { CFPreferencesSetValue(key, value, application_id, user_name, host_name) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `keys_to_set` generic should be of the correct type.
-    #[cfg(all(feature = "CFArray", feature = "CFDictionary", feature = "CFString"))]
-    pub fn CFPreferencesSetMultiple(
-        keys_to_set: Option<&CFDictionary<CFString, CFType>>,
-        keys_to_remove: Option<&CFArray<CFString>>,
-        application_id: &CFString,
-        user_name: &CFString,
-        host_name: &CFString,
-    );
+/// # Safety
+///
+/// `keys_to_set` generic should be of the correct type.
+#[cfg(all(feature = "CFArray", feature = "CFDictionary", feature = "CFString"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesSetMultiple(
+    keys_to_set: Option<&CFDictionary<CFString, CFType>>,
+    keys_to_remove: Option<&CFArray<CFString>>,
+    application_id: &CFString,
+    user_name: &CFString,
+    host_name: &CFString,
+) {
+    extern "C-unwind" {
+        fn CFPreferencesSetMultiple(
+            keys_to_set: Option<&CFDictionary<CFString, CFType>>,
+            keys_to_remove: Option<&CFArray<CFString>>,
+            application_id: &CFString,
+            user_name: &CFString,
+            host_name: &CFString,
+        );
+    }
+    unsafe {
+        CFPreferencesSetMultiple(
+            keys_to_set,
+            keys_to_remove,
+            application_id,
+            user_name,
+            host_name,
+        )
+    }
 }
 
 #[inline]

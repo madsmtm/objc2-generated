@@ -214,198 +214,295 @@ pub const kAudioFileStreamProperty_BitRate: AudioFileStreamPropertyID = 0x627261
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_infodictionary?language=objc)
 pub const kAudioFileStreamProperty_InfoDictionary: AudioFileStreamPropertyID = 0x696e666f;
 
-extern "C-unwind" {
-    /// Create a new audio file stream parser.
-    /// The client provides the parser with data and the parser calls
-    /// callbacks when interesting things are found in the data, such as properties and
-    /// audio packets.
-    ///
-    ///
-    /// Parameter `inClientData`: a constant that will be passed to your callbacks.
-    ///
-    /// Parameter `inPropertyListenerProc`: Whenever the value of a property is parsed in the data, this function will be called.
-    /// You can then get the value of the property from in the callback. In some cases, due to
-    /// boundaries in the input data, the property may return kAudioFileStreamError_DataUnavailable.
-    /// When unavailable data is requested from within the property listener, the parser will begin
-    /// caching the property value and will call the property listener again when the property is
-    /// available. For property values for which kAudioFileStreamPropertyFlag_PropertyIsCached is unset, this
-    /// will be the only opportunity to get the value of the property, since the data will be
-    /// disposed upon return of the property listener callback.
-    ///
-    /// Parameter `inPacketsProc`: Whenever packets are parsed in the data, a pointer to the packets is passed to the client
-    /// using this callback. At times only a single packet may be passed due to boundaries in the
-    /// input data.
-    ///
-    /// Parameter `inFileTypeHint`: For files whose type cannot be easily or uniquely determined from the data (ADTS,AC3),
-    /// this hint can be used to indicate the file type.
-    /// Otherwise if you do not know the file type, you can pass zero.
-    ///
-    /// Parameter `outAudioFileStream`: A new file stream ID for use in other AudioFileStream API calls.
-    ///
-    /// # Safety
-    ///
-    /// - `in_client_data` must be a valid pointer or null.
-    /// - `in_property_listener_proc` must be implemented correctly.
-    /// - `in_packets_proc` must be implemented correctly.
-    /// - `out_audio_file_stream` must be a valid pointer or null.
-    #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
-    pub fn AudioFileStreamOpen(
-        in_client_data: *mut c_void,
-        in_property_listener_proc: AudioFileStream_PropertyListenerProc,
-        in_packets_proc: AudioFileStream_PacketsProc,
-        in_file_type_hint: AudioFileTypeID,
-        out_audio_file_stream: &mut AudioFileStreamID,
-    ) -> OSStatus;
+/// Create a new audio file stream parser.
+/// The client provides the parser with data and the parser calls
+/// callbacks when interesting things are found in the data, such as properties and
+/// audio packets.
+///
+///
+/// Parameter `inClientData`: a constant that will be passed to your callbacks.
+///
+/// Parameter `inPropertyListenerProc`: Whenever the value of a property is parsed in the data, this function will be called.
+/// You can then get the value of the property from in the callback. In some cases, due to
+/// boundaries in the input data, the property may return kAudioFileStreamError_DataUnavailable.
+/// When unavailable data is requested from within the property listener, the parser will begin
+/// caching the property value and will call the property listener again when the property is
+/// available. For property values for which kAudioFileStreamPropertyFlag_PropertyIsCached is unset, this
+/// will be the only opportunity to get the value of the property, since the data will be
+/// disposed upon return of the property listener callback.
+///
+/// Parameter `inPacketsProc`: Whenever packets are parsed in the data, a pointer to the packets is passed to the client
+/// using this callback. At times only a single packet may be passed due to boundaries in the
+/// input data.
+///
+/// Parameter `inFileTypeHint`: For files whose type cannot be easily or uniquely determined from the data (ADTS,AC3),
+/// this hint can be used to indicate the file type.
+/// Otherwise if you do not know the file type, you can pass zero.
+///
+/// Parameter `outAudioFileStream`: A new file stream ID for use in other AudioFileStream API calls.
+///
+/// # Safety
+///
+/// - `in_client_data` must be a valid pointer or null.
+/// - `in_property_listener_proc` must be implemented correctly.
+/// - `in_packets_proc` must be implemented correctly.
+/// - `out_audio_file_stream` must be a valid pointer or null.
+#[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileStreamOpen(
+    in_client_data: *mut c_void,
+    in_property_listener_proc: AudioFileStream_PropertyListenerProc,
+    in_packets_proc: AudioFileStream_PacketsProc,
+    in_file_type_hint: AudioFileTypeID,
+    out_audio_file_stream: &mut AudioFileStreamID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileStreamOpen(
+            in_client_data: *mut c_void,
+            in_property_listener_proc: AudioFileStream_PropertyListenerProc,
+            in_packets_proc: AudioFileStream_PacketsProc,
+            in_file_type_hint: AudioFileTypeID,
+            out_audio_file_stream: &mut AudioFileStreamID,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileStreamOpen(
+            in_client_data,
+            in_property_listener_proc,
+            in_packets_proc,
+            in_file_type_hint,
+            out_audio_file_stream,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// This call is the means for streams to supply data to the parser.
-    /// Data is expected to be passed in sequentially from the beginning of the file, without gaps.
-    /// In the course of parsing, the client's property and/or packets callbacks may be called.
-    /// At the end of the stream, this function must be called once with null data pointer and zero
-    /// data byte size to flush any remaining packets out of the parser.
-    ///
-    ///
-    /// Parameter `inAudioFileStream`: The file stream ID
-    ///
-    /// Parameter `inDataByteSize`: The number of bytes passed in for parsing. Must be zero when flushing the parser.
-    ///
-    /// Parameter `inData`: The data passed in to be parsed. Must be null when flushing the parser.
-    ///
-    /// Parameter `inFlags`: If there is a data discontinuity, then kAudioFileStreamParseFlag_Discontinuity should be set true.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_file_stream` must be a valid pointer.
-    /// - `in_data` must be a valid pointer or null.
-    pub fn AudioFileStreamParseBytes(
-        in_audio_file_stream: AudioFileStreamID,
-        in_data_byte_size: u32,
-        in_data: *const c_void,
-        in_flags: AudioFileStreamParseFlags,
-    ) -> OSStatus;
+/// This call is the means for streams to supply data to the parser.
+/// Data is expected to be passed in sequentially from the beginning of the file, without gaps.
+/// In the course of parsing, the client's property and/or packets callbacks may be called.
+/// At the end of the stream, this function must be called once with null data pointer and zero
+/// data byte size to flush any remaining packets out of the parser.
+///
+///
+/// Parameter `inAudioFileStream`: The file stream ID
+///
+/// Parameter `inDataByteSize`: The number of bytes passed in for parsing. Must be zero when flushing the parser.
+///
+/// Parameter `inData`: The data passed in to be parsed. Must be null when flushing the parser.
+///
+/// Parameter `inFlags`: If there is a data discontinuity, then kAudioFileStreamParseFlag_Discontinuity should be set true.
+///
+/// # Safety
+///
+/// - `in_audio_file_stream` must be a valid pointer.
+/// - `in_data` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileStreamParseBytes(
+    in_audio_file_stream: AudioFileStreamID,
+    in_data_byte_size: u32,
+    in_data: *const c_void,
+    in_flags: AudioFileStreamParseFlags,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileStreamParseBytes(
+            in_audio_file_stream: AudioFileStreamID,
+            in_data_byte_size: u32,
+            in_data: *const c_void,
+            in_flags: AudioFileStreamParseFlags,
+        ) -> OSStatus;
+    }
+    unsafe { AudioFileStreamParseBytes(in_audio_file_stream, in_data_byte_size, in_data, in_flags) }
 }
 
-extern "C-unwind" {
-    /// This call is used to seek in the data stream. The client passes in a packet
-    /// offset to seek to and the parser passes back a byte offset from which to
-    /// get the data to satisfy that request. The data passed to the next call to
-    /// AudioFileParseBytes will be assumed to be from that byte offset.
-    /// For file formats which do not contain packet tables the byte offset may
-    /// be an estimate. If so, the flag kAudioFileStreamSeekFlag_OffsetIsEstimated will be true.
-    ///
-    ///
-    /// Parameter `inAudioFileStream`: The file stream ID
-    ///
-    /// Parameter `inPacketOffset`: The offset from the beginning of the file of the packet to which to seek.
-    ///
-    /// Parameter `outDataByteOffset`: The byte offset of the data from the file's data offset returned.
-    /// You need to add the value of kAudioFileStreamProperty_DataOffset to get an absolute byte offset in the file.
-    ///
-    /// Parameter `ioFlags`: If outDataByteOffset is an estimate, then kAudioFileStreamSeekFlag_OffsetIsEstimated will be set on output.
-    /// There are currently no flags defined for passing into this call.
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_file_stream` must be a valid pointer.
-    pub fn AudioFileStreamSeek(
-        in_audio_file_stream: AudioFileStreamID,
-        in_packet_offset: i64,
-        out_data_byte_offset: &mut i64,
-        io_flags: &mut AudioFileStreamSeekFlags,
-    ) -> OSStatus;
+/// This call is used to seek in the data stream. The client passes in a packet
+/// offset to seek to and the parser passes back a byte offset from which to
+/// get the data to satisfy that request. The data passed to the next call to
+/// AudioFileParseBytes will be assumed to be from that byte offset.
+/// For file formats which do not contain packet tables the byte offset may
+/// be an estimate. If so, the flag kAudioFileStreamSeekFlag_OffsetIsEstimated will be true.
+///
+///
+/// Parameter `inAudioFileStream`: The file stream ID
+///
+/// Parameter `inPacketOffset`: The offset from the beginning of the file of the packet to which to seek.
+///
+/// Parameter `outDataByteOffset`: The byte offset of the data from the file's data offset returned.
+/// You need to add the value of kAudioFileStreamProperty_DataOffset to get an absolute byte offset in the file.
+///
+/// Parameter `ioFlags`: If outDataByteOffset is an estimate, then kAudioFileStreamSeekFlag_OffsetIsEstimated will be set on output.
+/// There are currently no flags defined for passing into this call.
+///
+/// # Safety
+///
+/// `in_audio_file_stream` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileStreamSeek(
+    in_audio_file_stream: AudioFileStreamID,
+    in_packet_offset: i64,
+    out_data_byte_offset: &mut i64,
+    io_flags: &mut AudioFileStreamSeekFlags,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileStreamSeek(
+            in_audio_file_stream: AudioFileStreamID,
+            in_packet_offset: i64,
+            out_data_byte_offset: &mut i64,
+            io_flags: &mut AudioFileStreamSeekFlags,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileStreamSeek(
+            in_audio_file_stream,
+            in_packet_offset,
+            out_data_byte_offset,
+            io_flags,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Retrieve the info about the given property. The outSize argument
-    /// will return the size in bytes of the current value of the property.
-    ///
-    ///
-    /// Parameter `inAudioFileStream`: The file stream ID
-    ///
-    /// Parameter `inPropertyID`: Property ID whose value should be read
-    ///
-    /// Parameter `outPropertyDataSize`: Size in bytes of the property
-    ///
-    /// Parameter `outWritable`: whether the property is writable
-    ///
-    ///
-    /// Returns: an OSStatus return code
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_file_stream` must be a valid pointer.
-    pub fn AudioFileStreamGetPropertyInfo(
-        in_audio_file_stream: AudioFileStreamID,
-        in_property_id: AudioFileStreamPropertyID,
-        out_property_data_size: Option<&mut u32>,
-        out_writable: Option<&mut Boolean>,
-    ) -> OSStatus;
+/// Retrieve the info about the given property. The outSize argument
+/// will return the size in bytes of the current value of the property.
+///
+///
+/// Parameter `inAudioFileStream`: The file stream ID
+///
+/// Parameter `inPropertyID`: Property ID whose value should be read
+///
+/// Parameter `outPropertyDataSize`: Size in bytes of the property
+///
+/// Parameter `outWritable`: whether the property is writable
+///
+///
+/// Returns: an OSStatus return code
+///
+/// # Safety
+///
+/// `in_audio_file_stream` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileStreamGetPropertyInfo(
+    in_audio_file_stream: AudioFileStreamID,
+    in_property_id: AudioFileStreamPropertyID,
+    out_property_data_size: Option<&mut u32>,
+    out_writable: Option<&mut Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileStreamGetPropertyInfo(
+            in_audio_file_stream: AudioFileStreamID,
+            in_property_id: AudioFileStreamPropertyID,
+            out_property_data_size: Option<&mut u32>,
+            out_writable: Option<&mut Boolean>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileStreamGetPropertyInfo(
+            in_audio_file_stream,
+            in_property_id,
+            out_property_data_size,
+            out_writable,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Retrieve the indicated property data.
-    ///
-    ///
-    /// Parameter `inAudioFileStream`: The file stream ID
-    ///
-    /// Parameter `inPropertyID`: Property ID whose value should be read
-    ///
-    /// Parameter `ioPropertyDataSize`: On input, the size of the buffer pointed to by outPropertyData. On output,
-    /// the number of bytes written.
-    ///
-    /// Parameter `outPropertyData`: Pointer to the property data buffer
-    ///
-    ///
-    /// Returns: an OSStatus return code
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_file_stream` must be a valid pointer.
-    /// - `out_property_data` must be a valid pointer.
-    pub fn AudioFileStreamGetProperty(
-        in_audio_file_stream: AudioFileStreamID,
-        in_property_id: AudioFileStreamPropertyID,
-        io_property_data_size: &mut u32,
-        out_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Retrieve the indicated property data.
+///
+///
+/// Parameter `inAudioFileStream`: The file stream ID
+///
+/// Parameter `inPropertyID`: Property ID whose value should be read
+///
+/// Parameter `ioPropertyDataSize`: On input, the size of the buffer pointed to by outPropertyData. On output,
+/// the number of bytes written.
+///
+/// Parameter `outPropertyData`: Pointer to the property data buffer
+///
+///
+/// Returns: an OSStatus return code
+///
+/// # Safety
+///
+/// - `in_audio_file_stream` must be a valid pointer.
+/// - `out_property_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileStreamGetProperty(
+    in_audio_file_stream: AudioFileStreamID,
+    in_property_id: AudioFileStreamPropertyID,
+    io_property_data_size: &mut u32,
+    out_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileStreamGetProperty(
+            in_audio_file_stream: AudioFileStreamID,
+            in_property_id: AudioFileStreamPropertyID,
+            io_property_data_size: &mut u32,
+            out_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileStreamGetProperty(
+            in_audio_file_stream,
+            in_property_id,
+            io_property_data_size,
+            out_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Set the value of the property. There are currently no settable properties.
-    ///
-    ///
-    /// Parameter `inAudioFileStream`: The file stream ID
-    ///
-    /// Parameter `inPropertyID`: Property ID whose value should be set
-    ///
-    /// Parameter `inPropertyDataSize`: Size in bytes of the property data
-    ///
-    /// Parameter `inPropertyData`: Pointer to the property data buffer
-    ///
-    ///
-    /// Returns: an OSStatus return code
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_file_stream` must be a valid pointer.
-    /// - `in_property_data` must be a valid pointer.
-    pub fn AudioFileStreamSetProperty(
-        in_audio_file_stream: AudioFileStreamID,
-        in_property_id: AudioFileStreamPropertyID,
-        in_property_data_size: u32,
-        in_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Set the value of the property. There are currently no settable properties.
+///
+///
+/// Parameter `inAudioFileStream`: The file stream ID
+///
+/// Parameter `inPropertyID`: Property ID whose value should be set
+///
+/// Parameter `inPropertyDataSize`: Size in bytes of the property data
+///
+/// Parameter `inPropertyData`: Pointer to the property data buffer
+///
+///
+/// Returns: an OSStatus return code
+///
+/// # Safety
+///
+/// - `in_audio_file_stream` must be a valid pointer.
+/// - `in_property_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileStreamSetProperty(
+    in_audio_file_stream: AudioFileStreamID,
+    in_property_id: AudioFileStreamPropertyID,
+    in_property_data_size: u32,
+    in_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileStreamSetProperty(
+            in_audio_file_stream: AudioFileStreamID,
+            in_property_id: AudioFileStreamPropertyID,
+            in_property_data_size: u32,
+            in_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileStreamSetProperty(
+            in_audio_file_stream,
+            in_property_id,
+            in_property_data_size,
+            in_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Close and deallocate the file stream object.
-    ///
-    ///
-    /// Parameter `inAudioFileStream`: The file stream ID
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_file_stream` must be a valid pointer.
-    pub fn AudioFileStreamClose(in_audio_file_stream: AudioFileStreamID) -> OSStatus;
+/// Close and deallocate the file stream object.
+///
+///
+/// Parameter `inAudioFileStream`: The file stream ID
+///
+/// # Safety
+///
+/// `in_audio_file_stream` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileStreamClose(
+    in_audio_file_stream: AudioFileStreamID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileStreamClose(in_audio_file_stream: AudioFileStreamID) -> OSStatus;
+    }
+    unsafe { AudioFileStreamClose(in_audio_file_stream) }
 }

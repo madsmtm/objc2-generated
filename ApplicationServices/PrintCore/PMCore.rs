@@ -8,420 +8,685 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `object` must be a valid pointer or null.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMRetain(object: PMObject) -> OSStatus;
+/// # Safety
+///
+/// `object` must be a valid pointer or null.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMRetain(object: PMObject) -> OSStatus {
+    extern "C-unwind" {
+        fn PMRetain(object: PMObject) -> OSStatus;
+    }
+    unsafe { PMRetain(object) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `object` must be a valid pointer or null.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMRelease(object: PMObject) -> OSStatus;
+/// # Safety
+///
+/// `object` must be a valid pointer or null.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMRelease(object: PMObject) -> OSStatus {
+    extern "C-unwind" {
+        fn PMRelease(object: PMObject) -> OSStatus;
+    }
+    unsafe { PMRelease(object) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `print_session` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMCreateSession(print_session: NonNull<PMPrintSession>) -> OSStatus;
+/// # Safety
+///
+/// `print_session` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMCreateSession(
+    print_session: NonNull<PMPrintSession>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMCreateSession(print_session: NonNull<PMPrintSession>) -> OSStatus;
+    }
+    unsafe { PMCreateSession(print_session) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `print_session` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionError(print_session: PMPrintSession) -> OSStatus;
+/// # Safety
+///
+/// `print_session` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionError(print_session: PMPrintSession) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionError(print_session: PMPrintSession) -> OSStatus;
+    }
+    unsafe { PMSessionError(print_session) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `print_session` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionSetError(print_session: PMPrintSession, print_error: OSStatus) -> OSStatus;
+/// # Safety
+///
+/// `print_session` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionSetError(
+    print_session: PMPrintSession,
+    print_error: OSStatus,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionSetError(print_session: PMPrintSession, print_error: OSStatus) -> OSStatus;
+    }
+    unsafe { PMSessionSetError(print_session, print_error) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `print_settings` must be a valid pointer.
-    /// - `page_format` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionBeginCGDocumentNoDialog(
-        print_session: PMPrintSession,
-        print_settings: PMPrintSettings,
-        page_format: PMPageFormat,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `print_settings` must be a valid pointer.
+/// - `page_format` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionBeginCGDocumentNoDialog(
+    print_session: PMPrintSession,
+    print_settings: PMPrintSettings,
+    page_format: PMPageFormat,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionBeginCGDocumentNoDialog(
+            print_session: PMPrintSession,
+            print_settings: PMPrintSettings,
+            page_format: PMPageFormat,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionBeginCGDocumentNoDialog(print_session, print_settings, page_format) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `print_session` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionEndDocumentNoDialog(print_session: PMPrintSession) -> OSStatus;
+/// # Safety
+///
+/// `print_session` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionEndDocumentNoDialog(
+    print_session: PMPrintSession,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionEndDocumentNoDialog(print_session: PMPrintSession) -> OSStatus;
+    }
+    unsafe { PMSessionEndDocumentNoDialog(print_session) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `page_format` must be a valid pointer or null.
-    /// - `page_frame` must be a valid pointer or null.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionBeginPageNoDialog(
-        print_session: PMPrintSession,
-        page_format: PMPageFormat,
-        page_frame: *const PMRect,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `page_format` must be a valid pointer or null.
+/// - `page_frame` must be a valid pointer or null.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionBeginPageNoDialog(
+    print_session: PMPrintSession,
+    page_format: PMPageFormat,
+    page_frame: *const PMRect,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionBeginPageNoDialog(
+            print_session: PMPrintSession,
+            page_format: PMPageFormat,
+            page_frame: *const PMRect,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionBeginPageNoDialog(print_session, page_format, page_frame) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `print_session` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionEndPageNoDialog(print_session: PMPrintSession) -> OSStatus;
+/// # Safety
+///
+/// `print_session` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionEndPageNoDialog(
+    print_session: PMPrintSession,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionEndPageNoDialog(print_session: PMPrintSession) -> OSStatus;
+    }
+    unsafe { PMSessionEndPageNoDialog(print_session) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `context` must be a valid pointer.
-    #[cfg(all(feature = "PMDefinitions", feature = "objc2-core-graphics"))]
-    pub fn PMSessionGetCGGraphicsContext(
-        print_session: PMPrintSession,
-        context: NonNull<*mut CGContext>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `context` must be a valid pointer.
+#[cfg(all(feature = "PMDefinitions", feature = "objc2-core-graphics"))]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionGetCGGraphicsContext(
+    print_session: PMPrintSession,
+    context: NonNull<*mut CGContext>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionGetCGGraphicsContext(
+            print_session: PMPrintSession,
+            context: NonNull<*mut CGContext>,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionGetCGGraphicsContext(print_session, context) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `print_settings` must be a valid pointer.
-    /// - `dest_type_p` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionGetDestinationType(
-        print_session: PMPrintSession,
-        print_settings: PMPrintSettings,
-        dest_type_p: NonNull<PMDestinationType>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `print_settings` must be a valid pointer.
+/// - `dest_type_p` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionGetDestinationType(
+    print_session: PMPrintSession,
+    print_settings: PMPrintSettings,
+    dest_type_p: NonNull<PMDestinationType>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionGetDestinationType(
+            print_session: PMPrintSession,
+            print_settings: PMPrintSettings,
+            dest_type_p: NonNull<PMDestinationType>,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionGetDestinationType(print_session, print_settings, dest_type_p) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `print_settings` must be a valid pointer.
-    /// - `dest_format_p` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionCopyDestinationFormat(
-        print_session: PMPrintSession,
-        print_settings: PMPrintSettings,
-        dest_format_p: NonNull<*const CFString>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `print_settings` must be a valid pointer.
+/// - `dest_format_p` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionCopyDestinationFormat(
+    print_session: PMPrintSession,
+    print_settings: PMPrintSettings,
+    dest_format_p: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionCopyDestinationFormat(
+            print_session: PMPrintSession,
+            print_settings: PMPrintSettings,
+            dest_format_p: NonNull<*const CFString>,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionCopyDestinationFormat(print_session, print_settings, dest_format_p) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `print_settings` must be a valid pointer.
-    /// - `dest_location_p` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionCopyDestinationLocation(
-        print_session: PMPrintSession,
-        print_settings: PMPrintSettings,
-        dest_location_p: NonNull<*const CFURL>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `print_settings` must be a valid pointer.
+/// - `dest_location_p` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionCopyDestinationLocation(
+    print_session: PMPrintSession,
+    print_settings: PMPrintSettings,
+    dest_location_p: NonNull<*const CFURL>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionCopyDestinationLocation(
+            print_session: PMPrintSession,
+            print_settings: PMPrintSettings,
+            dest_location_p: NonNull<*const CFURL>,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionCopyDestinationLocation(print_session, print_settings, dest_location_p) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `print_settings` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionSetDestination(
-        print_session: PMPrintSession,
-        print_settings: PMPrintSettings,
-        dest_type: PMDestinationType,
-        dest_format: Option<&CFString>,
-        dest_location: Option<&CFURL>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `print_settings` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionSetDestination(
+    print_session: PMPrintSession,
+    print_settings: PMPrintSettings,
+    dest_type: PMDestinationType,
+    dest_format: Option<&CFString>,
+    dest_location: Option<&CFURL>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionSetDestination(
+            print_session: PMPrintSession,
+            print_settings: PMPrintSettings,
+            dest_type: PMDestinationType,
+            dest_format: Option<&CFString>,
+            dest_location: Option<&CFURL>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        PMSessionSetDestination(
+            print_session,
+            print_settings,
+            dest_type,
+            dest_format,
+            dest_location,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `document_format_p` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionCopyOutputFormatList(
-        print_session: PMPrintSession,
-        dest_type: PMDestinationType,
-        document_format_p: NonNull<*const CFArray>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `document_format_p` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionCopyOutputFormatList(
+    print_session: PMPrintSession,
+    dest_type: PMDestinationType,
+    document_format_p: NonNull<*const CFArray>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionCopyOutputFormatList(
+            print_session: PMPrintSession,
+            dest_type: PMDestinationType,
+            document_format_p: NonNull<*const CFArray>,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionCopyOutputFormatList(print_session, dest_type, document_format_p) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `printer` must be a valid pointer or null.
-    /// - `page_format_list` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionCreatePageFormatList(
-        print_session: PMPrintSession,
-        printer: PMPrinter,
-        page_format_list: NonNull<*const CFArray>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `printer` must be a valid pointer or null.
+/// - `page_format_list` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionCreatePageFormatList(
+    print_session: PMPrintSession,
+    printer: PMPrinter,
+    page_format_list: NonNull<*const CFArray>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionCreatePageFormatList(
+            print_session: PMPrintSession,
+            printer: PMPrinter,
+            page_format_list: NonNull<*const CFArray>,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionCreatePageFormatList(print_session, printer, page_format_list) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `printer_list` must be a valid pointer.
-    /// - `current_index` must be a valid pointer or null.
-    /// - `current_printer` must be a valid pointer or null.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionCreatePrinterList(
-        print_session: PMPrintSession,
-        printer_list: NonNull<*const CFArray>,
-        current_index: *mut CFIndex,
-        current_printer: *mut PMPrinter,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `printer_list` must be a valid pointer.
+/// - `current_index` must be a valid pointer or null.
+/// - `current_printer` must be a valid pointer or null.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionCreatePrinterList(
+    print_session: PMPrintSession,
+    printer_list: NonNull<*const CFArray>,
+    current_index: *mut CFIndex,
+    current_printer: *mut PMPrinter,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionCreatePrinterList(
+            print_session: PMPrintSession,
+            printer_list: NonNull<*const CFArray>,
+            current_index: *mut CFIndex,
+            current_printer: *mut PMPrinter,
+        ) -> OSStatus;
+    }
+    unsafe {
+        PMSessionCreatePrinterList(print_session, printer_list, current_index, current_printer)
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `current_printer` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionGetCurrentPrinter(
-        print_session: PMPrintSession,
-        current_printer: NonNull<PMPrinter>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `current_printer` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionGetCurrentPrinter(
+    print_session: PMPrintSession,
+    current_printer: NonNull<PMPrinter>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionGetCurrentPrinter(
+            print_session: PMPrintSession,
+            current_printer: NonNull<PMPrinter>,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionGetCurrentPrinter(print_session, current_printer) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `session` must be a valid pointer.
-    /// - `printer` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionSetCurrentPMPrinter(session: PMPrintSession, printer: PMPrinter) -> OSStatus;
+/// # Safety
+///
+/// - `session` must be a valid pointer.
+/// - `printer` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionSetCurrentPMPrinter(
+    session: PMPrintSession,
+    printer: PMPrinter,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionSetCurrentPMPrinter(session: PMPrintSession, printer: PMPrinter) -> OSStatus;
+    }
+    unsafe { PMSessionSetCurrentPMPrinter(session, printer) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionGetDataFromSession(
-        print_session: PMPrintSession,
-        key: &CFString,
-        data: NonNull<*const CFType>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `data` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionGetDataFromSession(
+    print_session: PMPrintSession,
+    key: &CFString,
+    data: NonNull<*const CFType>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionGetDataFromSession(
+            print_session: PMPrintSession,
+            key: &CFString,
+            data: NonNull<*const CFType>,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionGetDataFromSession(print_session, key, data) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `data` should be of the correct type.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionSetDataInSession(
-        print_session: PMPrintSession,
-        key: &CFString,
-        data: &CFType,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `data` should be of the correct type.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionSetDataInSession(
+    print_session: PMPrintSession,
+    key: &CFString,
+    data: &CFType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionSetDataInSession(
+            print_session: PMPrintSession,
+            key: &CFString,
+            data: &CFType,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionSetDataInSession(print_session, key, data) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `page_format` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMCreatePageFormat(page_format: NonNull<PMPageFormat>) -> OSStatus;
+/// # Safety
+///
+/// `page_format` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMCreatePageFormat(page_format: NonNull<PMPageFormat>) -> OSStatus {
+    extern "C-unwind" {
+        fn PMCreatePageFormat(page_format: NonNull<PMPageFormat>) -> OSStatus;
+    }
+    unsafe { PMCreatePageFormat(page_format) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `page_format` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionDefaultPageFormat(
-        print_session: PMPrintSession,
-        page_format: PMPageFormat,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `page_format` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionDefaultPageFormat(
+    print_session: PMPrintSession,
+    page_format: PMPageFormat,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionDefaultPageFormat(
+            print_session: PMPrintSession,
+            page_format: PMPageFormat,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionDefaultPageFormat(print_session, page_format) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `page_format` must be a valid pointer.
-    /// - `changed` must be a valid pointer or null.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionValidatePageFormat(
-        print_session: PMPrintSession,
-        page_format: PMPageFormat,
-        changed: *mut Boolean,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `page_format` must be a valid pointer.
+/// - `changed` must be a valid pointer or null.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionValidatePageFormat(
+    print_session: PMPrintSession,
+    page_format: PMPageFormat,
+    changed: *mut Boolean,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionValidatePageFormat(
+            print_session: PMPrintSession,
+            page_format: PMPageFormat,
+            changed: *mut Boolean,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionValidatePageFormat(print_session, page_format, changed) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `format_src` must be a valid pointer.
-    /// - `format_dest` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMCopyPageFormat(format_src: PMPageFormat, format_dest: PMPageFormat) -> OSStatus;
+/// # Safety
+///
+/// - `format_src` must be a valid pointer.
+/// - `format_dest` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMCopyPageFormat(
+    format_src: PMPageFormat,
+    format_dest: PMPageFormat,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMCopyPageFormat(format_src: PMPageFormat, format_dest: PMPageFormat) -> OSStatus;
+    }
+    unsafe { PMCopyPageFormat(format_src, format_dest) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_format` must be a valid pointer.
-    /// - `paper` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMCreatePageFormatWithPMPaper(
-        page_format: NonNull<PMPageFormat>,
-        paper: PMPaper,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `page_format` must be a valid pointer.
+/// - `paper` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMCreatePageFormatWithPMPaper(
+    page_format: NonNull<PMPageFormat>,
+    paper: PMPaper,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMCreatePageFormatWithPMPaper(
+            page_format: NonNull<PMPageFormat>,
+            paper: PMPaper,
+        ) -> OSStatus;
+    }
+    unsafe { PMCreatePageFormatWithPMPaper(page_format, paper) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_format` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPageFormatCreateDataRepresentation(
-        page_format: PMPageFormat,
-        data: NonNull<*const CFData>,
-        format: PMDataFormat,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `page_format` must be a valid pointer.
+/// - `data` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPageFormatCreateDataRepresentation(
+    page_format: PMPageFormat,
+    data: NonNull<*const CFData>,
+    format: PMDataFormat,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPageFormatCreateDataRepresentation(
+            page_format: PMPageFormat,
+            data: NonNull<*const CFData>,
+            format: PMDataFormat,
+        ) -> OSStatus;
+    }
+    unsafe { PMPageFormatCreateDataRepresentation(page_format, data, format) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `page_format` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPageFormatCreateWithDataRepresentation(
-        data: &CFData,
-        page_format: NonNull<PMPageFormat>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// `page_format` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPageFormatCreateWithDataRepresentation(
+    data: &CFData,
+    page_format: NonNull<PMPageFormat>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPageFormatCreateWithDataRepresentation(
+            data: &CFData,
+            page_format: NonNull<PMPageFormat>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPageFormatCreateWithDataRepresentation(data, page_format) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_format` must be a valid pointer.
-    /// - `page_rect` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetAdjustedPageRect(page_format: PMPageFormat, page_rect: NonNull<PMRect>)
-        -> OSStatus;
+/// # Safety
+///
+/// - `page_format` must be a valid pointer.
+/// - `page_rect` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetAdjustedPageRect(
+    page_format: PMPageFormat,
+    page_rect: NonNull<PMRect>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetAdjustedPageRect(page_format: PMPageFormat, page_rect: NonNull<PMRect>)
+            -> OSStatus;
+    }
+    unsafe { PMGetAdjustedPageRect(page_format, page_rect) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_format` must be a valid pointer.
-    /// - `paper_rect` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetAdjustedPaperRect(
-        page_format: PMPageFormat,
-        paper_rect: NonNull<PMRect>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `page_format` must be a valid pointer.
+/// - `paper_rect` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetAdjustedPaperRect(
+    page_format: PMPageFormat,
+    paper_rect: NonNull<PMRect>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetAdjustedPaperRect(
+            page_format: PMPageFormat,
+            paper_rect: NonNull<PMRect>,
+        ) -> OSStatus;
+    }
+    unsafe { PMGetAdjustedPaperRect(page_format, paper_rect) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_format` must be a valid pointer.
-    /// - `orientation` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetOrientation(
-        page_format: PMPageFormat,
-        orientation: NonNull<PMOrientation>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `page_format` must be a valid pointer.
+/// - `orientation` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetOrientation(
+    page_format: PMPageFormat,
+    orientation: NonNull<PMOrientation>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetOrientation(
+            page_format: PMPageFormat,
+            orientation: NonNull<PMOrientation>,
+        ) -> OSStatus;
+    }
+    unsafe { PMGetOrientation(page_format, orientation) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_format` must be a valid pointer.
-    /// - `size` must be a valid pointer or null.
-    /// - `extended_data` must be a valid pointer or null.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetPageFormatExtendedData(
-        page_format: PMPageFormat,
-        data_id: OSType,
-        size: *mut u32,
-        extended_data: *mut c_void,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `page_format` must be a valid pointer.
+/// - `size` must be a valid pointer or null.
+/// - `extended_data` must be a valid pointer or null.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetPageFormatExtendedData(
+    page_format: PMPageFormat,
+    data_id: OSType,
+    size: *mut u32,
+    extended_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetPageFormatExtendedData(
+            page_format: PMPageFormat,
+            data_id: OSType,
+            size: *mut u32,
+            extended_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { PMGetPageFormatExtendedData(page_format, data_id, size, extended_data) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_format` must be a valid pointer.
-    /// - `printer_id` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPageFormatGetPrinterID(
-        page_format: PMPageFormat,
-        printer_id: NonNull<*const CFString>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `page_format` must be a valid pointer.
+/// - `printer_id` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPageFormatGetPrinterID(
+    page_format: PMPageFormat,
+    printer_id: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPageFormatGetPrinterID(
+            page_format: PMPageFormat,
+            printer_id: NonNull<*const CFString>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPageFormatGetPrinterID(page_format, printer_id) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_format` must be a valid pointer.
-    /// - `scale` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetScale(page_format: PMPageFormat, scale: NonNull<c_double>) -> OSStatus;
+/// # Safety
+///
+/// - `page_format` must be a valid pointer.
+/// - `scale` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetScale(
+    page_format: PMPageFormat,
+    scale: NonNull<c_double>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetScale(page_format: PMPageFormat, scale: NonNull<c_double>) -> OSStatus;
+    }
+    unsafe { PMGetScale(page_format, scale) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_format` must be a valid pointer.
-    /// - `page_rect` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetUnadjustedPageRect(
-        page_format: PMPageFormat,
-        page_rect: NonNull<PMRect>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `page_format` must be a valid pointer.
+/// - `page_rect` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetUnadjustedPageRect(
+    page_format: PMPageFormat,
+    page_rect: NonNull<PMRect>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetUnadjustedPageRect(
+            page_format: PMPageFormat,
+            page_rect: NonNull<PMRect>,
+        ) -> OSStatus;
+    }
+    unsafe { PMGetUnadjustedPageRect(page_format, page_rect) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_format` must be a valid pointer.
-    /// - `paper_rect` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetUnadjustedPaperRect(
-        page_format: PMPageFormat,
-        paper_rect: NonNull<PMRect>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `page_format` must be a valid pointer.
+/// - `paper_rect` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetUnadjustedPaperRect(
+    page_format: PMPageFormat,
+    paper_rect: NonNull<PMRect>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetUnadjustedPaperRect(
+            page_format: PMPageFormat,
+            paper_rect: NonNull<PMRect>,
+        ) -> OSStatus;
+    }
+    unsafe { PMGetUnadjustedPaperRect(page_format, paper_rect) }
 }
 
 /// *********************
@@ -446,183 +711,297 @@ pub unsafe extern "C-unwind" fn PMSetOrientation(
     unsafe { PMSetOrientation(page_format, orientation, lock as _) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_format` must be a valid pointer.
-    /// - `extended_data` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSetPageFormatExtendedData(
-        page_format: PMPageFormat,
-        data_id: OSType,
-        size: u32,
-        extended_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `page_format` must be a valid pointer.
+/// - `extended_data` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSetPageFormatExtendedData(
+    page_format: PMPageFormat,
+    data_id: OSType,
+    size: u32,
+    extended_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSetPageFormatExtendedData(
+            page_format: PMPageFormat,
+            data_id: OSType,
+            size: u32,
+            extended_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe { PMSetPageFormatExtendedData(page_format, data_id, size, extended_data) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `page_format` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSetScale(page_format: PMPageFormat, scale: c_double) -> OSStatus;
+/// # Safety
+///
+/// `page_format` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSetScale(page_format: PMPageFormat, scale: c_double) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSetScale(page_format: PMPageFormat, scale: c_double) -> OSStatus;
+    }
+    unsafe { PMSetScale(page_format, scale) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `print_settings` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMCreatePrintSettings(print_settings: NonNull<PMPrintSettings>) -> OSStatus;
+/// # Safety
+///
+/// `print_settings` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMCreatePrintSettings(
+    print_settings: NonNull<PMPrintSettings>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMCreatePrintSettings(print_settings: NonNull<PMPrintSettings>) -> OSStatus;
+    }
+    unsafe { PMCreatePrintSettings(print_settings) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `print_settings` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionDefaultPrintSettings(
-        print_session: PMPrintSession,
-        print_settings: PMPrintSettings,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `print_settings` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionDefaultPrintSettings(
+    print_session: PMPrintSession,
+    print_settings: PMPrintSettings,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionDefaultPrintSettings(
+            print_session: PMPrintSession,
+            print_settings: PMPrintSettings,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionDefaultPrintSettings(print_session, print_settings) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_session` must be a valid pointer.
-    /// - `print_settings` must be a valid pointer.
-    /// - `changed` must be a valid pointer or null.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSessionValidatePrintSettings(
-        print_session: PMPrintSession,
-        print_settings: PMPrintSettings,
-        changed: *mut Boolean,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_session` must be a valid pointer.
+/// - `print_settings` must be a valid pointer.
+/// - `changed` must be a valid pointer or null.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSessionValidatePrintSettings(
+    print_session: PMPrintSession,
+    print_settings: PMPrintSettings,
+    changed: *mut Boolean,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSessionValidatePrintSettings(
+            print_session: PMPrintSession,
+            print_settings: PMPrintSettings,
+            changed: *mut Boolean,
+        ) -> OSStatus;
+    }
+    unsafe { PMSessionValidatePrintSettings(print_session, print_settings, changed) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `setting_src` must be a valid pointer.
-    /// - `setting_dest` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMCopyPrintSettings(
-        setting_src: PMPrintSettings,
-        setting_dest: PMPrintSettings,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `setting_src` must be a valid pointer.
+/// - `setting_dest` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMCopyPrintSettings(
+    setting_src: PMPrintSettings,
+    setting_dest: PMPrintSettings,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMCopyPrintSettings(
+            setting_src: PMPrintSettings,
+            setting_dest: PMPrintSettings,
+        ) -> OSStatus;
+    }
+    unsafe { PMCopyPrintSettings(setting_src, setting_dest) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_settings` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrintSettingsCreateDataRepresentation(
-        print_settings: PMPrintSettings,
-        data: NonNull<*const CFData>,
-        format: PMDataFormat,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_settings` must be a valid pointer.
+/// - `data` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrintSettingsCreateDataRepresentation(
+    print_settings: PMPrintSettings,
+    data: NonNull<*const CFData>,
+    format: PMDataFormat,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrintSettingsCreateDataRepresentation(
+            print_settings: PMPrintSettings,
+            data: NonNull<*const CFData>,
+            format: PMDataFormat,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrintSettingsCreateDataRepresentation(print_settings, data, format) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `print_settings` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrintSettingsCreateWithDataRepresentation(
-        data: &CFData,
-        print_settings: NonNull<PMPrintSettings>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// `print_settings` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrintSettingsCreateWithDataRepresentation(
+    data: &CFData,
+    print_settings: NonNull<PMPrintSettings>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrintSettingsCreateWithDataRepresentation(
+            data: &CFData,
+            print_settings: NonNull<PMPrintSettings>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrintSettingsCreateWithDataRepresentation(data, print_settings) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_settings` must be a valid pointer.
-    /// - `collate` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetCollate(print_settings: PMPrintSettings, collate: NonNull<Boolean>) -> OSStatus;
+/// # Safety
+///
+/// - `print_settings` must be a valid pointer.
+/// - `collate` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetCollate(
+    print_settings: PMPrintSettings,
+    collate: NonNull<Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetCollate(print_settings: PMPrintSettings, collate: NonNull<Boolean>) -> OSStatus;
+    }
+    unsafe { PMGetCollate(print_settings, collate) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_settings` must be a valid pointer.
-    /// - `copies` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetCopies(print_settings: PMPrintSettings, copies: NonNull<u32>) -> OSStatus;
+/// # Safety
+///
+/// - `print_settings` must be a valid pointer.
+/// - `copies` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetCopies(
+    print_settings: PMPrintSettings,
+    copies: NonNull<u32>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetCopies(print_settings: PMPrintSettings, copies: NonNull<u32>) -> OSStatus;
+    }
+    unsafe { PMGetCopies(print_settings, copies) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_settings` must be a valid pointer.
-    /// - `duplex_setting` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetDuplex(
-        print_settings: PMPrintSettings,
-        duplex_setting: NonNull<PMDuplexMode>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_settings` must be a valid pointer.
+/// - `duplex_setting` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetDuplex(
+    print_settings: PMPrintSettings,
+    duplex_setting: NonNull<PMDuplexMode>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetDuplex(
+            print_settings: PMPrintSettings,
+            duplex_setting: NonNull<PMDuplexMode>,
+        ) -> OSStatus;
+    }
+    unsafe { PMGetDuplex(print_settings, duplex_setting) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_settings` must be a valid pointer.
-    /// - `first` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetFirstPage(print_settings: PMPrintSettings, first: NonNull<u32>) -> OSStatus;
+/// # Safety
+///
+/// - `print_settings` must be a valid pointer.
+/// - `first` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetFirstPage(
+    print_settings: PMPrintSettings,
+    first: NonNull<u32>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetFirstPage(print_settings: PMPrintSettings, first: NonNull<u32>) -> OSStatus;
+    }
+    unsafe { PMGetFirstPage(print_settings, first) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_settings` must be a valid pointer.
-    /// - `last` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetLastPage(print_settings: PMPrintSettings, last: NonNull<u32>) -> OSStatus;
+/// # Safety
+///
+/// - `print_settings` must be a valid pointer.
+/// - `last` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetLastPage(
+    print_settings: PMPrintSettings,
+    last: NonNull<u32>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetLastPage(print_settings: PMPrintSettings, last: NonNull<u32>) -> OSStatus;
+    }
+    unsafe { PMGetLastPage(print_settings, last) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_settings` must be a valid pointer.
-    /// - `min_page` must be a valid pointer.
-    /// - `max_page` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetPageRange(
-        print_settings: PMPrintSettings,
-        min_page: NonNull<u32>,
-        max_page: NonNull<u32>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_settings` must be a valid pointer.
+/// - `min_page` must be a valid pointer.
+/// - `max_page` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetPageRange(
+    print_settings: PMPrintSettings,
+    min_page: NonNull<u32>,
+    max_page: NonNull<u32>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetPageRange(
+            print_settings: PMPrintSettings,
+            min_page: NonNull<u32>,
+            max_page: NonNull<u32>,
+        ) -> OSStatus;
+    }
+    unsafe { PMGetPageRange(print_settings, min_page, max_page) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_settings` must be a valid pointer.
-    /// - `name` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrintSettingsGetJobName(
-        print_settings: PMPrintSettings,
-        name: NonNull<*const CFString>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_settings` must be a valid pointer.
+/// - `name` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrintSettingsGetJobName(
+    print_settings: PMPrintSettings,
+    name: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrintSettingsGetJobName(
+            print_settings: PMPrintSettings,
+            name: NonNull<*const CFString>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrintSettingsGetJobName(print_settings, name) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_settings` must be a valid pointer.
-    /// - `value` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrintSettingsGetValue(
-        print_settings: PMPrintSettings,
-        key: &CFString,
-        value: NonNull<*const CFType>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_settings` must be a valid pointer.
+/// - `value` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrintSettingsGetValue(
+    print_settings: PMPrintSettings,
+    key: &CFString,
+    value: NonNull<*const CFType>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrintSettingsGetValue(
+            print_settings: PMPrintSettings,
+            key: &CFString,
+            value: NonNull<*const CFType>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrintSettingsGetValue(print_settings, key, value) }
 }
 
 /// # Safety
@@ -656,12 +1035,19 @@ pub unsafe extern "C-unwind" fn PMSetCopies(
     unsafe { PMSetCopies(print_settings, copies, lock as _) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `print_settings` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSetDuplex(print_settings: PMPrintSettings, duplex_setting: PMDuplexMode) -> OSStatus;
+/// # Safety
+///
+/// `print_settings` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSetDuplex(
+    print_settings: PMPrintSettings,
+    duplex_setting: PMDuplexMode,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSetDuplex(print_settings: PMPrintSettings, duplex_setting: PMDuplexMode) -> OSStatus;
+    }
+    unsafe { PMSetDuplex(print_settings, duplex_setting) }
 }
 
 /// # Safety
@@ -696,24 +1082,39 @@ pub unsafe extern "C-unwind" fn PMSetLastPage(
     unsafe { PMSetLastPage(print_settings, last, lock as _) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `print_settings` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMSetPageRange(
-        print_settings: PMPrintSettings,
-        min_page: u32,
-        max_page: u32,
-    ) -> OSStatus;
+/// # Safety
+///
+/// `print_settings` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMSetPageRange(
+    print_settings: PMPrintSettings,
+    min_page: u32,
+    max_page: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMSetPageRange(
+            print_settings: PMPrintSettings,
+            min_page: u32,
+            max_page: u32,
+        ) -> OSStatus;
+    }
+    unsafe { PMSetPageRange(print_settings, min_page, max_page) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `print_settings` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrintSettingsSetJobName(print_settings: PMPrintSettings, name: &CFString) -> OSStatus;
+/// # Safety
+///
+/// `print_settings` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrintSettingsSetJobName(
+    print_settings: PMPrintSettings,
+    name: &CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrintSettingsSetJobName(print_settings: PMPrintSettings, name: &CFString) -> OSStatus;
+    }
+    unsafe { PMPrintSettingsSetJobName(print_settings, name) }
 }
 
 /// # Safety
@@ -739,145 +1140,218 @@ pub unsafe extern "C-unwind" fn PMPrintSettingsSetValue(
     unsafe { PMPrintSettingsSetValue(print_settings, key, value, locked as _) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_settings` must be a valid pointer.
-    /// - `settings_dictionary` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrintSettingsCopyAsDictionary(
-        print_settings: PMPrintSettings,
-        settings_dictionary: NonNull<*const CFDictionary>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_settings` must be a valid pointer.
+/// - `settings_dictionary` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrintSettingsCopyAsDictionary(
+    print_settings: PMPrintSettings,
+    settings_dictionary: NonNull<*const CFDictionary>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrintSettingsCopyAsDictionary(
+            print_settings: PMPrintSettings,
+            settings_dictionary: NonNull<*const CFDictionary>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrintSettingsCopyAsDictionary(print_settings, settings_dictionary) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `print_settings` must be a valid pointer.
-    /// - `settings_keys` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrintSettingsCopyKeys(
-        print_settings: PMPrintSettings,
-        settings_keys: NonNull<*const CFArray>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `print_settings` must be a valid pointer.
+/// - `settings_keys` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrintSettingsCopyKeys(
+    print_settings: PMPrintSettings,
+    settings_keys: NonNull<*const CFArray>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrintSettingsCopyKeys(
+            print_settings: PMPrintSettings,
+            settings_keys: NonNull<*const CFArray>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrintSettingsCopyKeys(print_settings, settings_keys) }
 }
 
-extern "C-unwind" {
-    /// PMCreateGenericPrinter
-    /// Summary:
-    /// Creates a generic PMPrinter
-    ///
-    /// Parameters:
-    /// printer:
-    /// On return *printer contains the generic priner
-    ///
-    /// Availability:
-    /// Mac OS X:         in version 10.5 and later in ApplicationServices.framework
-    /// CarbonLib:        not available
-    /// Non-Carbon CFM:   not available
-    ///
-    /// Compatibility:
-    /// Not appropriate for CUPS filters, drivers, and backends.
-    ///
-    /// # Safety
-    ///
-    /// `printer` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMCreateGenericPrinter(printer: NonNull<PMPrinter>) -> OSStatus;
+/// PMCreateGenericPrinter
+/// Summary:
+/// Creates a generic PMPrinter
+///
+/// Parameters:
+/// printer:
+/// On return *printer contains the generic priner
+///
+/// Availability:
+/// Mac OS X:         in version 10.5 and later in ApplicationServices.framework
+/// CarbonLib:        not available
+/// Non-Carbon CFM:   not available
+///
+/// Compatibility:
+/// Not appropriate for CUPS filters, drivers, and backends.
+///
+/// # Safety
+///
+/// `printer` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMCreateGenericPrinter(printer: NonNull<PMPrinter>) -> OSStatus {
+    extern "C-unwind" {
+        fn PMCreateGenericPrinter(printer: NonNull<PMPrinter>) -> OSStatus;
+    }
+    unsafe { PMCreateGenericPrinter(printer) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `server` must be a valid pointer or null.
-    /// - `printer_list` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMServerCreatePrinterList(
-        server: PMServer,
-        printer_list: NonNull<*const CFArray>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `server` must be a valid pointer or null.
+/// - `printer_list` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMServerCreatePrinterList(
+    server: PMServer,
+    printer_list: NonNull<*const CFArray>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMServerCreatePrinterList(
+            server: PMServer,
+            printer_list: NonNull<*const CFArray>,
+        ) -> OSStatus;
+    }
+    unsafe { PMServerCreatePrinterList(server, printer_list) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `server` must be a valid pointer or null.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMServerLaunchPrinterBrowser(
-        server: PMServer,
-        options: Option<&CFDictionary>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `server` must be a valid pointer or null.
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMServerLaunchPrinterBrowser(
+    server: PMServer,
+    options: Option<&CFDictionary>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMServerLaunchPrinterBrowser(
+            server: PMServer,
+            options: Option<&CFDictionary>,
+        ) -> OSStatus;
+    }
+    unsafe { PMServerLaunchPrinterBrowser(server, options) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterCreateFromPrinterID(printer_id: &CFString) -> PMPrinter;
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterCreateFromPrinterID(printer_id: &CFString) -> PMPrinter {
+    extern "C-unwind" {
+        fn PMPrinterCreateFromPrinterID(printer_id: &CFString) -> PMPrinter;
+    }
+    unsafe { PMPrinterCreateFromPrinterID(printer_id) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `file_url` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterCopyDescriptionURL(
-        printer: PMPrinter,
-        description_type: &CFString,
-        file_url: NonNull<*const CFURL>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `file_url` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterCopyDescriptionURL(
+    printer: PMPrinter,
+    description_type: &CFString,
+    file_url: NonNull<*const CFURL>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterCopyDescriptionURL(
+            printer: PMPrinter,
+            description_type: &CFString,
+            file_url: NonNull<*const CFURL>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterCopyDescriptionURL(printer, description_type, file_url) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `device_uri` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterCopyDeviceURI(
-        printer: PMPrinter,
-        device_uri: NonNull<*const CFURL>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `device_uri` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterCopyDeviceURI(
+    printer: PMPrinter,
+    device_uri: NonNull<*const CFURL>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterCopyDeviceURI(
+            printer: PMPrinter,
+            device_uri: NonNull<*const CFURL>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterCopyDeviceURI(printer, device_uri) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `host_name_p` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterCopyHostName(
-        printer: PMPrinter,
-        host_name_p: NonNull<*const CFString>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `host_name_p` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterCopyHostName(
+    printer: PMPrinter,
+    host_name_p: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterCopyHostName(
+            printer: PMPrinter,
+            host_name_p: NonNull<*const CFString>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterCopyHostName(printer, host_name_p) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `preset_list` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterCopyPresets(
-        printer: PMPrinter,
-        preset_list: NonNull<*const CFArray>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `preset_list` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterCopyPresets(
+    printer: PMPrinter,
+    preset_list: NonNull<*const CFArray>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterCopyPresets(
+            printer: PMPrinter,
+            preset_list: NonNull<*const CFArray>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterCopyPresets(printer, preset_list) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `supports_control_char_range_p` must be a valid pointer or null.
-    /// - `supports_eight_bit_p` must be a valid pointer or null.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterGetCommInfo(
-        printer: PMPrinter,
-        supports_control_char_range_p: *mut Boolean,
-        supports_eight_bit_p: *mut Boolean,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `supports_control_char_range_p` must be a valid pointer or null.
+/// - `supports_eight_bit_p` must be a valid pointer or null.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterGetCommInfo(
+    printer: PMPrinter,
+    supports_control_char_range_p: *mut Boolean,
+    supports_eight_bit_p: *mut Boolean,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterGetCommInfo(
+            printer: PMPrinter,
+            supports_control_char_range_p: *mut Boolean,
+            supports_eight_bit_p: *mut Boolean,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterGetCommInfo(printer, supports_control_char_range_p, supports_eight_bit_p) }
 }
 
 /// # Safety
@@ -908,101 +1382,161 @@ pub unsafe extern "C-unwind" fn PMPrinterGetLocation(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `creator` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterGetDriverCreator(printer: PMPrinter, creator: NonNull<OSType>) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `creator` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterGetDriverCreator(
+    printer: PMPrinter,
+    creator: NonNull<OSType>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterGetDriverCreator(printer: PMPrinter, creator: NonNull<OSType>) -> OSStatus;
+    }
+    unsafe { PMPrinterGetDriverCreator(printer, creator) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `count_p` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterGetPrinterResolutionCount(
-        printer: PMPrinter,
-        count_p: NonNull<u32>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `count_p` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterGetPrinterResolutionCount(
+    printer: PMPrinter,
+    count_p: NonNull<u32>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterGetPrinterResolutionCount(
+            printer: PMPrinter,
+            count_p: NonNull<u32>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterGetPrinterResolutionCount(printer, count_p) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `resolution_p` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterGetIndexedPrinterResolution(
-        printer: PMPrinter,
-        index: u32,
-        resolution_p: NonNull<PMResolution>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `resolution_p` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterGetIndexedPrinterResolution(
+    printer: PMPrinter,
+    index: u32,
+    resolution_p: NonNull<PMResolution>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterGetIndexedPrinterResolution(
+            printer: PMPrinter,
+            index: u32,
+            resolution_p: NonNull<PMResolution>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterGetIndexedPrinterResolution(printer, index, resolution_p) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `print_settings` must be a valid pointer.
-    /// - `resolution_p` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterGetOutputResolution(
-        printer: PMPrinter,
-        print_settings: PMPrintSettings,
-        resolution_p: NonNull<PMResolution>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `print_settings` must be a valid pointer.
+/// - `resolution_p` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterGetOutputResolution(
+    printer: PMPrinter,
+    print_settings: PMPrintSettings,
+    resolution_p: NonNull<PMResolution>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterGetOutputResolution(
+            printer: PMPrinter,
+            print_settings: PMPrintSettings,
+            resolution_p: NonNull<PMResolution>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterGetOutputResolution(printer, print_settings, resolution_p) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `print_settings` must be a valid pointer.
-    /// - `resolution_p` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterSetOutputResolution(
-        printer: PMPrinter,
-        print_settings: PMPrintSettings,
-        resolution_p: NonNull<PMResolution>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `print_settings` must be a valid pointer.
+/// - `resolution_p` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterSetOutputResolution(
+    printer: PMPrinter,
+    print_settings: PMPrintSettings,
+    resolution_p: NonNull<PMResolution>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterSetOutputResolution(
+            printer: PMPrinter,
+            print_settings: PMPrintSettings,
+            resolution_p: NonNull<PMResolution>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterSetOutputResolution(printer, print_settings, resolution_p) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `info` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterGetLanguageInfo(printer: PMPrinter, info: NonNull<PMLanguageInfo>) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `info` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterGetLanguageInfo(
+    printer: PMPrinter,
+    info: NonNull<PMLanguageInfo>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterGetLanguageInfo(printer: PMPrinter, info: NonNull<PMLanguageInfo>) -> OSStatus;
+    }
+    unsafe { PMPrinterGetLanguageInfo(printer, info) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `make_and_model` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterGetMakeAndModelName(
-        printer: PMPrinter,
-        make_and_model: NonNull<*const CFString>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `make_and_model` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterGetMakeAndModelName(
+    printer: PMPrinter,
+    make_and_model: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterGetMakeAndModelName(
+            printer: PMPrinter,
+            make_and_model: NonNull<*const CFString>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterGetMakeAndModelName(printer, make_and_model) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `settings` must be a valid pointer or null.
-    /// - `mime_types` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterGetMimeTypes(
-        printer: PMPrinter,
-        settings: PMPrintSettings,
-        mime_types: NonNull<*const CFArray>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `settings` must be a valid pointer or null.
+/// - `mime_types` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterGetMimeTypes(
+    printer: PMPrinter,
+    settings: PMPrintSettings,
+    mime_types: NonNull<*const CFArray>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterGetMimeTypes(
+            printer: PMPrinter,
+            settings: PMPrintSettings,
+            mime_types: NonNull<*const CFArray>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterGetMimeTypes(printer, settings, mime_types) }
 }
 
 /// # Safety
@@ -1020,25 +1554,39 @@ pub unsafe extern "C-unwind" fn PMPrinterGetName(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `paper_list` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterGetPaperList(
-        printer: PMPrinter,
-        paper_list: NonNull<*const CFArray>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `paper_list` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterGetPaperList(
+    printer: PMPrinter,
+    paper_list: NonNull<*const CFArray>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterGetPaperList(
+            printer: PMPrinter,
+            paper_list: NonNull<*const CFArray>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterGetPaperList(printer, paper_list) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `state` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterGetState(printer: PMPrinter, state: NonNull<PMPrinterState>) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `state` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterGetState(
+    printer: PMPrinter,
+    state: NonNull<PMPrinterState>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterGetState(printer: PMPrinter, state: NonNull<PMPrinterState>) -> OSStatus;
+    }
+    unsafe { PMPrinterGetState(printer, state) }
 }
 
 /// # Safety
@@ -1080,177 +1628,286 @@ pub unsafe extern "C-unwind" fn PMPrinterIsPostScriptCapable(printer: PMPrinter)
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Set *isPSPrinter true if the printer is a PostScript printer.
-    ///
-    ///
-    /// A PostScript printer is one whose driver takes PostScript directly.
-    ///
-    /// Availability:
-    /// Mac OS X:         in version 10.5 and later in ApplicationServices.framework
-    /// CarbonLib:        not available
-    /// Non-Carbon CFM:   not available
-    ///
-    /// Compatibility:
-    /// Not appropriate for CUPS filters, drivers, and backends.
-    ///
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `is_ps_printer` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterIsPostScriptPrinter(
-        printer: PMPrinter,
-        is_ps_printer: NonNull<Boolean>,
-    ) -> OSStatus;
+/// Set *isPSPrinter true if the printer is a PostScript printer.
+///
+///
+/// A PostScript printer is one whose driver takes PostScript directly.
+///
+/// Availability:
+/// Mac OS X:         in version 10.5 and later in ApplicationServices.framework
+/// CarbonLib:        not available
+/// Non-Carbon CFM:   not available
+///
+/// Compatibility:
+/// Not appropriate for CUPS filters, drivers, and backends.
+///
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `is_ps_printer` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterIsPostScriptPrinter(
+    printer: PMPrinter,
+    is_ps_printer: NonNull<Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterIsPostScriptPrinter(
+            printer: PMPrinter,
+            is_ps_printer: NonNull<Boolean>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterIsPostScriptPrinter(printer, is_ps_printer) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `is_remote_p` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterIsRemote(printer: PMPrinter, is_remote_p: NonNull<Boolean>) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `is_remote_p` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterIsRemote(
+    printer: PMPrinter,
+    is_remote_p: NonNull<Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterIsRemote(printer: PMPrinter, is_remote_p: NonNull<Boolean>) -> OSStatus;
+    }
+    unsafe { PMPrinterIsRemote(printer, is_remote_p) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `printer` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterSetDefault(printer: PMPrinter) -> OSStatus;
+/// # Safety
+///
+/// `printer` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterSetDefault(printer: PMPrinter) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterSetDefault(printer: PMPrinter) -> OSStatus;
+    }
+    unsafe { PMPrinterSetDefault(printer) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `preset` must be a valid pointer.
-    /// - `name` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPresetCopyName(preset: PMPreset, name: NonNull<*const CFString>) -> OSStatus;
+/// # Safety
+///
+/// - `preset` must be a valid pointer.
+/// - `name` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPresetCopyName(
+    preset: PMPreset,
+    name: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPresetCopyName(preset: PMPreset, name: NonNull<*const CFString>) -> OSStatus;
+    }
+    unsafe { PMPresetCopyName(preset, name) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `preset` must be a valid pointer.
-    /// - `session` must be a valid pointer.
-    /// - `print_settings` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPresetCreatePrintSettings(
-        preset: PMPreset,
-        session: PMPrintSession,
-        print_settings: NonNull<PMPrintSettings>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `preset` must be a valid pointer.
+/// - `session` must be a valid pointer.
+/// - `print_settings` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPresetCreatePrintSettings(
+    preset: PMPreset,
+    session: PMPrintSession,
+    print_settings: NonNull<PMPrintSettings>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPresetCreatePrintSettings(
+            preset: PMPreset,
+            session: PMPrintSession,
+            print_settings: NonNull<PMPrintSettings>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPresetCreatePrintSettings(preset, session, print_settings) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `preset` must be a valid pointer.
-    /// - `attributes` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPresetGetAttributes(
-        preset: PMPreset,
-        attributes: NonNull<*const CFDictionary>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `preset` must be a valid pointer.
+/// - `attributes` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPresetGetAttributes(
+    preset: PMPreset,
+    attributes: NonNull<*const CFDictionary>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPresetGetAttributes(
+            preset: PMPreset,
+            attributes: NonNull<*const CFDictionary>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPresetGetAttributes(preset, attributes) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `format` must be a valid pointer.
-    /// - `paper` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMGetPageFormatPaper(format: PMPageFormat, paper: NonNull<PMPaper>) -> OSStatus;
+/// # Safety
+///
+/// - `format` must be a valid pointer.
+/// - `paper` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMGetPageFormatPaper(
+    format: PMPageFormat,
+    paper: NonNull<PMPaper>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMGetPageFormatPaper(format: PMPageFormat, paper: NonNull<PMPaper>) -> OSStatus;
+    }
+    unsafe { PMGetPageFormatPaper(format, paper) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer or null.
-    /// - `margins` must be a valid pointer.
-    /// - `paper_p` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPaperCreateCustom(
-        printer: PMPrinter,
-        id: Option<&CFString>,
-        name: Option<&CFString>,
-        width: c_double,
-        height: c_double,
-        margins: NonNull<PMPaperMargins>,
-        paper_p: NonNull<PMPaper>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer or null.
+/// - `margins` must be a valid pointer.
+/// - `paper_p` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPaperCreateCustom(
+    printer: PMPrinter,
+    id: Option<&CFString>,
+    name: Option<&CFString>,
+    width: c_double,
+    height: c_double,
+    margins: NonNull<PMPaperMargins>,
+    paper_p: NonNull<PMPaper>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPaperCreateCustom(
+            printer: PMPrinter,
+            id: Option<&CFString>,
+            name: Option<&CFString>,
+            width: c_double,
+            height: c_double,
+            margins: NonNull<PMPaperMargins>,
+            paper_p: NonNull<PMPaper>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPaperCreateCustom(printer, id, name, width, height, margins, paper_p) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `paper` must be a valid pointer.
-    /// - `paper_width` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPaperGetWidth(paper: PMPaper, paper_width: NonNull<c_double>) -> OSStatus;
+/// # Safety
+///
+/// - `paper` must be a valid pointer.
+/// - `paper_width` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPaperGetWidth(
+    paper: PMPaper,
+    paper_width: NonNull<c_double>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPaperGetWidth(paper: PMPaper, paper_width: NonNull<c_double>) -> OSStatus;
+    }
+    unsafe { PMPaperGetWidth(paper, paper_width) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `paper` must be a valid pointer.
-    /// - `paper_height` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPaperGetHeight(paper: PMPaper, paper_height: NonNull<c_double>) -> OSStatus;
+/// # Safety
+///
+/// - `paper` must be a valid pointer.
+/// - `paper_height` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPaperGetHeight(
+    paper: PMPaper,
+    paper_height: NonNull<c_double>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPaperGetHeight(paper: PMPaper, paper_height: NonNull<c_double>) -> OSStatus;
+    }
+    unsafe { PMPaperGetHeight(paper, paper_height) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `paper` must be a valid pointer.
-    /// - `paper_margins` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPaperGetMargins(paper: PMPaper, paper_margins: NonNull<PMPaperMargins>) -> OSStatus;
+/// # Safety
+///
+/// - `paper` must be a valid pointer.
+/// - `paper_margins` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPaperGetMargins(
+    paper: PMPaper,
+    paper_margins: NonNull<PMPaperMargins>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPaperGetMargins(paper: PMPaper, paper_margins: NonNull<PMPaperMargins>) -> OSStatus;
+    }
+    unsafe { PMPaperGetMargins(paper, paper_margins) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `paper` must be a valid pointer.
-    /// - `paper_id` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPaperGetID(paper: PMPaper, paper_id: NonNull<*const CFString>) -> OSStatus;
+/// # Safety
+///
+/// - `paper` must be a valid pointer.
+/// - `paper_id` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPaperGetID(
+    paper: PMPaper,
+    paper_id: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPaperGetID(paper: PMPaper, paper_id: NonNull<*const CFString>) -> OSStatus;
+    }
+    unsafe { PMPaperGetID(paper, paper_id) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `paper` must be a valid pointer.
-    /// - `paper_name` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPaperGetPPDPaperName(paper: PMPaper, paper_name: NonNull<*const CFString>)
-        -> OSStatus;
+/// # Safety
+///
+/// - `paper` must be a valid pointer.
+/// - `paper_name` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPaperGetPPDPaperName(
+    paper: PMPaper,
+    paper_name: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPaperGetPPDPaperName(paper: PMPaper, paper_name: NonNull<*const CFString>)
+            -> OSStatus;
+    }
+    unsafe { PMPaperGetPPDPaperName(paper, paper_name) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `paper` must be a valid pointer.
-    /// - `printer` must be a valid pointer.
-    /// - `paper_name` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPaperCreateLocalizedName(
-        paper: PMPaper,
-        printer: PMPrinter,
-        paper_name: NonNull<*const CFString>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `paper` must be a valid pointer.
+/// - `printer` must be a valid pointer.
+/// - `paper_name` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPaperCreateLocalizedName(
+    paper: PMPaper,
+    printer: PMPrinter,
+    paper_name: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPaperCreateLocalizedName(
+            paper: PMPaper,
+            printer: PMPrinter,
+            paper_name: NonNull<*const CFString>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPaperCreateLocalizedName(paper, printer, paper_name) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `paper` must be a valid pointer.
-    /// - `printer_id` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPaperGetPrinterID(paper: PMPaper, printer_id: NonNull<*const CFString>) -> OSStatus;
+/// # Safety
+///
+/// - `paper` must be a valid pointer.
+/// - `printer_id` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPaperGetPrinterID(
+    paper: PMPaper,
+    printer_id: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPaperGetPrinterID(paper: PMPaper, printer_id: NonNull<*const CFString>) -> OSStatus;
+    }
+    unsafe { PMPaperGetPrinterID(paper, printer_id) }
 }
 
 /// # Safety
@@ -1266,161 +1923,279 @@ pub unsafe extern "C-unwind" fn PMPaperIsCustom(paper: PMPaper) -> bool {
     ret != 0
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `workflow_items` must be a valid pointer.
-    pub fn PMWorkflowCopyItems(workflow_items: NonNull<*const CFArray>) -> OSStatus;
+/// # Safety
+///
+/// `workflow_items` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn PMWorkflowCopyItems(
+    workflow_items: NonNull<*const CFArray>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMWorkflowCopyItems(workflow_items: NonNull<*const CFArray>) -> OSStatus;
+    }
+    unsafe { PMWorkflowCopyItems(workflow_items) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `options` must be a valid pointer or null.
-    pub fn PMWorkflowSubmitPDFWithOptions(
-        workflow_item: &CFURL,
-        title: Option<&CFString>,
-        options: *const c_char,
-        pdf_file: &CFURL,
-    ) -> OSStatus;
+/// # Safety
+///
+/// `options` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn PMWorkflowSubmitPDFWithOptions(
+    workflow_item: &CFURL,
+    title: Option<&CFString>,
+    options: *const c_char,
+    pdf_file: &CFURL,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMWorkflowSubmitPDFWithOptions(
+            workflow_item: &CFURL,
+            title: Option<&CFString>,
+            options: *const c_char,
+            pdf_file: &CFURL,
+        ) -> OSStatus;
+    }
+    unsafe { PMWorkflowSubmitPDFWithOptions(workflow_item, title, options, pdf_file) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `settings` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMWorkflowSubmitPDFWithSettings(
-        workflow_item: &CFURL,
-        settings: PMPrintSettings,
-        pdf_file: &CFURL,
-    ) -> OSStatus;
+/// # Safety
+///
+/// `settings` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMWorkflowSubmitPDFWithSettings(
+    workflow_item: &CFURL,
+    settings: PMPrintSettings,
+    pdf_file: &CFURL,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMWorkflowSubmitPDFWithSettings(
+            workflow_item: &CFURL,
+            settings: PMPrintSettings,
+            pdf_file: &CFURL,
+        ) -> OSStatus;
+    }
+    unsafe { PMWorkflowSubmitPDFWithSettings(workflow_item, settings, pdf_file) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `settings` must be a valid pointer.
-    /// - `format` must be a valid pointer or null.
-    #[cfg(all(feature = "PMDefinitions", feature = "objc2-core-graphics"))]
-    pub fn PMPrinterPrintWithProvider(
-        printer: PMPrinter,
-        settings: PMPrintSettings,
-        format: PMPageFormat,
-        mime_type: &CFString,
-        provider: &CGDataProvider,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `settings` must be a valid pointer.
+/// - `format` must be a valid pointer or null.
+#[cfg(all(feature = "PMDefinitions", feature = "objc2-core-graphics"))]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterPrintWithProvider(
+    printer: PMPrinter,
+    settings: PMPrintSettings,
+    format: PMPageFormat,
+    mime_type: &CFString,
+    provider: &CGDataProvider,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterPrintWithProvider(
+            printer: PMPrinter,
+            settings: PMPrintSettings,
+            format: PMPageFormat,
+            mime_type: &CFString,
+            provider: &CGDataProvider,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterPrintWithProvider(printer, settings, format, mime_type, provider) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `settings` must be a valid pointer.
-    /// - `format` must be a valid pointer or null.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterPrintWithFile(
-        printer: PMPrinter,
-        settings: PMPrintSettings,
-        format: PMPageFormat,
-        mime_type: Option<&CFString>,
-        file_url: &CFURL,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `settings` must be a valid pointer.
+/// - `format` must be a valid pointer or null.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterPrintWithFile(
+    printer: PMPrinter,
+    settings: PMPrintSettings,
+    format: PMPageFormat,
+    mime_type: Option<&CFString>,
+    file_url: &CFURL,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterPrintWithFile(
+            printer: PMPrinter,
+            settings: PMPrintSettings,
+            format: PMPageFormat,
+            mime_type: Option<&CFString>,
+            file_url: &CFURL,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterPrintWithFile(printer, settings, format, mime_type, file_url) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `settings` must be a valid pointer.
-    /// - `format` must be a valid pointer or null.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterWritePostScriptToURL(
-        printer: PMPrinter,
-        settings: PMPrintSettings,
-        format: PMPageFormat,
-        mime_type: Option<&CFString>,
-        source_file_url: &CFURL,
-        destination_file_url: &CFURL,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `settings` must be a valid pointer.
+/// - `format` must be a valid pointer or null.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterWritePostScriptToURL(
+    printer: PMPrinter,
+    settings: PMPrintSettings,
+    format: PMPageFormat,
+    mime_type: Option<&CFString>,
+    source_file_url: &CFURL,
+    destination_file_url: &CFURL,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterWritePostScriptToURL(
+            printer: PMPrinter,
+            settings: PMPrintSettings,
+            format: PMPageFormat,
+            mime_type: Option<&CFString>,
+            source_file_url: &CFURL,
+            destination_file_url: &CFURL,
+        ) -> OSStatus;
+    }
+    unsafe {
+        PMPrinterWritePostScriptToURL(
+            printer,
+            settings,
+            format,
+            mime_type,
+            source_file_url,
+            destination_file_url,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `settings` must be a valid pointer.
-    /// - `options` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrintSettingsToOptions(
-        settings: PMPrintSettings,
-        options: NonNull<*mut c_char>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `settings` must be a valid pointer.
+/// - `options` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrintSettingsToOptions(
+    settings: PMPrintSettings,
+    options: NonNull<*mut c_char>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrintSettingsToOptions(
+            settings: PMPrintSettings,
+            options: NonNull<*mut c_char>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrintSettingsToOptions(settings, options) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `settings` must be a valid pointer.
-    /// - `printer` must be a valid pointer.
-    /// - `page_format` must be a valid pointer or null.
-    /// - `options` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrintSettingsToOptionsWithPrinterAndPageFormat(
-        settings: PMPrintSettings,
-        printer: PMPrinter,
-        page_format: PMPageFormat,
-        options: NonNull<*mut c_char>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `settings` must be a valid pointer.
+/// - `printer` must be a valid pointer.
+/// - `page_format` must be a valid pointer or null.
+/// - `options` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrintSettingsToOptionsWithPrinterAndPageFormat(
+    settings: PMPrintSettings,
+    printer: PMPrinter,
+    page_format: PMPageFormat,
+    options: NonNull<*mut c_char>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrintSettingsToOptionsWithPrinterAndPageFormat(
+            settings: PMPrintSettings,
+            printer: PMPrinter,
+            page_format: PMPageFormat,
+            options: NonNull<*mut c_char>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        PMPrintSettingsToOptionsWithPrinterAndPageFormat(settings, printer, page_format, options)
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterSendCommand(
-        printer: PMPrinter,
-        command_string: &CFString,
-        job_title: Option<&CFString>,
-        options: Option<&CFDictionary>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterSendCommand(
+    printer: PMPrinter,
+    command_string: &CFString,
+    job_title: Option<&CFString>,
+    options: Option<&CFDictionary>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterSendCommand(
+            printer: PMPrinter,
+            command_string: &CFString,
+            job_title: Option<&CFString>,
+            options: Option<&CFDictionary>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterSendCommand(printer, command_string, job_title, options) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `printer` must be a valid pointer.
-    /// - `state_dict` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMPrinterCopyState(
-        printer: PMPrinter,
-        state_dict: NonNull<*const CFDictionary>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `printer` must be a valid pointer.
+/// - `state_dict` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMPrinterCopyState(
+    printer: PMPrinter,
+    state_dict: NonNull<*const CFDictionary>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMPrinterCopyState(
+            printer: PMPrinter,
+            state_dict: NonNull<*const CFDictionary>,
+        ) -> OSStatus;
+    }
+    unsafe { PMPrinterCopyState(printer, state_dict) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ppds` must be a valid pointer.
-    #[cfg(feature = "PMDefinitions")]
-    pub fn PMCopyAvailablePPDs(domain: PMPPDDomain, ppds: NonNull<*const CFArray>) -> OSStatus;
+/// # Safety
+///
+/// `ppds` must be a valid pointer.
+#[cfg(feature = "PMDefinitions")]
+#[inline]
+pub unsafe extern "C-unwind" fn PMCopyAvailablePPDs(
+    domain: PMPPDDomain,
+    ppds: NonNull<*const CFArray>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMCopyAvailablePPDs(domain: PMPPDDomain, ppds: NonNull<*const CFArray>) -> OSStatus;
+    }
+    unsafe { PMCopyAvailablePPDs(domain, ppds) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `localized_ppd` must be a valid pointer.
-    pub fn PMCopyLocalizedPPD(ppd: &CFURL, localized_ppd: NonNull<*const CFURL>) -> OSStatus;
+/// # Safety
+///
+/// `localized_ppd` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn PMCopyLocalizedPPD(
+    ppd: &CFURL,
+    localized_ppd: NonNull<*const CFURL>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMCopyLocalizedPPD(ppd: &CFURL, localized_ppd: NonNull<*const CFURL>) -> OSStatus;
+    }
+    unsafe { PMCopyLocalizedPPD(ppd, localized_ppd) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `data` must be a valid pointer.
-    pub fn PMCopyPPDData(ppd: &CFURL, data: NonNull<*const CFData>) -> OSStatus;
+/// # Safety
+///
+/// `data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn PMCopyPPDData(
+    ppd: &CFURL,
+    data: NonNull<*const CFData>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn PMCopyPPDData(ppd: &CFURL, data: NonNull<*const CFData>) -> OSStatus;
+    }
+    unsafe { PMCopyPPDData(ppd, data) }
 }
 
 #[cfg(feature = "objc2-core-graphics")]

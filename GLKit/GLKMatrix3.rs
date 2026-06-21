@@ -45,21 +45,35 @@ extern "C" {
 
 // TODO: pub fn GLKMatrix3Transpose(matrix: GLKMatrix3,) -> GLKMatrix3;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `is_invertible` must be a valid pointer.
-    #[cfg(feature = "GLKMathTypes")]
-    pub fn GLKMatrix3Invert(matrix: GLKMatrix3, is_invertible: *mut bool) -> GLKMatrix3;
+/// # Safety
+///
+/// `is_invertible` must be a valid pointer.
+#[cfg(feature = "GLKMathTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn GLKMatrix3Invert(
+    matrix: GLKMatrix3,
+    is_invertible: *mut bool,
+) -> GLKMatrix3 {
+    extern "C-unwind" {
+        fn GLKMatrix3Invert(matrix: GLKMatrix3, is_invertible: *mut bool) -> GLKMatrix3;
+    }
+    unsafe { GLKMatrix3Invert(matrix, is_invertible) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `is_invertible` must be a valid pointer.
-    #[cfg(feature = "GLKMathTypes")]
-    pub fn GLKMatrix3InvertAndTranspose(matrix: GLKMatrix3, is_invertible: *mut bool)
-        -> GLKMatrix3;
+/// # Safety
+///
+/// `is_invertible` must be a valid pointer.
+#[cfg(feature = "GLKMathTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn GLKMatrix3InvertAndTranspose(
+    matrix: GLKMatrix3,
+    is_invertible: *mut bool,
+) -> GLKMatrix3 {
+    extern "C-unwind" {
+        fn GLKMatrix3InvertAndTranspose(matrix: GLKMatrix3, is_invertible: *mut bool)
+            -> GLKMatrix3;
+    }
+    unsafe { GLKMatrix3InvertAndTranspose(matrix, is_invertible) }
 }
 
 // TODO: pub fn GLKMatrix3Multiply(matrix_left: GLKMatrix3,matrix_right: GLKMatrix3,) -> GLKMatrix3;

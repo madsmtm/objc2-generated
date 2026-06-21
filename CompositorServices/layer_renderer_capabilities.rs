@@ -38,22 +38,28 @@ impl CP_OBJECT_cp_layer_renderer_capabilities {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_t?language=objc)
 pub type cp_layer_renderer_capabilities_t = CP_OBJECT_cp_layer_renderer_capabilities;
 
-extern "C-unwind" {
-    /// Returns a Boolean value that indicates whether the layer supports
-    /// variable rasterization rates.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The system-provided layer capabilities type.
-    /// - Returns: `true` if the layer supports variable rasterization rates or
-    /// `false` if you must render the entire layer at the same resolution.
-    ///
-    /// Foveation support lets you reduce the amount of high-resolution drawing
-    /// you do. When foveation support is available, you can render content in
-    /// someone’s peripheral vision at a lower resolution than content under
-    /// their direct gaze.
-    pub fn cp_layer_renderer_capabilities_supports_foveation(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-    ) -> bool;
+/// Returns a Boolean value that indicates whether the layer supports
+/// variable rasterization rates.
+///
+/// - Parameters:
+/// - layer_capabilities: The system-provided layer capabilities type.
+/// - Returns: `true` if the layer supports variable rasterization rates or
+/// `false` if you must render the entire layer at the same resolution.
+///
+/// Foveation support lets you reduce the amount of high-resolution drawing
+/// you do. When foveation support is available, you can render content in
+/// someone’s peripheral vision at a lower resolution than content under
+/// their direct gaze.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supports_foveation(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+) -> bool {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supports_foveation(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+        ) -> bool;
+    }
+    unsafe { cp_layer_renderer_capabilities_supports_foveation(layer_capabilities) }
 }
 
 /// The options to provide when calling ``cp_layer_renderer_capabilities_supported_color_formats`` and
@@ -82,135 +88,204 @@ unsafe impl RefEncode for cp_supported_color_formats_options {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Returns the number of color formats the specified layer supports.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - options: The options to consider when creating the list of supported
-    /// color formats.
-    /// - Returns: The number of color formats the layer supports.
-    ///
-    /// To iterate over the color formats, use the ``cp_layer_renderer_capabilities_supported_color_format``
-    /// function.
-    pub fn cp_layer_renderer_capabilities_supported_color_formats_count_with_options(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-        options: cp_supported_color_formats_options,
-    ) -> usize;
+/// Returns the number of color formats the specified layer supports.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - options: The options to consider when creating the list of supported
+/// color formats.
+/// - Returns: The number of color formats the layer supports.
+///
+/// To iterate over the color formats, use the ``cp_layer_renderer_capabilities_supported_color_format``
+/// function.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_formats_count_with_options(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+    options: cp_supported_color_formats_options,
+) -> usize {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supported_color_formats_count_with_options(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+            options: cp_supported_color_formats_options,
+        ) -> usize;
+    }
+    unsafe {
+        cp_layer_renderer_capabilities_supported_color_formats_count_with_options(
+            layer_capabilities,
+            options,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Returns the number of color formats the specified layer supports.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// color formats.
-    /// - Returns: The number of color formats the layer supports.
-    ///
-    /// To iterate over the color formats, use the ``cp_layer_renderer_capabilities_supported_color_format``
-    /// function.
-    pub fn cp_layer_renderer_capabilities_supported_color_formats_count(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-    ) -> usize;
+/// Returns the number of color formats the specified layer supports.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// color formats.
+/// - Returns: The number of color formats the layer supports.
+///
+/// To iterate over the color formats, use the ``cp_layer_renderer_capabilities_supported_color_format``
+/// function.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_formats_count(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+) -> usize {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supported_color_formats_count(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+        ) -> usize;
+    }
+    unsafe { cp_layer_renderer_capabilities_supported_color_formats_count(layer_capabilities) }
 }
 
-extern "C-unwind" {
-    /// Returns the color format at the specified index in the layer capabilities.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - options: The options to consider when creating the list of supported
-    /// color formats.
-    /// - index: A zero-based index into the list of color formats.
-    /// - Returns: The color format at the specified index.
-    ///
-    /// Use this function to determine the pixel arrangements and characteristics
-    /// you can apply to the layer.
-    #[cfg(feature = "objc2-metal")]
-    pub fn cp_layer_renderer_capabilities_supported_color_format_with_options(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-        options: cp_supported_color_formats_options,
-        index: usize,
-    ) -> MTLPixelFormat;
+/// Returns the color format at the specified index in the layer capabilities.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - options: The options to consider when creating the list of supported
+/// color formats.
+/// - index: A zero-based index into the list of color formats.
+/// - Returns: The color format at the specified index.
+///
+/// Use this function to determine the pixel arrangements and characteristics
+/// you can apply to the layer.
+#[cfg(feature = "objc2-metal")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_format_with_options(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+    options: cp_supported_color_formats_options,
+    index: usize,
+) -> MTLPixelFormat {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supported_color_format_with_options(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+            options: cp_supported_color_formats_options,
+            index: usize,
+        ) -> MTLPixelFormat;
+    }
+    unsafe {
+        cp_layer_renderer_capabilities_supported_color_format_with_options(
+            layer_capabilities,
+            options,
+            index,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Returns the color format at the specified index in the layer capabilities.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - index: A zero-based index into the list of color formats.
-    /// - Returns: The color format at the specified index.
-    ///
-    /// Use this function to determine the pixel arrangements and characteristics
-    /// you can apply to the layer.
-    #[cfg(feature = "objc2-metal")]
-    pub fn cp_layer_renderer_capabilities_supported_color_format(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-        index: usize,
-    ) -> MTLPixelFormat;
+/// Returns the color format at the specified index in the layer capabilities.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - index: A zero-based index into the list of color formats.
+/// - Returns: The color format at the specified index.
+///
+/// Use this function to determine the pixel arrangements and characteristics
+/// you can apply to the layer.
+#[cfg(feature = "objc2-metal")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_format(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+    index: usize,
+) -> MTLPixelFormat {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supported_color_format(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+            index: usize,
+        ) -> MTLPixelFormat;
+    }
+    unsafe { cp_layer_renderer_capabilities_supported_color_format(layer_capabilities, index) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of depth formats the specified layer supports.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - Returns: The number of depth formats the layer supports.
-    ///
-    /// To iterate over the depth formats, use the ``cp_layer_renderer_capabilities_supported_depth_format``
-    /// function.
-    pub fn cp_layer_renderer_capabilities_supported_depth_formats_count(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-    ) -> usize;
+/// Returns the number of depth formats the specified layer supports.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - Returns: The number of depth formats the layer supports.
+///
+/// To iterate over the depth formats, use the ``cp_layer_renderer_capabilities_supported_depth_format``
+/// function.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_depth_formats_count(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+) -> usize {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supported_depth_formats_count(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+        ) -> usize;
+    }
+    unsafe { cp_layer_renderer_capabilities_supported_depth_formats_count(layer_capabilities) }
 }
 
-extern "C-unwind" {
-    /// Returns the depth format at the specified index in the layer capabilities.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - index: A zero-based index into the list of depth formats.
-    /// - Returns: The pixel format at the specified index.
-    ///
-    /// Use this function to determine what depth texture formats the layer
-    /// supports.
-    #[cfg(feature = "objc2-metal")]
-    pub fn cp_layer_renderer_capabilities_supported_depth_format(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-        index: usize,
-    ) -> MTLPixelFormat;
+/// Returns the depth format at the specified index in the layer capabilities.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - index: A zero-based index into the list of depth formats.
+/// - Returns: The pixel format at the specified index.
+///
+/// Use this function to determine what depth texture formats the layer
+/// supports.
+#[cfg(feature = "objc2-metal")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_depth_format(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+    index: usize,
+) -> MTLPixelFormat {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supported_depth_format(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+            index: usize,
+        ) -> MTLPixelFormat;
+    }
+    unsafe { cp_layer_renderer_capabilities_supported_depth_format(layer_capabilities, index) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of tracking areas formats the specified layer supports.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - Returns: The number of tracking areas formats the layer supports.
-    ///
-    /// To iterate over the index formats, use the ``cp_layer_renderer_capabilities_supported_tracking_areas_format``
-    /// function.
-    pub fn cp_layer_renderer_capabilities_supported_tracking_areas_formats_count(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-    ) -> usize;
+/// Returns the number of tracking areas formats the specified layer supports.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - Returns: The number of tracking areas formats the layer supports.
+///
+/// To iterate over the index formats, use the ``cp_layer_renderer_capabilities_supported_tracking_areas_format``
+/// function.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_tracking_areas_formats_count(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+) -> usize {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supported_tracking_areas_formats_count(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+        ) -> usize;
+    }
+    unsafe {
+        cp_layer_renderer_capabilities_supported_tracking_areas_formats_count(layer_capabilities)
+    }
 }
 
-extern "C-unwind" {
-    /// Returns the tracking areas format at the specified index in the layer capabilities.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - index: A zero-based index into the list of index formats.
-    /// - Returns: The pixel format at the specified index.
-    ///
-    /// Use this function to determine what tracking areas texture formats the layer
-    /// supports.
-    #[cfg(feature = "objc2-metal")]
-    pub fn cp_layer_renderer_capabilities_supported_tracking_areas_format(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-        index: usize,
-    ) -> MTLPixelFormat;
+/// Returns the tracking areas format at the specified index in the layer capabilities.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - index: A zero-based index into the list of index formats.
+/// - Returns: The pixel format at the specified index.
+///
+/// Use this function to determine what tracking areas texture formats the layer
+/// supports.
+#[cfg(feature = "objc2-metal")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_tracking_areas_format(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+    index: usize,
+) -> MTLPixelFormat {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supported_tracking_areas_format(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+            index: usize,
+        ) -> MTLPixelFormat;
+    }
+    unsafe {
+        cp_layer_renderer_capabilities_supported_tracking_areas_format(layer_capabilities, index)
+    }
 }
 
 /// The options to provide when calling ``cp_layer_renderer_capabilities_supported_layout`` and
@@ -241,111 +316,162 @@ unsafe impl RefEncode for cp_supported_layouts_options {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Returns the number of layouts the specified layer supports.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - options: The options to consider when creating the list of supported
-    /// layouts.
-    /// - Returns: The number of layouts the layer supports.
-    ///
-    /// To iterate over the layouts, use the ``cp_layer_renderer_capabilities_supported_layout``
-    /// function.
-    pub fn cp_layer_renderer_capabilities_supported_layouts_count(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-        options: cp_supported_layouts_options,
-    ) -> usize;
+/// Returns the number of layouts the specified layer supports.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - options: The options to consider when creating the list of supported
+/// layouts.
+/// - Returns: The number of layouts the layer supports.
+///
+/// To iterate over the layouts, use the ``cp_layer_renderer_capabilities_supported_layout``
+/// function.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_layouts_count(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+    options: cp_supported_layouts_options,
+) -> usize {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supported_layouts_count(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+            options: cp_supported_layouts_options,
+        ) -> usize;
+    }
+    unsafe { cp_layer_renderer_capabilities_supported_layouts_count(layer_capabilities, options) }
 }
 
-extern "C-unwind" {
-    /// Returns the layout at the specified index in the layer capabilities.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - options: The options to consider when creating the list of supported
-    /// layouts.
-    /// - index: A zero-based index into the list of layouts. This value must
-    /// be less than the value the ``cp_layer_renderer_capabilities_supported_layouts_count``
-    /// function returns for the same value of the `foveation_enabled` parameter.
-    /// - Returns: The layer layout at the specified index.
-    ///
-    /// Use this function to determine what texture layouts the layer supports.
-    #[cfg(feature = "layer_renderer_layout")]
-    pub fn cp_layer_renderer_capabilities_supported_layout(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-        options: cp_supported_layouts_options,
-        index: usize,
-    ) -> cp_layer_renderer_layout;
+/// Returns the layout at the specified index in the layer capabilities.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - options: The options to consider when creating the list of supported
+/// layouts.
+/// - index: A zero-based index into the list of layouts. This value must
+/// be less than the value the ``cp_layer_renderer_capabilities_supported_layouts_count``
+/// function returns for the same value of the `foveation_enabled` parameter.
+/// - Returns: The layer layout at the specified index.
+///
+/// Use this function to determine what texture layouts the layer supports.
+#[cfg(feature = "layer_renderer_layout")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_layout(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+    options: cp_supported_layouts_options,
+    index: usize,
+) -> cp_layer_renderer_layout {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supported_layout(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+            options: cp_supported_layouts_options,
+            index: usize,
+        ) -> cp_layer_renderer_layout;
+    }
+    unsafe { cp_layer_renderer_capabilities_supported_layout(layer_capabilities, options, index) }
 }
 
-extern "C-unwind" {
-    /// Returns the minimum distance in meters to the near projection plane
-    /// that the layer supports.
-    ///
-    /// The compositor uses the near and far projection planes to compute the
-    /// perspective projection matrix and to clip content that is not between
-    /// the near and far planes. Use this method to retrieve the
-    /// minimum distance to the near plane that the layer allows. When you
-    /// configure your layer, you can specify a different minimum distance,
-    /// but that value must be greater than or equal to the distance this
-    /// method returns.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - Returns: The minimum allowed distance in meters from the camera
-    /// origin to the near projection plane.
-    pub fn cp_layer_renderer_capabilities_supported_minimum_near_plane_distance(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-    ) -> c_float;
+/// Returns the minimum distance in meters to the near projection plane
+/// that the layer supports.
+///
+/// The compositor uses the near and far projection planes to compute the
+/// perspective projection matrix and to clip content that is not between
+/// the near and far planes. Use this method to retrieve the
+/// minimum distance to the near plane that the layer allows. When you
+/// configure your layer, you can specify a different minimum distance,
+/// but that value must be greater than or equal to the distance this
+/// method returns.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - Returns: The minimum allowed distance in meters from the camera
+/// origin to the near projection plane.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_minimum_near_plane_distance(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+) -> c_float {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_supported_minimum_near_plane_distance(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+        ) -> c_float;
+    }
+    unsafe {
+        cp_layer_renderer_capabilities_supported_minimum_near_plane_distance(layer_capabilities)
+    }
 }
 
-extern "C-unwind" {
-    /// Returns the number of stencil formats the specified layer supports.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - Returns: The number of stencil formats the layer supports.
-    ///
-    /// To iterate over the stencil formats, use the ``cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format``
-    /// function.
-    pub fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_formats_count(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-    ) -> usize;
+/// Returns the number of stencil formats the specified layer supports.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - Returns: The number of stencil formats the layer supports.
+///
+/// To iterate over the stencil formats, use the ``cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format``
+/// function.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_formats_count(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+) -> usize {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_formats_count(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+        ) -> usize;
+    }
+    unsafe {
+        cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_formats_count(
+            layer_capabilities,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Returns the stencil format at the specified index in the layer capabilities.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - index: A zero-based index into the list of stencil formats.
-    /// - Returns: The stencil format at the specified index.
-    ///
-    /// Use this function to determine the pixel arrangements and characteristics
-    /// you can apply to the layer.
-    #[cfg(feature = "objc2-metal")]
-    pub fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-        index: usize,
-    ) -> MTLPixelFormat;
+/// Returns the stencil format at the specified index in the layer capabilities.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - index: A zero-based index into the list of stencil formats.
+/// - Returns: The stencil format at the specified index.
+///
+/// Use this function to determine the pixel arrangements and characteristics
+/// you can apply to the layer.
+#[cfg(feature = "objc2-metal")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+    index: usize,
+) -> MTLPixelFormat {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+            index: usize,
+        ) -> MTLPixelFormat;
+    }
+    unsafe {
+        cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format(
+            layer_capabilities,
+            index,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Returns default render quality for drawing on this platform.
-    ///
-    /// This should be used as a base value for the platform quality
-    /// for drawing.
-    ///
-    ///
-    /// See: ``cp_layer_renderer_configuration_set_max_render_quality``
-    /// for usage.
-    ///
-    /// - Parameters:
-    /// - layer_capabilities: The layer capabilities to query.
-    /// - Returns: The default render quality allowed for drawing.
-    #[cfg(feature = "cp_types")]
-    pub fn cp_layer_renderer_capabilities_get_default_render_quality(
-        layer_capabilities: &cp_layer_renderer_capabilities_t,
-    ) -> cp_render_quality_t;
+/// Returns default render quality for drawing on this platform.
+///
+/// This should be used as a base value for the platform quality
+/// for drawing.
+///
+///
+/// See: ``cp_layer_renderer_configuration_set_max_render_quality``
+/// for usage.
+///
+/// - Parameters:
+/// - layer_capabilities: The layer capabilities to query.
+/// - Returns: The default render quality allowed for drawing.
+#[cfg(feature = "cp_types")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_get_default_render_quality(
+    layer_capabilities: &cp_layer_renderer_capabilities_t,
+) -> cp_render_quality_t {
+    extern "C-unwind" {
+        fn cp_layer_renderer_capabilities_get_default_render_quality(
+            layer_capabilities: &cp_layer_renderer_capabilities_t,
+        ) -> cp_render_quality_t;
+    }
+    unsafe { cp_layer_renderer_capabilities_get_default_render_quality(layer_capabilities) }
 }

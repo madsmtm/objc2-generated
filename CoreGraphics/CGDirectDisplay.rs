@@ -45,67 +45,112 @@ pub extern "C-unwind" fn CGMainDisplayID() -> CGDirectDisplayID {
     unsafe { CGMainDisplayID() }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `displays` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    pub fn CGGetDisplaysWithPoint(
-        point: CGPoint,
-        max_displays: u32,
-        displays: *mut CGDirectDisplayID,
-        matching_display_count: Option<&mut u32>,
-    ) -> CGError;
+/// # Safety
+///
+/// `displays` must be a valid pointer or null.
+#[cfg(feature = "CGError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGGetDisplaysWithPoint(
+    point: CGPoint,
+    max_displays: u32,
+    displays: *mut CGDirectDisplayID,
+    matching_display_count: Option<&mut u32>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGGetDisplaysWithPoint(
+            point: CGPoint,
+            max_displays: u32,
+            displays: *mut CGDirectDisplayID,
+            matching_display_count: Option<&mut u32>,
+        ) -> CGError;
+    }
+    unsafe { CGGetDisplaysWithPoint(point, max_displays, displays, matching_display_count) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `displays` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    pub fn CGGetDisplaysWithRect(
-        rect: CGRect,
-        max_displays: u32,
-        displays: *mut CGDirectDisplayID,
-        matching_display_count: Option<&mut u32>,
-    ) -> CGError;
+/// # Safety
+///
+/// `displays` must be a valid pointer or null.
+#[cfg(feature = "CGError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGGetDisplaysWithRect(
+    rect: CGRect,
+    max_displays: u32,
+    displays: *mut CGDirectDisplayID,
+    matching_display_count: Option<&mut u32>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGGetDisplaysWithRect(
+            rect: CGRect,
+            max_displays: u32,
+            displays: *mut CGDirectDisplayID,
+            matching_display_count: Option<&mut u32>,
+        ) -> CGError;
+    }
+    unsafe { CGGetDisplaysWithRect(rect, max_displays, displays, matching_display_count) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `displays` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    pub fn CGGetDisplaysWithOpenGLDisplayMask(
-        mask: CGOpenGLDisplayMask,
-        max_displays: u32,
-        displays: *mut CGDirectDisplayID,
-        matching_display_count: Option<&mut u32>,
-    ) -> CGError;
+/// # Safety
+///
+/// `displays` must be a valid pointer or null.
+#[cfg(feature = "CGError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGGetDisplaysWithOpenGLDisplayMask(
+    mask: CGOpenGLDisplayMask,
+    max_displays: u32,
+    displays: *mut CGDirectDisplayID,
+    matching_display_count: Option<&mut u32>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGGetDisplaysWithOpenGLDisplayMask(
+            mask: CGOpenGLDisplayMask,
+            max_displays: u32,
+            displays: *mut CGDirectDisplayID,
+            matching_display_count: Option<&mut u32>,
+        ) -> CGError;
+    }
+    unsafe {
+        CGGetDisplaysWithOpenGLDisplayMask(mask, max_displays, displays, matching_display_count)
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `active_displays` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    pub fn CGGetActiveDisplayList(
-        max_displays: u32,
-        active_displays: *mut CGDirectDisplayID,
-        display_count: Option<&mut u32>,
-    ) -> CGError;
+/// # Safety
+///
+/// `active_displays` must be a valid pointer or null.
+#[cfg(feature = "CGError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGGetActiveDisplayList(
+    max_displays: u32,
+    active_displays: *mut CGDirectDisplayID,
+    display_count: Option<&mut u32>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGGetActiveDisplayList(
+            max_displays: u32,
+            active_displays: *mut CGDirectDisplayID,
+            display_count: Option<&mut u32>,
+        ) -> CGError;
+    }
+    unsafe { CGGetActiveDisplayList(max_displays, active_displays, display_count) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `online_displays` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    pub fn CGGetOnlineDisplayList(
-        max_displays: u32,
-        online_displays: *mut CGDirectDisplayID,
-        display_count: Option<&mut u32>,
-    ) -> CGError;
+/// # Safety
+///
+/// `online_displays` must be a valid pointer or null.
+#[cfg(feature = "CGError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGGetOnlineDisplayList(
+    max_displays: u32,
+    online_displays: *mut CGDirectDisplayID,
+    display_count: Option<&mut u32>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGGetOnlineDisplayList(
+            max_displays: u32,
+            online_displays: *mut CGDirectDisplayID,
+            display_count: Option<&mut u32>,
+        ) -> CGError;
+    }
+    unsafe { CGGetOnlineDisplayList(max_displays, online_displays, display_count) }
 }
 
 #[inline]
@@ -187,17 +232,25 @@ pub extern "C-unwind" fn CGDisplayCopyDisplayMode(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    #[cfg(feature = "CGError")]
-    pub fn CGDisplaySetDisplayMode(
-        display: CGDirectDisplayID,
-        mode: Option<&CGDisplayMode>,
-        options: Option<&CFDictionary>,
-    ) -> CGError;
+/// # Safety
+///
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
+#[cfg(feature = "CGError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplaySetDisplayMode(
+    display: CGDirectDisplayID,
+    mode: Option<&CGDisplayMode>,
+    options: Option<&CFDictionary>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGDisplaySetDisplayMode(
+            display: CGDirectDisplayID,
+            mode: Option<&CGDisplayMode>,
+            options: Option<&CFDictionary>,
+        ) -> CGError;
+    }
+    unsafe { CGDisplaySetDisplayMode(display, mode, options) }
 }
 
 impl CGDisplayMode {
@@ -399,53 +452,95 @@ pub extern "C-unwind" fn CGDisplayGammaTableCapacity(display: CGDirectDisplayID)
     unsafe { CGDisplayGammaTableCapacity(display) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `red_table` must be a valid pointer or null.
-    /// - `green_table` must be a valid pointer or null.
-    /// - `blue_table` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    pub fn CGSetDisplayTransferByTable(
-        display: CGDirectDisplayID,
-        table_size: u32,
-        red_table: *const CGGammaValue,
-        green_table: *const CGGammaValue,
-        blue_table: *const CGGammaValue,
-    ) -> CGError;
+/// # Safety
+///
+/// - `red_table` must be a valid pointer or null.
+/// - `green_table` must be a valid pointer or null.
+/// - `blue_table` must be a valid pointer or null.
+#[cfg(feature = "CGError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGSetDisplayTransferByTable(
+    display: CGDirectDisplayID,
+    table_size: u32,
+    red_table: *const CGGammaValue,
+    green_table: *const CGGammaValue,
+    blue_table: *const CGGammaValue,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGSetDisplayTransferByTable(
+            display: CGDirectDisplayID,
+            table_size: u32,
+            red_table: *const CGGammaValue,
+            green_table: *const CGGammaValue,
+            blue_table: *const CGGammaValue,
+        ) -> CGError;
+    }
+    unsafe { CGSetDisplayTransferByTable(display, table_size, red_table, green_table, blue_table) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `red_table` must be a valid pointer or null.
-    /// - `green_table` must be a valid pointer or null.
-    /// - `blue_table` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    pub fn CGGetDisplayTransferByTable(
-        display: CGDirectDisplayID,
-        capacity: u32,
-        red_table: *mut CGGammaValue,
-        green_table: *mut CGGammaValue,
-        blue_table: *mut CGGammaValue,
-        sample_count: Option<&mut u32>,
-    ) -> CGError;
+/// # Safety
+///
+/// - `red_table` must be a valid pointer or null.
+/// - `green_table` must be a valid pointer or null.
+/// - `blue_table` must be a valid pointer or null.
+#[cfg(feature = "CGError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGGetDisplayTransferByTable(
+    display: CGDirectDisplayID,
+    capacity: u32,
+    red_table: *mut CGGammaValue,
+    green_table: *mut CGGammaValue,
+    blue_table: *mut CGGammaValue,
+    sample_count: Option<&mut u32>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGGetDisplayTransferByTable(
+            display: CGDirectDisplayID,
+            capacity: u32,
+            red_table: *mut CGGammaValue,
+            green_table: *mut CGGammaValue,
+            blue_table: *mut CGGammaValue,
+            sample_count: Option<&mut u32>,
+        ) -> CGError;
+    }
+    unsafe {
+        CGGetDisplayTransferByTable(
+            display,
+            capacity,
+            red_table,
+            green_table,
+            blue_table,
+            sample_count,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `red_table` must be a valid pointer.
-    /// - `green_table` must be a valid pointer.
-    /// - `blue_table` must be a valid pointer.
-    #[cfg(feature = "CGError")]
-    pub fn CGSetDisplayTransferByByteTable(
-        display: CGDirectDisplayID,
-        table_size: u32,
-        red_table: NonNull<u8>,
-        green_table: NonNull<u8>,
-        blue_table: NonNull<u8>,
-    ) -> CGError;
+/// # Safety
+///
+/// - `red_table` must be a valid pointer.
+/// - `green_table` must be a valid pointer.
+/// - `blue_table` must be a valid pointer.
+#[cfg(feature = "CGError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGSetDisplayTransferByByteTable(
+    display: CGDirectDisplayID,
+    table_size: u32,
+    red_table: NonNull<u8>,
+    green_table: NonNull<u8>,
+    blue_table: NonNull<u8>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGSetDisplayTransferByByteTable(
+            display: CGDirectDisplayID,
+            table_size: u32,
+            red_table: NonNull<u8>,
+            green_table: NonNull<u8>,
+            blue_table: NonNull<u8>,
+        ) -> CGError;
+    }
+    unsafe {
+        CGSetDisplayTransferByByteTable(display, table_size, red_table, green_table, blue_table)
+    }
 }
 
 #[inline]
@@ -745,14 +840,21 @@ pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `mode` generic should be of the correct type.
-    #[cfg(feature = "CGError")]
-    #[deprecated = "No longer supported"]
-    pub fn CGDisplaySwitchToMode(
-        display: CGDirectDisplayID,
-        mode: Option<&CFDictionary<CFString, CFType>>,
-    ) -> CGError;
+/// # Safety
+///
+/// `mode` generic should be of the correct type.
+#[cfg(feature = "CGError")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplaySwitchToMode(
+    display: CGDirectDisplayID,
+    mode: Option<&CFDictionary<CFString, CFType>>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGDisplaySwitchToMode(
+            display: CGDirectDisplayID,
+            mode: Option<&CFDictionary<CFString, CFType>>,
+        ) -> CGError;
+    }
+    unsafe { CGDisplaySwitchToMode(display, mode) }
 }

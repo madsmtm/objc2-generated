@@ -217,42 +217,60 @@ pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Determine whether an item can accept another item.
-    ///
-    ///
-    /// Returns in outAcceptsItem whether inTargetURL can accept
-    /// inItemURL as in a drag and drop operation. If inRoleMask is other
-    /// than kLSRolesAll then make sure inTargetRef claims to fulfill the
-    /// requested role.
-    ///
-    ///
-    /// Parameter `inItemURL`: CFURLRef of the item about which acceptance is requested.
-    ///
-    ///
-    /// Parameter `inTargetURL`: CFURLRef of the potential target.
-    ///
-    ///
-    /// Parameter `inRoleMask`: The role(s) the target must claim in order to consider
-    /// acceptance.
-    ///
-    ///
-    /// Parameter `inFlags`: Use kLSAcceptDefault.
-    ///
-    ///
-    /// Parameter `outAcceptsItem`: Filled in with result. Must not be NULL.
-    ///
-    /// # Safety
-    ///
-    /// `out_accepts_item` must be a valid pointer.
-    #[cfg(feature = "LSConstants")]
-    pub fn LSCanURLAcceptURL(
-        in_item_url: &CFURL,
-        in_target_url: &CFURL,
-        in_role_mask: LSRolesMask,
-        in_flags: LSAcceptanceFlags,
-        out_accepts_item: NonNull<Boolean>,
-    ) -> OSStatus;
+/// Determine whether an item can accept another item.
+///
+///
+/// Returns in outAcceptsItem whether inTargetURL can accept
+/// inItemURL as in a drag and drop operation. If inRoleMask is other
+/// than kLSRolesAll then make sure inTargetRef claims to fulfill the
+/// requested role.
+///
+///
+/// Parameter `inItemURL`: CFURLRef of the item about which acceptance is requested.
+///
+///
+/// Parameter `inTargetURL`: CFURLRef of the potential target.
+///
+///
+/// Parameter `inRoleMask`: The role(s) the target must claim in order to consider
+/// acceptance.
+///
+///
+/// Parameter `inFlags`: Use kLSAcceptDefault.
+///
+///
+/// Parameter `outAcceptsItem`: Filled in with result. Must not be NULL.
+///
+/// # Safety
+///
+/// `out_accepts_item` must be a valid pointer.
+#[cfg(feature = "LSConstants")]
+#[inline]
+pub unsafe extern "C-unwind" fn LSCanURLAcceptURL(
+    in_item_url: &CFURL,
+    in_target_url: &CFURL,
+    in_role_mask: LSRolesMask,
+    in_flags: LSAcceptanceFlags,
+    out_accepts_item: NonNull<Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn LSCanURLAcceptURL(
+            in_item_url: &CFURL,
+            in_target_url: &CFURL,
+            in_role_mask: LSRolesMask,
+            in_flags: LSAcceptanceFlags,
+            out_accepts_item: NonNull<Boolean>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        LSCanURLAcceptURL(
+            in_item_url,
+            in_target_url,
+            in_role_mask,
+            in_flags,
+            out_accepts_item,
+        )
+    }
 }
 
 /// If the specified URL refers to an application or other bundle
@@ -341,28 +359,36 @@ pub unsafe extern "C-unwind" fn LSCopyAllRoleHandlersForContentType(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Sets the user's preferred handler for the specified content
-    /// type (UTI) in the specified role(s). For all roles, specify
-    /// kLSRolesAll. The handler is specified as an application
-    /// bundle identifier.
-    ///
-    ///
-    /// Parameter `inContentType`: a string UTI type identifier
-    ///
-    /// Parameter `inRole`: the role type(s) to set
-    ///
-    /// Parameter `inHandlerBundleID`: the bundle identifier to set as the default handler for the given contet type and role(s)
-    ///
-    ///
-    /// Returns: noErr on success, or an error indicating why the call failed
-    #[cfg(feature = "LSConstants")]
-    #[deprecated = "Use -[NSWorkspace setDefaultApplicationAtURL:toOpenContentType:completionHandler:] instead."]
-    pub fn LSSetDefaultRoleHandlerForContentType(
-        in_content_type: &CFString,
-        in_role: LSRolesMask,
-        in_handler_bundle_id: &CFString,
-    ) -> OSStatus;
+/// Sets the user's preferred handler for the specified content
+/// type (UTI) in the specified role(s). For all roles, specify
+/// kLSRolesAll. The handler is specified as an application
+/// bundle identifier.
+///
+///
+/// Parameter `inContentType`: a string UTI type identifier
+///
+/// Parameter `inRole`: the role type(s) to set
+///
+/// Parameter `inHandlerBundleID`: the bundle identifier to set as the default handler for the given contet type and role(s)
+///
+///
+/// Returns: noErr on success, or an error indicating why the call failed
+#[cfg(feature = "LSConstants")]
+#[deprecated = "Use -[NSWorkspace setDefaultApplicationAtURL:toOpenContentType:completionHandler:] instead."]
+#[inline]
+pub unsafe extern "C-unwind" fn LSSetDefaultRoleHandlerForContentType(
+    in_content_type: &CFString,
+    in_role: LSRolesMask,
+    in_handler_bundle_id: &CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn LSSetDefaultRoleHandlerForContentType(
+            in_content_type: &CFString,
+            in_role: LSRolesMask,
+            in_handler_bundle_id: &CFString,
+        ) -> OSStatus;
+    }
+    unsafe { LSSetDefaultRoleHandlerForContentType(in_content_type, in_role, in_handler_bundle_id) }
 }
 
 /// Returns the bundle identifier of the default handler for
@@ -409,18 +435,25 @@ pub unsafe extern "C-unwind" fn LSCopyAllHandlersForURLScheme(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Sets the user's preferred handler for the specified URL
-    /// scheme. The handler is specified as an application
-    /// bundle identifier.
-    ///
-    ///
-    /// Parameter `inURLScheme`: the url scheme to set a default handler for
-    ///
-    /// Parameter `inHandlerBundleID`: the bundle identifier to be set as the default handler for the given scheme
-    #[deprecated = "Use -[NSWorkspace setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:] instead."]
-    pub fn LSSetDefaultHandlerForURLScheme(
-        in_url_scheme: &CFString,
-        in_handler_bundle_id: &CFString,
-    ) -> OSStatus;
+/// Sets the user's preferred handler for the specified URL
+/// scheme. The handler is specified as an application
+/// bundle identifier.
+///
+///
+/// Parameter `inURLScheme`: the url scheme to set a default handler for
+///
+/// Parameter `inHandlerBundleID`: the bundle identifier to be set as the default handler for the given scheme
+#[deprecated = "Use -[NSWorkspace setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:] instead."]
+#[inline]
+pub unsafe extern "C-unwind" fn LSSetDefaultHandlerForURLScheme(
+    in_url_scheme: &CFString,
+    in_handler_bundle_id: &CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn LSSetDefaultHandlerForURLScheme(
+            in_url_scheme: &CFString,
+            in_handler_bundle_id: &CFString,
+        ) -> OSStatus;
+    }
+    unsafe { LSSetDefaultHandlerForURLScheme(in_url_scheme, in_handler_bundle_id) }
 }

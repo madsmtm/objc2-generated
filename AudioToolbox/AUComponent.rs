@@ -641,579 +641,787 @@ extern "C" {
     pub static kAudioComponentInstanceInvalidationNotification: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// initialize an audio unit
-    ///
-    /// Upon success, the audio unit has been successfully initialized. This means
-    /// that the formats for input and output are valid and can be supported and it
-    /// has based its allocations on the max number of frames that it is able to
-    /// render at any given time. Once initialized, it is in a state where it can be
-    /// asked to render.
-    ///
-    /// In common practice, major state of an audio unit (such as its I/O formats,
-    /// memory allocations) cannot be changed while an audio unit is initialized.
-    ///
-    ///
-    /// Parameter `inUnit`: The audio unit to initialize
-    ///
-    /// Returns: noErr, or an error representing the reasons why the audio unit was not able
-    /// to be initialized successfully
-    ///
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioUnitInitialize(in_unit: AudioUnit) -> OSStatus;
+/// initialize an audio unit
+///
+/// Upon success, the audio unit has been successfully initialized. This means
+/// that the formats for input and output are valid and can be supported and it
+/// has based its allocations on the max number of frames that it is able to
+/// render at any given time. Once initialized, it is in a state where it can be
+/// asked to render.
+///
+/// In common practice, major state of an audio unit (such as its I/O formats,
+/// memory allocations) cannot be changed while an audio unit is initialized.
+///
+///
+/// Parameter `inUnit`: The audio unit to initialize
+///
+/// Returns: noErr, or an error representing the reasons why the audio unit was not able
+/// to be initialized successfully
+///
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitInitialize(in_unit: AudioUnit) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitInitialize(in_unit: AudioUnit) -> OSStatus;
+    }
+    unsafe { AudioUnitInitialize(in_unit) }
 }
 
-extern "C-unwind" {
-    /// uninitialize an audio unit
-    ///
-    /// Once an audio unit has been initialized, to change its state in response to
-    /// some kind of environmental change, the audio unit should be uninitialized.
-    /// This will have the effect of the audio unit de-allocating its resources.
-    /// The caller can then reconfigure the audio unit to match the new environment
-    /// (for instance, the sample rate to process audio is different than it was) and
-    /// then re-initialize the audio unit when those changes have been applied.
-    ///
-    ///
-    /// Parameter `inUnit`: The audio unit to uninitialize
-    ///
-    /// Returns: noErr, or an error representing the reasons why the audio unit was not able
-    /// to be initialized successfully. Typically this call won't return an error
-    /// unless the audio unit in question is no longer valid.
-    ///
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioUnitUninitialize(in_unit: AudioUnit) -> OSStatus;
+/// uninitialize an audio unit
+///
+/// Once an audio unit has been initialized, to change its state in response to
+/// some kind of environmental change, the audio unit should be uninitialized.
+/// This will have the effect of the audio unit de-allocating its resources.
+/// The caller can then reconfigure the audio unit to match the new environment
+/// (for instance, the sample rate to process audio is different than it was) and
+/// then re-initialize the audio unit when those changes have been applied.
+///
+///
+/// Parameter `inUnit`: The audio unit to uninitialize
+///
+/// Returns: noErr, or an error representing the reasons why the audio unit was not able
+/// to be initialized successfully. Typically this call won't return an error
+/// unless the audio unit in question is no longer valid.
+///
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitUninitialize(in_unit: AudioUnit) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitUninitialize(in_unit: AudioUnit) -> OSStatus;
+    }
+    unsafe { AudioUnitUninitialize(in_unit) }
 }
 
-extern "C-unwind" {
-    /// retrieves information about a specified property
-    ///
-    /// The API can be used to retrieve both the size of the property, and whether it
-    /// is writable or not. In order to get a general answer on the capability of an
-    /// audio unit, this function should be called before the audio unit
-    /// is initialized (as some properties are writable when the audio unit is
-    /// initialized, and others not)
-    ///
-    ///
-    /// Parameter `inUnit`: the audio unit
-    ///
-    /// Parameter `inID`: the property identifier
-    ///
-    /// Parameter `inScope`: the scope of the property
-    ///
-    /// Parameter `inElement`: the element of the scope
-    ///
-    /// Parameter `outDataSize`: if not null, then will retrieve the maximum size for the property. if null,
-    /// then it is ignored
-    ///
-    /// Parameter `outWritable`: if not null, then will retrieve whether the property can be written or not.
-    /// if null, then it is ignored
-    ///
-    ///
-    /// Returns: noErr, or various audio unit errors related to properties
-    ///
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioUnitGetPropertyInfo(
-        in_unit: AudioUnit,
-        in_id: AudioUnitPropertyID,
-        in_scope: AudioUnitScope,
-        in_element: AudioUnitElement,
-        out_data_size: Option<&mut u32>,
-        out_writable: Option<&mut Boolean>,
-    ) -> OSStatus;
+/// retrieves information about a specified property
+///
+/// The API can be used to retrieve both the size of the property, and whether it
+/// is writable or not. In order to get a general answer on the capability of an
+/// audio unit, this function should be called before the audio unit
+/// is initialized (as some properties are writable when the audio unit is
+/// initialized, and others not)
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `inID`: the property identifier
+///
+/// Parameter `inScope`: the scope of the property
+///
+/// Parameter `inElement`: the element of the scope
+///
+/// Parameter `outDataSize`: if not null, then will retrieve the maximum size for the property. if null,
+/// then it is ignored
+///
+/// Parameter `outWritable`: if not null, then will retrieve whether the property can be written or not.
+/// if null, then it is ignored
+///
+///
+/// Returns: noErr, or various audio unit errors related to properties
+///
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitGetPropertyInfo(
+    in_unit: AudioUnit,
+    in_id: AudioUnitPropertyID,
+    in_scope: AudioUnitScope,
+    in_element: AudioUnitElement,
+    out_data_size: Option<&mut u32>,
+    out_writable: Option<&mut Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitGetPropertyInfo(
+            in_unit: AudioUnit,
+            in_id: AudioUnitPropertyID,
+            in_scope: AudioUnitScope,
+            in_element: AudioUnitElement,
+            out_data_size: Option<&mut u32>,
+            out_writable: Option<&mut Boolean>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioUnitGetPropertyInfo(
+            in_unit,
+            in_id,
+            in_scope,
+            in_element,
+            out_data_size,
+            out_writable,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// retrieves the value of a specified property
-    ///
-    /// The API can is used to retrieve the value of the property. Property values for
-    /// audio units are always passed by reference
-    ///
-    ///
-    /// Parameter `inUnit`: the audio unit
-    ///
-    /// Parameter `inID`: the property identifier
-    ///
-    /// Parameter `inScope`: the scope of the property
-    ///
-    /// Parameter `inElement`: the element of the scope
-    ///
-    /// Parameter `outData`: used to retrieve the value of the property. It should point to memory at least
-    /// as large as the value described by ioDataSize
-    ///
-    /// Parameter `ioDataSize`: on input contains the size of the data pointed to by outData, on output, the
-    /// size of the data that was returned.
-    ///
-    ///
-    /// Returns: noErr, or various audio unit errors related to properties
-    ///
-    /// # Safety
-    ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `out_data` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioUnitGetProperty(
-        in_unit: AudioUnit,
-        in_id: AudioUnitPropertyID,
-        in_scope: AudioUnitScope,
-        in_element: AudioUnitElement,
-        out_data: NonNull<c_void>,
-        io_data_size: &mut u32,
-    ) -> OSStatus;
+/// retrieves the value of a specified property
+///
+/// The API can is used to retrieve the value of the property. Property values for
+/// audio units are always passed by reference
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `inID`: the property identifier
+///
+/// Parameter `inScope`: the scope of the property
+///
+/// Parameter `inElement`: the element of the scope
+///
+/// Parameter `outData`: used to retrieve the value of the property. It should point to memory at least
+/// as large as the value described by ioDataSize
+///
+/// Parameter `ioDataSize`: on input contains the size of the data pointed to by outData, on output, the
+/// size of the data that was returned.
+///
+///
+/// Returns: noErr, or various audio unit errors related to properties
+///
+/// # Safety
+///
+/// - `in_unit` must be a valid pointer.
+/// - `out_data` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitGetProperty(
+    in_unit: AudioUnit,
+    in_id: AudioUnitPropertyID,
+    in_scope: AudioUnitScope,
+    in_element: AudioUnitElement,
+    out_data: NonNull<c_void>,
+    io_data_size: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitGetProperty(
+            in_unit: AudioUnit,
+            in_id: AudioUnitPropertyID,
+            in_scope: AudioUnitScope,
+            in_element: AudioUnitElement,
+            out_data: NonNull<c_void>,
+            io_data_size: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioUnitGetProperty(in_unit, in_id, in_scope, in_element, out_data, io_data_size) }
 }
 
-extern "C-unwind" {
-    /// sets the value of a specified property
-    ///
-    /// The API can is used to set the value of the property. Property values for
-    /// audio units are always passed by reference
-    ///
-    ///
-    /// Parameter `inUnit`: the audio unit
-    ///
-    /// Parameter `inID`: the property identifier
-    ///
-    /// Parameter `inScope`: the scope of the property
-    ///
-    /// Parameter `inElement`: the element of the scope
-    ///
-    /// Parameter `inData`: if not null, then is the new value for the property that will be set. If null,
-    /// then inDataSize should be zero, and the call is then used to remove a
-    /// previously set value for a property. This removal is only valid for
-    /// some properties, as most properties will always have a default value if not
-    /// set.
-    ///
-    /// Parameter `inDataSize`: the size of the data being provided in inData
-    ///
-    ///
-    /// Returns: noErr, or various audio unit errors related to properties
-    ///
-    /// # Safety
-    ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `in_data` must be a valid pointer or null.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioUnitSetProperty(
-        in_unit: AudioUnit,
-        in_id: AudioUnitPropertyID,
-        in_scope: AudioUnitScope,
-        in_element: AudioUnitElement,
-        in_data: *const c_void,
-        in_data_size: u32,
-    ) -> OSStatus;
+/// sets the value of a specified property
+///
+/// The API can is used to set the value of the property. Property values for
+/// audio units are always passed by reference
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `inID`: the property identifier
+///
+/// Parameter `inScope`: the scope of the property
+///
+/// Parameter `inElement`: the element of the scope
+///
+/// Parameter `inData`: if not null, then is the new value for the property that will be set. If null,
+/// then inDataSize should be zero, and the call is then used to remove a
+/// previously set value for a property. This removal is only valid for
+/// some properties, as most properties will always have a default value if not
+/// set.
+///
+/// Parameter `inDataSize`: the size of the data being provided in inData
+///
+///
+/// Returns: noErr, or various audio unit errors related to properties
+///
+/// # Safety
+///
+/// - `in_unit` must be a valid pointer.
+/// - `in_data` must be a valid pointer or null.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitSetProperty(
+    in_unit: AudioUnit,
+    in_id: AudioUnitPropertyID,
+    in_scope: AudioUnitScope,
+    in_element: AudioUnitElement,
+    in_data: *const c_void,
+    in_data_size: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitSetProperty(
+            in_unit: AudioUnit,
+            in_id: AudioUnitPropertyID,
+            in_scope: AudioUnitScope,
+            in_element: AudioUnitElement,
+            in_data: *const c_void,
+            in_data_size: u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioUnitSetProperty(in_unit, in_id, in_scope, in_element, in_data, in_data_size) }
 }
 
-extern "C-unwind" {
-    /// registration call to receive notifications for when a property changes
-    ///
-    /// When an audio unit property value changes, a notification callback can be
-    /// called by the audio unit to  inform interested parties that this event has
-    /// occurred. The notification is defined by the tuple of inProc and
-    /// inProcUserData as paired to the specified property ID, so the previously
-    /// defined AudioUnitRemovePropertyListener is deprecated because it didn't allow
-    /// for the provision of the inProcUserData to remove a given listener (so,
-    /// you should use AudioUnitRemovePropertyListenerWithUserData).
-    ///
-    ///
-    /// Parameter `inUnit`: the audio unit
-    ///
-    /// Parameter `inID`: the property identifier
-    ///
-    /// Parameter `inProc`: the procedure to call when the property changes (on any scope or element)
-    ///
-    /// Parameter `inProcUserData`: the user data to provide with the callback
-    ///
-    ///
-    /// Returns: noErr, or various audio unit errors related to properties
-    ///
-    /// # Safety
-    ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `in_proc` must be implemented correctly.
-    /// - `in_proc_user_data` must be a valid pointer or null.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioUnitAddPropertyListener(
-        in_unit: AudioUnit,
-        in_id: AudioUnitPropertyID,
-        in_proc: AudioUnitPropertyListenerProc,
-        in_proc_user_data: *mut c_void,
-    ) -> OSStatus;
+/// registration call to receive notifications for when a property changes
+///
+/// When an audio unit property value changes, a notification callback can be
+/// called by the audio unit to  inform interested parties that this event has
+/// occurred. The notification is defined by the tuple of inProc and
+/// inProcUserData as paired to the specified property ID, so the previously
+/// defined AudioUnitRemovePropertyListener is deprecated because it didn't allow
+/// for the provision of the inProcUserData to remove a given listener (so,
+/// you should use AudioUnitRemovePropertyListenerWithUserData).
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `inID`: the property identifier
+///
+/// Parameter `inProc`: the procedure to call when the property changes (on any scope or element)
+///
+/// Parameter `inProcUserData`: the user data to provide with the callback
+///
+///
+/// Returns: noErr, or various audio unit errors related to properties
+///
+/// # Safety
+///
+/// - `in_unit` must be a valid pointer.
+/// - `in_proc` must be implemented correctly.
+/// - `in_proc_user_data` must be a valid pointer or null.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitAddPropertyListener(
+    in_unit: AudioUnit,
+    in_id: AudioUnitPropertyID,
+    in_proc: AudioUnitPropertyListenerProc,
+    in_proc_user_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitAddPropertyListener(
+            in_unit: AudioUnit,
+            in_id: AudioUnitPropertyID,
+            in_proc: AudioUnitPropertyListenerProc,
+            in_proc_user_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { AudioUnitAddPropertyListener(in_unit, in_id, in_proc, in_proc_user_data) }
 }
 
-extern "C-unwind" {
-    /// remove a previously registered property listener
-    ///
-    /// Removes a previously registered property listener as specified by the inProc
-    /// and inProcUser data as paired to the property identifier
-    ///
-    ///
-    /// Parameter `inUnit`: the audio unit
-    ///
-    /// Parameter `inID`: the property identifier
-    ///
-    /// Parameter `inProc`: the procedure previously registered
-    ///
-    /// Parameter `inProcUserData`: the user data paired with the provided inProc
-    ///
-    ///
-    /// Returns: noErr, or various audio unit errors related to properties
-    ///
-    /// # Safety
-    ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `in_proc` must be implemented correctly.
-    /// - `in_proc_user_data` must be a valid pointer or null.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioUnitRemovePropertyListenerWithUserData(
-        in_unit: AudioUnit,
-        in_id: AudioUnitPropertyID,
-        in_proc: AudioUnitPropertyListenerProc,
-        in_proc_user_data: *mut c_void,
-    ) -> OSStatus;
+/// remove a previously registered property listener
+///
+/// Removes a previously registered property listener as specified by the inProc
+/// and inProcUser data as paired to the property identifier
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `inID`: the property identifier
+///
+/// Parameter `inProc`: the procedure previously registered
+///
+/// Parameter `inProcUserData`: the user data paired with the provided inProc
+///
+///
+/// Returns: noErr, or various audio unit errors related to properties
+///
+/// # Safety
+///
+/// - `in_unit` must be a valid pointer.
+/// - `in_proc` must be implemented correctly.
+/// - `in_proc_user_data` must be a valid pointer or null.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitRemovePropertyListenerWithUserData(
+    in_unit: AudioUnit,
+    in_id: AudioUnitPropertyID,
+    in_proc: AudioUnitPropertyListenerProc,
+    in_proc_user_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitRemovePropertyListenerWithUserData(
+            in_unit: AudioUnit,
+            in_id: AudioUnitPropertyID,
+            in_proc: AudioUnitPropertyListenerProc,
+            in_proc_user_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioUnitRemovePropertyListenerWithUserData(in_unit, in_id, in_proc, in_proc_user_data)
+    }
 }
 
-extern "C-unwind" {
-    /// a notification callback to call when an audio unit is asked to render
-    ///
-    /// allows an application to register a callback with an audio unit for whenever
-    /// the audio unit is asked to render. The callback is called both before the
-    /// audio unit performs its render operations (the render flag's pre-render bit
-    /// is set) and after the audio unit has completed its render operations (the
-    /// render flag's post-render bit is set). On post-render, the audio buffer list
-    /// (ioData) will contain valid audio data that was rendered by the audio unit.
-    ///
-    /// The inProc and inProcUserData are treated as a tuple entity, so when wanting
-    /// to remove one, both the inProc and its inProcUserData must be specified
-    ///
-    ///
-    /// Parameter `inUnit`: the audio unit
-    ///
-    /// Parameter `inProc`: an AURenderCallback proc
-    ///
-    /// Parameter `inProcUserData`: the user data that will be provided with the proc when it is called
-    ///
-    ///
-    /// Returns: noErr, or an audio unit error code
-    ///
-    /// # Safety
-    ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `in_proc` must be implemented correctly.
-    /// - `in_proc_user_data` must be a valid pointer or null.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioUnitAddRenderNotify(
-        in_unit: AudioUnit,
-        in_proc: AURenderCallback,
-        in_proc_user_data: *mut c_void,
-    ) -> OSStatus;
+/// a notification callback to call when an audio unit is asked to render
+///
+/// allows an application to register a callback with an audio unit for whenever
+/// the audio unit is asked to render. The callback is called both before the
+/// audio unit performs its render operations (the render flag's pre-render bit
+/// is set) and after the audio unit has completed its render operations (the
+/// render flag's post-render bit is set). On post-render, the audio buffer list
+/// (ioData) will contain valid audio data that was rendered by the audio unit.
+///
+/// The inProc and inProcUserData are treated as a tuple entity, so when wanting
+/// to remove one, both the inProc and its inProcUserData must be specified
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `inProc`: an AURenderCallback proc
+///
+/// Parameter `inProcUserData`: the user data that will be provided with the proc when it is called
+///
+///
+/// Returns: noErr, or an audio unit error code
+///
+/// # Safety
+///
+/// - `in_unit` must be a valid pointer.
+/// - `in_proc` must be implemented correctly.
+/// - `in_proc_user_data` must be a valid pointer or null.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitAddRenderNotify(
+    in_unit: AudioUnit,
+    in_proc: AURenderCallback,
+    in_proc_user_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitAddRenderNotify(
+            in_unit: AudioUnit,
+            in_proc: AURenderCallback,
+            in_proc_user_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { AudioUnitAddRenderNotify(in_unit, in_proc, in_proc_user_data) }
 }
 
-extern "C-unwind" {
-    /// remove a previously registered render notification proc
-    ///
-    ///
-    /// Parameter `inUnit`: the audio unit
-    ///
-    /// Parameter `inProc`: an AURenderCallback proc
-    ///
-    /// Parameter `inProcUserData`: the user data that was provided with the proc when it was previously
-    /// registered
-    ///
-    ///
-    /// Returns: noErr, or an audio unit error code
-    ///
-    /// # Safety
-    ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `in_proc` must be implemented correctly.
-    /// - `in_proc_user_data` must be a valid pointer or null.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioUnitRemoveRenderNotify(
-        in_unit: AudioUnit,
-        in_proc: AURenderCallback,
-        in_proc_user_data: *mut c_void,
-    ) -> OSStatus;
+/// remove a previously registered render notification proc
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `inProc`: an AURenderCallback proc
+///
+/// Parameter `inProcUserData`: the user data that was provided with the proc when it was previously
+/// registered
+///
+///
+/// Returns: noErr, or an audio unit error code
+///
+/// # Safety
+///
+/// - `in_unit` must be a valid pointer.
+/// - `in_proc` must be implemented correctly.
+/// - `in_proc_user_data` must be a valid pointer or null.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitRemoveRenderNotify(
+    in_unit: AudioUnit,
+    in_proc: AURenderCallback,
+    in_proc_user_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitRemoveRenderNotify(
+            in_unit: AudioUnit,
+            in_proc: AURenderCallback,
+            in_proc_user_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { AudioUnitRemoveRenderNotify(in_unit, in_proc, in_proc_user_data) }
 }
 
-extern "C-unwind" {
-    /// Get the value of a parameter
-    ///
-    /// Get the value of a parameter as specified by its ID, scope and element.
-    ///
-    ///
-    /// Parameter `inUnit`: the audio unit
-    ///
-    /// Parameter `inID`: the parameter ID
-    ///
-    /// Parameter `inScope`: the scope for the parameter
-    ///
-    /// Parameter `inElement`: the element on the scope for the parameter
-    ///
-    /// Parameter `outValue`: Must be non-null, and upon success will contain the current value for the
-    /// specified parameter
-    ///
-    ///
-    /// Returns: noErr, or an audio unit error code (such as InvalidParameter)
-    ///
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioUnitGetParameter(
-        in_unit: AudioUnit,
-        in_id: AudioUnitParameterID,
-        in_scope: AudioUnitScope,
-        in_element: AudioUnitElement,
-        out_value: &mut AudioUnitParameterValue,
-    ) -> OSStatus;
+/// Get the value of a parameter
+///
+/// Get the value of a parameter as specified by its ID, scope and element.
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `inID`: the parameter ID
+///
+/// Parameter `inScope`: the scope for the parameter
+///
+/// Parameter `inElement`: the element on the scope for the parameter
+///
+/// Parameter `outValue`: Must be non-null, and upon success will contain the current value for the
+/// specified parameter
+///
+///
+/// Returns: noErr, or an audio unit error code (such as InvalidParameter)
+///
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitGetParameter(
+    in_unit: AudioUnit,
+    in_id: AudioUnitParameterID,
+    in_scope: AudioUnitScope,
+    in_element: AudioUnitElement,
+    out_value: &mut AudioUnitParameterValue,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitGetParameter(
+            in_unit: AudioUnit,
+            in_id: AudioUnitParameterID,
+            in_scope: AudioUnitScope,
+            in_element: AudioUnitElement,
+            out_value: &mut AudioUnitParameterValue,
+        ) -> OSStatus;
+    }
+    unsafe { AudioUnitGetParameter(in_unit, in_id, in_scope, in_element, out_value) }
 }
 
-extern "C-unwind" {
-    /// Set the value of a parameter
-    ///
-    /// Set the value of a parameter as specified by its ID, scope and element.
-    /// Parameter IDs are consistent across all of the elements in a scope - so for a
-    /// mixer, the "input volume" parameter can be applied on any input, and the
-    /// particular input is specified by the elementID.
-    ///
-    ///
-    /// Parameter `inUnit`: the audio unit
-    ///
-    /// Parameter `inID`: the parameter ID
-    ///
-    /// Parameter `inScope`: the scope for the parameter
-    ///
-    /// Parameter `inElement`: the element on the scope for the parameter
-    ///
-    /// Parameter `inValue`: the new value for the parameter.
-    ///
-    /// Parameter `inBufferOffsetInFrames`: generally should be set to zero - see AudioUnitScheduleParameters
-    ///
-    ///
-    /// Returns: noErr, or an audio unit error code (such as InvalidParameter)
-    ///
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioUnitSetParameter(
-        in_unit: AudioUnit,
-        in_id: AudioUnitParameterID,
-        in_scope: AudioUnitScope,
-        in_element: AudioUnitElement,
-        in_value: AudioUnitParameterValue,
-        in_buffer_offset_in_frames: u32,
-    ) -> OSStatus;
+/// Set the value of a parameter
+///
+/// Set the value of a parameter as specified by its ID, scope and element.
+/// Parameter IDs are consistent across all of the elements in a scope - so for a
+/// mixer, the "input volume" parameter can be applied on any input, and the
+/// particular input is specified by the elementID.
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `inID`: the parameter ID
+///
+/// Parameter `inScope`: the scope for the parameter
+///
+/// Parameter `inElement`: the element on the scope for the parameter
+///
+/// Parameter `inValue`: the new value for the parameter.
+///
+/// Parameter `inBufferOffsetInFrames`: generally should be set to zero - see AudioUnitScheduleParameters
+///
+///
+/// Returns: noErr, or an audio unit error code (such as InvalidParameter)
+///
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitSetParameter(
+    in_unit: AudioUnit,
+    in_id: AudioUnitParameterID,
+    in_scope: AudioUnitScope,
+    in_element: AudioUnitElement,
+    in_value: AudioUnitParameterValue,
+    in_buffer_offset_in_frames: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitSetParameter(
+            in_unit: AudioUnit,
+            in_id: AudioUnitParameterID,
+            in_scope: AudioUnitScope,
+            in_element: AudioUnitElement,
+            in_value: AudioUnitParameterValue,
+            in_buffer_offset_in_frames: u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioUnitSetParameter(
+            in_unit,
+            in_id,
+            in_scope,
+            in_element,
+            in_value,
+            in_buffer_offset_in_frames,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// the render operation where ioData will contain the results of the audio unit's
-    /// render operations
-    ///
-    /// an audio unit will render the amount of audio data described by
-    /// inNumberOfFrames and the results of that render will be contained within
-    /// ioData. The caller should provide audio time stamps where at least the sample
-    /// time is valid and it is incrementing sequentially from its previous call
-    /// (so, the next time stamp will be the current time stamp + inNumberFrames)
-    /// If the sample time is not incrementing sequentially, the audio unit will infer
-    /// that there is some discontinuity with the timeline it is rendering for
-    ///
-    /// The caller must provide a valid ioData AudioBufferList that matches the
-    /// expected topology for the current audio format for the given bus. The buffer
-    /// list can be of two variants:
-    /// (1) If the mData pointers are non-null then the audio unit will render its
-    /// output into those buffers. These buffers should be aligned to 16 byte
-    /// boundaries (which is normally what malloc will return).
-    /// (2) If the mData pointers are null, then the audio unit can provide pointers
-    /// to its own buffers. In this case the audio unit is required to keep those
-    /// buffers valid for the duration of the calling thread's I/O cycle
-    ///
-    ///
-    /// Parameter `inUnit`: the audio unit
-    ///
-    /// Parameter `ioActionFlags`: any appropriate action flags for the render operation
-    ///
-    /// Parameter `inTimeStamp`: the time stamp that applies to this particular render operation. when
-    /// rendering for multiple output buses the time stamp will generally be the same
-    /// for each output bus, so the audio unit is able to determine without doubt that
-    /// this the same render operation
-    ///
-    /// Parameter `inOutputBusNumber`: the output bus to render for
-    ///
-    /// Parameter `inNumberFrames`: the number of sample frames to render
-    ///
-    /// Parameter `ioData`: the audio buffer list that the audio unit is to render into.
-    ///
-    ///
-    /// Returns: noErr, or an audio unit render error
-    ///
-    /// # Safety
-    ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioUnitRender(
-        in_unit: AudioUnit,
-        io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
-        in_time_stamp: &AudioTimeStamp,
-        in_output_bus_number: u32,
-        in_number_frames: u32,
-        io_data: &mut AudioBufferList,
-    ) -> OSStatus;
+/// the render operation where ioData will contain the results of the audio unit's
+/// render operations
+///
+/// an audio unit will render the amount of audio data described by
+/// inNumberOfFrames and the results of that render will be contained within
+/// ioData. The caller should provide audio time stamps where at least the sample
+/// time is valid and it is incrementing sequentially from its previous call
+/// (so, the next time stamp will be the current time stamp + inNumberFrames)
+/// If the sample time is not incrementing sequentially, the audio unit will infer
+/// that there is some discontinuity with the timeline it is rendering for
+///
+/// The caller must provide a valid ioData AudioBufferList that matches the
+/// expected topology for the current audio format for the given bus. The buffer
+/// list can be of two variants:
+/// (1) If the mData pointers are non-null then the audio unit will render its
+/// output into those buffers. These buffers should be aligned to 16 byte
+/// boundaries (which is normally what malloc will return).
+/// (2) If the mData pointers are null, then the audio unit can provide pointers
+/// to its own buffers. In this case the audio unit is required to keep those
+/// buffers valid for the duration of the calling thread's I/O cycle
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `ioActionFlags`: any appropriate action flags for the render operation
+///
+/// Parameter `inTimeStamp`: the time stamp that applies to this particular render operation. when
+/// rendering for multiple output buses the time stamp will generally be the same
+/// for each output bus, so the audio unit is able to determine without doubt that
+/// this the same render operation
+///
+/// Parameter `inOutputBusNumber`: the output bus to render for
+///
+/// Parameter `inNumberFrames`: the number of sample frames to render
+///
+/// Parameter `ioData`: the audio buffer list that the audio unit is to render into.
+///
+///
+/// Returns: noErr, or an audio unit render error
+///
+/// # Safety
+///
+/// - `in_unit` must be a valid pointer.
+/// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitRender(
+    in_unit: AudioUnit,
+    io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
+    in_time_stamp: &AudioTimeStamp,
+    in_output_bus_number: u32,
+    in_number_frames: u32,
+    io_data: &mut AudioBufferList,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitRender(
+            in_unit: AudioUnit,
+            io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
+            in_time_stamp: &AudioTimeStamp,
+            in_output_bus_number: u32,
+            in_number_frames: u32,
+            io_data: &mut AudioBufferList,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioUnitRender(
+            in_unit,
+            io_action_flags,
+            in_time_stamp,
+            in_output_bus_number,
+            in_number_frames,
+            io_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `io_action_flags` must be a valid pointer or null.
-    /// - `in_time_stamp` must be a valid pointer.
-    /// - `io_data` must be a valid pointer.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioUnitProcess(
-        in_unit: AudioUnit,
-        io_action_flags: *mut AudioUnitRenderActionFlags,
-        in_time_stamp: NonNull<AudioTimeStamp>,
-        in_number_frames: u32,
-        io_data: NonNull<AudioBufferList>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `in_unit` must be a valid pointer.
+/// - `io_action_flags` must be a valid pointer or null.
+/// - `in_time_stamp` must be a valid pointer.
+/// - `io_data` must be a valid pointer.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitProcess(
+    in_unit: AudioUnit,
+    io_action_flags: *mut AudioUnitRenderActionFlags,
+    in_time_stamp: NonNull<AudioTimeStamp>,
+    in_number_frames: u32,
+    io_data: NonNull<AudioBufferList>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitProcess(
+            in_unit: AudioUnit,
+            io_action_flags: *mut AudioUnitRenderActionFlags,
+            in_time_stamp: NonNull<AudioTimeStamp>,
+            in_number_frames: u32,
+            io_data: NonNull<AudioBufferList>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioUnitProcess(
+            in_unit,
+            io_action_flags,
+            in_time_stamp,
+            in_number_frames,
+            io_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `in_input_buffer_lists` must be a valid pointer.
-    /// - `io_output_buffer_lists` must be a valid pointer.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioUnitProcessMultiple(
-        in_unit: AudioUnit,
-        io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
-        in_time_stamp: &AudioTimeStamp,
-        in_number_frames: u32,
-        in_number_input_buffer_lists: u32,
-        in_input_buffer_lists: NonNull<NonNull<AudioBufferList>>,
-        in_number_output_buffer_lists: u32,
-        io_output_buffer_lists: NonNull<NonNull<AudioBufferList>>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `in_unit` must be a valid pointer.
+/// - `in_input_buffer_lists` must be a valid pointer.
+/// - `io_output_buffer_lists` must be a valid pointer.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitProcessMultiple(
+    in_unit: AudioUnit,
+    io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
+    in_time_stamp: &AudioTimeStamp,
+    in_number_frames: u32,
+    in_number_input_buffer_lists: u32,
+    in_input_buffer_lists: NonNull<NonNull<AudioBufferList>>,
+    in_number_output_buffer_lists: u32,
+    io_output_buffer_lists: NonNull<NonNull<AudioBufferList>>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitProcessMultiple(
+            in_unit: AudioUnit,
+            io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
+            in_time_stamp: &AudioTimeStamp,
+            in_number_frames: u32,
+            in_number_input_buffer_lists: u32,
+            in_input_buffer_lists: NonNull<NonNull<AudioBufferList>>,
+            in_number_output_buffer_lists: u32,
+            io_output_buffer_lists: NonNull<NonNull<AudioBufferList>>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioUnitProcessMultiple(
+            in_unit,
+            io_action_flags,
+            in_time_stamp,
+            in_number_frames,
+            in_number_input_buffer_lists,
+            in_input_buffer_lists,
+            in_number_output_buffer_lists,
+            io_output_buffer_lists,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// reset an audio unit's render state
-    ///
-    /// This call will clear any render state of an audio unit. For instance, with a
-    /// delay or reverb type of audio unit reset will clear any of the delay lines
-    /// maintained within the audio unit. Typically, this call is made when an
-    /// audio unit was previously rendering, and was taken out of the render chain
-    /// (say, the track it is in was muted) and is being added back in (unmuted).
-    /// The host should reset the audio unit before adding it back so that it doesn't
-    /// produce audio from its delay lines that is no longer valid.
-    ///
-    /// The call should only clear memory, it should NOT allocate or free memory
-    /// resources (this is done in the Initialize calls).
-    ///
-    ///
-    /// Parameter `inUnit`: the audio unit
-    ///
-    /// Parameter `inScope`: the scope - typically this is set to GlobalScope
-    ///
-    /// Parameter `inElement`: the element - typically this is set to 0
-    ///
-    ///
-    /// Returns: noErr, or an audio unit error
-    ///
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioUnitReset(
-        in_unit: AudioUnit,
-        in_scope: AudioUnitScope,
-        in_element: AudioUnitElement,
-    ) -> OSStatus;
+/// reset an audio unit's render state
+///
+/// This call will clear any render state of an audio unit. For instance, with a
+/// delay or reverb type of audio unit reset will clear any of the delay lines
+/// maintained within the audio unit. Typically, this call is made when an
+/// audio unit was previously rendering, and was taken out of the render chain
+/// (say, the track it is in was muted) and is being added back in (unmuted).
+/// The host should reset the audio unit before adding it back so that it doesn't
+/// produce audio from its delay lines that is no longer valid.
+///
+/// The call should only clear memory, it should NOT allocate or free memory
+/// resources (this is done in the Initialize calls).
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `inScope`: the scope - typically this is set to GlobalScope
+///
+/// Parameter `inElement`: the element - typically this is set to 0
+///
+///
+/// Returns: noErr, or an audio unit error
+///
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitReset(
+    in_unit: AudioUnit,
+    in_scope: AudioUnitScope,
+    in_element: AudioUnitElement,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitReset(
+            in_unit: AudioUnit,
+            in_scope: AudioUnitScope,
+            in_element: AudioUnitElement,
+        ) -> OSStatus;
+    }
+    unsafe { AudioUnitReset(in_unit, in_scope, in_element) }
 }
 
-extern "C-unwind" {
-    /// Register an audio output unit as available to be used as an audio unit by
-    /// other applications.
-    ///
-    ///
-    /// Parameter `inOutputUnit`: The audio output unit to be published.
-    ///
-    /// Parameter `inDesc`: The AudioComponentDescription under which to register the application.
-    ///
-    /// Parameter `inName`: The application or component name.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// This allows a publishing application to register its audio (input/)output unit as being able
-    /// to be redirected and repurposed as an audio unit effect, generator, music device or music
-    /// effect by another host application.
-    ///
-    /// # Safety
-    ///
-    /// - `in_desc` must be a valid pointer.
-    /// - `in_output_unit` must be a valid pointer.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
-    #[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
-    pub fn AudioOutputUnitPublish(
-        in_desc: NonNull<AudioComponentDescription>,
-        in_name: &CFString,
-        in_version: u32,
-        in_output_unit: AudioUnit,
-    ) -> OSStatus;
+/// Register an audio output unit as available to be used as an audio unit by
+/// other applications.
+///
+///
+/// Parameter `inOutputUnit`: The audio output unit to be published.
+///
+/// Parameter `inDesc`: The AudioComponentDescription under which to register the application.
+///
+/// Parameter `inName`: The application or component name.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// This allows a publishing application to register its audio (input/)output unit as being able
+/// to be redirected and repurposed as an audio unit effect, generator, music device or music
+/// effect by another host application.
+///
+/// # Safety
+///
+/// - `in_desc` must be a valid pointer.
+/// - `in_output_unit` must be a valid pointer.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
+#[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioOutputUnitPublish(
+    in_desc: NonNull<AudioComponentDescription>,
+    in_name: &CFString,
+    in_version: u32,
+    in_output_unit: AudioUnit,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioOutputUnitPublish(
+            in_desc: NonNull<AudioComponentDescription>,
+            in_name: &CFString,
+            in_version: u32,
+            in_output_unit: AudioUnit,
+        ) -> OSStatus;
+    }
+    unsafe { AudioOutputUnitPublish(in_desc, in_name, in_version, in_output_unit) }
 }
 
-extern "C-unwind" {
-    /// Fetches the time at which the application publishing the component was last active.
-    ///
-    /// Inter-app audio hosts can use this to sort the list of available nodes by how recently
-    /// the user interacted with them.
-    ///
-    ///
-    /// Parameter `comp`: The AudioComponent being queried.
-    ///
-    /// Returns: The CFAbsoluteTime at which the node was last active (0 if never).
-    ///
-    /// # Safety
-    ///
-    /// `comp` must be a valid pointer.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
-    #[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
-    pub fn AudioComponentGetLastActiveTime(comp: AudioComponent) -> CFAbsoluteTime;
+/// Fetches the time at which the application publishing the component was last active.
+///
+/// Inter-app audio hosts can use this to sort the list of available nodes by how recently
+/// the user interacted with them.
+///
+///
+/// Parameter `comp`: The AudioComponent being queried.
+///
+/// Returns: The CFAbsoluteTime at which the node was last active (0 if never).
+///
+/// # Safety
+///
+/// `comp` must be a valid pointer.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
+#[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentGetLastActiveTime(
+    comp: AudioComponent,
+) -> CFAbsoluteTime {
+    extern "C-unwind" {
+        fn AudioComponentGetLastActiveTime(comp: AudioComponent) -> CFAbsoluteTime;
+    }
+    unsafe { AudioComponentGetLastActiveTime(comp) }
 }
 
-extern "C-unwind" {
-    /// Allows the implementor of an audio unit extension to dynamically modify the
-    /// list of component registrations for the extension.
-    ///
-    /// Parameter `extensionIdentifier`: The bundle ID of the audio unit extension.
-    ///
-    /// Parameter `audioComponentInfo`: An array of dictionaries, one for each component, in the same format as
-    /// described in AudioComponent.h for the Info.plist key "AudioComponents".
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// Note that the bundle ID of the process calling this API must prefix (or match)
-    /// the provided extension identifier.
-    ///
-    /// # Safety
-    ///
-    /// `audio_component_info` generic generic should be of the correct type.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn AudioUnitExtensionSetComponentList(
-        extension_identifier: &CFString,
-        audio_component_info: Option<&CFArray<CFDictionary<CFString, CFType>>>,
-    ) -> OSStatus;
+/// Allows the implementor of an audio unit extension to dynamically modify the
+/// list of component registrations for the extension.
+///
+/// Parameter `extensionIdentifier`: The bundle ID of the audio unit extension.
+///
+/// Parameter `audioComponentInfo`: An array of dictionaries, one for each component, in the same format as
+/// described in AudioComponent.h for the Info.plist key "AudioComponents".
+///
+/// Returns: An OSStatus result code.
+///
+/// Note that the bundle ID of the process calling this API must prefix (or match)
+/// the provided extension identifier.
+///
+/// # Safety
+///
+/// `audio_component_info` generic generic should be of the correct type.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitExtensionSetComponentList(
+    extension_identifier: &CFString,
+    audio_component_info: Option<&CFArray<CFDictionary<CFString, CFType>>>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitExtensionSetComponentList(
+            extension_identifier: &CFString,
+            audio_component_info: Option<&CFArray<CFDictionary<CFString, CFType>>>,
+        ) -> OSStatus;
+    }
+    unsafe { AudioUnitExtensionSetComponentList(extension_identifier, audio_component_info) }
 }
 
 /// Returns the component registrations for a given audio unit extension.

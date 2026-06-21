@@ -11,32 +11,51 @@ use crate::*;
 
 // TODO: pub fn GLKMathRadiansToDegrees(radians: c_float,) -> c_float;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `viewport` must be a valid pointer.
-    #[cfg(feature = "GLKMathTypes")]
-    pub fn GLKMathProject(
-        object: GLKVector3,
-        model: GLKMatrix4,
-        projection: GLKMatrix4,
-        viewport: NonNull<c_int>,
-    ) -> GLKVector3;
+/// # Safety
+///
+/// `viewport` must be a valid pointer.
+#[cfg(feature = "GLKMathTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn GLKMathProject(
+    object: GLKVector3,
+    model: GLKMatrix4,
+    projection: GLKMatrix4,
+    viewport: NonNull<c_int>,
+) -> GLKVector3 {
+    extern "C-unwind" {
+        fn GLKMathProject(
+            object: GLKVector3,
+            model: GLKMatrix4,
+            projection: GLKMatrix4,
+            viewport: NonNull<c_int>,
+        ) -> GLKVector3;
+    }
+    unsafe { GLKMathProject(object, model, projection, viewport) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `viewport` must be a valid pointer.
-    /// - `success` must be a valid pointer or null.
-    #[cfg(feature = "GLKMathTypes")]
-    pub fn GLKMathUnproject(
-        window: GLKVector3,
-        model: GLKMatrix4,
-        projection: GLKMatrix4,
-        viewport: NonNull<c_int>,
-        success: *mut bool,
-    ) -> GLKVector3;
+/// # Safety
+///
+/// - `viewport` must be a valid pointer.
+/// - `success` must be a valid pointer or null.
+#[cfg(feature = "GLKMathTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn GLKMathUnproject(
+    window: GLKVector3,
+    model: GLKMatrix4,
+    projection: GLKMatrix4,
+    viewport: NonNull<c_int>,
+    success: *mut bool,
+) -> GLKVector3 {
+    extern "C-unwind" {
+        fn GLKMathUnproject(
+            window: GLKVector3,
+            model: GLKMatrix4,
+            projection: GLKMatrix4,
+            viewport: NonNull<c_int>,
+            success: *mut bool,
+        ) -> GLKVector3;
+    }
+    unsafe { GLKMathUnproject(window, model, projection, viewport, success) }
 }
 
 #[cfg(feature = "GLKMathTypes")]

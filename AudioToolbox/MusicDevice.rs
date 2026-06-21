@@ -166,203 +166,273 @@ pub type NoteInstanceID = u32;
 #[cfg(feature = "AudioComponent")]
 pub type MusicDeviceComponent = AudioComponentInstance;
 
-extern "C-unwind" {
-    /// Used to sent MIDI channel messages to an audio unit
-    ///
-    ///
-    /// This is the API used to send MIDI channel messages to an audio unit. The status and data parameters
-    /// are used exactly as described by the MIDI specification, including the combination of channel and
-    /// command in the status byte. All events sent via MusicDeviceMIDIEventList will be delivered to the
-    /// audio unit in the MIDI protocol returned by kAudioUnitProperty_AudioUnitMIDIProtocol.
-    ///
-    ///
-    /// Parameter `inUnit`: The audio unit
-    ///
-    /// Parameter `inStatus`: The MIDI status byte
-    ///
-    /// Parameter `inData1`: The first MIDI data byte (value is in the range 0
-    /// <
-    /// 128)
-    ///
-    /// Parameter `inData2`: The second MIDI data byte (value is in the range 0
-    /// <
-    /// 128). If the MIDI status byte only has one
-    /// data byte, this should be set to zero.
-    ///
-    /// Parameter `inOffsetSampleFrame`: If you are scheduling the MIDI Event from the audio unit's render thread, then you can supply a
-    /// sample offset that the audio unit may apply when applying that event in its next audio unit render.
-    /// This allows you to schedule to the sample, the time when a MIDI command is applied and is particularly
-    /// important when starting new notes. If you are not scheduling in the audio unit's render thread,
-    /// then you should set this value to 0
-    ///
-    ///
-    /// Returns: noErr, or an audio unit error code
-    ///
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn MusicDeviceMIDIEvent(
-        in_unit: MusicDeviceComponent,
-        in_status: u32,
-        in_data1: u32,
-        in_data2: u32,
-        in_offset_sample_frame: u32,
-    ) -> OSStatus;
+/// Used to sent MIDI channel messages to an audio unit
+///
+///
+/// This is the API used to send MIDI channel messages to an audio unit. The status and data parameters
+/// are used exactly as described by the MIDI specification, including the combination of channel and
+/// command in the status byte. All events sent via MusicDeviceMIDIEventList will be delivered to the
+/// audio unit in the MIDI protocol returned by kAudioUnitProperty_AudioUnitMIDIProtocol.
+///
+///
+/// Parameter `inUnit`: The audio unit
+///
+/// Parameter `inStatus`: The MIDI status byte
+///
+/// Parameter `inData1`: The first MIDI data byte (value is in the range 0
+/// <
+/// 128)
+///
+/// Parameter `inData2`: The second MIDI data byte (value is in the range 0
+/// <
+/// 128). If the MIDI status byte only has one
+/// data byte, this should be set to zero.
+///
+/// Parameter `inOffsetSampleFrame`: If you are scheduling the MIDI Event from the audio unit's render thread, then you can supply a
+/// sample offset that the audio unit may apply when applying that event in its next audio unit render.
+/// This allows you to schedule to the sample, the time when a MIDI command is applied and is particularly
+/// important when starting new notes. If you are not scheduling in the audio unit's render thread,
+/// then you should set this value to 0
+///
+///
+/// Returns: noErr, or an audio unit error code
+///
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicDeviceMIDIEvent(
+    in_unit: MusicDeviceComponent,
+    in_status: u32,
+    in_data1: u32,
+    in_data2: u32,
+    in_offset_sample_frame: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicDeviceMIDIEvent(
+            in_unit: MusicDeviceComponent,
+            in_status: u32,
+            in_data1: u32,
+            in_data2: u32,
+            in_offset_sample_frame: u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        MusicDeviceMIDIEvent(
+            in_unit,
+            in_status,
+            in_data1,
+            in_data2,
+            in_offset_sample_frame,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// used to send any non-channel MIDI event to an audio unit
-    ///
-    ///
-    /// This is used to send any non-channel MIDI event to an audio unit. In practise this is a System Exclusive
-    /// (SysEx) MIDI message
-    ///
-    ///
-    /// Parameter `inUnit`: The audio unit
-    ///
-    /// Parameter `inData`: The complete MIDI SysEx message including the F0 and F7 start and termination bytes
-    ///
-    /// Parameter `inLength`: The size, in bytes, of the data
-    ///
-    ///
-    /// Returns: noErr, or an audio unit error code
-    ///
-    /// # Safety
-    ///
-    /// - `in_unit` must be a valid pointer.
-    /// - `in_data` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn MusicDeviceSysEx(
-        in_unit: MusicDeviceComponent,
-        in_data: NonNull<u8>,
-        in_length: u32,
-    ) -> OSStatus;
+/// used to send any non-channel MIDI event to an audio unit
+///
+///
+/// This is used to send any non-channel MIDI event to an audio unit. In practise this is a System Exclusive
+/// (SysEx) MIDI message
+///
+///
+/// Parameter `inUnit`: The audio unit
+///
+/// Parameter `inData`: The complete MIDI SysEx message including the F0 and F7 start and termination bytes
+///
+/// Parameter `inLength`: The size, in bytes, of the data
+///
+///
+/// Returns: noErr, or an audio unit error code
+///
+/// # Safety
+///
+/// - `in_unit` must be a valid pointer.
+/// - `in_data` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicDeviceSysEx(
+    in_unit: MusicDeviceComponent,
+    in_data: NonNull<u8>,
+    in_length: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicDeviceSysEx(
+            in_unit: MusicDeviceComponent,
+            in_data: NonNull<u8>,
+            in_length: u32,
+        ) -> OSStatus;
+    }
+    unsafe { MusicDeviceSysEx(in_unit, in_data, in_length) }
 }
 
-extern "C-unwind" {
-    /// Used to send MIDI messages to an audio unit
-    ///
-    ///
-    /// This API is suitable for sending Universal MIDI Packet (UMP) MIDI messages to an audio unit. The message must be
-    /// a full non-SysEx event, a partial SysEx event, or a complete SysEx event. Running status is not allowed. MIDI 1.0 in
-    /// universal packets (MIDI-1UP) and MIDI 2.0 messages are allowed. All events sent via MusicDeviceMIDIEventList will
-    /// be delivered to the audio unit in the MIDI protocol returned by kAudioUnitProperty_AudioUnitMIDIProtocol.
-    ///
-    /// This is bridged to the v2 API property kAudioUnitProperty_MIDIOutputCallback.
-    ///
-    ///
-    /// Parameter `inUnit`: The audio unit
-    ///
-    /// Parameter `inOffsetSampleFrame`: If you are scheduling the MIDIEventList from the audio unit's render thread, then you can supply a
-    /// sample offset that the audio unit may apply within its next audio unit render.
-    /// This allows you to schedule to the sample, the time when a MIDI command is applied and is particularly
-    /// important when starting new notes. If you are not scheduling in the audio unit's render thread,
-    /// then you should set this value to 0
-    ///
-    /// inOffsetSampleFrame should serve as the base offset for each packet's timestamp i.e.
-    /// sampleOffset = inOffsetSampleFrame + evtList.packet[0].timeStamp
-    ///
-    ///
-    /// Parameter `evtList`: The MIDIEventList to be sent
-    ///
-    ///
-    /// Returns: noErr, or an audio unit error code
-    ///
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-midi"))]
-    pub fn MusicDeviceMIDIEventList(
-        in_unit: MusicDeviceComponent,
-        in_offset_sample_frame: u32,
-        evt_list: &MIDIEventList,
-    ) -> OSStatus;
+/// Used to send MIDI messages to an audio unit
+///
+///
+/// This API is suitable for sending Universal MIDI Packet (UMP) MIDI messages to an audio unit. The message must be
+/// a full non-SysEx event, a partial SysEx event, or a complete SysEx event. Running status is not allowed. MIDI 1.0 in
+/// universal packets (MIDI-1UP) and MIDI 2.0 messages are allowed. All events sent via MusicDeviceMIDIEventList will
+/// be delivered to the audio unit in the MIDI protocol returned by kAudioUnitProperty_AudioUnitMIDIProtocol.
+///
+/// This is bridged to the v2 API property kAudioUnitProperty_MIDIOutputCallback.
+///
+///
+/// Parameter `inUnit`: The audio unit
+///
+/// Parameter `inOffsetSampleFrame`: If you are scheduling the MIDIEventList from the audio unit's render thread, then you can supply a
+/// sample offset that the audio unit may apply within its next audio unit render.
+/// This allows you to schedule to the sample, the time when a MIDI command is applied and is particularly
+/// important when starting new notes. If you are not scheduling in the audio unit's render thread,
+/// then you should set this value to 0
+///
+/// inOffsetSampleFrame should serve as the base offset for each packet's timestamp i.e.
+/// sampleOffset = inOffsetSampleFrame + evtList.packet[0].timeStamp
+///
+///
+/// Parameter `evtList`: The MIDIEventList to be sent
+///
+///
+/// Returns: noErr, or an audio unit error code
+///
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-midi"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicDeviceMIDIEventList(
+    in_unit: MusicDeviceComponent,
+    in_offset_sample_frame: u32,
+    evt_list: &MIDIEventList,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicDeviceMIDIEventList(
+            in_unit: MusicDeviceComponent,
+            in_offset_sample_frame: u32,
+            evt_list: &MIDIEventList,
+        ) -> OSStatus;
+    }
+    unsafe { MusicDeviceMIDIEventList(in_unit, in_offset_sample_frame, evt_list) }
 }
 
-extern "C-unwind" {
-    /// used to start a note
-    ///
-    ///
-    /// This function is used to start a note.  The caller must provide a NoteInstanceID to receive a
-    /// token that is then used to stop the note. The MusicDeviceStopNote call should be used to stop
-    /// notes started with this API. The token can also be used to address individual notes on the
-    /// kAudioUnitScope_Note if the audio unit supports it. The instrumentID is no longer used and the
-    /// kMusicNoteEvent_Unused constant should be specified (this takes the current patch for the
-    /// specifed group as the sound to use for the note).
-    ///
-    /// The Audio unit must provide an unique ID for the note instance ID. This ID must be non-zero and not
-    /// 0xFFFFFFFF (any other UInt32 value is valid).
-    ///
-    /// Not all Music Device audio units implement the semantics of this API (though it is strongly recommended
-    /// that they do). A host application shoudl query the kMusicDeviceProperty_SupportsStartStopNote to
-    /// check that this is supported.
-    ///
-    ///
-    /// Parameter `inUnit`: The audio unit
-    ///
-    /// Parameter `inInstrument`: The instrumentID is no longer used and the kMusicNoteEvent_Unused constant should be specified (this takes
-    /// the current patch for the specifed group as the sound to use for the note)
-    ///
-    /// Parameter `inGroupID`: The group ID that this note will be attached too. As with MIDI, all notes sounding on a groupID can be
-    /// controlled through the various parameters (such as pitch bend, etc) that can be specified on the Group
-    /// Scope
-    ///
-    /// Parameter `outNoteInstanceID`: A pointer to receive the token that is used to identify the note. This parameter must be specified
-    ///
-    /// Parameter `inOffsetSampleFrame`: If you are scheduling the MIDI Event from the audio unit's render thread, then you can supply a sample offset
-    /// that the audio unit may apply when starting the note in its next audio unit render. This allows you to
-    /// schedule to the sample and is particularly important when starting new notes. If you are not scheduling
-    /// in the audio unit's render thread, then you should set this value to 0
-    ///
-    /// Parameter `inParams`: The parameters to be used when starting the note - pitch and velocity must be specified
-    ///
-    ///
-    /// Returns: noErr, or an audio unit error code
-    ///
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
-    pub fn MusicDeviceStartNote(
-        in_unit: MusicDeviceComponent,
-        in_instrument: MusicDeviceInstrumentID,
-        in_group_id: MusicDeviceGroupID,
-        out_note_instance_id: &mut NoteInstanceID,
-        in_offset_sample_frame: u32,
-        in_params: &MusicDeviceNoteParams,
-    ) -> OSStatus;
+/// used to start a note
+///
+///
+/// This function is used to start a note.  The caller must provide a NoteInstanceID to receive a
+/// token that is then used to stop the note. The MusicDeviceStopNote call should be used to stop
+/// notes started with this API. The token can also be used to address individual notes on the
+/// kAudioUnitScope_Note if the audio unit supports it. The instrumentID is no longer used and the
+/// kMusicNoteEvent_Unused constant should be specified (this takes the current patch for the
+/// specifed group as the sound to use for the note).
+///
+/// The Audio unit must provide an unique ID for the note instance ID. This ID must be non-zero and not
+/// 0xFFFFFFFF (any other UInt32 value is valid).
+///
+/// Not all Music Device audio units implement the semantics of this API (though it is strongly recommended
+/// that they do). A host application shoudl query the kMusicDeviceProperty_SupportsStartStopNote to
+/// check that this is supported.
+///
+///
+/// Parameter `inUnit`: The audio unit
+///
+/// Parameter `inInstrument`: The instrumentID is no longer used and the kMusicNoteEvent_Unused constant should be specified (this takes
+/// the current patch for the specifed group as the sound to use for the note)
+///
+/// Parameter `inGroupID`: The group ID that this note will be attached too. As with MIDI, all notes sounding on a groupID can be
+/// controlled through the various parameters (such as pitch bend, etc) that can be specified on the Group
+/// Scope
+///
+/// Parameter `outNoteInstanceID`: A pointer to receive the token that is used to identify the note. This parameter must be specified
+///
+/// Parameter `inOffsetSampleFrame`: If you are scheduling the MIDI Event from the audio unit's render thread, then you can supply a sample offset
+/// that the audio unit may apply when starting the note in its next audio unit render. This allows you to
+/// schedule to the sample and is particularly important when starting new notes. If you are not scheduling
+/// in the audio unit's render thread, then you should set this value to 0
+///
+/// Parameter `inParams`: The parameters to be used when starting the note - pitch and velocity must be specified
+///
+///
+/// Returns: noErr, or an audio unit error code
+///
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicDeviceStartNote(
+    in_unit: MusicDeviceComponent,
+    in_instrument: MusicDeviceInstrumentID,
+    in_group_id: MusicDeviceGroupID,
+    out_note_instance_id: &mut NoteInstanceID,
+    in_offset_sample_frame: u32,
+    in_params: &MusicDeviceNoteParams,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicDeviceStartNote(
+            in_unit: MusicDeviceComponent,
+            in_instrument: MusicDeviceInstrumentID,
+            in_group_id: MusicDeviceGroupID,
+            out_note_instance_id: &mut NoteInstanceID,
+            in_offset_sample_frame: u32,
+            in_params: &MusicDeviceNoteParams,
+        ) -> OSStatus;
+    }
+    unsafe {
+        MusicDeviceStartNote(
+            in_unit,
+            in_instrument,
+            in_group_id,
+            out_note_instance_id,
+            in_offset_sample_frame,
+            in_params,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// used to stop notes started with the MusicDeviceStartNote call
-    ///
-    ///
-    /// This call is used to stop notes that have been started with the MusicDeviceStartNote call; both the group ID
-    /// that the note was started on and the noteInstanceID should be specified.
-    ///
-    ///
-    /// Parameter `inUnit`: The audio unit
-    ///
-    /// Parameter `inGroupID`: the group ID
-    ///
-    /// Parameter `inNoteInstanceID`: the note instance ID
-    ///
-    /// Parameter `inOffsetSampleFrame`: the sample offset within the next buffer rendered that the note should be turned off at
-    ///
-    ///
-    /// Returns: noErr, or an audio unit error code
-    ///
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn MusicDeviceStopNote(
-        in_unit: MusicDeviceComponent,
-        in_group_id: MusicDeviceGroupID,
-        in_note_instance_id: NoteInstanceID,
-        in_offset_sample_frame: u32,
-    ) -> OSStatus;
+/// used to stop notes started with the MusicDeviceStartNote call
+///
+///
+/// This call is used to stop notes that have been started with the MusicDeviceStartNote call; both the group ID
+/// that the note was started on and the noteInstanceID should be specified.
+///
+///
+/// Parameter `inUnit`: The audio unit
+///
+/// Parameter `inGroupID`: the group ID
+///
+/// Parameter `inNoteInstanceID`: the note instance ID
+///
+/// Parameter `inOffsetSampleFrame`: the sample offset within the next buffer rendered that the note should be turned off at
+///
+///
+/// Returns: noErr, or an audio unit error code
+///
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicDeviceStopNote(
+    in_unit: MusicDeviceComponent,
+    in_group_id: MusicDeviceGroupID,
+    in_note_instance_id: NoteInstanceID,
+    in_offset_sample_frame: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicDeviceStopNote(
+            in_unit: MusicDeviceComponent,
+            in_group_id: MusicDeviceGroupID,
+            in_note_instance_id: NoteInstanceID,
+            in_offset_sample_frame: u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        MusicDeviceStopNote(
+            in_unit,
+            in_group_id,
+            in_note_instance_id,
+            in_offset_sample_frame,
+        )
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicerange?language=objc)
@@ -457,26 +527,40 @@ pub type MusicDeviceStopNoteProc = Option<
     ) -> OSStatus,
 >;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    #[deprecated = "no longer supported"]
-    pub fn MusicDevicePrepareInstrument(
-        in_unit: MusicDeviceComponent,
-        in_instrument: MusicDeviceInstrumentID,
-    ) -> OSStatus;
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicDevicePrepareInstrument(
+    in_unit: MusicDeviceComponent,
+    in_instrument: MusicDeviceInstrumentID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicDevicePrepareInstrument(
+            in_unit: MusicDeviceComponent,
+            in_instrument: MusicDeviceInstrumentID,
+        ) -> OSStatus;
+    }
+    unsafe { MusicDevicePrepareInstrument(in_unit, in_instrument) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `in_unit` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    #[deprecated = "no longer supported"]
-    pub fn MusicDeviceReleaseInstrument(
-        in_unit: MusicDeviceComponent,
-        in_instrument: MusicDeviceInstrumentID,
-    ) -> OSStatus;
+/// # Safety
+///
+/// `in_unit` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicDeviceReleaseInstrument(
+    in_unit: MusicDeviceComponent,
+    in_instrument: MusicDeviceInstrumentID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicDeviceReleaseInstrument(
+            in_unit: MusicDeviceComponent,
+            in_instrument: MusicDeviceInstrumentID,
+        ) -> OSStatus;
+    }
+    unsafe { MusicDeviceReleaseInstrument(in_unit, in_instrument) }
 }

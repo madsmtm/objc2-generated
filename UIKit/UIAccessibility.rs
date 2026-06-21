@@ -1590,15 +1590,22 @@ pub unsafe trait NSObjectUIAccessibilityTextOperations:
 impl private_NSObjectUIAccessibilityTextOperations::Sealed for NSObject {}
 unsafe impl NSObjectUIAccessibilityTextOperations for NSObject {}
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `argument` should be of the correct type.
-    #[cfg(feature = "UIAccessibilityConstants")]
-    pub fn UIAccessibilityPostNotification(
-        notification: UIAccessibilityNotifications,
-        argument: Option<&AnyObject>,
-    );
+/// # Safety
+///
+/// `argument` should be of the correct type.
+#[cfg(feature = "UIAccessibilityConstants")]
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityPostNotification(
+    notification: UIAccessibilityNotifications,
+    argument: Option<&AnyObject>,
+) {
+    extern "C-unwind" {
+        fn UIAccessibilityPostNotification(
+            notification: UIAccessibilityNotifications,
+            argument: Option<&AnyObject>,
+        );
+    }
+    unsafe { UIAccessibilityPostNotification(notification, argument) }
 }
 
 #[inline]

@@ -524,16 +524,24 @@ impl CGEvent {
     }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `tap_list` must be a valid pointer or null.
-    #[cfg(all(feature = "CGError", feature = "CGEventTypes", feature = "libc"))]
-    pub fn CGGetEventTapList(
-        max_number_of_taps: u32,
-        tap_list: *mut CGEventTapInformation,
-        event_tap_count: Option<&mut u32>,
-    ) -> CGError;
+/// # Safety
+///
+/// `tap_list` must be a valid pointer or null.
+#[cfg(all(feature = "CGError", feature = "CGEventTypes", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGGetEventTapList(
+    max_number_of_taps: u32,
+    tap_list: *mut CGEventTapInformation,
+    event_tap_count: Option<&mut u32>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGGetEventTapList(
+            max_number_of_taps: u32,
+            tap_list: *mut CGEventTapInformation,
+            event_tap_count: Option<&mut u32>,
+        ) -> CGError;
+    }
+    unsafe { CGGetEventTapList(max_number_of_taps, tap_list, event_tap_count) }
 }
 
 #[inline]

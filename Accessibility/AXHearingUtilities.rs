@@ -33,8 +33,12 @@ unsafe impl RefEncode for AXHearingDeviceEar {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;
+#[inline]
+pub unsafe extern "C-unwind" fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar {
+    extern "C-unwind" {
+        fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;
+    }
+    unsafe { AXMFiHearingDeviceStreamingEar() }
 }
 
 extern "C" {

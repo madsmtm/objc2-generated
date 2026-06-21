@@ -391,36 +391,52 @@ pub type AudioSessionInterruptionListener = Option<unsafe extern "C-unwind" fn(*
 pub type AudioSessionPropertyListener =
     Option<unsafe extern "C-unwind" fn(*mut c_void, AudioSessionPropertyID, u32, *const c_void)>;
 
-extern "C-unwind" {
-    /// Initialize the AudioSession.
-    ///
-    /// This function has to be called once before calling any other
-    /// AudioSession functions.
-    ///
-    /// Parameter `inRunLoop`: A CFRunLoopRef indicating the desired run loop the interruption routine should
-    /// be run on. Pass NULL to use the main run loop.
-    ///
-    /// Parameter `inRunLoopMode`: A CFStringRef indicating the run loop mode for the runloop where the
-    /// completion routine will be executed. Pass NULL to use kCFRunLoopDefaultMode.
-    ///
-    /// Parameter `inInterruptionListener`: An AudioSessionInterruptionListener to be called when the AudioSession
-    /// is interrupted.
-    ///
-    /// Parameter `inClientData`: The client user data to use when calling the interruption listener.
-    ///
-    /// # Safety
-    ///
-    /// - `in_run_loop` possibly has additional threading requirements.
-    /// - `in_interruption_listener` must be implemented correctly.
-    /// - `in_client_data` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "no longer supported"]
-    pub fn AudioSessionInitialize(
-        in_run_loop: Option<&CFRunLoop>,
-        in_run_loop_mode: Option<&CFString>,
-        in_interruption_listener: AudioSessionInterruptionListener,
-        in_client_data: *mut c_void,
-    ) -> OSStatus;
+/// Initialize the AudioSession.
+///
+/// This function has to be called once before calling any other
+/// AudioSession functions.
+///
+/// Parameter `inRunLoop`: A CFRunLoopRef indicating the desired run loop the interruption routine should
+/// be run on. Pass NULL to use the main run loop.
+///
+/// Parameter `inRunLoopMode`: A CFStringRef indicating the run loop mode for the runloop where the
+/// completion routine will be executed. Pass NULL to use kCFRunLoopDefaultMode.
+///
+/// Parameter `inInterruptionListener`: An AudioSessionInterruptionListener to be called when the AudioSession
+/// is interrupted.
+///
+/// Parameter `inClientData`: The client user data to use when calling the interruption listener.
+///
+/// # Safety
+///
+/// - `in_run_loop` possibly has additional threading requirements.
+/// - `in_interruption_listener` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioSessionInitialize(
+    in_run_loop: Option<&CFRunLoop>,
+    in_run_loop_mode: Option<&CFString>,
+    in_interruption_listener: AudioSessionInterruptionListener,
+    in_client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioSessionInitialize(
+            in_run_loop: Option<&CFRunLoop>,
+            in_run_loop_mode: Option<&CFString>,
+            in_interruption_listener: AudioSessionInterruptionListener,
+            in_client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioSessionInitialize(
+            in_run_loop,
+            in_run_loop_mode,
+            in_interruption_listener,
+            in_client_data,
+        )
+    }
 }
 
 /// Activate or deactivate the AudioSession.
@@ -470,154 +486,199 @@ pub unsafe extern "C-unwind" fn AudioSessionSetActiveWithFlags(
     unsafe { AudioSessionSetActiveWithFlags(active as _, in_flags) }
 }
 
-extern "C-unwind" {
-    /// Get the value of a property.
-    ///
-    /// This function can be called to get the value for a property of the AudioSession.
-    /// Valid properties are listed in an enum above.
-    ///
-    /// Parameter `inID`: The AudioSessionPropertyID for which we want to get the value.
-    ///
-    /// Parameter `ioDataSize`: The size of the data payload.
-    /// On entry it should contain the size of the memory pointed to by outData.
-    /// On exit it will contain the actual size of the data.
-    ///
-    /// Parameter `outData`: The data for the property will be copied here.
-    ///
-    /// Returns: kAudioSessionNoError if the operation was successful.  If the property is a
-    /// write-only property or only available by way of property listeners,
-    /// kAudioSessionUnsupportedPropertyError will be returned.  Other error codes
-    /// listed under AudioSession Error Constants also apply to this function.
-    ///
-    /// # Safety
-    ///
-    /// - `io_data_size` might not allow `None`.
-    /// - `out_data` must be a valid pointer.
-    #[deprecated = "no longer supported"]
-    pub fn AudioSessionGetProperty(
-        in_id: AudioSessionPropertyID,
-        io_data_size: Option<&mut u32>,
-        out_data: *mut c_void,
-    ) -> OSStatus;
+/// Get the value of a property.
+///
+/// This function can be called to get the value for a property of the AudioSession.
+/// Valid properties are listed in an enum above.
+///
+/// Parameter `inID`: The AudioSessionPropertyID for which we want to get the value.
+///
+/// Parameter `ioDataSize`: The size of the data payload.
+/// On entry it should contain the size of the memory pointed to by outData.
+/// On exit it will contain the actual size of the data.
+///
+/// Parameter `outData`: The data for the property will be copied here.
+///
+/// Returns: kAudioSessionNoError if the operation was successful.  If the property is a
+/// write-only property or only available by way of property listeners,
+/// kAudioSessionUnsupportedPropertyError will be returned.  Other error codes
+/// listed under AudioSession Error Constants also apply to this function.
+///
+/// # Safety
+///
+/// - `io_data_size` might not allow `None`.
+/// - `out_data` must be a valid pointer.
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioSessionGetProperty(
+    in_id: AudioSessionPropertyID,
+    io_data_size: Option<&mut u32>,
+    out_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioSessionGetProperty(
+            in_id: AudioSessionPropertyID,
+            io_data_size: Option<&mut u32>,
+            out_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { AudioSessionGetProperty(in_id, io_data_size, out_data) }
 }
 
-extern "C-unwind" {
-    /// Set the value of a property.
-    ///
-    /// This function can be called to set the value for a property of the AudioSession.
-    /// Valid properties are listed in an enum above.
-    ///
-    /// Parameter `inID`: The AudioSessionPropertyID for which we want to set the value.
-    ///
-    /// Parameter `inDataSize`: The size of the data payload.
-    ///
-    /// Parameter `inData`: The data for the property we want to set.
-    ///
-    /// Returns: kAudioSessionNoError if the operation was successful.  If the property is a
-    /// read-only property or an invalid property value is passed in,
-    /// kAudioSessionUnsupportedPropertyError will be returned.  Other error codes
-    /// listed under AudioSession Error Constants also apply to
-    /// this function.
-    ///
-    /// # Safety
-    ///
-    /// `in_data` must be a valid pointer.
-    #[deprecated = "no longer supported"]
-    pub fn AudioSessionSetProperty(
-        in_id: AudioSessionPropertyID,
-        in_data_size: u32,
-        in_data: *const c_void,
-    ) -> OSStatus;
+/// Set the value of a property.
+///
+/// This function can be called to set the value for a property of the AudioSession.
+/// Valid properties are listed in an enum above.
+///
+/// Parameter `inID`: The AudioSessionPropertyID for which we want to set the value.
+///
+/// Parameter `inDataSize`: The size of the data payload.
+///
+/// Parameter `inData`: The data for the property we want to set.
+///
+/// Returns: kAudioSessionNoError if the operation was successful.  If the property is a
+/// read-only property or an invalid property value is passed in,
+/// kAudioSessionUnsupportedPropertyError will be returned.  Other error codes
+/// listed under AudioSession Error Constants also apply to
+/// this function.
+///
+/// # Safety
+///
+/// `in_data` must be a valid pointer.
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioSessionSetProperty(
+    in_id: AudioSessionPropertyID,
+    in_data_size: u32,
+    in_data: *const c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioSessionSetProperty(
+            in_id: AudioSessionPropertyID,
+            in_data_size: u32,
+            in_data: *const c_void,
+        ) -> OSStatus;
+    }
+    unsafe { AudioSessionSetProperty(in_id, in_data_size, in_data) }
 }
 
-extern "C-unwind" {
-    /// Get the size of the payload for a property.
-    ///
-    /// This function can be called to get the size for the payload of a property.
-    /// Valid properties are listed in an enum above.
-    ///
-    /// Parameter `inID`: The AudioSessionPropertyID for which we want to get the size of the payload.
-    ///
-    /// Parameter `outDataSize`: The size of the data payload will be copied here.
-    ///
-    /// # Safety
-    ///
-    /// `out_data_size` might not allow `None`.
-    #[deprecated = "no longer supported"]
-    pub fn AudioSessionGetPropertySize(
-        in_id: AudioSessionPropertyID,
-        out_data_size: Option<&mut u32>,
-    ) -> OSStatus;
+/// Get the size of the payload for a property.
+///
+/// This function can be called to get the size for the payload of a property.
+/// Valid properties are listed in an enum above.
+///
+/// Parameter `inID`: The AudioSessionPropertyID for which we want to get the size of the payload.
+///
+/// Parameter `outDataSize`: The size of the data payload will be copied here.
+///
+/// # Safety
+///
+/// `out_data_size` might not allow `None`.
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioSessionGetPropertySize(
+    in_id: AudioSessionPropertyID,
+    out_data_size: Option<&mut u32>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioSessionGetPropertySize(
+            in_id: AudioSessionPropertyID,
+            out_data_size: Option<&mut u32>,
+        ) -> OSStatus;
+    }
+    unsafe { AudioSessionGetPropertySize(in_id, out_data_size) }
 }
 
-extern "C-unwind" {
-    /// Add a property listener.
-    ///
-    /// This function can be used to add a listener to be called when a property changes.
-    /// If a listener and user data already exist for this property, they will be replaced.
-    /// Valid properties are listed above.
-    ///
-    /// Parameter `inID`: The AudioSessionPropertyID for which we want to set a listener.
-    ///
-    /// Parameter `inProc`: The listener to be called when the property changes.
-    ///
-    /// Parameter `inClientData`: The client user data to use when calling the listener.
-    ///
-    /// Returns: kAudioSessionNoError if the operation was successful.  If the property does
-    /// not support listeners, kAudioSessionUnsupportedPropertyError will be returned.
-    /// Other error codes listed under AudioSession Error Constants also apply to
-    /// this function.
-    ///
-    /// # Safety
-    ///
-    /// - `in_proc` must be implemented correctly.
-    /// - `in_client_data` must be a valid pointer.
-    #[deprecated = "no longer supported"]
-    pub fn AudioSessionAddPropertyListener(
-        in_id: AudioSessionPropertyID,
-        in_proc: AudioSessionPropertyListener,
-        in_client_data: *mut c_void,
-    ) -> OSStatus;
+/// Add a property listener.
+///
+/// This function can be used to add a listener to be called when a property changes.
+/// If a listener and user data already exist for this property, they will be replaced.
+/// Valid properties are listed above.
+///
+/// Parameter `inID`: The AudioSessionPropertyID for which we want to set a listener.
+///
+/// Parameter `inProc`: The listener to be called when the property changes.
+///
+/// Parameter `inClientData`: The client user data to use when calling the listener.
+///
+/// Returns: kAudioSessionNoError if the operation was successful.  If the property does
+/// not support listeners, kAudioSessionUnsupportedPropertyError will be returned.
+/// Other error codes listed under AudioSession Error Constants also apply to
+/// this function.
+///
+/// # Safety
+///
+/// - `in_proc` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer.
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioSessionAddPropertyListener(
+    in_id: AudioSessionPropertyID,
+    in_proc: AudioSessionPropertyListener,
+    in_client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioSessionAddPropertyListener(
+            in_id: AudioSessionPropertyID,
+            in_proc: AudioSessionPropertyListener,
+            in_client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { AudioSessionAddPropertyListener(in_id, in_proc, in_client_data) }
 }
 
-extern "C-unwind" {
-    /// see AudioSessionRemovePropertyListenerWithUserData
-    ///
-    /// see AudioSessionRemovePropertyListenerWithUserData
-    #[deprecated = "no longer supported"]
-    pub fn AudioSessionRemovePropertyListener(in_id: AudioSessionPropertyID) -> OSStatus;
+/// see AudioSessionRemovePropertyListenerWithUserData
+///
+/// see AudioSessionRemovePropertyListenerWithUserData
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioSessionRemovePropertyListener(
+    in_id: AudioSessionPropertyID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioSessionRemovePropertyListener(in_id: AudioSessionPropertyID) -> OSStatus;
+    }
+    unsafe { AudioSessionRemovePropertyListener(in_id) }
 }
 
-extern "C-unwind" {
-    /// Remove a property listener.
-    ///
-    /// This function can be called to remove the listener for a property. The caller
-    /// provides the same proc and user data that was used to add the listener. This ensures
-    /// that there can be more than one listener established for a given property ID,
-    /// and each listener can be removed as requested.
-    /// Valid properties are listed above.
-    ///
-    /// Parameter `inID`: The AudioSessionPropertyID for which we want to remove the listener.
-    ///
-    /// Parameter `inProc`: The proc that was used to add the listener that needs to be removed.
-    ///
-    /// Parameter `inClientData`: The client data that was used to add the listener that needs to be removed.
-    ///
-    /// Returns: kAudioSessionNoError if the operation was successful.  If the property does
-    /// not support listeners, kAudioSessionUnsupportedPropertyError will be returned.
-    /// Other error codes listed under AudioSession Error Constants also apply to
-    /// this function.
-    ///
-    /// # Safety
-    ///
-    /// - `in_proc` must be implemented correctly.
-    /// - `in_client_data` must be a valid pointer.
-    #[deprecated = "no longer supported"]
-    pub fn AudioSessionRemovePropertyListenerWithUserData(
-        in_id: AudioSessionPropertyID,
-        in_proc: AudioSessionPropertyListener,
-        in_client_data: *mut c_void,
-    ) -> OSStatus;
+/// Remove a property listener.
+///
+/// This function can be called to remove the listener for a property. The caller
+/// provides the same proc and user data that was used to add the listener. This ensures
+/// that there can be more than one listener established for a given property ID,
+/// and each listener can be removed as requested.
+/// Valid properties are listed above.
+///
+/// Parameter `inID`: The AudioSessionPropertyID for which we want to remove the listener.
+///
+/// Parameter `inProc`: The proc that was used to add the listener that needs to be removed.
+///
+/// Parameter `inClientData`: The client data that was used to add the listener that needs to be removed.
+///
+/// Returns: kAudioSessionNoError if the operation was successful.  If the property does
+/// not support listeners, kAudioSessionUnsupportedPropertyError will be returned.
+/// Other error codes listed under AudioSession Error Constants also apply to
+/// this function.
+///
+/// # Safety
+///
+/// - `in_proc` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer.
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioSessionRemovePropertyListenerWithUserData(
+    in_id: AudioSessionPropertyID,
+    in_proc: AudioSessionPropertyListener,
+    in_client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioSessionRemovePropertyListenerWithUserData(
+            in_id: AudioSessionPropertyID,
+            in_proc: AudioSessionPropertyListener,
+            in_client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { AudioSessionRemovePropertyListenerWithUserData(in_id, in_proc, in_client_data) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_userinterfacesoundeffects?language=objc)

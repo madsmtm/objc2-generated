@@ -32,19 +32,27 @@ pub extern "C-unwind" fn NSCreateZone(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `zone` must be a valid pointer.
-    pub fn NSRecycleZone(zone: NonNull<NSZone>);
+/// # Safety
+///
+/// `zone` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSRecycleZone(zone: NonNull<NSZone>) {
+    extern "C-unwind" {
+        fn NSRecycleZone(zone: NonNull<NSZone>);
+    }
+    unsafe { NSRecycleZone(zone) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `zone` must be a valid pointer or null.
-    #[cfg(feature = "NSString")]
-    pub fn NSSetZoneName(zone: *mut NSZone, name: &NSString);
+/// # Safety
+///
+/// `zone` must be a valid pointer or null.
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSSetZoneName(zone: *mut NSZone, name: &NSString) {
+    extern "C-unwind" {
+        fn NSSetZoneName(zone: *mut NSZone, name: &NSString);
+    }
+    unsafe { NSSetZoneName(zone, name) }
 }
 
 /// # Safety
@@ -61,11 +69,15 @@ pub unsafe extern "C-unwind" fn NSZoneName(zone: *mut NSZone) -> Retained<NSStri
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ptr` must be a valid pointer.
-    pub fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone;
+/// # Safety
+///
+/// `ptr` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone {
+    extern "C-unwind" {
+        fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone;
+    }
+    unsafe { NSZoneFromPointer(ptr) }
 }
 
 /// # Safety
@@ -124,12 +136,16 @@ pub unsafe extern "C-unwind" fn NSZoneRealloc(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `zone` must be a valid pointer or null.
-    /// - `ptr` must be a valid pointer.
-    pub fn NSZoneFree(zone: *mut NSZone, ptr: NonNull<c_void>);
+/// # Safety
+///
+/// - `zone` must be a valid pointer or null.
+/// - `ptr` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSZoneFree(zone: *mut NSZone, ptr: NonNull<c_void>) {
+    extern "C-unwind" {
+        fn NSZoneFree(zone: *mut NSZone, ptr: NonNull<c_void>);
+    }
+    unsafe { NSZoneFree(zone, ptr) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscannedoption?language=objc)
@@ -210,19 +226,31 @@ pub extern "C-unwind" fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_v
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ptr` must be a valid pointer.
-    pub fn NSDeallocateMemoryPages(ptr: NonNull<c_void>, bytes: NSUInteger);
+/// # Safety
+///
+/// `ptr` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSDeallocateMemoryPages(ptr: NonNull<c_void>, bytes: NSUInteger) {
+    extern "C-unwind" {
+        fn NSDeallocateMemoryPages(ptr: NonNull<c_void>, bytes: NSUInteger);
+    }
+    unsafe { NSDeallocateMemoryPages(ptr, bytes) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `source` must be a valid pointer.
-    /// - `dest` must be a valid pointer.
-    pub fn NSCopyMemoryPages(source: NonNull<c_void>, dest: NonNull<c_void>, bytes: NSUInteger);
+/// # Safety
+///
+/// - `source` must be a valid pointer.
+/// - `dest` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSCopyMemoryPages(
+    source: NonNull<c_void>,
+    dest: NonNull<c_void>,
+    bytes: NSUInteger,
+) {
+    extern "C-unwind" {
+        fn NSCopyMemoryPages(source: NonNull<c_void>, dest: NonNull<c_void>, bytes: NSUInteger);
+    }
+    unsafe { NSCopyMemoryPages(source, dest, bytes) }
 }
 
 #[deprecated = "Use NSProcessInfo instead"]

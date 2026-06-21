@@ -22,146 +22,176 @@ use crate::*;
 #[cfg(feature = "MIDIServices")]
 pub type MIDISetupRef = MIDIObjectRef;
 
-extern "C-unwind" {
-    /// Interrogates drivers, to discover what hardware is present.
-    ///
-    /// As of CoreMIDI 1.1, it is usually not necessary to call
-    /// this function, as CoreMIDI manages a single persistent
-    /// MIDISetup itself.
-    ///
-    ///
-    /// Parameter `outSetup`: On successful return, points to a newly-created MIDISetup
-    /// object.  The caller is responsible for disposing it,
-    /// or transferring ownership of the object back to the
-    /// system, with MIDISetupInstall.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `out_setup` must be a valid pointer.
-    #[cfg(feature = "MIDIServices")]
-    #[deprecated = "No longer supported"]
-    pub fn MIDISetupCreate(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
+/// Interrogates drivers, to discover what hardware is present.
+///
+/// As of CoreMIDI 1.1, it is usually not necessary to call
+/// this function, as CoreMIDI manages a single persistent
+/// MIDISetup itself.
+///
+///
+/// Parameter `outSetup`: On successful return, points to a newly-created MIDISetup
+/// object.  The caller is responsible for disposing it,
+/// or transferring ownership of the object back to the
+/// system, with MIDISetupInstall.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `out_setup` must be a valid pointer.
+#[cfg(feature = "MIDIServices")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISetupCreate(out_setup: NonNull<MIDISetupRef>) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISetupCreate(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
+    }
+    unsafe { MIDISetupCreate(out_setup) }
 }
 
-extern "C-unwind" {
-    /// Dispose a MIDISetup object.
-    ///
-    /// As of CoreMIDI 1.1, it is usually not necessary to call
-    /// this function, as CoreMIDI manages a single persistent
-    /// MIDISetup itself.
-    ///
-    ///
-    /// Parameter `setup`: The MIDISetup to be disposed.
-    ///
-    /// Returns: An OSStatus result code.
-    #[cfg(feature = "MIDIServices")]
-    #[deprecated = "No longer supported"]
-    pub fn MIDISetupDispose(setup: MIDISetupRef) -> OSStatus;
+/// Dispose a MIDISetup object.
+///
+/// As of CoreMIDI 1.1, it is usually not necessary to call
+/// this function, as CoreMIDI manages a single persistent
+/// MIDISetup itself.
+///
+///
+/// Parameter `setup`: The MIDISetup to be disposed.
+///
+/// Returns: An OSStatus result code.
+#[cfg(feature = "MIDIServices")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISetupDispose(setup: MIDISetupRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISetupDispose(setup: MIDISetupRef) -> OSStatus;
+    }
+    unsafe { MIDISetupDispose(setup) }
 }
 
-extern "C-unwind" {
-    /// Install a MIDISetup as the system's current state.
-    ///
-    /// A client can create a MIDISetup object using
-    /// MIDISetupCreate, or MIDISetupFromData.  This function will
-    /// install this state as the current state of the system,
-    /// possibly changing the devices visible to clients.
-    ///
-    /// As of CoreMIDI 1.1, it is usually not necessary to call
-    /// this function, as CoreMIDI manages a single persistent
-    /// MIDISetup itself.
-    ///
-    ///
-    /// Parameter `setup`: The MIDISetup object to install.  Ownership of this
-    /// object is transferred from the client to the system; the
-    /// client must
-    /// <b>
-    /// not
-    /// </b>
-    /// dispose of this MIDISetup.
-    ///
-    /// Returns: An OSStatus result code.
-    #[cfg(feature = "MIDIServices")]
-    #[deprecated = "No longer supported"]
-    pub fn MIDISetupInstall(setup: MIDISetupRef) -> OSStatus;
+/// Install a MIDISetup as the system's current state.
+///
+/// A client can create a MIDISetup object using
+/// MIDISetupCreate, or MIDISetupFromData.  This function will
+/// install this state as the current state of the system,
+/// possibly changing the devices visible to clients.
+///
+/// As of CoreMIDI 1.1, it is usually not necessary to call
+/// this function, as CoreMIDI manages a single persistent
+/// MIDISetup itself.
+///
+///
+/// Parameter `setup`: The MIDISetup object to install.  Ownership of this
+/// object is transferred from the client to the system; the
+/// client must
+/// <b>
+/// not
+/// </b>
+/// dispose of this MIDISetup.
+///
+/// Returns: An OSStatus result code.
+#[cfg(feature = "MIDIServices")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISetupInstall(setup: MIDISetupRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISetupInstall(setup: MIDISetupRef) -> OSStatus;
+    }
+    unsafe { MIDISetupInstall(setup) }
 }
 
-extern "C-unwind" {
-    /// Return the system's current MIDISetup.
-    ///
-    /// As of CoreMIDI 1.1, it is usually not necessary to call
-    /// this function, as CoreMIDI manages a single persistent
-    /// MIDISetup itself.
-    ///
-    ///
-    /// Parameter `outSetup`: On successful return, points to the system's most
-    /// recently installed MIDISetup.  The system retains
-    /// ownership of the object; the client must
-    /// <b>
-    /// not
-    /// </b>
-    /// dispose of this MIDISetup.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `out_setup` must be a valid pointer.
-    #[cfg(feature = "MIDIServices")]
-    #[deprecated = "No longer supported"]
-    pub fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
+/// Return the system's current MIDISetup.
+///
+/// As of CoreMIDI 1.1, it is usually not necessary to call
+/// this function, as CoreMIDI manages a single persistent
+/// MIDISetup itself.
+///
+///
+/// Parameter `outSetup`: On successful return, points to the system's most
+/// recently installed MIDISetup.  The system retains
+/// ownership of the object; the client must
+/// <b>
+/// not
+/// </b>
+/// dispose of this MIDISetup.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `out_setup` must be a valid pointer.
+#[cfg(feature = "MIDIServices")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetupRef>) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
+    }
+    unsafe { MIDISetupGetCurrent(out_setup) }
 }
 
-extern "C-unwind" {
-    /// Create an XML representation of a MIDISetup object.
-    ///
-    /// As of CoreMIDI 1.1, it is usually not necessary to call
-    /// this function, as CoreMIDI manages a single persistent
-    /// MIDISetup itself.
-    ///
-    ///
-    /// Parameter `setup`: The MIDISetup object whose XML representation is to be
-    /// returned.
-    ///
-    /// Parameter `outData`: On successful return, points to a newly-created CFDataRef
-    /// containing the XML text.  The client is responsible for
-    /// releasing this CFData object when done with it.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `out_data` must be a valid pointer.
-    #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
-    #[deprecated = "No longer supported"]
-    pub fn MIDISetupToData(setup: MIDISetupRef, out_data: NonNull<*const CFData>) -> OSStatus;
+/// Create an XML representation of a MIDISetup object.
+///
+/// As of CoreMIDI 1.1, it is usually not necessary to call
+/// this function, as CoreMIDI manages a single persistent
+/// MIDISetup itself.
+///
+///
+/// Parameter `setup`: The MIDISetup object whose XML representation is to be
+/// returned.
+///
+/// Parameter `outData`: On successful return, points to a newly-created CFDataRef
+/// containing the XML text.  The client is responsible for
+/// releasing this CFData object when done with it.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `out_data` must be a valid pointer.
+#[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISetupToData(
+    setup: MIDISetupRef,
+    out_data: NonNull<*const CFData>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISetupToData(setup: MIDISetupRef, out_data: NonNull<*const CFData>) -> OSStatus;
+    }
+    unsafe { MIDISetupToData(setup, out_data) }
 }
 
-extern "C-unwind" {
-    /// Create a MIDISetup object from an XML stream.
-    ///
-    /// As of CoreMIDI 1.1, it is usually not necessary to call
-    /// this function, as CoreMIDI manages a single persistent
-    /// MIDISetup itself.
-    ///
-    ///
-    /// Parameter `data`: The XML text from which a MIDISetup object is to be built.
-    ///
-    /// Parameter `outSetup`: On successful return, points to a newly-created MIDISetup
-    /// object.  The caller is responsible for disposing it, or
-    /// transferring ownership of the object back to the system,
-    /// with MIDISetupInstall.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `out_setup` must be a valid pointer.
-    #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
-    #[deprecated = "No longer supported"]
-    pub fn MIDISetupFromData(data: &CFData, out_setup: NonNull<MIDISetupRef>) -> OSStatus;
+/// Create a MIDISetup object from an XML stream.
+///
+/// As of CoreMIDI 1.1, it is usually not necessary to call
+/// this function, as CoreMIDI manages a single persistent
+/// MIDISetup itself.
+///
+///
+/// Parameter `data`: The XML text from which a MIDISetup object is to be built.
+///
+/// Parameter `outSetup`: On successful return, points to a newly-created MIDISetup
+/// object.  The caller is responsible for disposing it, or
+/// transferring ownership of the object back to the system,
+/// with MIDISetupInstall.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `out_setup` must be a valid pointer.
+#[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISetupFromData(
+    data: &CFData,
+    out_setup: NonNull<MIDISetupRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISetupFromData(data: &CFData, out_setup: NonNull<MIDISetupRef>) -> OSStatus;
+    }
+    unsafe { MIDISetupFromData(data, out_setup) }
 }
 
 /// Drivers call this function to specify one of the entities that
@@ -289,219 +319,281 @@ pub unsafe extern "C-unwind" fn MIDIDeviceAddEntity(
     }
 }
 
-extern "C-unwind" {
-    /// Drivers may call this function to remove one of a device's
-    /// entities.
-    ///
-    /// New for CoreMIDI 1.1.
-    ///
-    ///
-    /// Parameter `device`: The device from which an entity is to be removed.
-    ///
-    /// Parameter `entity`: The entity to be removed.
-    ///
-    /// Returns: An OSStatus result code.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDIDeviceRemoveEntity(device: MIDIDeviceRef, entity: MIDIEntityRef) -> OSStatus;
+/// Drivers may call this function to remove one of a device's
+/// entities.
+///
+/// New for CoreMIDI 1.1.
+///
+///
+/// Parameter `device`: The device from which an entity is to be removed.
+///
+/// Parameter `entity`: The entity to be removed.
+///
+/// Returns: An OSStatus result code.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDeviceRemoveEntity(
+    device: MIDIDeviceRef,
+    entity: MIDIEntityRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIDeviceRemoveEntity(device: MIDIDeviceRef, entity: MIDIEntityRef) -> OSStatus;
+    }
+    unsafe { MIDIDeviceRemoveEntity(device, entity) }
 }
 
-extern "C-unwind" {
-    /// Drivers and configuration editors may call this function to add to
-    /// or remove an entity's endpoints.
-    ///
-    /// New for CoreMIDI 1.3.
-    ///
-    /// The MIDIProtocolID of new endpoints is initially the same as that of
-    /// the entity.
-    ///
-    ///
-    /// Parameter `entity`: The entity whose endpoints are to be manipulated.
-    ///
-    /// Parameter `numSourceEndpoints`: The desired new number of source endpoints.
-    ///
-    /// Parameter `numDestinationEndpoints`: The desired new number of destination endpoints.
-    ///
-    /// Returns: An OSStatus result code.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDIEntityAddOrRemoveEndpoints(
-        entity: MIDIEntityRef,
-        num_source_endpoints: ItemCount,
-        num_destination_endpoints: ItemCount,
-    ) -> OSStatus;
+/// Drivers and configuration editors may call this function to add to
+/// or remove an entity's endpoints.
+///
+/// New for CoreMIDI 1.3.
+///
+/// The MIDIProtocolID of new endpoints is initially the same as that of
+/// the entity.
+///
+///
+/// Parameter `entity`: The entity whose endpoints are to be manipulated.
+///
+/// Parameter `numSourceEndpoints`: The desired new number of source endpoints.
+///
+/// Parameter `numDestinationEndpoints`: The desired new number of destination endpoints.
+///
+/// Returns: An OSStatus result code.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIEntityAddOrRemoveEndpoints(
+    entity: MIDIEntityRef,
+    num_source_endpoints: ItemCount,
+    num_destination_endpoints: ItemCount,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIEntityAddOrRemoveEndpoints(
+            entity: MIDIEntityRef,
+            num_source_endpoints: ItemCount,
+            num_destination_endpoints: ItemCount,
+        ) -> OSStatus;
+    }
+    unsafe {
+        MIDIEntityAddOrRemoveEndpoints(entity, num_source_endpoints, num_destination_endpoints)
+    }
 }
 
-extern "C-unwind" {
-    /// Adds a driver-owner MIDI device to the current MIDISetup
-    ///
-    ///
-    /// Only MIDI drivers may make this call; it is in this header
-    /// file only for consistency with MIDISetupRemoveDevice.
-    ///
-    /// New for CoreMIDI 1.1.
-    ///
-    ///
-    /// Parameter `device`: The device to be added.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDISetupAddDevice(device: MIDIDeviceRef) -> OSStatus;
+/// Adds a driver-owner MIDI device to the current MIDISetup
+///
+///
+/// Only MIDI drivers may make this call; it is in this header
+/// file only for consistency with MIDISetupRemoveDevice.
+///
+/// New for CoreMIDI 1.1.
+///
+///
+/// Parameter `device`: The device to be added.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISetupAddDevice(device: MIDIDeviceRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISetupAddDevice(device: MIDIDeviceRef) -> OSStatus;
+    }
+    unsafe { MIDISetupAddDevice(device) }
 }
 
-extern "C-unwind" {
-    /// Removes a driver-owned MIDI device from the current MIDISetup
-    ///
-    ///
-    /// Generally this should only be called from a studio configuration
-    /// editor, to remove a device which is offline and which the user
-    /// has specified as being permanently missing.
-    ///
-    /// Instead of removing devices from the setup, drivers should
-    /// set the device's kMIDIPropertyOffline to 1 so that if the
-    /// device reappears later, none of its properties are lost.
-    ///
-    /// New for CoreMIDI 1.1.
-    ///
-    ///
-    /// Parameter `device`: The device to be added.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDISetupRemoveDevice(device: MIDIDeviceRef) -> OSStatus;
+/// Removes a driver-owned MIDI device from the current MIDISetup
+///
+///
+/// Generally this should only be called from a studio configuration
+/// editor, to remove a device which is offline and which the user
+/// has specified as being permanently missing.
+///
+/// Instead of removing devices from the setup, drivers should
+/// set the device's kMIDIPropertyOffline to 1 so that if the
+/// device reappears later, none of its properties are lost.
+///
+/// New for CoreMIDI 1.1.
+///
+///
+/// Parameter `device`: The device to be added.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISetupRemoveDevice(device: MIDIDeviceRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISetupRemoveDevice(device: MIDIDeviceRef) -> OSStatus;
+    }
+    unsafe { MIDISetupRemoveDevice(device) }
 }
 
-extern "C-unwind" {
-    /// Adds an external MIDI device to the current MIDISetup
-    ///
-    ///
-    /// Useful for a studio configuration editor.  New for CoreMIDI 1.1.
-    ///
-    ///
-    /// Parameter `device`: The device to be added.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDISetupAddExternalDevice(device: MIDIDeviceRef) -> OSStatus;
+/// Adds an external MIDI device to the current MIDISetup
+///
+///
+/// Useful for a studio configuration editor.  New for CoreMIDI 1.1.
+///
+///
+/// Parameter `device`: The device to be added.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISetupAddExternalDevice(device: MIDIDeviceRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISetupAddExternalDevice(device: MIDIDeviceRef) -> OSStatus;
+    }
+    unsafe { MIDISetupAddExternalDevice(device) }
 }
 
-extern "C-unwind" {
-    /// Removes an external MIDI device from the current MIDISetup
-    ///
-    ///
-    /// Useful for a studio configuration editor.  New for CoreMIDI 1.1.
-    ///
-    ///
-    /// Parameter `device`: The device to be removed.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDISetupRemoveExternalDevice(device: MIDIDeviceRef) -> OSStatus;
+/// Removes an external MIDI device from the current MIDISetup
+///
+///
+/// Useful for a studio configuration editor.  New for CoreMIDI 1.1.
+///
+///
+/// Parameter `device`: The device to be removed.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISetupRemoveExternalDevice(device: MIDIDeviceRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISetupRemoveExternalDevice(device: MIDIDeviceRef) -> OSStatus;
+    }
+    unsafe { MIDISetupRemoveExternalDevice(device) }
 }
 
-extern "C-unwind" {
-    /// Returns the MIDI driver that owns a serial port.
-    ///
-    ///
-    /// The current MIDISetup tracks ownership of serial ports
-    /// to one of the MIDI drivers installed in the system.
-    ///
-    /// Serial ports can be enumerated using IOServiceMatching(
-    /// kIOSerialBSDServiceValue).  The port's unique name is
-    /// the IOService's kIOTTYDeviceKey property.
-    ///
-    /// New for CoreMIDI 1.1.
-    ///
-    /// A previous version of this documentation specified an incorrect
-    /// key for obtaining the port's unique name (IOTTYBaseName).
-    ///
-    ///
-    /// Parameter `portName`: The name of a serial port.
-    ///
-    /// Parameter `outDriverName`: On exit, the name of the driver owning the port,
-    /// or NULL if no driver owns it.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `out_driver_name` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "No longer supported"]
-    pub fn MIDIGetSerialPortOwner(
-        port_name: &CFString,
-        out_driver_name: NonNull<*const CFString>,
-    ) -> OSStatus;
+/// Returns the MIDI driver that owns a serial port.
+///
+///
+/// The current MIDISetup tracks ownership of serial ports
+/// to one of the MIDI drivers installed in the system.
+///
+/// Serial ports can be enumerated using IOServiceMatching(
+/// kIOSerialBSDServiceValue).  The port's unique name is
+/// the IOService's kIOTTYDeviceKey property.
+///
+/// New for CoreMIDI 1.1.
+///
+/// A previous version of this documentation specified an incorrect
+/// key for obtaining the port's unique name (IOTTYBaseName).
+///
+///
+/// Parameter `portName`: The name of a serial port.
+///
+/// Parameter `outDriverName`: On exit, the name of the driver owning the port,
+/// or NULL if no driver owns it.
+///
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `out_driver_name` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIGetSerialPortOwner(
+    port_name: &CFString,
+    out_driver_name: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIGetSerialPortOwner(
+            port_name: &CFString,
+            out_driver_name: NonNull<*const CFString>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIGetSerialPortOwner(port_name, out_driver_name) }
 }
 
-extern "C-unwind" {
-    /// Specifies the MIDI driver that owns a serial port.
-    ///
-    ///
-    /// Use this to assign ownership of a serial port
-    /// to one of the MIDI drivers installed in the system.
-    ///
-    /// New for CoreMIDI 1.1.
-    ///
-    ///
-    /// Parameter `portName`: The name of a serial port.
-    ///
-    /// Parameter `driverName`: The name of the driver that owns the serial port,
-    /// or NULL to specify that no driver owns it.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "No longer supported"]
-    pub fn MIDISetSerialPortOwner(port_name: &CFString, driver_name: &CFString) -> OSStatus;
+/// Specifies the MIDI driver that owns a serial port.
+///
+///
+/// Use this to assign ownership of a serial port
+/// to one of the MIDI drivers installed in the system.
+///
+/// New for CoreMIDI 1.1.
+///
+///
+/// Parameter `portName`: The name of a serial port.
+///
+/// Parameter `driverName`: The name of the driver that owns the serial port,
+/// or NULL to specify that no driver owns it.
+///
+///
+/// Returns: An OSStatus result code.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISetSerialPortOwner(
+    port_name: &CFString,
+    driver_name: &CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISetSerialPortOwner(port_name: &CFString, driver_name: &CFString) -> OSStatus;
+    }
+    unsafe { MIDISetSerialPortOwner(port_name, driver_name) }
 }
 
-extern "C-unwind" {
-    /// Returns a list of installed MIDI drivers for serial port
-    /// MIDI devices.
-    ///
-    ///
-    /// Use this to determine which of the installed MIDI drivers
-    /// are for devices which may attach to serial ports.
-    ///
-    /// New for CoreMIDI 1.1.
-    ///
-    ///
-    /// Parameter `outDriverNames`: On exit, a CFArrayRef containing a list of CFStringRef's
-    /// which are the names of the serial port MIDI drivers.
-    /// The array should be released by the caller.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `out_driver_names` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "No longer supported"]
-    pub fn MIDIGetSerialPortDrivers(out_driver_names: NonNull<*const CFArray>) -> OSStatus;
+/// Returns a list of installed MIDI drivers for serial port
+/// MIDI devices.
+///
+///
+/// Use this to determine which of the installed MIDI drivers
+/// are for devices which may attach to serial ports.
+///
+/// New for CoreMIDI 1.1.
+///
+///
+/// Parameter `outDriverNames`: On exit, a CFArrayRef containing a list of CFStringRef's
+/// which are the names of the serial port MIDI drivers.
+/// The array should be released by the caller.
+///
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `out_driver_names` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIGetSerialPortDrivers(
+    out_driver_names: NonNull<*const CFArray>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIGetSerialPortDrivers(out_driver_names: NonNull<*const CFArray>) -> OSStatus;
+    }
+    unsafe { MIDIGetSerialPortDrivers(out_driver_names) }
 }
 
-extern "C-unwind" {
-    /// Create a new external MIDI device.
-    ///
-    ///
-    /// Non-drivers may call this function as of CoreMIDI 1.1, to
-    /// create external devices.
-    ///
-    /// The new device is not added to the current MIDISetupRef;
-    /// to do this, use MIDISetupAddExternalDevice.
-    ///
-    ///
-    /// Parameter `name`: The name of the new device.
-    ///
-    /// Parameter `manufacturer`: The name of the device's manufacturer.
-    ///
-    /// Parameter `model`: The device's model name.
-    ///
-    /// Parameter `outDevice`: On successful return, points to the newly-created device.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `out_device` must be a valid pointer.
-    #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
-    pub fn MIDIExternalDeviceCreate(
-        name: &CFString,
-        manufacturer: &CFString,
-        model: &CFString,
-        out_device: NonNull<MIDIDeviceRef>,
-    ) -> OSStatus;
+/// Create a new external MIDI device.
+///
+///
+/// Non-drivers may call this function as of CoreMIDI 1.1, to
+/// create external devices.
+///
+/// The new device is not added to the current MIDISetupRef;
+/// to do this, use MIDISetupAddExternalDevice.
+///
+///
+/// Parameter `name`: The name of the new device.
+///
+/// Parameter `manufacturer`: The name of the device's manufacturer.
+///
+/// Parameter `model`: The device's model name.
+///
+/// Parameter `outDevice`: On successful return, points to the newly-created device.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `out_device` must be a valid pointer.
+#[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIExternalDeviceCreate(
+    name: &CFString,
+    manufacturer: &CFString,
+    model: &CFString,
+    out_device: NonNull<MIDIDeviceRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIExternalDeviceCreate(
+            name: &CFString,
+            manufacturer: &CFString,
+            model: &CFString,
+            out_device: NonNull<MIDIDeviceRef>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIExternalDeviceCreate(name, manufacturer, model, out_device) }
 }

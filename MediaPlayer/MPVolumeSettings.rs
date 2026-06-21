@@ -5,14 +5,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    #[deprecated = "Use MPVolumeView to present volume controls."]
-    pub fn MPVolumeSettingsAlertShow();
+#[deprecated = "Use MPVolumeView to present volume controls."]
+#[inline]
+pub unsafe extern "C-unwind" fn MPVolumeSettingsAlertShow() {
+    extern "C-unwind" {
+        fn MPVolumeSettingsAlertShow();
+    }
+    unsafe { MPVolumeSettingsAlertShow() }
 }
 
-extern "C-unwind" {
-    #[deprecated = "Use MPVolumeView to present volume controls."]
-    pub fn MPVolumeSettingsAlertHide();
+#[deprecated = "Use MPVolumeView to present volume controls."]
+#[inline]
+pub unsafe extern "C-unwind" fn MPVolumeSettingsAlertHide() {
+    extern "C-unwind" {
+        fn MPVolumeSettingsAlertHide();
+    }
+    unsafe { MPVolumeSettingsAlertHide() }
 }
 
 #[deprecated = "Use MPVolumeView to present volume controls."]

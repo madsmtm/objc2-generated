@@ -880,19 +880,28 @@ extern "C" {
     pub static kColorSyncProfileCacheSeed: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `call_back` must be implemented correctly.
-    /// - `seed` must be a valid pointer or null.
-    /// - `user_info` must be a valid pointer or null.
-    /// - `error` must be a valid pointer or null.
-    pub fn ColorSyncIterateInstalledProfiles(
-        call_back: ColorSyncProfileIterateCallback,
-        seed: *mut u32,
-        user_info: *mut c_void,
-        error: *mut *mut CFError,
-    );
+/// # Safety
+///
+/// - `call_back` must be implemented correctly.
+/// - `seed` must be a valid pointer or null.
+/// - `user_info` must be a valid pointer or null.
+/// - `error` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncIterateInstalledProfiles(
+    call_back: ColorSyncProfileIterateCallback,
+    seed: *mut u32,
+    user_info: *mut c_void,
+    error: *mut *mut CFError,
+) {
+    extern "C-unwind" {
+        fn ColorSyncIterateInstalledProfiles(
+            call_back: ColorSyncProfileIterateCallback,
+            seed: *mut u32,
+            user_info: *mut c_void,
+            error: *mut *mut CFError,
+        );
+    }
+    unsafe { ColorSyncIterateInstalledProfiles(call_back, seed, user_info, error) }
 }
 
 extern "C" {
@@ -900,22 +909,34 @@ extern "C" {
     pub static kColorSyncWaitForCacheReply: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `call_back` must be implemented correctly.
-    /// - `seed` must be a valid pointer or null.
-    /// - `user_info` must be a valid pointer or null.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
-    pub fn ColorSyncIterateInstalledProfilesWithOptions(
-        call_back: ColorSyncProfileIterateCallback,
-        seed: *mut u32,
-        user_info: *mut c_void,
-        options: Option<&CFDictionary>,
-        error: *mut *mut CFError,
-    );
+/// # Safety
+///
+/// - `call_back` must be implemented correctly.
+/// - `seed` must be a valid pointer or null.
+/// - `user_info` must be a valid pointer or null.
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
+/// - `error` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncIterateInstalledProfilesWithOptions(
+    call_back: ColorSyncProfileIterateCallback,
+    seed: *mut u32,
+    user_info: *mut c_void,
+    options: Option<&CFDictionary>,
+    error: *mut *mut CFError,
+) {
+    extern "C-unwind" {
+        fn ColorSyncIterateInstalledProfilesWithOptions(
+            call_back: ColorSyncProfileIterateCallback,
+            seed: *mut u32,
+            user_info: *mut c_void,
+            options: Option<&CFDictionary>,
+            error: *mut *mut CFError,
+        );
+    }
+    unsafe {
+        ColorSyncIterateInstalledProfilesWithOptions(call_back, seed, user_info, options, error)
+    }
 }
 
 impl ColorSyncProfile {

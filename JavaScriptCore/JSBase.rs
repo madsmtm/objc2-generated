@@ -127,86 +127,120 @@ unsafe impl RefEncode for OpaqueJSValue {
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueref?language=objc)
 pub type JSValueRef = *const OpaqueJSValue;
 
-extern "C-unwind" {
-    /// Evaluates a string of JavaScript.
-    ///
-    /// Parameter `ctx`: The execution context to use.
-    ///
-    /// Parameter `script`: A JSString containing the script to evaluate.
-    ///
-    /// Parameter `thisObject`: The object to use as "this," or NULL to use the global object as "this."
-    ///
-    /// Parameter `sourceURL`: A JSString containing a URL for the script's source file. This is used by debuggers and when reporting exceptions. Pass NULL if you do not care to include source file information.
-    ///
-    /// Parameter `startingLineNumber`: An integer value specifying the script's starting line number in the file located at sourceURL. This is only used when reporting exceptions. The value is one-based, so the first line is line 1 and invalid values are clamped to 1.
-    ///
-    /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
-    ///
-    /// Returns: The JSValue that results from evaluating script, or NULL if an exception is thrown.
-    ///
-    /// # Safety
-    ///
-    /// - `ctx` must be a valid pointer.
-    /// - `script` must be a valid pointer.
-    /// - `this_object` must be a valid pointer.
-    /// - `source_url` must be a valid pointer.
-    /// - `exception` must be a valid pointer.
-    pub fn JSEvaluateScript(
-        ctx: JSContextRef,
-        script: JSStringRef,
-        this_object: JSObjectRef,
-        source_url: JSStringRef,
-        starting_line_number: c_int,
-        exception: *mut JSValueRef,
-    ) -> JSValueRef;
+/// Evaluates a string of JavaScript.
+///
+/// Parameter `ctx`: The execution context to use.
+///
+/// Parameter `script`: A JSString containing the script to evaluate.
+///
+/// Parameter `thisObject`: The object to use as "this," or NULL to use the global object as "this."
+///
+/// Parameter `sourceURL`: A JSString containing a URL for the script's source file. This is used by debuggers and when reporting exceptions. Pass NULL if you do not care to include source file information.
+///
+/// Parameter `startingLineNumber`: An integer value specifying the script's starting line number in the file located at sourceURL. This is only used when reporting exceptions. The value is one-based, so the first line is line 1 and invalid values are clamped to 1.
+///
+/// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
+///
+/// Returns: The JSValue that results from evaluating script, or NULL if an exception is thrown.
+///
+/// # Safety
+///
+/// - `ctx` must be a valid pointer.
+/// - `script` must be a valid pointer.
+/// - `this_object` must be a valid pointer.
+/// - `source_url` must be a valid pointer.
+/// - `exception` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn JSEvaluateScript(
+    ctx: JSContextRef,
+    script: JSStringRef,
+    this_object: JSObjectRef,
+    source_url: JSStringRef,
+    starting_line_number: c_int,
+    exception: *mut JSValueRef,
+) -> JSValueRef {
+    extern "C-unwind" {
+        fn JSEvaluateScript(
+            ctx: JSContextRef,
+            script: JSStringRef,
+            this_object: JSObjectRef,
+            source_url: JSStringRef,
+            starting_line_number: c_int,
+            exception: *mut JSValueRef,
+        ) -> JSValueRef;
+    }
+    unsafe {
+        JSEvaluateScript(
+            ctx,
+            script,
+            this_object,
+            source_url,
+            starting_line_number,
+            exception,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Checks for syntax errors in a string of JavaScript.
-    ///
-    /// Parameter `ctx`: The execution context to use.
-    ///
-    /// Parameter `script`: A JSString containing the script to check for syntax errors.
-    ///
-    /// Parameter `sourceURL`: A JSString containing a URL for the script's source file. This is only used when reporting exceptions. Pass NULL if you do not care to include source file information in exceptions.
-    ///
-    /// Parameter `startingLineNumber`: An integer value specifying the script's starting line number in the file located at sourceURL. This is only used when reporting exceptions. The value is one-based, so the first line is line 1 and invalid values are clamped to 1.
-    ///
-    /// Parameter `exception`: A pointer to a JSValueRef in which to store a syntax error exception, if any. Pass NULL if you do not care to store a syntax error exception.
-    ///
-    /// Returns: true if the script is syntactically correct, otherwise false.
-    ///
-    /// # Safety
-    ///
-    /// - `ctx` must be a valid pointer.
-    /// - `script` must be a valid pointer.
-    /// - `source_url` must be a valid pointer.
-    /// - `exception` must be a valid pointer.
-    pub fn JSCheckScriptSyntax(
-        ctx: JSContextRef,
-        script: JSStringRef,
-        source_url: JSStringRef,
-        starting_line_number: c_int,
-        exception: *mut JSValueRef,
-    ) -> bool;
+/// Checks for syntax errors in a string of JavaScript.
+///
+/// Parameter `ctx`: The execution context to use.
+///
+/// Parameter `script`: A JSString containing the script to check for syntax errors.
+///
+/// Parameter `sourceURL`: A JSString containing a URL for the script's source file. This is only used when reporting exceptions. Pass NULL if you do not care to include source file information in exceptions.
+///
+/// Parameter `startingLineNumber`: An integer value specifying the script's starting line number in the file located at sourceURL. This is only used when reporting exceptions. The value is one-based, so the first line is line 1 and invalid values are clamped to 1.
+///
+/// Parameter `exception`: A pointer to a JSValueRef in which to store a syntax error exception, if any. Pass NULL if you do not care to store a syntax error exception.
+///
+/// Returns: true if the script is syntactically correct, otherwise false.
+///
+/// # Safety
+///
+/// - `ctx` must be a valid pointer.
+/// - `script` must be a valid pointer.
+/// - `source_url` must be a valid pointer.
+/// - `exception` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn JSCheckScriptSyntax(
+    ctx: JSContextRef,
+    script: JSStringRef,
+    source_url: JSStringRef,
+    starting_line_number: c_int,
+    exception: *mut JSValueRef,
+) -> bool {
+    extern "C-unwind" {
+        fn JSCheckScriptSyntax(
+            ctx: JSContextRef,
+            script: JSStringRef,
+            source_url: JSStringRef,
+            starting_line_number: c_int,
+            exception: *mut JSValueRef,
+        ) -> bool;
+    }
+    unsafe { JSCheckScriptSyntax(ctx, script, source_url, starting_line_number, exception) }
 }
 
-extern "C-unwind" {
-    /// Performs a JavaScript garbage collection.
-    ///
-    /// Parameter `ctx`: The execution context to use.
-    ///
-    /// JavaScript values that are on the machine stack, in a register,
-    /// protected by JSValueProtect, set as the global object of an execution context,
-    /// or reachable from any such value will not be collected.
-    ///
-    /// During JavaScript execution, you are not required to call this function; the
-    /// JavaScript engine will garbage collect as needed. JavaScript values created
-    /// within a context group are automatically destroyed when the last reference
-    /// to the context group is released.
-    ///
-    /// # Safety
-    ///
-    /// `ctx` must be a valid pointer.
-    pub fn JSGarbageCollect(ctx: JSContextRef);
+/// Performs a JavaScript garbage collection.
+///
+/// Parameter `ctx`: The execution context to use.
+///
+/// JavaScript values that are on the machine stack, in a register,
+/// protected by JSValueProtect, set as the global object of an execution context,
+/// or reachable from any such value will not be collected.
+///
+/// During JavaScript execution, you are not required to call this function; the
+/// JavaScript engine will garbage collect as needed. JavaScript values created
+/// within a context group are automatically destroyed when the last reference
+/// to the context group is released.
+///
+/// # Safety
+///
+/// `ctx` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn JSGarbageCollect(ctx: JSContextRef) {
+    extern "C-unwind" {
+        fn JSGarbageCollect(ctx: JSContextRef);
+    }
+    unsafe { JSGarbageCollect(ctx) }
 }

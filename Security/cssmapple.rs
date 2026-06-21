@@ -1332,24 +1332,39 @@ unsafe impl RefEncode for CSSM_APPLE_CL_CSR_REQUEST {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `how` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    pub fn cssmPerror(how: *const c_char, error: CSSM_RETURN);
+/// # Safety
+///
+/// `how` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[inline]
+pub unsafe extern "C-unwind" fn cssmPerror(how: *const c_char, error: CSSM_RETURN) {
+    extern "C-unwind" {
+        fn cssmPerror(how: *const c_char, error: CSSM_RETURN);
+    }
+    unsafe { cssmPerror(how, error) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `oid` must be a valid pointer.
-    /// - `alg` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    pub fn cssmOidToAlg(oid: *const SecAsn1Oid, alg: *mut CSSM_ALGORITHMS) -> bool;
+/// # Safety
+///
+/// - `oid` must be a valid pointer.
+/// - `alg` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[inline]
+pub unsafe extern "C-unwind" fn cssmOidToAlg(
+    oid: *const SecAsn1Oid,
+    alg: *mut CSSM_ALGORITHMS,
+) -> bool {
+    extern "C-unwind" {
+        fn cssmOidToAlg(oid: *const SecAsn1Oid, alg: *mut CSSM_ALGORITHMS) -> bool;
+    }
+    unsafe { cssmOidToAlg(oid, alg) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    pub fn cssmAlgToOid(alg_id: CSSM_ALGORITHMS) -> *const SecAsn1Oid;
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[inline]
+pub unsafe extern "C-unwind" fn cssmAlgToOid(alg_id: CSSM_ALGORITHMS) -> *const SecAsn1Oid {
+    extern "C-unwind" {
+        fn cssmAlgToOid(alg_id: CSSM_ALGORITHMS) -> *const SecAsn1Oid;
+    }
+    unsafe { cssmAlgToOid(alg_id) }
 }

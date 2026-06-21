@@ -13,35 +13,42 @@ use crate::*;
 #[doc(alias = "VTSessionRef")]
 pub type VTSession = CFType;
 
-extern "C-unwind" {
-    /// Returns a dictionary enumerating all the supported properties of a video toolbox session.
-    ///
-    /// The keys of the returned dictionary are the supported property keys.
-    /// The values are themselves dictionaries, each containing the following optional fields:
-    /// <OL
-    /// >
-    /// <LI
-    /// > the type of value, (kVTPropertyTypeKey)
-    /// <LI
-    /// > the read/write status of the property (kVTPropertyReadWriteStatusKey),
-    /// <LI
-    /// > whether the property is suitable for serialization (kVTPropertyShouldBeSerializedKey),
-    /// <LI
-    /// > a range or list of the supported values, if appropriate, and
-    /// <LI
-    /// > developer-level documentation for the property (kVTPropertyDocumentationKey).
-    /// </OL
-    /// >
-    /// The caller must release the returned dictionary.
-    ///
-    /// # Safety
-    ///
-    /// - `session` should be of the correct type.
-    /// - `supported_property_dictionary_out` must be a valid pointer.
-    pub fn VTSessionCopySupportedPropertyDictionary(
-        session: &VTSession,
-        supported_property_dictionary_out: NonNull<*const CFDictionary>,
-    ) -> OSStatus;
+/// Returns a dictionary enumerating all the supported properties of a video toolbox session.
+///
+/// The keys of the returned dictionary are the supported property keys.
+/// The values are themselves dictionaries, each containing the following optional fields:
+/// <OL
+/// >
+/// <LI
+/// > the type of value, (kVTPropertyTypeKey)
+/// <LI
+/// > the read/write status of the property (kVTPropertyReadWriteStatusKey),
+/// <LI
+/// > whether the property is suitable for serialization (kVTPropertyShouldBeSerializedKey),
+/// <LI
+/// > a range or list of the supported values, if appropriate, and
+/// <LI
+/// > developer-level documentation for the property (kVTPropertyDocumentationKey).
+/// </OL
+/// >
+/// The caller must release the returned dictionary.
+///
+/// # Safety
+///
+/// - `session` should be of the correct type.
+/// - `supported_property_dictionary_out` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn VTSessionCopySupportedPropertyDictionary(
+    session: &VTSession,
+    supported_property_dictionary_out: NonNull<*const CFDictionary>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn VTSessionCopySupportedPropertyDictionary(
+            session: &VTSession,
+            supported_property_dictionary_out: NonNull<*const CFDictionary>,
+        ) -> OSStatus;
+    }
+    unsafe { VTSessionCopySupportedPropertyDictionary(session, supported_property_dictionary_out) }
 }
 
 extern "C" {
@@ -104,85 +111,117 @@ extern "C" {
     pub static kVTPropertyDocumentationKey: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Sets a property on a video toolbox session.
-    ///
-    /// Setting a property value to NULL restores the default value.
-    ///
-    /// # Safety
-    ///
-    /// - `session` should be of the correct type.
-    /// - `property_value` should be of the correct type.
-    pub fn VTSessionSetProperty(
-        session: &VTSession,
-        property_key: &CFString,
-        property_value: Option<&CFType>,
-    ) -> OSStatus;
+/// Sets a property on a video toolbox session.
+///
+/// Setting a property value to NULL restores the default value.
+///
+/// # Safety
+///
+/// - `session` should be of the correct type.
+/// - `property_value` should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn VTSessionSetProperty(
+    session: &VTSession,
+    property_key: &CFString,
+    property_value: Option<&CFType>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn VTSessionSetProperty(
+            session: &VTSession,
+            property_key: &CFString,
+            property_value: Option<&CFType>,
+        ) -> OSStatus;
+    }
+    unsafe { VTSessionSetProperty(session, property_key, property_value) }
 }
 
-extern "C-unwind" {
-    /// Retrieves a property on a video toolbox session.
-    ///
-    /// The caller must release the retrieved property value.
-    /// <BR
-    /// >
-    /// Note: for most types of property, the returned values should be considered immutable.
-    /// In particular, for CFPropertyList types, sharing of mutable property value
-    /// objects between the client, session and codec should be avoided.
-    /// However, some properties will be used for exchanging service objects that are inherently
-    /// mutable (eg, CVPixelBufferPool).
-    ///
-    /// Parameter `propertyKey`: The key for the property to retrieve.
-    ///
-    /// Parameter `allocator`: An allocator suitable for use when copying property values.
-    ///
-    /// Parameter `propertyValueOut`: Points to a variable to receive the property value, which must be a CF-registered type --
-    /// the caller may call CFGetTypeID() on it to identify which specific type.
-    /// The caller must release the this property value.
-    ///
-    /// Returns: noErr if successful; kVTPropertyNotSupportedErr for unrecognized or unsupported properties.
-    ///
-    /// # Safety
-    ///
-    /// - `session` should be of the correct type.
-    /// - `property_value_out` must be a valid pointer or null.
-    pub fn VTSessionCopyProperty(
-        session: &VTSession,
-        property_key: &CFString,
-        allocator: Option<&CFAllocator>,
-        property_value_out: *mut c_void,
-    ) -> OSStatus;
+/// Retrieves a property on a video toolbox session.
+///
+/// The caller must release the retrieved property value.
+/// <BR
+/// >
+/// Note: for most types of property, the returned values should be considered immutable.
+/// In particular, for CFPropertyList types, sharing of mutable property value
+/// objects between the client, session and codec should be avoided.
+/// However, some properties will be used for exchanging service objects that are inherently
+/// mutable (eg, CVPixelBufferPool).
+///
+/// Parameter `propertyKey`: The key for the property to retrieve.
+///
+/// Parameter `allocator`: An allocator suitable for use when copying property values.
+///
+/// Parameter `propertyValueOut`: Points to a variable to receive the property value, which must be a CF-registered type --
+/// the caller may call CFGetTypeID() on it to identify which specific type.
+/// The caller must release the this property value.
+///
+/// Returns: noErr if successful; kVTPropertyNotSupportedErr for unrecognized or unsupported properties.
+///
+/// # Safety
+///
+/// - `session` should be of the correct type.
+/// - `property_value_out` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn VTSessionCopyProperty(
+    session: &VTSession,
+    property_key: &CFString,
+    allocator: Option<&CFAllocator>,
+    property_value_out: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn VTSessionCopyProperty(
+            session: &VTSession,
+            property_key: &CFString,
+            allocator: Option<&CFAllocator>,
+            property_value_out: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { VTSessionCopyProperty(session, property_key, allocator, property_value_out) }
 }
 
-extern "C-unwind" {
-    /// Sets multiple properties at once.
-    ///
-    /// Sets the properties specified by keys in propertyDictionary to the corresponding values.
-    ///
-    /// # Safety
-    ///
-    /// - `session` should be of the correct type.
-    /// - `property_dictionary` generic must be of the correct type.
-    /// - `property_dictionary` generic must be of the correct type.
-    pub fn VTSessionSetProperties(
-        session: &VTSession,
-        property_dictionary: &CFDictionary,
-    ) -> OSStatus;
+/// Sets multiple properties at once.
+///
+/// Sets the properties specified by keys in propertyDictionary to the corresponding values.
+///
+/// # Safety
+///
+/// - `session` should be of the correct type.
+/// - `property_dictionary` generic must be of the correct type.
+/// - `property_dictionary` generic must be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn VTSessionSetProperties(
+    session: &VTSession,
+    property_dictionary: &CFDictionary,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn VTSessionSetProperties(
+            session: &VTSession,
+            property_dictionary: &CFDictionary,
+        ) -> OSStatus;
+    }
+    unsafe { VTSessionSetProperties(session, property_dictionary) }
 }
 
-extern "C-unwind" {
-    /// Retrieves the set of serializable property keys and their current values.
-    ///
-    /// The serializable properties are those which can be saved and applied to a different session.
-    /// The caller must release the returned dictionary.
-    ///
-    /// # Safety
-    ///
-    /// - `session` should be of the correct type.
-    /// - `dictionary_out` must be a valid pointer.
-    pub fn VTSessionCopySerializableProperties(
-        session: &VTSession,
-        allocator: Option<&CFAllocator>,
-        dictionary_out: NonNull<*const CFDictionary>,
-    ) -> OSStatus;
+/// Retrieves the set of serializable property keys and their current values.
+///
+/// The serializable properties are those which can be saved and applied to a different session.
+/// The caller must release the returned dictionary.
+///
+/// # Safety
+///
+/// - `session` should be of the correct type.
+/// - `dictionary_out` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn VTSessionCopySerializableProperties(
+    session: &VTSession,
+    allocator: Option<&CFAllocator>,
+    dictionary_out: NonNull<*const CFDictionary>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn VTSessionCopySerializableProperties(
+            session: &VTSession,
+            allocator: Option<&CFAllocator>,
+            dictionary_out: NonNull<*const CFDictionary>,
+        ) -> OSStatus;
+    }
+    unsafe { VTSessionCopySerializableProperties(session, allocator, dictionary_out) }
 }

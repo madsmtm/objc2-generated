@@ -12,21 +12,34 @@ pub const keyReplyPortAttr: AEKeyword = 0x72657070;
 #[cfg(feature = "AEDataModel")]
 pub const typeReplyPortAttr: DescType = keyReplyPortAttr;
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn AEGetRegisteredMachPort() -> libc::mach_port_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEGetRegisteredMachPort() -> libc::mach_port_t {
+    extern "C-unwind" {
+        fn AEGetRegisteredMachPort() -> libc::mach_port_t;
+    }
+    unsafe { AEGetRegisteredMachPort() }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `event` must be a valid pointer.
-    /// - `reply` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AESendMessage(
-        event: *const AppleEvent,
-        reply: *mut AppleEvent,
-        send_mode: AESendMode,
-        time_out_in_ticks: c_long,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `event` must be a valid pointer.
+/// - `reply` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AESendMessage(
+    event: *const AppleEvent,
+    reply: *mut AppleEvent,
+    send_mode: AESendMode,
+    time_out_in_ticks: c_long,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AESendMessage(
+            event: *const AppleEvent,
+            reply: *mut AppleEvent,
+            send_mode: AESendMode,
+            time_out_in_ticks: c_long,
+        ) -> OSStatus;
+    }
+    unsafe { AESendMessage(event, reply, send_mode, time_out_in_ticks) }
 }

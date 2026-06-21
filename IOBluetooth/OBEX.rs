@@ -1141,238 +1141,314 @@ unsafe impl RefEncode for OBEXSessionEvent {
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessioneventcallback?language=objc)
 pub type OBEXSessionEventCallback = Option<unsafe extern "C-unwind" fn(*const OBEXSessionEvent)>;
 
-extern "C-unwind" {
-    /// Destroy an OBEX session. If connections are open, they will (eventually) be terminated for you.
-    ///
-    /// Parameter `inSessionRef`: A valid service reference.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// `in_session_ref` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionDelete(in_session_ref: OBEXSessionRef) -> OBEXError;
+/// Destroy an OBEX session. If connections are open, they will (eventually) be terminated for you.
+///
+/// Parameter `inSessionRef`: A valid service reference.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// `in_session_ref` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionDelete(in_session_ref: OBEXSessionRef) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionDelete(in_session_ref: OBEXSessionRef) -> OBEXError;
+    }
+    unsafe { OBEXSessionDelete(in_session_ref) }
 }
 
-extern "C-unwind" {
-    /// Allows you to test the session for an open OBEX connection for a particular session.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `outIsConnected`: A valid ptr to an OBEXSessionRef; will contain the newly created session if return
-    /// value is kOBEXSuccess.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// This method will return true only if (a) you are transport-connected to another OBEX target and
-    /// (b) an OBEX Connect command has been issued and received successfully.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `out_is_connected` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionHasOpenOBEXConnection(
-        in_session_ref: OBEXSessionRef,
-        out_is_connected: *mut Boolean,
-    ) -> OBEXError;
+/// Allows you to test the session for an open OBEX connection for a particular session.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `outIsConnected`: A valid ptr to an OBEXSessionRef; will contain the newly created session if return
+/// value is kOBEXSuccess.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// This method will return true only if (a) you are transport-connected to another OBEX target and
+/// (b) an OBEX Connect command has been issued and received successfully.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `out_is_connected` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionHasOpenOBEXConnection(
+    in_session_ref: OBEXSessionRef,
+    out_is_connected: *mut Boolean,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionHasOpenOBEXConnection(
+            in_session_ref: OBEXSessionRef,
+            out_is_connected: *mut Boolean,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXSessionHasOpenOBEXConnection(in_session_ref, out_is_connected) }
 }
 
-extern "C-unwind" {
-    /// Gets current max packet length.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `outLength`: Max packet length.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// This value *could* change before and after a connect command has been sent or a connect
-    /// command response has been received, since the recipient could negotiate a lower max packet size.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `out_length` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionGetMaxPacketLength(
-        in_session_ref: OBEXSessionRef,
-        out_length: *mut OBEXMaxPacketLength,
-    ) -> OBEXError;
+/// Gets current max packet length.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `outLength`: Max packet length.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// This value *could* change before and after a connect command has been sent or a connect
+/// command response has been received, since the recipient could negotiate a lower max packet size.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `out_length` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionGetMaxPacketLength(
+    in_session_ref: OBEXSessionRef,
+    out_length: *mut OBEXMaxPacketLength,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionGetMaxPacketLength(
+            in_session_ref: OBEXSessionRef,
+            out_length: *mut OBEXMaxPacketLength,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXSessionGetMaxPacketLength(in_session_ref, out_length) }
 }
 
-extern "C-unwind" {
-    /// Gets space available for your data for a particular command you are trying to send.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inOpCode`: An opcode of what command you are trying to send.
-    ///
-    /// Parameter `outLength`: Space available for your header data in the payload area for a particular command.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// The OBEXSession takes care of packaging OBEX opcodes and other information into the proper packet format,
-    /// allowing you to focus on sending the proper OBEX headers in your commands and command responses. This formatting
-    /// and datas requires a small bit of information that varies depending on what command or response you are
-    /// sending. Thus, you should call this function to find out how much space will be left for your headers
-    /// before you send the command, allowing you to properly chop up your headers before sending them. This will
-    /// guarantee that (a) you use up all the available space in a packet and (b) that you do not get an error
-    /// trying to send too much information at once.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `out_length` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionGetAvailableCommandPayloadLength(
-        in_session_ref: OBEXSessionRef,
-        in_op_code: OBEXOpCode,
-        out_length: *mut OBEXMaxPacketLength,
-    ) -> OBEXError;
+/// Gets space available for your data for a particular command you are trying to send.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inOpCode`: An opcode of what command you are trying to send.
+///
+/// Parameter `outLength`: Space available for your header data in the payload area for a particular command.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// The OBEXSession takes care of packaging OBEX opcodes and other information into the proper packet format,
+/// allowing you to focus on sending the proper OBEX headers in your commands and command responses. This formatting
+/// and datas requires a small bit of information that varies depending on what command or response you are
+/// sending. Thus, you should call this function to find out how much space will be left for your headers
+/// before you send the command, allowing you to properly chop up your headers before sending them. This will
+/// guarantee that (a) you use up all the available space in a packet and (b) that you do not get an error
+/// trying to send too much information at once.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `out_length` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionGetAvailableCommandPayloadLength(
+    in_session_ref: OBEXSessionRef,
+    in_op_code: OBEXOpCode,
+    out_length: *mut OBEXMaxPacketLength,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionGetAvailableCommandPayloadLength(
+            in_session_ref: OBEXSessionRef,
+            in_op_code: OBEXOpCode,
+            out_length: *mut OBEXMaxPacketLength,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXSessionGetAvailableCommandPayloadLength(in_session_ref, in_op_code, out_length) }
 }
 
-extern "C-unwind" {
-    /// Gets space available for your data for a particular command response you are trying to send.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inOpCode`: A command opcode that you are responding to. For example, if you receiving a Put command,
-    /// and want to send back a "bad request" response, you should still pass in the Put command
-    /// opcode for that response.
-    ///
-    /// Parameter `outLength`: Space available for your header data in the payload area for a particular command.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// The OBEXSession takes care of packaging OBEX opcodes and other information into the proper packet format,
-    /// allowing you to focus on sending the proper OBEX headers in your commands and command responses. This formatting
-    /// and datas requires a small bit of information that varies depending on what command or response you are
-    /// sending. Thus, you should call this function to find out how much space will be left for your headers
-    /// before you send the command, allowing you to properly chop up your headers before sending them. This will
-    /// guarantee that (a) you use up all the available space in a packet and (b) that you do not get an error
-    /// trying to send too much information at once.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `out_length` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionGetAvailableCommandResponsePayloadLength(
-        in_session_ref: OBEXSessionRef,
-        in_op_code: OBEXOpCode,
-        out_length: *mut OBEXMaxPacketLength,
-    ) -> OBEXError;
+/// Gets space available for your data for a particular command response you are trying to send.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inOpCode`: A command opcode that you are responding to. For example, if you receiving a Put command,
+/// and want to send back a "bad request" response, you should still pass in the Put command
+/// opcode for that response.
+///
+/// Parameter `outLength`: Space available for your header data in the payload area for a particular command.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// The OBEXSession takes care of packaging OBEX opcodes and other information into the proper packet format,
+/// allowing you to focus on sending the proper OBEX headers in your commands and command responses. This formatting
+/// and datas requires a small bit of information that varies depending on what command or response you are
+/// sending. Thus, you should call this function to find out how much space will be left for your headers
+/// before you send the command, allowing you to properly chop up your headers before sending them. This will
+/// guarantee that (a) you use up all the available space in a packet and (b) that you do not get an error
+/// trying to send too much information at once.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `out_length` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionGetAvailableCommandResponsePayloadLength(
+    in_session_ref: OBEXSessionRef,
+    in_op_code: OBEXOpCode,
+    out_length: *mut OBEXMaxPacketLength,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionGetAvailableCommandResponsePayloadLength(
+            in_session_ref: OBEXSessionRef,
+            in_op_code: OBEXOpCode,
+            out_length: *mut OBEXMaxPacketLength,
+        ) -> OBEXError;
+    }
+    unsafe {
+        OBEXSessionGetAvailableCommandResponsePayloadLength(in_session_ref, in_op_code, out_length)
+    }
 }
 
-extern "C-unwind" {
-    /// Establishes an OBEX connection to the target device for the session. If a transport connection is not
-    /// open yet, it will be opened if possible.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inFlags`: Flags, as defined in the OBEX spec for this command.
-    ///
-    /// Parameter `inMaxPacketLength`: Maximum packet length you wish to allow. May be negiotiated with host to be less
-    /// or more than you specify.
-    ///
-    /// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
-    /// pointer until you callback is called with a success.
-    ///
-    /// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
-    ///
-    /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback parameter will
-    /// result in an error. If you have already established an OBEX connection and you call this again you will
-    /// get an 'kOBEXSessionAlreadyConnectedError' as a result.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_optional_headers` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionConnect(
-        in_session_ref: OBEXSessionRef,
-        in_flags: OBEXFlags,
-        in_max_packet_length: OBEXMaxPacketLength,
-        in_optional_headers: *mut c_void,
-        in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Establishes an OBEX connection to the target device for the session. If a transport connection is not
+/// open yet, it will be opened if possible.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inFlags`: Flags, as defined in the OBEX spec for this command.
+///
+/// Parameter `inMaxPacketLength`: Maximum packet length you wish to allow. May be negiotiated with host to be less
+/// or more than you specify.
+///
+/// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
+/// pointer until you callback is called with a success.
+///
+/// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
+///
+/// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback parameter will
+/// result in an error. If you have already established an OBEX connection and you call this again you will
+/// get an 'kOBEXSessionAlreadyConnectedError' as a result.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_optional_headers` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionConnect(
+    in_session_ref: OBEXSessionRef,
+    in_flags: OBEXFlags,
+    in_max_packet_length: OBEXMaxPacketLength,
+    in_optional_headers: *mut c_void,
+    in_optional_headers_length: usize,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionConnect(
+            in_session_ref: OBEXSessionRef,
+            in_flags: OBEXFlags,
+            in_max_packet_length: OBEXMaxPacketLength,
+            in_optional_headers: *mut c_void,
+            in_optional_headers_length: usize,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe {
+        OBEXSessionConnect(
+            in_session_ref,
+            in_flags,
+            in_max_packet_length,
+            in_optional_headers,
+            in_optional_headers_length,
+            in_callback,
+            in_user_ref_con,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Send a disconnect command to a remote OBEX server.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
-    /// pointer until you callback is called with a success.
-    ///
-    /// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
-    ///
-    /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
-    /// result in an error.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_optional_headers` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionDisconnect(
-        in_session_ref: OBEXSessionRef,
-        in_optional_headers: *mut c_void,
-        in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Send a disconnect command to a remote OBEX server.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
+/// pointer until you callback is called with a success.
+///
+/// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
+///
+/// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
+/// result in an error.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_optional_headers` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionDisconnect(
+    in_session_ref: OBEXSessionRef,
+    in_optional_headers: *mut c_void,
+    in_optional_headers_length: usize,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionDisconnect(
+            in_session_ref: OBEXSessionRef,
+            in_optional_headers: *mut c_void,
+            in_optional_headers_length: usize,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe {
+        OBEXSessionDisconnect(
+            in_session_ref,
+            in_optional_headers,
+            in_optional_headers_length,
+            in_callback,
+            in_user_ref_con,
+        )
+    }
 }
 
 /// Send a put command to a remote OBEX server.
@@ -1512,387 +1588,559 @@ pub unsafe extern "C-unwind" fn OBEXSessionGet(
     }
 }
 
-extern "C-unwind" {
-    /// Send an abort command to a remote OBEX server.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
-    /// pointer until you callback is called with a success.
-    ///
-    /// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
-    ///
-    /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
-    /// result in an error.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_optional_headers` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionAbort(
-        in_session_ref: OBEXSessionRef,
-        in_optional_headers: *mut c_void,
-        in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Send an abort command to a remote OBEX server.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
+/// pointer until you callback is called with a success.
+///
+/// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
+///
+/// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
+/// result in an error.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_optional_headers` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionAbort(
+    in_session_ref: OBEXSessionRef,
+    in_optional_headers: *mut c_void,
+    in_optional_headers_length: usize,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionAbort(
+            in_session_ref: OBEXSessionRef,
+            in_optional_headers: *mut c_void,
+            in_optional_headers_length: usize,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe {
+        OBEXSessionAbort(
+            in_session_ref,
+            in_optional_headers,
+            in_optional_headers_length,
+            in_callback,
+            in_user_ref_con,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Send a set path command to a remote OBEX server.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inFlags`: Flags, as defined in the OBEX spec for this command.
-    ///
-    /// Parameter `inConstants`: Constants, as defined in the OBEX spec for this command.
-    ///
-    /// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
-    /// pointer until you callback is called with a success.
-    ///
-    /// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
-    ///
-    /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
-    /// result in an error.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_optional_headers` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionSetPath(
-        in_session_ref: OBEXSessionRef,
-        in_flags: OBEXFlags,
-        in_constants: OBEXConstants,
-        in_optional_headers: *mut c_void,
-        in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Send a set path command to a remote OBEX server.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inFlags`: Flags, as defined in the OBEX spec for this command.
+///
+/// Parameter `inConstants`: Constants, as defined in the OBEX spec for this command.
+///
+/// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
+/// pointer until you callback is called with a success.
+///
+/// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
+///
+/// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
+/// result in an error.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_optional_headers` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionSetPath(
+    in_session_ref: OBEXSessionRef,
+    in_flags: OBEXFlags,
+    in_constants: OBEXConstants,
+    in_optional_headers: *mut c_void,
+    in_optional_headers_length: usize,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionSetPath(
+            in_session_ref: OBEXSessionRef,
+            in_flags: OBEXFlags,
+            in_constants: OBEXConstants,
+            in_optional_headers: *mut c_void,
+            in_optional_headers_length: usize,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe {
+        OBEXSessionSetPath(
+            in_session_ref,
+            in_flags,
+            in_constants,
+            in_optional_headers,
+            in_optional_headers_length,
+            in_callback,
+            in_user_ref_con,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Send a response to a connect command to the remote client.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
-    ///
-    /// Parameter `inFlags`: Flags, as defined in the OBEX spec for this command.
-    ///
-    /// Parameter `inMaxPacketLength`: Max packet length you want to support. Must be smaller or equal to the max packet
-    /// length specified by the remote client.
-    ///
-    /// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
-    /// pointer until you callback is called with a success.
-    ///
-    /// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
-    ///
-    /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
-    /// result in an error.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_optional_headers` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionConnectResponse(
-        in_session_ref: OBEXSessionRef,
-        in_response_op_code: OBEXOpCode,
-        in_flags: OBEXFlags,
-        in_max_packet_length: OBEXMaxPacketLength,
-        in_optional_headers: *mut c_void,
-        in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Send a response to a connect command to the remote client.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
+///
+/// Parameter `inFlags`: Flags, as defined in the OBEX spec for this command.
+///
+/// Parameter `inMaxPacketLength`: Max packet length you want to support. Must be smaller or equal to the max packet
+/// length specified by the remote client.
+///
+/// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
+/// pointer until you callback is called with a success.
+///
+/// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
+///
+/// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
+/// result in an error.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_optional_headers` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionConnectResponse(
+    in_session_ref: OBEXSessionRef,
+    in_response_op_code: OBEXOpCode,
+    in_flags: OBEXFlags,
+    in_max_packet_length: OBEXMaxPacketLength,
+    in_optional_headers: *mut c_void,
+    in_optional_headers_length: usize,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionConnectResponse(
+            in_session_ref: OBEXSessionRef,
+            in_response_op_code: OBEXOpCode,
+            in_flags: OBEXFlags,
+            in_max_packet_length: OBEXMaxPacketLength,
+            in_optional_headers: *mut c_void,
+            in_optional_headers_length: usize,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe {
+        OBEXSessionConnectResponse(
+            in_session_ref,
+            in_response_op_code,
+            in_flags,
+            in_max_packet_length,
+            in_optional_headers,
+            in_optional_headers_length,
+            in_callback,
+            in_user_ref_con,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Send a response to a disconnect command to the remote client.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
-    ///
-    /// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
-    /// pointer until you callback is called with a success.
-    ///
-    /// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
-    ///
-    /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
-    /// result in an error.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_optional_headers` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionDisconnectResponse(
-        in_session_ref: OBEXSessionRef,
-        in_response_op_code: OBEXOpCode,
-        in_optional_headers: *mut c_void,
-        in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Send a response to a disconnect command to the remote client.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
+///
+/// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
+/// pointer until you callback is called with a success.
+///
+/// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
+///
+/// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
+/// result in an error.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_optional_headers` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionDisconnectResponse(
+    in_session_ref: OBEXSessionRef,
+    in_response_op_code: OBEXOpCode,
+    in_optional_headers: *mut c_void,
+    in_optional_headers_length: usize,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionDisconnectResponse(
+            in_session_ref: OBEXSessionRef,
+            in_response_op_code: OBEXOpCode,
+            in_optional_headers: *mut c_void,
+            in_optional_headers_length: usize,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe {
+        OBEXSessionDisconnectResponse(
+            in_session_ref,
+            in_response_op_code,
+            in_optional_headers,
+            in_optional_headers_length,
+            in_callback,
+            in_user_ref_con,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Send a response to a get command to the remote client.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
-    ///
-    /// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
-    /// pointer until you callback is called with a success.
-    ///
-    /// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
-    ///
-    /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
-    /// result in an error.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_optional_headers` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionGetResponse(
-        in_session_ref: OBEXSessionRef,
-        in_response_op_code: OBEXOpCode,
-        in_optional_headers: *mut c_void,
-        in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Send a response to a get command to the remote client.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
+///
+/// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
+/// pointer until you callback is called with a success.
+///
+/// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
+///
+/// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
+/// result in an error.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_optional_headers` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionGetResponse(
+    in_session_ref: OBEXSessionRef,
+    in_response_op_code: OBEXOpCode,
+    in_optional_headers: *mut c_void,
+    in_optional_headers_length: usize,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionGetResponse(
+            in_session_ref: OBEXSessionRef,
+            in_response_op_code: OBEXOpCode,
+            in_optional_headers: *mut c_void,
+            in_optional_headers_length: usize,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe {
+        OBEXSessionGetResponse(
+            in_session_ref,
+            in_response_op_code,
+            in_optional_headers,
+            in_optional_headers_length,
+            in_callback,
+            in_user_ref_con,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Send a response to a put command to the remote client.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
-    ///
-    /// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
-    /// pointer until you callback is called with a success.
-    ///
-    /// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
-    ///
-    /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
-    /// result in an error.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_optional_headers` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionPutResponse(
-        in_session_ref: OBEXSessionRef,
-        in_response_op_code: OBEXOpCode,
-        in_optional_headers: *mut c_void,
-        in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Send a response to a put command to the remote client.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
+///
+/// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
+/// pointer until you callback is called with a success.
+///
+/// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
+///
+/// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
+/// result in an error.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_optional_headers` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionPutResponse(
+    in_session_ref: OBEXSessionRef,
+    in_response_op_code: OBEXOpCode,
+    in_optional_headers: *mut c_void,
+    in_optional_headers_length: usize,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionPutResponse(
+            in_session_ref: OBEXSessionRef,
+            in_response_op_code: OBEXOpCode,
+            in_optional_headers: *mut c_void,
+            in_optional_headers_length: usize,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe {
+        OBEXSessionPutResponse(
+            in_session_ref,
+            in_response_op_code,
+            in_optional_headers,
+            in_optional_headers_length,
+            in_callback,
+            in_user_ref_con,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Send a response to a abort command to the remote client.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
-    ///
-    /// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
-    /// pointer until you callback is called with a success.
-    ///
-    /// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
-    ///
-    /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
-    /// result in an error.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_optional_headers` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionAbortResponse(
-        in_session_ref: OBEXSessionRef,
-        in_response_op_code: OBEXOpCode,
-        in_optional_headers: *mut c_void,
-        in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Send a response to a abort command to the remote client.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
+///
+/// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
+/// pointer until you callback is called with a success.
+///
+/// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
+///
+/// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
+/// result in an error.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_optional_headers` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionAbortResponse(
+    in_session_ref: OBEXSessionRef,
+    in_response_op_code: OBEXOpCode,
+    in_optional_headers: *mut c_void,
+    in_optional_headers_length: usize,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionAbortResponse(
+            in_session_ref: OBEXSessionRef,
+            in_response_op_code: OBEXOpCode,
+            in_optional_headers: *mut c_void,
+            in_optional_headers_length: usize,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe {
+        OBEXSessionAbortResponse(
+            in_session_ref,
+            in_response_op_code,
+            in_optional_headers,
+            in_optional_headers_length,
+            in_callback,
+            in_user_ref_con,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Send a response to a set path command to the remote client.
-    ///
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
-    ///
-    /// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
-    /// pointer until you callback is called with a success.
-    ///
-    /// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
-    ///
-    /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
-    /// result in an error.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_optional_headers` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionSetPathResponse(
-        in_session_ref: OBEXSessionRef,
-        in_response_op_code: OBEXOpCode,
-        in_optional_headers: *mut c_void,
-        in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Send a response to a set path command to the remote client.
+///
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inResponseOpCode`: What response code you want to send to the remote client.
+///
+/// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
+/// pointer until you callback is called with a success.
+///
+/// Parameter `inOptionalHeadersLength`: Size of data at the specified ptr.
+///
+/// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will
+/// result in an error.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_optional_headers` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionSetPathResponse(
+    in_session_ref: OBEXSessionRef,
+    in_response_op_code: OBEXOpCode,
+    in_optional_headers: *mut c_void,
+    in_optional_headers_length: usize,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionSetPathResponse(
+            in_session_ref: OBEXSessionRef,
+            in_response_op_code: OBEXOpCode,
+            in_optional_headers: *mut c_void,
+            in_optional_headers_length: usize,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe {
+        OBEXSessionSetPathResponse(
+            in_session_ref,
+            in_response_op_code,
+            in_optional_headers,
+            in_optional_headers_length,
+            in_callback,
+            in_user_ref_con,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion by server
-    /// sessions only.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// Sets callback to be used when an event occurs on an OBEXSession. This is important for OBEX servers, as you
-    /// will need a way to be called back when the first command is sent to you. So, be sure to set yourself
-    /// up to listen for events when you are ready to receive them.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[deprecated]
-    pub fn OBEXSessionSetServerCallback(
-        in_session_ref: OBEXSessionRef,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion by server
+/// sessions only.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// Sets callback to be used when an event occurs on an OBEXSession. This is important for OBEX servers, as you
+/// will need a way to be called back when the first command is sent to you. So, be sure to set yourself
+/// up to listen for events when you are ready to receive them.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXSessionSetServerCallback(
+    in_session_ref: OBEXSessionRef,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXSessionSetServerCallback(
+            in_session_ref: OBEXSessionRef,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXSessionSetServerCallback(in_session_ref, in_callback, in_user_ref_con) }
 }
 
 /// Creates a formatted vCard, ready to be sent over OBEX or whatever.
@@ -2465,218 +2713,284 @@ pub unsafe extern "C-unwind" fn OBEXHeadersToBytes(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Add a CFStringRef to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `name`: name you want to add to the OBEX header dictionary.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Name header - OBEX Spec, 2.2.2: (2-byte) Null terminated unicode string.
-    ///
-    /// # Safety
-    ///
-    /// - `name` might not allow `None`.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddNameHeader(
-        name: Option<&CFString>,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add a CFStringRef to a dictionary of OBEXheaders.
+///
+/// Parameter `name`: name you want to add to the OBEX header dictionary.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Name header - OBEX Spec, 2.2.2: (2-byte) Null terminated unicode string.
+///
+/// # Safety
+///
+/// - `name` might not allow `None`.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddNameHeader(
+    name: Option<&CFString>,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddNameHeader(
+            name: Option<&CFString>,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddNameHeader(name, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add a CFStringRef to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `description`: Description you want to add to the OBEX header dictionary.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Description header - OBEX Spec, 2.2.6: (2-byte) Null terminated unicode string.
-    ///
-    /// # Safety
-    ///
-    /// - `description` might not allow `None`.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddDescriptionHeader(
-        description: Option<&CFString>,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add a CFStringRef to a dictionary of OBEXheaders.
+///
+/// Parameter `description`: Description you want to add to the OBEX header dictionary.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Description header - OBEX Spec, 2.2.6: (2-byte) Null terminated unicode string.
+///
+/// # Safety
+///
+/// - `description` might not allow `None`.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddDescriptionHeader(
+    description: Option<&CFString>,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddDescriptionHeader(
+            description: Option<&CFString>,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddDescriptionHeader(description, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add a CFStringRef to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `count`: Count value you want to add to the OBEX header dictionary.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Count header - OBEX Spec, 2.2.1: 4 byte unsigned integer
-    ///
-    /// # Safety
-    ///
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddCountHeader(count: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
+/// Add a CFStringRef to a dictionary of OBEXheaders.
+///
+/// Parameter `count`: Count value you want to add to the OBEX header dictionary.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Count header - OBEX Spec, 2.2.1: 4 byte unsigned integer
+///
+/// # Safety
+///
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddCountHeader(
+    count: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddCountHeader(count: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
+    }
+    unsafe { OBEXAddCountHeader(count, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add a CFStringRef to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `time4Byte`: 4-byte time value you want to add to the OBEX header dictionary.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Time4Byte headers - OBEX Spec, 2.2.5: 4 Bytes
-    ///
-    /// # Safety
-    ///
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddTime4ByteHeader(
-        time4_byte: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add a CFStringRef to a dictionary of OBEXheaders.
+///
+/// Parameter `time4Byte`: 4-byte time value you want to add to the OBEX header dictionary.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Time4Byte headers - OBEX Spec, 2.2.5: 4 Bytes
+///
+/// # Safety
+///
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddTime4ByteHeader(
+    time4_byte: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddTime4ByteHeader(
+            time4_byte: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddTime4ByteHeader(time4_byte, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add a CFStringRef to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `length`: Value of Length header you want to add to the OBEX header dictionary.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Length header - OBEX Spec, 2.2.4: 4 byte unsigned integer
-    ///
-    /// # Safety
-    ///
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddLengthHeader(length: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
+/// Add a CFStringRef to a dictionary of OBEXheaders.
+///
+/// Parameter `length`: Value of Length header you want to add to the OBEX header dictionary.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Length header - OBEX Spec, 2.2.4: 4 byte unsigned integer
+///
+/// # Safety
+///
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddLengthHeader(
+    length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddLengthHeader(length: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
+    }
+    unsafe { OBEXAddLengthHeader(length, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add a CFStringRef to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `type`: String containing the type of header to add.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Type header - OBEX Spec, 2.2.3: 1-byte Null terminated ascii string.
-    ///
-    /// # Safety
-    ///
-    /// - `type` might not allow `None`.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddTypeHeader(
-        r#type: Option<&CFString>,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add a CFStringRef to a dictionary of OBEXheaders.
+///
+/// Parameter `type`: String containing the type of header to add.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Type header - OBEX Spec, 2.2.3: 1-byte Null terminated ascii string.
+///
+/// # Safety
+///
+/// - `type` might not allow `None`.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddTypeHeader(
+    r#type: Option<&CFString>,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddTypeHeader(
+            r#type: Option<&CFString>,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddTypeHeader(r#type, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add bytes to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `inHeaderData`: Time ISO 8601 header data, local times in format YYYYMMDDTHHMMSS and UTC in the format YYYYMMDDTHHMMSSZ.
-    ///
-    /// Parameter `inHeaderDataLength`: Length of header data.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// TimeISO header - OBEX Spec, 2.2.5: Byte Sequence
-    ///
-    /// # Safety
-    ///
-    /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddTimeISOHeader(
-        in_header_data: *const c_void,
-        in_header_data_length: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add bytes to a dictionary of OBEXheaders.
+///
+/// Parameter `inHeaderData`: Time ISO 8601 header data, local times in format YYYYMMDDTHHMMSS and UTC in the format YYYYMMDDTHHMMSSZ.
+///
+/// Parameter `inHeaderDataLength`: Length of header data.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// TimeISO header - OBEX Spec, 2.2.5: Byte Sequence
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddTimeISOHeader(
+    in_header_data: *const c_void,
+    in_header_data_length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddTimeISOHeader(
+            in_header_data: *const c_void,
+            in_header_data_length: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddTimeISOHeader(in_header_data, in_header_data_length, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add bytes of data to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `inHeaderData`: Target header data.
-    ///
-    /// Parameter `inHeaderDataLength`: Length of Target header data.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Target header - OBEX Spec, 2.2.7: Byte Sequence
-    ///
-    /// # Safety
-    ///
-    /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddTargetHeader(
-        in_header_data: *const c_void,
-        in_header_data_length: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add bytes of data to a dictionary of OBEXheaders.
+///
+/// Parameter `inHeaderData`: Target header data.
+///
+/// Parameter `inHeaderDataLength`: Length of Target header data.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Target header - OBEX Spec, 2.2.7: Byte Sequence
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddTargetHeader(
+    in_header_data: *const c_void,
+    in_header_data_length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddTargetHeader(
+            in_header_data: *const c_void,
+            in_header_data_length: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddTargetHeader(in_header_data, in_header_data_length, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add bytes of data to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `inHeaderData`: HTTP header data.
-    ///
-    /// Parameter `inHeaderDataLength`: Length of HTTP header data.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// HTTP header - OBEX Spec, 2.2.8: Byte Sequence
-    ///
-    /// # Safety
-    ///
-    /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddHTTPHeader(
-        in_header_data: *const c_void,
-        in_header_data_length: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add bytes of data to a dictionary of OBEXheaders.
+///
+/// Parameter `inHeaderData`: HTTP header data.
+///
+/// Parameter `inHeaderDataLength`: Length of HTTP header data.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// HTTP header - OBEX Spec, 2.2.8: Byte Sequence
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddHTTPHeader(
+    in_header_data: *const c_void,
+    in_header_data_length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddHTTPHeader(
+            in_header_data: *const c_void,
+            in_header_data_length: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddHTTPHeader(in_header_data, in_header_data_length, dict_ref) }
 }
 
 /// Add bytes of data to a dictionary of OBEXheaders.
@@ -2725,238 +3039,302 @@ pub unsafe extern "C-unwind" fn OBEXAddBodyHeader(
     }
 }
 
-extern "C-unwind" {
-    /// Add bytes of data to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `inHeaderData`: Who header data.
-    ///
-    /// Parameter `inHeaderDataLength`: Length of Who header data.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Who headers - OBEX Spec, 2.2.10: Byte Sequence
-    ///
-    /// # Safety
-    ///
-    /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddWhoHeader(
-        in_header_data: *const c_void,
-        in_header_data_length: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add bytes of data to a dictionary of OBEXheaders.
+///
+/// Parameter `inHeaderData`: Who header data.
+///
+/// Parameter `inHeaderDataLength`: Length of Who header data.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Who headers - OBEX Spec, 2.2.10: Byte Sequence
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddWhoHeader(
+    in_header_data: *const c_void,
+    in_header_data_length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddWhoHeader(
+            in_header_data: *const c_void,
+            in_header_data_length: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddWhoHeader(in_header_data, in_header_data_length, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add bytes representing a connection ID to a dictionary of OBEX headers.
-    ///
-    /// Parameter `inHeaderData`: Connection ID data. Should be 4 bytes in length only.
-    ///
-    /// Parameter `inHeaderDataLength`: Length of Connection ID data. This should ONLY be set to equal 4.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// ConnectionID headers - OBEX Spec, 2.2.10: Byte Sequence
-    ///
-    /// ** IMPORTANT NOTE: In bluetooth 1.0, using this function will allow you to pass in any value.
-    /// You should not pass more than 4 bytes ever. In later releases, if the length
-    /// passed is not 4, a kOBEXBadArgumentError error will be returned. ***
-    ///
-    /// # Safety
-    ///
-    /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddConnectionIDHeader(
-        in_header_data: *const c_void,
-        in_header_data_length: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add bytes representing a connection ID to a dictionary of OBEX headers.
+///
+/// Parameter `inHeaderData`: Connection ID data. Should be 4 bytes in length only.
+///
+/// Parameter `inHeaderDataLength`: Length of Connection ID data. This should ONLY be set to equal 4.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// ConnectionID headers - OBEX Spec, 2.2.10: Byte Sequence
+///
+/// ** IMPORTANT NOTE: In bluetooth 1.0, using this function will allow you to pass in any value.
+/// You should not pass more than 4 bytes ever. In later releases, if the length
+/// passed is not 4, a kOBEXBadArgumentError error will be returned. ***
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddConnectionIDHeader(
+    in_header_data: *const c_void,
+    in_header_data_length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddConnectionIDHeader(
+            in_header_data: *const c_void,
+            in_header_data_length: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddConnectionIDHeader(in_header_data, in_header_data_length, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add bytes representing an application parameter to a dictionary of OBEX headers.
-    ///
-    /// Parameter `inHeaderData`: Application parameter data - should be tag/length/value triplets.
-    ///
-    /// Parameter `inHeaderDataLength`: Length of application parameter data.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Application Request/Response Parameter headers - OBEX Spec, 2.2.11: Byte Sequence
-    ///
-    /// # Safety
-    ///
-    /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddApplicationParameterHeader(
-        in_header_data: *const c_void,
-        in_header_data_length: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add bytes representing an application parameter to a dictionary of OBEX headers.
+///
+/// Parameter `inHeaderData`: Application parameter data - should be tag/length/value triplets.
+///
+/// Parameter `inHeaderDataLength`: Length of application parameter data.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Application Request/Response Parameter headers - OBEX Spec, 2.2.11: Byte Sequence
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddApplicationParameterHeader(
+    in_header_data: *const c_void,
+    in_header_data_length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddApplicationParameterHeader(
+            in_header_data: *const c_void,
+            in_header_data_length: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddApplicationParameterHeader(in_header_data, in_header_data_length, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add a byte sequence header to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `inHeaderData`: bytes you want to put in the byte sequence header.
-    ///
-    /// Parameter `inHeaderDataLength`: length of the bytes you want to put in the byte sequence header.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Byte Sequence header - OBEX Spec, 2.2.5: Byte sequence. One thing of important note here - since we
-    /// don't know what Header Identifier and length you intend to use here, you MUST include your own
-    /// identifier and length in the data you pass. Thus, your data must be in this format:
-    /// <
-    /// 1:HI>
-    /// <
-    /// 2:LENGTH>
-    /// <n
-    /// :(
-    /// <TAG
-    /// >
-    /// <LENGTH
-    /// >
-    /// <VALUE
-    /// >)>
-    /// Also, note that LENGTH = (3 + n), (1 for HI, 2 for the 2 bytes of length information, plus your n bytes of custom data).
-    /// Be careful here to not mess up these values, as it could adversely affect the ability of the remote-device's headers parser.
-    ///
-    /// # Safety
-    ///
-    /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddByteSequenceHeader(
-        in_header_data: *const c_void,
-        in_header_data_length: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add a byte sequence header to a dictionary of OBEXheaders.
+///
+/// Parameter `inHeaderData`: bytes you want to put in the byte sequence header.
+///
+/// Parameter `inHeaderDataLength`: length of the bytes you want to put in the byte sequence header.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Byte Sequence header - OBEX Spec, 2.2.5: Byte sequence. One thing of important note here - since we
+/// don't know what Header Identifier and length you intend to use here, you MUST include your own
+/// identifier and length in the data you pass. Thus, your data must be in this format:
+/// <
+/// 1:HI>
+/// <
+/// 2:LENGTH>
+/// <n
+/// :(
+/// <TAG
+/// >
+/// <LENGTH
+/// >
+/// <VALUE
+/// >)>
+/// Also, note that LENGTH = (3 + n), (1 for HI, 2 for the 2 bytes of length information, plus your n bytes of custom data).
+/// Be careful here to not mess up these values, as it could adversely affect the ability of the remote-device's headers parser.
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddByteSequenceHeader(
+    in_header_data: *const c_void,
+    in_header_data_length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddByteSequenceHeader(
+            in_header_data: *const c_void,
+            in_header_data_length: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddByteSequenceHeader(in_header_data, in_header_data_length, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add an object class header to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `inHeaderData`: bytes you want to put in the object class header.
-    ///
-    /// Parameter `inHeaderDataLength`: length of the bytes you want to put in the object class header.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Object Class header - OBEX Spec, 2.2.15: Byte sequence.
-    ///
-    /// # Safety
-    ///
-    /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddObjectClassHeader(
-        in_header_data: *const c_void,
-        in_header_data_length: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add an object class header to a dictionary of OBEXheaders.
+///
+/// Parameter `inHeaderData`: bytes you want to put in the object class header.
+///
+/// Parameter `inHeaderDataLength`: length of the bytes you want to put in the object class header.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Object Class header - OBEX Spec, 2.2.15: Byte sequence.
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddObjectClassHeader(
+    in_header_data: *const c_void,
+    in_header_data_length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddObjectClassHeader(
+            in_header_data: *const c_void,
+            in_header_data_length: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddObjectClassHeader(in_header_data, in_header_data_length, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add an authorization challenge header to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `inHeaderData`: bytes you want to put in the authorization challenge header.
-    ///
-    /// Parameter `inHeaderDataLength`: length of the bytes you want to put in authorization challenge header.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Authorization Challenge header - OBEX Spec, 2.2.13: Authorization Challenge.
-    ///
-    /// # Safety
-    ///
-    /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddAuthorizationChallengeHeader(
-        in_header_data: *const c_void,
-        in_header_data_length: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add an authorization challenge header to a dictionary of OBEXheaders.
+///
+/// Parameter `inHeaderData`: bytes you want to put in the authorization challenge header.
+///
+/// Parameter `inHeaderDataLength`: length of the bytes you want to put in authorization challenge header.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Authorization Challenge header - OBEX Spec, 2.2.13: Authorization Challenge.
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddAuthorizationChallengeHeader(
+    in_header_data: *const c_void,
+    in_header_data_length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddAuthorizationChallengeHeader(
+            in_header_data: *const c_void,
+            in_header_data_length: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddAuthorizationChallengeHeader(in_header_data, in_header_data_length, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add an authorization Response header to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `inHeaderData`: bytes you want to put in the authorization Response header.
-    ///
-    /// Parameter `inHeaderDataLength`: length of the bytes you want to put in authorization Response header.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// Authorization Response header - OBEX Spec, 2.2.14: Authorization Response.
-    ///
-    /// # Safety
-    ///
-    /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddAuthorizationResponseHeader(
-        in_header_data: *const c_void,
-        in_header_data_length: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add an authorization Response header to a dictionary of OBEXheaders.
+///
+/// Parameter `inHeaderData`: bytes you want to put in the authorization Response header.
+///
+/// Parameter `inHeaderDataLength`: length of the bytes you want to put in authorization Response header.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// Authorization Response header - OBEX Spec, 2.2.14: Authorization Response.
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddAuthorizationResponseHeader(
+    in_header_data: *const c_void,
+    in_header_data_length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddAuthorizationResponseHeader(
+            in_header_data: *const c_void,
+            in_header_data_length: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddAuthorizationResponseHeader(in_header_data, in_header_data_length, dict_ref) }
 }
 
-extern "C-unwind" {
-    /// Add a user-defined custom header to a dictionary of OBEXheaders.
-    ///
-    /// Parameter `inHeaderData`: bytes you want to put in the user-defined header.
-    ///
-    /// Parameter `inHeaderDataLength`: length of the bytes you want to put in user-defined header.
-    ///
-    /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
-    ///
-    /// Returns: Error code, kOBEXSuccess (0) if success.
-    ///
-    /// User Defined header - OBEX Spec, 2.2.20: User Defined Headers.
-    ///
-    /// # Safety
-    ///
-    /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` generic must be of the correct type.
-    /// - `dict_ref` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn OBEXAddUserDefinedHeader(
-        in_header_data: *const c_void,
-        in_header_data_length: u32,
-        dict_ref: Option<&CFMutableDictionary>,
-    ) -> OBEXError;
+/// Add a user-defined custom header to a dictionary of OBEXheaders.
+///
+/// Parameter `inHeaderData`: bytes you want to put in the user-defined header.
+///
+/// Parameter `inHeaderDataLength`: length of the bytes you want to put in user-defined header.
+///
+/// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
+///
+/// Returns: Error code, kOBEXSuccess (0) if success.
+///
+/// User Defined header - OBEX Spec, 2.2.20: User Defined Headers.
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn OBEXAddUserDefinedHeader(
+    in_header_data: *const c_void,
+    in_header_data_length: u32,
+    dict_ref: Option<&CFMutableDictionary>,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn OBEXAddUserDefinedHeader(
+            in_header_data: *const c_void,
+            in_header_data_length: u32,
+            dict_ref: Option<&CFMutableDictionary>,
+        ) -> OBEXError;
+    }
+    unsafe { OBEXAddUserDefinedHeader(in_header_data, in_header_data_length, dict_ref) }
 }

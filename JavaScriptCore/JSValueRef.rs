@@ -814,101 +814,133 @@ impl JSValue {
     }
 }
 
-extern "C-unwind" {
-    /// Creates a JavaScript BigInt with a double.
-    ///
-    /// Parameter `ctx`: The execution context to use.
-    ///
-    /// Parameter `value`: The value to copy into the new BigInt JSValue.
-    ///
-    /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
-    ///
-    /// Returns: A BigInt JSValue of the value, or NULL if an exception is thrown.
-    ///
-    /// If the value is not an integer, an exception is thrown.
-    ///
-    /// # Safety
-    ///
-    /// - `ctx` must be a valid pointer.
-    /// - `exception` must be a valid pointer or null.
-    #[cfg(feature = "JSBase")]
-    pub fn JSBigIntCreateWithDouble(
-        ctx: JSContextRef,
-        value: c_double,
-        exception: *mut JSValueRef,
-    ) -> JSValueRef;
+/// Creates a JavaScript BigInt with a double.
+///
+/// Parameter `ctx`: The execution context to use.
+///
+/// Parameter `value`: The value to copy into the new BigInt JSValue.
+///
+/// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+///
+/// Returns: A BigInt JSValue of the value, or NULL if an exception is thrown.
+///
+/// If the value is not an integer, an exception is thrown.
+///
+/// # Safety
+///
+/// - `ctx` must be a valid pointer.
+/// - `exception` must be a valid pointer or null.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSBigIntCreateWithDouble(
+    ctx: JSContextRef,
+    value: c_double,
+    exception: *mut JSValueRef,
+) -> JSValueRef {
+    extern "C-unwind" {
+        fn JSBigIntCreateWithDouble(
+            ctx: JSContextRef,
+            value: c_double,
+            exception: *mut JSValueRef,
+        ) -> JSValueRef;
+    }
+    unsafe { JSBigIntCreateWithDouble(ctx, value, exception) }
 }
 
-extern "C-unwind" {
-    /// Creates a JavaScript BigInt with a 64-bit signed integer.
-    ///
-    /// Parameter `ctx`: The execution context to use.
-    ///
-    /// Parameter `integer`: The 64-bit signed integer to copy into the new BigInt JSValue.
-    ///
-    /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
-    ///
-    /// Returns: A BigInt JSValue of the integer, or NULL if an exception is thrown.
-    ///
-    /// # Safety
-    ///
-    /// - `ctx` must be a valid pointer.
-    /// - `exception` must be a valid pointer or null.
-    #[cfg(feature = "JSBase")]
-    pub fn JSBigIntCreateWithInt64(
-        ctx: JSContextRef,
-        integer: i64,
-        exception: *mut JSValueRef,
-    ) -> JSValueRef;
+/// Creates a JavaScript BigInt with a 64-bit signed integer.
+///
+/// Parameter `ctx`: The execution context to use.
+///
+/// Parameter `integer`: The 64-bit signed integer to copy into the new BigInt JSValue.
+///
+/// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+///
+/// Returns: A BigInt JSValue of the integer, or NULL if an exception is thrown.
+///
+/// # Safety
+///
+/// - `ctx` must be a valid pointer.
+/// - `exception` must be a valid pointer or null.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSBigIntCreateWithInt64(
+    ctx: JSContextRef,
+    integer: i64,
+    exception: *mut JSValueRef,
+) -> JSValueRef {
+    extern "C-unwind" {
+        fn JSBigIntCreateWithInt64(
+            ctx: JSContextRef,
+            integer: i64,
+            exception: *mut JSValueRef,
+        ) -> JSValueRef;
+    }
+    unsafe { JSBigIntCreateWithInt64(ctx, integer, exception) }
 }
 
-extern "C-unwind" {
-    /// Creates a JavaScript BigInt with a 64-bit unsigned integer.
-    ///
-    /// Parameter `ctx`: The execution context to use.
-    ///
-    /// Parameter `integer`: The 64-bit unsigned integer to copy into the new BigInt JSValue.
-    ///
-    /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
-    ///
-    /// Returns: A BigInt JSValue of the integer, or NULL if an exception is thrown.
-    ///
-    /// # Safety
-    ///
-    /// - `ctx` must be a valid pointer.
-    /// - `exception` must be a valid pointer or null.
-    #[cfg(feature = "JSBase")]
-    pub fn JSBigIntCreateWithUInt64(
-        ctx: JSContextRef,
-        integer: u64,
-        exception: *mut JSValueRef,
-    ) -> JSValueRef;
+/// Creates a JavaScript BigInt with a 64-bit unsigned integer.
+///
+/// Parameter `ctx`: The execution context to use.
+///
+/// Parameter `integer`: The 64-bit unsigned integer to copy into the new BigInt JSValue.
+///
+/// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+///
+/// Returns: A BigInt JSValue of the integer, or NULL if an exception is thrown.
+///
+/// # Safety
+///
+/// - `ctx` must be a valid pointer.
+/// - `exception` must be a valid pointer or null.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSBigIntCreateWithUInt64(
+    ctx: JSContextRef,
+    integer: u64,
+    exception: *mut JSValueRef,
+) -> JSValueRef {
+    extern "C-unwind" {
+        fn JSBigIntCreateWithUInt64(
+            ctx: JSContextRef,
+            integer: u64,
+            exception: *mut JSValueRef,
+        ) -> JSValueRef;
+    }
+    unsafe { JSBigIntCreateWithUInt64(ctx, integer, exception) }
 }
 
-extern "C-unwind" {
-    /// Creates a JavaScript BigInt with an integer represented in string.
-    ///
-    /// Parameter `ctx`: The execution context to use.
-    ///
-    /// Parameter `string`: The JSStringRef representation of an integer.
-    ///
-    /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
-    ///
-    /// Returns: A BigInt JSValue of the string, or NULL if an exception is thrown.
-    ///
-    /// This is equivalent to calling the `BigInt` constructor from JavaScript with a string argument.
-    ///
-    /// # Safety
-    ///
-    /// - `ctx` must be a valid pointer.
-    /// - `string` must be a valid pointer.
-    /// - `exception` must be a valid pointer or null.
-    #[cfg(feature = "JSBase")]
-    pub fn JSBigIntCreateWithString(
-        ctx: JSContextRef,
-        string: JSStringRef,
-        exception: *mut JSValueRef,
-    ) -> JSValueRef;
+/// Creates a JavaScript BigInt with an integer represented in string.
+///
+/// Parameter `ctx`: The execution context to use.
+///
+/// Parameter `string`: The JSStringRef representation of an integer.
+///
+/// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+///
+/// Returns: A BigInt JSValue of the string, or NULL if an exception is thrown.
+///
+/// This is equivalent to calling the `BigInt` constructor from JavaScript with a string argument.
+///
+/// # Safety
+///
+/// - `ctx` must be a valid pointer.
+/// - `string` must be a valid pointer.
+/// - `exception` must be a valid pointer or null.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSBigIntCreateWithString(
+    ctx: JSContextRef,
+    string: JSStringRef,
+    exception: *mut JSValueRef,
+) -> JSValueRef {
+    extern "C-unwind" {
+        fn JSBigIntCreateWithString(
+            ctx: JSContextRef,
+            string: JSStringRef,
+            exception: *mut JSValueRef,
+        ) -> JSValueRef;
+    }
+    unsafe { JSBigIntCreateWithString(ctx, string, exception) }
 }
 
 #[cfg(all(feature = "JSValue", feature = "objc2"))]

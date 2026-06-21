@@ -294,19 +294,23 @@ pub unsafe extern "C-unwind" fn AEGetSpecialHandler(
     unsafe { AEGetSpecialHandler(function_class, handler, is_sys_handler as _) }
 }
 
-extern "C-unwind" {
-    /// ************************************************************************
-    /// This call was added in version 1.0.1. If called with the keyword
-    /// keyAERecorderCount ('recr'), the number of recorders that are
-    /// currently active is returned in 'result'
-    /// (available only in vers 1.0.1 and greater).
-    /// ************************************************************************
-    ///
-    /// # Safety
-    ///
-    /// `result` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEManagerInfo(key_word: AEKeyword, result: *mut c_long) -> OSErr;
+/// ************************************************************************
+/// This call was added in version 1.0.1. If called with the keyword
+/// keyAERecorderCount ('recr'), the number of recorders that are
+/// currently active is returned in 'result'
+/// (available only in vers 1.0.1 and greater).
+/// ************************************************************************
+///
+/// # Safety
+///
+/// `result` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEManagerInfo(key_word: AEKeyword, result: *mut c_long) -> OSErr {
+    extern "C-unwind" {
+        fn AEManagerInfo(key_word: AEKeyword, result: *mut c_long) -> OSErr;
+    }
+    unsafe { AEManagerInfo(key_word, result) }
 }
 
 extern "C" {
@@ -377,21 +381,32 @@ unsafe impl RefEncode for AERemoteProcessResolver {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolverref?language=objc)
 pub type AERemoteProcessResolverRef = *mut AERemoteProcessResolver;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `url` might not allow `None`.
-    pub fn AECreateRemoteProcessResolver(
-        allocator: Option<&CFAllocator>,
-        url: Option<&CFURL>,
-    ) -> AERemoteProcessResolverRef;
+/// # Safety
+///
+/// `url` might not allow `None`.
+#[inline]
+pub unsafe extern "C-unwind" fn AECreateRemoteProcessResolver(
+    allocator: Option<&CFAllocator>,
+    url: Option<&CFURL>,
+) -> AERemoteProcessResolverRef {
+    extern "C-unwind" {
+        fn AECreateRemoteProcessResolver(
+            allocator: Option<&CFAllocator>,
+            url: Option<&CFURL>,
+        ) -> AERemoteProcessResolverRef;
+    }
+    unsafe { AECreateRemoteProcessResolver(allocator, url) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` must be a valid pointer.
-    pub fn AEDisposeRemoteProcessResolver(r#ref: AERemoteProcessResolverRef);
+/// # Safety
+///
+/// `ref` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AEDisposeRemoteProcessResolver(r#ref: AERemoteProcessResolverRef) {
+    extern "C-unwind" {
+        fn AEDisposeRemoteProcessResolver(r#ref: AERemoteProcessResolverRef);
+    }
+    unsafe { AEDisposeRemoteProcessResolver(r#ref) }
 }
 
 impl AERemoteProcessResolver {

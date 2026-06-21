@@ -262,21 +262,29 @@ pub extern "C-unwind" fn NSAccessibilityActionDescription(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `element` should be of the correct type.
-    /// - `element` might not allow `None`.
-    /// - `attribute` might not allow `None`.
-    /// - `value` should be of the correct type.
-    /// - `value` might not allow `None`.
-    #[cfg(feature = "NSAccessibilityConstants")]
-    #[deprecated = "Exceptions are no longer appropriate for indicating errors in accessibility API. Unexpected values should be handled through appropriate type checking."]
-    pub fn NSAccessibilityRaiseBadArgumentException(
-        element: Option<&AnyObject>,
-        attribute: Option<&NSAccessibilityAttributeName>,
-        value: Option<&AnyObject>,
-    );
+/// # Safety
+///
+/// - `element` should be of the correct type.
+/// - `element` might not allow `None`.
+/// - `attribute` might not allow `None`.
+/// - `value` should be of the correct type.
+/// - `value` might not allow `None`.
+#[cfg(feature = "NSAccessibilityConstants")]
+#[deprecated = "Exceptions are no longer appropriate for indicating errors in accessibility API. Unexpected values should be handled through appropriate type checking."]
+#[inline]
+pub unsafe extern "C-unwind" fn NSAccessibilityRaiseBadArgumentException(
+    element: Option<&AnyObject>,
+    attribute: Option<&NSAccessibilityAttributeName>,
+    value: Option<&AnyObject>,
+) {
+    extern "C-unwind" {
+        fn NSAccessibilityRaiseBadArgumentException(
+            element: Option<&AnyObject>,
+            attribute: Option<&NSAccessibilityAttributeName>,
+            value: Option<&AnyObject>,
+        );
+    }
+    unsafe { NSAccessibilityRaiseBadArgumentException(element, attribute, value) }
 }
 
 /// * Ignored UIElements Utilities **
@@ -340,15 +348,22 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildrenForOnlyChild(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    /// * Posting Notifications **
-    ///
-    /// # Safety
-    ///
-    /// `element` should be of the correct type.
-    #[cfg(feature = "NSAccessibilityConstants")]
-    pub fn NSAccessibilityPostNotification(
-        element: &AnyObject,
-        notification: &NSAccessibilityNotificationName,
-    );
+/// * Posting Notifications **
+///
+/// # Safety
+///
+/// `element` should be of the correct type.
+#[cfg(feature = "NSAccessibilityConstants")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSAccessibilityPostNotification(
+    element: &AnyObject,
+    notification: &NSAccessibilityNotificationName,
+) {
+    extern "C-unwind" {
+        fn NSAccessibilityPostNotification(
+            element: &AnyObject,
+            notification: &NSAccessibilityNotificationName,
+        );
+    }
+    unsafe { NSAccessibilityPostNotification(element, notification) }
 }

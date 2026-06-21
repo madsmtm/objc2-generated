@@ -663,16 +663,32 @@ pub extern "C-unwind" fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(
     unsafe { UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(video_path) }.as_bool()
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `completion_target` should be of the correct type.
-    /// - `completion_selector` must be a valid selector.
-    /// - `context_info` must be a valid pointer or null.
-    pub fn UISaveVideoAtPathToSavedPhotosAlbum(
-        video_path: &NSString,
-        completion_target: Option<&AnyObject>,
-        completion_selector: Option<Sel>,
-        context_info: *mut c_void,
-    );
+/// # Safety
+///
+/// - `completion_target` should be of the correct type.
+/// - `completion_selector` must be a valid selector.
+/// - `context_info` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn UISaveVideoAtPathToSavedPhotosAlbum(
+    video_path: &NSString,
+    completion_target: Option<&AnyObject>,
+    completion_selector: Option<Sel>,
+    context_info: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn UISaveVideoAtPathToSavedPhotosAlbum(
+            video_path: &NSString,
+            completion_target: Option<&AnyObject>,
+            completion_selector: Option<Sel>,
+            context_info: *mut c_void,
+        );
+    }
+    unsafe {
+        UISaveVideoAtPathToSavedPhotosAlbum(
+            video_path,
+            completion_target,
+            completion_selector,
+            context_info,
+        )
+    }
 }

@@ -61,245 +61,358 @@ pub const kAudioServicesPropertyIsUISound: AudioServicesPropertyID = 0x69737569;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicespropertycompleteplaybackifappdies?language=objc)
 pub const kAudioServicesPropertyCompletePlaybackIfAppDies: AudioServicesPropertyID = 0x69666469;
 
-extern "C-unwind" {
-    /// Allows the application to designate an audio file for playback by the System Sound server.
-    ///
-    /// Returned SystemSoundIDs are passed to AudioServicesPlayAlertSoundWithCompletion()
-    /// and AudioServicesPlaySystemSoundWithCompletion() to be played.
-    ///
-    /// The maximum supported duration for a system sound is 30 secs.
-    ///
-    /// Parameter `inFileURL`: A CFURLRef for an AudioFile.
-    ///
-    /// Parameter `outSystemSoundID`: Returns a SystemSoundID.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn AudioServicesCreateSystemSoundID(
-        in_file_url: &CFURL,
-        out_system_sound_id: &mut SystemSoundID,
-    ) -> OSStatus;
+/// Allows the application to designate an audio file for playback by the System Sound server.
+///
+/// Returned SystemSoundIDs are passed to AudioServicesPlayAlertSoundWithCompletion()
+/// and AudioServicesPlaySystemSoundWithCompletion() to be played.
+///
+/// The maximum supported duration for a system sound is 30 secs.
+///
+/// Parameter `inFileURL`: A CFURLRef for an AudioFile.
+///
+/// Parameter `outSystemSoundID`: Returns a SystemSoundID.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesCreateSystemSoundID(
+    in_file_url: &CFURL,
+    out_system_sound_id: &mut SystemSoundID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioServicesCreateSystemSoundID(
+            in_file_url: &CFURL,
+            out_system_sound_id: &mut SystemSoundID,
+        ) -> OSStatus;
+    }
+    unsafe { AudioServicesCreateSystemSoundID(in_file_url, out_system_sound_id) }
 }
 
-extern "C-unwind" {
-    /// Allows the System Sound server to dispose any resources needed for the provided
-    /// SystemSoundID.
-    ///
-    /// Allows the application to tell the System Sound server that the resources for the
-    /// associated audio file are no longer required.
-    ///
-    /// Parameter `inSystemSoundID`: A SystemSoundID that the application no longer needs to use.
-    pub fn AudioServicesDisposeSystemSoundID(in_system_sound_id: SystemSoundID) -> OSStatus;
+/// Allows the System Sound server to dispose any resources needed for the provided
+/// SystemSoundID.
+///
+/// Allows the application to tell the System Sound server that the resources for the
+/// associated audio file are no longer required.
+///
+/// Parameter `inSystemSoundID`: A SystemSoundID that the application no longer needs to use.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesDisposeSystemSoundID(
+    in_system_sound_id: SystemSoundID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioServicesDisposeSystemSoundID(in_system_sound_id: SystemSoundID) -> OSStatus;
+    }
+    unsafe { AudioServicesDisposeSystemSoundID(in_system_sound_id) }
 }
 
-extern "C-unwind" {
-    /// Play an alert sound
-    ///
-    /// Play the sound designated by the provided SystemSoundID with alert sound behavior.
-    ///
-    /// Parameter `inSystemSoundID`: The SystemSoundID to be played. On the desktop the kSystemSoundID_UserPreferredAlert
-    /// constant can be passed in to play back the alert sound selected by the user
-    /// in System Preferences. On iOS there is no preferred user alert sound.
-    ///
-    /// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
-    /// of success or failure. The callbacks are issued on a serial queue and the client is
-    /// responsible for handling thread safety.
-    #[cfg(feature = "block2")]
-    pub fn AudioServicesPlayAlertSoundWithCompletion(
-        in_system_sound_id: SystemSoundID,
-        in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
-    );
+/// Play an alert sound
+///
+/// Play the sound designated by the provided SystemSoundID with alert sound behavior.
+///
+/// Parameter `inSystemSoundID`: The SystemSoundID to be played. On the desktop the kSystemSoundID_UserPreferredAlert
+/// constant can be passed in to play back the alert sound selected by the user
+/// in System Preferences. On iOS there is no preferred user alert sound.
+///
+/// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
+/// of success or failure. The callbacks are issued on a serial queue and the client is
+/// responsible for handling thread safety.
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesPlayAlertSoundWithCompletion(
+    in_system_sound_id: SystemSoundID,
+    in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+) {
+    extern "C-unwind" {
+        fn AudioServicesPlayAlertSoundWithCompletion(
+            in_system_sound_id: SystemSoundID,
+            in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+        );
+    }
+    unsafe { AudioServicesPlayAlertSoundWithCompletion(in_system_sound_id, in_completion_block) }
 }
 
-extern "C-unwind" {
-    /// Play a system sound
-    ///
-    /// Play the sound designated by the provided SystemSoundID.
-    ///
-    /// Parameter `inSystemSoundID`: The SystemSoundID to be played.
-    ///
-    /// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
-    /// of success or failure. The callbacks are issued on a serial queue and the client is
-    /// responsible for handling thread safety.
-    #[cfg(feature = "block2")]
-    pub fn AudioServicesPlaySystemSoundWithCompletion(
-        in_system_sound_id: SystemSoundID,
-        in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
-    );
+/// Play a system sound
+///
+/// Play the sound designated by the provided SystemSoundID.
+///
+/// Parameter `inSystemSoundID`: The SystemSoundID to be played.
+///
+/// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
+/// of success or failure. The callbacks are issued on a serial queue and the client is
+/// responsible for handling thread safety.
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesPlaySystemSoundWithCompletion(
+    in_system_sound_id: SystemSoundID,
+    in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+) {
+    extern "C-unwind" {
+        fn AudioServicesPlaySystemSoundWithCompletion(
+            in_system_sound_id: SystemSoundID,
+            in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+        );
+    }
+    unsafe { AudioServicesPlaySystemSoundWithCompletion(in_system_sound_id, in_completion_block) }
 }
 
-extern "C-unwind" {
-    /// Get information about the size of an AudioServices property and whether it can
-    /// be set.
-    ///
-    /// Parameter `inPropertyID`: a AudioServicesPropertyID constant.
-    ///
-    /// Parameter `inSpecifierSize`: The size of the specifier data.
-    ///
-    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the
-    /// properties.
-    ///
-    /// Parameter `outPropertyDataSize`: The size in bytes of the current value of the property. In order to get the
-    /// property value, you will need a buffer of this size.
-    ///
-    /// Parameter `outWritable`: Will be set to 1 if writable, or 0 if read only.
-    ///
-    /// Returns: returns kAudioServicesNoError if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_specifier` must be a valid pointer or null.
-    pub fn AudioServicesGetPropertyInfo(
-        in_property_id: AudioServicesPropertyID,
-        in_specifier_size: u32,
-        in_specifier: *const c_void,
-        out_property_data_size: Option<&mut u32>,
-        out_writable: Option<&mut Boolean>,
-    ) -> OSStatus;
+/// Get information about the size of an AudioServices property and whether it can
+/// be set.
+///
+/// Parameter `inPropertyID`: a AudioServicesPropertyID constant.
+///
+/// Parameter `inSpecifierSize`: The size of the specifier data.
+///
+/// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the
+/// properties.
+///
+/// Parameter `outPropertyDataSize`: The size in bytes of the current value of the property. In order to get the
+/// property value, you will need a buffer of this size.
+///
+/// Parameter `outWritable`: Will be set to 1 if writable, or 0 if read only.
+///
+/// Returns: returns kAudioServicesNoError if successful.
+///
+/// # Safety
+///
+/// `in_specifier` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesGetPropertyInfo(
+    in_property_id: AudioServicesPropertyID,
+    in_specifier_size: u32,
+    in_specifier: *const c_void,
+    out_property_data_size: Option<&mut u32>,
+    out_writable: Option<&mut Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioServicesGetPropertyInfo(
+            in_property_id: AudioServicesPropertyID,
+            in_specifier_size: u32,
+            in_specifier: *const c_void,
+            out_property_data_size: Option<&mut u32>,
+            out_writable: Option<&mut Boolean>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioServicesGetPropertyInfo(
+            in_property_id,
+            in_specifier_size,
+            in_specifier,
+            out_property_data_size,
+            out_writable,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Retrieve the indicated property data
-    ///
-    /// Parameter `inPropertyID`: a AudioServicesPropertyID constant.
-    ///
-    /// Parameter `inSpecifierSize`: The size of the specifier data.
-    ///
-    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the
-    /// properties.
-    ///
-    /// Parameter `ioPropertyDataSize`: On input, the size of the outPropertyData buffer. On output the number of
-    /// bytes written to the buffer.
-    ///
-    /// Parameter `outPropertyData`: The buffer in which to write the property data. May be NULL if caller only
-    /// wants ioPropertyDataSize to be filled with the amount that would have been
-    /// written.
-    ///
-    /// Returns: returns kAudioServicesNoError if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_specifier` must be a valid pointer or null.
-    /// - `out_property_data` must be a valid pointer or null.
-    pub fn AudioServicesGetProperty(
-        in_property_id: AudioServicesPropertyID,
-        in_specifier_size: u32,
-        in_specifier: *const c_void,
-        io_property_data_size: &mut u32,
-        out_property_data: *mut c_void,
-    ) -> OSStatus;
+/// Retrieve the indicated property data
+///
+/// Parameter `inPropertyID`: a AudioServicesPropertyID constant.
+///
+/// Parameter `inSpecifierSize`: The size of the specifier data.
+///
+/// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the
+/// properties.
+///
+/// Parameter `ioPropertyDataSize`: On input, the size of the outPropertyData buffer. On output the number of
+/// bytes written to the buffer.
+///
+/// Parameter `outPropertyData`: The buffer in which to write the property data. May be NULL if caller only
+/// wants ioPropertyDataSize to be filled with the amount that would have been
+/// written.
+///
+/// Returns: returns kAudioServicesNoError if successful.
+///
+/// # Safety
+///
+/// - `in_specifier` must be a valid pointer or null.
+/// - `out_property_data` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesGetProperty(
+    in_property_id: AudioServicesPropertyID,
+    in_specifier_size: u32,
+    in_specifier: *const c_void,
+    io_property_data_size: &mut u32,
+    out_property_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioServicesGetProperty(
+            in_property_id: AudioServicesPropertyID,
+            in_specifier_size: u32,
+            in_specifier: *const c_void,
+            io_property_data_size: &mut u32,
+            out_property_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioServicesGetProperty(
+            in_property_id,
+            in_specifier_size,
+            in_specifier,
+            io_property_data_size,
+            out_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Set the indicated property data
-    ///
-    /// Parameter `inPropertyID`: a AudioServicesPropertyID constant.
-    ///
-    /// Parameter `inSpecifierSize`: The size of the specifier data.
-    ///
-    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the
-    /// properties.
-    ///
-    /// Parameter `inPropertyDataSize`: The size of the inPropertyData buffer.
-    ///
-    /// Parameter `inPropertyData`: The buffer containing the property data.
-    ///
-    /// Returns: returns kAudioServicesNoError if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_specifier` must be a valid pointer or null.
-    /// - `in_property_data` must be a valid pointer.
-    pub fn AudioServicesSetProperty(
-        in_property_id: AudioServicesPropertyID,
-        in_specifier_size: u32,
-        in_specifier: *const c_void,
-        in_property_data_size: u32,
-        in_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Set the indicated property data
+///
+/// Parameter `inPropertyID`: a AudioServicesPropertyID constant.
+///
+/// Parameter `inSpecifierSize`: The size of the specifier data.
+///
+/// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the
+/// properties.
+///
+/// Parameter `inPropertyDataSize`: The size of the inPropertyData buffer.
+///
+/// Parameter `inPropertyData`: The buffer containing the property data.
+///
+/// Returns: returns kAudioServicesNoError if successful.
+///
+/// # Safety
+///
+/// - `in_specifier` must be a valid pointer or null.
+/// - `in_property_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesSetProperty(
+    in_property_id: AudioServicesPropertyID,
+    in_specifier_size: u32,
+    in_specifier: *const c_void,
+    in_property_data_size: u32,
+    in_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioServicesSetProperty(
+            in_property_id: AudioServicesPropertyID,
+            in_specifier_size: u32,
+            in_specifier: *const c_void,
+            in_property_data_size: u32,
+            in_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioServicesSetProperty(
+            in_property_id,
+            in_specifier_size,
+            in_specifier,
+            in_property_data_size,
+            in_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// This function will be deprecated in a future release. Use AudioServicesPlayAlertSoundWithCompletion instead.
-    ///
-    ///
-    ///
-    /// Play an Alert Sound
-    ///
-    /// Play the provided SystemSoundID with AlertSound behavior.
-    ///
-    /// Parameter `inSystemSoundID`: A SystemSoundID for the System Sound server to play. On the desktop you
-    /// can pass the kSystemSoundID_UserPreferredAlert constant to playback the alert sound
-    /// selected by the user in System Preferences. On iOS there is no preferred user alert sound.
-    pub fn AudioServicesPlayAlertSound(in_system_sound_id: SystemSoundID);
+/// This function will be deprecated in a future release. Use AudioServicesPlayAlertSoundWithCompletion instead.
+///
+///
+///
+/// Play an Alert Sound
+///
+/// Play the provided SystemSoundID with AlertSound behavior.
+///
+/// Parameter `inSystemSoundID`: A SystemSoundID for the System Sound server to play. On the desktop you
+/// can pass the kSystemSoundID_UserPreferredAlert constant to playback the alert sound
+/// selected by the user in System Preferences. On iOS there is no preferred user alert sound.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesPlayAlertSound(in_system_sound_id: SystemSoundID) {
+    extern "C-unwind" {
+        fn AudioServicesPlayAlertSound(in_system_sound_id: SystemSoundID);
+    }
+    unsafe { AudioServicesPlayAlertSound(in_system_sound_id) }
 }
 
-extern "C-unwind" {
-    /// This function will be deprecated in a future release. Use AudioServicesPlaySystemSoundWithCompletion instead.
-    ///
-    ///
-    ///
-    /// Play the sound designated by the provided SystemSoundID.
-    ///
-    /// A SystemSoundID indicating the desired System Sound to be played.
-    ///
-    /// Parameter `inSystemSoundID`: A SystemSoundID for the System Sound server to play.
-    pub fn AudioServicesPlaySystemSound(in_system_sound_id: SystemSoundID);
+/// This function will be deprecated in a future release. Use AudioServicesPlaySystemSoundWithCompletion instead.
+///
+///
+///
+/// Play the sound designated by the provided SystemSoundID.
+///
+/// A SystemSoundID indicating the desired System Sound to be played.
+///
+/// Parameter `inSystemSoundID`: A SystemSoundID for the System Sound server to play.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesPlaySystemSound(in_system_sound_id: SystemSoundID) {
+    extern "C-unwind" {
+        fn AudioServicesPlaySystemSound(in_system_sound_id: SystemSoundID);
+    }
+    unsafe { AudioServicesPlaySystemSound(in_system_sound_id) }
 }
 
-extern "C-unwind" {
-    /// This function will be deprecated in a future release. Use AudioServicesPlayAlertSoundWithCompletion
-    /// or AudioServicesPlaySystemSoundWithCompletion instead.
-    ///
-    ///
-    ///
-    /// Call the provided Completion Routine when provided SystemSoundID
-    /// finishes playing.
-    ///
-    /// Once set, the System Sound server will send a message to the System Sound client
-    /// indicating which SystemSoundID has finished playing.
-    ///
-    /// Parameter `inSystemSoundID`: The SystemSoundID to associate with the provided completion
-    /// routine.
-    ///
-    /// Parameter `inRunLoop`: A CFRunLoopRef indicating the desired run loop the completion routine should
-    /// be run on. Pass NULL to use the main run loop.
-    ///
-    /// Parameter `inRunLoopMode`: A CFStringRef indicating the run loop mode for the runloop where the
-    /// completion routine will be executed. Pass NULL to use kCFRunLoopDefaultMode.
-    ///
-    /// Parameter `inCompletionRoutine`: An AudioServicesSystemSoundCompletionProc to be called when the provided
-    /// SystemSoundID has completed playing in the server.
-    ///
-    /// Parameter `inClientData`: A void* to pass client data to the completion routine.
-    ///
-    /// # Safety
-    ///
-    /// - `in_run_loop` possibly has additional threading requirements.
-    /// - `in_completion_routine` must be implemented correctly.
-    /// - `in_client_data` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn AudioServicesAddSystemSoundCompletion(
-        in_system_sound_id: SystemSoundID,
-        in_run_loop: Option<&CFRunLoop>,
-        in_run_loop_mode: Option<&CFString>,
-        in_completion_routine: AudioServicesSystemSoundCompletionProc,
-        in_client_data: *mut c_void,
-    ) -> OSStatus;
+/// This function will be deprecated in a future release. Use AudioServicesPlayAlertSoundWithCompletion
+/// or AudioServicesPlaySystemSoundWithCompletion instead.
+///
+///
+///
+/// Call the provided Completion Routine when provided SystemSoundID
+/// finishes playing.
+///
+/// Once set, the System Sound server will send a message to the System Sound client
+/// indicating which SystemSoundID has finished playing.
+///
+/// Parameter `inSystemSoundID`: The SystemSoundID to associate with the provided completion
+/// routine.
+///
+/// Parameter `inRunLoop`: A CFRunLoopRef indicating the desired run loop the completion routine should
+/// be run on. Pass NULL to use the main run loop.
+///
+/// Parameter `inRunLoopMode`: A CFStringRef indicating the run loop mode for the runloop where the
+/// completion routine will be executed. Pass NULL to use kCFRunLoopDefaultMode.
+///
+/// Parameter `inCompletionRoutine`: An AudioServicesSystemSoundCompletionProc to be called when the provided
+/// SystemSoundID has completed playing in the server.
+///
+/// Parameter `inClientData`: A void* to pass client data to the completion routine.
+///
+/// # Safety
+///
+/// - `in_run_loop` possibly has additional threading requirements.
+/// - `in_completion_routine` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesAddSystemSoundCompletion(
+    in_system_sound_id: SystemSoundID,
+    in_run_loop: Option<&CFRunLoop>,
+    in_run_loop_mode: Option<&CFString>,
+    in_completion_routine: AudioServicesSystemSoundCompletionProc,
+    in_client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioServicesAddSystemSoundCompletion(
+            in_system_sound_id: SystemSoundID,
+            in_run_loop: Option<&CFRunLoop>,
+            in_run_loop_mode: Option<&CFString>,
+            in_completion_routine: AudioServicesSystemSoundCompletionProc,
+            in_client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioServicesAddSystemSoundCompletion(
+            in_system_sound_id,
+            in_run_loop,
+            in_run_loop_mode,
+            in_completion_routine,
+            in_client_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// This function will be deprecated in a future release. Use AudioServicesPlayAlertSoundWithCompletion
-    /// or AudioServicesPlaySystemSoundWithCompletion instead.
-    ///
-    ///
-    ///
-    /// Disassociate any completion proc for the specified SystemSoundID
-    ///
-    /// Tells the SystemSound client to remove any completion proc associated with the
-    /// provided SystemSoundID
-    ///
-    /// Parameter `inSystemSoundID`: The SystemSoundID for which completion routines should be
-    /// removed.
-    pub fn AudioServicesRemoveSystemSoundCompletion(in_system_sound_id: SystemSoundID);
+/// This function will be deprecated in a future release. Use AudioServicesPlayAlertSoundWithCompletion
+/// or AudioServicesPlaySystemSoundWithCompletion instead.
+///
+///
+///
+/// Disassociate any completion proc for the specified SystemSoundID
+///
+/// Tells the SystemSound client to remove any completion proc associated with the
+/// provided SystemSoundID
+///
+/// Parameter `inSystemSoundID`: The SystemSoundID for which completion routines should be
+/// removed.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesRemoveSystemSoundCompletion(
+    in_system_sound_id: SystemSoundID,
+) {
+    extern "C-unwind" {
+        fn AudioServicesRemoveSystemSoundCompletion(in_system_sound_id: SystemSoundID);
+    }
+    unsafe { AudioServicesRemoveSystemSoundCompletion(in_system_sound_id) }
 }
 
 extern "C" {
@@ -314,46 +427,66 @@ extern "C" {
     pub static kAudioServicesDetailIntendedSpatialExperience: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Play the sound designated by the provided SystemSoundID.
-    ///
-    /// Parameter `inSystemSoundID`: A SystemSoundID for the system sound server to play.
-    ///
-    /// Parameter `inDetails`: A set of details as described above.
-    ///
-    /// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
-    /// of success or failure. The callbacks are issued on a serial queue and the client is
-    /// responsible for handling thread safety.
-    ///
-    /// # Safety
-    ///
-    /// `in_details` generic should be of the correct type.
-    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-    pub fn AudioServicesPlaySystemSoundWithDetails(
-        in_system_sound_id: SystemSoundID,
-        in_details: Option<&CFDictionary<CFString, CFType>>,
-        in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
-    );
+/// Play the sound designated by the provided SystemSoundID.
+///
+/// Parameter `inSystemSoundID`: A SystemSoundID for the system sound server to play.
+///
+/// Parameter `inDetails`: A set of details as described above.
+///
+/// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
+/// of success or failure. The callbacks are issued on a serial queue and the client is
+/// responsible for handling thread safety.
+///
+/// # Safety
+///
+/// `in_details` generic should be of the correct type.
+#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesPlaySystemSoundWithDetails(
+    in_system_sound_id: SystemSoundID,
+    in_details: Option<&CFDictionary<CFString, CFType>>,
+    in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+) {
+    extern "C-unwind" {
+        fn AudioServicesPlaySystemSoundWithDetails(
+            in_system_sound_id: SystemSoundID,
+            in_details: Option<&CFDictionary<CFString, CFType>>,
+            in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+        );
+    }
+    unsafe {
+        AudioServicesPlaySystemSoundWithDetails(in_system_sound_id, in_details, in_completion_block)
+    }
 }
 
-extern "C-unwind" {
-    /// Play the alert designated by the provided SystemSoundID.
-    ///
-    /// Parameter `inSystemSoundID`: A SystemSoundID for the system sound server to play with alert sound behavior.
-    ///
-    /// Parameter `inDetails`: A set of details as described above.
-    ///
-    /// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
-    /// of success or failure. The callbacks are issued on a serial queue and the client is
-    /// responsible for handling thread safety.
-    ///
-    /// # Safety
-    ///
-    /// `in_details` generic should be of the correct type.
-    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-    pub fn AudioServicesPlayAlertSoundWithDetails(
-        in_system_sound_id: SystemSoundID,
-        in_details: Option<&CFDictionary<CFString, CFType>>,
-        in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
-    );
+/// Play the alert designated by the provided SystemSoundID.
+///
+/// Parameter `inSystemSoundID`: A SystemSoundID for the system sound server to play with alert sound behavior.
+///
+/// Parameter `inDetails`: A set of details as described above.
+///
+/// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
+/// of success or failure. The callbacks are issued on a serial queue and the client is
+/// responsible for handling thread safety.
+///
+/// # Safety
+///
+/// `in_details` generic should be of the correct type.
+#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioServicesPlayAlertSoundWithDetails(
+    in_system_sound_id: SystemSoundID,
+    in_details: Option<&CFDictionary<CFString, CFType>>,
+    in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+) {
+    extern "C-unwind" {
+        fn AudioServicesPlayAlertSoundWithDetails(
+            in_system_sound_id: SystemSoundID,
+            in_details: Option<&CFDictionary<CFString, CFType>>,
+            in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+        );
+    }
+    unsafe {
+        AudioServicesPlayAlertSoundWithDetails(in_system_sound_id, in_details, in_completion_block)
+    }
 }

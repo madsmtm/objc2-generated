@@ -1108,26 +1108,34 @@ pub extern "C-unwind" fn IOPMSetAggressiveness(
     unsafe { IOPMSetAggressiveness(fb, r#type, aggressiveness) }
 }
 
-extern "C-unwind" {
-    /// Retrieves the current value of one of the aggressiveness factors in IOKit Power Management.
-    ///
-    /// Parameter `fb`: Representation of the Root Power Domain from IOPMFindPowerManagement.
-    ///
-    /// Parameter `type`: Specifies which aggressiveness factor is being retrieved.
-    ///
-    /// Parameter `aggressiveness`: Points to where to store the retrieved value of the aggressiveness factor.
-    ///
-    /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-    ///
-    /// # Safety
-    ///
-    /// `aggressiveness` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn IOPMGetAggressiveness(
-        fb: io_connect_t,
-        r#type: c_ulong,
-        aggressiveness: *mut c_ulong,
-    ) -> IOReturn;
+/// Retrieves the current value of one of the aggressiveness factors in IOKit Power Management.
+///
+/// Parameter `fb`: Representation of the Root Power Domain from IOPMFindPowerManagement.
+///
+/// Parameter `type`: Specifies which aggressiveness factor is being retrieved.
+///
+/// Parameter `aggressiveness`: Points to where to store the retrieved value of the aggressiveness factor.
+///
+/// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+///
+/// # Safety
+///
+/// `aggressiveness` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMGetAggressiveness(
+    fb: io_connect_t,
+    r#type: c_ulong,
+    aggressiveness: *mut c_ulong,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMGetAggressiveness(
+            fb: io_connect_t,
+            r#type: c_ulong,
+            aggressiveness: *mut c_ulong,
+        ) -> IOReturn;
+    }
+    unsafe { IOPMGetAggressiveness(fb, r#type, aggressiveness) }
 }
 
 /// Tells whether the system supports full sleep, or just doze
@@ -1159,261 +1167,295 @@ pub extern "C-unwind" fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn {
     unsafe { IOPMSleepSystem(fb) }
 }
 
-extern "C-unwind" {
-    /// Request battery data from the system.
-    ///
-    /// This API is supported, but not recommended. Developers should prefer to use
-    /// the IOPowerSources API. IOPowerSources provides more battery data, and notifications
-    /// when battery state changes)
-    ///
-    /// Parameter `masterPort`: The master port obtained from IOMasterPort(). Just pass MACH_PORT_NULL.
-    ///
-    /// Parameter `info`: A CFArray of CFDictionaries containing raw battery data. Use these keys, defined in IOPM.h
-    /// to read from the dictionary:
-    /// <pre>
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOBatteryInfoKey
-    /// ```
-    ///
-    /// </code>
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOBatteryCurrentChargeKey
-    /// ```
-    ///
-    /// </code>
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOBatteryCapacityKey
-    /// ```
-    ///
-    /// </code>
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOBatteryFlagsKey
-    /// ```
-    ///
-    /// </code>
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOBatteryVoltageKey
-    /// ```
-    ///
-    /// </code>
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOBatteryAmperageKey
-    /// ```
-    ///
-    /// </code>
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOBatteryCycleCountKey
-    /// ```
-    ///
-    /// </code>
-    /// </pre>
-    ///
-    /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-    ///
-    /// # Safety
-    ///
-    /// `info` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn IOPMCopyBatteryInfo(
-        master_port: libc::mach_port_t,
-        info: *mut *const CFArray,
-    ) -> IOReturn;
+/// Request battery data from the system.
+///
+/// This API is supported, but not recommended. Developers should prefer to use
+/// the IOPowerSources API. IOPowerSources provides more battery data, and notifications
+/// when battery state changes)
+///
+/// Parameter `masterPort`: The master port obtained from IOMasterPort(). Just pass MACH_PORT_NULL.
+///
+/// Parameter `info`: A CFArray of CFDictionaries containing raw battery data. Use these keys, defined in IOPM.h
+/// to read from the dictionary:
+/// <pre>
+/// <code>
+///
+/// ```text
+///  kIOBatteryInfoKey
+/// ```
+///
+/// </code>
+/// <code>
+///
+/// ```text
+///  kIOBatteryCurrentChargeKey
+/// ```
+///
+/// </code>
+/// <code>
+///
+/// ```text
+///  kIOBatteryCapacityKey
+/// ```
+///
+/// </code>
+/// <code>
+///
+/// ```text
+///  kIOBatteryFlagsKey
+/// ```
+///
+/// </code>
+/// <code>
+///
+/// ```text
+///  kIOBatteryVoltageKey
+/// ```
+///
+/// </code>
+/// <code>
+///
+/// ```text
+///  kIOBatteryAmperageKey
+/// ```
+///
+/// </code>
+/// <code>
+///
+/// ```text
+///  kIOBatteryCycleCountKey
+/// ```
+///
+/// </code>
+/// </pre>
+///
+/// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+///
+/// # Safety
+///
+/// `info` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMCopyBatteryInfo(
+    master_port: libc::mach_port_t,
+    info: *mut *const CFArray,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMCopyBatteryInfo(
+            master_port: libc::mach_port_t,
+            info: *mut *const CFArray,
+        ) -> IOReturn;
+    }
+    unsafe { IOPMCopyBatteryInfo(master_port, info) }
 }
 
-extern "C-unwind" {
-    /// DEPRECATED - An obsolete method for interacting with driver power state changes.
-    ///
-    /// This function is obsolete and deprecated. To receive notifications of driver power state changes,
-    /// Please use IOServiceAddInterestNotification with interest type gIOGeneralInterest instead.
-    ///
-    /// # Safety
-    ///
-    /// - `refcon` must be a valid pointer.
-    /// - `the_port_ref` must be a valid pointer.
-    /// - `callback` must be implemented correctly.
-    /// - `notifier` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn IORegisterApp(
-        refcon: *mut c_void,
-        the_driver: io_service_t,
-        the_port_ref: *mut IONotificationPortRef,
-        callback: IOServiceInterestCallback,
-        notifier: *mut io_object_t,
-    ) -> io_connect_t;
+/// DEPRECATED - An obsolete method for interacting with driver power state changes.
+///
+/// This function is obsolete and deprecated. To receive notifications of driver power state changes,
+/// Please use IOServiceAddInterestNotification with interest type gIOGeneralInterest instead.
+///
+/// # Safety
+///
+/// - `refcon` must be a valid pointer.
+/// - `the_port_ref` must be a valid pointer.
+/// - `callback` must be implemented correctly.
+/// - `notifier` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn IORegisterApp(
+    refcon: *mut c_void,
+    the_driver: io_service_t,
+    the_port_ref: *mut IONotificationPortRef,
+    callback: IOServiceInterestCallback,
+    notifier: *mut io_object_t,
+) -> io_connect_t {
+    extern "C-unwind" {
+        fn IORegisterApp(
+            refcon: *mut c_void,
+            the_driver: io_service_t,
+            the_port_ref: *mut IONotificationPortRef,
+            callback: IOServiceInterestCallback,
+            notifier: *mut io_object_t,
+        ) -> io_connect_t;
+    }
+    unsafe { IORegisterApp(refcon, the_driver, the_port_ref, callback, notifier) }
 }
 
-extern "C-unwind" {
-    /// Connects the caller to the Root Power Domain IOService for the purpose of receiving sleep
-    /// &
-    /// wake notifications for the system.
-    /// Does not provide system shutdown and restart notifications.
-    ///
-    /// Provides sleep/wake notifications to applications. Requires that applications acknowledge
-    /// some, but not all notifications. Register for sleep/wake notifications will deliver these messages
-    /// over the sleep/wake lifecycle:
-    /// <ul>
-    /// <li>
-    /// kIOMessageSystemWillSleep is delivered at the point the system is initiating a
-    /// non-abortable sleep.
-    /// Callers MUST acknowledge this event by calling
-    ///
-    /// ```text
-    ///  IOAllowPowerChange
-    /// ```
-    ///
-    /// .
-    /// If a caller does not acknowledge the sleep notification, the sleep will continue anyway after
-    /// a 30 second timeout (resulting in bad user experience).
-    /// Delivered before any hardware is powered off.
-    ///
-    /// <li>
-    /// kIOMessageSystemWillPowerOn is delivered at early wakeup time, before most hardware has been
-    /// powered on. Be aware that any attempts to access disk, network, the display, etc. may result
-    /// in errors or blocking your process until those resources become available.
-    /// Caller must NOT acknowledge kIOMessageSystemWillPowerOn; the caller must simply return from its handler.
-    ///
-    /// <li>
-    /// kIOMessageSystemHasPoweredOn is delivered at wakeup completion time, after all device drivers and
-    /// hardware have handled the wakeup event. Expect this event 1-5 or more seconds after initiating
-    /// system wakeup.
-    /// Caller must NOT acknowledge kIOMessageSystemHasPoweredOn; the caller must simply return from its handler.
-    ///
-    /// <li>
-    /// kIOMessageCanSystemSleep indicates the system is pondering an idle sleep, but gives apps the
-    /// chance to veto that sleep attempt.
-    /// Caller must acknowledge kIOMessageCanSystemSleep by calling
-    ///
-    /// ```text
-    ///  IOAllowPowerChange
-    /// ```
-    ///
-    /// or
-    ///
-    /// ```text
-    ///  IOCancelPowerChange
-    /// ```
-    ///
-    /// . Calling IOAllowPowerChange will not veto the sleep; any
-    /// app that calls IOCancelPowerChange will veto the idle sleep. A kIOMessageCanSystemSleep
-    /// notification will be followed up to 30 seconds later by a kIOMessageSystemWillSleep message.
-    /// or a kIOMessageSystemWillNotSleep message.
-    ///
-    /// <li>
-    /// kIOMessageSystemWillNotSleep is delivered when some app client has vetoed an idle sleep
-    /// request. kIOMessageSystemWillNotSleep may follow a kIOMessageCanSystemSleep notification,
-    /// but will not otherwise be sent.
-    /// Caller must NOT acknowledge kIOMessageSystemWillNotSleep; the caller must simply return from its handler.
-    /// </ul>
-    /// To deregister for sleep/wake notifications, the caller must make two calls, in this order:
-    /// <ol>
-    /// <li>
-    /// Call IODeregisterForSystemPower with the 'notifier' argument returned here.
-    /// <li>
-    /// Then call IONotificationPortDestroy passing the 'thePortRef' argument
-    /// returned here.
-    /// </ol>
-    ///
-    /// Parameter `refcon`: Caller may provide data to receive as an argument to 'callback' on power state changes.
-    ///
-    /// Parameter `thePortRef`: On return, thePortRef is a pointer to an IONotificationPortRef, which will deliver the power notifications.
-    /// The port is allocated by this function and must be later released by the caller (after calling
-    /// <code>
-    ///
-    /// ```text
-    ///  IODeregisterForSystemPower
-    /// ```
-    ///
-    /// </code>
-    /// ).
-    /// The caller should also enable IONotificationPortRef by calling
-    /// <code>
-    ///
-    /// ```text
-    ///  IONotificationPortGetRunLoopSource
-    /// ```
-    ///
-    /// </code>
-    /// , or
-    /// <code>
-    ///
-    /// ```text
-    ///  IONotificationPortGetMachPort
-    /// ```
-    ///
-    /// </code>
-    /// , or
-    /// <code>
-    ///
-    /// ```text
-    ///  IONotificationPortSetDispatchQueue
-    /// ```
-    ///
-    /// </code>
-    /// .
-    ///
-    /// Parameter `callback`: A c-function which is called during the notification.
-    ///
-    /// Parameter `notifier`: On success, returns a pointer to a unique notifier which caller must keep and pass to a subsequent call to IODeregisterForSystemPower.
-    ///
-    /// Returns: Returns a io_connect_t session for the IOPMrootDomain or IO_OBJECT_NULL if request failed.
-    /// Caller must close return value via IOServiceClose() after calling IODeregisterForSystemPower on the notifier argument.
-    ///
-    /// # Safety
-    ///
-    /// - `refcon` must be a valid pointer.
-    /// - `the_port_ref` must be a valid pointer.
-    /// - `callback` must be implemented correctly.
-    /// - `notifier` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn IORegisterForSystemPower(
-        refcon: *mut c_void,
-        the_port_ref: *mut IONotificationPortRef,
-        callback: IOServiceInterestCallback,
-        notifier: *mut io_object_t,
-    ) -> io_connect_t;
+/// Connects the caller to the Root Power Domain IOService for the purpose of receiving sleep
+/// &
+/// wake notifications for the system.
+/// Does not provide system shutdown and restart notifications.
+///
+/// Provides sleep/wake notifications to applications. Requires that applications acknowledge
+/// some, but not all notifications. Register for sleep/wake notifications will deliver these messages
+/// over the sleep/wake lifecycle:
+/// <ul>
+/// <li>
+/// kIOMessageSystemWillSleep is delivered at the point the system is initiating a
+/// non-abortable sleep.
+/// Callers MUST acknowledge this event by calling
+///
+/// ```text
+///  IOAllowPowerChange
+/// ```
+///
+/// .
+/// If a caller does not acknowledge the sleep notification, the sleep will continue anyway after
+/// a 30 second timeout (resulting in bad user experience).
+/// Delivered before any hardware is powered off.
+///
+/// <li>
+/// kIOMessageSystemWillPowerOn is delivered at early wakeup time, before most hardware has been
+/// powered on. Be aware that any attempts to access disk, network, the display, etc. may result
+/// in errors or blocking your process until those resources become available.
+/// Caller must NOT acknowledge kIOMessageSystemWillPowerOn; the caller must simply return from its handler.
+///
+/// <li>
+/// kIOMessageSystemHasPoweredOn is delivered at wakeup completion time, after all device drivers and
+/// hardware have handled the wakeup event. Expect this event 1-5 or more seconds after initiating
+/// system wakeup.
+/// Caller must NOT acknowledge kIOMessageSystemHasPoweredOn; the caller must simply return from its handler.
+///
+/// <li>
+/// kIOMessageCanSystemSleep indicates the system is pondering an idle sleep, but gives apps the
+/// chance to veto that sleep attempt.
+/// Caller must acknowledge kIOMessageCanSystemSleep by calling
+///
+/// ```text
+///  IOAllowPowerChange
+/// ```
+///
+/// or
+///
+/// ```text
+///  IOCancelPowerChange
+/// ```
+///
+/// . Calling IOAllowPowerChange will not veto the sleep; any
+/// app that calls IOCancelPowerChange will veto the idle sleep. A kIOMessageCanSystemSleep
+/// notification will be followed up to 30 seconds later by a kIOMessageSystemWillSleep message.
+/// or a kIOMessageSystemWillNotSleep message.
+///
+/// <li>
+/// kIOMessageSystemWillNotSleep is delivered when some app client has vetoed an idle sleep
+/// request. kIOMessageSystemWillNotSleep may follow a kIOMessageCanSystemSleep notification,
+/// but will not otherwise be sent.
+/// Caller must NOT acknowledge kIOMessageSystemWillNotSleep; the caller must simply return from its handler.
+/// </ul>
+/// To deregister for sleep/wake notifications, the caller must make two calls, in this order:
+/// <ol>
+/// <li>
+/// Call IODeregisterForSystemPower with the 'notifier' argument returned here.
+/// <li>
+/// Then call IONotificationPortDestroy passing the 'thePortRef' argument
+/// returned here.
+/// </ol>
+///
+/// Parameter `refcon`: Caller may provide data to receive as an argument to 'callback' on power state changes.
+///
+/// Parameter `thePortRef`: On return, thePortRef is a pointer to an IONotificationPortRef, which will deliver the power notifications.
+/// The port is allocated by this function and must be later released by the caller (after calling
+/// <code>
+///
+/// ```text
+///  IODeregisterForSystemPower
+/// ```
+///
+/// </code>
+/// ).
+/// The caller should also enable IONotificationPortRef by calling
+/// <code>
+///
+/// ```text
+///  IONotificationPortGetRunLoopSource
+/// ```
+///
+/// </code>
+/// , or
+/// <code>
+///
+/// ```text
+///  IONotificationPortGetMachPort
+/// ```
+///
+/// </code>
+/// , or
+/// <code>
+///
+/// ```text
+///  IONotificationPortSetDispatchQueue
+/// ```
+///
+/// </code>
+/// .
+///
+/// Parameter `callback`: A c-function which is called during the notification.
+///
+/// Parameter `notifier`: On success, returns a pointer to a unique notifier which caller must keep and pass to a subsequent call to IODeregisterForSystemPower.
+///
+/// Returns: Returns a io_connect_t session for the IOPMrootDomain or IO_OBJECT_NULL if request failed.
+/// Caller must close return value via IOServiceClose() after calling IODeregisterForSystemPower on the notifier argument.
+///
+/// # Safety
+///
+/// - `refcon` must be a valid pointer.
+/// - `the_port_ref` must be a valid pointer.
+/// - `callback` must be implemented correctly.
+/// - `notifier` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IORegisterForSystemPower(
+    refcon: *mut c_void,
+    the_port_ref: *mut IONotificationPortRef,
+    callback: IOServiceInterestCallback,
+    notifier: *mut io_object_t,
+) -> io_connect_t {
+    extern "C-unwind" {
+        fn IORegisterForSystemPower(
+            refcon: *mut c_void,
+            the_port_ref: *mut IONotificationPortRef,
+            callback: IOServiceInterestCallback,
+            notifier: *mut io_object_t,
+        ) -> io_connect_t;
+    }
+    unsafe { IORegisterForSystemPower(refcon, the_port_ref, callback, notifier) }
 }
 
-extern "C-unwind" {
-    /// Disconnects the caller from an IOService after receiving power state change notifications from the IOService. (Caller must also release IORegisterApp's return io_connect_t and returned IONotificationPortRef for complete clean-up).
-    ///
-    /// Parameter `notifier`: An object from IORegisterApp.
-    ///
-    /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-    ///
-    /// # Safety
-    ///
-    /// `notifier` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn IODeregisterApp(notifier: *mut io_object_t) -> IOReturn;
+/// Disconnects the caller from an IOService after receiving power state change notifications from the IOService. (Caller must also release IORegisterApp's return io_connect_t and returned IONotificationPortRef for complete clean-up).
+///
+/// Parameter `notifier`: An object from IORegisterApp.
+///
+/// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+///
+/// # Safety
+///
+/// `notifier` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IODeregisterApp(notifier: *mut io_object_t) -> IOReturn {
+    extern "C-unwind" {
+        fn IODeregisterApp(notifier: *mut io_object_t) -> IOReturn;
+    }
+    unsafe { IODeregisterApp(notifier) }
 }
 
-extern "C-unwind" {
-    /// Disconnects the caller from the Root Power Domain IOService after receiving system power state change notifications. (Caller must also destroy the IONotificationPortRef returned from IORegisterForSystemPower.)
-    ///
-    /// Parameter `notifier`: The object returned from IORegisterForSystemPower.
-    ///
-    /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-    ///
-    /// # Safety
-    ///
-    /// `notifier` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn IODeregisterForSystemPower(notifier: *mut io_object_t) -> IOReturn;
+/// Disconnects the caller from the Root Power Domain IOService after receiving system power state change notifications. (Caller must also destroy the IONotificationPortRef returned from IORegisterForSystemPower.)
+///
+/// Parameter `notifier`: The object returned from IORegisterForSystemPower.
+///
+/// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+///
+/// # Safety
+///
+/// `notifier` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IODeregisterForSystemPower(notifier: *mut io_object_t) -> IOReturn {
+    extern "C-unwind" {
+        fn IODeregisterForSystemPower(notifier: *mut io_object_t) -> IOReturn;
+    }
+    unsafe { IODeregisterForSystemPower(notifier) }
 }
 
 /// The caller acknowledges notification of a power state change on a device it has registered for notifications for via IORegisterForSystemPower or IORegisterApp.
@@ -1465,92 +1507,108 @@ pub extern "C-unwind" fn IOCancelPowerChange(
     unsafe { IOCancelPowerChange(kernel_port, notification_id) }
 }
 
-extern "C-unwind" {
-    /// Schedule the machine to wake from sleep, power on, go to sleep, or shutdown.
-    ///
-    /// This event will be added to the system's queue of power events and stored persistently on disk. The sleep and shutdown events present a graphical warning and allow a console user to cancel the event. Must be called as root.
-    ///
-    /// Parameter `time_to_wake`: Date and time that the system will power on/off.
-    ///
-    /// Parameter `my_id`: A CFStringRef identifying the calling app by CFBundleIdentifier. May be NULL.
-    ///
-    /// Parameter `type`: The type of power on you desire, either wake from sleep or power on. Choose from:
-    /// <ul>
-    /// <li>
-    /// CFSTR(
-    /// <code>
-    /// kIOPMAutoWake
-    /// </code>
-    /// ) == wake machine,
-    /// <li>
-    /// CFSTR(
-    /// <code>
-    /// kIOPMAutoPowerOn
-    /// </code>
-    /// ) == power on machine,
-    /// <li>
-    /// CFSTR(
-    /// <code>
-    /// kIOPMAutoWakeOrPowerOn
-    /// </code>
-    /// ) == wake or power on,
-    /// <li>
-    /// CFSTR(
-    /// <code>
-    /// kIOPMAutoSleep
-    /// </code>
-    /// ) == sleep machine,
-    /// <li>
-    /// CFSTR(
-    /// <code>
-    /// kIOPMAutoShutdown
-    /// </code>
-    /// ) == power off machine,
-    /// <li>
-    /// CFSTR(
-    /// <code>
-    /// kIOPMAutoRestart
-    /// </code>
-    /// ) == restart the machine.
-    /// </ul>
-    ///
-    /// Returns: kIOReturnSuccess on success, otherwise on failure
-    ///
-    /// # Safety
-    ///
-    /// - `time_to_wake` might not allow `None`.
-    /// - `my_id` might not allow `None`.
-    /// - `type` might not allow `None`.
-    pub fn IOPMSchedulePowerEvent(
-        time_to_wake: Option<&CFDate>,
-        my_id: Option<&CFString>,
-        r#type: Option<&CFString>,
-    ) -> IOReturn;
+/// Schedule the machine to wake from sleep, power on, go to sleep, or shutdown.
+///
+/// This event will be added to the system's queue of power events and stored persistently on disk. The sleep and shutdown events present a graphical warning and allow a console user to cancel the event. Must be called as root.
+///
+/// Parameter `time_to_wake`: Date and time that the system will power on/off.
+///
+/// Parameter `my_id`: A CFStringRef identifying the calling app by CFBundleIdentifier. May be NULL.
+///
+/// Parameter `type`: The type of power on you desire, either wake from sleep or power on. Choose from:
+/// <ul>
+/// <li>
+/// CFSTR(
+/// <code>
+/// kIOPMAutoWake
+/// </code>
+/// ) == wake machine,
+/// <li>
+/// CFSTR(
+/// <code>
+/// kIOPMAutoPowerOn
+/// </code>
+/// ) == power on machine,
+/// <li>
+/// CFSTR(
+/// <code>
+/// kIOPMAutoWakeOrPowerOn
+/// </code>
+/// ) == wake or power on,
+/// <li>
+/// CFSTR(
+/// <code>
+/// kIOPMAutoSleep
+/// </code>
+/// ) == sleep machine,
+/// <li>
+/// CFSTR(
+/// <code>
+/// kIOPMAutoShutdown
+/// </code>
+/// ) == power off machine,
+/// <li>
+/// CFSTR(
+/// <code>
+/// kIOPMAutoRestart
+/// </code>
+/// ) == restart the machine.
+/// </ul>
+///
+/// Returns: kIOReturnSuccess on success, otherwise on failure
+///
+/// # Safety
+///
+/// - `time_to_wake` might not allow `None`.
+/// - `my_id` might not allow `None`.
+/// - `type` might not allow `None`.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMSchedulePowerEvent(
+    time_to_wake: Option<&CFDate>,
+    my_id: Option<&CFString>,
+    r#type: Option<&CFString>,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMSchedulePowerEvent(
+            time_to_wake: Option<&CFDate>,
+            my_id: Option<&CFString>,
+            r#type: Option<&CFString>,
+        ) -> IOReturn;
+    }
+    unsafe { IOPMSchedulePowerEvent(time_to_wake, my_id, r#type) }
 }
 
-extern "C-unwind" {
-    /// Cancel a previously scheduled power event.
-    ///
-    /// Arguments mirror those to IOPMSchedulePowerEvent. All arguments must match the original arguments from when the power on was scheduled. Must be called as root.
-    ///
-    /// Parameter `time_to_wake`: Cancel entry with this date and time.
-    ///
-    /// Parameter `my_id`: Cancel entry with this name.
-    ///
-    /// Parameter `type`: Type to cancel
-    ///
-    /// Returns: kIOReturnSuccess on success, otherwise on failure
-    ///
-    /// # Safety
-    ///
-    /// - `time_to_wake` might not allow `None`.
-    /// - `my_id` might not allow `None`.
-    /// - `type` might not allow `None`.
-    pub fn IOPMCancelScheduledPowerEvent(
-        time_to_wake: Option<&CFDate>,
-        my_id: Option<&CFString>,
-        r#type: Option<&CFString>,
-    ) -> IOReturn;
+/// Cancel a previously scheduled power event.
+///
+/// Arguments mirror those to IOPMSchedulePowerEvent. All arguments must match the original arguments from when the power on was scheduled. Must be called as root.
+///
+/// Parameter `time_to_wake`: Cancel entry with this date and time.
+///
+/// Parameter `my_id`: Cancel entry with this name.
+///
+/// Parameter `type`: Type to cancel
+///
+/// Returns: kIOReturnSuccess on success, otherwise on failure
+///
+/// # Safety
+///
+/// - `time_to_wake` might not allow `None`.
+/// - `my_id` might not allow `None`.
+/// - `type` might not allow `None`.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMCancelScheduledPowerEvent(
+    time_to_wake: Option<&CFDate>,
+    my_id: Option<&CFString>,
+    r#type: Option<&CFString>,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMCancelScheduledPowerEvent(
+            time_to_wake: Option<&CFDate>,
+            my_id: Option<&CFString>,
+            r#type: Option<&CFString>,
+        ) -> IOReturn;
+    }
+    unsafe { IOPMCancelScheduledPowerEvent(time_to_wake, my_id, r#type) }
 }
 
 /// List all scheduled system power events
@@ -1647,420 +1705,466 @@ unsafe impl RefEncode for IOPMUserActiveType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// The preferred API to create a power assertion.
-    ///
-    /// Creates an IOPMAssertion. This is the preferred API to call to create an assertion.
-    /// It allows the caller to specify the Name, Details, and HumanReadableReason at creation time.
-    /// There are other keys that can further describe an assertion, but most developers don't need
-    /// to use them. Use
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPMAssertionSetProperty
-    /// ```
-    ///
-    /// </code>
-    /// or
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPMAssertionCreateWithProperties
-    /// ```
-    ///
-    /// </code>
-    /// if you need to specify properties
-    /// that aren't available here.
-    ///
-    ///
-    /// Parameter `AssertionType`: An assertion type constant.
-    /// Caller must specify this argument.
-    ///
-    ///
-    /// Parameter `Name`: A CFString value to correspond to key
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPMAssertionNameKey
-    /// ```
-    ///
-    /// </code>
-    /// .
-    /// Caller must specify this argument.
-    ///
-    ///
-    /// Parameter `Details`: A CFString value to correspond to key
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPMAssertionDetailsKey
-    /// ```
-    ///
-    /// </code>
-    /// .
-    /// Caller may pass NULL, but it helps power users and administrators identify the
-    /// reasons for this assertion.
-    ///
-    ///
-    /// Parameter `HumanReadableReason`: A CFString value to correspond to key
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPMAssertionHumanReadableReasonKey
-    /// ```
-    ///
-    /// </code>
-    /// .
-    /// Caller may pass NULL, but if it's specified OS X may display it to users
-    /// to describe the active assertions on their system.
-    ///
-    ///
-    /// Parameter `LocalizationBundlePath`: A CFString value to correspond to key
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPMAssertionLocalizationBundlePathKey
-    /// ```
-    ///
-    /// </code>
-    /// .
-    /// This bundle path should include a localization for the string
-    /// <code>
-    /// HumanReadableReason
-    /// </code>
-    /// Caller may pass NULL, but this argument is required if caller specifies
-    /// <code>
-    /// HumanReadableReason
-    /// </code>
-    ///
-    ///
-    /// Parameter `Timeout`: Specifies a timeout for this assertion. Pass 0 for no timeout.
-    ///
-    ///
-    /// Parameter `TimeoutAction`: Specifies a timeout action. Caller my pass NULL. If a timeout is specified but a TimeoutAction is not,
-    /// the default timeout action is
-    /// <code>
-    /// kIOPMAssertionTimeoutActionTurnOff
-    /// </code>
-    ///
-    ///
-    /// Parameter `AssertionID`: (Output) On successful return, contains a unique reference to a PM assertion.
-    ///
-    ///
-    /// Returns: kIOReturnSuccess, or another IOKit return code on error.
-    ///
-    /// # Safety
-    ///
-    /// - `assertion_type` might not allow `None`.
-    /// - `name` might not allow `None`.
-    /// - `details` might not allow `None`.
-    /// - `human_readable_reason` might not allow `None`.
-    /// - `localization_bundle_path` might not allow `None`.
-    /// - `timeout_action` might not allow `None`.
-    /// - `assertion_id` must be a valid pointer.
-    pub fn IOPMAssertionCreateWithDescription(
-        assertion_type: Option<&CFString>,
-        name: Option<&CFString>,
-        details: Option<&CFString>,
-        human_readable_reason: Option<&CFString>,
-        localization_bundle_path: Option<&CFString>,
-        timeout: CFTimeInterval,
-        timeout_action: Option<&CFString>,
-        assertion_id: *mut IOPMAssertionID,
-    ) -> IOReturn;
+/// The preferred API to create a power assertion.
+///
+/// Creates an IOPMAssertion. This is the preferred API to call to create an assertion.
+/// It allows the caller to specify the Name, Details, and HumanReadableReason at creation time.
+/// There are other keys that can further describe an assertion, but most developers don't need
+/// to use them. Use
+/// <code>
+///
+/// ```text
+///  IOPMAssertionSetProperty
+/// ```
+///
+/// </code>
+/// or
+/// <code>
+///
+/// ```text
+///  IOPMAssertionCreateWithProperties
+/// ```
+///
+/// </code>
+/// if you need to specify properties
+/// that aren't available here.
+///
+///
+/// Parameter `AssertionType`: An assertion type constant.
+/// Caller must specify this argument.
+///
+///
+/// Parameter `Name`: A CFString value to correspond to key
+/// <code>
+///
+/// ```text
+///  kIOPMAssertionNameKey
+/// ```
+///
+/// </code>
+/// .
+/// Caller must specify this argument.
+///
+///
+/// Parameter `Details`: A CFString value to correspond to key
+/// <code>
+///
+/// ```text
+///  kIOPMAssertionDetailsKey
+/// ```
+///
+/// </code>
+/// .
+/// Caller may pass NULL, but it helps power users and administrators identify the
+/// reasons for this assertion.
+///
+///
+/// Parameter `HumanReadableReason`: A CFString value to correspond to key
+/// <code>
+///
+/// ```text
+///  kIOPMAssertionHumanReadableReasonKey
+/// ```
+///
+/// </code>
+/// .
+/// Caller may pass NULL, but if it's specified OS X may display it to users
+/// to describe the active assertions on their system.
+///
+///
+/// Parameter `LocalizationBundlePath`: A CFString value to correspond to key
+/// <code>
+///
+/// ```text
+///  kIOPMAssertionLocalizationBundlePathKey
+/// ```
+///
+/// </code>
+/// .
+/// This bundle path should include a localization for the string
+/// <code>
+/// HumanReadableReason
+/// </code>
+/// Caller may pass NULL, but this argument is required if caller specifies
+/// <code>
+/// HumanReadableReason
+/// </code>
+///
+///
+/// Parameter `Timeout`: Specifies a timeout for this assertion. Pass 0 for no timeout.
+///
+///
+/// Parameter `TimeoutAction`: Specifies a timeout action. Caller my pass NULL. If a timeout is specified but a TimeoutAction is not,
+/// the default timeout action is
+/// <code>
+/// kIOPMAssertionTimeoutActionTurnOff
+/// </code>
+///
+///
+/// Parameter `AssertionID`: (Output) On successful return, contains a unique reference to a PM assertion.
+///
+///
+/// Returns: kIOReturnSuccess, or another IOKit return code on error.
+///
+/// # Safety
+///
+/// - `assertion_type` might not allow `None`.
+/// - `name` might not allow `None`.
+/// - `details` might not allow `None`.
+/// - `human_readable_reason` might not allow `None`.
+/// - `localization_bundle_path` might not allow `None`.
+/// - `timeout_action` might not allow `None`.
+/// - `assertion_id` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMAssertionCreateWithDescription(
+    assertion_type: Option<&CFString>,
+    name: Option<&CFString>,
+    details: Option<&CFString>,
+    human_readable_reason: Option<&CFString>,
+    localization_bundle_path: Option<&CFString>,
+    timeout: CFTimeInterval,
+    timeout_action: Option<&CFString>,
+    assertion_id: *mut IOPMAssertionID,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMAssertionCreateWithDescription(
+            assertion_type: Option<&CFString>,
+            name: Option<&CFString>,
+            details: Option<&CFString>,
+            human_readable_reason: Option<&CFString>,
+            localization_bundle_path: Option<&CFString>,
+            timeout: CFTimeInterval,
+            timeout_action: Option<&CFString>,
+            assertion_id: *mut IOPMAssertionID,
+        ) -> IOReturn;
+    }
+    unsafe {
+        IOPMAssertionCreateWithDescription(
+            assertion_type,
+            name,
+            details,
+            human_readable_reason,
+            localization_bundle_path,
+            timeout,
+            timeout_action,
+            assertion_id,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Creates an IOPMAssertion with more flexibility than
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPMAssertionCreateWithDescription
-    /// ```
-    ///
-    /// </code>
-    /// .
-    ///
-    /// Parameter `AssertionProperties`: Dictionary providing the properties of the assertion that need to be created.
-    ///
-    /// Parameter `AssertionID`: (Output) On successful return, contains a unique reference to a PM assertion.
-    ///
-    ///
-    /// Create a new PM assertion - the caller must specify the type of assertion, initial level, and its
-    /// properties as
-    ///
-    /// ```text
-    ///  IOPMAssertionDictionaryKeys
-    /// ```
-    ///
-    /// keys in the
-    /// <code>
-    /// AssertionProperties
-    /// </code>
-    /// dictionary.
-    /// The following keys are recommend and/or required to be specified in the AssertionProperties
-    /// dictionary argument.
-    /// <ul>
-    /// <li>
-    /// REQUIRED:
-    /// <code>
-    /// kIOPMAssertionTypeKey
-    /// </code>
-    /// define the assertion type.
-    ///
-    /// <li>
-    /// REQUIRED:
-    /// <code>
-    /// kIOPMAssertionNameKey
-    /// </code>
-    /// Caller must describe the name for the activity that
-    /// requires the change in behavior provided by the assertion.
-    ///
-    /// <li>
-    /// OPTIONAL:
-    /// <code>
-    /// kIOPMAssertionLevelKey
-    /// </code>
-    /// define an inital value. If not set, assertion is
-    /// turned on after creation.
-    ///
-    /// <li>
-    /// OPTIONAL:
-    /// <code>
-    /// kIOPMAssertionDetailsKey
-    /// </code>
-    /// Caller may describe context-specific data about the
-    /// assertion.
-    ///
-    /// <li>
-    /// OPTIONAL:
-    /// <code>
-    /// kIOPMAssertionHumanReadableReasonKey
-    /// </code>
-    /// Caller may describe the reason for creating the assertion
-    /// in a localizable CFString. This should be a human readable phrase that describes the actions the
-    /// calling process is taking while the assertion is held, like "Downloading TV episodes", or "Compiling Projects"
-    ///
-    /// <li>
-    /// OPTIONAL:
-    /// <code>
-    /// kIOPMAssertionLocalizationBundlePathKey
-    /// </code>
-    /// Caller may provide its bundle's path, where OS X
-    /// can localize for GUI display the CFString specified by
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPMAssertionHumanReadableReasonKey
-    /// ```
-    ///
-    /// </code>
-    /// .
-    ///
-    /// <li>
-    /// OPTIONAL:
-    /// <code>
-    /// kIOPMAssertionPlugInIDKey
-    /// </code>
-    /// if the caller is a plugin with a different identity than the process
-    /// it's loaded in.
-    ///
-    /// <li>
-    /// OPTIONAL:
-    /// <code>
-    /// kIOPMAssertionFrameworkIDKey
-    /// </code>
-    /// if the caller is a framework acting on behalf of a process.
-    ///
-    /// <li>
-    /// OPTIONAL:
-    /// <code>
-    /// kIOPMAssertionTimeoutKey
-    /// </code>
-    /// The caller may specify a timeout.
-    /// </ul>
-    ///
-    /// # Safety
-    ///
-    /// - `assertion_properties` generic must be of the correct type.
-    /// - `assertion_properties` generic must be of the correct type.
-    /// - `assertion_properties` might not allow `None`.
-    /// - `assertion_id` must be a valid pointer.
-    pub fn IOPMAssertionCreateWithProperties(
-        assertion_properties: Option<&CFDictionary>,
-        assertion_id: *mut IOPMAssertionID,
-    ) -> IOReturn;
+/// Creates an IOPMAssertion with more flexibility than
+/// <code>
+///
+/// ```text
+///  IOPMAssertionCreateWithDescription
+/// ```
+///
+/// </code>
+/// .
+///
+/// Parameter `AssertionProperties`: Dictionary providing the properties of the assertion that need to be created.
+///
+/// Parameter `AssertionID`: (Output) On successful return, contains a unique reference to a PM assertion.
+///
+///
+/// Create a new PM assertion - the caller must specify the type of assertion, initial level, and its
+/// properties as
+///
+/// ```text
+///  IOPMAssertionDictionaryKeys
+/// ```
+///
+/// keys in the
+/// <code>
+/// AssertionProperties
+/// </code>
+/// dictionary.
+/// The following keys are recommend and/or required to be specified in the AssertionProperties
+/// dictionary argument.
+/// <ul>
+/// <li>
+/// REQUIRED:
+/// <code>
+/// kIOPMAssertionTypeKey
+/// </code>
+/// define the assertion type.
+///
+/// <li>
+/// REQUIRED:
+/// <code>
+/// kIOPMAssertionNameKey
+/// </code>
+/// Caller must describe the name for the activity that
+/// requires the change in behavior provided by the assertion.
+///
+/// <li>
+/// OPTIONAL:
+/// <code>
+/// kIOPMAssertionLevelKey
+/// </code>
+/// define an inital value. If not set, assertion is
+/// turned on after creation.
+///
+/// <li>
+/// OPTIONAL:
+/// <code>
+/// kIOPMAssertionDetailsKey
+/// </code>
+/// Caller may describe context-specific data about the
+/// assertion.
+///
+/// <li>
+/// OPTIONAL:
+/// <code>
+/// kIOPMAssertionHumanReadableReasonKey
+/// </code>
+/// Caller may describe the reason for creating the assertion
+/// in a localizable CFString. This should be a human readable phrase that describes the actions the
+/// calling process is taking while the assertion is held, like "Downloading TV episodes", or "Compiling Projects"
+///
+/// <li>
+/// OPTIONAL:
+/// <code>
+/// kIOPMAssertionLocalizationBundlePathKey
+/// </code>
+/// Caller may provide its bundle's path, where OS X
+/// can localize for GUI display the CFString specified by
+/// <code>
+///
+/// ```text
+///  kIOPMAssertionHumanReadableReasonKey
+/// ```
+///
+/// </code>
+/// .
+///
+/// <li>
+/// OPTIONAL:
+/// <code>
+/// kIOPMAssertionPlugInIDKey
+/// </code>
+/// if the caller is a plugin with a different identity than the process
+/// it's loaded in.
+///
+/// <li>
+/// OPTIONAL:
+/// <code>
+/// kIOPMAssertionFrameworkIDKey
+/// </code>
+/// if the caller is a framework acting on behalf of a process.
+///
+/// <li>
+/// OPTIONAL:
+/// <code>
+/// kIOPMAssertionTimeoutKey
+/// </code>
+/// The caller may specify a timeout.
+/// </ul>
+///
+/// # Safety
+///
+/// - `assertion_properties` generic must be of the correct type.
+/// - `assertion_properties` generic must be of the correct type.
+/// - `assertion_properties` might not allow `None`.
+/// - `assertion_id` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMAssertionCreateWithProperties(
+    assertion_properties: Option<&CFDictionary>,
+    assertion_id: *mut IOPMAssertionID,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMAssertionCreateWithProperties(
+            assertion_properties: Option<&CFDictionary>,
+            assertion_id: *mut IOPMAssertionID,
+        ) -> IOReturn;
+    }
+    unsafe { IOPMAssertionCreateWithProperties(assertion_properties, assertion_id) }
 }
 
-extern "C-unwind" {
-    /// Declares that the user is active on the system.
-    ///
-    ///
-    /// This causes the display to power on and postpone display sleep,
-    /// up to the user's display sleep Energy Saver settings.
-    ///
-    /// If you need to hold the display awake for a longer period and you know
-    /// how long you'd like to hold it, consider taking assertion
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPMAssertPreventUserIdleDisplaySleep
-    /// ```
-    ///
-    /// </code>
-    /// using
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPMAssertionCreateWithDescription
-    /// ```
-    ///
-    /// </code>
-    /// API instead.
-    ///
-    /// No special privileges are necessary to make this call - any process may
-    /// call this API. Caller must specify an AssertionName - NULL is not
-    /// a valid input.
-    ///
-    ///
-    /// Parameter `AssertionName`: A string that describes the name of the caller and the activity being
-    /// handled by this assertion (e.g. "Mail Compacting Mailboxes"). Name may be no longer
-    /// than 128 characters.
-    ///
-    ///
-    /// Parameter `userType`: This parameter specifies if the active user is located locally in front of the
-    /// system or connected to the system over the network. Various components of the system
-    /// are maintained at different power levels depending on user location.
-    ///
-    ///
-    /// Parameter `AssertionID`: On Success, unique id will be returned in this parameter. Caller
-    /// may call this function again with the unique id retured previously to report continous
-    /// user activity. The unique id returned by this function may change on each call depending
-    /// on how frequently this function call is repeated and the current display sleep timer value.
-    /// If you make this call more than once, track the returned value for
-    /// assertionID, and pass it in as an argument on each call.
-    ///
-    ///
-    /// Returns: Returns kIOReturnSuccess on success, any other return indicates
-    /// PM could not successfully activate the specified assertion.
-    ///
-    /// # Safety
-    ///
-    /// - `assertion_name` might not allow `None`.
-    /// - `assertion_id` must be a valid pointer.
-    pub fn IOPMAssertionDeclareUserActivity(
-        assertion_name: Option<&CFString>,
-        user_type: IOPMUserActiveType,
-        assertion_id: *mut IOPMAssertionID,
-    ) -> IOReturn;
+/// Declares that the user is active on the system.
+///
+///
+/// This causes the display to power on and postpone display sleep,
+/// up to the user's display sleep Energy Saver settings.
+///
+/// If you need to hold the display awake for a longer period and you know
+/// how long you'd like to hold it, consider taking assertion
+/// <code>
+///
+/// ```text
+///  kIOPMAssertPreventUserIdleDisplaySleep
+/// ```
+///
+/// </code>
+/// using
+/// <code>
+///
+/// ```text
+///  IOPMAssertionCreateWithDescription
+/// ```
+///
+/// </code>
+/// API instead.
+///
+/// No special privileges are necessary to make this call - any process may
+/// call this API. Caller must specify an AssertionName - NULL is not
+/// a valid input.
+///
+///
+/// Parameter `AssertionName`: A string that describes the name of the caller and the activity being
+/// handled by this assertion (e.g. "Mail Compacting Mailboxes"). Name may be no longer
+/// than 128 characters.
+///
+///
+/// Parameter `userType`: This parameter specifies if the active user is located locally in front of the
+/// system or connected to the system over the network. Various components of the system
+/// are maintained at different power levels depending on user location.
+///
+///
+/// Parameter `AssertionID`: On Success, unique id will be returned in this parameter. Caller
+/// may call this function again with the unique id retured previously to report continous
+/// user activity. The unique id returned by this function may change on each call depending
+/// on how frequently this function call is repeated and the current display sleep timer value.
+/// If you make this call more than once, track the returned value for
+/// assertionID, and pass it in as an argument on each call.
+///
+///
+/// Returns: Returns kIOReturnSuccess on success, any other return indicates
+/// PM could not successfully activate the specified assertion.
+///
+/// # Safety
+///
+/// - `assertion_name` might not allow `None`.
+/// - `assertion_id` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMAssertionDeclareUserActivity(
+    assertion_name: Option<&CFString>,
+    user_type: IOPMUserActiveType,
+    assertion_id: *mut IOPMAssertionID,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMAssertionDeclareUserActivity(
+            assertion_name: Option<&CFString>,
+            user_type: IOPMUserActiveType,
+            assertion_id: *mut IOPMAssertionID,
+        ) -> IOReturn;
+    }
+    unsafe { IOPMAssertionDeclareUserActivity(assertion_name, user_type, assertion_id) }
 }
 
-extern "C-unwind" {
-    /// A convenience function for handling remote network clients; this is a wrapper for
-    /// holding
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPMAssertNetworkClientActive
-    /// ```
-    ///
-    /// </code>
-    ///
-    ///
-    /// Call this whenever you detect activity from your remote network clients.
-    /// This call generates an IPC call, and may block.
-    ///
-    /// On the first invocation, this will populate parameter
-    /// <code>
-    /// AssertionID
-    /// </code>
-    /// with a new assertion ID.
-    /// You should pass in this returned assertion ID on every access.
-    ///
-    /// When system is on AC power, every call to
-    /// <code>
-    /// IOPMDeclareNetworkClientActivity
-    /// </code>
-    /// prevents system from idle sleeping and from demand sleeping for the duration of
-    /// system sleep timer. When system is on Battery power, every call to
-    /// <code>
-    /// IOPMDeclareNetworkClientActivity
-    /// </code>
-    /// prevents system from idle sleeping for the
-    /// duration of system sleep timer.
-    ///
-    /// Assertion created by this interface is valid only for the duration of system sleep timer
-    /// from the last call. IOKit will disable
-    /// <code>
-    /// AssertionID
-    /// </code>
-    /// after that duration.
-    ///
-    /// If you detect that your remote client is no longer active, please immediately call
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPMAssertionRelease
-    /// ```
-    ///
-    /// </code>
-    /// . Do not wait for the timeout.
-    ///
-    /// If your process can detect when remote clients are active and idle, you can skip
-    /// this API and directly create
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPMAssertNetworkClientActive
-    /// ```
-    ///
-    /// </code>
-    /// yourself.
-    ///
-    /// If your remote clients require access to the framebuffer or the GPU, then this
-    /// isn't the appropriate call for you. Please see
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPMAssertionDeclareUserActivity
-    /// ```
-    ///
-    /// </code>
-    /// and pass in argument
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPMUserActiveRemote
-    /// ```
-    ///
-    /// </code>
-    /// .
-    ///
-    ///
-    /// Parameter `AssertionName`: A string that describes the name of the caller and the activity being
-    /// handled by this assertion (e.g. "Serving a podcast"). The name must be less than
-    /// 128 characters.
-    /// *
-    ///
-    /// Parameter `AssertionID`: On Success, unique id will be returned in this parameter. Caller
-    /// may call this function again with the unique id retured previously to report additional
-    /// user activity. The unique id returned by this function may change on each call depending
-    /// on how frequently this function call is repeated and the current system sleep timer value.
-    /// If you make this call more than once, track the returned value for
-    /// assertionID, and pass it in as an argument on each call.
-    ///
-    ///
-    /// Returns: Returns kIOReturnSuccess on success, any other return indicates
-    /// PM could not successfully activate the specified assertion.
-    ///
-    /// # Safety
-    ///
-    /// - `assertion_name` might not allow `None`.
-    /// - `assertion_id` must be a valid pointer.
-    pub fn IOPMDeclareNetworkClientActivity(
-        assertion_name: Option<&CFString>,
-        assertion_id: *mut IOPMAssertionID,
-    ) -> IOReturn;
+/// A convenience function for handling remote network clients; this is a wrapper for
+/// holding
+/// <code>
+///
+/// ```text
+///  kIOPMAssertNetworkClientActive
+/// ```
+///
+/// </code>
+///
+///
+/// Call this whenever you detect activity from your remote network clients.
+/// This call generates an IPC call, and may block.
+///
+/// On the first invocation, this will populate parameter
+/// <code>
+/// AssertionID
+/// </code>
+/// with a new assertion ID.
+/// You should pass in this returned assertion ID on every access.
+///
+/// When system is on AC power, every call to
+/// <code>
+/// IOPMDeclareNetworkClientActivity
+/// </code>
+/// prevents system from idle sleeping and from demand sleeping for the duration of
+/// system sleep timer. When system is on Battery power, every call to
+/// <code>
+/// IOPMDeclareNetworkClientActivity
+/// </code>
+/// prevents system from idle sleeping for the
+/// duration of system sleep timer.
+///
+/// Assertion created by this interface is valid only for the duration of system sleep timer
+/// from the last call. IOKit will disable
+/// <code>
+/// AssertionID
+/// </code>
+/// after that duration.
+///
+/// If you detect that your remote client is no longer active, please immediately call
+/// <code>
+///
+/// ```text
+///  IOPMAssertionRelease
+/// ```
+///
+/// </code>
+/// . Do not wait for the timeout.
+///
+/// If your process can detect when remote clients are active and idle, you can skip
+/// this API and directly create
+/// <code>
+///
+/// ```text
+///  kIOPMAssertNetworkClientActive
+/// ```
+///
+/// </code>
+/// yourself.
+///
+/// If your remote clients require access to the framebuffer or the GPU, then this
+/// isn't the appropriate call for you. Please see
+/// <code>
+///
+/// ```text
+///  IOPMAssertionDeclareUserActivity
+/// ```
+///
+/// </code>
+/// and pass in argument
+/// <code>
+///
+/// ```text
+///  kIOPMUserActiveRemote
+/// ```
+///
+/// </code>
+/// .
+///
+///
+/// Parameter `AssertionName`: A string that describes the name of the caller and the activity being
+/// handled by this assertion (e.g. "Serving a podcast"). The name must be less than
+/// 128 characters.
+/// *
+///
+/// Parameter `AssertionID`: On Success, unique id will be returned in this parameter. Caller
+/// may call this function again with the unique id retured previously to report additional
+/// user activity. The unique id returned by this function may change on each call depending
+/// on how frequently this function call is repeated and the current system sleep timer value.
+/// If you make this call more than once, track the returned value for
+/// assertionID, and pass it in as an argument on each call.
+///
+///
+/// Returns: Returns kIOReturnSuccess on success, any other return indicates
+/// PM could not successfully activate the specified assertion.
+///
+/// # Safety
+///
+/// - `assertion_name` might not allow `None`.
+/// - `assertion_id` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMDeclareNetworkClientActivity(
+    assertion_name: Option<&CFString>,
+    assertion_id: *mut IOPMAssertionID,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMDeclareNetworkClientActivity(
+            assertion_name: Option<&CFString>,
+            assertion_id: *mut IOPMAssertionID,
+        ) -> IOReturn;
+    }
+    unsafe { IOPMDeclareNetworkClientActivity(assertion_name, assertion_id) }
 }
 
 /// Increments the assertion's retain count.
@@ -2156,201 +2260,245 @@ pub extern "C-unwind" fn IOPMAssertionCopyProperties(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Sets a property in the assertion.
-    ///
-    /// Only the process that created an assertion may change its properties.
-    ///
-    /// Parameter `theAssertion`: The
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPMAssertionID
-    /// ```
-    ///
-    /// </code>
-    /// of the assertion to modify.
-    ///
-    /// Parameter `theProperty`: The CFString key, from
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPMAssertionDictionaryKeys
-    /// ```
-    ///
-    /// </code>
-    /// to modify.
-    ///
-    /// Parameter `theValue`: The property to set. The value must match the CF type expected for the specified key.
-    ///
-    /// Returns: Returns
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOReturnNotPriviliged
-    /// ```
-    ///
-    /// </code>
-    /// if the caller doesn't
-    /// have permission to modify this assertion.
-    /// Returns
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOReturnNotFound
-    /// ```
-    ///
-    /// </code>
-    /// if PM can't locate this assertion.
-    /// Returns
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOReturnError
-    /// ```
-    ///
-    /// </code>
-    /// upon an unidentified error.
-    /// Returns
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOReturnSuccess
-    /// ```
-    ///
-    /// </code>
-    /// otherwise.
-    ///
-    /// # Safety
-    ///
-    /// - `the_property` might not allow `None`.
-    /// - `the_value` should be of the correct type.
-    /// - `the_value` might not allow `None`.
-    pub fn IOPMAssertionSetProperty(
-        the_assertion: IOPMAssertionID,
-        the_property: Option<&CFString>,
-        the_value: Option<&CFType>,
-    ) -> IOReturn;
+/// Sets a property in the assertion.
+///
+/// Only the process that created an assertion may change its properties.
+///
+/// Parameter `theAssertion`: The
+/// <code>
+///
+/// ```text
+///  IOPMAssertionID
+/// ```
+///
+/// </code>
+/// of the assertion to modify.
+///
+/// Parameter `theProperty`: The CFString key, from
+/// <code>
+///
+/// ```text
+///  IOPMAssertionDictionaryKeys
+/// ```
+///
+/// </code>
+/// to modify.
+///
+/// Parameter `theValue`: The property to set. The value must match the CF type expected for the specified key.
+///
+/// Returns: Returns
+/// <code>
+///
+/// ```text
+///  kIOReturnNotPriviliged
+/// ```
+///
+/// </code>
+/// if the caller doesn't
+/// have permission to modify this assertion.
+/// Returns
+/// <code>
+///
+/// ```text
+///  kIOReturnNotFound
+/// ```
+///
+/// </code>
+/// if PM can't locate this assertion.
+/// Returns
+/// <code>
+///
+/// ```text
+///  kIOReturnError
+/// ```
+///
+/// </code>
+/// upon an unidentified error.
+/// Returns
+/// <code>
+///
+/// ```text
+///  kIOReturnSuccess
+/// ```
+///
+/// </code>
+/// otherwise.
+///
+/// # Safety
+///
+/// - `the_property` might not allow `None`.
+/// - `the_value` should be of the correct type.
+/// - `the_value` might not allow `None`.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMAssertionSetProperty(
+    the_assertion: IOPMAssertionID,
+    the_property: Option<&CFString>,
+    the_value: Option<&CFType>,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMAssertionSetProperty(
+            the_assertion: IOPMAssertionID,
+            the_property: Option<&CFString>,
+            the_value: Option<&CFType>,
+        ) -> IOReturn;
+    }
+    unsafe { IOPMAssertionSetProperty(the_assertion, the_property, the_value) }
 }
 
-extern "C-unwind" {
-    /// Returns a dictionary listing all assertions, grouped by their owning process.
-    ///
-    ///
-    /// Notes: One process may have multiple assertions. Several processes may
-    /// have asserted the same assertion to different levels.
-    ///
-    ///
-    /// Parameter `AssertionsByPID`: On success, this returns a dictionary of assertions per process.
-    /// At the top level, keys to the CFDictionary are pids stored as CFNumbers (kCFNumberIntType).
-    /// The value associated with each CFNumber pid is a CFArray of active assertions.
-    /// Each entry in the CFArray is an assertion represented as a CFDictionary. See the keys
-    /// kIOPMAssertionTypeKey and kIOPMAssertionLevelKey.
-    /// Caller must CFRelease() this dictionary when done.
-    ///
-    ///
-    /// Returns: Returns kIOReturnSuccess on success.
-    ///
-    /// # Safety
-    ///
-    /// `assertions_by_pid` must be a valid pointer.
-    pub fn IOPMCopyAssertionsByProcess(assertions_by_pid: *mut *const CFDictionary) -> IOReturn;
+/// Returns a dictionary listing all assertions, grouped by their owning process.
+///
+///
+/// Notes: One process may have multiple assertions. Several processes may
+/// have asserted the same assertion to different levels.
+///
+///
+/// Parameter `AssertionsByPID`: On success, this returns a dictionary of assertions per process.
+/// At the top level, keys to the CFDictionary are pids stored as CFNumbers (kCFNumberIntType).
+/// The value associated with each CFNumber pid is a CFArray of active assertions.
+/// Each entry in the CFArray is an assertion represented as a CFDictionary. See the keys
+/// kIOPMAssertionTypeKey and kIOPMAssertionLevelKey.
+/// Caller must CFRelease() this dictionary when done.
+///
+///
+/// Returns: Returns kIOReturnSuccess on success.
+///
+/// # Safety
+///
+/// `assertions_by_pid` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMCopyAssertionsByProcess(
+    assertions_by_pid: *mut *const CFDictionary,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMCopyAssertionsByProcess(assertions_by_pid: *mut *const CFDictionary) -> IOReturn;
+    }
+    unsafe { IOPMCopyAssertionsByProcess(assertions_by_pid) }
 }
 
-extern "C-unwind" {
-    /// Returns a list of available assertions and their system-wide levels.
-    ///
-    ///
-    /// The system-wide level is the maximum of all individual assertions' levels.
-    ///
-    ///
-    /// Parameter `AssertionsStatus`: On success, this returns a CFDictionary of all assertions currently available.
-    /// The keys in the dictionary are the assertion types, and the value of each is a CFNumber that
-    /// represents the aggregate level for that assertion.  Caller must CFRelease() this dictionary when done.
-    ///
-    ///
-    /// Returns: Returns      kIOReturnSuccess on success.
-    ///
-    /// # Safety
-    ///
-    /// `assertions_status` must be a valid pointer.
-    pub fn IOPMCopyAssertionsStatus(assertions_status: *mut *const CFDictionary) -> IOReturn;
+/// Returns a list of available assertions and their system-wide levels.
+///
+///
+/// The system-wide level is the maximum of all individual assertions' levels.
+///
+///
+/// Parameter `AssertionsStatus`: On success, this returns a CFDictionary of all assertions currently available.
+/// The keys in the dictionary are the assertion types, and the value of each is a CFNumber that
+/// represents the aggregate level for that assertion.  Caller must CFRelease() this dictionary when done.
+///
+///
+/// Returns: Returns      kIOReturnSuccess on success.
+///
+/// # Safety
+///
+/// `assertions_status` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMCopyAssertionsStatus(
+    assertions_status: *mut *const CFDictionary,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMCopyAssertionsStatus(assertions_status: *mut *const CFDictionary) -> IOReturn;
+    }
+    unsafe { IOPMCopyAssertionsStatus(assertions_status) }
 }
 
-extern "C-unwind" {
-    /// This is a deprecated call to create a power assertion.
-    ///
-    ///
-    /// ```text
-    ///  IOPMAssertionCreateWithProperties
-    /// ```
-    ///
-    /// </code>
-    /// .
-    /// Please use that version of this API instead.
-    ///
-    ///
-    /// No special privileges necessary to make this call - any process may
-    /// activate a power assertion.
-    ///
-    ///
-    /// Parameter `AssertionType`: The CFString assertion type to request from the PM system.
-    ///
-    /// Parameter `AssertionLevel`: Pass kIOPMAssertionLevelOn or kIOPMAssertionLevelOff.
-    ///
-    /// Parameter `AssertionID`: On success, a unique id will be returned in this parameter.
-    ///
-    ///
-    /// Returns: Returns kIOReturnSuccess on success, any other return indicates
-    /// PM could not successfully activate the specified assertion.
-    ///
-    /// # Safety
-    ///
-    /// - `assertion_type` might not allow `None`.
-    /// - `assertion_id` must be a valid pointer.
-    #[deprecated]
-    pub fn IOPMAssertionCreate(
-        assertion_type: Option<&CFString>,
-        assertion_level: IOPMAssertionLevel,
-        assertion_id: *mut IOPMAssertionID,
-    ) -> IOReturn;
+/// This is a deprecated call to create a power assertion.
+///
+///
+/// ```text
+///  IOPMAssertionCreateWithProperties
+/// ```
+///
+/// </code>
+/// .
+/// Please use that version of this API instead.
+///
+///
+/// No special privileges necessary to make this call - any process may
+/// activate a power assertion.
+///
+///
+/// Parameter `AssertionType`: The CFString assertion type to request from the PM system.
+///
+/// Parameter `AssertionLevel`: Pass kIOPMAssertionLevelOn or kIOPMAssertionLevelOff.
+///
+/// Parameter `AssertionID`: On success, a unique id will be returned in this parameter.
+///
+///
+/// Returns: Returns kIOReturnSuccess on success, any other return indicates
+/// PM could not successfully activate the specified assertion.
+///
+/// # Safety
+///
+/// - `assertion_type` might not allow `None`.
+/// - `assertion_id` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMAssertionCreate(
+    assertion_type: Option<&CFString>,
+    assertion_level: IOPMAssertionLevel,
+    assertion_id: *mut IOPMAssertionID,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMAssertionCreate(
+            assertion_type: Option<&CFString>,
+            assertion_level: IOPMAssertionLevel,
+            assertion_id: *mut IOPMAssertionID,
+        ) -> IOReturn;
+    }
+    unsafe { IOPMAssertionCreate(assertion_type, assertion_level, assertion_id) }
 }
 
-extern "C-unwind" {
-    /// The simplest API to create a power assertion.
-    ///
-    ///
-    /// No special privileges are necessary to make this call - any process may
-    /// activate a power assertion. Caller must specify an AssertionName - NULL is not
-    /// a valid input.
-    ///
-    ///
-    /// Parameter `AssertionType`: The CFString assertion type to request from the PM system.
-    ///
-    /// Parameter `AssertionLevel`: Pass kIOPMAssertionLevelOn or kIOPMAssertionLevelOff.
-    ///
-    /// Parameter `AssertionName`: A string that describes the name of the caller and the activity being
-    /// handled by this assertion (e.g. "Mail Compacting Mailboxes"). Name may be no longer
-    /// than 128 characters.
-    ///
-    ///
-    /// Parameter `AssertionID`: On success, a unique id will be returned in this parameter.
-    ///
-    ///
-    /// Returns: Returns kIOReturnSuccess on success, any other return indicates
-    /// PM could not successfully activate the specified assertion.
-    ///
-    /// # Safety
-    ///
-    /// - `assertion_type` might not allow `None`.
-    /// - `assertion_name` might not allow `None`.
-    /// - `assertion_id` must be a valid pointer.
-    pub fn IOPMAssertionCreateWithName(
-        assertion_type: Option<&CFString>,
-        assertion_level: IOPMAssertionLevel,
-        assertion_name: Option<&CFString>,
-        assertion_id: *mut IOPMAssertionID,
-    ) -> IOReturn;
+/// The simplest API to create a power assertion.
+///
+///
+/// No special privileges are necessary to make this call - any process may
+/// activate a power assertion. Caller must specify an AssertionName - NULL is not
+/// a valid input.
+///
+///
+/// Parameter `AssertionType`: The CFString assertion type to request from the PM system.
+///
+/// Parameter `AssertionLevel`: Pass kIOPMAssertionLevelOn or kIOPMAssertionLevelOff.
+///
+/// Parameter `AssertionName`: A string that describes the name of the caller and the activity being
+/// handled by this assertion (e.g. "Mail Compacting Mailboxes"). Name may be no longer
+/// than 128 characters.
+///
+///
+/// Parameter `AssertionID`: On success, a unique id will be returned in this parameter.
+///
+///
+/// Returns: Returns kIOReturnSuccess on success, any other return indicates
+/// PM could not successfully activate the specified assertion.
+///
+/// # Safety
+///
+/// - `assertion_type` might not allow `None`.
+/// - `assertion_name` might not allow `None`.
+/// - `assertion_id` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMAssertionCreateWithName(
+    assertion_type: Option<&CFString>,
+    assertion_level: IOPMAssertionLevel,
+    assertion_name: Option<&CFString>,
+    assertion_id: *mut IOPMAssertionID,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMAssertionCreateWithName(
+            assertion_type: Option<&CFString>,
+            assertion_level: IOPMAssertionLevel,
+            assertion_name: Option<&CFString>,
+            assertion_id: *mut IOPMAssertionID,
+        ) -> IOReturn;
+    }
+    unsafe {
+        IOPMAssertionCreateWithName(
+            assertion_type,
+            assertion_level,
+            assertion_name,
+            assertion_id,
+        )
+    }
 }
 
 /// Return type for IOGetSystemLoadAdvisory
@@ -2421,54 +2569,64 @@ pub extern "C-unwind" fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Copy status of all current CPU power levels.
-    ///
-    /// The returned dictionary may define some of these keys,
-    /// as defined in IOPM.h:
-    /// <ul>
-    /// <li>
-    /// kIOPMCPUPowerLimitProcessorSpeedKey
-    /// <li>
-    /// kIOPMCPUPowerLimitProcessorCountKey
-    /// <li>
-    /// kIOPMCPUPowerLimitSchedulerTimeKey
-    /// </ul>
-    ///
-    /// Parameter `cpuPowerStatus`: Upon success, a pointer to a dictionary defining CPU power;
-    /// otherwise NULL. Pointer will be populated with a newly created dictionary
-    /// upon successful return. Caller must release dictionary.
-    ///
-    /// Returns: kIOReturnSuccess, or other error report. Returns kIOReturnNotFound if
-    /// CPU PowerStatus has not been published.
-    ///
-    /// # Safety
-    ///
-    /// `cpu_power_status` must be a valid pointer.
-    pub fn IOPMCopyCPUPowerStatus(cpu_power_status: *mut *const CFDictionary) -> IOReturn;
+/// Copy status of all current CPU power levels.
+///
+/// The returned dictionary may define some of these keys,
+/// as defined in IOPM.h:
+/// <ul>
+/// <li>
+/// kIOPMCPUPowerLimitProcessorSpeedKey
+/// <li>
+/// kIOPMCPUPowerLimitProcessorCountKey
+/// <li>
+/// kIOPMCPUPowerLimitSchedulerTimeKey
+/// </ul>
+///
+/// Parameter `cpuPowerStatus`: Upon success, a pointer to a dictionary defining CPU power;
+/// otherwise NULL. Pointer will be populated with a newly created dictionary
+/// upon successful return. Caller must release dictionary.
+///
+/// Returns: kIOReturnSuccess, or other error report. Returns kIOReturnNotFound if
+/// CPU PowerStatus has not been published.
+///
+/// # Safety
+///
+/// `cpu_power_status` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMCopyCPUPowerStatus(
+    cpu_power_status: *mut *const CFDictionary,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMCopyCPUPowerStatus(cpu_power_status: *mut *const CFDictionary) -> IOReturn;
+    }
+    unsafe { IOPMCopyCPUPowerStatus(cpu_power_status) }
 }
 
-extern "C-unwind" {
-    /// Get thermal warning level of the system.
-    ///
-    /// Returns: An integer pointer declaring the power warning level of the system.
-    /// The value of the integer is one of (defined in IOPM.h):
-    /// <ul>
-    /// <li>
-    /// kIOPMThermalWarningLevelNormal
-    /// <li>
-    /// kIOPMThermalWarningLevelDanger
-    /// <li>
-    /// kIOPMThermalWarningLevelCrisis
-    /// </ul>
-    /// Upon success the thermal level value will be found at the
-    /// pointer argument.
-    ///
-    /// Returns: kIOReturnSuccess, or other error report. Returns kIOReturnNotFound if
-    /// thermal warning level has not been published.
-    ///
-    /// # Safety
-    ///
-    /// `thermal_level` must be a valid pointer.
-    pub fn IOPMGetThermalWarningLevel(thermal_level: *mut u32) -> IOReturn;
+/// Get thermal warning level of the system.
+///
+/// Returns: An integer pointer declaring the power warning level of the system.
+/// The value of the integer is one of (defined in IOPM.h):
+/// <ul>
+/// <li>
+/// kIOPMThermalWarningLevelNormal
+/// <li>
+/// kIOPMThermalWarningLevelDanger
+/// <li>
+/// kIOPMThermalWarningLevelCrisis
+/// </ul>
+/// Upon success the thermal level value will be found at the
+/// pointer argument.
+///
+/// Returns: kIOReturnSuccess, or other error report. Returns kIOReturnNotFound if
+/// thermal warning level has not been published.
+///
+/// # Safety
+///
+/// `thermal_level` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn IOPMGetThermalWarningLevel(thermal_level: *mut u32) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMGetThermalWarningLevel(thermal_level: *mut u32) -> IOReturn;
+    }
+    unsafe { IOPMGetThermalWarningLevel(thermal_level) }
 }

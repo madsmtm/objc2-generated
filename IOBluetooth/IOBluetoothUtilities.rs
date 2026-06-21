@@ -8,26 +8,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Convenience routine to take an NSString and turn it into a BluetoothDeviceAddress structure.
-    ///
-    /// Parameter `inNameString`: Ptr to an NSString that contains the data to turn into the device address.
-    ///
-    /// Parameter `outDeviceAddress`: Ptr to an address structure that will be returned.
-    ///
-    /// Returns: Returns success (0) or failure code.
-    ///
-    /// Pass in most types of strings, such as "001122334455" or "00-11-22-33-44-55" and the conversion should be successful. Also, you should have 2 characters per byte for the conversion to work properly.
-    ///
-    /// # Safety
-    ///
-    /// - `in_name_string` might not allow `None`.
-    /// - `out_device_address` must be a valid pointer.
-    #[cfg(all(feature = "Bluetooth", feature = "objc2-foundation"))]
-    pub fn IOBluetoothNSStringToDeviceAddress(
-        in_name_string: Option<&NSString>,
-        out_device_address: *mut BluetoothDeviceAddress,
-    ) -> IOReturn;
+/// Convenience routine to take an NSString and turn it into a BluetoothDeviceAddress structure.
+///
+/// Parameter `inNameString`: Ptr to an NSString that contains the data to turn into the device address.
+///
+/// Parameter `outDeviceAddress`: Ptr to an address structure that will be returned.
+///
+/// Returns: Returns success (0) or failure code.
+///
+/// Pass in most types of strings, such as "001122334455" or "00-11-22-33-44-55" and the conversion should be successful. Also, you should have 2 characters per byte for the conversion to work properly.
+///
+/// # Safety
+///
+/// - `in_name_string` might not allow `None`.
+/// - `out_device_address` must be a valid pointer.
+#[cfg(all(feature = "Bluetooth", feature = "objc2-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothNSStringToDeviceAddress(
+    in_name_string: Option<&NSString>,
+    out_device_address: *mut BluetoothDeviceAddress,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOBluetoothNSStringToDeviceAddress(
+            in_name_string: Option<&NSString>,
+            out_device_address: *mut BluetoothDeviceAddress,
+        ) -> IOReturn;
+    }
+    unsafe { IOBluetoothNSStringToDeviceAddress(in_name_string, out_device_address) }
 }
 
 /// Convenience routine to take a device address structure and create an NSString.
@@ -142,41 +149,63 @@ pub unsafe extern "C-unwind" fn IOBluetoothGetUniqueFileNameAndPath(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns total number of HID devices on the system (Bluetooth + USB)
-    ///
-    /// Returns: Number of HID devices.
-    pub fn IOBluetoothNumberOfAvailableHIDDevices() -> c_long;
+/// Returns total number of HID devices on the system (Bluetooth + USB)
+///
+/// Returns: Number of HID devices.
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothNumberOfAvailableHIDDevices() -> c_long {
+    extern "C-unwind" {
+        fn IOBluetoothNumberOfAvailableHIDDevices() -> c_long;
+    }
+    unsafe { IOBluetoothNumberOfAvailableHIDDevices() }
 }
 
-extern "C-unwind" {
-    /// Returns number of "pointing" HID devices on the system (Bluetooth + USB)
-    ///
-    /// Returns: Number of HID devices.
-    pub fn IOBluetoothNumberOfPointingHIDDevices() -> c_long;
+/// Returns number of "pointing" HID devices on the system (Bluetooth + USB)
+///
+/// Returns: Number of HID devices.
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothNumberOfPointingHIDDevices() -> c_long {
+    extern "C-unwind" {
+        fn IOBluetoothNumberOfPointingHIDDevices() -> c_long;
+    }
+    unsafe { IOBluetoothNumberOfPointingHIDDevices() }
 }
 
-extern "C-unwind" {
-    /// Returns number of keyboard HID devices on the system (Bluetooth + USB)
-    ///
-    /// Returns: Number of HID devices.
-    pub fn IOBluetoothNumberOfKeyboardHIDDevices() -> c_long;
+/// Returns number of keyboard HID devices on the system (Bluetooth + USB)
+///
+/// Returns: Number of HID devices.
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothNumberOfKeyboardHIDDevices() -> c_long {
+    extern "C-unwind" {
+        fn IOBluetoothNumberOfKeyboardHIDDevices() -> c_long;
+    }
+    unsafe { IOBluetoothNumberOfKeyboardHIDDevices() }
 }
 
-extern "C-unwind" {
-    /// Returns number of "Tablet" HID devices on the system (Bluetooth + USB)
-    ///
-    /// Returns: Number of HID devices.
-    pub fn IOBluetoothNumberOfTabletHIDDevices() -> c_long;
+/// Returns number of "Tablet" HID devices on the system (Bluetooth + USB)
+///
+/// Returns: Number of HID devices.
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothNumberOfTabletHIDDevices() -> c_long {
+    extern "C-unwind" {
+        fn IOBluetoothNumberOfTabletHIDDevices() -> c_long;
+    }
+    unsafe { IOBluetoothNumberOfTabletHIDDevices() }
 }
 
-extern "C-unwind" {
-    /// Returns total number of registry entries with the provided device classname. e.g. "IOHIPointing"
-    ///
-    /// Returns: Number of HID devices.
-    ///
-    /// # Safety
-    ///
-    /// `device_type` must be a valid pointer.
-    pub fn IOBluetoothFindNumberOfRegistryEntriesOfClassName(device_type: *const c_char) -> c_long;
+/// Returns total number of registry entries with the provided device classname. e.g. "IOHIPointing"
+///
+/// Returns: Number of HID devices.
+///
+/// # Safety
+///
+/// `device_type` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothFindNumberOfRegistryEntriesOfClassName(
+    device_type: *const c_char,
+) -> c_long {
+    extern "C-unwind" {
+        fn IOBluetoothFindNumberOfRegistryEntriesOfClassName(device_type: *const c_char) -> c_long;
+    }
+    unsafe { IOBluetoothFindNumberOfRegistryEntriesOfClassName(device_type) }
 }

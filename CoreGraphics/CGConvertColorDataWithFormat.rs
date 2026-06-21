@@ -42,28 +42,44 @@ unsafe impl RefEncode for CGColorDataFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `dst_data` must be a valid pointer.
-    /// - `dst_format` struct field `version` must be set correctly.
-    /// - `dst_format` struct field `colorspace_info` must be a valid pointer.
-    /// - `dst_format` struct field `decode` must be a valid pointer.
-    /// - `src_data` must be a valid pointer.
-    /// - `src_format` struct field `version` must be set correctly.
-    /// - `src_format` struct field `colorspace_info` must be a valid pointer.
-    /// - `src_format` struct field `decode` must be a valid pointer.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    /// - `options` might not allow `None`.
-    #[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
-    pub fn CGConvertColorDataWithFormat(
-        width: usize,
-        height: usize,
-        dst_data: *mut c_void,
-        dst_format: CGColorDataFormat,
-        src_data: *mut c_void,
-        src_format: CGColorDataFormat,
-        options: Option<&CFDictionary>,
-    ) -> bool;
+/// # Safety
+///
+/// - `dst_data` must be a valid pointer.
+/// - `dst_format` struct field `version` must be set correctly.
+/// - `dst_format` struct field `colorspace_info` must be a valid pointer.
+/// - `dst_format` struct field `decode` must be a valid pointer.
+/// - `src_data` must be a valid pointer.
+/// - `src_format` struct field `version` must be set correctly.
+/// - `src_format` struct field `colorspace_info` must be a valid pointer.
+/// - `src_format` struct field `decode` must be a valid pointer.
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
+/// - `options` might not allow `None`.
+#[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGConvertColorDataWithFormat(
+    width: usize,
+    height: usize,
+    dst_data: *mut c_void,
+    dst_format: CGColorDataFormat,
+    src_data: *mut c_void,
+    src_format: CGColorDataFormat,
+    options: Option<&CFDictionary>,
+) -> bool {
+    extern "C-unwind" {
+        fn CGConvertColorDataWithFormat(
+            width: usize,
+            height: usize,
+            dst_data: *mut c_void,
+            dst_format: CGColorDataFormat,
+            src_data: *mut c_void,
+            src_format: CGColorDataFormat,
+            options: Option<&CFDictionary>,
+        ) -> bool;
+    }
+    unsafe {
+        CGConvertColorDataWithFormat(
+            width, height, dst_data, dst_format, src_data, src_format, options,
+        )
+    }
 }

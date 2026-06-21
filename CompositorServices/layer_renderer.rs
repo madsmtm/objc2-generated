@@ -178,144 +178,188 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_mtl4_command_queue(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    /// Returns the layer's current state, which indicates whether the layer is
-    /// visible and ready for you to draw content.
-    ///
-    /// - Parameters layer_renderer: The layer renderer to query.
-    /// - Returns: The current state of the layer.
-    ///
-    /// Use the layer's state value to determine when to start and stop your
-    /// rendering loop. Draw content only when the layer is in the
-    /// ``cp_layer_renderer/cp_layer_renderer_state_running`` state. Stop your rendering loop when
-    /// the layer enters other states. When the layer reaches the
-    /// ``cp_layer_renderer/cp_layer_renderer_state_invalidated`` state, it's safe to
-    /// clean up and deallocate your render loop structures.
-    pub fn cp_layer_renderer_get_state(
-        layer_renderer: &cp_layer_renderer_t,
-    ) -> cp_layer_renderer_state;
+/// Returns the layer's current state, which indicates whether the layer is
+/// visible and ready for you to draw content.
+///
+/// - Parameters layer_renderer: The layer renderer to query.
+/// - Returns: The current state of the layer.
+///
+/// Use the layer's state value to determine when to start and stop your
+/// rendering loop. Draw content only when the layer is in the
+/// ``cp_layer_renderer/cp_layer_renderer_state_running`` state. Stop your rendering loop when
+/// the layer enters other states. When the layer reaches the
+/// ``cp_layer_renderer/cp_layer_renderer_state_invalidated`` state, it's safe to
+/// clean up and deallocate your render loop structures.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_get_state(
+    layer_renderer: &cp_layer_renderer_t,
+) -> cp_layer_renderer_state {
+    extern "C-unwind" {
+        fn cp_layer_renderer_get_state(
+            layer_renderer: &cp_layer_renderer_t,
+        ) -> cp_layer_renderer_state;
+    }
+    unsafe { cp_layer_renderer_get_state(layer_renderer) }
 }
 
-extern "C-unwind" {
-    /// Stops further execution of your code until the layer renderer leaves
-    /// the paused state.
-    ///
-    /// - Parameters layer_renderer: The layer renderer to monitor. If the layer isn't
-    /// in the ``cp_layer_renderer/cp_layer_renderer_state_paused`` state, this function returns
-    /// immediately.
-    ///
-    /// Call this function to let the system handle events while
-    /// you wait for the layer renderer to become ready. The function services
-    /// incoming layer-related events until the layer exits the paused
-    /// state.
-    pub fn cp_layer_renderer_wait_until_running(layer_renderer: &cp_layer_renderer_t);
+/// Stops further execution of your code until the layer renderer leaves
+/// the paused state.
+///
+/// - Parameters layer_renderer: The layer renderer to monitor. If the layer isn't
+/// in the ``cp_layer_renderer/cp_layer_renderer_state_paused`` state, this function returns
+/// immediately.
+///
+/// Call this function to let the system handle events while
+/// you wait for the layer renderer to become ready. The function services
+/// incoming layer-related events until the layer exits the paused
+/// state.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_wait_until_running(
+    layer_renderer: &cp_layer_renderer_t,
+) {
+    extern "C-unwind" {
+        fn cp_layer_renderer_wait_until_running(layer_renderer: &cp_layer_renderer_t);
+    }
+    unsafe { cp_layer_renderer_wait_until_running(layer_renderer) }
 }
 
-extern "C-unwind" {
-    /// Returns the next frame to use for drawing.
-    ///
-    /// - Parameters layer_renderer: The layer renderer that manages the drawing destination.
-    ///
-    /// - Returns: An opaque type to use for drawing operations. The function
-    /// returns `nil` if the layer is paused, invalidated, or has too many frames
-    /// already in use.
-    ///
-    /// This function retrieves the next frame for you to use in your drawing
-    /// operations. The system maintains a limited number of frames, so don't try
-    /// to render more than one frame in advance. If this function returns `nil`,
-    /// wait a short time and try again. After the system draws the current frame,
-    /// it returns that frame to the shared pool and makes it available for you
-    /// to use.
-    ///
-    /// The index of each returned frame is always greater than the index of the
-    /// previous frame. The system increments index values sequentially so you
-    /// can differentiate frames you are currently drawing.
-    #[cfg(feature = "frame")]
-    pub fn cp_layer_renderer_query_next_frame(layer_renderer: &cp_layer_renderer_t) -> cp_frame_t;
+/// Returns the next frame to use for drawing.
+///
+/// - Parameters layer_renderer: The layer renderer that manages the drawing destination.
+///
+/// - Returns: An opaque type to use for drawing operations. The function
+/// returns `nil` if the layer is paused, invalidated, or has too many frames
+/// already in use.
+///
+/// This function retrieves the next frame for you to use in your drawing
+/// operations. The system maintains a limited number of frames, so don't try
+/// to render more than one frame in advance. If this function returns `nil`,
+/// wait a short time and try again. After the system draws the current frame,
+/// it returns that frame to the shared pool and makes it available for you
+/// to use.
+///
+/// The index of each returned frame is always greater than the index of the
+/// previous frame. The system increments index values sequentially so you
+/// can differentiate frames you are currently drawing.
+#[cfg(feature = "frame")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_query_next_frame(
+    layer_renderer: &cp_layer_renderer_t,
+) -> cp_frame_t {
+    extern "C-unwind" {
+        fn cp_layer_renderer_query_next_frame(layer_renderer: &cp_layer_renderer_t) -> cp_frame_t;
+    }
+    unsafe { cp_layer_renderer_query_next_frame(layer_renderer) }
 }
 
-extern "C-unwind" {
-    /// Return how many times a frame is repeated on display. This is typically used to
-    /// build dynamic frame pacing.
-    ///
-    /// - Parameters layer_renderer: The layer on which you're drawing.
-    ///
-    /// - Returns: The repeat count. If the repeat count is set to a value greater or equal to 1, it means this
-    /// layer repeated the client frame `repeat count` times, effectively multiplying the
-    /// frame duration by `repeat count + 1`.
-    ///
-    /// Lowering the number of frames being rendered every second will decrease the power usage per frame.
-    /// This value should only be increased if appropriate for the content being rendered.
-    pub fn cp_layer_renderer_get_minimum_frame_repeat_count(
-        layer_renderer: &cp_layer_renderer_t,
-    ) -> c_int;
+/// Return how many times a frame is repeated on display. This is typically used to
+/// build dynamic frame pacing.
+///
+/// - Parameters layer_renderer: The layer on which you're drawing.
+///
+/// - Returns: The repeat count. If the repeat count is set to a value greater or equal to 1, it means this
+/// layer repeated the client frame `repeat count` times, effectively multiplying the
+/// frame duration by `repeat count + 1`.
+///
+/// Lowering the number of frames being rendered every second will decrease the power usage per frame.
+/// This value should only be increased if appropriate for the content being rendered.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_get_minimum_frame_repeat_count(
+    layer_renderer: &cp_layer_renderer_t,
+) -> c_int {
+    extern "C-unwind" {
+        fn cp_layer_renderer_get_minimum_frame_repeat_count(
+            layer_renderer: &cp_layer_renderer_t,
+        ) -> c_int;
+    }
+    unsafe { cp_layer_renderer_get_minimum_frame_repeat_count(layer_renderer) }
 }
 
-extern "C-unwind" {
-    /// Set the frame repeat count. This is typically used to build dynamic frame pacing.
-    ///
-    /// - Parameters:
-    /// - layer_renderer: The layer on which you're drawing.
-    /// - frame_repeat_count: How many times a frame is repeated on display.
-    ///
-    /// If the repeat count is set to a value greater or equal to 1, it means this
-    /// layer repeats the client frame `repeat count` times, effectively multiplying the
-    /// frame duration by `repeat count + 1`.
-    ///
-    /// Lowering the number of frames being rendered every second will decrease the power usage per frame.
-    /// This value should only be increased if appropriate for the content being rendered.
-    pub fn cp_layer_renderer_set_minimum_frame_repeat_count(
-        layer_renderer: &cp_layer_renderer_t,
-        frame_repeat_count: c_int,
-    );
+/// Set the frame repeat count. This is typically used to build dynamic frame pacing.
+///
+/// - Parameters:
+/// - layer_renderer: The layer on which you're drawing.
+/// - frame_repeat_count: How many times a frame is repeated on display.
+///
+/// If the repeat count is set to a value greater or equal to 1, it means this
+/// layer repeats the client frame `repeat count` times, effectively multiplying the
+/// frame duration by `repeat count + 1`.
+///
+/// Lowering the number of frames being rendered every second will decrease the power usage per frame.
+/// This value should only be increased if appropriate for the content being rendered.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_set_minimum_frame_repeat_count(
+    layer_renderer: &cp_layer_renderer_t,
+    frame_repeat_count: c_int,
+) {
+    extern "C-unwind" {
+        fn cp_layer_renderer_set_minimum_frame_repeat_count(
+            layer_renderer: &cp_layer_renderer_t,
+            frame_repeat_count: c_int,
+        );
+    }
+    unsafe { cp_layer_renderer_set_minimum_frame_repeat_count(layer_renderer, frame_repeat_count) }
 }
 
-extern "C-unwind" {
-    /// Get the render quality to be used by the drawables.
-    ///
-    /// - Parameters:
-    /// - layer_renderer: The layer on which you're drawing.
-    ///
-    /// The render quality will increase the resolution at which rendering happens.
-    /// This value cannot exceed the quality specified on the layer renderer configuration
-    /// see ``cp_layer_renderer_configuration_set_max_render_quality``.
-    /// The quality will be changed to the target render quality over a set duration to hide
-    /// the transition of quality from the user.
-    ///
-    /// The renderer should monitor its frame rate to determine whether its making the frames
-    /// on time. If it is unable to maintain proper frame rate, the app should reduce the render
-    /// quality, reduce the scene complexity, or increase the frame repeat count see
-    /// ``cp_layer_renderer_set_minimum_frame_repeat_count``.
-    /// It is generally preferable to reduce anything else before increasing the frame repeat count.
-    #[cfg(feature = "cp_types")]
-    pub fn cp_layer_renderer_get_render_quality(
-        layer_renderer: &cp_layer_renderer_t,
-    ) -> cp_render_quality_t;
+/// Get the render quality to be used by the drawables.
+///
+/// - Parameters:
+/// - layer_renderer: The layer on which you're drawing.
+///
+/// The render quality will increase the resolution at which rendering happens.
+/// This value cannot exceed the quality specified on the layer renderer configuration
+/// see ``cp_layer_renderer_configuration_set_max_render_quality``.
+/// The quality will be changed to the target render quality over a set duration to hide
+/// the transition of quality from the user.
+///
+/// The renderer should monitor its frame rate to determine whether its making the frames
+/// on time. If it is unable to maintain proper frame rate, the app should reduce the render
+/// quality, reduce the scene complexity, or increase the frame repeat count see
+/// ``cp_layer_renderer_set_minimum_frame_repeat_count``.
+/// It is generally preferable to reduce anything else before increasing the frame repeat count.
+#[cfg(feature = "cp_types")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_get_render_quality(
+    layer_renderer: &cp_layer_renderer_t,
+) -> cp_render_quality_t {
+    extern "C-unwind" {
+        fn cp_layer_renderer_get_render_quality(
+            layer_renderer: &cp_layer_renderer_t,
+        ) -> cp_render_quality_t;
+    }
+    unsafe { cp_layer_renderer_get_render_quality(layer_renderer) }
 }
 
-extern "C-unwind" {
-    /// Set the render quality to be used by the drawables.
-    ///
-    /// - Parameters:
-    /// - layer_renderer: The layer on which you're drawing.
-    /// - render_quality: The value of quality [0, 1].
-    /// With 0 being the minimum quality that is supported on the device,
-    /// and 1 being the highest quality that is supported on the device.
-    ///
-    /// The render quality will increase the resolution at which rendering happens.
-    /// This value cannot exceed the quality specified on the layer renderer configuration
-    /// see ``cp_layer_renderer_configuration_set_max_render_quality``.
-    /// The quality will be changed to the target render quality over a set duration to hide
-    /// the transition of quality from the user.
-    ///
-    /// The renderer should monitor its frame rate to determine whether its making the frames
-    /// on time. If it is unable to maintain proper frame rate, the app should reduce the render
-    /// quality, reduce the scene complexity, or increase the frame repeat count see
-    /// ``cp_layer_renderer_set_minimum_frame_repeat_count``.
-    /// It is generally preferable to reduce anything else before increasing the frame repeat count.
-    #[cfg(feature = "cp_types")]
-    pub fn cp_layer_renderer_set_render_quality(
-        layer_renderer: &cp_layer_renderer_t,
-        render_quality: cp_render_quality_t,
-    );
+/// Set the render quality to be used by the drawables.
+///
+/// - Parameters:
+/// - layer_renderer: The layer on which you're drawing.
+/// - render_quality: The value of quality [0, 1].
+/// With 0 being the minimum quality that is supported on the device,
+/// and 1 being the highest quality that is supported on the device.
+///
+/// The render quality will increase the resolution at which rendering happens.
+/// This value cannot exceed the quality specified on the layer renderer configuration
+/// see ``cp_layer_renderer_configuration_set_max_render_quality``.
+/// The quality will be changed to the target render quality over a set duration to hide
+/// the transition of quality from the user.
+///
+/// The renderer should monitor its frame rate to determine whether its making the frames
+/// on time. If it is unable to maintain proper frame rate, the app should reduce the render
+/// quality, reduce the scene complexity, or increase the frame repeat count see
+/// ``cp_layer_renderer_set_minimum_frame_repeat_count``.
+/// It is generally preferable to reduce anything else before increasing the frame repeat count.
+#[cfg(feature = "cp_types")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_set_render_quality(
+    layer_renderer: &cp_layer_renderer_t,
+    render_quality: cp_render_quality_t,
+) {
+    extern "C-unwind" {
+        fn cp_layer_renderer_set_render_quality(
+            layer_renderer: &cp_layer_renderer_t,
+            render_quality: cp_render_quality_t,
+        );
+    }
+    unsafe { cp_layer_renderer_set_render_quality(layer_renderer, render_quality) }
 }

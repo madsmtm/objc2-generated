@@ -189,74 +189,99 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_create_using_config
     unsafe { Retained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of texture topologies available for you to inspect.
-    ///
-    /// - Parameters:
-    /// - layer_properties: The layer properties to query.
-    /// - Returns: The number of texture topologies present in the layer.
-    ///
-    /// The layer’s configuration determines the total number of available
-    /// topologies, and each topology contains details about one texture you
-    /// use for rendering. Fetch the topology details using the
-    /// ``cp_layer_renderer_properties_get_texture_topology`` function.
-    pub fn cp_layer_renderer_properties_get_texture_topology_count(
-        layer_properties: &cp_layer_renderer_properties_t,
-    ) -> usize;
+/// Returns the number of texture topologies available for you to inspect.
+///
+/// - Parameters:
+/// - layer_properties: The layer properties to query.
+/// - Returns: The number of texture topologies present in the layer.
+///
+/// The layer’s configuration determines the total number of available
+/// topologies, and each topology contains details about one texture you
+/// use for rendering. Fetch the topology details using the
+/// ``cp_layer_renderer_properties_get_texture_topology`` function.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_get_texture_topology_count(
+    layer_properties: &cp_layer_renderer_properties_t,
+) -> usize {
+    extern "C-unwind" {
+        fn cp_layer_renderer_properties_get_texture_topology_count(
+            layer_properties: &cp_layer_renderer_properties_t,
+        ) -> usize;
+    }
+    unsafe { cp_layer_renderer_properties_get_texture_topology_count(layer_properties) }
 }
 
-extern "C-unwind" {
-    /// Retrieves the texture topology at the specified index in the
-    /// layer's properties.
-    ///
-    /// - Parameters:
-    /// - layer_properties: The layer properties to query.
-    /// - index: The index into the array of texture configurations.
-    /// This value must be less than the value returned by the
-    /// ``cp_layer_renderer_properties_get_texture_topology`` function.
-    /// - Returns: An opaque type that contains details about the specific
-    /// texture.
-    ///
-    /// Retrieve the topology type and use accessor functions to get details
-    /// of that topology, including its type and array length.
-    /// Use that information to allocate the resources you need to manage
-    /// your content.
-    pub fn cp_layer_renderer_properties_get_texture_topology(
-        layer_properties: &cp_layer_renderer_properties_t,
-        index: usize,
-    ) -> cp_texture_topology_t;
+/// Retrieves the texture topology at the specified index in the
+/// layer's properties.
+///
+/// - Parameters:
+/// - layer_properties: The layer properties to query.
+/// - index: The index into the array of texture configurations.
+/// This value must be less than the value returned by the
+/// ``cp_layer_renderer_properties_get_texture_topology`` function.
+/// - Returns: An opaque type that contains details about the specific
+/// texture.
+///
+/// Retrieve the topology type and use accessor functions to get details
+/// of that topology, including its type and array length.
+/// Use that information to allocate the resources you need to manage
+/// your content.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_get_texture_topology(
+    layer_properties: &cp_layer_renderer_properties_t,
+    index: usize,
+) -> cp_texture_topology_t {
+    extern "C-unwind" {
+        fn cp_layer_renderer_properties_get_texture_topology(
+            layer_properties: &cp_layer_renderer_properties_t,
+            index: usize,
+        ) -> cp_texture_topology_t;
+    }
+    unsafe { cp_layer_renderer_properties_get_texture_topology(layer_properties, index) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of views that will need to be rendered.
-    ///
-    /// - Parameters:
-    /// - layer_properties: The layer properties to query.
-    /// - Returns: The total number of views that need to be support on the drawables.
-    ///
-    /// Should use ``cp_frame_get_drawable_target_view_count`` when
-    /// performing frustum culling to determine how many views specific views each
-    /// drawable target has.
-    ///
-    /// Should use ``cp_drawable_get_view_count`` when drawing to
-    /// determine how many views the specific frame has.
-    pub fn cp_layer_renderer_properties_get_view_count(
-        layer_properties: &cp_layer_renderer_properties_t,
-    ) -> usize;
+/// Returns the number of views that will need to be rendered.
+///
+/// - Parameters:
+/// - layer_properties: The layer properties to query.
+/// - Returns: The total number of views that need to be support on the drawables.
+///
+/// Should use ``cp_frame_get_drawable_target_view_count`` when
+/// performing frustum culling to determine how many views specific views each
+/// drawable target has.
+///
+/// Should use ``cp_drawable_get_view_count`` when drawing to
+/// determine how many views the specific frame has.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_get_view_count(
+    layer_properties: &cp_layer_renderer_properties_t,
+) -> usize {
+    extern "C-unwind" {
+        fn cp_layer_renderer_properties_get_view_count(
+            layer_properties: &cp_layer_renderer_properties_t,
+        ) -> usize;
+    }
+    unsafe { cp_layer_renderer_properties_get_view_count(layer_properties) }
 }
 
-extern "C-unwind" {
-    /// Returns the max render value for tracking areas' render values.
-    ///
-    /// - Parameters:
-    /// - layer_properties: The layer properties to query.
-    /// - Returns: The max render value for the tracking areas render values.
-    ///
-    /// The layer’s configuration determines the total number of available
-    /// tracking areas. This will be the max render value available, based on
-    /// ``cp_layer_renderer_configuration_get_tracking_areas_format`` function.
-    #[cfg(feature = "tracking_area")]
-    pub fn cp_layer_renderer_properties_get_tracking_areas_max_value(
-        properties: &cp_layer_renderer_properties_t,
-    ) -> cp_tracking_area_render_value;
+/// Returns the max render value for tracking areas' render values.
+///
+/// - Parameters:
+/// - layer_properties: The layer properties to query.
+/// - Returns: The max render value for the tracking areas render values.
+///
+/// The layer’s configuration determines the total number of available
+/// tracking areas. This will be the max render value available, based on
+/// ``cp_layer_renderer_configuration_get_tracking_areas_format`` function.
+#[cfg(feature = "tracking_area")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_get_tracking_areas_max_value(
+    properties: &cp_layer_renderer_properties_t,
+) -> cp_tracking_area_render_value {
+    extern "C-unwind" {
+        fn cp_layer_renderer_properties_get_tracking_areas_max_value(
+            properties: &cp_layer_renderer_properties_t,
+        ) -> cp_tracking_area_render_value;
+    }
+    unsafe { cp_layer_renderer_properties_get_tracking_areas_max_value(properties) }
 }

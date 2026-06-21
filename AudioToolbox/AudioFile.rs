@@ -712,70 +712,104 @@ unsafe impl RefEncode for AudioPacketDependencyInfoTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// creates a new audio file (or initialises an existing file)
-    ///
-    /// creates a new (or initialises an existing) audio file specified by the URL.
-    /// Upon success, an AudioFileID is returned which can be used for subsequent calls
-    /// to the AudioFile APIs.
-    ///
-    /// Parameter `inFileRef`: an CFURLRef fully specifying the path of the file to create/initialise
-    ///
-    /// Parameter `inFileType`: an AudioFileTypeID indicating the type of audio file to create.
-    ///
-    /// Parameter `inFormat`: an AudioStreamBasicDescription describing the data format that will be
-    /// added to the audio file.
-    ///
-    /// Parameter `inFlags`: relevant flags for creating/opening the file.
-    /// if kAudioFileFlags_EraseFile is set, it will erase an existing file
-    /// if not set, then the Create call will fail if the URL is an existing file
-    ///
-    /// Parameter `outAudioFile`: if successful, an AudioFileID that can be used for subsequent AudioFile calls.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `out_audio_file` must be a valid pointer or null.
-    #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
-    pub fn AudioFileCreateWithURL(
-        in_file_ref: &CFURL,
-        in_file_type: AudioFileTypeID,
-        in_format: &AudioStreamBasicDescription,
-        in_flags: AudioFileFlags,
-        out_audio_file: &mut AudioFileID,
-    ) -> OSStatus;
+/// creates a new audio file (or initialises an existing file)
+///
+/// creates a new (or initialises an existing) audio file specified by the URL.
+/// Upon success, an AudioFileID is returned which can be used for subsequent calls
+/// to the AudioFile APIs.
+///
+/// Parameter `inFileRef`: an CFURLRef fully specifying the path of the file to create/initialise
+///
+/// Parameter `inFileType`: an AudioFileTypeID indicating the type of audio file to create.
+///
+/// Parameter `inFormat`: an AudioStreamBasicDescription describing the data format that will be
+/// added to the audio file.
+///
+/// Parameter `inFlags`: relevant flags for creating/opening the file.
+/// if kAudioFileFlags_EraseFile is set, it will erase an existing file
+/// if not set, then the Create call will fail if the URL is an existing file
+///
+/// Parameter `outAudioFile`: if successful, an AudioFileID that can be used for subsequent AudioFile calls.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `out_audio_file` must be a valid pointer or null.
+#[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileCreateWithURL(
+    in_file_ref: &CFURL,
+    in_file_type: AudioFileTypeID,
+    in_format: &AudioStreamBasicDescription,
+    in_flags: AudioFileFlags,
+    out_audio_file: &mut AudioFileID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileCreateWithURL(
+            in_file_ref: &CFURL,
+            in_file_type: AudioFileTypeID,
+            in_format: &AudioStreamBasicDescription,
+            in_flags: AudioFileFlags,
+            out_audio_file: &mut AudioFileID,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileCreateWithURL(
+            in_file_ref,
+            in_file_type,
+            in_format,
+            in_flags,
+            out_audio_file,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Open an existing audio file.
-    ///
-    /// Open an existing audio file for reading or reading and writing.
-    ///
-    /// Parameter `inFileRef`: the CFURLRef of an existing audio file.
-    ///
-    /// Parameter `inPermissions`: use the permission constants
-    ///
-    /// Parameter `inFileTypeHint`: For files which have no filename extension and whose type cannot be easily or
-    /// uniquely determined from the data (ADTS,AC3), this hint can be used to indicate the file type.
-    /// Otherwise you can pass zero for this. The hint is only used on OS versions 10.3.1 or greater.
-    /// For OS versions prior to that, opening files of the above description will fail.
-    ///
-    /// Parameter `outAudioFile`: upon success, an AudioFileID that can be used for subsequent
-    /// AudioFile calls.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `out_audio_file` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn AudioFileOpenURL(
-        in_file_ref: &CFURL,
-        in_permissions: AudioFilePermissions,
-        in_file_type_hint: AudioFileTypeID,
-        out_audio_file: &mut AudioFileID,
-    ) -> OSStatus;
+/// Open an existing audio file.
+///
+/// Open an existing audio file for reading or reading and writing.
+///
+/// Parameter `inFileRef`: the CFURLRef of an existing audio file.
+///
+/// Parameter `inPermissions`: use the permission constants
+///
+/// Parameter `inFileTypeHint`: For files which have no filename extension and whose type cannot be easily or
+/// uniquely determined from the data (ADTS,AC3), this hint can be used to indicate the file type.
+/// Otherwise you can pass zero for this. The hint is only used on OS versions 10.3.1 or greater.
+/// For OS versions prior to that, opening files of the above description will fail.
+///
+/// Parameter `outAudioFile`: upon success, an AudioFileID that can be used for subsequent
+/// AudioFile calls.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `out_audio_file` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileOpenURL(
+    in_file_ref: &CFURL,
+    in_permissions: AudioFilePermissions,
+    in_file_type_hint: AudioFileTypeID,
+    out_audio_file: &mut AudioFileID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileOpenURL(
+            in_file_ref: &CFURL,
+            in_permissions: AudioFilePermissions,
+            in_file_type_hint: AudioFileTypeID,
+            out_audio_file: &mut AudioFileID,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileOpenURL(
+            in_file_ref,
+            in_permissions,
+            in_file_type_hint,
+            out_audio_file,
+        )
+    }
 }
 
 /// A callback for reading data. used with AudioFileOpenWithCallbacks or AudioFileInitializeWithCallbacks.
@@ -857,131 +891,187 @@ pub type AudioFile_GetSizeProc = Option<unsafe extern "C-unwind" fn(NonNull<c_vo
 pub type AudioFile_SetSizeProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, i64) -> OSStatus>;
 
-extern "C-unwind" {
-    /// Wipe clean an existing file. You provide callbacks that the AudioFile API
-    /// will use to get the data.
-    ///
-    /// Parameter `inClientData`: a constant that will be passed to your callbacks.
-    ///
-    /// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
-    ///
-    /// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
-    ///
-    /// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the file size.
-    ///
-    /// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
-    ///
-    ///
-    /// Parameter `inFileType`: an AudioFileTypeID indicating the type of audio file to which to initialize the file.
-    ///
-    /// Parameter `inFormat`: an AudioStreamBasicDescription describing the data format that will be
-    /// added to the audio file.
-    ///
-    /// Parameter `inFlags`: flags for creating/opening the file. Currently zero.
-    ///
-    /// Parameter `outAudioFile`: upon success, an AudioFileID that can be used for subsequent
-    /// AudioFile calls.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_client_data` must be a valid pointer.
-    /// - `in_read_func` must be implemented correctly.
-    /// - `in_write_func` must be implemented correctly.
-    /// - `in_get_size_func` must be implemented correctly.
-    /// - `in_set_size_func` must be implemented correctly.
-    /// - `out_audio_file` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioFileInitializeWithCallbacks(
-        in_client_data: NonNull<c_void>,
-        in_read_func: AudioFile_ReadProc,
-        in_write_func: AudioFile_WriteProc,
-        in_get_size_func: AudioFile_GetSizeProc,
-        in_set_size_func: AudioFile_SetSizeProc,
-        in_file_type: AudioFileTypeID,
-        in_format: &AudioStreamBasicDescription,
-        in_flags: AudioFileFlags,
-        out_audio_file: &mut AudioFileID,
-    ) -> OSStatus;
+/// Wipe clean an existing file. You provide callbacks that the AudioFile API
+/// will use to get the data.
+///
+/// Parameter `inClientData`: a constant that will be passed to your callbacks.
+///
+/// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
+///
+/// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
+///
+/// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the file size.
+///
+/// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
+///
+///
+/// Parameter `inFileType`: an AudioFileTypeID indicating the type of audio file to which to initialize the file.
+///
+/// Parameter `inFormat`: an AudioStreamBasicDescription describing the data format that will be
+/// added to the audio file.
+///
+/// Parameter `inFlags`: flags for creating/opening the file. Currently zero.
+///
+/// Parameter `outAudioFile`: upon success, an AudioFileID that can be used for subsequent
+/// AudioFile calls.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_client_data` must be a valid pointer.
+/// - `in_read_func` must be implemented correctly.
+/// - `in_write_func` must be implemented correctly.
+/// - `in_get_size_func` must be implemented correctly.
+/// - `in_set_size_func` must be implemented correctly.
+/// - `out_audio_file` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileInitializeWithCallbacks(
+    in_client_data: NonNull<c_void>,
+    in_read_func: AudioFile_ReadProc,
+    in_write_func: AudioFile_WriteProc,
+    in_get_size_func: AudioFile_GetSizeProc,
+    in_set_size_func: AudioFile_SetSizeProc,
+    in_file_type: AudioFileTypeID,
+    in_format: &AudioStreamBasicDescription,
+    in_flags: AudioFileFlags,
+    out_audio_file: &mut AudioFileID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileInitializeWithCallbacks(
+            in_client_data: NonNull<c_void>,
+            in_read_func: AudioFile_ReadProc,
+            in_write_func: AudioFile_WriteProc,
+            in_get_size_func: AudioFile_GetSizeProc,
+            in_set_size_func: AudioFile_SetSizeProc,
+            in_file_type: AudioFileTypeID,
+            in_format: &AudioStreamBasicDescription,
+            in_flags: AudioFileFlags,
+            out_audio_file: &mut AudioFileID,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileInitializeWithCallbacks(
+            in_client_data,
+            in_read_func,
+            in_write_func,
+            in_get_size_func,
+            in_set_size_func,
+            in_file_type,
+            in_format,
+            in_flags,
+            out_audio_file,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Open an existing file. You provide callbacks that the AudioFile API
-    /// will use to get the data.
-    ///
-    /// Parameter `inClientData`: a constant that will be passed to your callbacks.
-    ///
-    /// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
-    ///
-    /// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
-    ///
-    /// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the total file size.
-    ///
-    /// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
-    ///
-    ///
-    /// Parameter `inFileTypeHint`: For files which have no filename extension and whose type cannot be easily or
-    /// uniquely determined from the data (ADTS,AC3), this hint can be used to indicate the file type.
-    /// Otherwise you can pass zero for this. The hint is only used on OS versions 10.3.1 or greater.
-    /// For OS versions prior to that, opening files of the above description will fail.
-    ///
-    /// Parameter `outAudioFile`: upon success, an AudioFileID that can be used for subsequent
-    /// AudioFile calls.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_client_data` must be a valid pointer.
-    /// - `in_read_func` must be implemented correctly.
-    /// - `in_write_func` must be implemented correctly.
-    /// - `in_get_size_func` must be implemented correctly.
-    /// - `in_set_size_func` must be implemented correctly.
-    /// - `out_audio_file` must be a valid pointer or null.
-    pub fn AudioFileOpenWithCallbacks(
-        in_client_data: NonNull<c_void>,
-        in_read_func: AudioFile_ReadProc,
-        in_write_func: AudioFile_WriteProc,
-        in_get_size_func: AudioFile_GetSizeProc,
-        in_set_size_func: AudioFile_SetSizeProc,
-        in_file_type_hint: AudioFileTypeID,
-        out_audio_file: &mut AudioFileID,
-    ) -> OSStatus;
+/// Open an existing file. You provide callbacks that the AudioFile API
+/// will use to get the data.
+///
+/// Parameter `inClientData`: a constant that will be passed to your callbacks.
+///
+/// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
+///
+/// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
+///
+/// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the total file size.
+///
+/// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
+///
+///
+/// Parameter `inFileTypeHint`: For files which have no filename extension and whose type cannot be easily or
+/// uniquely determined from the data (ADTS,AC3), this hint can be used to indicate the file type.
+/// Otherwise you can pass zero for this. The hint is only used on OS versions 10.3.1 or greater.
+/// For OS versions prior to that, opening files of the above description will fail.
+///
+/// Parameter `outAudioFile`: upon success, an AudioFileID that can be used for subsequent
+/// AudioFile calls.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_client_data` must be a valid pointer.
+/// - `in_read_func` must be implemented correctly.
+/// - `in_write_func` must be implemented correctly.
+/// - `in_get_size_func` must be implemented correctly.
+/// - `in_set_size_func` must be implemented correctly.
+/// - `out_audio_file` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileOpenWithCallbacks(
+    in_client_data: NonNull<c_void>,
+    in_read_func: AudioFile_ReadProc,
+    in_write_func: AudioFile_WriteProc,
+    in_get_size_func: AudioFile_GetSizeProc,
+    in_set_size_func: AudioFile_SetSizeProc,
+    in_file_type_hint: AudioFileTypeID,
+    out_audio_file: &mut AudioFileID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileOpenWithCallbacks(
+            in_client_data: NonNull<c_void>,
+            in_read_func: AudioFile_ReadProc,
+            in_write_func: AudioFile_WriteProc,
+            in_get_size_func: AudioFile_GetSizeProc,
+            in_set_size_func: AudioFile_SetSizeProc,
+            in_file_type_hint: AudioFileTypeID,
+            out_audio_file: &mut AudioFileID,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileOpenWithCallbacks(
+            in_client_data,
+            in_read_func,
+            in_write_func,
+            in_get_size_func,
+            in_set_size_func,
+            in_file_type_hint,
+            out_audio_file,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Close an existing audio file.
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_file` must be a valid pointer.
-    pub fn AudioFileClose(in_audio_file: AudioFileID) -> OSStatus;
+/// Close an existing audio file.
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_audio_file` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileClose(in_audio_file: AudioFileID) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileClose(in_audio_file: AudioFileID) -> OSStatus;
+    }
+    unsafe { AudioFileClose(in_audio_file) }
 }
 
-extern "C-unwind" {
-    /// Move the audio data to the end of the file and other internal optimizations of the file structure.
-    ///
-    /// Optimize the file so additional audio data can be appended to
-    /// the existing data. Generally, this will place the audio data at
-    /// the end of the file so additional writes can be placed to the
-    /// file end. This can be a potentially expensive and time-consuming operation
-    /// and should not be used during time critical operations. There is
-    /// a kAudioFilePropertyIsOptimized property for checking on the optimized state
-    /// of the file.
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_file` must be a valid pointer.
-    pub fn AudioFileOptimize(in_audio_file: AudioFileID) -> OSStatus;
+/// Move the audio data to the end of the file and other internal optimizations of the file structure.
+///
+/// Optimize the file so additional audio data can be appended to
+/// the existing data. Generally, this will place the audio data at
+/// the end of the file so additional writes can be placed to the
+/// file end. This can be a potentially expensive and time-consuming operation
+/// and should not be used during time critical operations. There is
+/// a kAudioFilePropertyIsOptimized property for checking on the optimized state
+/// of the file.
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_audio_file` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileOptimize(in_audio_file: AudioFileID) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileOptimize(in_audio_file: AudioFileID) -> OSStatus;
+    }
+    unsafe { AudioFileOptimize(in_audio_file) }
 }
 
 /// Read bytes of audio data from the audio file.
@@ -1363,186 +1453,280 @@ pub unsafe extern "C-unwind" fn AudioFileWritePacketsWithDependencies(
     }
 }
 
-extern "C-unwind" {
-    /// Get the number of user data items with a certain ID in the file
-    ///
-    /// "User Data" refers to chunks in AIFF, CAF and WAVE files, or resources
-    /// in Sound Designer II files, and possibly other things in other files.
-    /// For simplicity, referred to below as "chunks".
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `outNumberItems`: on output, if successful, number of chunks of this type in the file.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_file` must be a valid pointer.
-    pub fn AudioFileCountUserData(
-        in_audio_file: AudioFileID,
-        in_user_data_id: u32,
-        out_number_items: &mut u32,
-    ) -> OSStatus;
+/// Get the number of user data items with a certain ID in the file
+///
+/// "User Data" refers to chunks in AIFF, CAF and WAVE files, or resources
+/// in Sound Designer II files, and possibly other things in other files.
+/// For simplicity, referred to below as "chunks".
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `outNumberItems`: on output, if successful, number of chunks of this type in the file.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_audio_file` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileCountUserData(
+    in_audio_file: AudioFileID,
+    in_user_data_id: u32,
+    out_number_items: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileCountUserData(
+            in_audio_file: AudioFileID,
+            in_user_data_id: u32,
+            out_number_items: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioFileCountUserData(in_audio_file, in_user_data_id, out_number_items) }
 }
 
-extern "C-unwind" {
-    /// Get the size of user data in a file
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_file` must be a valid pointer.
-    pub fn AudioFileGetUserDataSize(
-        in_audio_file: AudioFileID,
-        in_user_data_id: u32,
-        in_index: u32,
-        out_user_data_size: &mut u32,
-    ) -> OSStatus;
+/// Get the size of user data in a file
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_audio_file` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileGetUserDataSize(
+    in_audio_file: AudioFileID,
+    in_user_data_id: u32,
+    in_index: u32,
+    out_user_data_size: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileGetUserDataSize(
+            in_audio_file: AudioFileID,
+            in_user_data_id: u32,
+            in_index: u32,
+            out_user_data_size: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileGetUserDataSize(in_audio_file, in_user_data_id, in_index, out_user_data_size)
+    }
 }
 
-extern "C-unwind" {
-    /// Get the 64-bit size of user data in a file
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_file` must be a valid pointer.
-    pub fn AudioFileGetUserDataSize64(
-        in_audio_file: AudioFileID,
-        in_user_data_id: u32,
-        in_index: u32,
-        out_user_data_size: &mut u64,
-    ) -> OSStatus;
+/// Get the 64-bit size of user data in a file
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_audio_file` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileGetUserDataSize64(
+    in_audio_file: AudioFileID,
+    in_user_data_id: u32,
+    in_index: u32,
+    out_user_data_size: &mut u64,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileGetUserDataSize64(
+            in_audio_file: AudioFileID,
+            in_user_data_id: u32,
+            in_index: u32,
+            out_user_data_size: &mut u64,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileGetUserDataSize64(in_audio_file, in_user_data_id, in_index, out_user_data_size)
+    }
 }
 
-extern "C-unwind" {
-    /// Get the data of a chunk in a file.
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Parameter `ioUserDataSize`: the size of the buffer on input, size of bytes copied to buffer on output
-    ///
-    /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_file` must be a valid pointer.
-    /// - `out_user_data` must be a valid pointer.
-    pub fn AudioFileGetUserData(
-        in_audio_file: AudioFileID,
-        in_user_data_id: u32,
-        in_index: u32,
-        io_user_data_size: &mut u32,
-        out_user_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Get the data of a chunk in a file.
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Parameter `ioUserDataSize`: the size of the buffer on input, size of bytes copied to buffer on output
+///
+/// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_audio_file` must be a valid pointer.
+/// - `out_user_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileGetUserData(
+    in_audio_file: AudioFileID,
+    in_user_data_id: u32,
+    in_index: u32,
+    io_user_data_size: &mut u32,
+    out_user_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileGetUserData(
+            in_audio_file: AudioFileID,
+            in_user_data_id: u32,
+            in_index: u32,
+            io_user_data_size: &mut u32,
+            out_user_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileGetUserData(
+            in_audio_file,
+            in_user_data_id,
+            in_index,
+            io_user_data_size,
+            out_user_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Get a part of the data of a chunk in a file.
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Parameter `inOffset`: offset from the first byte of the chunk to the first byte to get.
-    ///
-    /// Parameter `ioUserDataSize`: the size of the buffer on input, size of bytes copied to buffer on output
-    ///
-    /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_file` must be a valid pointer.
-    /// - `out_user_data` must be a valid pointer.
-    pub fn AudioFileGetUserDataAtOffset(
-        in_audio_file: AudioFileID,
-        in_user_data_id: u32,
-        in_index: u32,
-        in_offset: i64,
-        io_user_data_size: &mut u32,
-        out_user_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Get a part of the data of a chunk in a file.
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Parameter `inOffset`: offset from the first byte of the chunk to the first byte to get.
+///
+/// Parameter `ioUserDataSize`: the size of the buffer on input, size of bytes copied to buffer on output
+///
+/// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_audio_file` must be a valid pointer.
+/// - `out_user_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileGetUserDataAtOffset(
+    in_audio_file: AudioFileID,
+    in_user_data_id: u32,
+    in_index: u32,
+    in_offset: i64,
+    io_user_data_size: &mut u32,
+    out_user_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileGetUserDataAtOffset(
+            in_audio_file: AudioFileID,
+            in_user_data_id: u32,
+            in_index: u32,
+            in_offset: i64,
+            io_user_data_size: &mut u32,
+            out_user_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileGetUserDataAtOffset(
+            in_audio_file,
+            in_user_data_id,
+            in_index,
+            in_offset,
+            io_user_data_size,
+            out_user_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Set the data of a chunk in a file.
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Parameter `inUserDataSize`: on input the size of the data to copy, on output, size of bytes copied from the buffer
-    ///
-    /// Parameter `inUserData`: a pointer to a buffer from which to copy the chunk data
-    /// (only the contents of the chunk, not including the chunk header).
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_file` must be a valid pointer.
-    /// - `in_user_data` must be a valid pointer.
-    pub fn AudioFileSetUserData(
-        in_audio_file: AudioFileID,
-        in_user_data_id: u32,
-        in_index: u32,
-        in_user_data_size: u32,
-        in_user_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Set the data of a chunk in a file.
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Parameter `inUserDataSize`: on input the size of the data to copy, on output, size of bytes copied from the buffer
+///
+/// Parameter `inUserData`: a pointer to a buffer from which to copy the chunk data
+/// (only the contents of the chunk, not including the chunk header).
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_audio_file` must be a valid pointer.
+/// - `in_user_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileSetUserData(
+    in_audio_file: AudioFileID,
+    in_user_data_id: u32,
+    in_index: u32,
+    in_user_data_size: u32,
+    in_user_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileSetUserData(
+            in_audio_file: AudioFileID,
+            in_user_data_id: u32,
+            in_index: u32,
+            in_user_data_size: u32,
+            in_user_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileSetUserData(
+            in_audio_file,
+            in_user_data_id,
+            in_index,
+            in_user_data_size,
+            in_user_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Remove a user chunk in a file.
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_file` must be a valid pointer.
-    pub fn AudioFileRemoveUserData(
-        in_audio_file: AudioFileID,
-        in_user_data_id: u32,
-        in_index: u32,
-    ) -> OSStatus;
+/// Remove a user chunk in a file.
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_audio_file` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileRemoveUserData(
+    in_audio_file: AudioFileID,
+    in_user_data_id: u32,
+    in_index: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileRemoveUserData(
+            in_audio_file: AudioFileID,
+            in_user_data_id: u32,
+            in_index: u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioFileRemoveUserData(in_audio_file, in_user_data_id, in_index) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyfileformat?language=objc)
@@ -1620,79 +1804,120 @@ pub const kAudioFilePropertyAudioTrackCount: AudioFilePropertyID = 0x61746374;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyuseaudiotrack?language=objc)
 pub const kAudioFilePropertyUseAudioTrack: AudioFilePropertyID = 0x7561746b;
 
-extern "C-unwind" {
-    /// Get information about the size of a property of an AudioFile  and whether it can be set.
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Parameter `inPropertyID`: an AudioFileProperty constant.
-    ///
-    /// Parameter `outDataSize`: the size in bytes of the current value of the property. In order to get the property value,
-    /// you will need a buffer of this size.
-    ///
-    /// Parameter `isWritable`: will be set to 1 if writable, or 0 if read only.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_file` must be a valid pointer.
-    pub fn AudioFileGetPropertyInfo(
-        in_audio_file: AudioFileID,
-        in_property_id: AudioFilePropertyID,
-        out_data_size: Option<&mut u32>,
-        is_writable: Option<&mut u32>,
-    ) -> OSStatus;
+/// Get information about the size of a property of an AudioFile  and whether it can be set.
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Parameter `inPropertyID`: an AudioFileProperty constant.
+///
+/// Parameter `outDataSize`: the size in bytes of the current value of the property. In order to get the property value,
+/// you will need a buffer of this size.
+///
+/// Parameter `isWritable`: will be set to 1 if writable, or 0 if read only.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_audio_file` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileGetPropertyInfo(
+    in_audio_file: AudioFileID,
+    in_property_id: AudioFilePropertyID,
+    out_data_size: Option<&mut u32>,
+    is_writable: Option<&mut u32>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileGetPropertyInfo(
+            in_audio_file: AudioFileID,
+            in_property_id: AudioFilePropertyID,
+            out_data_size: Option<&mut u32>,
+            is_writable: Option<&mut u32>,
+        ) -> OSStatus;
+    }
+    unsafe { AudioFileGetPropertyInfo(in_audio_file, in_property_id, out_data_size, is_writable) }
 }
 
-extern "C-unwind" {
-    /// Copies the value for a property of an AudioFile into a buffer.
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Parameter `inPropertyID`: an AudioFileProperty constant.
-    ///
-    /// Parameter `ioDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
-    ///
-    /// Parameter `outPropertyData`: the buffer in which to write the property data.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_file` must be a valid pointer.
-    /// - `out_property_data` must be a valid pointer.
-    pub fn AudioFileGetProperty(
-        in_audio_file: AudioFileID,
-        in_property_id: AudioFilePropertyID,
-        io_data_size: &mut u32,
-        out_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Copies the value for a property of an AudioFile into a buffer.
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Parameter `inPropertyID`: an AudioFileProperty constant.
+///
+/// Parameter `ioDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
+///
+/// Parameter `outPropertyData`: the buffer in which to write the property data.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_audio_file` must be a valid pointer.
+/// - `out_property_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileGetProperty(
+    in_audio_file: AudioFileID,
+    in_property_id: AudioFilePropertyID,
+    io_data_size: &mut u32,
+    out_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileGetProperty(
+            in_audio_file: AudioFileID,
+            in_property_id: AudioFilePropertyID,
+            io_data_size: &mut u32,
+            out_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileGetProperty(
+            in_audio_file,
+            in_property_id,
+            io_data_size,
+            out_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Sets the value for a property of an AudioFile .
-    ///
-    /// Parameter `inAudioFile`: an AudioFileID.
-    ///
-    /// Parameter `inPropertyID`: an AudioFileProperty constant.
-    ///
-    /// Parameter `inDataSize`: the size of the property data.
-    ///
-    /// Parameter `inPropertyData`: the buffer containing the property data.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_file` must be a valid pointer.
-    /// - `in_property_data` must be a valid pointer.
-    pub fn AudioFileSetProperty(
-        in_audio_file: AudioFileID,
-        in_property_id: AudioFilePropertyID,
-        in_data_size: u32,
-        in_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Sets the value for a property of an AudioFile .
+///
+/// Parameter `inAudioFile`: an AudioFileID.
+///
+/// Parameter `inPropertyID`: an AudioFileProperty constant.
+///
+/// Parameter `inDataSize`: the size of the property data.
+///
+/// Parameter `inPropertyData`: the buffer containing the property data.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_audio_file` must be a valid pointer.
+/// - `in_property_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileSetProperty(
+    in_audio_file: AudioFileID,
+    in_property_id: AudioFilePropertyID,
+    in_data_size: u32,
+    in_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileSetProperty(
+            in_audio_file: AudioFileID,
+            in_property_id: AudioFilePropertyID,
+            in_data_size: u32,
+            in_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileSetProperty(
+            in_audio_file,
+            in_property_id,
+            in_data_size,
+            in_property_data,
+        )
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_readabletypes?language=objc)
@@ -1761,55 +1986,89 @@ unsafe impl RefEncode for AudioFileTypeAndFormatID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Get the size of a global property.
-    ///
-    /// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
-    ///
-    /// Parameter `inSpecifierSize`: The size of the specifier data.
-    ///
-    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the global info properties.
-    ///
-    /// Parameter `outDataSize`: the size in bytes of the current value of the property. In order to get the property value,
-    /// you will need a buffer of this size.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_specifier` must be a valid pointer or null.
-    pub fn AudioFileGetGlobalInfoSize(
-        in_property_id: AudioFilePropertyID,
-        in_specifier_size: u32,
-        in_specifier: *mut c_void,
-        out_data_size: &mut u32,
-    ) -> OSStatus;
+/// Get the size of a global property.
+///
+/// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
+///
+/// Parameter `inSpecifierSize`: The size of the specifier data.
+///
+/// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the global info properties.
+///
+/// Parameter `outDataSize`: the size in bytes of the current value of the property. In order to get the property value,
+/// you will need a buffer of this size.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_specifier` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileGetGlobalInfoSize(
+    in_property_id: AudioFilePropertyID,
+    in_specifier_size: u32,
+    in_specifier: *mut c_void,
+    out_data_size: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileGetGlobalInfoSize(
+            in_property_id: AudioFilePropertyID,
+            in_specifier_size: u32,
+            in_specifier: *mut c_void,
+            out_data_size: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileGetGlobalInfoSize(
+            in_property_id,
+            in_specifier_size,
+            in_specifier,
+            out_data_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Copies the value for a global property into a buffer.
-    ///
-    /// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
-    ///
-    /// Parameter `inSpecifierSize`: The size of the specifier data.
-    ///
-    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the global info properties.
-    ///
-    /// Parameter `ioDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
-    ///
-    /// Parameter `outPropertyData`: the buffer in which to write the property data.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_specifier` must be a valid pointer or null.
-    /// - `out_property_data` must be a valid pointer.
-    pub fn AudioFileGetGlobalInfo(
-        in_property_id: AudioFilePropertyID,
-        in_specifier_size: u32,
-        in_specifier: *mut c_void,
-        io_data_size: &mut u32,
-        out_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Copies the value for a global property into a buffer.
+///
+/// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
+///
+/// Parameter `inSpecifierSize`: The size of the specifier data.
+///
+/// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the global info properties.
+///
+/// Parameter `ioDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
+///
+/// Parameter `outPropertyData`: the buffer in which to write the property data.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_specifier` must be a valid pointer or null.
+/// - `out_property_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileGetGlobalInfo(
+    in_property_id: AudioFilePropertyID,
+    in_specifier_size: u32,
+    in_specifier: *mut c_void,
+    io_data_size: &mut u32,
+    out_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileGetGlobalInfo(
+            in_property_id: AudioFilePropertyID,
+            in_specifier_size: u32,
+            in_specifier: *mut c_void,
+            io_data_size: &mut u32,
+            out_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileGetGlobalInfo(
+            in_property_id,
+            in_specifier_size,
+            in_specifier,
+            io_data_size,
+            out_property_data,
+        )
+    }
 }

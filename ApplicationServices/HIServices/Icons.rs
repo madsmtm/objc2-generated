@@ -250,58 +250,91 @@ pub type IconActionUPP = IconActionProcPtr;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icongetterupp?language=objc)
 pub type IconGetterUPP = IconGetterProcPtr;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `user_routine` must be implemented correctly.
-    pub fn NewIconActionUPP(user_routine: IconActionProcPtr) -> IconActionUPP;
+/// # Safety
+///
+/// `user_routine` must be implemented correctly.
+#[inline]
+pub unsafe extern "C-unwind" fn NewIconActionUPP(user_routine: IconActionProcPtr) -> IconActionUPP {
+    extern "C-unwind" {
+        fn NewIconActionUPP(user_routine: IconActionProcPtr) -> IconActionUPP;
+    }
+    unsafe { NewIconActionUPP(user_routine) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `user_routine` must be implemented correctly.
-    pub fn NewIconGetterUPP(user_routine: IconGetterProcPtr) -> IconGetterUPP;
+/// # Safety
+///
+/// `user_routine` must be implemented correctly.
+#[inline]
+pub unsafe extern "C-unwind" fn NewIconGetterUPP(user_routine: IconGetterProcPtr) -> IconGetterUPP {
+    extern "C-unwind" {
+        fn NewIconGetterUPP(user_routine: IconGetterProcPtr) -> IconGetterUPP;
+    }
+    unsafe { NewIconGetterUPP(user_routine) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `user_upp` must be implemented correctly.
-    pub fn DisposeIconActionUPP(user_upp: IconActionUPP);
+/// # Safety
+///
+/// `user_upp` must be implemented correctly.
+#[inline]
+pub unsafe extern "C-unwind" fn DisposeIconActionUPP(user_upp: IconActionUPP) {
+    extern "C-unwind" {
+        fn DisposeIconActionUPP(user_upp: IconActionUPP);
+    }
+    unsafe { DisposeIconActionUPP(user_upp) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `user_upp` must be implemented correctly.
-    pub fn DisposeIconGetterUPP(user_upp: IconGetterUPP);
+/// # Safety
+///
+/// `user_upp` must be implemented correctly.
+#[inline]
+pub unsafe extern "C-unwind" fn DisposeIconGetterUPP(user_upp: IconGetterUPP) {
+    extern "C-unwind" {
+        fn DisposeIconGetterUPP(user_upp: IconGetterUPP);
+    }
+    unsafe { DisposeIconGetterUPP(user_upp) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `the_icon` must be a valid pointer.
-    /// - `your_data_ptr` must be a valid pointer.
-    /// - `user_upp` must be implemented correctly.
-    pub fn InvokeIconActionUPP(
-        the_type: ResType,
-        the_icon: *mut Handle,
-        your_data_ptr: *mut c_void,
-        user_upp: IconActionUPP,
-    ) -> OSErr;
+/// # Safety
+///
+/// - `the_icon` must be a valid pointer.
+/// - `your_data_ptr` must be a valid pointer.
+/// - `user_upp` must be implemented correctly.
+#[inline]
+pub unsafe extern "C-unwind" fn InvokeIconActionUPP(
+    the_type: ResType,
+    the_icon: *mut Handle,
+    your_data_ptr: *mut c_void,
+    user_upp: IconActionUPP,
+) -> OSErr {
+    extern "C-unwind" {
+        fn InvokeIconActionUPP(
+            the_type: ResType,
+            the_icon: *mut Handle,
+            your_data_ptr: *mut c_void,
+            user_upp: IconActionUPP,
+        ) -> OSErr;
+    }
+    unsafe { InvokeIconActionUPP(the_type, the_icon, your_data_ptr, user_upp) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `your_data_ptr` must be a valid pointer.
-    /// - `user_upp` must be implemented correctly.
-    pub fn InvokeIconGetterUPP(
-        the_type: ResType,
-        your_data_ptr: *mut c_void,
-        user_upp: IconGetterUPP,
-    ) -> Handle;
+/// # Safety
+///
+/// - `your_data_ptr` must be a valid pointer.
+/// - `user_upp` must be implemented correctly.
+#[inline]
+pub unsafe extern "C-unwind" fn InvokeIconGetterUPP(
+    the_type: ResType,
+    your_data_ptr: *mut c_void,
+    user_upp: IconGetterUPP,
+) -> Handle {
+    extern "C-unwind" {
+        fn InvokeIconGetterUPP(
+            the_type: ResType,
+            your_data_ptr: *mut c_void,
+            user_upp: IconGetterUPP,
+        ) -> Handle;
+    }
+    unsafe { InvokeIconGetterUPP(the_type, your_data_ptr, user_upp) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/ploticonrefflags?language=objc)
@@ -314,35 +347,59 @@ pub const kPlotIconRefNoImage: c_uint = 1 << 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kploticonrefnomask?language=objc)
 pub const kPlotIconRefNoMask: c_uint = 1 << 2;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `the_icon_ref` must be a valid pointer.
-    /// - `icon_family` must be a valid pointer.
-    #[cfg(feature = "objc2-core-services")]
-    pub fn IconRefToIconFamily(
-        the_icon_ref: IconRef,
-        which_icons: IconSelectorValue,
-        icon_family: *mut IconFamilyHandle,
-    ) -> OSErr;
+/// # Safety
+///
+/// - `the_icon_ref` must be a valid pointer.
+/// - `icon_family` must be a valid pointer.
+#[cfg(feature = "objc2-core-services")]
+#[inline]
+pub unsafe extern "C-unwind" fn IconRefToIconFamily(
+    the_icon_ref: IconRef,
+    which_icons: IconSelectorValue,
+    icon_family: *mut IconFamilyHandle,
+) -> OSErr {
+    extern "C-unwind" {
+        fn IconRefToIconFamily(
+            the_icon_ref: IconRef,
+            which_icons: IconSelectorValue,
+            icon_family: *mut IconFamilyHandle,
+        ) -> OSErr;
+    }
+    unsafe { IconRefToIconFamily(the_icon_ref, which_icons, icon_family) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `icon_family` must be a valid pointer.
-    /// - `h` must be a valid pointer.
-    #[cfg(feature = "objc2-core-services")]
-    pub fn SetIconFamilyData(icon_family: IconFamilyHandle, icon_type: OSType, h: Handle) -> OSErr;
+/// # Safety
+///
+/// - `icon_family` must be a valid pointer.
+/// - `h` must be a valid pointer.
+#[cfg(feature = "objc2-core-services")]
+#[inline]
+pub unsafe extern "C-unwind" fn SetIconFamilyData(
+    icon_family: IconFamilyHandle,
+    icon_type: OSType,
+    h: Handle,
+) -> OSErr {
+    extern "C-unwind" {
+        fn SetIconFamilyData(icon_family: IconFamilyHandle, icon_type: OSType, h: Handle) -> OSErr;
+    }
+    unsafe { SetIconFamilyData(icon_family, icon_type, h) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `icon_family` must be a valid pointer.
-    /// - `h` must be a valid pointer.
-    #[cfg(feature = "objc2-core-services")]
-    pub fn GetIconFamilyData(icon_family: IconFamilyHandle, icon_type: OSType, h: Handle) -> OSErr;
+/// # Safety
+///
+/// - `icon_family` must be a valid pointer.
+/// - `h` must be a valid pointer.
+#[cfg(feature = "objc2-core-services")]
+#[inline]
+pub unsafe extern "C-unwind" fn GetIconFamilyData(
+    icon_family: IconFamilyHandle,
+    icon_type: OSType,
+    h: Handle,
+) -> OSErr {
+    extern "C-unwind" {
+        fn GetIconFamilyData(icon_family: IconFamilyHandle, icon_type: OSType, h: Handle) -> OSErr;
+    }
+    unsafe { GetIconFamilyData(icon_family, icon_type, h) }
 }
 
 /// # Safety
@@ -453,15 +510,23 @@ pub unsafe extern "C-unwind" fn IsIconRefMaskEmpty(icon_ref: IconRef) -> bool {
     ret != 0
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `in_icon_ref` must be a valid pointer.
-    /// - `out_transform` must be a valid pointer.
-    #[cfg(feature = "objc2-core-services")]
-    pub fn GetIconRefVariant(
-        in_icon_ref: IconRef,
-        in_variant: OSType,
-        out_transform: *mut IconTransformType,
-    ) -> IconRef;
+/// # Safety
+///
+/// - `in_icon_ref` must be a valid pointer.
+/// - `out_transform` must be a valid pointer.
+#[cfg(feature = "objc2-core-services")]
+#[inline]
+pub unsafe extern "C-unwind" fn GetIconRefVariant(
+    in_icon_ref: IconRef,
+    in_variant: OSType,
+    out_transform: *mut IconTransformType,
+) -> IconRef {
+    extern "C-unwind" {
+        fn GetIconRefVariant(
+            in_icon_ref: IconRef,
+            in_variant: OSType,
+            out_transform: *mut IconTransformType,
+        ) -> IconRef;
+    }
+    unsafe { GetIconRefVariant(in_icon_ref, in_variant, out_transform) }
 }

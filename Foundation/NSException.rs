@@ -218,11 +218,17 @@ pub extern "C-unwind" fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExcep
     unsafe { NSGetUncaughtExceptionHandler() }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `_` must be a valid pointer or null.
-    pub fn NSSetUncaughtExceptionHandler(param1: *mut NSUncaughtExceptionHandler);
+/// # Safety
+///
+/// `_` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NSSetUncaughtExceptionHandler(
+    param1: *mut NSUncaughtExceptionHandler,
+) {
+    extern "C-unwind" {
+        fn NSSetUncaughtExceptionHandler(param1: *mut NSUncaughtExceptionHandler);
+    }
+    unsafe { NSSetUncaughtExceptionHandler(param1) }
 }
 
 extern "C" {

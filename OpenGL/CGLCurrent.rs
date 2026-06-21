@@ -3,15 +3,23 @@
 
 use crate::*;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ctx` must be a valid pointer or null.
-    #[cfg(feature = "CGLTypes")]
-    pub fn CGLSetCurrentContext(ctx: CGLContextObj) -> CGLError;
+/// # Safety
+///
+/// `ctx` must be a valid pointer or null.
+#[cfg(feature = "CGLTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGLSetCurrentContext(ctx: CGLContextObj) -> CGLError {
+    extern "C-unwind" {
+        fn CGLSetCurrentContext(ctx: CGLContextObj) -> CGLError;
+    }
+    unsafe { CGLSetCurrentContext(ctx) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGLTypes")]
-    pub fn CGLGetCurrentContext() -> CGLContextObj;
+#[cfg(feature = "CGLTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGLGetCurrentContext() -> CGLContextObj {
+    extern "C-unwind" {
+        fn CGLGetCurrentContext() -> CGLContextObj;
+    }
+    unsafe { CGLGetCurrentContext() }
 }

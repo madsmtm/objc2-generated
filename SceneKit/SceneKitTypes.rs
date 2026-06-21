@@ -194,59 +194,103 @@ extern "C" {
     pub static SCNMatrix4Identity: SCNMatrix4;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    pub fn SCNMatrix4IsIdentity(m: SCNMatrix4) -> bool;
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn SCNMatrix4IsIdentity(m: SCNMatrix4) -> bool {
+    extern "C-unwind" {
+        fn SCNMatrix4IsIdentity(m: SCNMatrix4) -> bool;
+    }
+    unsafe { SCNMatrix4IsIdentity(m) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    pub fn SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMatrix4) -> bool;
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMatrix4) -> bool {
+    extern "C-unwind" {
+        fn SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMatrix4) -> bool;
+    }
+    unsafe { SCNMatrix4EqualToMatrix4(a, b) }
 }
 
 // TODO: pub fn SCNMatrix4MakeTranslation(tx: CGFloat,ty: CGFloat,tz: CGFloat,) -> SCNMatrix4;
 
 // TODO: pub fn SCNMatrix4MakeScale(sx: CGFloat,sy: CGFloat,sz: CGFloat,) -> SCNMatrix4;
 
-extern "C-unwind" {
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
-    #[cfg(not(target_os = "watchos"))]
-    pub fn SCNMatrix4MakeRotation(angle: CGFloat, x: CGFloat, y: CGFloat, z: CGFloat)
-        -> SCNMatrix4;
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+#[cfg(not(target_os = "watchos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn SCNMatrix4MakeRotation(
+    angle: CGFloat,
+    x: CGFloat,
+    y: CGFloat,
+    z: CGFloat,
+) -> SCNMatrix4 {
+    extern "C-unwind" {
+        fn SCNMatrix4MakeRotation(angle: CGFloat, x: CGFloat, y: CGFloat, z: CGFloat)
+            -> SCNMatrix4;
+    }
+    unsafe { SCNMatrix4MakeRotation(angle, x, y, z) }
 }
 
 // TODO: pub fn SCNMatrix4Translate(m: SCNMatrix4,tx: CGFloat,ty: CGFloat,tz: CGFloat,) -> SCNMatrix4;
 
-extern "C-unwind" {
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
-    #[cfg(not(target_os = "watchos"))]
-    pub fn SCNMatrix4Scale(m: SCNMatrix4, sx: CGFloat, sy: CGFloat, sz: CGFloat) -> SCNMatrix4;
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+#[cfg(not(target_os = "watchos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn SCNMatrix4Scale(
+    m: SCNMatrix4,
+    sx: CGFloat,
+    sy: CGFloat,
+    sz: CGFloat,
+) -> SCNMatrix4 {
+    extern "C-unwind" {
+        fn SCNMatrix4Scale(m: SCNMatrix4, sx: CGFloat, sy: CGFloat, sz: CGFloat) -> SCNMatrix4;
+    }
+    unsafe { SCNMatrix4Scale(m, sx, sy, sz) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
-    #[cfg(not(target_os = "watchos"))]
-    pub fn SCNMatrix4Rotate(
-        m: SCNMatrix4,
-        angle: CGFloat,
-        x: CGFloat,
-        y: CGFloat,
-        z: CGFloat,
-    ) -> SCNMatrix4;
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+#[cfg(not(target_os = "watchos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn SCNMatrix4Rotate(
+    m: SCNMatrix4,
+    angle: CGFloat,
+    x: CGFloat,
+    y: CGFloat,
+    z: CGFloat,
+) -> SCNMatrix4 {
+    extern "C-unwind" {
+        fn SCNMatrix4Rotate(
+            m: SCNMatrix4,
+            angle: CGFloat,
+            x: CGFloat,
+            y: CGFloat,
+            z: CGFloat,
+        ) -> SCNMatrix4;
+    }
+    unsafe { SCNMatrix4Rotate(m, angle, x, y, z) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    pub fn SCNMatrix4Invert(m: SCNMatrix4) -> SCNMatrix4;
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn SCNMatrix4Invert(m: SCNMatrix4) -> SCNMatrix4 {
+    extern "C-unwind" {
+        fn SCNMatrix4Invert(m: SCNMatrix4) -> SCNMatrix4;
+    }
+    unsafe { SCNMatrix4Invert(m) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    pub fn SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4) -> SCNMatrix4;
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4) -> SCNMatrix4 {
+    extern "C-unwind" {
+        fn SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4) -> SCNMatrix4;
+    }
+    unsafe { SCNMatrix4Mult(a, b) }
 }
 
 #[cfg(feature = "objc2-core-foundation")]
@@ -263,22 +307,30 @@ impl SCNVector4 {
     // TODO: pub fn SCNVector4ToGLKVector4(vector: SCNVector4,) -> GLKVector4;
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// The returned must be correctly initialized.
-    #[cfg(all(feature = "objc2-gl-kit", feature = "objc2-quartz-core"))]
-    #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
-    pub fn SCNMatrix4ToGLKMatrix4(mat: SCNMatrix4) -> GLKMatrix4;
+/// # Safety
+///
+/// The returned must be correctly initialized.
+#[cfg(all(feature = "objc2-gl-kit", feature = "objc2-quartz-core"))]
+#[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn SCNMatrix4ToGLKMatrix4(mat: SCNMatrix4) -> GLKMatrix4 {
+    extern "C-unwind" {
+        fn SCNMatrix4ToGLKMatrix4(mat: SCNMatrix4) -> GLKMatrix4;
+    }
+    unsafe { SCNMatrix4ToGLKMatrix4(mat) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `mat` must be correctly initialized.
-    #[cfg(all(feature = "objc2-gl-kit", feature = "objc2-quartz-core"))]
-    #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
-    pub fn SCNMatrix4FromGLKMatrix4(mat: GLKMatrix4) -> SCNMatrix4;
+/// # Safety
+///
+/// `mat` must be correctly initialized.
+#[cfg(all(feature = "objc2-gl-kit", feature = "objc2-quartz-core"))]
+#[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn SCNMatrix4FromGLKMatrix4(mat: GLKMatrix4) -> SCNMatrix4 {
+    extern "C-unwind" {
+        fn SCNMatrix4FromGLKMatrix4(mat: GLKMatrix4) -> SCNMatrix4;
+    }
+    unsafe { SCNMatrix4FromGLKMatrix4(mat) }
 }
 
 mod private_NSValueSceneKitAdditions {

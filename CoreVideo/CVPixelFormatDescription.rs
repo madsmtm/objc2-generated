@@ -252,14 +252,23 @@ pub extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTy
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `description` generic should be of the correct type.
-    pub fn CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(
-        description: &CFDictionary<CFString, CFType>,
-        pixel_format: OSType,
-    );
+/// # Safety
+///
+/// `description` generic should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(
+    description: &CFDictionary<CFString, CFType>,
+    pixel_format: OSType,
+) {
+    extern "C-unwind" {
+        fn CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(
+            description: &CFDictionary<CFString, CFType>,
+            pixel_format: OSType,
+        );
+    }
+    unsafe {
+        CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(description, pixel_format)
+    }
 }
 
 /// Creates a string with a formatted representation of a pixel format

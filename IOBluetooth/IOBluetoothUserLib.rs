@@ -267,26 +267,36 @@ unsafe impl RefEncode for IOBluetoothDeviceSearchTypesBits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Hints that the Mac OS X Bluetooth software should ignore a HID device that connects up.
-    ///
-    /// Parameter `device`: A Bluetooth Device to ignore.
-    ///
-    /// # Safety
-    ///
-    /// `device` might not allow `None`.
-    pub fn IOBluetoothIgnoreHIDDevice(device: Option<&IOBluetoothDeviceRef>);
+/// Hints that the Mac OS X Bluetooth software should ignore a HID device that connects up.
+///
+/// Parameter `device`: A Bluetooth Device to ignore.
+///
+/// # Safety
+///
+/// `device` might not allow `None`.
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothIgnoreHIDDevice(device: Option<&IOBluetoothDeviceRef>) {
+    extern "C-unwind" {
+        fn IOBluetoothIgnoreHIDDevice(device: Option<&IOBluetoothDeviceRef>);
+    }
+    unsafe { IOBluetoothIgnoreHIDDevice(device) }
 }
 
-extern "C-unwind" {
-    /// The counterpart to the above IOBluetoothIgnoreHIDDevice() API.
-    ///
-    /// Parameter `device`: A Bluetooth Device to "un"ignore.
-    ///
-    /// # Safety
-    ///
-    /// `device` might not allow `None`.
-    pub fn IOBluetoothRemoveIgnoredHIDDevice(device: Option<&IOBluetoothDeviceRef>);
+/// The counterpart to the above IOBluetoothIgnoreHIDDevice() API.
+///
+/// Parameter `device`: A Bluetooth Device to "un"ignore.
+///
+/// # Safety
+///
+/// `device` might not allow `None`.
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothRemoveIgnoredHIDDevice(
+    device: Option<&IOBluetoothDeviceRef>,
+) {
+    extern "C-unwind" {
+        fn IOBluetoothRemoveIgnoredHIDDevice(device: Option<&IOBluetoothDeviceRef>);
+    }
+    unsafe { IOBluetoothRemoveIgnoredHIDDevice(device) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothusernotificationchanneldirection?language=objc)
@@ -396,41 +406,54 @@ impl IOBluetoothL2CAPChannelRef {
     }
 }
 
-extern "C-unwind" {
-    /// Creates a persistent audio driver that will route audio data to/from the specified device.
-    ///
-    /// In 10.9 this is not needed and does nothing.
-    ///
-    /// Parameter `device`: A paired Bluetooth audio device
-    ///
-    /// Parameter `configDict`: Configuration dictionary containing a description of the audio controls to be attached to the driver.  Passing NULL will result in default controls
-    ///
-    /// Returns: Returns kIOReturnSuccess if the audio driver was successfully created, error if hardware does not support SCO or device is not paired. On 10.9 it will always return kIOReturnSuccess.
-    ///
-    /// # Safety
-    ///
-    /// - `device` might not allow `None`.
-    /// - `config_dict` generic must be of the correct type.
-    /// - `config_dict` generic must be of the correct type.
-    /// - `config_dict` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated]
-    pub fn IOBluetoothAddSCOAudioDevice(
-        device: Option<&IOBluetoothDeviceRef>,
-        config_dict: Option<&CFDictionary>,
-    ) -> IOReturn;
+/// Creates a persistent audio driver that will route audio data to/from the specified device.
+///
+/// In 10.9 this is not needed and does nothing.
+///
+/// Parameter `device`: A paired Bluetooth audio device
+///
+/// Parameter `configDict`: Configuration dictionary containing a description of the audio controls to be attached to the driver.  Passing NULL will result in default controls
+///
+/// Returns: Returns kIOReturnSuccess if the audio driver was successfully created, error if hardware does not support SCO or device is not paired. On 10.9 it will always return kIOReturnSuccess.
+///
+/// # Safety
+///
+/// - `device` might not allow `None`.
+/// - `config_dict` generic must be of the correct type.
+/// - `config_dict` generic must be of the correct type.
+/// - `config_dict` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothAddSCOAudioDevice(
+    device: Option<&IOBluetoothDeviceRef>,
+    config_dict: Option<&CFDictionary>,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOBluetoothAddSCOAudioDevice(
+            device: Option<&IOBluetoothDeviceRef>,
+            config_dict: Option<&CFDictionary>,
+        ) -> IOReturn;
+    }
+    unsafe { IOBluetoothAddSCOAudioDevice(device, config_dict) }
 }
 
-extern "C-unwind" {
-    /// Removes a persistent audio driver for a device that had already been added using IOBluetoothAddAudioDevice(). In 10.9 this is not needed and does nothing.
-    ///
-    /// Parameter `device`: Bluetooth audio device to remove
-    ///
-    /// Returns: Returns kIOReturnSuccess if the audio driver was successfully removed. On 10.9 it will always return kIOReturnSuccess
-    ///
-    /// # Safety
-    ///
-    /// `device` might not allow `None`.
-    #[deprecated]
-    pub fn IOBluetoothRemoveSCOAudioDevice(device: Option<&IOBluetoothDeviceRef>) -> IOReturn;
+/// Removes a persistent audio driver for a device that had already been added using IOBluetoothAddAudioDevice(). In 10.9 this is not needed and does nothing.
+///
+/// Parameter `device`: Bluetooth audio device to remove
+///
+/// Returns: Returns kIOReturnSuccess if the audio driver was successfully removed. On 10.9 it will always return kIOReturnSuccess
+///
+/// # Safety
+///
+/// `device` might not allow `None`.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothRemoveSCOAudioDevice(
+    device: Option<&IOBluetoothDeviceRef>,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOBluetoothRemoveSCOAudioDevice(device: Option<&IOBluetoothDeviceRef>) -> IOReturn;
+    }
+    unsafe { IOBluetoothRemoveSCOAudioDevice(device) }
 }

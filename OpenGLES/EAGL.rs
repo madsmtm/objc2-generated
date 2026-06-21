@@ -35,14 +35,18 @@ unsafe impl RefEncode for EAGLRenderingAPI {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// *********************************************************************
-    ///
-    /// # Safety
-    ///
-    /// - `major` must be a valid pointer.
-    /// - `minor` must be a valid pointer.
-    pub fn EAGLGetVersion(major: NonNull<c_uint>, minor: NonNull<c_uint>);
+/// *********************************************************************
+///
+/// # Safety
+///
+/// - `major` must be a valid pointer.
+/// - `minor` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn EAGLGetVersion(major: NonNull<c_uint>, minor: NonNull<c_uint>) {
+    extern "C-unwind" {
+        fn EAGLGetVersion(major: NonNull<c_uint>, minor: NonNull<c_uint>);
+    }
+    unsafe { EAGLGetVersion(major, minor) }
 }
 
 extern_class!(

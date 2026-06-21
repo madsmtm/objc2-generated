@@ -244,18 +244,26 @@ unsafe impl RefEncode for NSHashEnumerator {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `table` generic should be of the correct type.
-    pub fn NSFreeHashTable(table: &NSHashTable);
+/// # Safety
+///
+/// `table` generic should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn NSFreeHashTable(table: &NSHashTable) {
+    extern "C-unwind" {
+        fn NSFreeHashTable(table: &NSHashTable);
+    }
+    unsafe { NSFreeHashTable(table) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `table` generic should be of the correct type.
-    pub fn NSResetHashTable(table: &NSHashTable);
+/// # Safety
+///
+/// `table` generic should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn NSResetHashTable(table: &NSHashTable) {
+    extern "C-unwind" {
+        fn NSResetHashTable(table: &NSHashTable);
+    }
+    unsafe { NSResetHashTable(table) }
 }
 
 /// # Safety
@@ -306,64 +314,104 @@ pub unsafe extern "C-unwind" fn NSHashGet(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `table` generic should be of the correct type.
-    /// - `pointer` must be a valid pointer or null.
-    pub fn NSHashInsert(table: &NSHashTable, pointer: *const c_void);
+/// # Safety
+///
+/// - `table` generic should be of the correct type.
+/// - `pointer` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NSHashInsert(table: &NSHashTable, pointer: *const c_void) {
+    extern "C-unwind" {
+        fn NSHashInsert(table: &NSHashTable, pointer: *const c_void);
+    }
+    unsafe { NSHashInsert(table, pointer) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `table` generic should be of the correct type.
-    /// - `pointer` must be a valid pointer or null.
-    pub fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *const c_void);
+/// # Safety
+///
+/// - `table` generic should be of the correct type.
+/// - `pointer` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NSHashInsertKnownAbsent(
+    table: &NSHashTable,
+    pointer: *const c_void,
+) {
+    extern "C-unwind" {
+        fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *const c_void);
+    }
+    unsafe { NSHashInsertKnownAbsent(table, pointer) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `table` generic should be of the correct type.
-    /// - `pointer` must be a valid pointer or null.
-    pub fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *const c_void) -> *mut c_void;
+/// # Safety
+///
+/// - `table` generic should be of the correct type.
+/// - `pointer` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NSHashInsertIfAbsent(
+    table: &NSHashTable,
+    pointer: *const c_void,
+) -> *mut c_void {
+    extern "C-unwind" {
+        fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *const c_void) -> *mut c_void;
+    }
+    unsafe { NSHashInsertIfAbsent(table, pointer) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `table` generic should be of the correct type.
-    /// - `pointer` must be a valid pointer or null.
-    pub fn NSHashRemove(table: &NSHashTable, pointer: *const c_void);
+/// # Safety
+///
+/// - `table` generic should be of the correct type.
+/// - `pointer` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NSHashRemove(table: &NSHashTable, pointer: *const c_void) {
+    extern "C-unwind" {
+        fn NSHashRemove(table: &NSHashTable, pointer: *const c_void);
+    }
+    unsafe { NSHashRemove(table, pointer) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `table` generic should be of the correct type.
-    pub fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator;
+/// # Safety
+///
+/// `table` generic should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator {
+    extern "C-unwind" {
+        fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator;
+    }
+    unsafe { NSEnumerateHashTable(table) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `enumerator` must be a valid pointer.
-    pub fn NSNextHashEnumeratorItem(enumerator: NonNull<NSHashEnumerator>) -> *mut c_void;
+/// # Safety
+///
+/// `enumerator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSNextHashEnumeratorItem(
+    enumerator: NonNull<NSHashEnumerator>,
+) -> *mut c_void {
+    extern "C-unwind" {
+        fn NSNextHashEnumeratorItem(enumerator: NonNull<NSHashEnumerator>) -> *mut c_void;
+    }
+    unsafe { NSNextHashEnumeratorItem(enumerator) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `enumerator` must be a valid pointer.
-    pub fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>);
+/// # Safety
+///
+/// `enumerator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>) {
+    extern "C-unwind" {
+        fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>);
+    }
+    unsafe { NSEndHashTableEnumeration(enumerator) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `table` generic should be of the correct type.
-    pub fn NSCountHashTable(table: &NSHashTable) -> NSUInteger;
+/// # Safety
+///
+/// `table` generic should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn NSCountHashTable(table: &NSHashTable) -> NSUInteger {
+    extern "C-unwind" {
+        fn NSCountHashTable(table: &NSHashTable) -> NSUInteger;
+    }
+    unsafe { NSCountHashTable(table) }
 }
 
 #[cfg(feature = "NSString")]

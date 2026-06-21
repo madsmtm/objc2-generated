@@ -5,20 +5,28 @@ use core::ptr::NonNull;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ci` must be a valid pointer.
-    #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
-    pub fn AudioOutputUnitStart(ci: AudioUnit) -> OSStatus;
+/// # Safety
+///
+/// `ci` must be a valid pointer.
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioOutputUnitStart(ci: AudioUnit) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioOutputUnitStart(ci: AudioUnit) -> OSStatus;
+    }
+    unsafe { AudioOutputUnitStart(ci) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ci` must be a valid pointer.
-    #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
-    pub fn AudioOutputUnitStop(ci: AudioUnit) -> OSStatus;
+/// # Safety
+///
+/// `ci` must be a valid pointer.
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioOutputUnitStop(ci: AudioUnit) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioOutputUnitStop(ci: AudioUnit) -> OSStatus;
+    }
+    unsafe { AudioOutputUnitStop(ci) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitrange?language=objc)

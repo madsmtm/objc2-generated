@@ -83,15 +83,22 @@ impl ColorSyncCMM {
 pub type ColorSyncCMMIterateCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<ColorSyncCMM>, NonNull<c_void>) -> bool>;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `call_back` must be implemented correctly.
-    /// - `user_info` must be a valid pointer or null.
-    pub fn ColorSyncIterateInstalledCMMs(
-        call_back: ColorSyncCMMIterateCallback,
-        user_info: *mut c_void,
-    );
+/// # Safety
+///
+/// - `call_back` must be implemented correctly.
+/// - `user_info` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncIterateInstalledCMMs(
+    call_back: ColorSyncCMMIterateCallback,
+    user_info: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn ColorSyncIterateInstalledCMMs(
+            call_back: ColorSyncCMMIterateCallback,
+            user_info: *mut c_void,
+        );
+    }
+    unsafe { ColorSyncIterateInstalledCMMs(call_back, user_info) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmminitializelinkprofileproc?language=objc)

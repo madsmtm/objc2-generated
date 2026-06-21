@@ -155,37 +155,58 @@ pub type MDS_FUNCS = mds_funcs;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type MDS_FUNCS_PTR = *mut mds_funcs;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `p_caller_guid` must be a valid pointer.
-    /// - `p_memory_functions` must be a valid pointer.
-    /// - `p_dl_functions` must be a valid pointer.
-    /// - `h_mds` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn MDS_Initialize(
-        p_caller_guid: *const CSSM_GUID,
-        p_memory_functions: *const CSSM_MEMORY_FUNCS,
-        p_dl_functions: MDS_FUNCS_PTR,
-        h_mds: *mut MDS_HANDLE,
-    ) -> CSSM_RETURN;
+/// # Safety
+///
+/// - `p_caller_guid` must be a valid pointer.
+/// - `p_memory_functions` must be a valid pointer.
+/// - `p_dl_functions` must be a valid pointer.
+/// - `h_mds` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn MDS_Initialize(
+    p_caller_guid: *const CSSM_GUID,
+    p_memory_functions: *const CSSM_MEMORY_FUNCS,
+    p_dl_functions: MDS_FUNCS_PTR,
+    h_mds: *mut MDS_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn MDS_Initialize(
+            p_caller_guid: *const CSSM_GUID,
+            p_memory_functions: *const CSSM_MEMORY_FUNCS,
+            p_dl_functions: MDS_FUNCS_PTR,
+            h_mds: *mut MDS_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { MDS_Initialize(p_caller_guid, p_memory_functions, p_dl_functions, h_mds) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn MDS_Terminate(mds_handle: MDS_HANDLE) -> CSSM_RETURN;
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn MDS_Terminate(mds_handle: MDS_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn MDS_Terminate(mds_handle: MDS_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { MDS_Terminate(mds_handle) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn MDS_Install(mds_handle: MDS_HANDLE) -> CSSM_RETURN;
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn MDS_Install(mds_handle: MDS_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn MDS_Install(mds_handle: MDS_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { MDS_Install(mds_handle) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn MDS_Uninstall(mds_handle: MDS_HANDLE) -> CSSM_RETURN;
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn MDS_Uninstall(mds_handle: MDS_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn MDS_Uninstall(mds_handle: MDS_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { MDS_Uninstall(mds_handle) }
 }

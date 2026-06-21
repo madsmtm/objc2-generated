@@ -1986,16 +1986,24 @@ extern "C" {
     pub static NSAccessibilityAnnouncementKey: &'static NSAccessibilityNotificationUserInfoKey;
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `element` should be of the correct type.
-    /// - `user_info` generic should be of the correct type.
-    pub fn NSAccessibilityPostNotificationWithUserInfo(
-        element: &AnyObject,
-        notification: &NSAccessibilityNotificationName,
-        user_info: Option<&NSDictionary<NSAccessibilityNotificationUserInfoKey, AnyObject>>,
-    );
+/// # Safety
+///
+/// - `element` should be of the correct type.
+/// - `user_info` generic should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn NSAccessibilityPostNotificationWithUserInfo(
+    element: &AnyObject,
+    notification: &NSAccessibilityNotificationName,
+    user_info: Option<&NSDictionary<NSAccessibilityNotificationUserInfoKey, AnyObject>>,
+) {
+    extern "C-unwind" {
+        fn NSAccessibilityPostNotificationWithUserInfo(
+            element: &AnyObject,
+            notification: &NSAccessibilityNotificationName,
+            user_info: Option<&NSDictionary<NSAccessibilityNotificationUserInfoKey, AnyObject>>,
+        );
+    }
+    unsafe { NSAccessibilityPostNotificationWithUserInfo(element, notification, user_info) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprioritylevel?language=objc)

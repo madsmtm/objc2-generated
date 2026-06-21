@@ -639,808 +639,1080 @@ unsafe impl RefEncode for MusicTrackLoopInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Create a new music player
-    ///
-    /// A music player is used to play a sequence back. This call is used to create a player
-    /// When a sequence is to be played by a player, it can play to either an AUGraph, a MIDI Destination or a
-    /// mixture/combination of both.
-    ///
-    /// Parameter `outPlayer`: the newly created player
-    ///
-    /// # Safety
-    ///
-    /// `out_player` must be a valid pointer or null.
-    pub fn NewMusicPlayer(out_player: &mut MusicPlayer) -> OSStatus;
+/// Create a new music player
+///
+/// A music player is used to play a sequence back. This call is used to create a player
+/// When a sequence is to be played by a player, it can play to either an AUGraph, a MIDI Destination or a
+/// mixture/combination of both.
+///
+/// Parameter `outPlayer`: the newly created player
+///
+/// # Safety
+///
+/// `out_player` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NewMusicPlayer(out_player: &mut MusicPlayer) -> OSStatus {
+    extern "C-unwind" {
+        fn NewMusicPlayer(out_player: &mut MusicPlayer) -> OSStatus;
+    }
+    unsafe { NewMusicPlayer(out_player) }
 }
 
-extern "C-unwind" {
-    /// Dispose a music player
-    ///
-    /// Parameter `inPlayer`: the player to dispose
-    ///
-    /// # Safety
-    ///
-    /// `in_player` must be a valid pointer.
-    pub fn DisposeMusicPlayer(in_player: MusicPlayer) -> OSStatus;
+/// Dispose a music player
+///
+/// Parameter `inPlayer`: the player to dispose
+///
+/// # Safety
+///
+/// `in_player` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn DisposeMusicPlayer(in_player: MusicPlayer) -> OSStatus {
+    extern "C-unwind" {
+        fn DisposeMusicPlayer(in_player: MusicPlayer) -> OSStatus;
+    }
+    unsafe { DisposeMusicPlayer(in_player) }
 }
 
-extern "C-unwind" {
-    /// Set the sequence for the player to play
-    ///
-    /// A Sequence cannot be set on a player while it is playing. Setting a sequence
-    /// will overide the currently set sequence.
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// Parameter `inSequence`: the sequence for the player to play
-    ///
-    /// # Safety
-    ///
-    /// - `in_player` must be a valid pointer.
-    /// - `in_sequence` must be a valid pointer or null.
-    pub fn MusicPlayerSetSequence(in_player: MusicPlayer, in_sequence: MusicSequence) -> OSStatus;
+/// Set the sequence for the player to play
+///
+/// A Sequence cannot be set on a player while it is playing. Setting a sequence
+/// will overide the currently set sequence.
+///
+/// Parameter `inPlayer`: the player
+///
+/// Parameter `inSequence`: the sequence for the player to play
+///
+/// # Safety
+///
+/// - `in_player` must be a valid pointer.
+/// - `in_sequence` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerSetSequence(
+    in_player: MusicPlayer,
+    in_sequence: MusicSequence,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerSetSequence(in_player: MusicPlayer, in_sequence: MusicSequence) -> OSStatus;
+    }
+    unsafe { MusicPlayerSetSequence(in_player, in_sequence) }
 }
 
-extern "C-unwind" {
-    /// Get the sequence attached to a player
-    ///
-    /// If the player does not have a sequence set, this will return the _NoSequence error
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// Parameter `outSequence`: the sequence currently set on the player
-    ///
-    /// # Safety
-    ///
-    /// - `in_player` must be a valid pointer.
-    /// - `out_sequence` must be a valid pointer or null.
-    pub fn MusicPlayerGetSequence(
-        in_player: MusicPlayer,
-        out_sequence: &mut MusicSequence,
-    ) -> OSStatus;
+/// Get the sequence attached to a player
+///
+/// If the player does not have a sequence set, this will return the _NoSequence error
+///
+/// Parameter `inPlayer`: the player
+///
+/// Parameter `outSequence`: the sequence currently set on the player
+///
+/// # Safety
+///
+/// - `in_player` must be a valid pointer.
+/// - `out_sequence` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerGetSequence(
+    in_player: MusicPlayer,
+    out_sequence: &mut MusicSequence,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerGetSequence(
+            in_player: MusicPlayer,
+            out_sequence: &mut MusicSequence,
+        ) -> OSStatus;
+    }
+    unsafe { MusicPlayerGetSequence(in_player, out_sequence) }
 }
 
-extern "C-unwind" {
-    /// Set the current time on the player
-    ///
-    /// The Get and Set Time calls take a specification of time as beats. This positions the player
-    /// to the specified time based on the currently set sequence. No range checking on the time value
-    /// is done. This can be set on a playing player (in which case playing will be resumed from the
-    /// new time).
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// Parameter `inTime`: the new time value
-    ///
-    /// # Safety
-    ///
-    /// `in_player` must be a valid pointer.
-    pub fn MusicPlayerSetTime(in_player: MusicPlayer, in_time: MusicTimeStamp) -> OSStatus;
+/// Set the current time on the player
+///
+/// The Get and Set Time calls take a specification of time as beats. This positions the player
+/// to the specified time based on the currently set sequence. No range checking on the time value
+/// is done. This can be set on a playing player (in which case playing will be resumed from the
+/// new time).
+///
+/// Parameter `inPlayer`: the player
+///
+/// Parameter `inTime`: the new time value
+///
+/// # Safety
+///
+/// `in_player` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerSetTime(
+    in_player: MusicPlayer,
+    in_time: MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerSetTime(in_player: MusicPlayer, in_time: MusicTimeStamp) -> OSStatus;
+    }
+    unsafe { MusicPlayerSetTime(in_player, in_time) }
 }
 
-extern "C-unwind" {
-    /// Get the current time of the player
-    ///
-    /// The Get and Set Time calls take a specification of time as beats. This retrieves the player's
-    /// current time. If it is playing this time is the time of the player at the time the call was made.
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// Parameter `outTime`: the current time value
-    ///
-    /// # Safety
-    ///
-    /// `in_player` must be a valid pointer.
-    pub fn MusicPlayerGetTime(in_player: MusicPlayer, out_time: &mut MusicTimeStamp) -> OSStatus;
+/// Get the current time of the player
+///
+/// The Get and Set Time calls take a specification of time as beats. This retrieves the player's
+/// current time. If it is playing this time is the time of the player at the time the call was made.
+///
+/// Parameter `inPlayer`: the player
+///
+/// Parameter `outTime`: the current time value
+///
+/// # Safety
+///
+/// `in_player` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerGetTime(
+    in_player: MusicPlayer,
+    out_time: &mut MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerGetTime(in_player: MusicPlayer, out_time: &mut MusicTimeStamp) -> OSStatus;
+    }
+    unsafe { MusicPlayerGetTime(in_player, out_time) }
 }
 
-extern "C-unwind" {
-    /// Returns the host time that will be (or was) played at the specified beat.
-    ///
-    /// This call is only valid if the player is playing and will return an error if the player is not playing
-    /// or if the starting position of the player (its "starting beat") was after the specified beat.
-    /// For general translation of beats to time in a sequence, see the MusicSequence calls for beat
-    /// <
-    /// ->seconds.
-    ///
-    /// The call uses the player's sequence's tempo map to translate a beat time from the starting time and beat
-    /// of the player.
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// Parameter `inBeats`: the specified beat-time value
-    ///
-    /// Parameter `outHostTime`: the corresponding host time
-    ///
-    /// # Safety
-    ///
-    /// `in_player` must be a valid pointer.
-    pub fn MusicPlayerGetHostTimeForBeats(
-        in_player: MusicPlayer,
-        in_beats: MusicTimeStamp,
-        out_host_time: &mut u64,
-    ) -> OSStatus;
+/// Returns the host time that will be (or was) played at the specified beat.
+///
+/// This call is only valid if the player is playing and will return an error if the player is not playing
+/// or if the starting position of the player (its "starting beat") was after the specified beat.
+/// For general translation of beats to time in a sequence, see the MusicSequence calls for beat
+/// <
+/// ->seconds.
+///
+/// The call uses the player's sequence's tempo map to translate a beat time from the starting time and beat
+/// of the player.
+///
+/// Parameter `inPlayer`: the player
+///
+/// Parameter `inBeats`: the specified beat-time value
+///
+/// Parameter `outHostTime`: the corresponding host time
+///
+/// # Safety
+///
+/// `in_player` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerGetHostTimeForBeats(
+    in_player: MusicPlayer,
+    in_beats: MusicTimeStamp,
+    out_host_time: &mut u64,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerGetHostTimeForBeats(
+            in_player: MusicPlayer,
+            in_beats: MusicTimeStamp,
+            out_host_time: &mut u64,
+        ) -> OSStatus;
+    }
+    unsafe { MusicPlayerGetHostTimeForBeats(in_player, in_beats, out_host_time) }
 }
 
-extern "C-unwind" {
-    /// Returns the beat that will be (or was) played at the specified host time.
-    ///
-    /// This call is only valid if the player is playing and will return an error if the player is not playing
-    /// or if the starting time of the player was after the specified host time.
-    /// For general translation of beats to time in a sequence, see the MusicSequence calls for beat
-    /// <
-    /// ->seconds.
-    ///
-    /// The call uses the player's sequence's tempo map to retrieve a beat time from the starting and specified host time.
-    ///
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// Parameter `inHostTime`: the specified host time value
-    ///
-    /// Parameter `outBeats`: the corresponding beat time
-    ///
-    /// # Safety
-    ///
-    /// `in_player` must be a valid pointer.
-    pub fn MusicPlayerGetBeatsForHostTime(
-        in_player: MusicPlayer,
-        in_host_time: u64,
-        out_beats: &mut MusicTimeStamp,
-    ) -> OSStatus;
+/// Returns the beat that will be (or was) played at the specified host time.
+///
+/// This call is only valid if the player is playing and will return an error if the player is not playing
+/// or if the starting time of the player was after the specified host time.
+/// For general translation of beats to time in a sequence, see the MusicSequence calls for beat
+/// <
+/// ->seconds.
+///
+/// The call uses the player's sequence's tempo map to retrieve a beat time from the starting and specified host time.
+///
+///
+/// Parameter `inPlayer`: the player
+///
+/// Parameter `inHostTime`: the specified host time value
+///
+/// Parameter `outBeats`: the corresponding beat time
+///
+/// # Safety
+///
+/// `in_player` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerGetBeatsForHostTime(
+    in_player: MusicPlayer,
+    in_host_time: u64,
+    out_beats: &mut MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerGetBeatsForHostTime(
+            in_player: MusicPlayer,
+            in_host_time: u64,
+            out_beats: &mut MusicTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe { MusicPlayerGetBeatsForHostTime(in_player, in_host_time, out_beats) }
 }
 
-extern "C-unwind" {
-    /// Prepare the player for playing
-    ///
-    /// Allows the player to prepare its state so that starting is has a lower latency. If a player is started without
-    /// being prerolled, the player will pre-roll itself and then start.
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// # Safety
-    ///
-    /// `in_player` must be a valid pointer.
-    pub fn MusicPlayerPreroll(in_player: MusicPlayer) -> OSStatus;
+/// Prepare the player for playing
+///
+/// Allows the player to prepare its state so that starting is has a lower latency. If a player is started without
+/// being prerolled, the player will pre-roll itself and then start.
+///
+/// Parameter `inPlayer`: the player
+///
+/// # Safety
+///
+/// `in_player` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerPreroll(in_player: MusicPlayer) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerPreroll(in_player: MusicPlayer) -> OSStatus;
+    }
+    unsafe { MusicPlayerPreroll(in_player) }
 }
 
-extern "C-unwind" {
-    /// Start the player
-    ///
-    /// If the player has not been prerolled, it will pre-roll itself and then start.
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// # Safety
-    ///
-    /// `in_player` must be a valid pointer.
-    pub fn MusicPlayerStart(in_player: MusicPlayer) -> OSStatus;
+/// Start the player
+///
+/// If the player has not been prerolled, it will pre-roll itself and then start.
+///
+/// Parameter `inPlayer`: the player
+///
+/// # Safety
+///
+/// `in_player` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerStart(in_player: MusicPlayer) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerStart(in_player: MusicPlayer) -> OSStatus;
+    }
+    unsafe { MusicPlayerStart(in_player) }
 }
 
-extern "C-unwind" {
-    /// Stop the player
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// # Safety
-    ///
-    /// `in_player` must be a valid pointer.
-    pub fn MusicPlayerStop(in_player: MusicPlayer) -> OSStatus;
+/// Stop the player
+///
+/// Parameter `inPlayer`: the player
+///
+/// # Safety
+///
+/// `in_player` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerStop(in_player: MusicPlayer) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerStop(in_player: MusicPlayer) -> OSStatus;
+    }
+    unsafe { MusicPlayerStop(in_player) }
 }
 
-extern "C-unwind" {
-    /// Returns the playing state of the player. "Is it playing?"
-    ///
-    /// This call returns a non-zero value in outIsPlaying if the player has been
-    /// started and not stopped. It may have "played" past the events of the attached
-    /// MusicSequence, but it is still considered to be playing (and its time value increasing)
-    /// until it is explicitly stopped
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// Parameter `outIsPlaying`: false if not, true (non-zero) if is playing
-    ///
-    /// # Safety
-    ///
-    /// `in_player` must be a valid pointer.
-    pub fn MusicPlayerIsPlaying(in_player: MusicPlayer, out_is_playing: &mut Boolean) -> OSStatus;
+/// Returns the playing state of the player. "Is it playing?"
+///
+/// This call returns a non-zero value in outIsPlaying if the player has been
+/// started and not stopped. It may have "played" past the events of the attached
+/// MusicSequence, but it is still considered to be playing (and its time value increasing)
+/// until it is explicitly stopped
+///
+/// Parameter `inPlayer`: the player
+///
+/// Parameter `outIsPlaying`: false if not, true (non-zero) if is playing
+///
+/// # Safety
+///
+/// `in_player` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerIsPlaying(
+    in_player: MusicPlayer,
+    out_is_playing: &mut Boolean,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerIsPlaying(in_player: MusicPlayer, out_is_playing: &mut Boolean) -> OSStatus;
+    }
+    unsafe { MusicPlayerIsPlaying(in_player, out_is_playing) }
 }
 
-extern "C-unwind" {
-    /// Scale the playback rate of the player
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// Parameter `inScaleRate`: a scalar that will be applied to the playback rate. If 2, playback is twice as fast, if
-    /// 0.5 it is half as fast. As a scalar, the value must be greater than zero.
-    ///
-    /// # Safety
-    ///
-    /// `in_player` must be a valid pointer.
-    pub fn MusicPlayerSetPlayRateScalar(in_player: MusicPlayer, in_scale_rate: f64) -> OSStatus;
+/// Scale the playback rate of the player
+///
+/// Parameter `inPlayer`: the player
+///
+/// Parameter `inScaleRate`: a scalar that will be applied to the playback rate. If 2, playback is twice as fast, if
+/// 0.5 it is half as fast. As a scalar, the value must be greater than zero.
+///
+/// # Safety
+///
+/// `in_player` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerSetPlayRateScalar(
+    in_player: MusicPlayer,
+    in_scale_rate: f64,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerSetPlayRateScalar(in_player: MusicPlayer, in_scale_rate: f64) -> OSStatus;
+    }
+    unsafe { MusicPlayerSetPlayRateScalar(in_player, in_scale_rate) }
 }
 
-extern "C-unwind" {
-    /// Get the playback rate scalar of the player
-    ///
-    /// Parameter `inPlayer`: the player
-    ///
-    /// Parameter `outScaleRate`: the current scalar being applied to the player. Default value is 1.0
-    ///
-    /// # Safety
-    ///
-    /// `in_player` must be a valid pointer.
-    pub fn MusicPlayerGetPlayRateScalar(
-        in_player: MusicPlayer,
-        out_scale_rate: &mut f64,
-    ) -> OSStatus;
+/// Get the playback rate scalar of the player
+///
+/// Parameter `inPlayer`: the player
+///
+/// Parameter `outScaleRate`: the current scalar being applied to the player. Default value is 1.0
+///
+/// # Safety
+///
+/// `in_player` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicPlayerGetPlayRateScalar(
+    in_player: MusicPlayer,
+    out_scale_rate: &mut f64,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicPlayerGetPlayRateScalar(
+            in_player: MusicPlayer,
+            out_scale_rate: &mut f64,
+        ) -> OSStatus;
+    }
+    unsafe { MusicPlayerGetPlayRateScalar(in_player, out_scale_rate) }
 }
 
-extern "C-unwind" {
-    /// Create a new empty sequence
-    ///
-    /// A new music sequence will only have a tempo track (with a default tempo of 120 bpm),
-    /// and the default type is beat based.
-    ///
-    /// When a sequence is to be played by a player, it can play to either an AUGraph, a MIDI Destination or a
-    /// mixture/combination of both. See MusicSequenceSetAUGraph and MusicSequenceSetMIDIEndpoint for the generic
-    /// destination assignments. Specific tracks can also be assigned nodes of a graph or a MIDI endpoint as targets
-    /// for the events that they contain; see MusicTrackSetDestNode and MusicTrackSetDestMIDIEndpoint.
-    ///
-    ///
-    /// Parameter `outSequence`: the new sequence
-    ///
-    /// # Safety
-    ///
-    /// `out_sequence` must be a valid pointer or null.
-    pub fn NewMusicSequence(out_sequence: &mut MusicSequence) -> OSStatus;
+/// Create a new empty sequence
+///
+/// A new music sequence will only have a tempo track (with a default tempo of 120 bpm),
+/// and the default type is beat based.
+///
+/// When a sequence is to be played by a player, it can play to either an AUGraph, a MIDI Destination or a
+/// mixture/combination of both. See MusicSequenceSetAUGraph and MusicSequenceSetMIDIEndpoint for the generic
+/// destination assignments. Specific tracks can also be assigned nodes of a graph or a MIDI endpoint as targets
+/// for the events that they contain; see MusicTrackSetDestNode and MusicTrackSetDestMIDIEndpoint.
+///
+///
+/// Parameter `outSequence`: the new sequence
+///
+/// # Safety
+///
+/// `out_sequence` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NewMusicSequence(out_sequence: &mut MusicSequence) -> OSStatus {
+    extern "C-unwind" {
+        fn NewMusicSequence(out_sequence: &mut MusicSequence) -> OSStatus;
+    }
+    unsafe { NewMusicSequence(out_sequence) }
 }
 
-extern "C-unwind" {
-    /// Dispose the sequence
-    ///
-    /// A sequence cannot be disposed while a MusicPlayer has it.
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    pub fn DisposeMusicSequence(in_sequence: MusicSequence) -> OSStatus;
+/// Dispose the sequence
+///
+/// A sequence cannot be disposed while a MusicPlayer has it.
+///
+/// Parameter `inSequence`: the sequence
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn DisposeMusicSequence(in_sequence: MusicSequence) -> OSStatus {
+    extern "C-unwind" {
+        fn DisposeMusicSequence(in_sequence: MusicSequence) -> OSStatus;
+    }
+    unsafe { DisposeMusicSequence(in_sequence) }
 }
 
-extern "C-unwind" {
-    /// Add a new (empty) track to the sequence
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `outTrack`: the new track (it is always appended to any existing tracks)
-    ///
-    /// # Safety
-    ///
-    /// - `in_sequence` must be a valid pointer.
-    /// - `out_track` must be a valid pointer or null.
-    pub fn MusicSequenceNewTrack(
-        in_sequence: MusicSequence,
-        out_track: &mut MusicTrack,
-    ) -> OSStatus;
+/// Add a new (empty) track to the sequence
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `outTrack`: the new track (it is always appended to any existing tracks)
+///
+/// # Safety
+///
+/// - `in_sequence` must be a valid pointer.
+/// - `out_track` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceNewTrack(
+    in_sequence: MusicSequence,
+    out_track: &mut MusicTrack,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceNewTrack(
+            in_sequence: MusicSequence,
+            out_track: &mut MusicTrack,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceNewTrack(in_sequence, out_track) }
 }
 
-extern "C-unwind" {
-    /// Remove and dispose a track from a sequence
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inTrack`: the track to remove and dispose
-    ///
-    /// # Safety
-    ///
-    /// - `in_sequence` must be a valid pointer.
-    /// - `in_track` must be a valid pointer.
-    pub fn MusicSequenceDisposeTrack(in_sequence: MusicSequence, in_track: MusicTrack) -> OSStatus;
+/// Remove and dispose a track from a sequence
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inTrack`: the track to remove and dispose
+///
+/// # Safety
+///
+/// - `in_sequence` must be a valid pointer.
+/// - `in_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceDisposeTrack(
+    in_sequence: MusicSequence,
+    in_track: MusicTrack,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceDisposeTrack(in_sequence: MusicSequence, in_track: MusicTrack) -> OSStatus;
+    }
+    unsafe { MusicSequenceDisposeTrack(in_sequence, in_track) }
 }
 
-extern "C-unwind" {
-    /// The number of tracks in a sequence.
-    /// The track count and accessors exclude the tempo track (which is treated as a special case)
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `outNumberOfTracks`: the number of tracks
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    pub fn MusicSequenceGetTrackCount(
-        in_sequence: MusicSequence,
-        out_number_of_tracks: &mut u32,
-    ) -> OSStatus;
+/// The number of tracks in a sequence.
+/// The track count and accessors exclude the tempo track (which is treated as a special case)
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `outNumberOfTracks`: the number of tracks
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceGetTrackCount(
+    in_sequence: MusicSequence,
+    out_number_of_tracks: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceGetTrackCount(
+            in_sequence: MusicSequence,
+            out_number_of_tracks: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceGetTrackCount(in_sequence, out_number_of_tracks) }
 }
 
-extern "C-unwind" {
-    /// Get a track at the specified index
-    ///
-    /// Index is zero based. It will return kAudio_ParamError if index is not in the range: 0
-    /// <
-    /// TrackCount
-    /// The track count and accessors exclude the tempo track (which is treated as a special case)
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inTrackIndex`: the index
-    ///
-    /// Parameter `outTrack`: the track at that index
-    ///
-    /// # Safety
-    ///
-    /// - `in_sequence` must be a valid pointer.
-    /// - `out_track` must be a valid pointer or null.
-    pub fn MusicSequenceGetIndTrack(
-        in_sequence: MusicSequence,
-        in_track_index: u32,
-        out_track: &mut MusicTrack,
-    ) -> OSStatus;
+/// Get a track at the specified index
+///
+/// Index is zero based. It will return kAudio_ParamError if index is not in the range: 0
+/// <
+/// TrackCount
+/// The track count and accessors exclude the tempo track (which is treated as a special case)
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inTrackIndex`: the index
+///
+/// Parameter `outTrack`: the track at that index
+///
+/// # Safety
+///
+/// - `in_sequence` must be a valid pointer.
+/// - `out_track` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceGetIndTrack(
+    in_sequence: MusicSequence,
+    in_track_index: u32,
+    out_track: &mut MusicTrack,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceGetIndTrack(
+            in_sequence: MusicSequence,
+            in_track_index: u32,
+            out_track: &mut MusicTrack,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceGetIndTrack(in_sequence, in_track_index, out_track) }
 }
 
-extern "C-unwind" {
-    /// Get the index for a specific track
-    ///
-    /// Index is zero based. It will return an error if the track is not a member of the sequence.
-    /// The track count and accessors exclude the tempo track (which is treated as a special case)
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `outTrackIndex`: the index of the track
-    ///
-    /// # Safety
-    ///
-    /// - `in_sequence` must be a valid pointer.
-    /// - `in_track` must be a valid pointer.
-    pub fn MusicSequenceGetTrackIndex(
-        in_sequence: MusicSequence,
-        in_track: MusicTrack,
-        out_track_index: &mut u32,
-    ) -> OSStatus;
+/// Get the index for a specific track
+///
+/// Index is zero based. It will return an error if the track is not a member of the sequence.
+/// The track count and accessors exclude the tempo track (which is treated as a special case)
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `outTrackIndex`: the index of the track
+///
+/// # Safety
+///
+/// - `in_sequence` must be a valid pointer.
+/// - `in_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceGetTrackIndex(
+    in_sequence: MusicSequence,
+    in_track: MusicTrack,
+    out_track_index: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceGetTrackIndex(
+            in_sequence: MusicSequence,
+            in_track: MusicTrack,
+            out_track_index: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceGetTrackIndex(in_sequence, in_track, out_track_index) }
 }
 
-extern "C-unwind" {
-    /// Get the tempo track of the sequence
-    ///
-    /// Each sequence has a single tempo track. All tempo events are placed into this tempo track (as well
-    /// as other appropriate events (time sig for instance from a MIDI file). The tempo track, once retrieved
-    /// can be edited and iterated upon as any other track. Non-tempo events in a tempo track are ignored.
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `outTrack`: the tempo track of the sequence
-    ///
-    /// # Safety
-    ///
-    /// - `in_sequence` must be a valid pointer.
-    /// - `out_track` must be a valid pointer or null.
-    pub fn MusicSequenceGetTempoTrack(
-        in_sequence: MusicSequence,
-        out_track: &mut MusicTrack,
-    ) -> OSStatus;
+/// Get the tempo track of the sequence
+///
+/// Each sequence has a single tempo track. All tempo events are placed into this tempo track (as well
+/// as other appropriate events (time sig for instance from a MIDI file). The tempo track, once retrieved
+/// can be edited and iterated upon as any other track. Non-tempo events in a tempo track are ignored.
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `outTrack`: the tempo track of the sequence
+///
+/// # Safety
+///
+/// - `in_sequence` must be a valid pointer.
+/// - `out_track` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceGetTempoTrack(
+    in_sequence: MusicSequence,
+    out_track: &mut MusicTrack,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceGetTempoTrack(
+            in_sequence: MusicSequence,
+            out_track: &mut MusicTrack,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceGetTempoTrack(in_sequence, out_track) }
 }
 
-extern "C-unwind" {
-    /// Set the graph to be associated with the sequence
-    ///
-    /// A sequence can be associated with an AUGraph and this graph will be used to render the events as
-    /// controlled by the sequence when it is played. By default, all of the tracks of a sequence will
-    /// find the first AUNode that is an instance of an Apple MusicDevice audio unit (see MusicSequenceGetAUGraph).
-    /// Specific nodes of the graph can be targeted for different tracks (see MusicTrackSetDestNode).  To render a
-    /// multi-track GM MIDI sequence on iOS, create a custom graph with a MIDISynth audio unit as the MusicDevice.
-    /// If inGraph is set to NULL, the sequence will reset to use the default graph.
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inGraph`: the graph
-    ///
-    /// # Safety
-    ///
-    /// - `in_sequence` must be a valid pointer.
-    /// - `in_graph` must be a valid pointer or null.
-    #[cfg(feature = "AUGraph")]
-    pub fn MusicSequenceSetAUGraph(in_sequence: MusicSequence, in_graph: AUGraph) -> OSStatus;
+/// Set the graph to be associated with the sequence
+///
+/// A sequence can be associated with an AUGraph and this graph will be used to render the events as
+/// controlled by the sequence when it is played. By default, all of the tracks of a sequence will
+/// find the first AUNode that is an instance of an Apple MusicDevice audio unit (see MusicSequenceGetAUGraph).
+/// Specific nodes of the graph can be targeted for different tracks (see MusicTrackSetDestNode).  To render a
+/// multi-track GM MIDI sequence on iOS, create a custom graph with a MIDISynth audio unit as the MusicDevice.
+/// If inGraph is set to NULL, the sequence will reset to use the default graph.
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inGraph`: the graph
+///
+/// # Safety
+///
+/// - `in_sequence` must be a valid pointer.
+/// - `in_graph` must be a valid pointer or null.
+#[cfg(feature = "AUGraph")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceSetAUGraph(
+    in_sequence: MusicSequence,
+    in_graph: AUGraph,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceSetAUGraph(in_sequence: MusicSequence, in_graph: AUGraph) -> OSStatus;
+    }
+    unsafe { MusicSequenceSetAUGraph(in_sequence, in_graph) }
 }
 
-extern "C-unwind" {
-    /// Gets the graph currently associated with a sequence
-    ///
-    /// By default if no graph is assigned to a sequence then the sequence will create a default graph.
-    /// This default graph contains a MusicDevice and a DynamicsProcessor and all tracks will be targeted
-    /// to the MusicDevice.  On macOS, this MusicDevice is an instance of a software synthesizer that is
-    /// compatible with the GM and GS MIDI standards.  On iOS, it is an instance of a monotimbral software
-    /// synthesizer designed to render events from a single MIDI channel.  To render multi-track GM MIDI
-    /// sequences on iOS, create a custom graph with a MIDISynth audio unit as the MusicDevice.
-    ///
-    /// This call will thus either return the graph as set by the user, or this default graph.
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `outGraph`: the graph
-    ///
-    /// # Safety
-    ///
-    /// - `in_sequence` must be a valid pointer.
-    /// - `out_graph` must be a valid pointer or null.
-    #[cfg(feature = "AUGraph")]
-    pub fn MusicSequenceGetAUGraph(in_sequence: MusicSequence, out_graph: &mut AUGraph)
-        -> OSStatus;
+/// Gets the graph currently associated with a sequence
+///
+/// By default if no graph is assigned to a sequence then the sequence will create a default graph.
+/// This default graph contains a MusicDevice and a DynamicsProcessor and all tracks will be targeted
+/// to the MusicDevice.  On macOS, this MusicDevice is an instance of a software synthesizer that is
+/// compatible with the GM and GS MIDI standards.  On iOS, it is an instance of a monotimbral software
+/// synthesizer designed to render events from a single MIDI channel.  To render multi-track GM MIDI
+/// sequences on iOS, create a custom graph with a MIDISynth audio unit as the MusicDevice.
+///
+/// This call will thus either return the graph as set by the user, or this default graph.
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `outGraph`: the graph
+///
+/// # Safety
+///
+/// - `in_sequence` must be a valid pointer.
+/// - `out_graph` must be a valid pointer or null.
+#[cfg(feature = "AUGraph")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceGetAUGraph(
+    in_sequence: MusicSequence,
+    out_graph: &mut AUGraph,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceGetAUGraph(in_sequence: MusicSequence, out_graph: &mut AUGraph)
+            -> OSStatus;
+    }
+    unsafe { MusicSequenceGetAUGraph(in_sequence, out_graph) }
 }
 
-extern "C-unwind" {
-    /// Makes the target of all of the tracks in the sequence a MIDI endpoint
-    ///
-    /// This is a convenience function, and is equivalent to iterating through all of the tracks in a sequence
-    /// and targeting each track to the MIDI endpoint
-    ///
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inEndpoint`: the MIDI endpoint
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    #[cfg(feature = "objc2-core-midi")]
-    pub fn MusicSequenceSetMIDIEndpoint(
-        in_sequence: MusicSequence,
-        in_endpoint: MIDIEndpointRef,
-    ) -> OSStatus;
+/// Makes the target of all of the tracks in the sequence a MIDI endpoint
+///
+/// This is a convenience function, and is equivalent to iterating through all of the tracks in a sequence
+/// and targeting each track to the MIDI endpoint
+///
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inEndpoint`: the MIDI endpoint
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[cfg(feature = "objc2-core-midi")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceSetMIDIEndpoint(
+    in_sequence: MusicSequence,
+    in_endpoint: MIDIEndpointRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceSetMIDIEndpoint(
+            in_sequence: MusicSequence,
+            in_endpoint: MIDIEndpointRef,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceSetMIDIEndpoint(in_sequence, in_endpoint) }
 }
 
-extern "C-unwind" {
-    /// Set the sequence type (the default is beats)
-    ///
-    /// These two calls allow you to get and set a MusicSequence type; specifying
-    /// kMusicSequenceType_Beats        = 'beat',
-    /// kMusicSequenceType_Seconds        = 'secs',
-    /// kMusicSequenceType_Samples        = 'samp'
-    ///
-    /// The sequence type can be set to beats at any time. The sequence type can only be set to
-    /// seconds or samples if there are NO tempo events already in the sequence.
-    ///
-    /// For beats - it can have as many tempo events as you want
-    /// For Samples and Seconds - you should add a single tempo event after setting the type
-    /// Samples - the tempo is the desired sample rate - e.g. 44100 and each "beat" in the sequence will be
-    /// interpreted as a sample count at that sample rate (so beat == 44100 is a second)
-    /// Seconds - the tempo should be set to 60 - a beat is a second.
-    ///
-    /// Beats is the default (and is the behaviour on pre 10.5 systems)
-    ///
-    /// A meta event of interest for Seconds based MIDI files is the SMPTE Offset meta event - stored in the tempo track.
-    /// The sequence doesn't do anything with this event (except store/write it)
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inType`: the sequence type
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    pub fn MusicSequenceSetSequenceType(
-        in_sequence: MusicSequence,
-        in_type: MusicSequenceType,
-    ) -> OSStatus;
+/// Set the sequence type (the default is beats)
+///
+/// These two calls allow you to get and set a MusicSequence type; specifying
+/// kMusicSequenceType_Beats        = 'beat',
+/// kMusicSequenceType_Seconds        = 'secs',
+/// kMusicSequenceType_Samples        = 'samp'
+///
+/// The sequence type can be set to beats at any time. The sequence type can only be set to
+/// seconds or samples if there are NO tempo events already in the sequence.
+///
+/// For beats - it can have as many tempo events as you want
+/// For Samples and Seconds - you should add a single tempo event after setting the type
+/// Samples - the tempo is the desired sample rate - e.g. 44100 and each "beat" in the sequence will be
+/// interpreted as a sample count at that sample rate (so beat == 44100 is a second)
+/// Seconds - the tempo should be set to 60 - a beat is a second.
+///
+/// Beats is the default (and is the behaviour on pre 10.5 systems)
+///
+/// A meta event of interest for Seconds based MIDI files is the SMPTE Offset meta event - stored in the tempo track.
+/// The sequence doesn't do anything with this event (except store/write it)
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inType`: the sequence type
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceSetSequenceType(
+    in_sequence: MusicSequence,
+    in_type: MusicSequenceType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceSetSequenceType(
+            in_sequence: MusicSequence,
+            in_type: MusicSequenceType,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceSetSequenceType(in_sequence, in_type) }
 }
 
-extern "C-unwind" {
-    /// Get the sequence type
-    ///
-    /// See SetSequence for a full description
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `outType`: the type
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    pub fn MusicSequenceGetSequenceType(
-        in_sequence: MusicSequence,
-        out_type: &mut MusicSequenceType,
-    ) -> OSStatus;
+/// Get the sequence type
+///
+/// See SetSequence for a full description
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `outType`: the type
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceGetSequenceType(
+    in_sequence: MusicSequence,
+    out_type: &mut MusicSequenceType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceGetSequenceType(
+            in_sequence: MusicSequence,
+            out_type: &mut MusicSequenceType,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceGetSequenceType(in_sequence, out_type) }
 }
 
-extern "C-unwind" {
-    /// Load the data contained within the referenced file to the sequence
-    ///
-    /// This function will parse the file referenced by the URL and add the events to the sequence.
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inFileRef`: a file:// URL that references a file
-    ///
-    /// Parameter `inFileTypeHint`: provides a hint to the sequence on the file type being imported. Can be zero in many cases.
-    ///
-    /// Parameter `inFlags`: flags that can control how the data is parsed in the file and laid out in the tracks
-    /// that will be created and added to the sequence in this operation
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MusicSequenceFileLoad(
-        in_sequence: MusicSequence,
-        in_file_ref: &CFURL,
-        in_file_type_hint: MusicSequenceFileTypeID,
-        in_flags: MusicSequenceLoadFlags,
-    ) -> OSStatus;
+/// Load the data contained within the referenced file to the sequence
+///
+/// This function will parse the file referenced by the URL and add the events to the sequence.
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inFileRef`: a file:// URL that references a file
+///
+/// Parameter `inFileTypeHint`: provides a hint to the sequence on the file type being imported. Can be zero in many cases.
+///
+/// Parameter `inFlags`: flags that can control how the data is parsed in the file and laid out in the tracks
+/// that will be created and added to the sequence in this operation
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceFileLoad(
+    in_sequence: MusicSequence,
+    in_file_ref: &CFURL,
+    in_file_type_hint: MusicSequenceFileTypeID,
+    in_flags: MusicSequenceLoadFlags,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceFileLoad(
+            in_sequence: MusicSequence,
+            in_file_ref: &CFURL,
+            in_file_type_hint: MusicSequenceFileTypeID,
+            in_flags: MusicSequenceLoadFlags,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceFileLoad(in_sequence, in_file_ref, in_file_type_hint, in_flags) }
 }
 
-extern "C-unwind" {
-    /// Load the data to the sequence
-    ///
-    /// This function will parse the data and add the events to the sequence. The data provided needs to
-    /// be of a particular file type as specified by the fileTypeHint.
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inData`: the contents of a valid file loaded into a CFData object
-    ///
-    /// Parameter `inFileTypeHint`: provides a hint to the sequence on the file type being imported. Can be zero in many cases.
-    ///
-    /// Parameter `inFlags`: flags that can control how the data is parsed in the file and laid out in the tracks
-    /// that will be created and added to the sequence in this operation
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MusicSequenceFileLoadData(
-        in_sequence: MusicSequence,
-        in_data: &CFData,
-        in_file_type_hint: MusicSequenceFileTypeID,
-        in_flags: MusicSequenceLoadFlags,
-    ) -> OSStatus;
+/// Load the data to the sequence
+///
+/// This function will parse the data and add the events to the sequence. The data provided needs to
+/// be of a particular file type as specified by the fileTypeHint.
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inData`: the contents of a valid file loaded into a CFData object
+///
+/// Parameter `inFileTypeHint`: provides a hint to the sequence on the file type being imported. Can be zero in many cases.
+///
+/// Parameter `inFlags`: flags that can control how the data is parsed in the file and laid out in the tracks
+/// that will be created and added to the sequence in this operation
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceFileLoadData(
+    in_sequence: MusicSequence,
+    in_data: &CFData,
+    in_file_type_hint: MusicSequenceFileTypeID,
+    in_flags: MusicSequenceLoadFlags,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceFileLoadData(
+            in_sequence: MusicSequence,
+            in_data: &CFData,
+            in_file_type_hint: MusicSequenceFileTypeID,
+            in_flags: MusicSequenceLoadFlags,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceFileLoadData(in_sequence, in_data, in_file_type_hint, in_flags) }
 }
 
 // TODO: pub fn MusicSequenceSetSMPTEResolution(fps: SignedByte,ticks: Byte,) -> i16;
 
 // TODO: pub fn MusicSequenceGetSMPTEResolution(in_res: i16,fps: &mut SignedByte,ticks: &mut Byte,);
 
-extern "C-unwind" {
-    /// Create a file from a sequence
-    ///
-    /// This function can be (and is most commonly) used to create a MIDI file from the events in a sequence.
-    /// Only MIDI based events are used when creating the MIDI file. MIDI files are normally beat based, but
-    /// can also have a SMPTE (or real-time rather than beat time) representation.
-    ///
-    /// inResolution is relationship between "tick" and quarter note for saving to Standard MIDI File
-    /// - pass in zero to use default - this will be the value that is currently set on the tempo track
-    /// - see the comments for the set track property's time resolution
-    ///
-    /// The different Sequence types determine the kinds of files that can be created:
-    ///
-    /// Beats
-    /// When saving a MIDI file, it saves a beats (PPQ) based axis
-    ///
-    /// Seconds
-    /// When saving a MIDI file, it will save it as a SMPTE resolution - so you should specify this resolution
-    /// when creating the MIDI file.
-    /// If zero is specified, 25 fps and 40 ticks/frame is used (a time scale of a millisecond)
-    ///
-    /// Samples
-    /// You cannot save to a MIDI file with this sequence type
-    ///
-    /// The complete meaning of the 16-bit "division" field in a MIDI File's MThd chunk.
-    ///
-    /// If it is positive, then a tick represents 1/D quarter notes.
-    ///
-    /// If it negative:
-    ///
-    /// bits 14-8 are a signed 7-bit number representing the SMPTE format:
-    /// -24, -25, -29 (drop), -30
-    /// bits 7-0 represents the number of ticks per SMPTE frame
-    /// typical values: 4, 10, 80, 100
-    ///
-    /// You can obtain millisecond resolution by specifying 25 frames/sec and 40 divisions/frame.
-    ///
-    /// 30 fps with 80 bits (ticks) per frame: 0xE250  ((char)0xE2 == -30)
-    ///
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inFileRef`: the location of the file to create
-    ///
-    /// Parameter `inFileType`: the type of file to create
-    ///
-    /// Parameter `inFlags`: flags to control the file creation
-    ///
-    /// Parameter `inResolution`: the resolution (depending on file type and sequence type)
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MusicSequenceFileCreate(
-        in_sequence: MusicSequence,
-        in_file_ref: &CFURL,
-        in_file_type: MusicSequenceFileTypeID,
-        in_flags: MusicSequenceFileFlags,
-        in_resolution: i16,
-    ) -> OSStatus;
+/// Create a file from a sequence
+///
+/// This function can be (and is most commonly) used to create a MIDI file from the events in a sequence.
+/// Only MIDI based events are used when creating the MIDI file. MIDI files are normally beat based, but
+/// can also have a SMPTE (or real-time rather than beat time) representation.
+///
+/// inResolution is relationship between "tick" and quarter note for saving to Standard MIDI File
+/// - pass in zero to use default - this will be the value that is currently set on the tempo track
+/// - see the comments for the set track property's time resolution
+///
+/// The different Sequence types determine the kinds of files that can be created:
+///
+/// Beats
+/// When saving a MIDI file, it saves a beats (PPQ) based axis
+///
+/// Seconds
+/// When saving a MIDI file, it will save it as a SMPTE resolution - so you should specify this resolution
+/// when creating the MIDI file.
+/// If zero is specified, 25 fps and 40 ticks/frame is used (a time scale of a millisecond)
+///
+/// Samples
+/// You cannot save to a MIDI file with this sequence type
+///
+/// The complete meaning of the 16-bit "division" field in a MIDI File's MThd chunk.
+///
+/// If it is positive, then a tick represents 1/D quarter notes.
+///
+/// If it negative:
+///
+/// bits 14-8 are a signed 7-bit number representing the SMPTE format:
+/// -24, -25, -29 (drop), -30
+/// bits 7-0 represents the number of ticks per SMPTE frame
+/// typical values: 4, 10, 80, 100
+///
+/// You can obtain millisecond resolution by specifying 25 frames/sec and 40 divisions/frame.
+///
+/// 30 fps with 80 bits (ticks) per frame: 0xE250  ((char)0xE2 == -30)
+///
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inFileRef`: the location of the file to create
+///
+/// Parameter `inFileType`: the type of file to create
+///
+/// Parameter `inFlags`: flags to control the file creation
+///
+/// Parameter `inResolution`: the resolution (depending on file type and sequence type)
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceFileCreate(
+    in_sequence: MusicSequence,
+    in_file_ref: &CFURL,
+    in_file_type: MusicSequenceFileTypeID,
+    in_flags: MusicSequenceFileFlags,
+    in_resolution: i16,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceFileCreate(
+            in_sequence: MusicSequence,
+            in_file_ref: &CFURL,
+            in_file_type: MusicSequenceFileTypeID,
+            in_flags: MusicSequenceFileFlags,
+            in_resolution: i16,
+        ) -> OSStatus;
+    }
+    unsafe {
+        MusicSequenceFileCreate(
+            in_sequence,
+            in_file_ref,
+            in_file_type,
+            in_flags,
+            in_resolution,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Create a data object from a sequence
-    ///
-    /// The same basic parameters apply to this as with the MusicSequenceFileCreate function. The difference
-    /// being that that function will create a file on disk, whereas this one will create a CFData object
-    /// that is a file in memory. The CFData object should be released by the caller.
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inFileType`: the type of file to create
-    ///
-    /// Parameter `inFlags`: flags to control the file creation
-    ///
-    /// Parameter `inResolution`: the resolution (depending on file type and sequence type)
-    ///
-    /// Parameter `outData`: the resulting data object
-    ///
-    /// # Safety
-    ///
-    /// - `in_sequence` must be a valid pointer.
-    /// - `out_data` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MusicSequenceFileCreateData(
-        in_sequence: MusicSequence,
-        in_file_type: MusicSequenceFileTypeID,
-        in_flags: MusicSequenceFileFlags,
-        in_resolution: i16,
-        out_data: &mut *const CFData,
-    ) -> OSStatus;
+/// Create a data object from a sequence
+///
+/// The same basic parameters apply to this as with the MusicSequenceFileCreate function. The difference
+/// being that that function will create a file on disk, whereas this one will create a CFData object
+/// that is a file in memory. The CFData object should be released by the caller.
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inFileType`: the type of file to create
+///
+/// Parameter `inFlags`: flags to control the file creation
+///
+/// Parameter `inResolution`: the resolution (depending on file type and sequence type)
+///
+/// Parameter `outData`: the resulting data object
+///
+/// # Safety
+///
+/// - `in_sequence` must be a valid pointer.
+/// - `out_data` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceFileCreateData(
+    in_sequence: MusicSequence,
+    in_file_type: MusicSequenceFileTypeID,
+    in_flags: MusicSequenceFileFlags,
+    in_resolution: i16,
+    out_data: &mut *const CFData,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceFileCreateData(
+            in_sequence: MusicSequence,
+            in_file_type: MusicSequenceFileTypeID,
+            in_flags: MusicSequenceFileFlags,
+            in_resolution: i16,
+            out_data: &mut *const CFData,
+        ) -> OSStatus;
+    }
+    unsafe {
+        MusicSequenceFileCreateData(in_sequence, in_file_type, in_flags, in_resolution, out_data)
+    }
 }
 
-extern "C-unwind" {
-    /// Reverse in time all events in a sequence, including the tempo events
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    pub fn MusicSequenceReverse(in_sequence: MusicSequence) -> OSStatus;
+/// Reverse in time all events in a sequence, including the tempo events
+///
+/// Parameter `inSequence`: the sequence
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceReverse(in_sequence: MusicSequence) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceReverse(in_sequence: MusicSequence) -> OSStatus;
+    }
+    unsafe { MusicSequenceReverse(in_sequence) }
 }
 
-extern "C-unwind" {
-    /// Returns a seconds value that would correspond to the supplied beats
-    ///
-    /// Uses the sequence's tempo events
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inBeats`: the beats
-    ///
-    /// Parameter `outSeconds`: the seconds (time from 0 beat)
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    pub fn MusicSequenceGetSecondsForBeats(
-        in_sequence: MusicSequence,
-        in_beats: MusicTimeStamp,
-        out_seconds: &mut f64,
-    ) -> OSStatus;
+/// Returns a seconds value that would correspond to the supplied beats
+///
+/// Uses the sequence's tempo events
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inBeats`: the beats
+///
+/// Parameter `outSeconds`: the seconds (time from 0 beat)
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceGetSecondsForBeats(
+    in_sequence: MusicSequence,
+    in_beats: MusicTimeStamp,
+    out_seconds: &mut f64,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceGetSecondsForBeats(
+            in_sequence: MusicSequence,
+            in_beats: MusicTimeStamp,
+            out_seconds: &mut f64,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceGetSecondsForBeats(in_sequence, in_beats, out_seconds) }
 }
 
-extern "C-unwind" {
-    /// Returns a beat value that would correspond to the supplied seconds from zero.
-    ///
-    /// Uses the sequence's tempo events
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inSeconds`: the seconds
-    ///
-    /// Parameter `outBeats`: the corresponding beat
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    pub fn MusicSequenceGetBeatsForSeconds(
-        in_sequence: MusicSequence,
-        in_seconds: f64,
-        out_beats: &mut MusicTimeStamp,
-    ) -> OSStatus;
+/// Returns a beat value that would correspond to the supplied seconds from zero.
+///
+/// Uses the sequence's tempo events
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inSeconds`: the seconds
+///
+/// Parameter `outBeats`: the corresponding beat
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceGetBeatsForSeconds(
+    in_sequence: MusicSequence,
+    in_seconds: f64,
+    out_beats: &mut MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceGetBeatsForSeconds(
+            in_sequence: MusicSequence,
+            in_seconds: f64,
+            out_beats: &mut MusicTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceGetBeatsForSeconds(in_sequence, in_seconds, out_beats) }
 }
 
-extern "C-unwind" {
-    /// Establish a user callback for a sequence
-    ///
-    /// This call is used to register (or remove if inCallback is NULL) a callback
-    /// that the MusicSequence will call for ANY UserEvents that are added to any of the
-    /// tracks of the sequence.
-    ///
-    /// If there is a callback registered, then UserEvents will be chased when
-    /// MusicPlayerSetTime is called. In that case the inStartSliceBeat and inEndSliceBeat
-    /// will both be the same value and will be the beat that the player is chasing too.
-    ///
-    /// In normal cases, where the sequence data is being scheduled for playback, the
-    /// following will apply:
-    /// inStartSliceBeat
-    /// <
-    /// = inEventTime
-    /// <
-    /// inEndSliceBeat
-    ///
-    /// The only exception to this is if the track that owns the MusicEvent is looping.
-    /// In this case the start beat will still be less than the end beat (so your callback
-    /// can still determine that it is playing, and what beats are currently being scheduled),
-    /// however, the inEventTime will be the original time-stamped time of the user event.
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inCallback`: the callback
-    ///
-    /// Parameter `inClientData`: client (user supplied) data provided back to the callback when it is called by the sequence
-    ///
-    /// # Safety
-    ///
-    /// - `in_sequence` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_client_data` must be a valid pointer or null.
-    pub fn MusicSequenceSetUserCallback(
-        in_sequence: MusicSequence,
-        in_callback: MusicSequenceUserCallback,
-        in_client_data: *mut c_void,
-    ) -> OSStatus;
+/// Establish a user callback for a sequence
+///
+/// This call is used to register (or remove if inCallback is NULL) a callback
+/// that the MusicSequence will call for ANY UserEvents that are added to any of the
+/// tracks of the sequence.
+///
+/// If there is a callback registered, then UserEvents will be chased when
+/// MusicPlayerSetTime is called. In that case the inStartSliceBeat and inEndSliceBeat
+/// will both be the same value and will be the beat that the player is chasing too.
+///
+/// In normal cases, where the sequence data is being scheduled for playback, the
+/// following will apply:
+/// inStartSliceBeat
+/// <
+/// = inEventTime
+/// <
+/// inEndSliceBeat
+///
+/// The only exception to this is if the track that owns the MusicEvent is looping.
+/// In this case the start beat will still be less than the end beat (so your callback
+/// can still determine that it is playing, and what beats are currently being scheduled),
+/// however, the inEventTime will be the original time-stamped time of the user event.
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inCallback`: the callback
+///
+/// Parameter `inClientData`: client (user supplied) data provided back to the callback when it is called by the sequence
+///
+/// # Safety
+///
+/// - `in_sequence` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceSetUserCallback(
+    in_sequence: MusicSequence,
+    in_callback: MusicSequenceUserCallback,
+    in_client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceSetUserCallback(
+            in_sequence: MusicSequence,
+            in_callback: MusicSequenceUserCallback,
+            in_client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceSetUserCallback(in_sequence, in_callback, in_client_data) }
 }
 
-extern "C-unwind" {
-    /// Convenience function to format a sequence's beat time to its bar-beat time
-    ///
-    /// The sequence's tempo track Time Sig events are used to
-    /// to calculate the bar-beat representation. If there are no Time Sig events added to the sequence
-    /// 4/4 is assumed. A Time Sig event is a MIDI Meta Event as specified for MIDI files.
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inBeats`: the beat which should be represented by the bar-beat
-    ///
-    /// Parameter `inSubbeatDivisor`: The denominator of the fractional number of beats.
-    ///
-    /// Parameter `outBarBeatTime`: the formatted bar/beat time
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    pub fn MusicSequenceBeatsToBarBeatTime(
-        in_sequence: MusicSequence,
-        in_beats: MusicTimeStamp,
-        in_subbeat_divisor: u32,
-        out_bar_beat_time: &mut CABarBeatTime,
-    ) -> OSStatus;
+/// Convenience function to format a sequence's beat time to its bar-beat time
+///
+/// The sequence's tempo track Time Sig events are used to
+/// to calculate the bar-beat representation. If there are no Time Sig events added to the sequence
+/// 4/4 is assumed. A Time Sig event is a MIDI Meta Event as specified for MIDI files.
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inBeats`: the beat which should be represented by the bar-beat
+///
+/// Parameter `inSubbeatDivisor`: The denominator of the fractional number of beats.
+///
+/// Parameter `outBarBeatTime`: the formatted bar/beat time
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceBeatsToBarBeatTime(
+    in_sequence: MusicSequence,
+    in_beats: MusicTimeStamp,
+    in_subbeat_divisor: u32,
+    out_bar_beat_time: &mut CABarBeatTime,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceBeatsToBarBeatTime(
+            in_sequence: MusicSequence,
+            in_beats: MusicTimeStamp,
+            in_subbeat_divisor: u32,
+            out_bar_beat_time: &mut CABarBeatTime,
+        ) -> OSStatus;
+    }
+    unsafe {
+        MusicSequenceBeatsToBarBeatTime(
+            in_sequence,
+            in_beats,
+            in_subbeat_divisor,
+            out_bar_beat_time,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Convenience function to format a bar-beat time to a sequence's beat time
-    ///
-    /// The sequence's tempo track Time Sig events are used to
-    /// to calculate the bar-beat representation. If there are no Time Sig events added to the sequence
-    /// 4/4 is assumed. A Time Sig event is a MIDI Meta Event as specified for MIDI files.
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Parameter `inBarBeatTime`: the bar-beat time
-    ///
-    /// Parameter `outBeats`: the sequence's beat time for that bar-beat time
-    ///
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    pub fn MusicSequenceBarBeatTimeToBeats(
-        in_sequence: MusicSequence,
-        in_bar_beat_time: &CABarBeatTime,
-        out_beats: &mut MusicTimeStamp,
-    ) -> OSStatus;
+/// Convenience function to format a bar-beat time to a sequence's beat time
+///
+/// The sequence's tempo track Time Sig events are used to
+/// to calculate the bar-beat representation. If there are no Time Sig events added to the sequence
+/// 4/4 is assumed. A Time Sig event is a MIDI Meta Event as specified for MIDI files.
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Parameter `inBarBeatTime`: the bar-beat time
+///
+/// Parameter `outBeats`: the sequence's beat time for that bar-beat time
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceBarBeatTimeToBeats(
+    in_sequence: MusicSequence,
+    in_bar_beat_time: &CABarBeatTime,
+    out_beats: &mut MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceBarBeatTimeToBeats(
+            in_sequence: MusicSequence,
+            in_bar_beat_time: &CABarBeatTime,
+            out_beats: &mut MusicTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceBarBeatTimeToBeats(in_sequence, in_bar_beat_time, out_beats) }
 }
 
 /// Returns a dictionary containing meta-data derived from a sequence
@@ -1475,791 +1747,1101 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetInfoDictionary(
     unsafe { CFRetained::retain(ret) }
 }
 
-extern "C-unwind" {
-    /// Gets the sequence which the track is a member of
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `outSequence`: the track's sequence
-    ///
-    /// # Safety
-    ///
-    /// - `in_track` must be a valid pointer.
-    /// - `out_sequence` must be a valid pointer or null.
-    pub fn MusicTrackGetSequence(
-        in_track: MusicTrack,
-        out_sequence: &mut MusicSequence,
-    ) -> OSStatus;
+/// Gets the sequence which the track is a member of
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `outSequence`: the track's sequence
+///
+/// # Safety
+///
+/// - `in_track` must be a valid pointer.
+/// - `out_sequence` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackGetSequence(
+    in_track: MusicTrack,
+    out_sequence: &mut MusicSequence,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackGetSequence(
+            in_track: MusicTrack,
+            out_sequence: &mut MusicSequence,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackGetSequence(in_track, out_sequence) }
 }
 
-extern "C-unwind" {
-    /// Sets the track's target to the specified AUNode
-    ///
-    /// The node must be a member of the graph that the track's sequence is using. When played, the track
-    /// will send all of its events to that node.
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inNode`: the new node
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    #[cfg(feature = "AUGraph")]
-    pub fn MusicTrackSetDestNode(in_track: MusicTrack, in_node: AUNode) -> OSStatus;
+/// Sets the track's target to the specified AUNode
+///
+/// The node must be a member of the graph that the track's sequence is using. When played, the track
+/// will send all of its events to that node.
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inNode`: the new node
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[cfg(feature = "AUGraph")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackSetDestNode(
+    in_track: MusicTrack,
+    in_node: AUNode,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackSetDestNode(in_track: MusicTrack, in_node: AUNode) -> OSStatus;
+    }
+    unsafe { MusicTrackSetDestNode(in_track, in_node) }
 }
 
-extern "C-unwind" {
-    /// Sets the track's target to the specified MIDI endpoint
-    ///
-    /// When played, the track will send all of its events to the specified MIDI Endpoint.
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inEndpoint`: the new MIDI endpoint
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    #[cfg(feature = "objc2-core-midi")]
-    pub fn MusicTrackSetDestMIDIEndpoint(
-        in_track: MusicTrack,
-        in_endpoint: MIDIEndpointRef,
-    ) -> OSStatus;
+/// Sets the track's target to the specified MIDI endpoint
+///
+/// When played, the track will send all of its events to the specified MIDI Endpoint.
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inEndpoint`: the new MIDI endpoint
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[cfg(feature = "objc2-core-midi")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackSetDestMIDIEndpoint(
+    in_track: MusicTrack,
+    in_endpoint: MIDIEndpointRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackSetDestMIDIEndpoint(
+            in_track: MusicTrack,
+            in_endpoint: MIDIEndpointRef,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackSetDestMIDIEndpoint(in_track, in_endpoint) }
 }
 
-extern "C-unwind" {
-    /// Gets the track's target if it is an AUNode
-    ///
-    /// Returns kAudioToolboxErr_IllegalTrackDestination if the track's target is a MIDIEndpointRef
-    /// and NOT an AUNode
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `outNode`: the node target for the track
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    #[cfg(feature = "AUGraph")]
-    pub fn MusicTrackGetDestNode(in_track: MusicTrack, out_node: &mut AUNode) -> OSStatus;
+/// Gets the track's target if it is an AUNode
+///
+/// Returns kAudioToolboxErr_IllegalTrackDestination if the track's target is a MIDIEndpointRef
+/// and NOT an AUNode
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `outNode`: the node target for the track
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[cfg(feature = "AUGraph")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackGetDestNode(
+    in_track: MusicTrack,
+    out_node: &mut AUNode,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackGetDestNode(in_track: MusicTrack, out_node: &mut AUNode) -> OSStatus;
+    }
+    unsafe { MusicTrackGetDestNode(in_track, out_node) }
 }
 
-extern "C-unwind" {
-    /// Gets the track's target if it is a MIDI Endpoint
-    ///
-    /// Returns kAudioToolboxErr_IllegalTrackDestination if the track's target is an AUNode
-    /// and NOT a MIDI Endpoint
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `outEndpoint`: the MIDI Endpoint target for the track
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    #[cfg(feature = "objc2-core-midi")]
-    pub fn MusicTrackGetDestMIDIEndpoint(
-        in_track: MusicTrack,
-        out_endpoint: &mut MIDIEndpointRef,
-    ) -> OSStatus;
+/// Gets the track's target if it is a MIDI Endpoint
+///
+/// Returns kAudioToolboxErr_IllegalTrackDestination if the track's target is an AUNode
+/// and NOT a MIDI Endpoint
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `outEndpoint`: the MIDI Endpoint target for the track
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[cfg(feature = "objc2-core-midi")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackGetDestMIDIEndpoint(
+    in_track: MusicTrack,
+    out_endpoint: &mut MIDIEndpointRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackGetDestMIDIEndpoint(
+            in_track: MusicTrack,
+            out_endpoint: &mut MIDIEndpointRef,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackGetDestMIDIEndpoint(in_track, out_endpoint) }
 }
 
-extern "C-unwind" {
-    /// Sets the specified property value
-    ///
-    /// Property values are always get and set by reference
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inPropertyID`: the property ID
-    ///
-    /// Parameter `inData`: the new property value
-    ///
-    /// Parameter `inLength`: the size of the property value being set
-    ///
-    /// # Safety
-    ///
-    /// - `in_track` must be a valid pointer.
-    /// - `in_data` must be a valid pointer.
-    pub fn MusicTrackSetProperty(
-        in_track: MusicTrack,
-        in_property_id: u32,
-        in_data: NonNull<c_void>,
-        in_length: u32,
-    ) -> OSStatus;
+/// Sets the specified property value
+///
+/// Property values are always get and set by reference
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inPropertyID`: the property ID
+///
+/// Parameter `inData`: the new property value
+///
+/// Parameter `inLength`: the size of the property value being set
+///
+/// # Safety
+///
+/// - `in_track` must be a valid pointer.
+/// - `in_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackSetProperty(
+    in_track: MusicTrack,
+    in_property_id: u32,
+    in_data: NonNull<c_void>,
+    in_length: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackSetProperty(
+            in_track: MusicTrack,
+            in_property_id: u32,
+            in_data: NonNull<c_void>,
+            in_length: u32,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackSetProperty(in_track, in_property_id, in_data, in_length) }
 }
 
-extern "C-unwind" {
-    /// Gets the specified property value
-    ///
-    /// If outData is NULL, then the size of the data will be passed back in ioLength
-    /// This allows the client to allocate a buffer of the correct size (useful for variable
-    /// length properties -- currently all properties have fixed size)
-    /// Property values are always get and set by reference
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inPropertyID`: the property ID
-    ///
-    /// Parameter `outData`: if not NULL, points to data of size ioLength
-    ///
-    /// Parameter `ioLength`: on input the available size of outData, on output the size of the valid data that outData
-    /// will then point too.
-    ///
-    /// # Safety
-    ///
-    /// - `in_track` must be a valid pointer.
-    /// - `out_data` must be a valid pointer.
-    pub fn MusicTrackGetProperty(
-        in_track: MusicTrack,
-        in_property_id: u32,
-        out_data: NonNull<c_void>,
-        io_length: &mut u32,
-    ) -> OSStatus;
+/// Gets the specified property value
+///
+/// If outData is NULL, then the size of the data will be passed back in ioLength
+/// This allows the client to allocate a buffer of the correct size (useful for variable
+/// length properties -- currently all properties have fixed size)
+/// Property values are always get and set by reference
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inPropertyID`: the property ID
+///
+/// Parameter `outData`: if not NULL, points to data of size ioLength
+///
+/// Parameter `ioLength`: on input the available size of outData, on output the size of the valid data that outData
+/// will then point too.
+///
+/// # Safety
+///
+/// - `in_track` must be a valid pointer.
+/// - `out_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackGetProperty(
+    in_track: MusicTrack,
+    in_property_id: u32,
+    out_data: NonNull<c_void>,
+    io_length: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackGetProperty(
+            in_track: MusicTrack,
+            in_property_id: u32,
+            out_data: NonNull<c_void>,
+            io_length: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackGetProperty(in_track, in_property_id, out_data, io_length) }
 }
 
-extern "C-unwind" {
-    /// Move events in a track
-    ///
-    /// Moves all of the events in the specified time range by the moveTime. MoveTime maybe negative to
-    /// move events backwards (towards zero).
-    ///
-    /// All time ranges are [starttime
-    /// <
-    /// endtime]
-    ///
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inStartTime`: the start time for the range of events
-    ///
-    /// Parameter `inEndTime`: the end time up to which will form the range of the events to move
-    ///
-    /// Parameter `inMoveTime`: amount of beats to move the selected events.
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    pub fn MusicTrackMoveEvents(
-        in_track: MusicTrack,
-        in_start_time: MusicTimeStamp,
-        in_end_time: MusicTimeStamp,
-        in_move_time: MusicTimeStamp,
-    ) -> OSStatus;
+/// Move events in a track
+///
+/// Moves all of the events in the specified time range by the moveTime. MoveTime maybe negative to
+/// move events backwards (towards zero).
+///
+/// All time ranges are [starttime
+/// <
+/// endtime]
+///
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inStartTime`: the start time for the range of events
+///
+/// Parameter `inEndTime`: the end time up to which will form the range of the events to move
+///
+/// Parameter `inMoveTime`: amount of beats to move the selected events.
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackMoveEvents(
+    in_track: MusicTrack,
+    in_start_time: MusicTimeStamp,
+    in_end_time: MusicTimeStamp,
+    in_move_time: MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackMoveEvents(
+            in_track: MusicTrack,
+            in_start_time: MusicTimeStamp,
+            in_end_time: MusicTimeStamp,
+            in_move_time: MusicTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackMoveEvents(in_track, in_start_time, in_end_time, in_move_time) }
 }
 
-extern "C-unwind" {
-    /// Removes all events within the specified range
-    ///
-    /// All time ranges are [starttime
-    /// <
-    /// endtime]
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inStartTime`: the start time for the range of events
-    ///
-    /// Parameter `inEndTime`: the end time up to which will form the range of the events to clear
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    pub fn MusicTrackClear(
-        in_track: MusicTrack,
-        in_start_time: MusicTimeStamp,
-        in_end_time: MusicTimeStamp,
-    ) -> OSStatus;
+/// Removes all events within the specified range
+///
+/// All time ranges are [starttime
+/// <
+/// endtime]
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inStartTime`: the start time for the range of events
+///
+/// Parameter `inEndTime`: the end time up to which will form the range of the events to clear
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackClear(
+    in_track: MusicTrack,
+    in_start_time: MusicTimeStamp,
+    in_end_time: MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackClear(
+            in_track: MusicTrack,
+            in_start_time: MusicTimeStamp,
+            in_end_time: MusicTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackClear(in_track, in_start_time, in_end_time) }
 }
 
-extern "C-unwind" {
-    /// Removes all the events within the specified range
-    ///
-    /// Events that fall past the specified range will be moved back by the specified range time.
-    ///
-    /// All time ranges are [starttime
-    /// <
-    /// endtime]
-    ///
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inStartTime`: the start time for the range of events
-    ///
-    /// Parameter `inEndTime`: the end time up to which will form the range of the events to cut out
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    pub fn MusicTrackCut(
-        in_track: MusicTrack,
-        in_start_time: MusicTimeStamp,
-        in_end_time: MusicTimeStamp,
-    ) -> OSStatus;
+/// Removes all the events within the specified range
+///
+/// Events that fall past the specified range will be moved back by the specified range time.
+///
+/// All time ranges are [starttime
+/// <
+/// endtime]
+///
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inStartTime`: the start time for the range of events
+///
+/// Parameter `inEndTime`: the end time up to which will form the range of the events to cut out
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackCut(
+    in_track: MusicTrack,
+    in_start_time: MusicTimeStamp,
+    in_end_time: MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackCut(
+            in_track: MusicTrack,
+            in_start_time: MusicTimeStamp,
+            in_end_time: MusicTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackCut(in_track, in_start_time, in_end_time) }
 }
 
-extern "C-unwind" {
-    /// Copies events from one track and inserts them into another
-    ///
-    /// Copies all of the events with the specified time range of the source track. It then inserts
-    /// those events into the destination track. All events at and after inDestInsertTime in inDestTrack
-    /// are moved forward by the range's duration
-    ///
-    /// All time ranges are [starttime
-    /// <
-    /// endtime]
-    ///
-    ///
-    /// Parameter `inSourceTrack`: the source track
-    ///
-    /// Parameter `inSourceStartTime`: the start time for the range of events
-    ///
-    /// Parameter `inSourceEndTime`: the end time up to which will form the range of the events to copy from the source track
-    ///
-    /// Parameter `inDestTrack`: the destination track to copy too
-    ///
-    /// Parameter `inDestInsertTime`: the time at which the copied events will be inserted.
-    ///
-    /// # Safety
-    ///
-    /// - `in_source_track` must be a valid pointer.
-    /// - `in_dest_track` must be a valid pointer.
-    pub fn MusicTrackCopyInsert(
-        in_source_track: MusicTrack,
-        in_source_start_time: MusicTimeStamp,
-        in_source_end_time: MusicTimeStamp,
-        in_dest_track: MusicTrack,
-        in_dest_insert_time: MusicTimeStamp,
-    ) -> OSStatus;
+/// Copies events from one track and inserts them into another
+///
+/// Copies all of the events with the specified time range of the source track. It then inserts
+/// those events into the destination track. All events at and after inDestInsertTime in inDestTrack
+/// are moved forward by the range's duration
+///
+/// All time ranges are [starttime
+/// <
+/// endtime]
+///
+///
+/// Parameter `inSourceTrack`: the source track
+///
+/// Parameter `inSourceStartTime`: the start time for the range of events
+///
+/// Parameter `inSourceEndTime`: the end time up to which will form the range of the events to copy from the source track
+///
+/// Parameter `inDestTrack`: the destination track to copy too
+///
+/// Parameter `inDestInsertTime`: the time at which the copied events will be inserted.
+///
+/// # Safety
+///
+/// - `in_source_track` must be a valid pointer.
+/// - `in_dest_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackCopyInsert(
+    in_source_track: MusicTrack,
+    in_source_start_time: MusicTimeStamp,
+    in_source_end_time: MusicTimeStamp,
+    in_dest_track: MusicTrack,
+    in_dest_insert_time: MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackCopyInsert(
+            in_source_track: MusicTrack,
+            in_source_start_time: MusicTimeStamp,
+            in_source_end_time: MusicTimeStamp,
+            in_dest_track: MusicTrack,
+            in_dest_insert_time: MusicTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe {
+        MusicTrackCopyInsert(
+            in_source_track,
+            in_source_start_time,
+            in_source_end_time,
+            in_dest_track,
+            in_dest_insert_time,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Copies events from one track and merges them into another
-    ///
-    /// Copies all of the events with the specified time range of the source track. It then merges
-    /// those events into the destination track starting at inDestInsertTime.
-    ///
-    /// All time ranges are [starttime
-    /// <
-    /// endtime]
-    ///
-    ///
-    /// Parameter `inSourceTrack`: the source track
-    ///
-    /// Parameter `inSourceStartTime`: the start time for the range of events
-    ///
-    /// Parameter `inSourceEndTime`: the end time up to which will form the range of the events to copy from the source track
-    ///
-    /// Parameter `inDestTrack`: the destination track to copy too
-    ///
-    /// Parameter `inDestInsertTime`: the time at which the copied events will be merged.
-    ///
-    /// # Safety
-    ///
-    /// - `in_source_track` must be a valid pointer.
-    /// - `in_dest_track` must be a valid pointer.
-    pub fn MusicTrackMerge(
-        in_source_track: MusicTrack,
-        in_source_start_time: MusicTimeStamp,
-        in_source_end_time: MusicTimeStamp,
-        in_dest_track: MusicTrack,
-        in_dest_insert_time: MusicTimeStamp,
-    ) -> OSStatus;
+/// Copies events from one track and merges them into another
+///
+/// Copies all of the events with the specified time range of the source track. It then merges
+/// those events into the destination track starting at inDestInsertTime.
+///
+/// All time ranges are [starttime
+/// <
+/// endtime]
+///
+///
+/// Parameter `inSourceTrack`: the source track
+///
+/// Parameter `inSourceStartTime`: the start time for the range of events
+///
+/// Parameter `inSourceEndTime`: the end time up to which will form the range of the events to copy from the source track
+///
+/// Parameter `inDestTrack`: the destination track to copy too
+///
+/// Parameter `inDestInsertTime`: the time at which the copied events will be merged.
+///
+/// # Safety
+///
+/// - `in_source_track` must be a valid pointer.
+/// - `in_dest_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackMerge(
+    in_source_track: MusicTrack,
+    in_source_start_time: MusicTimeStamp,
+    in_source_end_time: MusicTimeStamp,
+    in_dest_track: MusicTrack,
+    in_dest_insert_time: MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackMerge(
+            in_source_track: MusicTrack,
+            in_source_start_time: MusicTimeStamp,
+            in_source_end_time: MusicTimeStamp,
+            in_dest_track: MusicTrack,
+            in_dest_insert_time: MusicTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe {
+        MusicTrackMerge(
+            in_source_track,
+            in_source_start_time,
+            in_source_end_time,
+            in_dest_track,
+            in_dest_insert_time,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Adds a MIDINoteMessage event to a track
-    ///
-    /// The event is added at the specified time stamp. The time stamp should not be less than zero.
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inTimeStamp`: the time stamp
-    ///
-    /// Parameter `inMessage`: the event
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    pub fn MusicTrackNewMIDINoteEvent(
-        in_track: MusicTrack,
-        in_time_stamp: MusicTimeStamp,
-        in_message: &MIDINoteMessage,
-    ) -> OSStatus;
+/// Adds a MIDINoteMessage event to a track
+///
+/// The event is added at the specified time stamp. The time stamp should not be less than zero.
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inTimeStamp`: the time stamp
+///
+/// Parameter `inMessage`: the event
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackNewMIDINoteEvent(
+    in_track: MusicTrack,
+    in_time_stamp: MusicTimeStamp,
+    in_message: &MIDINoteMessage,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackNewMIDINoteEvent(
+            in_track: MusicTrack,
+            in_time_stamp: MusicTimeStamp,
+            in_message: &MIDINoteMessage,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackNewMIDINoteEvent(in_track, in_time_stamp, in_message) }
 }
 
-extern "C-unwind" {
-    /// Adds a MIDIChannelMessage event to a track
-    ///
-    /// The event is added at the specified time stamp. The time stamp should not be less than zero.
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inTimeStamp`: the time stamp
-    ///
-    /// Parameter `inMessage`: the event
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    pub fn MusicTrackNewMIDIChannelEvent(
-        in_track: MusicTrack,
-        in_time_stamp: MusicTimeStamp,
-        in_message: &MIDIChannelMessage,
-    ) -> OSStatus;
+/// Adds a MIDIChannelMessage event to a track
+///
+/// The event is added at the specified time stamp. The time stamp should not be less than zero.
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inTimeStamp`: the time stamp
+///
+/// Parameter `inMessage`: the event
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackNewMIDIChannelEvent(
+    in_track: MusicTrack,
+    in_time_stamp: MusicTimeStamp,
+    in_message: &MIDIChannelMessage,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackNewMIDIChannelEvent(
+            in_track: MusicTrack,
+            in_time_stamp: MusicTimeStamp,
+            in_message: &MIDIChannelMessage,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackNewMIDIChannelEvent(in_track, in_time_stamp, in_message) }
 }
 
-extern "C-unwind" {
-    /// Adds a MIDIRawData event to a track
-    ///
-    /// The event is added at the specified time stamp. The time stamp should not be less than zero.
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inTimeStamp`: the time stamp
-    ///
-    /// Parameter `inRawData`: the event
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    pub fn MusicTrackNewMIDIRawDataEvent(
-        in_track: MusicTrack,
-        in_time_stamp: MusicTimeStamp,
-        in_raw_data: &MIDIRawData,
-    ) -> OSStatus;
+/// Adds a MIDIRawData event to a track
+///
+/// The event is added at the specified time stamp. The time stamp should not be less than zero.
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inTimeStamp`: the time stamp
+///
+/// Parameter `inRawData`: the event
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackNewMIDIRawDataEvent(
+    in_track: MusicTrack,
+    in_time_stamp: MusicTimeStamp,
+    in_raw_data: &MIDIRawData,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackNewMIDIRawDataEvent(
+            in_track: MusicTrack,
+            in_time_stamp: MusicTimeStamp,
+            in_raw_data: &MIDIRawData,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackNewMIDIRawDataEvent(in_track, in_time_stamp, in_raw_data) }
 }
 
-extern "C-unwind" {
-    /// Adds a ExtendedNoteOnEvent to a track
-    ///
-    /// The event is added at the specified time stamp. The time stamp should not be less than zero.
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inTimeStamp`: the time stamp
-    ///
-    /// Parameter `inInfo`: the event
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
-    pub fn MusicTrackNewExtendedNoteEvent(
-        in_track: MusicTrack,
-        in_time_stamp: MusicTimeStamp,
-        in_info: &ExtendedNoteOnEvent,
-    ) -> OSStatus;
+/// Adds a ExtendedNoteOnEvent to a track
+///
+/// The event is added at the specified time stamp. The time stamp should not be less than zero.
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inTimeStamp`: the time stamp
+///
+/// Parameter `inInfo`: the event
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackNewExtendedNoteEvent(
+    in_track: MusicTrack,
+    in_time_stamp: MusicTimeStamp,
+    in_info: &ExtendedNoteOnEvent,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackNewExtendedNoteEvent(
+            in_track: MusicTrack,
+            in_time_stamp: MusicTimeStamp,
+            in_info: &ExtendedNoteOnEvent,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackNewExtendedNoteEvent(in_track, in_time_stamp, in_info) }
 }
 
-extern "C-unwind" {
-    /// Adds a ParameterEvent to a track
-    ///
-    /// The event is added at the specified time stamp. The time stamp should not be less than zero.
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inTimeStamp`: the time stamp
-    ///
-    /// Parameter `inInfo`: the event
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    #[cfg(feature = "AUComponent")]
-    pub fn MusicTrackNewParameterEvent(
-        in_track: MusicTrack,
-        in_time_stamp: MusicTimeStamp,
-        in_info: &ParameterEvent,
-    ) -> OSStatus;
+/// Adds a ParameterEvent to a track
+///
+/// The event is added at the specified time stamp. The time stamp should not be less than zero.
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inTimeStamp`: the time stamp
+///
+/// Parameter `inInfo`: the event
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[cfg(feature = "AUComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackNewParameterEvent(
+    in_track: MusicTrack,
+    in_time_stamp: MusicTimeStamp,
+    in_info: &ParameterEvent,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackNewParameterEvent(
+            in_track: MusicTrack,
+            in_time_stamp: MusicTimeStamp,
+            in_info: &ParameterEvent,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackNewParameterEvent(in_track, in_time_stamp, in_info) }
 }
 
-extern "C-unwind" {
-    /// Adds a tempo event to a track
-    ///
-    /// The event is added at the specified time stamp. The time stamp should not be less than zero.
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inTimeStamp`: the time stamp
-    ///
-    /// Parameter `inBPM`: the event
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    pub fn MusicTrackNewExtendedTempoEvent(
-        in_track: MusicTrack,
-        in_time_stamp: MusicTimeStamp,
-        in_bpm: f64,
-    ) -> OSStatus;
+/// Adds a tempo event to a track
+///
+/// The event is added at the specified time stamp. The time stamp should not be less than zero.
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inTimeStamp`: the time stamp
+///
+/// Parameter `inBPM`: the event
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackNewExtendedTempoEvent(
+    in_track: MusicTrack,
+    in_time_stamp: MusicTimeStamp,
+    in_bpm: f64,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackNewExtendedTempoEvent(
+            in_track: MusicTrack,
+            in_time_stamp: MusicTimeStamp,
+            in_bpm: f64,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackNewExtendedTempoEvent(in_track, in_time_stamp, in_bpm) }
 }
 
-extern "C-unwind" {
-    /// Adds a MIDIMetaEvent to a track
-    ///
-    /// The event is added at the specified time stamp. The time stamp should not be less than zero.
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inTimeStamp`: the time stamp
-    ///
-    /// Parameter `inMetaEvent`: the event
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    pub fn MusicTrackNewMetaEvent(
-        in_track: MusicTrack,
-        in_time_stamp: MusicTimeStamp,
-        in_meta_event: &MIDIMetaEvent,
-    ) -> OSStatus;
+/// Adds a MIDIMetaEvent to a track
+///
+/// The event is added at the specified time stamp. The time stamp should not be less than zero.
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inTimeStamp`: the time stamp
+///
+/// Parameter `inMetaEvent`: the event
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackNewMetaEvent(
+    in_track: MusicTrack,
+    in_time_stamp: MusicTimeStamp,
+    in_meta_event: &MIDIMetaEvent,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackNewMetaEvent(
+            in_track: MusicTrack,
+            in_time_stamp: MusicTimeStamp,
+            in_meta_event: &MIDIMetaEvent,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackNewMetaEvent(in_track, in_time_stamp, in_meta_event) }
 }
 
-extern "C-unwind" {
-    /// Adds a MusicEventUserData event to a track
-    ///
-    /// The event is added at the specified time stamp. The time stamp should not be less than zero.
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inTimeStamp`: the time stamp
-    ///
-    /// Parameter `inUserData`: the event
-    ///
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    pub fn MusicTrackNewUserEvent(
-        in_track: MusicTrack,
-        in_time_stamp: MusicTimeStamp,
-        in_user_data: &MusicEventUserData,
-    ) -> OSStatus;
+/// Adds a MusicEventUserData event to a track
+///
+/// The event is added at the specified time stamp. The time stamp should not be less than zero.
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inTimeStamp`: the time stamp
+///
+/// Parameter `inUserData`: the event
+///
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackNewUserEvent(
+    in_track: MusicTrack,
+    in_time_stamp: MusicTimeStamp,
+    in_user_data: &MusicEventUserData,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackNewUserEvent(
+            in_track: MusicTrack,
+            in_time_stamp: MusicTimeStamp,
+            in_user_data: &MusicEventUserData,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackNewUserEvent(in_track, in_time_stamp, in_user_data) }
 }
 
-extern "C-unwind" {
-    /// Adds a AUPresetEvent to a track
-    ///
-    /// The event is added at the specified time stamp. The time stamp should not be less than zero.
-    ///
-    /// Parameter `inTrack`: the track
-    ///
-    /// Parameter `inTimeStamp`: the time stamp
-    ///
-    /// Parameter `inPresetEvent`: the event
-    ///
-    /// # Safety
-    ///
-    /// - `in_track` must be a valid pointer.
-    /// - `in_preset_event` struct field `preset` must be a valid pointer.
-    #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
-    pub fn MusicTrackNewAUPresetEvent(
-        in_track: MusicTrack,
-        in_time_stamp: MusicTimeStamp,
-        in_preset_event: &AUPresetEvent,
-    ) -> OSStatus;
+/// Adds a AUPresetEvent to a track
+///
+/// The event is added at the specified time stamp. The time stamp should not be less than zero.
+///
+/// Parameter `inTrack`: the track
+///
+/// Parameter `inTimeStamp`: the time stamp
+///
+/// Parameter `inPresetEvent`: the event
+///
+/// # Safety
+///
+/// - `in_track` must be a valid pointer.
+/// - `in_preset_event` struct field `preset` must be a valid pointer.
+#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackNewAUPresetEvent(
+    in_track: MusicTrack,
+    in_time_stamp: MusicTimeStamp,
+    in_preset_event: &AUPresetEvent,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackNewAUPresetEvent(
+            in_track: MusicTrack,
+            in_time_stamp: MusicTimeStamp,
+            in_preset_event: &AUPresetEvent,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackNewAUPresetEvent(in_track, in_time_stamp, in_preset_event) }
 }
 
-extern "C-unwind" {
-    /// Creates an iterator to iterator over a track's events
-    ///
-    /// The iterator should be considered invalid if a track is edited. In that case you should create a new
-    /// iterator and seek it to the desired position.
-    ///
-    ///
-    /// Parameter `inTrack`: the track upon which to iterate
-    ///
-    /// Parameter `outIterator`: the new iterator
-    ///
-    /// # Safety
-    ///
-    /// - `in_track` must be a valid pointer.
-    /// - `out_iterator` must be a valid pointer or null.
-    pub fn NewMusicEventIterator(
-        in_track: MusicTrack,
-        out_iterator: &mut MusicEventIterator,
-    ) -> OSStatus;
+/// Creates an iterator to iterator over a track's events
+///
+/// The iterator should be considered invalid if a track is edited. In that case you should create a new
+/// iterator and seek it to the desired position.
+///
+///
+/// Parameter `inTrack`: the track upon which to iterate
+///
+/// Parameter `outIterator`: the new iterator
+///
+/// # Safety
+///
+/// - `in_track` must be a valid pointer.
+/// - `out_iterator` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NewMusicEventIterator(
+    in_track: MusicTrack,
+    out_iterator: &mut MusicEventIterator,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn NewMusicEventIterator(
+            in_track: MusicTrack,
+            out_iterator: &mut MusicEventIterator,
+        ) -> OSStatus;
+    }
+    unsafe { NewMusicEventIterator(in_track, out_iterator) }
 }
 
-extern "C-unwind" {
-    /// Dispose an iterator
-    ///
-    /// Parameter `inIterator`: the iterator
-    ///
-    /// # Safety
-    ///
-    /// `in_iterator` must be a valid pointer.
-    pub fn DisposeMusicEventIterator(in_iterator: MusicEventIterator) -> OSStatus;
+/// Dispose an iterator
+///
+/// Parameter `inIterator`: the iterator
+///
+/// # Safety
+///
+/// `in_iterator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn DisposeMusicEventIterator(
+    in_iterator: MusicEventIterator,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn DisposeMusicEventIterator(in_iterator: MusicEventIterator) -> OSStatus;
+    }
+    unsafe { DisposeMusicEventIterator(in_iterator) }
 }
 
-extern "C-unwind" {
-    /// Move the iterator to an event at the specified time
-    ///
-    /// If there is no event at the specified time, the iterator will point to the first event after
-    /// that time.
-    /// By specifying kMusicTimeStamp_EndOfTrack you will position the iterator to the end of track
-    /// (which is pointing to the space just AFTER the last event). You can use MusicEventIteratorPreviousEvent
-    /// to backup to the last event.
-    /// By specifying 0, you will position the iterator at the first event
-    ///
-    /// Parameter `inIterator`: the iterator
-    ///
-    /// Parameter `inTimeStamp`: the time stamp to seek too
-    ///
-    /// # Safety
-    ///
-    /// `in_iterator` must be a valid pointer.
-    pub fn MusicEventIteratorSeek(
-        in_iterator: MusicEventIterator,
-        in_time_stamp: MusicTimeStamp,
-    ) -> OSStatus;
+/// Move the iterator to an event at the specified time
+///
+/// If there is no event at the specified time, the iterator will point to the first event after
+/// that time.
+/// By specifying kMusicTimeStamp_EndOfTrack you will position the iterator to the end of track
+/// (which is pointing to the space just AFTER the last event). You can use MusicEventIteratorPreviousEvent
+/// to backup to the last event.
+/// By specifying 0, you will position the iterator at the first event
+///
+/// Parameter `inIterator`: the iterator
+///
+/// Parameter `inTimeStamp`: the time stamp to seek too
+///
+/// # Safety
+///
+/// `in_iterator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicEventIteratorSeek(
+    in_iterator: MusicEventIterator,
+    in_time_stamp: MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicEventIteratorSeek(
+            in_iterator: MusicEventIterator,
+            in_time_stamp: MusicTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe { MusicEventIteratorSeek(in_iterator, in_time_stamp) }
 }
 
-extern "C-unwind" {
-    /// Move the iterator to the next event
-    ///
-    /// If the iterator was at the last event, then it will move past the last event and will no longer point
-    /// to an event. You can use check MusicEventIteratorHasCurrentEvent to see if there is an event at the
-    /// iterator's current position. See also MusicEventIteratorHasNextEvent.
-    ///
-    /// Typically this call is used to move the iterator forwards through the track's events.
-    ///
-    /// Parameter `inIterator`: the iterator
-    ///
-    /// # Safety
-    ///
-    /// `in_iterator` must be a valid pointer.
-    pub fn MusicEventIteratorNextEvent(in_iterator: MusicEventIterator) -> OSStatus;
+/// Move the iterator to the next event
+///
+/// If the iterator was at the last event, then it will move past the last event and will no longer point
+/// to an event. You can use check MusicEventIteratorHasCurrentEvent to see if there is an event at the
+/// iterator's current position. See also MusicEventIteratorHasNextEvent.
+///
+/// Typically this call is used to move the iterator forwards through the track's events.
+///
+/// Parameter `inIterator`: the iterator
+///
+/// # Safety
+///
+/// `in_iterator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicEventIteratorNextEvent(
+    in_iterator: MusicEventIterator,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicEventIteratorNextEvent(in_iterator: MusicEventIterator) -> OSStatus;
+    }
+    unsafe { MusicEventIteratorNextEvent(in_iterator) }
 }
 
-extern "C-unwind" {
-    /// Move the iterator to the previous event
-    ///
-    /// If the iterator was at the first event, then it will leave the iterator unchanged and return an error.
-    /// See also MusicEventIteratorHasPreviousEvent
-    ///
-    /// Typically this call is used to move the iterator backwards through the track's events.
-    ///
-    /// Parameter `inIterator`: the iterator
-    ///
-    /// # Safety
-    ///
-    /// `in_iterator` must be a valid pointer.
-    pub fn MusicEventIteratorPreviousEvent(in_iterator: MusicEventIterator) -> OSStatus;
+/// Move the iterator to the previous event
+///
+/// If the iterator was at the first event, then it will leave the iterator unchanged and return an error.
+/// See also MusicEventIteratorHasPreviousEvent
+///
+/// Typically this call is used to move the iterator backwards through the track's events.
+///
+/// Parameter `inIterator`: the iterator
+///
+/// # Safety
+///
+/// `in_iterator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicEventIteratorPreviousEvent(
+    in_iterator: MusicEventIterator,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicEventIteratorPreviousEvent(in_iterator: MusicEventIterator) -> OSStatus;
+    }
+    unsafe { MusicEventIteratorPreviousEvent(in_iterator) }
 }
 
-extern "C-unwind" {
-    /// Retrieves the event data at the iterator.
-    ///
-    /// Retrieves the event and other information from the iterator's current position.
-    ///
-    /// If you do not want specific information (eg, the time stamp) pass in NULL for that parameter.
-    ///
-    ///
-    /// Parameter `inIterator`: the iterator
-    ///
-    /// Parameter `outTimeStamp`: the time stamp of the event
-    ///
-    /// Parameter `outEventType`: one of kMusicEventType_XXX that indicates what kind of event type the iterator
-    /// is currently pointing too
-    ///
-    /// Parameter `outEventData`: a reference to the event data. The type of data is described by the eventType. This data
-    /// is read only and should not be edited in place.
-    ///
-    /// Parameter `outEventDataSize`: the size of the data referenced by outEventData
-    ///
-    /// # Safety
-    ///
-    /// - `in_iterator` must be a valid pointer.
-    /// - `out_event_data` must be a valid pointer or null.
-    pub fn MusicEventIteratorGetEventInfo(
-        in_iterator: MusicEventIterator,
-        out_time_stamp: &mut MusicTimeStamp,
-        out_event_type: &mut MusicEventType,
-        out_event_data: &mut *const c_void,
-        out_event_data_size: &mut u32,
-    ) -> OSStatus;
+/// Retrieves the event data at the iterator.
+///
+/// Retrieves the event and other information from the iterator's current position.
+///
+/// If you do not want specific information (eg, the time stamp) pass in NULL for that parameter.
+///
+///
+/// Parameter `inIterator`: the iterator
+///
+/// Parameter `outTimeStamp`: the time stamp of the event
+///
+/// Parameter `outEventType`: one of kMusicEventType_XXX that indicates what kind of event type the iterator
+/// is currently pointing too
+///
+/// Parameter `outEventData`: a reference to the event data. The type of data is described by the eventType. This data
+/// is read only and should not be edited in place.
+///
+/// Parameter `outEventDataSize`: the size of the data referenced by outEventData
+///
+/// # Safety
+///
+/// - `in_iterator` must be a valid pointer.
+/// - `out_event_data` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicEventIteratorGetEventInfo(
+    in_iterator: MusicEventIterator,
+    out_time_stamp: &mut MusicTimeStamp,
+    out_event_type: &mut MusicEventType,
+    out_event_data: &mut *const c_void,
+    out_event_data_size: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicEventIteratorGetEventInfo(
+            in_iterator: MusicEventIterator,
+            out_time_stamp: &mut MusicTimeStamp,
+            out_event_type: &mut MusicEventType,
+            out_event_data: &mut *const c_void,
+            out_event_data_size: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        MusicEventIteratorGetEventInfo(
+            in_iterator,
+            out_time_stamp,
+            out_event_type,
+            out_event_data,
+            out_event_data_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Changes the type or value of an event
-    ///
-    /// Allows you to change either the event type, or the values of the event data, that the iterator is
-    /// currently pointing too. You cannot change the event's time (to do that you should use
-    /// MusicEventIteratorSetEventTime).
-    ///
-    ///
-    /// Parameter `inIterator`: the iterator
-    ///
-    /// Parameter `inEventType`: the new (or existing) type of the event you are changing
-    ///
-    /// Parameter `inEventData`: the new event data. The size and type of this event data must match the inEventType
-    ///
-    /// # Safety
-    ///
-    /// - `in_iterator` must be a valid pointer.
-    /// - `in_event_data` must be a valid pointer.
-    pub fn MusicEventIteratorSetEventInfo(
-        in_iterator: MusicEventIterator,
-        in_event_type: MusicEventType,
-        in_event_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Changes the type or value of an event
+///
+/// Allows you to change either the event type, or the values of the event data, that the iterator is
+/// currently pointing too. You cannot change the event's time (to do that you should use
+/// MusicEventIteratorSetEventTime).
+///
+///
+/// Parameter `inIterator`: the iterator
+///
+/// Parameter `inEventType`: the new (or existing) type of the event you are changing
+///
+/// Parameter `inEventData`: the new event data. The size and type of this event data must match the inEventType
+///
+/// # Safety
+///
+/// - `in_iterator` must be a valid pointer.
+/// - `in_event_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicEventIteratorSetEventInfo(
+    in_iterator: MusicEventIterator,
+    in_event_type: MusicEventType,
+    in_event_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicEventIteratorSetEventInfo(
+            in_iterator: MusicEventIterator,
+            in_event_type: MusicEventType,
+            in_event_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe { MusicEventIteratorSetEventInfo(in_iterator, in_event_type, in_event_data) }
 }
 
-extern "C-unwind" {
-    /// Set a new time for an event
-    ///
-    /// The iterator will still be pointing to the same event, but as the event will have moved,
-    /// it may or may not have a next or previous event now (depending of course on the time
-    /// you moved it to).
-    ///
-    ///
-    /// Parameter `inIterator`: the iterator
-    ///
-    /// Parameter `inTimeStamp`: the new time stamp of the event
-    ///
-    /// # Safety
-    ///
-    /// `in_iterator` must be a valid pointer.
-    pub fn MusicEventIteratorSetEventTime(
-        in_iterator: MusicEventIterator,
-        in_time_stamp: MusicTimeStamp,
-    ) -> OSStatus;
+/// Set a new time for an event
+///
+/// The iterator will still be pointing to the same event, but as the event will have moved,
+/// it may or may not have a next or previous event now (depending of course on the time
+/// you moved it to).
+///
+///
+/// Parameter `inIterator`: the iterator
+///
+/// Parameter `inTimeStamp`: the new time stamp of the event
+///
+/// # Safety
+///
+/// `in_iterator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicEventIteratorSetEventTime(
+    in_iterator: MusicEventIterator,
+    in_time_stamp: MusicTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicEventIteratorSetEventTime(
+            in_iterator: MusicEventIterator,
+            in_time_stamp: MusicTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe { MusicEventIteratorSetEventTime(in_iterator, in_time_stamp) }
 }
 
-extern "C-unwind" {
-    /// Deletes the event pointed to by the iterator
-    ///
-    /// The iterator will reference the next event after the event has been deleted.
-    ///
-    ///
-    /// Parameter `inIterator`: the iterator
-    ///
-    /// # Safety
-    ///
-    /// `in_iterator` must be a valid pointer.
-    pub fn MusicEventIteratorDeleteEvent(in_iterator: MusicEventIterator) -> OSStatus;
+/// Deletes the event pointed to by the iterator
+///
+/// The iterator will reference the next event after the event has been deleted.
+///
+///
+/// Parameter `inIterator`: the iterator
+///
+/// # Safety
+///
+/// `in_iterator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicEventIteratorDeleteEvent(
+    in_iterator: MusicEventIterator,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicEventIteratorDeleteEvent(in_iterator: MusicEventIterator) -> OSStatus;
+    }
+    unsafe { MusicEventIteratorDeleteEvent(in_iterator) }
 }
 
-extern "C-unwind" {
-    /// Does the track have an event previous to the event the iterator is pointing to?
-    ///
-    /// To use the iterator going backwards through a track:
-    /// iter = New Iterator (points at first event)
-    /// MusicEventIteratorSeek (iter, kMusicTimeStamp_EndOfTrack) // will point it past the last event
-    /// bool hasPreviousEvent;
-    /// MusicEventIteratorHasPreviousEvent (iter,
-    /// &hasPreviousEvent
-    /// )
-    /// while (hasPreviousEvent) {
-    /// MusicEventIteratorPreviousEvent (iter)
-    /// //     do work... MusicEventIteratorGetEventInfo (iter, ...
-    ///
-    /// MusicEventIteratorHasPreviousEvent (iter,
-    /// &hasPreviousEvent
-    /// );
-    /// }
-    ///
-    /// Parameter `inIterator`: the iterator
-    ///
-    /// Parameter `outHasPrevEvent`: true if there is a previous event, false if not
-    ///
-    /// # Safety
-    ///
-    /// `in_iterator` must be a valid pointer.
-    pub fn MusicEventIteratorHasPreviousEvent(
-        in_iterator: MusicEventIterator,
-        out_has_prev_event: &mut Boolean,
-    ) -> OSStatus;
+/// Does the track have an event previous to the event the iterator is pointing to?
+///
+/// To use the iterator going backwards through a track:
+/// iter = New Iterator (points at first event)
+/// MusicEventIteratorSeek (iter, kMusicTimeStamp_EndOfTrack) // will point it past the last event
+/// bool hasPreviousEvent;
+/// MusicEventIteratorHasPreviousEvent (iter,
+/// &hasPreviousEvent
+/// )
+/// while (hasPreviousEvent) {
+/// MusicEventIteratorPreviousEvent (iter)
+/// //     do work... MusicEventIteratorGetEventInfo (iter, ...
+///
+/// MusicEventIteratorHasPreviousEvent (iter,
+/// &hasPreviousEvent
+/// );
+/// }
+///
+/// Parameter `inIterator`: the iterator
+///
+/// Parameter `outHasPrevEvent`: true if there is a previous event, false if not
+///
+/// # Safety
+///
+/// `in_iterator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicEventIteratorHasPreviousEvent(
+    in_iterator: MusicEventIterator,
+    out_has_prev_event: &mut Boolean,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicEventIteratorHasPreviousEvent(
+            in_iterator: MusicEventIterator,
+            out_has_prev_event: &mut Boolean,
+        ) -> OSStatus;
+    }
+    unsafe { MusicEventIteratorHasPreviousEvent(in_iterator, out_has_prev_event) }
 }
 
-extern "C-unwind" {
-    /// Does the track have an event past the event the iterator is pointing too?
-    ///
-    /// To use the iterator going forwards through a track:
-    /// iter = New Iterator (points at first event)
-    /// bool hasCurrentEvent;
-    /// MusicEventIteratorHasCurrentEvent(iter,
-    /// &hasCurrentEvent
-    /// );
-    /// while (hasCurrentEvent) {
-    /// // do work... MusicEventIteratorGetEventInfo (iter, ...
-    ///
-    /// MusicEventIteratorNextEvent (iter)
-    /// MusicEventIteratorHasCurrentEvent(iter,
-    /// &hasCurrentEvent
-    /// );
-    /// }
-    ///
-    ///
-    /// Parameter `inIterator`: the iterator
-    ///
-    /// Parameter `outHasNextEvent`: true if there is a next event, false if not
-    ///
-    /// # Safety
-    ///
-    /// `in_iterator` must be a valid pointer.
-    pub fn MusicEventIteratorHasNextEvent(
-        in_iterator: MusicEventIterator,
-        out_has_next_event: &mut Boolean,
-    ) -> OSStatus;
+/// Does the track have an event past the event the iterator is pointing too?
+///
+/// To use the iterator going forwards through a track:
+/// iter = New Iterator (points at first event)
+/// bool hasCurrentEvent;
+/// MusicEventIteratorHasCurrentEvent(iter,
+/// &hasCurrentEvent
+/// );
+/// while (hasCurrentEvent) {
+/// // do work... MusicEventIteratorGetEventInfo (iter, ...
+///
+/// MusicEventIteratorNextEvent (iter)
+/// MusicEventIteratorHasCurrentEvent(iter,
+/// &hasCurrentEvent
+/// );
+/// }
+///
+///
+/// Parameter `inIterator`: the iterator
+///
+/// Parameter `outHasNextEvent`: true if there is a next event, false if not
+///
+/// # Safety
+///
+/// `in_iterator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicEventIteratorHasNextEvent(
+    in_iterator: MusicEventIterator,
+    out_has_next_event: &mut Boolean,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicEventIteratorHasNextEvent(
+            in_iterator: MusicEventIterator,
+            out_has_next_event: &mut Boolean,
+        ) -> OSStatus;
+    }
+    unsafe { MusicEventIteratorHasNextEvent(in_iterator, out_has_next_event) }
 }
 
-extern "C-unwind" {
-    /// Is there an event at the iterator's current position?
-    ///
-    /// Parameter `inIterator`: the iterator
-    ///
-    /// Parameter `outHasCurEvent`: true if there is an event, false if not
-    ///
-    /// # Safety
-    ///
-    /// `in_iterator` must be a valid pointer.
-    pub fn MusicEventIteratorHasCurrentEvent(
-        in_iterator: MusicEventIterator,
-        out_has_cur_event: &mut Boolean,
-    ) -> OSStatus;
+/// Is there an event at the iterator's current position?
+///
+/// Parameter `inIterator`: the iterator
+///
+/// Parameter `outHasCurEvent`: true if there is an event, false if not
+///
+/// # Safety
+///
+/// `in_iterator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MusicEventIteratorHasCurrentEvent(
+    in_iterator: MusicEventIterator,
+    out_has_cur_event: &mut Boolean,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicEventIteratorHasCurrentEvent(
+            in_iterator: MusicEventIterator,
+            out_has_cur_event: &mut Boolean,
+        ) -> OSStatus;
+    }
+    unsafe { MusicEventIteratorHasCurrentEvent(in_iterator, out_has_cur_event) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `in_sequence` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "no longer supported"]
-    pub fn MusicSequenceLoadSMFDataWithFlags(
-        in_sequence: MusicSequence,
-        in_data: &CFData,
-        in_flags: MusicSequenceLoadFlags,
-    ) -> OSStatus;
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceLoadSMFDataWithFlags(
+    in_sequence: MusicSequence,
+    in_data: &CFData,
+    in_flags: MusicSequenceLoadFlags,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceLoadSMFDataWithFlags(
+            in_sequence: MusicSequence,
+            in_data: &CFData,
+            in_flags: MusicSequenceLoadFlags,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceLoadSMFDataWithFlags(in_sequence, in_data, in_flags) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `in_sequence` must be a valid pointer.
-    /// - `out_data` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "no longer supported"]
-    pub fn MusicSequenceSaveSMFData(
-        in_sequence: MusicSequence,
-        out_data: &mut *const CFData,
-        in_resolution: u16,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `in_sequence` must be a valid pointer.
+/// - `out_data` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceSaveSMFData(
+    in_sequence: MusicSequence,
+    out_data: &mut *const CFData,
+    in_resolution: u16,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicSequenceSaveSMFData(
+            in_sequence: MusicSequence,
+            out_data: &mut *const CFData,
+            in_resolution: u16,
+        ) -> OSStatus;
+    }
+    unsafe { MusicSequenceSaveSMFData(in_sequence, out_data, in_resolution) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `in_source_track` must be a valid pointer.
-    /// - `out_new_track` must be a valid pointer or null.
-    #[deprecated = "no longer supported"]
-    pub fn NewMusicTrackFrom(
-        in_source_track: MusicTrack,
-        in_source_start_time: MusicTimeStamp,
-        in_source_end_time: MusicTimeStamp,
-        out_new_track: &mut MusicTrack,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `in_source_track` must be a valid pointer.
+/// - `out_new_track` must be a valid pointer or null.
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn NewMusicTrackFrom(
+    in_source_track: MusicTrack,
+    in_source_start_time: MusicTimeStamp,
+    in_source_end_time: MusicTimeStamp,
+    out_new_track: &mut MusicTrack,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn NewMusicTrackFrom(
+            in_source_track: MusicTrack,
+            in_source_start_time: MusicTimeStamp,
+            in_source_end_time: MusicTimeStamp,
+            out_new_track: &mut MusicTrack,
+        ) -> OSStatus;
+    }
+    unsafe {
+        NewMusicTrackFrom(
+            in_source_track,
+            in_source_start_time,
+            in_source_end_time,
+            out_new_track,
+        )
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_extendedcontrol?language=objc)
@@ -2292,15 +2874,23 @@ unsafe impl RefEncode for ExtendedControlEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `in_track` must be a valid pointer.
-    #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
-    #[deprecated = "no longer supported"]
-    pub fn MusicTrackNewExtendedControlEvent(
-        in_track: MusicTrack,
-        in_time_stamp: MusicTimeStamp,
-        in_info: &ExtendedControlEvent,
-    ) -> OSStatus;
+/// # Safety
+///
+/// `in_track` must be a valid pointer.
+#[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicTrackNewExtendedControlEvent(
+    in_track: MusicTrack,
+    in_time_stamp: MusicTimeStamp,
+    in_info: &ExtendedControlEvent,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MusicTrackNewExtendedControlEvent(
+            in_track: MusicTrack,
+            in_time_stamp: MusicTimeStamp,
+            in_info: &ExtendedControlEvent,
+        ) -> OSStatus;
+    }
+    unsafe { MusicTrackNewExtendedControlEvent(in_track, in_time_stamp, in_info) }
 }

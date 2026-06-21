@@ -281,204 +281,263 @@ pub type AudioComponentFactoryFunction = Option<
     ) -> *mut AudioComponentPlugInInterface,
 >;
 
-extern "C-unwind" {
-    /// Finds an audio component.
-    ///
-    /// This function is used to find an audio component that is the closest match
-    /// to the provided values. Note that the list of available components may change
-    /// dynamically in situations involving inter-app audio on iOS, or version 3
-    /// audio unit extensions. See kAudioComponentRegistrationsChangedNotification.
-    ///
-    ///
-    /// Parameter `inComponent`: If NULL, then the search starts from the beginning until an audio
-    /// component is found that matches the description provided by inDesc.
-    /// If non-NULL, then the search starts (continues) from the previously
-    /// found audio component specified by inComponent, and will return the next
-    /// found audio component.
-    ///
-    /// Parameter `inDesc`: The type, subtype and manufacturer fields are used to specify the audio
-    /// component to search for. A value of 0 (zero) for any of these fields is
-    /// a wildcard, so the first match found is returned.
-    ///
-    /// Returns: An audio component that matches the search parameters, or NULL if none found.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer or null.
-    pub fn AudioComponentFindNext(
-        in_component: AudioComponent,
-        in_desc: &AudioComponentDescription,
-    ) -> AudioComponent;
+/// Finds an audio component.
+///
+/// This function is used to find an audio component that is the closest match
+/// to the provided values. Note that the list of available components may change
+/// dynamically in situations involving inter-app audio on iOS, or version 3
+/// audio unit extensions. See kAudioComponentRegistrationsChangedNotification.
+///
+///
+/// Parameter `inComponent`: If NULL, then the search starts from the beginning until an audio
+/// component is found that matches the description provided by inDesc.
+/// If non-NULL, then the search starts (continues) from the previously
+/// found audio component specified by inComponent, and will return the next
+/// found audio component.
+///
+/// Parameter `inDesc`: The type, subtype and manufacturer fields are used to specify the audio
+/// component to search for. A value of 0 (zero) for any of these fields is
+/// a wildcard, so the first match found is returned.
+///
+/// Returns: An audio component that matches the search parameters, or NULL if none found.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentFindNext(
+    in_component: AudioComponent,
+    in_desc: &AudioComponentDescription,
+) -> AudioComponent {
+    extern "C-unwind" {
+        fn AudioComponentFindNext(
+            in_component: AudioComponent,
+            in_desc: &AudioComponentDescription,
+        ) -> AudioComponent;
+    }
+    unsafe { AudioComponentFindNext(in_component, in_desc) }
 }
 
-extern "C-unwind" {
-    /// Counts audio components.
-    ///
-    /// Returns the number of AudioComponents that match the specified
-    /// AudioComponentDescription.
-    ///
-    /// Parameter `inDesc`: The type, subtype and manufacturer fields are used to specify the audio
-    /// components to count A value of 0 (zero) for any of these fields is a
-    /// wildcard, so will match any value for this field
-    ///
-    /// Returns: a UInt32. 0 (zero) means no audio components were found that matched the
-    /// search parameters.
-    pub fn AudioComponentCount(in_desc: &AudioComponentDescription) -> u32;
+/// Counts audio components.
+///
+/// Returns the number of AudioComponents that match the specified
+/// AudioComponentDescription.
+///
+/// Parameter `inDesc`: The type, subtype and manufacturer fields are used to specify the audio
+/// components to count A value of 0 (zero) for any of these fields is a
+/// wildcard, so will match any value for this field
+///
+/// Returns: a UInt32. 0 (zero) means no audio components were found that matched the
+/// search parameters.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentCount(in_desc: &AudioComponentDescription) -> u32 {
+    extern "C-unwind" {
+        fn AudioComponentCount(in_desc: &AudioComponentDescription) -> u32;
+    }
+    unsafe { AudioComponentCount(in_desc) }
 }
 
-extern "C-unwind" {
-    /// Retrieves the name of an audio component.
-    ///
-    /// the name of an audio component
-    ///
-    /// Parameter `inComponent`: the audio component (must not be NULL)
-    ///
-    /// Parameter `outName`: a CFString that is the name of the audio component. This string should
-    /// be released by the caller.
-    ///
-    /// Returns: an OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `out_name` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn AudioComponentCopyName(
-        in_component: AudioComponent,
-        out_name: &mut *const CFString,
-    ) -> OSStatus;
+/// Retrieves the name of an audio component.
+///
+/// the name of an audio component
+///
+/// Parameter `inComponent`: the audio component (must not be NULL)
+///
+/// Parameter `outName`: a CFString that is the name of the audio component. This string should
+/// be released by the caller.
+///
+/// Returns: an OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `out_name` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentCopyName(
+    in_component: AudioComponent,
+    out_name: &mut *const CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioComponentCopyName(
+            in_component: AudioComponent,
+            out_name: &mut *const CFString,
+        ) -> OSStatus;
+    }
+    unsafe { AudioComponentCopyName(in_component, out_name) }
 }
 
-extern "C-unwind" {
-    /// Retrieve an audio component's description.
-    ///
-    /// This will return the fully specified audio component description for the
-    /// provided audio component.
-    ///
-    /// Parameter `inComponent`: the audio component (must not be NULL)
-    ///
-    /// Parameter `outDesc`: the audio component description for the specified audio component
-    ///
-    /// Returns: an OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    pub fn AudioComponentGetDescription(
-        in_component: AudioComponent,
-        out_desc: &mut AudioComponentDescription,
-    ) -> OSStatus;
+/// Retrieve an audio component's description.
+///
+/// This will return the fully specified audio component description for the
+/// provided audio component.
+///
+/// Parameter `inComponent`: the audio component (must not be NULL)
+///
+/// Parameter `outDesc`: the audio component description for the specified audio component
+///
+/// Returns: an OSStatus result code.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentGetDescription(
+    in_component: AudioComponent,
+    out_desc: &mut AudioComponentDescription,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioComponentGetDescription(
+            in_component: AudioComponent,
+            out_desc: &mut AudioComponentDescription,
+        ) -> OSStatus;
+    }
+    unsafe { AudioComponentGetDescription(in_component, out_desc) }
 }
 
-extern "C-unwind" {
-    /// Retrieve an audio component's version.
-    ///
-    /// Parameter `inComponent`: the audio component (must not be NULL)
-    ///
-    /// Parameter `outVersion`: the audio component's version in the form of 0xMMMMmmDD (Major, Minor, Dot)
-    ///
-    /// Returns: an OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    pub fn AudioComponentGetVersion(
-        in_component: AudioComponent,
-        out_version: &mut u32,
-    ) -> OSStatus;
+/// Retrieve an audio component's version.
+///
+/// Parameter `inComponent`: the audio component (must not be NULL)
+///
+/// Parameter `outVersion`: the audio component's version in the form of 0xMMMMmmDD (Major, Minor, Dot)
+///
+/// Returns: an OSStatus result code.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentGetVersion(
+    in_component: AudioComponent,
+    out_version: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioComponentGetVersion(
+            in_component: AudioComponent,
+            out_version: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioComponentGetVersion(in_component, out_version) }
 }
 
-extern "C-unwind" {
-    /// Creates an audio component instance.
-    ///
-    /// This function creates an instance of a given audio component. The audio
-    /// component instance is the object that does all of the work, whereas the
-    /// audio component is the way an application finds and then creates this object
-    /// to do this work. For example, an audio unit is a type of audio component
-    /// instance, so to use an audio unit, one finds its audio component, and then
-    /// creates a new instance of that component. This instance is then used to
-    /// perform the audio tasks for which it was designed (process, mix, synthesise,
-    /// etc.).
-    ///
-    /// Parameter `inComponent`: the audio component (must not be NULL)
-    ///
-    /// Parameter `outInstance`: the audio component instance
-    ///
-    /// Returns: an OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `out_instance` must be a valid pointer or null.
-    pub fn AudioComponentInstanceNew(
-        in_component: AudioComponent,
-        out_instance: &mut AudioComponentInstance,
-    ) -> OSStatus;
+/// Creates an audio component instance.
+///
+/// This function creates an instance of a given audio component. The audio
+/// component instance is the object that does all of the work, whereas the
+/// audio component is the way an application finds and then creates this object
+/// to do this work. For example, an audio unit is a type of audio component
+/// instance, so to use an audio unit, one finds its audio component, and then
+/// creates a new instance of that component. This instance is then used to
+/// perform the audio tasks for which it was designed (process, mix, synthesise,
+/// etc.).
+///
+/// Parameter `inComponent`: the audio component (must not be NULL)
+///
+/// Parameter `outInstance`: the audio component instance
+///
+/// Returns: an OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `out_instance` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentInstanceNew(
+    in_component: AudioComponent,
+    out_instance: &mut AudioComponentInstance,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioComponentInstanceNew(
+            in_component: AudioComponent,
+            out_instance: &mut AudioComponentInstance,
+        ) -> OSStatus;
+    }
+    unsafe { AudioComponentInstanceNew(in_component, out_instance) }
 }
 
-extern "C-unwind" {
-    /// Creates an audio component instance, asynchronously.
-    ///
-    /// This is an asynchronous version of AudioComponentInstanceNew(). It must be
-    /// used to instantiate any component with kAudioComponentFlag_RequiresAsyncInstantiation
-    /// set in its component flags. It may be used for other components as well.
-    ///
-    /// Note: Do not block the main thread while waiting for the completion handler
-    /// to be called; this can deadlock.
-    ///
-    /// Parameter `inComponent`: the audio component
-    ///
-    /// Parameter `inOptions`: see AudioComponentInstantiationOptions
-    ///
-    /// Parameter `inCompletionHandler`: called in an arbitrary thread context when instantiation is complete.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    #[cfg(feature = "block2")]
-    pub fn AudioComponentInstantiate(
-        in_component: AudioComponent,
-        in_options: AudioComponentInstantiationOptions,
-        in_completion_handler: &block2::DynBlock<dyn Fn(AudioComponentInstance, OSStatus)>,
-    );
+/// Creates an audio component instance, asynchronously.
+///
+/// This is an asynchronous version of AudioComponentInstanceNew(). It must be
+/// used to instantiate any component with kAudioComponentFlag_RequiresAsyncInstantiation
+/// set in its component flags. It may be used for other components as well.
+///
+/// Note: Do not block the main thread while waiting for the completion handler
+/// to be called; this can deadlock.
+///
+/// Parameter `inComponent`: the audio component
+///
+/// Parameter `inOptions`: see AudioComponentInstantiationOptions
+///
+/// Parameter `inCompletionHandler`: called in an arbitrary thread context when instantiation is complete.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentInstantiate(
+    in_component: AudioComponent,
+    in_options: AudioComponentInstantiationOptions,
+    in_completion_handler: &block2::DynBlock<dyn Fn(AudioComponentInstance, OSStatus)>,
+) {
+    extern "C-unwind" {
+        fn AudioComponentInstantiate(
+            in_component: AudioComponent,
+            in_options: AudioComponentInstantiationOptions,
+            in_completion_handler: &block2::DynBlock<dyn Fn(AudioComponentInstance, OSStatus)>,
+        );
+    }
+    unsafe { AudioComponentInstantiate(in_component, in_options, in_completion_handler) }
 }
 
-extern "C-unwind" {
-    /// Disposes of an audio component instance.
-    ///
-    /// This function will dispose the audio component instance that was created
-    /// with the New call. It will deallocate any resources that the instance was using.
-    ///
-    /// Parameter `inInstance`: the audio component instance to dispose (must not be NULL)
-    ///
-    /// Returns: an OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_instance` must be a valid pointer.
-    pub fn AudioComponentInstanceDispose(in_instance: AudioComponentInstance) -> OSStatus;
+/// Disposes of an audio component instance.
+///
+/// This function will dispose the audio component instance that was created
+/// with the New call. It will deallocate any resources that the instance was using.
+///
+/// Parameter `inInstance`: the audio component instance to dispose (must not be NULL)
+///
+/// Returns: an OSStatus result code.
+///
+/// # Safety
+///
+/// `in_instance` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentInstanceDispose(
+    in_instance: AudioComponentInstance,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioComponentInstanceDispose(in_instance: AudioComponentInstance) -> OSStatus;
+    }
+    unsafe { AudioComponentInstanceDispose(in_instance) }
 }
 
-extern "C-unwind" {
-    /// Retrieve the audio component from its instance
-    ///
-    /// Allows the application at any time to retrieve the audio component that is
-    /// the factory object of a given instance (i.e., the audio component that was
-    /// used to create the instance in the first place). This allows the application
-    /// to retrieve general information about a particular audio component (its
-    /// name, version, etc) when one just has an audio component instance to work
-    /// with
-    ///
-    /// Parameter `inInstance`: the audio component instance (must not be NULL, and instance must be valid - that is, not disposed)
-    ///
-    /// Returns: a valid audio component or NULL if no component was found.
-    ///
-    /// # Safety
-    ///
-    /// `in_instance` must be a valid pointer.
-    pub fn AudioComponentInstanceGetComponent(
-        in_instance: AudioComponentInstance,
-    ) -> AudioComponent;
+/// Retrieve the audio component from its instance
+///
+/// Allows the application at any time to retrieve the audio component that is
+/// the factory object of a given instance (i.e., the audio component that was
+/// used to create the instance in the first place). This allows the application
+/// to retrieve general information about a particular audio component (its
+/// name, version, etc) when one just has an audio component instance to work
+/// with
+///
+/// Parameter `inInstance`: the audio component instance (must not be NULL, and instance must be valid - that is, not disposed)
+///
+/// Returns: a valid audio component or NULL if no component was found.
+///
+/// # Safety
+///
+/// `in_instance` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentInstanceGetComponent(
+    in_instance: AudioComponentInstance,
+) -> AudioComponent {
+    extern "C-unwind" {
+        fn AudioComponentInstanceGetComponent(
+            in_instance: AudioComponentInstance,
+        ) -> AudioComponent;
+    }
+    unsafe { AudioComponentInstanceGetComponent(in_instance) }
 }
 
 /// Determines if an audio component instance implements a particular component
@@ -508,63 +567,79 @@ pub unsafe extern "C-unwind" fn AudioComponentInstanceCanDo(
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Dynamically registers an AudioComponent within the current process
-    ///
-    /// AudioComponents are registered either when found in appropriate bundles in the filesystem,
-    /// or via this call. AudioComponents registered via this call are available only within
-    /// the current process.
-    ///
-    ///
-    /// Parameter `inDesc`: The AudioComponentDescription that describes the AudioComponent. Note that
-    /// the registrar needs to be sure to set the flag kAudioComponentFlag_SandboxSafe
-    /// in the componentFlags field of the AudioComponentDescription to indicate that
-    /// the AudioComponent can be loaded directly into a sandboxed process.
-    ///
-    /// Parameter `inName`: the AudioComponent's name
-    ///
-    /// Parameter `inVersion`: the AudioComponent's version
-    ///
-    /// Parameter `inFactory`: an AudioComponentFactoryFunction which will create instances of your
-    /// AudioComponent
-    ///
-    /// Returns: an AudioComponent object
-    ///
-    /// # Safety
-    ///
-    /// `in_factory` must be implemented correctly.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn AudioComponentRegister(
-        in_desc: &AudioComponentDescription,
-        in_name: &CFString,
-        in_version: u32,
-        in_factory: AudioComponentFactoryFunction,
-    ) -> AudioComponent;
+/// Dynamically registers an AudioComponent within the current process
+///
+/// AudioComponents are registered either when found in appropriate bundles in the filesystem,
+/// or via this call. AudioComponents registered via this call are available only within
+/// the current process.
+///
+///
+/// Parameter `inDesc`: The AudioComponentDescription that describes the AudioComponent. Note that
+/// the registrar needs to be sure to set the flag kAudioComponentFlag_SandboxSafe
+/// in the componentFlags field of the AudioComponentDescription to indicate that
+/// the AudioComponent can be loaded directly into a sandboxed process.
+///
+/// Parameter `inName`: the AudioComponent's name
+///
+/// Parameter `inVersion`: the AudioComponent's version
+///
+/// Parameter `inFactory`: an AudioComponentFactoryFunction which will create instances of your
+/// AudioComponent
+///
+/// Returns: an AudioComponent object
+///
+/// # Safety
+///
+/// `in_factory` must be implemented correctly.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentRegister(
+    in_desc: &AudioComponentDescription,
+    in_name: &CFString,
+    in_version: u32,
+    in_factory: AudioComponentFactoryFunction,
+) -> AudioComponent {
+    extern "C-unwind" {
+        fn AudioComponentRegister(
+            in_desc: &AudioComponentDescription,
+            in_name: &CFString,
+            in_version: u32,
+            in_factory: AudioComponentFactoryFunction,
+        ) -> AudioComponent;
+    }
+    unsafe { AudioComponentRegister(in_desc, in_name, in_version, in_factory) }
 }
 
-extern "C-unwind" {
-    /// Fetches the basic configuration info about a given AudioComponent
-    ///
-    /// Currently, only AudioUnits can supply this information.
-    ///
-    /// Parameter `inComponent`: The AudioComponent whose info is being fetched.
-    ///
-    /// Parameter `outConfigurationInfo`: On exit, this is CFDictionaryRef that contains information describing the
-    /// capabilities of the AudioComponent. The specific information depends on the
-    /// type of AudioComponent. The keys for the dictionary are defined in
-    /// AudioUnitProperties.h (or other headers as appropriate for the component type).
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `out_configuration_info` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn AudioComponentCopyConfigurationInfo(
-        in_component: AudioComponent,
-        out_configuration_info: &mut *const CFDictionary<CFString, CFType>,
-    ) -> OSStatus;
+/// Fetches the basic configuration info about a given AudioComponent
+///
+/// Currently, only AudioUnits can supply this information.
+///
+/// Parameter `inComponent`: The AudioComponent whose info is being fetched.
+///
+/// Parameter `outConfigurationInfo`: On exit, this is CFDictionaryRef that contains information describing the
+/// capabilities of the AudioComponent. The specific information depends on the
+/// type of AudioComponent. The keys for the dictionary are defined in
+/// AudioUnitProperties.h (or other headers as appropriate for the component type).
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `out_configuration_info` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentCopyConfigurationInfo(
+    in_component: AudioComponent,
+    out_configuration_info: &mut *const CFDictionary<CFString, CFType>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioComponentCopyConfigurationInfo(
+            in_component: AudioComponent,
+            out_configuration_info: &mut *const CFDictionary<CFString, CFType>,
+        ) -> OSStatus;
+    }
+    unsafe { AudioComponentCopyConfigurationInfo(in_component, out_configuration_info) }
 }
 
 /// Constants for describing the result of validating an AudioComponent
@@ -609,66 +684,96 @@ unsafe impl RefEncode for AudioComponentValidationResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `in_validation_parameters` generic should be of the correct type.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn AudioComponentValidate(
-        in_component: AudioComponent,
-        in_validation_parameters: Option<&CFDictionary<CFString, CFType>>,
-        out_validation_result: &mut AudioComponentValidationResult,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `in_validation_parameters` generic should be of the correct type.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentValidate(
+    in_component: AudioComponent,
+    in_validation_parameters: Option<&CFDictionary<CFString, CFType>>,
+    out_validation_result: &mut AudioComponentValidationResult,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioComponentValidate(
+            in_component: AudioComponent,
+            in_validation_parameters: Option<&CFDictionary<CFString, CFType>>,
+            out_validation_result: &mut AudioComponentValidationResult,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioComponentValidate(
+            in_component,
+            in_validation_parameters,
+            out_validation_result,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Tests a specified AudioComponent for API and behavioral conformance
-    /// asynchronously, returning detailed validation results.
-    ///
-    /// Currently, only AudioUnits can can be validated. The `inCompletionHandler` callback
-    /// has two parameters, an `AudioComponentValidationResult` with result of the validation,
-    /// and a `CFDictionaryRef` which contains the details of this result.
-    /// This dictionary may contain the following entries:
-    /// "Output"
-    /// An array of strings, with the same content as if the AU was validated on auval.
-    /// "Result"
-    /// An `AudioComponentValidationResult` with the result of the validation
-    /// process. The same as what's in the `AudioComponentValidationResult`
-    /// in the `inCompletionHandler` and what `AudioComponentValidate`
-    /// currently returns.
-    /// "Tests"
-    /// An array in which each value is a dictionary and may contain:
-    /// "Name"
-    /// A descriptive name of the test.
-    /// "Result"
-    /// An `AudioComponentValidationResult` with the result of the
-    /// specific test.
-    /// "Output"
-    /// An array of strings with output generated by the test.
-    /// "WasCached"
-    /// `YES` if the returned result was cached from previous runs.
-    ///
-    /// Parameter `inComponent`: The AudioComponent to validate.
-    ///
-    /// Parameter `inValidationParameters`: A CFDictionaryRef that contains parameters for the validation operation.
-    /// Passing NULL for this argument tells the system to use the default
-    /// parameters.
-    ///
-    /// Parameter `inCompletionHandler`: Completion callback. See discussion section.
-    ///
-    /// Returns: an OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `in_validation_parameters` generic should be of the correct type.
-    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-    pub fn AudioComponentValidateWithResults(
-        in_component: AudioComponent,
-        in_validation_parameters: Option<&CFDictionary<CFString, CFType>>,
-        in_completion_handler: &block2::DynBlock<
-            dyn Fn(AudioComponentValidationResult, NonNull<CFDictionary>),
-        >,
-    ) -> OSStatus;
+/// Tests a specified AudioComponent for API and behavioral conformance
+/// asynchronously, returning detailed validation results.
+///
+/// Currently, only AudioUnits can can be validated. The `inCompletionHandler` callback
+/// has two parameters, an `AudioComponentValidationResult` with result of the validation,
+/// and a `CFDictionaryRef` which contains the details of this result.
+/// This dictionary may contain the following entries:
+/// "Output"
+/// An array of strings, with the same content as if the AU was validated on auval.
+/// "Result"
+/// An `AudioComponentValidationResult` with the result of the validation
+/// process. The same as what's in the `AudioComponentValidationResult`
+/// in the `inCompletionHandler` and what `AudioComponentValidate`
+/// currently returns.
+/// "Tests"
+/// An array in which each value is a dictionary and may contain:
+/// "Name"
+/// A descriptive name of the test.
+/// "Result"
+/// An `AudioComponentValidationResult` with the result of the
+/// specific test.
+/// "Output"
+/// An array of strings with output generated by the test.
+/// "WasCached"
+/// `YES` if the returned result was cached from previous runs.
+///
+/// Parameter `inComponent`: The AudioComponent to validate.
+///
+/// Parameter `inValidationParameters`: A CFDictionaryRef that contains parameters for the validation operation.
+/// Passing NULL for this argument tells the system to use the default
+/// parameters.
+///
+/// Parameter `inCompletionHandler`: Completion callback. See discussion section.
+///
+/// Returns: an OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `in_validation_parameters` generic should be of the correct type.
+#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentValidateWithResults(
+    in_component: AudioComponent,
+    in_validation_parameters: Option<&CFDictionary<CFString, CFType>>,
+    in_completion_handler: &block2::DynBlock<
+        dyn Fn(AudioComponentValidationResult, NonNull<CFDictionary>),
+    >,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioComponentValidateWithResults(
+            in_component: AudioComponent,
+            in_validation_parameters: Option<&CFDictionary<CFString, CFType>>,
+            in_completion_handler: &block2::DynBlock<
+                dyn Fn(AudioComponentValidationResult, NonNull<CFDictionary>),
+            >,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioComponentValidateWithResults(
+            in_component,
+            in_validation_parameters,
+            in_completion_handler,
+        )
+    }
 }

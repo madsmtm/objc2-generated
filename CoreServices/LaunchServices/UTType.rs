@@ -237,7 +237,11 @@ pub unsafe extern "C-unwind" fn UTCreateStringForOSType(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "HFS type codes are obsolete."]
-    pub fn UTGetOSTypeFromString(in_string: &CFString) -> OSType;
+#[deprecated = "HFS type codes are obsolete."]
+#[inline]
+pub unsafe extern "C-unwind" fn UTGetOSTypeFromString(in_string: &CFString) -> OSType {
+    extern "C-unwind" {
+        fn UTGetOSTypeFromString(in_string: &CFString) -> OSType;
+    }
+    unsafe { UTGetOSTypeFromString(in_string) }
 }

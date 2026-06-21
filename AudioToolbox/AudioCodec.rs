@@ -444,280 +444,421 @@ pub const kAudioCodecNotEnoughBufferSpaceError: OSStatus = 0x21627566;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbaddataerror?language=objc)
 pub const kAudioCodecBadDataError: OSStatus = 0x62616461;
 
-extern "C-unwind" {
-    /// Retrieve information about the given property. The outSize argument
-    /// will return the size in bytes of the current value of the property.
-    /// The outWritable argument will return whether or not the property
-    /// in question can be changed.
-    ///
-    ///
-    /// Parameter `inCodec`: An AudioCodec instance
-    ///
-    /// Parameter `inPropertyID`: Property ID whose value should be read
-    ///
-    /// Parameter `outSize`: Size in bytes of the property
-    ///
-    /// Parameter `outWritable`: Flag indicating wether the underlying property can be modified or not
-    ///
-    ///
-    /// Returns: The OSStatus value
-    ///
-    /// # Safety
-    ///
-    /// `in_codec` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioCodecGetPropertyInfo(
-        in_codec: AudioCodec,
-        in_property_id: AudioCodecPropertyID,
-        out_size: Option<&mut u32>,
-        out_writable: Option<&mut Boolean>,
-    ) -> OSStatus;
+/// Retrieve information about the given property. The outSize argument
+/// will return the size in bytes of the current value of the property.
+/// The outWritable argument will return whether or not the property
+/// in question can be changed.
+///
+///
+/// Parameter `inCodec`: An AudioCodec instance
+///
+/// Parameter `inPropertyID`: Property ID whose value should be read
+///
+/// Parameter `outSize`: Size in bytes of the property
+///
+/// Parameter `outWritable`: Flag indicating wether the underlying property can be modified or not
+///
+///
+/// Returns: The OSStatus value
+///
+/// # Safety
+///
+/// `in_codec` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioCodecGetPropertyInfo(
+    in_codec: AudioCodec,
+    in_property_id: AudioCodecPropertyID,
+    out_size: Option<&mut u32>,
+    out_writable: Option<&mut Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioCodecGetPropertyInfo(
+            in_codec: AudioCodec,
+            in_property_id: AudioCodecPropertyID,
+            out_size: Option<&mut u32>,
+            out_writable: Option<&mut Boolean>,
+        ) -> OSStatus;
+    }
+    unsafe { AudioCodecGetPropertyInfo(in_codec, in_property_id, out_size, out_writable) }
 }
 
-extern "C-unwind" {
-    /// Retrieve the indicated property data. On input, ioDataSize has the size
-    /// of the data pointed to by outPropertyData. On output, ioDataSize will contain
-    /// the amount written.
-    ///
-    ///
-    /// Parameter `inCodec`: An AudioCodec instance
-    ///
-    /// Parameter `inPropertyID`: Property ID whose value should be read
-    ///
-    /// Parameter `ioPropertyDataSize`: Size in bytes of the property data
-    ///
-    /// Parameter `outPropertyData`: Pointer to the property data buffer
-    ///
-    ///
-    /// Returns: The OSStatus value
-    ///
-    /// # Safety
-    ///
-    /// - `in_codec` must be a valid pointer.
-    /// - `out_property_data` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioCodecGetProperty(
-        in_codec: AudioCodec,
-        in_property_id: AudioCodecPropertyID,
-        io_property_data_size: &mut u32,
-        out_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Retrieve the indicated property data. On input, ioDataSize has the size
+/// of the data pointed to by outPropertyData. On output, ioDataSize will contain
+/// the amount written.
+///
+///
+/// Parameter `inCodec`: An AudioCodec instance
+///
+/// Parameter `inPropertyID`: Property ID whose value should be read
+///
+/// Parameter `ioPropertyDataSize`: Size in bytes of the property data
+///
+/// Parameter `outPropertyData`: Pointer to the property data buffer
+///
+///
+/// Returns: The OSStatus value
+///
+/// # Safety
+///
+/// - `in_codec` must be a valid pointer.
+/// - `out_property_data` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioCodecGetProperty(
+    in_codec: AudioCodec,
+    in_property_id: AudioCodecPropertyID,
+    io_property_data_size: &mut u32,
+    out_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioCodecGetProperty(
+            in_codec: AudioCodec,
+            in_property_id: AudioCodecPropertyID,
+            io_property_data_size: &mut u32,
+            out_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioCodecGetProperty(
+            in_codec,
+            in_property_id,
+            io_property_data_size,
+            out_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Set the indicated property data.
-    ///
-    ///
-    /// Parameter `inCodec`: An AudioCodec instance
-    ///
-    /// Parameter `inPropertyID`: Property ID whose value should be changed
-    ///
-    /// Parameter `inPropertyDataSize`: Size in bytes of the property data
-    ///
-    /// Parameter `inPropertyData`: Pointer to the property data buffer
-    ///
-    ///
-    /// Returns: The OSStatus value
-    ///
-    /// # Safety
-    ///
-    /// - `in_codec` must be a valid pointer.
-    /// - `in_property_data` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioCodecSetProperty(
-        in_codec: AudioCodec,
-        in_property_id: AudioCodecPropertyID,
-        in_property_data_size: u32,
-        in_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Set the indicated property data.
+///
+///
+/// Parameter `inCodec`: An AudioCodec instance
+///
+/// Parameter `inPropertyID`: Property ID whose value should be changed
+///
+/// Parameter `inPropertyDataSize`: Size in bytes of the property data
+///
+/// Parameter `inPropertyData`: Pointer to the property data buffer
+///
+///
+/// Returns: The OSStatus value
+///
+/// # Safety
+///
+/// - `in_codec` must be a valid pointer.
+/// - `in_property_data` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioCodecSetProperty(
+    in_codec: AudioCodec,
+    in_property_id: AudioCodecPropertyID,
+    in_property_data_size: u32,
+    in_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioCodecSetProperty(
+            in_codec: AudioCodec,
+            in_property_id: AudioCodecPropertyID,
+            in_property_data_size: u32,
+            in_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioCodecSetProperty(
+            in_codec,
+            in_property_id,
+            in_property_data_size,
+            in_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// This call will allocate any buffers needed and otherwise set the codec
-    /// up to perform the indicated translation. If an argument is NULL, any
-    /// previously set properties will be used for preparing the codec for work.
-    /// Note that this routine will also validate the format information as useable.
-    ///
-    ///
-    /// Parameter `inCodec`: An AudioCodec instance
-    ///
-    /// Parameter `inInputFormat`: Pointer to an input format structure
-    ///
-    /// Parameter `inOutputFormat`: Pointer to an output format structure
-    ///
-    /// Parameter `inMagicCookie`: Pointer to the magic cookie
-    ///
-    /// Parameter `inMagicCookieByteSize`: Size in bytes of the magic cookie
-    ///
-    ///
-    /// Returns: The OSStatus value
-    ///
-    /// # Safety
-    ///
-    /// - `in_codec` must be a valid pointer.
-    /// - `in_magic_cookie` must be a valid pointer or null.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioCodecInitialize(
-        in_codec: AudioCodec,
-        in_input_format: Option<&AudioStreamBasicDescription>,
-        in_output_format: Option<&AudioStreamBasicDescription>,
-        in_magic_cookie: *const c_void,
-        in_magic_cookie_byte_size: u32,
-    ) -> OSStatus;
+/// This call will allocate any buffers needed and otherwise set the codec
+/// up to perform the indicated translation. If an argument is NULL, any
+/// previously set properties will be used for preparing the codec for work.
+/// Note that this routine will also validate the format information as useable.
+///
+///
+/// Parameter `inCodec`: An AudioCodec instance
+///
+/// Parameter `inInputFormat`: Pointer to an input format structure
+///
+/// Parameter `inOutputFormat`: Pointer to an output format structure
+///
+/// Parameter `inMagicCookie`: Pointer to the magic cookie
+///
+/// Parameter `inMagicCookieByteSize`: Size in bytes of the magic cookie
+///
+///
+/// Returns: The OSStatus value
+///
+/// # Safety
+///
+/// - `in_codec` must be a valid pointer.
+/// - `in_magic_cookie` must be a valid pointer or null.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioCodecInitialize(
+    in_codec: AudioCodec,
+    in_input_format: Option<&AudioStreamBasicDescription>,
+    in_output_format: Option<&AudioStreamBasicDescription>,
+    in_magic_cookie: *const c_void,
+    in_magic_cookie_byte_size: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioCodecInitialize(
+            in_codec: AudioCodec,
+            in_input_format: Option<&AudioStreamBasicDescription>,
+            in_output_format: Option<&AudioStreamBasicDescription>,
+            in_magic_cookie: *const c_void,
+            in_magic_cookie_byte_size: u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioCodecInitialize(
+            in_codec,
+            in_input_format,
+            in_output_format,
+            in_magic_cookie,
+            in_magic_cookie_byte_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// This call will move the codec from the initialized state back to the
-    /// uninitialized state. The codec will release any resources it allocated
-    /// or claimed in AudioCodecInitialize.
-    ///
-    ///
-    /// Parameter `inCodec`: An AudioCodec instance
-    ///
-    ///
-    /// Returns: The OSStatus value
-    ///
-    /// # Safety
-    ///
-    /// `in_codec` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioCodecUninitialize(in_codec: AudioCodec) -> OSStatus;
+/// This call will move the codec from the initialized state back to the
+/// uninitialized state. The codec will release any resources it allocated
+/// or claimed in AudioCodecInitialize.
+///
+///
+/// Parameter `inCodec`: An AudioCodec instance
+///
+///
+/// Returns: The OSStatus value
+///
+/// # Safety
+///
+/// `in_codec` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioCodecUninitialize(in_codec: AudioCodec) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioCodecUninitialize(in_codec: AudioCodec) -> OSStatus;
+    }
+    unsafe { AudioCodecUninitialize(in_codec) }
 }
 
-extern "C-unwind" {
-    /// Append as much of the given data in inInputData to the codec's input buffer as possible
-    /// and return in ioInputDataByteSize the amount of data used.
-    ///
-    /// The inPacketDescription argument is an array of AudioStreamPacketDescription
-    /// structs that describes the packet layout. The number of elements in this array
-    /// is indicated on input by ioNumberPackets. On return, this number indicates the number
-    /// of packets consumed.
-    ///
-    /// Note also in this case that it is an error to supply less than a full packet
-    /// of data at a time.
-    ///
-    ///
-    /// Parameter `inCodec`: An AudioCodec instance
-    ///
-    /// Parameter `inInputData`: A const pointer to the input data
-    ///
-    /// Parameter `ioInputDataByteSize`: The size in bytes of the input data in inInputData on input,
-    /// the number of bytes consumed on output
-    ///
-    /// Parameter `ioNumberPackets`: The number of packets
-    ///
-    /// Parameter `inPacketDescription`: The packet description pointer
-    ///
-    ///
-    /// Returns: The OSStatus value
-    ///
-    /// # Safety
-    ///
-    /// - `in_codec` must be a valid pointer.
-    /// - `in_input_data` must be a valid pointer.
-    /// - `in_packet_description` must be a valid pointer or null.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioCodecAppendInputData(
-        in_codec: AudioCodec,
-        in_input_data: NonNull<c_void>,
-        io_input_data_byte_size: &mut u32,
-        io_number_packets: &mut u32,
-        in_packet_description: *const AudioStreamPacketDescription,
-    ) -> OSStatus;
+/// Append as much of the given data in inInputData to the codec's input buffer as possible
+/// and return in ioInputDataByteSize the amount of data used.
+///
+/// The inPacketDescription argument is an array of AudioStreamPacketDescription
+/// structs that describes the packet layout. The number of elements in this array
+/// is indicated on input by ioNumberPackets. On return, this number indicates the number
+/// of packets consumed.
+///
+/// Note also in this case that it is an error to supply less than a full packet
+/// of data at a time.
+///
+///
+/// Parameter `inCodec`: An AudioCodec instance
+///
+/// Parameter `inInputData`: A const pointer to the input data
+///
+/// Parameter `ioInputDataByteSize`: The size in bytes of the input data in inInputData on input,
+/// the number of bytes consumed on output
+///
+/// Parameter `ioNumberPackets`: The number of packets
+///
+/// Parameter `inPacketDescription`: The packet description pointer
+///
+///
+/// Returns: The OSStatus value
+///
+/// # Safety
+///
+/// - `in_codec` must be a valid pointer.
+/// - `in_input_data` must be a valid pointer.
+/// - `in_packet_description` must be a valid pointer or null.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioCodecAppendInputData(
+    in_codec: AudioCodec,
+    in_input_data: NonNull<c_void>,
+    io_input_data_byte_size: &mut u32,
+    io_number_packets: &mut u32,
+    in_packet_description: *const AudioStreamPacketDescription,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioCodecAppendInputData(
+            in_codec: AudioCodec,
+            in_input_data: NonNull<c_void>,
+            io_input_data_byte_size: &mut u32,
+            io_number_packets: &mut u32,
+            in_packet_description: *const AudioStreamPacketDescription,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioCodecAppendInputData(
+            in_codec,
+            in_input_data,
+            io_input_data_byte_size,
+            io_number_packets,
+            in_packet_description,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Produce as many output packets as requested and the amount of input data
-    /// allows for. The outStatus argument returns information about the codec's
-    /// status to allow for proper data management. See the constants above for
-    /// the possible values that can be returned.
-    ///
-    /// The outPacketDescription argument is an array of AudioStreamPacketDescription
-    /// structs that describes the packet layout returned in outOutputData. This
-    /// argument is optional. Pass NULL if this information is not to be returned.
-    /// Note that this information is only provided when the output format isn't
-    /// linear PCM.
-    ///
-    /// Note that decoders will always only produce linear PCM data in multiples of
-    /// the number frames in a packet of the encoded format (as returned by
-    /// kAudioCodecPropertyPacketFrameSize). Encoders will consume this many frames
-    /// of linear PCM data to produce a packet of their format.
-    ///
-    ///
-    /// Parameter `inCodec`: The AudioCodec instance
-    ///
-    /// Parameter `outOutputData`: Pointer to the output data buffer
-    ///
-    /// Parameter `ioOutputDataByteSize`: A pointer to the size
-    ///
-    /// Parameter `ioNumberPackets`: number of input/output packets
-    ///
-    /// Returns: The OSStatus value
-    ///
-    /// # Safety
-    ///
-    /// - `in_codec` must be a valid pointer.
-    /// - `out_output_data` must be a valid pointer.
-    /// - `out_packet_description` must be a valid pointer or null.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioCodecProduceOutputPackets(
-        in_codec: AudioCodec,
-        out_output_data: NonNull<c_void>,
-        io_output_data_byte_size: &mut u32,
-        io_number_packets: &mut u32,
-        out_packet_description: *mut AudioStreamPacketDescription,
-        out_status: &mut u32,
-    ) -> OSStatus;
+/// Produce as many output packets as requested and the amount of input data
+/// allows for. The outStatus argument returns information about the codec's
+/// status to allow for proper data management. See the constants above for
+/// the possible values that can be returned.
+///
+/// The outPacketDescription argument is an array of AudioStreamPacketDescription
+/// structs that describes the packet layout returned in outOutputData. This
+/// argument is optional. Pass NULL if this information is not to be returned.
+/// Note that this information is only provided when the output format isn't
+/// linear PCM.
+///
+/// Note that decoders will always only produce linear PCM data in multiples of
+/// the number frames in a packet of the encoded format (as returned by
+/// kAudioCodecPropertyPacketFrameSize). Encoders will consume this many frames
+/// of linear PCM data to produce a packet of their format.
+///
+///
+/// Parameter `inCodec`: The AudioCodec instance
+///
+/// Parameter `outOutputData`: Pointer to the output data buffer
+///
+/// Parameter `ioOutputDataByteSize`: A pointer to the size
+///
+/// Parameter `ioNumberPackets`: number of input/output packets
+///
+/// Returns: The OSStatus value
+///
+/// # Safety
+///
+/// - `in_codec` must be a valid pointer.
+/// - `out_output_data` must be a valid pointer.
+/// - `out_packet_description` must be a valid pointer or null.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioCodecProduceOutputPackets(
+    in_codec: AudioCodec,
+    out_output_data: NonNull<c_void>,
+    io_output_data_byte_size: &mut u32,
+    io_number_packets: &mut u32,
+    out_packet_description: *mut AudioStreamPacketDescription,
+    out_status: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioCodecProduceOutputPackets(
+            in_codec: AudioCodec,
+            out_output_data: NonNull<c_void>,
+            io_output_data_byte_size: &mut u32,
+            io_number_packets: &mut u32,
+            out_packet_description: *mut AudioStreamPacketDescription,
+            out_status: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioCodecProduceOutputPackets(
+            in_codec,
+            out_output_data,
+            io_output_data_byte_size,
+            io_number_packets,
+            out_packet_description,
+            out_status,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `in_codec` must be a valid pointer.
-    /// - `in_buffer_list` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
-    /// - `in_packet_description` must be a valid pointer or null.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioCodecAppendInputBufferList(
-        in_codec: AudioCodec,
-        in_buffer_list: &AudioBufferList,
-        io_number_packets: &mut u32,
-        in_packet_description: *const AudioStreamPacketDescription,
-        out_bytes_consumed: &mut u32,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `in_codec` must be a valid pointer.
+/// - `in_buffer_list` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `in_packet_description` must be a valid pointer or null.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioCodecAppendInputBufferList(
+    in_codec: AudioCodec,
+    in_buffer_list: &AudioBufferList,
+    io_number_packets: &mut u32,
+    in_packet_description: *const AudioStreamPacketDescription,
+    out_bytes_consumed: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioCodecAppendInputBufferList(
+            in_codec: AudioCodec,
+            in_buffer_list: &AudioBufferList,
+            io_number_packets: &mut u32,
+            in_packet_description: *const AudioStreamPacketDescription,
+            out_bytes_consumed: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioCodecAppendInputBufferList(
+            in_codec,
+            in_buffer_list,
+            io_number_packets,
+            in_packet_description,
+            out_bytes_consumed,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `in_codec` must be a valid pointer.
-    /// - `io_buffer_list` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
-    /// - `out_packet_description` must be a valid pointer or null.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioCodecProduceOutputBufferList(
-        in_codec: AudioCodec,
-        io_buffer_list: &mut AudioBufferList,
-        io_number_packets: &mut u32,
-        out_packet_description: *mut AudioStreamPacketDescription,
-        out_status: &mut u32,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `in_codec` must be a valid pointer.
+/// - `io_buffer_list` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `out_packet_description` must be a valid pointer or null.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioCodecProduceOutputBufferList(
+    in_codec: AudioCodec,
+    io_buffer_list: &mut AudioBufferList,
+    io_number_packets: &mut u32,
+    out_packet_description: *mut AudioStreamPacketDescription,
+    out_status: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioCodecProduceOutputBufferList(
+            in_codec: AudioCodec,
+            io_buffer_list: &mut AudioBufferList,
+            io_number_packets: &mut u32,
+            out_packet_description: *mut AudioStreamPacketDescription,
+            out_status: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioCodecProduceOutputBufferList(
+            in_codec,
+            io_buffer_list,
+            io_number_packets,
+            out_packet_description,
+            out_status,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Flushes all the data in the codec and clears the input buffer. Note that
-    /// the formats, and magic cookie will be retained so they won't need to be
-    /// set up again to decode the same data.
-    ///
-    ///
-    /// Parameter `inCodec`: The audio codec descriptor
-    ///
-    ///
-    /// Returns: the OSStatus value
-    ///
-    /// # Safety
-    ///
-    /// `in_codec` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioCodecReset(in_codec: AudioCodec) -> OSStatus;
+/// Flushes all the data in the codec and clears the input buffer. Note that
+/// the formats, and magic cookie will be retained so they won't need to be
+/// set up again to decode the same data.
+///
+///
+/// Parameter `inCodec`: The audio codec descriptor
+///
+///
+/// Returns: the OSStatus value
+///
+/// # Safety
+///
+/// `in_codec` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioCodecReset(in_codec: AudioCodec) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioCodecReset(in_codec: AudioCodec) -> OSStatus;
+    }
+    unsafe { AudioCodecReset(in_codec) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecgetpropertyinfoproc?language=objc)

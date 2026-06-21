@@ -164,11 +164,15 @@ pub const kCMIOObjectPropertyListenerAdded: c_uint = 0x6c697361;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertylistenerremoved?language=objc)
 pub const kCMIOObjectPropertyListenerRemoved: c_uint = 0x6c697372;
 
-extern "C-unwind" {
-    /// Prints to standard out a textural description of the CMIOObject.
-    ///
-    /// Parameter `objectID`: The CMIOObject to show.
-    pub fn CMIOObjectShow(object_id: CMIOObjectID);
+/// Prints to standard out a textural description of the CMIOObject.
+///
+/// Parameter `objectID`: The CMIOObject to show.
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOObjectShow(object_id: CMIOObjectID) {
+    extern "C-unwind" {
+        fn CMIOObjectShow(object_id: CMIOObjectID);
+    }
+    unsafe { CMIOObjectShow(object_id) }
 }
 
 /// Queries a CMIOObject about whether or not it has the given property.
@@ -197,239 +201,343 @@ pub unsafe extern "C-unwind" fn CMIOObjectHasProperty(
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Queries a CMIOObject about whether or not the given property can be set using CMIOObjectSetPropertyData.
-    ///
-    /// Parameter `objectID`: The CMIOObject to query.
-    ///
-    /// Parameter `address`: A CMIOObjectPropertyAddress indicating which property is being queried.
-    ///
-    /// Parameter `isSettable`: A Boolean indicating whether or not the property can be set.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `address` must be a valid pointer.
-    /// - `is_settable` must be a valid pointer.
-    pub fn CMIOObjectIsPropertySettable(
-        object_id: CMIOObjectID,
-        address: *const CMIOObjectPropertyAddress,
-        is_settable: *mut Boolean,
-    ) -> OSStatus;
+/// Queries a CMIOObject about whether or not the given property can be set using CMIOObjectSetPropertyData.
+///
+/// Parameter `objectID`: The CMIOObject to query.
+///
+/// Parameter `address`: A CMIOObjectPropertyAddress indicating which property is being queried.
+///
+/// Parameter `isSettable`: A Boolean indicating whether or not the property can be set.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `address` must be a valid pointer.
+/// - `is_settable` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOObjectIsPropertySettable(
+    object_id: CMIOObjectID,
+    address: *const CMIOObjectPropertyAddress,
+    is_settable: *mut Boolean,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOObjectIsPropertySettable(
+            object_id: CMIOObjectID,
+            address: *const CMIOObjectPropertyAddress,
+            is_settable: *mut Boolean,
+        ) -> OSStatus;
+    }
+    unsafe { CMIOObjectIsPropertySettable(object_id, address, is_settable) }
 }
 
-extern "C-unwind" {
-    /// Queries a CMIOObject to find the size of the data for the given property.
-    ///
-    /// Parameter `objectID`: The CMIOObject to query.
-    ///
-    /// Parameter `address`: A CMIOObjectPropertyAddress indicating which property is being queried.
-    ///
-    /// Parameter `qualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by qualifierData. Note that not all properties require qualification, in which case this value will be 0.
-    ///
-    /// Parameter `qualifierData`: A buffer of data to be used in determining the data of the property being queried. Note that not all properties require qualification, in which case this value will be
-    /// NULL.
-    ///
-    /// Parameter `dataSize`: A UInt32 indicating how many bytes the data for the given property occupies.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `address` must be a valid pointer.
-    /// - `qualifier_data` must be a valid pointer.
-    /// - `data_size` must be a valid pointer.
-    pub fn CMIOObjectGetPropertyDataSize(
-        object_id: CMIOObjectID,
-        address: *const CMIOObjectPropertyAddress,
-        qualifier_data_size: u32,
-        qualifier_data: *const c_void,
-        data_size: *mut u32,
-    ) -> OSStatus;
+/// Queries a CMIOObject to find the size of the data for the given property.
+///
+/// Parameter `objectID`: The CMIOObject to query.
+///
+/// Parameter `address`: A CMIOObjectPropertyAddress indicating which property is being queried.
+///
+/// Parameter `qualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by qualifierData. Note that not all properties require qualification, in which case this value will be 0.
+///
+/// Parameter `qualifierData`: A buffer of data to be used in determining the data of the property being queried. Note that not all properties require qualification, in which case this value will be
+/// NULL.
+///
+/// Parameter `dataSize`: A UInt32 indicating how many bytes the data for the given property occupies.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `address` must be a valid pointer.
+/// - `qualifier_data` must be a valid pointer.
+/// - `data_size` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOObjectGetPropertyDataSize(
+    object_id: CMIOObjectID,
+    address: *const CMIOObjectPropertyAddress,
+    qualifier_data_size: u32,
+    qualifier_data: *const c_void,
+    data_size: *mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOObjectGetPropertyDataSize(
+            object_id: CMIOObjectID,
+            address: *const CMIOObjectPropertyAddress,
+            qualifier_data_size: u32,
+            qualifier_data: *const c_void,
+            data_size: *mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMIOObjectGetPropertyDataSize(
+            object_id,
+            address,
+            qualifier_data_size,
+            qualifier_data,
+            data_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Queries a CMIOObject to get the data of the given property and places it in the provided buffer.
-    ///
-    /// Parameter `objectID`: The CMIOObject to query.
-    ///
-    /// Parameter `address`: A CMIOObjectPropertyAddress indicating which property is being queried.
-    ///
-    /// Parameter `qualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by qualifierData. Note that not all properties require qualification, in which case this value will be 0.
-    ///
-    /// Parameter `qualifierData`: A buffer of data to be used in determining the data of the property being queried. Note that not all properties require qualification, in which case this value will be
-    /// NULL.
-    ///
-    /// Parameter `dataSize`: A UInt32 which indicates the size (in bytes) of the buffer pointed to by data.
-    ///
-    /// Parameter `dataUsed`: A UInt32 which indicates how much (in bytes) of the buffer was used.
-    ///
-    /// Parameter `data`: The buffer into which the CMIOObject will put the data for the given property.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `address` must be a valid pointer.
-    /// - `qualifier_data` must be a valid pointer.
-    /// - `data_used` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    pub fn CMIOObjectGetPropertyData(
-        object_id: CMIOObjectID,
-        address: *const CMIOObjectPropertyAddress,
-        qualifier_data_size: u32,
-        qualifier_data: *const c_void,
-        data_size: u32,
-        data_used: *mut u32,
-        data: *mut c_void,
-    ) -> OSStatus;
+/// Queries a CMIOObject to get the data of the given property and places it in the provided buffer.
+///
+/// Parameter `objectID`: The CMIOObject to query.
+///
+/// Parameter `address`: A CMIOObjectPropertyAddress indicating which property is being queried.
+///
+/// Parameter `qualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by qualifierData. Note that not all properties require qualification, in which case this value will be 0.
+///
+/// Parameter `qualifierData`: A buffer of data to be used in determining the data of the property being queried. Note that not all properties require qualification, in which case this value will be
+/// NULL.
+///
+/// Parameter `dataSize`: A UInt32 which indicates the size (in bytes) of the buffer pointed to by data.
+///
+/// Parameter `dataUsed`: A UInt32 which indicates how much (in bytes) of the buffer was used.
+///
+/// Parameter `data`: The buffer into which the CMIOObject will put the data for the given property.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `address` must be a valid pointer.
+/// - `qualifier_data` must be a valid pointer.
+/// - `data_used` must be a valid pointer.
+/// - `data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOObjectGetPropertyData(
+    object_id: CMIOObjectID,
+    address: *const CMIOObjectPropertyAddress,
+    qualifier_data_size: u32,
+    qualifier_data: *const c_void,
+    data_size: u32,
+    data_used: *mut u32,
+    data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOObjectGetPropertyData(
+            object_id: CMIOObjectID,
+            address: *const CMIOObjectPropertyAddress,
+            qualifier_data_size: u32,
+            qualifier_data: *const c_void,
+            data_size: u32,
+            data_used: *mut u32,
+            data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMIOObjectGetPropertyData(
+            object_id,
+            address,
+            qualifier_data_size,
+            qualifier_data,
+            data_size,
+            data_used,
+            data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Tells a CMIOObject to change the value of the given property using the provided data.
-    ///
-    /// Note that the value of the property should not be considered changed until the DAL has called the listeners as many properties values are changed asynchronously.
-    ///
-    /// Parameter `objectID`: The CMIOObject to change.
-    ///
-    /// Parameter `address`: A CMIOObjectPropertyAddress indicating which property is being changed.
-    ///
-    /// Parameter `qualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by qualifierData. Note that not all properties require qualification, in which case this value will be 0.
-    ///
-    /// Parameter `qualifierData`: A buffer of data to be used in determining the data of the property being queried. Note that not all properties require qualification, in which case this value will be
-    /// NULL.
-    ///
-    /// Parameter `dataSize`: A UInt32 indicating the size of the buffer pointed to by data.
-    ///
-    /// Parameter `data`: The buffer containing the data to be used to change the property's value.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `address` must be a valid pointer.
-    /// - `qualifier_data` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    pub fn CMIOObjectSetPropertyData(
-        object_id: CMIOObjectID,
-        address: *const CMIOObjectPropertyAddress,
-        qualifier_data_size: u32,
-        qualifier_data: *const c_void,
-        data_size: u32,
-        data: *const c_void,
-    ) -> OSStatus;
+/// Tells a CMIOObject to change the value of the given property using the provided data.
+///
+/// Note that the value of the property should not be considered changed until the DAL has called the listeners as many properties values are changed asynchronously.
+///
+/// Parameter `objectID`: The CMIOObject to change.
+///
+/// Parameter `address`: A CMIOObjectPropertyAddress indicating which property is being changed.
+///
+/// Parameter `qualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by qualifierData. Note that not all properties require qualification, in which case this value will be 0.
+///
+/// Parameter `qualifierData`: A buffer of data to be used in determining the data of the property being queried. Note that not all properties require qualification, in which case this value will be
+/// NULL.
+///
+/// Parameter `dataSize`: A UInt32 indicating the size of the buffer pointed to by data.
+///
+/// Parameter `data`: The buffer containing the data to be used to change the property's value.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `address` must be a valid pointer.
+/// - `qualifier_data` must be a valid pointer.
+/// - `data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOObjectSetPropertyData(
+    object_id: CMIOObjectID,
+    address: *const CMIOObjectPropertyAddress,
+    qualifier_data_size: u32,
+    qualifier_data: *const c_void,
+    data_size: u32,
+    data: *const c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOObjectSetPropertyData(
+            object_id: CMIOObjectID,
+            address: *const CMIOObjectPropertyAddress,
+            qualifier_data_size: u32,
+            qualifier_data: *const c_void,
+            data_size: u32,
+            data: *const c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMIOObjectSetPropertyData(
+            object_id,
+            address,
+            qualifier_data_size,
+            qualifier_data,
+            data_size,
+            data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Registers the given CMIOObjectPropertyListenerProc to receive notifications when the given properties change.
-    ///
-    /// Parameter `objectID`: The CMIOObject to register the listener with.
-    ///
-    /// Parameter `address`: The CMIOObjectPropertyAddresses indicating which property the listener should be notified about.
-    ///
-    /// Parameter `listener`: The CMIOObjectPropertyListenerProc to call.
-    ///
-    /// Parameter `clientData`: A pointer to client data that is passed to the listener when it is called.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `address` must be a valid pointer.
-    /// - `listener` must be implemented correctly.
-    /// - `client_data` must be a valid pointer.
-    pub fn CMIOObjectAddPropertyListener(
-        object_id: CMIOObjectID,
-        address: *const CMIOObjectPropertyAddress,
-        listener: CMIOObjectPropertyListenerProc,
-        client_data: *mut c_void,
-    ) -> OSStatus;
+/// Registers the given CMIOObjectPropertyListenerProc to receive notifications when the given properties change.
+///
+/// Parameter `objectID`: The CMIOObject to register the listener with.
+///
+/// Parameter `address`: The CMIOObjectPropertyAddresses indicating which property the listener should be notified about.
+///
+/// Parameter `listener`: The CMIOObjectPropertyListenerProc to call.
+///
+/// Parameter `clientData`: A pointer to client data that is passed to the listener when it is called.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `address` must be a valid pointer.
+/// - `listener` must be implemented correctly.
+/// - `client_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOObjectAddPropertyListener(
+    object_id: CMIOObjectID,
+    address: *const CMIOObjectPropertyAddress,
+    listener: CMIOObjectPropertyListenerProc,
+    client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOObjectAddPropertyListener(
+            object_id: CMIOObjectID,
+            address: *const CMIOObjectPropertyAddress,
+            listener: CMIOObjectPropertyListenerProc,
+            client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { CMIOObjectAddPropertyListener(object_id, address, listener, client_data) }
 }
 
-extern "C-unwind" {
-    /// Unregisters the given CMIOObjectPropertyListenerProc from receiving notifications when the given properties change.
-    ///
-    /// Parameter `objectID`: The CMIOObject to unregister the listener from.
-    ///
-    /// Parameter `address`: The CMIOObjectPropertyAddress indicating which property the listener should be removed from.
-    ///
-    /// Parameter `listener`: The CMIOObjectPropertyListenerProc being removed.
-    ///
-    /// Parameter `clientData`: A pointer to client data that is passed to the listener when it is called.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `address` must be a valid pointer.
-    /// - `listener` must be implemented correctly.
-    /// - `client_data` must be a valid pointer.
-    pub fn CMIOObjectRemovePropertyListener(
-        object_id: CMIOObjectID,
-        address: *const CMIOObjectPropertyAddress,
-        listener: CMIOObjectPropertyListenerProc,
-        client_data: *mut c_void,
-    ) -> OSStatus;
+/// Unregisters the given CMIOObjectPropertyListenerProc from receiving notifications when the given properties change.
+///
+/// Parameter `objectID`: The CMIOObject to unregister the listener from.
+///
+/// Parameter `address`: The CMIOObjectPropertyAddress indicating which property the listener should be removed from.
+///
+/// Parameter `listener`: The CMIOObjectPropertyListenerProc being removed.
+///
+/// Parameter `clientData`: A pointer to client data that is passed to the listener when it is called.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `address` must be a valid pointer.
+/// - `listener` must be implemented correctly.
+/// - `client_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOObjectRemovePropertyListener(
+    object_id: CMIOObjectID,
+    address: *const CMIOObjectPropertyAddress,
+    listener: CMIOObjectPropertyListenerProc,
+    client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOObjectRemovePropertyListener(
+            object_id: CMIOObjectID,
+            address: *const CMIOObjectPropertyAddress,
+            listener: CMIOObjectPropertyListenerProc,
+            client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { CMIOObjectRemovePropertyListener(object_id, address, listener, client_data) }
 }
 
-extern "C-unwind" {
-    /// Registers the given CMIOObjectPropertyListenerBlock to receive notifications when the given properties change.
-    ///
-    /// Parameter `objectID`: The CMIOObject to register the listener with.
-    ///
-    /// Parameter `address`: The CMIOObjectPropertyAddresses indicating which property the listener should be notified about.
-    ///
-    /// Parameter `dispatchQueue`: The dispatch queue on which the listener block will be dispatched. All listener blocks will be dispatched asynchronously save for those dispatched from the IO context
-    /// (of which kCMIODevicePropertyDeviceIsRunning and kCMIODeviceProcessorOverload are the only examples) which will be dispatched synchronously. Note that this dispatch
-    /// queue will be retained until a matching call to CMIOObjectRemovePropertyListenerBlock is made. If this value is NULL, then the block will be directly invoked.
-    ///
-    /// Parameter `listener`: The CMIOObjectPropertyListenerBlock to call. Note that this block will be Block_copy'd and the reference maintained until a matching call to
-    /// CMIOObjectRemovePropertyListenerBlock is made.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `address` must be a valid pointer.
-    /// - `dispatch_queue` possibly has additional threading requirements.
-    /// - `dispatch_queue` might not allow `None`.
-    /// - `listener` might not allow `None`.
-    #[cfg(all(feature = "block2", feature = "dispatch2"))]
-    pub fn CMIOObjectAddPropertyListenerBlock(
-        object_id: CMIOObjectID,
-        address: *const CMIOObjectPropertyAddress,
-        dispatch_queue: Option<&DispatchQueue>,
-        listener: Option<&CMIOObjectPropertyListenerBlock>,
-    ) -> OSStatus;
+/// Registers the given CMIOObjectPropertyListenerBlock to receive notifications when the given properties change.
+///
+/// Parameter `objectID`: The CMIOObject to register the listener with.
+///
+/// Parameter `address`: The CMIOObjectPropertyAddresses indicating which property the listener should be notified about.
+///
+/// Parameter `dispatchQueue`: The dispatch queue on which the listener block will be dispatched. All listener blocks will be dispatched asynchronously save for those dispatched from the IO context
+/// (of which kCMIODevicePropertyDeviceIsRunning and kCMIODeviceProcessorOverload are the only examples) which will be dispatched synchronously. Note that this dispatch
+/// queue will be retained until a matching call to CMIOObjectRemovePropertyListenerBlock is made. If this value is NULL, then the block will be directly invoked.
+///
+/// Parameter `listener`: The CMIOObjectPropertyListenerBlock to call. Note that this block will be Block_copy'd and the reference maintained until a matching call to
+/// CMIOObjectRemovePropertyListenerBlock is made.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `address` must be a valid pointer.
+/// - `dispatch_queue` possibly has additional threading requirements.
+/// - `dispatch_queue` might not allow `None`.
+/// - `listener` might not allow `None`.
+#[cfg(all(feature = "block2", feature = "dispatch2"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOObjectAddPropertyListenerBlock(
+    object_id: CMIOObjectID,
+    address: *const CMIOObjectPropertyAddress,
+    dispatch_queue: Option<&DispatchQueue>,
+    listener: Option<&CMIOObjectPropertyListenerBlock>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOObjectAddPropertyListenerBlock(
+            object_id: CMIOObjectID,
+            address: *const CMIOObjectPropertyAddress,
+            dispatch_queue: Option<&DispatchQueue>,
+            listener: Option<&CMIOObjectPropertyListenerBlock>,
+        ) -> OSStatus;
+    }
+    unsafe { CMIOObjectAddPropertyListenerBlock(object_id, address, dispatch_queue, listener) }
 }
 
-extern "C-unwind" {
-    /// Unregisters the given CMIOObjectPropertyListenerBlock from receiving notifications when the given properties change.
-    ///
-    /// Parameter `objectID`: The CMIOObject to unregister the listener from.
-    ///
-    /// Parameter `numberAddresses`: The number of elements in the addresses array.
-    ///
-    /// Parameter `addresses`: The CMIOObjectPropertyAddress indicating which property the listener should be removed from.
-    ///
-    /// Parameter `dispatchQueue`: The dispatch queue on which the listener block was being dispatched to.
-    ///
-    /// Parameter `listener`: The CMIOObjectPropertyListenerBlock being removed.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `address` must be a valid pointer.
-    /// - `dispatch_queue` possibly has additional threading requirements.
-    /// - `dispatch_queue` might not allow `None`.
-    /// - `listener` might not allow `None`.
-    #[cfg(all(feature = "block2", feature = "dispatch2"))]
-    pub fn CMIOObjectRemovePropertyListenerBlock(
-        object_id: CMIOObjectID,
-        address: *const CMIOObjectPropertyAddress,
-        dispatch_queue: Option<&DispatchQueue>,
-        listener: Option<&CMIOObjectPropertyListenerBlock>,
-    ) -> OSStatus;
+/// Unregisters the given CMIOObjectPropertyListenerBlock from receiving notifications when the given properties change.
+///
+/// Parameter `objectID`: The CMIOObject to unregister the listener from.
+///
+/// Parameter `numberAddresses`: The number of elements in the addresses array.
+///
+/// Parameter `addresses`: The CMIOObjectPropertyAddress indicating which property the listener should be removed from.
+///
+/// Parameter `dispatchQueue`: The dispatch queue on which the listener block was being dispatched to.
+///
+/// Parameter `listener`: The CMIOObjectPropertyListenerBlock being removed.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `address` must be a valid pointer.
+/// - `dispatch_queue` possibly has additional threading requirements.
+/// - `dispatch_queue` might not allow `None`.
+/// - `listener` might not allow `None`.
+#[cfg(all(feature = "block2", feature = "dispatch2"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOObjectRemovePropertyListenerBlock(
+    object_id: CMIOObjectID,
+    address: *const CMIOObjectPropertyAddress,
+    dispatch_queue: Option<&DispatchQueue>,
+    listener: Option<&CMIOObjectPropertyListenerBlock>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOObjectRemovePropertyListenerBlock(
+            object_id: CMIOObjectID,
+            address: *const CMIOObjectPropertyAddress,
+            dispatch_queue: Option<&DispatchQueue>,
+            listener: Option<&CMIOObjectPropertyListenerBlock>,
+        ) -> OSStatus;
+    }
+    unsafe { CMIOObjectRemovePropertyListenerBlock(object_id, address, dispatch_queue, listener) }
 }

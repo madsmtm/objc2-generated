@@ -625,69 +625,85 @@ pub type ICServicesPtr = *mut ICServices;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icserviceshandle?language=objc)
 pub type ICServicesHandle = *mut ICServicesPtr;
 
-extern "C-unwind" {
-    /// **********************************************************************************************
-    ///
-    /// FUNCTIONS
-    ///
-    /// What do the annotations after each API mean?
-    /// --------------------------------------------
-    ///
-    /// [r1] Requires IC 1.1 or higher.
-    /// [r2] Requires IC 1.2 or higher.
-    /// [r3] Requires IC 2.0 or higher.
-    /// [r4] Requires IC 2.5 or higher.
-    ///
-    /// IMPORTANT:
-    ///
-    /// In IC 2.5, instances automatically use the default configuration.
-    /// You no longer need to configure an instance explicitly, except
-    /// if your code might run with an older version of IC.  So the following
-    /// notes only apply to IC 2.0 and earlier.
-    ///
-    /// [c1]  You must have specified a configuration before calling this routine.
-    ///
-    /// [c2]  You must have specified the default configuration before calling this
-    /// routine.
-    ///
-    /// [c3]  You do not need to specify a configuration before calling this routine.
-    ///
-    /// [b1]  You must be inside a Begin/End pair when calling this routine.
-    ///
-    /// [b2]  You must be inside a Begin/End read/write pair when calling this routine.
-    ///
-    /// [b3]  You do not need to be inside a Begin/End pair when calling this routine.
-    ///
-    /// [b4]  If you are getting or setting multiple preferences, you should make this
-    /// call inside a Begin/End pair. If you do not make this call inside a Begin/End
-    /// pair, the call will automatically do it for you.
-    ///
-    /// [b5]  It is illegal to call this routine inside a Begin/End pair.
-    ///
-    /// **********************************************************************************************
-    ///
-    /// # Safety
-    ///
-    /// `inst` must be a valid pointer.
-    #[deprecated]
-    pub fn ICStart(inst: *mut ICInstance, signature: OSType) -> OSStatus;
+/// **********************************************************************************************
+///
+/// FUNCTIONS
+///
+/// What do the annotations after each API mean?
+/// --------------------------------------------
+///
+/// [r1] Requires IC 1.1 or higher.
+/// [r2] Requires IC 1.2 or higher.
+/// [r3] Requires IC 2.0 or higher.
+/// [r4] Requires IC 2.5 or higher.
+///
+/// IMPORTANT:
+///
+/// In IC 2.5, instances automatically use the default configuration.
+/// You no longer need to configure an instance explicitly, except
+/// if your code might run with an older version of IC.  So the following
+/// notes only apply to IC 2.0 and earlier.
+///
+/// [c1]  You must have specified a configuration before calling this routine.
+///
+/// [c2]  You must have specified the default configuration before calling this
+/// routine.
+///
+/// [c3]  You do not need to specify a configuration before calling this routine.
+///
+/// [b1]  You must be inside a Begin/End pair when calling this routine.
+///
+/// [b2]  You must be inside a Begin/End read/write pair when calling this routine.
+///
+/// [b3]  You do not need to be inside a Begin/End pair when calling this routine.
+///
+/// [b4]  If you are getting or setting multiple preferences, you should make this
+/// call inside a Begin/End pair. If you do not make this call inside a Begin/End
+/// pair, the call will automatically do it for you.
+///
+/// [b5]  It is illegal to call this routine inside a Begin/End pair.
+///
+/// **********************************************************************************************
+///
+/// # Safety
+///
+/// `inst` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICStart(inst: *mut ICInstance, signature: OSType) -> OSStatus {
+    extern "C-unwind" {
+        fn ICStart(inst: *mut ICInstance, signature: OSType) -> OSStatus;
+    }
+    unsafe { ICStart(inst, signature) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `inst` must be a valid pointer.
-    #[deprecated]
-    pub fn ICStop(inst: ICInstance) -> OSStatus;
+/// # Safety
+///
+/// `inst` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICStop(inst: ICInstance) -> OSStatus {
+    extern "C-unwind" {
+        fn ICStop(inst: ICInstance) -> OSStatus;
+    }
+    unsafe { ICStop(inst) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `version` must be a valid pointer.
-    #[deprecated]
-    pub fn ICGetVersion(inst: ICInstance, which_version: c_long, version: *mut u32) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `version` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetVersion(
+    inst: ICInstance,
+    which_version: c_long,
+    version: *mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetVersion(inst: ICInstance, which_version: c_long, version: *mut u32) -> OSStatus;
+    }
+    unsafe { ICGetVersion(inst, which_version, version) }
 }
 
 /// # Safety
@@ -711,451 +727,731 @@ pub unsafe extern "C-unwind" fn ICGetConfigName(
     unsafe { ICGetConfigName(inst, longname as _, name) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `seed` must be a valid pointer.
-    #[deprecated]
-    pub fn ICGetSeed(inst: ICInstance, seed: *mut c_long) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `seed` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetSeed(inst: ICInstance, seed: *mut c_long) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetSeed(inst: ICInstance, seed: *mut c_long) -> OSStatus;
+    }
+    unsafe { ICGetSeed(inst, seed) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `perm` must be a valid pointer.
-    #[deprecated]
-    pub fn ICGetPerm(inst: ICInstance, perm: *mut ICPerm) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `perm` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetPerm(inst: ICInstance, perm: *mut ICPerm) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetPerm(inst: ICInstance, perm: *mut ICPerm) -> OSStatus;
+    }
+    unsafe { ICGetPerm(inst, perm) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `inst` must be a valid pointer.
-    #[deprecated]
-    pub fn ICBegin(inst: ICInstance, perm: ICPerm) -> OSStatus;
+/// # Safety
+///
+/// `inst` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICBegin(inst: ICInstance, perm: ICPerm) -> OSStatus {
+    extern "C-unwind" {
+        fn ICBegin(inst: ICInstance, perm: ICPerm) -> OSStatus;
+    }
+    unsafe { ICBegin(inst, perm) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `attr` must be a valid pointer.
-    /// - `buf` must be a valid pointer.
-    /// - `size` must be a valid pointer.
-    #[deprecated]
-    pub fn ICGetPref(
-        inst: ICInstance,
-        key: ConstStr255Param,
-        attr: *mut ICAttr,
-        buf: *mut c_void,
-        size: *mut c_long,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `attr` must be a valid pointer.
+/// - `buf` must be a valid pointer.
+/// - `size` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetPref(
+    inst: ICInstance,
+    key: ConstStr255Param,
+    attr: *mut ICAttr,
+    buf: *mut c_void,
+    size: *mut c_long,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetPref(
+            inst: ICInstance,
+            key: ConstStr255Param,
+            attr: *mut ICAttr,
+            buf: *mut c_void,
+            size: *mut c_long,
+        ) -> OSStatus;
+    }
+    unsafe { ICGetPref(inst, key, attr, buf, size) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `buf` must be a valid pointer.
-    #[deprecated]
-    pub fn ICSetPref(
-        inst: ICInstance,
-        key: ConstStr255Param,
-        attr: ICAttr,
-        buf: *const c_void,
-        size: c_long,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `buf` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICSetPref(
+    inst: ICInstance,
+    key: ConstStr255Param,
+    attr: ICAttr,
+    buf: *const c_void,
+    size: c_long,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICSetPref(
+            inst: ICInstance,
+            key: ConstStr255Param,
+            attr: ICAttr,
+            buf: *const c_void,
+            size: c_long,
+        ) -> OSStatus;
+    }
+    unsafe { ICSetPref(inst, key, attr, buf, size) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `attr` must be a valid pointer.
-    /// - `prefh` must be a valid pointer.
-    #[deprecated]
-    pub fn ICFindPrefHandle(
-        inst: ICInstance,
-        key: ConstStr255Param,
-        attr: *mut ICAttr,
-        prefh: Handle,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `attr` must be a valid pointer.
+/// - `prefh` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICFindPrefHandle(
+    inst: ICInstance,
+    key: ConstStr255Param,
+    attr: *mut ICAttr,
+    prefh: Handle,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICFindPrefHandle(
+            inst: ICInstance,
+            key: ConstStr255Param,
+            attr: *mut ICAttr,
+            prefh: Handle,
+        ) -> OSStatus;
+    }
+    unsafe { ICFindPrefHandle(inst, key, attr, prefh) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `attr` must be a valid pointer.
-    /// - `prefh` must be a valid pointer.
-    #[deprecated]
-    pub fn ICGetPrefHandle(
-        inst: ICInstance,
-        key: ConstStr255Param,
-        attr: *mut ICAttr,
-        prefh: *mut Handle,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `attr` must be a valid pointer.
+/// - `prefh` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetPrefHandle(
+    inst: ICInstance,
+    key: ConstStr255Param,
+    attr: *mut ICAttr,
+    prefh: *mut Handle,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetPrefHandle(
+            inst: ICInstance,
+            key: ConstStr255Param,
+            attr: *mut ICAttr,
+            prefh: *mut Handle,
+        ) -> OSStatus;
+    }
+    unsafe { ICGetPrefHandle(inst, key, attr, prefh) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `prefh` must be a valid pointer.
-    #[deprecated]
-    pub fn ICSetPrefHandle(
-        inst: ICInstance,
-        key: ConstStr255Param,
-        attr: ICAttr,
-        prefh: Handle,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `prefh` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICSetPrefHandle(
+    inst: ICInstance,
+    key: ConstStr255Param,
+    attr: ICAttr,
+    prefh: Handle,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICSetPrefHandle(
+            inst: ICInstance,
+            key: ConstStr255Param,
+            attr: ICAttr,
+            prefh: Handle,
+        ) -> OSStatus;
+    }
+    unsafe { ICSetPrefHandle(inst, key, attr, prefh) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `count` must be a valid pointer.
-    #[deprecated]
-    pub fn ICCountPref(inst: ICInstance, count: *mut c_long) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `count` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICCountPref(inst: ICInstance, count: *mut c_long) -> OSStatus {
+    extern "C-unwind" {
+        fn ICCountPref(inst: ICInstance, count: *mut c_long) -> OSStatus;
+    }
+    unsafe { ICCountPref(inst, count) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `key` might not allow `None`.
-    #[deprecated]
-    pub fn ICGetIndPref(inst: ICInstance, index: c_long, key: Option<&mut Str255>) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `key` might not allow `None`.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetIndPref(
+    inst: ICInstance,
+    index: c_long,
+    key: Option<&mut Str255>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetIndPref(inst: ICInstance, index: c_long, key: Option<&mut Str255>) -> OSStatus;
+    }
+    unsafe { ICGetIndPref(inst, index, key) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    #[deprecated]
-    pub fn ICDeletePref(inst: ICInstance, key: ConstStr255Param) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `key` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICDeletePref(inst: ICInstance, key: ConstStr255Param) -> OSStatus {
+    extern "C-unwind" {
+        fn ICDeletePref(inst: ICInstance, key: ConstStr255Param) -> OSStatus;
+    }
+    unsafe { ICDeletePref(inst, key) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `inst` must be a valid pointer.
-    #[deprecated]
-    pub fn ICEnd(inst: ICInstance) -> OSStatus;
+/// # Safety
+///
+/// `inst` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICEnd(inst: ICInstance) -> OSStatus {
+    extern "C-unwind" {
+        fn ICEnd(inst: ICInstance) -> OSStatus;
+    }
+    unsafe { ICEnd(inst) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `pref_h` must be a valid pointer.
-    #[deprecated]
-    pub fn ICGetDefaultPref(inst: ICInstance, key: ConstStr255Param, pref_h: Handle) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `pref_h` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetDefaultPref(
+    inst: ICInstance,
+    key: ConstStr255Param,
+    pref_h: Handle,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetDefaultPref(inst: ICInstance, key: ConstStr255Param, pref_h: Handle) -> OSStatus;
+    }
+    unsafe { ICGetDefaultPref(inst, key, pref_h) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    #[deprecated]
-    pub fn ICEditPreferences(inst: ICInstance, key: ConstStr255Param) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `key` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICEditPreferences(
+    inst: ICInstance,
+    key: ConstStr255Param,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICEditPreferences(inst: ICInstance, key: ConstStr255Param) -> OSStatus;
+    }
+    unsafe { ICEditPreferences(inst, key) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `hint` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    /// - `sel_start` must be a valid pointer.
-    /// - `sel_end` must be a valid pointer.
-    #[deprecated]
-    pub fn ICLaunchURL(
-        inst: ICInstance,
-        hint: ConstStr255Param,
-        data: *const c_void,
-        len: c_long,
-        sel_start: *mut c_long,
-        sel_end: *mut c_long,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `hint` must be a valid pointer.
+/// - `data` must be a valid pointer.
+/// - `sel_start` must be a valid pointer.
+/// - `sel_end` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICLaunchURL(
+    inst: ICInstance,
+    hint: ConstStr255Param,
+    data: *const c_void,
+    len: c_long,
+    sel_start: *mut c_long,
+    sel_end: *mut c_long,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICLaunchURL(
+            inst: ICInstance,
+            hint: ConstStr255Param,
+            data: *const c_void,
+            len: c_long,
+            sel_start: *mut c_long,
+            sel_end: *mut c_long,
+        ) -> OSStatus;
+    }
+    unsafe { ICLaunchURL(inst, hint, data, len, sel_start, sel_end) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `hint` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    /// - `sel_start` must be a valid pointer.
-    /// - `sel_end` must be a valid pointer.
-    /// - `url` must be a valid pointer.
-    #[deprecated]
-    pub fn ICParseURL(
-        inst: ICInstance,
-        hint: ConstStr255Param,
-        data: *const c_void,
-        len: c_long,
-        sel_start: *mut c_long,
-        sel_end: *mut c_long,
-        url: Handle,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `hint` must be a valid pointer.
+/// - `data` must be a valid pointer.
+/// - `sel_start` must be a valid pointer.
+/// - `sel_end` must be a valid pointer.
+/// - `url` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICParseURL(
+    inst: ICInstance,
+    hint: ConstStr255Param,
+    data: *const c_void,
+    len: c_long,
+    sel_start: *mut c_long,
+    sel_end: *mut c_long,
+    url: Handle,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICParseURL(
+            inst: ICInstance,
+            hint: ConstStr255Param,
+            data: *const c_void,
+            len: c_long,
+            sel_start: *mut c_long,
+            sel_end: *mut c_long,
+            url: Handle,
+        ) -> OSStatus;
+    }
+    unsafe { ICParseURL(inst, hint, data, len, sel_start, sel_end, url) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `url_h` must be a valid pointer.
-    /// - `the_event` must be a valid pointer.
-    #[cfg(feature = "objc2-core-services")]
-    #[deprecated]
-    pub fn ICCreateGURLEvent(
-        inst: ICInstance,
-        helper_creator: OSType,
-        url_h: Handle,
-        the_event: *mut AppleEvent,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `url_h` must be a valid pointer.
+/// - `the_event` must be a valid pointer.
+#[cfg(feature = "objc2-core-services")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICCreateGURLEvent(
+    inst: ICInstance,
+    helper_creator: OSType,
+    url_h: Handle,
+    the_event: *mut AppleEvent,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICCreateGURLEvent(
+            inst: ICInstance,
+            helper_creator: OSType,
+            url_h: Handle,
+            the_event: *mut AppleEvent,
+        ) -> OSStatus;
+    }
+    unsafe { ICCreateGURLEvent(inst, helper_creator, url_h, the_event) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `the_event` must be a valid pointer.
-    #[cfg(feature = "objc2-core-services")]
-    #[deprecated]
-    pub fn ICSendGURLEvent(inst: ICInstance, the_event: *mut AppleEvent) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `the_event` must be a valid pointer.
+#[cfg(feature = "objc2-core-services")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICSendGURLEvent(
+    inst: ICInstance,
+    the_event: *mut AppleEvent,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICSendGURLEvent(inst: ICInstance, the_event: *mut AppleEvent) -> OSStatus;
+    }
+    unsafe { ICSendGURLEvent(inst, the_event) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `filename` must be a valid pointer.
-    /// - `entry` must be a valid pointer.
-    #[deprecated]
-    pub fn ICMapFilename(
-        inst: ICInstance,
-        filename: ConstStr255Param,
-        entry: *mut ICMapEntry,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `filename` must be a valid pointer.
+/// - `entry` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICMapFilename(
+    inst: ICInstance,
+    filename: ConstStr255Param,
+    entry: *mut ICMapEntry,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICMapFilename(
+            inst: ICInstance,
+            filename: ConstStr255Param,
+            entry: *mut ICMapEntry,
+        ) -> OSStatus;
+    }
+    unsafe { ICMapFilename(inst, filename, entry) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `filename` must be a valid pointer.
-    /// - `entry` must be a valid pointer.
-    #[deprecated]
-    pub fn ICMapTypeCreator(
-        inst: ICInstance,
-        f_type: OSType,
-        f_creator: OSType,
-        filename: ConstStr255Param,
-        entry: *mut ICMapEntry,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `filename` must be a valid pointer.
+/// - `entry` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICMapTypeCreator(
+    inst: ICInstance,
+    f_type: OSType,
+    f_creator: OSType,
+    filename: ConstStr255Param,
+    entry: *mut ICMapEntry,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICMapTypeCreator(
+            inst: ICInstance,
+            f_type: OSType,
+            f_creator: OSType,
+            filename: ConstStr255Param,
+            entry: *mut ICMapEntry,
+        ) -> OSStatus;
+    }
+    unsafe { ICMapTypeCreator(inst, f_type, f_creator, filename, entry) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `entries` must be a valid pointer.
-    /// - `filename` must be a valid pointer.
-    /// - `entry` must be a valid pointer.
-    #[deprecated]
-    pub fn ICMapEntriesFilename(
-        inst: ICInstance,
-        entries: Handle,
-        filename: ConstStr255Param,
-        entry: *mut ICMapEntry,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `entries` must be a valid pointer.
+/// - `filename` must be a valid pointer.
+/// - `entry` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICMapEntriesFilename(
+    inst: ICInstance,
+    entries: Handle,
+    filename: ConstStr255Param,
+    entry: *mut ICMapEntry,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICMapEntriesFilename(
+            inst: ICInstance,
+            entries: Handle,
+            filename: ConstStr255Param,
+            entry: *mut ICMapEntry,
+        ) -> OSStatus;
+    }
+    unsafe { ICMapEntriesFilename(inst, entries, filename, entry) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `entries` must be a valid pointer.
-    /// - `filename` must be a valid pointer.
-    /// - `entry` must be a valid pointer.
-    #[deprecated]
-    pub fn ICMapEntriesTypeCreator(
-        inst: ICInstance,
-        entries: Handle,
-        f_type: OSType,
-        f_creator: OSType,
-        filename: ConstStr255Param,
-        entry: *mut ICMapEntry,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `entries` must be a valid pointer.
+/// - `filename` must be a valid pointer.
+/// - `entry` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICMapEntriesTypeCreator(
+    inst: ICInstance,
+    entries: Handle,
+    f_type: OSType,
+    f_creator: OSType,
+    filename: ConstStr255Param,
+    entry: *mut ICMapEntry,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICMapEntriesTypeCreator(
+            inst: ICInstance,
+            entries: Handle,
+            f_type: OSType,
+            f_creator: OSType,
+            filename: ConstStr255Param,
+            entry: *mut ICMapEntry,
+        ) -> OSStatus;
+    }
+    unsafe { ICMapEntriesTypeCreator(inst, entries, f_type, f_creator, filename, entry) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `entries` must be a valid pointer.
-    /// - `count` must be a valid pointer.
-    #[deprecated]
-    pub fn ICCountMapEntries(inst: ICInstance, entries: Handle, count: *mut c_long) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `entries` must be a valid pointer.
+/// - `count` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICCountMapEntries(
+    inst: ICInstance,
+    entries: Handle,
+    count: *mut c_long,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICCountMapEntries(inst: ICInstance, entries: Handle, count: *mut c_long) -> OSStatus;
+    }
+    unsafe { ICCountMapEntries(inst, entries, count) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `entries` must be a valid pointer.
-    /// - `pos` must be a valid pointer.
-    /// - `entry` must be a valid pointer.
-    #[deprecated]
-    pub fn ICGetIndMapEntry(
-        inst: ICInstance,
-        entries: Handle,
-        index: c_long,
-        pos: *mut c_long,
-        entry: *mut ICMapEntry,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `entries` must be a valid pointer.
+/// - `pos` must be a valid pointer.
+/// - `entry` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetIndMapEntry(
+    inst: ICInstance,
+    entries: Handle,
+    index: c_long,
+    pos: *mut c_long,
+    entry: *mut ICMapEntry,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetIndMapEntry(
+            inst: ICInstance,
+            entries: Handle,
+            index: c_long,
+            pos: *mut c_long,
+            entry: *mut ICMapEntry,
+        ) -> OSStatus;
+    }
+    unsafe { ICGetIndMapEntry(inst, entries, index, pos, entry) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `entries` must be a valid pointer.
-    /// - `entry` must be a valid pointer.
-    #[deprecated]
-    pub fn ICGetMapEntry(
-        inst: ICInstance,
-        entries: Handle,
-        pos: c_long,
-        entry: *mut ICMapEntry,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `entries` must be a valid pointer.
+/// - `entry` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetMapEntry(
+    inst: ICInstance,
+    entries: Handle,
+    pos: c_long,
+    entry: *mut ICMapEntry,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetMapEntry(
+            inst: ICInstance,
+            entries: Handle,
+            pos: c_long,
+            entry: *mut ICMapEntry,
+        ) -> OSStatus;
+    }
+    unsafe { ICGetMapEntry(inst, entries, pos, entry) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `entries` must be a valid pointer.
-    /// - `entry` must be a valid pointer.
-    #[deprecated]
-    pub fn ICSetMapEntry(
-        inst: ICInstance,
-        entries: Handle,
-        pos: c_long,
-        entry: *const ICMapEntry,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `entries` must be a valid pointer.
+/// - `entry` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICSetMapEntry(
+    inst: ICInstance,
+    entries: Handle,
+    pos: c_long,
+    entry: *const ICMapEntry,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICSetMapEntry(
+            inst: ICInstance,
+            entries: Handle,
+            pos: c_long,
+            entry: *const ICMapEntry,
+        ) -> OSStatus;
+    }
+    unsafe { ICSetMapEntry(inst, entries, pos, entry) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `entries` must be a valid pointer.
-    #[deprecated]
-    pub fn ICDeleteMapEntry(inst: ICInstance, entries: Handle, pos: c_long) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `entries` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICDeleteMapEntry(
+    inst: ICInstance,
+    entries: Handle,
+    pos: c_long,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICDeleteMapEntry(inst: ICInstance, entries: Handle, pos: c_long) -> OSStatus;
+    }
+    unsafe { ICDeleteMapEntry(inst, entries, pos) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `entries` must be a valid pointer.
-    /// - `entry` must be a valid pointer.
-    #[deprecated]
-    pub fn ICAddMapEntry(inst: ICInstance, entries: Handle, entry: *const ICMapEntry) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `entries` must be a valid pointer.
+/// - `entry` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICAddMapEntry(
+    inst: ICInstance,
+    entries: Handle,
+    entry: *const ICMapEntry,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICAddMapEntry(inst: ICInstance, entries: Handle, entry: *const ICMapEntry) -> OSStatus;
+    }
+    unsafe { ICAddMapEntry(inst, entries, entry) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `current_id` must be a valid pointer.
-    #[deprecated]
-    pub fn ICGetCurrentProfile(inst: ICInstance, current_id: *mut ICProfileID) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `current_id` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetCurrentProfile(
+    inst: ICInstance,
+    current_id: *mut ICProfileID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetCurrentProfile(inst: ICInstance, current_id: *mut ICProfileID) -> OSStatus;
+    }
+    unsafe { ICGetCurrentProfile(inst, current_id) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `inst` must be a valid pointer.
-    #[deprecated]
-    pub fn ICSetCurrentProfile(inst: ICInstance, new_id: ICProfileID) -> OSStatus;
+/// # Safety
+///
+/// `inst` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICSetCurrentProfile(
+    inst: ICInstance,
+    new_id: ICProfileID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICSetCurrentProfile(inst: ICInstance, new_id: ICProfileID) -> OSStatus;
+    }
+    unsafe { ICSetCurrentProfile(inst, new_id) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `count` must be a valid pointer.
-    #[deprecated]
-    pub fn ICCountProfiles(inst: ICInstance, count: *mut c_long) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `count` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICCountProfiles(inst: ICInstance, count: *mut c_long) -> OSStatus {
+    extern "C-unwind" {
+        fn ICCountProfiles(inst: ICInstance, count: *mut c_long) -> OSStatus;
+    }
+    unsafe { ICCountProfiles(inst, count) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `this_id` must be a valid pointer.
-    #[deprecated]
-    pub fn ICGetIndProfile(inst: ICInstance, index: c_long, this_id: *mut ICProfileID) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `this_id` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetIndProfile(
+    inst: ICInstance,
+    index: c_long,
+    this_id: *mut ICProfileID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetIndProfile(inst: ICInstance, index: c_long, this_id: *mut ICProfileID) -> OSStatus;
+    }
+    unsafe { ICGetIndProfile(inst, index, this_id) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `name` might not allow `None`.
-    #[deprecated]
-    pub fn ICGetProfileName(
-        inst: ICInstance,
-        this_id: ICProfileID,
-        name: Option<&mut Str255>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `name` might not allow `None`.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetProfileName(
+    inst: ICInstance,
+    this_id: ICProfileID,
+    name: Option<&mut Str255>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetProfileName(
+            inst: ICInstance,
+            this_id: ICProfileID,
+            name: Option<&mut Str255>,
+        ) -> OSStatus;
+    }
+    unsafe { ICGetProfileName(inst, this_id, name) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `name` must be a valid pointer.
-    #[deprecated]
-    pub fn ICSetProfileName(
-        inst: ICInstance,
-        this_id: ICProfileID,
-        name: ConstStr255Param,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `name` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICSetProfileName(
+    inst: ICInstance,
+    this_id: ICProfileID,
+    name: ConstStr255Param,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICSetProfileName(
+            inst: ICInstance,
+            this_id: ICProfileID,
+            name: ConstStr255Param,
+        ) -> OSStatus;
+    }
+    unsafe { ICSetProfileName(inst, this_id, name) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `inst` must be a valid pointer.
-    /// - `new_id` must be a valid pointer.
-    #[deprecated]
-    pub fn ICAddProfile(
-        inst: ICInstance,
-        prototype_id: ICProfileID,
-        new_id: *mut ICProfileID,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `new_id` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICAddProfile(
+    inst: ICInstance,
+    prototype_id: ICProfileID,
+    new_id: *mut ICProfileID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICAddProfile(
+            inst: ICInstance,
+            prototype_id: ICProfileID,
+            new_id: *mut ICProfileID,
+        ) -> OSStatus;
+    }
+    unsafe { ICAddProfile(inst, prototype_id, new_id) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `inst` must be a valid pointer.
-    #[deprecated]
-    pub fn ICDeleteProfile(inst: ICInstance, this_id: ICProfileID) -> OSStatus;
+/// # Safety
+///
+/// `inst` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICDeleteProfile(
+    inst: ICInstance,
+    this_id: ICProfileID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICDeleteProfile(inst: ICInstance, this_id: ICProfileID) -> OSStatus;
+    }
+    unsafe { ICDeleteProfile(inst, this_id) }
 }

@@ -59,15 +59,22 @@ pub extern "C-unwind" fn CGPDFContextClose(context: &CGContext) {
     unsafe { CGPDFContextClose(context) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `page_info` generic should be of the correct type.
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextBeginPage(
-        context: &CGContext,
-        page_info: Option<&CFDictionary<CFString, CFType>>,
-    );
+/// # Safety
+///
+/// `page_info` generic should be of the correct type.
+#[cfg(feature = "CGContext")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFContextBeginPage(
+    context: &CGContext,
+    page_info: Option<&CFDictionary<CFString, CFType>>,
+) {
+    extern "C-unwind" {
+        fn CGPDFContextBeginPage(
+            context: &CGContext,
+            page_info: Option<&CFDictionary<CFString, CFType>>,
+        );
+    }
+    unsafe { CGPDFContextBeginPage(context, page_info) }
 }
 
 #[cfg(feature = "CGContext")]
@@ -91,35 +98,56 @@ pub extern "C-unwind" fn CGPDFContextAddDocumentMetadata(
     unsafe { CGPDFContextAddDocumentMetadata(context, metadata) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `parent_tree_dictionary` must be a valid pointer.
-    #[cfg(all(feature = "CGContext", feature = "CGPDFDictionary"))]
-    pub fn CGPDFContextSetParentTree(
-        context: &CGContext,
-        parent_tree_dictionary: CGPDFDictionaryRef,
-    );
+/// # Safety
+///
+/// `parent_tree_dictionary` must be a valid pointer.
+#[cfg(all(feature = "CGContext", feature = "CGPDFDictionary"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFContextSetParentTree(
+    context: &CGContext,
+    parent_tree_dictionary: CGPDFDictionaryRef,
+) {
+    extern "C-unwind" {
+        fn CGPDFContextSetParentTree(
+            context: &CGContext,
+            parent_tree_dictionary: CGPDFDictionaryRef,
+        );
+    }
+    unsafe { CGPDFContextSetParentTree(context, parent_tree_dictionary) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `id_tree_dictionary` must be a valid pointer.
-    #[cfg(all(feature = "CGContext", feature = "CGPDFDictionary"))]
-    pub fn CGPDFContextSetIDTree(context: &CGContext, id_tree_dictionary: CGPDFDictionaryRef);
+/// # Safety
+///
+/// `id_tree_dictionary` must be a valid pointer.
+#[cfg(all(feature = "CGContext", feature = "CGPDFDictionary"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFContextSetIDTree(
+    context: &CGContext,
+    id_tree_dictionary: CGPDFDictionaryRef,
+) {
+    extern "C-unwind" {
+        fn CGPDFContextSetIDTree(context: &CGContext, id_tree_dictionary: CGPDFDictionaryRef);
+    }
+    unsafe { CGPDFContextSetIDTree(context, id_tree_dictionary) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `page_tag_structure_tree_dictionary` generic must be of the correct type.
-    /// - `page_tag_structure_tree_dictionary` generic must be of the correct type.
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextSetPageTagStructureTree(
-        context: &CGContext,
-        page_tag_structure_tree_dictionary: &CFDictionary,
-    );
+/// # Safety
+///
+/// - `page_tag_structure_tree_dictionary` generic must be of the correct type.
+/// - `page_tag_structure_tree_dictionary` generic must be of the correct type.
+#[cfg(feature = "CGContext")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFContextSetPageTagStructureTree(
+    context: &CGContext,
+    page_tag_structure_tree_dictionary: &CFDictionary,
+) {
+    extern "C-unwind" {
+        fn CGPDFContextSetPageTagStructureTree(
+            context: &CGContext,
+            page_tag_structure_tree_dictionary: &CFDictionary,
+        );
+    }
+    unsafe { CGPDFContextSetPageTagStructureTree(context, page_tag_structure_tree_dictionary) }
 }
 
 #[cfg(feature = "CGContext")]
@@ -277,13 +305,20 @@ extern "C" {
     pub static kCGPDFContextAccessPermissions: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `outline` generic must be of the correct type.
-    /// - `outline` generic must be of the correct type.
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextSetOutline(context: &CGContext, outline: Option<&CFDictionary>);
+/// # Safety
+///
+/// - `outline` generic must be of the correct type.
+/// - `outline` generic must be of the correct type.
+#[cfg(feature = "CGContext")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFContextSetOutline(
+    context: &CGContext,
+    outline: Option<&CFDictionary>,
+) {
+    extern "C-unwind" {
+        fn CGPDFContextSetOutline(context: &CGContext, outline: Option<&CFDictionary>);
+    }
+    unsafe { CGPDFContextSetOutline(context, outline) }
 }
 
 extern "C" {
@@ -450,17 +485,25 @@ extern "C" {
     pub static kCGPDFTagPropertyLanguageText: &'static CGPDFTagProperty;
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `tag_properties` generic must be of the correct type.
-    /// - `tag_properties` generic must be of the correct type.
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextBeginTag(
-        context: &CGContext,
-        tag_type: CGPDFTagType,
-        tag_properties: &CFDictionary,
-    );
+/// # Safety
+///
+/// - `tag_properties` generic must be of the correct type.
+/// - `tag_properties` generic must be of the correct type.
+#[cfg(feature = "CGContext")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFContextBeginTag(
+    context: &CGContext,
+    tag_type: CGPDFTagType,
+    tag_properties: &CFDictionary,
+) {
+    extern "C-unwind" {
+        fn CGPDFContextBeginTag(
+            context: &CGContext,
+            tag_type: CGPDFTagType,
+            tag_properties: &CFDictionary,
+        );
+    }
+    unsafe { CGPDFContextBeginTag(context, tag_type, tag_properties) }
 }
 
 #[cfg(feature = "CGContext")]

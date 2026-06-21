@@ -5,27 +5,34 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Creates a clock that advances at the same rate as audio output.
-    ///
-    /// This clock will not drift from audio output, but may drift from CMClockGetHostTimeClock().
-    /// When audio output is completely stopped, the clock continues to advance, tracking CMClockGetHostTimeClock()
-    /// until audio output starts up again.
-    /// This clock is suitable for use as AVPlayer.sourceClock when synchronizing video-only playback
-    /// with audio played through other APIs or objects.
-    ///
-    /// Parameter `allocator`: A CFAllocator to use to allocate the clock.
-    /// Pass kCFAllocatorDefault or NULL to use the default allocator.
-    ///
-    /// Parameter `clockOut`: Points to a CMClockRef to receive the newly created clock.
-    /// The caller is responsible for calling CFRelease to release this clock.
-    ///
-    /// # Safety
-    ///
-    /// `clock_out` must be a valid pointer.
-    #[cfg(feature = "CMSync")]
-    pub fn CMAudioClockCreate(
-        allocator: Option<&CFAllocator>,
-        clock_out: NonNull<*mut CMClock>,
-    ) -> OSStatus;
+/// Creates a clock that advances at the same rate as audio output.
+///
+/// This clock will not drift from audio output, but may drift from CMClockGetHostTimeClock().
+/// When audio output is completely stopped, the clock continues to advance, tracking CMClockGetHostTimeClock()
+/// until audio output starts up again.
+/// This clock is suitable for use as AVPlayer.sourceClock when synchronizing video-only playback
+/// with audio played through other APIs or objects.
+///
+/// Parameter `allocator`: A CFAllocator to use to allocate the clock.
+/// Pass kCFAllocatorDefault or NULL to use the default allocator.
+///
+/// Parameter `clockOut`: Points to a CMClockRef to receive the newly created clock.
+/// The caller is responsible for calling CFRelease to release this clock.
+///
+/// # Safety
+///
+/// `clock_out` must be a valid pointer.
+#[cfg(feature = "CMSync")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMAudioClockCreate(
+    allocator: Option<&CFAllocator>,
+    clock_out: NonNull<*mut CMClock>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMAudioClockCreate(
+            allocator: Option<&CFAllocator>,
+            clock_out: NonNull<*mut CMClock>,
+        ) -> OSStatus;
+    }
+    unsafe { CMAudioClockCreate(allocator, clock_out) }
 }

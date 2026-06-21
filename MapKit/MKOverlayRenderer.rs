@@ -139,7 +139,11 @@ impl MKOverlayRenderer {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
-    pub fn MKRoadWidthAtZoomScale(zoom_scale: MKZoomScale) -> CGFloat;
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MKRoadWidthAtZoomScale(zoom_scale: MKZoomScale) -> CGFloat {
+    extern "C-unwind" {
+        fn MKRoadWidthAtZoomScale(zoom_scale: MKZoomScale) -> CGFloat;
+    }
+    unsafe { MKRoadWidthAtZoomScale(zoom_scale) }
 }

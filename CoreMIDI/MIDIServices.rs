@@ -1536,934 +1536,1206 @@ extern "C" {
     pub static kMIDIPropertyUMPEnabled: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Creates a MIDIClient object.
-    ///
-    ///
-    /// Parameter `name`: The client's name.
-    ///
-    /// Parameter `notifyProc`: An optional (may be NULL) callback function through which the client
-    /// will receive notifications of changes to the system.
-    ///
-    /// Parameter `notifyRefCon`: A refCon passed back to notifyRefCon
-    ///
-    /// Parameter `outClient`: On successful return, points to the newly-created MIDIClientRef.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// Note that notifyProc will always be called on the run loop which was current when
-    /// MIDIClientCreate was first called.
-    ///
-    /// # Safety
-    ///
-    /// - `notify_proc` must be implemented correctly.
-    /// - `notify_ref_con` must be a valid pointer or null.
-    /// - `out_client` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIClientCreate(
-        name: &CFString,
-        notify_proc: MIDINotifyProc,
-        notify_ref_con: *mut c_void,
-        out_client: NonNull<MIDIClientRef>,
-    ) -> OSStatus;
+/// Creates a MIDIClient object.
+///
+///
+/// Parameter `name`: The client's name.
+///
+/// Parameter `notifyProc`: An optional (may be NULL) callback function through which the client
+/// will receive notifications of changes to the system.
+///
+/// Parameter `notifyRefCon`: A refCon passed back to notifyRefCon
+///
+/// Parameter `outClient`: On successful return, points to the newly-created MIDIClientRef.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// Note that notifyProc will always be called on the run loop which was current when
+/// MIDIClientCreate was first called.
+///
+/// # Safety
+///
+/// - `notify_proc` must be implemented correctly.
+/// - `notify_ref_con` must be a valid pointer or null.
+/// - `out_client` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIClientCreate(
+    name: &CFString,
+    notify_proc: MIDINotifyProc,
+    notify_ref_con: *mut c_void,
+    out_client: NonNull<MIDIClientRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIClientCreate(
+            name: &CFString,
+            notify_proc: MIDINotifyProc,
+            notify_ref_con: *mut c_void,
+            out_client: NonNull<MIDIClientRef>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIClientCreate(name, notify_proc, notify_ref_con, out_client) }
 }
 
-extern "C-unwind" {
-    /// Creates a MIDIClient object.
-    ///
-    ///
-    /// Parameter `name`: The client's name.
-    ///
-    /// Parameter `outClient`: On successful return, points to the newly-created MIDIClientRef.
-    ///
-    /// Parameter `notifyBlock`: An optional (may be NULL) block via which the client
-    /// will receive notifications of changes to the system.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// Note that notifyBlock is called on a thread chosen by the implementation.
-    /// Thread-safety is the block's responsibility.
-    ///
-    /// # Safety
-    ///
-    /// `out_client` must be a valid pointer.
-    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-    pub fn MIDIClientCreateWithBlock(
-        name: &CFString,
-        out_client: NonNull<MIDIClientRef>,
-        notify_block: Option<&MIDINotifyBlock>,
-    ) -> OSStatus;
+/// Creates a MIDIClient object.
+///
+///
+/// Parameter `name`: The client's name.
+///
+/// Parameter `outClient`: On successful return, points to the newly-created MIDIClientRef.
+///
+/// Parameter `notifyBlock`: An optional (may be NULL) block via which the client
+/// will receive notifications of changes to the system.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// Note that notifyBlock is called on a thread chosen by the implementation.
+/// Thread-safety is the block's responsibility.
+///
+/// # Safety
+///
+/// `out_client` must be a valid pointer.
+#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIClientCreateWithBlock(
+    name: &CFString,
+    out_client: NonNull<MIDIClientRef>,
+    notify_block: Option<&MIDINotifyBlock>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIClientCreateWithBlock(
+            name: &CFString,
+            out_client: NonNull<MIDIClientRef>,
+            notify_block: Option<&MIDINotifyBlock>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIClientCreateWithBlock(name, out_client, notify_block) }
 }
 
-extern "C-unwind" {
-    /// Disposes a MIDIClient object.
-    ///
-    ///
-    /// Parameter `client`: The client to dispose.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// It is not essential to call this function; the CoreMIDI framework will automatically
-    /// dispose all MIDIClients when an application terminates. However, if this method is
-    /// called to dispose the last/only MIDIClient owned by an application, the MIDI server may
-    /// exit if there are no other MIDIClients remaining in the system, causing all subsequent calls
-    /// to MIDIClientCreate and MIDIClientCreateWithBlock by that application to fail. For this reason,
-    /// disposing all of an application's MIDIClients is strongly discouraged.
-    pub fn MIDIClientDispose(client: MIDIClientRef) -> OSStatus;
+/// Disposes a MIDIClient object.
+///
+///
+/// Parameter `client`: The client to dispose.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// It is not essential to call this function; the CoreMIDI framework will automatically
+/// dispose all MIDIClients when an application terminates. However, if this method is
+/// called to dispose the last/only MIDIClient owned by an application, the MIDI server may
+/// exit if there are no other MIDIClients remaining in the system, causing all subsequent calls
+/// to MIDIClientCreate and MIDIClientCreateWithBlock by that application to fail. For this reason,
+/// disposing all of an application's MIDIClients is strongly discouraged.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIClientDispose(client: MIDIClientRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIClientDispose(client: MIDIClientRef) -> OSStatus;
+    }
+    unsafe { MIDIClientDispose(client) }
 }
 
-extern "C-unwind" {
-    /// Creates an input port through which the client may receive
-    /// incoming MIDI messages from any MIDI source.
-    ///
-    ///
-    /// Parameter `client`: The client to own the newly-created port.
-    ///
-    /// Parameter `portName`: The name of the port.
-    ///
-    /// Parameter `protocol`: The MIDI protocol variant to be delivered to this port. The system
-    /// will automatically convert to this protocol as needed.
-    ///
-    /// Parameter `outPort`: On successful return, points to the newly-created
-    /// MIDIPort.
-    ///
-    /// Parameter `receiveBlock`: The MIDIReceiveBlock which will be called with incoming MIDI, from sources
-    /// connected to this port.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// After creating a port, use MIDIPortConnectSource to establish an input connection from
-    /// any number of sources to your port.
-    ///
-    /// readBlock will be called on a separate high-priority thread owned by CoreMIDI.
-    ///
-    /// # Safety
-    ///
-    /// `out_port` must be a valid pointer.
-    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-    pub fn MIDIInputPortCreateWithProtocol(
-        client: MIDIClientRef,
-        port_name: &CFString,
-        protocol: MIDIProtocolID,
-        out_port: NonNull<MIDIPortRef>,
-        receive_block: &MIDIReceiveBlock,
-    ) -> OSStatus;
+/// Creates an input port through which the client may receive
+/// incoming MIDI messages from any MIDI source.
+///
+///
+/// Parameter `client`: The client to own the newly-created port.
+///
+/// Parameter `portName`: The name of the port.
+///
+/// Parameter `protocol`: The MIDI protocol variant to be delivered to this port. The system
+/// will automatically convert to this protocol as needed.
+///
+/// Parameter `outPort`: On successful return, points to the newly-created
+/// MIDIPort.
+///
+/// Parameter `receiveBlock`: The MIDIReceiveBlock which will be called with incoming MIDI, from sources
+/// connected to this port.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// After creating a port, use MIDIPortConnectSource to establish an input connection from
+/// any number of sources to your port.
+///
+/// readBlock will be called on a separate high-priority thread owned by CoreMIDI.
+///
+/// # Safety
+///
+/// `out_port` must be a valid pointer.
+#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIInputPortCreateWithProtocol(
+    client: MIDIClientRef,
+    port_name: &CFString,
+    protocol: MIDIProtocolID,
+    out_port: NonNull<MIDIPortRef>,
+    receive_block: &MIDIReceiveBlock,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIInputPortCreateWithProtocol(
+            client: MIDIClientRef,
+            port_name: &CFString,
+            protocol: MIDIProtocolID,
+            out_port: NonNull<MIDIPortRef>,
+            receive_block: &MIDIReceiveBlock,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIInputPortCreateWithProtocol(client, port_name, protocol, out_port, receive_block) }
 }
 
-extern "C-unwind" {
-    /// Creates an input port through which the client may receive
-    /// incoming MIDI messages from any MIDI source.
-    ///
-    ///
-    /// Parameter `client`: The client to own the newly-created port.
-    ///
-    /// Parameter `portName`: The name of the port.
-    ///
-    /// Parameter `readProc`: The MIDIReadProc which will be called with incoming MIDI,
-    /// from sources connected to this port.
-    ///
-    /// Parameter `refCon`: The refCon passed to readHook.
-    ///
-    /// Parameter `outPort`: On successful return, points to the newly-created
-    /// MIDIPort.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// After creating a port, use MIDIPortConnectSource to establish an input connection from
-    /// any number of sources to your port.
-    ///
-    /// readProc will be called on a separate high-priority thread owned by CoreMIDI.
-    ///
-    /// # Safety
-    ///
-    /// - `read_proc` must be implemented correctly.
-    /// - `ref_con` must be a valid pointer or null.
-    /// - `out_port` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated]
-    pub fn MIDIInputPortCreate(
-        client: MIDIClientRef,
-        port_name: &CFString,
-        read_proc: MIDIReadProc,
-        ref_con: *mut c_void,
-        out_port: NonNull<MIDIPortRef>,
-    ) -> OSStatus;
+/// Creates an input port through which the client may receive
+/// incoming MIDI messages from any MIDI source.
+///
+///
+/// Parameter `client`: The client to own the newly-created port.
+///
+/// Parameter `portName`: The name of the port.
+///
+/// Parameter `readProc`: The MIDIReadProc which will be called with incoming MIDI,
+/// from sources connected to this port.
+///
+/// Parameter `refCon`: The refCon passed to readHook.
+///
+/// Parameter `outPort`: On successful return, points to the newly-created
+/// MIDIPort.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// After creating a port, use MIDIPortConnectSource to establish an input connection from
+/// any number of sources to your port.
+///
+/// readProc will be called on a separate high-priority thread owned by CoreMIDI.
+///
+/// # Safety
+///
+/// - `read_proc` must be implemented correctly.
+/// - `ref_con` must be a valid pointer or null.
+/// - `out_port` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIInputPortCreate(
+    client: MIDIClientRef,
+    port_name: &CFString,
+    read_proc: MIDIReadProc,
+    ref_con: *mut c_void,
+    out_port: NonNull<MIDIPortRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIInputPortCreate(
+            client: MIDIClientRef,
+            port_name: &CFString,
+            read_proc: MIDIReadProc,
+            ref_con: *mut c_void,
+            out_port: NonNull<MIDIPortRef>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIInputPortCreate(client, port_name, read_proc, ref_con, out_port) }
 }
 
-extern "C-unwind" {
-    /// Creates an input port through which the client may receive
-    /// incoming MIDI messages from any MIDI source.
-    ///
-    ///
-    /// Parameter `client`: The client to own the newly-created port.
-    ///
-    /// Parameter `portName`: The name of the port.
-    ///
-    /// Parameter `outPort`: On successful return, points to the newly-created
-    /// MIDIPort.
-    ///
-    /// Parameter `readBlock`: The MIDIReadBlock which will be called with incoming MIDI, from sources
-    /// connected to this port.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// After creating a port, use MIDIPortConnectSource to establish an input connection from
-    /// any number of sources to your port.
-    ///
-    /// readBlock will be called on a separate high-priority thread owned by CoreMIDI.
-    ///
-    /// # Safety
-    ///
-    /// `out_port` must be a valid pointer.
-    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-    #[deprecated]
-    pub fn MIDIInputPortCreateWithBlock(
-        client: MIDIClientRef,
-        port_name: &CFString,
-        out_port: NonNull<MIDIPortRef>,
-        read_block: &MIDIReadBlock,
-    ) -> OSStatus;
+/// Creates an input port through which the client may receive
+/// incoming MIDI messages from any MIDI source.
+///
+///
+/// Parameter `client`: The client to own the newly-created port.
+///
+/// Parameter `portName`: The name of the port.
+///
+/// Parameter `outPort`: On successful return, points to the newly-created
+/// MIDIPort.
+///
+/// Parameter `readBlock`: The MIDIReadBlock which will be called with incoming MIDI, from sources
+/// connected to this port.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// After creating a port, use MIDIPortConnectSource to establish an input connection from
+/// any number of sources to your port.
+///
+/// readBlock will be called on a separate high-priority thread owned by CoreMIDI.
+///
+/// # Safety
+///
+/// `out_port` must be a valid pointer.
+#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIInputPortCreateWithBlock(
+    client: MIDIClientRef,
+    port_name: &CFString,
+    out_port: NonNull<MIDIPortRef>,
+    read_block: &MIDIReadBlock,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIInputPortCreateWithBlock(
+            client: MIDIClientRef,
+            port_name: &CFString,
+            out_port: NonNull<MIDIPortRef>,
+            read_block: &MIDIReadBlock,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIInputPortCreateWithBlock(client, port_name, out_port, read_block) }
 }
 
-extern "C-unwind" {
-    /// Creates an output port through which the client may send
-    /// outgoing MIDI messages to any MIDI destination.
-    ///
-    ///
-    /// Parameter `client`: The client to own the newly-created port
-    ///
-    /// Parameter `portName`: The name of the port.
-    ///
-    /// Parameter `outPort`: On successful return, points to the newly-created
-    /// MIDIPort.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// Output ports provide a mechanism for MIDI merging.  CoreMIDI assumes that each output
-    /// port will be responsible for sending only a single MIDI stream to each destination,
-    /// although a single port may address all of the destinations in the system.
-    ///
-    /// Multiple output ports are only necessary when an application is capable of directing
-    /// multiple simultaneous MIDI streams to the same destination.
-    ///
-    /// # Safety
-    ///
-    /// `out_port` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIOutputPortCreate(
-        client: MIDIClientRef,
-        port_name: &CFString,
-        out_port: NonNull<MIDIPortRef>,
-    ) -> OSStatus;
+/// Creates an output port through which the client may send
+/// outgoing MIDI messages to any MIDI destination.
+///
+///
+/// Parameter `client`: The client to own the newly-created port
+///
+/// Parameter `portName`: The name of the port.
+///
+/// Parameter `outPort`: On successful return, points to the newly-created
+/// MIDIPort.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// Output ports provide a mechanism for MIDI merging.  CoreMIDI assumes that each output
+/// port will be responsible for sending only a single MIDI stream to each destination,
+/// although a single port may address all of the destinations in the system.
+///
+/// Multiple output ports are only necessary when an application is capable of directing
+/// multiple simultaneous MIDI streams to the same destination.
+///
+/// # Safety
+///
+/// `out_port` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIOutputPortCreate(
+    client: MIDIClientRef,
+    port_name: &CFString,
+    out_port: NonNull<MIDIPortRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIOutputPortCreate(
+            client: MIDIClientRef,
+            port_name: &CFString,
+            out_port: NonNull<MIDIPortRef>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIOutputPortCreate(client, port_name, out_port) }
 }
 
-extern "C-unwind" {
-    /// Disposes a MIDIPort object.
-    ///
-    ///
-    /// Parameter `port`: The port to dispose.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// It is not usually necessary to call this function; when an application's MIDIClient's
-    /// are automatically disposed at termination, or explicitly, via MIDIClientDispose, the
-    /// client's ports are automatically disposed at that time.
-    pub fn MIDIPortDispose(port: MIDIPortRef) -> OSStatus;
+/// Disposes a MIDIPort object.
+///
+///
+/// Parameter `port`: The port to dispose.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// It is not usually necessary to call this function; when an application's MIDIClient's
+/// are automatically disposed at termination, or explicitly, via MIDIClientDispose, the
+/// client's ports are automatically disposed at that time.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIPortDispose(port: MIDIPortRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIPortDispose(port: MIDIPortRef) -> OSStatus;
+    }
+    unsafe { MIDIPortDispose(port) }
 }
 
-extern "C-unwind" {
-    /// Establishes a connection from a source to a client's input port.
-    ///
-    ///
-    /// Parameter `port`: The port to which to create the connection.  This port's
-    /// readProc is called with incoming MIDI from the source.
-    ///
-    /// Parameter `source`: The source from which to create the connection.
-    ///
-    /// Parameter `connRefCon`: This refCon is passed to the port's MIDIReadProc or MIDIReadBlock, as a way to
-    /// identify the source.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `conn_ref_con` must be a valid pointer or null.
-    pub fn MIDIPortConnectSource(
-        port: MIDIPortRef,
-        source: MIDIEndpointRef,
-        conn_ref_con: *mut c_void,
-    ) -> OSStatus;
+/// Establishes a connection from a source to a client's input port.
+///
+///
+/// Parameter `port`: The port to which to create the connection.  This port's
+/// readProc is called with incoming MIDI from the source.
+///
+/// Parameter `source`: The source from which to create the connection.
+///
+/// Parameter `connRefCon`: This refCon is passed to the port's MIDIReadProc or MIDIReadBlock, as a way to
+/// identify the source.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `conn_ref_con` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIPortConnectSource(
+    port: MIDIPortRef,
+    source: MIDIEndpointRef,
+    conn_ref_con: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIPortConnectSource(
+            port: MIDIPortRef,
+            source: MIDIEndpointRef,
+            conn_ref_con: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIPortConnectSource(port, source, conn_ref_con) }
 }
 
-extern "C-unwind" {
-    /// Closes a previously-established source-to-input port
-    /// connection.
-    ///
-    ///
-    /// Parameter `port`: The port whose connection is being closed.
-    ///
-    /// Parameter `source`: The source from which to close a connection to the
-    /// specified port.
-    ///
-    /// Returns: An OSStatus result code.
-    pub fn MIDIPortDisconnectSource(port: MIDIPortRef, source: MIDIEndpointRef) -> OSStatus;
+/// Closes a previously-established source-to-input port
+/// connection.
+///
+///
+/// Parameter `port`: The port whose connection is being closed.
+///
+/// Parameter `source`: The source from which to close a connection to the
+/// specified port.
+///
+/// Returns: An OSStatus result code.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIPortDisconnectSource(
+    port: MIDIPortRef,
+    source: MIDIEndpointRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIPortDisconnectSource(port: MIDIPortRef, source: MIDIEndpointRef) -> OSStatus;
+    }
+    unsafe { MIDIPortDisconnectSource(port, source) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of devices in the system.
-    ///
-    ///
-    /// Returns: The number of devices in the system, or 0 if an error
-    /// occurred.
-    pub fn MIDIGetNumberOfDevices() -> ItemCount;
+/// Returns the number of devices in the system.
+///
+///
+/// Returns: The number of devices in the system, or 0 if an error
+/// occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIGetNumberOfDevices() -> ItemCount {
+    extern "C-unwind" {
+        fn MIDIGetNumberOfDevices() -> ItemCount;
+    }
+    unsafe { MIDIGetNumberOfDevices() }
 }
 
-extern "C-unwind" {
-    /// Returns one of the devices in the system.
-    ///
-    ///
-    /// Parameter `deviceIndex0`: The index (0...MIDIGetNumberOfDevices()-1) of the device
-    /// to return.
-    ///
-    /// Returns: A reference to a device, or NULL if an error occurred.
-    ///
-    ///
-    /// Use this to enumerate the devices in the system.
-    ///
-    /// To enumerate the entities in the system, you can walk through the devices, then walk
-    /// through the devices' entities.
-    ///
-    /// Note: If a client iterates through the devices and entities in the system, it will not
-    /// ever visit any virtual sources and destinations created by other clients.  Also, a
-    /// device iteration will return devices which are "offline" (were present in the past but
-    /// are not currently present), while iterations through the system's sources and
-    /// destinations will not include the endpoints of offline devices.
-    ///
-    /// Thus clients should usually use MIDIGetNumberOfSources, MIDIGetSource,
-    /// MIDIGetNumberOfDestinations and MIDIGetDestination, rather iterating through devices and
-    /// entities to locate endpoints.
-    pub fn MIDIGetDevice(device_index0: ItemCount) -> MIDIDeviceRef;
+/// Returns one of the devices in the system.
+///
+///
+/// Parameter `deviceIndex0`: The index (0...MIDIGetNumberOfDevices()-1) of the device
+/// to return.
+///
+/// Returns: A reference to a device, or NULL if an error occurred.
+///
+///
+/// Use this to enumerate the devices in the system.
+///
+/// To enumerate the entities in the system, you can walk through the devices, then walk
+/// through the devices' entities.
+///
+/// Note: If a client iterates through the devices and entities in the system, it will not
+/// ever visit any virtual sources and destinations created by other clients.  Also, a
+/// device iteration will return devices which are "offline" (were present in the past but
+/// are not currently present), while iterations through the system's sources and
+/// destinations will not include the endpoints of offline devices.
+///
+/// Thus clients should usually use MIDIGetNumberOfSources, MIDIGetSource,
+/// MIDIGetNumberOfDestinations and MIDIGetDestination, rather iterating through devices and
+/// entities to locate endpoints.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIGetDevice(device_index0: ItemCount) -> MIDIDeviceRef {
+    extern "C-unwind" {
+        fn MIDIGetDevice(device_index0: ItemCount) -> MIDIDeviceRef;
+    }
+    unsafe { MIDIGetDevice(device_index0) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of entities in a given device.
-    ///
-    ///
-    /// Parameter `device`: The device being queried.
-    ///
-    ///
-    /// Returns: The number of entities the device contains, or 0 if an
-    /// error occurred.
-    pub fn MIDIDeviceGetNumberOfEntities(device: MIDIDeviceRef) -> ItemCount;
+/// Returns the number of entities in a given device.
+///
+///
+/// Parameter `device`: The device being queried.
+///
+///
+/// Returns: The number of entities the device contains, or 0 if an
+/// error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDeviceGetNumberOfEntities(device: MIDIDeviceRef) -> ItemCount {
+    extern "C-unwind" {
+        fn MIDIDeviceGetNumberOfEntities(device: MIDIDeviceRef) -> ItemCount;
+    }
+    unsafe { MIDIDeviceGetNumberOfEntities(device) }
 }
 
-extern "C-unwind" {
-    /// Returns one of a given device's entities.
-    ///
-    ///
-    /// Parameter `device`: The device being queried.
-    ///
-    /// Parameter `entityIndex0`: The index (0...MIDIDeviceGetNumberOfEntities(device)-1)
-    /// of the entity to return
-    ///
-    ///
-    /// Returns: A reference to an entity, or NULL if an error occurred.
-    pub fn MIDIDeviceGetEntity(device: MIDIDeviceRef, entity_index0: ItemCount) -> MIDIEntityRef;
+/// Returns one of a given device's entities.
+///
+///
+/// Parameter `device`: The device being queried.
+///
+/// Parameter `entityIndex0`: The index (0...MIDIDeviceGetNumberOfEntities(device)-1)
+/// of the entity to return
+///
+///
+/// Returns: A reference to an entity, or NULL if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDeviceGetEntity(
+    device: MIDIDeviceRef,
+    entity_index0: ItemCount,
+) -> MIDIEntityRef {
+    extern "C-unwind" {
+        fn MIDIDeviceGetEntity(device: MIDIDeviceRef, entity_index0: ItemCount) -> MIDIEntityRef;
+    }
+    unsafe { MIDIDeviceGetEntity(device, entity_index0) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of sources in a given entity.
-    ///
-    ///
-    /// Parameter `entity`: The entity being queried
-    ///
-    ///
-    /// Returns: The number of sources the entity contains, or 0 if an
-    /// error occurred.
-    pub fn MIDIEntityGetNumberOfSources(entity: MIDIEntityRef) -> ItemCount;
+/// Returns the number of sources in a given entity.
+///
+///
+/// Parameter `entity`: The entity being queried
+///
+///
+/// Returns: The number of sources the entity contains, or 0 if an
+/// error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIEntityGetNumberOfSources(entity: MIDIEntityRef) -> ItemCount {
+    extern "C-unwind" {
+        fn MIDIEntityGetNumberOfSources(entity: MIDIEntityRef) -> ItemCount;
+    }
+    unsafe { MIDIEntityGetNumberOfSources(entity) }
 }
 
-extern "C-unwind" {
-    /// Returns one of a given entity's sources.
-    ///
-    ///
-    /// Parameter `entity`: The entity being queried.
-    ///
-    /// Parameter `sourceIndex0`: The index (0...MIDIEntityGetNumberOfSources(entity)-1) of
-    /// the source to return
-    ///
-    ///
-    /// Returns: A reference to a source, or NULL if an error occurred.
-    pub fn MIDIEntityGetSource(entity: MIDIEntityRef, source_index0: ItemCount) -> MIDIEndpointRef;
+/// Returns one of a given entity's sources.
+///
+///
+/// Parameter `entity`: The entity being queried.
+///
+/// Parameter `sourceIndex0`: The index (0...MIDIEntityGetNumberOfSources(entity)-1) of
+/// the source to return
+///
+///
+/// Returns: A reference to a source, or NULL if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIEntityGetSource(
+    entity: MIDIEntityRef,
+    source_index0: ItemCount,
+) -> MIDIEndpointRef {
+    extern "C-unwind" {
+        fn MIDIEntityGetSource(entity: MIDIEntityRef, source_index0: ItemCount) -> MIDIEndpointRef;
+    }
+    unsafe { MIDIEntityGetSource(entity, source_index0) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of destinations in a given entity.
-    ///
-    ///
-    /// Parameter `entity`: The entity being queried
-    ///
-    ///
-    /// Returns: The number of destinations the entity contains, or 0
-    /// if an error occurred.
-    pub fn MIDIEntityGetNumberOfDestinations(entity: MIDIEntityRef) -> ItemCount;
+/// Returns the number of destinations in a given entity.
+///
+///
+/// Parameter `entity`: The entity being queried
+///
+///
+/// Returns: The number of destinations the entity contains, or 0
+/// if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIEntityGetNumberOfDestinations(
+    entity: MIDIEntityRef,
+) -> ItemCount {
+    extern "C-unwind" {
+        fn MIDIEntityGetNumberOfDestinations(entity: MIDIEntityRef) -> ItemCount;
+    }
+    unsafe { MIDIEntityGetNumberOfDestinations(entity) }
 }
 
-extern "C-unwind" {
-    /// Returns one of a given entity's destinations.
-    ///
-    ///
-    /// Parameter `entity`: The entity being queried.
-    ///
-    /// Parameter `destIndex0`: The index (0...MIDIEntityGetNumberOfDestinations(entity)
-    /// - 1) of the destination to return
-    ///
-    ///
-    /// Returns: A reference to a destination, or NULL if an error occurred.
-    pub fn MIDIEntityGetDestination(
-        entity: MIDIEntityRef,
-        dest_index0: ItemCount,
-    ) -> MIDIEndpointRef;
+/// Returns one of a given entity's destinations.
+///
+///
+/// Parameter `entity`: The entity being queried.
+///
+/// Parameter `destIndex0`: The index (0...MIDIEntityGetNumberOfDestinations(entity)
+/// - 1) of the destination to return
+///
+///
+/// Returns: A reference to a destination, or NULL if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIEntityGetDestination(
+    entity: MIDIEntityRef,
+    dest_index0: ItemCount,
+) -> MIDIEndpointRef {
+    extern "C-unwind" {
+        fn MIDIEntityGetDestination(
+            entity: MIDIEntityRef,
+            dest_index0: ItemCount,
+        ) -> MIDIEndpointRef;
+    }
+    unsafe { MIDIEntityGetDestination(entity, dest_index0) }
 }
 
-extern "C-unwind" {
-    /// Returns an entity's device.
-    ///
-    ///
-    /// Parameter `inEntity`: The entity being queried.
-    ///
-    /// Parameter `outDevice`: On successful return, the entity's owning device.
-    ///
-    /// # Safety
-    ///
-    /// `out_device` must be a valid pointer or null.
-    pub fn MIDIEntityGetDevice(
-        in_entity: MIDIEntityRef,
-        out_device: *mut MIDIDeviceRef,
-    ) -> OSStatus;
+/// Returns an entity's device.
+///
+///
+/// Parameter `inEntity`: The entity being queried.
+///
+/// Parameter `outDevice`: On successful return, the entity's owning device.
+///
+/// # Safety
+///
+/// `out_device` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIEntityGetDevice(
+    in_entity: MIDIEntityRef,
+    out_device: *mut MIDIDeviceRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIEntityGetDevice(
+            in_entity: MIDIEntityRef,
+            out_device: *mut MIDIDeviceRef,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIEntityGetDevice(in_entity, out_device) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of sources in the system.
-    ///
-    ///
-    /// Returns: The number of sources in the system, or 0 if an error
-    /// occurred.
-    pub fn MIDIGetNumberOfSources() -> ItemCount;
+/// Returns the number of sources in the system.
+///
+///
+/// Returns: The number of sources in the system, or 0 if an error
+/// occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIGetNumberOfSources() -> ItemCount {
+    extern "C-unwind" {
+        fn MIDIGetNumberOfSources() -> ItemCount;
+    }
+    unsafe { MIDIGetNumberOfSources() }
 }
 
-extern "C-unwind" {
-    /// Returns one of the sources in the system.
-    ///
-    ///
-    /// Parameter `sourceIndex0`: The index (0...MIDIGetNumberOfSources()-1) of the source
-    /// to return
-    ///
-    /// Returns: A reference to a source, or NULL if an error occurred.
-    pub fn MIDIGetSource(source_index0: ItemCount) -> MIDIEndpointRef;
+/// Returns one of the sources in the system.
+///
+///
+/// Parameter `sourceIndex0`: The index (0...MIDIGetNumberOfSources()-1) of the source
+/// to return
+///
+/// Returns: A reference to a source, or NULL if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIGetSource(source_index0: ItemCount) -> MIDIEndpointRef {
+    extern "C-unwind" {
+        fn MIDIGetSource(source_index0: ItemCount) -> MIDIEndpointRef;
+    }
+    unsafe { MIDIGetSource(source_index0) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of destinations in the system.
-    ///
-    ///
-    /// Returns: The number of destinations in the system, or 0 if an error
-    /// occurred.
-    pub fn MIDIGetNumberOfDestinations() -> ItemCount;
+/// Returns the number of destinations in the system.
+///
+///
+/// Returns: The number of destinations in the system, or 0 if an error
+/// occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIGetNumberOfDestinations() -> ItemCount {
+    extern "C-unwind" {
+        fn MIDIGetNumberOfDestinations() -> ItemCount;
+    }
+    unsafe { MIDIGetNumberOfDestinations() }
 }
 
-extern "C-unwind" {
-    /// Returns one of the destinations in the system.
-    ///
-    ///
-    /// Parameter `destIndex0`: The index (0...MIDIGetNumberOfDestinations()-1) of the
-    /// destination to return
-    ///
-    /// Returns: A reference to a destination, or NULL if an error occurred.
-    pub fn MIDIGetDestination(dest_index0: ItemCount) -> MIDIEndpointRef;
+/// Returns one of the destinations in the system.
+///
+///
+/// Parameter `destIndex0`: The index (0...MIDIGetNumberOfDestinations()-1) of the
+/// destination to return
+///
+/// Returns: A reference to a destination, or NULL if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIGetDestination(dest_index0: ItemCount) -> MIDIEndpointRef {
+    extern "C-unwind" {
+        fn MIDIGetDestination(dest_index0: ItemCount) -> MIDIEndpointRef;
+    }
+    unsafe { MIDIGetDestination(dest_index0) }
 }
 
-extern "C-unwind" {
-    /// Returns an endpoint's entity.
-    ///
-    ///
-    /// Parameter `inEndpoint`: The endpoint being queried.
-    ///
-    /// Parameter `outEntity`: On exit, the endpoint's owning entity, or NULL if none.
-    ///
-    ///
-    /// Virtual sources and destinations don't have entities.
-    ///
-    /// # Safety
-    ///
-    /// `out_entity` must be a valid pointer or null.
-    pub fn MIDIEndpointGetEntity(
-        in_endpoint: MIDIEndpointRef,
-        out_entity: *mut MIDIEntityRef,
-    ) -> OSStatus;
+/// Returns an endpoint's entity.
+///
+///
+/// Parameter `inEndpoint`: The endpoint being queried.
+///
+/// Parameter `outEntity`: On exit, the endpoint's owning entity, or NULL if none.
+///
+///
+/// Virtual sources and destinations don't have entities.
+///
+/// # Safety
+///
+/// `out_entity` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIEndpointGetEntity(
+    in_endpoint: MIDIEndpointRef,
+    out_entity: *mut MIDIEntityRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIEndpointGetEntity(
+            in_endpoint: MIDIEndpointRef,
+            out_entity: *mut MIDIEntityRef,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIEndpointGetEntity(in_endpoint, out_entity) }
 }
 
-extern "C-unwind" {
-    /// Creates a virtual destination in a client.
-    ///
-    ///
-    /// Parameter `client`: The client owning the virtual destination.
-    ///
-    /// Parameter `name`: The name of the virtual destination.
-    ///
-    /// Parameter `protocol`: The MIDI protocol variant to be delivered to this destination. The system
-    /// will automatically convert to this protocol as needed.
-    ///
-    /// Parameter `outDest`: On successful return, a pointer to the newly-created
-    /// destination.
-    ///
-    /// Parameter `readBlock`: The MIDIReceiveBlock to be called when a client sends MIDI to the virtual
-    /// destination.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// The specified readBlock gets called when clients send MIDI to your virtual destination.
-    ///
-    /// Drivers need not call this; when they create devices and entities, sources and
-    /// destinations are created at that time.
-    ///
-    /// After creating a virtual destination, it's a good idea to assign it the same unique ID
-    /// it had the last time your application created it. (Although you should be prepared for
-    /// this to fail in the unlikely event of a collision.) This will permit other clients
-    /// to retain persistent references to your virtual destination more easily.
-    ///
-    /// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the
-    /// relationship between when a sender sends MIDI to the destination and when it is
-    /// received.
-    ///
-    /// # Safety
-    ///
-    /// `out_dest` must be a valid pointer.
-    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-    pub fn MIDIDestinationCreateWithProtocol(
-        client: MIDIClientRef,
-        name: &CFString,
-        protocol: MIDIProtocolID,
-        out_dest: NonNull<MIDIEndpointRef>,
-        read_block: &MIDIReceiveBlock,
-    ) -> OSStatus;
+/// Creates a virtual destination in a client.
+///
+///
+/// Parameter `client`: The client owning the virtual destination.
+///
+/// Parameter `name`: The name of the virtual destination.
+///
+/// Parameter `protocol`: The MIDI protocol variant to be delivered to this destination. The system
+/// will automatically convert to this protocol as needed.
+///
+/// Parameter `outDest`: On successful return, a pointer to the newly-created
+/// destination.
+///
+/// Parameter `readBlock`: The MIDIReceiveBlock to be called when a client sends MIDI to the virtual
+/// destination.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// The specified readBlock gets called when clients send MIDI to your virtual destination.
+///
+/// Drivers need not call this; when they create devices and entities, sources and
+/// destinations are created at that time.
+///
+/// After creating a virtual destination, it's a good idea to assign it the same unique ID
+/// it had the last time your application created it. (Although you should be prepared for
+/// this to fail in the unlikely event of a collision.) This will permit other clients
+/// to retain persistent references to your virtual destination more easily.
+///
+/// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the
+/// relationship between when a sender sends MIDI to the destination and when it is
+/// received.
+///
+/// # Safety
+///
+/// `out_dest` must be a valid pointer.
+#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDestinationCreateWithProtocol(
+    client: MIDIClientRef,
+    name: &CFString,
+    protocol: MIDIProtocolID,
+    out_dest: NonNull<MIDIEndpointRef>,
+    read_block: &MIDIReceiveBlock,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIDestinationCreateWithProtocol(
+            client: MIDIClientRef,
+            name: &CFString,
+            protocol: MIDIProtocolID,
+            out_dest: NonNull<MIDIEndpointRef>,
+            read_block: &MIDIReceiveBlock,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIDestinationCreateWithProtocol(client, name, protocol, out_dest, read_block) }
 }
 
-extern "C-unwind" {
-    /// Creates a virtual destination in a client.
-    ///
-    ///
-    /// Parameter `client`: The client owning the virtual destination.
-    ///
-    /// Parameter `name`: The name of the virtual destination.
-    ///
-    /// Parameter `readProc`: The MIDIReadProc to be called when a client sends MIDI to
-    /// the virtual destination.
-    ///
-    /// Parameter `refCon`: The refCon to be passed to the readProc.
-    ///
-    /// Parameter `outDest`: On successful return, a pointer to the newly-created
-    /// destination.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// The specified readProc gets called when clients send MIDI to your virtual destination.
-    ///
-    /// Drivers need not call this; when they create devices and entities, sources and
-    /// destinations are created at that time.
-    ///
-    /// After creating a virtual destination, it's a good idea to assign it the same unique ID
-    /// it had the last time your application created it. (Although you should be prepared for
-    /// this to fail in the unlikely event of a collision.) This will permit other clients
-    /// to retain persistent references to your virtual destination more easily.
-    ///
-    /// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the
-    /// relationship between when a sender sends MIDI to the destination and when it is
-    /// received.
-    ///
-    /// # Safety
-    ///
-    /// - `read_proc` must be implemented correctly.
-    /// - `ref_con` must be a valid pointer or null.
-    /// - `out_dest` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated]
-    pub fn MIDIDestinationCreate(
-        client: MIDIClientRef,
-        name: &CFString,
-        read_proc: MIDIReadProc,
-        ref_con: *mut c_void,
-        out_dest: NonNull<MIDIEndpointRef>,
-    ) -> OSStatus;
+/// Creates a virtual destination in a client.
+///
+///
+/// Parameter `client`: The client owning the virtual destination.
+///
+/// Parameter `name`: The name of the virtual destination.
+///
+/// Parameter `readProc`: The MIDIReadProc to be called when a client sends MIDI to
+/// the virtual destination.
+///
+/// Parameter `refCon`: The refCon to be passed to the readProc.
+///
+/// Parameter `outDest`: On successful return, a pointer to the newly-created
+/// destination.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// The specified readProc gets called when clients send MIDI to your virtual destination.
+///
+/// Drivers need not call this; when they create devices and entities, sources and
+/// destinations are created at that time.
+///
+/// After creating a virtual destination, it's a good idea to assign it the same unique ID
+/// it had the last time your application created it. (Although you should be prepared for
+/// this to fail in the unlikely event of a collision.) This will permit other clients
+/// to retain persistent references to your virtual destination more easily.
+///
+/// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the
+/// relationship between when a sender sends MIDI to the destination and when it is
+/// received.
+///
+/// # Safety
+///
+/// - `read_proc` must be implemented correctly.
+/// - `ref_con` must be a valid pointer or null.
+/// - `out_dest` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDestinationCreate(
+    client: MIDIClientRef,
+    name: &CFString,
+    read_proc: MIDIReadProc,
+    ref_con: *mut c_void,
+    out_dest: NonNull<MIDIEndpointRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIDestinationCreate(
+            client: MIDIClientRef,
+            name: &CFString,
+            read_proc: MIDIReadProc,
+            ref_con: *mut c_void,
+            out_dest: NonNull<MIDIEndpointRef>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIDestinationCreate(client, name, read_proc, ref_con, out_dest) }
 }
 
-extern "C-unwind" {
-    /// Creates a virtual destination in a client.
-    ///
-    ///
-    /// Parameter `client`: The client owning the virtual destination.
-    ///
-    /// Parameter `name`: The name of the virtual destination.
-    ///
-    /// Parameter `outDest`: On successful return, a pointer to the newly-created
-    /// destination.
-    ///
-    /// Parameter `readBlock`: The MIDIReadBlock to be called when a client sends MIDI to the virtual
-    /// destination.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// The specified readBlock gets called when clients send MIDI to your virtual destination.
-    ///
-    /// Drivers need not call this; when they create devices and entities, sources and
-    /// destinations are created at that time.
-    ///
-    /// After creating a virtual destination, it's a good idea to assign it the same unique ID
-    /// it had the last time your application created it. (Although you should be prepared for
-    /// this to fail in the unlikely event of a collision.) This will permit other clients
-    /// to retain persistent references to your virtual destination more easily.
-    ///
-    /// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the
-    /// relationship between when a sender sends MIDI to the destination and when it is
-    /// received.
-    ///
-    /// # Safety
-    ///
-    /// `out_dest` must be a valid pointer.
-    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-    #[deprecated]
-    pub fn MIDIDestinationCreateWithBlock(
-        client: MIDIClientRef,
-        name: &CFString,
-        out_dest: NonNull<MIDIEndpointRef>,
-        read_block: &MIDIReadBlock,
-    ) -> OSStatus;
+/// Creates a virtual destination in a client.
+///
+///
+/// Parameter `client`: The client owning the virtual destination.
+///
+/// Parameter `name`: The name of the virtual destination.
+///
+/// Parameter `outDest`: On successful return, a pointer to the newly-created
+/// destination.
+///
+/// Parameter `readBlock`: The MIDIReadBlock to be called when a client sends MIDI to the virtual
+/// destination.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// The specified readBlock gets called when clients send MIDI to your virtual destination.
+///
+/// Drivers need not call this; when they create devices and entities, sources and
+/// destinations are created at that time.
+///
+/// After creating a virtual destination, it's a good idea to assign it the same unique ID
+/// it had the last time your application created it. (Although you should be prepared for
+/// this to fail in the unlikely event of a collision.) This will permit other clients
+/// to retain persistent references to your virtual destination more easily.
+///
+/// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the
+/// relationship between when a sender sends MIDI to the destination and when it is
+/// received.
+///
+/// # Safety
+///
+/// `out_dest` must be a valid pointer.
+#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDestinationCreateWithBlock(
+    client: MIDIClientRef,
+    name: &CFString,
+    out_dest: NonNull<MIDIEndpointRef>,
+    read_block: &MIDIReadBlock,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIDestinationCreateWithBlock(
+            client: MIDIClientRef,
+            name: &CFString,
+            out_dest: NonNull<MIDIEndpointRef>,
+            read_block: &MIDIReadBlock,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIDestinationCreateWithBlock(client, name, out_dest, read_block) }
 }
 
-extern "C-unwind" {
-    /// Creates a virtual source in a client.
-    ///
-    ///
-    /// Parameter `client`: The client owning the virtual source.
-    ///
-    /// Parameter `name`: The name of the virtual source.
-    ///
-    /// Parameter `protocol`: The MIDI protocol variant to be sent from this source. The system
-    /// will automatically convert from this protocol to the protocol of
-    /// the destination as needed.
-    ///
-    /// Parameter `outSrc`: On successful return, a pointer to the newly-created
-    /// source.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// Drivers need not call this; when they create devices and entities, sources and
-    /// destinations are created at that time.
-    ///
-    /// After creating a virtual source, use MIDIReceivedEventList to transmit MIDI messages from your
-    /// virtual source to any clients connected to the virtual source.
-    ///
-    /// After creating a virtual source, it's a good idea to assign it the same unique ID it had
-    /// the last time your application created it. (Although you should be prepared for this to
-    /// fail in the unlikely event of a collision.) This will permit other clients to retain
-    /// persistent references to your virtual source more easily.
-    ///
-    /// # Safety
-    ///
-    /// `out_src` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDISourceCreateWithProtocol(
-        client: MIDIClientRef,
-        name: &CFString,
-        protocol: MIDIProtocolID,
-        out_src: NonNull<MIDIEndpointRef>,
-    ) -> OSStatus;
+/// Creates a virtual source in a client.
+///
+///
+/// Parameter `client`: The client owning the virtual source.
+///
+/// Parameter `name`: The name of the virtual source.
+///
+/// Parameter `protocol`: The MIDI protocol variant to be sent from this source. The system
+/// will automatically convert from this protocol to the protocol of
+/// the destination as needed.
+///
+/// Parameter `outSrc`: On successful return, a pointer to the newly-created
+/// source.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// Drivers need not call this; when they create devices and entities, sources and
+/// destinations are created at that time.
+///
+/// After creating a virtual source, use MIDIReceivedEventList to transmit MIDI messages from your
+/// virtual source to any clients connected to the virtual source.
+///
+/// After creating a virtual source, it's a good idea to assign it the same unique ID it had
+/// the last time your application created it. (Although you should be prepared for this to
+/// fail in the unlikely event of a collision.) This will permit other clients to retain
+/// persistent references to your virtual source more easily.
+///
+/// # Safety
+///
+/// `out_src` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISourceCreateWithProtocol(
+    client: MIDIClientRef,
+    name: &CFString,
+    protocol: MIDIProtocolID,
+    out_src: NonNull<MIDIEndpointRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISourceCreateWithProtocol(
+            client: MIDIClientRef,
+            name: &CFString,
+            protocol: MIDIProtocolID,
+            out_src: NonNull<MIDIEndpointRef>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDISourceCreateWithProtocol(client, name, protocol, out_src) }
 }
 
-extern "C-unwind" {
-    /// Creates a virtual source in a client.
-    ///
-    ///
-    /// Parameter `client`: The client owning the virtual source.
-    ///
-    /// Parameter `name`: The name of the virtual source.
-    ///
-    /// Parameter `outSrc`: On successful return, a pointer to the newly-created
-    /// source.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// Drivers need not call this; when they create devices and entities, sources and
-    /// destinations are created at that time.
-    ///
-    /// After creating a virtual source, use MIDIReceived to transmit MIDI messages from your
-    /// virtual source to any clients connected to the virtual source.
-    ///
-    /// After creating a virtual source, it's a good idea to assign it the same unique ID it had
-    /// the last time your application created it. (Although you should be prepared for this to
-    /// fail in the unlikely event of a collision.) This will permit other clients to retain
-    /// persistent references to your virtual source more easily.
-    ///
-    /// # Safety
-    ///
-    /// `out_src` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated]
-    pub fn MIDISourceCreate(
-        client: MIDIClientRef,
-        name: &CFString,
-        out_src: NonNull<MIDIEndpointRef>,
-    ) -> OSStatus;
+/// Creates a virtual source in a client.
+///
+///
+/// Parameter `client`: The client owning the virtual source.
+///
+/// Parameter `name`: The name of the virtual source.
+///
+/// Parameter `outSrc`: On successful return, a pointer to the newly-created
+/// source.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// Drivers need not call this; when they create devices and entities, sources and
+/// destinations are created at that time.
+///
+/// After creating a virtual source, use MIDIReceived to transmit MIDI messages from your
+/// virtual source to any clients connected to the virtual source.
+///
+/// After creating a virtual source, it's a good idea to assign it the same unique ID it had
+/// the last time your application created it. (Although you should be prepared for this to
+/// fail in the unlikely event of a collision.) This will permit other clients to retain
+/// persistent references to your virtual source more easily.
+///
+/// # Safety
+///
+/// `out_src` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISourceCreate(
+    client: MIDIClientRef,
+    name: &CFString,
+    out_src: NonNull<MIDIEndpointRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISourceCreate(
+            client: MIDIClientRef,
+            name: &CFString,
+            out_src: NonNull<MIDIEndpointRef>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDISourceCreate(client, name, out_src) }
 }
 
-extern "C-unwind" {
-    /// Disposes a virtual source or destination your client created.
-    ///
-    ///
-    /// Parameter `endpt`: The endpoint to be disposed.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    pub fn MIDIEndpointDispose(endpt: MIDIEndpointRef) -> OSStatus;
+/// Disposes a virtual source or destination your client created.
+///
+///
+/// Parameter `endpt`: The endpoint to be disposed.
+///
+///
+/// Returns: An OSStatus result code.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIEndpointDispose(endpt: MIDIEndpointRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIEndpointDispose(endpt: MIDIEndpointRef) -> OSStatus;
+    }
+    unsafe { MIDIEndpointDispose(endpt) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of external MIDI devices in the system.
-    ///
-    ///
-    /// Returns: The number of external devices in the system, or 0 if an error
-    /// occurred.
-    ///
-    ///
-    /// External MIDI devices are MIDI devices connected to driver endpoints via a standard MIDI
-    /// cable. Their presence is completely optional, only when a UI (such as Audio MIDI Setup)
-    /// adds them.
-    pub fn MIDIGetNumberOfExternalDevices() -> ItemCount;
+/// Returns the number of external MIDI devices in the system.
+///
+///
+/// Returns: The number of external devices in the system, or 0 if an error
+/// occurred.
+///
+///
+/// External MIDI devices are MIDI devices connected to driver endpoints via a standard MIDI
+/// cable. Their presence is completely optional, only when a UI (such as Audio MIDI Setup)
+/// adds them.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIGetNumberOfExternalDevices() -> ItemCount {
+    extern "C-unwind" {
+        fn MIDIGetNumberOfExternalDevices() -> ItemCount;
+    }
+    unsafe { MIDIGetNumberOfExternalDevices() }
 }
 
-extern "C-unwind" {
-    /// Returns one of the external devices in the system.
-    ///
-    ///
-    /// Parameter `deviceIndex0`: The index (0...MIDIGetNumberOfDevices()-1) of the device
-    /// to return.
-    ///
-    /// Returns: A reference to a device, or NULL if an error occurred.
-    ///
-    ///
-    /// Use this to enumerate the external devices in the system.
-    pub fn MIDIGetExternalDevice(device_index0: ItemCount) -> MIDIDeviceRef;
+/// Returns one of the external devices in the system.
+///
+///
+/// Parameter `deviceIndex0`: The index (0...MIDIGetNumberOfDevices()-1) of the device
+/// to return.
+///
+/// Returns: A reference to a device, or NULL if an error occurred.
+///
+///
+/// Use this to enumerate the external devices in the system.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIGetExternalDevice(device_index0: ItemCount) -> MIDIDeviceRef {
+    extern "C-unwind" {
+        fn MIDIGetExternalDevice(device_index0: ItemCount) -> MIDIDeviceRef;
+    }
+    unsafe { MIDIGetExternalDevice(device_index0) }
 }
 
-extern "C-unwind" {
-    /// Gets an object's integer-type property.
-    ///
-    ///
-    /// Parameter `obj`: The object whose property is to be returned.
-    ///
-    /// Parameter `propertyID`: Name of the property to return.
-    ///
-    /// Parameter `outValue`: On successful return, the value of the property.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// (See the MIDIObjectRef documentation for information about properties.)
-    ///
-    /// # Safety
-    ///
-    /// `out_value` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIObjectGetIntegerProperty(
-        obj: MIDIObjectRef,
-        property_id: &CFString,
-        out_value: NonNull<i32>,
-    ) -> OSStatus;
+/// Gets an object's integer-type property.
+///
+///
+/// Parameter `obj`: The object whose property is to be returned.
+///
+/// Parameter `propertyID`: Name of the property to return.
+///
+/// Parameter `outValue`: On successful return, the value of the property.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// (See the MIDIObjectRef documentation for information about properties.)
+///
+/// # Safety
+///
+/// `out_value` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIObjectGetIntegerProperty(
+    obj: MIDIObjectRef,
+    property_id: &CFString,
+    out_value: NonNull<i32>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIObjectGetIntegerProperty(
+            obj: MIDIObjectRef,
+            property_id: &CFString,
+            out_value: NonNull<i32>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIObjectGetIntegerProperty(obj, property_id, out_value) }
 }
 
-extern "C-unwind" {
-    /// Sets an object's integer-type property.
-    ///
-    ///
-    /// Parameter `obj`: The object whose property is to be altered.
-    ///
-    /// Parameter `propertyID`: Name of the property to set.
-    ///
-    /// Parameter `value`: New value of the property.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// (See the MIDIObjectRef documentation for information about properties.)
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIObjectSetIntegerProperty(
-        obj: MIDIObjectRef,
-        property_id: &CFString,
-        value: i32,
-    ) -> OSStatus;
+/// Sets an object's integer-type property.
+///
+///
+/// Parameter `obj`: The object whose property is to be altered.
+///
+/// Parameter `propertyID`: Name of the property to set.
+///
+/// Parameter `value`: New value of the property.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// (See the MIDIObjectRef documentation for information about properties.)
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIObjectSetIntegerProperty(
+    obj: MIDIObjectRef,
+    property_id: &CFString,
+    value: i32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIObjectSetIntegerProperty(
+            obj: MIDIObjectRef,
+            property_id: &CFString,
+            value: i32,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIObjectSetIntegerProperty(obj, property_id, value) }
 }
 
-extern "C-unwind" {
-    /// Gets an object's string-type property.
-    ///
-    ///
-    /// Parameter `obj`: The object whose property is to be returned.
-    ///
-    /// Parameter `propertyID`: Name of the property to return.
-    ///
-    /// Parameter `str`: On successful return, the value of the property.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// (See the MIDIObjectRef documentation for information about properties.)
-    ///
-    /// # Safety
-    ///
-    /// `str` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIObjectGetStringProperty(
-        obj: MIDIObjectRef,
-        property_id: &CFString,
-        str: NonNull<*const CFString>,
-    ) -> OSStatus;
+/// Gets an object's string-type property.
+///
+///
+/// Parameter `obj`: The object whose property is to be returned.
+///
+/// Parameter `propertyID`: Name of the property to return.
+///
+/// Parameter `str`: On successful return, the value of the property.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// (See the MIDIObjectRef documentation for information about properties.)
+///
+/// # Safety
+///
+/// `str` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIObjectGetStringProperty(
+    obj: MIDIObjectRef,
+    property_id: &CFString,
+    str: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIObjectGetStringProperty(
+            obj: MIDIObjectRef,
+            property_id: &CFString,
+            str: NonNull<*const CFString>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIObjectGetStringProperty(obj, property_id, str) }
 }
 
-extern "C-unwind" {
-    /// Sets an object's string-type property.
-    ///
-    ///
-    /// Parameter `obj`: The object whose property is to be altered.
-    ///
-    /// Parameter `propertyID`: Name of the property to set.
-    ///
-    /// Parameter `str`: New value of the property.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// (See the MIDIObjectRef documentation for information about properties.)
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIObjectSetStringProperty(
-        obj: MIDIObjectRef,
-        property_id: &CFString,
-        str: &CFString,
-    ) -> OSStatus;
+/// Sets an object's string-type property.
+///
+///
+/// Parameter `obj`: The object whose property is to be altered.
+///
+/// Parameter `propertyID`: Name of the property to set.
+///
+/// Parameter `str`: New value of the property.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// (See the MIDIObjectRef documentation for information about properties.)
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIObjectSetStringProperty(
+    obj: MIDIObjectRef,
+    property_id: &CFString,
+    str: &CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIObjectSetStringProperty(
+            obj: MIDIObjectRef,
+            property_id: &CFString,
+            str: &CFString,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIObjectSetStringProperty(obj, property_id, str) }
 }
 
-extern "C-unwind" {
-    /// Gets an object's data-type property.
-    ///
-    ///
-    /// (See the MIDIObjectRef documentation for information
-    /// about properties.)
-    ///
-    ///
-    /// Parameter `obj`: The object whose property is to be returned.
-    ///
-    /// Parameter `propertyID`: Name of the property to return.
-    ///
-    /// Parameter `outData`: On successful return, the value of the property.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `out_data` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIObjectGetDataProperty(
-        obj: MIDIObjectRef,
-        property_id: &CFString,
-        out_data: NonNull<*const CFData>,
-    ) -> OSStatus;
+/// Gets an object's data-type property.
+///
+///
+/// (See the MIDIObjectRef documentation for information
+/// about properties.)
+///
+///
+/// Parameter `obj`: The object whose property is to be returned.
+///
+/// Parameter `propertyID`: Name of the property to return.
+///
+/// Parameter `outData`: On successful return, the value of the property.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `out_data` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIObjectGetDataProperty(
+    obj: MIDIObjectRef,
+    property_id: &CFString,
+    out_data: NonNull<*const CFData>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIObjectGetDataProperty(
+            obj: MIDIObjectRef,
+            property_id: &CFString,
+            out_data: NonNull<*const CFData>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIObjectGetDataProperty(obj, property_id, out_data) }
 }
 
-extern "C-unwind" {
-    /// Sets an object's data-type property.
-    ///
-    ///
-    /// Parameter `obj`: The object whose property is to be altered.
-    ///
-    /// Parameter `propertyID`: Name of the property to set.
-    ///
-    /// Parameter `data`: New value of the property.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// (See the MIDIObjectRef documentation for information about properties.)
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIObjectSetDataProperty(
-        obj: MIDIObjectRef,
-        property_id: &CFString,
-        data: &CFData,
-    ) -> OSStatus;
+/// Sets an object's data-type property.
+///
+///
+/// Parameter `obj`: The object whose property is to be altered.
+///
+/// Parameter `propertyID`: Name of the property to set.
+///
+/// Parameter `data`: New value of the property.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// (See the MIDIObjectRef documentation for information about properties.)
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIObjectSetDataProperty(
+    obj: MIDIObjectRef,
+    property_id: &CFString,
+    data: &CFData,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIObjectSetDataProperty(
+            obj: MIDIObjectRef,
+            property_id: &CFString,
+            data: &CFData,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIObjectSetDataProperty(obj, property_id, data) }
 }
 
-extern "C-unwind" {
-    /// Gets an object's dictionary-type property.
-    ///
-    ///
-    /// Parameter `obj`: The object whose property is to be returned.
-    ///
-    /// Parameter `propertyID`: Name of the property to return.
-    ///
-    /// Parameter `outDict`: On successful return, the value of the property.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// (See the MIDIObjectRef documentation for information about properties.)
-    ///
-    /// # Safety
-    ///
-    /// `out_dict` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIObjectGetDictionaryProperty(
-        obj: MIDIObjectRef,
-        property_id: &CFString,
-        out_dict: NonNull<*const CFDictionary>,
-    ) -> OSStatus;
+/// Gets an object's dictionary-type property.
+///
+///
+/// Parameter `obj`: The object whose property is to be returned.
+///
+/// Parameter `propertyID`: Name of the property to return.
+///
+/// Parameter `outDict`: On successful return, the value of the property.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// (See the MIDIObjectRef documentation for information about properties.)
+///
+/// # Safety
+///
+/// `out_dict` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIObjectGetDictionaryProperty(
+    obj: MIDIObjectRef,
+    property_id: &CFString,
+    out_dict: NonNull<*const CFDictionary>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIObjectGetDictionaryProperty(
+            obj: MIDIObjectRef,
+            property_id: &CFString,
+            out_dict: NonNull<*const CFDictionary>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIObjectGetDictionaryProperty(obj, property_id, out_dict) }
 }
 
-extern "C-unwind" {
-    /// Sets an object's dictionary-type property.
-    ///
-    ///
-    /// Parameter `obj`: The object whose property is to be altered.
-    ///
-    /// Parameter `propertyID`: Name of the property to set.
-    ///
-    /// Parameter `dict`: New value of the property.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// (See the MIDIObjectRef documentation for information about properties.)
-    ///
-    /// # Safety
-    ///
-    /// - `dict` generic must be of the correct type.
-    /// - `dict` generic must be of the correct type.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIObjectSetDictionaryProperty(
-        obj: MIDIObjectRef,
-        property_id: &CFString,
-        dict: &CFDictionary,
-    ) -> OSStatus;
+/// Sets an object's dictionary-type property.
+///
+///
+/// Parameter `obj`: The object whose property is to be altered.
+///
+/// Parameter `propertyID`: Name of the property to set.
+///
+/// Parameter `dict`: New value of the property.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// (See the MIDIObjectRef documentation for information about properties.)
+///
+/// # Safety
+///
+/// - `dict` generic must be of the correct type.
+/// - `dict` generic must be of the correct type.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIObjectSetDictionaryProperty(
+    obj: MIDIObjectRef,
+    property_id: &CFString,
+    dict: &CFDictionary,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIObjectSetDictionaryProperty(
+            obj: MIDIObjectRef,
+            property_id: &CFString,
+            dict: &CFDictionary,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIObjectSetDictionaryProperty(obj, property_id, dict) }
 }
 
 /// Gets all of an object's properties.
@@ -2505,151 +2777,198 @@ pub unsafe extern "C-unwind" fn MIDIObjectGetProperties(
     unsafe { MIDIObjectGetProperties(obj, out_properties, deep as _) }
 }
 
-extern "C-unwind" {
-    /// Removes an object's property.
-    ///
-    ///
-    /// Parameter `obj`: The object whose property is to be removed.
-    ///
-    /// Parameter `propertyID`: The property to be removed.
-    ///
-    /// Returns: An OSStatus result code.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIObjectRemoveProperty(obj: MIDIObjectRef, property_id: &CFString) -> OSStatus;
+/// Removes an object's property.
+///
+///
+/// Parameter `obj`: The object whose property is to be removed.
+///
+/// Parameter `propertyID`: The property to be removed.
+///
+/// Returns: An OSStatus result code.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIObjectRemoveProperty(
+    obj: MIDIObjectRef,
+    property_id: &CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIObjectRemoveProperty(obj: MIDIObjectRef, property_id: &CFString) -> OSStatus;
+    }
+    unsafe { MIDIObjectRemoveProperty(obj, property_id) }
 }
 
-extern "C-unwind" {
-    /// Locates a device, external device, entity, or endpoint
-    /// by its uniqueID.
-    ///
-    /// Parameter `inUniqueID`: The uniqueID of the object to search for.  (This should
-    /// be the result of an earlier call to MIDIObjectGetIntegerProperty
-    /// for the property kMIDIPropertyUniqueID).
-    ///
-    /// Parameter `outObject`: The returned object, or 0 if the object was not found or
-    /// an error occurred.  This should be cast to the appropriate
-    /// type (MIDIDeviceRef, MIDIEntityRef, MIDIEndpointRef),
-    /// according to *outObjectType.
-    ///
-    /// Parameter `outObjectType`: On exit, the type of object which was found; undefined
-    /// if none found.
-    ///
-    /// Returns: An OSStatus error code, including kMIDIObjectNotFound if there
-    /// is no object with the specified uniqueID.
-    ///
-    /// # Safety
-    ///
-    /// - `out_object` must be a valid pointer or null.
-    /// - `out_object_type` must be a valid pointer or null.
-    pub fn MIDIObjectFindByUniqueID(
-        in_unique_id: MIDIUniqueID,
-        out_object: *mut MIDIObjectRef,
-        out_object_type: *mut MIDIObjectType,
-    ) -> OSStatus;
+/// Locates a device, external device, entity, or endpoint
+/// by its uniqueID.
+///
+/// Parameter `inUniqueID`: The uniqueID of the object to search for.  (This should
+/// be the result of an earlier call to MIDIObjectGetIntegerProperty
+/// for the property kMIDIPropertyUniqueID).
+///
+/// Parameter `outObject`: The returned object, or 0 if the object was not found or
+/// an error occurred.  This should be cast to the appropriate
+/// type (MIDIDeviceRef, MIDIEntityRef, MIDIEndpointRef),
+/// according to *outObjectType.
+///
+/// Parameter `outObjectType`: On exit, the type of object which was found; undefined
+/// if none found.
+///
+/// Returns: An OSStatus error code, including kMIDIObjectNotFound if there
+/// is no object with the specified uniqueID.
+///
+/// # Safety
+///
+/// - `out_object` must be a valid pointer or null.
+/// - `out_object_type` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIObjectFindByUniqueID(
+    in_unique_id: MIDIUniqueID,
+    out_object: *mut MIDIObjectRef,
+    out_object_type: *mut MIDIObjectType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIObjectFindByUniqueID(
+            in_unique_id: MIDIUniqueID,
+            out_object: *mut MIDIObjectRef,
+            out_object_type: *mut MIDIObjectType,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIObjectFindByUniqueID(in_unique_id, out_object, out_object_type) }
 }
 
-extern "C-unwind" {
-    /// Sends MIDI to a destination.
-    ///
-    ///
-    /// Parameter `port`: The output port through which the MIDI is to be sent.
-    ///
-    /// Parameter `dest`: The destination to receive the events.
-    ///
-    /// Parameter `evtlist`: The MIDI events to be sent.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// Events with future timestamps are scheduled for future delivery.  CoreMIDI performs
-    /// any needed MIDI merging.
-    ///
-    /// # Safety
-    ///
-    /// `evtlist` must be a valid pointer.
-    pub fn MIDISendEventList(
-        port: MIDIPortRef,
-        dest: MIDIEndpointRef,
-        evtlist: NonNull<MIDIEventList>,
-    ) -> OSStatus;
+/// Sends MIDI to a destination.
+///
+///
+/// Parameter `port`: The output port through which the MIDI is to be sent.
+///
+/// Parameter `dest`: The destination to receive the events.
+///
+/// Parameter `evtlist`: The MIDI events to be sent.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// Events with future timestamps are scheduled for future delivery.  CoreMIDI performs
+/// any needed MIDI merging.
+///
+/// # Safety
+///
+/// `evtlist` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISendEventList(
+    port: MIDIPortRef,
+    dest: MIDIEndpointRef,
+    evtlist: NonNull<MIDIEventList>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISendEventList(
+            port: MIDIPortRef,
+            dest: MIDIEndpointRef,
+            evtlist: NonNull<MIDIEventList>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDISendEventList(port, dest, evtlist) }
 }
 
-extern "C-unwind" {
-    /// Sends MIDI to a destination.
-    ///
-    ///
-    /// Parameter `port`: The output port through which the MIDI is to be sent.
-    ///
-    /// Parameter `dest`: The destination to receive the events.
-    ///
-    /// Parameter `pktlist`: The MIDI events to be sent.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// Events with future timestamps are scheduled for future delivery.  CoreMIDI performs
-    /// any needed MIDI merging.
-    ///
-    /// # Safety
-    ///
-    /// `pktlist` must be a valid pointer.
-    #[deprecated]
-    pub fn MIDISend(
-        port: MIDIPortRef,
-        dest: MIDIEndpointRef,
-        pktlist: NonNull<MIDIPacketList>,
-    ) -> OSStatus;
+/// Sends MIDI to a destination.
+///
+///
+/// Parameter `port`: The output port through which the MIDI is to be sent.
+///
+/// Parameter `dest`: The destination to receive the events.
+///
+/// Parameter `pktlist`: The MIDI events to be sent.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// Events with future timestamps are scheduled for future delivery.  CoreMIDI performs
+/// any needed MIDI merging.
+///
+/// # Safety
+///
+/// `pktlist` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISend(
+    port: MIDIPortRef,
+    dest: MIDIEndpointRef,
+    pktlist: NonNull<MIDIPacketList>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISend(
+            port: MIDIPortRef,
+            dest: MIDIEndpointRef,
+            pktlist: NonNull<MIDIPacketList>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDISend(port, dest, pktlist) }
 }
 
-extern "C-unwind" {
-    /// Sends a single system-exclusive event, asynchronously.
-    ///
-    ///
-    /// Parameter `request`: Contains the destination, and a pointer to the MIDI data to be sent.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// request->data must point to a single MIDI system-exclusive message, or portion thereof.
-    ///
-    /// # Safety
-    ///
-    /// `request` must be a valid pointer.
-    pub fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus;
+/// Sends a single system-exclusive event, asynchronously.
+///
+///
+/// Parameter `request`: Contains the destination, and a pointer to the MIDI data to be sent.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// request->data must point to a single MIDI system-exclusive message, or portion thereof.
+///
+/// # Safety
+///
+/// `request` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus;
+    }
+    unsafe { MIDISendSysex(request) }
 }
 
-extern "C-unwind" {
-    /// Sends a single UMP system-exclusive event, asynchronously.
-    ///
-    ///
-    /// Parameter `umpRequest`: Contains the destination, and a pointer to the MIDI data to be sent.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// request->words must point to a single MIDI system-exclusive message, or portion thereof.
-    ///
-    /// # Safety
-    ///
-    /// `ump_request` must be a valid pointer.
-    pub fn MIDISendUMPSysex(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
+/// Sends a single UMP system-exclusive event, asynchronously.
+///
+///
+/// Parameter `umpRequest`: Contains the destination, and a pointer to the MIDI data to be sent.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// request->words must point to a single MIDI system-exclusive message, or portion thereof.
+///
+/// # Safety
+///
+/// `ump_request` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISendUMPSysex(
+    ump_request: NonNull<MIDISysexSendRequestUMP>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISendUMPSysex(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
+    }
+    unsafe { MIDISendUMPSysex(ump_request) }
 }
 
-extern "C-unwind" {
-    /// Sends single system-exclusive 8-bit event, asynchronously.
-    ///
-    ///
-    /// Parameter `umpRequest`: Contains the destination, and a pointer to the 8-bit system-exclusive data to be sent.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// request->data must point to a single MIDI system-exclusive message, or portion thereof.
-    ///
-    /// # Safety
-    ///
-    /// `ump_request` must be a valid pointer.
-    pub fn MIDISendUMPSysex8(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
+/// Sends single system-exclusive 8-bit event, asynchronously.
+///
+///
+/// Parameter `umpRequest`: Contains the destination, and a pointer to the 8-bit system-exclusive data to be sent.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// request->data must point to a single MIDI system-exclusive message, or portion thereof.
+///
+/// # Safety
+///
+/// `ump_request` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDISendUMPSysex8(
+    ump_request: NonNull<MIDISysexSendRequestUMP>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDISendUMPSysex8(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
+    }
+    unsafe { MIDISendUMPSysex8(ump_request) }
 }
 
 impl MIDIEventPacket {
@@ -2693,83 +3012,105 @@ impl MIDIEventPacket {
     }
 }
 
-extern "C-unwind" {
-    /// Distributes incoming MIDI from a source to the client input ports
-    /// which are connected to that source.
-    ///
-    ///
-    /// Parameter `src`: The source which is transmitting MIDI.
-    ///
-    /// Parameter `evtlist`: The MIDI events to be transmitted.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// Drivers should call this function when receiving MIDI from a source.
-    ///
-    /// Clients which have created virtual sources, using MIDISourceCreateWithProtocol, should call this
-    /// function when the source is generating MIDI.
-    ///
-    /// Unlike MIDISendEventList(), a timestamp of 0 is not equivalent to "now"; the driver or virtual
-    /// source is responsible for putting proper timestamps in the packets.
-    ///
-    /// # Safety
-    ///
-    /// `evtlist` must be a valid pointer.
-    pub fn MIDIReceivedEventList(src: MIDIEndpointRef, evtlist: NonNull<MIDIEventList>)
-        -> OSStatus;
+/// Distributes incoming MIDI from a source to the client input ports
+/// which are connected to that source.
+///
+///
+/// Parameter `src`: The source which is transmitting MIDI.
+///
+/// Parameter `evtlist`: The MIDI events to be transmitted.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// Drivers should call this function when receiving MIDI from a source.
+///
+/// Clients which have created virtual sources, using MIDISourceCreateWithProtocol, should call this
+/// function when the source is generating MIDI.
+///
+/// Unlike MIDISendEventList(), a timestamp of 0 is not equivalent to "now"; the driver or virtual
+/// source is responsible for putting proper timestamps in the packets.
+///
+/// # Safety
+///
+/// `evtlist` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIReceivedEventList(
+    src: MIDIEndpointRef,
+    evtlist: NonNull<MIDIEventList>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIReceivedEventList(src: MIDIEndpointRef, evtlist: NonNull<MIDIEventList>)
+            -> OSStatus;
+    }
+    unsafe { MIDIReceivedEventList(src, evtlist) }
 }
 
-extern "C-unwind" {
-    /// Distributes incoming MIDI from a source to the client input ports
-    /// which are connected to that source.
-    ///
-    ///
-    /// Parameter `src`: The source which is transmitting MIDI.
-    ///
-    /// Parameter `pktlist`: The MIDI events to be transmitted.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// Drivers should call this function when receiving MIDI from a source.
-    ///
-    /// Clients which have created virtual sources, using MIDISourceCreate, should call this
-    /// function when the source is generating MIDI.
-    ///
-    /// Unlike MIDISend(), a timestamp of 0 is not equivalent to "now"; the driver or virtual
-    /// source is responsible for putting proper timestamps in the packets.
-    ///
-    /// # Safety
-    ///
-    /// `pktlist` must be a valid pointer.
-    #[deprecated]
-    pub fn MIDIReceived(src: MIDIEndpointRef, pktlist: NonNull<MIDIPacketList>) -> OSStatus;
+/// Distributes incoming MIDI from a source to the client input ports
+/// which are connected to that source.
+///
+///
+/// Parameter `src`: The source which is transmitting MIDI.
+///
+/// Parameter `pktlist`: The MIDI events to be transmitted.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// Drivers should call this function when receiving MIDI from a source.
+///
+/// Clients which have created virtual sources, using MIDISourceCreate, should call this
+/// function when the source is generating MIDI.
+///
+/// Unlike MIDISend(), a timestamp of 0 is not equivalent to "now"; the driver or virtual
+/// source is responsible for putting proper timestamps in the packets.
+///
+/// # Safety
+///
+/// `pktlist` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIReceived(
+    src: MIDIEndpointRef,
+    pktlist: NonNull<MIDIPacketList>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIReceived(src: MIDIEndpointRef, pktlist: NonNull<MIDIPacketList>) -> OSStatus;
+    }
+    unsafe { MIDIReceived(src, pktlist) }
 }
 
-extern "C-unwind" {
-    /// Unschedules previously-sent packets.
-    ///
-    ///
-    /// Parameter `dest`: All pending events scheduled to be sent to this destination
-    /// are unscheduled.  If NULL, the operation applies to
-    /// all destinations.
-    ///
-    ///
-    /// Clients may use MIDIFlushOutput to cancel the sending of packets that were previously
-    /// scheduled for future delivery.
-    pub fn MIDIFlushOutput(dest: MIDIEndpointRef) -> OSStatus;
+/// Unschedules previously-sent packets.
+///
+///
+/// Parameter `dest`: All pending events scheduled to be sent to this destination
+/// are unscheduled.  If NULL, the operation applies to
+/// all destinations.
+///
+///
+/// Clients may use MIDIFlushOutput to cancel the sending of packets that were previously
+/// scheduled for future delivery.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIFlushOutput(dest: MIDIEndpointRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIFlushOutput(dest: MIDIEndpointRef) -> OSStatus;
+    }
+    unsafe { MIDIFlushOutput(dest) }
 }
 
-extern "C-unwind" {
-    /// Stops and restarts MIDI I/O.
-    ///
-    ///
-    /// This is useful for forcing CoreMIDI to ask its drivers to rescan for hardware.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    pub fn MIDIRestart() -> OSStatus;
+/// Stops and restarts MIDI I/O.
+///
+///
+/// This is useful for forcing CoreMIDI to ask its drivers to rescan for hardware.
+///
+///
+/// Returns: An OSStatus result code.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIRestart() -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIRestart() -> OSStatus;
+    }
+    unsafe { MIDIRestart() }
 }
 
 impl MIDIEventPacket {

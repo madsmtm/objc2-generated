@@ -169,13 +169,17 @@ impl NSPanel {
     );
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `panel` should be of the correct type.
-    /// - `panel` might not allow `None`.
-    #[deprecated = "Use NSAlert instead"]
-    pub fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
+/// # Safety
+///
+/// - `panel` should be of the correct type.
+/// - `panel` might not allow `None`.
+#[deprecated = "Use NSAlert instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSReleaseAlertPanel(panel: Option<&AnyObject>) {
+    extern "C-unwind" {
+        fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
+    }
+    unsafe { NSReleaseAlertPanel(panel) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertdefaultreturn?language=objc)

@@ -210,34 +210,45 @@ pub const kCMIOStreamPropertyPreferredFormatDescription: c_uint = 0x70726664;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertypreferredframerate?language=objc)
 pub const kCMIOStreamPropertyPreferredFrameRate: c_uint = 0x70726672;
 
-extern "C-unwind" {
-    /// Gets the CMSimpleQueue of the specified CMIOStream and registers a 'queue altered' callback function to be invoked when the stream alters the queue.
-    /// The stream will only invoke the most recent callback function registered. To unregister the existing callback function, pass NULL as the queueAlteredProc.
-    ///
-    /// Parameter `streamID`: The CMIOStream to create the CMSimpleQueue.
-    ///
-    /// Parameter `queueAlteredProc`: Routine to be invoked when the stream alters the queue for insertions (input streams) and removals (output streams).
-    /// Set this value to NULL to unregister any existing callbacks.
-    ///
-    /// Parameter `queueAlteredRefCon`: The client refCon to pass back when the queue altered proc is invoked.
-    ///
-    /// Parameter `queue`: The CMSimpleQueue to fill (for input streams) or to drain (for output streams).
-    /// If the return value is non-NULL, the client will need to release the queue when done with it.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `queue_altered_proc` must be implemented correctly.
-    /// - `queue_altered_ref_con` must be a valid pointer.
-    /// - `queue` must be a valid pointer.
-    #[cfg(all(feature = "CMIOHardwareObject", feature = "objc2-core-media"))]
-    pub fn CMIOStreamCopyBufferQueue(
-        stream_id: CMIOStreamID,
-        queue_altered_proc: CMIODeviceStreamQueueAlteredProc,
-        queue_altered_ref_con: *mut c_void,
-        queue: *mut *mut CMSimpleQueue,
-    ) -> OSStatus;
+/// Gets the CMSimpleQueue of the specified CMIOStream and registers a 'queue altered' callback function to be invoked when the stream alters the queue.
+/// The stream will only invoke the most recent callback function registered. To unregister the existing callback function, pass NULL as the queueAlteredProc.
+///
+/// Parameter `streamID`: The CMIOStream to create the CMSimpleQueue.
+///
+/// Parameter `queueAlteredProc`: Routine to be invoked when the stream alters the queue for insertions (input streams) and removals (output streams).
+/// Set this value to NULL to unregister any existing callbacks.
+///
+/// Parameter `queueAlteredRefCon`: The client refCon to pass back when the queue altered proc is invoked.
+///
+/// Parameter `queue`: The CMSimpleQueue to fill (for input streams) or to drain (for output streams).
+/// If the return value is non-NULL, the client will need to release the queue when done with it.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `queue_altered_proc` must be implemented correctly.
+/// - `queue_altered_ref_con` must be a valid pointer.
+/// - `queue` must be a valid pointer.
+#[cfg(all(feature = "CMIOHardwareObject", feature = "objc2-core-media"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOStreamCopyBufferQueue(
+    stream_id: CMIOStreamID,
+    queue_altered_proc: CMIODeviceStreamQueueAlteredProc,
+    queue_altered_ref_con: *mut c_void,
+    queue: *mut *mut CMSimpleQueue,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOStreamCopyBufferQueue(
+            stream_id: CMIOStreamID,
+            queue_altered_proc: CMIODeviceStreamQueueAlteredProc,
+            queue_altered_ref_con: *mut c_void,
+            queue: *mut *mut CMSimpleQueue,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMIOStreamCopyBufferQueue(stream_id, queue_altered_proc, queue_altered_ref_con, queue)
+    }
 }
 
 impl CMIOStreamDeck {
@@ -316,42 +327,64 @@ impl CMIOStreamDeck {
     }
 }
 
-extern "C-unwind" {
-    /// Creates a clock object that can be vended by kCMIOStreamPropertyClock, and driven
-    /// by CMIOStreamClockPostTimingEvent.
-    ///
-    /// Parameter `allocator`: Used to allocate the memory for the clock.
-    ///
-    /// Parameter `sourceIdentifier`: An opaque reference to the entity that is driving the clock. This value is used internally to determine if two CMIO Device Clocks have the same hardware source, and
-    /// thus determine whether or not they will drift relative to one another. This parameter is used in the following way: if a device supports multiple active streams that
-    /// are internally clocked by a common source, then instead of sharing one clock between each stream, a clock per stream can be created with the sourceIdentifier for each
-    /// clock set to be the same value.
-    ///
-    /// Parameter `getTimeCallMinimumInterval`: If the clock is queried for its current time more often than this interval, an interpolated value will be returned.
-    ///
-    /// Parameter `numberOfEventsForRateSmoothing`: The number of events to use for rate smoothing; must be > 0.
-    ///
-    /// Parameter `numberOfAveragesForRateSmoothing`: The number of averages used for rate smoothing; if 0, the default smoothing algorithm is used.
-    ///
-    /// Parameter `clock`: Receives the created clock. When the clock is no longer needed, CMIOStreamClockInvalidate should be called, followed by CFRelease.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `clock_name` might not allow `None`.
-    /// - `source_identifier` must be a valid pointer.
-    /// - `clock` must be a valid pointer.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-    pub fn CMIOStreamClockCreate(
-        allocator: Option<&CFAllocator>,
-        clock_name: Option<&CFString>,
-        source_identifier: *const c_void,
-        get_time_call_minimum_interval: CMTime,
-        number_of_events_for_rate_smoothing: u32,
-        number_of_averages_for_rate_smoothing: u32,
-        clock: *mut *const CFType,
-    ) -> OSStatus;
+/// Creates a clock object that can be vended by kCMIOStreamPropertyClock, and driven
+/// by CMIOStreamClockPostTimingEvent.
+///
+/// Parameter `allocator`: Used to allocate the memory for the clock.
+///
+/// Parameter `sourceIdentifier`: An opaque reference to the entity that is driving the clock. This value is used internally to determine if two CMIO Device Clocks have the same hardware source, and
+/// thus determine whether or not they will drift relative to one another. This parameter is used in the following way: if a device supports multiple active streams that
+/// are internally clocked by a common source, then instead of sharing one clock between each stream, a clock per stream can be created with the sourceIdentifier for each
+/// clock set to be the same value.
+///
+/// Parameter `getTimeCallMinimumInterval`: If the clock is queried for its current time more often than this interval, an interpolated value will be returned.
+///
+/// Parameter `numberOfEventsForRateSmoothing`: The number of events to use for rate smoothing; must be > 0.
+///
+/// Parameter `numberOfAveragesForRateSmoothing`: The number of averages used for rate smoothing; if 0, the default smoothing algorithm is used.
+///
+/// Parameter `clock`: Receives the created clock. When the clock is no longer needed, CMIOStreamClockInvalidate should be called, followed by CFRelease.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `clock_name` might not allow `None`.
+/// - `source_identifier` must be a valid pointer.
+/// - `clock` must be a valid pointer.
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOStreamClockCreate(
+    allocator: Option<&CFAllocator>,
+    clock_name: Option<&CFString>,
+    source_identifier: *const c_void,
+    get_time_call_minimum_interval: CMTime,
+    number_of_events_for_rate_smoothing: u32,
+    number_of_averages_for_rate_smoothing: u32,
+    clock: *mut *const CFType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOStreamClockCreate(
+            allocator: Option<&CFAllocator>,
+            clock_name: Option<&CFString>,
+            source_identifier: *const c_void,
+            get_time_call_minimum_interval: CMTime,
+            number_of_events_for_rate_smoothing: u32,
+            number_of_averages_for_rate_smoothing: u32,
+            clock: *mut *const CFType,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMIOStreamClockCreate(
+            allocator,
+            clock_name,
+            source_identifier,
+            get_time_call_minimum_interval,
+            number_of_events_for_rate_smoothing,
+            number_of_averages_for_rate_smoothing,
+            clock,
+        )
+    }
 }
 
 /// Used to drive a clock created by CMIOStreamClockCreate.
@@ -393,43 +426,54 @@ pub unsafe extern "C-unwind" fn CMIOStreamClockPostTimingEvent(
     unsafe { CMIOStreamClockPostTimingEvent(event_time, host_time, resynchronize as _, clock) }
 }
 
-extern "C-unwind" {
-    /// Indicates that a clock is no longer valid.
-    ///
-    /// Since a CMIO Stream Clock is a reference counted object, it may be retained by clients for longer than its valid (for example, the device is stopped). When a device is no
-    /// longer going to be posting events for a clock, it needs to call this routine, followed by CFRelease. After this point, any clients that query the clock for the current
-    /// time will get kCMTimeInvalid.
-    ///
-    /// Parameter `clock`: The CMIO Stream Clock returned by CMIOStreamClockCreate.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `clock` should be of the correct type.
-    /// - `clock` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn CMIOStreamClockInvalidate(clock: Option<&CFType>) -> OSStatus;
+/// Indicates that a clock is no longer valid.
+///
+/// Since a CMIO Stream Clock is a reference counted object, it may be retained by clients for longer than its valid (for example, the device is stopped). When a device is no
+/// longer going to be posting events for a clock, it needs to call this routine, followed by CFRelease. After this point, any clients that query the clock for the current
+/// time will get kCMTimeInvalid.
+///
+/// Parameter `clock`: The CMIO Stream Clock returned by CMIOStreamClockCreate.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `clock` should be of the correct type.
+/// - `clock` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOStreamClockInvalidate(clock: Option<&CFType>) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOStreamClockInvalidate(clock: Option<&CFType>) -> OSStatus;
+    }
+    unsafe { CMIOStreamClockInvalidate(clock) }
 }
 
-extern "C-unwind" {
-    /// Converts a host time value to the equivalent time on a device's clock.
-    ///
-    /// Parameter `hostTime`: The host time value to convert.
-    ///
-    /// Parameter `clock`: The device clock object returned by CMIOStreamClockCreate.
-    ///
-    /// Returns: The time on clock that is equivalent to the given hosttime.
-    ///
-    /// # Safety
-    ///
-    /// - `clock` should be of the correct type.
-    /// - `clock` might not allow `None`.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-    pub fn CMIOStreamClockConvertHostTimeToDeviceTime(
-        host_time: u64,
-        clock: Option<&CFType>,
-    ) -> CMTime;
+/// Converts a host time value to the equivalent time on a device's clock.
+///
+/// Parameter `hostTime`: The host time value to convert.
+///
+/// Parameter `clock`: The device clock object returned by CMIOStreamClockCreate.
+///
+/// Returns: The time on clock that is equivalent to the given hosttime.
+///
+/// # Safety
+///
+/// - `clock` should be of the correct type.
+/// - `clock` might not allow `None`.
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOStreamClockConvertHostTimeToDeviceTime(
+    host_time: u64,
+    clock: Option<&CFType>,
+) -> CMTime {
+    extern "C-unwind" {
+        fn CMIOStreamClockConvertHostTimeToDeviceTime(
+            host_time: u64,
+            clock: Option<&CFType>,
+        ) -> CMTime;
+    }
+    unsafe { CMIOStreamClockConvertHostTimeToDeviceTime(host_time, clock) }
 }
 
 /// Callback used to notify a client when a buffer was output.

@@ -391,92 +391,129 @@ impl MIDIThruConnectionParams {
     }
 }
 
-extern "C-unwind" {
-    /// Creates a thru connection.
-    ///
-    /// Parameter `inPersistentOwnerID`: If null, then the connection is marked as owned by the client
-    /// and will be automatically disposed with the client.  if it is non-null, then it
-    /// should be a unique identifier, e.g. "com.mycompany.MyCoolProgram".
-    ///
-    /// Parameter `inConnectionParams`: A MIDIThruConnectionParams contained in a CFDataRef.
-    ///
-    /// Parameter `outConnection`: On successful return, a reference to the newly-created connection.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `out_connection` must be a valid pointer.
-    #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
-    pub fn MIDIThruConnectionCreate(
-        in_persistent_owner_id: Option<&CFString>,
-        in_connection_params: &CFData,
-        out_connection: NonNull<MIDIThruConnectionRef>,
-    ) -> OSStatus;
+/// Creates a thru connection.
+///
+/// Parameter `inPersistentOwnerID`: If null, then the connection is marked as owned by the client
+/// and will be automatically disposed with the client.  if it is non-null, then it
+/// should be a unique identifier, e.g. "com.mycompany.MyCoolProgram".
+///
+/// Parameter `inConnectionParams`: A MIDIThruConnectionParams contained in a CFDataRef.
+///
+/// Parameter `outConnection`: On successful return, a reference to the newly-created connection.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `out_connection` must be a valid pointer.
+#[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIThruConnectionCreate(
+    in_persistent_owner_id: Option<&CFString>,
+    in_connection_params: &CFData,
+    out_connection: NonNull<MIDIThruConnectionRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIThruConnectionCreate(
+            in_persistent_owner_id: Option<&CFString>,
+            in_connection_params: &CFData,
+            out_connection: NonNull<MIDIThruConnectionRef>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        MIDIThruConnectionCreate(in_persistent_owner_id, in_connection_params, out_connection)
+    }
 }
 
-extern "C-unwind" {
-    /// Disposes a thru connection.
-    ///
-    /// Parameter `connection`: The connection to be disposed
-    ///
-    /// Returns: An OSStatus result code.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDIThruConnectionDispose(connection: MIDIThruConnectionRef) -> OSStatus;
+/// Disposes a thru connection.
+///
+/// Parameter `connection`: The connection to be disposed
+///
+/// Returns: An OSStatus result code.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIThruConnectionDispose(
+    connection: MIDIThruConnectionRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIThruConnectionDispose(connection: MIDIThruConnectionRef) -> OSStatus;
+    }
+    unsafe { MIDIThruConnectionDispose(connection) }
 }
 
-extern "C-unwind" {
-    /// Obtains a thru connection's MIDIThruConnectionParams.
-    ///
-    /// Parameter `connection`: The connection to be disposed.
-    ///
-    /// Parameter `outConnectionParams`: On successful return, the connection's MIDIThruConnectionParams in a CFDataRef
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// The returned CFDataRef contains a MIDIThruConnectionParams structure. The caller is responsible
-    /// for releasing it.
-    ///
-    /// # Safety
-    ///
-    /// `out_connection_params` must be a valid pointer.
-    #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
-    pub fn MIDIThruConnectionGetParams(
-        connection: MIDIThruConnectionRef,
-        out_connection_params: NonNull<NonNull<CFData>>,
-    ) -> OSStatus;
+/// Obtains a thru connection's MIDIThruConnectionParams.
+///
+/// Parameter `connection`: The connection to be disposed.
+///
+/// Parameter `outConnectionParams`: On successful return, the connection's MIDIThruConnectionParams in a CFDataRef
+///
+/// Returns: An OSStatus result code.
+///
+/// The returned CFDataRef contains a MIDIThruConnectionParams structure. The caller is responsible
+/// for releasing it.
+///
+/// # Safety
+///
+/// `out_connection_params` must be a valid pointer.
+#[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIThruConnectionGetParams(
+    connection: MIDIThruConnectionRef,
+    out_connection_params: NonNull<NonNull<CFData>>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIThruConnectionGetParams(
+            connection: MIDIThruConnectionRef,
+            out_connection_params: NonNull<NonNull<CFData>>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIThruConnectionGetParams(connection, out_connection_params) }
 }
 
-extern "C-unwind" {
-    /// Alters a thru connection's MIDIThruConnectionParams.
-    ///
-    /// Parameter `connection`: The connection to be modified.
-    ///
-    /// Parameter `inConnectionParams`: The connection's new MIDIThruConnectionParams in a CFDataRef
-    ///
-    /// Returns: An OSStatus result code.
-    #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
-    pub fn MIDIThruConnectionSetParams(
-        connection: MIDIThruConnectionRef,
-        in_connection_params: &CFData,
-    ) -> OSStatus;
+/// Alters a thru connection's MIDIThruConnectionParams.
+///
+/// Parameter `connection`: The connection to be modified.
+///
+/// Parameter `inConnectionParams`: The connection's new MIDIThruConnectionParams in a CFDataRef
+///
+/// Returns: An OSStatus result code.
+#[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIThruConnectionSetParams(
+    connection: MIDIThruConnectionRef,
+    in_connection_params: &CFData,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIThruConnectionSetParams(
+            connection: MIDIThruConnectionRef,
+            in_connection_params: &CFData,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIThruConnectionSetParams(connection, in_connection_params) }
 }
 
-extern "C-unwind" {
-    /// Returns all of the persistent thru connections created by a client.
-    ///
-    /// Parameter `inPersistentOwnerID`: The ID of the owner whose connections are to be returned.
-    ///
-    /// Parameter `outConnectionList`: On successful return, a CFDataRef containing an array of MIDIThruConnectionRef's.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `out_connection_list` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIThruConnectionFind(
-        in_persistent_owner_id: &CFString,
-        out_connection_list: NonNull<NonNull<CFData>>,
-    ) -> OSStatus;
+/// Returns all of the persistent thru connections created by a client.
+///
+/// Parameter `inPersistentOwnerID`: The ID of the owner whose connections are to be returned.
+///
+/// Parameter `outConnectionList`: On successful return, a CFDataRef containing an array of MIDIThruConnectionRef's.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `out_connection_list` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIThruConnectionFind(
+    in_persistent_owner_id: &CFString,
+    out_connection_list: NonNull<NonNull<CFData>>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIThruConnectionFind(
+            in_persistent_owner_id: &CFString,
+            out_connection_list: NonNull<NonNull<CFData>>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIThruConnectionFind(in_persistent_owner_id, out_connection_list) }
 }

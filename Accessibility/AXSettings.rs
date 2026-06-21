@@ -124,12 +124,19 @@ unsafe impl RefEncode for AXSettingsFeature {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "block2")]
-    pub fn AXOpenSettingsFeature(
-        feature: AXSettingsFeature,
-        completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
-    );
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C-unwind" fn AXOpenSettingsFeature(
+    feature: AXSettingsFeature,
+    completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+) {
+    extern "C-unwind" {
+        fn AXOpenSettingsFeature(
+            feature: AXSettingsFeature,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+        );
+    }
+    unsafe { AXOpenSettingsFeature(feature, completion_handler) }
 }
 
 #[inline]

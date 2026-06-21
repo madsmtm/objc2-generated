@@ -16,12 +16,18 @@ pub extern "C-unwind" fn NSFileTypeForHFSTypeCode(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `file_type_string` might not allow `None`.
-    #[cfg(feature = "NSString")]
-    pub fn NSHFSTypeCodeFromFileType(file_type_string: Option<&NSString>) -> OSType;
+/// # Safety
+///
+/// `file_type_string` might not allow `None`.
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSHFSTypeCodeFromFileType(
+    file_type_string: Option<&NSString>,
+) -> OSType {
+    extern "C-unwind" {
+        fn NSHFSTypeCodeFromFileType(file_type_string: Option<&NSString>) -> OSType;
+    }
+    unsafe { NSHFSTypeCodeFromFileType(file_type_string) }
 }
 
 /// # Safety

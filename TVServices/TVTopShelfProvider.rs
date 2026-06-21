@@ -76,16 +76,23 @@ extern "C" {
     pub static TVTopShelfItemsDidChangeNotification: &'static NSString;
 }
 
-extern "C-unwind" {
-    /// Returns the ideal size of an image, the size which doesn't require
-    /// scaling, for the given user interface style and image shape, in the
-    /// current running version of the OS.
-    ///
-    /// For shapes not supported in the given style, returns CGSizeZero.
-    #[cfg(all(feature = "TVContentItem", feature = "objc2-core-foundation"))]
-    #[deprecated = "TVTopShelfImageSizeForShape has been replaced by [TVTopShelfSectionedContent imageSizeForImageShape:] and [TVTopShelfInsetContent imageSize]"]
-    pub fn TVTopShelfImageSizeForShape(
-        shape: TVContentItemImageShape,
-        style: TVTopShelfContentStyle,
-    ) -> CGSize;
+/// Returns the ideal size of an image, the size which doesn't require
+/// scaling, for the given user interface style and image shape, in the
+/// current running version of the OS.
+///
+/// For shapes not supported in the given style, returns CGSizeZero.
+#[cfg(all(feature = "TVContentItem", feature = "objc2-core-foundation"))]
+#[deprecated = "TVTopShelfImageSizeForShape has been replaced by [TVTopShelfSectionedContent imageSizeForImageShape:] and [TVTopShelfInsetContent imageSize]"]
+#[inline]
+pub unsafe extern "C-unwind" fn TVTopShelfImageSizeForShape(
+    shape: TVContentItemImageShape,
+    style: TVTopShelfContentStyle,
+) -> CGSize {
+    extern "C-unwind" {
+        fn TVTopShelfImageSizeForShape(
+            shape: TVContentItemImageShape,
+            style: TVTopShelfContentStyle,
+        ) -> CGSize;
+    }
+    unsafe { TVTopShelfImageSizeForShape(shape, style) }
 }

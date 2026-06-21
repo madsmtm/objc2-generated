@@ -333,26 +333,34 @@ unsafe impl RefEncode for AuthorizationPluginInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Initialize a plugin after it gets loaded.  This is the main entry point to a plugin.  This function will only be called once.
-    /// After all Mechanism instances have been destroyed outPluginInterface->PluginDestroy will be called.
-    ///
-    ///
-    /// Parameter `callbacks`: (input) A pointer to an AuthorizationCallbacks which contains the callbacks implemented by the AuthorizationEngine.
-    ///
-    /// Parameter `outPlugin`: (output) On successful completion should contain a valid AuthorizationPluginRef.  This will be passed in to any subsequent calls the engine makes to  outPluginInterface->MechanismCreate and outPluginInterface->PluginDestroy.
-    ///
-    /// Parameter `outPluginInterface`: (output) On successful completion should contain a pointer to a AuthorizationPluginInterface that will stay valid until outPluginInterface->PluginDestroy is called.
-    ///
-    /// # Safety
-    ///
-    /// - `callbacks` must be a valid pointer.
-    /// - `out_plugin` must be a valid pointer.
-    /// - `out_plugin_interface` must be a valid pointer.
-    #[cfg(feature = "Authorization")]
-    pub fn AuthorizationPluginCreate(
-        callbacks: NonNull<AuthorizationCallbacks>,
-        out_plugin: NonNull<AuthorizationPluginRef>,
-        out_plugin_interface: NonNull<*const AuthorizationPluginInterface>,
-    ) -> OSStatus;
+/// Initialize a plugin after it gets loaded.  This is the main entry point to a plugin.  This function will only be called once.
+/// After all Mechanism instances have been destroyed outPluginInterface->PluginDestroy will be called.
+///
+///
+/// Parameter `callbacks`: (input) A pointer to an AuthorizationCallbacks which contains the callbacks implemented by the AuthorizationEngine.
+///
+/// Parameter `outPlugin`: (output) On successful completion should contain a valid AuthorizationPluginRef.  This will be passed in to any subsequent calls the engine makes to  outPluginInterface->MechanismCreate and outPluginInterface->PluginDestroy.
+///
+/// Parameter `outPluginInterface`: (output) On successful completion should contain a pointer to a AuthorizationPluginInterface that will stay valid until outPluginInterface->PluginDestroy is called.
+///
+/// # Safety
+///
+/// - `callbacks` must be a valid pointer.
+/// - `out_plugin` must be a valid pointer.
+/// - `out_plugin_interface` must be a valid pointer.
+#[cfg(feature = "Authorization")]
+#[inline]
+pub unsafe extern "C-unwind" fn AuthorizationPluginCreate(
+    callbacks: NonNull<AuthorizationCallbacks>,
+    out_plugin: NonNull<AuthorizationPluginRef>,
+    out_plugin_interface: NonNull<*const AuthorizationPluginInterface>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AuthorizationPluginCreate(
+            callbacks: NonNull<AuthorizationCallbacks>,
+            out_plugin: NonNull<AuthorizationPluginRef>,
+            out_plugin_interface: NonNull<*const AuthorizationPluginInterface>,
+        ) -> OSStatus;
+    }
+    unsafe { AuthorizationPluginCreate(callbacks, out_plugin, out_plugin_interface) }
 }

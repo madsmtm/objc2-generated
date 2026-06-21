@@ -37,37 +37,59 @@ pub extern "C-unwind" fn MTLIOCompressionContextDefaultChunkSize() -> usize {
     unsafe { MTLIOCompressionContextDefaultChunkSize() }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `path` must be a valid pointer.
-    /// - `chunkSize` might not be bounds-checked.
-    #[cfg(feature = "MTLDevice")]
-    pub fn MTLIOCreateCompressionContext(
-        path: NonNull<c_char>,
-        r#type: MTLIOCompressionMethod,
-        chunk_size: usize,
-    ) -> MTLIOCompressionContext;
+/// # Safety
+///
+/// - `path` must be a valid pointer.
+/// - `chunkSize` might not be bounds-checked.
+#[cfg(feature = "MTLDevice")]
+#[inline]
+pub unsafe extern "C-unwind" fn MTLIOCreateCompressionContext(
+    path: NonNull<c_char>,
+    r#type: MTLIOCompressionMethod,
+    chunk_size: usize,
+) -> MTLIOCompressionContext {
+    extern "C-unwind" {
+        fn MTLIOCreateCompressionContext(
+            path: NonNull<c_char>,
+            r#type: MTLIOCompressionMethod,
+            chunk_size: usize,
+        ) -> MTLIOCompressionContext;
+    }
+    unsafe { MTLIOCreateCompressionContext(path, r#type, chunk_size) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `context` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    /// - `size` might not be bounds-checked.
-    pub fn MTLIOCompressionContextAppendData(
-        context: MTLIOCompressionContext,
-        data: NonNull<c_void>,
-        size: usize,
-    );
+/// # Safety
+///
+/// - `context` must be a valid pointer.
+/// - `data` must be a valid pointer.
+/// - `size` might not be bounds-checked.
+#[inline]
+pub unsafe extern "C-unwind" fn MTLIOCompressionContextAppendData(
+    context: MTLIOCompressionContext,
+    data: NonNull<c_void>,
+    size: usize,
+) {
+    extern "C-unwind" {
+        fn MTLIOCompressionContextAppendData(
+            context: MTLIOCompressionContext,
+            data: NonNull<c_void>,
+            size: usize,
+        );
+    }
+    unsafe { MTLIOCompressionContextAppendData(context, data, size) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `context` must be a valid pointer.
-    pub fn MTLIOFlushAndDestroyCompressionContext(
-        context: MTLIOCompressionContext,
-    ) -> MTLIOCompressionStatus;
+/// # Safety
+///
+/// `context` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn MTLIOFlushAndDestroyCompressionContext(
+    context: MTLIOCompressionContext,
+) -> MTLIOCompressionStatus {
+    extern "C-unwind" {
+        fn MTLIOFlushAndDestroyCompressionContext(
+            context: MTLIOCompressionContext,
+        ) -> MTLIOCompressionStatus;
+    }
+    unsafe { MTLIOFlushAndDestroyCompressionContext(context) }
 }

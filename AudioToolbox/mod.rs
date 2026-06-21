@@ -4555,197 +4555,295 @@ pub unsafe extern "C-unwind" fn AudioHardwareServiceHasProperty(
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Queries an AudioObject about whether or not the given property can be set using
-    /// AudioHardwareServiceSetPropertyData.
-    ///
-    /// Parameter `inObjectID`: The AudioObject to query.
-    ///
-    /// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
-    ///
-    /// Parameter `outIsSettable`: A Boolean indicating whether or not the property can be set.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    #[cfg(feature = "objc2-core-audio")]
-    #[deprecated = "no longer supported"]
-    pub fn AudioHardwareServiceIsPropertySettable(
-        in_object_id: AudioObjectID,
-        in_address: &AudioObjectPropertyAddress,
-        out_is_settable: &mut Boolean,
-    ) -> OSStatus;
+/// Queries an AudioObject about whether or not the given property can be set using
+/// AudioHardwareServiceSetPropertyData.
+///
+/// Parameter `inObjectID`: The AudioObject to query.
+///
+/// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
+///
+/// Parameter `outIsSettable`: A Boolean indicating whether or not the property can be set.
+///
+/// Returns: An OSStatus indicating success or failure.
+#[cfg(feature = "objc2-core-audio")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareServiceIsPropertySettable(
+    in_object_id: AudioObjectID,
+    in_address: &AudioObjectPropertyAddress,
+    out_is_settable: &mut Boolean,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareServiceIsPropertySettable(
+            in_object_id: AudioObjectID,
+            in_address: &AudioObjectPropertyAddress,
+            out_is_settable: &mut Boolean,
+        ) -> OSStatus;
+    }
+    unsafe { AudioHardwareServiceIsPropertySettable(in_object_id, in_address, out_is_settable) }
 }
 
-extern "C-unwind" {
-    /// Queries an AudioObject to find the size of the data for the given property.
-    ///
-    /// Parameter `inObjectID`: The AudioObject to query.
-    ///
-    /// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
-    ///
-    /// Parameter `inQualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by inQualifierData.
-    /// Note that not all properties require qualification, in which case this
-    /// value will be 0.
-    ///
-    /// Parameter `inQualifierData`: A buffer of data to be used in determining the data of the property being
-    /// queried. Note that not all properties require qualification, in which case
-    /// this value will be NULL.
-    ///
-    /// Parameter `outDataSize`: A UInt32 indicating how many bytes the data for the given property occupies.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// `in_qualifier_data` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio")]
-    #[deprecated = "no longer supported"]
-    pub fn AudioHardwareServiceGetPropertyDataSize(
-        in_object_id: AudioObjectID,
-        in_address: &AudioObjectPropertyAddress,
-        in_qualifier_data_size: u32,
-        in_qualifier_data: *const c_void,
-        out_data_size: &mut u32,
-    ) -> OSStatus;
+/// Queries an AudioObject to find the size of the data for the given property.
+///
+/// Parameter `inObjectID`: The AudioObject to query.
+///
+/// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
+///
+/// Parameter `inQualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by inQualifierData.
+/// Note that not all properties require qualification, in which case this
+/// value will be 0.
+///
+/// Parameter `inQualifierData`: A buffer of data to be used in determining the data of the property being
+/// queried. Note that not all properties require qualification, in which case
+/// this value will be NULL.
+///
+/// Parameter `outDataSize`: A UInt32 indicating how many bytes the data for the given property occupies.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// `in_qualifier_data` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareServiceGetPropertyDataSize(
+    in_object_id: AudioObjectID,
+    in_address: &AudioObjectPropertyAddress,
+    in_qualifier_data_size: u32,
+    in_qualifier_data: *const c_void,
+    out_data_size: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareServiceGetPropertyDataSize(
+            in_object_id: AudioObjectID,
+            in_address: &AudioObjectPropertyAddress,
+            in_qualifier_data_size: u32,
+            in_qualifier_data: *const c_void,
+            out_data_size: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioHardwareServiceGetPropertyDataSize(
+            in_object_id,
+            in_address,
+            in_qualifier_data_size,
+            in_qualifier_data,
+            out_data_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Queries an AudioObject to get the data of the given property and places it in
-    /// the provided buffer.
-    ///
-    /// Parameter `inObjectID`: The AudioObject to query.
-    ///
-    /// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
-    ///
-    /// Parameter `inQualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by inQualifierData.
-    /// Note that not all properties require qualification, in which case this
-    /// value will be 0.
-    ///
-    /// Parameter `inQualifierData`: A buffer of data to be used in determining the data of the property being
-    /// queried. Note that not all properties require qualification, in which case
-    /// this value will be NULL.
-    ///
-    /// Parameter `ioDataSize`: A UInt32 which on entry indicates the size of the buffer pointed to by
-    /// outData and on exit indicates how much of the buffer was used.
-    ///
-    /// Parameter `outData`: The buffer into which the AudioObject will put the data for the given
-    /// property.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `in_qualifier_data` must be a valid pointer or null.
-    /// - `out_data` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio")]
-    #[deprecated = "no longer supported"]
-    pub fn AudioHardwareServiceGetPropertyData(
-        in_object_id: AudioObjectID,
-        in_address: &AudioObjectPropertyAddress,
-        in_qualifier_data_size: u32,
-        in_qualifier_data: *const c_void,
-        io_data_size: &mut u32,
-        out_data: *mut c_void,
-    ) -> OSStatus;
+/// Queries an AudioObject to get the data of the given property and places it in
+/// the provided buffer.
+///
+/// Parameter `inObjectID`: The AudioObject to query.
+///
+/// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
+///
+/// Parameter `inQualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by inQualifierData.
+/// Note that not all properties require qualification, in which case this
+/// value will be 0.
+///
+/// Parameter `inQualifierData`: A buffer of data to be used in determining the data of the property being
+/// queried. Note that not all properties require qualification, in which case
+/// this value will be NULL.
+///
+/// Parameter `ioDataSize`: A UInt32 which on entry indicates the size of the buffer pointed to by
+/// outData and on exit indicates how much of the buffer was used.
+///
+/// Parameter `outData`: The buffer into which the AudioObject will put the data for the given
+/// property.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `in_qualifier_data` must be a valid pointer or null.
+/// - `out_data` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareServiceGetPropertyData(
+    in_object_id: AudioObjectID,
+    in_address: &AudioObjectPropertyAddress,
+    in_qualifier_data_size: u32,
+    in_qualifier_data: *const c_void,
+    io_data_size: &mut u32,
+    out_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareServiceGetPropertyData(
+            in_object_id: AudioObjectID,
+            in_address: &AudioObjectPropertyAddress,
+            in_qualifier_data_size: u32,
+            in_qualifier_data: *const c_void,
+            io_data_size: &mut u32,
+            out_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioHardwareServiceGetPropertyData(
+            in_object_id,
+            in_address,
+            in_qualifier_data_size,
+            in_qualifier_data,
+            io_data_size,
+            out_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Tells an AudioObject to change the value of the given property using the
-    /// provided data.
-    ///
-    /// Note that the value of the property should not be considered changed until the
-    /// HAL has called the listeners as many properties values are changed
-    /// asynchronously.
-    ///
-    /// Parameter `inObjectID`: The AudioObject to change.
-    ///
-    /// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being changed.
-    ///
-    /// Parameter `inQualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by inQualifierData.
-    /// Note that not all properties require qualification, in which case this
-    /// value will be 0.
-    ///
-    /// Parameter `inQualifierData`: A buffer of data to be used in determining the data of the property being
-    /// queried. Note that not all properties require qualification, in which case
-    /// this value will be NULL.
-    ///
-    /// Parameter `inDataSize`: A UInt32 indicating the size of the buffer pointed to by inData.
-    ///
-    /// Parameter `inData`: The buffer containing the data to be used to change the property's value.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `in_qualifier_data` must be a valid pointer.
-    /// - `in_data` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio")]
-    #[deprecated = "no longer supported"]
-    pub fn AudioHardwareServiceSetPropertyData(
-        in_object_id: AudioObjectID,
-        in_address: &AudioObjectPropertyAddress,
-        in_qualifier_data_size: u32,
-        in_qualifier_data: *const c_void,
-        in_data_size: u32,
-        in_data: *const c_void,
-    ) -> OSStatus;
+/// Tells an AudioObject to change the value of the given property using the
+/// provided data.
+///
+/// Note that the value of the property should not be considered changed until the
+/// HAL has called the listeners as many properties values are changed
+/// asynchronously.
+///
+/// Parameter `inObjectID`: The AudioObject to change.
+///
+/// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being changed.
+///
+/// Parameter `inQualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by inQualifierData.
+/// Note that not all properties require qualification, in which case this
+/// value will be 0.
+///
+/// Parameter `inQualifierData`: A buffer of data to be used in determining the data of the property being
+/// queried. Note that not all properties require qualification, in which case
+/// this value will be NULL.
+///
+/// Parameter `inDataSize`: A UInt32 indicating the size of the buffer pointed to by inData.
+///
+/// Parameter `inData`: The buffer containing the data to be used to change the property's value.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `in_qualifier_data` must be a valid pointer.
+/// - `in_data` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareServiceSetPropertyData(
+    in_object_id: AudioObjectID,
+    in_address: &AudioObjectPropertyAddress,
+    in_qualifier_data_size: u32,
+    in_qualifier_data: *const c_void,
+    in_data_size: u32,
+    in_data: *const c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareServiceSetPropertyData(
+            in_object_id: AudioObjectID,
+            in_address: &AudioObjectPropertyAddress,
+            in_qualifier_data_size: u32,
+            in_qualifier_data: *const c_void,
+            in_data_size: u32,
+            in_data: *const c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioHardwareServiceSetPropertyData(
+            in_object_id,
+            in_address,
+            in_qualifier_data_size,
+            in_qualifier_data,
+            in_data_size,
+            in_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Registers the given AudioObjectPropertyListenerProc to receive notifications
-    /// when the given properties change.
-    ///
-    /// Parameter `inObjectID`: The AudioObject to register the listener with.
-    ///
-    /// Parameter `inAddress`: The AudioObjectPropertyAddresses indicating which property the listener
-    /// should be notified about.
-    ///
-    /// Parameter `inListener`: The AudioObjectPropertyListenerProc to call.
-    ///
-    /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `in_listener` must be implemented correctly.
-    /// - `in_client_data` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio")]
-    #[deprecated = "no longer supported"]
-    pub fn AudioHardwareServiceAddPropertyListener(
-        in_object_id: AudioObjectID,
-        in_address: &AudioObjectPropertyAddress,
-        in_listener: AudioObjectPropertyListenerProc,
-        in_client_data: *mut c_void,
-    ) -> OSStatus;
+/// Registers the given AudioObjectPropertyListenerProc to receive notifications
+/// when the given properties change.
+///
+/// Parameter `inObjectID`: The AudioObject to register the listener with.
+///
+/// Parameter `inAddress`: The AudioObjectPropertyAddresses indicating which property the listener
+/// should be notified about.
+///
+/// Parameter `inListener`: The AudioObjectPropertyListenerProc to call.
+///
+/// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `in_listener` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareServiceAddPropertyListener(
+    in_object_id: AudioObjectID,
+    in_address: &AudioObjectPropertyAddress,
+    in_listener: AudioObjectPropertyListenerProc,
+    in_client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareServiceAddPropertyListener(
+            in_object_id: AudioObjectID,
+            in_address: &AudioObjectPropertyAddress,
+            in_listener: AudioObjectPropertyListenerProc,
+            in_client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioHardwareServiceAddPropertyListener(
+            in_object_id,
+            in_address,
+            in_listener,
+            in_client_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Unregisters the given AudioObjectPropertyListenerProc from receiving
-    /// notifications when the given properties change.
-    ///
-    /// Parameter `inObjectID`: The AudioObject to unregister the listener from.
-    ///
-    /// Parameter `inAddress`: The AudioObjectPropertyAddresses indicating which property the listener
-    /// will stop being notified about.
-    ///
-    /// Parameter `inListener`: The AudioObjectPropertyListenerProc being removed.
-    ///
-    /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `in_listener` must be implemented correctly.
-    /// - `in_client_data` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio")]
-    #[deprecated = "no longer supported"]
-    pub fn AudioHardwareServiceRemovePropertyListener(
-        in_object_id: AudioObjectID,
-        in_address: &AudioObjectPropertyAddress,
-        in_listener: AudioObjectPropertyListenerProc,
-        in_client_data: *mut c_void,
-    ) -> OSStatus;
+/// Unregisters the given AudioObjectPropertyListenerProc from receiving
+/// notifications when the given properties change.
+///
+/// Parameter `inObjectID`: The AudioObject to unregister the listener from.
+///
+/// Parameter `inAddress`: The AudioObjectPropertyAddresses indicating which property the listener
+/// will stop being notified about.
+///
+/// Parameter `inListener`: The AudioObjectPropertyListenerProc being removed.
+///
+/// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `in_listener` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareServiceRemovePropertyListener(
+    in_object_id: AudioObjectID,
+    in_address: &AudioObjectPropertyAddress,
+    in_listener: AudioObjectPropertyListenerProc,
+    in_client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareServiceRemovePropertyListener(
+            in_object_id: AudioObjectID,
+            in_address: &AudioObjectPropertyAddress,
+            in_listener: AudioObjectPropertyListenerProc,
+            in_client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioHardwareServiceRemovePropertyListener(
+            in_object_id,
+            in_address,
+            in_listener,
+            in_client_data,
+        )
+    }
 }
 
 /// represents an instance of an AudioFileComponent.
@@ -4759,179 +4857,262 @@ pub type AudioFileComponent = AudioComponentInstance;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentpropertyid?language=objc)
 pub type AudioFileComponentPropertyID = u32;
 
-extern "C-unwind" {
-    /// creates a new (or initialises an existing) audio file specified by the URL.
-    ///
-    /// creates a new (or initialises an existing) audio file specified by the URL.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inFileRef`: an CFURLRef fully specifying the path of the file to create/initialise
-    ///
-    /// Parameter `inFormat`: an AudioStreamBasicDescription describing the data format that will be
-    /// added to the audio file.
-    ///
-    /// Parameter `inFlags`: relevant flags for creating/opening the file.
-    /// if kAudioFileFlags_EraseFile is set, it will erase an existing file
-    /// if not set, then the Create call will fail if the URL is an existing file
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    #[cfg(all(
-        feature = "AudioComponent",
-        feature = "objc2-core-audio-types",
-        feature = "objc2-core-foundation"
-    ))]
-    pub fn AudioFileComponentCreateURL(
-        in_component: AudioFileComponent,
-        in_file_ref: &CFURL,
-        in_format: &AudioStreamBasicDescription,
-        in_flags: u32,
-    ) -> OSStatus;
+/// creates a new (or initialises an existing) audio file specified by the URL.
+///
+/// creates a new (or initialises an existing) audio file specified by the URL.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inFileRef`: an CFURLRef fully specifying the path of the file to create/initialise
+///
+/// Parameter `inFormat`: an AudioStreamBasicDescription describing the data format that will be
+/// added to the audio file.
+///
+/// Parameter `inFlags`: relevant flags for creating/opening the file.
+/// if kAudioFileFlags_EraseFile is set, it will erase an existing file
+/// if not set, then the Create call will fail if the URL is an existing file
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[cfg(all(
+    feature = "AudioComponent",
+    feature = "objc2-core-audio-types",
+    feature = "objc2-core-foundation"
+))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentCreateURL(
+    in_component: AudioFileComponent,
+    in_file_ref: &CFURL,
+    in_format: &AudioStreamBasicDescription,
+    in_flags: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentCreateURL(
+            in_component: AudioFileComponent,
+            in_file_ref: &CFURL,
+            in_format: &AudioStreamBasicDescription,
+            in_flags: u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioFileComponentCreateURL(in_component, in_file_ref, in_format, in_flags) }
 }
 
-extern "C-unwind" {
-    /// Open an existing audio file.
-    ///
-    /// Open an existing audio file for reading or reading and writing.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent.
-    ///
-    /// Parameter `inFileRef`: the CFURLRef of an existing audio file.
-    ///
-    /// Parameter `inPermissions`: use the permission constants.
-    ///
-    /// Parameter `inFileDescriptor`: an open file descriptor.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
-    pub fn AudioFileComponentOpenURL(
-        in_component: AudioFileComponent,
-        in_file_ref: &CFURL,
-        in_permissions: i8,
-        in_file_descriptor: c_int,
-    ) -> OSStatus;
+/// Open an existing audio file.
+///
+/// Open an existing audio file for reading or reading and writing.
+///
+/// Parameter `inComponent`: an AudioFileComponent.
+///
+/// Parameter `inFileRef`: the CFURLRef of an existing audio file.
+///
+/// Parameter `inPermissions`: use the permission constants.
+///
+/// Parameter `inFileDescriptor`: an open file descriptor.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentOpenURL(
+    in_component: AudioFileComponent,
+    in_file_ref: &CFURL,
+    in_permissions: i8,
+    in_file_descriptor: c_int,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentOpenURL(
+            in_component: AudioFileComponent,
+            in_file_ref: &CFURL,
+            in_permissions: i8,
+            in_file_descriptor: c_int,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentOpenURL(
+            in_component,
+            in_file_ref,
+            in_permissions,
+            in_file_descriptor,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileOpenWithCallbacks
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inClientData`: a constant that will be passed to your callbacks.
-    ///
-    /// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
-    ///
-    /// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
-    ///
-    /// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the file size.
-    ///
-    /// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `in_client_data` must be a valid pointer.
-    /// - `in_read_func` must be implemented correctly.
-    /// - `in_write_func` must be implemented correctly.
-    /// - `in_get_size_func` must be implemented correctly.
-    /// - `in_set_size_func` must be implemented correctly.
-    #[cfg(all(feature = "AudioComponent", feature = "AudioFile"))]
-    pub fn AudioFileComponentOpenWithCallbacks(
-        in_component: AudioFileComponent,
-        in_client_data: NonNull<c_void>,
-        in_read_func: AudioFile_ReadProc,
-        in_write_func: AudioFile_WriteProc,
-        in_get_size_func: AudioFile_GetSizeProc,
-        in_set_size_func: AudioFile_SetSizeProc,
-    ) -> OSStatus;
+/// implements AudioFileOpenWithCallbacks
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inClientData`: a constant that will be passed to your callbacks.
+///
+/// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
+///
+/// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
+///
+/// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the file size.
+///
+/// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `in_client_data` must be a valid pointer.
+/// - `in_read_func` must be implemented correctly.
+/// - `in_write_func` must be implemented correctly.
+/// - `in_get_size_func` must be implemented correctly.
+/// - `in_set_size_func` must be implemented correctly.
+#[cfg(all(feature = "AudioComponent", feature = "AudioFile"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentOpenWithCallbacks(
+    in_component: AudioFileComponent,
+    in_client_data: NonNull<c_void>,
+    in_read_func: AudioFile_ReadProc,
+    in_write_func: AudioFile_WriteProc,
+    in_get_size_func: AudioFile_GetSizeProc,
+    in_set_size_func: AudioFile_SetSizeProc,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentOpenWithCallbacks(
+            in_component: AudioFileComponent,
+            in_client_data: NonNull<c_void>,
+            in_read_func: AudioFile_ReadProc,
+            in_write_func: AudioFile_WriteProc,
+            in_get_size_func: AudioFile_GetSizeProc,
+            in_set_size_func: AudioFile_SetSizeProc,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentOpenWithCallbacks(
+            in_component,
+            in_client_data,
+            in_read_func,
+            in_write_func,
+            in_get_size_func,
+            in_set_size_func,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileInitializeWithCallbacks
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inClientData`: a constant that will be passed to your callbacks.
-    ///
-    /// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
-    ///
-    /// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
-    ///
-    /// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the file size.
-    ///
-    /// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
-    ///
-    /// Parameter `inFileType`: an AudioFileTypeID indicating the type of audio file to which to initialize the file.
-    ///
-    /// Parameter `inFormat`: an AudioStreamBasicDescription describing the data format that will be
-    /// added to the audio file.
-    ///
-    /// Parameter `inFlags`: relevant flags for creating/opening the file. Currently zero.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `in_client_data` must be a valid pointer.
-    /// - `in_read_func` must be implemented correctly.
-    /// - `in_write_func` must be implemented correctly.
-    /// - `in_get_size_func` must be implemented correctly.
-    /// - `in_set_size_func` must be implemented correctly.
-    #[cfg(all(
-        feature = "AudioComponent",
-        feature = "AudioFile",
-        feature = "objc2-core-audio-types"
-    ))]
-    pub fn AudioFileComponentInitializeWithCallbacks(
-        in_component: AudioFileComponent,
-        in_client_data: NonNull<c_void>,
-        in_read_func: AudioFile_ReadProc,
-        in_write_func: AudioFile_WriteProc,
-        in_get_size_func: AudioFile_GetSizeProc,
-        in_set_size_func: AudioFile_SetSizeProc,
-        in_file_type: u32,
-        in_format: &AudioStreamBasicDescription,
-        in_flags: u32,
-    ) -> OSStatus;
+/// implements AudioFileInitializeWithCallbacks
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inClientData`: a constant that will be passed to your callbacks.
+///
+/// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
+///
+/// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
+///
+/// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the file size.
+///
+/// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
+///
+/// Parameter `inFileType`: an AudioFileTypeID indicating the type of audio file to which to initialize the file.
+///
+/// Parameter `inFormat`: an AudioStreamBasicDescription describing the data format that will be
+/// added to the audio file.
+///
+/// Parameter `inFlags`: relevant flags for creating/opening the file. Currently zero.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `in_client_data` must be a valid pointer.
+/// - `in_read_func` must be implemented correctly.
+/// - `in_write_func` must be implemented correctly.
+/// - `in_get_size_func` must be implemented correctly.
+/// - `in_set_size_func` must be implemented correctly.
+#[cfg(all(
+    feature = "AudioComponent",
+    feature = "AudioFile",
+    feature = "objc2-core-audio-types"
+))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentInitializeWithCallbacks(
+    in_component: AudioFileComponent,
+    in_client_data: NonNull<c_void>,
+    in_read_func: AudioFile_ReadProc,
+    in_write_func: AudioFile_WriteProc,
+    in_get_size_func: AudioFile_GetSizeProc,
+    in_set_size_func: AudioFile_SetSizeProc,
+    in_file_type: u32,
+    in_format: &AudioStreamBasicDescription,
+    in_flags: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentInitializeWithCallbacks(
+            in_component: AudioFileComponent,
+            in_client_data: NonNull<c_void>,
+            in_read_func: AudioFile_ReadProc,
+            in_write_func: AudioFile_WriteProc,
+            in_get_size_func: AudioFile_GetSizeProc,
+            in_set_size_func: AudioFile_SetSizeProc,
+            in_file_type: u32,
+            in_format: &AudioStreamBasicDescription,
+            in_flags: u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentInitializeWithCallbacks(
+            in_component,
+            in_client_data,
+            in_read_func,
+            in_write_func,
+            in_get_size_func,
+            in_set_size_func,
+            in_file_type,
+            in_format,
+            in_flags,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileClose.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentCloseFile(in_component: AudioFileComponent) -> OSStatus;
+/// implements AudioFileClose.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentCloseFile(
+    in_component: AudioFileComponent,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentCloseFile(in_component: AudioFileComponent) -> OSStatus;
+    }
+    unsafe { AudioFileComponentCloseFile(in_component) }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileOptimize.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentOptimize(in_component: AudioFileComponent) -> OSStatus;
+/// implements AudioFileOptimize.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentOptimize(
+    in_component: AudioFileComponent,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentOptimize(in_component: AudioFileComponent) -> OSStatus;
+    }
+    unsafe { AudioFileComponentOptimize(in_component) }
 }
 
 /// implements AudioFileReadBytes.
@@ -5234,446 +5415,685 @@ pub unsafe extern "C-unwind" fn AudioFileComponentWritePackets(
     }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileGetPropertyInfo.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inPropertyID`: an AudioFileProperty constant.
-    ///
-    /// Parameter `outPropertySize`: the size in bytes of the current value of the property. In order to get the property value,
-    /// you will need a buffer of this size.
-    ///
-    /// Parameter `outWritable`: will be set to 1 if writable, or 0 if read only.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentGetPropertyInfo(
-        in_component: AudioFileComponent,
-        in_property_id: AudioFileComponentPropertyID,
-        out_property_size: Option<&mut u32>,
-        out_writable: Option<&mut u32>,
-    ) -> OSStatus;
+/// implements AudioFileGetPropertyInfo.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inPropertyID`: an AudioFileProperty constant.
+///
+/// Parameter `outPropertySize`: the size in bytes of the current value of the property. In order to get the property value,
+/// you will need a buffer of this size.
+///
+/// Parameter `outWritable`: will be set to 1 if writable, or 0 if read only.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentGetPropertyInfo(
+    in_component: AudioFileComponent,
+    in_property_id: AudioFileComponentPropertyID,
+    out_property_size: Option<&mut u32>,
+    out_writable: Option<&mut u32>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentGetPropertyInfo(
+            in_component: AudioFileComponent,
+            in_property_id: AudioFileComponentPropertyID,
+            out_property_size: Option<&mut u32>,
+            out_writable: Option<&mut u32>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentGetPropertyInfo(
+            in_component,
+            in_property_id,
+            out_property_size,
+            out_writable,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileGetProperty.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inPropertyID`: an AudioFileProperty constant.
-    ///
-    /// Parameter `ioPropertyDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
-    ///
-    /// Parameter `outPropertyData`: the buffer in which to write the property data.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `out_property_data` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentGetProperty(
-        in_component: AudioFileComponent,
-        in_property_id: AudioFileComponentPropertyID,
-        io_property_data_size: &mut u32,
-        out_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// implements AudioFileGetProperty.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inPropertyID`: an AudioFileProperty constant.
+///
+/// Parameter `ioPropertyDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
+///
+/// Parameter `outPropertyData`: the buffer in which to write the property data.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `out_property_data` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentGetProperty(
+    in_component: AudioFileComponent,
+    in_property_id: AudioFileComponentPropertyID,
+    io_property_data_size: &mut u32,
+    out_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentGetProperty(
+            in_component: AudioFileComponent,
+            in_property_id: AudioFileComponentPropertyID,
+            io_property_data_size: &mut u32,
+            out_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentGetProperty(
+            in_component,
+            in_property_id,
+            io_property_data_size,
+            out_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileSetProperty.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inPropertyID`: an AudioFileProperty constant.
-    ///
-    /// Parameter `inPropertyDataSize`: the size of the property data.
-    ///
-    /// Parameter `inPropertyData`: the buffer containing the property data.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `in_property_data` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentSetProperty(
-        in_component: AudioFileComponent,
-        in_property_id: AudioFileComponentPropertyID,
-        in_property_data_size: u32,
-        in_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// implements AudioFileSetProperty.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inPropertyID`: an AudioFileProperty constant.
+///
+/// Parameter `inPropertyDataSize`: the size of the property data.
+///
+/// Parameter `inPropertyData`: the buffer containing the property data.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `in_property_data` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentSetProperty(
+    in_component: AudioFileComponent,
+    in_property_id: AudioFileComponentPropertyID,
+    in_property_data_size: u32,
+    in_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentSetProperty(
+            in_component: AudioFileComponent,
+            in_property_id: AudioFileComponentPropertyID,
+            in_property_data_size: u32,
+            in_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentSetProperty(
+            in_component,
+            in_property_id,
+            in_property_data_size,
+            in_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileCountUserData
-    ///
-    /// "User Data" refers to chunks in AIFF, CAF and WAVE files, or resources
-    /// in Sound Designer II files, and possibly other things in other files.
-    /// For simplicity, referred to below as "chunks".
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `outNumberItems`: on output, if successful, number of chunks of this type in the file.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentCountUserData(
-        in_component: AudioFileComponent,
-        in_user_data_id: u32,
-        out_number_items: &mut u32,
-    ) -> OSStatus;
+/// implements AudioFileCountUserData
+///
+/// "User Data" refers to chunks in AIFF, CAF and WAVE files, or resources
+/// in Sound Designer II files, and possibly other things in other files.
+/// For simplicity, referred to below as "chunks".
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `outNumberItems`: on output, if successful, number of chunks of this type in the file.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentCountUserData(
+    in_component: AudioFileComponent,
+    in_user_data_id: u32,
+    out_number_items: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentCountUserData(
+            in_component: AudioFileComponent,
+            in_user_data_id: u32,
+            out_number_items: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioFileComponentCountUserData(in_component, in_user_data_id, out_number_items) }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileGetUserDataSize
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentGetUserDataSize(
-        in_component: AudioFileComponent,
-        in_user_data_id: u32,
-        in_index: u32,
-        out_user_data_size: &mut u32,
-    ) -> OSStatus;
+/// implements AudioFileGetUserDataSize
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentGetUserDataSize(
+    in_component: AudioFileComponent,
+    in_user_data_id: u32,
+    in_index: u32,
+    out_user_data_size: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentGetUserDataSize(
+            in_component: AudioFileComponent,
+            in_user_data_id: u32,
+            in_index: u32,
+            out_user_data_size: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentGetUserDataSize(
+            in_component,
+            in_user_data_id,
+            in_index,
+            out_user_data_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileGetUserDataSize64
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentGetUserDataSize64(
-        in_component: AudioFileComponent,
-        in_user_data_id: u32,
-        in_index: u32,
-        out_user_data_size: &mut u64,
-    ) -> OSStatus;
+/// implements AudioFileGetUserDataSize64
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentGetUserDataSize64(
+    in_component: AudioFileComponent,
+    in_user_data_id: u32,
+    in_index: u32,
+    out_user_data_size: &mut u64,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentGetUserDataSize64(
+            in_component: AudioFileComponent,
+            in_user_data_id: u32,
+            in_index: u32,
+            out_user_data_size: &mut u64,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentGetUserDataSize64(
+            in_component,
+            in_user_data_id,
+            in_index,
+            out_user_data_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileGetUserData.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Parameter `ioUserDataSize`: the size of the buffer on input, size of bytes copied to buffer on output
-    ///
-    /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `out_user_data` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentGetUserData(
-        in_component: AudioFileComponent,
-        in_user_data_id: u32,
-        in_index: u32,
-        io_user_data_size: &mut u32,
-        out_user_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// implements AudioFileGetUserData.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Parameter `ioUserDataSize`: the size of the buffer on input, size of bytes copied to buffer on output
+///
+/// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `out_user_data` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentGetUserData(
+    in_component: AudioFileComponent,
+    in_user_data_id: u32,
+    in_index: u32,
+    io_user_data_size: &mut u32,
+    out_user_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentGetUserData(
+            in_component: AudioFileComponent,
+            in_user_data_id: u32,
+            in_index: u32,
+            io_user_data_size: &mut u32,
+            out_user_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentGetUserData(
+            in_component,
+            in_user_data_id,
+            in_index,
+            io_user_data_size,
+            out_user_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileGetUserDataAtOffset.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Parameter `inOffset`: offset from the first byte of the chunk to the first byte to get.
-    ///
-    /// Parameter `ioUserDataSize`: the size of the buffer on input, size of bytes copied to buffer on output
-    ///
-    /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `out_user_data` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentGetUserDataAtOffset(
-        in_component: AudioFileComponent,
-        in_user_data_id: u32,
-        in_index: u32,
-        in_offset: i64,
-        io_user_data_size: &mut u32,
-        out_user_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// implements AudioFileGetUserDataAtOffset.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Parameter `inOffset`: offset from the first byte of the chunk to the first byte to get.
+///
+/// Parameter `ioUserDataSize`: the size of the buffer on input, size of bytes copied to buffer on output
+///
+/// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `out_user_data` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentGetUserDataAtOffset(
+    in_component: AudioFileComponent,
+    in_user_data_id: u32,
+    in_index: u32,
+    in_offset: i64,
+    io_user_data_size: &mut u32,
+    out_user_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentGetUserDataAtOffset(
+            in_component: AudioFileComponent,
+            in_user_data_id: u32,
+            in_index: u32,
+            in_offset: i64,
+            io_user_data_size: &mut u32,
+            out_user_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentGetUserDataAtOffset(
+            in_component,
+            in_user_data_id,
+            in_index,
+            in_offset,
+            io_user_data_size,
+            out_user_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileSetUserData.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Parameter `inUserDataSize`: on input the size of the data to copy, on output, size of bytes copied from the buffer
-    ///
-    /// Parameter `inUserData`: a pointer to a buffer from which to copy the chunk data
-    /// (only the contents of the chunk, not including the chunk header).
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `in_user_data` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentSetUserData(
-        in_component: AudioFileComponent,
-        in_user_data_id: u32,
-        in_index: u32,
-        in_user_data_size: u32,
-        in_user_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// implements AudioFileSetUserData.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Parameter `inUserDataSize`: on input the size of the data to copy, on output, size of bytes copied from the buffer
+///
+/// Parameter `inUserData`: a pointer to a buffer from which to copy the chunk data
+/// (only the contents of the chunk, not including the chunk header).
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `in_user_data` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentSetUserData(
+    in_component: AudioFileComponent,
+    in_user_data_id: u32,
+    in_index: u32,
+    in_user_data_size: u32,
+    in_user_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentSetUserData(
+            in_component: AudioFileComponent,
+            in_user_data_id: u32,
+            in_index: u32,
+            in_user_data_size: u32,
+            in_user_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentSetUserData(
+            in_component,
+            in_user_data_id,
+            in_index,
+            in_user_data_size,
+            in_user_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileRemoveUserData.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUserDataID`: the four char code of the chunk.
-    ///
-    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentRemoveUserData(
-        in_component: AudioFileComponent,
-        in_user_data_id: u32,
-        in_index: u32,
-    ) -> OSStatus;
+/// implements AudioFileRemoveUserData.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUserDataID`: the four char code of the chunk.
+///
+/// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentRemoveUserData(
+    in_component: AudioFileComponent,
+    in_user_data_id: u32,
+    in_index: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentRemoveUserData(
+            in_component: AudioFileComponent,
+            in_user_data_id: u32,
+            in_index: u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioFileComponentRemoveUserData(in_component, in_user_data_id, in_index) }
 }
 
-extern "C-unwind" {
-    /// used by the AudioFile API to determine if this component is appropriate for handling a file.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inExtension`: a CFString containing a file name extension.
-    ///
-    /// Parameter `outResult`: on output, is set to 1 if the extension is recognized by this component, 0 if not.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_component` must be a valid pointer.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
-    pub fn AudioFileComponentExtensionIsThisFormat(
-        in_component: AudioFileComponent,
-        in_extension: &CFString,
-        out_result: &mut u32,
-    ) -> OSStatus;
+/// used by the AudioFile API to determine if this component is appropriate for handling a file.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inExtension`: a CFString containing a file name extension.
+///
+/// Parameter `outResult`: on output, is set to 1 if the extension is recognized by this component, 0 if not.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_component` must be a valid pointer.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentExtensionIsThisFormat(
+    in_component: AudioFileComponent,
+    in_extension: &CFString,
+    out_result: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentExtensionIsThisFormat(
+            in_component: AudioFileComponent,
+            in_extension: &CFString,
+            out_result: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioFileComponentExtensionIsThisFormat(in_component, in_extension, out_result) }
 }
 
-extern "C-unwind" {
-    /// used by the AudioFile API to determine if this component is appropriate for handling a file.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inDataByteSize`: the size of inData in bytes.
-    ///
-    /// Parameter `inData`: a pointer to a buffer of audio file data.
-    ///
-    /// Parameter `outResult`: on output, is set to 1 if the file is recognized by this component, 0 if not.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `in_data` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentFileDataIsThisFormat(
-        in_component: AudioFileComponent,
-        in_data_byte_size: u32,
-        in_data: NonNull<c_void>,
-        out_result: &mut u32,
-    ) -> OSStatus;
+/// used by the AudioFile API to determine if this component is appropriate for handling a file.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inDataByteSize`: the size of inData in bytes.
+///
+/// Parameter `inData`: a pointer to a buffer of audio file data.
+///
+/// Parameter `outResult`: on output, is set to 1 if the file is recognized by this component, 0 if not.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `in_data` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentFileDataIsThisFormat(
+    in_component: AudioFileComponent,
+    in_data_byte_size: u32,
+    in_data: NonNull<c_void>,
+    out_result: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentFileDataIsThisFormat(
+            in_component: AudioFileComponent,
+            in_data_byte_size: u32,
+            in_data: NonNull<c_void>,
+            out_result: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentFileDataIsThisFormat(in_component, in_data_byte_size, in_data, out_result)
+    }
 }
 
-extern "C-unwind" {
-    /// deprecated. use AudioFileComponentFileDataIsThisFormat instead.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inFileRefNum`: a refNum of a file.
-    ///
-    /// Parameter `outResult`: on output, is set to 1 if the file is recognized by this component, 0 if not.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `out_result` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    #[deprecated = "no longer supported"]
-    pub fn AudioFileComponentFileIsThisFormat(
-        in_component: AudioFileComponent,
-        in_file_ref_num: i16,
-        out_result: NonNull<u32>,
-    ) -> OSStatus;
+/// deprecated. use AudioFileComponentFileDataIsThisFormat instead.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inFileRefNum`: a refNum of a file.
+///
+/// Parameter `outResult`: on output, is set to 1 if the file is recognized by this component, 0 if not.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `out_result` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentFileIsThisFormat(
+    in_component: AudioFileComponent,
+    in_file_ref_num: i16,
+    out_result: NonNull<u32>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentFileIsThisFormat(
+            in_component: AudioFileComponent,
+            in_file_ref_num: i16,
+            out_result: NonNull<u32>,
+        ) -> OSStatus;
+    }
+    unsafe { AudioFileComponentFileIsThisFormat(in_component, in_file_ref_num, out_result) }
 }
 
-extern "C-unwind" {
-    /// deprecated. use AudioFileComponentFileDataIsThisFormat instead.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inClientData`: a constant that will be passed to your callbacks.
-    ///
-    /// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
-    ///
-    /// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
-    ///
-    /// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the file size.
-    ///
-    /// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
-    ///
-    /// Parameter `outResult`: on output, is set to 1 if the file data is recognized by this component, 0 if not.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `in_client_data` must be a valid pointer or null.
-    /// - `in_read_func` must be implemented correctly.
-    /// - `in_write_func` must be implemented correctly.
-    /// - `in_get_size_func` must be implemented correctly.
-    /// - `in_set_size_func` must be implemented correctly.
-    #[cfg(all(feature = "AudioComponent", feature = "AudioFile"))]
-    #[deprecated = "no longer supported"]
-    pub fn AudioFileComponentDataIsThisFormat(
-        in_component: AudioFileComponent,
-        in_client_data: *mut c_void,
-        in_read_func: AudioFile_ReadProc,
-        in_write_func: AudioFile_WriteProc,
-        in_get_size_func: AudioFile_GetSizeProc,
-        in_set_size_func: AudioFile_SetSizeProc,
-        out_result: &mut u32,
-    ) -> OSStatus;
+/// deprecated. use AudioFileComponentFileDataIsThisFormat instead.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inClientData`: a constant that will be passed to your callbacks.
+///
+/// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
+///
+/// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
+///
+/// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the file size.
+///
+/// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
+///
+/// Parameter `outResult`: on output, is set to 1 if the file data is recognized by this component, 0 if not.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `in_client_data` must be a valid pointer or null.
+/// - `in_read_func` must be implemented correctly.
+/// - `in_write_func` must be implemented correctly.
+/// - `in_get_size_func` must be implemented correctly.
+/// - `in_set_size_func` must be implemented correctly.
+#[cfg(all(feature = "AudioComponent", feature = "AudioFile"))]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentDataIsThisFormat(
+    in_component: AudioFileComponent,
+    in_client_data: *mut c_void,
+    in_read_func: AudioFile_ReadProc,
+    in_write_func: AudioFile_WriteProc,
+    in_get_size_func: AudioFile_GetSizeProc,
+    in_set_size_func: AudioFile_SetSizeProc,
+    out_result: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentDataIsThisFormat(
+            in_component: AudioFileComponent,
+            in_client_data: *mut c_void,
+            in_read_func: AudioFile_ReadProc,
+            in_write_func: AudioFile_WriteProc,
+            in_get_size_func: AudioFile_GetSizeProc,
+            in_set_size_func: AudioFile_SetSizeProc,
+            out_result: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentDataIsThisFormat(
+            in_component,
+            in_client_data,
+            in_read_func,
+            in_write_func,
+            in_get_size_func,
+            in_set_size_func,
+            out_result,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileGetGlobalInfoSize.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
-    ///
-    /// Parameter `inSpecifierSize`: The size of the specifier data.
-    ///
-    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the global info properties.
-    ///
-    /// Parameter `outPropertySize`: the size in bytes of the current value of the property. In order to get the property value,
-    /// you will need a buffer of this size.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `in_specifier` must be a valid pointer or null.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentGetGlobalInfoSize(
-        in_component: AudioFileComponent,
-        in_property_id: AudioFileComponentPropertyID,
-        in_specifier_size: u32,
-        in_specifier: *const c_void,
-        out_property_size: &mut u32,
-    ) -> OSStatus;
+/// implements AudioFileGetGlobalInfoSize.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
+///
+/// Parameter `inSpecifierSize`: The size of the specifier data.
+///
+/// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the global info properties.
+///
+/// Parameter `outPropertySize`: the size in bytes of the current value of the property. In order to get the property value,
+/// you will need a buffer of this size.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `in_specifier` must be a valid pointer or null.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentGetGlobalInfoSize(
+    in_component: AudioFileComponent,
+    in_property_id: AudioFileComponentPropertyID,
+    in_specifier_size: u32,
+    in_specifier: *const c_void,
+    out_property_size: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentGetGlobalInfoSize(
+            in_component: AudioFileComponent,
+            in_property_id: AudioFileComponentPropertyID,
+            in_specifier_size: u32,
+            in_specifier: *const c_void,
+            out_property_size: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentGetGlobalInfoSize(
+            in_component,
+            in_property_id,
+            in_specifier_size,
+            in_specifier,
+            out_property_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileGetGlobalInfo.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
-    ///
-    /// Parameter `inSpecifierSize`: The size of the specifier data.
-    ///
-    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the global info properties.
-    ///
-    /// Parameter `ioPropertyDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
-    ///
-    /// Parameter `outPropertyData`: the buffer in which to write the property data.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_component` must be a valid pointer.
-    /// - `in_specifier` must be a valid pointer or null.
-    /// - `out_property_data` must be a valid pointer.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentGetGlobalInfo(
-        in_component: AudioFileComponent,
-        in_property_id: AudioFileComponentPropertyID,
-        in_specifier_size: u32,
-        in_specifier: *const c_void,
-        io_property_data_size: &mut u32,
-        out_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// implements AudioFileGetGlobalInfo.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
+///
+/// Parameter `inSpecifierSize`: The size of the specifier data.
+///
+/// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the global info properties.
+///
+/// Parameter `ioPropertyDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
+///
+/// Parameter `outPropertyData`: the buffer in which to write the property data.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `in_specifier` must be a valid pointer or null.
+/// - `out_property_data` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentGetGlobalInfo(
+    in_component: AudioFileComponent,
+    in_property_id: AudioFileComponentPropertyID,
+    in_specifier_size: u32,
+    in_specifier: *const c_void,
+    io_property_data_size: &mut u32,
+    out_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentGetGlobalInfo(
+            in_component: AudioFileComponent,
+            in_property_id: AudioFileComponentPropertyID,
+            in_specifier_size: u32,
+            in_specifier: *const c_void,
+            io_property_data_size: &mut u32,
+            out_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentGetGlobalInfo(
+            in_component,
+            in_property_id,
+            in_specifier_size,
+            in_specifier,
+            io_property_data_size,
+            out_property_data,
+        )
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_canread?language=objc)
@@ -6659,511 +7079,668 @@ unsafe impl RefEncode for CAMeterTrackEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Create a new clock object.
-    ///
-    ///
-    /// Parameter `inReservedFlags`: Must be 0.
-    ///
-    ///
-    /// Parameter `outCAClock`: Must be non-null. On successful return, the new clock object.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `out_ca_clock` must be a valid pointer or null.
-    pub fn CAClockNew(in_reserved_flags: u32, out_ca_clock: &mut CAClockRef) -> OSStatus;
+/// Create a new clock object.
+///
+///
+/// Parameter `inReservedFlags`: Must be 0.
+///
+///
+/// Parameter `outCAClock`: Must be non-null. On successful return, the new clock object.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `out_ca_clock` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockNew(
+    in_reserved_flags: u32,
+    out_ca_clock: &mut CAClockRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockNew(in_reserved_flags: u32, out_ca_clock: &mut CAClockRef) -> OSStatus;
+    }
+    unsafe { CAClockNew(in_reserved_flags, out_ca_clock) }
 }
 
-extern "C-unwind" {
-    /// Dispose a clock object.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object to be disposed.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    pub fn CAClockDispose(in_ca_clock: CAClockRef) -> OSStatus;
+/// Dispose a clock object.
+///
+///
+/// Parameter `inCAClock`: The clock object to be disposed.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockDispose(in_ca_clock: CAClockRef) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockDispose(in_ca_clock: CAClockRef) -> OSStatus;
+    }
+    unsafe { CAClockDispose(in_ca_clock) }
 }
 
-extern "C-unwind" {
-    /// Gets information about a clock's property.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `inPropertyID`: The property being queried.
-    ///
-    ///
-    /// Parameter `outSize`: If non-null, on exit, this is set to the size of the
-    /// property's value.
-    ///
-    ///
-    /// Parameter `outWritable`: If non-null, on exit, this indicates whether the
-    /// property value is settable.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    pub fn CAClockGetPropertyInfo(
-        in_ca_clock: CAClockRef,
-        in_property_id: CAClockPropertyID,
-        out_size: Option<&mut u32>,
-        out_writable: Option<&mut Boolean>,
-    ) -> OSStatus;
+/// Gets information about a clock's property.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `inPropertyID`: The property being queried.
+///
+///
+/// Parameter `outSize`: If non-null, on exit, this is set to the size of the
+/// property's value.
+///
+///
+/// Parameter `outWritable`: If non-null, on exit, this indicates whether the
+/// property value is settable.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockGetPropertyInfo(
+    in_ca_clock: CAClockRef,
+    in_property_id: CAClockPropertyID,
+    out_size: Option<&mut u32>,
+    out_writable: Option<&mut Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockGetPropertyInfo(
+            in_ca_clock: CAClockRef,
+            in_property_id: CAClockPropertyID,
+            out_size: Option<&mut u32>,
+            out_writable: Option<&mut Boolean>,
+        ) -> OSStatus;
+    }
+    unsafe { CAClockGetPropertyInfo(in_ca_clock, in_property_id, out_size, out_writable) }
 }
 
-extern "C-unwind" {
-    /// Gets the current value of a clock's property.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `inPropertyID`: The property being fetched.
-    ///
-    ///
-    /// Parameter `ioPropertyDataSize`: On entry, the size (in bytes) of the memory pointed to
-    /// by outPropertyData. On exit, the actual size of the
-    /// property data returned.
-    ///
-    ///
-    /// Parameter `outPropertyData`: The value of the property is copied to the memory
-    /// this points to.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_ca_clock` must be a valid pointer.
-    /// - `out_property_data` must be a valid pointer.
-    pub fn CAClockGetProperty(
-        in_ca_clock: CAClockRef,
-        in_property_id: CAClockPropertyID,
-        io_property_data_size: &mut u32,
-        out_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Gets the current value of a clock's property.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `inPropertyID`: The property being fetched.
+///
+///
+/// Parameter `ioPropertyDataSize`: On entry, the size (in bytes) of the memory pointed to
+/// by outPropertyData. On exit, the actual size of the
+/// property data returned.
+///
+///
+/// Parameter `outPropertyData`: The value of the property is copied to the memory
+/// this points to.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// - `in_ca_clock` must be a valid pointer.
+/// - `out_property_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockGetProperty(
+    in_ca_clock: CAClockRef,
+    in_property_id: CAClockPropertyID,
+    io_property_data_size: &mut u32,
+    out_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockGetProperty(
+            in_ca_clock: CAClockRef,
+            in_property_id: CAClockPropertyID,
+            io_property_data_size: &mut u32,
+            out_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CAClockGetProperty(
+            in_ca_clock,
+            in_property_id,
+            io_property_data_size,
+            out_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Changes the value of a clock's property.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `inPropertyID`: The property being set.
-    ///
-    ///
-    /// Parameter `inPropertyDataSize`: The size of the property data, in bytes.
-    ///
-    ///
-    /// Parameter `inPropertyData`: Points to the property's new value.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_ca_clock` must be a valid pointer.
-    /// - `in_property_data` must be a valid pointer.
-    pub fn CAClockSetProperty(
-        in_ca_clock: CAClockRef,
-        in_property_id: CAClockPropertyID,
-        in_property_data_size: u32,
-        in_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Changes the value of a clock's property.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `inPropertyID`: The property being set.
+///
+///
+/// Parameter `inPropertyDataSize`: The size of the property data, in bytes.
+///
+///
+/// Parameter `inPropertyData`: Points to the property's new value.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// - `in_ca_clock` must be a valid pointer.
+/// - `in_property_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockSetProperty(
+    in_ca_clock: CAClockRef,
+    in_property_id: CAClockPropertyID,
+    in_property_data_size: u32,
+    in_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockSetProperty(
+            in_ca_clock: CAClockRef,
+            in_property_id: CAClockPropertyID,
+            in_property_data_size: u32,
+            in_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CAClockSetProperty(
+            in_ca_clock,
+            in_property_id,
+            in_property_data_size,
+            in_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Adds a callback function to receive notifications of changes to the clock's
-    /// state.
-    ///
-    /// Note: The CAClockListenerProc may be called on a realtime thread internal to
-    /// the clock object.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `inListenerProc`: The callback function.
-    ///
-    ///
-    /// Parameter `inUserData`: This value is passed to the callback function, in the userData
-    /// parameter.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_ca_clock` must be a valid pointer.
-    /// - `in_listener_proc` must be implemented correctly.
-    /// - `in_user_data` must be a valid pointer.
-    pub fn CAClockAddListener(
-        in_ca_clock: CAClockRef,
-        in_listener_proc: CAClockListenerProc,
-        in_user_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Adds a callback function to receive notifications of changes to the clock's
+/// state.
+///
+/// Note: The CAClockListenerProc may be called on a realtime thread internal to
+/// the clock object.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `inListenerProc`: The callback function.
+///
+///
+/// Parameter `inUserData`: This value is passed to the callback function, in the userData
+/// parameter.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// - `in_ca_clock` must be a valid pointer.
+/// - `in_listener_proc` must be implemented correctly.
+/// - `in_user_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockAddListener(
+    in_ca_clock: CAClockRef,
+    in_listener_proc: CAClockListenerProc,
+    in_user_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockAddListener(
+            in_ca_clock: CAClockRef,
+            in_listener_proc: CAClockListenerProc,
+            in_user_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe { CAClockAddListener(in_ca_clock, in_listener_proc, in_user_data) }
 }
 
-extern "C-unwind" {
-    /// Removes a listener callback function.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `inListenerProc`: The callback function.
-    ///
-    ///
-    /// Parameter `inUserData`: The same value as was passed for inUserData when this
-    /// function was registered with CAClockAddListener. (This
-    /// allows a single callback function to be registered more
-    /// than once, with different userData arguments.)
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_ca_clock` must be a valid pointer.
-    /// - `in_listener_proc` must be implemented correctly.
-    /// - `in_user_data` must be a valid pointer.
-    pub fn CAClockRemoveListener(
-        in_ca_clock: CAClockRef,
-        in_listener_proc: CAClockListenerProc,
-        in_user_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Removes a listener callback function.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `inListenerProc`: The callback function.
+///
+///
+/// Parameter `inUserData`: The same value as was passed for inUserData when this
+/// function was registered with CAClockAddListener. (This
+/// allows a single callback function to be registered more
+/// than once, with different userData arguments.)
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// - `in_ca_clock` must be a valid pointer.
+/// - `in_listener_proc` must be implemented correctly.
+/// - `in_user_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockRemoveListener(
+    in_ca_clock: CAClockRef,
+    in_listener_proc: CAClockListenerProc,
+    in_user_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockRemoveListener(
+            in_ca_clock: CAClockRef,
+            in_listener_proc: CAClockListenerProc,
+            in_user_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe { CAClockRemoveListener(in_ca_clock, in_listener_proc, in_user_data) }
 }
 
-extern "C-unwind" {
-    /// Begin advancing the clock on its media timeline.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    pub fn CAClockStart(in_ca_clock: CAClockRef) -> OSStatus;
+/// Begin advancing the clock on its media timeline.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockStart(in_ca_clock: CAClockRef) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockStart(in_ca_clock: CAClockRef) -> OSStatus;
+    }
+    unsafe { CAClockStart(in_ca_clock) }
 }
 
-extern "C-unwind" {
-    /// Stop advancing the clock on its media timeline.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    pub fn CAClockStop(in_ca_clock: CAClockRef) -> OSStatus;
+/// Stop advancing the clock on its media timeline.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockStop(in_ca_clock: CAClockRef) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockStop(in_ca_clock: CAClockRef) -> OSStatus;
+    }
+    unsafe { CAClockStop(in_ca_clock) }
 }
 
-extern "C-unwind" {
-    /// Allow received sync messages to start the clock.
-    ///
-    /// If a clock is following and being controlled by an external transport
-    /// (e.g. MIDI Time Code), call this to indicate that the client is ready to
-    /// start its transport in response to the external transport having started.
-    ///
-    /// The external time source will set the clock's start position and start
-    /// the clock.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    pub fn CAClockArm(in_ca_clock: CAClockRef) -> OSStatus;
+/// Allow received sync messages to start the clock.
+///
+/// If a clock is following and being controlled by an external transport
+/// (e.g. MIDI Time Code), call this to indicate that the client is ready to
+/// start its transport in response to the external transport having started.
+///
+/// The external time source will set the clock's start position and start
+/// the clock.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockArm(in_ca_clock: CAClockRef) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockArm(in_ca_clock: CAClockRef) -> OSStatus;
+    }
+    unsafe { CAClockArm(in_ca_clock) }
 }
 
-extern "C-unwind" {
-    /// Disallow received sync messages from starting the clock.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    pub fn CAClockDisarm(in_ca_clock: CAClockRef) -> OSStatus;
+/// Disallow received sync messages from starting the clock.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockDisarm(in_ca_clock: CAClockRef) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockDisarm(in_ca_clock: CAClockRef) -> OSStatus;
+    }
+    unsafe { CAClockDisarm(in_ca_clock) }
 }
 
-extern "C-unwind" {
-    /// Alter the clock's playback rate.
-    ///
-    /// Adjusts the ratio between the timebase and media time; e.g. at 0.5, the
-    /// media time will move half as quickly as timebase time.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `inPlayRate`: The clock's desired play rate.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    pub fn CAClockSetPlayRate(in_ca_clock: CAClockRef, in_play_rate: f64) -> OSStatus;
+/// Alter the clock's playback rate.
+///
+/// Adjusts the ratio between the timebase and media time; e.g. at 0.5, the
+/// media time will move half as quickly as timebase time.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `inPlayRate`: The clock's desired play rate.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockSetPlayRate(
+    in_ca_clock: CAClockRef,
+    in_play_rate: f64,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockSetPlayRate(in_ca_clock: CAClockRef, in_play_rate: f64) -> OSStatus;
+    }
+    unsafe { CAClockSetPlayRate(in_ca_clock, in_play_rate) }
 }
 
-extern "C-unwind" {
-    /// Obtain the clock's playback rate.
-    ///
-    /// Returns the clock's current play rate. If the clock is internally synced,
-    /// this will be the last rate set by CAClockSetPlayRate. If the clock is
-    /// externally synced, it will be the rate of the external sync source, where
-    /// 1.0 means that it is running at exactly the same rate as the clock's
-    /// timebase. (2.0 means twice as fast).
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `outPlayRate`: On exit, the clock's playback rate.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    pub fn CAClockGetPlayRate(in_ca_clock: CAClockRef, out_play_rate: &mut f64) -> OSStatus;
+/// Obtain the clock's playback rate.
+///
+/// Returns the clock's current play rate. If the clock is internally synced,
+/// this will be the last rate set by CAClockSetPlayRate. If the clock is
+/// externally synced, it will be the rate of the external sync source, where
+/// 1.0 means that it is running at exactly the same rate as the clock's
+/// timebase. (2.0 means twice as fast).
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `outPlayRate`: On exit, the clock's playback rate.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockGetPlayRate(
+    in_ca_clock: CAClockRef,
+    out_play_rate: &mut f64,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockGetPlayRate(in_ca_clock: CAClockRef, out_play_rate: &mut f64) -> OSStatus;
+    }
+    unsafe { CAClockGetPlayRate(in_ca_clock, out_play_rate) }
 }
 
-extern "C-unwind" {
-    /// Converts seconds to a SMPTE time representation.
-    ///
-    /// Converts seconds on the media timeline to a SMPTE time. The clock's current
-    /// SMPTE format and offset must be set appropriately.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `inSeconds`: The number of seconds to be converted (e.g. 3600 = 1 hour).
-    ///
-    ///
-    /// Parameter `inSubframeDivisor`: The number of subframes per frame desired in outSMPTETime.
-    ///
-    ///
-    /// Parameter `outSMPTETime`: On exit, the SMPTE time corresponding to inSeconds.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CAClockSecondsToSMPTETime(
-        in_ca_clock: CAClockRef,
-        in_seconds: CAClockSeconds,
-        in_subframe_divisor: u16,
-        out_smpte_time: &mut SMPTETime,
-    ) -> OSStatus;
+/// Converts seconds to a SMPTE time representation.
+///
+/// Converts seconds on the media timeline to a SMPTE time. The clock's current
+/// SMPTE format and offset must be set appropriately.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `inSeconds`: The number of seconds to be converted (e.g. 3600 = 1 hour).
+///
+///
+/// Parameter `inSubframeDivisor`: The number of subframes per frame desired in outSMPTETime.
+///
+///
+/// Parameter `outSMPTETime`: On exit, the SMPTE time corresponding to inSeconds.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockSecondsToSMPTETime(
+    in_ca_clock: CAClockRef,
+    in_seconds: CAClockSeconds,
+    in_subframe_divisor: u16,
+    out_smpte_time: &mut SMPTETime,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockSecondsToSMPTETime(
+            in_ca_clock: CAClockRef,
+            in_seconds: CAClockSeconds,
+            in_subframe_divisor: u16,
+            out_smpte_time: &mut SMPTETime,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CAClockSecondsToSMPTETime(in_ca_clock, in_seconds, in_subframe_divisor, out_smpte_time)
+    }
 }
 
-extern "C-unwind" {
-    /// Converts a SMPTE time representation to seconds.
-    ///
-    /// Converts SMPTE time to seconds on the media timeline. The clock's current
-    /// SMPTE format and offset must be set appropriately.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `inSMPTETime`: The SMPTE time to be converted to seconds.
-    ///
-    ///
-    /// Parameter `outSeconds`: On exit, the number of seconds corresponding to inSMPTETime.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CAClockSMPTETimeToSeconds(
-        in_ca_clock: CAClockRef,
-        in_smpte_time: &SMPTETime,
-        out_seconds: &mut CAClockSeconds,
-    ) -> OSStatus;
+/// Converts a SMPTE time representation to seconds.
+///
+/// Converts SMPTE time to seconds on the media timeline. The clock's current
+/// SMPTE format and offset must be set appropriately.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `inSMPTETime`: The SMPTE time to be converted to seconds.
+///
+///
+/// Parameter `outSeconds`: On exit, the number of seconds corresponding to inSMPTETime.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockSMPTETimeToSeconds(
+    in_ca_clock: CAClockRef,
+    in_smpte_time: &SMPTETime,
+    out_seconds: &mut CAClockSeconds,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockSMPTETimeToSeconds(
+            in_ca_clock: CAClockRef,
+            in_smpte_time: &SMPTETime,
+            out_seconds: &mut CAClockSeconds,
+        ) -> OSStatus;
+    }
+    unsafe { CAClockSMPTETimeToSeconds(in_ca_clock, in_smpte_time, out_seconds) }
 }
 
-extern "C-unwind" {
-    /// Converts a number of beats to a CABarBeatTime structure.
-    ///
-    /// Converts a beat position on the media timeline to a CABarBeatTime, using the
-    /// clock's meter track. Examples using 4/4 time and a subbeat divisor of 480:
-    ///
-    /// inBeats | outBarBeatTime: bars . beats . units
-    /// --------|-------------------------------------
-    /// 0        | 1.1.0
-    /// 1        | 1.2.0
-    /// 4        | 2.1.0
-    /// 4.5        | 2.1.240
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `inBeats`: The absolute beat count to be converted.
-    ///
-    ///
-    /// Parameter `inSubbeatDivisor`: The number of units per beat.
-    ///
-    ///
-    /// Parameter `outBarBeatTime`: On exit, the bar/beat/subbeat time corresponding to inBeats.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    #[cfg(feature = "MusicPlayer")]
-    pub fn CAClockBeatsToBarBeatTime(
-        in_ca_clock: CAClockRef,
-        in_beats: CAClockBeats,
-        in_subbeat_divisor: u16,
-        out_bar_beat_time: &mut CABarBeatTime,
-    ) -> OSStatus;
+/// Converts a number of beats to a CABarBeatTime structure.
+///
+/// Converts a beat position on the media timeline to a CABarBeatTime, using the
+/// clock's meter track. Examples using 4/4 time and a subbeat divisor of 480:
+///
+/// inBeats | outBarBeatTime: bars . beats . units
+/// --------|-------------------------------------
+/// 0        | 1.1.0
+/// 1        | 1.2.0
+/// 4        | 2.1.0
+/// 4.5        | 2.1.240
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `inBeats`: The absolute beat count to be converted.
+///
+///
+/// Parameter `inSubbeatDivisor`: The number of units per beat.
+///
+///
+/// Parameter `outBarBeatTime`: On exit, the bar/beat/subbeat time corresponding to inBeats.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[cfg(feature = "MusicPlayer")]
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockBeatsToBarBeatTime(
+    in_ca_clock: CAClockRef,
+    in_beats: CAClockBeats,
+    in_subbeat_divisor: u16,
+    out_bar_beat_time: &mut CABarBeatTime,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockBeatsToBarBeatTime(
+            in_ca_clock: CAClockRef,
+            in_beats: CAClockBeats,
+            in_subbeat_divisor: u16,
+            out_bar_beat_time: &mut CABarBeatTime,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CAClockBeatsToBarBeatTime(in_ca_clock, in_beats, in_subbeat_divisor, out_bar_beat_time)
+    }
 }
 
-extern "C-unwind" {
-    /// Converts a CABarBeatTime structure to a number of beats.
-    ///
-    /// Converts a CABarBeatTime structure (bars/beats/subbeats) to a beat
-    /// position, using the clock's meter track.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `inBarBeatTime`: The bar/beat/subunit time to be converted to beats.
-    ///
-    ///
-    /// Parameter `outBeats`: On exit, the number of absolute beats corresponding to inBarBeatTime.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    #[cfg(feature = "MusicPlayer")]
-    pub fn CAClockBarBeatTimeToBeats(
-        in_ca_clock: CAClockRef,
-        in_bar_beat_time: &CABarBeatTime,
-        out_beats: &mut CAClockBeats,
-    ) -> OSStatus;
+/// Converts a CABarBeatTime structure to a number of beats.
+///
+/// Converts a CABarBeatTime structure (bars/beats/subbeats) to a beat
+/// position, using the clock's meter track.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `inBarBeatTime`: The bar/beat/subunit time to be converted to beats.
+///
+///
+/// Parameter `outBeats`: On exit, the number of absolute beats corresponding to inBarBeatTime.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[cfg(feature = "MusicPlayer")]
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockBarBeatTimeToBeats(
+    in_ca_clock: CAClockRef,
+    in_bar_beat_time: &CABarBeatTime,
+    out_beats: &mut CAClockBeats,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockBarBeatTimeToBeats(
+            in_ca_clock: CAClockRef,
+            in_bar_beat_time: &CABarBeatTime,
+            out_beats: &mut CAClockBeats,
+        ) -> OSStatus;
+    }
+    unsafe { CAClockBarBeatTimeToBeats(in_ca_clock, in_bar_beat_time, out_beats) }
 }
 
-extern "C-unwind" {
-    /// Provides MIDI messages to a clock without using CoreMIDI
-    ///
-    /// In some situations, a client may wish to drive a clock using MIDI Time Code or
-    /// beat clock obtained from a source other than Core MIDI. To do so,
-    /// construct MIDIPacketLists containing the timecode or beat clock messages,
-    /// and pass them to this function.
-    ///
-    ///
-    /// Parameter `inCAClock`: The clock object.
-    ///
-    ///
-    /// Parameter `inMIDIPacketList`: The MIDI events to be parsed.
-    ///
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    /// # Safety
-    ///
-    /// `in_ca_clock` must be a valid pointer.
-    #[cfg(feature = "objc2-core-midi")]
-    pub fn CAClockParseMIDI(
-        in_ca_clock: CAClockRef,
-        in_midi_packet_list: &MIDIPacketList,
-    ) -> OSStatus;
+/// Provides MIDI messages to a clock without using CoreMIDI
+///
+/// In some situations, a client may wish to drive a clock using MIDI Time Code or
+/// beat clock obtained from a source other than Core MIDI. To do so,
+/// construct MIDIPacketLists containing the timecode or beat clock messages,
+/// and pass them to this function.
+///
+///
+/// Parameter `inCAClock`: The clock object.
+///
+///
+/// Parameter `inMIDIPacketList`: The MIDI events to be parsed.
+///
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// `in_ca_clock` must be a valid pointer.
+#[cfg(feature = "objc2-core-midi")]
+#[inline]
+pub unsafe extern "C-unwind" fn CAClockParseMIDI(
+    in_ca_clock: CAClockRef,
+    in_midi_packet_list: &MIDIPacketList,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CAClockParseMIDI(
+            in_ca_clock: CAClockRef,
+            in_midi_packet_list: &MIDIPacketList,
+        ) -> OSStatus;
+    }
+    unsafe { CAClockParseMIDI(in_ca_clock, in_midi_packet_list) }
 }
 
-extern "C-unwind" {
-    /// This will return the name of a sound bank from a DLS or SF2 bank.
-    /// The name should be released by the caller.
-    ///
-    ///
-    /// Parameter `inURL`: The URL for the sound bank.
-    ///
-    /// Parameter `outName`: A pointer to a CFStringRef to be created and returned by the function.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `out_name` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn CopyNameFromSoundBank(in_url: &CFURL, out_name: &mut *const CFString) -> OSStatus;
+/// This will return the name of a sound bank from a DLS or SF2 bank.
+/// The name should be released by the caller.
+///
+///
+/// Parameter `inURL`: The URL for the sound bank.
+///
+/// Parameter `outName`: A pointer to a CFStringRef to be created and returned by the function.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `out_name` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn CopyNameFromSoundBank(
+    in_url: &CFURL,
+    out_name: &mut *const CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CopyNameFromSoundBank(in_url: &CFURL, out_name: &mut *const CFString) -> OSStatus;
+    }
+    unsafe { CopyNameFromSoundBank(in_url, out_name) }
 }
 
-extern "C-unwind" {
-    /// This will return a CFArray of CFDictionaries, one per instrument found in the DLS or SF2 bank.
-    /// Each dictionary will contain four items accessed via CFStringRef versions of the keys kInstrumentInfoKey_MSB,
-    /// kInstrumentInfoKey_LSB, kInstrumentInfoKey_Program, and kInstrumentInfoKey_Name.
-    /// MSB: An NSNumberRef for the most-significant byte of the bank number.  GM melodic banks will return 120 (0x78).
-    /// GM percussion banks will return 121 (0x79).  Custom banks will return their literal value.
-    /// LSB: An NSNumberRef for the least-significant byte of the bank number.  All GM banks will return
-    /// the bank variation number (0-127).
-    /// Program Number: An NSNumberRef for the program number (0-127) of an instrument within a particular bank.
-    /// Name: A CFStringRef containing the name of the instrument.
-    ///
-    /// Using these MSB, LSB, and Program values will guarantee that the correct instrument is loaded by the DLS synth
-    /// or Sampler Audio Unit.
-    /// The CFArray should be released by the caller.
-    ///
-    ///
-    /// Parameter `inURL`: The URL for the sound bank.
-    ///
-    /// Parameter `outInstrumentInfo`: A pointer to a CFArrayRef to be created and returned by the function.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `out_instrument_info` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn CopyInstrumentInfoFromSoundBank(
-        in_url: &CFURL,
-        out_instrument_info: &mut *const CFArray<CFDictionary<CFString, CFType>>,
-    ) -> OSStatus;
+/// This will return a CFArray of CFDictionaries, one per instrument found in the DLS or SF2 bank.
+/// Each dictionary will contain four items accessed via CFStringRef versions of the keys kInstrumentInfoKey_MSB,
+/// kInstrumentInfoKey_LSB, kInstrumentInfoKey_Program, and kInstrumentInfoKey_Name.
+/// MSB: An NSNumberRef for the most-significant byte of the bank number.  GM melodic banks will return 120 (0x78).
+/// GM percussion banks will return 121 (0x79).  Custom banks will return their literal value.
+/// LSB: An NSNumberRef for the least-significant byte of the bank number.  All GM banks will return
+/// the bank variation number (0-127).
+/// Program Number: An NSNumberRef for the program number (0-127) of an instrument within a particular bank.
+/// Name: A CFStringRef containing the name of the instrument.
+///
+/// Using these MSB, LSB, and Program values will guarantee that the correct instrument is loaded by the DLS synth
+/// or Sampler Audio Unit.
+/// The CFArray should be released by the caller.
+///
+///
+/// Parameter `inURL`: The URL for the sound bank.
+///
+/// Parameter `outInstrumentInfo`: A pointer to a CFArrayRef to be created and returned by the function.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `out_instrument_info` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn CopyInstrumentInfoFromSoundBank(
+    in_url: &CFURL,
+    out_instrument_info: &mut *const CFArray<CFDictionary<CFString, CFType>>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CopyInstrumentInfoFromSoundBank(
+            in_url: &CFURL,
+            out_instrument_info: &mut *const CFArray<CFDictionary<CFString, CFType>>,
+        ) -> OSStatus;
+    }
+    unsafe { CopyInstrumentInfoFromSoundBank(in_url, out_instrument_info) }
 }

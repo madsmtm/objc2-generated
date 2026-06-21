@@ -27,25 +27,33 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__DCSDictionary"> for DCSDictionary {}
 );
 
-extern "C-unwind" {
-    /// Look for a word or a phrase that contains the specified offset in dictionaries
-    /// activated in Dictionary.app preference
-    ///
-    /// Parameter `dictionary`: This parameter is not supported for Leopard. You should always pass NULL.
-    ///
-    /// Parameter `textString`: Text that contains the word or phrase to look up
-    ///
-    /// Parameter `offset`: Specifies a character offset in textString
-    ///
-    /// Returns: Returns a detected range of word or phrase around the specified offset,
-    /// or (kCFNotFound, 0) is returned if any term is not found in active dictionaries.
-    /// The result range can be used as an input parameter of DCSCopyTextDefinition()
-    /// and HIDictionaryWindowShow() in Carbon framework.
-    pub fn DCSGetTermRangeInString(
-        dictionary: Option<&DCSDictionary>,
-        text_string: &CFString,
-        offset: CFIndex,
-    ) -> CFRange;
+/// Look for a word or a phrase that contains the specified offset in dictionaries
+/// activated in Dictionary.app preference
+///
+/// Parameter `dictionary`: This parameter is not supported for Leopard. You should always pass NULL.
+///
+/// Parameter `textString`: Text that contains the word or phrase to look up
+///
+/// Parameter `offset`: Specifies a character offset in textString
+///
+/// Returns: Returns a detected range of word or phrase around the specified offset,
+/// or (kCFNotFound, 0) is returned if any term is not found in active dictionaries.
+/// The result range can be used as an input parameter of DCSCopyTextDefinition()
+/// and HIDictionaryWindowShow() in Carbon framework.
+#[inline]
+pub unsafe extern "C-unwind" fn DCSGetTermRangeInString(
+    dictionary: Option<&DCSDictionary>,
+    text_string: &CFString,
+    offset: CFIndex,
+) -> CFRange {
+    extern "C-unwind" {
+        fn DCSGetTermRangeInString(
+            dictionary: Option<&DCSDictionary>,
+            text_string: &CFString,
+            offset: CFIndex,
+        ) -> CFRange;
+    }
+    unsafe { DCSGetTermRangeInString(dictionary, text_string, offset) }
 }
 
 /// Copies definition for a specified range of text

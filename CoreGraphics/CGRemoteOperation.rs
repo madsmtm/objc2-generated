@@ -43,41 +43,62 @@ pub type CGKeyCode = u16;
 pub type CGScreenRefreshCallback =
     Option<unsafe extern "C-unwind" fn(u32, NonNull<CGRect>, *mut c_void)>;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `callback` must be implemented correctly.
-    /// - `user_info` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    #[deprecated = "No longer supported"]
-    pub fn CGRegisterScreenRefreshCallback(
-        callback: CGScreenRefreshCallback,
-        user_info: *mut c_void,
-    ) -> CGError;
+/// # Safety
+///
+/// - `callback` must be implemented correctly.
+/// - `user_info` must be a valid pointer or null.
+#[cfg(feature = "CGError")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGRegisterScreenRefreshCallback(
+    callback: CGScreenRefreshCallback,
+    user_info: *mut c_void,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGRegisterScreenRefreshCallback(
+            callback: CGScreenRefreshCallback,
+            user_info: *mut c_void,
+        ) -> CGError;
+    }
+    unsafe { CGRegisterScreenRefreshCallback(callback, user_info) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `callback` must be implemented correctly.
-    /// - `user_info` must be a valid pointer or null.
-    #[deprecated = "No longer supported"]
-    pub fn CGUnregisterScreenRefreshCallback(
-        callback: CGScreenRefreshCallback,
-        user_info: *mut c_void,
-    );
+/// # Safety
+///
+/// - `callback` must be implemented correctly.
+/// - `user_info` must be a valid pointer or null.
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGUnregisterScreenRefreshCallback(
+    callback: CGScreenRefreshCallback,
+    user_info: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn CGUnregisterScreenRefreshCallback(
+            callback: CGScreenRefreshCallback,
+            user_info: *mut c_void,
+        );
+    }
+    unsafe { CGUnregisterScreenRefreshCallback(callback, user_info) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `rects` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    #[deprecated = "No longer supported"]
-    pub fn CGWaitForScreenRefreshRects(
-        rects: Option<&mut *mut CGRect>,
-        count: Option<&mut u32>,
-    ) -> CGError;
+/// # Safety
+///
+/// `rects` must be a valid pointer or null.
+#[cfg(feature = "CGError")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGWaitForScreenRefreshRects(
+    rects: Option<&mut *mut CGRect>,
+    count: Option<&mut u32>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGWaitForScreenRefreshRects(
+            rects: Option<&mut *mut CGRect>,
+            count: Option<&mut u32>,
+        ) -> CGError;
+    }
+    unsafe { CGWaitForScreenRefreshRects(rects, count) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenupdateoperation?language=objc)
@@ -133,52 +154,88 @@ pub type CGScreenUpdateMoveCallback = Option<
     unsafe extern "C-unwind" fn(CGScreenUpdateMoveDelta, usize, NonNull<CGRect>, *mut c_void),
 >;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `callback` must be implemented correctly.
-    /// - `user_info` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    #[deprecated = "No longer supported"]
-    pub fn CGScreenRegisterMoveCallback(
-        callback: CGScreenUpdateMoveCallback,
-        user_info: *mut c_void,
-    ) -> CGError;
+/// # Safety
+///
+/// - `callback` must be implemented correctly.
+/// - `user_info` must be a valid pointer or null.
+#[cfg(feature = "CGError")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGScreenRegisterMoveCallback(
+    callback: CGScreenUpdateMoveCallback,
+    user_info: *mut c_void,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGScreenRegisterMoveCallback(
+            callback: CGScreenUpdateMoveCallback,
+            user_info: *mut c_void,
+        ) -> CGError;
+    }
+    unsafe { CGScreenRegisterMoveCallback(callback, user_info) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `callback` must be implemented correctly.
-    /// - `user_info` must be a valid pointer or null.
-    #[deprecated = "No longer supported"]
-    pub fn CGScreenUnregisterMoveCallback(
-        callback: CGScreenUpdateMoveCallback,
-        user_info: *mut c_void,
-    );
+/// # Safety
+///
+/// - `callback` must be implemented correctly.
+/// - `user_info` must be a valid pointer or null.
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGScreenUnregisterMoveCallback(
+    callback: CGScreenUpdateMoveCallback,
+    user_info: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn CGScreenUnregisterMoveCallback(
+            callback: CGScreenUpdateMoveCallback,
+            user_info: *mut c_void,
+        );
+    }
+    unsafe { CGScreenUnregisterMoveCallback(callback, user_info) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `rects` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    #[deprecated = "No longer supported"]
-    pub fn CGWaitForScreenUpdateRects(
-        requested_operations: CGScreenUpdateOperation,
-        current_operation: Option<&mut CGScreenUpdateOperation>,
-        rects: Option<&mut *mut CGRect>,
-        rect_count: Option<&mut usize>,
-        delta: Option<&mut CGScreenUpdateMoveDelta>,
-    ) -> CGError;
+/// # Safety
+///
+/// `rects` must be a valid pointer or null.
+#[cfg(feature = "CGError")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGWaitForScreenUpdateRects(
+    requested_operations: CGScreenUpdateOperation,
+    current_operation: Option<&mut CGScreenUpdateOperation>,
+    rects: Option<&mut *mut CGRect>,
+    rect_count: Option<&mut usize>,
+    delta: Option<&mut CGScreenUpdateMoveDelta>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGWaitForScreenUpdateRects(
+            requested_operations: CGScreenUpdateOperation,
+            current_operation: Option<&mut CGScreenUpdateOperation>,
+            rects: Option<&mut *mut CGRect>,
+            rect_count: Option<&mut usize>,
+            delta: Option<&mut CGScreenUpdateMoveDelta>,
+        ) -> CGError;
+    }
+    unsafe {
+        CGWaitForScreenUpdateRects(
+            requested_operations,
+            current_operation,
+            rects,
+            rect_count,
+            delta,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `rects` must be a valid pointer or null.
-    #[deprecated = "No longer supported"]
-    pub fn CGReleaseScreenRefreshRects(rects: *mut CGRect);
+/// # Safety
+///
+/// `rects` must be a valid pointer or null.
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGReleaseScreenRefreshRects(rects: *mut CGRect) {
+    extern "C-unwind" {
+        fn CGReleaseScreenRefreshRects(rects: *mut CGRect);
+    }
+    unsafe { CGReleaseScreenRefreshRects(rects) }
 }
 
 #[cfg(feature = "libc")]

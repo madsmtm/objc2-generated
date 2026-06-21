@@ -21,13 +21,21 @@ pub extern "C-unwind" fn UIGraphicsGetCurrentContext() -> Option<CFRetained<CGCo
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-graphics")]
-    pub fn UIGraphicsPushContext(context: &CGContext);
+#[cfg(feature = "objc2-core-graphics")]
+#[inline]
+pub unsafe extern "C-unwind" fn UIGraphicsPushContext(context: &CGContext) {
+    extern "C-unwind" {
+        fn UIGraphicsPushContext(context: &CGContext);
+    }
+    unsafe { UIGraphicsPushContext(context) }
 }
 
-extern "C-unwind" {
-    pub fn UIGraphicsPopContext();
+#[inline]
+pub unsafe extern "C-unwind" fn UIGraphicsPopContext() {
+    extern "C-unwind" {
+        fn UIGraphicsPopContext();
+    }
+    unsafe { UIGraphicsPopContext() }
 }
 
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
@@ -139,16 +147,24 @@ pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFContextToFile(
     unsafe { UIGraphicsBeginPDFContextToFile(path, bounds, document_info) }.as_bool()
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `document_info` generic should be of the correct type.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn UIGraphicsBeginPDFContextToData(
-        data: &NSMutableData,
-        bounds: CGRect,
-        document_info: Option<&NSDictionary>,
-    );
+/// # Safety
+///
+/// `document_info` generic should be of the correct type.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFContextToData(
+    data: &NSMutableData,
+    bounds: CGRect,
+    document_info: Option<&NSDictionary>,
+) {
+    extern "C-unwind" {
+        fn UIGraphicsBeginPDFContextToData(
+            data: &NSMutableData,
+            bounds: CGRect,
+            document_info: Option<&NSDictionary>,
+        );
+    }
+    unsafe { UIGraphicsBeginPDFContextToData(data, bounds, document_info) }
 }
 
 #[inline]
@@ -167,12 +183,19 @@ pub extern "C-unwind" fn UIGraphicsBeginPDFPage() {
     unsafe { UIGraphicsBeginPDFPage() }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `page_info` generic should be of the correct type.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn UIGraphicsBeginPDFPageWithInfo(bounds: CGRect, page_info: Option<&NSDictionary>);
+/// # Safety
+///
+/// `page_info` generic should be of the correct type.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFPageWithInfo(
+    bounds: CGRect,
+    page_info: Option<&NSDictionary>,
+) {
+    extern "C-unwind" {
+        fn UIGraphicsBeginPDFPageWithInfo(bounds: CGRect, page_info: Option<&NSDictionary>);
+    }
+    unsafe { UIGraphicsBeginPDFPageWithInfo(bounds, page_info) }
 }
 
 #[cfg(feature = "objc2-core-foundation")]

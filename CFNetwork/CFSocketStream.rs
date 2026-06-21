@@ -176,35 +176,54 @@ extern "C" {
     pub static kCFStreamPropertySocketExtendedBackgroundIdleMode: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `read_stream` must be a valid pointer or null.
-    /// - `write_stream` must be a valid pointer or null.
-    #[cfg(feature = "CFHost")]
-    #[deprecated = "Use Network framework instead"]
-    pub fn CFStreamCreatePairWithSocketToCFHost(
-        alloc: Option<&CFAllocator>,
-        host: &CFHost,
-        port: i32,
-        read_stream: *mut *mut CFReadStream,
-        write_stream: *mut *mut CFWriteStream,
-    );
+/// # Safety
+///
+/// - `read_stream` must be a valid pointer or null.
+/// - `write_stream` must be a valid pointer or null.
+#[cfg(feature = "CFHost")]
+#[deprecated = "Use Network framework instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStreamCreatePairWithSocketToCFHost(
+    alloc: Option<&CFAllocator>,
+    host: &CFHost,
+    port: i32,
+    read_stream: *mut *mut CFReadStream,
+    write_stream: *mut *mut CFWriteStream,
+) {
+    extern "C-unwind" {
+        fn CFStreamCreatePairWithSocketToCFHost(
+            alloc: Option<&CFAllocator>,
+            host: &CFHost,
+            port: i32,
+            read_stream: *mut *mut CFReadStream,
+            write_stream: *mut *mut CFWriteStream,
+        );
+    }
+    unsafe { CFStreamCreatePairWithSocketToCFHost(alloc, host, port, read_stream, write_stream) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `read_stream` must be a valid pointer or null.
-    /// - `write_stream` must be a valid pointer or null.
-    #[cfg(feature = "CFNetServices")]
-    #[deprecated = "Use Network framework instead"]
-    pub fn CFStreamCreatePairWithSocketToNetService(
-        alloc: Option<&CFAllocator>,
-        service: &CFNetService,
-        read_stream: *mut *mut CFReadStream,
-        write_stream: *mut *mut CFWriteStream,
-    );
+/// # Safety
+///
+/// - `read_stream` must be a valid pointer or null.
+/// - `write_stream` must be a valid pointer or null.
+#[cfg(feature = "CFNetServices")]
+#[deprecated = "Use Network framework instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStreamCreatePairWithSocketToNetService(
+    alloc: Option<&CFAllocator>,
+    service: &CFNetService,
+    read_stream: *mut *mut CFReadStream,
+    write_stream: *mut *mut CFWriteStream,
+) {
+    extern "C-unwind" {
+        fn CFStreamCreatePairWithSocketToNetService(
+            alloc: Option<&CFAllocator>,
+            service: &CFNetService,
+            read_stream: *mut *mut CFReadStream,
+            write_stream: *mut *mut CFWriteStream,
+        );
+    }
+    unsafe { CFStreamCreatePairWithSocketToNetService(alloc, service, read_stream, write_stream) }
 }
 
 extern "C" {

@@ -254,30 +254,39 @@ extern "C" {
 #[cfg(feature = "DADisk")]
 pub type DADiskAppearedCallback = Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void)>;
 
-extern "C-unwind" {
-    /// Registers a callback function to be called whenever a disk has appeared.
-    ///
-    /// Parameter `session`: The session object.
-    ///
-    /// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
-    ///
-    /// Parameter `callback`: The callback function to call when a disk has appeared.
-    ///
-    /// Parameter `context`: The user-defined context parameter to pass to the callback function.
-    ///
-    /// # Safety
-    ///
-    /// - `match` generic must be of the correct type.
-    /// - `match` generic must be of the correct type.
-    /// - `callback` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
-    #[cfg(all(feature = "DADisk", feature = "DASession"))]
-    pub fn DARegisterDiskAppearedCallback(
-        session: &DASession,
-        r#match: Option<&CFDictionary>,
-        callback: DADiskAppearedCallback,
-        context: *mut c_void,
-    );
+/// Registers a callback function to be called whenever a disk has appeared.
+///
+/// Parameter `session`: The session object.
+///
+/// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
+///
+/// Parameter `callback`: The callback function to call when a disk has appeared.
+///
+/// Parameter `context`: The user-defined context parameter to pass to the callback function.
+///
+/// # Safety
+///
+/// - `match` generic must be of the correct type.
+/// - `match` generic must be of the correct type.
+/// - `callback` must be implemented correctly.
+/// - `context` must be a valid pointer or null.
+#[cfg(all(feature = "DADisk", feature = "DASession"))]
+#[inline]
+pub unsafe extern "C-unwind" fn DARegisterDiskAppearedCallback(
+    session: &DASession,
+    r#match: Option<&CFDictionary>,
+    callback: DADiskAppearedCallback,
+    context: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn DARegisterDiskAppearedCallback(
+            session: &DASession,
+            r#match: Option<&CFDictionary>,
+            callback: DADiskAppearedCallback,
+            context: *mut c_void,
+        );
+    }
+    unsafe { DARegisterDiskAppearedCallback(session, r#match, callback, context) }
 }
 
 /// Type of the callback function used by DARegisterDiskDescriptionChangedCallback().
@@ -293,34 +302,44 @@ extern "C-unwind" {
 pub type DADiskDescriptionChangedCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, NonNull<CFArray>, *mut c_void)>;
 
-extern "C-unwind" {
-    /// Registers a callback function to be called whenever a disk description has changed.
-    ///
-    /// Parameter `session`: The session object.
-    ///
-    /// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
-    ///
-    /// Parameter `watch`: The disk description keys to watch.  Pass NULL for all keys.
-    ///
-    /// Parameter `callback`: The callback function to call when a watched key changes.
-    ///
-    /// Parameter `context`: The user-defined context parameter to pass to the callback function.
-    ///
-    /// # Safety
-    ///
-    /// - `match` generic must be of the correct type.
-    /// - `match` generic must be of the correct type.
-    /// - `watch` generic must be of the correct type.
-    /// - `callback` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
-    #[cfg(all(feature = "DADisk", feature = "DASession"))]
-    pub fn DARegisterDiskDescriptionChangedCallback(
-        session: &DASession,
-        r#match: Option<&CFDictionary>,
-        watch: Option<&CFArray>,
-        callback: DADiskDescriptionChangedCallback,
-        context: *mut c_void,
-    );
+/// Registers a callback function to be called whenever a disk description has changed.
+///
+/// Parameter `session`: The session object.
+///
+/// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
+///
+/// Parameter `watch`: The disk description keys to watch.  Pass NULL for all keys.
+///
+/// Parameter `callback`: The callback function to call when a watched key changes.
+///
+/// Parameter `context`: The user-defined context parameter to pass to the callback function.
+///
+/// # Safety
+///
+/// - `match` generic must be of the correct type.
+/// - `match` generic must be of the correct type.
+/// - `watch` generic must be of the correct type.
+/// - `callback` must be implemented correctly.
+/// - `context` must be a valid pointer or null.
+#[cfg(all(feature = "DADisk", feature = "DASession"))]
+#[inline]
+pub unsafe extern "C-unwind" fn DARegisterDiskDescriptionChangedCallback(
+    session: &DASession,
+    r#match: Option<&CFDictionary>,
+    watch: Option<&CFArray>,
+    callback: DADiskDescriptionChangedCallback,
+    context: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn DARegisterDiskDescriptionChangedCallback(
+            session: &DASession,
+            r#match: Option<&CFDictionary>,
+            watch: Option<&CFArray>,
+            callback: DADiskDescriptionChangedCallback,
+            context: *mut c_void,
+        );
+    }
+    unsafe { DARegisterDiskDescriptionChangedCallback(session, r#match, watch, callback, context) }
 }
 
 /// Type of the callback function used by DARegisterDiskDisappearedCallback().
@@ -334,30 +353,39 @@ extern "C-unwind" {
 pub type DADiskDisappearedCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void)>;
 
-extern "C-unwind" {
-    /// Registers a callback function to be called whenever a disk has disappeared.
-    ///
-    /// Parameter `session`: The session object.
-    ///
-    /// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
-    ///
-    /// Parameter `callback`: The callback function to call when a disk has disappeared.
-    ///
-    /// Parameter `context`: The user-defined context parameter to pass to the callback function.
-    ///
-    /// # Safety
-    ///
-    /// - `match` generic must be of the correct type.
-    /// - `match` generic must be of the correct type.
-    /// - `callback` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
-    #[cfg(all(feature = "DADisk", feature = "DASession"))]
-    pub fn DARegisterDiskDisappearedCallback(
-        session: &DASession,
-        r#match: Option<&CFDictionary>,
-        callback: DADiskDisappearedCallback,
-        context: *mut c_void,
-    );
+/// Registers a callback function to be called whenever a disk has disappeared.
+///
+/// Parameter `session`: The session object.
+///
+/// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
+///
+/// Parameter `callback`: The callback function to call when a disk has disappeared.
+///
+/// Parameter `context`: The user-defined context parameter to pass to the callback function.
+///
+/// # Safety
+///
+/// - `match` generic must be of the correct type.
+/// - `match` generic must be of the correct type.
+/// - `callback` must be implemented correctly.
+/// - `context` must be a valid pointer or null.
+#[cfg(all(feature = "DADisk", feature = "DASession"))]
+#[inline]
+pub unsafe extern "C-unwind" fn DARegisterDiskDisappearedCallback(
+    session: &DASession,
+    r#match: Option<&CFDictionary>,
+    callback: DADiskDisappearedCallback,
+    context: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn DARegisterDiskDisappearedCallback(
+            session: &DASession,
+            r#match: Option<&CFDictionary>,
+            callback: DADiskDisappearedCallback,
+            context: *mut c_void,
+        );
+    }
+    unsafe { DARegisterDiskDisappearedCallback(session, r#match, callback, context) }
 }
 
 /// Type of the callback function used by DADiskMount().
@@ -476,30 +504,39 @@ impl DADisk {
 pub type DADiskMountApprovalCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
-extern "C-unwind" {
-    /// Registers a callback function to be called whenever a volume is to be mounted.
-    ///
-    /// Parameter `session`: The session object.
-    ///
-    /// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
-    ///
-    /// Parameter `callback`: The callback function to call when a volume is to be mounted.
-    ///
-    /// Parameter `context`: The user-defined context parameter to pass to the callback function.
-    ///
-    /// # Safety
-    ///
-    /// - `match` generic must be of the correct type.
-    /// - `match` generic must be of the correct type.
-    /// - `callback` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
-    #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
-    pub fn DARegisterDiskMountApprovalCallback(
-        session: &DASession,
-        r#match: Option<&CFDictionary>,
-        callback: DADiskMountApprovalCallback,
-        context: *mut c_void,
-    );
+/// Registers a callback function to be called whenever a volume is to be mounted.
+///
+/// Parameter `session`: The session object.
+///
+/// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
+///
+/// Parameter `callback`: The callback function to call when a volume is to be mounted.
+///
+/// Parameter `context`: The user-defined context parameter to pass to the callback function.
+///
+/// # Safety
+///
+/// - `match` generic must be of the correct type.
+/// - `match` generic must be of the correct type.
+/// - `callback` must be implemented correctly.
+/// - `context` must be a valid pointer or null.
+#[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
+#[inline]
+pub unsafe extern "C-unwind" fn DARegisterDiskMountApprovalCallback(
+    session: &DASession,
+    r#match: Option<&CFDictionary>,
+    callback: DADiskMountApprovalCallback,
+    context: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn DARegisterDiskMountApprovalCallback(
+            session: &DASession,
+            r#match: Option<&CFDictionary>,
+            callback: DADiskMountApprovalCallback,
+            context: *mut c_void,
+        );
+    }
+    unsafe { DARegisterDiskMountApprovalCallback(session, r#match, callback, context) }
 }
 
 /// Type of the callback function used by DADiskRename().
@@ -621,30 +658,39 @@ impl DADisk {
 pub type DADiskUnmountApprovalCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
-extern "C-unwind" {
-    /// Registers a callback function to be called whenever a volume is to be unmounted.
-    ///
-    /// Parameter `session`: The session object.
-    ///
-    /// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
-    ///
-    /// Parameter `callback`: The callback function to call when a volume is to be unmounted.
-    ///
-    /// Parameter `context`: The user-defined context parameter to pass to the callback function.
-    ///
-    /// # Safety
-    ///
-    /// - `match` generic must be of the correct type.
-    /// - `match` generic must be of the correct type.
-    /// - `callback` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
-    #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
-    pub fn DARegisterDiskUnmountApprovalCallback(
-        session: &DASession,
-        r#match: Option<&CFDictionary>,
-        callback: DADiskUnmountApprovalCallback,
-        context: *mut c_void,
-    );
+/// Registers a callback function to be called whenever a volume is to be unmounted.
+///
+/// Parameter `session`: The session object.
+///
+/// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
+///
+/// Parameter `callback`: The callback function to call when a volume is to be unmounted.
+///
+/// Parameter `context`: The user-defined context parameter to pass to the callback function.
+///
+/// # Safety
+///
+/// - `match` generic must be of the correct type.
+/// - `match` generic must be of the correct type.
+/// - `callback` must be implemented correctly.
+/// - `context` must be a valid pointer or null.
+#[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
+#[inline]
+pub unsafe extern "C-unwind" fn DARegisterDiskUnmountApprovalCallback(
+    session: &DASession,
+    r#match: Option<&CFDictionary>,
+    callback: DADiskUnmountApprovalCallback,
+    context: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn DARegisterDiskUnmountApprovalCallback(
+            session: &DASession,
+            r#match: Option<&CFDictionary>,
+            callback: DADiskUnmountApprovalCallback,
+            context: *mut c_void,
+        );
+    }
+    unsafe { DARegisterDiskUnmountApprovalCallback(session, r#match, callback, context) }
 }
 
 /// Type of the callback function used by DADiskEject().
@@ -714,30 +760,39 @@ impl DADisk {
 pub type DADiskEjectApprovalCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
-extern "C-unwind" {
-    /// Registers a callback function to be called whenever a volume is to be ejected.
-    ///
-    /// Parameter `session`: The session object.
-    ///
-    /// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
-    ///
-    /// Parameter `callback`: The callback function to call when a volume is to be ejected.
-    ///
-    /// Parameter `context`: The user-defined context parameter to pass to the callback function.
-    ///
-    /// # Safety
-    ///
-    /// - `match` generic must be of the correct type.
-    /// - `match` generic must be of the correct type.
-    /// - `callback` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
-    #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
-    pub fn DARegisterDiskEjectApprovalCallback(
-        session: &DASession,
-        r#match: Option<&CFDictionary>,
-        callback: DADiskEjectApprovalCallback,
-        context: *mut c_void,
-    );
+/// Registers a callback function to be called whenever a volume is to be ejected.
+///
+/// Parameter `session`: The session object.
+///
+/// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
+///
+/// Parameter `callback`: The callback function to call when a volume is to be ejected.
+///
+/// Parameter `context`: The user-defined context parameter to pass to the callback function.
+///
+/// # Safety
+///
+/// - `match` generic must be of the correct type.
+/// - `match` generic must be of the correct type.
+/// - `callback` must be implemented correctly.
+/// - `context` must be a valid pointer or null.
+#[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
+#[inline]
+pub unsafe extern "C-unwind" fn DARegisterDiskEjectApprovalCallback(
+    session: &DASession,
+    r#match: Option<&CFDictionary>,
+    callback: DADiskEjectApprovalCallback,
+    context: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn DARegisterDiskEjectApprovalCallback(
+            session: &DASession,
+            r#match: Option<&CFDictionary>,
+            callback: DADiskEjectApprovalCallback,
+            context: *mut c_void,
+        );
+    }
+    unsafe { DARegisterDiskEjectApprovalCallback(session, r#match, callback, context) }
 }
 
 /// Type of the callback function used by DADiskClaim().
@@ -869,33 +924,43 @@ impl DADisk {
 #[cfg(feature = "DADisk")]
 pub type DADiskPeekCallback = Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void)>;
 
-extern "C-unwind" {
-    /// Registers a callback function to be called whenever a disk has been probed.
-    ///
-    /// Parameter `session`: The session object.
-    ///
-    /// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
-    ///
-    /// Parameter `order`: The callback order, from lowest to highest.  Pass 0 for the default.
-    ///
-    /// Parameter `callback`: The callback function to call when a disk has been probed.
-    ///
-    /// Parameter `context`: The user-defined context parameter to pass to the callback function.
-    ///
-    /// # Safety
-    ///
-    /// - `match` generic must be of the correct type.
-    /// - `match` generic must be of the correct type.
-    /// - `callback` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
-    #[cfg(all(feature = "DADisk", feature = "DASession"))]
-    pub fn DARegisterDiskPeekCallback(
-        session: &DASession,
-        r#match: Option<&CFDictionary>,
-        order: CFIndex,
-        callback: DADiskPeekCallback,
-        context: *mut c_void,
-    );
+/// Registers a callback function to be called whenever a disk has been probed.
+///
+/// Parameter `session`: The session object.
+///
+/// Parameter `match`: The disk description keys to match.  Pass NULL for all disk objects.
+///
+/// Parameter `order`: The callback order, from lowest to highest.  Pass 0 for the default.
+///
+/// Parameter `callback`: The callback function to call when a disk has been probed.
+///
+/// Parameter `context`: The user-defined context parameter to pass to the callback function.
+///
+/// # Safety
+///
+/// - `match` generic must be of the correct type.
+/// - `match` generic must be of the correct type.
+/// - `callback` must be implemented correctly.
+/// - `context` must be a valid pointer or null.
+#[cfg(all(feature = "DADisk", feature = "DASession"))]
+#[inline]
+pub unsafe extern "C-unwind" fn DARegisterDiskPeekCallback(
+    session: &DASession,
+    r#match: Option<&CFDictionary>,
+    order: CFIndex,
+    callback: DADiskPeekCallback,
+    context: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn DARegisterDiskPeekCallback(
+            session: &DASession,
+            r#match: Option<&CFDictionary>,
+            order: CFIndex,
+            callback: DADiskPeekCallback,
+            context: *mut c_void,
+        );
+    }
+    unsafe { DARegisterDiskPeekCallback(session, r#match, order, callback, context) }
 }
 
 #[cfg(feature = "DADisk")]
@@ -935,36 +1000,52 @@ impl DADisk {
     }
 }
 
-extern "C-unwind" {
-    /// Unregisters a registered callback function.
-    ///
-    /// Parameter `session`: The session object.
-    ///
-    /// Parameter `callback`: The registered callback function.
-    ///
-    /// Parameter `context`: The user-defined context parameter.
-    ///
-    /// # Safety
-    ///
-    /// - `callback` must be a valid pointer.
-    /// - `context` must be a valid pointer or null.
-    #[cfg(feature = "DASession")]
-    pub fn DAUnregisterCallback(
-        session: &DASession,
-        callback: NonNull<c_void>,
-        context: *mut c_void,
-    );
+/// Unregisters a registered callback function.
+///
+/// Parameter `session`: The session object.
+///
+/// Parameter `callback`: The registered callback function.
+///
+/// Parameter `context`: The user-defined context parameter.
+///
+/// # Safety
+///
+/// - `callback` must be a valid pointer.
+/// - `context` must be a valid pointer or null.
+#[cfg(feature = "DASession")]
+#[inline]
+pub unsafe extern "C-unwind" fn DAUnregisterCallback(
+    session: &DASession,
+    callback: NonNull<c_void>,
+    context: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn DAUnregisterCallback(
+            session: &DASession,
+            callback: NonNull<c_void>,
+            context: *mut c_void,
+        );
+    }
+    unsafe { DAUnregisterCallback(session, callback, context) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `callback` must be a valid pointer.
-    /// - `context` must be a valid pointer or null.
-    #[cfg(feature = "DASession")]
-    pub fn DAUnregisterApprovalCallback(
-        session: &DASession,
-        callback: NonNull<c_void>,
-        context: *mut c_void,
-    );
+/// # Safety
+///
+/// - `callback` must be a valid pointer.
+/// - `context` must be a valid pointer or null.
+#[cfg(feature = "DASession")]
+#[inline]
+pub unsafe extern "C-unwind" fn DAUnregisterApprovalCallback(
+    session: &DASession,
+    callback: NonNull<c_void>,
+    context: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn DAUnregisterApprovalCallback(
+            session: &DASession,
+            callback: NonNull<c_void>,
+            context: *mut c_void,
+        );
+    }
+    unsafe { DAUnregisterApprovalCallback(session, callback, context) }
 }

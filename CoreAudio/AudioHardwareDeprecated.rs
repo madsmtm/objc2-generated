@@ -169,173 +169,224 @@ pub const kAudioHardwarePropertyBootChimeVolumeDecibelsToScalar: AudioObjectProp
 pub const kAudioHardwarePropertyBootChimeVolumeDecibelsToScalarTransferFunction:
     AudioObjectPropertySelector = 0x62767466;
 
-extern "C-unwind" {
-    /// Add the given CFRunLoopSource to the the HAL's notification CFRunLoop.
-    ///
-    /// The CFRunLoop the HAL uses for notifications is specified by
-    /// kAudioHardwarePropertyRunLoop. If kAudioHardwarePropertyRunLoop changes,
-    /// CFRunLoopSources added with this function will automatically be transferred to
-    /// the new CFRunLoop.
-    /// Usage of the HAL's notification run loop is deprecated. Please use libdispatch
-    /// instead.
-    ///
-    /// Parameter `inRunLoopSource`: The CFRunLoopSource to add.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    #[deprecated]
-    pub fn AudioHardwareAddRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus;
+/// Add the given CFRunLoopSource to the the HAL's notification CFRunLoop.
+///
+/// The CFRunLoop the HAL uses for notifications is specified by
+/// kAudioHardwarePropertyRunLoop. If kAudioHardwarePropertyRunLoop changes,
+/// CFRunLoopSources added with this function will automatically be transferred to
+/// the new CFRunLoop.
+/// Usage of the HAL's notification run loop is deprecated. Please use libdispatch
+/// instead.
+///
+/// Parameter `inRunLoopSource`: The CFRunLoopSource to add.
+///
+/// Returns: An OSStatus indicating success or failure.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareAddRunLoopSource(
+    in_run_loop_source: &CFRunLoopSource,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareAddRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus;
+    }
+    unsafe { AudioHardwareAddRunLoopSource(in_run_loop_source) }
 }
 
-extern "C-unwind" {
-    /// Remove the given CFRunLoopSource from the the HAL's notification CFRunLoop.
-    ///
-    /// The CFRunLoop the HAL uses for notifications is specified by
-    /// kAudioHardwarePropertyRunLoop.
-    /// Usage of the HAL's notification run loop is deprecated. Please use libdispatch
-    /// instead.
-    ///
-    /// Parameter `inRunLoopSource`: The CFRunLoopSource to remove.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    #[deprecated]
-    pub fn AudioHardwareRemoveRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus;
+/// Remove the given CFRunLoopSource from the the HAL's notification CFRunLoop.
+///
+/// The CFRunLoop the HAL uses for notifications is specified by
+/// kAudioHardwarePropertyRunLoop.
+/// Usage of the HAL's notification run loop is deprecated. Please use libdispatch
+/// instead.
+///
+/// Parameter `inRunLoopSource`: The CFRunLoopSource to remove.
+///
+/// Returns: An OSStatus indicating success or failure.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareRemoveRunLoopSource(
+    in_run_loop_source: &CFRunLoopSource,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareRemoveRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus;
+    }
+    unsafe { AudioHardwareRemoveRunLoopSource(in_run_loop_source) }
 }
 
-extern "C-unwind" {
-    /// Retrieve information about the given property.
-    ///
-    /// Note that the same functionality is provided by the functions
-    /// AudioObjectHasProperty(), AudioObjectIsPropertySettable(), and
-    /// AudioObjectGetPropertyDataSize().
-    ///
-    /// Parameter `inPropertyID`: The AudioHardwarePropertyID of the property to query.
-    ///
-    /// Parameter `outSize`: A pointer to a UInt32 that receives the size of the property data in bytes
-    /// on exit. This can be NULL if the size information is not being requested.
-    ///
-    /// Parameter `outWritable`: A pointer to a Boolean that receives indication of whether or not the given
-    /// property can be set. This can be NULL if the writability is not being
-    /// requested.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    #[cfg(feature = "AudioHardware")]
-    #[deprecated]
-    pub fn AudioHardwareGetPropertyInfo(
-        in_property_id: AudioHardwarePropertyID,
-        out_size: Option<&mut u32>,
-        out_writable: Option<&mut Boolean>,
-    ) -> OSStatus;
+/// Retrieve information about the given property.
+///
+/// Note that the same functionality is provided by the functions
+/// AudioObjectHasProperty(), AudioObjectIsPropertySettable(), and
+/// AudioObjectGetPropertyDataSize().
+///
+/// Parameter `inPropertyID`: The AudioHardwarePropertyID of the property to query.
+///
+/// Parameter `outSize`: A pointer to a UInt32 that receives the size of the property data in bytes
+/// on exit. This can be NULL if the size information is not being requested.
+///
+/// Parameter `outWritable`: A pointer to a Boolean that receives indication of whether or not the given
+/// property can be set. This can be NULL if the writability is not being
+/// requested.
+///
+/// Returns: An OSStatus indicating success or failure.
+#[cfg(feature = "AudioHardware")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareGetPropertyInfo(
+    in_property_id: AudioHardwarePropertyID,
+    out_size: Option<&mut u32>,
+    out_writable: Option<&mut Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareGetPropertyInfo(
+            in_property_id: AudioHardwarePropertyID,
+            out_size: Option<&mut u32>,
+            out_writable: Option<&mut Boolean>,
+        ) -> OSStatus;
+    }
+    unsafe { AudioHardwareGetPropertyInfo(in_property_id, out_size, out_writable) }
 }
 
-extern "C-unwind" {
-    /// Queries an the AudioSystemObject to get the data of the given property and
-    /// places it in the provided buffer.
-    ///
-    /// Note that the same functionality is provided by the function
-    /// AudioObjectGetPropertyData().
-    ///
-    /// Parameter `inPropertyID`: The AudioHardwarePropertyID of the property to query.
-    ///
-    /// Parameter `ioPropertyDataSize`: A UInt32 which on entry indicates the size of the buffer pointed to by
-    /// outData and on exit indicates how much of the buffer was used.
-    ///
-    /// Parameter `outPropertyData`: The buffer into which the AudioSystemObject will put the data for the given
-    /// property.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// `out_property_data` must be a valid pointer.
-    #[cfg(feature = "AudioHardware")]
-    #[deprecated]
-    pub fn AudioHardwareGetProperty(
-        in_property_id: AudioHardwarePropertyID,
-        io_property_data_size: &mut u32,
-        out_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Queries an the AudioSystemObject to get the data of the given property and
+/// places it in the provided buffer.
+///
+/// Note that the same functionality is provided by the function
+/// AudioObjectGetPropertyData().
+///
+/// Parameter `inPropertyID`: The AudioHardwarePropertyID of the property to query.
+///
+/// Parameter `ioPropertyDataSize`: A UInt32 which on entry indicates the size of the buffer pointed to by
+/// outData and on exit indicates how much of the buffer was used.
+///
+/// Parameter `outPropertyData`: The buffer into which the AudioSystemObject will put the data for the given
+/// property.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// `out_property_data` must be a valid pointer.
+#[cfg(feature = "AudioHardware")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareGetProperty(
+    in_property_id: AudioHardwarePropertyID,
+    io_property_data_size: &mut u32,
+    out_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareGetProperty(
+            in_property_id: AudioHardwarePropertyID,
+            io_property_data_size: &mut u32,
+            out_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe { AudioHardwareGetProperty(in_property_id, io_property_data_size, out_property_data) }
 }
 
-extern "C-unwind" {
-    /// Tells the AudioSystemObject to change the value of the given property using the
-    /// provided data.
-    ///
-    /// Note that the value of the property should not be considered changed until the
-    /// HAL has called the listeners as many properties values are changed
-    /// asynchronously. Also note that the same functionality is provided by the
-    /// function AudioObjectGetPropertyData().
-    ///
-    /// Parameter `inPropertyID`: The AudioHardwarePropertyID of the property to change.
-    ///
-    /// Parameter `inPropertyDataSize`: A UInt32 indicating the size of the buffer pointed to by inData.
-    ///
-    /// Parameter `inPropertyData`: The buffer containing the data to be used to change the property's value.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// `in_property_data` must be a valid pointer.
-    #[cfg(feature = "AudioHardware")]
-    #[deprecated]
-    pub fn AudioHardwareSetProperty(
-        in_property_id: AudioHardwarePropertyID,
-        in_property_data_size: u32,
-        in_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Tells the AudioSystemObject to change the value of the given property using the
+/// provided data.
+///
+/// Note that the value of the property should not be considered changed until the
+/// HAL has called the listeners as many properties values are changed
+/// asynchronously. Also note that the same functionality is provided by the
+/// function AudioObjectGetPropertyData().
+///
+/// Parameter `inPropertyID`: The AudioHardwarePropertyID of the property to change.
+///
+/// Parameter `inPropertyDataSize`: A UInt32 indicating the size of the buffer pointed to by inData.
+///
+/// Parameter `inPropertyData`: The buffer containing the data to be used to change the property's value.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// `in_property_data` must be a valid pointer.
+#[cfg(feature = "AudioHardware")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareSetProperty(
+    in_property_id: AudioHardwarePropertyID,
+    in_property_data_size: u32,
+    in_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareSetProperty(
+            in_property_id: AudioHardwarePropertyID,
+            in_property_data_size: u32,
+            in_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe { AudioHardwareSetProperty(in_property_id, in_property_data_size, in_property_data) }
 }
 
-extern "C-unwind" {
-    /// Registers the given AudioHardwarePropertyListenerProc to receive notifications
-    /// when the given property changes.
-    ///
-    /// Note that the same functionality is provided by AudioObjectAddPropertyListener
-    /// in conjunction with AudioObjectPropertyListenerProc.
-    ///
-    /// Parameter `inPropertyID`: The AudioHardwarePropertyID of the property to listen to.
-    ///
-    /// Parameter `inProc`: AudioHardwarePropertyListenerProc to call.
-    ///
-    /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `in_proc` must be implemented correctly.
-    /// - `in_client_data` must be a valid pointer or null.
-    #[cfg(feature = "AudioHardware")]
-    #[deprecated]
-    pub fn AudioHardwareAddPropertyListener(
-        in_property_id: AudioHardwarePropertyID,
-        in_proc: AudioHardwarePropertyListenerProc,
-        in_client_data: *mut c_void,
-    ) -> OSStatus;
+/// Registers the given AudioHardwarePropertyListenerProc to receive notifications
+/// when the given property changes.
+///
+/// Note that the same functionality is provided by AudioObjectAddPropertyListener
+/// in conjunction with AudioObjectPropertyListenerProc.
+///
+/// Parameter `inPropertyID`: The AudioHardwarePropertyID of the property to listen to.
+///
+/// Parameter `inProc`: AudioHardwarePropertyListenerProc to call.
+///
+/// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `in_proc` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer or null.
+#[cfg(feature = "AudioHardware")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareAddPropertyListener(
+    in_property_id: AudioHardwarePropertyID,
+    in_proc: AudioHardwarePropertyListenerProc,
+    in_client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareAddPropertyListener(
+            in_property_id: AudioHardwarePropertyID,
+            in_proc: AudioHardwarePropertyListenerProc,
+            in_client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { AudioHardwareAddPropertyListener(in_property_id, in_proc, in_client_data) }
 }
 
-extern "C-unwind" {
-    /// Unregisters the given AudioHardwarePropertyListenerProc from receive
-    /// notifications when the given property changes.
-    ///
-    /// Note that the same functionality is provided by
-    /// AudioObjectRemovePropertyListener in conjunction with
-    /// AudioObjectPropertyListenerProc.
-    ///
-    /// Parameter `inPropertyID`: The AudioHardwarePropertyID of the property to stop listening to.
-    ///
-    /// Parameter `inProc`: AudioHardwarePropertyListenerProc to unregister.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// `in_proc` must be implemented correctly.
-    #[cfg(feature = "AudioHardware")]
-    #[deprecated]
-    pub fn AudioHardwareRemovePropertyListener(
-        in_property_id: AudioHardwarePropertyID,
-        in_proc: AudioHardwarePropertyListenerProc,
-    ) -> OSStatus;
+/// Unregisters the given AudioHardwarePropertyListenerProc from receive
+/// notifications when the given property changes.
+///
+/// Note that the same functionality is provided by
+/// AudioObjectRemovePropertyListener in conjunction with
+/// AudioObjectPropertyListenerProc.
+///
+/// Parameter `inPropertyID`: The AudioHardwarePropertyID of the property to stop listening to.
+///
+/// Parameter `inProc`: AudioHardwarePropertyListenerProc to unregister.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// `in_proc` must be implemented correctly.
+#[cfg(feature = "AudioHardware")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareRemovePropertyListener(
+    in_property_id: AudioHardwarePropertyID,
+    in_proc: AudioHardwarePropertyListenerProc,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioHardwareRemovePropertyListener(
+            in_property_id: AudioHardwarePropertyID,
+            in_proc: AudioHardwarePropertyListenerProc,
+        ) -> OSStatus;
+    }
+    unsafe { AudioHardwareRemovePropertyListener(in_property_id, in_proc) }
 }
 
 /// AudioDevice is the base class for all objects that represent an audio device.
@@ -486,91 +537,114 @@ pub const kAudioDevicePropertyChannelNominalLineLevelNameForID: AudioObjectPrope
 pub const kAudioDevicePropertyHighPassFilterSettingNameForID: AudioObjectPropertySelector =
     0x63686970;
 
-extern "C-unwind" {
-    /// Registers the given AudioDeviceIOProc with the AudioDevice.
-    ///
-    /// A client may have multiple IOProcs for a given device, but the device is free to
-    /// only accept as many as it can handle. Note that it is not recommended for
-    /// clients to have more than a single IOProc registered at a time as this can be
-    /// wasteful of system resources. Rather, it is recommended that the client do any
-    /// necessary mixing itself so that only one IOProc is necessary.
-    /// This routine has been deprecated in favor of AudioDeviceCreateIOProcID().
-    ///
-    /// Parameter `inDevice`: The AudioDevice to register the IOProc with.
-    ///
-    /// Parameter `inProc`: The AudioDeviceIOProc to register.
-    ///
-    /// Parameter `inClientData`: A pointer to client data that is passed back to the IOProc when it is
-    /// called.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `in_proc` must be implemented correctly.
-    /// - `in_client_data` must be a valid pointer or null.
-    #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
-    #[deprecated]
-    pub fn AudioDeviceAddIOProc(
-        in_device: AudioDeviceID,
-        in_proc: AudioDeviceIOProc,
-        in_client_data: *mut c_void,
-    ) -> OSStatus;
+/// Registers the given AudioDeviceIOProc with the AudioDevice.
+///
+/// A client may have multiple IOProcs for a given device, but the device is free to
+/// only accept as many as it can handle. Note that it is not recommended for
+/// clients to have more than a single IOProc registered at a time as this can be
+/// wasteful of system resources. Rather, it is recommended that the client do any
+/// necessary mixing itself so that only one IOProc is necessary.
+/// This routine has been deprecated in favor of AudioDeviceCreateIOProcID().
+///
+/// Parameter `inDevice`: The AudioDevice to register the IOProc with.
+///
+/// Parameter `inProc`: The AudioDeviceIOProc to register.
+///
+/// Parameter `inClientData`: A pointer to client data that is passed back to the IOProc when it is
+/// called.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `in_proc` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer or null.
+#[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioDeviceAddIOProc(
+    in_device: AudioDeviceID,
+    in_proc: AudioDeviceIOProc,
+    in_client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioDeviceAddIOProc(
+            in_device: AudioDeviceID,
+            in_proc: AudioDeviceIOProc,
+            in_client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { AudioDeviceAddIOProc(in_device, in_proc, in_client_data) }
 }
 
-extern "C-unwind" {
-    /// Unregisters the given AudioDeviceIOProc from the AudioDevice.
-    /// This routine has been deprecated in favor of AudioDeviceDestroyIOProcID().
-    ///
-    /// Parameter `inDevice`: The AudioDevice to unregister the IOProc from.
-    ///
-    /// Parameter `inProc`: The AudioDeviceIOProc to unregister.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// `in_proc` must be implemented correctly.
-    #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
-    #[deprecated]
-    pub fn AudioDeviceRemoveIOProc(
-        in_device: AudioDeviceID,
-        in_proc: AudioDeviceIOProc,
-    ) -> OSStatus;
+/// Unregisters the given AudioDeviceIOProc from the AudioDevice.
+/// This routine has been deprecated in favor of AudioDeviceDestroyIOProcID().
+///
+/// Parameter `inDevice`: The AudioDevice to unregister the IOProc from.
+///
+/// Parameter `inProc`: The AudioDeviceIOProc to unregister.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// `in_proc` must be implemented correctly.
+#[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioDeviceRemoveIOProc(
+    in_device: AudioDeviceID,
+    in_proc: AudioDeviceIOProc,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioDeviceRemoveIOProc(
+            in_device: AudioDeviceID,
+            in_proc: AudioDeviceIOProc,
+        ) -> OSStatus;
+    }
+    unsafe { AudioDeviceRemoveIOProc(in_device, in_proc) }
 }
 
-extern "C-unwind" {
-    /// Read some data from an AudioDevice starting at the given time.
-    ///
-    /// With the advent of aggregate devices, the need for AudioDeviceRead has gone
-    /// away. Consequently, this function is now deprecated.
-    ///
-    /// Parameter `inDevice`: The AudioDevice to read from.
-    ///
-    /// Parameter `inStartTime`: An AudioTimeStamp indicating the time from which to read the data. In
-    /// general, the valid range of time (in frames) is from the current time minus
-    /// the maximum IO buffer size to the current time minus the safety offset.
-    ///
-    /// Parameter `outData`: An AudioBufferList that must be the same size and shape as that returned by
-    /// kAudioDevicePropertyStreamConfiguration. Further, the AudioBufferList must
-    /// have been previously registered with the device via
-    /// kAudioDevicePropertyRegisterBufferList. On exit, the mDataSize fields will
-    /// be updated with the amount of data read.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    /// kAudioHardwareUnsupportedOperationError will be returned if the AudioDevice does
-    /// not support direct reading.
-    ///
-    /// # Safety
-    ///
-    /// `out_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
-    #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
-    #[deprecated]
-    pub fn AudioDeviceRead(
-        in_device: AudioDeviceID,
-        in_start_time: &AudioTimeStamp,
-        out_data: &mut AudioBufferList,
-    ) -> OSStatus;
+/// Read some data from an AudioDevice starting at the given time.
+///
+/// With the advent of aggregate devices, the need for AudioDeviceRead has gone
+/// away. Consequently, this function is now deprecated.
+///
+/// Parameter `inDevice`: The AudioDevice to read from.
+///
+/// Parameter `inStartTime`: An AudioTimeStamp indicating the time from which to read the data. In
+/// general, the valid range of time (in frames) is from the current time minus
+/// the maximum IO buffer size to the current time minus the safety offset.
+///
+/// Parameter `outData`: An AudioBufferList that must be the same size and shape as that returned by
+/// kAudioDevicePropertyStreamConfiguration. Further, the AudioBufferList must
+/// have been previously registered with the device via
+/// kAudioDevicePropertyRegisterBufferList. On exit, the mDataSize fields will
+/// be updated with the amount of data read.
+///
+/// Returns: An OSStatus indicating success or failure.
+/// kAudioHardwareUnsupportedOperationError will be returned if the AudioDevice does
+/// not support direct reading.
+///
+/// # Safety
+///
+/// `out_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+#[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioDeviceRead(
+    in_device: AudioDeviceID,
+    in_start_time: &AudioTimeStamp,
+    out_data: &mut AudioBufferList,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioDeviceRead(
+            in_device: AudioDeviceID,
+            in_start_time: &AudioTimeStamp,
+            out_data: &mut AudioBufferList,
+        ) -> OSStatus;
+    }
+    unsafe { AudioDeviceRead(in_device, in_start_time, out_data) }
 }
 
 /// Retrieve information about the given property of an AudioDevice.
@@ -913,171 +987,254 @@ pub const kAudioStreamPropertyPhysicalFormatSupported: AudioObjectPropertySelect
 #[cfg(feature = "AudioHardware")]
 pub const kAudioStreamPropertyPhysicalFormatMatch: AudioObjectPropertySelector = 0x7066746d;
 
-extern "C-unwind" {
-    /// Retrieve information about the given property of an AudioStream.
-    ///
-    /// Parameter `inStream`: The AudioStream to query.
-    ///
-    /// Parameter `inChannel`: The channel of the property to query where 0 is the main channel.
-    ///
-    /// Parameter `inPropertyID`: The AudioDevicePropertyID of the property to query.
-    ///
-    /// Parameter `outSize`: A pointer to a UInt32 that receives the size of the property data in bytes
-    /// on exit. This can be NULL if the size information is not being requested.
-    ///
-    /// Parameter `outWritable`: A pointer to a Boolean that receives indication of whether or not the given
-    /// property can be set. This can be NULL if the writability is not being
-    /// requested.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    #[cfg(feature = "AudioHardware")]
-    #[deprecated]
-    pub fn AudioStreamGetPropertyInfo(
-        in_stream: AudioStreamID,
-        in_channel: u32,
-        in_property_id: AudioDevicePropertyID,
-        out_size: Option<&mut u32>,
-        out_writable: Option<&mut Boolean>,
-    ) -> OSStatus;
+/// Retrieve information about the given property of an AudioStream.
+///
+/// Parameter `inStream`: The AudioStream to query.
+///
+/// Parameter `inChannel`: The channel of the property to query where 0 is the main channel.
+///
+/// Parameter `inPropertyID`: The AudioDevicePropertyID of the property to query.
+///
+/// Parameter `outSize`: A pointer to a UInt32 that receives the size of the property data in bytes
+/// on exit. This can be NULL if the size information is not being requested.
+///
+/// Parameter `outWritable`: A pointer to a Boolean that receives indication of whether or not the given
+/// property can be set. This can be NULL if the writability is not being
+/// requested.
+///
+/// Returns: An OSStatus indicating success or failure.
+#[cfg(feature = "AudioHardware")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioStreamGetPropertyInfo(
+    in_stream: AudioStreamID,
+    in_channel: u32,
+    in_property_id: AudioDevicePropertyID,
+    out_size: Option<&mut u32>,
+    out_writable: Option<&mut Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioStreamGetPropertyInfo(
+            in_stream: AudioStreamID,
+            in_channel: u32,
+            in_property_id: AudioDevicePropertyID,
+            out_size: Option<&mut u32>,
+            out_writable: Option<&mut Boolean>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioStreamGetPropertyInfo(
+            in_stream,
+            in_channel,
+            in_property_id,
+            out_size,
+            out_writable,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Queries an the AudioStream object to get the data of the given property and
-    /// places it in the provided buffer.
-    ///
-    /// Note that the same functionality is provided by the function
-    /// AudioObjectGetPropertyData().
-    ///
-    /// Parameter `inStream`: The AudioStream to query.
-    ///
-    /// Parameter `inChannel`: The channel of the property to query where 0 is the main channel.
-    ///
-    /// Parameter `inPropertyID`: The AudioDevicePropertyID of the property to query.
-    ///
-    /// Parameter `ioPropertyDataSize`: A UInt32 which on entry indicates the size of the buffer pointed to by
-    /// outData and on exit indicates how much of the buffer was used.
-    ///
-    /// Parameter `outPropertyData`: The buffer into which the object will put the data for the given property.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// `out_property_data` must be a valid pointer.
-    #[cfg(feature = "AudioHardware")]
-    #[deprecated]
-    pub fn AudioStreamGetProperty(
-        in_stream: AudioStreamID,
-        in_channel: u32,
-        in_property_id: AudioDevicePropertyID,
-        io_property_data_size: &mut u32,
-        out_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Queries an the AudioStream object to get the data of the given property and
+/// places it in the provided buffer.
+///
+/// Note that the same functionality is provided by the function
+/// AudioObjectGetPropertyData().
+///
+/// Parameter `inStream`: The AudioStream to query.
+///
+/// Parameter `inChannel`: The channel of the property to query where 0 is the main channel.
+///
+/// Parameter `inPropertyID`: The AudioDevicePropertyID of the property to query.
+///
+/// Parameter `ioPropertyDataSize`: A UInt32 which on entry indicates the size of the buffer pointed to by
+/// outData and on exit indicates how much of the buffer was used.
+///
+/// Parameter `outPropertyData`: The buffer into which the object will put the data for the given property.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// `out_property_data` must be a valid pointer.
+#[cfg(feature = "AudioHardware")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioStreamGetProperty(
+    in_stream: AudioStreamID,
+    in_channel: u32,
+    in_property_id: AudioDevicePropertyID,
+    io_property_data_size: &mut u32,
+    out_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioStreamGetProperty(
+            in_stream: AudioStreamID,
+            in_channel: u32,
+            in_property_id: AudioDevicePropertyID,
+            io_property_data_size: &mut u32,
+            out_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioStreamGetProperty(
+            in_stream,
+            in_channel,
+            in_property_id,
+            io_property_data_size,
+            out_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Tells the AudioStream object to change the value of the given property using the
-    /// provided data.
-    ///
-    /// Note that the value of the property should not be considered changed until the
-    /// HAL has called the listeners as many properties values are changed
-    /// asynchronously. Also note that the same functionality is provided by the
-    /// function AudioObjectSetPropertyData().
-    ///
-    /// Parameter `inStream`: The AudioStream to change.
-    ///
-    /// Parameter `inWhen`: A pointer to an AudioTimeStamp that says when to change the property's value
-    /// relative to the device's time base. NULL means execute the change
-    /// immediately.
-    ///
-    /// Parameter `inChannel`: The channel of the property to change where 0 is the main channel.
-    ///
-    /// Parameter `inPropertyID`: The AudioDevicePropertyID of the property to change.
-    ///
-    /// Parameter `inPropertyDataSize`: A UInt32 indicating the size of the buffer pointed to by inData.
-    ///
-    /// Parameter `inPropertyData`: The buffer containing the data to be used to change the property's value.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// `in_property_data` must be a valid pointer.
-    #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
-    #[deprecated]
-    pub fn AudioStreamSetProperty(
-        in_stream: AudioStreamID,
-        in_when: Option<&AudioTimeStamp>,
-        in_channel: u32,
-        in_property_id: AudioDevicePropertyID,
-        in_property_data_size: u32,
-        in_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Tells the AudioStream object to change the value of the given property using the
+/// provided data.
+///
+/// Note that the value of the property should not be considered changed until the
+/// HAL has called the listeners as many properties values are changed
+/// asynchronously. Also note that the same functionality is provided by the
+/// function AudioObjectSetPropertyData().
+///
+/// Parameter `inStream`: The AudioStream to change.
+///
+/// Parameter `inWhen`: A pointer to an AudioTimeStamp that says when to change the property's value
+/// relative to the device's time base. NULL means execute the change
+/// immediately.
+///
+/// Parameter `inChannel`: The channel of the property to change where 0 is the main channel.
+///
+/// Parameter `inPropertyID`: The AudioDevicePropertyID of the property to change.
+///
+/// Parameter `inPropertyDataSize`: A UInt32 indicating the size of the buffer pointed to by inData.
+///
+/// Parameter `inPropertyData`: The buffer containing the data to be used to change the property's value.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// `in_property_data` must be a valid pointer.
+#[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioStreamSetProperty(
+    in_stream: AudioStreamID,
+    in_when: Option<&AudioTimeStamp>,
+    in_channel: u32,
+    in_property_id: AudioDevicePropertyID,
+    in_property_data_size: u32,
+    in_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioStreamSetProperty(
+            in_stream: AudioStreamID,
+            in_when: Option<&AudioTimeStamp>,
+            in_channel: u32,
+            in_property_id: AudioDevicePropertyID,
+            in_property_data_size: u32,
+            in_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioStreamSetProperty(
+            in_stream,
+            in_when,
+            in_channel,
+            in_property_id,
+            in_property_data_size,
+            in_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Registers the given AudioStreamPropertyListenerProc to receive notifications
-    /// when the given property changes.
-    ///
-    /// Note that the same functionality is provided by AudioObjectAddPropertyListener
-    /// in conjunction with AudioObjectPropertyListenerProc.
-    ///
-    /// Parameter `inStream`: The AudioStream with whom to register the listener.
-    ///
-    /// Parameter `inChannel`: The channel of the property to listen to.
-    ///
-    /// Parameter `inPropertyID`: The AudioDevicePropertyID of the property to listen to.
-    ///
-    /// Parameter `inProc`: AudioStreamPropertyListenerProc to call.
-    ///
-    /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// - `in_proc` must be implemented correctly.
-    /// - `in_client_data` must be a valid pointer or null.
-    #[cfg(feature = "AudioHardware")]
-    #[deprecated]
-    pub fn AudioStreamAddPropertyListener(
-        in_stream: AudioStreamID,
-        in_channel: u32,
-        in_property_id: AudioDevicePropertyID,
-        in_proc: AudioStreamPropertyListenerProc,
-        in_client_data: *mut c_void,
-    ) -> OSStatus;
+/// Registers the given AudioStreamPropertyListenerProc to receive notifications
+/// when the given property changes.
+///
+/// Note that the same functionality is provided by AudioObjectAddPropertyListener
+/// in conjunction with AudioObjectPropertyListenerProc.
+///
+/// Parameter `inStream`: The AudioStream with whom to register the listener.
+///
+/// Parameter `inChannel`: The channel of the property to listen to.
+///
+/// Parameter `inPropertyID`: The AudioDevicePropertyID of the property to listen to.
+///
+/// Parameter `inProc`: AudioStreamPropertyListenerProc to call.
+///
+/// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `in_proc` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer or null.
+#[cfg(feature = "AudioHardware")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioStreamAddPropertyListener(
+    in_stream: AudioStreamID,
+    in_channel: u32,
+    in_property_id: AudioDevicePropertyID,
+    in_proc: AudioStreamPropertyListenerProc,
+    in_client_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioStreamAddPropertyListener(
+            in_stream: AudioStreamID,
+            in_channel: u32,
+            in_property_id: AudioDevicePropertyID,
+            in_proc: AudioStreamPropertyListenerProc,
+            in_client_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioStreamAddPropertyListener(
+            in_stream,
+            in_channel,
+            in_property_id,
+            in_proc,
+            in_client_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Unregisters the given AudioStreamPropertyListenerProc from receiving
-    /// notifications when the given property changes.
-    ///
-    /// Note that the same functionality is provided by
-    /// AudioObjectRemovePropertyListener in conjunction with
-    /// AudioObjectPropertyListenerProc.
-    ///
-    /// Parameter `inStream`: The AudioStream with whom to unregister the listener.
-    ///
-    /// Parameter `inChannel`: The channel of the property to unregister from.
-    ///
-    /// Parameter `inPropertyID`: The AudioDevicePropertyID of the property to stop listening to.
-    ///
-    /// Parameter `inProc`: AudioStreamPropertyListenerProc to unregister.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// # Safety
-    ///
-    /// `in_proc` must be implemented correctly.
-    #[cfg(feature = "AudioHardware")]
-    #[deprecated]
-    pub fn AudioStreamRemovePropertyListener(
-        in_stream: AudioStreamID,
-        in_channel: u32,
-        in_property_id: AudioDevicePropertyID,
-        in_proc: AudioStreamPropertyListenerProc,
-    ) -> OSStatus;
+/// Unregisters the given AudioStreamPropertyListenerProc from receiving
+/// notifications when the given property changes.
+///
+/// Note that the same functionality is provided by
+/// AudioObjectRemovePropertyListener in conjunction with
+/// AudioObjectPropertyListenerProc.
+///
+/// Parameter `inStream`: The AudioStream with whom to unregister the listener.
+///
+/// Parameter `inChannel`: The channel of the property to unregister from.
+///
+/// Parameter `inPropertyID`: The AudioDevicePropertyID of the property to stop listening to.
+///
+/// Parameter `inProc`: AudioStreamPropertyListenerProc to unregister.
+///
+/// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// `in_proc` must be implemented correctly.
+#[cfg(feature = "AudioHardware")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioStreamRemovePropertyListener(
+    in_stream: AudioStreamID,
+    in_channel: u32,
+    in_property_id: AudioDevicePropertyID,
+    in_proc: AudioStreamPropertyListenerProc,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioStreamRemovePropertyListener(
+            in_stream: AudioStreamID,
+            in_channel: u32,
+            in_property_id: AudioDevicePropertyID,
+            in_proc: AudioStreamPropertyListenerProc,
+        ) -> OSStatus;
+    }
+    unsafe { AudioStreamRemovePropertyListener(in_stream, in_channel, in_property_id, in_proc) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiobootchimevolumecontrolclassid?language=objc)

@@ -266,11 +266,15 @@ unsafe impl RefEncode for NSMapEnumerator {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `table` generic should be of the correct type.
-    pub fn NSResetMapTable(table: &NSMapTable);
+/// # Safety
+///
+/// `table` generic should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn NSResetMapTable(table: &NSMapTable) {
+    extern "C-unwind" {
+        fn NSResetMapTable(table: &NSMapTable);
+    }
+    unsafe { NSResetMapTable(table) }
 }
 
 /// # Safety
@@ -329,58 +333,94 @@ pub unsafe extern "C-unwind" fn NSMapMember(
     unsafe { NSMapMember(table, key, original_key, value) }.as_bool()
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `table` generic should be of the correct type.
-    /// - `key` must be a valid pointer or null.
-    pub fn NSMapGet(table: &NSMapTable, key: *const c_void) -> *mut c_void;
+/// # Safety
+///
+/// - `table` generic should be of the correct type.
+/// - `key` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NSMapGet(table: &NSMapTable, key: *const c_void) -> *mut c_void {
+    extern "C-unwind" {
+        fn NSMapGet(table: &NSMapTable, key: *const c_void) -> *mut c_void;
+    }
+    unsafe { NSMapGet(table, key) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `table` generic should be of the correct type.
-    /// - `key` must be a valid pointer or null.
-    /// - `value` must be a valid pointer or null.
-    pub fn NSMapInsert(table: &NSMapTable, key: *const c_void, value: *const c_void);
+/// # Safety
+///
+/// - `table` generic should be of the correct type.
+/// - `key` must be a valid pointer or null.
+/// - `value` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NSMapInsert(
+    table: &NSMapTable,
+    key: *const c_void,
+    value: *const c_void,
+) {
+    extern "C-unwind" {
+        fn NSMapInsert(table: &NSMapTable, key: *const c_void, value: *const c_void);
+    }
+    unsafe { NSMapInsert(table, key, value) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `table` generic should be of the correct type.
-    /// - `key` must be a valid pointer or null.
-    /// - `value` must be a valid pointer or null.
-    pub fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *const c_void, value: *const c_void);
+/// # Safety
+///
+/// - `table` generic should be of the correct type.
+/// - `key` must be a valid pointer or null.
+/// - `value` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NSMapInsertKnownAbsent(
+    table: &NSMapTable,
+    key: *const c_void,
+    value: *const c_void,
+) {
+    extern "C-unwind" {
+        fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *const c_void, value: *const c_void);
+    }
+    unsafe { NSMapInsertKnownAbsent(table, key, value) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `table` generic should be of the correct type.
-    /// - `key` must be a valid pointer or null.
-    /// - `value` must be a valid pointer or null.
-    pub fn NSMapInsertIfAbsent(
-        table: &NSMapTable,
-        key: *const c_void,
-        value: *const c_void,
-    ) -> *mut c_void;
+/// # Safety
+///
+/// - `table` generic should be of the correct type.
+/// - `key` must be a valid pointer or null.
+/// - `value` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NSMapInsertIfAbsent(
+    table: &NSMapTable,
+    key: *const c_void,
+    value: *const c_void,
+) -> *mut c_void {
+    extern "C-unwind" {
+        fn NSMapInsertIfAbsent(
+            table: &NSMapTable,
+            key: *const c_void,
+            value: *const c_void,
+        ) -> *mut c_void;
+    }
+    unsafe { NSMapInsertIfAbsent(table, key, value) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `table` generic should be of the correct type.
-    /// - `key` must be a valid pointer or null.
-    pub fn NSMapRemove(table: &NSMapTable, key: *const c_void);
+/// # Safety
+///
+/// - `table` generic should be of the correct type.
+/// - `key` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn NSMapRemove(table: &NSMapTable, key: *const c_void) {
+    extern "C-unwind" {
+        fn NSMapRemove(table: &NSMapTable, key: *const c_void);
+    }
+    unsafe { NSMapRemove(table, key) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `table` generic should be of the correct type.
-    pub fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator;
+/// # Safety
+///
+/// `table` generic should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator {
+    extern "C-unwind" {
+        fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator;
+    }
+    unsafe { NSEnumerateMapTable(table) }
 }
 
 /// # Safety
@@ -404,18 +444,26 @@ pub unsafe extern "C-unwind" fn NSNextMapEnumeratorPair(
     unsafe { NSNextMapEnumeratorPair(enumerator, key, value) }.as_bool()
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `enumerator` must be a valid pointer.
-    pub fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>);
+/// # Safety
+///
+/// `enumerator` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>) {
+    extern "C-unwind" {
+        fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>);
+    }
+    unsafe { NSEndMapTableEnumeration(enumerator) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `table` generic should be of the correct type.
-    pub fn NSCountMapTable(table: &NSMapTable) -> NSUInteger;
+/// # Safety
+///
+/// `table` generic should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn NSCountMapTable(table: &NSMapTable) -> NSUInteger {
+    extern "C-unwind" {
+        fn NSCountMapTable(table: &NSMapTable) -> NSUInteger;
+    }
+    unsafe { NSCountMapTable(table) }
 }
 
 #[cfg(feature = "NSString")]

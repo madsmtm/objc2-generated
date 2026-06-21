@@ -11,168 +11,220 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jschar?language=objc)
 pub type JSChar = c_ushort;
 
-extern "C-unwind" {
-    /// Creates a JavaScript string from a buffer of Unicode characters.
-    ///
-    /// Parameter `chars`: The buffer of Unicode characters to copy into the new JSString.
-    ///
-    /// Parameter `numChars`: The number of characters to copy from the buffer pointed to by chars.
-    ///
-    /// Returns: A JSString containing chars. Ownership follows the Create Rule.
-    ///
-    /// # Safety
-    ///
-    /// `chars` must be a valid pointer.
-    #[cfg(feature = "JSBase")]
-    pub fn JSStringCreateWithCharacters(chars: *const JSChar, num_chars: usize) -> JSStringRef;
+/// Creates a JavaScript string from a buffer of Unicode characters.
+///
+/// Parameter `chars`: The buffer of Unicode characters to copy into the new JSString.
+///
+/// Parameter `numChars`: The number of characters to copy from the buffer pointed to by chars.
+///
+/// Returns: A JSString containing chars. Ownership follows the Create Rule.
+///
+/// # Safety
+///
+/// `chars` must be a valid pointer.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSStringCreateWithCharacters(
+    chars: *const JSChar,
+    num_chars: usize,
+) -> JSStringRef {
+    extern "C-unwind" {
+        fn JSStringCreateWithCharacters(chars: *const JSChar, num_chars: usize) -> JSStringRef;
+    }
+    unsafe { JSStringCreateWithCharacters(chars, num_chars) }
 }
 
-extern "C-unwind" {
-    /// Creates a JavaScript string from a null-terminated UTF8 string.
-    ///
-    /// Parameter `string`: The null-terminated UTF8 string to copy into the new JSString.
-    ///
-    /// Returns: A JSString containing string. Ownership follows the Create Rule.
-    ///
-    /// # Safety
-    ///
-    /// `string` must be a valid pointer.
-    #[cfg(feature = "JSBase")]
-    pub fn JSStringCreateWithUTF8CString(string: *const c_char) -> JSStringRef;
+/// Creates a JavaScript string from a null-terminated UTF8 string.
+///
+/// Parameter `string`: The null-terminated UTF8 string to copy into the new JSString.
+///
+/// Returns: A JSString containing string. Ownership follows the Create Rule.
+///
+/// # Safety
+///
+/// `string` must be a valid pointer.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSStringCreateWithUTF8CString(
+    string: *const c_char,
+) -> JSStringRef {
+    extern "C-unwind" {
+        fn JSStringCreateWithUTF8CString(string: *const c_char) -> JSStringRef;
+    }
+    unsafe { JSStringCreateWithUTF8CString(string) }
 }
 
-extern "C-unwind" {
-    /// Retains a JavaScript string.
-    ///
-    /// Parameter `string`: The JSString to retain.
-    ///
-    /// Returns: A JSString that is the same as string.
-    ///
-    /// # Safety
-    ///
-    /// `string` must be a valid pointer.
-    #[cfg(feature = "JSBase")]
-    pub fn JSStringRetain(string: JSStringRef) -> JSStringRef;
+/// Retains a JavaScript string.
+///
+/// Parameter `string`: The JSString to retain.
+///
+/// Returns: A JSString that is the same as string.
+///
+/// # Safety
+///
+/// `string` must be a valid pointer.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSStringRetain(string: JSStringRef) -> JSStringRef {
+    extern "C-unwind" {
+        fn JSStringRetain(string: JSStringRef) -> JSStringRef;
+    }
+    unsafe { JSStringRetain(string) }
 }
 
-extern "C-unwind" {
-    /// Releases a JavaScript string.
-    ///
-    /// Parameter `string`: The JSString to release.
-    ///
-    /// # Safety
-    ///
-    /// `string` must be a valid pointer.
-    #[cfg(feature = "JSBase")]
-    pub fn JSStringRelease(string: JSStringRef);
+/// Releases a JavaScript string.
+///
+/// Parameter `string`: The JSString to release.
+///
+/// # Safety
+///
+/// `string` must be a valid pointer.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSStringRelease(string: JSStringRef) {
+    extern "C-unwind" {
+        fn JSStringRelease(string: JSStringRef);
+    }
+    unsafe { JSStringRelease(string) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of Unicode characters in a JavaScript string.
-    ///
-    /// Parameter `string`: The JSString whose length (in Unicode characters) you want to know.
-    ///
-    /// Returns: The number of Unicode characters stored in string.
-    ///
-    /// # Safety
-    ///
-    /// `string` must be a valid pointer.
-    #[cfg(feature = "JSBase")]
-    pub fn JSStringGetLength(string: JSStringRef) -> usize;
+/// Returns the number of Unicode characters in a JavaScript string.
+///
+/// Parameter `string`: The JSString whose length (in Unicode characters) you want to know.
+///
+/// Returns: The number of Unicode characters stored in string.
+///
+/// # Safety
+///
+/// `string` must be a valid pointer.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSStringGetLength(string: JSStringRef) -> usize {
+    extern "C-unwind" {
+        fn JSStringGetLength(string: JSStringRef) -> usize;
+    }
+    unsafe { JSStringGetLength(string) }
 }
 
-extern "C-unwind" {
-    /// Returns a pointer to the Unicode character buffer that
-    /// serves as the backing store for a JavaScript string.
-    ///
-    /// Parameter `string`: The JSString whose backing store you want to access.
-    ///
-    /// Returns: A pointer to the Unicode character buffer that serves as string's
-    /// backing store, which will be deallocated when string is deallocated.
-    ///
-    /// # Safety
-    ///
-    /// `string` must be a valid pointer.
-    #[cfg(feature = "JSBase")]
-    pub fn JSStringGetCharactersPtr(string: JSStringRef) -> *const JSChar;
+/// Returns a pointer to the Unicode character buffer that
+/// serves as the backing store for a JavaScript string.
+///
+/// Parameter `string`: The JSString whose backing store you want to access.
+///
+/// Returns: A pointer to the Unicode character buffer that serves as string's
+/// backing store, which will be deallocated when string is deallocated.
+///
+/// # Safety
+///
+/// `string` must be a valid pointer.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSStringGetCharactersPtr(string: JSStringRef) -> *const JSChar {
+    extern "C-unwind" {
+        fn JSStringGetCharactersPtr(string: JSStringRef) -> *const JSChar;
+    }
+    unsafe { JSStringGetCharactersPtr(string) }
 }
 
-extern "C-unwind" {
-    /// Returns the maximum number of bytes a JavaScript string will
-    /// take up if converted into a null-terminated UTF8 string.
-    ///
-    /// Parameter `string`: The JSString whose maximum converted size (in bytes) you
-    /// want to know.
-    ///
-    /// Returns: The maximum number of bytes that could be required to convert string into a
-    /// null-terminated UTF8 string. The number of bytes that the conversion actually ends
-    /// up requiring could be less than this, but never more.
-    ///
-    /// # Safety
-    ///
-    /// `string` must be a valid pointer.
-    #[cfg(feature = "JSBase")]
-    pub fn JSStringGetMaximumUTF8CStringSize(string: JSStringRef) -> usize;
+/// Returns the maximum number of bytes a JavaScript string will
+/// take up if converted into a null-terminated UTF8 string.
+///
+/// Parameter `string`: The JSString whose maximum converted size (in bytes) you
+/// want to know.
+///
+/// Returns: The maximum number of bytes that could be required to convert string into a
+/// null-terminated UTF8 string. The number of bytes that the conversion actually ends
+/// up requiring could be less than this, but never more.
+///
+/// # Safety
+///
+/// `string` must be a valid pointer.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSStringGetMaximumUTF8CStringSize(string: JSStringRef) -> usize {
+    extern "C-unwind" {
+        fn JSStringGetMaximumUTF8CStringSize(string: JSStringRef) -> usize;
+    }
+    unsafe { JSStringGetMaximumUTF8CStringSize(string) }
 }
 
-extern "C-unwind" {
-    /// Converts a JavaScript string into a null-terminated UTF8 string,
-    /// and copies the result into an external byte buffer.
-    ///
-    /// Parameter `string`: The source JSString.
-    ///
-    /// Parameter `buffer`: The destination byte buffer into which to copy a null-terminated
-    /// UTF8 representation of string. On return, buffer contains a UTF8 string
-    /// representation of string. If bufferSize is too small, buffer will contain only
-    /// partial results. If buffer is not at least bufferSize bytes in size,
-    /// behavior is undefined.
-    ///
-    /// Parameter `bufferSize`: The size of the external buffer in bytes.
-    ///
-    /// Returns: The number of bytes written into buffer (including the null-terminator byte).
-    ///
-    /// # Safety
-    ///
-    /// - `string` must be a valid pointer.
-    /// - `buffer` must be a valid pointer.
-    #[cfg(feature = "JSBase")]
-    pub fn JSStringGetUTF8CString(
-        string: JSStringRef,
-        buffer: *mut c_char,
-        buffer_size: usize,
-    ) -> usize;
+/// Converts a JavaScript string into a null-terminated UTF8 string,
+/// and copies the result into an external byte buffer.
+///
+/// Parameter `string`: The source JSString.
+///
+/// Parameter `buffer`: The destination byte buffer into which to copy a null-terminated
+/// UTF8 representation of string. On return, buffer contains a UTF8 string
+/// representation of string. If bufferSize is too small, buffer will contain only
+/// partial results. If buffer is not at least bufferSize bytes in size,
+/// behavior is undefined.
+///
+/// Parameter `bufferSize`: The size of the external buffer in bytes.
+///
+/// Returns: The number of bytes written into buffer (including the null-terminator byte).
+///
+/// # Safety
+///
+/// - `string` must be a valid pointer.
+/// - `buffer` must be a valid pointer.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSStringGetUTF8CString(
+    string: JSStringRef,
+    buffer: *mut c_char,
+    buffer_size: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn JSStringGetUTF8CString(
+            string: JSStringRef,
+            buffer: *mut c_char,
+            buffer_size: usize,
+        ) -> usize;
+    }
+    unsafe { JSStringGetUTF8CString(string, buffer, buffer_size) }
 }
 
-extern "C-unwind" {
-    /// Tests whether two JavaScript strings match.
-    ///
-    /// Parameter `a`: The first JSString to test.
-    ///
-    /// Parameter `b`: The second JSString to test.
-    ///
-    /// Returns: true if the two strings match, otherwise false.
-    ///
-    /// # Safety
-    ///
-    /// - `a` must be a valid pointer.
-    /// - `b` must be a valid pointer.
-    #[cfg(feature = "JSBase")]
-    pub fn JSStringIsEqual(a: JSStringRef, b: JSStringRef) -> bool;
+/// Tests whether two JavaScript strings match.
+///
+/// Parameter `a`: The first JSString to test.
+///
+/// Parameter `b`: The second JSString to test.
+///
+/// Returns: true if the two strings match, otherwise false.
+///
+/// # Safety
+///
+/// - `a` must be a valid pointer.
+/// - `b` must be a valid pointer.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSStringIsEqual(a: JSStringRef, b: JSStringRef) -> bool {
+    extern "C-unwind" {
+        fn JSStringIsEqual(a: JSStringRef, b: JSStringRef) -> bool;
+    }
+    unsafe { JSStringIsEqual(a, b) }
 }
 
-extern "C-unwind" {
-    /// Tests whether a JavaScript string matches a null-terminated UTF8 string.
-    ///
-    /// Parameter `a`: The JSString to test.
-    ///
-    /// Parameter `b`: The null-terminated UTF8 string to test.
-    ///
-    /// Returns: true if the two strings match, otherwise false.
-    ///
-    /// # Safety
-    ///
-    /// - `a` must be a valid pointer.
-    /// - `b` must be a valid pointer.
-    #[cfg(feature = "JSBase")]
-    pub fn JSStringIsEqualToUTF8CString(a: JSStringRef, b: *const c_char) -> bool;
+/// Tests whether a JavaScript string matches a null-terminated UTF8 string.
+///
+/// Parameter `a`: The JSString to test.
+///
+/// Parameter `b`: The null-terminated UTF8 string to test.
+///
+/// Returns: true if the two strings match, otherwise false.
+///
+/// # Safety
+///
+/// - `a` must be a valid pointer.
+/// - `b` must be a valid pointer.
+#[cfg(feature = "JSBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn JSStringIsEqualToUTF8CString(
+    a: JSStringRef,
+    b: *const c_char,
+) -> bool {
+    extern "C-unwind" {
+        fn JSStringIsEqualToUTF8CString(a: JSStringRef, b: *const c_char) -> bool;
+    }
+    unsafe { JSStringIsEqualToUTF8CString(a, b) }
 }

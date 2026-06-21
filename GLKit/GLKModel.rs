@@ -332,11 +332,17 @@ unsafe impl RefEncode for GLKVertexAttributeParameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Returns parameters to use in a call to glVertexAttribPointer given a MDLVertexFormat
-    #[cfg(all(feature = "objc2-model-io", feature = "objc2-open-gl"))]
-    #[cfg(target_os = "macos")]
-    pub fn GLKVertexAttributeParametersFromModelIO(
-        vertex_format: MDLVertexFormat,
-    ) -> GLKVertexAttributeParameters;
+/// Returns parameters to use in a call to glVertexAttribPointer given a MDLVertexFormat
+#[cfg(all(feature = "objc2-model-io", feature = "objc2-open-gl"))]
+#[cfg(target_os = "macos")]
+#[inline]
+pub unsafe extern "C-unwind" fn GLKVertexAttributeParametersFromModelIO(
+    vertex_format: MDLVertexFormat,
+) -> GLKVertexAttributeParameters {
+    extern "C-unwind" {
+        fn GLKVertexAttributeParametersFromModelIO(
+            vertex_format: MDLVertexFormat,
+        ) -> GLKVertexAttributeParameters;
+    }
+    unsafe { GLKVertexAttributeParametersFromModelIO(vertex_format) }
 }

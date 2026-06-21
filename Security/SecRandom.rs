@@ -32,33 +32,41 @@ extern "C" {
     pub static kSecRandomDefault: SecRandomRef;
 }
 
-extern "C-unwind" {
-    /// Return count random bytes in *bytes, allocated by the caller. It
-    /// is critical to check the return value for error.
-    ///
-    ///
-    /// Parameter `rnd`: Only
-    /// `kSecRandomDefault`is supported.
-    ///
-    ///
-    /// Parameter `count`: The number of bytes to generate.
-    ///
-    ///
-    /// Parameter `bytes`: A buffer to fill with random output.
-    ///
-    ///
-    /// Returns: Return 0 on success, any other value on failure.
-    ///
-    ///
-    /// If
-    /// `rnd`is unrecognized or unsupported,
-    /// `kSecRandomDefault`is
-    /// used.
-    ///
-    /// # Safety
-    ///
-    /// - `rnd` must be a valid pointer or null.
-    /// - `bytes` must be a valid pointer.
-    #[must_use]
-    pub fn SecRandomCopyBytes(rnd: SecRandomRef, count: usize, bytes: NonNull<c_void>) -> c_int;
+/// Return count random bytes in *bytes, allocated by the caller. It
+/// is critical to check the return value for error.
+///
+///
+/// Parameter `rnd`: Only
+/// `kSecRandomDefault`is supported.
+///
+///
+/// Parameter `count`: The number of bytes to generate.
+///
+///
+/// Parameter `bytes`: A buffer to fill with random output.
+///
+///
+/// Returns: Return 0 on success, any other value on failure.
+///
+///
+/// If
+/// `rnd`is unrecognized or unsupported,
+/// `kSecRandomDefault`is
+/// used.
+///
+/// # Safety
+///
+/// - `rnd` must be a valid pointer or null.
+/// - `bytes` must be a valid pointer.
+#[must_use]
+#[inline]
+pub unsafe extern "C-unwind" fn SecRandomCopyBytes(
+    rnd: SecRandomRef,
+    count: usize,
+    bytes: NonNull<c_void>,
+) -> c_int {
+    extern "C-unwind" {
+        fn SecRandomCopyBytes(rnd: SecRandomRef, count: usize, bytes: NonNull<c_void>) -> c_int;
+    }
+    unsafe { SecRandomCopyBytes(rnd, count, bytes) }
 }

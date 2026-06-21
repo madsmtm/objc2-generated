@@ -34,29 +34,38 @@ pub const kCMAttachmentMode_ShouldNotPropagate: CMAttachmentMode = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmattachmentmode_shouldpropagate?language=objc)
 pub const kCMAttachmentMode_ShouldPropagate: CMAttachmentMode = 1;
 
-extern "C-unwind" {
-    /// Sets or adds a attachment of a CMAttachmentBearer
-    ///
-    /// You can attach any CF object to a CMAttachmentBearer object to store additional information. CMSetAttachment stores an attachment identified by a key. If the key doesn't exist, the attachment will be added. If the key does exist, the existing attachment will be replaced. In both cases the retain count of the attachment will be incremented. The value can be any CFType but nil has no defined behavior.  Given a CVBufferRef, CMSetAttachment is equivalent to CVBufferSetAttachment.
-    ///
-    /// Parameter `target`: Target CMAttachmentBearer.
-    ///
-    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    ///
-    /// Parameter `value`: Attachment in form af a CF object.
-    ///
-    /// Parameter `attachmentMode`: Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
-    /// a single mode at a time.
-    ///
-    /// # Safety
-    ///
-    /// `value` should be of the correct type.
-    pub fn CMSetAttachment(
-        target: &CMAttachmentBearer,
-        key: &CFString,
-        value: Option<&CFType>,
-        attachment_mode: CMAttachmentMode,
-    );
+/// Sets or adds a attachment of a CMAttachmentBearer
+///
+/// You can attach any CF object to a CMAttachmentBearer object to store additional information. CMSetAttachment stores an attachment identified by a key. If the key doesn't exist, the attachment will be added. If the key does exist, the existing attachment will be replaced. In both cases the retain count of the attachment will be incremented. The value can be any CFType but nil has no defined behavior.  Given a CVBufferRef, CMSetAttachment is equivalent to CVBufferSetAttachment.
+///
+/// Parameter `target`: Target CMAttachmentBearer.
+///
+/// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+///
+/// Parameter `value`: Attachment in form af a CF object.
+///
+/// Parameter `attachmentMode`: Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
+/// a single mode at a time.
+///
+/// # Safety
+///
+/// `value` should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSetAttachment(
+    target: &CMAttachmentBearer,
+    key: &CFString,
+    value: Option<&CFType>,
+    attachment_mode: CMAttachmentMode,
+) {
+    extern "C-unwind" {
+        fn CMSetAttachment(
+            target: &CMAttachmentBearer,
+            key: &CFString,
+            value: Option<&CFType>,
+            attachment_mode: CMAttachmentMode,
+        );
+    }
+    unsafe { CMSetAttachment(target, key, value, attachment_mode) }
 }
 
 /// Returns a specific attachment of a CMAttachmentBearer
@@ -91,24 +100,32 @@ pub unsafe extern "C-unwind" fn CMGetAttachment(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Removes a specific attachment of a CMAttachmentBearer
-    ///
-    /// CMRemoveAttachment removes an attachment identified by a key. If found the attachment is removed and the retain count decremented.  Given a CVBufferRef, CMRemoveAttachment is equivalent to CVBufferRemoveAttachment.
-    ///
-    /// Parameter `target`: Target CMAttachmentBearer.
-    ///
-    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    pub fn CMRemoveAttachment(target: &CMAttachmentBearer, key: &CFString);
+/// Removes a specific attachment of a CMAttachmentBearer
+///
+/// CMRemoveAttachment removes an attachment identified by a key. If found the attachment is removed and the retain count decremented.  Given a CVBufferRef, CMRemoveAttachment is equivalent to CVBufferRemoveAttachment.
+///
+/// Parameter `target`: Target CMAttachmentBearer.
+///
+/// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+#[inline]
+pub unsafe extern "C-unwind" fn CMRemoveAttachment(target: &CMAttachmentBearer, key: &CFString) {
+    extern "C-unwind" {
+        fn CMRemoveAttachment(target: &CMAttachmentBearer, key: &CFString);
+    }
+    unsafe { CMRemoveAttachment(target, key) }
 }
 
-extern "C-unwind" {
-    /// Removes all attachments of a CMAttachmentBearer
-    ///
-    /// While CMRemoveAttachment removes a specific attachment identified by a key CMRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.  Given a CVBufferRef, CMRemoveAllAttachments is equivalent to CVBufferRemoveAllAttachments.
-    ///
-    /// Parameter `target`: Target CMAttachmentBearer.
-    pub fn CMRemoveAllAttachments(target: &CMAttachmentBearer);
+/// Removes all attachments of a CMAttachmentBearer
+///
+/// While CMRemoveAttachment removes a specific attachment identified by a key CMRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.  Given a CVBufferRef, CMRemoveAllAttachments is equivalent to CVBufferRemoveAllAttachments.
+///
+/// Parameter `target`: Target CMAttachmentBearer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMRemoveAllAttachments(target: &CMAttachmentBearer) {
+    extern "C-unwind" {
+        fn CMRemoveAllAttachments(target: &CMAttachmentBearer);
+    }
+    unsafe { CMRemoveAllAttachments(target) }
 }
 
 /// Returns all attachments of a CMAttachmentBearer
@@ -138,32 +155,47 @@ pub unsafe extern "C-unwind" fn CMCopyDictionaryOfAttachments(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Sets a set of attachments for a CMAttachmentBearer
-    ///
-    /// CMSetAttachments is a convenience call that in turn calls CMSetAttachment for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.  Given a CVBufferRef, CMSetAttachments is equivalent to CVBufferSetAttachments.
-    ///
-    /// Parameter `target`: Target CMAttachmentBearer.
-    ///
-    /// # Safety
-    ///
-    /// - `the_attachments` generic must be of the correct type.
-    /// - `the_attachments` generic must be of the correct type.
-    pub fn CMSetAttachments(
-        target: &CMAttachmentBearer,
-        the_attachments: &CFDictionary,
-        attachment_mode: CMAttachmentMode,
-    );
+/// Sets a set of attachments for a CMAttachmentBearer
+///
+/// CMSetAttachments is a convenience call that in turn calls CMSetAttachment for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.  Given a CVBufferRef, CMSetAttachments is equivalent to CVBufferSetAttachments.
+///
+/// Parameter `target`: Target CMAttachmentBearer.
+///
+/// # Safety
+///
+/// - `the_attachments` generic must be of the correct type.
+/// - `the_attachments` generic must be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSetAttachments(
+    target: &CMAttachmentBearer,
+    the_attachments: &CFDictionary,
+    attachment_mode: CMAttachmentMode,
+) {
+    extern "C-unwind" {
+        fn CMSetAttachments(
+            target: &CMAttachmentBearer,
+            the_attachments: &CFDictionary,
+            attachment_mode: CMAttachmentMode,
+        );
+    }
+    unsafe { CMSetAttachments(target, the_attachments, attachment_mode) }
 }
 
-extern "C-unwind" {
-    /// Copy all propagatable attachments from one buffer to another.
-    ///
-    /// CMPropagateAttachments is a convenience call that copies all attachments with a mode of kCMAttachmentMode_ShouldPropagate from one
-    /// buffer to another.  Given a CVBufferRef, CMPropagateAttachments is equivalent to CVBufferPropagateAttachments.
-    ///
-    /// Parameter `source`: CMAttachmentBearer to copy attachments from.
-    ///
-    /// Parameter `destination`: CMAttachmentBearer to copy attachments to.
-    pub fn CMPropagateAttachments(source: &CMAttachmentBearer, destination: &CMAttachmentBearer);
+/// Copy all propagatable attachments from one buffer to another.
+///
+/// CMPropagateAttachments is a convenience call that copies all attachments with a mode of kCMAttachmentMode_ShouldPropagate from one
+/// buffer to another.  Given a CVBufferRef, CMPropagateAttachments is equivalent to CVBufferPropagateAttachments.
+///
+/// Parameter `source`: CMAttachmentBearer to copy attachments from.
+///
+/// Parameter `destination`: CMAttachmentBearer to copy attachments to.
+#[inline]
+pub unsafe extern "C-unwind" fn CMPropagateAttachments(
+    source: &CMAttachmentBearer,
+    destination: &CMAttachmentBearer,
+) {
+    extern "C-unwind" {
+        fn CMPropagateAttachments(source: &CMAttachmentBearer, destination: &CMAttachmentBearer);
+    }
+    unsafe { CMPropagateAttachments(source, destination) }
 }

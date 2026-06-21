@@ -374,67 +374,95 @@ pub const kCMIODevicePropertyLocationExternalDevice: c_uint = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertylocationexternalwirelessdevice?language=objc)
 pub const kCMIODevicePropertyLocationExternalWirelessDevice: c_uint = 4;
 
-extern "C-unwind" {
-    /// Starts the indicated CMIOStream of the specified CMIODevice.
-    ///
-    /// Parameter `deviceID`: The CMIODevice that owns the CMIOStream.
-    ///
-    /// Parameter `streamID`: The CMIOStream to start.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    #[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
-    pub fn CMIODeviceStartStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus;
+/// Starts the indicated CMIOStream of the specified CMIODevice.
+///
+/// Parameter `deviceID`: The CMIODevice that owns the CMIOStream.
+///
+/// Parameter `streamID`: The CMIOStream to start.
+///
+/// Returns: An OSStatus indicating success or failure.
+#[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIODeviceStartStream(
+    device_id: CMIODeviceID,
+    stream_id: CMIOStreamID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIODeviceStartStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus;
+    }
+    unsafe { CMIODeviceStartStream(device_id, stream_id) }
 }
 
-extern "C-unwind" {
-    /// Stops the indicated CMIOStream.
-    ///
-    /// Parameter `deviceID`: The CMIODevice that owns the CMIOStream.
-    ///
-    /// Parameter `streamID`: The CMIOStream to stop.
-    ///
-    /// Returns: An OSStatus indicating success or failure.
-    #[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
-    pub fn CMIODeviceStopStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus;
+/// Stops the indicated CMIOStream.
+///
+/// Parameter `deviceID`: The CMIODevice that owns the CMIOStream.
+///
+/// Parameter `streamID`: The CMIOStream to stop.
+///
+/// Returns: An OSStatus indicating success or failure.
+#[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIODeviceStopStream(
+    device_id: CMIODeviceID,
+    stream_id: CMIOStreamID,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIODeviceStopStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus;
+    }
+    unsafe { CMIODeviceStopStream(device_id, stream_id) }
 }
 
-extern "C-unwind" {
-    /// Allows an AVC command to be sent to a device for processing. This is not intended to be a general purpose command interface, rather only for those devices which can
-    /// support the "AV/C Digital Interface Command Set General Specification Version 4.1" (1394 Trade Association Document 2001012). Devices indicate whether or not they can
-    /// process AVC commands via the kCMIODevicePropertyCanProcessAVCCommand property.
-    ///
-    /// Parameter `deviceID`: The CMIODevice for which the command is intended.
-    ///
-    /// Parameter `ioAVCCommand`: The CMIODeviceAVCCommand to send to the device.
-    ///
-    /// Returns: An OSStatus indicating success or failure of the command processing.
-    ///
-    /// # Safety
-    ///
-    /// `io_avc_command` must be a valid pointer.
-    #[cfg(feature = "CMIOHardwareObject")]
-    pub fn CMIODeviceProcessAVCCommand(
-        device_id: CMIODeviceID,
-        io_avc_command: *mut CMIODeviceAVCCommand,
-    ) -> OSStatus;
+/// Allows an AVC command to be sent to a device for processing. This is not intended to be a general purpose command interface, rather only for those devices which can
+/// support the "AV/C Digital Interface Command Set General Specification Version 4.1" (1394 Trade Association Document 2001012). Devices indicate whether or not they can
+/// process AVC commands via the kCMIODevicePropertyCanProcessAVCCommand property.
+///
+/// Parameter `deviceID`: The CMIODevice for which the command is intended.
+///
+/// Parameter `ioAVCCommand`: The CMIODeviceAVCCommand to send to the device.
+///
+/// Returns: An OSStatus indicating success or failure of the command processing.
+///
+/// # Safety
+///
+/// `io_avc_command` must be a valid pointer.
+#[cfg(feature = "CMIOHardwareObject")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIODeviceProcessAVCCommand(
+    device_id: CMIODeviceID,
+    io_avc_command: *mut CMIODeviceAVCCommand,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIODeviceProcessAVCCommand(
+            device_id: CMIODeviceID,
+            io_avc_command: *mut CMIODeviceAVCCommand,
+        ) -> OSStatus;
+    }
+    unsafe { CMIODeviceProcessAVCCommand(device_id, io_avc_command) }
 }
 
-extern "C-unwind" {
-    /// Allows an RS422 command to be sent to a device for processing. This is not intended to be a general purpose command interface, rather only for those devices which can
-    /// support the RS422 protocol. Devices indicate whether or not they can process RS422 commands via the kCMIODevicePropertyCanProcessRS422Command property.
-    ///
-    /// Parameter `deviceID`: The CMIODevice for which the command is intended.
-    ///
-    /// Parameter `ioRS422Command`: The CMIODeviceRS422Command to send to the device.
-    ///
-    /// Returns: An OSStatus indicating success or failure of the command processing.
-    ///
-    /// # Safety
-    ///
-    /// `io_rs422_command` must be a valid pointer.
-    #[cfg(feature = "CMIOHardwareObject")]
-    pub fn CMIODeviceProcessRS422Command(
-        device_id: CMIODeviceID,
-        io_rs422_command: *mut CMIODeviceRS422Command,
-    ) -> OSStatus;
+/// Allows an RS422 command to be sent to a device for processing. This is not intended to be a general purpose command interface, rather only for those devices which can
+/// support the RS422 protocol. Devices indicate whether or not they can process RS422 commands via the kCMIODevicePropertyCanProcessRS422Command property.
+///
+/// Parameter `deviceID`: The CMIODevice for which the command is intended.
+///
+/// Parameter `ioRS422Command`: The CMIODeviceRS422Command to send to the device.
+///
+/// Returns: An OSStatus indicating success or failure of the command processing.
+///
+/// # Safety
+///
+/// `io_rs422_command` must be a valid pointer.
+#[cfg(feature = "CMIOHardwareObject")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIODeviceProcessRS422Command(
+    device_id: CMIODeviceID,
+    io_rs422_command: *mut CMIODeviceRS422Command,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIODeviceProcessRS422Command(
+            device_id: CMIODeviceID,
+            io_rs422_command: *mut CMIODeviceRS422Command,
+        ) -> OSStatus;
+    }
+    unsafe { CMIODeviceProcessRS422Command(device_id, io_rs422_command) }
 }

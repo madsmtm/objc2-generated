@@ -389,44 +389,64 @@ extern "C" {
 #[cfg(feature = "objc2-core-foundation")]
 pub type SRAbsoluteTime = CFTimeInterval;
 
-extern "C-unwind" {
-    /// Get the current SRAbsoluteTime for this device.
-    ///
-    /// This timestamp ticks across sleeps and reboots.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn SRAbsoluteTimeGetCurrent() -> SRAbsoluteTime;
+/// Get the current SRAbsoluteTime for this device.
+///
+/// This timestamp ticks across sleeps and reboots.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn SRAbsoluteTimeGetCurrent() -> SRAbsoluteTime {
+    extern "C-unwind" {
+        fn SRAbsoluteTimeGetCurrent() -> SRAbsoluteTime;
+    }
+    unsafe { SRAbsoluteTimeGetCurrent() }
 }
 
-extern "C-unwind" {
-    /// Convert a mach_continuous_time to an SRAbsoluteTime.
-    ///
-    /// Because mach_continuous_time is volatile and hardware specific, the
-    /// mach_continuous_time must originate from the same device and boot session
-    /// that SRAbsoluteTimeFromContinuousTime() is called from.
-    /// The return value for mach_continuous_times spanning boot sessions or devices
-    /// is undefined.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn SRAbsoluteTimeFromContinuousTime(cont: u64) -> SRAbsoluteTime;
+/// Convert a mach_continuous_time to an SRAbsoluteTime.
+///
+/// Because mach_continuous_time is volatile and hardware specific, the
+/// mach_continuous_time must originate from the same device and boot session
+/// that SRAbsoluteTimeFromContinuousTime() is called from.
+/// The return value for mach_continuous_times spanning boot sessions or devices
+/// is undefined.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn SRAbsoluteTimeFromContinuousTime(cont: u64) -> SRAbsoluteTime {
+    extern "C-unwind" {
+        fn SRAbsoluteTimeFromContinuousTime(cont: u64) -> SRAbsoluteTime;
+    }
+    unsafe { SRAbsoluteTimeFromContinuousTime(cont) }
 }
 
-extern "C-unwind" {
-    /// Convert a SRAbsoluteTime to a CFAbsoluteTime.
-    ///
-    /// The CFAbsoluteTime returned is based on calculations relative to the current
-    /// wall clock. This means that if the system time is 5 seconds fast against UTC,
-    /// the result will be 5 seconds fast to when the event happened relative to UTC.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn SRAbsoluteTimeToCFAbsoluteTime(sr: SRAbsoluteTime) -> CFAbsoluteTime;
+/// Convert a SRAbsoluteTime to a CFAbsoluteTime.
+///
+/// The CFAbsoluteTime returned is based on calculations relative to the current
+/// wall clock. This means that if the system time is 5 seconds fast against UTC,
+/// the result will be 5 seconds fast to when the event happened relative to UTC.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn SRAbsoluteTimeToCFAbsoluteTime(
+    sr: SRAbsoluteTime,
+) -> CFAbsoluteTime {
+    extern "C-unwind" {
+        fn SRAbsoluteTimeToCFAbsoluteTime(sr: SRAbsoluteTime) -> CFAbsoluteTime;
+    }
+    unsafe { SRAbsoluteTimeToCFAbsoluteTime(sr) }
 }
 
-extern "C-unwind" {
-    /// Convert a CFAbsoluteTime to an SRAbsoluteTime.
-    ///
-    /// The SRAbsoluteTime returned is based on calculations relative to the current
-    /// wall clock. This means that if the system time is 5 seconds fast against UTC,
-    /// the result will be 5 seconds fast to when the event happened relative to UTC.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn SRAbsoluteTimeFromCFAbsoluteTime(cf: CFAbsoluteTime) -> SRAbsoluteTime;
+/// Convert a CFAbsoluteTime to an SRAbsoluteTime.
+///
+/// The SRAbsoluteTime returned is based on calculations relative to the current
+/// wall clock. This means that if the system time is 5 seconds fast against UTC,
+/// the result will be 5 seconds fast to when the event happened relative to UTC.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn SRAbsoluteTimeFromCFAbsoluteTime(
+    cf: CFAbsoluteTime,
+) -> SRAbsoluteTime {
+    extern "C-unwind" {
+        fn SRAbsoluteTimeFromCFAbsoluteTime(cf: CFAbsoluteTime) -> SRAbsoluteTime;
+    }
+    unsafe { SRAbsoluteTimeFromCFAbsoluteTime(cf) }
 }
 
 mod private_NSDateSensorKit {

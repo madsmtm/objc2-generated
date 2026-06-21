@@ -1792,13 +1792,20 @@ pub extern "C-unwind" fn NSPerformService(
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsserviceprovidername?language=objc)
 pub type NSServiceProviderName = NSString;
 
-extern "C-unwind" {
-    /// Apps should use -setServicesProvider.
-    ///
-    /// # Safety
-    ///
-    /// `provider` should be of the correct type.
-    pub fn NSRegisterServicesProvider(provider: Option<&AnyObject>, name: &NSServiceProviderName);
+/// Apps should use -setServicesProvider.
+///
+/// # Safety
+///
+/// `provider` should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn NSRegisterServicesProvider(
+    provider: Option<&AnyObject>,
+    name: &NSServiceProviderName,
+) {
+    extern "C-unwind" {
+        fn NSRegisterServicesProvider(provider: Option<&AnyObject>, name: &NSServiceProviderName);
+    }
+    unsafe { NSRegisterServicesProvider(provider, name) }
 }
 
 #[inline]

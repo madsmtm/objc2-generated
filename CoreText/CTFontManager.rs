@@ -54,29 +54,37 @@ pub extern "C-unwind" fn CTFontManagerCopyAvailableFontURLs() -> CFRetained<CFAr
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// A CFComparatorFunction to compare font family names and sort them according to Apple guidelines.
-    ///
-    /// This function compares font family names and sorts them in the preferred order for display in user interfaces.
-    ///
-    /// Parameter `family1`: The first localized font family name, as CFStringRef.
-    ///
-    /// Parameter `family2`: The second localized font family name, as CFStringRef.
-    ///
-    /// Parameter `context`: Unused. Can be NULL.
-    ///
-    /// Returns: A CFComparisonResult value indicating the sort order for the two family names. kCFComparisonResultGreaterThan if family1 is greater than family2, kCFComparisonResultLessThan if family1 is less than family2, and kCFComparisonResultEqualTo if they are equal.
-    ///
-    /// # Safety
-    ///
-    /// - `family1` must be a valid pointer.
-    /// - `family2` must be a valid pointer.
-    /// - `context` must be a valid pointer or null.
-    pub fn CTFontManagerCompareFontFamilyNames(
-        family1: NonNull<c_void>,
-        family2: NonNull<c_void>,
-        context: *mut c_void,
-    ) -> CFComparisonResult;
+/// A CFComparatorFunction to compare font family names and sort them according to Apple guidelines.
+///
+/// This function compares font family names and sorts them in the preferred order for display in user interfaces.
+///
+/// Parameter `family1`: The first localized font family name, as CFStringRef.
+///
+/// Parameter `family2`: The second localized font family name, as CFStringRef.
+///
+/// Parameter `context`: Unused. Can be NULL.
+///
+/// Returns: A CFComparisonResult value indicating the sort order for the two family names. kCFComparisonResultGreaterThan if family1 is greater than family2, kCFComparisonResultLessThan if family1 is less than family2, and kCFComparisonResultEqualTo if they are equal.
+///
+/// # Safety
+///
+/// - `family1` must be a valid pointer.
+/// - `family2` must be a valid pointer.
+/// - `context` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerCompareFontFamilyNames(
+    family1: NonNull<c_void>,
+    family2: NonNull<c_void>,
+    context: *mut c_void,
+) -> CFComparisonResult {
+    extern "C-unwind" {
+        fn CTFontManagerCompareFontFamilyNames(
+            family1: NonNull<c_void>,
+            family2: NonNull<c_void>,
+            context: *mut c_void,
+        ) -> CFComparisonResult;
+    }
+    unsafe { CTFontManagerCompareFontFamilyNames(family1, family2, context) }
 }
 
 /// Returns an array of font descriptors representing each of the fonts in the specified URL.
@@ -199,159 +207,205 @@ extern "C" {
     pub static kCTFontRegistrationUserInfoAttribute: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Registers fonts from the specified font URL with the font manager. Registered fonts participate in font descriptor matching.
-    ///
-    ///
-    /// Parameter `fontURL`: A file URL for the font or collection (TTC or OTC) to be registered. Once fonts have been registered from a file, it shouldn't be moved or renamed.
-    ///
-    ///
-    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
-    ///
-    ///
-    /// Parameter `error`: Pointer to receive CFError in the case of failed registration.
-    ///
-    ///
-    /// Returns: Returns true if registration of the fonts was successful.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
-    pub fn CTFontManagerRegisterFontsForURL(
-        font_url: &CFURL,
-        scope: CTFontManagerScope,
-        error: Option<&mut *mut CFError>,
-    ) -> bool;
+/// Registers fonts from the specified font URL with the font manager. Registered fonts participate in font descriptor matching.
+///
+///
+/// Parameter `fontURL`: A file URL for the font or collection (TTC or OTC) to be registered. Once fonts have been registered from a file, it shouldn't be moved or renamed.
+///
+///
+/// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+///
+///
+/// Parameter `error`: Pointer to receive CFError in the case of failed registration.
+///
+///
+/// Returns: Returns true if registration of the fonts was successful.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerRegisterFontsForURL(
+    font_url: &CFURL,
+    scope: CTFontManagerScope,
+    error: Option<&mut *mut CFError>,
+) -> bool {
+    extern "C-unwind" {
+        fn CTFontManagerRegisterFontsForURL(
+            font_url: &CFURL,
+            scope: CTFontManagerScope,
+            error: Option<&mut *mut CFError>,
+        ) -> bool;
+    }
+    unsafe { CTFontManagerRegisterFontsForURL(font_url, scope, error) }
 }
 
-extern "C-unwind" {
-    /// Unregisters fonts from the specified font URL with the font manager. Unregistered fonts do not participate in font descriptor matching.
-    /// iOS note: only fonts registered with CTFontManagerRegisterFontsForURL or CTFontManagerRegisterFontsForURLs can be unregistered with this API.
-    ///
-    ///
-    /// Parameter `fontURL`: Font URL.
-    ///
-    ///
-    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. Should match the scope the fonts are registered in. See scope constants for more details.
-    ///
-    ///
-    /// Parameter `error`: Pointer to receive CFError in the case of failed unregistration.
-    ///
-    ///
-    /// Returns: Returns true if unregistration of the fonts was successful.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
-    pub fn CTFontManagerUnregisterFontsForURL(
-        font_url: &CFURL,
-        scope: CTFontManagerScope,
-        error: Option<&mut *mut CFError>,
-    ) -> bool;
+/// Unregisters fonts from the specified font URL with the font manager. Unregistered fonts do not participate in font descriptor matching.
+/// iOS note: only fonts registered with CTFontManagerRegisterFontsForURL or CTFontManagerRegisterFontsForURLs can be unregistered with this API.
+///
+///
+/// Parameter `fontURL`: Font URL.
+///
+///
+/// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. Should match the scope the fonts are registered in. See scope constants for more details.
+///
+///
+/// Parameter `error`: Pointer to receive CFError in the case of failed unregistration.
+///
+///
+/// Returns: Returns true if unregistration of the fonts was successful.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerUnregisterFontsForURL(
+    font_url: &CFURL,
+    scope: CTFontManagerScope,
+    error: Option<&mut *mut CFError>,
+) -> bool {
+    extern "C-unwind" {
+        fn CTFontManagerUnregisterFontsForURL(
+            font_url: &CFURL,
+            scope: CTFontManagerScope,
+            error: Option<&mut *mut CFError>,
+        ) -> bool;
+    }
+    unsafe { CTFontManagerUnregisterFontsForURL(font_url, scope, error) }
 }
 
-extern "C-unwind" {
-    /// Registers the specified graphics font with the font manager. Registered fonts participate in font descriptor matching.
-    ///
-    ///
-    /// Attempts to register a font that is either already registered or contains the same PostScript name of an already registered font will fail.
-    /// This functionality is intended for fonts that may be embedded in documents or present/constructed in memory. A graphics font is obtained
-    /// by calling CGFontCreateWithDataProvider. Fonts that are backed by files should be registered using CTFontManagerRegisterFontsForURL.
-    ///
-    ///
-    /// Parameter `font`: Graphics font to be registered.
-    ///
-    ///
-    /// Parameter `error`: Pointer to receive CFError in the case of failed registration.
-    ///
-    ///
-    /// Returns: Returns true if registration of the fonts was successful.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-graphics")]
-    #[deprecated = "Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL"]
-    pub fn CTFontManagerRegisterGraphicsFont(
-        font: &CGFont,
-        error: Option<&mut *mut CFError>,
-    ) -> bool;
+/// Registers the specified graphics font with the font manager. Registered fonts participate in font descriptor matching.
+///
+///
+/// Attempts to register a font that is either already registered or contains the same PostScript name of an already registered font will fail.
+/// This functionality is intended for fonts that may be embedded in documents or present/constructed in memory. A graphics font is obtained
+/// by calling CGFontCreateWithDataProvider. Fonts that are backed by files should be registered using CTFontManagerRegisterFontsForURL.
+///
+///
+/// Parameter `font`: Graphics font to be registered.
+///
+///
+/// Parameter `error`: Pointer to receive CFError in the case of failed registration.
+///
+///
+/// Returns: Returns true if registration of the fonts was successful.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerRegisterGraphicsFont(
+    font: &CGFont,
+    error: Option<&mut *mut CFError>,
+) -> bool {
+    extern "C-unwind" {
+        fn CTFontManagerRegisterGraphicsFont(
+            font: &CGFont,
+            error: Option<&mut *mut CFError>,
+        ) -> bool;
+    }
+    unsafe { CTFontManagerRegisterGraphicsFont(font, error) }
 }
 
-extern "C-unwind" {
-    /// Unregisters the specified graphics font with the font manager. Unregistered fonts do not participate in font descriptor matching.
-    ///
-    ///
-    /// Parameter `font`: Graphics font to be unregistered.
-    ///
-    ///
-    /// Parameter `error`: Pointer to receive CFError in the case of failed unregistration.
-    ///
-    ///
-    /// Returns: Returns true if unregistration of the font was successful.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-graphics")]
-    #[deprecated = "Use the API corresponding to the one used to register the font"]
-    pub fn CTFontManagerUnregisterGraphicsFont(
-        font: &CGFont,
-        error: Option<&mut *mut CFError>,
-    ) -> bool;
+/// Unregisters the specified graphics font with the font manager. Unregistered fonts do not participate in font descriptor matching.
+///
+///
+/// Parameter `font`: Graphics font to be unregistered.
+///
+///
+/// Parameter `error`: Pointer to receive CFError in the case of failed unregistration.
+///
+///
+/// Returns: Returns true if unregistration of the font was successful.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "Use the API corresponding to the one used to register the font"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerUnregisterGraphicsFont(
+    font: &CGFont,
+    error: Option<&mut *mut CFError>,
+) -> bool {
+    extern "C-unwind" {
+        fn CTFontManagerUnregisterGraphicsFont(
+            font: &CGFont,
+            error: Option<&mut *mut CFError>,
+        ) -> bool;
+    }
+    unsafe { CTFontManagerUnregisterGraphicsFont(font, error) }
 }
 
-extern "C-unwind" {
-    /// Registers fonts from the specified font URLs with the font manager. Registered fonts are discoverable through font descriptor matching.
-    ///
-    ///
-    /// Parameter `fontURLs`: An array of file URLs for the fonts or collections (TTC or OTC) to be registered. Once fonts have been registered from a file, it shouldn't be moved or renamed.
-    ///
-    ///
-    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
-    ///
-    ///
-    /// Parameter `errors`: Pointer to CFArrayRef to receive array of CFError references. Each error will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully registered. Must be released by caller. Can be NULL.
-    ///
-    ///
-    /// Returns: Returns true if registration of all font URLs was successful. Otherwise false.
-    ///
-    /// # Safety
-    ///
-    /// `errors` must be a valid pointer or null.
-    #[deprecated]
-    pub fn CTFontManagerRegisterFontsForURLs(
-        font_ur_ls: &CFArray<CFURL>,
-        scope: CTFontManagerScope,
-        errors: Option<&mut *const CFArray<CFError>>,
-    ) -> bool;
+/// Registers fonts from the specified font URLs with the font manager. Registered fonts are discoverable through font descriptor matching.
+///
+///
+/// Parameter `fontURLs`: An array of file URLs for the fonts or collections (TTC or OTC) to be registered. Once fonts have been registered from a file, it shouldn't be moved or renamed.
+///
+///
+/// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+///
+///
+/// Parameter `errors`: Pointer to CFArrayRef to receive array of CFError references. Each error will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully registered. Must be released by caller. Can be NULL.
+///
+///
+/// Returns: Returns true if registration of all font URLs was successful. Otherwise false.
+///
+/// # Safety
+///
+/// `errors` must be a valid pointer or null.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerRegisterFontsForURLs(
+    font_ur_ls: &CFArray<CFURL>,
+    scope: CTFontManagerScope,
+    errors: Option<&mut *const CFArray<CFError>>,
+) -> bool {
+    extern "C-unwind" {
+        fn CTFontManagerRegisterFontsForURLs(
+            font_ur_ls: &CFArray<CFURL>,
+            scope: CTFontManagerScope,
+            errors: Option<&mut *const CFArray<CFError>>,
+        ) -> bool;
+    }
+    unsafe { CTFontManagerRegisterFontsForURLs(font_ur_ls, scope, errors) }
 }
 
-extern "C-unwind" {
-    /// Unregisters fonts from the specified font URLs with the font manager. Unregistered fonts do not participate in font descriptor matching.
-    /// iOS note: only fonts registered with CTFontManagerRegisterFontsForURL or CTFontManagerRegisterFontsForURLs can be unregistered with this API.
-    ///
-    ///
-    /// Parameter `fontURLs`: Array of font URLs.
-    ///
-    ///
-    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. Should match the scope the fonts are registered in. See scope constants for more details.
-    ///
-    ///
-    /// Parameter `errors`: Pointer to CFArrayRef to receive array of CFError references. Each error will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully unregistered. Must be released by caller. Can be NULL.
-    ///
-    ///
-    /// Returns: Returns true if unregistration of all font URLs was successful. Otherwise false.
-    ///
-    /// # Safety
-    ///
-    /// `errors` must be a valid pointer or null.
-    #[deprecated]
-    pub fn CTFontManagerUnregisterFontsForURLs(
-        font_ur_ls: &CFArray<CFURL>,
-        scope: CTFontManagerScope,
-        errors: Option<&mut *const CFArray<CFError>>,
-    ) -> bool;
+/// Unregisters fonts from the specified font URLs with the font manager. Unregistered fonts do not participate in font descriptor matching.
+/// iOS note: only fonts registered with CTFontManagerRegisterFontsForURL or CTFontManagerRegisterFontsForURLs can be unregistered with this API.
+///
+///
+/// Parameter `fontURLs`: Array of font URLs.
+///
+///
+/// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. Should match the scope the fonts are registered in. See scope constants for more details.
+///
+///
+/// Parameter `errors`: Pointer to CFArrayRef to receive array of CFError references. Each error will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully unregistered. Must be released by caller. Can be NULL.
+///
+///
+/// Returns: Returns true if unregistration of all font URLs was successful. Otherwise false.
+///
+/// # Safety
+///
+/// `errors` must be a valid pointer or null.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerUnregisterFontsForURLs(
+    font_ur_ls: &CFArray<CFURL>,
+    scope: CTFontManagerScope,
+    errors: Option<&mut *const CFArray<CFError>>,
+) -> bool {
+    extern "C-unwind" {
+        fn CTFontManagerUnregisterFontsForURLs(
+            font_ur_ls: &CFArray<CFURL>,
+            scope: CTFontManagerScope,
+            errors: Option<&mut *const CFArray<CFError>>,
+        ) -> bool;
+    }
+    unsafe { CTFontManagerUnregisterFontsForURLs(font_ur_ls, scope, errors) }
 }
 
 /// Registers fonts from the specified font URLs with the font manager. Registered fonts are discoverable through font descriptor matching in the calling process

@@ -801,74 +801,107 @@ impl CMTimebase {
     }
 }
 
-extern "C-unwind" {
-    /// Queries the relative rate of one timebase or clock relative to another timebase or clock.
-    ///
-    /// If both have a common source, this calculation is performed purely based on the rates in the common tree
-    /// rooted in that source.
-    /// If they have different source clocks (or are both clocks), this calculation takes into account the measured
-    /// drift between the two clocks, using host time as a pivot.
-    /// The rate of a moving timebase relative to a stopped timebase is a NaN.
-    /// Calling CMTimebaseGetEffectiveRate(timebase) is equivalent to calling
-    /// CMClockRef clock = CMTimebaseCopyUltimateSourceClock(timebase);
-    /// CMSyncGetRelativeRate(timebase, clock).
-    /// CFRelease(clock);
-    ///
-    /// # Safety
-    ///
-    /// - `of_clock_or_timebase` should be of the correct type.
-    /// - `relative_to_clock_or_timebase` should be of the correct type.
-    pub fn CMSyncGetRelativeRate(
-        of_clock_or_timebase: &CMClockOrTimebase,
-        relative_to_clock_or_timebase: &CMClockOrTimebase,
-    ) -> f64;
+/// Queries the relative rate of one timebase or clock relative to another timebase or clock.
+///
+/// If both have a common source, this calculation is performed purely based on the rates in the common tree
+/// rooted in that source.
+/// If they have different source clocks (or are both clocks), this calculation takes into account the measured
+/// drift between the two clocks, using host time as a pivot.
+/// The rate of a moving timebase relative to a stopped timebase is a NaN.
+/// Calling CMTimebaseGetEffectiveRate(timebase) is equivalent to calling
+/// CMClockRef clock = CMTimebaseCopyUltimateSourceClock(timebase);
+/// CMSyncGetRelativeRate(timebase, clock).
+/// CFRelease(clock);
+///
+/// # Safety
+///
+/// - `of_clock_or_timebase` should be of the correct type.
+/// - `relative_to_clock_or_timebase` should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSyncGetRelativeRate(
+    of_clock_or_timebase: &CMClockOrTimebase,
+    relative_to_clock_or_timebase: &CMClockOrTimebase,
+) -> f64 {
+    extern "C-unwind" {
+        fn CMSyncGetRelativeRate(
+            of_clock_or_timebase: &CMClockOrTimebase,
+            relative_to_clock_or_timebase: &CMClockOrTimebase,
+        ) -> f64;
+    }
+    unsafe { CMSyncGetRelativeRate(of_clock_or_timebase, relative_to_clock_or_timebase) }
 }
 
-extern "C-unwind" {
-    /// Queries the relative rate of one timebase or clock relative to another timebase or clock and the times of each timebase or clock at which the relative rate went into effect.
-    ///
-    /// If both have a common source, this calculation is performed purely based on the rates in the common tree
-    /// rooted in that source.
-    /// If they have different source clocks (or are both clocks), this calculation takes into account the measured
-    /// drift between the two clocks, using host time as a pivot.
-    /// The rate of a moving timebase relative to a stopped timebase is a NaN.
-    ///
-    /// # Safety
-    ///
-    /// - `of_clock_or_timebase` should be of the correct type.
-    /// - `relative_to_clock_or_timebase` should be of the correct type.
-    /// - `out_relative_rate` must be a valid pointer or null.
-    /// - `out_of_clock_or_timebase_anchor_time` must be a valid pointer or null.
-    /// - `out_relative_to_clock_or_timebase_anchor_time` must be a valid pointer or null.
-    #[cfg(feature = "CMTime")]
-    pub fn CMSyncGetRelativeRateAndAnchorTime(
-        of_clock_or_timebase: &CMClockOrTimebase,
-        relative_to_clock_or_timebase: &CMClockOrTimebase,
-        out_relative_rate: *mut f64,
-        out_of_clock_or_timebase_anchor_time: *mut CMTime,
-        out_relative_to_clock_or_timebase_anchor_time: *mut CMTime,
-    ) -> OSStatus;
+/// Queries the relative rate of one timebase or clock relative to another timebase or clock and the times of each timebase or clock at which the relative rate went into effect.
+///
+/// If both have a common source, this calculation is performed purely based on the rates in the common tree
+/// rooted in that source.
+/// If they have different source clocks (or are both clocks), this calculation takes into account the measured
+/// drift between the two clocks, using host time as a pivot.
+/// The rate of a moving timebase relative to a stopped timebase is a NaN.
+///
+/// # Safety
+///
+/// - `of_clock_or_timebase` should be of the correct type.
+/// - `relative_to_clock_or_timebase` should be of the correct type.
+/// - `out_relative_rate` must be a valid pointer or null.
+/// - `out_of_clock_or_timebase_anchor_time` must be a valid pointer or null.
+/// - `out_relative_to_clock_or_timebase_anchor_time` must be a valid pointer or null.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSyncGetRelativeRateAndAnchorTime(
+    of_clock_or_timebase: &CMClockOrTimebase,
+    relative_to_clock_or_timebase: &CMClockOrTimebase,
+    out_relative_rate: *mut f64,
+    out_of_clock_or_timebase_anchor_time: *mut CMTime,
+    out_relative_to_clock_or_timebase_anchor_time: *mut CMTime,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSyncGetRelativeRateAndAnchorTime(
+            of_clock_or_timebase: &CMClockOrTimebase,
+            relative_to_clock_or_timebase: &CMClockOrTimebase,
+            out_relative_rate: *mut f64,
+            out_of_clock_or_timebase_anchor_time: *mut CMTime,
+            out_relative_to_clock_or_timebase_anchor_time: *mut CMTime,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSyncGetRelativeRateAndAnchorTime(
+            of_clock_or_timebase,
+            relative_to_clock_or_timebase,
+            out_relative_rate,
+            out_of_clock_or_timebase_anchor_time,
+            out_relative_to_clock_or_timebase_anchor_time,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Converts a time from one timebase or clock to another timebase or clock.
-    ///
-    /// If both have a common source, this calculation is performed purely based on the mathematical rates and offsets
-    /// in the common tree rooted in that source.
-    /// If they have different source clocks (or are both clocks), this calculation also compensates
-    /// for measured drift between the clocks.
-    /// To convert to or from host time, pass CMClockGetHostTimeClock() as the appropriate argument.
-    ///
-    /// # Safety
-    ///
-    /// - `from_clock_or_timebase` should be of the correct type.
-    /// - `to_clock_or_timebase` should be of the correct type.
-    #[cfg(feature = "CMTime")]
-    pub fn CMSyncConvertTime(
-        time: CMTime,
-        from_clock_or_timebase: &CMClockOrTimebase,
-        to_clock_or_timebase: &CMClockOrTimebase,
-    ) -> CMTime;
+/// Converts a time from one timebase or clock to another timebase or clock.
+///
+/// If both have a common source, this calculation is performed purely based on the mathematical rates and offsets
+/// in the common tree rooted in that source.
+/// If they have different source clocks (or are both clocks), this calculation also compensates
+/// for measured drift between the clocks.
+/// To convert to or from host time, pass CMClockGetHostTimeClock() as the appropriate argument.
+///
+/// # Safety
+///
+/// - `from_clock_or_timebase` should be of the correct type.
+/// - `to_clock_or_timebase` should be of the correct type.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSyncConvertTime(
+    time: CMTime,
+    from_clock_or_timebase: &CMClockOrTimebase,
+    to_clock_or_timebase: &CMClockOrTimebase,
+) -> CMTime {
+    extern "C-unwind" {
+        fn CMSyncConvertTime(
+            time: CMTime,
+            from_clock_or_timebase: &CMClockOrTimebase,
+            to_clock_or_timebase: &CMClockOrTimebase,
+        ) -> CMTime;
+    }
+    unsafe { CMSyncConvertTime(time, from_clock_or_timebase, to_clock_or_timebase) }
 }
 
 /// Reports whether it is possible for one timebase/clock to drift relative to the other.
@@ -895,20 +928,24 @@ pub unsafe extern "C-unwind" fn CMSyncMightDrift(
     ret != 0
 }
 
-extern "C-unwind" {
-    /// A helper function to get time from a clock or timebase.
-    ///
-    /// CMSyncGetTime simply calls either CMClockGetTime or CMTimebaseGetTime, as appropriate.
-    /// It comes in handy for things like:
-    /// CMClockOrTimebaseRef source = CMTimebaseCopySource(timebase);
-    /// CMSyncGetTime(source);
-    /// CFRelease(source);
-    ///
-    /// # Safety
-    ///
-    /// `clock_or_timebase` should be of the correct type.
-    #[cfg(feature = "CMTime")]
-    pub fn CMSyncGetTime(clock_or_timebase: &CMClockOrTimebase) -> CMTime;
+/// A helper function to get time from a clock or timebase.
+///
+/// CMSyncGetTime simply calls either CMClockGetTime or CMTimebaseGetTime, as appropriate.
+/// It comes in handy for things like:
+/// CMClockOrTimebaseRef source = CMTimebaseCopySource(timebase);
+/// CMSyncGetTime(source);
+/// CFRelease(source);
+///
+/// # Safety
+///
+/// `clock_or_timebase` should be of the correct type.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSyncGetTime(clock_or_timebase: &CMClockOrTimebase) -> CMTime {
+    extern "C-unwind" {
+        fn CMSyncGetTime(clock_or_timebase: &CMClockOrTimebase) -> CMTime;
+    }
+    unsafe { CMSyncGetTime(clock_or_timebase) }
 }
 
 impl CMTimebase {

@@ -138,19 +138,28 @@ pub unsafe extern "C-unwind" fn CFPropertyListIsValid(
     ret != 0
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `property_list` should be of the correct type.
-    /// - `error_string` must be a valid pointer.
-    #[cfg(feature = "CFStream")]
-    #[deprecated = "Use CFPropertyListWrite instead."]
-    pub fn CFPropertyListWriteToStream(
-        property_list: &CFPropertyList,
-        stream: &CFWriteStream,
-        format: CFPropertyListFormat,
-        error_string: Option<&mut *const CFString>,
-    ) -> CFIndex;
+/// # Safety
+///
+/// - `property_list` should be of the correct type.
+/// - `error_string` must be a valid pointer.
+#[cfg(feature = "CFStream")]
+#[deprecated = "Use CFPropertyListWrite instead."]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPropertyListWriteToStream(
+    property_list: &CFPropertyList,
+    stream: &CFWriteStream,
+    format: CFPropertyListFormat,
+    error_string: Option<&mut *const CFString>,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFPropertyListWriteToStream(
+            property_list: &CFPropertyList,
+            stream: &CFWriteStream,
+            format: CFPropertyListFormat,
+            error_string: Option<&mut *const CFString>,
+        ) -> CFIndex;
+    }
+    unsafe { CFPropertyListWriteToStream(property_list, stream, format, error_string) }
 }
 
 /// # Safety
@@ -253,19 +262,29 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `property_list` should be of the correct type.
-    /// - `error` must be a valid pointer.
-    #[cfg(all(feature = "CFError", feature = "CFStream"))]
-    pub fn CFPropertyListWrite(
-        property_list: &CFPropertyList,
-        stream: &CFWriteStream,
-        format: CFPropertyListFormat,
-        options: CFOptionFlags,
-        error: Option<&mut *mut CFError>,
-    ) -> CFIndex;
+/// # Safety
+///
+/// - `property_list` should be of the correct type.
+/// - `error` must be a valid pointer.
+#[cfg(all(feature = "CFError", feature = "CFStream"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPropertyListWrite(
+    property_list: &CFPropertyList,
+    stream: &CFWriteStream,
+    format: CFPropertyListFormat,
+    options: CFOptionFlags,
+    error: Option<&mut *mut CFError>,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFPropertyListWrite(
+            property_list: &CFPropertyList,
+            stream: &CFWriteStream,
+            format: CFPropertyListFormat,
+            options: CFOptionFlags,
+            error: Option<&mut *mut CFError>,
+        ) -> CFIndex;
+    }
+    unsafe { CFPropertyListWrite(property_list, stream, format, options, error) }
 }
 
 /// # Safety

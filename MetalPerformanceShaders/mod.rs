@@ -78,90 +78,104 @@ pub unsafe extern "C-unwind" fn MPSSupportsMTLDevice(
     unsafe { MPSSupportsMTLDevice(device) }.as_bool()
 }
 
-extern "C-unwind" {
-    /// Hint to MPS how much memory your application expects to need for the command buffer
-    ///
-    /// This will cause MPS to prefetch a MTLHeap into its internal cache of
-    /// the indicated size, which will be sub-allocated to back the temporary images,
-    /// matrices, vectors and states in used over the course of the command buffer.
-    /// This can be helpful in certain pathological situations when allocation sizes
-    /// needed to support temporary objects do not allow for reuse of previous allocations
-    /// for new objects.
-    ///
-    /// Example: if the temporary resources need progressively larger MTLHeaps
-    /// over the course of the MTLCommandBuffer, such as 1 MB, 2MB, 4 MB and 8MB,
-    /// the first allocation might create a 1 MB heap, this might be released,
-    /// but since the second allocation needs a 2 MB heap and the 1 MB heap is too
-    /// small to be used, a new heap would need to be made, and so forth.  Using
-    /// MPSHintTemporaryMemoryHighWaterMark(), a single 8 MB heap might be made manifest,
-    /// and all four allocations can use it if they don't overlap temporally. Otherwise,
-    /// a total of 1+2+4+8=15 MB might be allocated.
-    ///
-    /// The application should be careful not to pass the sum of all allocations over
-    /// the course of the command buffer. As we expect that not all temporary resources
-    /// need to coexist at the same time, and so can alias one another, that would waste
-    /// memory. The application should instead track the high water mark of the most
-    /// memory in use at any single point over the course of the command buffer.
-    ///
-    /// This can be simply done by traversing your graph creating all the temporary images,
-    /// states, matrices and vectors that you will need in advance. Since the allocation of
-    /// the underlying MTLHeaps that they use is deferred until you actually attempt to write
-    /// to these resources or get the underlying MTLTexture or MTLBuffer, you can create all
-    /// the objects, then call MPSHintTemporaryMemoryUsage, then call the various -encode
-    /// methods and the heap should be sized correctly before memory is distributed to the
-    /// temporary objects. In this exercise, assume that memory is not distributed to the
-    /// temporary object until it is used to hold data, and is reclaimed for reuse when readCount
-    /// reaches zero. The expected size temporary memory used by each object can be queried
-    /// using its -resourceSize method.
-    ///
-    /// Notes: The MPSNNGraph does this automatically for its workload. It is not necessary to
-    /// prefetch for that. If a MTLHeap large enough to satisfy the size is already cached,
-    /// no new one will be created. If the prefetched heap turns out to be too small, additional
-    /// small heaps will be created as needed dynamically. If the prefetched heap is too big,
-    /// any additional memory is wasted.
-    ///
-    /// When the graph is known in advance, this method is preferred over
-    /// +[MPSTemporaryImage prefetchStorageWithCommandBuffer:imageDescriptorList:]
-    /// as the latter can not estimate the time period over which each resource is used, and is
-    /// likely to conservatively prefetch too small a heap.
-    ///
-    ///
-    /// Parameter `cmdBuf`: The scope of the MTLHeap
-    ///
-    /// Parameter `bytes`: The size, in bytes, of the prefetched heap. The actual size ussed may be rounded
-    /// up according to device alignment requirements. This should be the maximum
-    /// `                         amount of temporary memory used at any point in the command buffer.
-    pub fn MPSHintTemporaryMemoryHighWaterMark(
-        cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
-        bytes: NSUInteger,
-    );
+/// Hint to MPS how much memory your application expects to need for the command buffer
+///
+/// This will cause MPS to prefetch a MTLHeap into its internal cache of
+/// the indicated size, which will be sub-allocated to back the temporary images,
+/// matrices, vectors and states in used over the course of the command buffer.
+/// This can be helpful in certain pathological situations when allocation sizes
+/// needed to support temporary objects do not allow for reuse of previous allocations
+/// for new objects.
+///
+/// Example: if the temporary resources need progressively larger MTLHeaps
+/// over the course of the MTLCommandBuffer, such as 1 MB, 2MB, 4 MB and 8MB,
+/// the first allocation might create a 1 MB heap, this might be released,
+/// but since the second allocation needs a 2 MB heap and the 1 MB heap is too
+/// small to be used, a new heap would need to be made, and so forth.  Using
+/// MPSHintTemporaryMemoryHighWaterMark(), a single 8 MB heap might be made manifest,
+/// and all four allocations can use it if they don't overlap temporally. Otherwise,
+/// a total of 1+2+4+8=15 MB might be allocated.
+///
+/// The application should be careful not to pass the sum of all allocations over
+/// the course of the command buffer. As we expect that not all temporary resources
+/// need to coexist at the same time, and so can alias one another, that would waste
+/// memory. The application should instead track the high water mark of the most
+/// memory in use at any single point over the course of the command buffer.
+///
+/// This can be simply done by traversing your graph creating all the temporary images,
+/// states, matrices and vectors that you will need in advance. Since the allocation of
+/// the underlying MTLHeaps that they use is deferred until you actually attempt to write
+/// to these resources or get the underlying MTLTexture or MTLBuffer, you can create all
+/// the objects, then call MPSHintTemporaryMemoryUsage, then call the various -encode
+/// methods and the heap should be sized correctly before memory is distributed to the
+/// temporary objects. In this exercise, assume that memory is not distributed to the
+/// temporary object until it is used to hold data, and is reclaimed for reuse when readCount
+/// reaches zero. The expected size temporary memory used by each object can be queried
+/// using its -resourceSize method.
+///
+/// Notes: The MPSNNGraph does this automatically for its workload. It is not necessary to
+/// prefetch for that. If a MTLHeap large enough to satisfy the size is already cached,
+/// no new one will be created. If the prefetched heap turns out to be too small, additional
+/// small heaps will be created as needed dynamically. If the prefetched heap is too big,
+/// any additional memory is wasted.
+///
+/// When the graph is known in advance, this method is preferred over
+/// +[MPSTemporaryImage prefetchStorageWithCommandBuffer:imageDescriptorList:]
+/// as the latter can not estimate the time period over which each resource is used, and is
+/// likely to conservatively prefetch too small a heap.
+///
+///
+/// Parameter `cmdBuf`: The scope of the MTLHeap
+///
+/// Parameter `bytes`: The size, in bytes, of the prefetched heap. The actual size ussed may be rounded
+/// up according to device alignment requirements. This should be the maximum
+/// `                         amount of temporary memory used at any point in the command buffer.
+#[inline]
+pub unsafe extern "C-unwind" fn MPSHintTemporaryMemoryHighWaterMark(
+    cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
+    bytes: NSUInteger,
+) {
+    extern "C-unwind" {
+        fn MPSHintTemporaryMemoryHighWaterMark(
+            cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
+            bytes: NSUInteger,
+        );
+    }
+    unsafe { MPSHintTemporaryMemoryHighWaterMark(cmd_buf, bytes) }
 }
 
-extern "C-unwind" {
-    /// Set the timeout after which unused cached MTLHeaps are released
-    ///
-    /// MPS maintains a private set of MTLHeaps attached to each MTLCommandBuffer
-    /// for use by temporary images, matrices, vectors and states, and also for its own
-    /// private usage for temporary storage in some (typically multipass) filters. When the
-    /// command buffer completes, these are returned to a MTLDevice level cache for reuse.
-    /// If it is not reused within the heap cache duration, then the MTLHeaps are released
-    /// and the memory is returned to the operating system for general reuse. The intent
-    /// of this second level cache is to avoid surrendering the GPU performance advantage
-    /// on repetitive workloads to  allocation, zero-fill and deallocation and reallocation
-    /// of large MTLHeaps, which otherwise can easily occur.
-    ///
-    /// Default: 5s.
-    ///
-    ///
-    /// Parameter `cmdBuf`: The scope over which to set the heap cache duration. If the MTLCommandBuffer
-    /// has already been committed, behavior is undefined.
-    ///
-    /// Parameter `seconds`: The number of seconds to cache used MTLHeaps before retiring them.
-    /// NaN will be interpeted as 0.
-    pub fn MPSSetHeapCacheDuration(
-        cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
-        seconds: c_double,
-    );
+/// Set the timeout after which unused cached MTLHeaps are released
+///
+/// MPS maintains a private set of MTLHeaps attached to each MTLCommandBuffer
+/// for use by temporary images, matrices, vectors and states, and also for its own
+/// private usage for temporary storage in some (typically multipass) filters. When the
+/// command buffer completes, these are returned to a MTLDevice level cache for reuse.
+/// If it is not reused within the heap cache duration, then the MTLHeaps are released
+/// and the memory is returned to the operating system for general reuse. The intent
+/// of this second level cache is to avoid surrendering the GPU performance advantage
+/// on repetitive workloads to  allocation, zero-fill and deallocation and reallocation
+/// of large MTLHeaps, which otherwise can easily occur.
+///
+/// Default: 5s.
+///
+///
+/// Parameter `cmdBuf`: The scope over which to set the heap cache duration. If the MTLCommandBuffer
+/// has already been committed, behavior is undefined.
+///
+/// Parameter `seconds`: The number of seconds to cache used MTLHeaps before retiring them.
+/// NaN will be interpeted as 0.
+#[inline]
+pub unsafe extern "C-unwind" fn MPSSetHeapCacheDuration(
+    cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
+    seconds: c_double,
+) {
+    extern "C-unwind" {
+        fn MPSSetHeapCacheDuration(
+            cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
+            seconds: c_double,
+        );
+    }
+    unsafe { MPSSetHeapCacheDuration(cmd_buf, seconds) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceoptions?language=objc)

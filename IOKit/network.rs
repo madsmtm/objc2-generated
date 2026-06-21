@@ -650,15 +650,22 @@ pub const kIONUCLastIndex: c_uint = 5;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iondhandle?language=objc)
 pub type IONDHandle = u32;
 
-extern "C-unwind" {
-    /// Open a connection to an IONetworkInterface object.
-    /// An IONetworkUserClient object is created to manage the connection.
-    ///
-    /// # Safety
-    ///
-    /// `con` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn IONetworkOpen(obj: io_object_t, con: *mut io_connect_t) -> IOReturn;
+/// Open a connection to an IONetworkInterface object.
+/// An IONetworkUserClient object is created to manage the connection.
+///
+/// # Safety
+///
+/// `con` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IONetworkOpen(
+    obj: io_object_t,
+    con: *mut io_connect_t,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IONetworkOpen(obj: io_object_t, con: *mut io_connect_t) -> IOReturn;
+    }
+    unsafe { IONetworkOpen(obj, con) }
 }
 
 /// Close the connection to an IONetworkInterface object.
@@ -671,57 +678,75 @@ pub extern "C-unwind" fn IONetworkClose(con: io_connect_t) -> IOReturn {
     unsafe { IONetworkClose(con) }
 }
 
-extern "C-unwind" {
-    /// Write to the buffer of a network data object.
-    ///
-    /// Parameter `conObj`: The connection object.
-    ///
-    /// Parameter `dataHandle`: The handle of a network data object.
-    ///
-    /// Parameter `srcBuf`: The data to write is taken from this buffer.
-    ///
-    /// Parameter `inSize`: The size of the source buffer.
-    ///
-    /// Returns: kIOReturnSuccess on success, or an error code otherwise.
-    ///
-    /// # Safety
-    ///
-    /// `src_buf` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn IONetworkWriteData(
-        con_obj: io_connect_t,
-        data_handle: IONDHandle,
-        src_buf: *mut u8,
-        in_size: u32,
-    ) -> IOReturn;
+/// Write to the buffer of a network data object.
+///
+/// Parameter `conObj`: The connection object.
+///
+/// Parameter `dataHandle`: The handle of a network data object.
+///
+/// Parameter `srcBuf`: The data to write is taken from this buffer.
+///
+/// Parameter `inSize`: The size of the source buffer.
+///
+/// Returns: kIOReturnSuccess on success, or an error code otherwise.
+///
+/// # Safety
+///
+/// `src_buf` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IONetworkWriteData(
+    con_obj: io_connect_t,
+    data_handle: IONDHandle,
+    src_buf: *mut u8,
+    in_size: u32,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IONetworkWriteData(
+            con_obj: io_connect_t,
+            data_handle: IONDHandle,
+            src_buf: *mut u8,
+            in_size: u32,
+        ) -> IOReturn;
+    }
+    unsafe { IONetworkWriteData(con_obj, data_handle, src_buf, in_size) }
 }
 
-extern "C-unwind" {
-    /// Read the buffer of a network data object.
-    ///
-    /// Parameter `conObj`: The connection object.
-    ///
-    /// Parameter `dataHandle`: The handle of a network data object.
-    ///
-    /// Parameter `destBuf`: The buffer where the data read shall be written to.
-    ///
-    /// Parameter `inOutSizeP`: Pointer to an integer that the caller must initialize
-    /// to contain the size of the buffer. This function will overwrite
-    /// it with the actual number of bytes written to the buffer.
-    ///
-    /// Returns: kIOReturnSuccess on success, or an error code otherwise.
-    ///
-    /// # Safety
-    ///
-    /// - `dest_buf` must be a valid pointer.
-    /// - `in_out_size_p` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn IONetworkReadData(
-        con_obj: io_connect_t,
-        data_handle: IONDHandle,
-        dest_buf: *mut u8,
-        in_out_size_p: *mut u32,
-    ) -> IOReturn;
+/// Read the buffer of a network data object.
+///
+/// Parameter `conObj`: The connection object.
+///
+/// Parameter `dataHandle`: The handle of a network data object.
+///
+/// Parameter `destBuf`: The buffer where the data read shall be written to.
+///
+/// Parameter `inOutSizeP`: Pointer to an integer that the caller must initialize
+/// to contain the size of the buffer. This function will overwrite
+/// it with the actual number of bytes written to the buffer.
+///
+/// Returns: kIOReturnSuccess on success, or an error code otherwise.
+///
+/// # Safety
+///
+/// - `dest_buf` must be a valid pointer.
+/// - `in_out_size_p` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IONetworkReadData(
+    con_obj: io_connect_t,
+    data_handle: IONDHandle,
+    dest_buf: *mut u8,
+    in_out_size_p: *mut u32,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IONetworkReadData(
+            con_obj: io_connect_t,
+            data_handle: IONDHandle,
+            dest_buf: *mut u8,
+            in_out_size_p: *mut u32,
+        ) -> IOReturn;
+    }
+    unsafe { IONetworkReadData(con_obj, data_handle, dest_buf, in_out_size_p) }
 }
 
 /// Fill the buffer of a network data object with zeroes.
@@ -743,117 +768,151 @@ pub extern "C-unwind" fn IONetworkResetData(
     unsafe { IONetworkResetData(con_object, data_handle) }
 }
 
-extern "C-unwind" {
-    /// Get the capacity (in bytes) of a network data object.
-    ///
-    /// Parameter `conObject`: The connection object.
-    ///
-    /// Parameter `dataHandle`: The handle of a network data object.
-    ///
-    /// Parameter `capacityP`: Upon success, the capacity is written to this address.
-    ///
-    /// Returns: kIOReturnSuccess on success, or an error code otherwise.
-    ///
-    /// # Safety
-    ///
-    /// `capacity_p` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn IONetworkGetDataCapacity(
-        con_object: io_connect_t,
-        data_handle: IONDHandle,
-        capacity_p: *mut u32,
-    ) -> IOReturn;
+/// Get the capacity (in bytes) of a network data object.
+///
+/// Parameter `conObject`: The connection object.
+///
+/// Parameter `dataHandle`: The handle of a network data object.
+///
+/// Parameter `capacityP`: Upon success, the capacity is written to this address.
+///
+/// Returns: kIOReturnSuccess on success, or an error code otherwise.
+///
+/// # Safety
+///
+/// `capacity_p` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IONetworkGetDataCapacity(
+    con_object: io_connect_t,
+    data_handle: IONDHandle,
+    capacity_p: *mut u32,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IONetworkGetDataCapacity(
+            con_object: io_connect_t,
+            data_handle: IONDHandle,
+            capacity_p: *mut u32,
+        ) -> IOReturn;
+    }
+    unsafe { IONetworkGetDataCapacity(con_object, data_handle, capacity_p) }
 }
 
-extern "C-unwind" {
-    /// Get the handle of a network data object with the given name.
-    ///
-    /// Parameter `conObject`: The connection object.
-    ///
-    /// Parameter `dataName`: The name of the network data object.
-    ///
-    /// Parameter `dataHandleP`: Upon success, the handle is written to this address.
-    ///
-    /// Returns: kIOReturnSuccess on success, or an error code otherwise.
-    ///
-    /// # Safety
-    ///
-    /// - `data_name` must be a valid pointer.
-    /// - `data_handle_p` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn IONetworkGetDataHandle(
-        con_object: io_connect_t,
-        data_name: *const c_char,
-        data_handle_p: *mut IONDHandle,
-    ) -> IOReturn;
+/// Get the handle of a network data object with the given name.
+///
+/// Parameter `conObject`: The connection object.
+///
+/// Parameter `dataName`: The name of the network data object.
+///
+/// Parameter `dataHandleP`: Upon success, the handle is written to this address.
+///
+/// Returns: kIOReturnSuccess on success, or an error code otherwise.
+///
+/// # Safety
+///
+/// - `data_name` must be a valid pointer.
+/// - `data_handle_p` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IONetworkGetDataHandle(
+    con_object: io_connect_t,
+    data_name: *const c_char,
+    data_handle_p: *mut IONDHandle,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IONetworkGetDataHandle(
+            con_object: io_connect_t,
+            data_name: *const c_char,
+            data_handle_p: *mut IONDHandle,
+        ) -> IOReturn;
+    }
+    unsafe { IONetworkGetDataHandle(con_object, data_name, data_handle_p) }
 }
 
-extern "C-unwind" {
-    /// Set the packet filters for a given filter group.
-    ///
-    /// A network controller may support a number of packets filters
-    /// that can accept or reject a type of packet seen on the network. A filter
-    /// group identifies a set of related filters, such as all filters that will
-    /// allow a packet to pass upstream based on the destination address encoded
-    /// within the packet. This function allows an user-space program to set the
-    /// filtering performed by a given filter group.
-    ///
-    /// Parameter `connect`: The connection object returned from IONetworkOpen().
-    ///
-    /// Parameter `filterGroup`: The name of the packet filter group.
-    ///
-    /// Parameter `filtersMask`: A mask of filters to set.
-    ///
-    /// Parameter `options`: No options are currently defined.
-    ///
-    /// Returns: An IOReturn error code.
-    ///
-    /// # Safety
-    ///
-    /// `filter_group` might not allow `None`.
-    #[cfg(feature = "libc")]
-    pub fn IONetworkSetPacketFiltersMask(
-        connect: io_connect_t,
-        filter_group: Option<&io_name_t>,
-        filters_mask: u32,
-        options: IOOptionBits,
-    ) -> IOReturn;
+/// Set the packet filters for a given filter group.
+///
+/// A network controller may support a number of packets filters
+/// that can accept or reject a type of packet seen on the network. A filter
+/// group identifies a set of related filters, such as all filters that will
+/// allow a packet to pass upstream based on the destination address encoded
+/// within the packet. This function allows an user-space program to set the
+/// filtering performed by a given filter group.
+///
+/// Parameter `connect`: The connection object returned from IONetworkOpen().
+///
+/// Parameter `filterGroup`: The name of the packet filter group.
+///
+/// Parameter `filtersMask`: A mask of filters to set.
+///
+/// Parameter `options`: No options are currently defined.
+///
+/// Returns: An IOReturn error code.
+///
+/// # Safety
+///
+/// `filter_group` might not allow `None`.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IONetworkSetPacketFiltersMask(
+    connect: io_connect_t,
+    filter_group: Option<&io_name_t>,
+    filters_mask: u32,
+    options: IOOptionBits,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IONetworkSetPacketFiltersMask(
+            connect: io_connect_t,
+            filter_group: Option<&io_name_t>,
+            filters_mask: u32,
+            options: IOOptionBits,
+        ) -> IOReturn;
+    }
+    unsafe { IONetworkSetPacketFiltersMask(connect, filter_group, filters_mask, options) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworksupportedpacketfilters?language=objc)
 pub const kIONetworkSupportedPacketFilters: c_uint = 0x0001;
 
-extern "C-unwind" {
-    /// Get the packet filters for a given filter group.
-    ///
-    /// A network controller may support a number of packets filters
-    /// that can accept or reject a type of packet seen on the network. A filter
-    /// group identifies a set of related filters, such as all filters that will
-    /// allow a packet to pass upstream based on the destination address encoded
-    /// within the packet. This function allows an user-space program to get the
-    /// filtering performed by a given filter group.
-    ///
-    /// Parameter `connect`: The connection object returned from IONetworkOpen().
-    ///
-    /// Parameter `filterGroup`: The name of the packet filter group.
-    ///
-    /// Parameter `filtersMask`: Pointer to the return value containing a mask of
-    /// packet filters.
-    ///
-    /// Parameter `options`: kIONetworkSupportedPacketFilters may be set to fetch the
-    /// filters that are supported by the hardware.
-    ///
-    /// Returns: An IOReturn error code.
-    ///
-    /// # Safety
-    ///
-    /// - `filter_group` might not allow `None`.
-    /// - `filters_mask` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn IONetworkGetPacketFiltersMask(
-        connect: io_connect_t,
-        filter_group: Option<&io_name_t>,
-        filters_mask: *mut u32,
-        options: IOOptionBits,
-    ) -> IOReturn;
+/// Get the packet filters for a given filter group.
+///
+/// A network controller may support a number of packets filters
+/// that can accept or reject a type of packet seen on the network. A filter
+/// group identifies a set of related filters, such as all filters that will
+/// allow a packet to pass upstream based on the destination address encoded
+/// within the packet. This function allows an user-space program to get the
+/// filtering performed by a given filter group.
+///
+/// Parameter `connect`: The connection object returned from IONetworkOpen().
+///
+/// Parameter `filterGroup`: The name of the packet filter group.
+///
+/// Parameter `filtersMask`: Pointer to the return value containing a mask of
+/// packet filters.
+///
+/// Parameter `options`: kIONetworkSupportedPacketFilters may be set to fetch the
+/// filters that are supported by the hardware.
+///
+/// Returns: An IOReturn error code.
+///
+/// # Safety
+///
+/// - `filter_group` might not allow `None`.
+/// - `filters_mask` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn IONetworkGetPacketFiltersMask(
+    connect: io_connect_t,
+    filter_group: Option<&io_name_t>,
+    filters_mask: *mut u32,
+    options: IOOptionBits,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IONetworkGetPacketFiltersMask(
+            connect: io_connect_t,
+            filter_group: Option<&io_name_t>,
+            filters_mask: *mut u32,
+            options: IOOptionBits,
+        ) -> IOReturn;
+    }
+    unsafe { IONetworkGetPacketFiltersMask(connect, filter_group, filters_mask, options) }
 }

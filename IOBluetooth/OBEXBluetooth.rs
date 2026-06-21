@@ -5,104 +5,146 @@ use core::ptr::NonNull;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Create an OBEX session with a service ref, usually obtained from the device browser.
-    ///
-    /// Parameter `inSDPServiceRecordRef`: A valid service reference.
-    ///
-    /// Parameter `outSessionRef`: A valid ptr to an IOBluetoothOBEXSessionRef; will contain the newly created session if
-    /// return value is kOBEXSuccess.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// You will use a session reference to do all OBEX interaction to a specific device. This method DOES NOT
-    /// create a connection to the device of any kind.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// `out_session_ref` must be a valid pointer.
-    #[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
-    #[deprecated]
-    pub fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
-        in_sdp_service_ref: &IOBluetoothSDPServiceRecordRef,
-        out_session_ref: *mut OBEXSessionRef,
-    ) -> OBEXError;
+/// Create an OBEX session with a service ref, usually obtained from the device browser.
+///
+/// Parameter `inSDPServiceRecordRef`: A valid service reference.
+///
+/// Parameter `outSessionRef`: A valid ptr to an IOBluetoothOBEXSessionRef; will contain the newly created session if
+/// return value is kOBEXSuccess.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// You will use a session reference to do all OBEX interaction to a specific device. This method DOES NOT
+/// create a connection to the device of any kind.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// `out_session_ref` must be a valid pointer.
+#[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
+    in_sdp_service_ref: &IOBluetoothSDPServiceRecordRef,
+    out_session_ref: *mut OBEXSessionRef,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
+            in_sdp_service_ref: &IOBluetoothSDPServiceRecordRef,
+            out_session_ref: *mut OBEXSessionRef,
+        ) -> OBEXError;
+    }
+    unsafe {
+        IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
+            in_sdp_service_ref,
+            out_session_ref,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Create an OBEX session with a device ref and an RFCOMM channel ID. This allows you to bypass the browser
-    /// if you already know the SDP information.
-    ///
-    /// Parameter `inDeviceRef`: A valid IOBluetoothDeviceRef reference.
-    ///
-    /// Parameter `inChannelID`: A valid RFCOMM channel ID on the target device.
-    ///
-    /// Parameter `outSessionRef`: A valid ptr to an IOBluetoothOBEXSessionRef; will contain the newly created session
-    /// if return value is kOBEXSuccess.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// You will use a session reference to do all OBEX interaction to a specific device. This method DOES NOT
-    /// create a connection to the device of any kind.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// `out_session_ref` must be a valid pointer.
-    #[cfg(all(
-        feature = "Bluetooth",
-        feature = "IOBluetoothUserLib",
-        feature = "OBEX"
-    ))]
-    #[deprecated]
-    pub fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(
-        in_device_ref: &IOBluetoothDeviceRef,
-        in_channel_id: BluetoothRFCOMMChannelID,
-        out_session_ref: *mut OBEXSessionRef,
-    ) -> OBEXError;
+/// Create an OBEX session with a device ref and an RFCOMM channel ID. This allows you to bypass the browser
+/// if you already know the SDP information.
+///
+/// Parameter `inDeviceRef`: A valid IOBluetoothDeviceRef reference.
+///
+/// Parameter `inChannelID`: A valid RFCOMM channel ID on the target device.
+///
+/// Parameter `outSessionRef`: A valid ptr to an IOBluetoothOBEXSessionRef; will contain the newly created session
+/// if return value is kOBEXSuccess.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// You will use a session reference to do all OBEX interaction to a specific device. This method DOES NOT
+/// create a connection to the device of any kind.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// `out_session_ref` must be a valid pointer.
+#[cfg(all(
+    feature = "Bluetooth",
+    feature = "IOBluetoothUserLib",
+    feature = "OBEX"
+))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(
+    in_device_ref: &IOBluetoothDeviceRef,
+    in_channel_id: BluetoothRFCOMMChannelID,
+    out_session_ref: *mut OBEXSessionRef,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(
+            in_device_ref: &IOBluetoothDeviceRef,
+            in_channel_id: BluetoothRFCOMMChannelID,
+            out_session_ref: *mut OBEXSessionRef,
+        ) -> OBEXError;
+    }
+    unsafe {
+        IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(
+            in_device_ref,
+            in_channel_id,
+            out_session_ref,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Create an OBEX session with an IOBluetoothRFCOMMchannel. This implies you are creating a OBEX SERVER
-    /// session that will dole out info to remote Bluetooth clients.
-    ///
-    /// Parameter `inRFCOMMChannel`: A valid IOBluetoothRFCOMMChannel reference.
-    ///
-    /// Parameter `inGetResponseCallback`: A callback for Get requests sent to your session by a remote device. Must be a
-    /// valid function ptr, otherwise why even call this?
-    ///
-    /// Parameter `outSessionRef`: A valid ptr to an IOBluetoothOBEXSessionRef; will contain the newly created
-    /// session if return value is kOBEXSuccess.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// This assumes that the RFCOMM channel you have passed it is already open and ready to transmit data
-    /// to the session.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    /// - `out_session_ref` must be a valid pointer.
-    #[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
-    #[deprecated]
-    pub fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
-        in_rfcomm_channel_ref: &IOBluetoothRFCOMMChannelRef,
-        in_callback: OBEXSessionEventCallback,
-        in_user_ref_con: *mut c_void,
-        out_session_ref: *mut OBEXSessionRef,
-    ) -> OBEXError;
+/// Create an OBEX session with an IOBluetoothRFCOMMchannel. This implies you are creating a OBEX SERVER
+/// session that will dole out info to remote Bluetooth clients.
+///
+/// Parameter `inRFCOMMChannel`: A valid IOBluetoothRFCOMMChannel reference.
+///
+/// Parameter `inGetResponseCallback`: A callback for Get requests sent to your session by a remote device. Must be a
+/// valid function ptr, otherwise why even call this?
+///
+/// Parameter `outSessionRef`: A valid ptr to an IOBluetoothOBEXSessionRef; will contain the newly created
+/// session if return value is kOBEXSuccess.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// This assumes that the RFCOMM channel you have passed it is already open and ready to transmit data
+/// to the session.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+/// - `out_session_ref` must be a valid pointer.
+#[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
+    in_rfcomm_channel_ref: &IOBluetoothRFCOMMChannelRef,
+    in_callback: OBEXSessionEventCallback,
+    in_user_ref_con: *mut c_void,
+    out_session_ref: *mut OBEXSessionRef,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
+            in_rfcomm_channel_ref: &IOBluetoothRFCOMMChannelRef,
+            in_callback: OBEXSessionEventCallback,
+            in_user_ref_con: *mut c_void,
+            out_session_ref: *mut OBEXSessionRef,
+        ) -> OBEXError;
+    }
+    unsafe {
+        IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
+            in_rfcomm_channel_ref,
+            in_callback,
+            in_user_ref_con,
+            out_session_ref,
+        )
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobexsessionopenconnectioncallback?language=objc)
@@ -110,36 +152,46 @@ extern "C-unwind" {
 pub type IOBluetoothOBEXSessionOpenConnectionCallback =
     Option<unsafe extern "C-unwind" fn(OBEXSessionRef, OBEXError, *mut c_void)>;
 
-extern "C-unwind" {
-    /// Parameter `inSessionRef`: A valid session reference.
-    ///
-    /// Parameter `inCallback`: A valid callback.
-    ///
-    /// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
-    /// callback just as you passed it.
-    ///
-    /// Returns: An error code value. 0 if successful.
-    ///
-    /// Opens a transport-level connection to a remote target. For example, if you are using a Bluetooth transport,
-    /// this will establish the baseband/L2CAP/RFCOMM connection to a device. Once the callback is called, the
-    /// connection will either be opened or have failed with a status code. That status code will most likely have
-    /// originated from the transport layer being used, so you may receive a Bluetooth error, an IOKit error, etc,
-    /// but a 0 status should indicate success in all cases.
-    ///
-    /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
-    /// **        You should transition your code to Objective-C equivalents.
-    /// **        This API may be removed any time in the future.
-    ///
-    /// # Safety
-    ///
-    /// - `in_session_ref` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_user_ref_con` must be a valid pointer.
-    #[cfg(feature = "OBEX")]
-    #[deprecated]
-    pub fn IOBluetoothOBEXSessionOpenTransportConnection(
-        in_session_ref: OBEXSessionRef,
-        in_callback: IOBluetoothOBEXSessionOpenConnectionCallback,
-        in_user_ref_con: *mut c_void,
-    ) -> OBEXError;
+/// Parameter `inSessionRef`: A valid session reference.
+///
+/// Parameter `inCallback`: A valid callback.
+///
+/// Parameter `inUserRefCon`: Optional parameter; can contain anything you wish. Will be returned in your
+/// callback just as you passed it.
+///
+/// Returns: An error code value. 0 if successful.
+///
+/// Opens a transport-level connection to a remote target. For example, if you are using a Bluetooth transport,
+/// this will establish the baseband/L2CAP/RFCOMM connection to a device. Once the callback is called, the
+/// connection will either be opened or have failed with a status code. That status code will most likely have
+/// originated from the transport layer being used, so you may receive a Bluetooth error, an IOKit error, etc,
+/// but a 0 status should indicate success in all cases.
+///
+/// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
+/// **        You should transition your code to Objective-C equivalents.
+/// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
+#[cfg(feature = "OBEX")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothOBEXSessionOpenTransportConnection(
+    in_session_ref: OBEXSessionRef,
+    in_callback: IOBluetoothOBEXSessionOpenConnectionCallback,
+    in_user_ref_con: *mut c_void,
+) -> OBEXError {
+    extern "C-unwind" {
+        fn IOBluetoothOBEXSessionOpenTransportConnection(
+            in_session_ref: OBEXSessionRef,
+            in_callback: IOBluetoothOBEXSessionOpenConnectionCallback,
+            in_user_ref_con: *mut c_void,
+        ) -> OBEXError;
+    }
+    unsafe {
+        IOBluetoothOBEXSessionOpenTransportConnection(in_session_ref, in_callback, in_user_ref_con)
+    }
 }

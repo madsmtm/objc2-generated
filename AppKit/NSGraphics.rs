@@ -583,33 +583,53 @@ pub extern "C-unwind" fn NSRectFill(rect: NSRect) {
     unsafe { NSRectFill(rect) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `rects` must be a valid pointer.
-    pub fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger);
+/// # Safety
+///
+/// `rects` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger) {
+    extern "C-unwind" {
+        fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger);
+    }
+    unsafe { NSRectFillList(rects, count) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `rects` must be a valid pointer.
-    /// - `grays` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSRectFillListWithGrays(rects: NonNull<NSRect>, grays: NonNull<CGFloat>, num: NSInteger);
+/// # Safety
+///
+/// - `rects` must be a valid pointer.
+/// - `grays` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSRectFillListWithGrays(
+    rects: NonNull<NSRect>,
+    grays: NonNull<CGFloat>,
+    num: NSInteger,
+) {
+    extern "C-unwind" {
+        fn NSRectFillListWithGrays(rects: NonNull<NSRect>, grays: NonNull<CGFloat>, num: NSInteger);
+    }
+    unsafe { NSRectFillListWithGrays(rects, grays, num) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `rects` must be a valid pointer.
-    /// - `colors` must be a valid pointer.
-    #[cfg(feature = "NSColor")]
-    pub fn NSRectFillListWithColors(
-        rects: NonNull<NSRect>,
-        colors: NonNull<NonNull<NSColor>>,
-        num: NSInteger,
-    );
+/// # Safety
+///
+/// - `rects` must be a valid pointer.
+/// - `colors` must be a valid pointer.
+#[cfg(feature = "NSColor")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSRectFillListWithColors(
+    rects: NonNull<NSRect>,
+    colors: NonNull<NonNull<NSColor>>,
+    num: NSInteger,
+) {
+    extern "C-unwind" {
+        fn NSRectFillListWithColors(
+            rects: NonNull<NSRect>,
+            colors: NonNull<NonNull<NSColor>>,
+            num: NSInteger,
+        );
+    }
+    unsafe { NSRectFillListWithColors(rects, colors, num) }
 }
 
 #[inline]
@@ -620,29 +640,46 @@ pub extern "C-unwind" fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositin
     unsafe { NSRectFillUsingOperation(rect, op) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `rects` must be a valid pointer.
-    pub fn NSRectFillListUsingOperation(
-        rects: NonNull<NSRect>,
-        count: NSInteger,
-        op: NSCompositingOperation,
-    );
+/// # Safety
+///
+/// `rects` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSRectFillListUsingOperation(
+    rects: NonNull<NSRect>,
+    count: NSInteger,
+    op: NSCompositingOperation,
+) {
+    extern "C-unwind" {
+        fn NSRectFillListUsingOperation(
+            rects: NonNull<NSRect>,
+            count: NSInteger,
+            op: NSCompositingOperation,
+        );
+    }
+    unsafe { NSRectFillListUsingOperation(rects, count, op) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `rects` must be a valid pointer.
-    /// - `colors` must be a valid pointer.
-    #[cfg(feature = "NSColor")]
-    pub fn NSRectFillListWithColorsUsingOperation(
-        rects: NonNull<NSRect>,
-        colors: NonNull<NonNull<NSColor>>,
-        num: NSInteger,
-        op: NSCompositingOperation,
-    );
+/// # Safety
+///
+/// - `rects` must be a valid pointer.
+/// - `colors` must be a valid pointer.
+#[cfg(feature = "NSColor")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSRectFillListWithColorsUsingOperation(
+    rects: NonNull<NSRect>,
+    colors: NonNull<NonNull<NSColor>>,
+    num: NSInteger,
+    op: NSCompositingOperation,
+) {
+    extern "C-unwind" {
+        fn NSRectFillListWithColorsUsingOperation(
+            rects: NonNull<NSRect>,
+            colors: NonNull<NonNull<NSColor>>,
+            num: NSInteger,
+            op: NSCompositingOperation,
+        );
+    }
+    unsafe { NSRectFillListWithColorsUsingOperation(rects, colors, num, op) }
 }
 
 #[inline]
@@ -687,26 +724,40 @@ pub extern "C-unwind" fn NSRectClip(rect: NSRect) {
     unsafe { NSRectClip(rect) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `rects` must be a valid pointer.
-    pub fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger);
+/// # Safety
+///
+/// `rects` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger) {
+    extern "C-unwind" {
+        fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger);
+    }
+    unsafe { NSRectClipList(rects, count) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `sides` must be a valid pointer.
-    /// - `grays` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSDrawTiledRects(
-        bounds_rect: NSRect,
-        clip_rect: NSRect,
-        sides: NonNull<NSRectEdge>,
-        grays: NonNull<CGFloat>,
-        count: NSInteger,
-    ) -> NSRect;
+/// # Safety
+///
+/// - `sides` must be a valid pointer.
+/// - `grays` must be a valid pointer.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSDrawTiledRects(
+    bounds_rect: NSRect,
+    clip_rect: NSRect,
+    sides: NonNull<NSRectEdge>,
+    grays: NonNull<CGFloat>,
+    count: NSInteger,
+) -> NSRect {
+    extern "C-unwind" {
+        fn NSDrawTiledRects(
+            bounds_rect: NSRect,
+            clip_rect: NSRect,
+            sides: NonNull<NSRectEdge>,
+            grays: NonNull<CGFloat>,
+            count: NSInteger,
+        ) -> NSRect;
+    }
+    unsafe { NSDrawTiledRects(bounds_rect, clip_rect, sides, grays, count) }
 }
 
 #[inline]
@@ -826,32 +877,58 @@ pub extern "C-unwind" fn NSBeep() {
     unsafe { NSBeep() }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `window_dump_string` must be a valid pointer.
-    #[deprecated = "Doesn't return anything useful since 10.0"]
-    pub fn NSGetWindowServerMemory(
-        context: NSInteger,
-        virtual_memory: &mut NSInteger,
-        window_backing_memory: &mut NSInteger,
-        window_dump_string: NonNull<NonNull<NSString>>,
-    ) -> NSInteger;
+/// # Safety
+///
+/// `window_dump_string` must be a valid pointer.
+#[deprecated = "Doesn't return anything useful since 10.0"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSGetWindowServerMemory(
+    context: NSInteger,
+    virtual_memory: &mut NSInteger,
+    window_backing_memory: &mut NSInteger,
+    window_dump_string: NonNull<NonNull<NSString>>,
+) -> NSInteger {
+    extern "C-unwind" {
+        fn NSGetWindowServerMemory(
+            context: NSInteger,
+            virtual_memory: &mut NSInteger,
+            window_backing_memory: &mut NSInteger,
+            window_dump_string: NonNull<NonNull<NSString>>,
+        ) -> NSInteger;
+    }
+    unsafe {
+        NSGetWindowServerMemory(
+            context,
+            virtual_memory,
+            window_backing_memory,
+            window_dump_string,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `sides` must be a valid pointer.
-    /// - `colors` must be a valid pointer.
-    #[cfg(feature = "NSColor")]
-    pub fn NSDrawColorTiledRects(
-        bounds_rect: NSRect,
-        clip_rect: NSRect,
-        sides: NonNull<NSRectEdge>,
-        colors: NonNull<NonNull<NSColor>>,
-        count: NSInteger,
-    ) -> NSRect;
+/// # Safety
+///
+/// - `sides` must be a valid pointer.
+/// - `colors` must be a valid pointer.
+#[cfg(feature = "NSColor")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSDrawColorTiledRects(
+    bounds_rect: NSRect,
+    clip_rect: NSRect,
+    sides: NonNull<NSRectEdge>,
+    colors: NonNull<NonNull<NSColor>>,
+    count: NSInteger,
+) -> NSRect {
+    extern "C-unwind" {
+        fn NSDrawColorTiledRects(
+            bounds_rect: NSRect,
+            clip_rect: NSRect,
+            sides: NonNull<NSRectEdge>,
+            colors: NonNull<NonNull<NSColor>>,
+            count: NSInteger,
+        ) -> NSRect;
+    }
+    unsafe { NSDrawColorTiledRects(bounds_rect, clip_rect, sides, colors, count) }
 }
 
 #[inline]
@@ -933,21 +1010,41 @@ unsafe impl RefEncode for NSAnimationEffect {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `animation_delegate` should be of the correct type.
-    /// - `did_end_selector` must be a valid selector.
-    /// - `context_info` must be a valid pointer or null.
-    #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
-    pub fn NSShowAnimationEffect(
-        animation_effect: NSAnimationEffect,
-        center_location: NSPoint,
-        size: NSSize,
-        animation_delegate: Option<&AnyObject>,
-        did_end_selector: Option<Sel>,
-        context_info: *mut c_void,
-    );
+/// # Safety
+///
+/// - `animation_delegate` should be of the correct type.
+/// - `did_end_selector` must be a valid selector.
+/// - `context_info` must be a valid pointer or null.
+#[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSShowAnimationEffect(
+    animation_effect: NSAnimationEffect,
+    center_location: NSPoint,
+    size: NSSize,
+    animation_delegate: Option<&AnyObject>,
+    did_end_selector: Option<Sel>,
+    context_info: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn NSShowAnimationEffect(
+            animation_effect: NSAnimationEffect,
+            center_location: NSPoint,
+            size: NSSize,
+            animation_delegate: Option<&AnyObject>,
+            did_end_selector: Option<Sel>,
+            context_info: *mut c_void,
+        );
+    }
+    unsafe {
+        NSShowAnimationEffect(
+            animation_effect,
+            center_location,
+            size,
+            animation_delegate,
+            did_end_selector,
+            context_info,
+        )
+    }
 }
 
 #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
@@ -959,12 +1056,16 @@ pub extern "C-unwind" fn NSCountWindows(count: &mut NSInteger) {
     unsafe { NSCountWindows(count) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `list` must be a valid pointer.
-    #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
-    pub fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>);
+/// # Safety
+///
+/// `list` must be a valid pointer.
+#[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>) {
+    extern "C-unwind" {
+        fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>);
+    }
+    unsafe { NSWindowList(size, list) }
 }
 
 #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
@@ -976,12 +1077,20 @@ pub extern "C-unwind" fn NSCountWindowsForContext(context: NSInteger, count: &mu
     unsafe { NSCountWindowsForContext(context, count) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `list` must be a valid pointer.
-    #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
-    pub fn NSWindowListForContext(context: NSInteger, size: NSInteger, list: NonNull<NSInteger>);
+/// # Safety
+///
+/// `list` must be a valid pointer.
+#[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSWindowListForContext(
+    context: NSInteger,
+    size: NSInteger,
+    list: NonNull<NSInteger>,
+) {
+    extern "C-unwind" {
+        fn NSWindowListForContext(context: NSInteger, size: NSInteger, list: NonNull<NSInteger>);
+    }
+    unsafe { NSWindowListForContext(context, size, list) }
 }
 
 #[deprecated]

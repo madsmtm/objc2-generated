@@ -6,37 +6,45 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Promotes all active CoreBluetooth connections to peripherals' Bluetooth LE MIDI
-    /// service into online MIDI devices capable of I/O.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// To programmatically establish a Bluetooth MIDI driver connection to a LE MIDI peripheral,
-    /// the following steps must be completed in order.
-    ///
-    /// 1. Using CoreBluetooth API, scan for the peripheral's advertised LE MIDI service.
-    /// 2. Using CoreBluetooth API, connect to the desired advertised peripheral.
-    /// 3. Upon successful connection, call MIDIBluetoothDriverActivateAllConnections.
-    /// 4. Using CoreMIDI API, confirm the peripheral's registration by locating its MIDIDeviceRef.
-    /// 5. If present, CoreMIDI now owns a connection the peripheral.
-    /// 6. Using CoreBluetooth API, disconnect from the peripheral now managed by CoreMIDI.
-    pub fn MIDIBluetoothDriverActivateAllConnections() -> OSStatus;
+/// Promotes all active CoreBluetooth connections to peripherals' Bluetooth LE MIDI
+/// service into online MIDI devices capable of I/O.
+///
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// To programmatically establish a Bluetooth MIDI driver connection to a LE MIDI peripheral,
+/// the following steps must be completed in order.
+///
+/// 1. Using CoreBluetooth API, scan for the peripheral's advertised LE MIDI service.
+/// 2. Using CoreBluetooth API, connect to the desired advertised peripheral.
+/// 3. Upon successful connection, call MIDIBluetoothDriverActivateAllConnections.
+/// 4. Using CoreMIDI API, confirm the peripheral's registration by locating its MIDIDeviceRef.
+/// 5. If present, CoreMIDI now owns a connection the peripheral.
+/// 6. Using CoreBluetooth API, disconnect from the peripheral now managed by CoreMIDI.
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIBluetoothDriverActivateAllConnections() -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIBluetoothDriverActivateAllConnections() -> OSStatus;
+    }
+    unsafe { MIDIBluetoothDriverActivateAllConnections() }
 }
 
-extern "C-unwind" {
-    /// Disconnects the Bluetooth MIDI driver from a BLE MIDI peripheral.
-    ///
-    ///
-    /// Parameter `uuid`: A string representation of the CoreBluetooth UUI for a connected peripheral.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// If a CoreMIDI is connected to a BLE MIDI peripheral with the supplied UUID, it will disconnect.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIBluetoothDriverDisconnect(uuid: &CFString) -> OSStatus;
+/// Disconnects the Bluetooth MIDI driver from a BLE MIDI peripheral.
+///
+///
+/// Parameter `uuid`: A string representation of the CoreBluetooth UUI for a connected peripheral.
+///
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// If a CoreMIDI is connected to a BLE MIDI peripheral with the supplied UUID, it will disconnect.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIBluetoothDriverDisconnect(uuid: &CFString) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIBluetoothDriverDisconnect(uuid: &CFString) -> OSStatus;
+    }
+    unsafe { MIDIBluetoothDriverDisconnect(uuid) }
 }

@@ -195,166 +195,220 @@ extern "C" {
     pub static kMIDIDriverPropertyUsesSerial: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Drivers call this function to create new MIDIDevice objects
-    /// corresponding to the hardware that is present.
-    ///
-    /// Non-drivers may call this function as of CoreMIDI 1.1, to
-    /// create external devices.
-    ///
-    ///
-    /// Parameter `owner`: The driver creating the device.  NULL if a non-driver.
-    ///
-    /// Parameter `name`: The name of the new device.
-    ///
-    /// Parameter `manufacturer`: The name of the device's manufacturer.
-    ///
-    /// Parameter `model`: The device's model name.
-    ///
-    /// Parameter `outDevice`: On successful return, points to the newly-created device.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `owner` must be a valid pointer or null.
-    /// - `out_device` must be a valid pointer.
-    #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
-    pub fn MIDIDeviceCreate(
-        owner: MIDIDriverRef,
-        name: &CFString,
-        manufacturer: &CFString,
-        model: &CFString,
-        out_device: NonNull<MIDIDeviceRef>,
-    ) -> OSStatus;
+/// Drivers call this function to create new MIDIDevice objects
+/// corresponding to the hardware that is present.
+///
+/// Non-drivers may call this function as of CoreMIDI 1.1, to
+/// create external devices.
+///
+///
+/// Parameter `owner`: The driver creating the device.  NULL if a non-driver.
+///
+/// Parameter `name`: The name of the new device.
+///
+/// Parameter `manufacturer`: The name of the device's manufacturer.
+///
+/// Parameter `model`: The device's model name.
+///
+/// Parameter `outDevice`: On successful return, points to the newly-created device.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `owner` must be a valid pointer or null.
+/// - `out_device` must be a valid pointer.
+#[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDeviceCreate(
+    owner: MIDIDriverRef,
+    name: &CFString,
+    manufacturer: &CFString,
+    model: &CFString,
+    out_device: NonNull<MIDIDeviceRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIDeviceCreate(
+            owner: MIDIDriverRef,
+            name: &CFString,
+            manufacturer: &CFString,
+            model: &CFString,
+            out_device: NonNull<MIDIDeviceRef>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIDeviceCreate(owner, name, manufacturer, model, out_device) }
 }
 
-extern "C-unwind" {
-    /// Drivers may call this function to dispose MIDIDevice objects
-    /// which have not yet been added to the system via MIDISetupAddDevice.
-    /// Once a device has been added to the system with MIDISetupAddDevice,
-    /// the driver must not use this call to destroy it; it must
-    /// use MIDISetupRemoveDevice to do so.
-    ///
-    /// Non-drivers do not have access to this function; they must call
-    /// MIDISetupAddDevice and MIDISetupRemoveDevice.
-    ///
-    ///
-    /// Parameter `device`: The device to be disposed.
-    ///
-    /// Returns: An OSStatus result code.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDIDeviceDispose(device: MIDIDeviceRef) -> OSStatus;
+/// Drivers may call this function to dispose MIDIDevice objects
+/// which have not yet been added to the system via MIDISetupAddDevice.
+/// Once a device has been added to the system with MIDISetupAddDevice,
+/// the driver must not use this call to destroy it; it must
+/// use MIDISetupRemoveDevice to do so.
+///
+/// Non-drivers do not have access to this function; they must call
+/// MIDISetupAddDevice and MIDISetupRemoveDevice.
+///
+///
+/// Parameter `device`: The device to be disposed.
+///
+/// Returns: An OSStatus result code.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDeviceDispose(device: MIDIDeviceRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIDeviceDispose(device: MIDIDeviceRef) -> OSStatus;
+    }
+    unsafe { MIDIDeviceDispose(device) }
 }
 
-extern "C-unwind" {
-    /// Returns the number of devices in a device list.
-    ///
-    ///
-    /// Parameter `devList`: The device list.
-    ///
-    /// Returns: The number of devices in the list, or 0 if an error occurred.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDIDeviceListGetNumberOfDevices(dev_list: MIDIDeviceListRef) -> ItemCount;
+/// Returns the number of devices in a device list.
+///
+///
+/// Parameter `devList`: The device list.
+///
+/// Returns: The number of devices in the list, or 0 if an error occurred.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDeviceListGetNumberOfDevices(
+    dev_list: MIDIDeviceListRef,
+) -> ItemCount {
+    extern "C-unwind" {
+        fn MIDIDeviceListGetNumberOfDevices(dev_list: MIDIDeviceListRef) -> ItemCount;
+    }
+    unsafe { MIDIDeviceListGetNumberOfDevices(dev_list) }
 }
 
-extern "C-unwind" {
-    /// Return one of the devices in a device list.
-    ///
-    ///
-    /// Parameter `devList`: The device list.
-    ///
-    /// Parameter `index0`: The index (0...MIDIDeviceListGetNumberOfDevices()-1) of the device
-    /// to return.
-    ///
-    /// Returns: A reference to a device, or NULL if an error occurred.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDIDeviceListGetDevice(dev_list: MIDIDeviceListRef, index0: ItemCount)
-        -> MIDIDeviceRef;
+/// Return one of the devices in a device list.
+///
+///
+/// Parameter `devList`: The device list.
+///
+/// Parameter `index0`: The index (0...MIDIDeviceListGetNumberOfDevices()-1) of the device
+/// to return.
+///
+/// Returns: A reference to a device, or NULL if an error occurred.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDeviceListGetDevice(
+    dev_list: MIDIDeviceListRef,
+    index0: ItemCount,
+) -> MIDIDeviceRef {
+    extern "C-unwind" {
+        fn MIDIDeviceListGetDevice(dev_list: MIDIDeviceListRef, index0: ItemCount)
+            -> MIDIDeviceRef;
+    }
+    unsafe { MIDIDeviceListGetDevice(dev_list, index0) }
 }
 
-extern "C-unwind" {
-    /// Add a device to a device list.
-    ///
-    ///
-    /// Parameter `devList`: The device list.
-    ///
-    /// Parameter `dev`: The device to add to the list.
-    ///
-    /// Returns: An OSStatus result code.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDIDeviceListAddDevice(dev_list: MIDIDeviceListRef, dev: MIDIDeviceRef) -> OSStatus;
+/// Add a device to a device list.
+///
+///
+/// Parameter `devList`: The device list.
+///
+/// Parameter `dev`: The device to add to the list.
+///
+/// Returns: An OSStatus result code.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDeviceListAddDevice(
+    dev_list: MIDIDeviceListRef,
+    dev: MIDIDeviceRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIDeviceListAddDevice(dev_list: MIDIDeviceListRef, dev: MIDIDeviceRef) -> OSStatus;
+    }
+    unsafe { MIDIDeviceListAddDevice(dev_list, dev) }
 }
 
-extern "C-unwind" {
-    /// Dispose a device list, but not the contained devices.
-    ///
-    ///
-    /// Parameter `devList`: The device list to be disposed.
-    ///
-    /// Returns: An OSStatus result code.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDIDeviceListDispose(dev_list: MIDIDeviceListRef) -> OSStatus;
+/// Dispose a device list, but not the contained devices.
+///
+///
+/// Parameter `devList`: The device list to be disposed.
+///
+/// Returns: An OSStatus result code.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIDeviceListDispose(dev_list: MIDIDeviceListRef) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIDeviceListDispose(dev_list: MIDIDeviceListRef) -> OSStatus;
+    }
+    unsafe { MIDIDeviceListDispose(dev_list) }
 }
 
-extern "C-unwind" {
-    /// Drivers need an efficient way to translate from a MIDIEndpoint (source or
-    /// destination) to their own internal data structures corresponding to
-    /// that endpoint.  This function provides a way for the driver to
-    /// assign its own refCons to endpoints.
-    ///
-    /// These refCons are passed back to the driver in its Send() and Flush()
-    /// methods.
-    ///
-    /// RefCons are not persistent (i.e. they are not saved as part of a
-    /// MIDISetup).  They need to be re-initialized in each call to Start().
-    ///
-    /// A typical use is to use one refCon to refer to a device, and a second
-    /// to refer to a port on the device.
-    ///
-    ///
-    /// Parameter `endpt`: The endpoint whose refCons are to be set
-    ///
-    /// Parameter `ref1`: The first refCon.
-    ///
-    /// Parameter `ref2`: The second refCon.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `ref1` must be a valid pointer or null.
-    /// - `ref2` must be a valid pointer or null.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDIEndpointSetRefCons(
-        endpt: MIDIEndpointRef,
-        ref1: *mut c_void,
-        ref2: *mut c_void,
-    ) -> OSStatus;
+/// Drivers need an efficient way to translate from a MIDIEndpoint (source or
+/// destination) to their own internal data structures corresponding to
+/// that endpoint.  This function provides a way for the driver to
+/// assign its own refCons to endpoints.
+///
+/// These refCons are passed back to the driver in its Send() and Flush()
+/// methods.
+///
+/// RefCons are not persistent (i.e. they are not saved as part of a
+/// MIDISetup).  They need to be re-initialized in each call to Start().
+///
+/// A typical use is to use one refCon to refer to a device, and a second
+/// to refer to a port on the device.
+///
+///
+/// Parameter `endpt`: The endpoint whose refCons are to be set
+///
+/// Parameter `ref1`: The first refCon.
+///
+/// Parameter `ref2`: The second refCon.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `ref1` must be a valid pointer or null.
+/// - `ref2` must be a valid pointer or null.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIEndpointSetRefCons(
+    endpt: MIDIEndpointRef,
+    ref1: *mut c_void,
+    ref2: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIEndpointSetRefCons(
+            endpt: MIDIEndpointRef,
+            ref1: *mut c_void,
+            ref2: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIEndpointSetRefCons(endpt, ref1, ref2) }
 }
 
-extern "C-unwind" {
-    /// Obtain the refCons assigned to the endpoints
-    ///
-    ///
-    /// Parameter `endpt`: The endpoint whose refCons are to be return
-    ///
-    /// Parameter `ref1`: On exit, the first refCon.
-    ///
-    /// Parameter `ref2`: On exit, the second refCon.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `ref1` must be a valid pointer or null.
-    /// - `ref2` must be a valid pointer or null.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDIEndpointGetRefCons(
-        endpt: MIDIEndpointRef,
-        ref1: *mut NonNull<c_void>,
-        ref2: *mut NonNull<c_void>,
-    ) -> OSStatus;
+/// Obtain the refCons assigned to the endpoints
+///
+///
+/// Parameter `endpt`: The endpoint whose refCons are to be return
+///
+/// Parameter `ref1`: On exit, the first refCon.
+///
+/// Parameter `ref2`: On exit, the second refCon.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `ref1` must be a valid pointer or null.
+/// - `ref2` must be a valid pointer or null.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIEndpointGetRefCons(
+    endpt: MIDIEndpointRef,
+    ref1: *mut NonNull<c_void>,
+    ref2: *mut NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn MIDIEndpointGetRefCons(
+            endpt: MIDIEndpointRef,
+            ref1: *mut NonNull<c_void>,
+            ref2: *mut NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe { MIDIEndpointGetRefCons(endpt, ref1, ref2) }
 }
 
 /// Drivers typically need to receive asynchronous I/O completion callbacks
@@ -384,24 +438,30 @@ pub unsafe extern "C-unwind" fn MIDIGetDriverIORunLoop() -> CFRetained<CFRunLoop
     unsafe { CFRetained::retain(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the list of devices which are in the current MIDISetup
-    /// and which were created/owned by the specified driver.
-    ///
-    /// The returned device list should be disposed (using MIDIDeviceListDispose)
-    /// by the caller.
-    ///
-    ///
-    /// Parameter `driver`: The driver whose devices are to be returned.
-    ///
-    ///
-    /// Returns: The requested device list.
-    ///
-    /// # Safety
-    ///
-    /// `driver` must be a valid pointer.
-    #[cfg(feature = "MIDIServices")]
-    pub fn MIDIGetDriverDeviceList(driver: MIDIDriverRef) -> MIDIDeviceListRef;
+/// Returns the list of devices which are in the current MIDISetup
+/// and which were created/owned by the specified driver.
+///
+/// The returned device list should be disposed (using MIDIDeviceListDispose)
+/// by the caller.
+///
+///
+/// Parameter `driver`: The driver whose devices are to be returned.
+///
+///
+/// Returns: The requested device list.
+///
+/// # Safety
+///
+/// `driver` must be a valid pointer.
+#[cfg(feature = "MIDIServices")]
+#[inline]
+pub unsafe extern "C-unwind" fn MIDIGetDriverDeviceList(
+    driver: MIDIDriverRef,
+) -> MIDIDeviceListRef {
+    extern "C-unwind" {
+        fn MIDIGetDriverDeviceList(driver: MIDIDriverRef) -> MIDIDeviceListRef;
+    }
+    unsafe { MIDIGetDriverDeviceList(driver) }
 }
 
 /// A driver may make this call to have MIDIServer pass it every outgoing MIDI

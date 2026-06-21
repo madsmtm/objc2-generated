@@ -131,40 +131,48 @@ impl DispatchTime {
 #[cfg(feature = "block2")]
 pub type dispatch_block_t = block2::DynBlock<dyn Fn()>;
 
-extern "C" {
-    /// Increment the reference count of a dispatch object.
-    ///
-    ///
-    /// Calls to dispatch_retain() must be balanced with calls to
-    /// dispatch_release().
-    ///
-    ///
-    /// Parameter `object`: The object to retain.
-    /// The result of passing NULL in this parameter is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `object` must be a valid pointer.
-    pub fn dispatch_retain(object: NonNull<dispatch_object_s>);
+/// Increment the reference count of a dispatch object.
+///
+///
+/// Calls to dispatch_retain() must be balanced with calls to
+/// dispatch_release().
+///
+///
+/// Parameter `object`: The object to retain.
+/// The result of passing NULL in this parameter is undefined.
+///
+/// # Safety
+///
+/// `object` must be a valid pointer.
+#[inline]
+pub unsafe extern "C" fn dispatch_retain(object: NonNull<dispatch_object_s>) {
+    extern "C" {
+        fn dispatch_retain(object: NonNull<dispatch_object_s>);
+    }
+    unsafe { dispatch_retain(object) }
 }
 
-extern "C" {
-    /// Decrement the reference count of a dispatch object.
-    ///
-    ///
-    /// A dispatch object is asynchronously deallocated once all references are
-    /// released (i.e. the reference count becomes zero). The system does not
-    /// guarantee that a given client is the last or only reference to a given
-    /// object.
-    ///
-    ///
-    /// Parameter `object`: The object to release.
-    /// The result of passing NULL in this parameter is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `object` must be a valid pointer.
-    pub fn dispatch_release(object: NonNull<dispatch_object_s>);
+/// Decrement the reference count of a dispatch object.
+///
+///
+/// A dispatch object is asynchronously deallocated once all references are
+/// released (i.e. the reference count becomes zero). The system does not
+/// guarantee that a given client is the last or only reference to a given
+/// object.
+///
+///
+/// Parameter `object`: The object to release.
+/// The result of passing NULL in this parameter is undefined.
+///
+/// # Safety
+///
+/// `object` must be a valid pointer.
+#[inline]
+pub unsafe extern "C" fn dispatch_release(object: NonNull<dispatch_object_s>) {
+    extern "C" {
+        fn dispatch_release(object: NonNull<dispatch_object_s>);
+    }
+    unsafe { dispatch_release(object) }
 }
 
 /// Returns the application defined context of the object.
@@ -183,48 +191,62 @@ pub extern "C" fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *m
     unsafe { dispatch_get_context(object) }
 }
 
-extern "C" {
-    /// Associates an application defined context with the object.
-    ///
-    ///
-    /// Parameter `object`: The result of passing NULL in this parameter is undefined.
-    ///
-    ///
-    /// Parameter `context`: The new client defined context for the object. This may be NULL.
-    ///
-    /// # Safety
-    ///
-    /// - `object` must be a valid pointer.
-    /// - `context` must be a valid pointer or null.
-    pub fn dispatch_set_context(object: NonNull<dispatch_object_s>, context: *mut c_void);
+/// Associates an application defined context with the object.
+///
+///
+/// Parameter `object`: The result of passing NULL in this parameter is undefined.
+///
+///
+/// Parameter `context`: The new client defined context for the object. This may be NULL.
+///
+/// # Safety
+///
+/// - `object` must be a valid pointer.
+/// - `context` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C" fn dispatch_set_context(
+    object: NonNull<dispatch_object_s>,
+    context: *mut c_void,
+) {
+    extern "C" {
+        fn dispatch_set_context(object: NonNull<dispatch_object_s>, context: *mut c_void);
+    }
+    unsafe { dispatch_set_context(object, context) }
 }
 
-extern "C" {
-    /// Set the finalizer function for a dispatch object.
-    ///
-    ///
-    /// Parameter `object`: The dispatch object to modify.
-    /// The result of passing NULL in this parameter is undefined.
-    ///
-    ///
-    /// Parameter `finalizer`: The finalizer function pointer.
-    ///
-    ///
-    /// A dispatch object's finalizer will be invoked on the object's target queue
-    /// after all references to the object have been released. This finalizer may be
-    /// used by the application to release any resources associated with the object,
-    /// such as freeing the object's context.
-    /// The context parameter passed to the finalizer function is the current
-    /// context of the dispatch object at the time the finalizer call is made.
-    ///
-    /// # Safety
-    ///
-    /// - `object` must be a valid pointer.
-    /// - `finalizer` must be implemented correctly.
-    pub fn dispatch_set_finalizer_f(
-        object: NonNull<dispatch_object_s>,
-        finalizer: dispatch_function_t,
-    );
+/// Set the finalizer function for a dispatch object.
+///
+///
+/// Parameter `object`: The dispatch object to modify.
+/// The result of passing NULL in this parameter is undefined.
+///
+///
+/// Parameter `finalizer`: The finalizer function pointer.
+///
+///
+/// A dispatch object's finalizer will be invoked on the object's target queue
+/// after all references to the object have been released. This finalizer may be
+/// used by the application to release any resources associated with the object,
+/// such as freeing the object's context.
+/// The context parameter passed to the finalizer function is the current
+/// context of the dispatch object at the time the finalizer call is made.
+///
+/// # Safety
+///
+/// - `object` must be a valid pointer.
+/// - `finalizer` must be implemented correctly.
+#[inline]
+pub unsafe extern "C" fn dispatch_set_finalizer_f(
+    object: NonNull<dispatch_object_s>,
+    finalizer: dispatch_function_t,
+) {
+    extern "C" {
+        fn dispatch_set_finalizer_f(
+            object: NonNull<dispatch_object_s>,
+            finalizer: dispatch_function_t,
+        );
+    }
+    unsafe { dispatch_set_finalizer_f(object, finalizer) }
 }
 
 /// Activates the specified dispatch object.
@@ -300,48 +322,56 @@ pub extern "C" fn dispatch_resume(object: NonNull<dispatch_object_s>) {
     unsafe { dispatch_resume(object) }
 }
 
-extern "C" {
-    /// Sets the QOS class floor on a dispatch queue, source or workloop.
-    ///
-    ///
-    /// The QOS class of workitems submitted to this object asynchronously will be
-    /// elevated to at least the specified QOS class floor. The QOS of the workitem
-    /// will be used if higher than the floor even when the workitem has been created
-    /// without "ENFORCE" semantics.
-    ///
-    /// Setting the QOS class floor is equivalent to the QOS effects of configuring
-    /// a queue whose target queue has a QoS class set to the same value.
-    ///
-    ///
-    /// Parameter `object`: A dispatch queue, workloop, or source to configure.
-    /// The object must be inactive.
-    ///
-    /// Passing another object type or an object that has been activated is undefined
-    /// and will cause the process to be terminated.
-    ///
-    ///
-    /// Parameter `qos_class`: A QOS class value:
-    /// - QOS_CLASS_USER_INTERACTIVE
-    /// - QOS_CLASS_USER_INITIATED
-    /// - QOS_CLASS_DEFAULT
-    /// - QOS_CLASS_UTILITY
-    /// - QOS_CLASS_BACKGROUND
-    /// Passing any other value is undefined.
-    ///
-    ///
-    /// Parameter `relative_priority`: A relative priority within the QOS class. This value is a negative
-    /// offset from the maximum supported scheduler priority for the given class.
-    /// Passing a value greater than zero or less than QOS_MIN_RELATIVE_PRIORITY
-    /// is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `object` must be a valid pointer.
-    pub fn dispatch_set_qos_class_floor(
-        object: NonNull<dispatch_object_s>,
-        qos_class: DispatchQoS,
-        relative_priority: c_int,
-    );
+/// Sets the QOS class floor on a dispatch queue, source or workloop.
+///
+///
+/// The QOS class of workitems submitted to this object asynchronously will be
+/// elevated to at least the specified QOS class floor. The QOS of the workitem
+/// will be used if higher than the floor even when the workitem has been created
+/// without "ENFORCE" semantics.
+///
+/// Setting the QOS class floor is equivalent to the QOS effects of configuring
+/// a queue whose target queue has a QoS class set to the same value.
+///
+///
+/// Parameter `object`: A dispatch queue, workloop, or source to configure.
+/// The object must be inactive.
+///
+/// Passing another object type or an object that has been activated is undefined
+/// and will cause the process to be terminated.
+///
+///
+/// Parameter `qos_class`: A QOS class value:
+/// - QOS_CLASS_USER_INTERACTIVE
+/// - QOS_CLASS_USER_INITIATED
+/// - QOS_CLASS_DEFAULT
+/// - QOS_CLASS_UTILITY
+/// - QOS_CLASS_BACKGROUND
+/// Passing any other value is undefined.
+///
+///
+/// Parameter `relative_priority`: A relative priority within the QOS class. This value is a negative
+/// offset from the maximum supported scheduler priority for the given class.
+/// Passing a value greater than zero or less than QOS_MIN_RELATIVE_PRIORITY
+/// is undefined.
+///
+/// # Safety
+///
+/// `object` must be a valid pointer.
+#[inline]
+pub unsafe extern "C" fn dispatch_set_qos_class_floor(
+    object: NonNull<dispatch_object_s>,
+    qos_class: DispatchQoS,
+    relative_priority: c_int,
+) {
+    extern "C" {
+        fn dispatch_set_qos_class_floor(
+            object: NonNull<dispatch_object_s>,
+            qos_class: DispatchQoS,
+            relative_priority: c_int,
+        );
+    }
+    unsafe { dispatch_set_qos_class_floor(object, qos_class, relative_priority) }
 }
 
 /// Dispatch queues invoke workitems submitted to them.
@@ -1202,72 +1232,79 @@ impl DispatchQueue {
     }
 }
 
-extern "C" {
-    /// Sets the target queue for the given object.
-    ///
-    ///
-    /// An object's target queue is responsible for processing the object.
-    ///
-    /// When no quality of service class and relative priority is specified for a
-    /// dispatch queue at the time of creation, a dispatch queue's quality of service
-    /// class is inherited from its target queue. The dispatch_get_global_queue()
-    /// function may be used to obtain a target queue of a specific quality of
-    /// service class, however the use of dispatch_queue_attr_make_with_qos_class()
-    /// is recommended instead.
-    ///
-    /// Blocks submitted to a serial queue whose target queue is another serial
-    /// queue will not be invoked concurrently with blocks submitted to the target
-    /// queue or to any other queue with that same target queue.
-    ///
-    /// The result of introducing a cycle into the hierarchy of target queues is
-    /// undefined.
-    ///
-    /// A dispatch source's target queue specifies where its event handler and
-    /// cancellation handler blocks will be submitted.
-    ///
-    /// A dispatch I/O channel's target queue specifies where where its I/O
-    /// operations are executed. If the channel's target queue's priority is set to
-    /// DISPATCH_QUEUE_PRIORITY_BACKGROUND, then the I/O operations performed by
-    /// dispatch_io_read() or dispatch_io_write() on that queue will be
-    /// throttled when there is I/O contention.
-    ///
-    /// For all other dispatch object types, the only function of the target queue
-    /// is to determine where an object's finalizer function is invoked.
-    ///
-    /// In general, changing the target queue of an object is an asynchronous
-    /// operation that doesn't take effect immediately, and doesn't affect blocks
-    /// already associated with the specified object.
-    ///
-    /// However, if an object is inactive at the time dispatch_set_target_queue() is
-    /// called, then the target queue change takes effect immediately, and will
-    /// affect blocks already associated with the specified object. After an
-    /// initially inactive object has been activated, calling
-    /// dispatch_set_target_queue() results in an assertion and the process being
-    /// terminated.
-    ///
-    /// If a dispatch queue is active and targeted by other dispatch objects,
-    /// changing its target queue results in undefined behavior.  Instead, it is
-    /// recommended to create dispatch objects in an inactive state, set up the
-    /// relevant target queues and then activate them.
-    ///
-    ///
-    /// Parameter `object`: The object to modify.
-    /// The result of passing NULL in this parameter is undefined.
-    ///
-    ///
-    /// Parameter `queue`: The new target queue for the object. The queue is retained, and the
-    /// previous target queue, if any, is released.
-    /// If queue is DISPATCH_TARGET_QUEUE_DEFAULT, set the object's target queue
-    /// to the default target queue for the given object type.
-    ///
-    /// # Safety
-    ///
-    /// - `object` must be a valid pointer.
-    /// - `queue` possibly has additional threading requirements.
-    pub fn dispatch_set_target_queue(
-        object: NonNull<dispatch_object_s>,
-        queue: Option<&DispatchQueue>,
-    );
+/// Sets the target queue for the given object.
+///
+///
+/// An object's target queue is responsible for processing the object.
+///
+/// When no quality of service class and relative priority is specified for a
+/// dispatch queue at the time of creation, a dispatch queue's quality of service
+/// class is inherited from its target queue. The dispatch_get_global_queue()
+/// function may be used to obtain a target queue of a specific quality of
+/// service class, however the use of dispatch_queue_attr_make_with_qos_class()
+/// is recommended instead.
+///
+/// Blocks submitted to a serial queue whose target queue is another serial
+/// queue will not be invoked concurrently with blocks submitted to the target
+/// queue or to any other queue with that same target queue.
+///
+/// The result of introducing a cycle into the hierarchy of target queues is
+/// undefined.
+///
+/// A dispatch source's target queue specifies where its event handler and
+/// cancellation handler blocks will be submitted.
+///
+/// A dispatch I/O channel's target queue specifies where where its I/O
+/// operations are executed. If the channel's target queue's priority is set to
+/// DISPATCH_QUEUE_PRIORITY_BACKGROUND, then the I/O operations performed by
+/// dispatch_io_read() or dispatch_io_write() on that queue will be
+/// throttled when there is I/O contention.
+///
+/// For all other dispatch object types, the only function of the target queue
+/// is to determine where an object's finalizer function is invoked.
+///
+/// In general, changing the target queue of an object is an asynchronous
+/// operation that doesn't take effect immediately, and doesn't affect blocks
+/// already associated with the specified object.
+///
+/// However, if an object is inactive at the time dispatch_set_target_queue() is
+/// called, then the target queue change takes effect immediately, and will
+/// affect blocks already associated with the specified object. After an
+/// initially inactive object has been activated, calling
+/// dispatch_set_target_queue() results in an assertion and the process being
+/// terminated.
+///
+/// If a dispatch queue is active and targeted by other dispatch objects,
+/// changing its target queue results in undefined behavior.  Instead, it is
+/// recommended to create dispatch objects in an inactive state, set up the
+/// relevant target queues and then activate them.
+///
+///
+/// Parameter `object`: The object to modify.
+/// The result of passing NULL in this parameter is undefined.
+///
+///
+/// Parameter `queue`: The new target queue for the object. The queue is retained, and the
+/// previous target queue, if any, is released.
+/// If queue is DISPATCH_TARGET_QUEUE_DEFAULT, set the object's target queue
+/// to the default target queue for the given object type.
+///
+/// # Safety
+///
+/// - `object` must be a valid pointer.
+/// - `queue` possibly has additional threading requirements.
+#[inline]
+pub unsafe extern "C" fn dispatch_set_target_queue(
+    object: NonNull<dispatch_object_s>,
+    queue: Option<&DispatchQueue>,
+) {
+    extern "C" {
+        fn dispatch_set_target_queue(
+            object: NonNull<dispatch_object_s>,
+            queue: Option<&DispatchQueue>,
+        );
+    }
+    unsafe { dispatch_set_target_queue(object, queue) }
 }
 
 impl DispatchQueue {
@@ -1581,29 +1618,33 @@ impl DispatchQueue {
     }
 }
 
-extern "C" {
-    /// Returns the current subsystem-specific context for a key unique to the
-    /// subsystem.
-    ///
-    ///
-    /// When called from a block executing on a queue, returns the context for the
-    /// specified key if it has been set on the queue, otherwise returns the result
-    /// of dispatch_get_specific() executed on the queue's target queue or NULL
-    /// if the current queue is a global concurrent queue.
-    ///
-    ///
-    /// Parameter `key`: The key to get the context for, typically a pointer to a static variable
-    /// specific to the subsystem. Keys are only compared as pointers and never
-    /// dereferenced. Passing a string constant directly is not recommended.
-    ///
-    ///
-    /// Returns: The context for the specified key or NULL if no context was found.
-    ///
-    /// # Safety
-    ///
-    /// `key` must be a valid pointer.
-    #[must_use]
-    pub fn dispatch_get_specific(key: NonNull<c_void>) -> *mut c_void;
+/// Returns the current subsystem-specific context for a key unique to the
+/// subsystem.
+///
+///
+/// When called from a block executing on a queue, returns the context for the
+/// specified key if it has been set on the queue, otherwise returns the result
+/// of dispatch_get_specific() executed on the queue's target queue or NULL
+/// if the current queue is a global concurrent queue.
+///
+///
+/// Parameter `key`: The key to get the context for, typically a pointer to a static variable
+/// specific to the subsystem. Keys are only compared as pointers and never
+/// dereferenced. Passing a string constant directly is not recommended.
+///
+///
+/// Returns: The context for the specified key or NULL if no context was found.
+///
+/// # Safety
+///
+/// `key` must be a valid pointer.
+#[must_use]
+#[inline]
+pub unsafe extern "C" fn dispatch_get_specific(key: NonNull<c_void>) -> *mut c_void {
+    extern "C" {
+        fn dispatch_get_specific(key: NonNull<c_void>) -> *mut c_void;
+    }
+    unsafe { dispatch_get_specific(key) }
 }
 
 impl DispatchQueue {
@@ -1699,8 +1740,12 @@ impl DispatchQueue {
     }
 }
 
-extern "C-unwind" {
-    pub fn dispatch_allow_send_signals(preserve_signum: c_int) -> c_int;
+#[inline]
+pub unsafe extern "C-unwind" fn dispatch_allow_send_signals(preserve_signum: c_int) -> c_int {
+    extern "C-unwind" {
+        fn dispatch_allow_send_signals(preserve_signum: c_int) -> c_int;
+    }
+    unsafe { dispatch_allow_send_signals(preserve_signum) }
 }
 
 /// Flags to pass to the dispatch_block_create* functions.
@@ -2381,48 +2426,56 @@ pub extern "C" fn dispatch_block_wait(block: &dispatch_block_t, timeout: Dispatc
     unsafe { dispatch_block_wait(block, timeout) }
 }
 
-extern "C" {
-    /// Schedule a notification block to be submitted to a queue when the execution
-    /// of a specified dispatch block object has completed.
-    ///
-    ///
-    /// This function will submit the notification block immediately if execution of
-    /// the observed block object has already completed.
-    ///
-    /// It is not possible to be notified of multiple executions of the same block
-    /// object with this interface, use dispatch_group_notify() for that purpose.
-    ///
-    /// A single dispatch block object may either be observed one or more times
-    /// and executed once, or it may be executed any number of times. The behavior
-    /// of any other combination is undefined. Submission to a dispatch queue
-    /// counts as an execution, even if cancellation (dispatch_block_cancel) means
-    /// the block's code never runs.
-    ///
-    /// If multiple notification blocks are scheduled for a single block object,
-    /// there is no defined order in which the notification blocks will be submitted
-    /// to their associated queues.
-    ///
-    ///
-    /// Parameter `block`: The dispatch block object to observe.
-    /// The result of passing NULL or a block object not returned by one of the
-    /// dispatch_block_create* functions is undefined.
-    ///
-    ///
-    /// Parameter `queue`: The queue to which the supplied notification block will be submitted when
-    /// the observed block completes.
-    ///
-    ///
-    /// Parameter `notification_block`: The notification block to submit when the observed block object completes.
-    ///
-    /// # Safety
-    ///
-    /// `queue` possibly has additional threading requirements.
-    #[cfg(feature = "block2")]
-    pub fn dispatch_block_notify(
-        block: &dispatch_block_t,
-        queue: &DispatchQueue,
-        notification_block: &dispatch_block_t,
-    );
+/// Schedule a notification block to be submitted to a queue when the execution
+/// of a specified dispatch block object has completed.
+///
+///
+/// This function will submit the notification block immediately if execution of
+/// the observed block object has already completed.
+///
+/// It is not possible to be notified of multiple executions of the same block
+/// object with this interface, use dispatch_group_notify() for that purpose.
+///
+/// A single dispatch block object may either be observed one or more times
+/// and executed once, or it may be executed any number of times. The behavior
+/// of any other combination is undefined. Submission to a dispatch queue
+/// counts as an execution, even if cancellation (dispatch_block_cancel) means
+/// the block's code never runs.
+///
+/// If multiple notification blocks are scheduled for a single block object,
+/// there is no defined order in which the notification blocks will be submitted
+/// to their associated queues.
+///
+///
+/// Parameter `block`: The dispatch block object to observe.
+/// The result of passing NULL or a block object not returned by one of the
+/// dispatch_block_create* functions is undefined.
+///
+///
+/// Parameter `queue`: The queue to which the supplied notification block will be submitted when
+/// the observed block completes.
+///
+///
+/// Parameter `notification_block`: The notification block to submit when the observed block object completes.
+///
+/// # Safety
+///
+/// `queue` possibly has additional threading requirements.
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C" fn dispatch_block_notify(
+    block: &dispatch_block_t,
+    queue: &DispatchQueue,
+    notification_block: &dispatch_block_t,
+) {
+    extern "C" {
+        fn dispatch_block_notify(
+            block: &dispatch_block_t,
+            queue: &DispatchQueue,
+            notification_block: &dispatch_block_t,
+        );
+    }
+    unsafe { dispatch_block_notify(block, queue, notification_block) }
 }
 
 /// Asynchronously cancel the specified dispatch block object.
@@ -3645,104 +3698,122 @@ impl DispatchData {
 /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_fd_t?language=objc)
 pub type dispatch_fd_t = c_int;
 
-extern "C" {
-    /// Schedule a read operation for asynchronous execution on the specified file
-    /// descriptor. The specified handler is enqueued with the data read from the
-    /// file descriptor when the operation has completed or an error occurs.
-    ///
-    /// The data object passed to the handler will be automatically released by the
-    /// system when the handler returns. It is the responsibility of the application
-    /// to retain, concatenate or copy the data object if it is needed after the
-    /// handler returns.
-    ///
-    /// The data object passed to the handler will only contain as much data as is
-    /// currently available from the file descriptor (up to the specified length).
-    ///
-    /// If an unrecoverable error occurs on the file descriptor, the handler will be
-    /// enqueued with the appropriate error code along with a data object of any data
-    /// that could be read successfully.
-    ///
-    /// An invocation of the handler with an error code of zero and an empty data
-    /// object indicates that EOF was reached.
-    ///
-    /// The system takes control of the file descriptor until the handler is
-    /// enqueued, and during this time file descriptor flags such as O_NONBLOCK will
-    /// be modified by the system on behalf of the application. It is an error for
-    /// the application to modify a file descriptor directly while it is under the
-    /// control of the system, but it may create additional dispatch I/O convenience
-    /// operations or dispatch I/O channels associated with that file descriptor.
-    ///
-    ///
-    /// Parameter `fd`: The file descriptor from which to read the data.
-    ///
-    /// Parameter `length`: The length of data to read from the file descriptor,
-    /// or SIZE_MAX to indicate that all of the data currently
-    /// available from the file descriptor should be read.
-    ///
-    /// Parameter `queue`: The dispatch queue to which the handler should be
-    /// submitted.
-    ///
-    /// Parameter `handler`: The handler to enqueue when data is ready to be
-    /// delivered.
-    /// param data    The data read from the file descriptor.
-    /// param error    An errno condition for the read operation or
-    /// zero if the read was successful.
-    ///
-    /// # Safety
-    ///
-    /// `queue` possibly has additional threading requirements.
-    #[cfg(feature = "block2")]
-    pub fn dispatch_read(
-        fd: dispatch_fd_t,
-        length: usize,
-        queue: &DispatchQueue,
-        handler: &block2::DynBlock<dyn Fn(NonNull<DispatchData>, c_int)>,
-    );
+/// Schedule a read operation for asynchronous execution on the specified file
+/// descriptor. The specified handler is enqueued with the data read from the
+/// file descriptor when the operation has completed or an error occurs.
+///
+/// The data object passed to the handler will be automatically released by the
+/// system when the handler returns. It is the responsibility of the application
+/// to retain, concatenate or copy the data object if it is needed after the
+/// handler returns.
+///
+/// The data object passed to the handler will only contain as much data as is
+/// currently available from the file descriptor (up to the specified length).
+///
+/// If an unrecoverable error occurs on the file descriptor, the handler will be
+/// enqueued with the appropriate error code along with a data object of any data
+/// that could be read successfully.
+///
+/// An invocation of the handler with an error code of zero and an empty data
+/// object indicates that EOF was reached.
+///
+/// The system takes control of the file descriptor until the handler is
+/// enqueued, and during this time file descriptor flags such as O_NONBLOCK will
+/// be modified by the system on behalf of the application. It is an error for
+/// the application to modify a file descriptor directly while it is under the
+/// control of the system, but it may create additional dispatch I/O convenience
+/// operations or dispatch I/O channels associated with that file descriptor.
+///
+///
+/// Parameter `fd`: The file descriptor from which to read the data.
+///
+/// Parameter `length`: The length of data to read from the file descriptor,
+/// or SIZE_MAX to indicate that all of the data currently
+/// available from the file descriptor should be read.
+///
+/// Parameter `queue`: The dispatch queue to which the handler should be
+/// submitted.
+///
+/// Parameter `handler`: The handler to enqueue when data is ready to be
+/// delivered.
+/// param data    The data read from the file descriptor.
+/// param error    An errno condition for the read operation or
+/// zero if the read was successful.
+///
+/// # Safety
+///
+/// `queue` possibly has additional threading requirements.
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C" fn dispatch_read(
+    fd: dispatch_fd_t,
+    length: usize,
+    queue: &DispatchQueue,
+    handler: &block2::DynBlock<dyn Fn(NonNull<DispatchData>, c_int)>,
+) {
+    extern "C" {
+        fn dispatch_read(
+            fd: dispatch_fd_t,
+            length: usize,
+            queue: &DispatchQueue,
+            handler: &block2::DynBlock<dyn Fn(NonNull<DispatchData>, c_int)>,
+        );
+    }
+    unsafe { dispatch_read(fd, length, queue, handler) }
 }
 
-extern "C" {
-    /// Schedule a write operation for asynchronous execution on the specified file
-    /// descriptor. The specified handler is enqueued when the operation has
-    /// completed or an error occurs.
-    ///
-    /// If an unrecoverable error occurs on the file descriptor, the handler will be
-    /// enqueued with the appropriate error code along with the data that could not
-    /// be successfully written.
-    ///
-    /// An invocation of the handler with an error code of zero indicates that the
-    /// data was fully written to the channel.
-    ///
-    /// The system takes control of the file descriptor until the handler is
-    /// enqueued, and during this time file descriptor flags such as O_NONBLOCK will
-    /// be modified by the system on behalf of the application. It is an error for
-    /// the application to modify a file descriptor directly while it is under the
-    /// control of the system, but it may create additional dispatch I/O convenience
-    /// operations or dispatch I/O channels associated with that file descriptor.
-    ///
-    ///
-    /// Parameter `fd`: The file descriptor to which to write the data.
-    ///
-    /// Parameter `data`: The data object to write to the file descriptor.
-    ///
-    /// Parameter `queue`: The dispatch queue to which the handler should be
-    /// submitted.
-    ///
-    /// Parameter `handler`: The handler to enqueue when the data has been written.
-    /// param data    The data that could not be written to the I/O
-    /// channel, or NULL.
-    /// param error    An errno condition for the write operation or
-    /// zero if the write was successful.
-    ///
-    /// # Safety
-    ///
-    /// `queue` possibly has additional threading requirements.
-    #[cfg(feature = "block2")]
-    pub fn dispatch_write(
-        fd: dispatch_fd_t,
-        data: &DispatchData,
-        queue: &DispatchQueue,
-        handler: &block2::DynBlock<dyn Fn(*mut DispatchData, c_int)>,
-    );
+/// Schedule a write operation for asynchronous execution on the specified file
+/// descriptor. The specified handler is enqueued when the operation has
+/// completed or an error occurs.
+///
+/// If an unrecoverable error occurs on the file descriptor, the handler will be
+/// enqueued with the appropriate error code along with the data that could not
+/// be successfully written.
+///
+/// An invocation of the handler with an error code of zero indicates that the
+/// data was fully written to the channel.
+///
+/// The system takes control of the file descriptor until the handler is
+/// enqueued, and during this time file descriptor flags such as O_NONBLOCK will
+/// be modified by the system on behalf of the application. It is an error for
+/// the application to modify a file descriptor directly while it is under the
+/// control of the system, but it may create additional dispatch I/O convenience
+/// operations or dispatch I/O channels associated with that file descriptor.
+///
+///
+/// Parameter `fd`: The file descriptor to which to write the data.
+///
+/// Parameter `data`: The data object to write to the file descriptor.
+///
+/// Parameter `queue`: The dispatch queue to which the handler should be
+/// submitted.
+///
+/// Parameter `handler`: The handler to enqueue when the data has been written.
+/// param data    The data that could not be written to the I/O
+/// channel, or NULL.
+/// param error    An errno condition for the write operation or
+/// zero if the write was successful.
+///
+/// # Safety
+///
+/// `queue` possibly has additional threading requirements.
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C" fn dispatch_write(
+    fd: dispatch_fd_t,
+    data: &DispatchData,
+    queue: &DispatchQueue,
+    handler: &block2::DynBlock<dyn Fn(*mut DispatchData, c_int)>,
+) {
+    extern "C" {
+        fn dispatch_write(
+            fd: dispatch_fd_t,
+            data: &DispatchData,
+            queue: &DispatchQueue,
+            handler: &block2::DynBlock<dyn Fn(*mut DispatchData, c_int)>,
+        );
+    }
+    unsafe { dispatch_write(fd, data, queue, handler) }
 }
 
 /// A dispatch I/O channel represents the asynchronous I/O policy applied to a

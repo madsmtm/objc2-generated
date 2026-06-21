@@ -4,2727 +4,4984 @@ use core::ffi::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `version` must be a valid pointer.
-    /// - `caller_guid` must be a valid pointer.
-    /// - `pvc_policy` must be a valid pointer.
-    /// - `reserved` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_Init(
-        version: *const CSSM_VERSION,
-        scope: CSSM_PRIVILEGE_SCOPE,
-        caller_guid: *const CSSM_GUID,
-        key_hierarchy: CSSM_KEY_HIERARCHY,
-        pvc_policy: *mut CSSM_PVC_MODE,
-        reserved: *const c_void,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_Terminate() -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `module_guid` must be a valid pointer.
-    /// - `app_notify_callback` must be implemented correctly.
-    /// - `app_notify_callback_ctx` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_ModuleLoad(
-        module_guid: *const CSSM_GUID,
-        key_hierarchy: CSSM_KEY_HIERARCHY,
-        app_notify_callback: CSSM_API_ModuleEventHandler,
-        app_notify_callback_ctx: *mut c_void,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `module_guid` must be a valid pointer.
-    /// - `app_notify_callback` must be implemented correctly.
-    /// - `app_notify_callback_ctx` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_ModuleUnload(
-        module_guid: *const CSSM_GUID,
-        app_notify_callback: CSSM_API_ModuleEventHandler,
-        app_notify_callback_ctx: *mut c_void,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `module_id` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_Introduce(
-        module_id: *const CSSM_GUID,
-        key_hierarchy: CSSM_KEY_HIERARCHY,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `module_id` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_Unintroduce(module_id: *const CSSM_GUID) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `module_guid` must be a valid pointer.
-    /// - `version` must be a valid pointer.
-    /// - `memory_funcs` must be a valid pointer.
-    /// - `function_table` must be a valid pointer.
-    /// - `reserved` must be a valid pointer.
-    /// - `new_module_handle` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_ModuleAttach(
-        module_guid: *const CSSM_GUID,
-        version: *const CSSM_VERSION,
-        memory_funcs: *const CSSM_API_MEMORY_FUNCS,
-        subservice_id: uint32,
-        sub_service_type: CSSM_SERVICE_TYPE,
-        attach_flags: CSSM_ATTACH_FLAGS,
-        key_hierarchy: CSSM_KEY_HIERARCHY,
-        function_table: *mut CSSM_FUNC_NAME_ADDR,
-        num_function_table: uint32,
-        reserved: *const c_void,
-        new_module_handle: CSSM_MODULE_HANDLE_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_ModuleDetach(module_handle: CSSM_MODULE_HANDLE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_SetPrivilege(privilege: CSSM_PRIVILEGE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `privilege` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GetPrivilege(privilege: *mut CSSM_PRIVILEGE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `module_guid` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GetModuleGUIDFromHandle(
-        module_handle: CSSM_MODULE_HANDLE,
-        module_guid: CSSM_GUID_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `subservice_uid` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GetSubserviceUIDFromHandle(
-        module_handle: CSSM_MODULE_HANDLE,
-        subservice_uid: CSSM_SUBSERVICE_UID_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `number_of_module_managers` must be a valid pointer.
-    /// - `module_manager_guids` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_ListAttachedModuleManagers(
-        number_of_module_managers: *mut uint32,
-        module_manager_guids: CSSM_GUID_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `app_memory_funcs` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GetAPIMemoryFunctions(
-        add_in_handle: CSSM_MODULE_HANDLE,
-        app_memory_funcs: CSSM_API_MEMORY_FUNCS_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `new_context_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_CreateSignatureContext(
-        csp_handle: CSSM_CSP_HANDLE,
-        algorithm_id: CSSM_ALGORITHMS,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        key: *const CSSM_KEY,
-        new_context_handle: *mut CSSM_CC_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `init_vector` must be a valid pointer.
-    /// - `reserved` must be a valid pointer.
-    /// - `new_context_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_CreateSymmetricContext(
-        csp_handle: CSSM_CSP_HANDLE,
-        algorithm_id: CSSM_ALGORITHMS,
-        mode: CSSM_ENCRYPT_MODE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        key: *const CSSM_KEY,
-        init_vector: *const SecAsn1Item,
-        padding: CSSM_PADDING,
-        reserved: *mut c_void,
-        new_context_handle: *mut CSSM_CC_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `new_context_handle` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_CreateDigestContext(
-        csp_handle: CSSM_CSP_HANDLE,
-        algorithm_id: CSSM_ALGORITHMS,
-        new_context_handle: *mut CSSM_CC_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `key` must be a valid pointer.
-    /// - `new_context_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_CreateMacContext(
-        csp_handle: CSSM_CSP_HANDLE,
-        algorithm_id: CSSM_ALGORITHMS,
-        key: *const CSSM_KEY,
-        new_context_handle: *mut CSSM_CC_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `seed` must be a valid pointer.
-    /// - `new_context_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_CreateRandomGenContext(
-        csp_handle: CSSM_CSP_HANDLE,
-        algorithm_id: CSSM_ALGORITHMS,
-        seed: *const CSSM_CRYPTO_DATA,
-        length: CSSM_SIZE,
-        new_context_handle: *mut CSSM_CC_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `new_context_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_CreateAsymmetricContext(
-        csp_handle: CSSM_CSP_HANDLE,
-        algorithm_id: CSSM_ALGORITHMS,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        key: *const CSSM_KEY,
-        padding: CSSM_PADDING,
-        new_context_handle: *mut CSSM_CC_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `base_key` must be a valid pointer.
-    /// - `salt` must be a valid pointer.
-    /// - `seed` must be a valid pointer.
-    /// - `new_context_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_CreateDeriveKeyContext(
-        csp_handle: CSSM_CSP_HANDLE,
-        algorithm_id: CSSM_ALGORITHMS,
-        derive_key_type: CSSM_KEY_TYPE,
-        derive_key_length_in_bits: uint32,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        base_key: *const CSSM_KEY,
-        iteration_count: uint32,
-        salt: *const SecAsn1Item,
-        seed: *const CSSM_CRYPTO_DATA,
-        new_context_handle: *mut CSSM_CC_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `seed` must be a valid pointer.
-    /// - `salt` must be a valid pointer.
-    /// - `start_date` must be a valid pointer.
-    /// - `end_date` must be a valid pointer.
-    /// - `params` must be a valid pointer.
-    /// - `new_context_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_CreateKeyGenContext(
-        csp_handle: CSSM_CSP_HANDLE,
-        algorithm_id: CSSM_ALGORITHMS,
-        key_size_in_bits: uint32,
-        seed: *const CSSM_CRYPTO_DATA,
-        salt: *const SecAsn1Item,
-        start_date: *const CSSM_DATE,
-        end_date: *const CSSM_DATE,
-        params: *const SecAsn1Item,
-        new_context_handle: *mut CSSM_CC_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `key` must be a valid pointer.
-    /// - `new_context_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_CreatePassThroughContext(
-        csp_handle: CSSM_CSP_HANDLE,
-        key: *const CSSM_KEY,
-        new_context_handle: *mut CSSM_CC_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `context` must be a valid pointer.
-    #[cfg(all(
-        feature = "SecAsn1Types",
-        feature = "cssmconfig",
-        feature = "cssmkrapi",
-        feature = "cssmtype"
-    ))]
-    #[deprecated]
-    pub fn CSSM_GetContext(
-        cc_handle: CSSM_CC_HANDLE,
-        context: *mut CSSM_CONTEXT_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `context` must be a valid pointer.
-    #[cfg(all(
-        feature = "SecAsn1Types",
-        feature = "cssmconfig",
-        feature = "cssmkrapi",
-        feature = "cssmtype"
-    ))]
-    #[deprecated]
-    pub fn CSSM_FreeContext(context: CSSM_CONTEXT_PTR) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `context` must be a valid pointer.
-    #[cfg(all(
-        feature = "SecAsn1Types",
-        feature = "cssmconfig",
-        feature = "cssmkrapi",
-        feature = "cssmtype"
-    ))]
-    #[deprecated]
-    pub fn CSSM_SetContext(cc_handle: CSSM_CC_HANDLE, context: *const CSSM_CONTEXT) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DeleteContext(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `context` must be a valid pointer.
-    /// - `context_attribute` must be a valid pointer.
-    #[cfg(all(
-        feature = "SecAsn1Types",
-        feature = "cssmconfig",
-        feature = "cssmkrapi",
-        feature = "cssmtype"
-    ))]
-    #[deprecated]
-    pub fn CSSM_GetContextAttribute(
-        context: *const CSSM_CONTEXT,
-        attribute_type: uint32,
-        context_attribute: *mut CSSM_CONTEXT_ATTRIBUTE_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `context_attributes` must be a valid pointer.
-    #[cfg(all(
-        feature = "SecAsn1Types",
-        feature = "cssmconfig",
-        feature = "cssmkrapi",
-        feature = "cssmtype"
-    ))]
-    #[deprecated]
-    pub fn CSSM_UpdateContextAttributes(
-        cc_handle: CSSM_CC_HANDLE,
-        number_of_attributes: uint32,
-        context_attributes: *const CSSM_CONTEXT_ATTRIBUTE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `context_attributes` must be a valid pointer.
-    #[cfg(all(
-        feature = "SecAsn1Types",
-        feature = "cssmconfig",
-        feature = "cssmkrapi",
-        feature = "cssmtype"
-    ))]
-    #[deprecated]
-    pub fn CSSM_DeleteContextAttributes(
-        cc_handle: CSSM_CC_HANDLE,
-        number_of_attributes: uint32,
-        context_attributes: *const CSSM_CONTEXT_ATTRIBUTE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `login_name` must be a valid pointer.
-    /// - `reserved` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_Login(
-        csp_handle: CSSM_CSP_HANDLE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        login_name: *const SecAsn1Item,
-        reserved: *const c_void,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_Logout(csp_handle: CSSM_CSP_HANDLE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `selection_tag` must be a valid pointer.
-    /// - `number_of_acl_infos` must be a valid pointer.
-    /// - `acl_infos` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_GetLoginAcl(
-        csp_handle: CSSM_CSP_HANDLE,
-        selection_tag: *const CSSM_STRING,
-        number_of_acl_infos: *mut uint32,
-        acl_infos: *mut CSSM_ACL_ENTRY_INFO_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `acl_edit` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_ChangeLoginAcl(
-        csp_handle: CSSM_CSP_HANDLE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        acl_edit: *const CSSM_ACL_EDIT,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `key` must be a valid pointer.
-    /// - `selection_tag` must be a valid pointer.
-    /// - `number_of_acl_infos` must be a valid pointer.
-    /// - `acl_infos` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GetKeyAcl(
-        csp_handle: CSSM_CSP_HANDLE,
-        key: *const CSSM_KEY,
-        selection_tag: *const CSSM_STRING,
-        number_of_acl_infos: *mut uint32,
-        acl_infos: *mut CSSM_ACL_ENTRY_INFO_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `acl_edit` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_ChangeKeyAcl(
-        csp_handle: CSSM_CSP_HANDLE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        acl_edit: *const CSSM_ACL_EDIT,
-        key: *const CSSM_KEY,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `key` must be a valid pointer.
-    /// - `owner` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GetKeyOwner(
-        csp_handle: CSSM_CSP_HANDLE,
-        key: *const CSSM_KEY,
-        owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `new_owner` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_ChangeKeyOwner(
-        csp_handle: CSSM_CSP_HANDLE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        key: *const CSSM_KEY,
-        new_owner: *const CSSM_ACL_OWNER_PROTOTYPE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `owner` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_GetLoginOwner(
-        csp_handle: CSSM_CSP_HANDLE,
-        owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `new_owner` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_ChangeLoginOwner(
-        csp_handle: CSSM_CSP_HANDLE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        new_owner: *const CSSM_ACL_OWNER_PROTOTYPE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `data_bufs` must be a valid pointer.
-    /// - `signature` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_SignData(
-        cc_handle: CSSM_CC_HANDLE,
-        data_bufs: *const SecAsn1Item,
-        data_buf_count: uint32,
-        digest_algorithm: CSSM_ALGORITHMS,
-        signature: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_SignDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `data_bufs` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_SignDataUpdate(
-        cc_handle: CSSM_CC_HANDLE,
-        data_bufs: *const SecAsn1Item,
-        data_buf_count: uint32,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `signature` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_SignDataFinal(cc_handle: CSSM_CC_HANDLE, signature: CSSM_DATA_PTR) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `data_bufs` must be a valid pointer.
-    /// - `signature` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_VerifyData(
-        cc_handle: CSSM_CC_HANDLE,
-        data_bufs: *const SecAsn1Item,
-        data_buf_count: uint32,
-        digest_algorithm: CSSM_ALGORITHMS,
-        signature: *const SecAsn1Item,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_VerifyDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `data_bufs` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_VerifyDataUpdate(
-        cc_handle: CSSM_CC_HANDLE,
-        data_bufs: *const SecAsn1Item,
-        data_buf_count: uint32,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `signature` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_VerifyDataFinal(
-        cc_handle: CSSM_CC_HANDLE,
-        signature: *const SecAsn1Item,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `data_bufs` must be a valid pointer.
-    /// - `digest` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DigestData(
-        cc_handle: CSSM_CC_HANDLE,
-        data_bufs: *const SecAsn1Item,
-        data_buf_count: uint32,
-        digest: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DigestDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `data_bufs` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DigestDataUpdate(
-        cc_handle: CSSM_CC_HANDLE,
-        data_bufs: *const SecAsn1Item,
-        data_buf_count: uint32,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `clonednew_cc_handle` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DigestDataClone(
-        cc_handle: CSSM_CC_HANDLE,
-        clonednew_cc_handle: *mut CSSM_CC_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `digest` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DigestDataFinal(cc_handle: CSSM_CC_HANDLE, digest: CSSM_DATA_PTR) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `data_bufs` must be a valid pointer.
-    /// - `mac` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GenerateMac(
-        cc_handle: CSSM_CC_HANDLE,
-        data_bufs: *const SecAsn1Item,
-        data_buf_count: uint32,
-        mac: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GenerateMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `data_bufs` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GenerateMacUpdate(
-        cc_handle: CSSM_CC_HANDLE,
-        data_bufs: *const SecAsn1Item,
-        data_buf_count: uint32,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `mac` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GenerateMacFinal(cc_handle: CSSM_CC_HANDLE, mac: CSSM_DATA_PTR) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `data_bufs` must be a valid pointer.
-    /// - `mac` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_VerifyMac(
-        cc_handle: CSSM_CC_HANDLE,
-        data_bufs: *const SecAsn1Item,
-        data_buf_count: uint32,
-        mac: *const SecAsn1Item,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_VerifyMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `data_bufs` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_VerifyMacUpdate(
-        cc_handle: CSSM_CC_HANDLE,
-        data_bufs: *const SecAsn1Item,
-        data_buf_count: uint32,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `mac` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_VerifyMacFinal(cc_handle: CSSM_CC_HANDLE, mac: *const SecAsn1Item) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `data_block_sizes` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_QuerySize(
-        cc_handle: CSSM_CC_HANDLE,
-        encrypt: CSSM_BOOL,
-        query_size_count: uint32,
-        data_block_sizes: CSSM_QUERY_SIZE_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `clear_bufs` must be a valid pointer.
-    /// - `cipher_bufs` must be a valid pointer.
-    /// - `bytes_encrypted` must be a valid pointer.
-    /// - `rem_data` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_EncryptData(
-        cc_handle: CSSM_CC_HANDLE,
-        clear_bufs: *const SecAsn1Item,
-        clear_buf_count: uint32,
-        cipher_bufs: CSSM_DATA_PTR,
-        cipher_buf_count: uint32,
-        bytes_encrypted: *mut CSSM_SIZE,
-        rem_data: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `clear_bufs` must be a valid pointer.
-    /// - `cipher_bufs` must be a valid pointer.
-    /// - `bytes_encrypted` must be a valid pointer.
-    /// - `rem_data` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_EncryptDataP(
-        cc_handle: CSSM_CC_HANDLE,
-        clear_bufs: *const SecAsn1Item,
-        clear_buf_count: uint32,
-        cipher_bufs: CSSM_DATA_PTR,
-        cipher_buf_count: uint32,
-        bytes_encrypted: *mut CSSM_SIZE,
-        rem_data: CSSM_DATA_PTR,
-        privilege: CSSM_PRIVILEGE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_EncryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_EncryptDataInitP(
-        cc_handle: CSSM_CC_HANDLE,
-        privilege: CSSM_PRIVILEGE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `clear_bufs` must be a valid pointer.
-    /// - `cipher_bufs` must be a valid pointer.
-    /// - `bytes_encrypted` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_EncryptDataUpdate(
-        cc_handle: CSSM_CC_HANDLE,
-        clear_bufs: *const SecAsn1Item,
-        clear_buf_count: uint32,
-        cipher_bufs: CSSM_DATA_PTR,
-        cipher_buf_count: uint32,
-        bytes_encrypted: *mut CSSM_SIZE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `rem_data` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_EncryptDataFinal(cc_handle: CSSM_CC_HANDLE, rem_data: CSSM_DATA_PTR)
-        -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cipher_bufs` must be a valid pointer.
-    /// - `clear_bufs` must be a valid pointer.
-    /// - `bytes_decrypted` must be a valid pointer.
-    /// - `rem_data` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DecryptData(
-        cc_handle: CSSM_CC_HANDLE,
-        cipher_bufs: *const SecAsn1Item,
-        cipher_buf_count: uint32,
-        clear_bufs: CSSM_DATA_PTR,
-        clear_buf_count: uint32,
-        bytes_decrypted: *mut CSSM_SIZE,
-        rem_data: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cipher_bufs` must be a valid pointer.
-    /// - `clear_bufs` must be a valid pointer.
-    /// - `bytes_decrypted` must be a valid pointer.
-    /// - `rem_data` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DecryptDataP(
-        cc_handle: CSSM_CC_HANDLE,
-        cipher_bufs: *const SecAsn1Item,
-        cipher_buf_count: uint32,
-        clear_bufs: CSSM_DATA_PTR,
-        clear_buf_count: uint32,
-        bytes_decrypted: *mut CSSM_SIZE,
-        rem_data: CSSM_DATA_PTR,
-        privilege: CSSM_PRIVILEGE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DecryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DecryptDataInitP(
-        cc_handle: CSSM_CC_HANDLE,
-        privilege: CSSM_PRIVILEGE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cipher_bufs` must be a valid pointer.
-    /// - `clear_bufs` must be a valid pointer.
-    /// - `bytes_decrypted` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DecryptDataUpdate(
-        cc_handle: CSSM_CC_HANDLE,
-        cipher_bufs: *const SecAsn1Item,
-        cipher_buf_count: uint32,
-        clear_bufs: CSSM_DATA_PTR,
-        clear_buf_count: uint32,
-        bytes_decrypted: *mut CSSM_SIZE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `rem_data` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DecryptDataFinal(cc_handle: CSSM_CC_HANDLE, rem_data: CSSM_DATA_PTR)
-        -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `key` must be a valid pointer.
-    /// - `key_size` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_QueryKeySizeInBits(
-        csp_handle: CSSM_CSP_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        key: *const CSSM_KEY,
-        key_size: CSSM_KEY_SIZE_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `key_label` must be a valid pointer.
-    /// - `cred_and_acl_entry` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GenerateKey(
-        cc_handle: CSSM_CC_HANDLE,
-        key_usage: uint32,
-        key_attr: uint32,
-        key_label: *const SecAsn1Item,
-        cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
-        key: CSSM_KEY_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `key_label` must be a valid pointer.
-    /// - `cred_and_acl_entry` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GenerateKeyP(
-        cc_handle: CSSM_CC_HANDLE,
-        key_usage: uint32,
-        key_attr: uint32,
-        key_label: *const SecAsn1Item,
-        cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
-        key: CSSM_KEY_PTR,
-        privilege: CSSM_PRIVILEGE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `public_key_label` must be a valid pointer.
-    /// - `public_key` must be a valid pointer.
-    /// - `private_key_label` must be a valid pointer.
-    /// - `cred_and_acl_entry` must be a valid pointer.
-    /// - `private_key` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GenerateKeyPair(
-        cc_handle: CSSM_CC_HANDLE,
-        public_key_usage: uint32,
-        public_key_attr: uint32,
-        public_key_label: *const SecAsn1Item,
-        public_key: CSSM_KEY_PTR,
-        private_key_usage: uint32,
-        private_key_attr: uint32,
-        private_key_label: *const SecAsn1Item,
-        cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
-        private_key: CSSM_KEY_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `public_key_label` must be a valid pointer.
-    /// - `public_key` must be a valid pointer.
-    /// - `private_key_label` must be a valid pointer.
-    /// - `cred_and_acl_entry` must be a valid pointer.
-    /// - `private_key` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GenerateKeyPairP(
-        cc_handle: CSSM_CC_HANDLE,
-        public_key_usage: uint32,
-        public_key_attr: uint32,
-        public_key_label: *const SecAsn1Item,
-        public_key: CSSM_KEY_PTR,
-        private_key_usage: uint32,
-        private_key_attr: uint32,
-        private_key_label: *const SecAsn1Item,
-        cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
-        private_key: CSSM_KEY_PTR,
-        privilege: CSSM_PRIVILEGE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `random_number` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GenerateRandom(
-        cc_handle: CSSM_CC_HANDLE,
-        random_number: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `public_key` must be a valid pointer.
-    /// - `private_key` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_ObtainPrivateKeyFromPublicKey(
-        csp_handle: CSSM_CSP_HANDLE,
-        public_key: *const CSSM_KEY,
-        private_key: CSSM_KEY_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `descriptive_data` must be a valid pointer.
-    /// - `wrapped_key` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_WrapKey(
-        cc_handle: CSSM_CC_HANDLE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        key: *const CSSM_KEY,
-        descriptive_data: *const SecAsn1Item,
-        wrapped_key: CSSM_WRAP_KEY_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `public_key` must be a valid pointer.
-    /// - `wrapped_key` must be a valid pointer.
-    /// - `key_label` must be a valid pointer.
-    /// - `cred_and_acl_entry` must be a valid pointer.
-    /// - `unwrapped_key` must be a valid pointer.
-    /// - `descriptive_data` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_UnwrapKey(
-        cc_handle: CSSM_CC_HANDLE,
-        public_key: *const CSSM_KEY,
-        wrapped_key: *const CSSM_WRAP_KEY,
-        key_usage: uint32,
-        key_attr: uint32,
-        key_label: *const SecAsn1Item,
-        cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
-        unwrapped_key: CSSM_KEY_PTR,
-        descriptive_data: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    /// - `descriptive_data` must be a valid pointer.
-    /// - `wrapped_key` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_WrapKeyP(
-        cc_handle: CSSM_CC_HANDLE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        key: *const CSSM_KEY,
-        descriptive_data: *const SecAsn1Item,
-        wrapped_key: CSSM_WRAP_KEY_PTR,
-        privilege: CSSM_PRIVILEGE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `public_key` must be a valid pointer.
-    /// - `wrapped_key` must be a valid pointer.
-    /// - `key_label` must be a valid pointer.
-    /// - `cred_and_acl_entry` must be a valid pointer.
-    /// - `unwrapped_key` must be a valid pointer.
-    /// - `descriptive_data` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_UnwrapKeyP(
-        cc_handle: CSSM_CC_HANDLE,
-        public_key: *const CSSM_KEY,
-        wrapped_key: *const CSSM_WRAP_KEY,
-        key_usage: uint32,
-        key_attr: uint32,
-        key_label: *const SecAsn1Item,
-        cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
-        unwrapped_key: CSSM_KEY_PTR,
-        descriptive_data: CSSM_DATA_PTR,
-        privilege: CSSM_PRIVILEGE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `param` must be a valid pointer.
-    /// - `key_label` must be a valid pointer.
-    /// - `cred_and_acl_entry` must be a valid pointer.
-    /// - `derived_key` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DeriveKey(
-        cc_handle: CSSM_CC_HANDLE,
-        param: CSSM_DATA_PTR,
-        key_usage: uint32,
-        key_attr: uint32,
-        key_label: *const SecAsn1Item,
-        cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
-        derived_key: CSSM_KEY_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `key_ptr` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_FreeKey(
-        csp_handle: CSSM_CSP_HANDLE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        key_ptr: CSSM_KEY_PTR,
-        delete: CSSM_BOOL,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `param` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GenerateAlgorithmParams(
-        cc_handle: CSSM_CC_HANDLE,
-        param_bits: uint32,
-        param: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `statistics` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_GetOperationalStatistics(
-        csp_handle: CSSM_CSP_HANDLE,
-        statistics: *mut CSSM_CSP_OPERATIONAL_STATISTICS,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `time_data` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_GetTimeValue(
-        csp_handle: CSSM_CSP_HANDLE,
-        time_algorithm: CSSM_ALGORITHMS,
-        time_data: *mut SecAsn1Item,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `unique_id` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_RetrieveUniqueId(
-        csp_handle: CSSM_CSP_HANDLE,
-        unique_id: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `counter` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_RetrieveCounter(csp_handle: CSSM_CSP_HANDLE, counter: CSSM_DATA_PTR)
-        -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `device_cert` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_VerifyDevice(
-        csp_handle: CSSM_CSP_HANDLE,
-        device_cert: *const SecAsn1Item,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `in_data` must be a valid pointer.
-    /// - `out_data` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CSP_PassThrough(
-        cc_handle: CSSM_CC_HANDLE,
-        pass_through_id: uint32,
-        in_data: *const c_void,
-        out_data: *mut *mut c_void,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `preferred_authority` must be a valid pointer.
-    /// - `request_input` must be a valid pointer.
-    /// - `caller_auth_context` must be a valid pointer.
-    /// - `estimated_time` must be a valid pointer.
-    /// - `reference_identifier` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_SubmitCredRequest(
-        tp_handle: CSSM_TP_HANDLE,
-        preferred_authority: *const CSSM_TP_AUTHORITY_ID,
-        request_type: CSSM_TP_AUTHORITY_REQUEST_TYPE,
-        request_input: *const CSSM_TP_REQUEST_SET,
-        caller_auth_context: *const CSSM_TP_CALLERAUTH_CONTEXT,
-        estimated_time: *mut sint32,
-        reference_identifier: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `reference_identifier` must be a valid pointer.
-    /// - `caller_auth_credentials` must be a valid pointer.
-    /// - `estimated_time` must be a valid pointer.
-    /// - `confirmation_required` must be a valid pointer.
-    /// - `retrieve_output` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_RetrieveCredResult(
-        tp_handle: CSSM_TP_HANDLE,
-        reference_identifier: *const SecAsn1Item,
-        caller_auth_credentials: *const CSSM_TP_CALLERAUTH_CONTEXT,
-        estimated_time: *mut sint32,
-        confirmation_required: *mut CSSM_BOOL,
-        retrieve_output: *mut CSSM_TP_RESULT_SET_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `reference_identifier` must be a valid pointer.
-    /// - `caller_auth_credentials` must be a valid pointer.
-    /// - `responses` must be a valid pointer.
-    /// - `preferred_authority` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_ConfirmCredResult(
-        tp_handle: CSSM_TP_HANDLE,
-        reference_identifier: *const SecAsn1Item,
-        caller_auth_credentials: *const CSSM_TP_CALLERAUTH_CONTEXT,
-        responses: *const CSSM_TP_CONFIRM_RESPONSE,
-        preferred_authority: *const CSSM_TP_AUTHORITY_ID,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `reference_identifier` must be a valid pointer.
-    /// - `responses` must be a valid pointer.
-    /// - `elapsed_time` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_ReceiveConfirmation(
-        tp_handle: CSSM_TP_HANDLE,
-        reference_identifier: *const SecAsn1Item,
-        responses: *mut CSSM_TP_CONFIRM_RESPONSE_PTR,
-        elapsed_time: *mut sint32,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_group` must be a valid pointer.
-    /// - `cred_and_acl_entry` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CertReclaimKey(
-        tp_handle: CSSM_TP_HANDLE,
-        cert_group: *const CSSM_CERTGROUP,
-        cert_index: uint32,
-        key_cache_handle: CSSM_LONG_HANDLE,
-        csp_handle: CSSM_CSP_HANDLE,
-        cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CertReclaimAbort(
-        tp_handle: CSSM_TP_HANDLE,
-        key_cache_handle: CSSM_LONG_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `preferred_authority` must be a valid pointer.
-    /// - `blank_form` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_FormRequest(
-        tp_handle: CSSM_TP_HANDLE,
-        preferred_authority: *const CSSM_TP_AUTHORITY_ID,
-        form_type: CSSM_TP_FORM_TYPE,
-        blank_form: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `form` must be a valid pointer.
-    /// - `clearance_authority` must be a valid pointer.
-    /// - `represented_authority` must be a valid pointer.
-    /// - `credentials` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_FormSubmit(
-        tp_handle: CSSM_TP_HANDLE,
-        form_type: CSSM_TP_FORM_TYPE,
-        form: *const SecAsn1Item,
-        clearance_authority: *const CSSM_TP_AUTHORITY_ID,
-        represented_authority: *const CSSM_TP_AUTHORITY_ID,
-        credentials: CSSM_ACCESS_CREDENTIALS_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_group_to_be_verified` must be a valid pointer.
-    /// - `verify_context` must be a valid pointer.
-    /// - `verify_context_result` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CertGroupVerify(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        csp_handle: CSSM_CSP_HANDLE,
-        cert_group_to_be_verified: *const CSSM_CERTGROUP,
-        verify_context: *const CSSM_TP_VERIFY_CONTEXT,
-        verify_context_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_fields` must be a valid pointer.
-    /// - `cert_template` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CertCreateTemplate(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        number_of_fields: uint32,
-        cert_fields: *const CSSM_FIELD,
-        cert_template: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_template` must be a valid pointer.
-    /// - `number_of_fields` must be a valid pointer.
-    /// - `cert_fields` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CertGetAllTemplateFields(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        cert_template: *const SecAsn1Item,
-        number_of_fields: *mut uint32,
-        cert_fields: *mut CSSM_FIELD_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_template_to_be_signed` must be a valid pointer.
-    /// - `signer_cert_group` must be a valid pointer.
-    /// - `signer_verify_context` must be a valid pointer.
-    /// - `signer_verify_result` must be a valid pointer.
-    /// - `signed_cert` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CertSign(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        cert_template_to_be_signed: *const SecAsn1Item,
-        signer_cert_group: *const CSSM_CERTGROUP,
-        signer_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
-        signer_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-        signed_cert: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl_to_be_verified` must be a valid pointer.
-    /// - `signer_cert_group` must be a valid pointer.
-    /// - `verify_context` must be a valid pointer.
-    /// - `revoker_verify_result` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CrlVerify(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        csp_handle: CSSM_CSP_HANDLE,
-        crl_to_be_verified: *const CSSM_ENCODED_CRL,
-        signer_cert_group: *const CSSM_CERTGROUP,
-        verify_context: *const CSSM_TP_VERIFY_CONTEXT,
-        revoker_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl_fields` must be a valid pointer.
-    /// - `new_crl_template` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CrlCreateTemplate(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        number_of_fields: uint32,
-        crl_fields: *const CSSM_FIELD,
-        new_crl_template: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `old_crl_template` must be a valid pointer.
-    /// - `cert_group_to_be_revoked` must be a valid pointer.
-    /// - `revoker_cert_group` must be a valid pointer.
-    /// - `revoker_verify_context` must be a valid pointer.
-    /// - `revoker_verify_result` must be a valid pointer.
-    /// - `new_crl_template` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CertRevoke(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        csp_handle: CSSM_CSP_HANDLE,
-        old_crl_template: *const SecAsn1Item,
-        cert_group_to_be_revoked: *const CSSM_CERTGROUP,
-        revoker_cert_group: *const CSSM_CERTGROUP,
-        revoker_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
-        revoker_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-        reason: CSSM_TP_CERTCHANGE_REASON,
-        new_crl_template: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `old_crl_template` must be a valid pointer.
-    /// - `cert_group_to_be_removed` must be a valid pointer.
-    /// - `revoker_cert_group` must be a valid pointer.
-    /// - `revoker_verify_context` must be a valid pointer.
-    /// - `revoker_verify_result` must be a valid pointer.
-    /// - `new_crl_template` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CertRemoveFromCrlTemplate(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        csp_handle: CSSM_CSP_HANDLE,
-        old_crl_template: *const SecAsn1Item,
-        cert_group_to_be_removed: *const CSSM_CERTGROUP,
-        revoker_cert_group: *const CSSM_CERTGROUP,
-        revoker_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
-        revoker_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-        new_crl_template: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl_to_be_signed` must be a valid pointer.
-    /// - `signer_cert_group` must be a valid pointer.
-    /// - `signer_verify_context` must be a valid pointer.
-    /// - `signer_verify_result` must be a valid pointer.
-    /// - `signed_crl` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CrlSign(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        crl_to_be_signed: *const CSSM_ENCODED_CRL,
-        signer_cert_group: *const CSSM_CERTGROUP,
-        signer_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
-        signer_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-        signed_crl: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl_to_be_applied` must be a valid pointer.
-    /// - `signer_cert_group` must be a valid pointer.
-    /// - `apply_crl_verify_context` must be a valid pointer.
-    /// - `apply_crl_verify_result` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_ApplyCrlToDb(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        csp_handle: CSSM_CSP_HANDLE,
-        crl_to_be_applied: *const CSSM_ENCODED_CRL,
-        signer_cert_group: *const CSSM_CERTGROUP,
-        apply_crl_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
-        apply_crl_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `db_list` must be a valid pointer.
-    /// - `construct_params` must be a valid pointer.
-    /// - `cert_group_frag` must be a valid pointer.
-    /// - `cert_group` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CertGroupConstruct(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        csp_handle: CSSM_CSP_HANDLE,
-        db_list: *const CSSM_DL_DB_LIST,
-        construct_params: *const c_void,
-        cert_group_frag: *const CSSM_CERTGROUP,
-        cert_group: *mut CSSM_CERTGROUP_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `db_list` must be a valid pointer.
-    /// - `ordered_cert_group` must be a valid pointer.
-    /// - `pruned_cert_group` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CertGroupPrune(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        db_list: *const CSSM_DL_DB_LIST,
-        ordered_cert_group: *const CSSM_CERTGROUP,
-        pruned_cert_group: *mut CSSM_CERTGROUP_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_group` must be a valid pointer.
-    /// - `tuple_group` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_CertGroupToTupleGroup(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        cert_group: *const CSSM_CERTGROUP,
-        tuple_group: *mut CSSM_TUPLEGROUP_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `tuple_group` must be a valid pointer.
-    /// - `cert_templates` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_TupleGroupToCertGroup(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        tuple_group: *const CSSM_TUPLEGROUP,
-        cert_templates: *mut CSSM_CERTGROUP_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `db_list` must be a valid pointer.
-    /// - `input_params` must be a valid pointer.
-    /// - `output_params` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_TP_PassThrough(
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        db_list: *const CSSM_DL_DB_LIST,
-        pass_through_id: uint32,
-        input_params: *const c_void,
-        output_params: *mut *mut c_void,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `base_authorizations` must be a valid pointer.
-    /// - `credentials` must be a valid pointer.
-    /// - `requestors` must be a valid pointer.
-    /// - `requested_authorization_period` must be a valid pointer.
-    /// - `requested_authorization` must be a valid pointer.
-    /// - `authorization_result` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_AC_AuthCompute(
-        ac_handle: CSSM_AC_HANDLE,
-        base_authorizations: *const CSSM_TUPLEGROUP,
-        credentials: *const CSSM_TUPLEGROUP,
-        number_of_requestors: uint32,
-        requestors: *const CSSM_LIST,
-        requested_authorization_period: *const CSSM_LIST,
-        requested_authorization: *const CSSM_LIST,
-        authorization_result: CSSM_TUPLEGROUP_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `db_list` must be a valid pointer.
-    /// - `input_params` must be a valid pointer.
-    /// - `output_params` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_AC_PassThrough(
-        ac_handle: CSSM_AC_HANDLE,
-        tp_handle: CSSM_TP_HANDLE,
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        db_list: *const CSSM_DL_DB_LIST,
-        pass_through_id: uint32,
-        input_params: *const c_void,
-        output_params: *mut *mut c_void,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_fields` must be a valid pointer.
-    /// - `cert_template` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertCreateTemplate(
-        cl_handle: CSSM_CL_HANDLE,
-        number_of_fields: uint32,
-        cert_fields: *const CSSM_FIELD,
-        cert_template: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_template` must be a valid pointer.
-    /// - `number_of_fields` must be a valid pointer.
-    /// - `cert_fields` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertGetAllTemplateFields(
-        cl_handle: CSSM_CL_HANDLE,
-        cert_template: *const SecAsn1Item,
-        number_of_fields: *mut uint32,
-        cert_fields: *mut CSSM_FIELD_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_template` must be a valid pointer.
-    /// - `sign_scope` must be a valid pointer.
-    /// - `signed_cert` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertSign(
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        cert_template: *const SecAsn1Item,
-        sign_scope: *const CSSM_FIELD,
-        scope_size: uint32,
-        signed_cert: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_to_be_verified` must be a valid pointer.
-    /// - `signer_cert` must be a valid pointer.
-    /// - `verify_scope` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertVerify(
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        cert_to_be_verified: *const SecAsn1Item,
-        signer_cert: *const SecAsn1Item,
-        verify_scope: *const CSSM_FIELD,
-        scope_size: uint32,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `cert_to_be_verified` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertVerifyWithKey(
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        cert_to_be_verified: *const SecAsn1Item,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert` must be a valid pointer.
-    /// - `cert_field` must be a valid pointer.
-    /// - `results_handle` must be a valid pointer.
-    /// - `number_of_matched_fields` must be a valid pointer.
-    /// - `value` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertGetFirstFieldValue(
-        cl_handle: CSSM_CL_HANDLE,
-        cert: *const SecAsn1Item,
-        cert_field: *const SecAsn1Oid,
-        results_handle: CSSM_HANDLE_PTR,
-        number_of_matched_fields: *mut uint32,
-        value: *mut CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `value` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertGetNextFieldValue(
-        cl_handle: CSSM_CL_HANDLE,
-        results_handle: CSSM_HANDLE,
-        value: *mut CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertAbortQuery(
-        cl_handle: CSSM_CL_HANDLE,
-        results_handle: CSSM_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert` must be a valid pointer.
-    /// - `key` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertGetKeyInfo(
-        cl_handle: CSSM_CL_HANDLE,
-        cert: *const SecAsn1Item,
-        key: *mut CSSM_KEY_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert` must be a valid pointer.
-    /// - `number_of_fields` must be a valid pointer.
-    /// - `cert_fields` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertGetAllFields(
-        cl_handle: CSSM_CL_HANDLE,
-        cert: *const SecAsn1Item,
-        number_of_fields: *mut uint32,
-        cert_fields: *mut CSSM_FIELD_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `fields` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_FreeFields(
-        cl_handle: CSSM_CL_HANDLE,
-        number_of_fields: uint32,
-        fields: *mut CSSM_FIELD_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_or_crl_oid` must be a valid pointer.
-    /// - `value` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_FreeFieldValue(
-        cl_handle: CSSM_CL_HANDLE,
-        cert_or_crl_oid: *const SecAsn1Oid,
-        value: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert` must be a valid pointer.
-    /// - `cert_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertCache(
-        cl_handle: CSSM_CL_HANDLE,
-        cert: *const SecAsn1Item,
-        cert_handle: CSSM_HANDLE_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_field` must be a valid pointer.
-    /// - `results_handle` must be a valid pointer.
-    /// - `number_of_matched_fields` must be a valid pointer.
-    /// - `value` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertGetFirstCachedFieldValue(
-        cl_handle: CSSM_CL_HANDLE,
-        cert_handle: CSSM_HANDLE,
-        cert_field: *const SecAsn1Oid,
-        results_handle: CSSM_HANDLE_PTR,
-        number_of_matched_fields: *mut uint32,
-        value: *mut CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `value` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertGetNextCachedFieldValue(
-        cl_handle: CSSM_CL_HANDLE,
-        results_handle: CSSM_HANDLE,
-        value: *mut CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertAbortCache(
-        cl_handle: CSSM_CL_HANDLE,
-        cert_handle: CSSM_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_group_to_bundle` must be a valid pointer.
-    /// - `bundle_info` must be a valid pointer.
-    /// - `signed_bundle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertGroupToSignedBundle(
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        cert_group_to_bundle: *const CSSM_CERTGROUP,
-        bundle_info: *const CSSM_CERT_BUNDLE_HEADER,
-        signed_bundle: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert_bundle` must be a valid pointer.
-    /// - `signer_cert` must be a valid pointer.
-    /// - `cert_group` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertGroupFromVerifiedBundle(
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        cert_bundle: *const CSSM_CERT_BUNDLE,
-        signer_cert: *const SecAsn1Item,
-        cert_group: *mut CSSM_CERTGROUP_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `number_of_fields` must be a valid pointer.
-    /// - `oid_list` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CertDescribeFormat(
-        cl_handle: CSSM_CL_HANDLE,
-        number_of_fields: *mut uint32,
-        oid_list: *mut CSSM_OID_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl_template` must be a valid pointer.
-    /// - `new_crl` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlCreateTemplate(
-        cl_handle: CSSM_CL_HANDLE,
-        number_of_fields: uint32,
-        crl_template: *const CSSM_FIELD,
-        new_crl: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl_template` must be a valid pointer.
-    /// - `old_crl` must be a valid pointer.
-    /// - `modified_crl` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlSetFields(
-        cl_handle: CSSM_CL_HANDLE,
-        number_of_fields: uint32,
-        crl_template: *const CSSM_FIELD,
-        old_crl: *const SecAsn1Item,
-        modified_crl: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert` must be a valid pointer.
-    /// - `crl_entry_fields` must be a valid pointer.
-    /// - `old_crl` must be a valid pointer.
-    /// - `new_crl` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlAddCert(
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        cert: *const SecAsn1Item,
-        number_of_fields: uint32,
-        crl_entry_fields: *const CSSM_FIELD,
-        old_crl: *const SecAsn1Item,
-        new_crl: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert` must be a valid pointer.
-    /// - `old_crl` must be a valid pointer.
-    /// - `new_crl` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlRemoveCert(
-        cl_handle: CSSM_CL_HANDLE,
-        cert: *const SecAsn1Item,
-        old_crl: *const SecAsn1Item,
-        new_crl: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `unsigned_crl` must be a valid pointer.
-    /// - `sign_scope` must be a valid pointer.
-    /// - `signed_crl` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlSign(
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        unsigned_crl: *const SecAsn1Item,
-        sign_scope: *const CSSM_FIELD,
-        scope_size: uint32,
-        signed_crl: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl_to_be_verified` must be a valid pointer.
-    /// - `signer_cert` must be a valid pointer.
-    /// - `verify_scope` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlVerify(
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        crl_to_be_verified: *const SecAsn1Item,
-        signer_cert: *const SecAsn1Item,
-        verify_scope: *const CSSM_FIELD,
-        scope_size: uint32,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `crl_to_be_verified` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlVerifyWithKey(
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        crl_to_be_verified: *const SecAsn1Item,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert` must be a valid pointer.
-    /// - `crl` must be a valid pointer.
-    /// - `cert_found` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_IsCertInCrl(
-        cl_handle: CSSM_CL_HANDLE,
-        cert: *const SecAsn1Item,
-        crl: *const SecAsn1Item,
-        cert_found: *mut CSSM_BOOL,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl` must be a valid pointer.
-    /// - `crl_field` must be a valid pointer.
-    /// - `results_handle` must be a valid pointer.
-    /// - `number_of_matched_fields` must be a valid pointer.
-    /// - `value` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlGetFirstFieldValue(
-        cl_handle: CSSM_CL_HANDLE,
-        crl: *const SecAsn1Item,
-        crl_field: *const SecAsn1Oid,
-        results_handle: CSSM_HANDLE_PTR,
-        number_of_matched_fields: *mut uint32,
-        value: *mut CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `value` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlGetNextFieldValue(
-        cl_handle: CSSM_CL_HANDLE,
-        results_handle: CSSM_HANDLE,
-        value: *mut CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlAbortQuery(
-        cl_handle: CSSM_CL_HANDLE,
-        results_handle: CSSM_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl` must be a valid pointer.
-    /// - `number_of_crl_fields` must be a valid pointer.
-    /// - `crl_fields` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlGetAllFields(
-        cl_handle: CSSM_CL_HANDLE,
-        crl: *const SecAsn1Item,
-        number_of_crl_fields: *mut uint32,
-        crl_fields: *mut CSSM_FIELD_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl` must be a valid pointer.
-    /// - `crl_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlCache(
-        cl_handle: CSSM_CL_HANDLE,
-        crl: *const SecAsn1Item,
-        crl_handle: CSSM_HANDLE_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cert` must be a valid pointer.
-    /// - `cert_found` must be a valid pointer.
-    /// - `crl_record_index` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_IsCertInCachedCrl(
-        cl_handle: CSSM_CL_HANDLE,
-        cert: *const SecAsn1Item,
-        crl_handle: CSSM_HANDLE,
-        cert_found: *mut CSSM_BOOL,
-        crl_record_index: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl_record_index` must be a valid pointer.
-    /// - `crl_field` must be a valid pointer.
-    /// - `results_handle` must be a valid pointer.
-    /// - `number_of_matched_fields` must be a valid pointer.
-    /// - `value` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlGetFirstCachedFieldValue(
-        cl_handle: CSSM_CL_HANDLE,
-        crl_handle: CSSM_HANDLE,
-        crl_record_index: *const SecAsn1Item,
-        crl_field: *const SecAsn1Oid,
-        results_handle: CSSM_HANDLE_PTR,
-        number_of_matched_fields: *mut uint32,
-        value: *mut CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `value` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlGetNextCachedFieldValue(
-        cl_handle: CSSM_CL_HANDLE,
-        results_handle: CSSM_HANDLE,
-        value: *mut CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `crl_record_index` must be a valid pointer.
-    /// - `number_of_fields` must be a valid pointer.
-    /// - `crl_fields` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlGetAllCachedRecordFields(
-        cl_handle: CSSM_CL_HANDLE,
-        crl_handle: CSSM_HANDLE,
-        crl_record_index: *const SecAsn1Item,
-        number_of_fields: *mut uint32,
-        crl_fields: *mut CSSM_FIELD_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlAbortCache(cl_handle: CSSM_CL_HANDLE, crl_handle: CSSM_HANDLE)
-        -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `number_of_fields` must be a valid pointer.
-    /// - `oid_list` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_CrlDescribeFormat(
-        cl_handle: CSSM_CL_HANDLE,
-        number_of_fields: *mut uint32,
-        oid_list: *mut CSSM_OID_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `input_params` must be a valid pointer.
-    /// - `output_params` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_CL_PassThrough(
-        cl_handle: CSSM_CL_HANDLE,
-        cc_handle: CSSM_CC_HANDLE,
-        pass_through_id: uint32,
-        input_params: *const c_void,
-        output_params: *mut *mut c_void,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `db_name` must be a valid pointer.
-    /// - `db_location` must be a valid pointer.
-    /// - `access_cred` must be a valid pointer.
-    /// - `open_parameters` must be a valid pointer.
-    /// - `db_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DbOpen(
-        dl_handle: CSSM_DL_HANDLE,
-        db_name: *const c_char,
-        db_location: *const CSSM_NET_ADDRESS,
-        access_request: CSSM_DB_ACCESS_TYPE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        open_parameters: *const c_void,
-        db_handle: *mut CSSM_DB_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DbClose(dldb_handle: CSSM_DL_DB_HANDLE) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `db_name` must be a valid pointer.
-    /// - `db_location` must be a valid pointer.
-    /// - `db_info` must be a valid pointer.
-    /// - `cred_and_acl_entry` must be a valid pointer.
-    /// - `open_parameters` must be a valid pointer.
-    /// - `db_handle` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DbCreate(
-        dl_handle: CSSM_DL_HANDLE,
-        db_name: *const c_char,
-        db_location: *const CSSM_NET_ADDRESS,
-        db_info: *const CSSM_DBINFO,
-        access_request: CSSM_DB_ACCESS_TYPE,
-        cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
-        open_parameters: *const c_void,
-        db_handle: *mut CSSM_DB_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `db_name` must be a valid pointer.
-    /// - `db_location` must be a valid pointer.
-    /// - `access_cred` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DbDelete(
-        dl_handle: CSSM_DL_HANDLE,
-        db_name: *const c_char,
-        db_location: *const CSSM_NET_ADDRESS,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `relation_name` must be a valid pointer.
-    /// - `p_attribute_info` must be a valid pointer.
-    /// - `p_index_info` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_CreateRelation(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        relation_id: CSSM_DB_RECORDTYPE,
-        relation_name: *const c_char,
-        number_of_attributes: uint32,
-        p_attribute_info: *const CSSM_DB_SCHEMA_ATTRIBUTE_INFO,
-        number_of_indexes: uint32,
-        p_index_info: *const CSSM_DB_SCHEMA_INDEX_INFO,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DestroyRelation(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        relation_id: CSSM_DB_RECORDTYPE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `access_cred` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_Authenticate(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        access_request: CSSM_DB_ACCESS_TYPE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `selection_tag` must be a valid pointer.
-    /// - `number_of_acl_infos` must be a valid pointer.
-    /// - `acl_infos` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_GetDbAcl(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        selection_tag: *const CSSM_STRING,
-        number_of_acl_infos: *mut uint32,
-        acl_infos: *mut CSSM_ACL_ENTRY_INFO_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `acl_edit` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_ChangeDbAcl(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        acl_edit: *const CSSM_ACL_EDIT,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `owner` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_GetDbOwner(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `access_cred` must be a valid pointer.
-    /// - `new_owner` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_ChangeDbOwner(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        access_cred: *const CSSM_ACCESS_CREDENTIALS,
-        new_owner: *const CSSM_ACL_OWNER_PROTOTYPE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `name_list` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_GetDbNames(
-        dl_handle: CSSM_DL_HANDLE,
-        name_list: *mut CSSM_NAME_LIST_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `db_name` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_GetDbNameFromHandle(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        db_name: *mut *mut c_char,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `name_list` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_FreeNameList(
-        dl_handle: CSSM_DL_HANDLE,
-        name_list: CSSM_NAME_LIST_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `attributes` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    /// - `unique_id` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DataInsert(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        record_type: CSSM_DB_RECORDTYPE,
-        attributes: *const CSSM_DB_RECORD_ATTRIBUTE_DATA,
-        data: *const SecAsn1Item,
-        unique_id: *mut CSSM_DB_UNIQUE_RECORD_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `unique_record_identifier` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DataDelete(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        unique_record_identifier: *const CSSM_DB_UNIQUE_RECORD,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `unique_record_identifier` must be a valid pointer.
-    /// - `attributes_to_be_modified` must be a valid pointer.
-    /// - `data_to_be_modified` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DataModify(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        record_type: CSSM_DB_RECORDTYPE,
-        unique_record_identifier: CSSM_DB_UNIQUE_RECORD_PTR,
-        attributes_to_be_modified: *const CSSM_DB_RECORD_ATTRIBUTE_DATA,
-        data_to_be_modified: *const SecAsn1Item,
-        modify_mode: CSSM_DB_MODIFY_MODE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `query` must be a valid pointer.
-    /// - `results_handle` must be a valid pointer.
-    /// - `attributes` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    /// - `unique_id` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DataGetFirst(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        query: *const CSSM_QUERY,
-        results_handle: CSSM_HANDLE_PTR,
-        attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
-        data: CSSM_DATA_PTR,
-        unique_id: *mut CSSM_DB_UNIQUE_RECORD_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `attributes` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    /// - `unique_id` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DataGetNext(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        results_handle: CSSM_HANDLE,
-        attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
-        data: CSSM_DATA_PTR,
-        unique_id: *mut CSSM_DB_UNIQUE_RECORD_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DataAbortQuery(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        results_handle: CSSM_HANDLE,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `unique_record` must be a valid pointer.
-    /// - `attributes` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_DataGetFromUniqueRecordId(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        unique_record: *const CSSM_DB_UNIQUE_RECORD,
-        attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
-        data: CSSM_DATA_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `unique_record` must be a valid pointer.
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_FreeUniqueRecord(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        unique_record: CSSM_DB_UNIQUE_RECORD_PTR,
-    ) -> CSSM_RETURN;
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `input_params` must be a valid pointer.
-    /// - `output_params` must be a valid pointer.
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
-    pub fn CSSM_DL_PassThrough(
-        dldb_handle: CSSM_DL_DB_HANDLE,
-        pass_through_id: uint32,
-        input_params: *const c_void,
-        output_params: *mut *mut c_void,
-    ) -> CSSM_RETURN;
+/// # Safety
+///
+/// - `version` must be a valid pointer.
+/// - `caller_guid` must be a valid pointer.
+/// - `pvc_policy` must be a valid pointer.
+/// - `reserved` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_Init(
+    version: *const CSSM_VERSION,
+    scope: CSSM_PRIVILEGE_SCOPE,
+    caller_guid: *const CSSM_GUID,
+    key_hierarchy: CSSM_KEY_HIERARCHY,
+    pvc_policy: *mut CSSM_PVC_MODE,
+    reserved: *const c_void,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_Init(
+            version: *const CSSM_VERSION,
+            scope: CSSM_PRIVILEGE_SCOPE,
+            caller_guid: *const CSSM_GUID,
+            key_hierarchy: CSSM_KEY_HIERARCHY,
+            pvc_policy: *mut CSSM_PVC_MODE,
+            reserved: *const c_void,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_Init(
+            version,
+            scope,
+            caller_guid,
+            key_hierarchy,
+            pvc_policy,
+            reserved,
+        )
+    }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_Terminate() -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_Terminate() -> CSSM_RETURN;
+    }
+    unsafe { CSSM_Terminate() }
+}
+
+/// # Safety
+///
+/// - `module_guid` must be a valid pointer.
+/// - `app_notify_callback` must be implemented correctly.
+/// - `app_notify_callback_ctx` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_ModuleLoad(
+    module_guid: *const CSSM_GUID,
+    key_hierarchy: CSSM_KEY_HIERARCHY,
+    app_notify_callback: CSSM_API_ModuleEventHandler,
+    app_notify_callback_ctx: *mut c_void,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_ModuleLoad(
+            module_guid: *const CSSM_GUID,
+            key_hierarchy: CSSM_KEY_HIERARCHY,
+            app_notify_callback: CSSM_API_ModuleEventHandler,
+            app_notify_callback_ctx: *mut c_void,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_ModuleLoad(
+            module_guid,
+            key_hierarchy,
+            app_notify_callback,
+            app_notify_callback_ctx,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `module_guid` must be a valid pointer.
+/// - `app_notify_callback` must be implemented correctly.
+/// - `app_notify_callback_ctx` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_ModuleUnload(
+    module_guid: *const CSSM_GUID,
+    app_notify_callback: CSSM_API_ModuleEventHandler,
+    app_notify_callback_ctx: *mut c_void,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_ModuleUnload(
+            module_guid: *const CSSM_GUID,
+            app_notify_callback: CSSM_API_ModuleEventHandler,
+            app_notify_callback_ctx: *mut c_void,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_ModuleUnload(module_guid, app_notify_callback, app_notify_callback_ctx) }
+}
+
+/// # Safety
+///
+/// `module_id` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_Introduce(
+    module_id: *const CSSM_GUID,
+    key_hierarchy: CSSM_KEY_HIERARCHY,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_Introduce(
+            module_id: *const CSSM_GUID,
+            key_hierarchy: CSSM_KEY_HIERARCHY,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_Introduce(module_id, key_hierarchy) }
+}
+
+/// # Safety
+///
+/// `module_id` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_Unintroduce(module_id: *const CSSM_GUID) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_Unintroduce(module_id: *const CSSM_GUID) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_Unintroduce(module_id) }
+}
+
+/// # Safety
+///
+/// - `module_guid` must be a valid pointer.
+/// - `version` must be a valid pointer.
+/// - `memory_funcs` must be a valid pointer.
+/// - `function_table` must be a valid pointer.
+/// - `reserved` must be a valid pointer.
+/// - `new_module_handle` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_ModuleAttach(
+    module_guid: *const CSSM_GUID,
+    version: *const CSSM_VERSION,
+    memory_funcs: *const CSSM_API_MEMORY_FUNCS,
+    subservice_id: uint32,
+    sub_service_type: CSSM_SERVICE_TYPE,
+    attach_flags: CSSM_ATTACH_FLAGS,
+    key_hierarchy: CSSM_KEY_HIERARCHY,
+    function_table: *mut CSSM_FUNC_NAME_ADDR,
+    num_function_table: uint32,
+    reserved: *const c_void,
+    new_module_handle: CSSM_MODULE_HANDLE_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_ModuleAttach(
+            module_guid: *const CSSM_GUID,
+            version: *const CSSM_VERSION,
+            memory_funcs: *const CSSM_API_MEMORY_FUNCS,
+            subservice_id: uint32,
+            sub_service_type: CSSM_SERVICE_TYPE,
+            attach_flags: CSSM_ATTACH_FLAGS,
+            key_hierarchy: CSSM_KEY_HIERARCHY,
+            function_table: *mut CSSM_FUNC_NAME_ADDR,
+            num_function_table: uint32,
+            reserved: *const c_void,
+            new_module_handle: CSSM_MODULE_HANDLE_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_ModuleAttach(
+            module_guid,
+            version,
+            memory_funcs,
+            subservice_id,
+            sub_service_type,
+            attach_flags,
+            key_hierarchy,
+            function_table,
+            num_function_table,
+            reserved,
+            new_module_handle,
+        )
+    }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_ModuleDetach(
+    module_handle: CSSM_MODULE_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_ModuleDetach(module_handle: CSSM_MODULE_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_ModuleDetach(module_handle) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_SetPrivilege(privilege: CSSM_PRIVILEGE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_SetPrivilege(privilege: CSSM_PRIVILEGE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_SetPrivilege(privilege) }
+}
+
+/// # Safety
+///
+/// `privilege` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GetPrivilege(privilege: *mut CSSM_PRIVILEGE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GetPrivilege(privilege: *mut CSSM_PRIVILEGE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GetPrivilege(privilege) }
+}
+
+/// # Safety
+///
+/// `module_guid` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GetModuleGUIDFromHandle(
+    module_handle: CSSM_MODULE_HANDLE,
+    module_guid: CSSM_GUID_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GetModuleGUIDFromHandle(
+            module_handle: CSSM_MODULE_HANDLE,
+            module_guid: CSSM_GUID_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GetModuleGUIDFromHandle(module_handle, module_guid) }
+}
+
+/// # Safety
+///
+/// `subservice_uid` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GetSubserviceUIDFromHandle(
+    module_handle: CSSM_MODULE_HANDLE,
+    subservice_uid: CSSM_SUBSERVICE_UID_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GetSubserviceUIDFromHandle(
+            module_handle: CSSM_MODULE_HANDLE,
+            subservice_uid: CSSM_SUBSERVICE_UID_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GetSubserviceUIDFromHandle(module_handle, subservice_uid) }
+}
+
+/// # Safety
+///
+/// - `number_of_module_managers` must be a valid pointer.
+/// - `module_manager_guids` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_ListAttachedModuleManagers(
+    number_of_module_managers: *mut uint32,
+    module_manager_guids: CSSM_GUID_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_ListAttachedModuleManagers(
+            number_of_module_managers: *mut uint32,
+            module_manager_guids: CSSM_GUID_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_ListAttachedModuleManagers(number_of_module_managers, module_manager_guids) }
+}
+
+/// # Safety
+///
+/// `app_memory_funcs` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GetAPIMemoryFunctions(
+    add_in_handle: CSSM_MODULE_HANDLE,
+    app_memory_funcs: CSSM_API_MEMORY_FUNCS_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GetAPIMemoryFunctions(
+            add_in_handle: CSSM_MODULE_HANDLE,
+            app_memory_funcs: CSSM_API_MEMORY_FUNCS_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GetAPIMemoryFunctions(add_in_handle, app_memory_funcs) }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `new_context_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_CreateSignatureContext(
+    csp_handle: CSSM_CSP_HANDLE,
+    algorithm_id: CSSM_ALGORITHMS,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    key: *const CSSM_KEY,
+    new_context_handle: *mut CSSM_CC_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_CreateSignatureContext(
+            csp_handle: CSSM_CSP_HANDLE,
+            algorithm_id: CSSM_ALGORITHMS,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            key: *const CSSM_KEY,
+            new_context_handle: *mut CSSM_CC_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CSP_CreateSignatureContext(
+            csp_handle,
+            algorithm_id,
+            access_cred,
+            key,
+            new_context_handle,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `init_vector` must be a valid pointer.
+/// - `reserved` must be a valid pointer.
+/// - `new_context_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_CreateSymmetricContext(
+    csp_handle: CSSM_CSP_HANDLE,
+    algorithm_id: CSSM_ALGORITHMS,
+    mode: CSSM_ENCRYPT_MODE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    key: *const CSSM_KEY,
+    init_vector: *const SecAsn1Item,
+    padding: CSSM_PADDING,
+    reserved: *mut c_void,
+    new_context_handle: *mut CSSM_CC_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_CreateSymmetricContext(
+            csp_handle: CSSM_CSP_HANDLE,
+            algorithm_id: CSSM_ALGORITHMS,
+            mode: CSSM_ENCRYPT_MODE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            key: *const CSSM_KEY,
+            init_vector: *const SecAsn1Item,
+            padding: CSSM_PADDING,
+            reserved: *mut c_void,
+            new_context_handle: *mut CSSM_CC_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CSP_CreateSymmetricContext(
+            csp_handle,
+            algorithm_id,
+            mode,
+            access_cred,
+            key,
+            init_vector,
+            padding,
+            reserved,
+            new_context_handle,
+        )
+    }
+}
+
+/// # Safety
+///
+/// `new_context_handle` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_CreateDigestContext(
+    csp_handle: CSSM_CSP_HANDLE,
+    algorithm_id: CSSM_ALGORITHMS,
+    new_context_handle: *mut CSSM_CC_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_CreateDigestContext(
+            csp_handle: CSSM_CSP_HANDLE,
+            algorithm_id: CSSM_ALGORITHMS,
+            new_context_handle: *mut CSSM_CC_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_CreateDigestContext(csp_handle, algorithm_id, new_context_handle) }
+}
+
+/// # Safety
+///
+/// - `key` must be a valid pointer.
+/// - `new_context_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_CreateMacContext(
+    csp_handle: CSSM_CSP_HANDLE,
+    algorithm_id: CSSM_ALGORITHMS,
+    key: *const CSSM_KEY,
+    new_context_handle: *mut CSSM_CC_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_CreateMacContext(
+            csp_handle: CSSM_CSP_HANDLE,
+            algorithm_id: CSSM_ALGORITHMS,
+            key: *const CSSM_KEY,
+            new_context_handle: *mut CSSM_CC_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_CreateMacContext(csp_handle, algorithm_id, key, new_context_handle) }
+}
+
+/// # Safety
+///
+/// - `seed` must be a valid pointer.
+/// - `new_context_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_CreateRandomGenContext(
+    csp_handle: CSSM_CSP_HANDLE,
+    algorithm_id: CSSM_ALGORITHMS,
+    seed: *const CSSM_CRYPTO_DATA,
+    length: CSSM_SIZE,
+    new_context_handle: *mut CSSM_CC_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_CreateRandomGenContext(
+            csp_handle: CSSM_CSP_HANDLE,
+            algorithm_id: CSSM_ALGORITHMS,
+            seed: *const CSSM_CRYPTO_DATA,
+            length: CSSM_SIZE,
+            new_context_handle: *mut CSSM_CC_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CSP_CreateRandomGenContext(csp_handle, algorithm_id, seed, length, new_context_handle)
+    }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `new_context_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_CreateAsymmetricContext(
+    csp_handle: CSSM_CSP_HANDLE,
+    algorithm_id: CSSM_ALGORITHMS,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    key: *const CSSM_KEY,
+    padding: CSSM_PADDING,
+    new_context_handle: *mut CSSM_CC_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_CreateAsymmetricContext(
+            csp_handle: CSSM_CSP_HANDLE,
+            algorithm_id: CSSM_ALGORITHMS,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            key: *const CSSM_KEY,
+            padding: CSSM_PADDING,
+            new_context_handle: *mut CSSM_CC_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CSP_CreateAsymmetricContext(
+            csp_handle,
+            algorithm_id,
+            access_cred,
+            key,
+            padding,
+            new_context_handle,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `base_key` must be a valid pointer.
+/// - `salt` must be a valid pointer.
+/// - `seed` must be a valid pointer.
+/// - `new_context_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_CreateDeriveKeyContext(
+    csp_handle: CSSM_CSP_HANDLE,
+    algorithm_id: CSSM_ALGORITHMS,
+    derive_key_type: CSSM_KEY_TYPE,
+    derive_key_length_in_bits: uint32,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    base_key: *const CSSM_KEY,
+    iteration_count: uint32,
+    salt: *const SecAsn1Item,
+    seed: *const CSSM_CRYPTO_DATA,
+    new_context_handle: *mut CSSM_CC_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_CreateDeriveKeyContext(
+            csp_handle: CSSM_CSP_HANDLE,
+            algorithm_id: CSSM_ALGORITHMS,
+            derive_key_type: CSSM_KEY_TYPE,
+            derive_key_length_in_bits: uint32,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            base_key: *const CSSM_KEY,
+            iteration_count: uint32,
+            salt: *const SecAsn1Item,
+            seed: *const CSSM_CRYPTO_DATA,
+            new_context_handle: *mut CSSM_CC_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CSP_CreateDeriveKeyContext(
+            csp_handle,
+            algorithm_id,
+            derive_key_type,
+            derive_key_length_in_bits,
+            access_cred,
+            base_key,
+            iteration_count,
+            salt,
+            seed,
+            new_context_handle,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `seed` must be a valid pointer.
+/// - `salt` must be a valid pointer.
+/// - `start_date` must be a valid pointer.
+/// - `end_date` must be a valid pointer.
+/// - `params` must be a valid pointer.
+/// - `new_context_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_CreateKeyGenContext(
+    csp_handle: CSSM_CSP_HANDLE,
+    algorithm_id: CSSM_ALGORITHMS,
+    key_size_in_bits: uint32,
+    seed: *const CSSM_CRYPTO_DATA,
+    salt: *const SecAsn1Item,
+    start_date: *const CSSM_DATE,
+    end_date: *const CSSM_DATE,
+    params: *const SecAsn1Item,
+    new_context_handle: *mut CSSM_CC_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_CreateKeyGenContext(
+            csp_handle: CSSM_CSP_HANDLE,
+            algorithm_id: CSSM_ALGORITHMS,
+            key_size_in_bits: uint32,
+            seed: *const CSSM_CRYPTO_DATA,
+            salt: *const SecAsn1Item,
+            start_date: *const CSSM_DATE,
+            end_date: *const CSSM_DATE,
+            params: *const SecAsn1Item,
+            new_context_handle: *mut CSSM_CC_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CSP_CreateKeyGenContext(
+            csp_handle,
+            algorithm_id,
+            key_size_in_bits,
+            seed,
+            salt,
+            start_date,
+            end_date,
+            params,
+            new_context_handle,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `key` must be a valid pointer.
+/// - `new_context_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_CreatePassThroughContext(
+    csp_handle: CSSM_CSP_HANDLE,
+    key: *const CSSM_KEY,
+    new_context_handle: *mut CSSM_CC_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_CreatePassThroughContext(
+            csp_handle: CSSM_CSP_HANDLE,
+            key: *const CSSM_KEY,
+            new_context_handle: *mut CSSM_CC_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_CreatePassThroughContext(csp_handle, key, new_context_handle) }
+}
+
+/// # Safety
+///
+/// `context` must be a valid pointer.
+#[cfg(all(
+    feature = "SecAsn1Types",
+    feature = "cssmconfig",
+    feature = "cssmkrapi",
+    feature = "cssmtype"
+))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GetContext(
+    cc_handle: CSSM_CC_HANDLE,
+    context: *mut CSSM_CONTEXT_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GetContext(
+            cc_handle: CSSM_CC_HANDLE,
+            context: *mut CSSM_CONTEXT_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GetContext(cc_handle, context) }
+}
+
+/// # Safety
+///
+/// `context` must be a valid pointer.
+#[cfg(all(
+    feature = "SecAsn1Types",
+    feature = "cssmconfig",
+    feature = "cssmkrapi",
+    feature = "cssmtype"
+))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_FreeContext(context: CSSM_CONTEXT_PTR) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_FreeContext(context: CSSM_CONTEXT_PTR) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_FreeContext(context) }
+}
+
+/// # Safety
+///
+/// `context` must be a valid pointer.
+#[cfg(all(
+    feature = "SecAsn1Types",
+    feature = "cssmconfig",
+    feature = "cssmkrapi",
+    feature = "cssmtype"
+))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_SetContext(
+    cc_handle: CSSM_CC_HANDLE,
+    context: *const CSSM_CONTEXT,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_SetContext(cc_handle: CSSM_CC_HANDLE, context: *const CSSM_CONTEXT) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_SetContext(cc_handle, context) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DeleteContext(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DeleteContext(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DeleteContext(cc_handle) }
+}
+
+/// # Safety
+///
+/// - `context` must be a valid pointer.
+/// - `context_attribute` must be a valid pointer.
+#[cfg(all(
+    feature = "SecAsn1Types",
+    feature = "cssmconfig",
+    feature = "cssmkrapi",
+    feature = "cssmtype"
+))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GetContextAttribute(
+    context: *const CSSM_CONTEXT,
+    attribute_type: uint32,
+    context_attribute: *mut CSSM_CONTEXT_ATTRIBUTE_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GetContextAttribute(
+            context: *const CSSM_CONTEXT,
+            attribute_type: uint32,
+            context_attribute: *mut CSSM_CONTEXT_ATTRIBUTE_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GetContextAttribute(context, attribute_type, context_attribute) }
+}
+
+/// # Safety
+///
+/// `context_attributes` must be a valid pointer.
+#[cfg(all(
+    feature = "SecAsn1Types",
+    feature = "cssmconfig",
+    feature = "cssmkrapi",
+    feature = "cssmtype"
+))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_UpdateContextAttributes(
+    cc_handle: CSSM_CC_HANDLE,
+    number_of_attributes: uint32,
+    context_attributes: *const CSSM_CONTEXT_ATTRIBUTE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_UpdateContextAttributes(
+            cc_handle: CSSM_CC_HANDLE,
+            number_of_attributes: uint32,
+            context_attributes: *const CSSM_CONTEXT_ATTRIBUTE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_UpdateContextAttributes(cc_handle, number_of_attributes, context_attributes) }
+}
+
+/// # Safety
+///
+/// `context_attributes` must be a valid pointer.
+#[cfg(all(
+    feature = "SecAsn1Types",
+    feature = "cssmconfig",
+    feature = "cssmkrapi",
+    feature = "cssmtype"
+))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DeleteContextAttributes(
+    cc_handle: CSSM_CC_HANDLE,
+    number_of_attributes: uint32,
+    context_attributes: *const CSSM_CONTEXT_ATTRIBUTE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DeleteContextAttributes(
+            cc_handle: CSSM_CC_HANDLE,
+            number_of_attributes: uint32,
+            context_attributes: *const CSSM_CONTEXT_ATTRIBUTE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DeleteContextAttributes(cc_handle, number_of_attributes, context_attributes) }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `login_name` must be a valid pointer.
+/// - `reserved` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_Login(
+    csp_handle: CSSM_CSP_HANDLE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    login_name: *const SecAsn1Item,
+    reserved: *const c_void,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_Login(
+            csp_handle: CSSM_CSP_HANDLE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            login_name: *const SecAsn1Item,
+            reserved: *const c_void,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_Login(csp_handle, access_cred, login_name, reserved) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_Logout(csp_handle: CSSM_CSP_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_Logout(csp_handle: CSSM_CSP_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_Logout(csp_handle) }
+}
+
+/// # Safety
+///
+/// - `selection_tag` must be a valid pointer.
+/// - `number_of_acl_infos` must be a valid pointer.
+/// - `acl_infos` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_GetLoginAcl(
+    csp_handle: CSSM_CSP_HANDLE,
+    selection_tag: *const CSSM_STRING,
+    number_of_acl_infos: *mut uint32,
+    acl_infos: *mut CSSM_ACL_ENTRY_INFO_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_GetLoginAcl(
+            csp_handle: CSSM_CSP_HANDLE,
+            selection_tag: *const CSSM_STRING,
+            number_of_acl_infos: *mut uint32,
+            acl_infos: *mut CSSM_ACL_ENTRY_INFO_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_GetLoginAcl(csp_handle, selection_tag, number_of_acl_infos, acl_infos) }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `acl_edit` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_ChangeLoginAcl(
+    csp_handle: CSSM_CSP_HANDLE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    acl_edit: *const CSSM_ACL_EDIT,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_ChangeLoginAcl(
+            csp_handle: CSSM_CSP_HANDLE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            acl_edit: *const CSSM_ACL_EDIT,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_ChangeLoginAcl(csp_handle, access_cred, acl_edit) }
+}
+
+/// # Safety
+///
+/// - `key` must be a valid pointer.
+/// - `selection_tag` must be a valid pointer.
+/// - `number_of_acl_infos` must be a valid pointer.
+/// - `acl_infos` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GetKeyAcl(
+    csp_handle: CSSM_CSP_HANDLE,
+    key: *const CSSM_KEY,
+    selection_tag: *const CSSM_STRING,
+    number_of_acl_infos: *mut uint32,
+    acl_infos: *mut CSSM_ACL_ENTRY_INFO_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GetKeyAcl(
+            csp_handle: CSSM_CSP_HANDLE,
+            key: *const CSSM_KEY,
+            selection_tag: *const CSSM_STRING,
+            number_of_acl_infos: *mut uint32,
+            acl_infos: *mut CSSM_ACL_ENTRY_INFO_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_GetKeyAcl(
+            csp_handle,
+            key,
+            selection_tag,
+            number_of_acl_infos,
+            acl_infos,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `acl_edit` must be a valid pointer.
+/// - `key` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_ChangeKeyAcl(
+    csp_handle: CSSM_CSP_HANDLE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    acl_edit: *const CSSM_ACL_EDIT,
+    key: *const CSSM_KEY,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_ChangeKeyAcl(
+            csp_handle: CSSM_CSP_HANDLE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            acl_edit: *const CSSM_ACL_EDIT,
+            key: *const CSSM_KEY,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_ChangeKeyAcl(csp_handle, access_cred, acl_edit, key) }
+}
+
+/// # Safety
+///
+/// - `key` must be a valid pointer.
+/// - `owner` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GetKeyOwner(
+    csp_handle: CSSM_CSP_HANDLE,
+    key: *const CSSM_KEY,
+    owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GetKeyOwner(
+            csp_handle: CSSM_CSP_HANDLE,
+            key: *const CSSM_KEY,
+            owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GetKeyOwner(csp_handle, key, owner) }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `new_owner` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_ChangeKeyOwner(
+    csp_handle: CSSM_CSP_HANDLE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    key: *const CSSM_KEY,
+    new_owner: *const CSSM_ACL_OWNER_PROTOTYPE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_ChangeKeyOwner(
+            csp_handle: CSSM_CSP_HANDLE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            key: *const CSSM_KEY,
+            new_owner: *const CSSM_ACL_OWNER_PROTOTYPE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_ChangeKeyOwner(csp_handle, access_cred, key, new_owner) }
+}
+
+/// # Safety
+///
+/// `owner` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_GetLoginOwner(
+    csp_handle: CSSM_CSP_HANDLE,
+    owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_GetLoginOwner(
+            csp_handle: CSSM_CSP_HANDLE,
+            owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_GetLoginOwner(csp_handle, owner) }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `new_owner` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_ChangeLoginOwner(
+    csp_handle: CSSM_CSP_HANDLE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    new_owner: *const CSSM_ACL_OWNER_PROTOTYPE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_ChangeLoginOwner(
+            csp_handle: CSSM_CSP_HANDLE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            new_owner: *const CSSM_ACL_OWNER_PROTOTYPE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_ChangeLoginOwner(csp_handle, access_cred, new_owner) }
+}
+
+/// # Safety
+///
+/// - `data_bufs` must be a valid pointer.
+/// - `signature` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_SignData(
+    cc_handle: CSSM_CC_HANDLE,
+    data_bufs: *const SecAsn1Item,
+    data_buf_count: uint32,
+    digest_algorithm: CSSM_ALGORITHMS,
+    signature: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_SignData(
+            cc_handle: CSSM_CC_HANDLE,
+            data_bufs: *const SecAsn1Item,
+            data_buf_count: uint32,
+            digest_algorithm: CSSM_ALGORITHMS,
+            signature: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_SignData(
+            cc_handle,
+            data_bufs,
+            data_buf_count,
+            digest_algorithm,
+            signature,
+        )
+    }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_SignDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_SignDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_SignDataInit(cc_handle) }
+}
+
+/// # Safety
+///
+/// `data_bufs` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_SignDataUpdate(
+    cc_handle: CSSM_CC_HANDLE,
+    data_bufs: *const SecAsn1Item,
+    data_buf_count: uint32,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_SignDataUpdate(
+            cc_handle: CSSM_CC_HANDLE,
+            data_bufs: *const SecAsn1Item,
+            data_buf_count: uint32,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_SignDataUpdate(cc_handle, data_bufs, data_buf_count) }
+}
+
+/// # Safety
+///
+/// `signature` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_SignDataFinal(
+    cc_handle: CSSM_CC_HANDLE,
+    signature: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_SignDataFinal(cc_handle: CSSM_CC_HANDLE, signature: CSSM_DATA_PTR) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_SignDataFinal(cc_handle, signature) }
+}
+
+/// # Safety
+///
+/// - `data_bufs` must be a valid pointer.
+/// - `signature` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_VerifyData(
+    cc_handle: CSSM_CC_HANDLE,
+    data_bufs: *const SecAsn1Item,
+    data_buf_count: uint32,
+    digest_algorithm: CSSM_ALGORITHMS,
+    signature: *const SecAsn1Item,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_VerifyData(
+            cc_handle: CSSM_CC_HANDLE,
+            data_bufs: *const SecAsn1Item,
+            data_buf_count: uint32,
+            digest_algorithm: CSSM_ALGORITHMS,
+            signature: *const SecAsn1Item,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_VerifyData(
+            cc_handle,
+            data_bufs,
+            data_buf_count,
+            digest_algorithm,
+            signature,
+        )
+    }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_VerifyDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_VerifyDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_VerifyDataInit(cc_handle) }
+}
+
+/// # Safety
+///
+/// `data_bufs` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_VerifyDataUpdate(
+    cc_handle: CSSM_CC_HANDLE,
+    data_bufs: *const SecAsn1Item,
+    data_buf_count: uint32,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_VerifyDataUpdate(
+            cc_handle: CSSM_CC_HANDLE,
+            data_bufs: *const SecAsn1Item,
+            data_buf_count: uint32,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_VerifyDataUpdate(cc_handle, data_bufs, data_buf_count) }
+}
+
+/// # Safety
+///
+/// `signature` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_VerifyDataFinal(
+    cc_handle: CSSM_CC_HANDLE,
+    signature: *const SecAsn1Item,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_VerifyDataFinal(
+            cc_handle: CSSM_CC_HANDLE,
+            signature: *const SecAsn1Item,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_VerifyDataFinal(cc_handle, signature) }
+}
+
+/// # Safety
+///
+/// - `data_bufs` must be a valid pointer.
+/// - `digest` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DigestData(
+    cc_handle: CSSM_CC_HANDLE,
+    data_bufs: *const SecAsn1Item,
+    data_buf_count: uint32,
+    digest: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DigestData(
+            cc_handle: CSSM_CC_HANDLE,
+            data_bufs: *const SecAsn1Item,
+            data_buf_count: uint32,
+            digest: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DigestData(cc_handle, data_bufs, data_buf_count, digest) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DigestDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DigestDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DigestDataInit(cc_handle) }
+}
+
+/// # Safety
+///
+/// `data_bufs` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DigestDataUpdate(
+    cc_handle: CSSM_CC_HANDLE,
+    data_bufs: *const SecAsn1Item,
+    data_buf_count: uint32,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DigestDataUpdate(
+            cc_handle: CSSM_CC_HANDLE,
+            data_bufs: *const SecAsn1Item,
+            data_buf_count: uint32,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DigestDataUpdate(cc_handle, data_bufs, data_buf_count) }
+}
+
+/// # Safety
+///
+/// `clonednew_cc_handle` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DigestDataClone(
+    cc_handle: CSSM_CC_HANDLE,
+    clonednew_cc_handle: *mut CSSM_CC_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DigestDataClone(
+            cc_handle: CSSM_CC_HANDLE,
+            clonednew_cc_handle: *mut CSSM_CC_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DigestDataClone(cc_handle, clonednew_cc_handle) }
+}
+
+/// # Safety
+///
+/// `digest` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DigestDataFinal(
+    cc_handle: CSSM_CC_HANDLE,
+    digest: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DigestDataFinal(cc_handle: CSSM_CC_HANDLE, digest: CSSM_DATA_PTR) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DigestDataFinal(cc_handle, digest) }
+}
+
+/// # Safety
+///
+/// - `data_bufs` must be a valid pointer.
+/// - `mac` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GenerateMac(
+    cc_handle: CSSM_CC_HANDLE,
+    data_bufs: *const SecAsn1Item,
+    data_buf_count: uint32,
+    mac: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GenerateMac(
+            cc_handle: CSSM_CC_HANDLE,
+            data_bufs: *const SecAsn1Item,
+            data_buf_count: uint32,
+            mac: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GenerateMac(cc_handle, data_bufs, data_buf_count, mac) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GenerateMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GenerateMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GenerateMacInit(cc_handle) }
+}
+
+/// # Safety
+///
+/// `data_bufs` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GenerateMacUpdate(
+    cc_handle: CSSM_CC_HANDLE,
+    data_bufs: *const SecAsn1Item,
+    data_buf_count: uint32,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GenerateMacUpdate(
+            cc_handle: CSSM_CC_HANDLE,
+            data_bufs: *const SecAsn1Item,
+            data_buf_count: uint32,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GenerateMacUpdate(cc_handle, data_bufs, data_buf_count) }
+}
+
+/// # Safety
+///
+/// `mac` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GenerateMacFinal(
+    cc_handle: CSSM_CC_HANDLE,
+    mac: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GenerateMacFinal(cc_handle: CSSM_CC_HANDLE, mac: CSSM_DATA_PTR) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GenerateMacFinal(cc_handle, mac) }
+}
+
+/// # Safety
+///
+/// - `data_bufs` must be a valid pointer.
+/// - `mac` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_VerifyMac(
+    cc_handle: CSSM_CC_HANDLE,
+    data_bufs: *const SecAsn1Item,
+    data_buf_count: uint32,
+    mac: *const SecAsn1Item,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_VerifyMac(
+            cc_handle: CSSM_CC_HANDLE,
+            data_bufs: *const SecAsn1Item,
+            data_buf_count: uint32,
+            mac: *const SecAsn1Item,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_VerifyMac(cc_handle, data_bufs, data_buf_count, mac) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_VerifyMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_VerifyMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_VerifyMacInit(cc_handle) }
+}
+
+/// # Safety
+///
+/// `data_bufs` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_VerifyMacUpdate(
+    cc_handle: CSSM_CC_HANDLE,
+    data_bufs: *const SecAsn1Item,
+    data_buf_count: uint32,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_VerifyMacUpdate(
+            cc_handle: CSSM_CC_HANDLE,
+            data_bufs: *const SecAsn1Item,
+            data_buf_count: uint32,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_VerifyMacUpdate(cc_handle, data_bufs, data_buf_count) }
+}
+
+/// # Safety
+///
+/// `mac` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_VerifyMacFinal(
+    cc_handle: CSSM_CC_HANDLE,
+    mac: *const SecAsn1Item,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_VerifyMacFinal(cc_handle: CSSM_CC_HANDLE, mac: *const SecAsn1Item) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_VerifyMacFinal(cc_handle, mac) }
+}
+
+/// # Safety
+///
+/// `data_block_sizes` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_QuerySize(
+    cc_handle: CSSM_CC_HANDLE,
+    encrypt: CSSM_BOOL,
+    query_size_count: uint32,
+    data_block_sizes: CSSM_QUERY_SIZE_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_QuerySize(
+            cc_handle: CSSM_CC_HANDLE,
+            encrypt: CSSM_BOOL,
+            query_size_count: uint32,
+            data_block_sizes: CSSM_QUERY_SIZE_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_QuerySize(cc_handle, encrypt, query_size_count, data_block_sizes) }
+}
+
+/// # Safety
+///
+/// - `clear_bufs` must be a valid pointer.
+/// - `cipher_bufs` must be a valid pointer.
+/// - `bytes_encrypted` must be a valid pointer.
+/// - `rem_data` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_EncryptData(
+    cc_handle: CSSM_CC_HANDLE,
+    clear_bufs: *const SecAsn1Item,
+    clear_buf_count: uint32,
+    cipher_bufs: CSSM_DATA_PTR,
+    cipher_buf_count: uint32,
+    bytes_encrypted: *mut CSSM_SIZE,
+    rem_data: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_EncryptData(
+            cc_handle: CSSM_CC_HANDLE,
+            clear_bufs: *const SecAsn1Item,
+            clear_buf_count: uint32,
+            cipher_bufs: CSSM_DATA_PTR,
+            cipher_buf_count: uint32,
+            bytes_encrypted: *mut CSSM_SIZE,
+            rem_data: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_EncryptData(
+            cc_handle,
+            clear_bufs,
+            clear_buf_count,
+            cipher_bufs,
+            cipher_buf_count,
+            bytes_encrypted,
+            rem_data,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `clear_bufs` must be a valid pointer.
+/// - `cipher_bufs` must be a valid pointer.
+/// - `bytes_encrypted` must be a valid pointer.
+/// - `rem_data` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_EncryptDataP(
+    cc_handle: CSSM_CC_HANDLE,
+    clear_bufs: *const SecAsn1Item,
+    clear_buf_count: uint32,
+    cipher_bufs: CSSM_DATA_PTR,
+    cipher_buf_count: uint32,
+    bytes_encrypted: *mut CSSM_SIZE,
+    rem_data: CSSM_DATA_PTR,
+    privilege: CSSM_PRIVILEGE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_EncryptDataP(
+            cc_handle: CSSM_CC_HANDLE,
+            clear_bufs: *const SecAsn1Item,
+            clear_buf_count: uint32,
+            cipher_bufs: CSSM_DATA_PTR,
+            cipher_buf_count: uint32,
+            bytes_encrypted: *mut CSSM_SIZE,
+            rem_data: CSSM_DATA_PTR,
+            privilege: CSSM_PRIVILEGE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_EncryptDataP(
+            cc_handle,
+            clear_bufs,
+            clear_buf_count,
+            cipher_bufs,
+            cipher_buf_count,
+            bytes_encrypted,
+            rem_data,
+            privilege,
+        )
+    }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_EncryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_EncryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_EncryptDataInit(cc_handle) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_EncryptDataInitP(
+    cc_handle: CSSM_CC_HANDLE,
+    privilege: CSSM_PRIVILEGE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_EncryptDataInitP(
+            cc_handle: CSSM_CC_HANDLE,
+            privilege: CSSM_PRIVILEGE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_EncryptDataInitP(cc_handle, privilege) }
+}
+
+/// # Safety
+///
+/// - `clear_bufs` must be a valid pointer.
+/// - `cipher_bufs` must be a valid pointer.
+/// - `bytes_encrypted` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_EncryptDataUpdate(
+    cc_handle: CSSM_CC_HANDLE,
+    clear_bufs: *const SecAsn1Item,
+    clear_buf_count: uint32,
+    cipher_bufs: CSSM_DATA_PTR,
+    cipher_buf_count: uint32,
+    bytes_encrypted: *mut CSSM_SIZE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_EncryptDataUpdate(
+            cc_handle: CSSM_CC_HANDLE,
+            clear_bufs: *const SecAsn1Item,
+            clear_buf_count: uint32,
+            cipher_bufs: CSSM_DATA_PTR,
+            cipher_buf_count: uint32,
+            bytes_encrypted: *mut CSSM_SIZE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_EncryptDataUpdate(
+            cc_handle,
+            clear_bufs,
+            clear_buf_count,
+            cipher_bufs,
+            cipher_buf_count,
+            bytes_encrypted,
+        )
+    }
+}
+
+/// # Safety
+///
+/// `rem_data` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_EncryptDataFinal(
+    cc_handle: CSSM_CC_HANDLE,
+    rem_data: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_EncryptDataFinal(cc_handle: CSSM_CC_HANDLE, rem_data: CSSM_DATA_PTR)
+            -> CSSM_RETURN;
+    }
+    unsafe { CSSM_EncryptDataFinal(cc_handle, rem_data) }
+}
+
+/// # Safety
+///
+/// - `cipher_bufs` must be a valid pointer.
+/// - `clear_bufs` must be a valid pointer.
+/// - `bytes_decrypted` must be a valid pointer.
+/// - `rem_data` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DecryptData(
+    cc_handle: CSSM_CC_HANDLE,
+    cipher_bufs: *const SecAsn1Item,
+    cipher_buf_count: uint32,
+    clear_bufs: CSSM_DATA_PTR,
+    clear_buf_count: uint32,
+    bytes_decrypted: *mut CSSM_SIZE,
+    rem_data: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DecryptData(
+            cc_handle: CSSM_CC_HANDLE,
+            cipher_bufs: *const SecAsn1Item,
+            cipher_buf_count: uint32,
+            clear_bufs: CSSM_DATA_PTR,
+            clear_buf_count: uint32,
+            bytes_decrypted: *mut CSSM_SIZE,
+            rem_data: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_DecryptData(
+            cc_handle,
+            cipher_bufs,
+            cipher_buf_count,
+            clear_bufs,
+            clear_buf_count,
+            bytes_decrypted,
+            rem_data,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `cipher_bufs` must be a valid pointer.
+/// - `clear_bufs` must be a valid pointer.
+/// - `bytes_decrypted` must be a valid pointer.
+/// - `rem_data` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DecryptDataP(
+    cc_handle: CSSM_CC_HANDLE,
+    cipher_bufs: *const SecAsn1Item,
+    cipher_buf_count: uint32,
+    clear_bufs: CSSM_DATA_PTR,
+    clear_buf_count: uint32,
+    bytes_decrypted: *mut CSSM_SIZE,
+    rem_data: CSSM_DATA_PTR,
+    privilege: CSSM_PRIVILEGE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DecryptDataP(
+            cc_handle: CSSM_CC_HANDLE,
+            cipher_bufs: *const SecAsn1Item,
+            cipher_buf_count: uint32,
+            clear_bufs: CSSM_DATA_PTR,
+            clear_buf_count: uint32,
+            bytes_decrypted: *mut CSSM_SIZE,
+            rem_data: CSSM_DATA_PTR,
+            privilege: CSSM_PRIVILEGE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_DecryptDataP(
+            cc_handle,
+            cipher_bufs,
+            cipher_buf_count,
+            clear_bufs,
+            clear_buf_count,
+            bytes_decrypted,
+            rem_data,
+            privilege,
+        )
+    }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DecryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DecryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DecryptDataInit(cc_handle) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DecryptDataInitP(
+    cc_handle: CSSM_CC_HANDLE,
+    privilege: CSSM_PRIVILEGE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DecryptDataInitP(
+            cc_handle: CSSM_CC_HANDLE,
+            privilege: CSSM_PRIVILEGE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DecryptDataInitP(cc_handle, privilege) }
+}
+
+/// # Safety
+///
+/// - `cipher_bufs` must be a valid pointer.
+/// - `clear_bufs` must be a valid pointer.
+/// - `bytes_decrypted` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DecryptDataUpdate(
+    cc_handle: CSSM_CC_HANDLE,
+    cipher_bufs: *const SecAsn1Item,
+    cipher_buf_count: uint32,
+    clear_bufs: CSSM_DATA_PTR,
+    clear_buf_count: uint32,
+    bytes_decrypted: *mut CSSM_SIZE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DecryptDataUpdate(
+            cc_handle: CSSM_CC_HANDLE,
+            cipher_bufs: *const SecAsn1Item,
+            cipher_buf_count: uint32,
+            clear_bufs: CSSM_DATA_PTR,
+            clear_buf_count: uint32,
+            bytes_decrypted: *mut CSSM_SIZE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_DecryptDataUpdate(
+            cc_handle,
+            cipher_bufs,
+            cipher_buf_count,
+            clear_bufs,
+            clear_buf_count,
+            bytes_decrypted,
+        )
+    }
+}
+
+/// # Safety
+///
+/// `rem_data` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DecryptDataFinal(
+    cc_handle: CSSM_CC_HANDLE,
+    rem_data: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DecryptDataFinal(cc_handle: CSSM_CC_HANDLE, rem_data: CSSM_DATA_PTR)
+            -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DecryptDataFinal(cc_handle, rem_data) }
+}
+
+/// # Safety
+///
+/// - `key` must be a valid pointer.
+/// - `key_size` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_QueryKeySizeInBits(
+    csp_handle: CSSM_CSP_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    key: *const CSSM_KEY,
+    key_size: CSSM_KEY_SIZE_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_QueryKeySizeInBits(
+            csp_handle: CSSM_CSP_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            key: *const CSSM_KEY,
+            key_size: CSSM_KEY_SIZE_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_QueryKeySizeInBits(csp_handle, cc_handle, key, key_size) }
+}
+
+/// # Safety
+///
+/// - `key_label` must be a valid pointer.
+/// - `cred_and_acl_entry` must be a valid pointer.
+/// - `key` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GenerateKey(
+    cc_handle: CSSM_CC_HANDLE,
+    key_usage: uint32,
+    key_attr: uint32,
+    key_label: *const SecAsn1Item,
+    cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+    key: CSSM_KEY_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GenerateKey(
+            cc_handle: CSSM_CC_HANDLE,
+            key_usage: uint32,
+            key_attr: uint32,
+            key_label: *const SecAsn1Item,
+            cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+            key: CSSM_KEY_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_GenerateKey(
+            cc_handle,
+            key_usage,
+            key_attr,
+            key_label,
+            cred_and_acl_entry,
+            key,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `key_label` must be a valid pointer.
+/// - `cred_and_acl_entry` must be a valid pointer.
+/// - `key` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GenerateKeyP(
+    cc_handle: CSSM_CC_HANDLE,
+    key_usage: uint32,
+    key_attr: uint32,
+    key_label: *const SecAsn1Item,
+    cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+    key: CSSM_KEY_PTR,
+    privilege: CSSM_PRIVILEGE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GenerateKeyP(
+            cc_handle: CSSM_CC_HANDLE,
+            key_usage: uint32,
+            key_attr: uint32,
+            key_label: *const SecAsn1Item,
+            cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+            key: CSSM_KEY_PTR,
+            privilege: CSSM_PRIVILEGE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_GenerateKeyP(
+            cc_handle,
+            key_usage,
+            key_attr,
+            key_label,
+            cred_and_acl_entry,
+            key,
+            privilege,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `public_key_label` must be a valid pointer.
+/// - `public_key` must be a valid pointer.
+/// - `private_key_label` must be a valid pointer.
+/// - `cred_and_acl_entry` must be a valid pointer.
+/// - `private_key` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GenerateKeyPair(
+    cc_handle: CSSM_CC_HANDLE,
+    public_key_usage: uint32,
+    public_key_attr: uint32,
+    public_key_label: *const SecAsn1Item,
+    public_key: CSSM_KEY_PTR,
+    private_key_usage: uint32,
+    private_key_attr: uint32,
+    private_key_label: *const SecAsn1Item,
+    cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+    private_key: CSSM_KEY_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GenerateKeyPair(
+            cc_handle: CSSM_CC_HANDLE,
+            public_key_usage: uint32,
+            public_key_attr: uint32,
+            public_key_label: *const SecAsn1Item,
+            public_key: CSSM_KEY_PTR,
+            private_key_usage: uint32,
+            private_key_attr: uint32,
+            private_key_label: *const SecAsn1Item,
+            cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+            private_key: CSSM_KEY_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_GenerateKeyPair(
+            cc_handle,
+            public_key_usage,
+            public_key_attr,
+            public_key_label,
+            public_key,
+            private_key_usage,
+            private_key_attr,
+            private_key_label,
+            cred_and_acl_entry,
+            private_key,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `public_key_label` must be a valid pointer.
+/// - `public_key` must be a valid pointer.
+/// - `private_key_label` must be a valid pointer.
+/// - `cred_and_acl_entry` must be a valid pointer.
+/// - `private_key` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GenerateKeyPairP(
+    cc_handle: CSSM_CC_HANDLE,
+    public_key_usage: uint32,
+    public_key_attr: uint32,
+    public_key_label: *const SecAsn1Item,
+    public_key: CSSM_KEY_PTR,
+    private_key_usage: uint32,
+    private_key_attr: uint32,
+    private_key_label: *const SecAsn1Item,
+    cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+    private_key: CSSM_KEY_PTR,
+    privilege: CSSM_PRIVILEGE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GenerateKeyPairP(
+            cc_handle: CSSM_CC_HANDLE,
+            public_key_usage: uint32,
+            public_key_attr: uint32,
+            public_key_label: *const SecAsn1Item,
+            public_key: CSSM_KEY_PTR,
+            private_key_usage: uint32,
+            private_key_attr: uint32,
+            private_key_label: *const SecAsn1Item,
+            cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+            private_key: CSSM_KEY_PTR,
+            privilege: CSSM_PRIVILEGE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_GenerateKeyPairP(
+            cc_handle,
+            public_key_usage,
+            public_key_attr,
+            public_key_label,
+            public_key,
+            private_key_usage,
+            private_key_attr,
+            private_key_label,
+            cred_and_acl_entry,
+            private_key,
+            privilege,
+        )
+    }
+}
+
+/// # Safety
+///
+/// `random_number` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GenerateRandom(
+    cc_handle: CSSM_CC_HANDLE,
+    random_number: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GenerateRandom(
+            cc_handle: CSSM_CC_HANDLE,
+            random_number: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GenerateRandom(cc_handle, random_number) }
+}
+
+/// # Safety
+///
+/// - `public_key` must be a valid pointer.
+/// - `private_key` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_ObtainPrivateKeyFromPublicKey(
+    csp_handle: CSSM_CSP_HANDLE,
+    public_key: *const CSSM_KEY,
+    private_key: CSSM_KEY_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_ObtainPrivateKeyFromPublicKey(
+            csp_handle: CSSM_CSP_HANDLE,
+            public_key: *const CSSM_KEY,
+            private_key: CSSM_KEY_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_ObtainPrivateKeyFromPublicKey(csp_handle, public_key, private_key) }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `descriptive_data` must be a valid pointer.
+/// - `wrapped_key` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_WrapKey(
+    cc_handle: CSSM_CC_HANDLE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    key: *const CSSM_KEY,
+    descriptive_data: *const SecAsn1Item,
+    wrapped_key: CSSM_WRAP_KEY_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_WrapKey(
+            cc_handle: CSSM_CC_HANDLE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            key: *const CSSM_KEY,
+            descriptive_data: *const SecAsn1Item,
+            wrapped_key: CSSM_WRAP_KEY_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_WrapKey(cc_handle, access_cred, key, descriptive_data, wrapped_key) }
+}
+
+/// # Safety
+///
+/// - `public_key` must be a valid pointer.
+/// - `wrapped_key` must be a valid pointer.
+/// - `key_label` must be a valid pointer.
+/// - `cred_and_acl_entry` must be a valid pointer.
+/// - `unwrapped_key` must be a valid pointer.
+/// - `descriptive_data` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_UnwrapKey(
+    cc_handle: CSSM_CC_HANDLE,
+    public_key: *const CSSM_KEY,
+    wrapped_key: *const CSSM_WRAP_KEY,
+    key_usage: uint32,
+    key_attr: uint32,
+    key_label: *const SecAsn1Item,
+    cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+    unwrapped_key: CSSM_KEY_PTR,
+    descriptive_data: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_UnwrapKey(
+            cc_handle: CSSM_CC_HANDLE,
+            public_key: *const CSSM_KEY,
+            wrapped_key: *const CSSM_WRAP_KEY,
+            key_usage: uint32,
+            key_attr: uint32,
+            key_label: *const SecAsn1Item,
+            cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+            unwrapped_key: CSSM_KEY_PTR,
+            descriptive_data: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_UnwrapKey(
+            cc_handle,
+            public_key,
+            wrapped_key,
+            key_usage,
+            key_attr,
+            key_label,
+            cred_and_acl_entry,
+            unwrapped_key,
+            descriptive_data,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `key` must be a valid pointer.
+/// - `descriptive_data` must be a valid pointer.
+/// - `wrapped_key` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_WrapKeyP(
+    cc_handle: CSSM_CC_HANDLE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    key: *const CSSM_KEY,
+    descriptive_data: *const SecAsn1Item,
+    wrapped_key: CSSM_WRAP_KEY_PTR,
+    privilege: CSSM_PRIVILEGE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_WrapKeyP(
+            cc_handle: CSSM_CC_HANDLE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            key: *const CSSM_KEY,
+            descriptive_data: *const SecAsn1Item,
+            wrapped_key: CSSM_WRAP_KEY_PTR,
+            privilege: CSSM_PRIVILEGE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_WrapKeyP(
+            cc_handle,
+            access_cred,
+            key,
+            descriptive_data,
+            wrapped_key,
+            privilege,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `public_key` must be a valid pointer.
+/// - `wrapped_key` must be a valid pointer.
+/// - `key_label` must be a valid pointer.
+/// - `cred_and_acl_entry` must be a valid pointer.
+/// - `unwrapped_key` must be a valid pointer.
+/// - `descriptive_data` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_UnwrapKeyP(
+    cc_handle: CSSM_CC_HANDLE,
+    public_key: *const CSSM_KEY,
+    wrapped_key: *const CSSM_WRAP_KEY,
+    key_usage: uint32,
+    key_attr: uint32,
+    key_label: *const SecAsn1Item,
+    cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+    unwrapped_key: CSSM_KEY_PTR,
+    descriptive_data: CSSM_DATA_PTR,
+    privilege: CSSM_PRIVILEGE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_UnwrapKeyP(
+            cc_handle: CSSM_CC_HANDLE,
+            public_key: *const CSSM_KEY,
+            wrapped_key: *const CSSM_WRAP_KEY,
+            key_usage: uint32,
+            key_attr: uint32,
+            key_label: *const SecAsn1Item,
+            cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+            unwrapped_key: CSSM_KEY_PTR,
+            descriptive_data: CSSM_DATA_PTR,
+            privilege: CSSM_PRIVILEGE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_UnwrapKeyP(
+            cc_handle,
+            public_key,
+            wrapped_key,
+            key_usage,
+            key_attr,
+            key_label,
+            cred_and_acl_entry,
+            unwrapped_key,
+            descriptive_data,
+            privilege,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `param` must be a valid pointer.
+/// - `key_label` must be a valid pointer.
+/// - `cred_and_acl_entry` must be a valid pointer.
+/// - `derived_key` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DeriveKey(
+    cc_handle: CSSM_CC_HANDLE,
+    param: CSSM_DATA_PTR,
+    key_usage: uint32,
+    key_attr: uint32,
+    key_label: *const SecAsn1Item,
+    cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+    derived_key: CSSM_KEY_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DeriveKey(
+            cc_handle: CSSM_CC_HANDLE,
+            param: CSSM_DATA_PTR,
+            key_usage: uint32,
+            key_attr: uint32,
+            key_label: *const SecAsn1Item,
+            cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+            derived_key: CSSM_KEY_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_DeriveKey(
+            cc_handle,
+            param,
+            key_usage,
+            key_attr,
+            key_label,
+            cred_and_acl_entry,
+            derived_key,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `key_ptr` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_FreeKey(
+    csp_handle: CSSM_CSP_HANDLE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    key_ptr: CSSM_KEY_PTR,
+    delete: CSSM_BOOL,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_FreeKey(
+            csp_handle: CSSM_CSP_HANDLE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            key_ptr: CSSM_KEY_PTR,
+            delete: CSSM_BOOL,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_FreeKey(csp_handle, access_cred, key_ptr, delete) }
+}
+
+/// # Safety
+///
+/// `param` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GenerateAlgorithmParams(
+    cc_handle: CSSM_CC_HANDLE,
+    param_bits: uint32,
+    param: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GenerateAlgorithmParams(
+            cc_handle: CSSM_CC_HANDLE,
+            param_bits: uint32,
+            param: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GenerateAlgorithmParams(cc_handle, param_bits, param) }
+}
+
+/// # Safety
+///
+/// `statistics` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_GetOperationalStatistics(
+    csp_handle: CSSM_CSP_HANDLE,
+    statistics: *mut CSSM_CSP_OPERATIONAL_STATISTICS,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_GetOperationalStatistics(
+            csp_handle: CSSM_CSP_HANDLE,
+            statistics: *mut CSSM_CSP_OPERATIONAL_STATISTICS,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_GetOperationalStatistics(csp_handle, statistics) }
+}
+
+/// # Safety
+///
+/// `time_data` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_GetTimeValue(
+    csp_handle: CSSM_CSP_HANDLE,
+    time_algorithm: CSSM_ALGORITHMS,
+    time_data: *mut SecAsn1Item,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_GetTimeValue(
+            csp_handle: CSSM_CSP_HANDLE,
+            time_algorithm: CSSM_ALGORITHMS,
+            time_data: *mut SecAsn1Item,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_GetTimeValue(csp_handle, time_algorithm, time_data) }
+}
+
+/// # Safety
+///
+/// `unique_id` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_RetrieveUniqueId(
+    csp_handle: CSSM_CSP_HANDLE,
+    unique_id: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_RetrieveUniqueId(
+            csp_handle: CSSM_CSP_HANDLE,
+            unique_id: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_RetrieveUniqueId(csp_handle, unique_id) }
+}
+
+/// # Safety
+///
+/// `counter` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_RetrieveCounter(
+    csp_handle: CSSM_CSP_HANDLE,
+    counter: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_RetrieveCounter(csp_handle: CSSM_CSP_HANDLE, counter: CSSM_DATA_PTR)
+            -> CSSM_RETURN;
+    }
+    unsafe { CSSM_RetrieveCounter(csp_handle, counter) }
+}
+
+/// # Safety
+///
+/// `device_cert` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_VerifyDevice(
+    csp_handle: CSSM_CSP_HANDLE,
+    device_cert: *const SecAsn1Item,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_VerifyDevice(
+            csp_handle: CSSM_CSP_HANDLE,
+            device_cert: *const SecAsn1Item,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_VerifyDevice(csp_handle, device_cert) }
+}
+
+/// # Safety
+///
+/// - `in_data` must be a valid pointer.
+/// - `out_data` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CSP_PassThrough(
+    cc_handle: CSSM_CC_HANDLE,
+    pass_through_id: uint32,
+    in_data: *const c_void,
+    out_data: *mut *mut c_void,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CSP_PassThrough(
+            cc_handle: CSSM_CC_HANDLE,
+            pass_through_id: uint32,
+            in_data: *const c_void,
+            out_data: *mut *mut c_void,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CSP_PassThrough(cc_handle, pass_through_id, in_data, out_data) }
+}
+
+/// # Safety
+///
+/// - `preferred_authority` must be a valid pointer.
+/// - `request_input` must be a valid pointer.
+/// - `caller_auth_context` must be a valid pointer.
+/// - `estimated_time` must be a valid pointer.
+/// - `reference_identifier` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_SubmitCredRequest(
+    tp_handle: CSSM_TP_HANDLE,
+    preferred_authority: *const CSSM_TP_AUTHORITY_ID,
+    request_type: CSSM_TP_AUTHORITY_REQUEST_TYPE,
+    request_input: *const CSSM_TP_REQUEST_SET,
+    caller_auth_context: *const CSSM_TP_CALLERAUTH_CONTEXT,
+    estimated_time: *mut sint32,
+    reference_identifier: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_SubmitCredRequest(
+            tp_handle: CSSM_TP_HANDLE,
+            preferred_authority: *const CSSM_TP_AUTHORITY_ID,
+            request_type: CSSM_TP_AUTHORITY_REQUEST_TYPE,
+            request_input: *const CSSM_TP_REQUEST_SET,
+            caller_auth_context: *const CSSM_TP_CALLERAUTH_CONTEXT,
+            estimated_time: *mut sint32,
+            reference_identifier: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_SubmitCredRequest(
+            tp_handle,
+            preferred_authority,
+            request_type,
+            request_input,
+            caller_auth_context,
+            estimated_time,
+            reference_identifier,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `reference_identifier` must be a valid pointer.
+/// - `caller_auth_credentials` must be a valid pointer.
+/// - `estimated_time` must be a valid pointer.
+/// - `confirmation_required` must be a valid pointer.
+/// - `retrieve_output` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_RetrieveCredResult(
+    tp_handle: CSSM_TP_HANDLE,
+    reference_identifier: *const SecAsn1Item,
+    caller_auth_credentials: *const CSSM_TP_CALLERAUTH_CONTEXT,
+    estimated_time: *mut sint32,
+    confirmation_required: *mut CSSM_BOOL,
+    retrieve_output: *mut CSSM_TP_RESULT_SET_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_RetrieveCredResult(
+            tp_handle: CSSM_TP_HANDLE,
+            reference_identifier: *const SecAsn1Item,
+            caller_auth_credentials: *const CSSM_TP_CALLERAUTH_CONTEXT,
+            estimated_time: *mut sint32,
+            confirmation_required: *mut CSSM_BOOL,
+            retrieve_output: *mut CSSM_TP_RESULT_SET_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_RetrieveCredResult(
+            tp_handle,
+            reference_identifier,
+            caller_auth_credentials,
+            estimated_time,
+            confirmation_required,
+            retrieve_output,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `reference_identifier` must be a valid pointer.
+/// - `caller_auth_credentials` must be a valid pointer.
+/// - `responses` must be a valid pointer.
+/// - `preferred_authority` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_ConfirmCredResult(
+    tp_handle: CSSM_TP_HANDLE,
+    reference_identifier: *const SecAsn1Item,
+    caller_auth_credentials: *const CSSM_TP_CALLERAUTH_CONTEXT,
+    responses: *const CSSM_TP_CONFIRM_RESPONSE,
+    preferred_authority: *const CSSM_TP_AUTHORITY_ID,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_ConfirmCredResult(
+            tp_handle: CSSM_TP_HANDLE,
+            reference_identifier: *const SecAsn1Item,
+            caller_auth_credentials: *const CSSM_TP_CALLERAUTH_CONTEXT,
+            responses: *const CSSM_TP_CONFIRM_RESPONSE,
+            preferred_authority: *const CSSM_TP_AUTHORITY_ID,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_ConfirmCredResult(
+            tp_handle,
+            reference_identifier,
+            caller_auth_credentials,
+            responses,
+            preferred_authority,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `reference_identifier` must be a valid pointer.
+/// - `responses` must be a valid pointer.
+/// - `elapsed_time` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_ReceiveConfirmation(
+    tp_handle: CSSM_TP_HANDLE,
+    reference_identifier: *const SecAsn1Item,
+    responses: *mut CSSM_TP_CONFIRM_RESPONSE_PTR,
+    elapsed_time: *mut sint32,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_ReceiveConfirmation(
+            tp_handle: CSSM_TP_HANDLE,
+            reference_identifier: *const SecAsn1Item,
+            responses: *mut CSSM_TP_CONFIRM_RESPONSE_PTR,
+            elapsed_time: *mut sint32,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_TP_ReceiveConfirmation(tp_handle, reference_identifier, responses, elapsed_time) }
+}
+
+/// # Safety
+///
+/// - `cert_group` must be a valid pointer.
+/// - `cred_and_acl_entry` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CertReclaimKey(
+    tp_handle: CSSM_TP_HANDLE,
+    cert_group: *const CSSM_CERTGROUP,
+    cert_index: uint32,
+    key_cache_handle: CSSM_LONG_HANDLE,
+    csp_handle: CSSM_CSP_HANDLE,
+    cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CertReclaimKey(
+            tp_handle: CSSM_TP_HANDLE,
+            cert_group: *const CSSM_CERTGROUP,
+            cert_index: uint32,
+            key_cache_handle: CSSM_LONG_HANDLE,
+            csp_handle: CSSM_CSP_HANDLE,
+            cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CertReclaimKey(
+            tp_handle,
+            cert_group,
+            cert_index,
+            key_cache_handle,
+            csp_handle,
+            cred_and_acl_entry,
+        )
+    }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CertReclaimAbort(
+    tp_handle: CSSM_TP_HANDLE,
+    key_cache_handle: CSSM_LONG_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CertReclaimAbort(
+            tp_handle: CSSM_TP_HANDLE,
+            key_cache_handle: CSSM_LONG_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_TP_CertReclaimAbort(tp_handle, key_cache_handle) }
+}
+
+/// # Safety
+///
+/// - `preferred_authority` must be a valid pointer.
+/// - `blank_form` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_FormRequest(
+    tp_handle: CSSM_TP_HANDLE,
+    preferred_authority: *const CSSM_TP_AUTHORITY_ID,
+    form_type: CSSM_TP_FORM_TYPE,
+    blank_form: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_FormRequest(
+            tp_handle: CSSM_TP_HANDLE,
+            preferred_authority: *const CSSM_TP_AUTHORITY_ID,
+            form_type: CSSM_TP_FORM_TYPE,
+            blank_form: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_TP_FormRequest(tp_handle, preferred_authority, form_type, blank_form) }
+}
+
+/// # Safety
+///
+/// - `form` must be a valid pointer.
+/// - `clearance_authority` must be a valid pointer.
+/// - `represented_authority` must be a valid pointer.
+/// - `credentials` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_FormSubmit(
+    tp_handle: CSSM_TP_HANDLE,
+    form_type: CSSM_TP_FORM_TYPE,
+    form: *const SecAsn1Item,
+    clearance_authority: *const CSSM_TP_AUTHORITY_ID,
+    represented_authority: *const CSSM_TP_AUTHORITY_ID,
+    credentials: CSSM_ACCESS_CREDENTIALS_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_FormSubmit(
+            tp_handle: CSSM_TP_HANDLE,
+            form_type: CSSM_TP_FORM_TYPE,
+            form: *const SecAsn1Item,
+            clearance_authority: *const CSSM_TP_AUTHORITY_ID,
+            represented_authority: *const CSSM_TP_AUTHORITY_ID,
+            credentials: CSSM_ACCESS_CREDENTIALS_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_FormSubmit(
+            tp_handle,
+            form_type,
+            form,
+            clearance_authority,
+            represented_authority,
+            credentials,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `cert_group_to_be_verified` must be a valid pointer.
+/// - `verify_context` must be a valid pointer.
+/// - `verify_context_result` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupVerify(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    csp_handle: CSSM_CSP_HANDLE,
+    cert_group_to_be_verified: *const CSSM_CERTGROUP,
+    verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+    verify_context_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CertGroupVerify(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            csp_handle: CSSM_CSP_HANDLE,
+            cert_group_to_be_verified: *const CSSM_CERTGROUP,
+            verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+            verify_context_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CertGroupVerify(
+            tp_handle,
+            cl_handle,
+            csp_handle,
+            cert_group_to_be_verified,
+            verify_context,
+            verify_context_result,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `cert_fields` must be a valid pointer.
+/// - `cert_template` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CertCreateTemplate(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    number_of_fields: uint32,
+    cert_fields: *const CSSM_FIELD,
+    cert_template: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CertCreateTemplate(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            number_of_fields: uint32,
+            cert_fields: *const CSSM_FIELD,
+            cert_template: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CertCreateTemplate(
+            tp_handle,
+            cl_handle,
+            number_of_fields,
+            cert_fields,
+            cert_template,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `cert_template` must be a valid pointer.
+/// - `number_of_fields` must be a valid pointer.
+/// - `cert_fields` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CertGetAllTemplateFields(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    cert_template: *const SecAsn1Item,
+    number_of_fields: *mut uint32,
+    cert_fields: *mut CSSM_FIELD_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CertGetAllTemplateFields(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            cert_template: *const SecAsn1Item,
+            number_of_fields: *mut uint32,
+            cert_fields: *mut CSSM_FIELD_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CertGetAllTemplateFields(
+            tp_handle,
+            cl_handle,
+            cert_template,
+            number_of_fields,
+            cert_fields,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `cert_template_to_be_signed` must be a valid pointer.
+/// - `signer_cert_group` must be a valid pointer.
+/// - `signer_verify_context` must be a valid pointer.
+/// - `signer_verify_result` must be a valid pointer.
+/// - `signed_cert` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CertSign(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    cert_template_to_be_signed: *const SecAsn1Item,
+    signer_cert_group: *const CSSM_CERTGROUP,
+    signer_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+    signer_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    signed_cert: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CertSign(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            cert_template_to_be_signed: *const SecAsn1Item,
+            signer_cert_group: *const CSSM_CERTGROUP,
+            signer_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+            signer_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+            signed_cert: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CertSign(
+            tp_handle,
+            cl_handle,
+            cc_handle,
+            cert_template_to_be_signed,
+            signer_cert_group,
+            signer_verify_context,
+            signer_verify_result,
+            signed_cert,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `crl_to_be_verified` must be a valid pointer.
+/// - `signer_cert_group` must be a valid pointer.
+/// - `verify_context` must be a valid pointer.
+/// - `revoker_verify_result` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CrlVerify(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    csp_handle: CSSM_CSP_HANDLE,
+    crl_to_be_verified: *const CSSM_ENCODED_CRL,
+    signer_cert_group: *const CSSM_CERTGROUP,
+    verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+    revoker_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CrlVerify(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            csp_handle: CSSM_CSP_HANDLE,
+            crl_to_be_verified: *const CSSM_ENCODED_CRL,
+            signer_cert_group: *const CSSM_CERTGROUP,
+            verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+            revoker_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CrlVerify(
+            tp_handle,
+            cl_handle,
+            csp_handle,
+            crl_to_be_verified,
+            signer_cert_group,
+            verify_context,
+            revoker_verify_result,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `crl_fields` must be a valid pointer.
+/// - `new_crl_template` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CrlCreateTemplate(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    number_of_fields: uint32,
+    crl_fields: *const CSSM_FIELD,
+    new_crl_template: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CrlCreateTemplate(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            number_of_fields: uint32,
+            crl_fields: *const CSSM_FIELD,
+            new_crl_template: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CrlCreateTemplate(
+            tp_handle,
+            cl_handle,
+            number_of_fields,
+            crl_fields,
+            new_crl_template,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `old_crl_template` must be a valid pointer.
+/// - `cert_group_to_be_revoked` must be a valid pointer.
+/// - `revoker_cert_group` must be a valid pointer.
+/// - `revoker_verify_context` must be a valid pointer.
+/// - `revoker_verify_result` must be a valid pointer.
+/// - `new_crl_template` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CertRevoke(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    csp_handle: CSSM_CSP_HANDLE,
+    old_crl_template: *const SecAsn1Item,
+    cert_group_to_be_revoked: *const CSSM_CERTGROUP,
+    revoker_cert_group: *const CSSM_CERTGROUP,
+    revoker_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+    revoker_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    reason: CSSM_TP_CERTCHANGE_REASON,
+    new_crl_template: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CertRevoke(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            csp_handle: CSSM_CSP_HANDLE,
+            old_crl_template: *const SecAsn1Item,
+            cert_group_to_be_revoked: *const CSSM_CERTGROUP,
+            revoker_cert_group: *const CSSM_CERTGROUP,
+            revoker_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+            revoker_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+            reason: CSSM_TP_CERTCHANGE_REASON,
+            new_crl_template: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CertRevoke(
+            tp_handle,
+            cl_handle,
+            csp_handle,
+            old_crl_template,
+            cert_group_to_be_revoked,
+            revoker_cert_group,
+            revoker_verify_context,
+            revoker_verify_result,
+            reason,
+            new_crl_template,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `old_crl_template` must be a valid pointer.
+/// - `cert_group_to_be_removed` must be a valid pointer.
+/// - `revoker_cert_group` must be a valid pointer.
+/// - `revoker_verify_context` must be a valid pointer.
+/// - `revoker_verify_result` must be a valid pointer.
+/// - `new_crl_template` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CertRemoveFromCrlTemplate(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    csp_handle: CSSM_CSP_HANDLE,
+    old_crl_template: *const SecAsn1Item,
+    cert_group_to_be_removed: *const CSSM_CERTGROUP,
+    revoker_cert_group: *const CSSM_CERTGROUP,
+    revoker_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+    revoker_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    new_crl_template: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CertRemoveFromCrlTemplate(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            csp_handle: CSSM_CSP_HANDLE,
+            old_crl_template: *const SecAsn1Item,
+            cert_group_to_be_removed: *const CSSM_CERTGROUP,
+            revoker_cert_group: *const CSSM_CERTGROUP,
+            revoker_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+            revoker_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+            new_crl_template: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CertRemoveFromCrlTemplate(
+            tp_handle,
+            cl_handle,
+            csp_handle,
+            old_crl_template,
+            cert_group_to_be_removed,
+            revoker_cert_group,
+            revoker_verify_context,
+            revoker_verify_result,
+            new_crl_template,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `crl_to_be_signed` must be a valid pointer.
+/// - `signer_cert_group` must be a valid pointer.
+/// - `signer_verify_context` must be a valid pointer.
+/// - `signer_verify_result` must be a valid pointer.
+/// - `signed_crl` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CrlSign(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    crl_to_be_signed: *const CSSM_ENCODED_CRL,
+    signer_cert_group: *const CSSM_CERTGROUP,
+    signer_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+    signer_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    signed_crl: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CrlSign(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            crl_to_be_signed: *const CSSM_ENCODED_CRL,
+            signer_cert_group: *const CSSM_CERTGROUP,
+            signer_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+            signer_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+            signed_crl: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CrlSign(
+            tp_handle,
+            cl_handle,
+            cc_handle,
+            crl_to_be_signed,
+            signer_cert_group,
+            signer_verify_context,
+            signer_verify_result,
+            signed_crl,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `crl_to_be_applied` must be a valid pointer.
+/// - `signer_cert_group` must be a valid pointer.
+/// - `apply_crl_verify_context` must be a valid pointer.
+/// - `apply_crl_verify_result` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_ApplyCrlToDb(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    csp_handle: CSSM_CSP_HANDLE,
+    crl_to_be_applied: *const CSSM_ENCODED_CRL,
+    signer_cert_group: *const CSSM_CERTGROUP,
+    apply_crl_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+    apply_crl_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_ApplyCrlToDb(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            csp_handle: CSSM_CSP_HANDLE,
+            crl_to_be_applied: *const CSSM_ENCODED_CRL,
+            signer_cert_group: *const CSSM_CERTGROUP,
+            apply_crl_verify_context: *const CSSM_TP_VERIFY_CONTEXT,
+            apply_crl_verify_result: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_ApplyCrlToDb(
+            tp_handle,
+            cl_handle,
+            csp_handle,
+            crl_to_be_applied,
+            signer_cert_group,
+            apply_crl_verify_context,
+            apply_crl_verify_result,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `db_list` must be a valid pointer.
+/// - `construct_params` must be a valid pointer.
+/// - `cert_group_frag` must be a valid pointer.
+/// - `cert_group` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupConstruct(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    csp_handle: CSSM_CSP_HANDLE,
+    db_list: *const CSSM_DL_DB_LIST,
+    construct_params: *const c_void,
+    cert_group_frag: *const CSSM_CERTGROUP,
+    cert_group: *mut CSSM_CERTGROUP_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CertGroupConstruct(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            csp_handle: CSSM_CSP_HANDLE,
+            db_list: *const CSSM_DL_DB_LIST,
+            construct_params: *const c_void,
+            cert_group_frag: *const CSSM_CERTGROUP,
+            cert_group: *mut CSSM_CERTGROUP_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CertGroupConstruct(
+            tp_handle,
+            cl_handle,
+            csp_handle,
+            db_list,
+            construct_params,
+            cert_group_frag,
+            cert_group,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `db_list` must be a valid pointer.
+/// - `ordered_cert_group` must be a valid pointer.
+/// - `pruned_cert_group` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupPrune(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    db_list: *const CSSM_DL_DB_LIST,
+    ordered_cert_group: *const CSSM_CERTGROUP,
+    pruned_cert_group: *mut CSSM_CERTGROUP_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CertGroupPrune(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            db_list: *const CSSM_DL_DB_LIST,
+            ordered_cert_group: *const CSSM_CERTGROUP,
+            pruned_cert_group: *mut CSSM_CERTGROUP_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_CertGroupPrune(
+            tp_handle,
+            cl_handle,
+            db_list,
+            ordered_cert_group,
+            pruned_cert_group,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `cert_group` must be a valid pointer.
+/// - `tuple_group` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupToTupleGroup(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    cert_group: *const CSSM_CERTGROUP,
+    tuple_group: *mut CSSM_TUPLEGROUP_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_CertGroupToTupleGroup(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            cert_group: *const CSSM_CERTGROUP,
+            tuple_group: *mut CSSM_TUPLEGROUP_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_TP_CertGroupToTupleGroup(tp_handle, cl_handle, cert_group, tuple_group) }
+}
+
+/// # Safety
+///
+/// - `tuple_group` must be a valid pointer.
+/// - `cert_templates` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_TupleGroupToCertGroup(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    tuple_group: *const CSSM_TUPLEGROUP,
+    cert_templates: *mut CSSM_CERTGROUP_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_TupleGroupToCertGroup(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            tuple_group: *const CSSM_TUPLEGROUP,
+            cert_templates: *mut CSSM_CERTGROUP_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_TP_TupleGroupToCertGroup(tp_handle, cl_handle, tuple_group, cert_templates) }
+}
+
+/// # Safety
+///
+/// - `db_list` must be a valid pointer.
+/// - `input_params` must be a valid pointer.
+/// - `output_params` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_TP_PassThrough(
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    db_list: *const CSSM_DL_DB_LIST,
+    pass_through_id: uint32,
+    input_params: *const c_void,
+    output_params: *mut *mut c_void,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_TP_PassThrough(
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            db_list: *const CSSM_DL_DB_LIST,
+            pass_through_id: uint32,
+            input_params: *const c_void,
+            output_params: *mut *mut c_void,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_TP_PassThrough(
+            tp_handle,
+            cl_handle,
+            cc_handle,
+            db_list,
+            pass_through_id,
+            input_params,
+            output_params,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `base_authorizations` must be a valid pointer.
+/// - `credentials` must be a valid pointer.
+/// - `requestors` must be a valid pointer.
+/// - `requested_authorization_period` must be a valid pointer.
+/// - `requested_authorization` must be a valid pointer.
+/// - `authorization_result` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_AC_AuthCompute(
+    ac_handle: CSSM_AC_HANDLE,
+    base_authorizations: *const CSSM_TUPLEGROUP,
+    credentials: *const CSSM_TUPLEGROUP,
+    number_of_requestors: uint32,
+    requestors: *const CSSM_LIST,
+    requested_authorization_period: *const CSSM_LIST,
+    requested_authorization: *const CSSM_LIST,
+    authorization_result: CSSM_TUPLEGROUP_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_AC_AuthCompute(
+            ac_handle: CSSM_AC_HANDLE,
+            base_authorizations: *const CSSM_TUPLEGROUP,
+            credentials: *const CSSM_TUPLEGROUP,
+            number_of_requestors: uint32,
+            requestors: *const CSSM_LIST,
+            requested_authorization_period: *const CSSM_LIST,
+            requested_authorization: *const CSSM_LIST,
+            authorization_result: CSSM_TUPLEGROUP_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_AC_AuthCompute(
+            ac_handle,
+            base_authorizations,
+            credentials,
+            number_of_requestors,
+            requestors,
+            requested_authorization_period,
+            requested_authorization,
+            authorization_result,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `db_list` must be a valid pointer.
+/// - `input_params` must be a valid pointer.
+/// - `output_params` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_AC_PassThrough(
+    ac_handle: CSSM_AC_HANDLE,
+    tp_handle: CSSM_TP_HANDLE,
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    db_list: *const CSSM_DL_DB_LIST,
+    pass_through_id: uint32,
+    input_params: *const c_void,
+    output_params: *mut *mut c_void,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_AC_PassThrough(
+            ac_handle: CSSM_AC_HANDLE,
+            tp_handle: CSSM_TP_HANDLE,
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            db_list: *const CSSM_DL_DB_LIST,
+            pass_through_id: uint32,
+            input_params: *const c_void,
+            output_params: *mut *mut c_void,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_AC_PassThrough(
+            ac_handle,
+            tp_handle,
+            cl_handle,
+            cc_handle,
+            db_list,
+            pass_through_id,
+            input_params,
+            output_params,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `cert_fields` must be a valid pointer.
+/// - `cert_template` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertCreateTemplate(
+    cl_handle: CSSM_CL_HANDLE,
+    number_of_fields: uint32,
+    cert_fields: *const CSSM_FIELD,
+    cert_template: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertCreateTemplate(
+            cl_handle: CSSM_CL_HANDLE,
+            number_of_fields: uint32,
+            cert_fields: *const CSSM_FIELD,
+            cert_template: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CertCreateTemplate(cl_handle, number_of_fields, cert_fields, cert_template) }
+}
+
+/// # Safety
+///
+/// - `cert_template` must be a valid pointer.
+/// - `number_of_fields` must be a valid pointer.
+/// - `cert_fields` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertGetAllTemplateFields(
+    cl_handle: CSSM_CL_HANDLE,
+    cert_template: *const SecAsn1Item,
+    number_of_fields: *mut uint32,
+    cert_fields: *mut CSSM_FIELD_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertGetAllTemplateFields(
+            cl_handle: CSSM_CL_HANDLE,
+            cert_template: *const SecAsn1Item,
+            number_of_fields: *mut uint32,
+            cert_fields: *mut CSSM_FIELD_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CertGetAllTemplateFields(cl_handle, cert_template, number_of_fields, cert_fields)
+    }
+}
+
+/// # Safety
+///
+/// - `cert_template` must be a valid pointer.
+/// - `sign_scope` must be a valid pointer.
+/// - `signed_cert` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertSign(
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    cert_template: *const SecAsn1Item,
+    sign_scope: *const CSSM_FIELD,
+    scope_size: uint32,
+    signed_cert: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertSign(
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            cert_template: *const SecAsn1Item,
+            sign_scope: *const CSSM_FIELD,
+            scope_size: uint32,
+            signed_cert: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CertSign(
+            cl_handle,
+            cc_handle,
+            cert_template,
+            sign_scope,
+            scope_size,
+            signed_cert,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `cert_to_be_verified` must be a valid pointer.
+/// - `signer_cert` must be a valid pointer.
+/// - `verify_scope` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertVerify(
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    cert_to_be_verified: *const SecAsn1Item,
+    signer_cert: *const SecAsn1Item,
+    verify_scope: *const CSSM_FIELD,
+    scope_size: uint32,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertVerify(
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            cert_to_be_verified: *const SecAsn1Item,
+            signer_cert: *const SecAsn1Item,
+            verify_scope: *const CSSM_FIELD,
+            scope_size: uint32,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CertVerify(
+            cl_handle,
+            cc_handle,
+            cert_to_be_verified,
+            signer_cert,
+            verify_scope,
+            scope_size,
+        )
+    }
+}
+
+/// # Safety
+///
+/// `cert_to_be_verified` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertVerifyWithKey(
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    cert_to_be_verified: *const SecAsn1Item,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertVerifyWithKey(
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            cert_to_be_verified: *const SecAsn1Item,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CertVerifyWithKey(cl_handle, cc_handle, cert_to_be_verified) }
+}
+
+/// # Safety
+///
+/// - `cert` must be a valid pointer.
+/// - `cert_field` must be a valid pointer.
+/// - `results_handle` must be a valid pointer.
+/// - `number_of_matched_fields` must be a valid pointer.
+/// - `value` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertGetFirstFieldValue(
+    cl_handle: CSSM_CL_HANDLE,
+    cert: *const SecAsn1Item,
+    cert_field: *const SecAsn1Oid,
+    results_handle: CSSM_HANDLE_PTR,
+    number_of_matched_fields: *mut uint32,
+    value: *mut CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertGetFirstFieldValue(
+            cl_handle: CSSM_CL_HANDLE,
+            cert: *const SecAsn1Item,
+            cert_field: *const SecAsn1Oid,
+            results_handle: CSSM_HANDLE_PTR,
+            number_of_matched_fields: *mut uint32,
+            value: *mut CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CertGetFirstFieldValue(
+            cl_handle,
+            cert,
+            cert_field,
+            results_handle,
+            number_of_matched_fields,
+            value,
+        )
+    }
+}
+
+/// # Safety
+///
+/// `value` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertGetNextFieldValue(
+    cl_handle: CSSM_CL_HANDLE,
+    results_handle: CSSM_HANDLE,
+    value: *mut CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertGetNextFieldValue(
+            cl_handle: CSSM_CL_HANDLE,
+            results_handle: CSSM_HANDLE,
+            value: *mut CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CertGetNextFieldValue(cl_handle, results_handle, value) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertAbortQuery(
+    cl_handle: CSSM_CL_HANDLE,
+    results_handle: CSSM_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertAbortQuery(
+            cl_handle: CSSM_CL_HANDLE,
+            results_handle: CSSM_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CertAbortQuery(cl_handle, results_handle) }
+}
+
+/// # Safety
+///
+/// - `cert` must be a valid pointer.
+/// - `key` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertGetKeyInfo(
+    cl_handle: CSSM_CL_HANDLE,
+    cert: *const SecAsn1Item,
+    key: *mut CSSM_KEY_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertGetKeyInfo(
+            cl_handle: CSSM_CL_HANDLE,
+            cert: *const SecAsn1Item,
+            key: *mut CSSM_KEY_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CertGetKeyInfo(cl_handle, cert, key) }
+}
+
+/// # Safety
+///
+/// - `cert` must be a valid pointer.
+/// - `number_of_fields` must be a valid pointer.
+/// - `cert_fields` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertGetAllFields(
+    cl_handle: CSSM_CL_HANDLE,
+    cert: *const SecAsn1Item,
+    number_of_fields: *mut uint32,
+    cert_fields: *mut CSSM_FIELD_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertGetAllFields(
+            cl_handle: CSSM_CL_HANDLE,
+            cert: *const SecAsn1Item,
+            number_of_fields: *mut uint32,
+            cert_fields: *mut CSSM_FIELD_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CertGetAllFields(cl_handle, cert, number_of_fields, cert_fields) }
+}
+
+/// # Safety
+///
+/// `fields` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_FreeFields(
+    cl_handle: CSSM_CL_HANDLE,
+    number_of_fields: uint32,
+    fields: *mut CSSM_FIELD_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_FreeFields(
+            cl_handle: CSSM_CL_HANDLE,
+            number_of_fields: uint32,
+            fields: *mut CSSM_FIELD_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_FreeFields(cl_handle, number_of_fields, fields) }
+}
+
+/// # Safety
+///
+/// - `cert_or_crl_oid` must be a valid pointer.
+/// - `value` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_FreeFieldValue(
+    cl_handle: CSSM_CL_HANDLE,
+    cert_or_crl_oid: *const SecAsn1Oid,
+    value: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_FreeFieldValue(
+            cl_handle: CSSM_CL_HANDLE,
+            cert_or_crl_oid: *const SecAsn1Oid,
+            value: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_FreeFieldValue(cl_handle, cert_or_crl_oid, value) }
+}
+
+/// # Safety
+///
+/// - `cert` must be a valid pointer.
+/// - `cert_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertCache(
+    cl_handle: CSSM_CL_HANDLE,
+    cert: *const SecAsn1Item,
+    cert_handle: CSSM_HANDLE_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertCache(
+            cl_handle: CSSM_CL_HANDLE,
+            cert: *const SecAsn1Item,
+            cert_handle: CSSM_HANDLE_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CertCache(cl_handle, cert, cert_handle) }
+}
+
+/// # Safety
+///
+/// - `cert_field` must be a valid pointer.
+/// - `results_handle` must be a valid pointer.
+/// - `number_of_matched_fields` must be a valid pointer.
+/// - `value` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertGetFirstCachedFieldValue(
+    cl_handle: CSSM_CL_HANDLE,
+    cert_handle: CSSM_HANDLE,
+    cert_field: *const SecAsn1Oid,
+    results_handle: CSSM_HANDLE_PTR,
+    number_of_matched_fields: *mut uint32,
+    value: *mut CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertGetFirstCachedFieldValue(
+            cl_handle: CSSM_CL_HANDLE,
+            cert_handle: CSSM_HANDLE,
+            cert_field: *const SecAsn1Oid,
+            results_handle: CSSM_HANDLE_PTR,
+            number_of_matched_fields: *mut uint32,
+            value: *mut CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CertGetFirstCachedFieldValue(
+            cl_handle,
+            cert_handle,
+            cert_field,
+            results_handle,
+            number_of_matched_fields,
+            value,
+        )
+    }
+}
+
+/// # Safety
+///
+/// `value` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertGetNextCachedFieldValue(
+    cl_handle: CSSM_CL_HANDLE,
+    results_handle: CSSM_HANDLE,
+    value: *mut CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertGetNextCachedFieldValue(
+            cl_handle: CSSM_CL_HANDLE,
+            results_handle: CSSM_HANDLE,
+            value: *mut CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CertGetNextCachedFieldValue(cl_handle, results_handle, value) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertAbortCache(
+    cl_handle: CSSM_CL_HANDLE,
+    cert_handle: CSSM_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertAbortCache(
+            cl_handle: CSSM_CL_HANDLE,
+            cert_handle: CSSM_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CertAbortCache(cl_handle, cert_handle) }
+}
+
+/// # Safety
+///
+/// - `cert_group_to_bundle` must be a valid pointer.
+/// - `bundle_info` must be a valid pointer.
+/// - `signed_bundle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertGroupToSignedBundle(
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    cert_group_to_bundle: *const CSSM_CERTGROUP,
+    bundle_info: *const CSSM_CERT_BUNDLE_HEADER,
+    signed_bundle: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertGroupToSignedBundle(
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            cert_group_to_bundle: *const CSSM_CERTGROUP,
+            bundle_info: *const CSSM_CERT_BUNDLE_HEADER,
+            signed_bundle: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CertGroupToSignedBundle(
+            cl_handle,
+            cc_handle,
+            cert_group_to_bundle,
+            bundle_info,
+            signed_bundle,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `cert_bundle` must be a valid pointer.
+/// - `signer_cert` must be a valid pointer.
+/// - `cert_group` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertGroupFromVerifiedBundle(
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    cert_bundle: *const CSSM_CERT_BUNDLE,
+    signer_cert: *const SecAsn1Item,
+    cert_group: *mut CSSM_CERTGROUP_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertGroupFromVerifiedBundle(
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            cert_bundle: *const CSSM_CERT_BUNDLE,
+            signer_cert: *const SecAsn1Item,
+            cert_group: *mut CSSM_CERTGROUP_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CertGroupFromVerifiedBundle(
+            cl_handle,
+            cc_handle,
+            cert_bundle,
+            signer_cert,
+            cert_group,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `number_of_fields` must be a valid pointer.
+/// - `oid_list` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CertDescribeFormat(
+    cl_handle: CSSM_CL_HANDLE,
+    number_of_fields: *mut uint32,
+    oid_list: *mut CSSM_OID_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CertDescribeFormat(
+            cl_handle: CSSM_CL_HANDLE,
+            number_of_fields: *mut uint32,
+            oid_list: *mut CSSM_OID_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CertDescribeFormat(cl_handle, number_of_fields, oid_list) }
+}
+
+/// # Safety
+///
+/// - `crl_template` must be a valid pointer.
+/// - `new_crl` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlCreateTemplate(
+    cl_handle: CSSM_CL_HANDLE,
+    number_of_fields: uint32,
+    crl_template: *const CSSM_FIELD,
+    new_crl: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlCreateTemplate(
+            cl_handle: CSSM_CL_HANDLE,
+            number_of_fields: uint32,
+            crl_template: *const CSSM_FIELD,
+            new_crl: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CrlCreateTemplate(cl_handle, number_of_fields, crl_template, new_crl) }
+}
+
+/// # Safety
+///
+/// - `crl_template` must be a valid pointer.
+/// - `old_crl` must be a valid pointer.
+/// - `modified_crl` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlSetFields(
+    cl_handle: CSSM_CL_HANDLE,
+    number_of_fields: uint32,
+    crl_template: *const CSSM_FIELD,
+    old_crl: *const SecAsn1Item,
+    modified_crl: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlSetFields(
+            cl_handle: CSSM_CL_HANDLE,
+            number_of_fields: uint32,
+            crl_template: *const CSSM_FIELD,
+            old_crl: *const SecAsn1Item,
+            modified_crl: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CrlSetFields(
+            cl_handle,
+            number_of_fields,
+            crl_template,
+            old_crl,
+            modified_crl,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `cert` must be a valid pointer.
+/// - `crl_entry_fields` must be a valid pointer.
+/// - `old_crl` must be a valid pointer.
+/// - `new_crl` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlAddCert(
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    cert: *const SecAsn1Item,
+    number_of_fields: uint32,
+    crl_entry_fields: *const CSSM_FIELD,
+    old_crl: *const SecAsn1Item,
+    new_crl: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlAddCert(
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            cert: *const SecAsn1Item,
+            number_of_fields: uint32,
+            crl_entry_fields: *const CSSM_FIELD,
+            old_crl: *const SecAsn1Item,
+            new_crl: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CrlAddCert(
+            cl_handle,
+            cc_handle,
+            cert,
+            number_of_fields,
+            crl_entry_fields,
+            old_crl,
+            new_crl,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `cert` must be a valid pointer.
+/// - `old_crl` must be a valid pointer.
+/// - `new_crl` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlRemoveCert(
+    cl_handle: CSSM_CL_HANDLE,
+    cert: *const SecAsn1Item,
+    old_crl: *const SecAsn1Item,
+    new_crl: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlRemoveCert(
+            cl_handle: CSSM_CL_HANDLE,
+            cert: *const SecAsn1Item,
+            old_crl: *const SecAsn1Item,
+            new_crl: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CrlRemoveCert(cl_handle, cert, old_crl, new_crl) }
+}
+
+/// # Safety
+///
+/// - `unsigned_crl` must be a valid pointer.
+/// - `sign_scope` must be a valid pointer.
+/// - `signed_crl` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlSign(
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    unsigned_crl: *const SecAsn1Item,
+    sign_scope: *const CSSM_FIELD,
+    scope_size: uint32,
+    signed_crl: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlSign(
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            unsigned_crl: *const SecAsn1Item,
+            sign_scope: *const CSSM_FIELD,
+            scope_size: uint32,
+            signed_crl: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CrlSign(
+            cl_handle,
+            cc_handle,
+            unsigned_crl,
+            sign_scope,
+            scope_size,
+            signed_crl,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `crl_to_be_verified` must be a valid pointer.
+/// - `signer_cert` must be a valid pointer.
+/// - `verify_scope` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlVerify(
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    crl_to_be_verified: *const SecAsn1Item,
+    signer_cert: *const SecAsn1Item,
+    verify_scope: *const CSSM_FIELD,
+    scope_size: uint32,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlVerify(
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            crl_to_be_verified: *const SecAsn1Item,
+            signer_cert: *const SecAsn1Item,
+            verify_scope: *const CSSM_FIELD,
+            scope_size: uint32,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CrlVerify(
+            cl_handle,
+            cc_handle,
+            crl_to_be_verified,
+            signer_cert,
+            verify_scope,
+            scope_size,
+        )
+    }
+}
+
+/// # Safety
+///
+/// `crl_to_be_verified` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlVerifyWithKey(
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    crl_to_be_verified: *const SecAsn1Item,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlVerifyWithKey(
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            crl_to_be_verified: *const SecAsn1Item,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CrlVerifyWithKey(cl_handle, cc_handle, crl_to_be_verified) }
+}
+
+/// # Safety
+///
+/// - `cert` must be a valid pointer.
+/// - `crl` must be a valid pointer.
+/// - `cert_found` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_IsCertInCrl(
+    cl_handle: CSSM_CL_HANDLE,
+    cert: *const SecAsn1Item,
+    crl: *const SecAsn1Item,
+    cert_found: *mut CSSM_BOOL,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_IsCertInCrl(
+            cl_handle: CSSM_CL_HANDLE,
+            cert: *const SecAsn1Item,
+            crl: *const SecAsn1Item,
+            cert_found: *mut CSSM_BOOL,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_IsCertInCrl(cl_handle, cert, crl, cert_found) }
+}
+
+/// # Safety
+///
+/// - `crl` must be a valid pointer.
+/// - `crl_field` must be a valid pointer.
+/// - `results_handle` must be a valid pointer.
+/// - `number_of_matched_fields` must be a valid pointer.
+/// - `value` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetFirstFieldValue(
+    cl_handle: CSSM_CL_HANDLE,
+    crl: *const SecAsn1Item,
+    crl_field: *const SecAsn1Oid,
+    results_handle: CSSM_HANDLE_PTR,
+    number_of_matched_fields: *mut uint32,
+    value: *mut CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlGetFirstFieldValue(
+            cl_handle: CSSM_CL_HANDLE,
+            crl: *const SecAsn1Item,
+            crl_field: *const SecAsn1Oid,
+            results_handle: CSSM_HANDLE_PTR,
+            number_of_matched_fields: *mut uint32,
+            value: *mut CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CrlGetFirstFieldValue(
+            cl_handle,
+            crl,
+            crl_field,
+            results_handle,
+            number_of_matched_fields,
+            value,
+        )
+    }
+}
+
+/// # Safety
+///
+/// `value` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetNextFieldValue(
+    cl_handle: CSSM_CL_HANDLE,
+    results_handle: CSSM_HANDLE,
+    value: *mut CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlGetNextFieldValue(
+            cl_handle: CSSM_CL_HANDLE,
+            results_handle: CSSM_HANDLE,
+            value: *mut CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CrlGetNextFieldValue(cl_handle, results_handle, value) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlAbortQuery(
+    cl_handle: CSSM_CL_HANDLE,
+    results_handle: CSSM_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlAbortQuery(
+            cl_handle: CSSM_CL_HANDLE,
+            results_handle: CSSM_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CrlAbortQuery(cl_handle, results_handle) }
+}
+
+/// # Safety
+///
+/// - `crl` must be a valid pointer.
+/// - `number_of_crl_fields` must be a valid pointer.
+/// - `crl_fields` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetAllFields(
+    cl_handle: CSSM_CL_HANDLE,
+    crl: *const SecAsn1Item,
+    number_of_crl_fields: *mut uint32,
+    crl_fields: *mut CSSM_FIELD_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlGetAllFields(
+            cl_handle: CSSM_CL_HANDLE,
+            crl: *const SecAsn1Item,
+            number_of_crl_fields: *mut uint32,
+            crl_fields: *mut CSSM_FIELD_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CrlGetAllFields(cl_handle, crl, number_of_crl_fields, crl_fields) }
+}
+
+/// # Safety
+///
+/// - `crl` must be a valid pointer.
+/// - `crl_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlCache(
+    cl_handle: CSSM_CL_HANDLE,
+    crl: *const SecAsn1Item,
+    crl_handle: CSSM_HANDLE_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlCache(
+            cl_handle: CSSM_CL_HANDLE,
+            crl: *const SecAsn1Item,
+            crl_handle: CSSM_HANDLE_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CrlCache(cl_handle, crl, crl_handle) }
+}
+
+/// # Safety
+///
+/// - `cert` must be a valid pointer.
+/// - `cert_found` must be a valid pointer.
+/// - `crl_record_index` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_IsCertInCachedCrl(
+    cl_handle: CSSM_CL_HANDLE,
+    cert: *const SecAsn1Item,
+    crl_handle: CSSM_HANDLE,
+    cert_found: *mut CSSM_BOOL,
+    crl_record_index: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_IsCertInCachedCrl(
+            cl_handle: CSSM_CL_HANDLE,
+            cert: *const SecAsn1Item,
+            crl_handle: CSSM_HANDLE,
+            cert_found: *mut CSSM_BOOL,
+            crl_record_index: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_IsCertInCachedCrl(cl_handle, cert, crl_handle, cert_found, crl_record_index) }
+}
+
+/// # Safety
+///
+/// - `crl_record_index` must be a valid pointer.
+/// - `crl_field` must be a valid pointer.
+/// - `results_handle` must be a valid pointer.
+/// - `number_of_matched_fields` must be a valid pointer.
+/// - `value` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetFirstCachedFieldValue(
+    cl_handle: CSSM_CL_HANDLE,
+    crl_handle: CSSM_HANDLE,
+    crl_record_index: *const SecAsn1Item,
+    crl_field: *const SecAsn1Oid,
+    results_handle: CSSM_HANDLE_PTR,
+    number_of_matched_fields: *mut uint32,
+    value: *mut CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlGetFirstCachedFieldValue(
+            cl_handle: CSSM_CL_HANDLE,
+            crl_handle: CSSM_HANDLE,
+            crl_record_index: *const SecAsn1Item,
+            crl_field: *const SecAsn1Oid,
+            results_handle: CSSM_HANDLE_PTR,
+            number_of_matched_fields: *mut uint32,
+            value: *mut CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CrlGetFirstCachedFieldValue(
+            cl_handle,
+            crl_handle,
+            crl_record_index,
+            crl_field,
+            results_handle,
+            number_of_matched_fields,
+            value,
+        )
+    }
+}
+
+/// # Safety
+///
+/// `value` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetNextCachedFieldValue(
+    cl_handle: CSSM_CL_HANDLE,
+    results_handle: CSSM_HANDLE,
+    value: *mut CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlGetNextCachedFieldValue(
+            cl_handle: CSSM_CL_HANDLE,
+            results_handle: CSSM_HANDLE,
+            value: *mut CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CrlGetNextCachedFieldValue(cl_handle, results_handle, value) }
+}
+
+/// # Safety
+///
+/// - `crl_record_index` must be a valid pointer.
+/// - `number_of_fields` must be a valid pointer.
+/// - `crl_fields` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetAllCachedRecordFields(
+    cl_handle: CSSM_CL_HANDLE,
+    crl_handle: CSSM_HANDLE,
+    crl_record_index: *const SecAsn1Item,
+    number_of_fields: *mut uint32,
+    crl_fields: *mut CSSM_FIELD_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlGetAllCachedRecordFields(
+            cl_handle: CSSM_CL_HANDLE,
+            crl_handle: CSSM_HANDLE,
+            crl_record_index: *const SecAsn1Item,
+            number_of_fields: *mut uint32,
+            crl_fields: *mut CSSM_FIELD_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_CrlGetAllCachedRecordFields(
+            cl_handle,
+            crl_handle,
+            crl_record_index,
+            number_of_fields,
+            crl_fields,
+        )
+    }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlAbortCache(
+    cl_handle: CSSM_CL_HANDLE,
+    crl_handle: CSSM_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlAbortCache(cl_handle: CSSM_CL_HANDLE, crl_handle: CSSM_HANDLE)
+            -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CrlAbortCache(cl_handle, crl_handle) }
+}
+
+/// # Safety
+///
+/// - `number_of_fields` must be a valid pointer.
+/// - `oid_list` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_CrlDescribeFormat(
+    cl_handle: CSSM_CL_HANDLE,
+    number_of_fields: *mut uint32,
+    oid_list: *mut CSSM_OID_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_CrlDescribeFormat(
+            cl_handle: CSSM_CL_HANDLE,
+            number_of_fields: *mut uint32,
+            oid_list: *mut CSSM_OID_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_CL_CrlDescribeFormat(cl_handle, number_of_fields, oid_list) }
+}
+
+/// # Safety
+///
+/// - `input_params` must be a valid pointer.
+/// - `output_params` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_CL_PassThrough(
+    cl_handle: CSSM_CL_HANDLE,
+    cc_handle: CSSM_CC_HANDLE,
+    pass_through_id: uint32,
+    input_params: *const c_void,
+    output_params: *mut *mut c_void,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_CL_PassThrough(
+            cl_handle: CSSM_CL_HANDLE,
+            cc_handle: CSSM_CC_HANDLE,
+            pass_through_id: uint32,
+            input_params: *const c_void,
+            output_params: *mut *mut c_void,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_CL_PassThrough(
+            cl_handle,
+            cc_handle,
+            pass_through_id,
+            input_params,
+            output_params,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `db_name` must be a valid pointer.
+/// - `db_location` must be a valid pointer.
+/// - `access_cred` must be a valid pointer.
+/// - `open_parameters` must be a valid pointer.
+/// - `db_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DbOpen(
+    dl_handle: CSSM_DL_HANDLE,
+    db_name: *const c_char,
+    db_location: *const CSSM_NET_ADDRESS,
+    access_request: CSSM_DB_ACCESS_TYPE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    open_parameters: *const c_void,
+    db_handle: *mut CSSM_DB_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DbOpen(
+            dl_handle: CSSM_DL_HANDLE,
+            db_name: *const c_char,
+            db_location: *const CSSM_NET_ADDRESS,
+            access_request: CSSM_DB_ACCESS_TYPE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            open_parameters: *const c_void,
+            db_handle: *mut CSSM_DB_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_DL_DbOpen(
+            dl_handle,
+            db_name,
+            db_location,
+            access_request,
+            access_cred,
+            open_parameters,
+            db_handle,
+        )
+    }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DbClose(dldb_handle: CSSM_DL_DB_HANDLE) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DbClose(dldb_handle: CSSM_DL_DB_HANDLE) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_DbClose(dldb_handle) }
+}
+
+/// # Safety
+///
+/// - `db_name` must be a valid pointer.
+/// - `db_location` must be a valid pointer.
+/// - `db_info` must be a valid pointer.
+/// - `cred_and_acl_entry` must be a valid pointer.
+/// - `open_parameters` must be a valid pointer.
+/// - `db_handle` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DbCreate(
+    dl_handle: CSSM_DL_HANDLE,
+    db_name: *const c_char,
+    db_location: *const CSSM_NET_ADDRESS,
+    db_info: *const CSSM_DBINFO,
+    access_request: CSSM_DB_ACCESS_TYPE,
+    cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+    open_parameters: *const c_void,
+    db_handle: *mut CSSM_DB_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DbCreate(
+            dl_handle: CSSM_DL_HANDLE,
+            db_name: *const c_char,
+            db_location: *const CSSM_NET_ADDRESS,
+            db_info: *const CSSM_DBINFO,
+            access_request: CSSM_DB_ACCESS_TYPE,
+            cred_and_acl_entry: *const CSSM_RESOURCE_CONTROL_CONTEXT,
+            open_parameters: *const c_void,
+            db_handle: *mut CSSM_DB_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_DL_DbCreate(
+            dl_handle,
+            db_name,
+            db_location,
+            db_info,
+            access_request,
+            cred_and_acl_entry,
+            open_parameters,
+            db_handle,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `db_name` must be a valid pointer.
+/// - `db_location` must be a valid pointer.
+/// - `access_cred` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DbDelete(
+    dl_handle: CSSM_DL_HANDLE,
+    db_name: *const c_char,
+    db_location: *const CSSM_NET_ADDRESS,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DbDelete(
+            dl_handle: CSSM_DL_HANDLE,
+            db_name: *const c_char,
+            db_location: *const CSSM_NET_ADDRESS,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_DbDelete(dl_handle, db_name, db_location, access_cred) }
+}
+
+/// # Safety
+///
+/// - `relation_name` must be a valid pointer.
+/// - `p_attribute_info` must be a valid pointer.
+/// - `p_index_info` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_CreateRelation(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    relation_id: CSSM_DB_RECORDTYPE,
+    relation_name: *const c_char,
+    number_of_attributes: uint32,
+    p_attribute_info: *const CSSM_DB_SCHEMA_ATTRIBUTE_INFO,
+    number_of_indexes: uint32,
+    p_index_info: *const CSSM_DB_SCHEMA_INDEX_INFO,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_CreateRelation(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            relation_id: CSSM_DB_RECORDTYPE,
+            relation_name: *const c_char,
+            number_of_attributes: uint32,
+            p_attribute_info: *const CSSM_DB_SCHEMA_ATTRIBUTE_INFO,
+            number_of_indexes: uint32,
+            p_index_info: *const CSSM_DB_SCHEMA_INDEX_INFO,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_DL_CreateRelation(
+            dldb_handle,
+            relation_id,
+            relation_name,
+            number_of_attributes,
+            p_attribute_info,
+            number_of_indexes,
+            p_index_info,
+        )
+    }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DestroyRelation(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    relation_id: CSSM_DB_RECORDTYPE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DestroyRelation(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            relation_id: CSSM_DB_RECORDTYPE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_DestroyRelation(dldb_handle, relation_id) }
+}
+
+/// # Safety
+///
+/// `access_cred` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_Authenticate(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    access_request: CSSM_DB_ACCESS_TYPE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_Authenticate(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            access_request: CSSM_DB_ACCESS_TYPE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_Authenticate(dldb_handle, access_request, access_cred) }
+}
+
+/// # Safety
+///
+/// - `selection_tag` must be a valid pointer.
+/// - `number_of_acl_infos` must be a valid pointer.
+/// - `acl_infos` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_GetDbAcl(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    selection_tag: *const CSSM_STRING,
+    number_of_acl_infos: *mut uint32,
+    acl_infos: *mut CSSM_ACL_ENTRY_INFO_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_GetDbAcl(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            selection_tag: *const CSSM_STRING,
+            number_of_acl_infos: *mut uint32,
+            acl_infos: *mut CSSM_ACL_ENTRY_INFO_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_GetDbAcl(dldb_handle, selection_tag, number_of_acl_infos, acl_infos) }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `acl_edit` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_ChangeDbAcl(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    acl_edit: *const CSSM_ACL_EDIT,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_ChangeDbAcl(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            acl_edit: *const CSSM_ACL_EDIT,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_ChangeDbAcl(dldb_handle, access_cred, acl_edit) }
+}
+
+/// # Safety
+///
+/// `owner` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_GetDbOwner(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_GetDbOwner(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_GetDbOwner(dldb_handle, owner) }
+}
+
+/// # Safety
+///
+/// - `access_cred` must be a valid pointer.
+/// - `new_owner` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_ChangeDbOwner(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    access_cred: *const CSSM_ACCESS_CREDENTIALS,
+    new_owner: *const CSSM_ACL_OWNER_PROTOTYPE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_ChangeDbOwner(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            access_cred: *const CSSM_ACCESS_CREDENTIALS,
+            new_owner: *const CSSM_ACL_OWNER_PROTOTYPE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_ChangeDbOwner(dldb_handle, access_cred, new_owner) }
+}
+
+/// # Safety
+///
+/// `name_list` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_GetDbNames(
+    dl_handle: CSSM_DL_HANDLE,
+    name_list: *mut CSSM_NAME_LIST_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_GetDbNames(
+            dl_handle: CSSM_DL_HANDLE,
+            name_list: *mut CSSM_NAME_LIST_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_GetDbNames(dl_handle, name_list) }
+}
+
+/// # Safety
+///
+/// `db_name` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_GetDbNameFromHandle(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    db_name: *mut *mut c_char,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_GetDbNameFromHandle(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            db_name: *mut *mut c_char,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_GetDbNameFromHandle(dldb_handle, db_name) }
+}
+
+/// # Safety
+///
+/// `name_list` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_FreeNameList(
+    dl_handle: CSSM_DL_HANDLE,
+    name_list: CSSM_NAME_LIST_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_FreeNameList(
+            dl_handle: CSSM_DL_HANDLE,
+            name_list: CSSM_NAME_LIST_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_FreeNameList(dl_handle, name_list) }
+}
+
+/// # Safety
+///
+/// - `attributes` must be a valid pointer.
+/// - `data` must be a valid pointer.
+/// - `unique_id` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DataInsert(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    record_type: CSSM_DB_RECORDTYPE,
+    attributes: *const CSSM_DB_RECORD_ATTRIBUTE_DATA,
+    data: *const SecAsn1Item,
+    unique_id: *mut CSSM_DB_UNIQUE_RECORD_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DataInsert(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            record_type: CSSM_DB_RECORDTYPE,
+            attributes: *const CSSM_DB_RECORD_ATTRIBUTE_DATA,
+            data: *const SecAsn1Item,
+            unique_id: *mut CSSM_DB_UNIQUE_RECORD_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_DataInsert(dldb_handle, record_type, attributes, data, unique_id) }
+}
+
+/// # Safety
+///
+/// `unique_record_identifier` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DataDelete(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    unique_record_identifier: *const CSSM_DB_UNIQUE_RECORD,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DataDelete(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            unique_record_identifier: *const CSSM_DB_UNIQUE_RECORD,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_DataDelete(dldb_handle, unique_record_identifier) }
+}
+
+/// # Safety
+///
+/// - `unique_record_identifier` must be a valid pointer.
+/// - `attributes_to_be_modified` must be a valid pointer.
+/// - `data_to_be_modified` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DataModify(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    record_type: CSSM_DB_RECORDTYPE,
+    unique_record_identifier: CSSM_DB_UNIQUE_RECORD_PTR,
+    attributes_to_be_modified: *const CSSM_DB_RECORD_ATTRIBUTE_DATA,
+    data_to_be_modified: *const SecAsn1Item,
+    modify_mode: CSSM_DB_MODIFY_MODE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DataModify(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            record_type: CSSM_DB_RECORDTYPE,
+            unique_record_identifier: CSSM_DB_UNIQUE_RECORD_PTR,
+            attributes_to_be_modified: *const CSSM_DB_RECORD_ATTRIBUTE_DATA,
+            data_to_be_modified: *const SecAsn1Item,
+            modify_mode: CSSM_DB_MODIFY_MODE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_DL_DataModify(
+            dldb_handle,
+            record_type,
+            unique_record_identifier,
+            attributes_to_be_modified,
+            data_to_be_modified,
+            modify_mode,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `query` must be a valid pointer.
+/// - `results_handle` must be a valid pointer.
+/// - `attributes` must be a valid pointer.
+/// - `data` must be a valid pointer.
+/// - `unique_id` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DataGetFirst(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    query: *const CSSM_QUERY,
+    results_handle: CSSM_HANDLE_PTR,
+    attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+    data: CSSM_DATA_PTR,
+    unique_id: *mut CSSM_DB_UNIQUE_RECORD_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DataGetFirst(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            query: *const CSSM_QUERY,
+            results_handle: CSSM_HANDLE_PTR,
+            attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+            data: CSSM_DATA_PTR,
+            unique_id: *mut CSSM_DB_UNIQUE_RECORD_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe {
+        CSSM_DL_DataGetFirst(
+            dldb_handle,
+            query,
+            results_handle,
+            attributes,
+            data,
+            unique_id,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `attributes` must be a valid pointer.
+/// - `data` must be a valid pointer.
+/// - `unique_id` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DataGetNext(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    results_handle: CSSM_HANDLE,
+    attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+    data: CSSM_DATA_PTR,
+    unique_id: *mut CSSM_DB_UNIQUE_RECORD_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DataGetNext(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            results_handle: CSSM_HANDLE,
+            attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+            data: CSSM_DATA_PTR,
+            unique_id: *mut CSSM_DB_UNIQUE_RECORD_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_DataGetNext(dldb_handle, results_handle, attributes, data, unique_id) }
+}
+
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DataAbortQuery(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    results_handle: CSSM_HANDLE,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DataAbortQuery(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            results_handle: CSSM_HANDLE,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_DataAbortQuery(dldb_handle, results_handle) }
+}
+
+/// # Safety
+///
+/// - `unique_record` must be a valid pointer.
+/// - `attributes` must be a valid pointer.
+/// - `data` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_DataGetFromUniqueRecordId(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    unique_record: *const CSSM_DB_UNIQUE_RECORD,
+    attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+    data: CSSM_DATA_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_DataGetFromUniqueRecordId(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            unique_record: *const CSSM_DB_UNIQUE_RECORD,
+            attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+            data: CSSM_DATA_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_DataGetFromUniqueRecordId(dldb_handle, unique_record, attributes, data) }
+}
+
+/// # Safety
+///
+/// `unique_record` must be a valid pointer.
+#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_FreeUniqueRecord(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    unique_record: CSSM_DB_UNIQUE_RECORD_PTR,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_FreeUniqueRecord(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            unique_record: CSSM_DB_UNIQUE_RECORD_PTR,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_FreeUniqueRecord(dldb_handle, unique_record) }
+}
+
+/// # Safety
+///
+/// - `input_params` must be a valid pointer.
+/// - `output_params` must be a valid pointer.
+#[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CSSM_DL_PassThrough(
+    dldb_handle: CSSM_DL_DB_HANDLE,
+    pass_through_id: uint32,
+    input_params: *const c_void,
+    output_params: *mut *mut c_void,
+) -> CSSM_RETURN {
+    extern "C-unwind" {
+        fn CSSM_DL_PassThrough(
+            dldb_handle: CSSM_DL_DB_HANDLE,
+            pass_through_id: uint32,
+            input_params: *const c_void,
+            output_params: *mut *mut c_void,
+        ) -> CSSM_RETURN;
+    }
+    unsafe { CSSM_DL_PassThrough(dldb_handle, pass_through_id, input_params, output_params) }
 }

@@ -185,85 +185,97 @@ pub const kQuitNotQuitDuringInstallMask: c_uint = 0x0100;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kquitnotquitduringlogoutmask?language=objc)
 pub const kQuitNotQuitDuringLogoutMask: c_uint = 0x0200;
 
-extern "C-unwind" {
-    /// Return the ProcessSerialNumber of the current application.
-    ///
-    /// Use [ NSRunningApplication currentApplication]
-    ///
-    /// Return the canonical process serial number to the caller.
-    ///
-    /// All applications ( things which can appear in the Dock or which are not documents and are launched by the Finder or Dock ) on Mac OS 10 have a unique process serial number.
-    /// This number is created when the application launches, and remains until the application quits. Other system services, like AppleEvents, use the ProcessSerialNumber to specify an
-    /// application.
-    ///
-    /// During launch, every application 'checks in' with the Process Manager. Before this checkin, the application can not receive events or draw to the screen. Prior to Mac OS 10.2, this
-    /// 'check in' happened before the applications's main() function was entered. In Mac OS 10.2 and later, this 'check in' does not happen until the first time the application calls a Process
-    /// Manager function, or until it enters CFRunLoopRun() for the main runloop. This allows tools and other executables which do not need to receive events to link against more of the higher
-    /// level toolbox frameworks, but may cause a problem if the application expects to be able to retrieve events or use CoreGraphics services before this checkin has occurred.-
-    ///
-    /// An application can force the connection to the Process Manager to be set up by calling any Process Manager routine, but the recommended way to do this is to call
-    /// GetCurrentProcess() to ask for the current application's PSN. This will initialize the connection to the Process Manager if it has not already been set up and 'check in' the application
-    /// with the system.
-    ///
-    /// This function is named MacGetCurrentProcess() on non Macintosh platforms and GetCurrentProcess on the Macintosh. However, even Macintosh code can use the
-    /// GetCurrentProcess() name since there is a macro which maps back to GetCurrentProcess().
-    ///
-    /// Lastly, it is usually not necessary to call GetCurrentProcess() to get the 'current' process psn merely to pass it to another Process Manager routine. Instead, just construct a
-    /// ProcessSerialNumber with 0 in highLongOfPSN and kCurrentProcess in lowLongOfPSN and pass that. For example, to make the current process the frontmost process, use
-    ///
-    /// ```text
-    /// ProcessSerialNumber psn = { 0, kCurrentProcess };
-    /// OSErr err = SetFrontProcess(
-    /// &
-    /// psn );
-    /// ```
-    /// If you need to pass a ProcessSerialNumber to another application or use it in an AppleEvent, you do need to get the canonical PSN with this routine.
-    ///
-    ///
-    /// Parameter `pPSN`: where the current processes process serial number is returned
-    ///
-    /// Returns: An operating system status code.
-    ///
-    /// # Safety
-    ///
-    /// `p_psn` must be a valid pointer.
-    #[deprecated]
-    pub fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
+/// Return the ProcessSerialNumber of the current application.
+///
+/// Use [ NSRunningApplication currentApplication]
+///
+/// Return the canonical process serial number to the caller.
+///
+/// All applications ( things which can appear in the Dock or which are not documents and are launched by the Finder or Dock ) on Mac OS 10 have a unique process serial number.
+/// This number is created when the application launches, and remains until the application quits. Other system services, like AppleEvents, use the ProcessSerialNumber to specify an
+/// application.
+///
+/// During launch, every application 'checks in' with the Process Manager. Before this checkin, the application can not receive events or draw to the screen. Prior to Mac OS 10.2, this
+/// 'check in' happened before the applications's main() function was entered. In Mac OS 10.2 and later, this 'check in' does not happen until the first time the application calls a Process
+/// Manager function, or until it enters CFRunLoopRun() for the main runloop. This allows tools and other executables which do not need to receive events to link against more of the higher
+/// level toolbox frameworks, but may cause a problem if the application expects to be able to retrieve events or use CoreGraphics services before this checkin has occurred.-
+///
+/// An application can force the connection to the Process Manager to be set up by calling any Process Manager routine, but the recommended way to do this is to call
+/// GetCurrentProcess() to ask for the current application's PSN. This will initialize the connection to the Process Manager if it has not already been set up and 'check in' the application
+/// with the system.
+///
+/// This function is named MacGetCurrentProcess() on non Macintosh platforms and GetCurrentProcess on the Macintosh. However, even Macintosh code can use the
+/// GetCurrentProcess() name since there is a macro which maps back to GetCurrentProcess().
+///
+/// Lastly, it is usually not necessary to call GetCurrentProcess() to get the 'current' process psn merely to pass it to another Process Manager routine. Instead, just construct a
+/// ProcessSerialNumber with 0 in highLongOfPSN and kCurrentProcess in lowLongOfPSN and pass that. For example, to make the current process the frontmost process, use
+///
+/// ```text
+/// ProcessSerialNumber psn = { 0, kCurrentProcess };
+/// OSErr err = SetFrontProcess(
+/// &
+/// psn );
+/// ```
+/// If you need to pass a ProcessSerialNumber to another application or use it in an AppleEvent, you do need to get the canonical PSN with this routine.
+///
+///
+/// Parameter `pPSN`: where the current processes process serial number is returned
+///
+/// Returns: An operating system status code.
+///
+/// # Safety
+///
+/// `p_psn` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
+    extern "C-unwind" {
+        fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
+    }
+    unsafe { GetCurrentProcess(p_psn) }
 }
 
-extern "C-unwind" {
-    /// Return the ProcessSerialNumber of the front application
-    ///
-    /// DEPRECATED:   Use +[NSWorkspace runningApplications] and look for the entry withisActive == YES.
-    ///
-    /// Parameter `pPSN`: where the front application process serial number is returned
-    ///
-    /// Returns: An operating system status code
-    ///
-    /// # Safety
-    ///
-    /// `p_psn` must be a valid pointer.
-    #[deprecated]
-    pub fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
+/// Return the ProcessSerialNumber of the front application
+///
+/// DEPRECATED:   Use +[NSWorkspace runningApplications] and look for the entry withisActive == YES.
+///
+/// Parameter `pPSN`: where the front application process serial number is returned
+///
+/// Returns: An operating system status code
+///
+/// # Safety
+///
+/// `p_psn` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
+    extern "C-unwind" {
+        fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
+    }
+    unsafe { GetFrontProcess(p_psn) }
 }
 
-extern "C-unwind" {
-    /// Return the process serial number following the given process
-    ///
-    /// DEPRECATED:
-    /// Use +[NSWorkspace runningApplications:] which returns the full array of all running applications.
-    /// If this function is called with the process serial number where { .highLongOfPSN = 0, .lowLongOfPSN = 0 }, this return the process serial number of the first application.
-    /// If called with a valid process serial number, it returns the next higher application, or procNotFound when the last process serial number has been returned.
-    ///
-    /// Parameter `pPSN`: On input, a process serial number; on exit, the next process serial number or { 0, 0 }
-    ///
-    /// Returns: An operating system status code.  procNotFound signal the previous item was the last application in the array of running applications.
-    ///
-    /// # Safety
-    ///
-    /// `p_psn` must be a valid pointer.
-    #[deprecated]
-    pub fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
+/// Return the process serial number following the given process
+///
+/// DEPRECATED:
+/// Use +[NSWorkspace runningApplications:] which returns the full array of all running applications.
+/// If this function is called with the process serial number where { .highLongOfPSN = 0, .lowLongOfPSN = 0 }, this return the process serial number of the first application.
+/// If called with a valid process serial number, it returns the next higher application, or procNotFound when the last process serial number has been returned.
+///
+/// Parameter `pPSN`: On input, a process serial number; on exit, the next process serial number or { 0, 0 }
+///
+/// Returns: An operating system status code.  procNotFound signal the previous item was the last application in the array of running applications.
+///
+/// # Safety
+///
+/// `p_psn` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
+    extern "C-unwind" {
+        fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
+    }
+    unsafe { GetNextProcess(p_psn) }
 }
 
 /// # Safety
@@ -285,21 +297,25 @@ pub unsafe extern "C-unwind" fn ProcessInformationCopyDictionary(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Make the application with the given PSN into the front application, if possible.
-    ///
-    /// :
-    /// To make your own application frontmost, use [[NSApplication activate].
-    /// To make another application frontmost, use the activateWithOptions
-    /// method of the appropriate NSRunningApplication object for that application.
-    ///
-    /// Parameter `pPSN`: the ProcessSerialNumber of the application to be made frontmost
-    ///
-    /// # Safety
-    ///
-    /// `p_psn` must be a valid pointer.
-    #[deprecated]
-    pub fn SetFrontProcess(p_psn: *const ProcessSerialNumber) -> OSErr;
+/// Make the application with the given PSN into the front application, if possible.
+///
+/// :
+/// To make your own application frontmost, use [[NSApplication activate].
+/// To make another application frontmost, use the activateWithOptions
+/// method of the appropriate NSRunningApplication object for that application.
+///
+/// Parameter `pPSN`: the ProcessSerialNumber of the application to be made frontmost
+///
+/// # Safety
+///
+/// `p_psn` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SetFrontProcess(p_psn: *const ProcessSerialNumber) -> OSErr {
+    extern "C-unwind" {
+        fn SetFrontProcess(p_psn: *const ProcessSerialNumber) -> OSErr;
+    }
+    unsafe { SetFrontProcess(p_psn) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/ksetfrontprocessfrontwindowonly?language=objc)
@@ -307,79 +323,127 @@ pub const kSetFrontProcessFrontWindowOnly: c_uint = 1 << 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/ksetfrontprocesscausedbyuser?language=objc)
 pub const kSetFrontProcessCausedByUser: c_uint = 1 << 1;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `in_process` must be a valid pointer.
-    #[deprecated]
-    pub fn SetFrontProcessWithOptions(
-        in_process: *const ProcessSerialNumber,
-        in_options: OptionBits,
-    ) -> OSStatus;
+/// # Safety
+///
+/// `in_process` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SetFrontProcessWithOptions(
+    in_process: *const ProcessSerialNumber,
+    in_options: OptionBits,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SetFrontProcessWithOptions(
+            in_process: *const ProcessSerialNumber,
+            in_options: OptionBits,
+        ) -> OSStatus;
+    }
+    unsafe { SetFrontProcessWithOptions(in_process, in_options) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `psn` must be a valid pointer.
-    #[deprecated]
-    pub fn WakeUpProcess(psn: *const ProcessSerialNumber) -> OSErr;
+/// # Safety
+///
+/// `psn` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn WakeUpProcess(psn: *const ProcessSerialNumber) -> OSErr {
+    extern "C-unwind" {
+        fn WakeUpProcess(psn: *const ProcessSerialNumber) -> OSErr;
+    }
+    unsafe { WakeUpProcess(psn) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `psn1` must be a valid pointer.
-    /// - `psn2` must be a valid pointer.
-    /// - `result` must be a valid pointer.
-    #[deprecated]
-    pub fn SameProcess(
-        psn1: *const ProcessSerialNumber,
-        psn2: *const ProcessSerialNumber,
-        result: *mut Boolean,
-    ) -> OSErr;
+/// # Safety
+///
+/// - `psn1` must be a valid pointer.
+/// - `psn2` must be a valid pointer.
+/// - `result` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SameProcess(
+    psn1: *const ProcessSerialNumber,
+    psn2: *const ProcessSerialNumber,
+    result: *mut Boolean,
+) -> OSErr {
+    extern "C-unwind" {
+        fn SameProcess(
+            psn1: *const ProcessSerialNumber,
+            psn2: *const ProcessSerialNumber,
+            result: *mut Boolean,
+        ) -> OSErr;
+    }
+    unsafe { SameProcess(psn1, psn2, result) }
 }
 
-extern "C-unwind" {
-    #[deprecated]
-    pub fn ExitToShell();
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ExitToShell() {
+    extern "C-unwind" {
+        fn ExitToShell();
+    }
+    unsafe { ExitToShell() }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `in_process` must be a valid pointer.
-    #[deprecated]
-    pub fn KillProcess(in_process: *const ProcessSerialNumber) -> OSErr;
+/// # Safety
+///
+/// `in_process` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn KillProcess(in_process: *const ProcessSerialNumber) -> OSErr {
+    extern "C-unwind" {
+        fn KillProcess(in_process: *const ProcessSerialNumber) -> OSErr;
+    }
+    unsafe { KillProcess(in_process) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `psn` must be a valid pointer.
-    /// - `name` must be a valid pointer.
-    #[deprecated]
-    pub fn CopyProcessName(psn: *const ProcessSerialNumber, name: *mut *const CFString)
-        -> OSStatus;
+/// # Safety
+///
+/// - `psn` must be a valid pointer.
+/// - `name` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CopyProcessName(
+    psn: *const ProcessSerialNumber,
+    name: *mut *const CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CopyProcessName(psn: *const ProcessSerialNumber, name: *mut *const CFString)
+            -> OSStatus;
+    }
+    unsafe { CopyProcessName(psn, name) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `psn` must be a valid pointer.
-    /// - `pid` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn GetProcessPID(psn: *const ProcessSerialNumber, pid: *mut libc::pid_t) -> OSStatus;
+/// # Safety
+///
+/// - `psn` must be a valid pointer.
+/// - `pid` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn GetProcessPID(
+    psn: *const ProcessSerialNumber,
+    pid: *mut libc::pid_t,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn GetProcessPID(psn: *const ProcessSerialNumber, pid: *mut libc::pid_t) -> OSStatus;
+    }
+    unsafe { GetProcessPID(psn, pid) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `psn` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn GetProcessForPID(pid: libc::pid_t, psn: *mut ProcessSerialNumber) -> OSStatus;
+/// # Safety
+///
+/// `psn` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn GetProcessForPID(
+    pid: libc::pid_t,
+    psn: *mut ProcessSerialNumber,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn GetProcessForPID(pid: libc::pid_t, psn: *mut ProcessSerialNumber) -> OSStatus;
+    }
+    unsafe { GetProcessForPID(pid, psn) }
 }
 
 /// ***********************************************************************
@@ -414,14 +478,21 @@ pub unsafe extern "C-unwind" fn ShowHideProcess(
     unsafe { ShowHideProcess(psn, visible as _) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `psn` must be a valid pointer.
-    pub fn TransformProcessType(
-        psn: *const ProcessSerialNumber,
-        transform_state: ProcessApplicationTransformState,
-    ) -> OSStatus;
+/// # Safety
+///
+/// `psn` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn TransformProcessType(
+    psn: *const ProcessSerialNumber,
+    transform_state: ProcessApplicationTransformState,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn TransformProcessType(
+            psn: *const ProcessSerialNumber,
+            transform_state: ProcessApplicationTransformState,
+        ) -> OSStatus;
+    }
+    unsafe { TransformProcessType(psn, transform_state) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/initdev?language=objc)

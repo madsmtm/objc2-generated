@@ -486,18 +486,27 @@ unsafe impl RefEncode for NSMultibyteGlyphPacking {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `gl_buf` must be a valid pointer.
-    /// - `packed_glyphs` must be a valid pointer.
-    #[deprecated]
-    pub fn NSConvertGlyphsToPackedGlyphs(
-        gl_buf: NonNull<NSGlyph>,
-        count: NSInteger,
-        packing: NSMultibyteGlyphPacking,
-        packed_glyphs: NonNull<c_char>,
-    ) -> NSInteger;
+/// # Safety
+///
+/// - `gl_buf` must be a valid pointer.
+/// - `packed_glyphs` must be a valid pointer.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn NSConvertGlyphsToPackedGlyphs(
+    gl_buf: NonNull<NSGlyph>,
+    count: NSInteger,
+    packing: NSMultibyteGlyphPacking,
+    packed_glyphs: NonNull<c_char>,
+) -> NSInteger {
+    extern "C-unwind" {
+        fn NSConvertGlyphsToPackedGlyphs(
+            gl_buf: NonNull<NSGlyph>,
+            count: NSInteger,
+            packing: NSMultibyteGlyphPacking,
+            packed_glyphs: NonNull<c_char>,
+        ) -> NSInteger;
+    }
+    unsafe { NSConvertGlyphsToPackedGlyphs(gl_buf, count, packing, packed_glyphs) }
 }
 
 /// NSFont_Deprecated.

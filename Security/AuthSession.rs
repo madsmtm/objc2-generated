@@ -87,70 +87,85 @@ pub const errSessionInternal: OSStatus = -60008;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errsessioninvalidflags?language=objc)
 pub const errSessionInvalidFlags: OSStatus = -60011;
 
-extern "C-unwind" {
-    /// Obtain information about a session. You can ask about any session whose
-    /// identifier you know. Use the callerSecuritySession constant to ask about
-    /// your own session (the one your process is in).
-    ///
-    ///
-    /// Parameter `session`: (input) The Session you are asking about. Can be one of the
-    /// special constants defined above.
-    ///
-    ///
-    /// Parameter `sessionId`: (output/optional) The actual SecuritySessionId for the session you asked about.
-    /// Will never be one of those constants.
-    ///
-    ///
-    /// Parameter `attributes`: (output/optional) Receives the attribute bits for the session.
-    ///
-    ///
-    /// Returns: An OSStatus indicating success (errSecSuccess) or an error cause.
-    ///
-    /// errSessionInvalidId -60500 Invalid session id specified
-    ///
-    /// # Safety
-    ///
-    /// - `session_id` must be a valid pointer or null.
-    /// - `attributes` must be a valid pointer or null.
-    pub fn SessionGetInfo(
-        session: SecuritySessionId,
-        session_id: *mut SecuritySessionId,
-        attributes: *mut SessionAttributeBits,
-    ) -> OSStatus;
+/// Obtain information about a session. You can ask about any session whose
+/// identifier you know. Use the callerSecuritySession constant to ask about
+/// your own session (the one your process is in).
+///
+///
+/// Parameter `session`: (input) The Session you are asking about. Can be one of the
+/// special constants defined above.
+///
+///
+/// Parameter `sessionId`: (output/optional) The actual SecuritySessionId for the session you asked about.
+/// Will never be one of those constants.
+///
+///
+/// Parameter `attributes`: (output/optional) Receives the attribute bits for the session.
+///
+///
+/// Returns: An OSStatus indicating success (errSecSuccess) or an error cause.
+///
+/// errSessionInvalidId -60500 Invalid session id specified
+///
+/// # Safety
+///
+/// - `session_id` must be a valid pointer or null.
+/// - `attributes` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn SessionGetInfo(
+    session: SecuritySessionId,
+    session_id: *mut SecuritySessionId,
+    attributes: *mut SessionAttributeBits,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SessionGetInfo(
+            session: SecuritySessionId,
+            session_id: *mut SecuritySessionId,
+            attributes: *mut SessionAttributeBits,
+        ) -> OSStatus;
+    }
+    unsafe { SessionGetInfo(session, session_id, attributes) }
 }
 
-extern "C-unwind" {
-    /// This (very specialized) function creates a security session.
-    /// Upon completion, the new session contains the calling process (and none other).
-    /// You cannot create a session for someone else, and cannot avoid being placed
-    /// into the new session. This is (currently) the only call that changes a process's
-    /// session membership.
-    /// By default, a new bootstrap subset port is created for the calling process. The process
-    /// acquires this new port as its bootstrap port, which all its children will inherit.
-    /// If you happen to have created the subset port on your own, you can pass the
-    /// sessionKeepCurrentBootstrap flag, and SessionCreate will use it. Note however that
-    /// you cannot supersede a prior SessionCreate call that way; only a single SessionCreate
-    /// call is allowed for each Session (however made).
-    /// This call will discard any security information established for the calling process.
-    /// In particular, any authorization handles acquired will become invalid, and so will any
-    /// keychain related information. We recommend that you call SessionCreate before
-    /// making any other security-related calls that establish rights of any kind, to the
-    /// extent this is practical. Also, we strongly recommend that you do not perform
-    /// security-related calls in any other threads while calling SessionCreate.
-    ///
-    ///
-    /// Parameter `flags`: Flags controlling how the session is created.
-    ///
-    ///
-    /// Parameter `attributes`: The set of attribute bits to set for the new session.
-    /// Not all bits can be set this way.
-    ///
-    ///
-    /// Returns: An OSStatus indicating success (errSecSuccess) or an error cause.
-    ///
-    /// errSessionInvalidAttributes -60501 Attempt to set invalid attribute bits
-    /// errSessionAuthorizationDenied -60502 Attempt to re-initialize a session
-    /// errSessionInvalidFlags -60011 Attempt to specify unsupported flag bits
-    pub fn SessionCreate(flags: SessionCreationFlags, attributes: SessionAttributeBits)
-        -> OSStatus;
+/// This (very specialized) function creates a security session.
+/// Upon completion, the new session contains the calling process (and none other).
+/// You cannot create a session for someone else, and cannot avoid being placed
+/// into the new session. This is (currently) the only call that changes a process's
+/// session membership.
+/// By default, a new bootstrap subset port is created for the calling process. The process
+/// acquires this new port as its bootstrap port, which all its children will inherit.
+/// If you happen to have created the subset port on your own, you can pass the
+/// sessionKeepCurrentBootstrap flag, and SessionCreate will use it. Note however that
+/// you cannot supersede a prior SessionCreate call that way; only a single SessionCreate
+/// call is allowed for each Session (however made).
+/// This call will discard any security information established for the calling process.
+/// In particular, any authorization handles acquired will become invalid, and so will any
+/// keychain related information. We recommend that you call SessionCreate before
+/// making any other security-related calls that establish rights of any kind, to the
+/// extent this is practical. Also, we strongly recommend that you do not perform
+/// security-related calls in any other threads while calling SessionCreate.
+///
+///
+/// Parameter `flags`: Flags controlling how the session is created.
+///
+///
+/// Parameter `attributes`: The set of attribute bits to set for the new session.
+/// Not all bits can be set this way.
+///
+///
+/// Returns: An OSStatus indicating success (errSecSuccess) or an error cause.
+///
+/// errSessionInvalidAttributes -60501 Attempt to set invalid attribute bits
+/// errSessionAuthorizationDenied -60502 Attempt to re-initialize a session
+/// errSessionInvalidFlags -60011 Attempt to specify unsupported flag bits
+#[inline]
+pub unsafe extern "C-unwind" fn SessionCreate(
+    flags: SessionCreationFlags,
+    attributes: SessionAttributeBits,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SessionCreate(flags: SessionCreationFlags, attributes: SessionAttributeBits)
+            -> OSStatus;
+    }
+    unsafe { SessionCreate(flags, attributes) }
 }

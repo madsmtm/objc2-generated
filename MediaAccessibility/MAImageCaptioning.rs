@@ -34,28 +34,36 @@ pub unsafe extern "C-unwind" fn MAImageCaptioningCopyCaption(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Sets the accessibility caption into an image's metadata.
-    ///
-    /// Parameter `url`: The URL locating the image on disk.
-    ///
-    /// Parameter `error`: If an error occurs, a description will be provided.
-    ///
-    /// Parameter `string`: The accessility caption.
-    ///
-    /// Returns: A bool representing whether the operation was successful.
-    ///
-    /// A convenience function for setting a caption to an image file that aims to describe the photo accurately.
-    /// This sets the XMP metadata field: Iptc4xmpExt:AOContentDescription.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
-    pub fn MAImageCaptioningSetCaption(
-        url: &CFURL,
-        string: Option<&CFString>,
-        error: *mut *mut CFError,
-    ) -> bool;
+/// Sets the accessibility caption into an image's metadata.
+///
+/// Parameter `url`: The URL locating the image on disk.
+///
+/// Parameter `error`: If an error occurs, a description will be provided.
+///
+/// Parameter `string`: The accessility caption.
+///
+/// Returns: A bool representing whether the operation was successful.
+///
+/// A convenience function for setting a caption to an image file that aims to describe the photo accurately.
+/// This sets the XMP metadata field: Iptc4xmpExt:AOContentDescription.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MAImageCaptioningSetCaption(
+    url: &CFURL,
+    string: Option<&CFString>,
+    error: *mut *mut CFError,
+) -> bool {
+    extern "C-unwind" {
+        fn MAImageCaptioningSetCaption(
+            url: &CFURL,
+            string: Option<&CFString>,
+            error: *mut *mut CFError,
+        ) -> bool;
+    }
+    unsafe { MAImageCaptioningSetCaption(url, string, error) }
 }
 
 /// Returns the metadata tagpath for this key.

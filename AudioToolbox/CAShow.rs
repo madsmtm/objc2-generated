@@ -5,22 +5,33 @@ use core::ptr::NonNull;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Print the internal state of an object to os_log.
-    ///
-    /// # Safety
-    ///
-    /// `in_object` must be a valid pointer.
-    pub fn CAShow(in_object: NonNull<c_void>);
+/// Print the internal state of an object to os_log.
+///
+/// # Safety
+///
+/// `in_object` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CAShow(in_object: NonNull<c_void>) {
+    extern "C-unwind" {
+        fn CAShow(in_object: NonNull<c_void>);
+    }
+    unsafe { CAShow(in_object) }
 }
 
-extern "C-unwind" {
-    /// Print the internal state of an object to the supplied FILE*.
-    ///
-    /// # Safety
-    ///
-    /// - `in_object` must be a valid pointer.
-    /// - `in_file` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn CAShowFile(in_object: NonNull<c_void>, in_file: NonNull<libc::FILE>);
+/// Print the internal state of an object to the supplied FILE*.
+///
+/// # Safety
+///
+/// - `in_object` must be a valid pointer.
+/// - `in_file` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn CAShowFile(
+    in_object: NonNull<c_void>,
+    in_file: NonNull<libc::FILE>,
+) {
+    extern "C-unwind" {
+        fn CAShowFile(in_object: NonNull<c_void>, in_file: NonNull<libc::FILE>);
+    }
+    unsafe { CAShowFile(in_object, in_file) }
 }

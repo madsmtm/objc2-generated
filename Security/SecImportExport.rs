@@ -261,20 +261,38 @@ impl SecKeychainItem {
     }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `sec_item_or_array` should be of the correct type.
-    /// - `key_params` must be a valid pointer or null.
-    /// - `exported_data` must be a valid pointer.
-    #[cfg(feature = "SecBase")]
-    pub fn SecItemExport(
-        sec_item_or_array: &CFType,
-        output_format: SecExternalFormat,
-        flags: SecItemImportExportFlags,
-        key_params: *const SecItemImportExportKeyParameters,
-        exported_data: NonNull<*const CFData>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `sec_item_or_array` should be of the correct type.
+/// - `key_params` must be a valid pointer or null.
+/// - `exported_data` must be a valid pointer.
+#[cfg(feature = "SecBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn SecItemExport(
+    sec_item_or_array: &CFType,
+    output_format: SecExternalFormat,
+    flags: SecItemImportExportFlags,
+    key_params: *const SecItemImportExportKeyParameters,
+    exported_data: NonNull<*const CFData>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecItemExport(
+            sec_item_or_array: &CFType,
+            output_format: SecExternalFormat,
+            flags: SecItemImportExportFlags,
+            key_params: *const SecItemImportExportKeyParameters,
+            exported_data: NonNull<*const CFData>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        SecItemExport(
+            sec_item_or_array,
+            output_format,
+            flags,
+            key_params,
+            exported_data,
+        )
+    }
 }
 
 #[cfg(feature = "SecBase")]
@@ -326,24 +344,48 @@ impl SecKeychainItem {
     }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `input_format` must be a valid pointer or null.
-    /// - `item_type` must be a valid pointer or null.
-    /// - `key_params` must be a valid pointer or null.
-    /// - `out_items` must be a valid pointer or null.
-    #[cfg(feature = "SecBase")]
-    pub fn SecItemImport(
-        imported_data: &CFData,
-        file_name_or_extension: Option<&CFString>,
-        input_format: *mut SecExternalFormat,
-        item_type: *mut SecExternalItemType,
-        flags: SecItemImportExportFlags,
-        key_params: *const SecItemImportExportKeyParameters,
-        import_keychain: Option<&SecKeychain>,
-        out_items: *mut *const CFArray,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `input_format` must be a valid pointer or null.
+/// - `item_type` must be a valid pointer or null.
+/// - `key_params` must be a valid pointer or null.
+/// - `out_items` must be a valid pointer or null.
+#[cfg(feature = "SecBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn SecItemImport(
+    imported_data: &CFData,
+    file_name_or_extension: Option<&CFString>,
+    input_format: *mut SecExternalFormat,
+    item_type: *mut SecExternalItemType,
+    flags: SecItemImportExportFlags,
+    key_params: *const SecItemImportExportKeyParameters,
+    import_keychain: Option<&SecKeychain>,
+    out_items: *mut *const CFArray,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecItemImport(
+            imported_data: &CFData,
+            file_name_or_extension: Option<&CFString>,
+            input_format: *mut SecExternalFormat,
+            item_type: *mut SecExternalItemType,
+            flags: SecItemImportExportFlags,
+            key_params: *const SecItemImportExportKeyParameters,
+            import_keychain: Option<&SecKeychain>,
+            out_items: *mut *const CFArray,
+        ) -> OSStatus;
+    }
+    unsafe {
+        SecItemImport(
+            imported_data,
+            file_name_or_extension,
+            input_format,
+            item_type,
+            flags,
+            key_params,
+            import_keychain,
+            out_items,
+        )
+    }
 }
 
 extern "C" {
@@ -407,42 +449,50 @@ extern "C" {
     pub static kSecImportItemIdentity: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Imports the contents of a PKCS12 formatted blob.
-    ///
-    /// Parameter `pkcs12_data`: The PKCS#12 formatted data to be imported.
-    ///
-    /// Parameter `options`: A dictionary containing import options. A
-    /// kSecImportExportPassphrase entry is required at minimum. Only password-based
-    /// PKCS12 blobs are currently supported.
-    ///
-    /// Parameter `items`: On return, an array containing a dictionary for every item
-    /// extracted. Use kSecImportItem constants to access specific elements of
-    /// these dictionaries. Your code must CFRelease the array when it is no longer
-    /// needed.
-    ///
-    /// Returns: errSecSuccess in case of success. errSecDecode means either the
-    /// blob can't be read or it is malformed. errSecAuthFailed means an
-    /// incorrect password was supplied, or data in the container is damaged.
-    ///
-    /// The normal behavior of this function is to import items into process
-    /// memory on iOS, and into the default keychain on macOS. You can modify this behavior
-    /// with entries in the options dictionary. To specify a file-based keychain and
-    /// legacy access control on macOS, provide kSecImportExportKeychain with a SecKeychainRef
-    /// value, and/or kSecImportExportAccess with a SecAccessRef value. In macOS 14 and later,
-    /// it is possible to specify the data protection keychain instead of a file-based keychain
-    /// by including kSecUseDataProtectionKeychain with a value of kCFBooleanTrue. Starting with
-    /// macOS 15 and iOS 18, kSecImportToMemoryOnly (with a value of kCFBooleanTrue) allows you
-    /// to skip importing to the keychain on macOS and explicitly specify iOS behavior.
-    ///
-    /// # Safety
-    ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    /// - `items` must be a valid pointer.
-    pub fn SecPKCS12Import(
-        pkcs12_data: &CFData,
-        options: &CFDictionary,
-        items: NonNull<*const CFArray>,
-    ) -> OSStatus;
+/// Imports the contents of a PKCS12 formatted blob.
+///
+/// Parameter `pkcs12_data`: The PKCS#12 formatted data to be imported.
+///
+/// Parameter `options`: A dictionary containing import options. A
+/// kSecImportExportPassphrase entry is required at minimum. Only password-based
+/// PKCS12 blobs are currently supported.
+///
+/// Parameter `items`: On return, an array containing a dictionary for every item
+/// extracted. Use kSecImportItem constants to access specific elements of
+/// these dictionaries. Your code must CFRelease the array when it is no longer
+/// needed.
+///
+/// Returns: errSecSuccess in case of success. errSecDecode means either the
+/// blob can't be read or it is malformed. errSecAuthFailed means an
+/// incorrect password was supplied, or data in the container is damaged.
+///
+/// The normal behavior of this function is to import items into process
+/// memory on iOS, and into the default keychain on macOS. You can modify this behavior
+/// with entries in the options dictionary. To specify a file-based keychain and
+/// legacy access control on macOS, provide kSecImportExportKeychain with a SecKeychainRef
+/// value, and/or kSecImportExportAccess with a SecAccessRef value. In macOS 14 and later,
+/// it is possible to specify the data protection keychain instead of a file-based keychain
+/// by including kSecUseDataProtectionKeychain with a value of kCFBooleanTrue. Starting with
+/// macOS 15 and iOS 18, kSecImportToMemoryOnly (with a value of kCFBooleanTrue) allows you
+/// to skip importing to the keychain on macOS and explicitly specify iOS behavior.
+///
+/// # Safety
+///
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
+/// - `items` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn SecPKCS12Import(
+    pkcs12_data: &CFData,
+    options: &CFDictionary,
+    items: NonNull<*const CFArray>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecPKCS12Import(
+            pkcs12_data: &CFData,
+            options: &CFDictionary,
+            items: NonNull<*const CFArray>,
+        ) -> OSStatus;
+    }
+    unsafe { SecPKCS12Import(pkcs12_data, options, items) }
 }

@@ -23,17 +23,24 @@ pub const NSMacintoshInterfaceStyle: c_uint = 3;
 #[deprecated]
 pub type NSInterfaceStyle = NSUInteger;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `key` might not allow `None`.
-    /// - `responder` might not allow `None`.
-    #[cfg(feature = "NSResponder")]
-    #[deprecated]
-    pub fn NSInterfaceStyleForKey(
-        key: Option<&NSString>,
-        responder: Option<&NSResponder>,
-    ) -> NSInterfaceStyle;
+/// # Safety
+///
+/// - `key` might not allow `None`.
+/// - `responder` might not allow `None`.
+#[cfg(feature = "NSResponder")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn NSInterfaceStyleForKey(
+    key: Option<&NSString>,
+    responder: Option<&NSResponder>,
+) -> NSInterfaceStyle {
+    extern "C-unwind" {
+        fn NSInterfaceStyleForKey(
+            key: Option<&NSString>,
+            responder: Option<&NSResponder>,
+        ) -> NSInterfaceStyle;
+    }
+    unsafe { NSInterfaceStyleForKey(key, responder) }
 }
 
 /// NSInterfaceStyle.

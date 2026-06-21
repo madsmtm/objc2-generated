@@ -669,194 +669,274 @@ pub type AudioQueueProcessingTapCallback = Option<
     ),
 >;
 
-extern "C-unwind" {
-    /// Creates a new audio queue for playing audio data.
-    ///
-    /// To create an playback audio queue, you allocate buffers, then queue buffers (using
-    /// AudioQueueEnqueueBuffer). The callback receives buffers and typically queues them again.
-    /// To schedule a buffer for playback, providing parameter and start time information, call
-    /// AudioQueueEnqueueBufferWithParameters.
-    ///
-    ///
-    /// Parameter `inFormat`: A pointer to a structure describing the format of the audio data to be played. For
-    /// linear PCM, only interleaved formats are supported. Compressed formats are supported.
-    ///
-    /// Parameter `inCallbackProc`: A pointer to a callback function to be called when the audio queue has finished playing
-    /// a buffer.
-    ///
-    /// Parameter `inUserData`: A value or pointer to data that you specify to be passed to the callback function.
-    ///
-    /// Parameter `inCallbackRunLoop`: The event loop on which inCallbackProc is to be called. If you specify NULL, the
-    /// callback is called on one of the audio queue's internal threads.
-    ///
-    /// Parameter `inCallbackRunLoopMode`: The run loop mode in which to call the callback. Typically, you pass
-    /// kCFRunLoopCommonModes. (NULL also specifies kCFRunLoopCommonModes). Other
-    /// possibilities are implementation specific. You can choose to create your own thread with
-    /// your own run loops. For more information on run loops, see Run Loops or CFRunLoop
-    /// Reference.
-    ///
-    /// Parameter `inFlags`: Reserved for future use. Pass 0.
-    ///
-    /// Parameter `outAQ`: On return, this variable contains a pointer to the newly created playback audio queue
-    /// object.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_callback_proc` must be implemented correctly.
-    /// - `in_user_data` must be a valid pointer or null.
-    /// - `in_callback_run_loop` possibly has additional threading requirements.
-    /// - `out_aq` must be a valid pointer or null.
-    #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
-    pub fn AudioQueueNewOutput(
-        in_format: &AudioStreamBasicDescription,
-        in_callback_proc: AudioQueueOutputCallback,
-        in_user_data: *mut c_void,
-        in_callback_run_loop: Option<&CFRunLoop>,
-        in_callback_run_loop_mode: Option<&CFString>,
-        in_flags: u32,
-        out_aq: &mut AudioQueueRef,
-    ) -> OSStatus;
+/// Creates a new audio queue for playing audio data.
+///
+/// To create an playback audio queue, you allocate buffers, then queue buffers (using
+/// AudioQueueEnqueueBuffer). The callback receives buffers and typically queues them again.
+/// To schedule a buffer for playback, providing parameter and start time information, call
+/// AudioQueueEnqueueBufferWithParameters.
+///
+///
+/// Parameter `inFormat`: A pointer to a structure describing the format of the audio data to be played. For
+/// linear PCM, only interleaved formats are supported. Compressed formats are supported.
+///
+/// Parameter `inCallbackProc`: A pointer to a callback function to be called when the audio queue has finished playing
+/// a buffer.
+///
+/// Parameter `inUserData`: A value or pointer to data that you specify to be passed to the callback function.
+///
+/// Parameter `inCallbackRunLoop`: The event loop on which inCallbackProc is to be called. If you specify NULL, the
+/// callback is called on one of the audio queue's internal threads.
+///
+/// Parameter `inCallbackRunLoopMode`: The run loop mode in which to call the callback. Typically, you pass
+/// kCFRunLoopCommonModes. (NULL also specifies kCFRunLoopCommonModes). Other
+/// possibilities are implementation specific. You can choose to create your own thread with
+/// your own run loops. For more information on run loops, see Run Loops or CFRunLoop
+/// Reference.
+///
+/// Parameter `inFlags`: Reserved for future use. Pass 0.
+///
+/// Parameter `outAQ`: On return, this variable contains a pointer to the newly created playback audio queue
+/// object.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_callback_proc` must be implemented correctly.
+/// - `in_user_data` must be a valid pointer or null.
+/// - `in_callback_run_loop` possibly has additional threading requirements.
+/// - `out_aq` must be a valid pointer or null.
+#[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueNewOutput(
+    in_format: &AudioStreamBasicDescription,
+    in_callback_proc: AudioQueueOutputCallback,
+    in_user_data: *mut c_void,
+    in_callback_run_loop: Option<&CFRunLoop>,
+    in_callback_run_loop_mode: Option<&CFString>,
+    in_flags: u32,
+    out_aq: &mut AudioQueueRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueNewOutput(
+            in_format: &AudioStreamBasicDescription,
+            in_callback_proc: AudioQueueOutputCallback,
+            in_user_data: *mut c_void,
+            in_callback_run_loop: Option<&CFRunLoop>,
+            in_callback_run_loop_mode: Option<&CFString>,
+            in_flags: u32,
+            out_aq: &mut AudioQueueRef,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioQueueNewOutput(
+            in_format,
+            in_callback_proc,
+            in_user_data,
+            in_callback_run_loop,
+            in_callback_run_loop_mode,
+            in_flags,
+            out_aq,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Creates a new audio queue for recording audio data.
-    ///
-    /// Outline of how to use the queue for input:
-    ///
-    /// - create input queue
-    /// - allocate buffers
-    /// - enqueue buffers (AudioQueueEnqueueBuffer, not with parameters, no packet descriptions)
-    /// - the callback receives buffers and re-enqueues them
-    ///
-    ///
-    /// Parameter `inFormat`: A pointer to a structure describing the format of the audio data to be recorded. For
-    /// linear PCM, only interleaved formats are supported. Compressed formats are supported.
-    ///
-    /// Parameter `inCallbackProc`: A pointer to a callback function to be called when the audio queue has finished filling
-    /// a buffer.
-    ///
-    /// Parameter `inUserData`: A value or pointer to data that you specify to be passed to the callback function.
-    ///
-    /// Parameter `inCallbackRunLoop`: The event loop on which inCallbackProc is to be called. If you specify NULL, the
-    /// callback is called on one of the audio queue's internal threads.
-    ///
-    /// Parameter `inCallbackRunLoopMode`: The run loop mode in which to call the callback. Typically, you pass
-    /// kCFRunLoopCommonModes. (NULL also specifies kCFRunLoopCommonModes). Other
-    /// possibilities are implementation specific. You can choose to create your own thread with
-    /// your own run loops. For more information on run loops, see Run Loops or CFRunLoop
-    /// Reference.
-    ///
-    /// Parameter `inFlags`: Reserved for future use. Pass 0.
-    ///
-    /// Parameter `outAQ`: On return, this variable contains a pointer to the newly created recording audio queue
-    /// object.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_callback_proc` must be implemented correctly.
-    /// - `in_user_data` must be a valid pointer or null.
-    /// - `in_callback_run_loop` possibly has additional threading requirements.
-    /// - `out_aq` must be a valid pointer or null.
-    #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
-    pub fn AudioQueueNewInput(
-        in_format: &AudioStreamBasicDescription,
-        in_callback_proc: AudioQueueInputCallback,
-        in_user_data: *mut c_void,
-        in_callback_run_loop: Option<&CFRunLoop>,
-        in_callback_run_loop_mode: Option<&CFString>,
-        in_flags: u32,
-        out_aq: &mut AudioQueueRef,
-    ) -> OSStatus;
+/// Creates a new audio queue for recording audio data.
+///
+/// Outline of how to use the queue for input:
+///
+/// - create input queue
+/// - allocate buffers
+/// - enqueue buffers (AudioQueueEnqueueBuffer, not with parameters, no packet descriptions)
+/// - the callback receives buffers and re-enqueues them
+///
+///
+/// Parameter `inFormat`: A pointer to a structure describing the format of the audio data to be recorded. For
+/// linear PCM, only interleaved formats are supported. Compressed formats are supported.
+///
+/// Parameter `inCallbackProc`: A pointer to a callback function to be called when the audio queue has finished filling
+/// a buffer.
+///
+/// Parameter `inUserData`: A value or pointer to data that you specify to be passed to the callback function.
+///
+/// Parameter `inCallbackRunLoop`: The event loop on which inCallbackProc is to be called. If you specify NULL, the
+/// callback is called on one of the audio queue's internal threads.
+///
+/// Parameter `inCallbackRunLoopMode`: The run loop mode in which to call the callback. Typically, you pass
+/// kCFRunLoopCommonModes. (NULL also specifies kCFRunLoopCommonModes). Other
+/// possibilities are implementation specific. You can choose to create your own thread with
+/// your own run loops. For more information on run loops, see Run Loops or CFRunLoop
+/// Reference.
+///
+/// Parameter `inFlags`: Reserved for future use. Pass 0.
+///
+/// Parameter `outAQ`: On return, this variable contains a pointer to the newly created recording audio queue
+/// object.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_callback_proc` must be implemented correctly.
+/// - `in_user_data` must be a valid pointer or null.
+/// - `in_callback_run_loop` possibly has additional threading requirements.
+/// - `out_aq` must be a valid pointer or null.
+#[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueNewInput(
+    in_format: &AudioStreamBasicDescription,
+    in_callback_proc: AudioQueueInputCallback,
+    in_user_data: *mut c_void,
+    in_callback_run_loop: Option<&CFRunLoop>,
+    in_callback_run_loop_mode: Option<&CFString>,
+    in_flags: u32,
+    out_aq: &mut AudioQueueRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueNewInput(
+            in_format: &AudioStreamBasicDescription,
+            in_callback_proc: AudioQueueInputCallback,
+            in_user_data: *mut c_void,
+            in_callback_run_loop: Option<&CFRunLoop>,
+            in_callback_run_loop_mode: Option<&CFString>,
+            in_flags: u32,
+            out_aq: &mut AudioQueueRef,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioQueueNewInput(
+            in_format,
+            in_callback_proc,
+            in_user_data,
+            in_callback_run_loop,
+            in_callback_run_loop_mode,
+            in_flags,
+            out_aq,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Creates a new audio queue for playing audio data.
-    ///
-    /// To create an playback audio queue, you allocate buffers, then queue buffers (using
-    /// AudioQueueEnqueueBuffer). The callback receives buffers and typically queues them again.
-    /// To schedule a buffer for playback, providing parameter and start time information, call
-    /// AudioQueueEnqueueBufferWithParameters.
-    ///
-    ///
-    /// Parameter `outAQ`: On return, this variable contains a pointer to the newly created playback audio queue
-    /// object.
-    ///
-    /// Parameter `inFormat`: A pointer to a structure describing the format of the audio data to be played. For
-    /// linear PCM, only interleaved formats are supported. Compressed formats are supported.
-    ///
-    /// Parameter `inFlags`: Reserved for future use. Pass 0.
-    ///
-    /// Parameter `inCallbackDispatchQueue`: The dispatch queue from which inCallbackBlock is to be called.
-    ///
-    /// Parameter `inCallbackBlock`: A pointer to a callback block to be called when the audio queue has finished playing
-    /// a buffer.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `out_aq` must be a valid pointer or null.
-    /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
-    #[cfg(all(
-        feature = "block2",
-        feature = "dispatch2",
-        feature = "objc2-core-audio-types"
-    ))]
-    pub fn AudioQueueNewOutputWithDispatchQueue(
-        out_aq: &mut AudioQueueRef,
-        in_format: &AudioStreamBasicDescription,
-        in_flags: u32,
-        in_callback_dispatch_queue: &DispatchQueue,
-        in_callback_block: &AudioQueueOutputCallbackBlock,
-    ) -> OSStatus;
+/// Creates a new audio queue for playing audio data.
+///
+/// To create an playback audio queue, you allocate buffers, then queue buffers (using
+/// AudioQueueEnqueueBuffer). The callback receives buffers and typically queues them again.
+/// To schedule a buffer for playback, providing parameter and start time information, call
+/// AudioQueueEnqueueBufferWithParameters.
+///
+///
+/// Parameter `outAQ`: On return, this variable contains a pointer to the newly created playback audio queue
+/// object.
+///
+/// Parameter `inFormat`: A pointer to a structure describing the format of the audio data to be played. For
+/// linear PCM, only interleaved formats are supported. Compressed formats are supported.
+///
+/// Parameter `inFlags`: Reserved for future use. Pass 0.
+///
+/// Parameter `inCallbackDispatchQueue`: The dispatch queue from which inCallbackBlock is to be called.
+///
+/// Parameter `inCallbackBlock`: A pointer to a callback block to be called when the audio queue has finished playing
+/// a buffer.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `out_aq` must be a valid pointer or null.
+/// - `in_callback_dispatch_queue` possibly has additional threading requirements.
+#[cfg(all(
+    feature = "block2",
+    feature = "dispatch2",
+    feature = "objc2-core-audio-types"
+))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueNewOutputWithDispatchQueue(
+    out_aq: &mut AudioQueueRef,
+    in_format: &AudioStreamBasicDescription,
+    in_flags: u32,
+    in_callback_dispatch_queue: &DispatchQueue,
+    in_callback_block: &AudioQueueOutputCallbackBlock,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueNewOutputWithDispatchQueue(
+            out_aq: &mut AudioQueueRef,
+            in_format: &AudioStreamBasicDescription,
+            in_flags: u32,
+            in_callback_dispatch_queue: &DispatchQueue,
+            in_callback_block: &AudioQueueOutputCallbackBlock,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioQueueNewOutputWithDispatchQueue(
+            out_aq,
+            in_format,
+            in_flags,
+            in_callback_dispatch_queue,
+            in_callback_block,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Creates a new audio queue for recording audio data.
-    ///
-    /// Outline of how to use the queue for input:
-    ///
-    /// - create input queue
-    /// - allocate buffers
-    /// - enqueue buffers (AudioQueueEnqueueBuffer, not with parameters, no packet descriptions)
-    /// - the callback receives buffers and re-enqueues them
-    ///
-    ///
-    /// Parameter `outAQ`: On return, this variable contains a pointer to the newly created recording audio queue
-    /// object.
-    ///
-    /// Parameter `inFormat`: A pointer to a structure describing the format of the audio data to be recorded. For
-    /// linear PCM, only interleaved formats are supported. Compressed formats are supported.
-    ///
-    /// Parameter `inFlags`: Reserved for future use. Pass 0.
-    ///
-    /// Parameter `inCallbackDispatchQueue`: The dispatch queue from which inCallbackBlock is to be called.
-    ///
-    /// Parameter `inCallbackBlock`: A pointer to a callback block to be called when the audio queue has finished filling
-    /// a buffer.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `out_aq` must be a valid pointer or null.
-    /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
-    #[cfg(all(
-        feature = "block2",
-        feature = "dispatch2",
-        feature = "objc2-core-audio-types"
-    ))]
-    pub fn AudioQueueNewInputWithDispatchQueue(
-        out_aq: &mut AudioQueueRef,
-        in_format: &AudioStreamBasicDescription,
-        in_flags: u32,
-        in_callback_dispatch_queue: &DispatchQueue,
-        in_callback_block: &AudioQueueInputCallbackBlock,
-    ) -> OSStatus;
+/// Creates a new audio queue for recording audio data.
+///
+/// Outline of how to use the queue for input:
+///
+/// - create input queue
+/// - allocate buffers
+/// - enqueue buffers (AudioQueueEnqueueBuffer, not with parameters, no packet descriptions)
+/// - the callback receives buffers and re-enqueues them
+///
+///
+/// Parameter `outAQ`: On return, this variable contains a pointer to the newly created recording audio queue
+/// object.
+///
+/// Parameter `inFormat`: A pointer to a structure describing the format of the audio data to be recorded. For
+/// linear PCM, only interleaved formats are supported. Compressed formats are supported.
+///
+/// Parameter `inFlags`: Reserved for future use. Pass 0.
+///
+/// Parameter `inCallbackDispatchQueue`: The dispatch queue from which inCallbackBlock is to be called.
+///
+/// Parameter `inCallbackBlock`: A pointer to a callback block to be called when the audio queue has finished filling
+/// a buffer.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `out_aq` must be a valid pointer or null.
+/// - `in_callback_dispatch_queue` possibly has additional threading requirements.
+#[cfg(all(
+    feature = "block2",
+    feature = "dispatch2",
+    feature = "objc2-core-audio-types"
+))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueNewInputWithDispatchQueue(
+    out_aq: &mut AudioQueueRef,
+    in_format: &AudioStreamBasicDescription,
+    in_flags: u32,
+    in_callback_dispatch_queue: &DispatchQueue,
+    in_callback_block: &AudioQueueInputCallbackBlock,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueNewInputWithDispatchQueue(
+            out_aq: &mut AudioQueueRef,
+            in_format: &AudioStreamBasicDescription,
+            in_flags: u32,
+            in_callback_dispatch_queue: &DispatchQueue,
+            in_callback_block: &AudioQueueInputCallbackBlock,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioQueueNewInputWithDispatchQueue(
+            out_aq,
+            in_format,
+            in_flags,
+            in_callback_dispatch_queue,
+            in_callback_block,
+        )
+    }
 }
 
 /// Disposes an existing audio queue.
@@ -891,274 +971,363 @@ pub unsafe extern "C-unwind" fn AudioQueueDispose(
     unsafe { AudioQueueDispose(in_aq, in_immediate as _) }
 }
 
-extern "C-unwind" {
-    /// Asks an audio queue to allocate a buffer.
-    ///
-    /// Once allocated, the pointer to the buffer and the buffer's size are fixed and cannot be
-    /// changed. The mAudioDataByteSize field in the audio queue buffer structure,
-    /// AudioQueueBuffer, is initially set to 0.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue you want to allocate a buffer.
-    ///
-    /// Parameter `inBufferByteSize`: The desired size of the new buffer, in bytes. An appropriate buffer size depends on the
-    /// processing you will perform on the data as well as on the audio data format.
-    ///
-    /// Parameter `outBuffer`: On return, points to the newly created audio buffer. The mAudioDataByteSize field in the
-    /// audio queue buffer structure, AudioQueueBuffer, is initially set to 0.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `out_buffer` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueAllocateBuffer(
-        in_aq: AudioQueueRef,
-        in_buffer_byte_size: u32,
-        out_buffer: &mut AudioQueueBufferRef,
-    ) -> OSStatus;
+/// Asks an audio queue to allocate a buffer.
+///
+/// Once allocated, the pointer to the buffer and the buffer's size are fixed and cannot be
+/// changed. The mAudioDataByteSize field in the audio queue buffer structure,
+/// AudioQueueBuffer, is initially set to 0.
+///
+///
+/// Parameter `inAQ`: The audio queue you want to allocate a buffer.
+///
+/// Parameter `inBufferByteSize`: The desired size of the new buffer, in bytes. An appropriate buffer size depends on the
+/// processing you will perform on the data as well as on the audio data format.
+///
+/// Parameter `outBuffer`: On return, points to the newly created audio buffer. The mAudioDataByteSize field in the
+/// audio queue buffer structure, AudioQueueBuffer, is initially set to 0.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `out_buffer` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueAllocateBuffer(
+    in_aq: AudioQueueRef,
+    in_buffer_byte_size: u32,
+    out_buffer: &mut AudioQueueBufferRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueAllocateBuffer(
+            in_aq: AudioQueueRef,
+            in_buffer_byte_size: u32,
+            out_buffer: &mut AudioQueueBufferRef,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueAllocateBuffer(in_aq, in_buffer_byte_size, out_buffer) }
 }
 
-extern "C-unwind" {
-    /// Asks an audio queue to allocate a buffer with space for packet descriptions.
-    ///
-    /// Once allocated, the pointer to the buffer and the buffer's size are fixed and cannot be
-    /// changed. The mAudioDataByteSize field in the audio queue buffer structure,
-    /// AudioQueueBuffer, is initially set to 0.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue you want to allocate a buffer.
-    ///
-    /// Parameter `inBufferByteSize`: The desired size of the new buffer, in bytes. An appropriate buffer size depends on the
-    /// processing you will perform on the data as well as on the audio data format.
-    ///
-    /// Parameter `inNumberPacketDescriptions`: The desired capacity of the packet description array in the new buffer.
-    ///
-    /// Parameter `outBuffer`: On return, points to the newly created audio buffer. The mAudioDataByteSize field in the
-    /// audio queue buffer structure, AudioQueueBuffer, is initially set to 0.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `out_buffer` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueAllocateBufferWithPacketDescriptions(
-        in_aq: AudioQueueRef,
-        in_buffer_byte_size: u32,
-        in_number_packet_descriptions: u32,
-        out_buffer: &mut AudioQueueBufferRef,
-    ) -> OSStatus;
+/// Asks an audio queue to allocate a buffer with space for packet descriptions.
+///
+/// Once allocated, the pointer to the buffer and the buffer's size are fixed and cannot be
+/// changed. The mAudioDataByteSize field in the audio queue buffer structure,
+/// AudioQueueBuffer, is initially set to 0.
+///
+///
+/// Parameter `inAQ`: The audio queue you want to allocate a buffer.
+///
+/// Parameter `inBufferByteSize`: The desired size of the new buffer, in bytes. An appropriate buffer size depends on the
+/// processing you will perform on the data as well as on the audio data format.
+///
+/// Parameter `inNumberPacketDescriptions`: The desired capacity of the packet description array in the new buffer.
+///
+/// Parameter `outBuffer`: On return, points to the newly created audio buffer. The mAudioDataByteSize field in the
+/// audio queue buffer structure, AudioQueueBuffer, is initially set to 0.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `out_buffer` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueAllocateBufferWithPacketDescriptions(
+    in_aq: AudioQueueRef,
+    in_buffer_byte_size: u32,
+    in_number_packet_descriptions: u32,
+    out_buffer: &mut AudioQueueBufferRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueAllocateBufferWithPacketDescriptions(
+            in_aq: AudioQueueRef,
+            in_buffer_byte_size: u32,
+            in_number_packet_descriptions: u32,
+            out_buffer: &mut AudioQueueBufferRef,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioQueueAllocateBufferWithPacketDescriptions(
+            in_aq,
+            in_buffer_byte_size,
+            in_number_packet_descriptions,
+            out_buffer,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Disposes of an audio queue buffer.
-    ///
-    /// This function disposes of the buffer allocated by AudioQueueAllocateBuffer. Disposing of
-    /// an audio queue also automatically disposes of any associated buffers and timeline
-    /// objects. Call this function only if you want to dispose of a particular buffer while
-    /// continuing to use an audio queue. You can dispose of buffers only when the associated
-    /// queue is stopped (that is, not processing audio data).
-    ///
-    ///
-    /// Parameter `inAQ`: The queue from which the buffer was allocated.
-    ///
-    /// Parameter `inBuffer`: The buffer to be disposed.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_buffer` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueFreeBuffer(in_aq: AudioQueueRef, in_buffer: AudioQueueBufferRef) -> OSStatus;
+/// Disposes of an audio queue buffer.
+///
+/// This function disposes of the buffer allocated by AudioQueueAllocateBuffer. Disposing of
+/// an audio queue also automatically disposes of any associated buffers and timeline
+/// objects. Call this function only if you want to dispose of a particular buffer while
+/// continuing to use an audio queue. You can dispose of buffers only when the associated
+/// queue is stopped (that is, not processing audio data).
+///
+///
+/// Parameter `inAQ`: The queue from which the buffer was allocated.
+///
+/// Parameter `inBuffer`: The buffer to be disposed.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `in_buffer` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueFreeBuffer(
+    in_aq: AudioQueueRef,
+    in_buffer: AudioQueueBufferRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueFreeBuffer(in_aq: AudioQueueRef, in_buffer: AudioQueueBufferRef) -> OSStatus;
+    }
+    unsafe { AudioQueueFreeBuffer(in_aq, in_buffer) }
 }
 
-extern "C-unwind" {
-    /// Assigns a buffer to an audio queue for recording or playback.
-    ///
-    /// If the buffer was allocated with AudioQueueAllocateBufferWithPacketDescriptions,
-    /// the client should provide packet descriptions in the buffer's mPacketDescriptions
-    /// and mPacketDescriptionCount fields rather than in inPacketDescs and
-    /// inNumPacketDescs, which should be NULL and 0, respectively, in this case.
-    ///
-    /// For an input queue, pass 0 and NULL for inNumPacketDescs and inPacketDescs,
-    /// respectively. Your callback will receive packet descriptions owned by the audio queue.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue you are assigning the buffer to.
-    ///
-    /// Parameter `inBuffer`: The buffer to queue (that is, to be recorded into or played from).
-    ///
-    /// Parameter `inNumPacketDescs`: The number of packet descriptions pointed to by the inPacketDescs pointer. Applicable
-    /// only for output queues and required only for variable-bit-rate (VBR) audio formats. Pass
-    /// 0 for input queues (no packet descriptions are required).
-    ///
-    /// Parameter `inPacketDescs`: An array of packet descriptions. Applicable only for output queues and required only for
-    /// variable-bit-rate (VBR) audio formats. Pass NULL for input queues (no packet
-    /// descriptions are required).
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_buffer` must be a valid pointer.
-    /// - `in_packet_descs` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueEnqueueBuffer(
-        in_aq: AudioQueueRef,
-        in_buffer: AudioQueueBufferRef,
-        in_num_packet_descs: u32,
-        in_packet_descs: *const AudioStreamPacketDescription,
-    ) -> OSStatus;
+/// Assigns a buffer to an audio queue for recording or playback.
+///
+/// If the buffer was allocated with AudioQueueAllocateBufferWithPacketDescriptions,
+/// the client should provide packet descriptions in the buffer's mPacketDescriptions
+/// and mPacketDescriptionCount fields rather than in inPacketDescs and
+/// inNumPacketDescs, which should be NULL and 0, respectively, in this case.
+///
+/// For an input queue, pass 0 and NULL for inNumPacketDescs and inPacketDescs,
+/// respectively. Your callback will receive packet descriptions owned by the audio queue.
+///
+///
+/// Parameter `inAQ`: The audio queue you are assigning the buffer to.
+///
+/// Parameter `inBuffer`: The buffer to queue (that is, to be recorded into or played from).
+///
+/// Parameter `inNumPacketDescs`: The number of packet descriptions pointed to by the inPacketDescs pointer. Applicable
+/// only for output queues and required only for variable-bit-rate (VBR) audio formats. Pass
+/// 0 for input queues (no packet descriptions are required).
+///
+/// Parameter `inPacketDescs`: An array of packet descriptions. Applicable only for output queues and required only for
+/// variable-bit-rate (VBR) audio formats. Pass NULL for input queues (no packet
+/// descriptions are required).
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `in_buffer` must be a valid pointer.
+/// - `in_packet_descs` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueEnqueueBuffer(
+    in_aq: AudioQueueRef,
+    in_buffer: AudioQueueBufferRef,
+    in_num_packet_descs: u32,
+    in_packet_descs: *const AudioStreamPacketDescription,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueEnqueueBuffer(
+            in_aq: AudioQueueRef,
+            in_buffer: AudioQueueBufferRef,
+            in_num_packet_descs: u32,
+            in_packet_descs: *const AudioStreamPacketDescription,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueEnqueueBuffer(in_aq, in_buffer, in_num_packet_descs, in_packet_descs) }
 }
 
-extern "C-unwind" {
-    /// Assigns a buffer to an audio queue for playback, providing parameters
-    /// and start time information.
-    ///
-    /// You can exert some control of the buffer queue by using this function. You can assign
-    /// audio queue settings that are in effect carried by an audio queue buffer as you enqueue
-    /// it. Hence, these changes only take effect when an audio queue buffer begins playing.
-    ///
-    /// This function queues a buffer for playback only, not for recording. Audio queues for
-    /// recording have no parameters, do not support variable-bit-rate (VBR) formats (which
-    /// might require trimming), and have a different way to handle timing. When queued for
-    /// playback, the buffer must contain the audio data to be played back. See
-    /// AudioQueueEnqueueBuffer for details on queuing a buffer for recording.
-    ///
-    /// If the buffer was allocated with AudioQueueAllocateBufferWithPacketDescriptions,
-    /// the client should provide packet descriptions in the buffer's mPacketDescriptions
-    /// and mPacketDescriptionCount fields rather than in inPacketDescs and
-    /// inNumPacketDescs, which should be NULL and 0, respectively, in this case.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue associated with the buffer.
-    ///
-    /// Parameter `inBuffer`: The buffer to be played from.
-    ///
-    /// Parameter `inNumPacketDescs`: The number of packet descriptions pointed to by the inPacketDescs parameter. Required
-    /// only for variable-bit-rate (VBR) audio formats. Pass 0 if no packet descriptions are
-    /// required.
-    ///
-    /// Parameter `inPacketDescs`: A pointer to an array of audio stream packet descriptions. Required only for VBR audio
-    /// formats. Pass NULL if no packet descriptions are required.
-    ///
-    /// Parameter `inTrimFramesAtStart`: The number of priming frames to skip at the start of the buffer.
-    ///
-    /// Parameter `inTrimFramesAtEnd`: The number of frames to skip at the end of the buffer.
-    ///
-    /// Parameter `inNumParamValues`: The number of parameter values pointed to by the inParamValues parameter.
-    ///
-    /// Parameter `inParamValues`: An array of parameter values. (In macOS v10.5, there is only one parameter,
-    /// kAudioQueueParam_Volume.) These values are set before buffer playback and cannot be
-    /// changed while the buffer is playing. How accurately changes in parameters can be
-    /// scheduled depends on the size of the buffer. If there are no parameters to set
-    /// (inNumParamValues = 0), pass NULL.
-    ///
-    /// Parameter `inStartTime`: A pointer to a structure containing the desired start time for playing the buffer. If
-    /// you specify the time using the mSampleTime field of the AudioTimeStamp structure, the
-    /// sample time is relative to the time the queue started. If you pass NULL for the start
-    /// time, the buffer starts immediately after the previously queued buffer, or as soon as
-    /// possible if no buffers are queued ahead of it. Buffers are played in the order they are
-    /// queued. If multiple buffers are queued, their times must be in ascending order or NULL;
-    /// otherwise, an error occurs. The start time indicates when the actual audio data in the
-    /// buffer is to be played (that is, the trim frames are not counted).
-    ///
-    /// Note: When specifying a start time for a buffer, if the buffer is not the first enqueued
-    /// since AudioQueueStop or AudioQueueReset, it is normally necessary to call AudioQueueFlush
-    /// before AudioQueueEnqueueBufferWithParameters.
-    ///
-    /// Parameter `outActualStartTime`: On return, points to an AudioTimeStamp structure indicating when the buffer will
-    /// actually play.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_buffer` must be a valid pointer.
-    /// - `in_packet_descs` must be a valid pointer or null.
-    /// - `in_param_values` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueEnqueueBufferWithParameters(
-        in_aq: AudioQueueRef,
-        in_buffer: AudioQueueBufferRef,
-        in_num_packet_descs: u32,
-        in_packet_descs: *const AudioStreamPacketDescription,
-        in_trim_frames_at_start: u32,
-        in_trim_frames_at_end: u32,
-        in_num_param_values: u32,
-        in_param_values: *const AudioQueueParameterEvent,
-        in_start_time: Option<&AudioTimeStamp>,
-        out_actual_start_time: Option<&mut AudioTimeStamp>,
-    ) -> OSStatus;
+/// Assigns a buffer to an audio queue for playback, providing parameters
+/// and start time information.
+///
+/// You can exert some control of the buffer queue by using this function. You can assign
+/// audio queue settings that are in effect carried by an audio queue buffer as you enqueue
+/// it. Hence, these changes only take effect when an audio queue buffer begins playing.
+///
+/// This function queues a buffer for playback only, not for recording. Audio queues for
+/// recording have no parameters, do not support variable-bit-rate (VBR) formats (which
+/// might require trimming), and have a different way to handle timing. When queued for
+/// playback, the buffer must contain the audio data to be played back. See
+/// AudioQueueEnqueueBuffer for details on queuing a buffer for recording.
+///
+/// If the buffer was allocated with AudioQueueAllocateBufferWithPacketDescriptions,
+/// the client should provide packet descriptions in the buffer's mPacketDescriptions
+/// and mPacketDescriptionCount fields rather than in inPacketDescs and
+/// inNumPacketDescs, which should be NULL and 0, respectively, in this case.
+///
+///
+/// Parameter `inAQ`: The audio queue associated with the buffer.
+///
+/// Parameter `inBuffer`: The buffer to be played from.
+///
+/// Parameter `inNumPacketDescs`: The number of packet descriptions pointed to by the inPacketDescs parameter. Required
+/// only for variable-bit-rate (VBR) audio formats. Pass 0 if no packet descriptions are
+/// required.
+///
+/// Parameter `inPacketDescs`: A pointer to an array of audio stream packet descriptions. Required only for VBR audio
+/// formats. Pass NULL if no packet descriptions are required.
+///
+/// Parameter `inTrimFramesAtStart`: The number of priming frames to skip at the start of the buffer.
+///
+/// Parameter `inTrimFramesAtEnd`: The number of frames to skip at the end of the buffer.
+///
+/// Parameter `inNumParamValues`: The number of parameter values pointed to by the inParamValues parameter.
+///
+/// Parameter `inParamValues`: An array of parameter values. (In macOS v10.5, there is only one parameter,
+/// kAudioQueueParam_Volume.) These values are set before buffer playback and cannot be
+/// changed while the buffer is playing. How accurately changes in parameters can be
+/// scheduled depends on the size of the buffer. If there are no parameters to set
+/// (inNumParamValues = 0), pass NULL.
+///
+/// Parameter `inStartTime`: A pointer to a structure containing the desired start time for playing the buffer. If
+/// you specify the time using the mSampleTime field of the AudioTimeStamp structure, the
+/// sample time is relative to the time the queue started. If you pass NULL for the start
+/// time, the buffer starts immediately after the previously queued buffer, or as soon as
+/// possible if no buffers are queued ahead of it. Buffers are played in the order they are
+/// queued. If multiple buffers are queued, their times must be in ascending order or NULL;
+/// otherwise, an error occurs. The start time indicates when the actual audio data in the
+/// buffer is to be played (that is, the trim frames are not counted).
+///
+/// Note: When specifying a start time for a buffer, if the buffer is not the first enqueued
+/// since AudioQueueStop or AudioQueueReset, it is normally necessary to call AudioQueueFlush
+/// before AudioQueueEnqueueBufferWithParameters.
+///
+/// Parameter `outActualStartTime`: On return, points to an AudioTimeStamp structure indicating when the buffer will
+/// actually play.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `in_buffer` must be a valid pointer.
+/// - `in_packet_descs` must be a valid pointer or null.
+/// - `in_param_values` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueEnqueueBufferWithParameters(
+    in_aq: AudioQueueRef,
+    in_buffer: AudioQueueBufferRef,
+    in_num_packet_descs: u32,
+    in_packet_descs: *const AudioStreamPacketDescription,
+    in_trim_frames_at_start: u32,
+    in_trim_frames_at_end: u32,
+    in_num_param_values: u32,
+    in_param_values: *const AudioQueueParameterEvent,
+    in_start_time: Option<&AudioTimeStamp>,
+    out_actual_start_time: Option<&mut AudioTimeStamp>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueEnqueueBufferWithParameters(
+            in_aq: AudioQueueRef,
+            in_buffer: AudioQueueBufferRef,
+            in_num_packet_descs: u32,
+            in_packet_descs: *const AudioStreamPacketDescription,
+            in_trim_frames_at_start: u32,
+            in_trim_frames_at_end: u32,
+            in_num_param_values: u32,
+            in_param_values: *const AudioQueueParameterEvent,
+            in_start_time: Option<&AudioTimeStamp>,
+            out_actual_start_time: Option<&mut AudioTimeStamp>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioQueueEnqueueBufferWithParameters(
+            in_aq,
+            in_buffer,
+            in_num_packet_descs,
+            in_packet_descs,
+            in_trim_frames_at_start,
+            in_trim_frames_at_end,
+            in_num_param_values,
+            in_param_values,
+            in_start_time,
+            out_actual_start_time,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Begins playing or recording audio.
-    ///
-    /// If the audio hardware is not already running, this function starts it.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue to start.
-    ///
-    /// Parameter `inStartTime`: A pointer to the time at which the audio queue should start. If you specify the time
-    /// using the mSampleTime field of the AudioTimeStamp structure, the sample time is
-    /// referenced to the sample frame timeline of the associated audio device. May be NULL.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueStart(
-        in_aq: AudioQueueRef,
-        in_start_time: Option<&AudioTimeStamp>,
-    ) -> OSStatus;
+/// Begins playing or recording audio.
+///
+/// If the audio hardware is not already running, this function starts it.
+///
+///
+/// Parameter `inAQ`: The audio queue to start.
+///
+/// Parameter `inStartTime`: A pointer to the time at which the audio queue should start. If you specify the time
+/// using the mSampleTime field of the AudioTimeStamp structure, the sample time is
+/// referenced to the sample frame timeline of the associated audio device. May be NULL.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueStart(
+    in_aq: AudioQueueRef,
+    in_start_time: Option<&AudioTimeStamp>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueStart(
+            in_aq: AudioQueueRef,
+            in_start_time: Option<&AudioTimeStamp>,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueStart(in_aq, in_start_time) }
 }
 
-extern "C-unwind" {
-    /// Begins decoding buffers in preparation for playback.
-    ///
-    /// This function begins decoding buffers in preparation for playback. It returns when at
-    /// least the number of audio sample frames are decoded and ready to play or when all
-    /// enqueued buffers have been completely decoded. To ensure that a buffer has been decoded
-    /// and is completely ready for playback, before playback:
-    ///
-    /// 1.  Call AudioQueueEnqueueBuffer.
-    /// 2.  Call AudioQueuePrime, which waits if you pass 0 to have a default number of
-    /// frames decoded.
-    /// 3.  Call AudioQueueStart.
-    ///
-    /// Calls to AudioQueuePrime following AudioQueueStart/AudioQueuePrime, and before
-    /// AudioQueueReset/AudioQueueStop, will have no useful effect. In this situation,
-    /// outNumberOfFramesPrepared will not have a useful return value.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue to be primed.
-    ///
-    /// Parameter `inNumberOfFramesToPrepare`: The number of frames to decode before returning. Pass 0 to decode all enqueued buffers.
-    ///
-    /// Parameter `outNumberOfFramesPrepared`: If not NULL, on return, a pointer to the number of frames actually decoded and prepared
-    /// for playback.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    pub fn AudioQueuePrime(
-        in_aq: AudioQueueRef,
-        in_number_of_frames_to_prepare: u32,
-        out_number_of_frames_prepared: Option<&mut u32>,
-    ) -> OSStatus;
+/// Begins decoding buffers in preparation for playback.
+///
+/// This function begins decoding buffers in preparation for playback. It returns when at
+/// least the number of audio sample frames are decoded and ready to play or when all
+/// enqueued buffers have been completely decoded. To ensure that a buffer has been decoded
+/// and is completely ready for playback, before playback:
+///
+/// 1.  Call AudioQueueEnqueueBuffer.
+/// 2.  Call AudioQueuePrime, which waits if you pass 0 to have a default number of
+/// frames decoded.
+/// 3.  Call AudioQueueStart.
+///
+/// Calls to AudioQueuePrime following AudioQueueStart/AudioQueuePrime, and before
+/// AudioQueueReset/AudioQueueStop, will have no useful effect. In this situation,
+/// outNumberOfFramesPrepared will not have a useful return value.
+///
+///
+/// Parameter `inAQ`: The audio queue to be primed.
+///
+/// Parameter `inNumberOfFramesToPrepare`: The number of frames to decode before returning. Pass 0 to decode all enqueued buffers.
+///
+/// Parameter `outNumberOfFramesPrepared`: If not NULL, on return, a pointer to the number of frames actually decoded and prepared
+/// for playback.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueuePrime(
+    in_aq: AudioQueueRef,
+    in_number_of_frames_to_prepare: u32,
+    out_number_of_frames_prepared: Option<&mut u32>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueuePrime(
+            in_aq: AudioQueueRef,
+            in_number_of_frames_to_prepare: u32,
+            out_number_of_frames_prepared: Option<&mut u32>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioQueuePrime(
+            in_aq,
+            in_number_of_frames_to_prepare,
+            out_number_of_frames_prepared,
+        )
+    }
 }
 
 /// Stops playing or recording audio.
@@ -1200,646 +1369,846 @@ pub unsafe extern "C-unwind" fn AudioQueueStop(
     unsafe { AudioQueueStop(in_aq, in_immediate as _) }
 }
 
-extern "C-unwind" {
-    /// Pauses audio playback or recording.
-    ///
-    /// Pausing the queue does not affect buffers or reset the audio queue. To resume playback
-    /// or recording using the audio queue, call AudioQueueStart.
-    ///
-    ///
-    /// Parameter `inAQ`: The queue to be paused.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    pub fn AudioQueuePause(in_aq: AudioQueueRef) -> OSStatus;
+/// Pauses audio playback or recording.
+///
+/// Pausing the queue does not affect buffers or reset the audio queue. To resume playback
+/// or recording using the audio queue, call AudioQueueStart.
+///
+///
+/// Parameter `inAQ`: The queue to be paused.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueuePause(in_aq: AudioQueueRef) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueuePause(in_aq: AudioQueueRef) -> OSStatus;
+    }
+    unsafe { AudioQueuePause(in_aq) }
 }
 
-extern "C-unwind" {
-    /// Resets the audio queue's decoder state.
-    ///
-    /// After all queued buffers have been played, the function cleans up all decoder state
-    /// information. You must call this function following a sequence of buffers of encoded
-    /// audio; otherwise, some of the audio might not play in the next set of queued buffers.
-    /// The only time it is not necessary to call AudioQueueFlush is following AudioQueueStop
-    /// with inImmediate=false. (This action internally calls AudioQueueFlush.)
-    ///
-    /// Also, you might wish to call this function before calling AudioQueueStop depending on
-    /// whether you want to stop immediately regardless of what has played or whether you want
-    /// to ensure that all buffered data and all data that is in the middle of processing gets
-    /// recorded or played before stopping.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue to be flushed.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    pub fn AudioQueueFlush(in_aq: AudioQueueRef) -> OSStatus;
+/// Resets the audio queue's decoder state.
+///
+/// After all queued buffers have been played, the function cleans up all decoder state
+/// information. You must call this function following a sequence of buffers of encoded
+/// audio; otherwise, some of the audio might not play in the next set of queued buffers.
+/// The only time it is not necessary to call AudioQueueFlush is following AudioQueueStop
+/// with inImmediate=false. (This action internally calls AudioQueueFlush.)
+///
+/// Also, you might wish to call this function before calling AudioQueueStop depending on
+/// whether you want to stop immediately regardless of what has played or whether you want
+/// to ensure that all buffered data and all data that is in the middle of processing gets
+/// recorded or played before stopping.
+///
+///
+/// Parameter `inAQ`: The audio queue to be flushed.
+///
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueFlush(in_aq: AudioQueueRef) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueFlush(in_aq: AudioQueueRef) -> OSStatus;
+    }
+    unsafe { AudioQueueFlush(in_aq) }
 }
 
-extern "C-unwind" {
-    /// Resets an audio queue.
-    ///
-    /// This function immediately resets an audio queue, flushes any queued buffer, removes all
-    /// buffers from previously scheduled use, and resets any decoder and digital signal
-    /// processing (DSP) state information. It also invokes callbacks for any flushed buffers.
-    /// If you queue any buffers after calling this function, processing does not occur until
-    /// the decoder and DSP state information is reset. Hence, a discontinuity (that is, a
-    /// "glitch") might occur.
-    ///
-    /// Note that when resetting, all pending buffer callbacks are normally invoked
-    /// during the process of resetting. But if the calling thread is responding to a buffer
-    /// callback, then it is possible for additional buffer callbacks to occur after
-    /// AudioQueueReset returns.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue to reset.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    pub fn AudioQueueReset(in_aq: AudioQueueRef) -> OSStatus;
+/// Resets an audio queue.
+///
+/// This function immediately resets an audio queue, flushes any queued buffer, removes all
+/// buffers from previously scheduled use, and resets any decoder and digital signal
+/// processing (DSP) state information. It also invokes callbacks for any flushed buffers.
+/// If you queue any buffers after calling this function, processing does not occur until
+/// the decoder and DSP state information is reset. Hence, a discontinuity (that is, a
+/// "glitch") might occur.
+///
+/// Note that when resetting, all pending buffer callbacks are normally invoked
+/// during the process of resetting. But if the calling thread is responding to a buffer
+/// callback, then it is possible for additional buffer callbacks to occur after
+/// AudioQueueReset returns.
+///
+///
+/// Parameter `inAQ`: The audio queue to reset.
+///
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueReset(in_aq: AudioQueueRef) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueReset(in_aq: AudioQueueRef) -> OSStatus;
+    }
+    unsafe { AudioQueueReset(in_aq) }
 }
 
-extern "C-unwind" {
-    /// Obtains an audio queue parameter value.
-    ///
-    /// You can access the current parameter values for an audio queue at any time with this
-    /// function.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue whose parameter value you want to obtain.
-    ///
-    /// Parameter `inParamID`: The ID of the parameter you want to obtain. In macOS v10.5, audio queues have one
-    /// parameter available: kAudioQueueParam_Volume, which controls the queue's playback
-    /// volume.
-    ///
-    /// Parameter `outValue`: On return, points to the current value of the specified parameter.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    pub fn AudioQueueGetParameter(
-        in_aq: AudioQueueRef,
-        in_param_id: AudioQueueParameterID,
-        out_value: &mut AudioQueueParameterValue,
-    ) -> OSStatus;
+/// Obtains an audio queue parameter value.
+///
+/// You can access the current parameter values for an audio queue at any time with this
+/// function.
+///
+///
+/// Parameter `inAQ`: The audio queue whose parameter value you want to obtain.
+///
+/// Parameter `inParamID`: The ID of the parameter you want to obtain. In macOS v10.5, audio queues have one
+/// parameter available: kAudioQueueParam_Volume, which controls the queue's playback
+/// volume.
+///
+/// Parameter `outValue`: On return, points to the current value of the specified parameter.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueGetParameter(
+    in_aq: AudioQueueRef,
+    in_param_id: AudioQueueParameterID,
+    out_value: &mut AudioQueueParameterValue,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueGetParameter(
+            in_aq: AudioQueueRef,
+            in_param_id: AudioQueueParameterID,
+            out_value: &mut AudioQueueParameterValue,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueGetParameter(in_aq, in_param_id, out_value) }
 }
 
-extern "C-unwind" {
-    /// Sets an audio queue parameter value.
-    ///
-    /// Parameter `inAQ`: The audio queue whose parameter value you want to set.
-    ///
-    /// Parameter `inParamID`: The ID of the parameter you want to set.
-    ///
-    /// Parameter `inValue`: The parameter value to set.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    pub fn AudioQueueSetParameter(
-        in_aq: AudioQueueRef,
-        in_param_id: AudioQueueParameterID,
-        in_value: AudioQueueParameterValue,
-    ) -> OSStatus;
+/// Sets an audio queue parameter value.
+///
+/// Parameter `inAQ`: The audio queue whose parameter value you want to set.
+///
+/// Parameter `inParamID`: The ID of the parameter you want to set.
+///
+/// Parameter `inValue`: The parameter value to set.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueSetParameter(
+    in_aq: AudioQueueRef,
+    in_param_id: AudioQueueParameterID,
+    in_value: AudioQueueParameterValue,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueSetParameter(
+            in_aq: AudioQueueRef,
+            in_param_id: AudioQueueParameterID,
+            in_value: AudioQueueParameterValue,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueSetParameter(in_aq, in_param_id, in_value) }
 }
 
-extern "C-unwind" {
-    /// Obtains an audio queue property value.
-    ///
-    /// Parameter `inAQ`: The audio queue whose property value you want to obtain.
-    ///
-    /// Parameter `inID`: The ID of the property you want to obtain. See "Audio Queue Property IDs."
-    ///
-    /// Parameter `outData`: On return, points to the desired property value.
-    ///
-    /// Parameter `ioDataSize`: A pointer to the size of the property data. On input, points to the maximum bytes of
-    /// space the caller expects to receive. On return, points to the actual data size.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `out_data` must be a valid pointer.
-    pub fn AudioQueueGetProperty(
-        in_aq: AudioQueueRef,
-        in_id: AudioQueuePropertyID,
-        out_data: NonNull<c_void>,
-        io_data_size: &mut u32,
-    ) -> OSStatus;
+/// Obtains an audio queue property value.
+///
+/// Parameter `inAQ`: The audio queue whose property value you want to obtain.
+///
+/// Parameter `inID`: The ID of the property you want to obtain. See "Audio Queue Property IDs."
+///
+/// Parameter `outData`: On return, points to the desired property value.
+///
+/// Parameter `ioDataSize`: A pointer to the size of the property data. On input, points to the maximum bytes of
+/// space the caller expects to receive. On return, points to the actual data size.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `out_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueGetProperty(
+    in_aq: AudioQueueRef,
+    in_id: AudioQueuePropertyID,
+    out_data: NonNull<c_void>,
+    io_data_size: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueGetProperty(
+            in_aq: AudioQueueRef,
+            in_id: AudioQueuePropertyID,
+            out_data: NonNull<c_void>,
+            io_data_size: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueGetProperty(in_aq, in_id, out_data, io_data_size) }
 }
 
-extern "C-unwind" {
-    /// Sets an audio queue property value.
-    ///
-    /// Parameter `inAQ`: The audio queue whose property value you want to set.
-    ///
-    /// Parameter `inID`: The ID of the property you want to set. See "Audio Queue Property IDs" for the various
-    /// audio queue properties.
-    ///
-    /// Parameter `inData`: A pointer to the property value to set.
-    ///
-    /// Parameter `inDataSize`: The size of the property data.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_data` must be a valid pointer.
-    pub fn AudioQueueSetProperty(
-        in_aq: AudioQueueRef,
-        in_id: AudioQueuePropertyID,
-        in_data: NonNull<c_void>,
-        in_data_size: u32,
-    ) -> OSStatus;
+/// Sets an audio queue property value.
+///
+/// Parameter `inAQ`: The audio queue whose property value you want to set.
+///
+/// Parameter `inID`: The ID of the property you want to set. See "Audio Queue Property IDs" for the various
+/// audio queue properties.
+///
+/// Parameter `inData`: A pointer to the property value to set.
+///
+/// Parameter `inDataSize`: The size of the property data.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `in_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueSetProperty(
+    in_aq: AudioQueueRef,
+    in_id: AudioQueuePropertyID,
+    in_data: NonNull<c_void>,
+    in_data_size: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueSetProperty(
+            in_aq: AudioQueueRef,
+            in_id: AudioQueuePropertyID,
+            in_data: NonNull<c_void>,
+            in_data_size: u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueSetProperty(in_aq, in_id, in_data, in_data_size) }
 }
 
-extern "C-unwind" {
-    /// Obtains the size of an audio queue property.
-    ///
-    /// Parameter `inAQ`: The audio queue containing the property value whose size you want to obtain.
-    ///
-    /// Parameter `inID`: The ID of the property value whose size you want to obtain. See "Audio Queue Property
-    /// IDs" for possible values.
-    ///
-    /// Parameter `outDataSize`: On return, points to the size of the specified property value.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    pub fn AudioQueueGetPropertySize(
-        in_aq: AudioQueueRef,
-        in_id: AudioQueuePropertyID,
-        out_data_size: &mut u32,
-    ) -> OSStatus;
+/// Obtains the size of an audio queue property.
+///
+/// Parameter `inAQ`: The audio queue containing the property value whose size you want to obtain.
+///
+/// Parameter `inID`: The ID of the property value whose size you want to obtain. See "Audio Queue Property
+/// IDs" for possible values.
+///
+/// Parameter `outDataSize`: On return, points to the size of the specified property value.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueGetPropertySize(
+    in_aq: AudioQueueRef,
+    in_id: AudioQueuePropertyID,
+    out_data_size: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueGetPropertySize(
+            in_aq: AudioQueueRef,
+            in_id: AudioQueuePropertyID,
+            out_data_size: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueGetPropertySize(in_aq, in_id, out_data_size) }
 }
 
-extern "C-unwind" {
-    /// Adds a listener callback for a property.
-    ///
-    /// This callback is used to act upon a change in an audio queue property such as
-    /// kAudioQueueProperty_IsRunning. For instance, if your application has a user interface
-    /// with a Play/Stop button, and kAudioQueueProperty_IsRunning changes, you need to update
-    /// your button.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue that owns the property you want to assign the listener callback to.
-    ///
-    /// Parameter `inID`: The ID of the property to which you want to assign a listener callback. See "Audio Queue Property IDs".
-    ///
-    /// Parameter `inProc`: The listener callback to be called when the property value changes.
-    ///
-    /// Parameter `inUserData`: A value to be passed to the listener callback when it is called.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_proc` must be implemented correctly.
-    /// - `in_user_data` must be a valid pointer or null.
-    pub fn AudioQueueAddPropertyListener(
-        in_aq: AudioQueueRef,
-        in_id: AudioQueuePropertyID,
-        in_proc: AudioQueuePropertyListenerProc,
-        in_user_data: *mut c_void,
-    ) -> OSStatus;
+/// Adds a listener callback for a property.
+///
+/// This callback is used to act upon a change in an audio queue property such as
+/// kAudioQueueProperty_IsRunning. For instance, if your application has a user interface
+/// with a Play/Stop button, and kAudioQueueProperty_IsRunning changes, you need to update
+/// your button.
+///
+///
+/// Parameter `inAQ`: The audio queue that owns the property you want to assign the listener callback to.
+///
+/// Parameter `inID`: The ID of the property to which you want to assign a listener callback. See "Audio Queue Property IDs".
+///
+/// Parameter `inProc`: The listener callback to be called when the property value changes.
+///
+/// Parameter `inUserData`: A value to be passed to the listener callback when it is called.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `in_proc` must be implemented correctly.
+/// - `in_user_data` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueAddPropertyListener(
+    in_aq: AudioQueueRef,
+    in_id: AudioQueuePropertyID,
+    in_proc: AudioQueuePropertyListenerProc,
+    in_user_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueAddPropertyListener(
+            in_aq: AudioQueueRef,
+            in_id: AudioQueuePropertyID,
+            in_proc: AudioQueuePropertyListenerProc,
+            in_user_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueAddPropertyListener(in_aq, in_id, in_proc, in_user_data) }
 }
 
-extern "C-unwind" {
-    /// Removes a listener callback for a property.
-    ///
-    /// Parameter `inAQ`: The audio queue that owns the property from which you want to remove a listener.
-    ///
-    /// Parameter `inID`: The ID of the property from which you want to remove a listener.
-    ///
-    /// Parameter `inProc`: The listener being removed.
-    ///
-    /// Parameter `inUserData`: The same inUserData value that was previously passed to AudioQueueAddPropertyListener.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_proc` must be implemented correctly.
-    /// - `in_user_data` must be a valid pointer or null.
-    pub fn AudioQueueRemovePropertyListener(
-        in_aq: AudioQueueRef,
-        in_id: AudioQueuePropertyID,
-        in_proc: AudioQueuePropertyListenerProc,
-        in_user_data: *mut c_void,
-    ) -> OSStatus;
+/// Removes a listener callback for a property.
+///
+/// Parameter `inAQ`: The audio queue that owns the property from which you want to remove a listener.
+///
+/// Parameter `inID`: The ID of the property from which you want to remove a listener.
+///
+/// Parameter `inProc`: The listener being removed.
+///
+/// Parameter `inUserData`: The same inUserData value that was previously passed to AudioQueueAddPropertyListener.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `in_proc` must be implemented correctly.
+/// - `in_user_data` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueRemovePropertyListener(
+    in_aq: AudioQueueRef,
+    in_id: AudioQueuePropertyID,
+    in_proc: AudioQueuePropertyListenerProc,
+    in_user_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueRemovePropertyListener(
+            in_aq: AudioQueueRef,
+            in_id: AudioQueuePropertyID,
+            in_proc: AudioQueuePropertyListenerProc,
+            in_user_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueRemovePropertyListener(in_aq, in_id, in_proc, in_user_data) }
 }
 
-extern "C-unwind" {
-    /// Creates a timeline object.
-    ///
-    /// You need to instantiate a timeline object if you want to know about any timeline
-    /// discontinuities. See AudioQueueGetCurrentTime for more details.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue to associate with the new timeline object.
-    ///
-    /// Parameter `outTimeline`: On return, points to the newly created timeline object.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `out_timeline` must be a valid pointer or null.
-    pub fn AudioQueueCreateTimeline(
-        in_aq: AudioQueueRef,
-        out_timeline: &mut AudioQueueTimelineRef,
-    ) -> OSStatus;
+/// Creates a timeline object.
+///
+/// You need to instantiate a timeline object if you want to know about any timeline
+/// discontinuities. See AudioQueueGetCurrentTime for more details.
+///
+///
+/// Parameter `inAQ`: The audio queue to associate with the new timeline object.
+///
+/// Parameter `outTimeline`: On return, points to the newly created timeline object.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `out_timeline` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueCreateTimeline(
+    in_aq: AudioQueueRef,
+    out_timeline: &mut AudioQueueTimelineRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueCreateTimeline(
+            in_aq: AudioQueueRef,
+            out_timeline: &mut AudioQueueTimelineRef,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueCreateTimeline(in_aq, out_timeline) }
 }
 
-extern "C-unwind" {
-    /// Disposes of a timeline object.
-    ///
-    /// Disposing of an audio queue automatically disposes of any associated timeline objects.
-    /// Call this function only if you want to dispose of a timeline object and not the audio
-    /// queue associated with it.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue associated with the timeline object you want to dispose of.
-    ///
-    /// Parameter `inTimeline`: The timeline object to dispose of.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_timeline` must be a valid pointer.
-    pub fn AudioQueueDisposeTimeline(
-        in_aq: AudioQueueRef,
-        in_timeline: AudioQueueTimelineRef,
-    ) -> OSStatus;
+/// Disposes of a timeline object.
+///
+/// Disposing of an audio queue automatically disposes of any associated timeline objects.
+/// Call this function only if you want to dispose of a timeline object and not the audio
+/// queue associated with it.
+///
+///
+/// Parameter `inAQ`: The audio queue associated with the timeline object you want to dispose of.
+///
+/// Parameter `inTimeline`: The timeline object to dispose of.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `in_timeline` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueDisposeTimeline(
+    in_aq: AudioQueueRef,
+    in_timeline: AudioQueueTimelineRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueDisposeTimeline(
+            in_aq: AudioQueueRef,
+            in_timeline: AudioQueueTimelineRef,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueDisposeTimeline(in_aq, in_timeline) }
 }
 
-extern "C-unwind" {
-    /// Obtains the current audio queue time.
-    ///
-    /// You must specify a timeline object if you want to be notified about any timeline
-    /// discontinuities in the outTimelineDiscontinuity parameter. If you don't care about
-    /// discontinuities, pass NULL in the inTimeLine and outTimelineDiscontinuity parameters.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue whose current time you want to obtain.
-    ///
-    /// Parameter `inTimeline`: The audio queue timeline object to which any timeline discontinuities are reported. May
-    /// be NULL.
-    ///
-    /// Parameter `outTimeStamp`: On return, points to an audio timestamp structure containing the current audio queue
-    /// time. The mSampleTime field is in terms of the audio queue's sample rate, and relative
-    /// to the time at which the queue has started or will start.
-    ///
-    /// Parameter `outTimelineDiscontinuity`: Can be NULL. On return, only set to true or false if the inTimeLine parameter is not
-    /// NULL. Set to true if a discontinuity has occurred in the sample timeline of the audio
-    /// queue. For instance, the device's sample rate changed and a gap occurred in playback or
-    /// recording, or the audio queue was unable to prepare and playback in time because it was
-    /// late.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_timeline` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueGetCurrentTime(
-        in_aq: AudioQueueRef,
-        in_timeline: AudioQueueTimelineRef,
-        out_time_stamp: Option<&mut AudioTimeStamp>,
-        out_timeline_discontinuity: Option<&mut Boolean>,
-    ) -> OSStatus;
+/// Obtains the current audio queue time.
+///
+/// You must specify a timeline object if you want to be notified about any timeline
+/// discontinuities in the outTimelineDiscontinuity parameter. If you don't care about
+/// discontinuities, pass NULL in the inTimeLine and outTimelineDiscontinuity parameters.
+///
+///
+/// Parameter `inAQ`: The audio queue whose current time you want to obtain.
+///
+/// Parameter `inTimeline`: The audio queue timeline object to which any timeline discontinuities are reported. May
+/// be NULL.
+///
+/// Parameter `outTimeStamp`: On return, points to an audio timestamp structure containing the current audio queue
+/// time. The mSampleTime field is in terms of the audio queue's sample rate, and relative
+/// to the time at which the queue has started or will start.
+///
+/// Parameter `outTimelineDiscontinuity`: Can be NULL. On return, only set to true or false if the inTimeLine parameter is not
+/// NULL. Set to true if a discontinuity has occurred in the sample timeline of the audio
+/// queue. For instance, the device's sample rate changed and a gap occurred in playback or
+/// recording, or the audio queue was unable to prepare and playback in time because it was
+/// late.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `in_timeline` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueGetCurrentTime(
+    in_aq: AudioQueueRef,
+    in_timeline: AudioQueueTimelineRef,
+    out_time_stamp: Option<&mut AudioTimeStamp>,
+    out_timeline_discontinuity: Option<&mut Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueGetCurrentTime(
+            in_aq: AudioQueueRef,
+            in_timeline: AudioQueueTimelineRef,
+            out_time_stamp: Option<&mut AudioTimeStamp>,
+            out_timeline_discontinuity: Option<&mut Boolean>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioQueueGetCurrentTime(
+            in_aq,
+            in_timeline,
+            out_time_stamp,
+            out_timeline_discontinuity,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Obtains the current time of the audio device associated with an audio queue.
-    ///
-    /// If the audio device associated with the audio queue is not running, the only valid field
-    /// in the audio timestamp structure is mHostTime. This result differentiates the action of
-    /// this function from that of the AudioDeviceGetCurrentTime function, (declared in
-    /// AudioHardware.h) which returns an error if the audio device is not running.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue whose audio device is to be queried.
-    ///
-    /// Parameter `outTimeStamp`: A pointer to a structure that, on return, contains the current time of the audio device
-    /// associated with the audio queue.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueDeviceGetCurrentTime(
-        in_aq: AudioQueueRef,
-        out_time_stamp: &mut AudioTimeStamp,
-    ) -> OSStatus;
+/// Obtains the current time of the audio device associated with an audio queue.
+///
+/// If the audio device associated with the audio queue is not running, the only valid field
+/// in the audio timestamp structure is mHostTime. This result differentiates the action of
+/// this function from that of the AudioDeviceGetCurrentTime function, (declared in
+/// AudioHardware.h) which returns an error if the audio device is not running.
+///
+///
+/// Parameter `inAQ`: The audio queue whose audio device is to be queried.
+///
+/// Parameter `outTimeStamp`: A pointer to a structure that, on return, contains the current time of the audio device
+/// associated with the audio queue.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueDeviceGetCurrentTime(
+    in_aq: AudioQueueRef,
+    out_time_stamp: &mut AudioTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueDeviceGetCurrentTime(
+            in_aq: AudioQueueRef,
+            out_time_stamp: &mut AudioTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueDeviceGetCurrentTime(in_aq, out_time_stamp) }
 }
 
-extern "C-unwind" {
-    /// Converts the time in the time base of the associated audio device from one
-    /// representation to another.
-    ///
-    /// This function converts from one time representation to another (for example, from sample
-    /// time to host time or vice versa):
-    ///
-    /// - Sample time is the absolute sample frame time. Sample numbers are the count of the samples
-    /// on the audio device.
-    /// - Host time is the time base of the host machine such as the time of the bus clock on the CPU.
-    ///
-    /// The mSampleTime field in the AudioTimestamp structure (described in Core Audio Data
-    /// Types Reference) is always in device time, not in audio queue time. Audio queue time is
-    /// relative to the audio queue's start time. The associated audio device has to be running
-    /// for the AudioQueueDeviceTranslateTime function to provide a result.
-    ///
-    ///
-    /// Parameter `inAQ`: The queue whose audio device is to perform the requested time translation.
-    ///
-    /// Parameter `inTime`: A pointer to a structure containing the time to be translated.
-    ///
-    /// Parameter `outTime`: On entry, mFlags indicate the desired translations. On exit, mFlags indicates which
-    /// of the requested translated fields were successfully populated.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueDeviceTranslateTime(
-        in_aq: AudioQueueRef,
-        in_time: &AudioTimeStamp,
-        out_time: &mut AudioTimeStamp,
-    ) -> OSStatus;
+/// Converts the time in the time base of the associated audio device from one
+/// representation to another.
+///
+/// This function converts from one time representation to another (for example, from sample
+/// time to host time or vice versa):
+///
+/// - Sample time is the absolute sample frame time. Sample numbers are the count of the samples
+/// on the audio device.
+/// - Host time is the time base of the host machine such as the time of the bus clock on the CPU.
+///
+/// The mSampleTime field in the AudioTimestamp structure (described in Core Audio Data
+/// Types Reference) is always in device time, not in audio queue time. Audio queue time is
+/// relative to the audio queue's start time. The associated audio device has to be running
+/// for the AudioQueueDeviceTranslateTime function to provide a result.
+///
+///
+/// Parameter `inAQ`: The queue whose audio device is to perform the requested time translation.
+///
+/// Parameter `inTime`: A pointer to a structure containing the time to be translated.
+///
+/// Parameter `outTime`: On entry, mFlags indicate the desired translations. On exit, mFlags indicates which
+/// of the requested translated fields were successfully populated.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueDeviceTranslateTime(
+    in_aq: AudioQueueRef,
+    in_time: &AudioTimeStamp,
+    out_time: &mut AudioTimeStamp,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueDeviceTranslateTime(
+            in_aq: AudioQueueRef,
+            in_time: &AudioTimeStamp,
+            out_time: &mut AudioTimeStamp,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueDeviceTranslateTime(in_aq, in_time, out_time) }
 }
 
-extern "C-unwind" {
-    /// Obtains an audio device's start time that is closest to a requested start time.
-    ///
-    /// Parameter `inAQ`: The audio queue whose device's nearest start time you want to obtain.
-    ///
-    /// Parameter `ioRequestedStartTime`: On entry, points to the requested start time. On return, points to the actual start time.
-    ///
-    /// Parameter `inFlags`: Reserved for future use. Pass 0.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueDeviceGetNearestStartTime(
-        in_aq: AudioQueueRef,
-        io_requested_start_time: &mut AudioTimeStamp,
-        in_flags: u32,
-    ) -> OSStatus;
+/// Obtains an audio device's start time that is closest to a requested start time.
+///
+/// Parameter `inAQ`: The audio queue whose device's nearest start time you want to obtain.
+///
+/// Parameter `ioRequestedStartTime`: On entry, points to the requested start time. On return, points to the actual start time.
+///
+/// Parameter `inFlags`: Reserved for future use. Pass 0.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueDeviceGetNearestStartTime(
+    in_aq: AudioQueueRef,
+    io_requested_start_time: &mut AudioTimeStamp,
+    in_flags: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueDeviceGetNearestStartTime(
+            in_aq: AudioQueueRef,
+            io_requested_start_time: &mut AudioTimeStamp,
+            in_flags: u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueDeviceGetNearestStartTime(in_aq, io_requested_start_time, in_flags) }
 }
 
-extern "C-unwind" {
-    /// Specify an audio format to which the queue will perform subsequent offline rendering,
-    /// or disable offline rendering.
-    ///
-    /// An output queue's audio playback can be redirected for capture to an audio file,
-    /// to support an export function, for example. AudioQueueSetOfflineRenderFormat switches
-    /// a queue between normal and offline rendering modes.
-    ///
-    ///
-    /// Parameter `inAQ`: The output queue whose offline rendering mode is to be changed.
-    ///
-    /// Parameter `inFormat`: The desired format for offline rendering. Pass NULL to disable offline rendering and return the
-    /// queue to normal output to an audio device. This format must be linear PCM and (if not mono)
-    /// interleaved.
-    ///
-    /// Parameter `inLayout`: The desired channel layout for offline rendering; also NULL when disabling offline rendering.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueSetOfflineRenderFormat(
-        in_aq: AudioQueueRef,
-        in_format: Option<&AudioStreamBasicDescription>,
-        in_layout: Option<&AudioChannelLayout>,
-    ) -> OSStatus;
+/// Specify an audio format to which the queue will perform subsequent offline rendering,
+/// or disable offline rendering.
+///
+/// An output queue's audio playback can be redirected for capture to an audio file,
+/// to support an export function, for example. AudioQueueSetOfflineRenderFormat switches
+/// a queue between normal and offline rendering modes.
+///
+///
+/// Parameter `inAQ`: The output queue whose offline rendering mode is to be changed.
+///
+/// Parameter `inFormat`: The desired format for offline rendering. Pass NULL to disable offline rendering and return the
+/// queue to normal output to an audio device. This format must be linear PCM and (if not mono)
+/// interleaved.
+///
+/// Parameter `inLayout`: The desired channel layout for offline rendering; also NULL when disabling offline rendering.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueSetOfflineRenderFormat(
+    in_aq: AudioQueueRef,
+    in_format: Option<&AudioStreamBasicDescription>,
+    in_layout: Option<&AudioChannelLayout>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueSetOfflineRenderFormat(
+            in_aq: AudioQueueRef,
+            in_format: Option<&AudioStreamBasicDescription>,
+            in_layout: Option<&AudioChannelLayout>,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueSetOfflineRenderFormat(in_aq, in_format, in_layout) }
 }
 
-extern "C-unwind" {
-    /// Obtain a buffer of audio output from a queue in offline rendering mode.
-    ///
-    /// Parameter `inAQ`: The output queue from which to obtain output.
-    ///
-    /// Parameter `inTimestamp`: The point in time corresponding to the beginning of the output buffer. Only mSampleTime
-    /// is used. mFlags must include kAudioTimeStampSampleTimeValid.
-    ///
-    /// Parameter `ioBuffer`: The buffer into which the queue will render.
-    ///
-    /// Parameter `inNumberFrames`: The number of frames of audio to render. Note that fewer frames than requested may be returned.
-    /// This can happen if insufficient data was enqueued.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `io_buffer` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueOfflineRender(
-        in_aq: AudioQueueRef,
-        in_timestamp: &AudioTimeStamp,
-        io_buffer: AudioQueueBufferRef,
-        in_number_frames: u32,
-    ) -> OSStatus;
+/// Obtain a buffer of audio output from a queue in offline rendering mode.
+///
+/// Parameter `inAQ`: The output queue from which to obtain output.
+///
+/// Parameter `inTimestamp`: The point in time corresponding to the beginning of the output buffer. Only mSampleTime
+/// is used. mFlags must include kAudioTimeStampSampleTimeValid.
+///
+/// Parameter `ioBuffer`: The buffer into which the queue will render.
+///
+/// Parameter `inNumberFrames`: The number of frames of audio to render. Note that fewer frames than requested may be returned.
+/// This can happen if insufficient data was enqueued.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `io_buffer` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueOfflineRender(
+    in_aq: AudioQueueRef,
+    in_timestamp: &AudioTimeStamp,
+    io_buffer: AudioQueueBufferRef,
+    in_number_frames: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueOfflineRender(
+            in_aq: AudioQueueRef,
+            in_timestamp: &AudioTimeStamp,
+            io_buffer: AudioQueueBufferRef,
+            in_number_frames: u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioQueueOfflineRender(in_aq, in_timestamp, io_buffer, in_number_frames) }
 }
 
-extern "C-unwind" {
-    /// Create a new processing tap
-    ///
-    /// This function creates a processing tap on a given audio queue. A
-    /// processing tap can only be established (or removed) on an audio queue that is
-    /// stopped (paused is not sufficient). The processing tap will then be used to
-    /// process either decoded data in the case of an output queue, or input data
-    /// (before it is encoded) in the case of an input queue.
-    ///
-    /// The processing is performed on audio either before or after any effects or other
-    /// processing (varispeed, etc) is applied by the audio queue, depending on inFlags.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue from which to create the processing tap
-    ///
-    /// Parameter `inCallback`: A callback which the queue will call to process the audio
-    ///
-    /// Parameter `inClientData`: Client data provided to the callback
-    ///
-    /// Parameter `inFlags`: Flags that are used to control aspects of the processing tap.
-    /// Valid flags are:
-    /// - kAudioQueueProcessingTap_PreEffects: processing is done before any
-    /// further effects are applied by the audio queue to the audio
-    /// - kAudioQueueProcessingTap_PostEffects: processing is done after all
-    /// processing is done, including that of other taps.
-    /// - kAudioQueueProcessingTap_Siphon
-    ///
-    /// Parameter `outMaxFrames`: The maximum number of sample frames that can be requested of a processing
-    /// tap at any one time. Typically this will be approximately 50 msec of audio
-    /// (2048 samples
-    /// @
-    /// 44.1kHz)
-    ///
-    /// Parameter `outProcessingFormat`: The format in which the client will receive the audio data to be processed.
-    /// This will always be the same sample rate as the client format and usually
-    /// the same number of channels as the client format of the audio queue. (NOTE:
-    /// the number of channels may be different in some cases if the client format
-    /// has some channel count restrictions, for instance the client provides 5.1
-    /// AAC, but the decoder can only produce stereo). The channel order, if the
-    /// same as the client format, will be the same as the client channel order. If
-    /// the channel count is changed, it will be to either 1 (mono) or 2 (stereo, in
-    /// which case the first channel is left, the second right).
-    ///
-    /// If the data is not in a convenient format for the client to process in, then
-    /// the client should convert the data to and from that format. This is the most
-    /// efficient mechanism to use (as the audio queue can chose a format that is
-    /// most efficient from its playback (or recording) requirement.
-    ///
-    /// Parameter `outAQTap`: The processing tap object.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq` must be a valid pointer.
-    /// - `in_callback` must be implemented correctly.
-    /// - `in_client_data` must be a valid pointer or null.
-    /// - `out_aq_tap` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueProcessingTapNew(
-        in_aq: AudioQueueRef,
-        in_callback: AudioQueueProcessingTapCallback,
-        in_client_data: *mut c_void,
-        in_flags: AudioQueueProcessingTapFlags,
-        out_max_frames: &mut u32,
-        out_processing_format: &mut AudioStreamBasicDescription,
-        out_aq_tap: &mut AudioQueueProcessingTapRef,
-    ) -> OSStatus;
+/// Create a new processing tap
+///
+/// This function creates a processing tap on a given audio queue. A
+/// processing tap can only be established (or removed) on an audio queue that is
+/// stopped (paused is not sufficient). The processing tap will then be used to
+/// process either decoded data in the case of an output queue, or input data
+/// (before it is encoded) in the case of an input queue.
+///
+/// The processing is performed on audio either before or after any effects or other
+/// processing (varispeed, etc) is applied by the audio queue, depending on inFlags.
+///
+///
+/// Parameter `inAQ`: The audio queue from which to create the processing tap
+///
+/// Parameter `inCallback`: A callback which the queue will call to process the audio
+///
+/// Parameter `inClientData`: Client data provided to the callback
+///
+/// Parameter `inFlags`: Flags that are used to control aspects of the processing tap.
+/// Valid flags are:
+/// - kAudioQueueProcessingTap_PreEffects: processing is done before any
+/// further effects are applied by the audio queue to the audio
+/// - kAudioQueueProcessingTap_PostEffects: processing is done after all
+/// processing is done, including that of other taps.
+/// - kAudioQueueProcessingTap_Siphon
+///
+/// Parameter `outMaxFrames`: The maximum number of sample frames that can be requested of a processing
+/// tap at any one time. Typically this will be approximately 50 msec of audio
+/// (2048 samples
+/// @
+/// 44.1kHz)
+///
+/// Parameter `outProcessingFormat`: The format in which the client will receive the audio data to be processed.
+/// This will always be the same sample rate as the client format and usually
+/// the same number of channels as the client format of the audio queue. (NOTE:
+/// the number of channels may be different in some cases if the client format
+/// has some channel count restrictions, for instance the client provides 5.1
+/// AAC, but the decoder can only produce stereo). The channel order, if the
+/// same as the client format, will be the same as the client channel order. If
+/// the channel count is changed, it will be to either 1 (mono) or 2 (stereo, in
+/// which case the first channel is left, the second right).
+///
+/// If the data is not in a convenient format for the client to process in, then
+/// the client should convert the data to and from that format. This is the most
+/// efficient mechanism to use (as the audio queue can chose a format that is
+/// most efficient from its playback (or recording) requirement.
+///
+/// Parameter `outAQTap`: The processing tap object.
+///
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer or null.
+/// - `out_aq_tap` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueProcessingTapNew(
+    in_aq: AudioQueueRef,
+    in_callback: AudioQueueProcessingTapCallback,
+    in_client_data: *mut c_void,
+    in_flags: AudioQueueProcessingTapFlags,
+    out_max_frames: &mut u32,
+    out_processing_format: &mut AudioStreamBasicDescription,
+    out_aq_tap: &mut AudioQueueProcessingTapRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueProcessingTapNew(
+            in_aq: AudioQueueRef,
+            in_callback: AudioQueueProcessingTapCallback,
+            in_client_data: *mut c_void,
+            in_flags: AudioQueueProcessingTapFlags,
+            out_max_frames: &mut u32,
+            out_processing_format: &mut AudioStreamBasicDescription,
+            out_aq_tap: &mut AudioQueueProcessingTapRef,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioQueueProcessingTapNew(
+            in_aq,
+            in_callback,
+            in_client_data,
+            in_flags,
+            out_max_frames,
+            out_processing_format,
+            out_aq_tap,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Dispose a processing tap object
-    ///
-    /// As with AudioQueueProcessingTapNew(), this call can only be made on an
-    /// audio queue that is stopped (paused is not sufficient)
-    ///
-    ///
-    /// Parameter `inAQTap`: The processing tap to dispose.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq_tap` must be a valid pointer.
-    pub fn AudioQueueProcessingTapDispose(in_aq_tap: AudioQueueProcessingTapRef) -> OSStatus;
+/// Dispose a processing tap object
+///
+/// As with AudioQueueProcessingTapNew(), this call can only be made on an
+/// audio queue that is stopped (paused is not sufficient)
+///
+///
+/// Parameter `inAQTap`: The processing tap to dispose.
+///
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq_tap` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueProcessingTapDispose(
+    in_aq_tap: AudioQueueProcessingTapRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueProcessingTapDispose(in_aq_tap: AudioQueueProcessingTapRef) -> OSStatus;
+    }
+    unsafe { AudioQueueProcessingTapDispose(in_aq_tap) }
 }
 
-extern "C-unwind" {
-    /// Used by a processing tap to retrieve source audio.
-    ///
-    /// This function may only be called from the processing tap's callback.
-    ///
-    ///
-    /// Parameter `inAQTap`: the processing tap
-    ///
-    /// Parameter `inNumberFrames`: the number of frames the processing tap requires for its processing
-    ///
-    /// Parameter `ioTimeStamp`: On an input audio queue, the timestamp is returned from this function.
-    /// On an output audio queue, the caller must provide a continuous timestamp.
-    ///
-    /// Parameter `outFlags`: flags to describe state about the input requested, e.g.
-    /// discontinuity/complete
-    ///
-    /// Parameter `outNumberFrames`: the number of source frames that have been provided by the parent audio
-    /// queue. This can be less than the number of requested frames specified in
-    /// inNumberFrames
-    ///
-    /// Parameter `ioData`: the audio buffer list which will contain the source data. The audio queue owns
-    /// the buffer pointers if NULL pointers were provided (recommended). In this case
-    /// the source buffers are only valid for the duration of the processing tap
-    /// callback. If the buffer pointers are non-NULL, then they must be big enough to
-    /// hold inNumberFrames, and the audio queue will copy its source data into those
-    /// buffers.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_aq_tap` must be a valid pointer.
-    /// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueProcessingTapGetSourceAudio(
-        in_aq_tap: AudioQueueProcessingTapRef,
-        in_number_frames: u32,
-        io_time_stamp: &mut AudioTimeStamp,
-        out_flags: &mut AudioQueueProcessingTapFlags,
-        out_number_frames: &mut u32,
-        io_data: &mut AudioBufferList,
-    ) -> OSStatus;
+/// Used by a processing tap to retrieve source audio.
+///
+/// This function may only be called from the processing tap's callback.
+///
+///
+/// Parameter `inAQTap`: the processing tap
+///
+/// Parameter `inNumberFrames`: the number of frames the processing tap requires for its processing
+///
+/// Parameter `ioTimeStamp`: On an input audio queue, the timestamp is returned from this function.
+/// On an output audio queue, the caller must provide a continuous timestamp.
+///
+/// Parameter `outFlags`: flags to describe state about the input requested, e.g.
+/// discontinuity/complete
+///
+/// Parameter `outNumberFrames`: the number of source frames that have been provided by the parent audio
+/// queue. This can be less than the number of requested frames specified in
+/// inNumberFrames
+///
+/// Parameter `ioData`: the audio buffer list which will contain the source data. The audio queue owns
+/// the buffer pointers if NULL pointers were provided (recommended). In this case
+/// the source buffers are only valid for the duration of the processing tap
+/// callback. If the buffer pointers are non-NULL, then they must be big enough to
+/// hold inNumberFrames, and the audio queue will copy its source data into those
+/// buffers.
+///
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_aq_tap` must be a valid pointer.
+/// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueProcessingTapGetSourceAudio(
+    in_aq_tap: AudioQueueProcessingTapRef,
+    in_number_frames: u32,
+    io_time_stamp: &mut AudioTimeStamp,
+    out_flags: &mut AudioQueueProcessingTapFlags,
+    out_number_frames: &mut u32,
+    io_data: &mut AudioBufferList,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueProcessingTapGetSourceAudio(
+            in_aq_tap: AudioQueueProcessingTapRef,
+            in_number_frames: u32,
+            io_time_stamp: &mut AudioTimeStamp,
+            out_flags: &mut AudioQueueProcessingTapFlags,
+            out_number_frames: &mut u32,
+            io_data: &mut AudioBufferList,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioQueueProcessingTapGetSourceAudio(
+            in_aq_tap,
+            in_number_frames,
+            io_time_stamp,
+            out_flags,
+            out_number_frames,
+            io_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Used by a processing tap to retrieve the queue's current time.
-    ///
-    /// This function may only be called from the processing tap's callback, and only
-    /// for audio output queues. It must be called after calling
-    /// AudioQueueProcessingTapGetSourceAudio().
-    ///
-    ///
-    /// Parameter `inAQTap`: the processing tap
-    ///
-    /// Parameter `outQueueSampleTime`: the current sample time of the audio queue. This will appear to be stationary
-    /// if the queue is paused.
-    ///
-    /// Parameter `outQueueFrameCount`: the number of sample frames of queue time corresponding to the current chunk of
-    /// audio being processed by the tap. This will differ from the frame count passed
-    /// to the tap if the queue's playback rate is currently other than 1.0, due to the
-    /// use of time compression/expansion. The frame count can also be 0 if the queue is
-    /// paused.
-    ///
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_aq_tap` must be a valid pointer.
-    pub fn AudioQueueProcessingTapGetQueueTime(
-        in_aq_tap: AudioQueueProcessingTapRef,
-        out_queue_sample_time: &mut f64,
-        out_queue_frame_count: &mut u32,
-    ) -> OSStatus;
+/// Used by a processing tap to retrieve the queue's current time.
+///
+/// This function may only be called from the processing tap's callback, and only
+/// for audio output queues. It must be called after calling
+/// AudioQueueProcessingTapGetSourceAudio().
+///
+///
+/// Parameter `inAQTap`: the processing tap
+///
+/// Parameter `outQueueSampleTime`: the current sample time of the audio queue. This will appear to be stationary
+/// if the queue is paused.
+///
+/// Parameter `outQueueFrameCount`: the number of sample frames of queue time corresponding to the current chunk of
+/// audio being processed by the tap. This will differ from the frame count passed
+/// to the tap if the queue's playback rate is currently other than 1.0, due to the
+/// use of time compression/expansion. The frame count can also be 0 if the queue is
+/// paused.
+///
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq_tap` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueProcessingTapGetQueueTime(
+    in_aq_tap: AudioQueueProcessingTapRef,
+    out_queue_sample_time: &mut f64,
+    out_queue_frame_count: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueProcessingTapGetQueueTime(
+            in_aq_tap: AudioQueueProcessingTapRef,
+            out_queue_sample_time: &mut f64,
+            out_queue_frame_count: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioQueueProcessingTapGetQueueTime(in_aq_tap, out_queue_sample_time, out_queue_frame_count)
+    }
 }

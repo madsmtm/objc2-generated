@@ -499,45 +499,65 @@ impl CMTaggedBufferGroup {
     }
 }
 
-extern "C-unwind" {
-    /// Creates a new CMSampleBuffer object with the specified CMTaggedBufferGroup.
-    ///
-    /// Parameter `allocator`: CFAllocator with which to create the CMSampleBuffer object. Pass kCFAllocatorDefault to use the default allocator.
-    ///
-    /// Parameter `taggedBufferGroup`: The CMTaggedBufferGroup to be stored in the sample buffer. The CMSampleBuffer will retain the CMTaggedBufferGroup internally.
-    ///
-    /// Parameter `sbufPTS`: Media time PTS of the sample buffer.
-    ///
-    /// Parameter `sbufDuration`: Media time duration of the sample buffer. Can be kCMTimeInvalid if not known or not defined.
-    ///
-    /// Parameter `formatDescription`: A CMTaggedBufferGroupFormatDescription describing the CMTaggedBufferGroup.
-    /// You may create this with CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup.
-    /// If you are creating a lot of CMSampleBuffers containing matching CMTaggedBufferGroups,
-    /// it is more efficient to create the CMTaggedBufferGroupFormatDescription once and use it
-    /// for all of the CMSampleBuffers.
-    /// You may call CMTaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup to confirm that
-    /// a reused CMTaggedBufferGroupFormatDescription matches a new CMTaggedBufferGroup.
-    ///
-    /// Parameter `sBufOut`: Returned newly created CMSampleBuffer.
-    ///
-    /// Returns: OSStatus with error or noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `s_buf_out` must be a valid pointer.
-    #[cfg(all(
-        feature = "CMFormatDescription",
-        feature = "CMSampleBuffer",
-        feature = "CMTime"
-    ))]
-    pub fn CMSampleBufferCreateForTaggedBufferGroup(
-        allocator: Option<&CFAllocator>,
-        tagged_buffer_group: &CMTaggedBufferGroup,
-        sbuf_pts: CMTime,
-        sbuf_duration: CMTime,
-        format_description: &CMTaggedBufferGroupFormatDescription,
-        s_buf_out: NonNull<*mut CMSampleBuffer>,
-    ) -> OSStatus;
+/// Creates a new CMSampleBuffer object with the specified CMTaggedBufferGroup.
+///
+/// Parameter `allocator`: CFAllocator with which to create the CMSampleBuffer object. Pass kCFAllocatorDefault to use the default allocator.
+///
+/// Parameter `taggedBufferGroup`: The CMTaggedBufferGroup to be stored in the sample buffer. The CMSampleBuffer will retain the CMTaggedBufferGroup internally.
+///
+/// Parameter `sbufPTS`: Media time PTS of the sample buffer.
+///
+/// Parameter `sbufDuration`: Media time duration of the sample buffer. Can be kCMTimeInvalid if not known or not defined.
+///
+/// Parameter `formatDescription`: A CMTaggedBufferGroupFormatDescription describing the CMTaggedBufferGroup.
+/// You may create this with CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup.
+/// If you are creating a lot of CMSampleBuffers containing matching CMTaggedBufferGroups,
+/// it is more efficient to create the CMTaggedBufferGroupFormatDescription once and use it
+/// for all of the CMSampleBuffers.
+/// You may call CMTaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup to confirm that
+/// a reused CMTaggedBufferGroupFormatDescription matches a new CMTaggedBufferGroup.
+///
+/// Parameter `sBufOut`: Returned newly created CMSampleBuffer.
+///
+/// Returns: OSStatus with error or noErr if successful.
+///
+/// # Safety
+///
+/// `s_buf_out` must be a valid pointer.
+#[cfg(all(
+    feature = "CMFormatDescription",
+    feature = "CMSampleBuffer",
+    feature = "CMTime"
+))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferCreateForTaggedBufferGroup(
+    allocator: Option<&CFAllocator>,
+    tagged_buffer_group: &CMTaggedBufferGroup,
+    sbuf_pts: CMTime,
+    sbuf_duration: CMTime,
+    format_description: &CMTaggedBufferGroupFormatDescription,
+    s_buf_out: NonNull<*mut CMSampleBuffer>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSampleBufferCreateForTaggedBufferGroup(
+            allocator: Option<&CFAllocator>,
+            tagged_buffer_group: &CMTaggedBufferGroup,
+            sbuf_pts: CMTime,
+            sbuf_duration: CMTime,
+            format_description: &CMTaggedBufferGroupFormatDescription,
+            s_buf_out: NonNull<*mut CMSampleBuffer>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSampleBufferCreateForTaggedBufferGroup(
+            allocator,
+            tagged_buffer_group,
+            sbuf_pts,
+            sbuf_duration,
+            format_description,
+            s_buf_out,
+        )
+    }
 }
 
 #[cfg(feature = "CMSampleBuffer")]

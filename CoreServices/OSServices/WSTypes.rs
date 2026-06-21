@@ -104,15 +104,23 @@ extern "C" {
     pub static kWSSOAP2001Protocol: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` should be of the correct type.
-    #[deprecated = "No longer supported"]
-    pub fn WSGetWSTypeIDFromCFType(r#ref: &CFType) -> WSTypeID;
+/// # Safety
+///
+/// `ref` should be of the correct type.
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn WSGetWSTypeIDFromCFType(r#ref: &CFType) -> WSTypeID {
+    extern "C-unwind" {
+        fn WSGetWSTypeIDFromCFType(r#ref: &CFType) -> WSTypeID;
+    }
+    unsafe { WSGetWSTypeIDFromCFType(r#ref) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "No longer supported"]
-    pub fn WSGetCFTypeIDFromWSTypeID(type_id: WSTypeID) -> CFTypeID;
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn WSGetCFTypeIDFromWSTypeID(type_id: WSTypeID) -> CFTypeID {
+    extern "C-unwind" {
+        fn WSGetCFTypeIDFromWSTypeID(type_id: WSTypeID) -> CFTypeID;
+    }
+    unsafe { WSGetCFTypeIDFromWSTypeID(type_id) }
 }

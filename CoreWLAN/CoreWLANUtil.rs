@@ -10,446 +10,570 @@ use objc2_security::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Parameter `domain`: The keychain domain, which determines which keychain will be used.
-    ///
-    ///
-    /// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `password`: An NSString passed by reference, which upon return will contain the Wi-Fi keychain password for the specified SSID.
-    /// This parameter is optional.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Finds and returns (by reference) the password for the specified SSID and keychain domain.
-    ///
-    /// # Safety
-    ///
-    /// `password` must be a valid pointer or null.
-    #[cfg(feature = "CoreWLANTypes")]
-    pub fn CWKeychainFindWiFiPassword(
-        domain: CWKeychainDomain,
-        ssid: &NSData,
-        password: *mut *mut NSString,
-    ) -> OSStatus;
+/// Parameter `domain`: The keychain domain, which determines which keychain will be used.
+///
+///
+/// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `password`: An NSString passed by reference, which upon return will contain the Wi-Fi keychain password for the specified SSID.
+/// This parameter is optional.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Finds and returns (by reference) the password for the specified SSID and keychain domain.
+///
+/// # Safety
+///
+/// `password` must be a valid pointer or null.
+#[cfg(feature = "CoreWLANTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainFindWiFiPassword(
+    domain: CWKeychainDomain,
+    ssid: &NSData,
+    password: *mut *mut NSString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainFindWiFiPassword(
+            domain: CWKeychainDomain,
+            ssid: &NSData,
+            password: *mut *mut NSString,
+        ) -> OSStatus;
+    }
+    unsafe { CWKeychainFindWiFiPassword(domain, ssid, password) }
 }
 
-extern "C-unwind" {
-    /// Parameter `domain`: The keychain domain, which determines which keychain will be used.
-    ///
-    ///
-    /// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `password`: The Wi-Fi network password.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Sets the Wi-Fi network keychain password for the specified SSID and keychain domain.
-    #[cfg(feature = "CoreWLANTypes")]
-    pub fn CWKeychainSetWiFiPassword(
-        domain: CWKeychainDomain,
-        ssid: &NSData,
-        password: &NSString,
-    ) -> OSStatus;
+/// Parameter `domain`: The keychain domain, which determines which keychain will be used.
+///
+///
+/// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `password`: The Wi-Fi network password.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Sets the Wi-Fi network keychain password for the specified SSID and keychain domain.
+#[cfg(feature = "CoreWLANTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainSetWiFiPassword(
+    domain: CWKeychainDomain,
+    ssid: &NSData,
+    password: &NSString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainSetWiFiPassword(
+            domain: CWKeychainDomain,
+            ssid: &NSData,
+            password: &NSString,
+        ) -> OSStatus;
+    }
+    unsafe { CWKeychainSetWiFiPassword(domain, ssid, password) }
 }
 
-extern "C-unwind" {
-    /// Parameter `domain`: The keychain domain, which determines which keychain will be used.
-    ///
-    ///
-    /// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Deletes the password for the specified SSID and keychain domain.
-    #[cfg(feature = "CoreWLANTypes")]
-    pub fn CWKeychainDeleteWiFiPassword(domain: CWKeychainDomain, ssid: &NSData) -> OSStatus;
+/// Parameter `domain`: The keychain domain, which determines which keychain will be used.
+///
+///
+/// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Deletes the password for the specified SSID and keychain domain.
+#[cfg(feature = "CoreWLANTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainDeleteWiFiPassword(
+    domain: CWKeychainDomain,
+    ssid: &NSData,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainDeleteWiFiPassword(domain: CWKeychainDomain, ssid: &NSData) -> OSStatus;
+    }
+    unsafe { CWKeychainDeleteWiFiPassword(domain, ssid) }
 }
 
-extern "C-unwind" {
-    /// Parameter `domain`: The keychain domain, which determines which keychain will be used.
-    ///
-    ///
-    /// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `username`: An NSString passed by reference, which upon return will contain the 802.1X username for the specified SSID.
-    /// This parameter is optional.
-    ///
-    ///
-    /// Parameter `password`: An NSString passed by reference, which upon return will contain the 802.1X password for the specified SSID.
-    /// This parameter is optional.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Finds and returns the 802.1X username and password stored for the specified SSID and keychain domain.
-    ///
-    /// # Safety
-    ///
-    /// - `username` must be a valid pointer or null.
-    /// - `password` must be a valid pointer or null.
-    #[cfg(feature = "CoreWLANTypes")]
-    pub fn CWKeychainFindWiFiEAPUsernameAndPassword(
-        domain: CWKeychainDomain,
-        ssid: &NSData,
-        username: *mut *mut NSString,
-        password: *mut *mut NSString,
-    ) -> OSStatus;
+/// Parameter `domain`: The keychain domain, which determines which keychain will be used.
+///
+///
+/// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `username`: An NSString passed by reference, which upon return will contain the 802.1X username for the specified SSID.
+/// This parameter is optional.
+///
+///
+/// Parameter `password`: An NSString passed by reference, which upon return will contain the 802.1X password for the specified SSID.
+/// This parameter is optional.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Finds and returns the 802.1X username and password stored for the specified SSID and keychain domain.
+///
+/// # Safety
+///
+/// - `username` must be a valid pointer or null.
+/// - `password` must be a valid pointer or null.
+#[cfg(feature = "CoreWLANTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainFindWiFiEAPUsernameAndPassword(
+    domain: CWKeychainDomain,
+    ssid: &NSData,
+    username: *mut *mut NSString,
+    password: *mut *mut NSString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainFindWiFiEAPUsernameAndPassword(
+            domain: CWKeychainDomain,
+            ssid: &NSData,
+            username: *mut *mut NSString,
+            password: *mut *mut NSString,
+        ) -> OSStatus;
+    }
+    unsafe { CWKeychainFindWiFiEAPUsernameAndPassword(domain, ssid, username, password) }
 }
 
-extern "C-unwind" {
-    /// Parameter `domain`: The keychain domain, which determines which keychain will be used.
-    ///
-    ///
-    /// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `username`: The 802.1X username.
-    ///
-    ///
-    /// Parameter `password`: The 802.1X password. This parameter is optional.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Sets the 802.1X username and password for the specified SSID and keychain domain.
-    #[cfg(feature = "CoreWLANTypes")]
-    pub fn CWKeychainSetWiFiEAPUsernameAndPassword(
-        domain: CWKeychainDomain,
-        ssid: &NSData,
-        username: Option<&NSString>,
-        password: Option<&NSString>,
-    ) -> OSStatus;
+/// Parameter `domain`: The keychain domain, which determines which keychain will be used.
+///
+///
+/// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `username`: The 802.1X username.
+///
+///
+/// Parameter `password`: The 802.1X password. This parameter is optional.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Sets the 802.1X username and password for the specified SSID and keychain domain.
+#[cfg(feature = "CoreWLANTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainSetWiFiEAPUsernameAndPassword(
+    domain: CWKeychainDomain,
+    ssid: &NSData,
+    username: Option<&NSString>,
+    password: Option<&NSString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainSetWiFiEAPUsernameAndPassword(
+            domain: CWKeychainDomain,
+            ssid: &NSData,
+            username: Option<&NSString>,
+            password: Option<&NSString>,
+        ) -> OSStatus;
+    }
+    unsafe { CWKeychainSetWiFiEAPUsernameAndPassword(domain, ssid, username, password) }
 }
 
-extern "C-unwind" {
-    /// Parameter `domain`: The keychain domain, which determines which keychain will be used.
-    ///
-    ///
-    /// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Deletes the 802.1X username and password for the specified SSID and keychain domain.
-    #[cfg(feature = "CoreWLANTypes")]
-    pub fn CWKeychainDeleteWiFiEAPUsernameAndPassword(
-        domain: CWKeychainDomain,
-        ssid: &NSData,
-    ) -> OSStatus;
+/// Parameter `domain`: The keychain domain, which determines which keychain will be used.
+///
+///
+/// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Deletes the 802.1X username and password for the specified SSID and keychain domain.
+#[cfg(feature = "CoreWLANTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainDeleteWiFiEAPUsernameAndPassword(
+    domain: CWKeychainDomain,
+    ssid: &NSData,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainDeleteWiFiEAPUsernameAndPassword(
+            domain: CWKeychainDomain,
+            ssid: &NSData,
+        ) -> OSStatus;
+    }
+    unsafe { CWKeychainDeleteWiFiEAPUsernameAndPassword(domain, ssid) }
 }
 
-extern "C-unwind" {
-    /// Parameter `domain`: The keychain domain, which determines which keychain will be used.
-    ///
-    ///
-    /// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `identity`: A SecIdentityRef passed by reference, which upon return will contain the SecIdentityRef associated with the specified SSID.
-    /// This parameter is optional.  The returned value must be released by the caller.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Finds and returns the identity stored for the specified SSID and keychain domain.
-    ///
-    /// # Safety
-    ///
-    /// `identity` must be a valid pointer or null.
-    #[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
-    pub fn CWKeychainCopyWiFiEAPIdentity(
-        domain: CWKeychainDomain,
-        ssid: &NSData,
-        identity: *mut *mut SecIdentity,
-    ) -> OSStatus;
+/// Parameter `domain`: The keychain domain, which determines which keychain will be used.
+///
+///
+/// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `identity`: A SecIdentityRef passed by reference, which upon return will contain the SecIdentityRef associated with the specified SSID.
+/// This parameter is optional.  The returned value must be released by the caller.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Finds and returns the identity stored for the specified SSID and keychain domain.
+///
+/// # Safety
+///
+/// `identity` must be a valid pointer or null.
+#[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainCopyWiFiEAPIdentity(
+    domain: CWKeychainDomain,
+    ssid: &NSData,
+    identity: *mut *mut SecIdentity,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainCopyWiFiEAPIdentity(
+            domain: CWKeychainDomain,
+            ssid: &NSData,
+            identity: *mut *mut SecIdentity,
+        ) -> OSStatus;
+    }
+    unsafe { CWKeychainCopyWiFiEAPIdentity(domain, ssid, identity) }
 }
 
-extern "C-unwind" {
-    /// Parameter `domain`: The keychain domain, which determines which keychain will be used.
-    ///
-    ///
-    /// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `identity`: The identity containing the certificate to use for 802.1X authentication.
-    /// Passing nil clears any identity association for the specified SSID.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Associates an identity to the specified SSID and keychain domain.
-    #[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
-    pub fn CWKeychainSetWiFiEAPIdentity(
-        domain: CWKeychainDomain,
-        ssid: &NSData,
-        identity: Option<&SecIdentity>,
-    ) -> OSStatus;
+/// Parameter `domain`: The keychain domain, which determines which keychain will be used.
+///
+///
+/// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `identity`: The identity containing the certificate to use for 802.1X authentication.
+/// Passing nil clears any identity association for the specified SSID.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Associates an identity to the specified SSID and keychain domain.
+#[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainSetWiFiEAPIdentity(
+    domain: CWKeychainDomain,
+    ssid: &NSData,
+    identity: Option<&SecIdentity>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainSetWiFiEAPIdentity(
+            domain: CWKeychainDomain,
+            ssid: &NSData,
+            identity: Option<&SecIdentity>,
+        ) -> OSStatus;
+    }
+    unsafe { CWKeychainSetWiFiEAPIdentity(domain, ssid, identity) }
 }
 
-extern "C-unwind" {
-    /// Parameter `identityList`: A CFArrayRef passed by reference, which upon return will be populated with a list of SecIdentityRef objects.
-    /// This parameter is optional.  The returned value must be released by the caller.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Finds and returns all available identities.
-    ///
-    /// # Safety
-    ///
-    /// `list` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn CWKeychainCopyEAPIdentityList(list: *mut *const CFArray) -> OSStatus;
+/// Parameter `identityList`: A CFArrayRef passed by reference, which upon return will be populated with a list of SecIdentityRef objects.
+/// This parameter is optional.  The returned value must be released by the caller.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Finds and returns all available identities.
+///
+/// # Safety
+///
+/// `list` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainCopyEAPIdentityList(
+    list: *mut *const CFArray,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainCopyEAPIdentityList(list: *mut *const CFArray) -> OSStatus;
+    }
+    unsafe { CWKeychainCopyEAPIdentityList(list) }
 }
 
-extern "C-unwind" {
-    /// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `username`: A CFStringRef passed by reference, which upon return will contain the 802.1X username for the specified SSID.
-    /// This parameter is optional.  The returned value must be released by the caller.
-    ///
-    ///
-    /// Parameter `password`: A CFStringRef passed by reference, which upon return will contain the 802.1X password for the specified SSID.
-    /// This parameter is optional.  The returned value must be released by the caller.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Finds and returns the 802.1X username and password stored for the specified SSID.
-    /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
-    ///
-    /// # Safety
-    ///
-    /// - `username` must be a valid pointer or null.
-    /// - `password` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "Use CWKeychainFindWiFiEAPUsernameAndPassword() instead"]
-    pub fn CWKeychainCopyEAPUsernameAndPassword(
-        ssid_data: &CFData,
-        username: *mut *const CFString,
-        password: *mut *const CFString,
-    ) -> OSStatus;
+/// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `username`: A CFStringRef passed by reference, which upon return will contain the 802.1X username for the specified SSID.
+/// This parameter is optional.  The returned value must be released by the caller.
+///
+///
+/// Parameter `password`: A CFStringRef passed by reference, which upon return will contain the 802.1X password for the specified SSID.
+/// This parameter is optional.  The returned value must be released by the caller.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Finds and returns the 802.1X username and password stored for the specified SSID.
+/// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+///
+/// # Safety
+///
+/// - `username` must be a valid pointer or null.
+/// - `password` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "Use CWKeychainFindWiFiEAPUsernameAndPassword() instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainCopyEAPUsernameAndPassword(
+    ssid_data: &CFData,
+    username: *mut *const CFString,
+    password: *mut *const CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainCopyEAPUsernameAndPassword(
+            ssid_data: &CFData,
+            username: *mut *const CFString,
+            password: *mut *const CFString,
+        ) -> OSStatus;
+    }
+    unsafe { CWKeychainCopyEAPUsernameAndPassword(ssid_data, username, password) }
 }
 
-extern "C-unwind" {
-    /// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `username`: The 802.1X username.
-    ///
-    ///
-    /// Parameter `password`: The 802.1X password. This parameter is optional.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Sets the 802.1X username and password for the specified SSID.
-    /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "Use CWKeychainSetWiFiEAPUsernameAndPassword() instead"]
-    pub fn CWKeychainSetEAPUsernameAndPassword(
-        ssid_data: &CFData,
-        username: Option<&CFString>,
-        password: Option<&CFString>,
-    ) -> OSStatus;
+/// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `username`: The 802.1X username.
+///
+///
+/// Parameter `password`: The 802.1X password. This parameter is optional.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Sets the 802.1X username and password for the specified SSID.
+/// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "Use CWKeychainSetWiFiEAPUsernameAndPassword() instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainSetEAPUsernameAndPassword(
+    ssid_data: &CFData,
+    username: Option<&CFString>,
+    password: Option<&CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainSetEAPUsernameAndPassword(
+            ssid_data: &CFData,
+            username: Option<&CFString>,
+            password: Option<&CFString>,
+        ) -> OSStatus;
+    }
+    unsafe { CWKeychainSetEAPUsernameAndPassword(ssid_data, username, password) }
 }
 
-extern "C-unwind" {
-    /// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Deletes the 802.1X username and password for the specified SSID.
-    /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "Use CWKeychainDeleteWiFiEAPUsernameAndPassword() instead"]
-    pub fn CWKeychainDeleteEAPUsernameAndPassword(ssid_data: &CFData) -> OSStatus;
+/// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Deletes the 802.1X username and password for the specified SSID.
+/// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "Use CWKeychainDeleteWiFiEAPUsernameAndPassword() instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainDeleteEAPUsernameAndPassword(
+    ssid_data: &CFData,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainDeleteEAPUsernameAndPassword(ssid_data: &CFData) -> OSStatus;
+    }
+    unsafe { CWKeychainDeleteEAPUsernameAndPassword(ssid_data) }
 }
 
-extern "C-unwind" {
-    /// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `identity`: A SecIdentityRef passed by reference, which upon return will contain the SecIdentityRef associated with the specified SSID.
-    /// This parameter is optional.  The returned value must be released by the caller.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Finds and returns the identity stored for the specified SSID and keychain domain.
-    /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
-    ///
-    /// # Safety
-    ///
-    /// `identity` must be a valid pointer or null.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
-    #[deprecated = "Use CWKeychainCopyWiFiEAPIdentity() instead"]
-    pub fn CWKeychainCopyEAPIdentity(
-        ssid_data: &CFData,
-        identity: *mut *mut SecIdentity,
-    ) -> OSStatus;
+/// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `identity`: A SecIdentityRef passed by reference, which upon return will contain the SecIdentityRef associated with the specified SSID.
+/// This parameter is optional.  The returned value must be released by the caller.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Finds and returns the identity stored for the specified SSID and keychain domain.
+/// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+///
+/// # Safety
+///
+/// `identity` must be a valid pointer or null.
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+#[deprecated = "Use CWKeychainCopyWiFiEAPIdentity() instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainCopyEAPIdentity(
+    ssid_data: &CFData,
+    identity: *mut *mut SecIdentity,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainCopyEAPIdentity(
+            ssid_data: &CFData,
+            identity: *mut *mut SecIdentity,
+        ) -> OSStatus;
+    }
+    unsafe { CWKeychainCopyEAPIdentity(ssid_data, identity) }
 }
 
-extern "C-unwind" {
-    /// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `identity`: The identity containing the certificate to use for 802.1X authentication.
-    /// Passing nil clears any identity association for the specified SSID.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Associates an identity to the specified SSID.
-    /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
-    #[deprecated = "Use CWKeychainSetWiFiEAPIdentity() instead"]
-    pub fn CWKeychainSetEAPIdentity(ssid_data: &CFData, identity: Option<&SecIdentity>)
-        -> OSStatus;
+/// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `identity`: The identity containing the certificate to use for 802.1X authentication.
+/// Passing nil clears any identity association for the specified SSID.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Associates an identity to the specified SSID.
+/// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+#[deprecated = "Use CWKeychainSetWiFiEAPIdentity() instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainSetEAPIdentity(
+    ssid_data: &CFData,
+    identity: Option<&SecIdentity>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainSetEAPIdentity(ssid_data: &CFData, identity: Option<&SecIdentity>)
+            -> OSStatus;
+    }
+    unsafe { CWKeychainSetEAPIdentity(ssid_data, identity) }
 }
 
-extern "C-unwind" {
-    /// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `password`: The Wi-Fi network password.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Sets the Wi-Fi network keychain password for the specified SSID.
-    /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "Use CWKeychainSetWiFiPassword() instead"]
-    pub fn CWKeychainSetPassword(ssid_data: &CFData, password: &CFString) -> OSStatus;
+/// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `password`: The Wi-Fi network password.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Sets the Wi-Fi network keychain password for the specified SSID.
+/// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "Use CWKeychainSetWiFiPassword() instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainSetPassword(
+    ssid_data: &CFData,
+    password: &CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainSetPassword(ssid_data: &CFData, password: &CFString) -> OSStatus;
+    }
+    unsafe { CWKeychainSetPassword(ssid_data, password) }
 }
 
-extern "C-unwind" {
-    /// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Parameter `password`: A CFStringRef passed by reference, which upon return will contain the Wi-Fi keychain password for the specified SSID.
-    /// This parameter is optional.  The returned value must be released by the caller.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Finds and returns (by reference) the password for the specified SSID.
-    /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
-    ///
-    /// # Safety
-    ///
-    /// `password` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "Use CWKeychainFindWiFiPassword() instead"]
-    pub fn CWKeychainCopyPassword(ssid_data: &CFData, password: *mut *const CFString) -> OSStatus;
+/// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Parameter `password`: A CFStringRef passed by reference, which upon return will contain the Wi-Fi keychain password for the specified SSID.
+/// This parameter is optional.  The returned value must be released by the caller.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Finds and returns (by reference) the password for the specified SSID.
+/// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+///
+/// # Safety
+///
+/// `password` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "Use CWKeychainFindWiFiPassword() instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainCopyPassword(
+    ssid_data: &CFData,
+    password: *mut *const CFString,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainCopyPassword(ssid_data: &CFData, password: *mut *const CFString) -> OSStatus;
+    }
+    unsafe { CWKeychainCopyPassword(ssid_data, password) }
 }
 
-extern "C-unwind" {
-    /// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
-    ///
-    ///
-    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
-    /// <i>
-    /// errSecSuccess
-    /// </i>
-    /// indicates no error occurred.
-    ///
-    ///
-    /// Deletes the password for the specified SSID and keychain domain.
-    /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "Use CWKeychainDeleteWiFiPassword() instead"]
-    pub fn CWKeychainDeletePassword(ssid_data: &CFData) -> OSStatus;
+/// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+///
+///
+/// Returns: An OSStatus error code indicating whether or not a failure occurred.
+/// <i>
+/// errSecSuccess
+/// </i>
+/// indicates no error occurred.
+///
+///
+/// Deletes the password for the specified SSID and keychain domain.
+/// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "Use CWKeychainDeleteWiFiPassword() instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CWKeychainDeletePassword(ssid_data: &CFData) -> OSStatus {
+    extern "C-unwind" {
+        fn CWKeychainDeletePassword(ssid_data: &CFData) -> OSStatus;
+    }
+    unsafe { CWKeychainDeletePassword(ssid_data) }
 }
 
 /// Parameter `networks`: The set of networks to merge.

@@ -58,8 +58,12 @@ impl SKReceiptRefreshRequest {
     );
 }
 
-extern "C-unwind" {
-    pub fn SKTerminateForInvalidReceipt();
+#[inline]
+pub unsafe extern "C-unwind" fn SKTerminateForInvalidReceipt() {
+    extern "C-unwind" {
+        fn SKTerminateForInvalidReceipt();
+    }
+    unsafe { SKTerminateForInvalidReceipt() }
 }
 
 extern "C" {

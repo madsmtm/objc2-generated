@@ -72,16 +72,23 @@ pub const kIOBluetoothUISuccess: c_int = -1000;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kiobluetoothuiusercancelederr?language=objc)
 pub const kIOBluetoothUIUserCanceledErr: c_int = -1001;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `cancel_button_title` might not allow `None`.
-    /// - `description_text` might not allow `None`.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOBluetoothValidateHardwareWithDescription(
-        cancel_button_title: Option<&CFString>,
-        description_text: Option<&CFString>,
-    ) -> IOReturn;
+/// # Safety
+///
+/// - `cancel_button_title` might not allow `None`.
+/// - `description_text` might not allow `None`.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothValidateHardwareWithDescription(
+    cancel_button_title: Option<&CFString>,
+    description_text: Option<&CFString>,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOBluetoothValidateHardwareWithDescription(
+            cancel_button_title: Option<&CFString>,
+            description_text: Option<&CFString>,
+        ) -> IOReturn;
+    }
+    unsafe { IOBluetoothValidateHardwareWithDescription(cancel_button_title, description_text) }
 }
 
 #[cfg(feature = "objc2-core-foundation")]

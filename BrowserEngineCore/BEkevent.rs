@@ -4,34 +4,56 @@ use core::ffi::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `changelist` must be a valid pointer.
-    /// - `eventlist` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn be_kevent(
-        kq: c_int,
-        changelist: *const libc::kevent,
-        nchanges: c_int,
-        eventlist: *mut libc::kevent,
-        nevents: c_int,
-        be_flags: c_uint,
-    ) -> c_int;
+/// # Safety
+///
+/// - `changelist` must be a valid pointer.
+/// - `eventlist` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn be_kevent(
+    kq: c_int,
+    changelist: *const libc::kevent,
+    nchanges: c_int,
+    eventlist: *mut libc::kevent,
+    nevents: c_int,
+    be_flags: c_uint,
+) -> c_int {
+    extern "C-unwind" {
+        fn be_kevent(
+            kq: c_int,
+            changelist: *const libc::kevent,
+            nchanges: c_int,
+            eventlist: *mut libc::kevent,
+            nevents: c_int,
+            be_flags: c_uint,
+        ) -> c_int;
+    }
+    unsafe { be_kevent(kq, changelist, nchanges, eventlist, nevents, be_flags) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `changelist` must be a valid pointer.
-    /// - `eventlist` must be a valid pointer.
-    #[cfg(feature = "libc")]
-    pub fn be_kevent64(
-        kq: c_int,
-        changelist: *const libc::kevent64_s,
-        nchanges: c_int,
-        eventlist: *mut libc::kevent64_s,
-        nevents: c_int,
-        flags: c_uint,
-    ) -> c_int;
+/// # Safety
+///
+/// - `changelist` must be a valid pointer.
+/// - `eventlist` must be a valid pointer.
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn be_kevent64(
+    kq: c_int,
+    changelist: *const libc::kevent64_s,
+    nchanges: c_int,
+    eventlist: *mut libc::kevent64_s,
+    nevents: c_int,
+    flags: c_uint,
+) -> c_int {
+    extern "C-unwind" {
+        fn be_kevent64(
+            kq: c_int,
+            changelist: *const libc::kevent64_s,
+            nchanges: c_int,
+            eventlist: *mut libc::kevent64_s,
+            nevents: c_int,
+            flags: c_uint,
+        ) -> c_int;
+    }
+    unsafe { be_kevent64(kq, changelist, nchanges, eventlist, nevents, flags) }
 }

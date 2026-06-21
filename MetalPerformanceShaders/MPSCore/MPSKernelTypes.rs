@@ -191,9 +191,13 @@ unsafe impl RefEncode for MPSImageType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "MPSImage")]
-    pub fn MPSGetImageType(image: &MPSImage) -> MPSImageType;
+#[cfg(feature = "MPSImage")]
+#[inline]
+pub unsafe extern "C-unwind" fn MPSGetImageType(image: &MPSImage) -> MPSImageType {
+    extern "C-unwind" {
+        fn MPSGetImageType(image: &MPSImage) -> MPSImageType;
+    }
+    unsafe { MPSGetImageType(image) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfunctionconstant?language=objc)

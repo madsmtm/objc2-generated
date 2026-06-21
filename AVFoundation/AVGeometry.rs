@@ -9,23 +9,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Returns a scaled CGRect that maintains the aspect ratio specified by a CGSize within a bounding CGRect.
-    ///
-    /// This is useful when attempting to fit the presentationSize property of an AVPlayerItem within the bounds of another CALayer.
-    /// You would typically use the return value of this function as an AVPlayerLayer frame property value. For example:
-    /// myPlayerLayer.frame = AVMakeRectWithAspectRatioInsideRect(myPlayerItem.presentationSize, mySuperLayer.bounds);
-    ///
-    /// Parameter `aspectRatio`: The width
-    /// &
-    /// height ratio, or aspect, you wish to maintain.
-    ///
-    /// Parameter `boundingRect`: The bounding CGRect you wish to fit into.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn AVMakeRectWithAspectRatioInsideRect(
-        aspect_ratio: CGSize,
-        bounding_rect: CGRect,
-    ) -> CGRect;
+/// Returns a scaled CGRect that maintains the aspect ratio specified by a CGSize within a bounding CGRect.
+///
+/// This is useful when attempting to fit the presentationSize property of an AVPlayerItem within the bounds of another CALayer.
+/// You would typically use the return value of this function as an AVPlayerLayer frame property value. For example:
+/// myPlayerLayer.frame = AVMakeRectWithAspectRatioInsideRect(myPlayerItem.presentationSize, mySuperLayer.bounds);
+///
+/// Parameter `aspectRatio`: The width
+/// &
+/// height ratio, or aspect, you wish to maintain.
+///
+/// Parameter `boundingRect`: The bounding CGRect you wish to fit into.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn AVMakeRectWithAspectRatioInsideRect(
+    aspect_ratio: CGSize,
+    bounding_rect: CGRect,
+) -> CGRect {
+    extern "C-unwind" {
+        fn AVMakeRectWithAspectRatioInsideRect(
+            aspect_ratio: CGSize,
+            bounding_rect: CGRect,
+        ) -> CGRect;
+    }
+    unsafe { AVMakeRectWithAspectRatioInsideRect(aspect_ratio, bounding_rect) }
 }
 
 mod private_NSValueCMVideoDimensionsExtensions {

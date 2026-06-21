@@ -1450,203 +1450,228 @@ extern "C" {
     pub static kSecAttrAccessGroupToken: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Returns one or more items which match a search query.
-    ///
-    /// Parameter `query`: A dictionary containing an item class specification and
-    /// optional attributes for controlling the search. See the "Keychain
-    /// Search Attributes" section for a description of currently defined
-    /// search attributes.
-    ///
-    /// Parameter `result`: On return, a CFTypeRef reference to the found item(s). The
-    /// exact type of the result is based on the search attributes supplied
-    /// in the query, as discussed below.
-    ///
-    /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// Attributes defining a search are specified by adding key/value
-    /// pairs to the query dictionary.
-    ///
-    /// A typical query consists of:
-    ///
-    /// a kSecClass key, whose value is a constant from the Class
-    /// Constants section that specifies the class of item(s) to be searched
-    /// one or more keys from the "Attribute Key Constants" section, whose value
-    /// is the attribute data to be matched
-    /// one or more keys from the "Search Constants" section, whose value is
-    /// used to further refine the search
-    /// a key from the "Return Type Key Constants" section, specifying the type of
-    /// results desired
-    ///
-    /// Result types are specified as follows:
-    ///
-    /// To obtain the data of a matching item (CFDataRef), specify
-    /// kSecReturnData with a value of kCFBooleanTrue.
-    /// To obtain the attributes of a matching item (CFDictionaryRef), specify
-    /// kSecReturnAttributes with a value of kCFBooleanTrue.
-    /// To obtain a reference to a matching item (SecKeychainItemRef,
-    /// SecKeyRef, SecCertificateRef, or SecIdentityRef), specify kSecReturnRef
-    /// with a value of kCFBooleanTrue. Note that returning references is
-    /// supported only for Certificate, Key or Identity items on iOS, watchOS and
-    /// tvOS. Similarly, returning references is supported only for Certificate, Key
-    /// or Identity items on macOS when either kSecUseDataProtectionKeychain
-    /// is set to true or kSecAttrSynchronizable is set to true.
-    /// To obtain a persistent reference to a matching item (CFDataRef),
-    /// specify kSecReturnPersistentRef with a value of kCFBooleanTrue. Note
-    /// that unlike normal references, a persistent reference may be stored
-    /// on disk or passed between processes.
-    /// If more than one of these result types is specified, the result is
-    /// returned as a CFDictionaryRef containing all the requested data.
-    /// If a result type is not specified, no results are returned.
-    ///
-    /// By default, this function returns only the first match found. To obtain
-    /// more than one matching item at a time, specify kSecMatchLimit with a value
-    /// greater than 1. The result will be a CFArrayRef containing up to that
-    /// number of matching items; the items' types are described above.
-    ///
-    /// To filter a provided list of items down to those matching the query,
-    /// specify a kSecMatchItemList whose value is a CFArray of SecKeychainItemRef,
-    /// SecKeyRef, SecCertificateRef, or SecIdentityRef items. The objects in the
-    /// provided array must be of the same type.
-    ///
-    /// On iOS, to convert from a persistent item reference to a normal item reference,
-    /// specify a kSecValuePersistentRef whose value a CFDataRef (the persistent
-    /// reference), and a kSecReturnRef whose value is kCFBooleanTrue.
-    ///
-    /// On macOS, to convert from persistent item references to normal item references,
-    /// specify a kSecMatchItemList whose value is a CFArray containing one or
-    /// more CFDataRef elements (the persistent reference), and a kSecReturnRef
-    /// whose value is kCFBooleanTrue. The objects in the provided array must be
-    /// of the same type.
-    ///
-    /// # Safety
-    ///
-    /// - `query` generic must be of the correct type.
-    /// - `query` generic must be of the correct type.
-    /// - `result` must be a valid pointer or null.
-    pub fn SecItemCopyMatching(query: &CFDictionary, result: *mut *const CFType) -> OSStatus;
+/// Returns one or more items which match a search query.
+///
+/// Parameter `query`: A dictionary containing an item class specification and
+/// optional attributes for controlling the search. See the "Keychain
+/// Search Attributes" section for a description of currently defined
+/// search attributes.
+///
+/// Parameter `result`: On return, a CFTypeRef reference to the found item(s). The
+/// exact type of the result is based on the search attributes supplied
+/// in the query, as discussed below.
+///
+/// Returns: A result code. See "Security Error Codes" (SecBase.h).
+///
+/// Attributes defining a search are specified by adding key/value
+/// pairs to the query dictionary.
+///
+/// A typical query consists of:
+///
+/// a kSecClass key, whose value is a constant from the Class
+/// Constants section that specifies the class of item(s) to be searched
+/// one or more keys from the "Attribute Key Constants" section, whose value
+/// is the attribute data to be matched
+/// one or more keys from the "Search Constants" section, whose value is
+/// used to further refine the search
+/// a key from the "Return Type Key Constants" section, specifying the type of
+/// results desired
+///
+/// Result types are specified as follows:
+///
+/// To obtain the data of a matching item (CFDataRef), specify
+/// kSecReturnData with a value of kCFBooleanTrue.
+/// To obtain the attributes of a matching item (CFDictionaryRef), specify
+/// kSecReturnAttributes with a value of kCFBooleanTrue.
+/// To obtain a reference to a matching item (SecKeychainItemRef,
+/// SecKeyRef, SecCertificateRef, or SecIdentityRef), specify kSecReturnRef
+/// with a value of kCFBooleanTrue. Note that returning references is
+/// supported only for Certificate, Key or Identity items on iOS, watchOS and
+/// tvOS. Similarly, returning references is supported only for Certificate, Key
+/// or Identity items on macOS when either kSecUseDataProtectionKeychain
+/// is set to true or kSecAttrSynchronizable is set to true.
+/// To obtain a persistent reference to a matching item (CFDataRef),
+/// specify kSecReturnPersistentRef with a value of kCFBooleanTrue. Note
+/// that unlike normal references, a persistent reference may be stored
+/// on disk or passed between processes.
+/// If more than one of these result types is specified, the result is
+/// returned as a CFDictionaryRef containing all the requested data.
+/// If a result type is not specified, no results are returned.
+///
+/// By default, this function returns only the first match found. To obtain
+/// more than one matching item at a time, specify kSecMatchLimit with a value
+/// greater than 1. The result will be a CFArrayRef containing up to that
+/// number of matching items; the items' types are described above.
+///
+/// To filter a provided list of items down to those matching the query,
+/// specify a kSecMatchItemList whose value is a CFArray of SecKeychainItemRef,
+/// SecKeyRef, SecCertificateRef, or SecIdentityRef items. The objects in the
+/// provided array must be of the same type.
+///
+/// On iOS, to convert from a persistent item reference to a normal item reference,
+/// specify a kSecValuePersistentRef whose value a CFDataRef (the persistent
+/// reference), and a kSecReturnRef whose value is kCFBooleanTrue.
+///
+/// On macOS, to convert from persistent item references to normal item references,
+/// specify a kSecMatchItemList whose value is a CFArray containing one or
+/// more CFDataRef elements (the persistent reference), and a kSecReturnRef
+/// whose value is kCFBooleanTrue. The objects in the provided array must be
+/// of the same type.
+///
+/// # Safety
+///
+/// - `query` generic must be of the correct type.
+/// - `query` generic must be of the correct type.
+/// - `result` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn SecItemCopyMatching(
+    query: &CFDictionary,
+    result: *mut *const CFType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecItemCopyMatching(query: &CFDictionary, result: *mut *const CFType) -> OSStatus;
+    }
+    unsafe { SecItemCopyMatching(query, result) }
 }
 
-extern "C-unwind" {
-    /// Add one or more items to a keychain.
-    ///
-    /// Parameter `attributes`: A dictionary containing an item class specification and
-    /// optional entries specifying the item's attribute values. See the
-    /// "Attribute Key Constants" section for a description of currently defined
-    /// attributes.
-    ///
-    /// Parameter `result`: On return, a CFTypeRef reference to the newly added item(s).
-    /// The exact type of the result is based on the values supplied
-    /// in attributes, as discussed below. Pass NULL if this result is not
-    /// required.
-    ///
-    /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// Attributes defining an item are specified by adding key/value
-    /// pairs to the attributes dictionary.  To add multiple items to a keychain
-    /// at once use the kSecUseItemList key with an array of items as its value.
-    /// This is currently only supported for non password items.
-    ///
-    /// On macOS, to add an item to a particular keychain, supply kSecUseKeychain
-    /// with a SecKeychainRef as its value.
-    ///
-    /// On iOS, watchOS
-    /// &
-    /// tvOS, Certificate, Key, and Identity items may be
-    /// added by reference, but neither Internet Passwords nor Generic Passwords
-    /// may be. Similarly, on macOS with either kSecUseDataProtectionKeychain
-    /// set to true or kSecAttrSynchronizable set to true, Certificate, Key, and Identity
-    /// items may be added by reference, but neither Internet Passwords nor Generic
-    /// Passwords may be.
-    ///
-    /// Result types are specified as follows:
-    ///
-    /// To obtain the data of the added item (CFDataRef), specify
-    /// kSecReturnData with a value of kCFBooleanTrue.
-    /// To obtain all the attributes of the added item (CFDictionaryRef),
-    /// specify kSecReturnAttributes with a value of kCFBooleanTrue.
-    /// To obtain a reference to the added item (SecKeychainItemRef, SecKeyRef,
-    /// SecCertificateRef, or SecIdentityRef), specify kSecReturnRef with a
-    /// value of kCFBooleanTrue. See also note about kSecReturnRef and
-    /// macOS.
-    /// To obtain a persistent reference to the added item (CFDataRef), specify
-    /// kSecReturnPersistentRef with a value of kCFBooleanTrue. Note that
-    /// unlike normal references, a persistent reference may be stored on disk
-    /// or passed between processes.
-    /// If more than one of these result types is specified, the result is
-    /// returned as a CFDictionaryRef containing all the requested data.
-    /// On iOS, if a result type is not specified, no results are returned.
-    /// On macOS, the added item is returned.
-    ///
-    /// # Safety
-    ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
-    /// - `result` must be a valid pointer or null.
-    pub fn SecItemAdd(attributes: &CFDictionary, result: *mut *const CFType) -> OSStatus;
+/// Add one or more items to a keychain.
+///
+/// Parameter `attributes`: A dictionary containing an item class specification and
+/// optional entries specifying the item's attribute values. See the
+/// "Attribute Key Constants" section for a description of currently defined
+/// attributes.
+///
+/// Parameter `result`: On return, a CFTypeRef reference to the newly added item(s).
+/// The exact type of the result is based on the values supplied
+/// in attributes, as discussed below. Pass NULL if this result is not
+/// required.
+///
+/// Returns: A result code. See "Security Error Codes" (SecBase.h).
+///
+/// Attributes defining an item are specified by adding key/value
+/// pairs to the attributes dictionary.  To add multiple items to a keychain
+/// at once use the kSecUseItemList key with an array of items as its value.
+/// This is currently only supported for non password items.
+///
+/// On macOS, to add an item to a particular keychain, supply kSecUseKeychain
+/// with a SecKeychainRef as its value.
+///
+/// On iOS, watchOS
+/// &
+/// tvOS, Certificate, Key, and Identity items may be
+/// added by reference, but neither Internet Passwords nor Generic Passwords
+/// may be. Similarly, on macOS with either kSecUseDataProtectionKeychain
+/// set to true or kSecAttrSynchronizable set to true, Certificate, Key, and Identity
+/// items may be added by reference, but neither Internet Passwords nor Generic
+/// Passwords may be.
+///
+/// Result types are specified as follows:
+///
+/// To obtain the data of the added item (CFDataRef), specify
+/// kSecReturnData with a value of kCFBooleanTrue.
+/// To obtain all the attributes of the added item (CFDictionaryRef),
+/// specify kSecReturnAttributes with a value of kCFBooleanTrue.
+/// To obtain a reference to the added item (SecKeychainItemRef, SecKeyRef,
+/// SecCertificateRef, or SecIdentityRef), specify kSecReturnRef with a
+/// value of kCFBooleanTrue. See also note about kSecReturnRef and
+/// macOS.
+/// To obtain a persistent reference to the added item (CFDataRef), specify
+/// kSecReturnPersistentRef with a value of kCFBooleanTrue. Note that
+/// unlike normal references, a persistent reference may be stored on disk
+/// or passed between processes.
+/// If more than one of these result types is specified, the result is
+/// returned as a CFDictionaryRef containing all the requested data.
+/// On iOS, if a result type is not specified, no results are returned.
+/// On macOS, the added item is returned.
+///
+/// # Safety
+///
+/// - `attributes` generic must be of the correct type.
+/// - `attributes` generic must be of the correct type.
+/// - `result` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn SecItemAdd(
+    attributes: &CFDictionary,
+    result: *mut *const CFType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecItemAdd(attributes: &CFDictionary, result: *mut *const CFType) -> OSStatus;
+    }
+    unsafe { SecItemAdd(attributes, result) }
 }
 
-extern "C-unwind" {
-    /// Modify zero or more items which match a search query.
-    ///
-    /// Parameter `query`: A dictionary containing an item class specification and
-    /// optional attributes for controlling the search. See the "Attribute
-    /// Constants" and "Search Constants" sections for a description of
-    /// currently defined search attributes.
-    ///
-    /// Parameter `attributesToUpdate`: A dictionary containing one or more attributes
-    /// whose values should be set to the ones specified. Only real keychain
-    /// attributes are permitted in this dictionary (no "meta" attributes are
-    /// allowed.) See the "Attribute Key Constants" section for a description of
-    /// currently defined value attributes.
-    ///
-    /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// Attributes defining a search are specified by adding key/value
-    /// pairs to the query dictionary.
-    ///
-    /// # Safety
-    ///
-    /// - `query` generic must be of the correct type.
-    /// - `query` generic must be of the correct type.
-    /// - `attributes_to_update` generic must be of the correct type.
-    /// - `attributes_to_update` generic must be of the correct type.
-    pub fn SecItemUpdate(query: &CFDictionary, attributes_to_update: &CFDictionary) -> OSStatus;
+/// Modify zero or more items which match a search query.
+///
+/// Parameter `query`: A dictionary containing an item class specification and
+/// optional attributes for controlling the search. See the "Attribute
+/// Constants" and "Search Constants" sections for a description of
+/// currently defined search attributes.
+///
+/// Parameter `attributesToUpdate`: A dictionary containing one or more attributes
+/// whose values should be set to the ones specified. Only real keychain
+/// attributes are permitted in this dictionary (no "meta" attributes are
+/// allowed.) See the "Attribute Key Constants" section for a description of
+/// currently defined value attributes.
+///
+/// Returns: A result code. See "Security Error Codes" (SecBase.h).
+///
+/// Attributes defining a search are specified by adding key/value
+/// pairs to the query dictionary.
+///
+/// # Safety
+///
+/// - `query` generic must be of the correct type.
+/// - `query` generic must be of the correct type.
+/// - `attributes_to_update` generic must be of the correct type.
+/// - `attributes_to_update` generic must be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn SecItemUpdate(
+    query: &CFDictionary,
+    attributes_to_update: &CFDictionary,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecItemUpdate(query: &CFDictionary, attributes_to_update: &CFDictionary) -> OSStatus;
+    }
+    unsafe { SecItemUpdate(query, attributes_to_update) }
 }
 
-extern "C-unwind" {
-    /// Delete zero or more items which match a search query.
-    ///
-    /// Parameter `query`: A dictionary containing an item class specification and
-    /// optional attributes for controlling the search. See the "Attribute
-    /// Constants" and "Search Constants" sections for a description of
-    /// currently defined search attributes.
-    ///
-    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// Attributes defining a search are specified by adding key/value
-    /// pairs to the query dictionary.
-    ///
-    /// By default, this function deletes all items matching the specified query.
-    /// You can change this behavior by specifying one of the follow keys:
-    ///
-    /// To delete an item identified by a transient reference, on iOS, specify
-    /// kSecValueRef with a item reference. On macOS, give a kSecMatchItemList
-    /// containing an item reference.
-    /// To delete an item identified by a persistent reference, on iOS, specify
-    /// kSecValuePersistentRef with a persistent reference returned by
-    /// using the kSecReturnPersistentRef key to SecItemCopyMatching or
-    /// SecItemAdd. On macOS, use kSecMatchItemList with a persistent reference
-    /// returned by using the kSecReturnPersistentRef key with
-    /// SecItemCopyMatching or SecItemAdd.
-    /// To delete multiple items specify kSecMatchItemList with an array
-    /// of references.
-    /// If more than one of these result keys is specified, the behavior is
-    /// undefined.
-    ///
-    /// # Safety
-    ///
-    /// - `query` generic must be of the correct type.
-    /// - `query` generic must be of the correct type.
-    pub fn SecItemDelete(query: &CFDictionary) -> OSStatus;
+/// Delete zero or more items which match a search query.
+///
+/// Parameter `query`: A dictionary containing an item class specification and
+/// optional attributes for controlling the search. See the "Attribute
+/// Constants" and "Search Constants" sections for a description of
+/// currently defined search attributes.
+///
+/// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+///
+/// Attributes defining a search are specified by adding key/value
+/// pairs to the query dictionary.
+///
+/// By default, this function deletes all items matching the specified query.
+/// You can change this behavior by specifying one of the follow keys:
+///
+/// To delete an item identified by a transient reference, on iOS, specify
+/// kSecValueRef with a item reference. On macOS, give a kSecMatchItemList
+/// containing an item reference.
+/// To delete an item identified by a persistent reference, on iOS, specify
+/// kSecValuePersistentRef with a persistent reference returned by
+/// using the kSecReturnPersistentRef key to SecItemCopyMatching or
+/// SecItemAdd. On macOS, use kSecMatchItemList with a persistent reference
+/// returned by using the kSecReturnPersistentRef key with
+/// SecItemCopyMatching or SecItemAdd.
+/// To delete multiple items specify kSecMatchItemList with an array
+/// of references.
+/// If more than one of these result keys is specified, the behavior is
+/// undefined.
+///
+/// # Safety
+///
+/// - `query` generic must be of the correct type.
+/// - `query` generic must be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn SecItemDelete(query: &CFDictionary) -> OSStatus {
+    extern "C-unwind" {
+        fn SecItemDelete(query: &CFDictionary) -> OSStatus;
+    }
+    unsafe { SecItemDelete(query) }
 }

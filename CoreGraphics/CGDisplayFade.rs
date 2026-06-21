@@ -21,19 +21,39 @@ pub type CGDisplayBlendFraction = c_float;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayfadeinterval?language=objc)
 pub type CGDisplayFadeInterval = c_float;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `config` must be a valid pointer or null.
-    #[cfg(all(feature = "CGDisplayConfiguration", feature = "CGError"))]
-    pub fn CGConfigureDisplayFadeEffect(
-        config: CGDisplayConfigRef,
-        fade_out_seconds: CGDisplayFadeInterval,
-        fade_in_seconds: CGDisplayFadeInterval,
-        fade_red: c_float,
-        fade_green: c_float,
-        fade_blue: c_float,
-    ) -> CGError;
+/// # Safety
+///
+/// `config` must be a valid pointer or null.
+#[cfg(all(feature = "CGDisplayConfiguration", feature = "CGError"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGConfigureDisplayFadeEffect(
+    config: CGDisplayConfigRef,
+    fade_out_seconds: CGDisplayFadeInterval,
+    fade_in_seconds: CGDisplayFadeInterval,
+    fade_red: c_float,
+    fade_green: c_float,
+    fade_blue: c_float,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGConfigureDisplayFadeEffect(
+            config: CGDisplayConfigRef,
+            fade_out_seconds: CGDisplayFadeInterval,
+            fade_in_seconds: CGDisplayFadeInterval,
+            fade_red: c_float,
+            fade_green: c_float,
+            fade_blue: c_float,
+        ) -> CGError;
+    }
+    unsafe {
+        CGConfigureDisplayFadeEffect(
+            config,
+            fade_out_seconds,
+            fade_in_seconds,
+            fade_red,
+            fade_green,
+            fade_blue,
+        )
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayreservationinterval?language=objc)

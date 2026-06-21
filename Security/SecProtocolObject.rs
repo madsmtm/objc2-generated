@@ -8,18 +8,26 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `obj` must be a valid pointer.
-    pub fn sec_retain(obj: *mut c_void) -> *mut c_void;
+/// # Safety
+///
+/// `obj` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn sec_retain(obj: *mut c_void) -> *mut c_void {
+    extern "C-unwind" {
+        fn sec_retain(obj: *mut c_void) -> *mut c_void;
+    }
+    unsafe { sec_retain(obj) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `obj` must be a valid pointer.
-    pub fn sec_release(obj: *mut c_void);
+/// # Safety
+///
+/// `obj` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn sec_release(obj: *mut c_void) {
+    extern "C-unwind" {
+        fn sec_release(obj: *mut c_void);
+    }
+    unsafe { sec_release(obj) }
 }
 
 /// A `sec_object` is a generic, ARC-able type wrapper for common CoreFoundation Security types.

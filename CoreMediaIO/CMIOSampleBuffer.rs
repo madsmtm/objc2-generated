@@ -435,356 +435,471 @@ extern "C" {
     pub static kCMIOBlockBufferAttachmentKey_CVPixelBufferReference: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Creates a CoreMedia Sample Buffer that can be used in a CMIO Graph.
-    ///
-    /// While CoreMedia Sample Buffers are used in CMIO Graphs, the breadth
-    /// of their flexibility is not supported.  For example, CoreMedia Sample
-    /// Buffers may represent more than one frame of video data;  CMIO
-    /// Graphs support only one frame of video per buffer.
-    ///
-    /// All parameters are copied; on return, the caller can release them,
-    /// free them, reuse them or whatever.  On return, the caller owns the returned CMSampleBuffer, and
-    /// must release it when done with it.
-    ///
-    /// Example of usage for in-display-order video frames:
-    /// <ul>
-    /// dataBuffer: contains 1 Motion JPEG frame
-    /// <br>
-    /// dataFormatDescription: describes Motion JPEG video
-    /// <br>
-    /// numSamples: 1
-    /// <br>
-    /// numSampleTimingEntries: 1
-    /// <br>
-    /// sampleTimingArray: {duration = 3003/90000, presentationTimeStamp = 0/90000, decodeTimeStamp = invalid }
-    /// <br>
-    /// numSampleSizeEntries = 1
-    /// <br>
-    /// sampleSizeArray: {size of the video frame}
-    /// </ul>
-    /// Example of usage for out-of-display-order video frames:
-    /// <ul>
-    /// dataBuffer: contains 1 HDV frame
-    /// <br>
-    /// dataFormatDescription: describes H.264 video
-    /// <br>
-    /// numSamples: 1
-    /// <br>
-    /// numSampleTimingEntries: 1
-    /// <br>
-    /// sampleTimingArray: {duration = 3003/90000, presentationTimeStamp = 9009/90000, decodeTimeStamp = 3003/90000}
-    /// <br>
-    /// numSampleSizeEntries = 1
-    /// <br>
-    /// sampleSizeArray: {size of the video frame}
-    /// </ul>
-    /// Example of usage for compressed audio:
-    /// <ul>
-    /// dataBuffer: contains 24 compressed AAC packets
-    /// <br>
-    /// dataFormatDescription: describes 44.1kHz AAC audio
-    /// <br>
-    /// numSamples: 24
-    /// <br>
-    /// numSampleTimingEntries: 1
-    /// <br>
-    /// sampleTimingArray: {duration = 1024/44100, presentationTimeStamp = 0/44100, decodeTimeStamp = invalid }
-    /// <br>
-    /// numSampleSizeEntries: 24
-    /// <br>
-    /// sampleSizeArray:
-    /// <ul>
-    /// {191, 183, 208, 213, 202, 206, 209, 206, 204, 192, 202, 277,
-    /// <br>
-    /// 282, 240, 209, 194, 193, 197, 196, 198, 168, 199, 171, 194}
-    /// </ul>
-    /// </ul>
-    /// Example of usage for compressed audio:
-    /// <ul>
-    /// dataBuffer: contains 1 HDV audio packet
-    /// <br>
-    /// dataFormatDescription: describes 48kHz MPEG-1 Layer II audio
-    /// <br>
-    /// numSamples: 1
-    /// <br>
-    /// numSampleTimingEntries: 1
-    /// <br>
-    /// sampleTimingArray: {duration = 2160/90000, presentationTimeStamp = 0/90000, decodeTimeStamp = invalid }
-    /// <br>
-    /// numSampleSizeEntries = 1
-    /// <br>
-    /// sampleSizeArray: {1152}
-    /// </ul>
-    /// Example of usage for uncompressed interleaved audio:
-    /// <ul>
-    /// dataBuffer: contains 24000 uncompressed interleaved stereo frames, each containing 2 Float32s =
-    /// <ul>
-    /// {{L,R},
-    /// <br>
-    /// {L,R},
-    /// <br>
-    /// {L,R}, ...}
-    /// </ul>
-    /// <br>
-    /// dataFormatDescription: describes two-channel 48kHz Float32 interleaved audio
-    /// <br>
-    /// numSamples: 24000
-    /// <br>
-    /// numSampleTimingEntries: 1
-    /// <br>
-    /// sampleTimingArray: {duration = 1/48000, presentationTimeStamp = 0/90000, decodeTimeStamp = invalid }
-    /// <br>
-    /// numSampleSizeEntries: 1
-    /// <br>
-    /// sampleSizeArray: {8}
-    /// </ul>
-    /// Example of usage for uncompressed non-interleaved audio:
-    /// <ul>
-    /// dataBuffer: contains 24000 uncompressed interleaved stereo frames, each containing 2 (non-contiguous) Float32s =
-    /// <ul>
-    /// {{L,L,L,L,L,...},
-    /// <br>
-    /// {R,R,R,R,R,...}}
-    /// </ul>
-    /// <br>
-    /// dataFormatDescription: describes two-channel 48kHz Float32 non-interleaved audio
-    /// <br>
-    /// numSamples: 24000
-    /// <br>
-    /// numSampleTimingEntries: 1
-    /// <br>
-    /// sampleTimingArray: {duration = 1/48000, presentationTimeStamp = 0/90000, decodeTimeStamp = invalid }
-    /// <br>
-    /// numSampleSizeEntries: 0
-    /// <br>
-    /// sampleSizeArray: NULL (because the samples are not contiguous)
-    /// </ul>
-    ///
-    ///
-    /// Returns: Returns paramErr if there is an error in parameters, memFullErr if memory
-    /// could not be allocated, and noErr for success.  In addition, errors
-    /// returned by CMSampleBufferCreate() will be passed back.
-    ///
-    /// # Safety
-    ///
-    /// - `data_buffer` might not allow `None`.
-    /// - `format_description` might not allow `None`.
-    /// - `sample_timing_array` must be a valid pointer.
-    /// - `sample_size_array` must be a valid pointer.
-    /// - `s_buf_out` must be a valid pointer.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-    pub fn CMIOSampleBufferCreate(
-        allocator: Option<&CFAllocator>,
-        data_buffer: Option<&CMBlockBuffer>,
-        format_description: Option<&CMFormatDescription>,
-        num_samples: u32,
-        num_sample_timing_entries: u32,
-        sample_timing_array: *const CMSampleTimingInfo,
-        num_sample_size_entries: u32,
-        sample_size_array: *const usize,
-        sequence_number: u64,
-        discontinuity_flags: u32,
-        s_buf_out: *mut *mut CMSampleBuffer,
-    ) -> OSStatus;
+/// Creates a CoreMedia Sample Buffer that can be used in a CMIO Graph.
+///
+/// While CoreMedia Sample Buffers are used in CMIO Graphs, the breadth
+/// of their flexibility is not supported.  For example, CoreMedia Sample
+/// Buffers may represent more than one frame of video data;  CMIO
+/// Graphs support only one frame of video per buffer.
+///
+/// All parameters are copied; on return, the caller can release them,
+/// free them, reuse them or whatever.  On return, the caller owns the returned CMSampleBuffer, and
+/// must release it when done with it.
+///
+/// Example of usage for in-display-order video frames:
+/// <ul>
+/// dataBuffer: contains 1 Motion JPEG frame
+/// <br>
+/// dataFormatDescription: describes Motion JPEG video
+/// <br>
+/// numSamples: 1
+/// <br>
+/// numSampleTimingEntries: 1
+/// <br>
+/// sampleTimingArray: {duration = 3003/90000, presentationTimeStamp = 0/90000, decodeTimeStamp = invalid }
+/// <br>
+/// numSampleSizeEntries = 1
+/// <br>
+/// sampleSizeArray: {size of the video frame}
+/// </ul>
+/// Example of usage for out-of-display-order video frames:
+/// <ul>
+/// dataBuffer: contains 1 HDV frame
+/// <br>
+/// dataFormatDescription: describes H.264 video
+/// <br>
+/// numSamples: 1
+/// <br>
+/// numSampleTimingEntries: 1
+/// <br>
+/// sampleTimingArray: {duration = 3003/90000, presentationTimeStamp = 9009/90000, decodeTimeStamp = 3003/90000}
+/// <br>
+/// numSampleSizeEntries = 1
+/// <br>
+/// sampleSizeArray: {size of the video frame}
+/// </ul>
+/// Example of usage for compressed audio:
+/// <ul>
+/// dataBuffer: contains 24 compressed AAC packets
+/// <br>
+/// dataFormatDescription: describes 44.1kHz AAC audio
+/// <br>
+/// numSamples: 24
+/// <br>
+/// numSampleTimingEntries: 1
+/// <br>
+/// sampleTimingArray: {duration = 1024/44100, presentationTimeStamp = 0/44100, decodeTimeStamp = invalid }
+/// <br>
+/// numSampleSizeEntries: 24
+/// <br>
+/// sampleSizeArray:
+/// <ul>
+/// {191, 183, 208, 213, 202, 206, 209, 206, 204, 192, 202, 277,
+/// <br>
+/// 282, 240, 209, 194, 193, 197, 196, 198, 168, 199, 171, 194}
+/// </ul>
+/// </ul>
+/// Example of usage for compressed audio:
+/// <ul>
+/// dataBuffer: contains 1 HDV audio packet
+/// <br>
+/// dataFormatDescription: describes 48kHz MPEG-1 Layer II audio
+/// <br>
+/// numSamples: 1
+/// <br>
+/// numSampleTimingEntries: 1
+/// <br>
+/// sampleTimingArray: {duration = 2160/90000, presentationTimeStamp = 0/90000, decodeTimeStamp = invalid }
+/// <br>
+/// numSampleSizeEntries = 1
+/// <br>
+/// sampleSizeArray: {1152}
+/// </ul>
+/// Example of usage for uncompressed interleaved audio:
+/// <ul>
+/// dataBuffer: contains 24000 uncompressed interleaved stereo frames, each containing 2 Float32s =
+/// <ul>
+/// {{L,R},
+/// <br>
+/// {L,R},
+/// <br>
+/// {L,R}, ...}
+/// </ul>
+/// <br>
+/// dataFormatDescription: describes two-channel 48kHz Float32 interleaved audio
+/// <br>
+/// numSamples: 24000
+/// <br>
+/// numSampleTimingEntries: 1
+/// <br>
+/// sampleTimingArray: {duration = 1/48000, presentationTimeStamp = 0/90000, decodeTimeStamp = invalid }
+/// <br>
+/// numSampleSizeEntries: 1
+/// <br>
+/// sampleSizeArray: {8}
+/// </ul>
+/// Example of usage for uncompressed non-interleaved audio:
+/// <ul>
+/// dataBuffer: contains 24000 uncompressed interleaved stereo frames, each containing 2 (non-contiguous) Float32s =
+/// <ul>
+/// {{L,L,L,L,L,...},
+/// <br>
+/// {R,R,R,R,R,...}}
+/// </ul>
+/// <br>
+/// dataFormatDescription: describes two-channel 48kHz Float32 non-interleaved audio
+/// <br>
+/// numSamples: 24000
+/// <br>
+/// numSampleTimingEntries: 1
+/// <br>
+/// sampleTimingArray: {duration = 1/48000, presentationTimeStamp = 0/90000, decodeTimeStamp = invalid }
+/// <br>
+/// numSampleSizeEntries: 0
+/// <br>
+/// sampleSizeArray: NULL (because the samples are not contiguous)
+/// </ul>
+///
+///
+/// Returns: Returns paramErr if there is an error in parameters, memFullErr if memory
+/// could not be allocated, and noErr for success.  In addition, errors
+/// returned by CMSampleBufferCreate() will be passed back.
+///
+/// # Safety
+///
+/// - `data_buffer` might not allow `None`.
+/// - `format_description` might not allow `None`.
+/// - `sample_timing_array` must be a valid pointer.
+/// - `sample_size_array` must be a valid pointer.
+/// - `s_buf_out` must be a valid pointer.
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOSampleBufferCreate(
+    allocator: Option<&CFAllocator>,
+    data_buffer: Option<&CMBlockBuffer>,
+    format_description: Option<&CMFormatDescription>,
+    num_samples: u32,
+    num_sample_timing_entries: u32,
+    sample_timing_array: *const CMSampleTimingInfo,
+    num_sample_size_entries: u32,
+    sample_size_array: *const usize,
+    sequence_number: u64,
+    discontinuity_flags: u32,
+    s_buf_out: *mut *mut CMSampleBuffer,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOSampleBufferCreate(
+            allocator: Option<&CFAllocator>,
+            data_buffer: Option<&CMBlockBuffer>,
+            format_description: Option<&CMFormatDescription>,
+            num_samples: u32,
+            num_sample_timing_entries: u32,
+            sample_timing_array: *const CMSampleTimingInfo,
+            num_sample_size_entries: u32,
+            sample_size_array: *const usize,
+            sequence_number: u64,
+            discontinuity_flags: u32,
+            s_buf_out: *mut *mut CMSampleBuffer,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMIOSampleBufferCreate(
+            allocator,
+            data_buffer,
+            format_description,
+            num_samples,
+            num_sample_timing_entries,
+            sample_timing_array,
+            num_sample_size_entries,
+            sample_size_array,
+            sequence_number,
+            discontinuity_flags,
+            s_buf_out,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Creates a CMSampleBuffer that can be used in a CMIO Graph, that contains a CVImageBuffer
-    /// instead of a CMBlockBuffer.
-    ///
-    /// This routine is a specialized version of CMIOSampleBufferCreate.
-    /// See the description of that routine for background information.
-    ///
-    /// Unlike a CMBlockBuffer which can reference many samples, a CVImageBuffer is defined to
-    /// reference only one sample;  therefore this routine has fewer parameters then
-    /// CMIOSampleBufferCreate.
-    ///
-    /// Sample timing information, which is a vector for CMIOSampleBufferCreate,
-    /// consists of only one value for this routine.
-    ///
-    /// The concept of sample size does not apply to CVImageBuffers.  As such, CMSampleBufferGetSampleSizeArray
-    /// will return kCMSampleBufferError_BufferHasNoSampleSizes, and CMSampleBufferGetSampleSize
-    /// will return 0.
-    ///
-    /// Because CVImageBuffers hold visual data, the format description provided is a
-    /// CMVideoFormatDescription.  The format description must be consistent with formatting
-    /// information attached to the CVImageBuffer. The width, height, and codecType must match
-    /// (for CVPixelBuffers the codec type is given by CVPixelBufferGetPixelFormatType(pixelBuffer);
-    /// for other CVImageBuffers, the codecType must be 0). The format description extensions must
-    /// match the image buffer attachments for all the keys in the list returned by
-    /// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers (if absent in either they
-    /// must be absent in both).
-    ///
-    /// # Safety
-    ///
-    /// - `image_buffer` might not allow `None`.
-    /// - `format_description` might not allow `None`.
-    /// - `sample_timing` must be a valid pointer.
-    /// - `s_buf_out` must be a valid pointer.
-    #[cfg(all(
-        feature = "objc2-core-foundation",
-        feature = "objc2-core-media",
-        feature = "objc2-core-video"
-    ))]
-    pub fn CMIOSampleBufferCreateForImageBuffer(
-        allocator: Option<&CFAllocator>,
-        image_buffer: Option<&CVImageBuffer>,
-        format_description: Option<&CMVideoFormatDescription>,
-        sample_timing: *const CMSampleTimingInfo,
-        sequence_number: u64,
-        discontinuity_flags: u32,
-        s_buf_out: *mut *mut CMSampleBuffer,
-    ) -> OSStatus;
+/// Creates a CMSampleBuffer that can be used in a CMIO Graph, that contains a CVImageBuffer
+/// instead of a CMBlockBuffer.
+///
+/// This routine is a specialized version of CMIOSampleBufferCreate.
+/// See the description of that routine for background information.
+///
+/// Unlike a CMBlockBuffer which can reference many samples, a CVImageBuffer is defined to
+/// reference only one sample;  therefore this routine has fewer parameters then
+/// CMIOSampleBufferCreate.
+///
+/// Sample timing information, which is a vector for CMIOSampleBufferCreate,
+/// consists of only one value for this routine.
+///
+/// The concept of sample size does not apply to CVImageBuffers.  As such, CMSampleBufferGetSampleSizeArray
+/// will return kCMSampleBufferError_BufferHasNoSampleSizes, and CMSampleBufferGetSampleSize
+/// will return 0.
+///
+/// Because CVImageBuffers hold visual data, the format description provided is a
+/// CMVideoFormatDescription.  The format description must be consistent with formatting
+/// information attached to the CVImageBuffer. The width, height, and codecType must match
+/// (for CVPixelBuffers the codec type is given by CVPixelBufferGetPixelFormatType(pixelBuffer);
+/// for other CVImageBuffers, the codecType must be 0). The format description extensions must
+/// match the image buffer attachments for all the keys in the list returned by
+/// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers (if absent in either they
+/// must be absent in both).
+///
+/// # Safety
+///
+/// - `image_buffer` might not allow `None`.
+/// - `format_description` might not allow `None`.
+/// - `sample_timing` must be a valid pointer.
+/// - `s_buf_out` must be a valid pointer.
+#[cfg(all(
+    feature = "objc2-core-foundation",
+    feature = "objc2-core-media",
+    feature = "objc2-core-video"
+))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOSampleBufferCreateForImageBuffer(
+    allocator: Option<&CFAllocator>,
+    image_buffer: Option<&CVImageBuffer>,
+    format_description: Option<&CMVideoFormatDescription>,
+    sample_timing: *const CMSampleTimingInfo,
+    sequence_number: u64,
+    discontinuity_flags: u32,
+    s_buf_out: *mut *mut CMSampleBuffer,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOSampleBufferCreateForImageBuffer(
+            allocator: Option<&CFAllocator>,
+            image_buffer: Option<&CVImageBuffer>,
+            format_description: Option<&CMVideoFormatDescription>,
+            sample_timing: *const CMSampleTimingInfo,
+            sequence_number: u64,
+            discontinuity_flags: u32,
+            s_buf_out: *mut *mut CMSampleBuffer,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMIOSampleBufferCreateForImageBuffer(
+            allocator,
+            image_buffer,
+            format_description,
+            sample_timing,
+            sequence_number,
+            discontinuity_flags,
+            s_buf_out,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Creates a CMSampleBuffer with no data and one buffer-level special marker attachment that
-    /// denotes that no data is available from the device.
-    ///
-    /// It is often important for elements of a CMIO graph to know that a device has stopped
-    /// sending data.  A special buffer can be placed in the stream of buffers processed by the
-    /// Graph so that Units will synchronously get notified that the device has stopped sending
-    /// data.
-    ///
-    ///
-    /// Returns: Returns paramErr if there is an error in parameters, memFullErr if memory
-    /// could not be allocated, and noErr for success.
-    ///
-    /// # Safety
-    ///
-    /// - `format_description` might not allow `None`.
-    /// - `s_buf_out` must be a valid pointer.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-    pub fn CMIOSampleBufferCreateNoDataMarker(
-        allocator: Option<&CFAllocator>,
-        no_data_event: u32,
-        format_description: Option<&CMFormatDescription>,
-        sequence_number: u64,
-        discontinuity_flags: u32,
-        s_buf_out: *mut *mut CMSampleBuffer,
-    ) -> OSStatus;
+/// Creates a CMSampleBuffer with no data and one buffer-level special marker attachment that
+/// denotes that no data is available from the device.
+///
+/// It is often important for elements of a CMIO graph to know that a device has stopped
+/// sending data.  A special buffer can be placed in the stream of buffers processed by the
+/// Graph so that Units will synchronously get notified that the device has stopped sending
+/// data.
+///
+///
+/// Returns: Returns paramErr if there is an error in parameters, memFullErr if memory
+/// could not be allocated, and noErr for success.
+///
+/// # Safety
+///
+/// - `format_description` might not allow `None`.
+/// - `s_buf_out` must be a valid pointer.
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOSampleBufferCreateNoDataMarker(
+    allocator: Option<&CFAllocator>,
+    no_data_event: u32,
+    format_description: Option<&CMFormatDescription>,
+    sequence_number: u64,
+    discontinuity_flags: u32,
+    s_buf_out: *mut *mut CMSampleBuffer,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOSampleBufferCreateNoDataMarker(
+            allocator: Option<&CFAllocator>,
+            no_data_event: u32,
+            format_description: Option<&CMFormatDescription>,
+            sequence_number: u64,
+            discontinuity_flags: u32,
+            s_buf_out: *mut *mut CMSampleBuffer,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMIOSampleBufferCreateNoDataMarker(
+            allocator,
+            no_data_event,
+            format_description,
+            sequence_number,
+            discontinuity_flags,
+            s_buf_out,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Sets the sequence number for a CoreMedia Sample Buffer that is being used in a CMIO Graph.
-    ///
-    /// Sequence numbers are a required attachment to CoreMedia Sample Buffers being used in a
-    /// CMIO Graph.  They allow a unit to know the position of a buffer in a sequence of
-    /// buffers, and to look for gaps where data may have been lost.  Normally, the sequence
-    /// number starts at 0 and increases by one for each subsequent buffer.  As the buffer
-    /// flows through a CMIO Graph, a Unit may have reason to reassign the sequence number
-    /// to a new value.  NOTE:  in order to prevent memory corruption and other errors,
-    /// this function should only be called if the caller is sure that it has the sole
-    /// reference to the buffer;  if this cannot be guarenteed, then the caller should
-    /// first create a copy of the buffer using CMSampleBufferCreateCopy().
-    ///
-    /// # Safety
-    ///
-    /// `sbuf` might not allow `None`.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-    pub fn CMIOSampleBufferSetSequenceNumber(
-        allocator: Option<&CFAllocator>,
-        sbuf: Option<&CMSampleBuffer>,
-        sequence_number: u64,
-    );
+/// Sets the sequence number for a CoreMedia Sample Buffer that is being used in a CMIO Graph.
+///
+/// Sequence numbers are a required attachment to CoreMedia Sample Buffers being used in a
+/// CMIO Graph.  They allow a unit to know the position of a buffer in a sequence of
+/// buffers, and to look for gaps where data may have been lost.  Normally, the sequence
+/// number starts at 0 and increases by one for each subsequent buffer.  As the buffer
+/// flows through a CMIO Graph, a Unit may have reason to reassign the sequence number
+/// to a new value.  NOTE:  in order to prevent memory corruption and other errors,
+/// this function should only be called if the caller is sure that it has the sole
+/// reference to the buffer;  if this cannot be guarenteed, then the caller should
+/// first create a copy of the buffer using CMSampleBufferCreateCopy().
+///
+/// # Safety
+///
+/// `sbuf` might not allow `None`.
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOSampleBufferSetSequenceNumber(
+    allocator: Option<&CFAllocator>,
+    sbuf: Option<&CMSampleBuffer>,
+    sequence_number: u64,
+) {
+    extern "C-unwind" {
+        fn CMIOSampleBufferSetSequenceNumber(
+            allocator: Option<&CFAllocator>,
+            sbuf: Option<&CMSampleBuffer>,
+            sequence_number: u64,
+        );
+    }
+    unsafe { CMIOSampleBufferSetSequenceNumber(allocator, sbuf, sequence_number) }
 }
 
-extern "C-unwind" {
-    /// Returns the sequence number for a CoreMedia Sample Buffer that is being used in a CMIO Graph.
-    ///
-    /// Sequence numbers are a required attachment to CoreMedia Sample Buffers being used in a CMIO Graph.
-    ///
-    ///
-    /// Returns: Returns kCMIOInvalidSequenceNumber if there is an error in parameters, or if no sequence number
-    /// was attached to the buffer.
-    ///
-    /// # Safety
-    ///
-    /// `sbuf` might not allow `None`.
-    #[cfg(feature = "objc2-core-media")]
-    pub fn CMIOSampleBufferGetSequenceNumber(sbuf: Option<&CMSampleBuffer>) -> u64;
+/// Returns the sequence number for a CoreMedia Sample Buffer that is being used in a CMIO Graph.
+///
+/// Sequence numbers are a required attachment to CoreMedia Sample Buffers being used in a CMIO Graph.
+///
+///
+/// Returns: Returns kCMIOInvalidSequenceNumber if there is an error in parameters, or if no sequence number
+/// was attached to the buffer.
+///
+/// # Safety
+///
+/// `sbuf` might not allow `None`.
+#[cfg(feature = "objc2-core-media")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOSampleBufferGetSequenceNumber(
+    sbuf: Option<&CMSampleBuffer>,
+) -> u64 {
+    extern "C-unwind" {
+        fn CMIOSampleBufferGetSequenceNumber(sbuf: Option<&CMSampleBuffer>) -> u64;
+    }
+    unsafe { CMIOSampleBufferGetSequenceNumber(sbuf) }
 }
 
-extern "C-unwind" {
-    /// Sets the discontinuity flags for a CoreMedia Sample Buffer that is being used in a CMIO Graph.
-    ///
-    /// Discontinuity flags are a required attachment to CoreMedia Sample Buffers being used in a
-    /// CMIO Graph.  As the buffer flows through a CMIO Graph, a Unit may detect a discontinuity
-    /// and flag the buffer as having such.  NOTE:  in order to prevent memory corruption and other
-    /// errors, this function should only be called if the caller is sure that it has the sole
-    /// reference to the buffer;  if this cannot be guarenteed, then the caller should first create
-    /// a copy of the buffer using CMSampleBufferCreateCopy().
-    ///
-    /// # Safety
-    ///
-    /// `sbuf` might not allow `None`.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-    pub fn CMIOSampleBufferSetDiscontinuityFlags(
-        allocator: Option<&CFAllocator>,
-        sbuf: Option<&CMSampleBuffer>,
-        discontinuity_flags: u32,
-    );
+/// Sets the discontinuity flags for a CoreMedia Sample Buffer that is being used in a CMIO Graph.
+///
+/// Discontinuity flags are a required attachment to CoreMedia Sample Buffers being used in a
+/// CMIO Graph.  As the buffer flows through a CMIO Graph, a Unit may detect a discontinuity
+/// and flag the buffer as having such.  NOTE:  in order to prevent memory corruption and other
+/// errors, this function should only be called if the caller is sure that it has the sole
+/// reference to the buffer;  if this cannot be guarenteed, then the caller should first create
+/// a copy of the buffer using CMSampleBufferCreateCopy().
+///
+/// # Safety
+///
+/// `sbuf` might not allow `None`.
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOSampleBufferSetDiscontinuityFlags(
+    allocator: Option<&CFAllocator>,
+    sbuf: Option<&CMSampleBuffer>,
+    discontinuity_flags: u32,
+) {
+    extern "C-unwind" {
+        fn CMIOSampleBufferSetDiscontinuityFlags(
+            allocator: Option<&CFAllocator>,
+            sbuf: Option<&CMSampleBuffer>,
+            discontinuity_flags: u32,
+        );
+    }
+    unsafe { CMIOSampleBufferSetDiscontinuityFlags(allocator, sbuf, discontinuity_flags) }
 }
 
-extern "C-unwind" {
-    /// Returns the discontinuity flags for a CoreMedia Sample Buffer that is being used in a CMIO Graph.
-    ///
-    /// Discontinuity flags are a required attachment to CoreMedia Sample Buffers being used in a
-    /// CMIO Graph.
-    ///
-    ///
-    /// Returns: Returns kCMIOSampleBufferDiscontinuityFlag_UnknownDiscontinuity if an error occurs.
-    ///
-    /// # Safety
-    ///
-    /// `sbuf` might not allow `None`.
-    #[cfg(feature = "objc2-core-media")]
-    pub fn CMIOSampleBufferGetDiscontinuityFlags(sbuf: Option<&CMSampleBuffer>) -> u32;
+/// Returns the discontinuity flags for a CoreMedia Sample Buffer that is being used in a CMIO Graph.
+///
+/// Discontinuity flags are a required attachment to CoreMedia Sample Buffers being used in a
+/// CMIO Graph.
+///
+///
+/// Returns: Returns kCMIOSampleBufferDiscontinuityFlag_UnknownDiscontinuity if an error occurs.
+///
+/// # Safety
+///
+/// `sbuf` might not allow `None`.
+#[cfg(feature = "objc2-core-media")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOSampleBufferGetDiscontinuityFlags(
+    sbuf: Option<&CMSampleBuffer>,
+) -> u32 {
+    extern "C-unwind" {
+        fn CMIOSampleBufferGetDiscontinuityFlags(sbuf: Option<&CMSampleBuffer>) -> u32;
+    }
+    unsafe { CMIOSampleBufferGetDiscontinuityFlags(sbuf) }
 }
 
-extern "C-unwind" {
-    /// Copies all optional attachments.
-    ///
-    /// This convenience function copies all non-required attachment
-    /// values (i.e., the sequence number and discontinuity flags will not be
-    /// copied).
-    ///
-    ///
-    /// Returns: Returns paramErr if there is an error in parameters, and noErr for success.
-    ///
-    /// # Safety
-    ///
-    /// - `source_s_buf` might not allow `None`.
-    /// - `dest_s_buf` might not allow `None`.
-    #[cfg(feature = "objc2-core-media")]
-    pub fn CMIOSampleBufferCopyNonRequiredAttachments(
-        source_s_buf: Option<&CMSampleBuffer>,
-        dest_s_buf: Option<&CMSampleBuffer>,
-        attachment_mode: CMAttachmentMode,
-    ) -> OSStatus;
+/// Copies all optional attachments.
+///
+/// This convenience function copies all non-required attachment
+/// values (i.e., the sequence number and discontinuity flags will not be
+/// copied).
+///
+///
+/// Returns: Returns paramErr if there is an error in parameters, and noErr for success.
+///
+/// # Safety
+///
+/// - `source_s_buf` might not allow `None`.
+/// - `dest_s_buf` might not allow `None`.
+#[cfg(feature = "objc2-core-media")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOSampleBufferCopyNonRequiredAttachments(
+    source_s_buf: Option<&CMSampleBuffer>,
+    dest_s_buf: Option<&CMSampleBuffer>,
+    attachment_mode: CMAttachmentMode,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOSampleBufferCopyNonRequiredAttachments(
+            source_s_buf: Option<&CMSampleBuffer>,
+            dest_s_buf: Option<&CMSampleBuffer>,
+            attachment_mode: CMAttachmentMode,
+        ) -> OSStatus;
+    }
+    unsafe { CMIOSampleBufferCopyNonRequiredAttachments(source_s_buf, dest_s_buf, attachment_mode) }
 }
 
-extern "C-unwind" {
-    /// Copies sample attachments from the CMSampleBufferGetSampleAttachmentsArray()
-    /// CFArrayRef from the source CMSampleBuffer to the destination
-    /// CMSampleBuffer.
-    ///
-    /// This convenience function copies all sample attachments from the
-    /// source buffer's sample attachments array to the destination buffer's.
-    /// If the source CMSampleBuffer has no sample attachments, nothing
-    /// happens.
-    ///
-    ///
-    /// Returns: Returns paramErr if there is an error in parameters, and noErr for success.
-    ///
-    /// # Safety
-    ///
-    /// - `source_s_buf` might not allow `None`.
-    /// - `dest_s_buf` might not allow `None`.
-    #[cfg(feature = "objc2-core-media")]
-    pub fn CMIOSampleBufferCopySampleAttachments(
-        source_s_buf: Option<&CMSampleBuffer>,
-        dest_s_buf: Option<&CMSampleBuffer>,
-    ) -> OSStatus;
+/// Copies sample attachments from the CMSampleBufferGetSampleAttachmentsArray()
+/// CFArrayRef from the source CMSampleBuffer to the destination
+/// CMSampleBuffer.
+///
+/// This convenience function copies all sample attachments from the
+/// source buffer's sample attachments array to the destination buffer's.
+/// If the source CMSampleBuffer has no sample attachments, nothing
+/// happens.
+///
+///
+/// Returns: Returns paramErr if there is an error in parameters, and noErr for success.
+///
+/// # Safety
+///
+/// - `source_s_buf` might not allow `None`.
+/// - `dest_s_buf` might not allow `None`.
+#[cfg(feature = "objc2-core-media")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMIOSampleBufferCopySampleAttachments(
+    source_s_buf: Option<&CMSampleBuffer>,
+    dest_s_buf: Option<&CMSampleBuffer>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMIOSampleBufferCopySampleAttachments(
+            source_s_buf: Option<&CMSampleBuffer>,
+            dest_s_buf: Option<&CMSampleBuffer>,
+        ) -> OSStatus;
+    }
+    unsafe { CMIOSampleBufferCopySampleAttachments(source_s_buf, dest_s_buf) }
 }

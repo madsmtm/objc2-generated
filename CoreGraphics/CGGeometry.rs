@@ -262,15 +262,22 @@ pub extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `dict` generic must be of the correct type.
-    /// - `dict` generic must be of the correct type.
-    pub fn CGPointMakeWithDictionaryRepresentation(
-        dict: &CFDictionary,
-        point: &mut CGPoint,
-    ) -> bool;
+/// # Safety
+///
+/// - `dict` generic must be of the correct type.
+/// - `dict` generic must be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn CGPointMakeWithDictionaryRepresentation(
+    dict: &CFDictionary,
+    point: &mut CGPoint,
+) -> bool {
+    extern "C-unwind" {
+        fn CGPointMakeWithDictionaryRepresentation(
+            dict: &CFDictionary,
+            point: &mut CGPoint,
+        ) -> bool;
+    }
+    unsafe { CGPointMakeWithDictionaryRepresentation(dict, point) }
 }
 
 #[inline]
@@ -285,12 +292,19 @@ pub extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `dict` generic must be of the correct type.
-    /// - `dict` generic must be of the correct type.
-    pub fn CGSizeMakeWithDictionaryRepresentation(dict: &CFDictionary, size: &mut CGSize) -> bool;
+/// # Safety
+///
+/// - `dict` generic must be of the correct type.
+/// - `dict` generic must be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn CGSizeMakeWithDictionaryRepresentation(
+    dict: &CFDictionary,
+    size: &mut CGSize,
+) -> bool {
+    extern "C-unwind" {
+        fn CGSizeMakeWithDictionaryRepresentation(dict: &CFDictionary, size: &mut CGSize) -> bool;
+    }
+    unsafe { CGSizeMakeWithDictionaryRepresentation(dict, size) }
 }
 
 #[inline]
@@ -305,12 +319,19 @@ pub extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `dict` generic must be of the correct type.
-    /// - `dict` generic must be of the correct type.
-    pub fn CGRectMakeWithDictionaryRepresentation(dict: &CFDictionary, rect: &mut CGRect) -> bool;
+/// # Safety
+///
+/// - `dict` generic must be of the correct type.
+/// - `dict` generic must be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn CGRectMakeWithDictionaryRepresentation(
+    dict: &CFDictionary,
+    rect: &mut CGRect,
+) -> bool {
+    extern "C-unwind" {
+        fn CGRectMakeWithDictionaryRepresentation(dict: &CFDictionary, rect: &mut CGRect) -> bool;
+    }
+    unsafe { CGRectMakeWithDictionaryRepresentation(dict, rect) }
 }
 
 // TODO: pub fn CGPointMake(x: CGFloat,y: CGFloat,) -> CGPoint;

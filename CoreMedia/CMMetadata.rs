@@ -196,120 +196,155 @@ extern "C" {
     pub static kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Creates a URL-like string identifier that represents a key/keyspace tuple.
-    ///
-    /// Metadata entities are identified by a key whose interpretation
-    /// is defined by its keyspace.  When writing metadata to a QuickTime
-    /// Movie, this tuple is part of the track's format description.
-    ///
-    /// The following constants make up the current list of supported keyspaces,
-    /// which are documented elsewhere in this file:
-    /// <ul>
-    /// kCMMetadataKeySpace_QuickTimeUserData
-    /// <li>
-    /// kCMMetadataKeySpace_ISOUserData
-    /// <li>
-    /// kCMMetadataKeySpace_iTunes
-    /// <li>
-    /// kCMMetadataKeySpace_ID3
-    /// <li>
-    /// kCMMetadataKeySpace_QuickTimeMetadata
-    /// <li>
-    /// kCMMetadataKeySpace_Icy
-    /// </ul>
-    /// Some keyspaces use OSTypes (a.k.a. FourCharCodes) to define their
-    /// keys, and as such their keys are four bytes in length. The keyspaces
-    /// that fall into this category are: kCMMetadataKeySpace_QuickTimeUserData,
-    /// kCMMetadataKeySpace_ISOUserData, kCMMetadataKeySpace_iTunes, and
-    /// kCMMetadataKeySpace_ID3.
-    ///
-    /// The keyspace kCMMetadataKeySpace_QuickTimeMetadata defines its
-    /// key values to be expressed as reverse-DNS strings, which allows
-    /// third parties to define their own keys in a well established way
-    /// that avoids collisions.
-    ///
-    /// As a matter of convenience, known keyspaces allow for a key
-    /// to be passed in using a variety of CFTypes.  Note that what
-    /// is returned by CMMetadataCreateKeyFromIdentifier depends upon the
-    /// keyspace, and may be a different CFType than what is passed
-    /// to this routine (see the discussion below for what CFTypes are
-    /// returned for known keyspaces).  To get a key represented as
-    /// CFData, call CMMetadataCreateKeyFromIdentifierAsCFData.
-    ///
-    /// For OSType keyspaces, a key may be passed as a CFNumber,
-    /// a CFString, or a CFData. A key passed as a CFNumber will have
-    /// its value retrieved as kCFNumberSInt32Type comprising the four
-    /// bytes of the key’s numeric value in big-endian byte order.
-    /// A key passed as a CFString must be a valid ASCII string of four
-    /// characters. A key passed as a CFData must be comprised of the
-    /// four bytes of the key’s numeric value in big-endian byte order.
-    ///
-    /// All other keyspaces allow the key to be passed as a CFString
-    /// or CFData. In both cases, the key will be interpreted as an
-    /// ASCII string for the purposes of identifier encoding.
-    ///
-    /// # Safety
-    ///
-    /// - `key` should be of the correct type.
-    /// - `identifier_out` must be a valid pointer.
-    pub fn CMMetadataCreateIdentifierForKeyAndKeySpace(
-        allocator: Option<&CFAllocator>,
-        key: &CFType,
-        key_space: &CFString,
-        identifier_out: NonNull<*const CFString>,
-    ) -> OSStatus;
+/// Creates a URL-like string identifier that represents a key/keyspace tuple.
+///
+/// Metadata entities are identified by a key whose interpretation
+/// is defined by its keyspace.  When writing metadata to a QuickTime
+/// Movie, this tuple is part of the track's format description.
+///
+/// The following constants make up the current list of supported keyspaces,
+/// which are documented elsewhere in this file:
+/// <ul>
+/// kCMMetadataKeySpace_QuickTimeUserData
+/// <li>
+/// kCMMetadataKeySpace_ISOUserData
+/// <li>
+/// kCMMetadataKeySpace_iTunes
+/// <li>
+/// kCMMetadataKeySpace_ID3
+/// <li>
+/// kCMMetadataKeySpace_QuickTimeMetadata
+/// <li>
+/// kCMMetadataKeySpace_Icy
+/// </ul>
+/// Some keyspaces use OSTypes (a.k.a. FourCharCodes) to define their
+/// keys, and as such their keys are four bytes in length. The keyspaces
+/// that fall into this category are: kCMMetadataKeySpace_QuickTimeUserData,
+/// kCMMetadataKeySpace_ISOUserData, kCMMetadataKeySpace_iTunes, and
+/// kCMMetadataKeySpace_ID3.
+///
+/// The keyspace kCMMetadataKeySpace_QuickTimeMetadata defines its
+/// key values to be expressed as reverse-DNS strings, which allows
+/// third parties to define their own keys in a well established way
+/// that avoids collisions.
+///
+/// As a matter of convenience, known keyspaces allow for a key
+/// to be passed in using a variety of CFTypes.  Note that what
+/// is returned by CMMetadataCreateKeyFromIdentifier depends upon the
+/// keyspace, and may be a different CFType than what is passed
+/// to this routine (see the discussion below for what CFTypes are
+/// returned for known keyspaces).  To get a key represented as
+/// CFData, call CMMetadataCreateKeyFromIdentifierAsCFData.
+///
+/// For OSType keyspaces, a key may be passed as a CFNumber,
+/// a CFString, or a CFData. A key passed as a CFNumber will have
+/// its value retrieved as kCFNumberSInt32Type comprising the four
+/// bytes of the key’s numeric value in big-endian byte order.
+/// A key passed as a CFString must be a valid ASCII string of four
+/// characters. A key passed as a CFData must be comprised of the
+/// four bytes of the key’s numeric value in big-endian byte order.
+///
+/// All other keyspaces allow the key to be passed as a CFString
+/// or CFData. In both cases, the key will be interpreted as an
+/// ASCII string for the purposes of identifier encoding.
+///
+/// # Safety
+///
+/// - `key` should be of the correct type.
+/// - `identifier_out` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataCreateIdentifierForKeyAndKeySpace(
+    allocator: Option<&CFAllocator>,
+    key: &CFType,
+    key_space: &CFString,
+    identifier_out: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMMetadataCreateIdentifierForKeyAndKeySpace(
+            allocator: Option<&CFAllocator>,
+            key: &CFType,
+            key_space: &CFString,
+            identifier_out: NonNull<*const CFString>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMMetadataCreateIdentifierForKeyAndKeySpace(allocator, key, key_space, identifier_out)
+    }
 }
 
-extern "C-unwind" {
-    /// Creates a copy of the key encoded in the identifier as a CFType.
-    ///
-    /// The returned CFType is based on the keyspace encoded in the identifier.
-    ///
-    /// For OSType keyspaces, the key will be returned as a CFNumber,
-    /// where a big endian interpretation of its kCFNumberSInt32Type value
-    /// represents the four bytes of the key's numeric value.
-    ///
-    /// For the keyspaces kCMMetadataKeySpace_QuickTimeMetadata and
-    /// kCMMetadataKeySpace_Icy, the key will be returned as a CFString.
-    ///
-    /// All other keyspaces will have the function return the key as a CFData.
-    ///
-    /// # Safety
-    ///
-    /// `key_out` must be a valid pointer.
-    pub fn CMMetadataCreateKeyFromIdentifier(
-        allocator: Option<&CFAllocator>,
-        identifier: &CFString,
-        key_out: NonNull<*const CFType>,
-    ) -> OSStatus;
+/// Creates a copy of the key encoded in the identifier as a CFType.
+///
+/// The returned CFType is based on the keyspace encoded in the identifier.
+///
+/// For OSType keyspaces, the key will be returned as a CFNumber,
+/// where a big endian interpretation of its kCFNumberSInt32Type value
+/// represents the four bytes of the key's numeric value.
+///
+/// For the keyspaces kCMMetadataKeySpace_QuickTimeMetadata and
+/// kCMMetadataKeySpace_Icy, the key will be returned as a CFString.
+///
+/// All other keyspaces will have the function return the key as a CFData.
+///
+/// # Safety
+///
+/// `key_out` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataCreateKeyFromIdentifier(
+    allocator: Option<&CFAllocator>,
+    identifier: &CFString,
+    key_out: NonNull<*const CFType>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMMetadataCreateKeyFromIdentifier(
+            allocator: Option<&CFAllocator>,
+            identifier: &CFString,
+            key_out: NonNull<*const CFType>,
+        ) -> OSStatus;
+    }
+    unsafe { CMMetadataCreateKeyFromIdentifier(allocator, identifier, key_out) }
 }
 
-extern "C-unwind" {
-    /// Creates a copy of the key value that was encoded in the identifier as CFData.
-    /// The bytes in the CFData correpsond to how they are serialized in the file.
-    ///
-    /// # Safety
-    ///
-    /// `key_out` must be a valid pointer.
-    pub fn CMMetadataCreateKeyFromIdentifierAsCFData(
-        allocator: Option<&CFAllocator>,
-        identifier: &CFString,
-        key_out: NonNull<*const CFData>,
-    ) -> OSStatus;
+/// Creates a copy of the key value that was encoded in the identifier as CFData.
+/// The bytes in the CFData correpsond to how they are serialized in the file.
+///
+/// # Safety
+///
+/// `key_out` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataCreateKeyFromIdentifierAsCFData(
+    allocator: Option<&CFAllocator>,
+    identifier: &CFString,
+    key_out: NonNull<*const CFData>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMMetadataCreateKeyFromIdentifierAsCFData(
+            allocator: Option<&CFAllocator>,
+            identifier: &CFString,
+            key_out: NonNull<*const CFData>,
+        ) -> OSStatus;
+    }
+    unsafe { CMMetadataCreateKeyFromIdentifierAsCFData(allocator, identifier, key_out) }
 }
 
-extern "C-unwind" {
-    /// Creates a copy of the key value that was encoded in the identifier as CFData.
-    ///
-    /// # Safety
-    ///
-    /// `key_space_out` must be a valid pointer.
-    pub fn CMMetadataCreateKeySpaceFromIdentifier(
-        allocator: Option<&CFAllocator>,
-        identifier: &CFString,
-        key_space_out: NonNull<*const CFString>,
-    ) -> OSStatus;
+/// Creates a copy of the key value that was encoded in the identifier as CFData.
+///
+/// # Safety
+///
+/// `key_space_out` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataCreateKeySpaceFromIdentifier(
+    allocator: Option<&CFAllocator>,
+    identifier: &CFString,
+    key_space_out: NonNull<*const CFString>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMMetadataCreateKeySpaceFromIdentifier(
+            allocator: Option<&CFAllocator>,
+            identifier: &CFString,
+            key_space_out: NonNull<*const CFString>,
+        ) -> OSStatus;
+    }
+    unsafe { CMMetadataCreateKeySpaceFromIdentifier(allocator, identifier, key_space_out) }
 }
 
 extern "C" {
@@ -537,24 +572,34 @@ extern "C" {
     pub static kCMMetadataDataType_QuickTimeMetadataMilliLux: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Register a data type with the data type registry.
-    ///
-    /// This routine is called by clients to register a data type with
-    /// the data type registry.  The list of conforming data type identifiers
-    /// must include a base data type.  If the data type has already
-    /// been registered, then it is not considered an error to re-register it
-    /// as long as the list of conforming data type identifiers has the same
-    /// entries as the original;  otherwise an error will be returned.
-    ///
-    /// # Safety
-    ///
-    /// `conforming_data_types` generic must be of the correct type.
-    pub fn CMMetadataDataTypeRegistryRegisterDataType(
-        data_type: &CFString,
-        description: &CFString,
-        conforming_data_types: &CFArray,
-    ) -> OSStatus;
+/// Register a data type with the data type registry.
+///
+/// This routine is called by clients to register a data type with
+/// the data type registry.  The list of conforming data type identifiers
+/// must include a base data type.  If the data type has already
+/// been registered, then it is not considered an error to re-register it
+/// as long as the list of conforming data type identifiers has the same
+/// entries as the original;  otherwise an error will be returned.
+///
+/// # Safety
+///
+/// `conforming_data_types` generic must be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryRegisterDataType(
+    data_type: &CFString,
+    description: &CFString,
+    conforming_data_types: &CFArray,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMMetadataDataTypeRegistryRegisterDataType(
+            data_type: &CFString,
+            description: &CFString,
+            conforming_data_types: &CFArray,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMMetadataDataTypeRegistryRegisterDataType(data_type, description, conforming_data_types)
+    }
 }
 
 /// Tests a data type identifier to see if it has been registered.

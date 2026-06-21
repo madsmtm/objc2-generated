@@ -41,68 +41,76 @@ pub unsafe extern "C-unwind" fn UAZoomEnabled() -> bool {
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Tells the Universal Access zoom feature where it should focus.
-    ///
-    /// This function tells Universal Access the frame of the element in focus and the
-    /// part of the element that should be in focus.
-    ///
-    /// Parameter `inRect`: The frame of the element in focus, in global 72-dot-per-inch (dpi) coordinates.
-    ///
-    /// Parameter `inHighlightRect`: The frame of the highlighted part of the element in focus, in global 72 dpi coordinates.  If the whole element is in focus,
-    /// and not just a smaller part of it, pass the
-    /// <code>
-    /// inRect
-    /// </code>
-    /// parameter and pass
-    /// <code>
-    /// NULL
-    /// </code>
-    /// for
-    /// <code>
-    /// inHighlightRect
-    /// </code>
-    /// .
-    ///
-    /// Parameter `inType`: A value of type
-    ///
-    /// ```text
-    ///  UAZoomChangeFocusType UAZoomChangeFocusType
-    /// ```
-    ///
-    /// .
-    ///
-    /// Returns: Returns
-    /// <code>
-    /// noErr
-    /// </code>
-    /// if there were no problems, if Universal Access Zoom is zoomed all the way out, or if the feature is off;
-    /// returns
-    /// <code>
-    /// paramErr
-    /// </code>
-    /// if
-    /// <code>
-    /// inRect
-    /// </code>
-    /// is
-    /// <code>
-    /// NULL
-    /// </code>
-    /// or if
-    /// <code>
-    /// inType
-    /// </code>
-    /// is out of range.
-    /// Availability: Available in Mac OS X v10.4 and later (not available in CarbonLib 1.x and not available for nonCarbon CFM).
-    ///
-    /// # Safety
-    ///
-    /// - `in_rect` must be a valid pointer.
-    /// - `in_highlight_rect` must be a valid pointer.
-    pub fn UAZoomChangeFocus(
-        in_rect: *const CGRect,
-        in_highlight_rect: *const CGRect,
-        in_type: UAZoomChangeFocusType,
-    ) -> OSStatus;
+/// Tells the Universal Access zoom feature where it should focus.
+///
+/// This function tells Universal Access the frame of the element in focus and the
+/// part of the element that should be in focus.
+///
+/// Parameter `inRect`: The frame of the element in focus, in global 72-dot-per-inch (dpi) coordinates.
+///
+/// Parameter `inHighlightRect`: The frame of the highlighted part of the element in focus, in global 72 dpi coordinates.  If the whole element is in focus,
+/// and not just a smaller part of it, pass the
+/// <code>
+/// inRect
+/// </code>
+/// parameter and pass
+/// <code>
+/// NULL
+/// </code>
+/// for
+/// <code>
+/// inHighlightRect
+/// </code>
+/// .
+///
+/// Parameter `inType`: A value of type
+///
+/// ```text
+///  UAZoomChangeFocusType UAZoomChangeFocusType
+/// ```
+///
+/// .
+///
+/// Returns: Returns
+/// <code>
+/// noErr
+/// </code>
+/// if there were no problems, if Universal Access Zoom is zoomed all the way out, or if the feature is off;
+/// returns
+/// <code>
+/// paramErr
+/// </code>
+/// if
+/// <code>
+/// inRect
+/// </code>
+/// is
+/// <code>
+/// NULL
+/// </code>
+/// or if
+/// <code>
+/// inType
+/// </code>
+/// is out of range.
+/// Availability: Available in Mac OS X v10.4 and later (not available in CarbonLib 1.x and not available for nonCarbon CFM).
+///
+/// # Safety
+///
+/// - `in_rect` must be a valid pointer.
+/// - `in_highlight_rect` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn UAZoomChangeFocus(
+    in_rect: *const CGRect,
+    in_highlight_rect: *const CGRect,
+    in_type: UAZoomChangeFocusType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn UAZoomChangeFocus(
+            in_rect: *const CGRect,
+            in_highlight_rect: *const CGRect,
+            in_type: UAZoomChangeFocusType,
+        ) -> OSStatus;
+    }
+    unsafe { UAZoomChangeFocus(in_rect, in_highlight_rect, in_type) }
 }

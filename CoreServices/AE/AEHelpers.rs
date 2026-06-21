@@ -73,13 +73,20 @@ unsafe impl RefEncode for AEBuildError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `desc` must be a valid pointer.
-    /// - `result` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEPrintDescToHandle(desc: *const AEDesc, result: *mut Handle) -> OSStatus;
+/// # Safety
+///
+/// - `desc` must be a valid pointer.
+/// - `result` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEPrintDescToHandle(
+    desc: *const AEDesc,
+    result: *mut Handle,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AEPrintDescToHandle(desc: *const AEDesc, result: *mut Handle) -> OSStatus;
+    }
+    unsafe { AEPrintDescToHandle(desc, result) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/opaqueaestreamref?language=objc)
@@ -98,161 +105,285 @@ unsafe impl RefEncode for OpaqueAEStreamRef {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aestreamref?language=objc)
 pub type AEStreamRef = *mut OpaqueAEStreamRef;
 
-extern "C-unwind" {
-    pub fn AEStreamOpen() -> AEStreamRef;
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamOpen() -> AEStreamRef {
+    extern "C-unwind" {
+        fn AEStreamOpen() -> AEStreamRef;
+    }
+    unsafe { AEStreamOpen() }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `ref` must be a valid pointer.
-    /// - `desc` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamClose(r#ref: AEStreamRef, desc: *mut AEDesc) -> OSStatus;
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `desc` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamClose(r#ref: AEStreamRef, desc: *mut AEDesc) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamClose(r#ref: AEStreamRef, desc: *mut AEDesc) -> OSStatus;
+    }
+    unsafe { AEStreamClose(r#ref, desc) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamOpenDesc(r#ref: AEStreamRef, new_type: DescType) -> OSStatus;
+/// # Safety
+///
+/// `ref` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamOpenDesc(
+    r#ref: AEStreamRef,
+    new_type: DescType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamOpenDesc(r#ref: AEStreamRef, new_type: DescType) -> OSStatus;
+    }
+    unsafe { AEStreamOpenDesc(r#ref, new_type) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `ref` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    pub fn AEStreamWriteData(r#ref: AEStreamRef, data: *const c_void, length: Size) -> OSStatus;
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamWriteData(
+    r#ref: AEStreamRef,
+    data: *const c_void,
+    length: Size,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamWriteData(r#ref: AEStreamRef, data: *const c_void, length: Size) -> OSStatus;
+    }
+    unsafe { AEStreamWriteData(r#ref, data, length) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` must be a valid pointer.
-    pub fn AEStreamCloseDesc(r#ref: AEStreamRef) -> OSStatus;
+/// # Safety
+///
+/// `ref` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamCloseDesc(r#ref: AEStreamRef) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamCloseDesc(r#ref: AEStreamRef) -> OSStatus;
+    }
+    unsafe { AEStreamCloseDesc(r#ref) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `ref` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamWriteDesc(
-        r#ref: AEStreamRef,
-        new_type: DescType,
-        data: *const c_void,
-        length: Size,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `data` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamWriteDesc(
+    r#ref: AEStreamRef,
+    new_type: DescType,
+    data: *const c_void,
+    length: Size,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamWriteDesc(
+            r#ref: AEStreamRef,
+            new_type: DescType,
+            data: *const c_void,
+            length: Size,
+        ) -> OSStatus;
+    }
+    unsafe { AEStreamWriteDesc(r#ref, new_type, data, length) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `ref` must be a valid pointer.
-    /// - `desc` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamWriteAEDesc(r#ref: AEStreamRef, desc: *const AEDesc) -> OSStatus;
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `desc` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamWriteAEDesc(
+    r#ref: AEStreamRef,
+    desc: *const AEDesc,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamWriteAEDesc(r#ref: AEStreamRef, desc: *const AEDesc) -> OSStatus;
+    }
+    unsafe { AEStreamWriteAEDesc(r#ref, desc) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` must be a valid pointer.
-    pub fn AEStreamOpenList(r#ref: AEStreamRef) -> OSStatus;
+/// # Safety
+///
+/// `ref` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamOpenList(r#ref: AEStreamRef) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamOpenList(r#ref: AEStreamRef) -> OSStatus;
+    }
+    unsafe { AEStreamOpenList(r#ref) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` must be a valid pointer.
-    pub fn AEStreamCloseList(r#ref: AEStreamRef) -> OSStatus;
+/// # Safety
+///
+/// `ref` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamCloseList(r#ref: AEStreamRef) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamCloseList(r#ref: AEStreamRef) -> OSStatus;
+    }
+    unsafe { AEStreamCloseList(r#ref) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamOpenRecord(r#ref: AEStreamRef, new_type: DescType) -> OSStatus;
+/// # Safety
+///
+/// `ref` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamOpenRecord(
+    r#ref: AEStreamRef,
+    new_type: DescType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamOpenRecord(r#ref: AEStreamRef, new_type: DescType) -> OSStatus;
+    }
+    unsafe { AEStreamOpenRecord(r#ref, new_type) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamSetRecordType(r#ref: AEStreamRef, new_type: DescType) -> OSStatus;
+/// # Safety
+///
+/// `ref` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamSetRecordType(
+    r#ref: AEStreamRef,
+    new_type: DescType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamSetRecordType(r#ref: AEStreamRef, new_type: DescType) -> OSStatus;
+    }
+    unsafe { AEStreamSetRecordType(r#ref, new_type) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` must be a valid pointer.
-    pub fn AEStreamCloseRecord(r#ref: AEStreamRef) -> OSStatus;
+/// # Safety
+///
+/// `ref` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamCloseRecord(r#ref: AEStreamRef) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamCloseRecord(r#ref: AEStreamRef) -> OSStatus;
+    }
+    unsafe { AEStreamCloseRecord(r#ref) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `ref` must be a valid pointer.
-    /// - `data` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamWriteKeyDesc(
-        r#ref: AEStreamRef,
-        key: AEKeyword,
-        new_type: DescType,
-        data: *const c_void,
-        length: Size,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `data` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamWriteKeyDesc(
+    r#ref: AEStreamRef,
+    key: AEKeyword,
+    new_type: DescType,
+    data: *const c_void,
+    length: Size,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamWriteKeyDesc(
+            r#ref: AEStreamRef,
+            key: AEKeyword,
+            new_type: DescType,
+            data: *const c_void,
+            length: Size,
+        ) -> OSStatus;
+    }
+    unsafe { AEStreamWriteKeyDesc(r#ref, key, new_type, data, length) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamOpenKeyDesc(r#ref: AEStreamRef, key: AEKeyword, new_type: DescType) -> OSStatus;
+/// # Safety
+///
+/// `ref` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamOpenKeyDesc(
+    r#ref: AEStreamRef,
+    key: AEKeyword,
+    new_type: DescType,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamOpenKeyDesc(r#ref: AEStreamRef, key: AEKeyword, new_type: DescType) -> OSStatus;
+    }
+    unsafe { AEStreamOpenKeyDesc(r#ref, key, new_type) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamWriteKey(r#ref: AEStreamRef, key: AEKeyword) -> OSStatus;
+/// # Safety
+///
+/// `ref` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamWriteKey(r#ref: AEStreamRef, key: AEKeyword) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamWriteKey(r#ref: AEStreamRef, key: AEKeyword) -> OSStatus;
+    }
+    unsafe { AEStreamWriteKey(r#ref, key) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `target_data` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamCreateEvent(
-        clazz: AEEventClass,
-        id: AEEventID,
-        target_type: DescType,
-        target_data: *const c_void,
-        target_length: Size,
-        return_id: i16,
-        transaction_id: i32,
-    ) -> AEStreamRef;
+/// # Safety
+///
+/// `target_data` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamCreateEvent(
+    clazz: AEEventClass,
+    id: AEEventID,
+    target_type: DescType,
+    target_data: *const c_void,
+    target_length: Size,
+    return_id: i16,
+    transaction_id: i32,
+) -> AEStreamRef {
+    extern "C-unwind" {
+        fn AEStreamCreateEvent(
+            clazz: AEEventClass,
+            id: AEEventID,
+            target_type: DescType,
+            target_data: *const c_void,
+            target_length: Size,
+            return_id: i16,
+            transaction_id: i32,
+        ) -> AEStreamRef;
+    }
+    unsafe {
+        AEStreamCreateEvent(
+            clazz,
+            id,
+            target_type,
+            target_data,
+            target_length,
+            return_id,
+            transaction_id,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `event` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamOpenEvent(event: *mut AppleEvent) -> AEStreamRef;
+/// # Safety
+///
+/// `event` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamOpenEvent(event: *mut AppleEvent) -> AEStreamRef {
+    extern "C-unwind" {
+        fn AEStreamOpenEvent(event: *mut AppleEvent) -> AEStreamRef;
+    }
+    unsafe { AEStreamOpenEvent(event) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `ref` must be a valid pointer.
-    #[cfg(feature = "AEDataModel")]
-    pub fn AEStreamOptionalParam(r#ref: AEStreamRef, key: AEKeyword) -> OSStatus;
+/// # Safety
+///
+/// `ref` must be a valid pointer.
+#[cfg(feature = "AEDataModel")]
+#[inline]
+pub unsafe extern "C-unwind" fn AEStreamOptionalParam(
+    r#ref: AEStreamRef,
+    key: AEKeyword,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AEStreamOptionalParam(r#ref: AEStreamRef, key: AEKeyword) -> OSStatus;
+    }
+    unsafe { AEStreamOptionalParam(r#ref, key) }
 }

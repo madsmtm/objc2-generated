@@ -58,40 +58,56 @@ extern "C" {
 pub type CGImageSourceAnimationBlock =
     block2::DynBlock<dyn Fn(usize, NonNull<CGImage>, NonNull<bool>)>;
 
-extern "C-unwind" {
-    /// Animate the sequence of images contained in the file at `url`. Currently supported image
-    /// formats are GIF and APNG. The `options` dictionary may be used to request additional playback
-    /// options; see the list of keys above for more information. The block is called on the main queue
-    /// at time intervals specified by the `delay time` of the image. The animation can be stopped by
-    /// setting the boolean parameter of the block to true.
-    ///
-    /// # Safety
-    ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
-    pub fn CGAnimateImageAtURLWithBlock(
-        url: &CFURL,
-        options: Option<&CFDictionary>,
-        block: &CGImageSourceAnimationBlock,
-    ) -> OSStatus;
+/// Animate the sequence of images contained in the file at `url`. Currently supported image
+/// formats are GIF and APNG. The `options` dictionary may be used to request additional playback
+/// options; see the list of keys above for more information. The block is called on the main queue
+/// at time intervals specified by the `delay time` of the image. The animation can be stopped by
+/// setting the boolean parameter of the block to true.
+///
+/// # Safety
+///
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
+#[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGAnimateImageAtURLWithBlock(
+    url: &CFURL,
+    options: Option<&CFDictionary>,
+    block: &CGImageSourceAnimationBlock,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CGAnimateImageAtURLWithBlock(
+            url: &CFURL,
+            options: Option<&CFDictionary>,
+            block: &CGImageSourceAnimationBlock,
+        ) -> OSStatus;
+    }
+    unsafe { CGAnimateImageAtURLWithBlock(url, options, block) }
 }
 
-extern "C-unwind" {
-    /// Animate the sequence of images contained in `data`. Currently supported image
-    /// formats are GIF and APNG. The `options` dictionary may be used to request additional playback
-    /// options; see the list of keys above for more information. The block is called on the main queue
-    /// at time intervals specified by the `delay time` of the image. The animation can be stopped by
-    /// setting the boolean parameter of the block to true.
-    ///
-    /// # Safety
-    ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
-    pub fn CGAnimateImageDataWithBlock(
-        data: &CFData,
-        options: Option<&CFDictionary>,
-        block: &CGImageSourceAnimationBlock,
-    ) -> OSStatus;
+/// Animate the sequence of images contained in `data`. Currently supported image
+/// formats are GIF and APNG. The `options` dictionary may be used to request additional playback
+/// options; see the list of keys above for more information. The block is called on the main queue
+/// at time intervals specified by the `delay time` of the image. The animation can be stopped by
+/// setting the boolean parameter of the block to true.
+///
+/// # Safety
+///
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
+#[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGAnimateImageDataWithBlock(
+    data: &CFData,
+    options: Option<&CFDictionary>,
+    block: &CGImageSourceAnimationBlock,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CGAnimateImageDataWithBlock(
+            data: &CFData,
+            options: Option<&CFDictionary>,
+            block: &CGImageSourceAnimationBlock,
+        ) -> OSStatus;
+    }
+    unsafe { CGAnimateImageDataWithBlock(data, options, block) }
 }

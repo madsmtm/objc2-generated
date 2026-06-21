@@ -680,35 +680,57 @@ pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateWithPacketDescriptionsA
     }
 }
 
-extern "C-unwind" {
-    /// Creates an CMSampleBuffer containing audio given packetDescriptions instead of sizing and timing info
-    ///
-    /// Provides an optimization over CMSampleBufferCreate() when the caller already has packetDescriptions for
-    /// the audio data. This routine will use the packetDescriptions to create the sizing and timing arrays required
-    /// to make the sample buffer if necessary.
-    /// CMAudioSampleBufferCreateReadyWithPacketDescriptions is identical to CMAudioSampleBufferCreateWithPacketDescriptions
-    /// except that dataReady is always true, and so no makeDataReadyCallback or refcon needs to be passed.
-    ///
-    /// # Safety
-    ///
-    /// - `packet_descriptions` must be a valid pointer or null.
-    /// - `sample_buffer_out` must be a valid pointer.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "CMTime",
-        feature = "objc2-core-audio-types"
-    ))]
-    pub fn CMAudioSampleBufferCreateReadyWithPacketDescriptions(
-        allocator: Option<&CFAllocator>,
-        data_buffer: &CMBlockBuffer,
-        format_description: &CMFormatDescription,
-        num_samples: CMItemCount,
-        presentation_time_stamp: CMTime,
-        packet_descriptions: *const AudioStreamPacketDescription,
-        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-    ) -> OSStatus;
+/// Creates an CMSampleBuffer containing audio given packetDescriptions instead of sizing and timing info
+///
+/// Provides an optimization over CMSampleBufferCreate() when the caller already has packetDescriptions for
+/// the audio data. This routine will use the packetDescriptions to create the sizing and timing arrays required
+/// to make the sample buffer if necessary.
+/// CMAudioSampleBufferCreateReadyWithPacketDescriptions is identical to CMAudioSampleBufferCreateWithPacketDescriptions
+/// except that dataReady is always true, and so no makeDataReadyCallback or refcon needs to be passed.
+///
+/// # Safety
+///
+/// - `packet_descriptions` must be a valid pointer or null.
+/// - `sample_buffer_out` must be a valid pointer.
+#[cfg(all(
+    feature = "CMBase",
+    feature = "CMBlockBuffer",
+    feature = "CMFormatDescription",
+    feature = "CMTime",
+    feature = "objc2-core-audio-types"
+))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateReadyWithPacketDescriptions(
+    allocator: Option<&CFAllocator>,
+    data_buffer: &CMBlockBuffer,
+    format_description: &CMFormatDescription,
+    num_samples: CMItemCount,
+    presentation_time_stamp: CMTime,
+    packet_descriptions: *const AudioStreamPacketDescription,
+    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMAudioSampleBufferCreateReadyWithPacketDescriptions(
+            allocator: Option<&CFAllocator>,
+            data_buffer: &CMBlockBuffer,
+            format_description: &CMFormatDescription,
+            num_samples: CMItemCount,
+            presentation_time_stamp: CMTime,
+            packet_descriptions: *const AudioStreamPacketDescription,
+            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMAudioSampleBufferCreateReadyWithPacketDescriptions(
+            allocator,
+            data_buffer,
+            format_description,
+            num_samples,
+            presentation_time_stamp,
+            packet_descriptions,
+            sample_buffer_out,
+        )
+    }
 }
 
 impl CMSampleBuffer {

@@ -288,11 +288,15 @@ pub unsafe extern "C-unwind" fn PGCreateDeviceWithDescriptor(
     unsafe { Retained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the maximum number of PGDisplay ports that a PGDevice can be configured with.
-    ///
-    /// Note: See PGDeviceDescriptor's displayPortCount property.
-    pub fn PGMaxDisplayPortCount() -> u32;
+/// Returns the maximum number of PGDisplay ports that a PGDevice can be configured with.
+///
+/// Note: See PGDeviceDescriptor's displayPortCount property.
+#[inline]
+pub unsafe extern "C-unwind" fn PGMaxDisplayPortCount() -> u32 {
+    extern "C-unwind" {
+        fn PGMaxDisplayPortCount() -> u32;
+    }
+    unsafe { PGMaxDisplayPortCount() }
 }
 
 extern "C" {

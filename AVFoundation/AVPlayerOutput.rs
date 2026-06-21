@@ -113,28 +113,36 @@ unsafe impl RefEncode for CMTagCollectionVideoOutputPreset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Creates a CMTagCollection with the required tags to describe the specified video output requirements.
-    ///
-    /// Convenience constructor to create a CMTagCollection with all of the required tags for use with video output interfaces.
-    ///
-    /// Parameter `allocator`: CFAllocator to use to create the collection and internal data structures.
-    ///
-    /// Parameter `preset`: CMTagCollectionVideoOutputPreset representing the desired video output scenario.
-    ///
-    /// Parameter `newCollectionOut`: Address of a location to the newly created CMTagCollection.  The client is responsible for releasing the returned CMTagCollection.
-    ///
-    /// Returns: noErr if successful. Otherwise, an error describing why a tag collection could not be created.
-    ///
-    /// # Safety
-    ///
-    /// `new_collection_out` must be a valid pointer.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-    pub fn CMTagCollectionCreateWithVideoOutputPreset(
-        allocator: Option<&CFAllocator>,
-        preset: CMTagCollectionVideoOutputPreset,
-        new_collection_out: NonNull<*const CMTagCollection>,
-    ) -> OSStatus;
+/// Creates a CMTagCollection with the required tags to describe the specified video output requirements.
+///
+/// Convenience constructor to create a CMTagCollection with all of the required tags for use with video output interfaces.
+///
+/// Parameter `allocator`: CFAllocator to use to create the collection and internal data structures.
+///
+/// Parameter `preset`: CMTagCollectionVideoOutputPreset representing the desired video output scenario.
+///
+/// Parameter `newCollectionOut`: Address of a location to the newly created CMTagCollection.  The client is responsible for releasing the returned CMTagCollection.
+///
+/// Returns: noErr if successful. Otherwise, an error describing why a tag collection could not be created.
+///
+/// # Safety
+///
+/// `new_collection_out` must be a valid pointer.
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCollectionCreateWithVideoOutputPreset(
+    allocator: Option<&CFAllocator>,
+    preset: CMTagCollectionVideoOutputPreset,
+    new_collection_out: NonNull<*const CMTagCollection>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMTagCollectionCreateWithVideoOutputPreset(
+            allocator: Option<&CFAllocator>,
+            preset: CMTagCollectionVideoOutputPreset,
+            new_collection_out: NonNull<*const CMTagCollection>,
+        ) -> OSStatus;
+    }
+    unsafe { CMTagCollectionCreateWithVideoOutputPreset(allocator, preset, new_collection_out) }
 }
 
 extern_class!(

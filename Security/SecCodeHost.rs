@@ -10,63 +10,112 @@ pub const kSecCSDedicatedHost: u32 = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsgenerateguesthash?language=objc)
 pub const kSecCSGenerateGuestHash: u32 = 2;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
-    /// - `new_guest` must be a valid pointer.
-    #[cfg(feature = "CSCommon")]
-    #[deprecated]
-    pub fn SecHostCreateGuest(
-        host: SecGuestRef,
-        status: u32,
-        path: &CFURL,
-        attributes: Option<&CFDictionary>,
-        flags: SecCSFlags,
-        new_guest: NonNull<SecGuestRef>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `attributes` generic must be of the correct type.
+/// - `attributes` generic must be of the correct type.
+/// - `new_guest` must be a valid pointer.
+#[cfg(feature = "CSCommon")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SecHostCreateGuest(
+    host: SecGuestRef,
+    status: u32,
+    path: &CFURL,
+    attributes: Option<&CFDictionary>,
+    flags: SecCSFlags,
+    new_guest: NonNull<SecGuestRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecHostCreateGuest(
+            host: SecGuestRef,
+            status: u32,
+            path: &CFURL,
+            attributes: Option<&CFDictionary>,
+            flags: SecCSFlags,
+            new_guest: NonNull<SecGuestRef>,
+        ) -> OSStatus;
+    }
+    unsafe { SecHostCreateGuest(host, status, path, attributes, flags, new_guest) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CSCommon")]
-    #[deprecated]
-    pub fn SecHostRemoveGuest(host: SecGuestRef, guest: SecGuestRef, flags: SecCSFlags)
-        -> OSStatus;
+#[cfg(feature = "CSCommon")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SecHostRemoveGuest(
+    host: SecGuestRef,
+    guest: SecGuestRef,
+    flags: SecCSFlags,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecHostRemoveGuest(host: SecGuestRef, guest: SecGuestRef, flags: SecCSFlags)
+            -> OSStatus;
+    }
+    unsafe { SecHostRemoveGuest(host, guest, flags) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CSCommon")]
-    #[deprecated]
-    pub fn SecHostSelectGuest(guest_ref: SecGuestRef, flags: SecCSFlags) -> OSStatus;
+#[cfg(feature = "CSCommon")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SecHostSelectGuest(
+    guest_ref: SecGuestRef,
+    flags: SecCSFlags,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecHostSelectGuest(guest_ref: SecGuestRef, flags: SecCSFlags) -> OSStatus;
+    }
+    unsafe { SecHostSelectGuest(guest_ref, flags) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `guest_ref` must be a valid pointer.
-    #[cfg(feature = "CSCommon")]
-    #[deprecated]
-    pub fn SecHostSelectedGuest(flags: SecCSFlags, guest_ref: NonNull<SecGuestRef>) -> OSStatus;
+/// # Safety
+///
+/// `guest_ref` must be a valid pointer.
+#[cfg(feature = "CSCommon")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SecHostSelectedGuest(
+    flags: SecCSFlags,
+    guest_ref: NonNull<SecGuestRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecHostSelectedGuest(flags: SecCSFlags, guest_ref: NonNull<SecGuestRef>) -> OSStatus;
+    }
+    unsafe { SecHostSelectedGuest(flags, guest_ref) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
-    #[cfg(feature = "CSCommon")]
-    #[deprecated]
-    pub fn SecHostSetGuestStatus(
-        guest_ref: SecGuestRef,
-        status: u32,
-        attributes: Option<&CFDictionary>,
-        flags: SecCSFlags,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `attributes` generic must be of the correct type.
+/// - `attributes` generic must be of the correct type.
+#[cfg(feature = "CSCommon")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SecHostSetGuestStatus(
+    guest_ref: SecGuestRef,
+    status: u32,
+    attributes: Option<&CFDictionary>,
+    flags: SecCSFlags,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecHostSetGuestStatus(
+            guest_ref: SecGuestRef,
+            status: u32,
+            attributes: Option<&CFDictionary>,
+            flags: SecCSFlags,
+        ) -> OSStatus;
+    }
+    unsafe { SecHostSetGuestStatus(guest_ref, status, attributes, flags) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CSCommon", feature = "libc"))]
-    #[deprecated]
-    pub fn SecHostSetHostingPort(hosting_port: libc::mach_port_t, flags: SecCSFlags) -> OSStatus;
+#[cfg(all(feature = "CSCommon", feature = "libc"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SecHostSetHostingPort(
+    hosting_port: libc::mach_port_t,
+    flags: SecCSFlags,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecHostSetHostingPort(hosting_port: libc::mach_port_t, flags: SecCSFlags) -> OSStatus;
+    }
+    unsafe { SecHostSetHostingPort(hosting_port, flags) }
 }

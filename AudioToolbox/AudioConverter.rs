@@ -263,310 +263,433 @@ pub const kAudioConverterErr_InputSampleRateOutOfRange: OSStatus = 0x21697372;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertererr_outputsamplerateoutofrange?language=objc)
 pub const kAudioConverterErr_OutputSampleRateOutOfRange: OSStatus = 0x216f7372;
 
-extern "C-unwind" {
-    /// Optimizes the subsequent creation of audio converters by the current process.
-    ///
-    /// This function performs its work asynchronously.  The optional completion block,
-    /// if provided, is executed once preparation is complete.
-    /// Although a best effort is made to ensure future audio converters will be created quickly,
-    /// there are no guarantees.
-    ///
-    ///
-    /// Parameter `inFlags`: Reserved for future use.  Pass 0.
-    ///
-    /// Parameter `ioReserved`: Reserved for future use.  Pass NULL.
-    ///
-    /// Parameter `inCompletionBlock`: Optional block to execute once preparation is complete.  May be NULL.
-    /// The block is given the OSStatus result of the preparation.
-    ///
-    /// # Safety
-    ///
-    /// `io_reserved` must be a valid pointer or null.
-    #[cfg(feature = "block2")]
-    pub fn AudioConverterPrepare(
-        in_flags: u32,
-        io_reserved: *mut c_void,
-        in_completion_block: Option<&block2::DynBlock<dyn Fn(OSStatus)>>,
-    );
+/// Optimizes the subsequent creation of audio converters by the current process.
+///
+/// This function performs its work asynchronously.  The optional completion block,
+/// if provided, is executed once preparation is complete.
+/// Although a best effort is made to ensure future audio converters will be created quickly,
+/// there are no guarantees.
+///
+///
+/// Parameter `inFlags`: Reserved for future use.  Pass 0.
+///
+/// Parameter `ioReserved`: Reserved for future use.  Pass NULL.
+///
+/// Parameter `inCompletionBlock`: Optional block to execute once preparation is complete.  May be NULL.
+/// The block is given the OSStatus result of the preparation.
+///
+/// # Safety
+///
+/// `io_reserved` must be a valid pointer or null.
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterPrepare(
+    in_flags: u32,
+    io_reserved: *mut c_void,
+    in_completion_block: Option<&block2::DynBlock<dyn Fn(OSStatus)>>,
+) {
+    extern "C-unwind" {
+        fn AudioConverterPrepare(
+            in_flags: u32,
+            io_reserved: *mut c_void,
+            in_completion_block: Option<&block2::DynBlock<dyn Fn(OSStatus)>>,
+        );
+    }
+    unsafe { AudioConverterPrepare(in_flags, io_reserved, in_completion_block) }
 }
 
-extern "C-unwind" {
-    /// Create a new AudioConverter.
-    ///
-    ///
-    /// Parameter `inSourceFormat`: The format of the source audio to be converted.
-    ///
-    /// Parameter `inDestinationFormat`: The destination format to which the audio is to be converted.
-    ///
-    /// Parameter `outAudioConverter`: On successful return, points to a new AudioConverter instance.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// For a pair of linear PCM formats, the following conversions
-    /// are supported:
-    ///
-    /// <ul>
-    /// <li>
-    /// addition and removal of channels, when the stream descriptions'
-    /// mChannelsPerFrame does not match. Channels may also be reordered and removed
-    /// using the kAudioConverterChannelMap property.
-    /// </li>
-    /// <li>
-    /// sample rate conversion
-    /// </li>
-    /// <li>
-    /// interleaving/deinterleaving, when the stream descriptions' (mFormatFlags
-    /// &
-    /// kAudioFormatFlagIsNonInterleaved) does not match.
-    /// </li>
-    /// <li>
-    /// conversion between any pair of the following formats:
-    /// </li>
-    /// <ul>
-    /// <li>
-    /// 8 bit integer, signed or unsigned
-    /// </li>
-    /// <li>
-    /// 16, 24, or 32-bit integer, big- or little-endian. Other integral
-    /// bit depths, if high-aligned and non-packed, are also supported
-    /// </li>
-    /// <li>
-    /// 32 and 64-bit float, big- or little-endian.
-    /// </li>
-    /// </ul>
-    /// </ul>
-    ///
-    /// Also, encoding and decoding between linear PCM and compressed formats is
-    /// supported. Functions in AudioToolbox/AudioFormat.h return information about the
-    /// supported formats. When using a codec, you can use any supported PCM format (as
-    /// above); the converter will perform any necessary additional conversion between
-    /// your PCM format and the one created or consumed by the codec.
-    ///
-    /// Note that AudioConverter may change the formats to correct any
-    /// inconsistent or erroneous values.  The actual formats expected and used
-    /// by the newly created AudioConverter can be obtained by getting the
-    /// properties `kAudioConverterCurrentInputStreamDescription` and
-    /// `kAudioConverterCurrentOutputStreamDescription` from it.
-    ///
-    /// # Safety
-    ///
-    /// `out_audio_converter` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioConverterNew(
-        in_source_format: &AudioStreamBasicDescription,
-        in_destination_format: &AudioStreamBasicDescription,
-        out_audio_converter: &mut AudioConverterRef,
-    ) -> OSStatus;
+/// Create a new AudioConverter.
+///
+///
+/// Parameter `inSourceFormat`: The format of the source audio to be converted.
+///
+/// Parameter `inDestinationFormat`: The destination format to which the audio is to be converted.
+///
+/// Parameter `outAudioConverter`: On successful return, points to a new AudioConverter instance.
+///
+/// Returns: An OSStatus result code.
+///
+/// For a pair of linear PCM formats, the following conversions
+/// are supported:
+///
+/// <ul>
+/// <li>
+/// addition and removal of channels, when the stream descriptions'
+/// mChannelsPerFrame does not match. Channels may also be reordered and removed
+/// using the kAudioConverterChannelMap property.
+/// </li>
+/// <li>
+/// sample rate conversion
+/// </li>
+/// <li>
+/// interleaving/deinterleaving, when the stream descriptions' (mFormatFlags
+/// &
+/// kAudioFormatFlagIsNonInterleaved) does not match.
+/// </li>
+/// <li>
+/// conversion between any pair of the following formats:
+/// </li>
+/// <ul>
+/// <li>
+/// 8 bit integer, signed or unsigned
+/// </li>
+/// <li>
+/// 16, 24, or 32-bit integer, big- or little-endian. Other integral
+/// bit depths, if high-aligned and non-packed, are also supported
+/// </li>
+/// <li>
+/// 32 and 64-bit float, big- or little-endian.
+/// </li>
+/// </ul>
+/// </ul>
+///
+/// Also, encoding and decoding between linear PCM and compressed formats is
+/// supported. Functions in AudioToolbox/AudioFormat.h return information about the
+/// supported formats. When using a codec, you can use any supported PCM format (as
+/// above); the converter will perform any necessary additional conversion between
+/// your PCM format and the one created or consumed by the codec.
+///
+/// Note that AudioConverter may change the formats to correct any
+/// inconsistent or erroneous values.  The actual formats expected and used
+/// by the newly created AudioConverter can be obtained by getting the
+/// properties `kAudioConverterCurrentInputStreamDescription` and
+/// `kAudioConverterCurrentOutputStreamDescription` from it.
+///
+/// # Safety
+///
+/// `out_audio_converter` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterNew(
+    in_source_format: &AudioStreamBasicDescription,
+    in_destination_format: &AudioStreamBasicDescription,
+    out_audio_converter: &mut AudioConverterRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterNew(
+            in_source_format: &AudioStreamBasicDescription,
+            in_destination_format: &AudioStreamBasicDescription,
+            out_audio_converter: &mut AudioConverterRef,
+        ) -> OSStatus;
+    }
+    unsafe { AudioConverterNew(in_source_format, in_destination_format, out_audio_converter) }
 }
 
-extern "C-unwind" {
-    /// Create a new AudioConverter using specific codecs.
-    ///
-    ///
-    /// Parameter `inSourceFormat`: The format of the source audio to be converted.
-    ///
-    /// Parameter `inDestinationFormat`: The destination format to which the audio is to be converted.
-    ///
-    /// Parameter `inNumberClassDescriptions`: The number of class descriptions.
-    ///
-    /// Parameter `inClassDescriptions`: AudioClassDescriptions specifiying the codec to instantiate.
-    ///
-    /// Parameter `outAudioConverter`: On successful return, points to a new AudioConverter instance.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// This function is identical to AudioConverterNew(), except that the client may
-    /// explicitly choose which codec to instantiate if there is more than one choice.
-    ///
-    /// # Safety
-    ///
-    /// - `in_class_descriptions` must be a valid pointer.
-    /// - `out_audio_converter` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioConverterNewSpecific(
-        in_source_format: &AudioStreamBasicDescription,
-        in_destination_format: &AudioStreamBasicDescription,
-        in_number_class_descriptions: u32,
-        in_class_descriptions: NonNull<AudioClassDescription>,
-        out_audio_converter: &mut AudioConverterRef,
-    ) -> OSStatus;
+/// Create a new AudioConverter using specific codecs.
+///
+///
+/// Parameter `inSourceFormat`: The format of the source audio to be converted.
+///
+/// Parameter `inDestinationFormat`: The destination format to which the audio is to be converted.
+///
+/// Parameter `inNumberClassDescriptions`: The number of class descriptions.
+///
+/// Parameter `inClassDescriptions`: AudioClassDescriptions specifiying the codec to instantiate.
+///
+/// Parameter `outAudioConverter`: On successful return, points to a new AudioConverter instance.
+///
+/// Returns: An OSStatus result code.
+///
+/// This function is identical to AudioConverterNew(), except that the client may
+/// explicitly choose which codec to instantiate if there is more than one choice.
+///
+/// # Safety
+///
+/// - `in_class_descriptions` must be a valid pointer.
+/// - `out_audio_converter` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterNewSpecific(
+    in_source_format: &AudioStreamBasicDescription,
+    in_destination_format: &AudioStreamBasicDescription,
+    in_number_class_descriptions: u32,
+    in_class_descriptions: NonNull<AudioClassDescription>,
+    out_audio_converter: &mut AudioConverterRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterNewSpecific(
+            in_source_format: &AudioStreamBasicDescription,
+            in_destination_format: &AudioStreamBasicDescription,
+            in_number_class_descriptions: u32,
+            in_class_descriptions: NonNull<AudioClassDescription>,
+            out_audio_converter: &mut AudioConverterRef,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioConverterNewSpecific(
+            in_source_format,
+            in_destination_format,
+            in_number_class_descriptions,
+            in_class_descriptions,
+            out_audio_converter,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Create a new AudioConverter with one or more options enabled.
-    ///
-    ///
-    /// Parameter `inSourceFormat`: The format of the source audio to be converted.
-    ///
-    /// Parameter `inDestinationFormat`: The destination format to which the audio is to be converted.
-    ///
-    /// Parameter `inOptions`: Flags selecting one or more optional configurations for the AudioConverter.
-    ///
-    /// Parameter `outAudioConverter`: On successful return, points to a new AudioConverter instance.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// This is an alternative to AudioConverterNew which supports enabling
-    /// one or more optional configurations for the new AudioConverter.
-    ///
-    /// # Safety
-    ///
-    /// `out_audio_converter` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioConverterNewWithOptions(
-        in_source_format: &AudioStreamBasicDescription,
-        in_destination_format: &AudioStreamBasicDescription,
-        in_options: AudioConverterOptions,
-        out_audio_converter: &mut AudioConverterRef,
-    ) -> OSStatus;
+/// Create a new AudioConverter with one or more options enabled.
+///
+///
+/// Parameter `inSourceFormat`: The format of the source audio to be converted.
+///
+/// Parameter `inDestinationFormat`: The destination format to which the audio is to be converted.
+///
+/// Parameter `inOptions`: Flags selecting one or more optional configurations for the AudioConverter.
+///
+/// Parameter `outAudioConverter`: On successful return, points to a new AudioConverter instance.
+///
+/// Returns: An OSStatus result code.
+///
+/// This is an alternative to AudioConverterNew which supports enabling
+/// one or more optional configurations for the new AudioConverter.
+///
+/// # Safety
+///
+/// `out_audio_converter` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterNewWithOptions(
+    in_source_format: &AudioStreamBasicDescription,
+    in_destination_format: &AudioStreamBasicDescription,
+    in_options: AudioConverterOptions,
+    out_audio_converter: &mut AudioConverterRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterNewWithOptions(
+            in_source_format: &AudioStreamBasicDescription,
+            in_destination_format: &AudioStreamBasicDescription,
+            in_options: AudioConverterOptions,
+            out_audio_converter: &mut AudioConverterRef,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioConverterNewWithOptions(
+            in_source_format,
+            in_destination_format,
+            in_options,
+            out_audio_converter,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Destroy an AudioConverter.
-    ///
-    ///
-    /// Parameter `inAudioConverter`: The AudioConverter to dispose.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_converter` must be a valid pointer.
-    pub fn AudioConverterDispose(in_audio_converter: AudioConverterRef) -> OSStatus;
+/// Destroy an AudioConverter.
+///
+///
+/// Parameter `inAudioConverter`: The AudioConverter to dispose.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_audio_converter` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterDispose(
+    in_audio_converter: AudioConverterRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterDispose(in_audio_converter: AudioConverterRef) -> OSStatus;
+    }
+    unsafe { AudioConverterDispose(in_audio_converter) }
 }
 
-extern "C-unwind" {
-    /// Reset an AudioConverter
-    ///
-    ///
-    /// Parameter `inAudioConverter`: The AudioConverter to reset.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// Should be called whenever there is a discontinuity in the source audio stream
-    /// being provided to the converter. This will flush any internal buffers in the
-    /// converter.
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_converter` must be a valid pointer.
-    pub fn AudioConverterReset(in_audio_converter: AudioConverterRef) -> OSStatus;
+/// Reset an AudioConverter
+///
+///
+/// Parameter `inAudioConverter`: The AudioConverter to reset.
+///
+/// Returns: An OSStatus result code.
+///
+/// Should be called whenever there is a discontinuity in the source audio stream
+/// being provided to the converter. This will flush any internal buffers in the
+/// converter.
+///
+/// # Safety
+///
+/// `in_audio_converter` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterReset(
+    in_audio_converter: AudioConverterRef,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterReset(in_audio_converter: AudioConverterRef) -> OSStatus;
+    }
+    unsafe { AudioConverterReset(in_audio_converter) }
 }
 
-extern "C-unwind" {
-    /// Returns information about an AudioConverter property.
-    ///
-    ///
-    /// Parameter `inAudioConverter`: The AudioConverter to query.
-    ///
-    /// Parameter `inPropertyID`: The property to query.
-    ///
-    /// Parameter `outSize`: If non-null, on exit, the maximum size of the property value in bytes.
-    ///
-    /// Parameter `outWritable`: If non-null, on exit, indicates whether the property value is writable.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// `in_audio_converter` must be a valid pointer.
-    pub fn AudioConverterGetPropertyInfo(
-        in_audio_converter: AudioConverterRef,
-        in_property_id: AudioConverterPropertyID,
-        out_size: Option<&mut u32>,
-        out_writable: Option<&mut Boolean>,
-    ) -> OSStatus;
+/// Returns information about an AudioConverter property.
+///
+///
+/// Parameter `inAudioConverter`: The AudioConverter to query.
+///
+/// Parameter `inPropertyID`: The property to query.
+///
+/// Parameter `outSize`: If non-null, on exit, the maximum size of the property value in bytes.
+///
+/// Parameter `outWritable`: If non-null, on exit, indicates whether the property value is writable.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_audio_converter` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterGetPropertyInfo(
+    in_audio_converter: AudioConverterRef,
+    in_property_id: AudioConverterPropertyID,
+    out_size: Option<&mut u32>,
+    out_writable: Option<&mut Boolean>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterGetPropertyInfo(
+            in_audio_converter: AudioConverterRef,
+            in_property_id: AudioConverterPropertyID,
+            out_size: Option<&mut u32>,
+            out_writable: Option<&mut Boolean>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioConverterGetPropertyInfo(in_audio_converter, in_property_id, out_size, out_writable)
+    }
 }
 
-extern "C-unwind" {
-    /// Returns an AudioConverter property value.
-    ///
-    ///
-    /// Parameter `inAudioConverter`: The AudioConverter to query.
-    ///
-    /// Parameter `inPropertyID`: The property to fetch.
-    ///
-    /// Parameter `ioPropertyDataSize`: On entry, the size of the memory pointed to by outPropertyData. On
-    /// successful exit, the size of the property value.
-    ///
-    /// Parameter `outPropertyData`: On exit, the property value.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_converter` must be a valid pointer.
-    /// - `out_property_data` must be a valid pointer.
-    pub fn AudioConverterGetProperty(
-        in_audio_converter: AudioConverterRef,
-        in_property_id: AudioConverterPropertyID,
-        io_property_data_size: &mut u32,
-        out_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Returns an AudioConverter property value.
+///
+///
+/// Parameter `inAudioConverter`: The AudioConverter to query.
+///
+/// Parameter `inPropertyID`: The property to fetch.
+///
+/// Parameter `ioPropertyDataSize`: On entry, the size of the memory pointed to by outPropertyData. On
+/// successful exit, the size of the property value.
+///
+/// Parameter `outPropertyData`: On exit, the property value.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_audio_converter` must be a valid pointer.
+/// - `out_property_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterGetProperty(
+    in_audio_converter: AudioConverterRef,
+    in_property_id: AudioConverterPropertyID,
+    io_property_data_size: &mut u32,
+    out_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterGetProperty(
+            in_audio_converter: AudioConverterRef,
+            in_property_id: AudioConverterPropertyID,
+            io_property_data_size: &mut u32,
+            out_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioConverterGetProperty(
+            in_audio_converter,
+            in_property_id,
+            io_property_data_size,
+            out_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Sets an AudioConverter property value.
-    ///
-    ///
-    /// Parameter `inAudioConverter`: The AudioConverter to modify.
-    ///
-    /// Parameter `inPropertyID`: The property to set.
-    ///
-    /// Parameter `inPropertyDataSize`: The size in bytes of the property value.
-    ///
-    /// Parameter `inPropertyData`: Points to the new property value.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_converter` must be a valid pointer.
-    /// - `in_property_data` must be a valid pointer.
-    pub fn AudioConverterSetProperty(
-        in_audio_converter: AudioConverterRef,
-        in_property_id: AudioConverterPropertyID,
-        in_property_data_size: u32,
-        in_property_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Sets an AudioConverter property value.
+///
+///
+/// Parameter `inAudioConverter`: The AudioConverter to modify.
+///
+/// Parameter `inPropertyID`: The property to set.
+///
+/// Parameter `inPropertyDataSize`: The size in bytes of the property value.
+///
+/// Parameter `inPropertyData`: Points to the new property value.
+///
+/// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// - `in_audio_converter` must be a valid pointer.
+/// - `in_property_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterSetProperty(
+    in_audio_converter: AudioConverterRef,
+    in_property_id: AudioConverterPropertyID,
+    in_property_data_size: u32,
+    in_property_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterSetProperty(
+            in_audio_converter: AudioConverterRef,
+            in_property_id: AudioConverterPropertyID,
+            in_property_data_size: u32,
+            in_property_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioConverterSetProperty(
+            in_audio_converter,
+            in_property_id,
+            in_property_data_size,
+            in_property_data,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Converts data from an input buffer to an output buffer.
-    ///
-    ///
-    /// Parameter `inAudioConverter`: The AudioConverter to use.
-    ///
-    /// Parameter `inInputDataSize`: The size of the buffer inInputData.
-    ///
-    /// Parameter `inInputData`: The input audio data buffer.
-    ///
-    /// Parameter `ioOutputDataSize`: On entry, the size of the buffer outOutputData. On exit, the number of bytes
-    /// written to outOutputData.
-    ///
-    /// Parameter `outOutputData`: The output data buffer.
-    ///
-    /// Returns: Produces a buffer of output data from an AudioConverter, using the supplied
-    /// input buffer.
-    ///
-    /// WARNING: this function will fail for any conversion where there is a
-    /// variable relationship between the input and output data buffer sizes. This
-    /// includes sample rate conversions and most compressed formats. In these cases,
-    /// use AudioConverterFillComplexBuffer. Generally this function is only appropriate for
-    /// PCM-to-PCM conversions where there is no sample rate conversion.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_converter` must be a valid pointer.
-    /// - `in_input_data` must be a valid pointer.
-    /// - `out_output_data` must be a valid pointer.
-    pub fn AudioConverterConvertBuffer(
-        in_audio_converter: AudioConverterRef,
-        in_input_data_size: u32,
-        in_input_data: NonNull<c_void>,
-        io_output_data_size: &mut u32,
-        out_output_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// Converts data from an input buffer to an output buffer.
+///
+///
+/// Parameter `inAudioConverter`: The AudioConverter to use.
+///
+/// Parameter `inInputDataSize`: The size of the buffer inInputData.
+///
+/// Parameter `inInputData`: The input audio data buffer.
+///
+/// Parameter `ioOutputDataSize`: On entry, the size of the buffer outOutputData. On exit, the number of bytes
+/// written to outOutputData.
+///
+/// Parameter `outOutputData`: The output data buffer.
+///
+/// Returns: Produces a buffer of output data from an AudioConverter, using the supplied
+/// input buffer.
+///
+/// WARNING: this function will fail for any conversion where there is a
+/// variable relationship between the input and output data buffer sizes. This
+/// includes sample rate conversions and most compressed formats. In these cases,
+/// use AudioConverterFillComplexBuffer. Generally this function is only appropriate for
+/// PCM-to-PCM conversions where there is no sample rate conversion.
+///
+/// # Safety
+///
+/// - `in_audio_converter` must be a valid pointer.
+/// - `in_input_data` must be a valid pointer.
+/// - `out_output_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterConvertBuffer(
+    in_audio_converter: AudioConverterRef,
+    in_input_data_size: u32,
+    in_input_data: NonNull<c_void>,
+    io_output_data_size: &mut u32,
+    out_output_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterConvertBuffer(
+            in_audio_converter: AudioConverterRef,
+            in_input_data_size: u32,
+            in_input_data: NonNull<c_void>,
+            io_output_data_size: &mut u32,
+            out_output_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioConverterConvertBuffer(
+            in_audio_converter,
+            in_input_data_size,
+            in_input_data,
+            io_output_data_size,
+            out_output_data,
+        )
+    }
 }
 
 /// Callback function for supplying input data to AudioConverterFillComplexBuffer.
@@ -654,185 +777,263 @@ pub type AudioConverterComplexInputDataProcRealtimeSafe = Option<
     ) -> OSStatus,
 >;
 
-extern "C-unwind" {
-    /// Converts data supplied by an input callback function, supporting non-interleaved
-    /// and packetized formats.
-    ///
-    ///
-    /// Parameter `inAudioConverter`: The AudioConverter to use.
-    ///
-    /// Parameter `inInputDataProc`: A callback function which supplies the input data.
-    ///
-    /// Parameter `inInputDataProcUserData`: A value for the use of the callback function.
-    ///
-    /// Parameter `ioOutputDataPacketSize`: On entry, the capacity of outOutputData expressed in packets in the
-    /// converter's output format. On exit, the number of packets of converted
-    /// data that were written to outOutputData.
-    ///
-    /// Parameter `outOutputData`: The converted output data is written to this buffer. On entry, the buffers'
-    /// mDataByteSize fields (which must all be the same) reflect buffer capacity.
-    /// On exit, mDataByteSize is set to the number of bytes written.
-    ///
-    /// Parameter `outPacketDescription`: If non-null, and the converter's output uses packet descriptions, then
-    /// packet descriptions are written to this array. It must point to a memory
-    /// block capable of holding *ioOutputDataPacketSize packet descriptions.
-    /// (See AudioFormat.h for ways to determine whether an audio format
-    /// uses packet descriptions).
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    /// Produces a buffer list of output data from an AudioConverter. The supplied input
-    /// callback function is called whenever necessary.
-    ///
-    /// If the output format uses packet descriptions, such as most compressed formats where packets
-    /// vary in size or duration, the caller is expected to provide a buffer for holding packet descriptions,
-    /// pointed to by outPacketDescription.  The array must have the capacity to hold a packet description
-    /// for each output packet that may be written.  A packet description array is expected even if only
-    /// a single output packet is to be written.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_converter` must be a valid pointer.
-    /// - `in_input_data_proc` must be implemented correctly.
-    /// - `in_input_data_proc_user_data` must be a valid pointer or null.
-    /// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
-    /// - `out_packet_description` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioConverterFillComplexBuffer(
-        in_audio_converter: AudioConverterRef,
-        in_input_data_proc: AudioConverterComplexInputDataProc,
-        in_input_data_proc_user_data: *mut c_void,
-        io_output_data_packet_size: &mut u32,
-        out_output_data: &mut AudioBufferList,
-        out_packet_description: *mut AudioStreamPacketDescription,
-    ) -> OSStatus;
+/// Converts data supplied by an input callback function, supporting non-interleaved
+/// and packetized formats.
+///
+///
+/// Parameter `inAudioConverter`: The AudioConverter to use.
+///
+/// Parameter `inInputDataProc`: A callback function which supplies the input data.
+///
+/// Parameter `inInputDataProcUserData`: A value for the use of the callback function.
+///
+/// Parameter `ioOutputDataPacketSize`: On entry, the capacity of outOutputData expressed in packets in the
+/// converter's output format. On exit, the number of packets of converted
+/// data that were written to outOutputData.
+///
+/// Parameter `outOutputData`: The converted output data is written to this buffer. On entry, the buffers'
+/// mDataByteSize fields (which must all be the same) reflect buffer capacity.
+/// On exit, mDataByteSize is set to the number of bytes written.
+///
+/// Parameter `outPacketDescription`: If non-null, and the converter's output uses packet descriptions, then
+/// packet descriptions are written to this array. It must point to a memory
+/// block capable of holding *ioOutputDataPacketSize packet descriptions.
+/// (See AudioFormat.h for ways to determine whether an audio format
+/// uses packet descriptions).
+///
+/// Returns: An OSStatus result code.
+///
+/// Produces a buffer list of output data from an AudioConverter. The supplied input
+/// callback function is called whenever necessary.
+///
+/// If the output format uses packet descriptions, such as most compressed formats where packets
+/// vary in size or duration, the caller is expected to provide a buffer for holding packet descriptions,
+/// pointed to by outPacketDescription.  The array must have the capacity to hold a packet description
+/// for each output packet that may be written.  A packet description array is expected even if only
+/// a single output packet is to be written.
+///
+/// # Safety
+///
+/// - `in_audio_converter` must be a valid pointer.
+/// - `in_input_data_proc` must be implemented correctly.
+/// - `in_input_data_proc_user_data` must be a valid pointer or null.
+/// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `out_packet_description` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterFillComplexBuffer(
+    in_audio_converter: AudioConverterRef,
+    in_input_data_proc: AudioConverterComplexInputDataProc,
+    in_input_data_proc_user_data: *mut c_void,
+    io_output_data_packet_size: &mut u32,
+    out_output_data: &mut AudioBufferList,
+    out_packet_description: *mut AudioStreamPacketDescription,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterFillComplexBuffer(
+            in_audio_converter: AudioConverterRef,
+            in_input_data_proc: AudioConverterComplexInputDataProc,
+            in_input_data_proc_user_data: *mut c_void,
+            io_output_data_packet_size: &mut u32,
+            out_output_data: &mut AudioBufferList,
+            out_packet_description: *mut AudioStreamPacketDescription,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioConverterFillComplexBuffer(
+            in_audio_converter,
+            in_input_data_proc,
+            in_input_data_proc_user_data,
+            io_output_data_packet_size,
+            out_output_data,
+            out_packet_description,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Identical to AudioConverterFillComplexBuffer, with the addition of a realtime-safety
-    /// guarantee.
-    ///
-    /// Conversions involving only PCM formats -- interleaving, deinterleaving, channel count changes,
-    /// sample rate conversions -- are realtime-safe. Such conversions may use this API in order to
-    /// obtain compiler checks involving the `CA_REALTIME_API` attributes.
-    ///
-    /// At runtime, this function returns `kAudioConverterErr_OperationNotSupported` if the conversion
-    /// requires non-realtime-safe functionality.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_converter` must be a valid pointer.
-    /// - `in_input_data_proc` must be implemented correctly.
-    /// - `in_input_data_proc_user_data` must be a valid pointer or null.
-    /// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
-    /// - `out_packet_description` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioConverterFillComplexBufferRealtimeSafe(
-        in_audio_converter: AudioConverterRef,
-        in_input_data_proc: AudioConverterComplexInputDataProcRealtimeSafe,
-        in_input_data_proc_user_data: *mut c_void,
-        io_output_data_packet_size: &mut u32,
-        out_output_data: &mut AudioBufferList,
-        out_packet_description: *mut AudioStreamPacketDescription,
-    ) -> OSStatus;
+/// Identical to AudioConverterFillComplexBuffer, with the addition of a realtime-safety
+/// guarantee.
+///
+/// Conversions involving only PCM formats -- interleaving, deinterleaving, channel count changes,
+/// sample rate conversions -- are realtime-safe. Such conversions may use this API in order to
+/// obtain compiler checks involving the `CA_REALTIME_API` attributes.
+///
+/// At runtime, this function returns `kAudioConverterErr_OperationNotSupported` if the conversion
+/// requires non-realtime-safe functionality.
+///
+/// # Safety
+///
+/// - `in_audio_converter` must be a valid pointer.
+/// - `in_input_data_proc` must be implemented correctly.
+/// - `in_input_data_proc_user_data` must be a valid pointer or null.
+/// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `out_packet_description` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterFillComplexBufferRealtimeSafe(
+    in_audio_converter: AudioConverterRef,
+    in_input_data_proc: AudioConverterComplexInputDataProcRealtimeSafe,
+    in_input_data_proc_user_data: *mut c_void,
+    io_output_data_packet_size: &mut u32,
+    out_output_data: &mut AudioBufferList,
+    out_packet_description: *mut AudioStreamPacketDescription,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterFillComplexBufferRealtimeSafe(
+            in_audio_converter: AudioConverterRef,
+            in_input_data_proc: AudioConverterComplexInputDataProcRealtimeSafe,
+            in_input_data_proc_user_data: *mut c_void,
+            io_output_data_packet_size: &mut u32,
+            out_output_data: &mut AudioBufferList,
+            out_packet_description: *mut AudioStreamPacketDescription,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioConverterFillComplexBufferRealtimeSafe(
+            in_audio_converter,
+            in_input_data_proc,
+            in_input_data_proc_user_data,
+            io_output_data_packet_size,
+            out_output_data,
+            out_packet_description,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Converts audio data supplied by a callback function, supporting non-interleaved and
-    /// packetized formats, and also supporting packet dependency descriptions.
-    ///
-    /// For output formats that use packet dependency descriptions, this must be used instead of
-    /// AudioConverterFillComplexBuffer, which will return an error for such formats.
-    ///
-    /// Parameter `inAudioConverter`: The audio converter to use for format conversion.
-    ///
-    /// Parameter `inInputDataProc`: A callback function that supplies audio data to convert.
-    /// This callback is invoked repeatedly as the converter is ready for
-    /// new input data.
-    ///
-    /// Parameter `inInputDataProcUserData`: Custom data for use by your application when receiving a
-    /// callback invocation.
-    ///
-    /// Parameter `ioOutputDataPacketSize`: On input, the size of the output buffer (in the `outOutputData`
-    /// parameter), expressed in number packets in the audio converter’s
-    /// output format.  On output, the number of packets of converted data
-    /// that were written to the output buffer.
-    ///
-    /// Parameter `outOutputData`: The converted output data is written to this buffer. On entry, the
-    /// buffers' `mDataByteSize` fields (which must all be the same) reflect
-    /// buffer capacity.  On exit, `mDataByteSize` is set to the number of
-    /// bytes written.
-    ///
-    /// Parameter `outPacketDescriptions`: If not `NULL`, and if the audio converter's output format uses packet
-    /// descriptions, this must point to a block of memory capable of holding
-    /// the number of packet descriptions specified in the `ioOutputDataPacketSize`
-    /// parameter.  (See _Audio Format Services Reference_ for functions that
-    /// let you determine whether an audio format uses packet descriptions).
-    /// If not `NULL` on output and if the audio converter's output format
-    /// uses packet descriptions, then this parameter contains an array of
-    /// packet descriptions.
-    ///
-    /// Parameter `outPacketDependencies`: Should point to a memory block capable of holding the number of
-    /// packet dependency description structures specified in the
-    /// `ioOutputDataPacketSize` parameter.  Must not be `NULL`.  This array
-    /// will be filled out only by encoders that produce a format which has a
-    /// non-zero value for `kAudioFormatProperty_FormatEmploysDependentPackets`.
-    ///
-    /// Returns: A result code.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_converter` must be a valid pointer.
-    /// - `in_input_data_proc` must be implemented correctly.
-    /// - `in_input_data_proc_user_data` must be a valid pointer or null.
-    /// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
-    /// - `out_packet_descriptions` must be a valid pointer or null.
-    /// - `out_packet_dependencies` must be a valid pointer.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioConverterFillComplexBufferWithPacketDependencies(
-        in_audio_converter: AudioConverterRef,
-        in_input_data_proc: AudioConverterComplexInputDataProc,
-        in_input_data_proc_user_data: *mut c_void,
-        io_output_data_packet_size: &mut u32,
-        out_output_data: &mut AudioBufferList,
-        out_packet_descriptions: *mut AudioStreamPacketDescription,
-        out_packet_dependencies: NonNull<AudioStreamPacketDependencyDescription>,
-    ) -> OSStatus;
+/// Converts audio data supplied by a callback function, supporting non-interleaved and
+/// packetized formats, and also supporting packet dependency descriptions.
+///
+/// For output formats that use packet dependency descriptions, this must be used instead of
+/// AudioConverterFillComplexBuffer, which will return an error for such formats.
+///
+/// Parameter `inAudioConverter`: The audio converter to use for format conversion.
+///
+/// Parameter `inInputDataProc`: A callback function that supplies audio data to convert.
+/// This callback is invoked repeatedly as the converter is ready for
+/// new input data.
+///
+/// Parameter `inInputDataProcUserData`: Custom data for use by your application when receiving a
+/// callback invocation.
+///
+/// Parameter `ioOutputDataPacketSize`: On input, the size of the output buffer (in the `outOutputData`
+/// parameter), expressed in number packets in the audio converter’s
+/// output format.  On output, the number of packets of converted data
+/// that were written to the output buffer.
+///
+/// Parameter `outOutputData`: The converted output data is written to this buffer. On entry, the
+/// buffers' `mDataByteSize` fields (which must all be the same) reflect
+/// buffer capacity.  On exit, `mDataByteSize` is set to the number of
+/// bytes written.
+///
+/// Parameter `outPacketDescriptions`: If not `NULL`, and if the audio converter's output format uses packet
+/// descriptions, this must point to a block of memory capable of holding
+/// the number of packet descriptions specified in the `ioOutputDataPacketSize`
+/// parameter.  (See _Audio Format Services Reference_ for functions that
+/// let you determine whether an audio format uses packet descriptions).
+/// If not `NULL` on output and if the audio converter's output format
+/// uses packet descriptions, then this parameter contains an array of
+/// packet descriptions.
+///
+/// Parameter `outPacketDependencies`: Should point to a memory block capable of holding the number of
+/// packet dependency description structures specified in the
+/// `ioOutputDataPacketSize` parameter.  Must not be `NULL`.  This array
+/// will be filled out only by encoders that produce a format which has a
+/// non-zero value for `kAudioFormatProperty_FormatEmploysDependentPackets`.
+///
+/// Returns: A result code.
+///
+/// # Safety
+///
+/// - `in_audio_converter` must be a valid pointer.
+/// - `in_input_data_proc` must be implemented correctly.
+/// - `in_input_data_proc_user_data` must be a valid pointer or null.
+/// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `out_packet_descriptions` must be a valid pointer or null.
+/// - `out_packet_dependencies` must be a valid pointer.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterFillComplexBufferWithPacketDependencies(
+    in_audio_converter: AudioConverterRef,
+    in_input_data_proc: AudioConverterComplexInputDataProc,
+    in_input_data_proc_user_data: *mut c_void,
+    io_output_data_packet_size: &mut u32,
+    out_output_data: &mut AudioBufferList,
+    out_packet_descriptions: *mut AudioStreamPacketDescription,
+    out_packet_dependencies: NonNull<AudioStreamPacketDependencyDescription>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterFillComplexBufferWithPacketDependencies(
+            in_audio_converter: AudioConverterRef,
+            in_input_data_proc: AudioConverterComplexInputDataProc,
+            in_input_data_proc_user_data: *mut c_void,
+            io_output_data_packet_size: &mut u32,
+            out_output_data: &mut AudioBufferList,
+            out_packet_descriptions: *mut AudioStreamPacketDescription,
+            out_packet_dependencies: NonNull<AudioStreamPacketDependencyDescription>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioConverterFillComplexBufferWithPacketDependencies(
+            in_audio_converter,
+            in_input_data_proc,
+            in_input_data_proc_user_data,
+            io_output_data_packet_size,
+            out_output_data,
+            out_packet_descriptions,
+            out_packet_dependencies,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Converts PCM data from an input buffer list to an output buffer list.
-    ///
-    ///
-    /// Parameter `inAudioConverter`: The AudioConverter to use.
-    ///
-    /// Parameter `inNumberPCMFrames`: The number of PCM frames to convert.
-    ///
-    /// Parameter `inInputData`: The source audio buffer list.
-    ///
-    /// Parameter `outOutputData`: The converted output data is written to this buffer list.
-    ///
-    /// Returns: An OSStatus result code.
-    ///
-    ///
-    /// Warning: This function will fail for any conversion where there is a
-    /// variable relationship between the input and output data buffer sizes. This
-    /// includes sample rate conversions and most compressed formats. In these cases,
-    /// use AudioConverterFillComplexBuffer. Generally this function is only appropriate for
-    /// PCM-to-PCM conversions where there is no sample rate conversion.
-    ///
-    /// # Safety
-    ///
-    /// - `in_audio_converter` must be a valid pointer.
-    /// - `in_input_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
-    /// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
-    #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioConverterConvertComplexBuffer(
-        in_audio_converter: AudioConverterRef,
-        in_number_pcm_frames: u32,
-        in_input_data: &AudioBufferList,
-        out_output_data: &mut AudioBufferList,
-    ) -> OSStatus;
+/// Converts PCM data from an input buffer list to an output buffer list.
+///
+///
+/// Parameter `inAudioConverter`: The AudioConverter to use.
+///
+/// Parameter `inNumberPCMFrames`: The number of PCM frames to convert.
+///
+/// Parameter `inInputData`: The source audio buffer list.
+///
+/// Parameter `outOutputData`: The converted output data is written to this buffer list.
+///
+/// Returns: An OSStatus result code.
+///
+///
+/// Warning: This function will fail for any conversion where there is a
+/// variable relationship between the input and output data buffer sizes. This
+/// includes sample rate conversions and most compressed formats. In these cases,
+/// use AudioConverterFillComplexBuffer. Generally this function is only appropriate for
+/// PCM-to-PCM conversions where there is no sample rate conversion.
+///
+/// # Safety
+///
+/// - `in_audio_converter` must be a valid pointer.
+/// - `in_input_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `out_output_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterConvertComplexBuffer(
+    in_audio_converter: AudioConverterRef,
+    in_number_pcm_frames: u32,
+    in_input_data: &AudioBufferList,
+    out_output_data: &mut AudioBufferList,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterConvertComplexBuffer(
+            in_audio_converter: AudioConverterRef,
+            in_number_pcm_frames: u32,
+            in_input_data: &AudioBufferList,
+            out_output_data: &mut AudioBufferList,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioConverterConvertComplexBuffer(
+            in_audio_converter,
+            in_number_pcm_frames,
+            in_input_data,
+            out_output_data,
+        )
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertymaximuminputbuffersize?language=objc)
@@ -882,19 +1083,37 @@ pub type AudioConverterInputDataProc = Option<
     ) -> OSStatus,
 >;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `in_audio_converter` must be a valid pointer.
-    /// - `in_input_data_proc` must be implemented correctly.
-    /// - `in_input_data_proc_user_data` must be a valid pointer or null.
-    /// - `out_output_data` must be a valid pointer.
-    #[deprecated = "no longer supported"]
-    pub fn AudioConverterFillBuffer(
-        in_audio_converter: AudioConverterRef,
-        in_input_data_proc: AudioConverterInputDataProc,
-        in_input_data_proc_user_data: *mut c_void,
-        io_output_data_size: &mut u32,
-        out_output_data: NonNull<c_void>,
-    ) -> OSStatus;
+/// # Safety
+///
+/// - `in_audio_converter` must be a valid pointer.
+/// - `in_input_data_proc` must be implemented correctly.
+/// - `in_input_data_proc_user_data` must be a valid pointer or null.
+/// - `out_output_data` must be a valid pointer.
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioConverterFillBuffer(
+    in_audio_converter: AudioConverterRef,
+    in_input_data_proc: AudioConverterInputDataProc,
+    in_input_data_proc_user_data: *mut c_void,
+    io_output_data_size: &mut u32,
+    out_output_data: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioConverterFillBuffer(
+            in_audio_converter: AudioConverterRef,
+            in_input_data_proc: AudioConverterInputDataProc,
+            in_input_data_proc_user_data: *mut c_void,
+            io_output_data_size: &mut u32,
+            out_output_data: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioConverterFillBuffer(
+            in_audio_converter,
+            in_input_data_proc,
+            in_input_data_proc_user_data,
+            io_output_data_size,
+            out_output_data,
+        )
+    }
 }

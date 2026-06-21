@@ -214,38 +214,52 @@ impl CMVideoFormatDescription {
     }
 }
 
-extern "C-unwind" {
-    /// Converts an ImageDescription data structure from big-endian to host-endian in place.
-    ///
-    ///
-    /// Parameter `imageDescriptionData`: ImageDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
-    ///
-    /// Parameter `imageDescriptionSize`: Size of ImageDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `image_description_data` must be a valid pointer.
-    pub fn CMSwapBigEndianImageDescriptionToHost(
-        image_description_data: NonNull<u8>,
-        image_description_size: usize,
-    ) -> OSStatus;
+/// Converts an ImageDescription data structure from big-endian to host-endian in place.
+///
+///
+/// Parameter `imageDescriptionData`: ImageDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+///
+/// Parameter `imageDescriptionSize`: Size of ImageDescription data structure.
+///
+/// # Safety
+///
+/// `image_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapBigEndianImageDescriptionToHost(
+    image_description_data: NonNull<u8>,
+    image_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapBigEndianImageDescriptionToHost(
+            image_description_data: NonNull<u8>,
+            image_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe { CMSwapBigEndianImageDescriptionToHost(image_description_data, image_description_size) }
 }
 
-extern "C-unwind" {
-    /// Converts an ImageDescription data structure from host-endian to big-endian in place.
-    ///
-    ///
-    /// Parameter `imageDescriptionData`: ImageDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
-    ///
-    /// Parameter `imageDescriptionSize`: Size of ImageDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `image_description_data` must be a valid pointer.
-    pub fn CMSwapHostEndianImageDescriptionToBig(
-        image_description_data: NonNull<u8>,
-        image_description_size: usize,
-    ) -> OSStatus;
+/// Converts an ImageDescription data structure from host-endian to big-endian in place.
+///
+///
+/// Parameter `imageDescriptionData`: ImageDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+///
+/// Parameter `imageDescriptionSize`: Size of ImageDescription data structure.
+///
+/// # Safety
+///
+/// `image_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapHostEndianImageDescriptionToBig(
+    image_description_data: NonNull<u8>,
+    image_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapHostEndianImageDescriptionToBig(
+            image_description_data: NonNull<u8>,
+            image_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe { CMSwapHostEndianImageDescriptionToBig(image_description_data, image_description_size) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor?language=objc)
@@ -452,38 +466,52 @@ pub unsafe extern "C-unwind" fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRS
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Converts a SoundDescription data structure from big-endian to host-endian in place.
-    ///
-    ///
-    /// Parameter `soundDescriptionData`: SoundDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
-    ///
-    /// Parameter `soundDescriptionSize`: Size of SoundDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `sound_description_data` must be a valid pointer.
-    pub fn CMSwapBigEndianSoundDescriptionToHost(
-        sound_description_data: NonNull<u8>,
-        sound_description_size: usize,
-    ) -> OSStatus;
+/// Converts a SoundDescription data structure from big-endian to host-endian in place.
+///
+///
+/// Parameter `soundDescriptionData`: SoundDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+///
+/// Parameter `soundDescriptionSize`: Size of SoundDescription data structure.
+///
+/// # Safety
+///
+/// `sound_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapBigEndianSoundDescriptionToHost(
+    sound_description_data: NonNull<u8>,
+    sound_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapBigEndianSoundDescriptionToHost(
+            sound_description_data: NonNull<u8>,
+            sound_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe { CMSwapBigEndianSoundDescriptionToHost(sound_description_data, sound_description_size) }
 }
 
-extern "C-unwind" {
-    /// Converts a SoundDescription data structure from host-endian to big-endian in place.
-    ///
-    ///
-    /// Parameter `soundDescriptionData`: SoundDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
-    ///
-    /// Parameter `soundDescriptionSize`: Size of SoundDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `sound_description_data` must be a valid pointer.
-    pub fn CMSwapHostEndianSoundDescriptionToBig(
-        sound_description_data: NonNull<u8>,
-        sound_description_size: usize,
-    ) -> OSStatus;
+/// Converts a SoundDescription data structure from host-endian to big-endian in place.
+///
+///
+/// Parameter `soundDescriptionData`: SoundDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+///
+/// Parameter `soundDescriptionSize`: Size of SoundDescription data structure.
+///
+/// # Safety
+///
+/// `sound_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapHostEndianSoundDescriptionToBig(
+    sound_description_data: NonNull<u8>,
+    sound_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapHostEndianSoundDescriptionToBig(
+            sound_description_data: NonNull<u8>,
+            sound_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe { CMSwapHostEndianSoundDescriptionToBig(sound_description_data, sound_description_size) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextdescriptionflavor?language=objc)
@@ -637,38 +665,52 @@ impl CMTextFormatDescription {
     }
 }
 
-extern "C-unwind" {
-    /// Converts a TextDescription data structure from big-endian to host-endian in place.
-    ///
-    ///
-    /// Parameter `textDescriptionData`: TextDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
-    ///
-    /// Parameter `textDescriptionSize`: Size of TextDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `text_description_data` must be a valid pointer.
-    pub fn CMSwapBigEndianTextDescriptionToHost(
-        text_description_data: NonNull<u8>,
-        text_description_size: usize,
-    ) -> OSStatus;
+/// Converts a TextDescription data structure from big-endian to host-endian in place.
+///
+///
+/// Parameter `textDescriptionData`: TextDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+///
+/// Parameter `textDescriptionSize`: Size of TextDescription data structure.
+///
+/// # Safety
+///
+/// `text_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapBigEndianTextDescriptionToHost(
+    text_description_data: NonNull<u8>,
+    text_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapBigEndianTextDescriptionToHost(
+            text_description_data: NonNull<u8>,
+            text_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe { CMSwapBigEndianTextDescriptionToHost(text_description_data, text_description_size) }
 }
 
-extern "C-unwind" {
-    /// Converts a TextDescription data structure from host-endian to big-endian in place.
-    ///
-    ///
-    /// Parameter `textDescriptionData`: TextDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
-    ///
-    /// Parameter `textDescriptionSize`: Size of TextDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `text_description_data` must be a valid pointer.
-    pub fn CMSwapHostEndianTextDescriptionToBig(
-        text_description_data: NonNull<u8>,
-        text_description_size: usize,
-    ) -> OSStatus;
+/// Converts a TextDescription data structure from host-endian to big-endian in place.
+///
+///
+/// Parameter `textDescriptionData`: TextDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+///
+/// Parameter `textDescriptionSize`: Size of TextDescription data structure.
+///
+/// # Safety
+///
+/// `text_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapHostEndianTextDescriptionToBig(
+    text_description_data: NonNull<u8>,
+    text_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapHostEndianTextDescriptionToBig(
+            text_description_data: NonNull<u8>,
+            text_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe { CMSwapHostEndianTextDescriptionToBig(text_description_data, text_description_size) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptiondescriptionflavor?language=objc)
@@ -818,38 +860,62 @@ impl CMClosedCaptionFormatDescription {
     }
 }
 
-extern "C-unwind" {
-    /// Converts a ClosedCaptionDescription data structure from big-endian to host-endian in place.
-    ///
-    ///
-    /// Parameter `closedCaptionDescriptionData`: ClosedCaptionDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
-    ///
-    /// Parameter `closedCaptionDescriptionSize`: Size of ClosedCaptionDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `closed_caption_description_data` must be a valid pointer.
-    pub fn CMSwapBigEndianClosedCaptionDescriptionToHost(
-        closed_caption_description_data: NonNull<u8>,
-        closed_caption_description_size: usize,
-    ) -> OSStatus;
+/// Converts a ClosedCaptionDescription data structure from big-endian to host-endian in place.
+///
+///
+/// Parameter `closedCaptionDescriptionData`: ClosedCaptionDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+///
+/// Parameter `closedCaptionDescriptionSize`: Size of ClosedCaptionDescription data structure.
+///
+/// # Safety
+///
+/// `closed_caption_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapBigEndianClosedCaptionDescriptionToHost(
+    closed_caption_description_data: NonNull<u8>,
+    closed_caption_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapBigEndianClosedCaptionDescriptionToHost(
+            closed_caption_description_data: NonNull<u8>,
+            closed_caption_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSwapBigEndianClosedCaptionDescriptionToHost(
+            closed_caption_description_data,
+            closed_caption_description_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Converts a ClosedCaptionDescription data structure from host-endian to big-endian in place.
-    ///
-    ///
-    /// Parameter `closedCaptionDescriptionData`: ClosedCaptionDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
-    ///
-    /// Parameter `closedCaptionDescriptionSize`: Size of ClosedCaptionDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `closed_caption_description_data` must be a valid pointer.
-    pub fn CMSwapHostEndianClosedCaptionDescriptionToBig(
-        closed_caption_description_data: NonNull<u8>,
-        closed_caption_description_size: usize,
-    ) -> OSStatus;
+/// Converts a ClosedCaptionDescription data structure from host-endian to big-endian in place.
+///
+///
+/// Parameter `closedCaptionDescriptionData`: ClosedCaptionDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+///
+/// Parameter `closedCaptionDescriptionSize`: Size of ClosedCaptionDescription data structure.
+///
+/// # Safety
+///
+/// `closed_caption_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapHostEndianClosedCaptionDescriptionToBig(
+    closed_caption_description_data: NonNull<u8>,
+    closed_caption_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapHostEndianClosedCaptionDescriptionToBig(
+            closed_caption_description_data: NonNull<u8>,
+            closed_caption_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSwapHostEndianClosedCaptionDescriptionToBig(
+            closed_caption_description_data,
+            closed_caption_description_size,
+        )
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodedescriptionflavor?language=objc)
@@ -993,38 +1059,62 @@ impl CMTimeCodeFormatDescription {
     }
 }
 
-extern "C-unwind" {
-    /// Converts a TimeCodeDescription data structure from big-endian to host-endian in place.
-    ///
-    ///
-    /// Parameter `timeCodeDescriptionData`: TimeCodeDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
-    ///
-    /// Parameter `timeCodeDescriptionSize`: Size of TimeCodeDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `time_code_description_data` must be a valid pointer.
-    pub fn CMSwapBigEndianTimeCodeDescriptionToHost(
-        time_code_description_data: NonNull<u8>,
-        time_code_description_size: usize,
-    ) -> OSStatus;
+/// Converts a TimeCodeDescription data structure from big-endian to host-endian in place.
+///
+///
+/// Parameter `timeCodeDescriptionData`: TimeCodeDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+///
+/// Parameter `timeCodeDescriptionSize`: Size of TimeCodeDescription data structure.
+///
+/// # Safety
+///
+/// `time_code_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapBigEndianTimeCodeDescriptionToHost(
+    time_code_description_data: NonNull<u8>,
+    time_code_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapBigEndianTimeCodeDescriptionToHost(
+            time_code_description_data: NonNull<u8>,
+            time_code_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSwapBigEndianTimeCodeDescriptionToHost(
+            time_code_description_data,
+            time_code_description_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Converts a TimeCodeDescription data structure from host-endian to big-endian in place.
-    ///
-    ///
-    /// Parameter `timeCodeDescriptionData`: TimeCodeDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
-    ///
-    /// Parameter `timeCodeDescriptionSize`: Size of TimeCodeDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `time_code_description_data` must be a valid pointer.
-    pub fn CMSwapHostEndianTimeCodeDescriptionToBig(
-        time_code_description_data: NonNull<u8>,
-        time_code_description_size: usize,
-    ) -> OSStatus;
+/// Converts a TimeCodeDescription data structure from host-endian to big-endian in place.
+///
+///
+/// Parameter `timeCodeDescriptionData`: TimeCodeDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+///
+/// Parameter `timeCodeDescriptionSize`: Size of TimeCodeDescription data structure.
+///
+/// # Safety
+///
+/// `time_code_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapHostEndianTimeCodeDescriptionToBig(
+    time_code_description_data: NonNull<u8>,
+    time_code_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapHostEndianTimeCodeDescriptionToBig(
+            time_code_description_data: NonNull<u8>,
+            time_code_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSwapHostEndianTimeCodeDescriptionToBig(
+            time_code_description_data,
+            time_code_description_size,
+        )
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadescriptionflavor?language=objc)
@@ -1168,36 +1258,60 @@ impl CMMetadataFormatDescription {
     }
 }
 
-extern "C-unwind" {
-    /// Converts a MetadataDescription data structure from big-endian to host-endian in place.
-    ///
-    ///
-    /// Parameter `metadataDescriptionData`: MetadataDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
-    ///
-    /// Parameter `metadataDescriptionSize`: Size of MetadataDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `metadata_description_data` must be a valid pointer.
-    pub fn CMSwapBigEndianMetadataDescriptionToHost(
-        metadata_description_data: NonNull<u8>,
-        metadata_description_size: usize,
-    ) -> OSStatus;
+/// Converts a MetadataDescription data structure from big-endian to host-endian in place.
+///
+///
+/// Parameter `metadataDescriptionData`: MetadataDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+///
+/// Parameter `metadataDescriptionSize`: Size of MetadataDescription data structure.
+///
+/// # Safety
+///
+/// `metadata_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapBigEndianMetadataDescriptionToHost(
+    metadata_description_data: NonNull<u8>,
+    metadata_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapBigEndianMetadataDescriptionToHost(
+            metadata_description_data: NonNull<u8>,
+            metadata_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSwapBigEndianMetadataDescriptionToHost(
+            metadata_description_data,
+            metadata_description_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Converts a MetadataDescription data structure from host-endian to big-endian in place.
-    ///
-    ///
-    /// Parameter `metadataDescriptionData`: MetadataDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
-    ///
-    /// Parameter `metadataDescriptionSize`: Size of MetadataDescription data structure.
-    ///
-    /// # Safety
-    ///
-    /// `metadata_description_data` must be a valid pointer.
-    pub fn CMSwapHostEndianMetadataDescriptionToBig(
-        metadata_description_data: NonNull<u8>,
-        metadata_description_size: usize,
-    ) -> OSStatus;
+/// Converts a MetadataDescription data structure from host-endian to big-endian in place.
+///
+///
+/// Parameter `metadataDescriptionData`: MetadataDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+///
+/// Parameter `metadataDescriptionSize`: Size of MetadataDescription data structure.
+///
+/// # Safety
+///
+/// `metadata_description_data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSwapHostEndianMetadataDescriptionToBig(
+    metadata_description_data: NonNull<u8>,
+    metadata_description_size: usize,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSwapHostEndianMetadataDescriptionToBig(
+            metadata_description_data: NonNull<u8>,
+            metadata_description_size: usize,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSwapHostEndianMetadataDescriptionToBig(
+            metadata_description_data,
+            metadata_description_size,
+        )
+    }
 }

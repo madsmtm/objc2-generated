@@ -232,54 +232,65 @@ extern "C" {
     pub static MAMediaCharacteristicTranscribesSpokenDialogForAccessibility: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Called by clients to inform accessibility products that captions have been displayed onscreen.
-    ///
-    /// Parameter `strings`: An array of CFStringRef or CFAttributedStringRef objects that represent the text that is being displayed. An empty array is used to indicate that no captions are being displayed.
-    ///
-    /// # Safety
-    ///
-    /// `strings` generic must be of the correct type.
-    pub fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray);
+/// Called by clients to inform accessibility products that captions have been displayed onscreen.
+///
+/// Parameter `strings`: An array of CFStringRef or CFAttributedStringRef objects that represent the text that is being displayed. An empty array is used to indicate that no captions are being displayed.
+///
+/// # Safety
+///
+/// `strings` generic must be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray) {
+    extern "C-unwind" {
+        fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray);
+    }
+    unsafe { MACaptionAppearanceDidDisplayCaptions(strings) }
 }
 
-extern "C-unwind" {
-    /// Adds a user's selected caption language to stack of languages.
-    ///
-    /// Parameter `domain`: Preference domain, see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDomain
-    /// ```
-    ///
-    ///
-    /// Parameter `language`: Canonical language identifier (see
-    ///
-    /// ```text
-    ///  CFLocale
-    /// ```
-    ///
-    /// ) of the user's preferred caption language.
-    ///
-    /// Returns: <code>
-    /// true
-    /// </code>
-    /// if addition was successful. Unsuccessful additions are most liketly the result of invalid language codes.
-    ///
-    /// After a language is added it will appear first in the array returned by MACaptionAppearanceCopySelectedLanguages. Applications should call this anytime a user selects a specific languages for captioning tracks.
-    ///
-    /// For example, an AVFoundation clients may execute the following code in response to a user selecting a captioning track:
-    /// <code>
-    /// // in response to a user selection (from a pop-up menu or any other UI affordance), make the selection effective
-    /// -[AVPlayerItem selectMediaOption:legibleOption inMediaSelectionGroup:legibleGroup];
-    ///
-    /// // now update system-wide captioning preferences by registering the language of the option selected by the user
-    /// MACaptionAppearanceAddSelectedLanguage(kMACaptionAppearanceDomainUser, (CFStringRef)[[legibleOption locale] localeIdentifier]);
-    /// </code>
-    pub fn MACaptionAppearanceAddSelectedLanguage(
-        domain: MACaptionAppearanceDomain,
-        language: &CFString,
-    ) -> bool;
+/// Adds a user's selected caption language to stack of languages.
+///
+/// Parameter `domain`: Preference domain, see
+///
+/// ```text
+///  MACaptionAppearanceDomain
+/// ```
+///
+///
+/// Parameter `language`: Canonical language identifier (see
+///
+/// ```text
+///  CFLocale
+/// ```
+///
+/// ) of the user's preferred caption language.
+///
+/// Returns: <code>
+/// true
+/// </code>
+/// if addition was successful. Unsuccessful additions are most liketly the result of invalid language codes.
+///
+/// After a language is added it will appear first in the array returned by MACaptionAppearanceCopySelectedLanguages. Applications should call this anytime a user selects a specific languages for captioning tracks.
+///
+/// For example, an AVFoundation clients may execute the following code in response to a user selecting a captioning track:
+/// <code>
+/// // in response to a user selection (from a pop-up menu or any other UI affordance), make the selection effective
+/// -[AVPlayerItem selectMediaOption:legibleOption inMediaSelectionGroup:legibleGroup];
+///
+/// // now update system-wide captioning preferences by registering the language of the option selected by the user
+/// MACaptionAppearanceAddSelectedLanguage(kMACaptionAppearanceDomainUser, (CFStringRef)[[legibleOption locale] localeIdentifier]);
+/// </code>
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceAddSelectedLanguage(
+    domain: MACaptionAppearanceDomain,
+    language: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn MACaptionAppearanceAddSelectedLanguage(
+            domain: MACaptionAppearanceDomain,
+            language: &CFString,
+        ) -> bool;
+    }
+    unsafe { MACaptionAppearanceAddSelectedLanguage(domain, language) }
 }
 
 /// Copies the user's preferred caption languages.
@@ -312,51 +323,64 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopySelectedLanguages(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// User preference representing what type of captions should be displayed
-    ///
-    /// Parameter `domain`: Preference domain, see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDomain
-    /// ```
-    ///
-    /// .
-    ///
-    /// Returns: User preference representing what type of captions should be displayed. See
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDisplayType
-    /// ```
-    ///
-    /// .
-    pub fn MACaptionAppearanceGetDisplayType(
-        domain: MACaptionAppearanceDomain,
-    ) -> MACaptionAppearanceDisplayType;
+/// User preference representing what type of captions should be displayed
+///
+/// Parameter `domain`: Preference domain, see
+///
+/// ```text
+///  MACaptionAppearanceDomain
+/// ```
+///
+/// .
+///
+/// Returns: User preference representing what type of captions should be displayed. See
+///
+/// ```text
+///  MACaptionAppearanceDisplayType
+/// ```
+///
+/// .
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceGetDisplayType(
+    domain: MACaptionAppearanceDomain,
+) -> MACaptionAppearanceDisplayType {
+    extern "C-unwind" {
+        fn MACaptionAppearanceGetDisplayType(
+            domain: MACaptionAppearanceDomain,
+        ) -> MACaptionAppearanceDisplayType;
+    }
+    unsafe { MACaptionAppearanceGetDisplayType(domain) }
 }
 
-extern "C-unwind" {
-    /// User preference representing what type of captions should be displayed
-    ///
-    /// Parameter `domain`: Preference domain, see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDomain
-    /// ```
-    ///
-    /// .
-    ///
-    /// Parameter `displayType`: Captions display type, see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDisplayType
-    /// ```
-    ///
-    /// .
-    pub fn MACaptionAppearanceSetDisplayType(
-        domain: MACaptionAppearanceDomain,
-        display_type: MACaptionAppearanceDisplayType,
-    );
+/// User preference representing what type of captions should be displayed
+///
+/// Parameter `domain`: Preference domain, see
+///
+/// ```text
+///  MACaptionAppearanceDomain
+/// ```
+///
+/// .
+///
+/// Parameter `displayType`: Captions display type, see
+///
+/// ```text
+///  MACaptionAppearanceDisplayType
+/// ```
+///
+/// .
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceSetDisplayType(
+    domain: MACaptionAppearanceDomain,
+    display_type: MACaptionAppearanceDisplayType,
+) {
+    extern "C-unwind" {
+        fn MACaptionAppearanceSetDisplayType(
+            domain: MACaptionAppearanceDomain,
+            display_type: MACaptionAppearanceDisplayType,
+        );
+    }
+    unsafe { MACaptionAppearanceSetDisplayType(domain, display_type) }
 }
 
 /// User preference for captioning media characteristic
@@ -384,19 +408,25 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyPreferredCaptioningMediaC
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Provides a boolean indicating if the currently-active style has been customized by the user. This is useful for some clients who may need different fallback strategies for customized styles vs system-default styles.
-    ///
-    /// Parameter `domain`: Preference domain, see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDomain
-    /// ```
-    ///
-    /// .
-    ///
-    /// Returns: A boolean indicating if the currently-active style has been customized by the user
-    pub fn MACaptionAppearanceIsCustomized(domain: MACaptionAppearanceDomain) -> bool;
+/// Provides a boolean indicating if the currently-active style has been customized by the user. This is useful for some clients who may need different fallback strategies for customized styles vs system-default styles.
+///
+/// Parameter `domain`: Preference domain, see
+///
+/// ```text
+///  MACaptionAppearanceDomain
+/// ```
+///
+/// .
+///
+/// Returns: A boolean indicating if the currently-active style has been customized by the user
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceIsCustomized(
+    domain: MACaptionAppearanceDomain,
+) -> bool {
+    extern "C-unwind" {
+        fn MACaptionAppearanceIsCustomized(domain: MACaptionAppearanceDomain) -> bool;
+    }
+    unsafe { MACaptionAppearanceIsCustomized(domain) }
 }
 
 /// User preference for foreground/text color.
@@ -523,124 +553,152 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyWindowColor(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// User preference for foreground opacity.
-    ///
-    /// Parameter `domain`: Preference domain, see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDomain
-    /// ```
-    ///
-    /// .
-    ///
-    /// Parameter `behavior`: (see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceBehavior
-    /// ```
-    ///
-    /// )
-    ///
-    /// Returns: User preference for foreground opacity.
-    ///
-    /// # Safety
-    ///
-    /// `behavior` must be a valid pointer or null.
-    pub fn MACaptionAppearanceGetForegroundOpacity(
-        domain: MACaptionAppearanceDomain,
-        behavior: *mut MACaptionAppearanceBehavior,
-    ) -> CGFloat;
+/// User preference for foreground opacity.
+///
+/// Parameter `domain`: Preference domain, see
+///
+/// ```text
+///  MACaptionAppearanceDomain
+/// ```
+///
+/// .
+///
+/// Parameter `behavior`: (see
+///
+/// ```text
+///  MACaptionAppearanceBehavior
+/// ```
+///
+/// )
+///
+/// Returns: User preference for foreground opacity.
+///
+/// # Safety
+///
+/// `behavior` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceGetForegroundOpacity(
+    domain: MACaptionAppearanceDomain,
+    behavior: *mut MACaptionAppearanceBehavior,
+) -> CGFloat {
+    extern "C-unwind" {
+        fn MACaptionAppearanceGetForegroundOpacity(
+            domain: MACaptionAppearanceDomain,
+            behavior: *mut MACaptionAppearanceBehavior,
+        ) -> CGFloat;
+    }
+    unsafe { MACaptionAppearanceGetForegroundOpacity(domain, behavior) }
 }
 
-extern "C-unwind" {
-    /// User preference for background opacity.
-    ///
-    /// Parameter `domain`: Preference domain, see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDomain
-    /// ```
-    ///
-    /// .
-    ///
-    /// Parameter `behavior`: (see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceBehavior
-    /// ```
-    ///
-    /// )
-    ///
-    /// Returns: User preference for background opacity.
-    ///
-    /// # Safety
-    ///
-    /// `behavior` must be a valid pointer or null.
-    pub fn MACaptionAppearanceGetBackgroundOpacity(
-        domain: MACaptionAppearanceDomain,
-        behavior: *mut MACaptionAppearanceBehavior,
-    ) -> CGFloat;
+/// User preference for background opacity.
+///
+/// Parameter `domain`: Preference domain, see
+///
+/// ```text
+///  MACaptionAppearanceDomain
+/// ```
+///
+/// .
+///
+/// Parameter `behavior`: (see
+///
+/// ```text
+///  MACaptionAppearanceBehavior
+/// ```
+///
+/// )
+///
+/// Returns: User preference for background opacity.
+///
+/// # Safety
+///
+/// `behavior` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceGetBackgroundOpacity(
+    domain: MACaptionAppearanceDomain,
+    behavior: *mut MACaptionAppearanceBehavior,
+) -> CGFloat {
+    extern "C-unwind" {
+        fn MACaptionAppearanceGetBackgroundOpacity(
+            domain: MACaptionAppearanceDomain,
+            behavior: *mut MACaptionAppearanceBehavior,
+        ) -> CGFloat;
+    }
+    unsafe { MACaptionAppearanceGetBackgroundOpacity(domain, behavior) }
 }
 
-extern "C-unwind" {
-    /// User preference for window opacity.
-    ///
-    /// Parameter `domain`: Preference domain, see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDomain
-    /// ```
-    ///
-    /// .
-    ///
-    /// Parameter `behavior`: (see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceBehavior
-    /// ```
-    ///
-    /// )
-    ///
-    /// Returns: User preference for window opacity.
-    ///
-    /// # Safety
-    ///
-    /// `behavior` must be a valid pointer or null.
-    pub fn MACaptionAppearanceGetWindowOpacity(
-        domain: MACaptionAppearanceDomain,
-        behavior: *mut MACaptionAppearanceBehavior,
-    ) -> CGFloat;
+/// User preference for window opacity.
+///
+/// Parameter `domain`: Preference domain, see
+///
+/// ```text
+///  MACaptionAppearanceDomain
+/// ```
+///
+/// .
+///
+/// Parameter `behavior`: (see
+///
+/// ```text
+///  MACaptionAppearanceBehavior
+/// ```
+///
+/// )
+///
+/// Returns: User preference for window opacity.
+///
+/// # Safety
+///
+/// `behavior` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceGetWindowOpacity(
+    domain: MACaptionAppearanceDomain,
+    behavior: *mut MACaptionAppearanceBehavior,
+) -> CGFloat {
+    extern "C-unwind" {
+        fn MACaptionAppearanceGetWindowOpacity(
+            domain: MACaptionAppearanceDomain,
+            behavior: *mut MACaptionAppearanceBehavior,
+        ) -> CGFloat;
+    }
+    unsafe { MACaptionAppearanceGetWindowOpacity(domain, behavior) }
 }
 
-extern "C-unwind" {
-    /// User preference for caption-window corner radius.
-    ///
-    /// Parameter `domain`: Preference domain, see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDomain
-    /// ```
-    ///
-    /// .
-    ///
-    /// Parameter `behavior`: (see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceBehavior
-    /// ```
-    ///
-    /// )
-    ///
-    /// Returns: User preference for caption-window corner radius.
-    ///
-    /// # Safety
-    ///
-    /// `behavior` must be a valid pointer or null.
-    pub fn MACaptionAppearanceGetWindowRoundedCornerRadius(
-        domain: MACaptionAppearanceDomain,
-        behavior: *mut MACaptionAppearanceBehavior,
-    ) -> CGFloat;
+/// User preference for caption-window corner radius.
+///
+/// Parameter `domain`: Preference domain, see
+///
+/// ```text
+///  MACaptionAppearanceDomain
+/// ```
+///
+/// .
+///
+/// Parameter `behavior`: (see
+///
+/// ```text
+///  MACaptionAppearanceBehavior
+/// ```
+///
+/// )
+///
+/// Returns: User preference for caption-window corner radius.
+///
+/// # Safety
+///
+/// `behavior` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceGetWindowRoundedCornerRadius(
+    domain: MACaptionAppearanceDomain,
+    behavior: *mut MACaptionAppearanceBehavior,
+) -> CGFloat {
+    extern "C-unwind" {
+        fn MACaptionAppearanceGetWindowRoundedCornerRadius(
+            domain: MACaptionAppearanceDomain,
+            behavior: *mut MACaptionAppearanceBehavior,
+        ) -> CGFloat;
+    }
+    unsafe { MACaptionAppearanceGetWindowRoundedCornerRadius(domain, behavior) }
 }
 
 /// User font preference for the specified style.
@@ -694,64 +752,78 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyFontDescriptorForStyle(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// User preference for font scaling.
-    ///
-    /// Parameter `domain`: Preference domain, see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDomain
-    /// ```
-    ///
-    /// .
-    ///
-    /// Parameter `behavior`: (see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceBehavior
-    /// ```
-    ///
-    /// )
-    ///
-    /// Returns: User font scaling preference for the specified style.
-    ///
-    /// # Safety
-    ///
-    /// `behavior` must be a valid pointer or null.
-    pub fn MACaptionAppearanceGetRelativeCharacterSize(
-        domain: MACaptionAppearanceDomain,
-        behavior: *mut MACaptionAppearanceBehavior,
-    ) -> CGFloat;
+/// User preference for font scaling.
+///
+/// Parameter `domain`: Preference domain, see
+///
+/// ```text
+///  MACaptionAppearanceDomain
+/// ```
+///
+/// .
+///
+/// Parameter `behavior`: (see
+///
+/// ```text
+///  MACaptionAppearanceBehavior
+/// ```
+///
+/// )
+///
+/// Returns: User font scaling preference for the specified style.
+///
+/// # Safety
+///
+/// `behavior` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceGetRelativeCharacterSize(
+    domain: MACaptionAppearanceDomain,
+    behavior: *mut MACaptionAppearanceBehavior,
+) -> CGFloat {
+    extern "C-unwind" {
+        fn MACaptionAppearanceGetRelativeCharacterSize(
+            domain: MACaptionAppearanceDomain,
+            behavior: *mut MACaptionAppearanceBehavior,
+        ) -> CGFloat;
+    }
+    unsafe { MACaptionAppearanceGetRelativeCharacterSize(domain, behavior) }
 }
 
-extern "C-unwind" {
-    /// User preference for text edge style.
-    ///
-    /// Parameter `domain`: Preference domain, see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceDomain
-    /// ```
-    ///
-    /// .
-    ///
-    /// Parameter `behavior`: (see
-    ///
-    /// ```text
-    ///  MACaptionAppearanceBehavior
-    /// ```
-    ///
-    /// )
-    ///
-    /// Returns: User preference for text edge style.
-    ///
-    /// # Safety
-    ///
-    /// `behavior` must be a valid pointer or null.
-    pub fn MACaptionAppearanceGetTextEdgeStyle(
-        domain: MACaptionAppearanceDomain,
-        behavior: *mut MACaptionAppearanceBehavior,
-    ) -> MACaptionAppearanceTextEdgeStyle;
+/// User preference for text edge style.
+///
+/// Parameter `domain`: Preference domain, see
+///
+/// ```text
+///  MACaptionAppearanceDomain
+/// ```
+///
+/// .
+///
+/// Parameter `behavior`: (see
+///
+/// ```text
+///  MACaptionAppearanceBehavior
+/// ```
+///
+/// )
+///
+/// Returns: User preference for text edge style.
+///
+/// # Safety
+///
+/// `behavior` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceGetTextEdgeStyle(
+    domain: MACaptionAppearanceDomain,
+    behavior: *mut MACaptionAppearanceBehavior,
+) -> MACaptionAppearanceTextEdgeStyle {
+    extern "C-unwind" {
+        fn MACaptionAppearanceGetTextEdgeStyle(
+            domain: MACaptionAppearanceDomain,
+            behavior: *mut MACaptionAppearanceBehavior,
+        ) -> MACaptionAppearanceTextEdgeStyle;
+    }
+    unsafe { MACaptionAppearanceGetTextEdgeStyle(domain, behavior) }
 }
 
 /// Copies all system and user defined profiles, each represented by a CFString containing a non-human-readable ID
@@ -767,11 +839,15 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileIDs() -> CFRetaine
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Sets the currently-selected caption drawing profileID system wide. Behavior is undefined if NULL or an invalid profileID is provided
-    ///
-    /// Parameter `profileID`: The profileID to make active.
-    pub fn MACaptionAppearanceSetActiveProfileID(profile_id: &CFString);
+/// Sets the currently-selected caption drawing profileID system wide. Behavior is undefined if NULL or an invalid profileID is provided
+///
+/// Parameter `profileID`: The profileID to make active.
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceSetActiveProfileID(profile_id: &CFString) {
+    extern "C-unwind" {
+        fn MACaptionAppearanceSetActiveProfileID(profile_id: &CFString);
+    }
+    unsafe { MACaptionAppearanceSetActiveProfileID(profile_id) }
 }
 
 /// Gets the currently-selected caption drawing profileID system wide.
@@ -804,15 +880,22 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileName(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Executes a block of code as if the provided profileID was active. This is used in cases such as a need to get the fonts and colors of a profileID without changing the currently selected profileID.
-    ///
-    /// Parameter `profileID`: The profileID which will appear active when executing the block
-    ///
-    /// Parameter `aBlock`: the block of code to execute
-    #[cfg(feature = "block2")]
-    pub fn MACaptionAppearanceExecuteBlockForProfileID(
-        profile_id: &CFString,
-        a_block: &block2::DynBlock<dyn Fn()>,
-    );
+/// Executes a block of code as if the provided profileID was active. This is used in cases such as a need to get the fonts and colors of a profileID without changing the currently selected profileID.
+///
+/// Parameter `profileID`: The profileID which will appear active when executing the block
+///
+/// Parameter `aBlock`: the block of code to execute
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceExecuteBlockForProfileID(
+    profile_id: &CFString,
+    a_block: &block2::DynBlock<dyn Fn()>,
+) {
+    extern "C-unwind" {
+        fn MACaptionAppearanceExecuteBlockForProfileID(
+            profile_id: &CFString,
+            a_block: &block2::DynBlock<dyn Fn()>,
+        );
+    }
+    unsafe { MACaptionAppearanceExecuteBlockForProfileID(profile_id, a_block) }
 }

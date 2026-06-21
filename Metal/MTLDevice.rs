@@ -119,13 +119,19 @@ pub unsafe extern "C-unwind" fn MTLCopyAllDevicesWithObserver(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    /// Removes a previously installed observer for device change notifications.
-    ///
-    /// # Safety
-    ///
-    /// `observer` should be of the correct type.
-    pub fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>);
+/// Removes a previously installed observer for device change notifications.
+///
+/// # Safety
+///
+/// `observer` should be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn MTLRemoveDeviceObserver(
+    observer: &ProtocolObject<dyn NSObjectProtocol>,
+) {
+    extern "C-unwind" {
+        fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>);
+    }
+    unsafe { MTLRemoveDeviceObserver(observer) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset?language=objc)

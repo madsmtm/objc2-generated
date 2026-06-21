@@ -6,17 +6,21 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Creates a JavaScript string from a CFString.
-    ///
-    /// This function is optimized to take advantage of cases when
-    /// CFStringGetCharactersPtr returns a valid pointer.
-    ///
-    /// Parameter `string`: The CFString to copy into the new JSString.
-    ///
-    /// Returns: A JSString containing string. Ownership follows the Create Rule.
-    #[cfg(all(feature = "JSBase", feature = "objc2-core-foundation"))]
-    pub fn JSStringCreateWithCFString(string: &CFString) -> JSStringRef;
+/// Creates a JavaScript string from a CFString.
+///
+/// This function is optimized to take advantage of cases when
+/// CFStringGetCharactersPtr returns a valid pointer.
+///
+/// Parameter `string`: The CFString to copy into the new JSString.
+///
+/// Returns: A JSString containing string. Ownership follows the Create Rule.
+#[cfg(all(feature = "JSBase", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn JSStringCreateWithCFString(string: &CFString) -> JSStringRef {
+    extern "C-unwind" {
+        fn JSStringCreateWithCFString(string: &CFString) -> JSStringRef;
+    }
+    unsafe { JSStringCreateWithCFString(string) }
 }
 
 /// Creates a CFString from a JavaScript string.

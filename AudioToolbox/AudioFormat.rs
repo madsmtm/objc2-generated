@@ -311,58 +311,92 @@ pub const kAudioFormatProperty_ID3TagSize: AudioFormatPropertyID = 0x69643373;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_id3tagtodictionary?language=objc)
 pub const kAudioFormatProperty_ID3TagToDictionary: AudioFormatPropertyID = 0x69643364;
 
-extern "C-unwind" {
-    /// Retrieve information about the given property
-    ///
-    /// Parameter `inPropertyID`: an AudioFormatPropertyID constant.
-    ///
-    /// Parameter `inSpecifierSize`: The size of the specifier data.
-    ///
-    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the properties.
-    ///
-    /// Parameter `outPropertyDataSize`: The size in bytes of the current value of the property. In order to get the property value,
-    /// you will need a buffer of this size.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `in_specifier` must be a valid pointer or null.
-    pub fn AudioFormatGetPropertyInfo(
-        in_property_id: AudioFormatPropertyID,
-        in_specifier_size: u32,
-        in_specifier: *const c_void,
-        out_property_data_size: &mut u32,
-    ) -> OSStatus;
+/// Retrieve information about the given property
+///
+/// Parameter `inPropertyID`: an AudioFormatPropertyID constant.
+///
+/// Parameter `inSpecifierSize`: The size of the specifier data.
+///
+/// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the properties.
+///
+/// Parameter `outPropertyDataSize`: The size in bytes of the current value of the property. In order to get the property value,
+/// you will need a buffer of this size.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// `in_specifier` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFormatGetPropertyInfo(
+    in_property_id: AudioFormatPropertyID,
+    in_specifier_size: u32,
+    in_specifier: *const c_void,
+    out_property_data_size: &mut u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFormatGetPropertyInfo(
+            in_property_id: AudioFormatPropertyID,
+            in_specifier_size: u32,
+            in_specifier: *const c_void,
+            out_property_data_size: &mut u32,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFormatGetPropertyInfo(
+            in_property_id,
+            in_specifier_size,
+            in_specifier,
+            out_property_data_size,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Retrieve the indicated property data
-    ///
-    /// Parameter `inPropertyID`: an AudioFormatPropertyID constant.
-    ///
-    /// Parameter `inSpecifierSize`: The size of the specifier data.
-    ///
-    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the properties.
-    ///
-    /// Parameter `ioPropertyDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
-    ///
-    /// Parameter `outPropertyData`: the buffer in which to write the property data. If outPropertyData is NULL and ioPropertyDataSize is
-    /// not, the amount that would have been written will be reported.
-    ///
-    /// Returns: returns noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `in_specifier` must be a valid pointer or null.
-    /// - `out_property_data` must be a valid pointer or null.
-    pub fn AudioFormatGetProperty(
-        in_property_id: AudioFormatPropertyID,
-        in_specifier_size: u32,
-        in_specifier: *const c_void,
-        io_property_data_size: Option<&mut u32>,
-        out_property_data: *mut c_void,
-    ) -> OSStatus;
+/// Retrieve the indicated property data
+///
+/// Parameter `inPropertyID`: an AudioFormatPropertyID constant.
+///
+/// Parameter `inSpecifierSize`: The size of the specifier data.
+///
+/// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the properties.
+///
+/// Parameter `ioPropertyDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
+///
+/// Parameter `outPropertyData`: the buffer in which to write the property data. If outPropertyData is NULL and ioPropertyDataSize is
+/// not, the amount that would have been written will be reported.
+///
+/// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_specifier` must be a valid pointer or null.
+/// - `out_property_data` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFormatGetProperty(
+    in_property_id: AudioFormatPropertyID,
+    in_specifier_size: u32,
+    in_specifier: *const c_void,
+    io_property_data_size: Option<&mut u32>,
+    out_property_data: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFormatGetProperty(
+            in_property_id: AudioFormatPropertyID,
+            in_specifier_size: u32,
+            in_specifier: *const c_void,
+            io_property_data_size: Option<&mut u32>,
+            out_property_data: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFormatGetProperty(
+            in_property_id,
+            in_specifier_size,
+            in_specifier,
+            io_property_data_size,
+            out_property_data,
+        )
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatunspecifiederror?language=objc)

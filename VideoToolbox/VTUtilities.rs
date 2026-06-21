@@ -12,88 +12,116 @@ use objc2_core_video::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Creates a CGImage using the provided CVPixelBuffer
-    ///
-    /// Parameter `pixelBuffer`: The pixelBuffer to be used as the image data source for the CGImage.
-    ///
-    /// Parameter `options`: no options currently.  pass NULL.
-    ///
-    /// Parameter `imageOut`: pointer to an address to receive the newly created CGImage.
-    ///
-    /// This routine creates a CGImage representation of the image data contained in
-    /// the provided CVPixelBuffer.
-    /// The source CVPixelBuffer may be retained for the lifetime of the CGImage.  Changes
-    /// to the CVPixelBuffer after making this call (other than releasing it) will have
-    /// undefined results.
-    /// Not all CVPixelBuffer pixel formats will support conversion into a CGImage compatible
-    /// pixel format.
-    ///
-    /// # Safety
-    ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    /// - `image_out` must be a valid pointer.
-    #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-core-video"))]
-    pub fn VTCreateCGImageFromCVPixelBuffer(
-        pixel_buffer: &CVPixelBuffer,
-        options: Option<&CFDictionary>,
-        image_out: NonNull<*mut CGImage>,
-    ) -> OSStatus;
+/// Creates a CGImage using the provided CVPixelBuffer
+///
+/// Parameter `pixelBuffer`: The pixelBuffer to be used as the image data source for the CGImage.
+///
+/// Parameter `options`: no options currently.  pass NULL.
+///
+/// Parameter `imageOut`: pointer to an address to receive the newly created CGImage.
+///
+/// This routine creates a CGImage representation of the image data contained in
+/// the provided CVPixelBuffer.
+/// The source CVPixelBuffer may be retained for the lifetime of the CGImage.  Changes
+/// to the CVPixelBuffer after making this call (other than releasing it) will have
+/// undefined results.
+/// Not all CVPixelBuffer pixel formats will support conversion into a CGImage compatible
+/// pixel format.
+///
+/// # Safety
+///
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
+/// - `image_out` must be a valid pointer.
+#[cfg(all(feature = "objc2-core-graphics", feature = "objc2-core-video"))]
+#[inline]
+pub unsafe extern "C-unwind" fn VTCreateCGImageFromCVPixelBuffer(
+    pixel_buffer: &CVPixelBuffer,
+    options: Option<&CFDictionary>,
+    image_out: NonNull<*mut CGImage>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn VTCreateCGImageFromCVPixelBuffer(
+            pixel_buffer: &CVPixelBuffer,
+            options: Option<&CFDictionary>,
+            image_out: NonNull<*mut CGImage>,
+        ) -> OSStatus;
+    }
+    unsafe { VTCreateCGImageFromCVPixelBuffer(pixel_buffer, options, image_out) }
 }
 
-extern "C-unwind" {
-    /// Requests that a video decoder, if available, be registered for the specified CMVideoCodecType
-    ///
-    /// Parameter `codecType`: The CMVideoCodecType corresponding the format being requested
-    ///
-    /// This call will register a video decoder for the provided CMVideoCodecType if such a decoder is present on the system but not registered by default.
-    /// You can call VTIsHardwareDecodeAvailable to confirm availability of the decoder after calling VTRegisterSupplementalVideoDecoderIfAvailable.
-    /// Supplemental video decoders registered through this API will not work in applications which have not performed this opt in.  For broadest ecosystem compatibility, we encourage use of platform-standard formats such as H.264, HEVC, and AV1.
-    #[cfg(feature = "objc2-core-media")]
-    pub fn VTRegisterSupplementalVideoDecoderIfAvailable(codec_type: CMVideoCodecType);
+/// Requests that a video decoder, if available, be registered for the specified CMVideoCodecType
+///
+/// Parameter `codecType`: The CMVideoCodecType corresponding the format being requested
+///
+/// This call will register a video decoder for the provided CMVideoCodecType if such a decoder is present on the system but not registered by default.
+/// You can call VTIsHardwareDecodeAvailable to confirm availability of the decoder after calling VTRegisterSupplementalVideoDecoderIfAvailable.
+/// Supplemental video decoders registered through this API will not work in applications which have not performed this opt in.  For broadest ecosystem compatibility, we encourage use of platform-standard formats such as H.264, HEVC, and AV1.
+#[cfg(feature = "objc2-core-media")]
+#[inline]
+pub unsafe extern "C-unwind" fn VTRegisterSupplementalVideoDecoderIfAvailable(
+    codec_type: CMVideoCodecType,
+) {
+    extern "C-unwind" {
+        fn VTRegisterSupplementalVideoDecoderIfAvailable(codec_type: CMVideoCodecType);
+    }
+    unsafe { VTRegisterSupplementalVideoDecoderIfAvailable(codec_type) }
 }
 
-extern "C-unwind" {
-    /// Returns information about the Media Extension video decoder required to decode the specified format.
-    ///
-    /// If a Media Extension video decoder will be used to decode the specified format, this function will return information about the Media Extension that will be used.
-    ///
-    /// Parameter `formatDesc`: The format description for the video format for which information is being requested.
-    ///
-    /// Parameter `mediaExtensionPropertiesOut`: If a Media Extension video decoder will be used to decode the specified format, this pointer will return a dictionary with a set of properties describing the extension video decoder. The dictionary keys are VTExtensionPropertiesKey values.
-    ///
-    /// Returns: If the function succeeds and a Media Extension video decoder will be used to decode this format, the return value will be noErr. If the function succeeds but a Media Extension video decoder will not be used to decode this format, the return value will be kVTCouldNotFindExtensionErr. If a Media Extension video decoder for the format was found but is disabled, the function will return kVTExtensionDisabledErr. Otherwise, the return value will be an error code describing the failure.
-    ///
-    /// # Safety
-    ///
-    /// `media_extension_properties_out` must be a valid pointer.
-    #[cfg(feature = "objc2-core-media")]
-    pub fn VTCopyVideoDecoderExtensionProperties(
-        format_desc: &CMFormatDescription,
-        media_extension_properties_out: NonNull<*const CFDictionary>,
-    ) -> OSStatus;
+/// Returns information about the Media Extension video decoder required to decode the specified format.
+///
+/// If a Media Extension video decoder will be used to decode the specified format, this function will return information about the Media Extension that will be used.
+///
+/// Parameter `formatDesc`: The format description for the video format for which information is being requested.
+///
+/// Parameter `mediaExtensionPropertiesOut`: If a Media Extension video decoder will be used to decode the specified format, this pointer will return a dictionary with a set of properties describing the extension video decoder. The dictionary keys are VTExtensionPropertiesKey values.
+///
+/// Returns: If the function succeeds and a Media Extension video decoder will be used to decode this format, the return value will be noErr. If the function succeeds but a Media Extension video decoder will not be used to decode this format, the return value will be kVTCouldNotFindExtensionErr. If a Media Extension video decoder for the format was found but is disabled, the function will return kVTExtensionDisabledErr. Otherwise, the return value will be an error code describing the failure.
+///
+/// # Safety
+///
+/// `media_extension_properties_out` must be a valid pointer.
+#[cfg(feature = "objc2-core-media")]
+#[inline]
+pub unsafe extern "C-unwind" fn VTCopyVideoDecoderExtensionProperties(
+    format_desc: &CMFormatDescription,
+    media_extension_properties_out: NonNull<*const CFDictionary>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn VTCopyVideoDecoderExtensionProperties(
+            format_desc: &CMFormatDescription,
+            media_extension_properties_out: NonNull<*const CFDictionary>,
+        ) -> OSStatus;
+    }
+    unsafe { VTCopyVideoDecoderExtensionProperties(format_desc, media_extension_properties_out) }
 }
 
-extern "C-unwind" {
-    /// Returns information about the Media Extension RAW processor supporting the specified format.
-    ///
-    /// If a Media Extension RAW processor will be used to process the specified format, this function will return information about the Media Extension that will be used.
-    ///
-    /// Parameter `formatDesc`: The format description for the video format for which information is being requested.
-    ///
-    /// Parameter `mediaExtensionPropertiesOut`: If a Media Extension RAW processor  will be used to process the specified format, this pointer will return a dictionary with a set of properties describing the extension RAW processor. The dictionary keys VTExtensionPropertiesKey values.
-    ///
-    /// Returns: If the function succeeds and a Media Extension RAW processor will be used to process this format, the return value will be noErr. If the function succeeds but a Media Extension RAW processor will not be used to process this format, the return value will be kVTCouldNotFindExtensionErr. If a Media Extension RAW processor for the format was found but is disabled, the function will return kVTExtensionDisabledErr. Otherwise, the return value will be an error code describing the failure.
-    ///
-    /// # Safety
-    ///
-    /// `media_extension_properties_out` must be a valid pointer.
-    #[cfg(feature = "objc2-core-media")]
-    pub fn VTCopyRAWProcessorExtensionProperties(
-        format_desc: &CMFormatDescription,
-        media_extension_properties_out: NonNull<*const CFDictionary>,
-    ) -> OSStatus;
+/// Returns information about the Media Extension RAW processor supporting the specified format.
+///
+/// If a Media Extension RAW processor will be used to process the specified format, this function will return information about the Media Extension that will be used.
+///
+/// Parameter `formatDesc`: The format description for the video format for which information is being requested.
+///
+/// Parameter `mediaExtensionPropertiesOut`: If a Media Extension RAW processor  will be used to process the specified format, this pointer will return a dictionary with a set of properties describing the extension RAW processor. The dictionary keys VTExtensionPropertiesKey values.
+///
+/// Returns: If the function succeeds and a Media Extension RAW processor will be used to process this format, the return value will be noErr. If the function succeeds but a Media Extension RAW processor will not be used to process this format, the return value will be kVTCouldNotFindExtensionErr. If a Media Extension RAW processor for the format was found but is disabled, the function will return kVTExtensionDisabledErr. Otherwise, the return value will be an error code describing the failure.
+///
+/// # Safety
+///
+/// `media_extension_properties_out` must be a valid pointer.
+#[cfg(feature = "objc2-core-media")]
+#[inline]
+pub unsafe extern "C-unwind" fn VTCopyRAWProcessorExtensionProperties(
+    format_desc: &CMFormatDescription,
+    media_extension_properties_out: NonNull<*const CFDictionary>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn VTCopyRAWProcessorExtensionProperties(
+            format_desc: &CMFormatDescription,
+            media_extension_properties_out: NonNull<*const CFDictionary>,
+        ) -> OSStatus;
+    }
+    unsafe { VTCopyRAWProcessorExtensionProperties(format_desc, media_extension_properties_out) }
 }
 
 /// A key in a Media Extension extension properties dictionary.

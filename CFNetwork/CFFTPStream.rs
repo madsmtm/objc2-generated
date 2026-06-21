@@ -147,18 +147,27 @@ pub unsafe extern "C-unwind" fn CFReadStreamCreateWithFTPURL(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `buffer` must be a valid pointer.
-    /// - `parsed` must be a valid pointer or null.
-    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
-    pub fn CFFTPCreateParsedResourceListing(
-        alloc: Option<&CFAllocator>,
-        buffer: NonNull<u8>,
-        buffer_length: CFIndex,
-        parsed: *mut *const CFDictionary,
-    ) -> CFIndex;
+/// # Safety
+///
+/// - `buffer` must be a valid pointer.
+/// - `parsed` must be a valid pointer or null.
+#[deprecated = "Use NSURLSessionAPI for ftp requests"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFTPCreateParsedResourceListing(
+    alloc: Option<&CFAllocator>,
+    buffer: NonNull<u8>,
+    buffer_length: CFIndex,
+    parsed: *mut *const CFDictionary,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFFTPCreateParsedResourceListing(
+            alloc: Option<&CFAllocator>,
+            buffer: NonNull<u8>,
+            buffer_length: CFIndex,
+            parsed: *mut *const CFDictionary,
+        ) -> CFIndex;
+    }
+    unsafe { CFFTPCreateParsedResourceListing(alloc, buffer, buffer_length, parsed) }
 }
 
 #[deprecated = "Use NSURLSessionAPI for ftp requests"]

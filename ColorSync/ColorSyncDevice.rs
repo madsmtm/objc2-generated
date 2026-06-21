@@ -146,32 +146,55 @@ extern "C" {
     pub static kColorSyncRegistrationUpdateWindowServer: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `device_info` generic must be of the correct type.
-    /// - `device_info` generic must be of the correct type.
-    pub fn ColorSyncRegisterDevice(
-        device_class: &CFString,
-        device_id: &CFUUID,
-        device_info: &CFDictionary,
-    ) -> bool;
+/// # Safety
+///
+/// - `device_info` generic must be of the correct type.
+/// - `device_info` generic must be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncRegisterDevice(
+    device_class: &CFString,
+    device_id: &CFUUID,
+    device_info: &CFDictionary,
+) -> bool {
+    extern "C-unwind" {
+        fn ColorSyncRegisterDevice(
+            device_class: &CFString,
+            device_id: &CFUUID,
+            device_info: &CFDictionary,
+        ) -> bool;
+    }
+    unsafe { ColorSyncRegisterDevice(device_class, device_id, device_info) }
 }
 
-extern "C-unwind" {
-    pub fn ColorSyncUnregisterDevice(device_class: &CFString, device_id: &CFUUID) -> bool;
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncUnregisterDevice(
+    device_class: &CFString,
+    device_id: &CFUUID,
+) -> bool {
+    extern "C-unwind" {
+        fn ColorSyncUnregisterDevice(device_class: &CFString, device_id: &CFUUID) -> bool;
+    }
+    unsafe { ColorSyncUnregisterDevice(device_class, device_id) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `profile_info` generic must be of the correct type.
-    /// - `profile_info` generic must be of the correct type.
-    pub fn ColorSyncDeviceSetCustomProfiles(
-        device_class: &CFString,
-        device_id: &CFUUID,
-        profile_info: &CFDictionary,
-    ) -> bool;
+/// # Safety
+///
+/// - `profile_info` generic must be of the correct type.
+/// - `profile_info` generic must be of the correct type.
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncDeviceSetCustomProfiles(
+    device_class: &CFString,
+    device_id: &CFUUID,
+    profile_info: &CFDictionary,
+) -> bool {
+    extern "C-unwind" {
+        fn ColorSyncDeviceSetCustomProfiles(
+            device_class: &CFString,
+            device_id: &CFUUID,
+            profile_info: &CFDictionary,
+        ) -> bool;
+    }
+    unsafe { ColorSyncDeviceSetCustomProfiles(device_class, device_id, profile_info) }
 }
 
 #[inline]
@@ -193,15 +216,22 @@ pub unsafe extern "C-unwind" fn ColorSyncDeviceCopyDeviceInfo(
 pub type ColorSyncDeviceProfileIterateCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<CFDictionary>, *mut c_void) -> bool>;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `call_back` must be implemented correctly.
-    /// - `user_info` must be a valid pointer or null.
-    pub fn ColorSyncIterateDeviceProfiles(
-        call_back: ColorSyncDeviceProfileIterateCallback,
-        user_info: *mut c_void,
-    );
+/// # Safety
+///
+/// - `call_back` must be implemented correctly.
+/// - `user_info` must be a valid pointer or null.
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncIterateDeviceProfiles(
+    call_back: ColorSyncDeviceProfileIterateCallback,
+    user_info: *mut c_void,
+) {
+    extern "C-unwind" {
+        fn ColorSyncIterateDeviceProfiles(
+            call_back: ColorSyncDeviceProfileIterateCallback,
+            user_info: *mut c_void,
+        );
+    }
+    unsafe { ColorSyncIterateDeviceProfiles(call_back, user_info) }
 }
 
 #[inline]
@@ -216,6 +246,10 @@ pub unsafe extern "C-unwind" fn CGDisplayCreateUUIDFromDisplayID(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    pub fn CGDisplayGetDisplayIDFromUUID(uuid: &CFUUID) -> u32;
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayGetDisplayIDFromUUID(uuid: &CFUUID) -> u32 {
+    extern "C-unwind" {
+        fn CGDisplayGetDisplayIDFromUUID(uuid: &CFUUID) -> u32;
+    }
+    unsafe { CGDisplayGetDisplayIDFromUUID(uuid) }
 }

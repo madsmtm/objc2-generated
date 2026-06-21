@@ -68,24 +68,28 @@ pub unsafe extern "C-unwind" fn AXIsProcessTrusted() -> bool {
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Attempts to make the process represented by the specified path a trusted accessibility client.
-    ///
-    ///
-    /// Use this function to make a process a trusted accessibility client.  Note: The caller must be running as
-    /// <code>
-    /// root
-    /// </code>
-    /// to successfully call this function. In addition, the caller should relaunch the process after this function returns successfully for the trusted status to take effect.
-    ///
-    ///
-    /// Parameter `executablePath`: The path to the executable of the process to make trusted.
-    ///
-    ///
-    /// Returns: An AXError that indicates success or failure.
-    #[cfg(feature = "AXError")]
-    #[deprecated]
-    pub fn AXMakeProcessTrusted(executable_path: &CFString) -> AXError;
+/// Attempts to make the process represented by the specified path a trusted accessibility client.
+///
+///
+/// Use this function to make a process a trusted accessibility client.  Note: The caller must be running as
+/// <code>
+/// root
+/// </code>
+/// to successfully call this function. In addition, the caller should relaunch the process after this function returns successfully for the trusted status to take effect.
+///
+///
+/// Parameter `executablePath`: The path to the executable of the process to make trusted.
+///
+///
+/// Returns: An AXError that indicates success or failure.
+#[cfg(feature = "AXError")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn AXMakeProcessTrusted(executable_path: &CFString) -> AXError {
+    extern "C-unwind" {
+        fn AXMakeProcessTrusted(executable_path: &CFString) -> AXError;
+    }
+    unsafe { AXMakeProcessTrusted(executable_path) }
 }
 
 /// A structure used to refer to an accessibility object.

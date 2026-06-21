@@ -5,11 +5,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Returns whether the user has enabled the setting to reduce flashing or strobing lights in video content. This setting can also be used to determine if UI in playback controls should be shown.
-    ///
-    /// Returns: A boolean
-    pub fn MADimFlashingLightsEnabled() -> bool;
+/// Returns whether the user has enabled the setting to reduce flashing or strobing lights in video content. This setting can also be used to determine if UI in playback controls should be shown.
+///
+/// Returns: A boolean
+#[inline]
+pub unsafe extern "C-unwind" fn MADimFlashingLightsEnabled() -> bool {
+    extern "C-unwind" {
+        fn MADimFlashingLightsEnabled() -> bool;
+    }
+    unsafe { MADimFlashingLightsEnabled() }
 }
 
 extern "C" {

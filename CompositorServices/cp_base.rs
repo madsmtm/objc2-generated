@@ -4,35 +4,43 @@ use core::ffi::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Increments the reference count of the specified object.
-    ///
-    /// - Parameters:
-    /// - obj: The object to retain. If this parameter is an Objective-C object,
-    /// the function is equivalent to calling the `retain` method of that object.
-    /// - Returns: The retained object.
-    ///
-    /// Don’t call this function in Swift code or on types you manage using
-    /// automatic reference counting (ARC).
-    ///
-    /// # Safety
-    ///
-    /// `obj` must be a valid pointer.
-    pub fn cp_retain(obj: *mut c_void) -> *mut c_void;
+/// Increments the reference count of the specified object.
+///
+/// - Parameters:
+/// - obj: The object to retain. If this parameter is an Objective-C object,
+/// the function is equivalent to calling the `retain` method of that object.
+/// - Returns: The retained object.
+///
+/// Don’t call this function in Swift code or on types you manage using
+/// automatic reference counting (ARC).
+///
+/// # Safety
+///
+/// `obj` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_retain(obj: *mut c_void) -> *mut c_void {
+    extern "C-unwind" {
+        fn cp_retain(obj: *mut c_void) -> *mut c_void;
+    }
+    unsafe { cp_retain(obj) }
 }
 
-extern "C-unwind" {
-    /// Decrement the reference count of the specified object.
-    ///
-    /// - Parameters:
-    /// - obj: The object to release. If this parameter is an Objective-C object,
-    /// the function is equivalent to calling the `release` method of that object.
-    ///
-    /// Don’t call this function in Swift code or on types you manage using
-    /// automatic reference counting (ARC).
-    ///
-    /// # Safety
-    ///
-    /// `obj` must be a valid pointer.
-    pub fn cp_release(obj: *mut c_void);
+/// Decrement the reference count of the specified object.
+///
+/// - Parameters:
+/// - obj: The object to release. If this parameter is an Objective-C object,
+/// the function is equivalent to calling the `release` method of that object.
+///
+/// Don’t call this function in Swift code or on types you manage using
+/// automatic reference counting (ARC).
+///
+/// # Safety
+///
+/// `obj` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn cp_release(obj: *mut c_void) {
+    extern "C-unwind" {
+        fn cp_release(obj: *mut c_void);
+    }
+    unsafe { cp_release(obj) }
 }

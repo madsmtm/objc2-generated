@@ -74,10 +74,17 @@ extern "C" {
     pub static NSKeepAllocationStatistics: Bool;
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `object` should be of the correct type.
-    /// - `object` might not allow `None`.
-    pub fn NSRecordAllocationEvent(event_type: c_int, object: Option<&AnyObject>);
+/// # Safety
+///
+/// - `object` should be of the correct type.
+/// - `object` might not allow `None`.
+#[inline]
+pub unsafe extern "C-unwind" fn NSRecordAllocationEvent(
+    event_type: c_int,
+    object: Option<&AnyObject>,
+) {
+    extern "C-unwind" {
+        fn NSRecordAllocationEvent(event_type: c_int, object: Option<&AnyObject>);
+    }
+    unsafe { NSRecordAllocationEvent(event_type, object) }
 }
