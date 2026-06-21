@@ -137,17 +137,6 @@ impl UIDocumentMenuViewController {
             mode: UIDocumentPickerMode,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(feature = "UIImage", feature = "block2"))]
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
         #[unsafe(method(addOptionWithTitle:image:order:handler:))]

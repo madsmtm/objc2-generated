@@ -86,16 +86,6 @@ impl NSTextSelection {
             granularity: NSTextSelectionGranularity,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "NSTextRange")]
         #[unsafe(method(initWithRange:affinity:granularity:))]
         #[unsafe(method_family = init)]

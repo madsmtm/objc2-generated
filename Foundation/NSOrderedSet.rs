@@ -96,17 +96,6 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
-
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -746,17 +735,6 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[unsafe(method(replaceObjectAtIndex:withObject:))]
         #[unsafe(method_family = none)]
         pub fn replaceObjectAtIndex_withObject(&self, idx: NSUInteger, object: &ObjectType);
-
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

@@ -89,13 +89,6 @@ impl NSTextFieldCell {
         #[unsafe(method_family = init)]
         pub fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
         // -initImageCell: (unavailable)
 
         #[cfg(feature = "NSColor")]

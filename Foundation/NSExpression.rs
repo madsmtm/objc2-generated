@@ -212,17 +212,6 @@ impl NSExpression {
             r#type: NSExpressionType,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(expressionType))]
         #[unsafe(method_family = none)]
         pub fn expressionType(&self) -> NSExpressionType;

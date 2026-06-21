@@ -48,16 +48,6 @@ impl UITraitCollection {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[deprecated = "Compare values for specific traits in the trait collections instead"]
         #[unsafe(method(containsTraitsInCollection:))]
         #[unsafe(method_family = none)]

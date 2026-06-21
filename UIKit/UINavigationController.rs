@@ -133,16 +133,6 @@ impl UINavigationController {
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(pushViewController:animated:))]
         #[unsafe(method_family = none)]
         pub fn pushViewController_animated(

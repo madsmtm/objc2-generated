@@ -88,23 +88,6 @@ impl INUIEditVoiceShortcutViewController {
     );
 }
 
-/// Methods declared on superclass `NSViewController`.
-#[cfg(feature = "objc2-app-kit")]
-#[cfg(target_os = "macos")]
-impl INUIEditVoiceShortcutViewController {
-    extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

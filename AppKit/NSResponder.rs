@@ -31,16 +31,6 @@ impl NSResponder {
 
         /// # Safety
         ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
-        /// # Safety
-        ///
         /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(nextResponder))]
         #[unsafe(method_family = none)]
@@ -308,14 +298,14 @@ impl NSResponder {
         #[unsafe(method(showContextHelp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showContextHelp(&self, sender: Option<&AnyObject>);
-    );
 
-    extern_methods!(
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(helpRequested:))]
         #[unsafe(method_family = none)]
         pub fn helpRequested(&self, event_ptr: &NSEvent);
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(shouldBeTreatedAsInkEvent:))]
         #[unsafe(method_family = none)]

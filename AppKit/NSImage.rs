@@ -179,13 +179,6 @@ impl NSImage {
         #[unsafe(method_family = init)]
         pub fn initWithSize(this: Allocated<Self>, size: NSSize) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
         #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
@@ -430,14 +423,14 @@ impl NSImage {
         #[unsafe(method(alignmentRect))]
         #[unsafe(method_family = none)]
         pub fn alignmentRect(&self) -> NSRect;
-    );
 
-    extern_methods!(
         /// Setter for [`alignmentRect`][Self::alignmentRect].
         #[unsafe(method(setAlignmentRect:))]
         #[unsafe(method_family = none)]
         pub fn setAlignmentRect(&self, alignment_rect: NSRect);
+    );
 
+    extern_methods!(
         #[unsafe(method(isTemplate))]
         #[unsafe(method_family = none)]
         pub fn isTemplate(&self) -> bool;

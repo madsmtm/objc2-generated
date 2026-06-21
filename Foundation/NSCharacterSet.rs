@@ -152,14 +152,6 @@ impl NSCharacterSet {
             f_name: &NSString,
         ) -> Option<Retained<NSCharacterSet>>;
 
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
         #[cfg(feature = "NSString")]
         #[unsafe(method(characterIsMember:))]
         #[unsafe(method_family = none)]
@@ -384,19 +376,6 @@ impl NSMutableCharacterSet {
         pub fn characterSetWithContentsOfFile(
             f_name: &NSString,
         ) -> Option<Retained<NSMutableCharacterSet>>;
-    );
-}
-
-/// Methods declared on superclass `NSCharacterSet`.
-impl NSMutableCharacterSet {
-    extern_methods!(
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     );
 }
 

@@ -164,16 +164,6 @@ impl MKAnnotationView {
             reuse_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(reuseIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn reuseIdentifier(&self) -> Option<Retained<NSString>>;

@@ -200,16 +200,6 @@ impl NSView {
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(window))]
         #[unsafe(method_family = none)]
@@ -451,13 +441,13 @@ impl NSView {
         #[unsafe(method(setBoundsRotation:))]
         #[unsafe(method_family = none)]
         pub fn setBoundsRotation(&self, bounds_rotation: CGFloat);
-    );
 
-    extern_methods!(
         #[unsafe(method(translateOriginToPoint:))]
         #[unsafe(method_family = none)]
         pub fn translateOriginToPoint(&self, translation: NSPoint);
+    );
 
+    extern_methods!(
         #[unsafe(method(scaleUnitSquareToSize:))]
         #[unsafe(method_family = none)]
         pub fn scaleUnitSquareToSize(&self, new_unit_size: NSSize);
@@ -677,9 +667,7 @@ impl NSView {
             rect: NSRect,
             context: &NSGraphicsContext,
         );
-    );
 
-    extern_methods!(
         #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
         #[unsafe(method(bitmapImageRepForCachingDisplayInRect:))]
         #[unsafe(method_family = none)]
@@ -687,7 +675,9 @@ impl NSView {
             &self,
             rect: NSRect,
         ) -> Option<Retained<NSBitmapImageRep>>;
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
         #[unsafe(method(cacheDisplayInRect:toBitmapImageRep:))]
         #[unsafe(method_family = none)]
@@ -939,9 +929,7 @@ impl NSView {
         #[unsafe(method(shadow))]
         #[unsafe(method_family = none)]
         pub fn shadow(&self) -> Option<Retained<NSShadow>>;
-    );
 
-    extern_methods!(
         #[cfg(feature = "NSShadow")]
         /// Setter for [`shadow`][Self::shadow].
         ///
@@ -949,7 +937,9 @@ impl NSView {
         #[unsafe(method(setShadow:))]
         #[unsafe(method_family = none)]
         pub fn setShadow(&self, shadow: Option<&NSShadow>);
+    );
 
+    extern_methods!(
         #[unsafe(method(clipsToBounds))]
         #[unsafe(method_family = none)]
         pub fn clipsToBounds(&self) -> bool;

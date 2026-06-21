@@ -566,16 +566,6 @@ impl NSPopUpButton {
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 

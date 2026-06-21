@@ -157,13 +157,6 @@ impl NSScrubberSelectionStyle {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
         #[cfg(all(
             feature = "NSResponder",
             feature = "NSScrubberItemView",
@@ -458,13 +451,6 @@ impl NSScrubber {
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         /// Invalidate all data within the scrubber control, triggering a reload of all content, and clearing the current selection.
         #[unsafe(method(reloadData))]

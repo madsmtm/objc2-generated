@@ -1065,16 +1065,6 @@ impl UICollectionView {
             layout: &UICollectionViewLayout,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(collectionViewLayout))]
         #[unsafe(method_family = none)]
@@ -1408,9 +1398,7 @@ impl UICollectionView {
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
-    );
 
-    extern_methods!(
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(layoutAttributesForSupplementaryElementOfKind:atIndexPath:))]
         #[unsafe(method_family = none)]
@@ -1419,7 +1407,9 @@ impl UICollectionView {
             kind: &NSString,
             index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(indexPathForItemAtPoint:))]
         #[unsafe(method_family = none)]

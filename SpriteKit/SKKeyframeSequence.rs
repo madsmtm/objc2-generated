@@ -98,18 +98,6 @@ impl SKKeyframeSequence {
             num_items: NSUInteger,
         ) -> Retained<Self>;
 
-        /// Support coding and decoding via NSKeyedArchiver.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;

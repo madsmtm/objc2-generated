@@ -41,17 +41,6 @@ impl UILocalNotification {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[unsafe(method(fireDate))]
         #[unsafe(method_family = none)]

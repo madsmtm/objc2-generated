@@ -65,18 +65,6 @@ impl SK3DNode {
             viewport_size: CGSize,
         ) -> Retained<Self>;
 
-        /// Support coding and decoding via NSKeyedArchiver.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a 3D Node with the viewport size the 3D content will be rendered with.
         #[unsafe(method(nodeWithViewportSize:))]

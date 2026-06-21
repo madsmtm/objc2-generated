@@ -272,16 +272,6 @@ impl NSTextView {
             container: Option<&NSTextContainer>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -622,13 +612,13 @@ impl NSTextView {
         #[unsafe(method(setNeedsDisplayInRect:avoidAdditionalLayout:))]
         #[unsafe(method_family = none)]
         pub fn setNeedsDisplayInRect_avoidAdditionalLayout(&self, rect: NSRect, flag: bool);
-    );
 
-    extern_methods!(
         #[unsafe(method(shouldDrawInsertionPoint))]
         #[unsafe(method_family = none)]
         pub fn shouldDrawInsertionPoint(&self) -> bool;
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSColor")]
         #[unsafe(method(drawInsertionPointInRect:color:turnedOn:))]
         #[unsafe(method_family = none)]

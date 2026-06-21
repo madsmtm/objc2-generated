@@ -179,31 +179,6 @@ impl MPSImageConvolution {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageConvolution {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageConvolution {
@@ -327,31 +302,6 @@ impl MPSImageLaplacian {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageLaplacian {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageLaplacian {
@@ -459,31 +409,6 @@ impl MPSImageBox {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageBox {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -616,31 +541,6 @@ impl MPSImageTent {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageTent {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageTent {
@@ -754,31 +654,6 @@ impl MPSImageGaussianBlur {
         #[unsafe(method(sigma))]
         #[unsafe(method_family = none)]
         pub unsafe fn sigma(&self) -> c_float;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageGaussianBlur {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -913,31 +788,6 @@ impl MPSImageSobel {
         #[unsafe(method(colorTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorTransform(&self) -> NonNull<c_float>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageSobel {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -1163,31 +1013,6 @@ impl MPSImageCanny {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageCanny {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageCanny {
@@ -1358,31 +1183,6 @@ impl MPSImagePyramid {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImagePyramid {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImagePyramid {
@@ -1548,31 +1348,6 @@ impl MPSImageGaussianPyramid {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageGaussianPyramid {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -1780,31 +1555,6 @@ impl MPSImageLaplacianPyramid {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageLaplacianPyramid {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageLaplacianPyramid {
@@ -1949,31 +1699,6 @@ impl MPSImageLaplacianPyramidSubtract {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageLaplacianPyramidSubtract {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageLaplacianPyramidSubtract {
@@ -2114,31 +1839,6 @@ impl MPSImageLaplacianPyramidAdd {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-impl MPSImageLaplacianPyramidAdd {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }

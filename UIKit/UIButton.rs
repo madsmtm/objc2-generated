@@ -214,16 +214,6 @@ impl UIButton {
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(
             feature = "UIAction",
             feature = "UIMenuElement",
@@ -585,14 +575,14 @@ impl UIButton {
         #[unsafe(method(currentTitleShadowColor))]
         #[unsafe(method_family = none)]
         pub fn currentTitleShadowColor(&self) -> Option<Retained<UIColor>>;
-    );
 
-    extern_methods!(
         #[cfg(feature = "UIImage")]
         #[unsafe(method(currentImage))]
         #[unsafe(method_family = none)]
         pub fn currentImage(&self) -> Option<Retained<UIImage>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "UIImage")]
         #[unsafe(method(currentBackgroundImage))]
         #[unsafe(method_family = none)]

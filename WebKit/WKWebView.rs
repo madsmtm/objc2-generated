@@ -242,16 +242,6 @@ impl WKWebView {
             configuration: &WKWebViewConfiguration,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "WKNavigation")]
         /// Navigates to a requested URL.
         ///
@@ -765,14 +755,14 @@ impl WKWebView {
         #[unsafe(method(allowsLinkPreview))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsLinkPreview(&self) -> bool;
-    );
 
-    extern_methods!(
         /// Setter for [`allowsLinkPreview`][Self::allowsLinkPreview].
         #[unsafe(method(setAllowsLinkPreview:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsLinkPreview(&self, allows_link_preview: bool);
+    );
 
+    extern_methods!(
         #[unsafe(method(allowsMagnification))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsMagnification(&self) -> bool;

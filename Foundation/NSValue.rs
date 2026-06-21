@@ -60,17 +60,6 @@ impl NSValue {
             value: NonNull<c_void>,
             r#type: &CStr,
         ) -> Retained<Self>;
-
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -169,17 +158,6 @@ extern_conformance!(
 
 impl NSNumber {
     extern_methods!(
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(initWithChar:))]
         #[unsafe(method_family = init)]
         pub fn initWithChar(this: Allocated<Self>, value: c_char) -> Retained<NSNumber>;

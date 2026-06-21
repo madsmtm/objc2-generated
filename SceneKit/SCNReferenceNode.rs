@@ -93,18 +93,6 @@ impl SCNReferenceNode {
             reference_url: &NSURL,
         ) -> Option<Retained<Self>>;
 
-        /// Support coding and decoding via NSKeyedArchiver.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         /// Creates a reference node with a url.
         #[unsafe(method(referenceNodeWithURL:))]
         #[unsafe(method_family = none)]

@@ -228,19 +228,6 @@ impl MPSCNNConvolutionDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn encodeWithCoder(&self, a_coder: &NSCoder);
 
-        /// <NSSecureCoding
-        /// > support
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(
             feature = "MPSCNNKernel",
             feature = "MPSCNNNeuron",
@@ -535,19 +522,6 @@ impl MPSCNNSubPixelConvolutionDescriptor {
 /// Methods declared on superclass `MPSCNNConvolutionDescriptor`.
 impl MPSCNNSubPixelConvolutionDescriptor {
     extern_methods!(
-        /// <NSSecureCoding
-        /// > support
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(
             feature = "MPSCNNKernel",
             feature = "MPSCNNNeuron",
@@ -671,19 +645,6 @@ impl MPSCNNDepthWiseConvolutionDescriptor {
 /// Methods declared on superclass `MPSCNNConvolutionDescriptor`.
 impl MPSCNNDepthWiseConvolutionDescriptor {
     extern_methods!(
-        /// <NSSecureCoding
-        /// > support
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(
             feature = "MPSCNNKernel",
             feature = "MPSCNNNeuron",
@@ -2118,31 +2079,6 @@ impl MPSCNNConvolution {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSCNNConvolution {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNConvolution {
@@ -2470,31 +2406,6 @@ impl MPSCNNConvolutionGradient {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSCNNConvolutionGradient {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNConvolutionGradient {
@@ -2665,31 +2576,6 @@ impl MPSCNNFullyConnected {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSCNNFullyConnected {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNFullyConnected {
@@ -2790,31 +2676,6 @@ impl MPSCNNFullyConnectedGradient {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSCNNFullyConnectedGradient {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -3315,31 +3176,6 @@ impl MPSCNNConvolutionTranspose {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSCNNConvolutionTranspose {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNConvolutionTranspose {
@@ -3496,31 +3332,6 @@ impl MPSCNNConvolutionTransposeGradient {
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             state: &MPSCNNConvolutionWeightsAndBiasesState,
         );
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSCNNConvolutionTransposeGradient {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -3772,31 +3583,6 @@ impl MPSCNNBinaryConvolution {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSCNNBinaryConvolution {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNBinaryConvolution {
@@ -3990,31 +3776,6 @@ impl MPSCNNBinaryFullyConnected {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSCNNBinaryFullyConnected {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNBinaryFullyConnected {
@@ -4148,31 +3909,6 @@ impl MPSNNGramMatrixCalculation {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNGramMatrixCalculation {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNGramMatrixCalculation {
@@ -4294,31 +4030,6 @@ impl MPSNNGramMatrixCalculationGradient {
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNGramMatrixCalculationGradient {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 

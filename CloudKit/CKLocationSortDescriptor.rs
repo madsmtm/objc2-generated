@@ -67,18 +67,6 @@ impl CKLocationSortDescriptor {
             relative_location: &CLLocation,
         ) -> Retained<Self>;
 
-        /// Creates a location sort descriptor from a serialized instance.
-        ///
-        /// - Parameters:
-        /// - aDecoder: The coder to use when deserializing the location sort descriptor.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
-
         #[cfg(feature = "objc2-core-location")]
         /// The reference location for sorting records.
         #[unsafe(method(relativeLocation))]

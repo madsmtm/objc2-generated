@@ -1218,16 +1218,6 @@ impl UITableView {
             style: UITableViewStyle,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
         pub fn style(&self) -> UITableViewStyle;
@@ -1508,14 +1498,14 @@ impl UITableView {
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<UITableViewCell>>;
-    );
 
-    extern_methods!(
         #[cfg(feature = "UITableViewCell")]
         #[unsafe(method(visibleCells))]
         #[unsafe(method_family = none)]
         pub fn visibleCells(&self) -> Retained<NSArray<UITableViewCell>>;
+    );
 
+    extern_methods!(
         #[unsafe(method(indexPathsForVisibleRows))]
         #[unsafe(method_family = none)]
         pub fn indexPathsForVisibleRows(&self) -> Option<Retained<NSArray<NSIndexPath>>>;
@@ -1804,13 +1794,13 @@ impl UITableView {
         #[unsafe(method(setSeparatorEffect:))]
         #[unsafe(method_family = none)]
         pub fn setSeparatorEffect(&self, separator_effect: Option<&UIVisualEffect>);
-    );
 
-    extern_methods!(
         #[unsafe(method(cellLayoutMarginsFollowReadableWidth))]
         #[unsafe(method_family = none)]
         pub fn cellLayoutMarginsFollowReadableWidth(&self) -> bool;
+    );
 
+    extern_methods!(
         /// Setter for [`cellLayoutMarginsFollowReadableWidth`][Self::cellLayoutMarginsFollowReadableWidth].
         #[unsafe(method(setCellLayoutMarginsFollowReadableWidth:))]
         #[unsafe(method_family = none)]

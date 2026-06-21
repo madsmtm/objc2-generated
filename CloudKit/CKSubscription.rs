@@ -313,18 +313,6 @@ impl CKQuerySubscription {
             query_subscription_options: CKQuerySubscriptionOptions,
         ) -> Retained<Self>;
 
-        /// Creates a query-based subscription from a serialized instance.
-        ///
-        /// - Parameters:
-        /// - aDecoder: The coder for decoding the serialized query subscription.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
-
         #[cfg(feature = "CKRecord")]
         /// The type of record that the subscription queries.
         #[unsafe(method(recordType))]
@@ -522,18 +510,6 @@ impl CKRecordZoneSubscription {
             subscription_id: &CKSubscriptionID,
         ) -> Retained<Self>;
 
-        /// Creates a zone-based subscription from a serialized instance.
-        ///
-        /// - Parameters:
-        /// - aDecoder: The coder for decoding the serialized record zone subscription.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
-
         #[cfg(feature = "CKRecordZoneID")]
         /// The ID of the record zone that the subscription queries.
         ///
@@ -697,18 +673,6 @@ impl CKDatabaseSubscription {
             this: Allocated<Self>,
             subscription_id: &CKSubscriptionID,
         ) -> Retained<Self>;
-
-        /// Creates a database subscription from a serialized instance.
-        ///
-        /// - Parameters:
-        /// - aDecoder: The object that decodes the serialized database subscription.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
         /// The type of record that the subscription queries.

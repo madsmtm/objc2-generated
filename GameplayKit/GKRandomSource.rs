@@ -140,21 +140,6 @@ impl GKRandomSource {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// Deserializes a random source from an NSCoder. All random sources support coding for serializing and deserializing the state
-        /// of the random source. Each subclass has its own contract for what parts of the state is preserved when serialized but the
-        /// general contract is that a serialized source must generate the same sequence of values as the original source would from the
-        /// instant it was serialized.
-        ///
-        /// Note that the sharedRandom instance is an exception as it is explicitly seedless and a shared singleton instance.
-        /// When serialized and deserialized it will return the current sharedRandom instance instead.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
-
         /// Returns a shared instance of a random source that uses the system's underlying random source.
         /// Using this instance modifies the outcome of future calls to the arc4random family of C calls. It is
         /// also affected by calls to the C apis and should not be used for sources that are intended to
@@ -286,26 +271,6 @@ impl GKARC4RandomSource {
     );
 }
 
-/// Methods declared on superclass `GKRandomSource`.
-impl GKARC4RandomSource {
-    extern_methods!(
-        /// Deserializes a random source from an NSCoder. All random sources support coding for serializing and deserializing the state
-        /// of the random source. Each subclass has its own contract for what parts of the state is preserved when serialized but the
-        /// general contract is that a serialized source must generate the same sequence of values as the original source would from the
-        /// instant it was serialized.
-        ///
-        /// Note that the sharedRandom instance is an exception as it is explicitly seedless and a shared singleton instance.
-        /// When serialized and deserialized it will return the current sharedRandom instance instead.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 impl GKARC4RandomSource {
     extern_methods!(
@@ -380,26 +345,6 @@ impl GKLinearCongruentialRandomSource {
     );
 }
 
-/// Methods declared on superclass `GKRandomSource`.
-impl GKLinearCongruentialRandomSource {
-    extern_methods!(
-        /// Deserializes a random source from an NSCoder. All random sources support coding for serializing and deserializing the state
-        /// of the random source. Each subclass has its own contract for what parts of the state is preserved when serialized but the
-        /// general contract is that a serialized source must generate the same sequence of values as the original source would from the
-        /// instant it was serialized.
-        ///
-        /// Note that the sharedRandom instance is an exception as it is explicitly seedless and a shared singleton instance.
-        /// When serialized and deserialized it will return the current sharedRandom instance instead.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 impl GKLinearCongruentialRandomSource {
     extern_methods!(
@@ -469,26 +414,6 @@ impl GKMersenneTwisterRandomSource {
         #[unsafe(method(initWithSeed:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSeed(this: Allocated<Self>, seed: u64) -> Retained<Self>;
-    );
-}
-
-/// Methods declared on superclass `GKRandomSource`.
-impl GKMersenneTwisterRandomSource {
-    extern_methods!(
-        /// Deserializes a random source from an NSCoder. All random sources support coding for serializing and deserializing the state
-        /// of the random source. Each subclass has its own contract for what parts of the state is preserved when serialized but the
-        /// general contract is that a serialized source must generate the same sequence of values as the original source would from the
-        /// instant it was serialized.
-        ///
-        /// Note that the sharedRandom instance is an exception as it is explicitly seedless and a shared singleton instance.
-        /// When serialized and deserialized it will return the current sharedRandom instance instead.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
     );
 }
 

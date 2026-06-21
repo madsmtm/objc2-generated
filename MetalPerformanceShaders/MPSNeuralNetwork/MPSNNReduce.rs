@@ -122,31 +122,6 @@ impl MPSNNReduceUnary {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceUnary {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceUnary {
@@ -230,31 +205,6 @@ impl MPSNNReduceRowMin {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceRowMin {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -346,31 +296,6 @@ impl MPSNNReduceColumnMin {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceColumnMin {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceColumnMin {
@@ -454,31 +379,6 @@ impl MPSNNReduceFeatureChannelsMin {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceFeatureChannelsMin {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -571,31 +471,6 @@ impl MPSNNReduceFeatureChannelsArgumentMin {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceFeatureChannelsArgumentMin {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceFeatureChannelsArgumentMin {
@@ -679,31 +554,6 @@ impl MPSNNReduceRowMax {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceRowMax {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -795,31 +645,6 @@ impl MPSNNReduceColumnMax {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceColumnMax {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceColumnMax {
@@ -903,31 +728,6 @@ impl MPSNNReduceFeatureChannelsMax {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceFeatureChannelsMax {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -1020,31 +820,6 @@ impl MPSNNReduceFeatureChannelsArgumentMax {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceFeatureChannelsArgumentMax {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceFeatureChannelsArgumentMax {
@@ -1128,31 +903,6 @@ impl MPSNNReduceRowMean {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceRowMean {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -1244,31 +994,6 @@ impl MPSNNReduceColumnMean {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceColumnMean {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceColumnMean {
@@ -1352,31 +1077,6 @@ impl MPSNNReduceFeatureChannelsMean {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceFeatureChannelsMean {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -1468,31 +1168,6 @@ impl MPSNNReduceRowSum {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceRowSum {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceRowSum {
@@ -1576,31 +1251,6 @@ impl MPSNNReduceColumnSum {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceColumnSum {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -1701,31 +1351,6 @@ impl MPSNNReduceFeatureChannelsSum {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceFeatureChannelsSum {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -1883,31 +1508,6 @@ impl MPSNNReduceBinary {
     );
 }
 
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceBinary {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceBinary {
@@ -1989,31 +1589,6 @@ impl MPSNNReduceFeatureChannelsAndWeightsMean {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceFeatureChannelsAndWeightsMean {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -2123,31 +1698,6 @@ impl MPSNNReduceFeatureChannelsAndWeightsSum {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNReduceFeatureChannelsAndWeightsSum {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }
@@ -2321,31 +1871,6 @@ impl MPSNNLocalCorrelation {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
-/// Methods declared on superclass `MPSKernel`.
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-impl MPSNNLocalCorrelation {
-    extern_methods!(
-        /// Called by NSCoder to decode MPSKernels
-        ///
-        /// This isn't the right interface to decode a MPSKernel, but
-        /// it is the one that NSCoder uses. To enable your NSCoder
-        /// (e.g. NSKeyedUnarchiver) to set which device to use
-        /// extend the object to adopt the MPSDeviceProvider
-        /// protocol. Otherwise, the Metal system default device
-        /// will be used.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
     );
 }

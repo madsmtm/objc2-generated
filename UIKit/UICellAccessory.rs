@@ -123,16 +123,6 @@ impl UICellAccessory {
         #[unsafe(method_family = none)]
         pub fn setTintColor(&self, tint_color: Option<&UIColor>);
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -183,16 +173,6 @@ impl UICellAccessoryDisclosureIndicator {}
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryDisclosureIndicator {
     extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -259,16 +239,6 @@ impl UICellAccessoryDetail {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryDetail {
     extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -319,16 +289,6 @@ impl UICellAccessoryCheckmark {}
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryCheckmark {
     extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -407,16 +367,6 @@ impl UICellAccessoryDelete {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryDelete {
     extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -495,16 +445,6 @@ impl UICellAccessoryInsert {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryInsert {
     extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -568,16 +508,6 @@ impl UICellAccessoryReorder {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryReorder {
     extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -643,16 +573,6 @@ impl UICellAccessoryMultiselect {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryMultiselect {
     extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -757,16 +677,6 @@ impl UICellAccessoryOutlineDisclosure {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryOutlineDisclosure {
     extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -847,16 +757,6 @@ impl UICellAccessoryPopUpMenu {
             &self,
             selected_element_did_change_handler: Option<&block2::DynBlock<dyn Fn(NonNull<UIMenu>)>>,
         );
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -925,16 +825,6 @@ impl UICellAccessoryLabel {
             &self,
             adjusts_font_for_content_size_category: bool,
         );
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -1091,15 +981,5 @@ impl UICellAccessoryCustomView {
         #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         pub fn setPosition(&self, position: Option<&UICellAccessoryPosition>);
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }

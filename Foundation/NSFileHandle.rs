@@ -46,17 +46,6 @@ impl NSFileHandle {
             closeopt: bool,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[unsafe(method(readDataToEndOfFileAndReturnError:_))]
         #[unsafe(method_family = none)]

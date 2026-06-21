@@ -287,18 +287,6 @@ impl CKQuery {
 
         // +new (unavailable)
 
-        /// Creates an operation group from a serialized instance.
-        ///
-        /// - Parameters:
-        /// - aDecoder: The coder to use when deserializing the group.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
-
         #[cfg(feature = "CKRecord")]
         /// Creates a query with the specified record type and predicate.
         ///

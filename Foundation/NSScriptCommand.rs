@@ -55,17 +55,6 @@ impl NSScriptCommand {
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(commandDescription))]
         #[unsafe(method_family = none)]

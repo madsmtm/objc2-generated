@@ -114,16 +114,6 @@ impl NSColor {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(feature = "NSColorSpace", feature = "objc2-core-foundation"))]
         /// # Safety
         ///
@@ -433,13 +423,13 @@ impl NSColor {
         #[unsafe(method(linkColor))]
         #[unsafe(method_family = none)]
         pub fn linkColor() -> Retained<NSColor>;
-    );
 
-    extern_methods!(
         #[unsafe(method(placeholderTextColor))]
         #[unsafe(method_family = none)]
         pub fn placeholderTextColor() -> Retained<NSColor>;
+    );
 
+    extern_methods!(
         #[unsafe(method(windowFrameTextColor))]
         #[unsafe(method_family = none)]
         pub fn windowFrameTextColor() -> Retained<NSColor>;
@@ -644,13 +634,13 @@ impl NSColor {
         #[unsafe(method(highlightColor))]
         #[unsafe(method_family = none)]
         pub fn highlightColor() -> Retained<NSColor>;
-    );
 
-    extern_methods!(
         #[unsafe(method(shadowColor))]
         #[unsafe(method_family = none)]
         pub fn shadowColor() -> Retained<NSColor>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(highlightWithLevel:))]
         #[unsafe(method_family = none)]

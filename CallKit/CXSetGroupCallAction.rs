@@ -51,16 +51,6 @@ impl CXSetGroupCallAction {
             call_uuid_to_group_with: Option<&NSUUID>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         // -initWithCallUUID: (unavailable)
 
         /// The UUID of another call to group with.

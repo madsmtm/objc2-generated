@@ -378,22 +378,6 @@ impl UIDocumentBrowserViewController {
     );
 }
 
-/// Methods declared on superclass `UIViewController`.
-#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-impl UIDocumentBrowserViewController {
-    extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIDocumentBrowserViewController {

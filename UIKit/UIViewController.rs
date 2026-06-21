@@ -188,16 +188,6 @@ impl UIViewController {
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "UIView")]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
@@ -520,9 +510,7 @@ impl UIViewController {
         #[unsafe(method(interactionActivityTrackingBaseName))]
         #[unsafe(method_family = none)]
         pub fn interactionActivityTrackingBaseName(&self) -> Option<Retained<NSString>>;
-    );
 
-    extern_methods!(
         /// Setter for [`interactionActivityTrackingBaseName`][Self::interactionActivityTrackingBaseName].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -532,7 +520,9 @@ impl UIViewController {
             &self,
             interaction_activity_tracking_base_name: Option<&NSString>,
         );
+    );
 
+    extern_methods!(
         #[unsafe(method(isBeingPresented))]
         #[unsafe(method_family = none)]
         pub fn isBeingPresented(&self) -> bool;

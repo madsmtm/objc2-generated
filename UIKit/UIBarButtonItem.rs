@@ -155,16 +155,6 @@ impl UIBarButtonItem {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "UIImage")]
         /// # Safety
         ///
@@ -551,9 +541,7 @@ impl UIBarButtonItem {
         #[unsafe(method(setSharesBackground:))]
         #[unsafe(method_family = none)]
         pub fn setSharesBackground(&self, shares_background: bool);
-    );
 
-    extern_methods!(
         /// An identifier used to match bar button items across transitions in a navigation bar or toolbar.
         ///
         /// When the set of bar button items in a navigation bar or toolbar changes (for example, when pushing
@@ -569,7 +557,9 @@ impl UIBarButtonItem {
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub fn identifier(&self) -> Option<Retained<NSString>>;
+    );
 
+    extern_methods!(
         /// Setter for [`identifier`][Self::identifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.

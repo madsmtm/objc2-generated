@@ -68,17 +68,6 @@ impl NSNotification {
             object: Option<&AnyObject>,
             user_info: Option<&NSDictionary>,
         ) -> Retained<Self>;
-
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 

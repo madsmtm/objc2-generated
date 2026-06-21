@@ -324,23 +324,6 @@ impl NSDecimalNumber {
     );
 }
 
-/// Methods declared on superclass `NSNumber`.
-#[cfg(feature = "NSValue")]
-impl NSDecimalNumber {
-    extern_methods!(
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSValue`.
 #[cfg(feature = "NSValue")]
 impl NSDecimalNumber {

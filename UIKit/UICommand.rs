@@ -109,20 +109,6 @@ impl UICommandAlternate {
             modifier_flags: UIKeyModifierFlags,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-
-        // +new (unavailable)
-
-        // -init (unavailable)
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -301,20 +287,6 @@ impl UICommand {
             alternates: &NSArray<UICommandAlternate>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-
-        // +new (unavailable)
-
-        // -init (unavailable)
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 

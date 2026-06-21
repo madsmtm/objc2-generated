@@ -66,18 +66,6 @@ impl SKReferenceNode {
             file_name: Option<&NSString>,
         ) -> Retained<Self>;
 
-        /// Support coding and decoding via NSKeyedArchiver.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         /// Create a reference node with a url
         #[unsafe(method(referenceNodeWithFileNamed:))]
         #[unsafe(method_family = none)]

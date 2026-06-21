@@ -888,16 +888,6 @@ impl UITextView {
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "NSTextContainer")]
         #[unsafe(method(textContainer))]
         #[unsafe(method_family = none)]
@@ -978,14 +968,14 @@ impl UITextView {
         #[unsafe(method(borderStyle))]
         #[unsafe(method_family = none)]
         pub fn borderStyle(&self) -> UITextViewBorderStyle;
-    );
 
-    extern_methods!(
         /// Setter for [`borderStyle`][Self::borderStyle].
         #[unsafe(method(setBorderStyle:))]
         #[unsafe(method_family = none)]
         pub fn setBorderStyle(&self, border_style: UITextViewBorderStyle);
+    );
 
+    extern_methods!(
         #[unsafe(method(textHighlightAttributes))]
         #[unsafe(method_family = none)]
         pub fn textHighlightAttributes(

@@ -340,23 +340,6 @@ impl INUIAddVoiceShortcutButton {
     );
 }
 
-/// Methods declared on superclass `NSControl`.
-#[cfg(feature = "objc2-app-kit")]
-#[cfg(target_os = "macos")]
-impl INUIAddVoiceShortcutButton {
-    extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSObject`.
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

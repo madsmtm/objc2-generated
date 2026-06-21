@@ -43,16 +43,6 @@ impl UIMotionEffect {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Abstract method. Given the `viewerOffset`, this method should compute a set of key paths
         /// and relative values pairs which will represent the effect of the device's motion on
@@ -161,16 +151,6 @@ impl UIInterpolatingMotionEffect {
             r#type: UIInterpolatingMotionEffectType,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(keyPath))]
         #[unsafe(method_family = none)]
         pub fn keyPath(&self) -> Retained<NSString>;
@@ -273,16 +253,6 @@ impl UIMotionEffectGroup {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 

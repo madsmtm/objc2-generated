@@ -112,13 +112,6 @@ impl UIContentUnavailableView {
             configuration: &UIContentUnavailableConfiguration,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
         // -initWithFrame: (unavailable)
 
         // -init (unavailable)

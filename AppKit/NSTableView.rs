@@ -385,16 +385,6 @@ impl NSTableView {
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
@@ -646,13 +636,13 @@ impl NSTableView {
         #[unsafe(method(editedRow))]
         #[unsafe(method_family = none)]
         pub fn editedRow(&self) -> NSInteger;
-    );
 
-    extern_methods!(
         #[unsafe(method(clickedColumn))]
         #[unsafe(method_family = none)]
         pub fn clickedColumn(&self) -> NSInteger;
+    );
 
+    extern_methods!(
         #[unsafe(method(clickedRow))]
         #[unsafe(method_family = none)]
         pub fn clickedRow(&self) -> NSInteger;
@@ -915,13 +905,13 @@ impl NSTableView {
         #[unsafe(method(columnAtPoint:))]
         #[unsafe(method_family = none)]
         pub fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
-    );
 
-    extern_methods!(
         #[unsafe(method(rowAtPoint:))]
         #[unsafe(method_family = none)]
         pub fn rowAtPoint(&self, point: NSPoint) -> NSInteger;
+    );
 
+    extern_methods!(
         #[unsafe(method(frameOfCellAtColumn:row:))]
         #[unsafe(method_family = none)]
         pub fn frameOfCellAtColumn_row(&self, column: NSInteger, row: NSInteger) -> NSRect;

@@ -58,16 +58,6 @@ impl UICollectionViewTransitionLayout {
             new_layout: &UICollectionViewLayout,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         // -init (unavailable)
 
         #[cfg(feature = "objc2-core-foundation")]

@@ -141,17 +141,6 @@ impl NSScriptObjectSpecifier {
             property: &NSString,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         /// # Safety
         ///
         /// This is not retained internally, you must ensure the object is still alive.
@@ -388,17 +377,6 @@ impl NSIndexSpecifier {
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
         ) -> Retained<Self>;
-
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -465,17 +443,6 @@ impl NSMiddleSpecifier {
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
         ) -> Retained<Self>;
-
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -517,17 +484,6 @@ extern_conformance!(
 
 impl NSNameSpecifier {
     extern_methods!(
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(
             feature = "NSClassDescription",
             feature = "NSScriptClassDescription",
@@ -726,17 +682,6 @@ impl NSPropertySpecifier {
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
         ) -> Retained<Self>;
-
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -803,17 +748,6 @@ impl NSRandomSpecifier {
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
         ) -> Retained<Self>;
-
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -855,17 +789,6 @@ extern_conformance!(
 
 impl NSRangeSpecifier {
     extern_methods!(
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(
             feature = "NSClassDescription",
             feature = "NSScriptClassDescription",
@@ -968,17 +891,6 @@ extern_conformance!(
 
 impl NSRelativeSpecifier {
     extern_methods!(
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(
             feature = "NSClassDescription",
             feature = "NSScriptClassDescription",
@@ -1081,17 +993,6 @@ extern_conformance!(
 
 impl NSUniqueIDSpecifier {
     extern_methods!(
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(
             feature = "NSClassDescription",
             feature = "NSScriptClassDescription",
@@ -1193,17 +1094,6 @@ extern_conformance!(
 
 impl NSWhoseSpecifier {
     extern_methods!(
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(
             feature = "NSClassDescription",
             feature = "NSScriptClassDescription",

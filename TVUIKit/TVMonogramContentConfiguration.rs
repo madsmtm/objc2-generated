@@ -198,21 +198,6 @@ impl TVMonogramContentView {
     );
 }
 
-/// Methods declared on superclass `UIView`.
-impl TVMonogramContentView {
-    extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmonogramcontenttextproperties?language=objc)
     #[unsafe(super(NSObject))]

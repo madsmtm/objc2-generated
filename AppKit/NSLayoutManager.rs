@@ -153,16 +153,6 @@ impl NSLayoutManager {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "NSTextStorage")]
         /// ************************* Text storage **************************
         ///
@@ -456,13 +446,13 @@ impl NSLayoutManager {
         #[unsafe(method(isValidGlyphIndex:))]
         #[unsafe(method_family = none)]
         pub fn isValidGlyphIndex(&self, glyph_index: NSUInteger) -> bool;
-    );
 
-    extern_methods!(
         #[unsafe(method(propertyForGlyphAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn propertyForGlyphAtIndex(&self, glyph_index: NSUInteger) -> NSGlyphProperty;
+    );
 
+    extern_methods!(
         #[unsafe(method(characterIndexForGlyphAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn characterIndexForGlyphAtIndex(&self, glyph_index: NSUInteger) -> NSUInteger;
@@ -905,9 +895,7 @@ impl NSLayoutManager {
             line_glyph_range: NSRange,
             container_origin: NSPoint,
         );
-    );
 
-    extern_methods!(
         #[cfg(feature = "NSAttributedString")]
         #[unsafe(method(strikethroughGlyphRange:strikethroughType:lineFragmentRect:lineFragmentGlyphRange:containerOrigin:))]
         #[unsafe(method_family = none)]
@@ -919,7 +907,9 @@ impl NSLayoutManager {
             line_glyph_range: NSRange,
             container_origin: NSPoint,
         );
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSCell")]
         #[unsafe(method(showAttachmentCell:inRect:characterIndex:))]
         #[unsafe(method_family = none)]

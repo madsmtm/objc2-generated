@@ -115,18 +115,6 @@ impl SKNode {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// Support coding and decoding via NSKeyedArchiver.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(node))]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
@@ -440,13 +428,13 @@ impl SKNode {
         #[unsafe(method(removeChildrenInArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeChildrenInArray(&self, nodes: &NSArray<SKNode>);
-    );
 
-    extern_methods!(
         #[unsafe(method(removeAllChildren))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllChildren(&self);
+    );
 
+    extern_methods!(
         #[unsafe(method(removeFromParent))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromParent(&self);

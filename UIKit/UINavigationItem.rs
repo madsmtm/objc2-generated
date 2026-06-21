@@ -194,16 +194,6 @@ impl UINavigationItem {
         #[unsafe(method_family = init)]
         pub fn initWithTitle(this: Allocated<Self>, title: &NSString) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         /// Title when topmost on the stack. default is nil
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -554,15 +544,15 @@ impl UINavigationItem {
         #[unsafe(method(leftBarButtonItem))]
         #[unsafe(method_family = none)]
         pub fn leftBarButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
-    );
 
-    extern_methods!(
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Setter for [`leftBarButtonItem`][Self::leftBarButtonItem].
         #[unsafe(method(setLeftBarButtonItem:))]
         #[unsafe(method_family = none)]
         pub fn setLeftBarButtonItem(&self, left_bar_button_item: Option<&UIBarButtonItem>);
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[unsafe(method(rightBarButtonItem))]
         #[unsafe(method_family = none)]

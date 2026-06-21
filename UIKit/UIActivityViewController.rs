@@ -102,8 +102,6 @@ impl UIActivityViewController {
 
         // -initWithNibName:bundle: (unavailable)
 
-        // -initWithCoder: (unavailable)
-
         #[cfg(feature = "UIActivity")]
         /// # Safety
         ///

@@ -61,14 +61,6 @@ impl NSDateInterval {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
         #[cfg(feature = "NSDate")]
         #[unsafe(method(initWithStartDate:duration:))]
         #[unsafe(method_family = init)]

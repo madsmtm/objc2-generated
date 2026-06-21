@@ -71,16 +71,6 @@ impl UIGestureRecognizer {
 
         /// # Safety
         ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
-        /// # Safety
-        ///
         /// - `target` should be of the correct type.
         /// - `action` must be a valid selector.
         #[unsafe(method(addTarget:action:))]

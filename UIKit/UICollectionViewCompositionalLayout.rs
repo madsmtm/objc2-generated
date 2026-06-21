@@ -211,22 +211,6 @@ impl UICollectionViewCompositionalLayout {
     );
 }
 
-/// Methods declared on superclass `UICollectionViewLayout`.
-#[cfg(feature = "UICollectionViewLayout")]
-impl UICollectionViewCompositionalLayout {
-    extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]

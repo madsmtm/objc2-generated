@@ -124,16 +124,6 @@ impl NSLayoutManager {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "NSTextStorage")]
         /// ************************* Text storage **************************
         ///
@@ -449,9 +439,7 @@ impl NSLayoutManager {
             flag: bool,
             glyph_index: NSUInteger,
         );
-    );
 
-    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setAttachmentSize:forGlyphRange:))]
         #[unsafe(method_family = none)]
@@ -460,7 +448,9 @@ impl NSLayoutManager {
             attachment_size: CGSize,
             glyph_range: NSRange,
         );
+    );
 
+    extern_methods!(
         /// ********************** Get layout information ***********************
         ///
         /// # Safety

@@ -138,13 +138,6 @@ impl UIActivityIndicatorView {
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
         #[unsafe(method(activityIndicatorViewStyle))]
         #[unsafe(method_family = none)]
         pub fn activityIndicatorViewStyle(&self) -> UIActivityIndicatorViewStyle;

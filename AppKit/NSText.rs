@@ -141,16 +141,6 @@ impl NSText {
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         pub fn string(&self) -> Retained<NSString>;
@@ -381,14 +371,14 @@ impl NSText {
         #[unsafe(method(isVerticallyResizable))]
         #[unsafe(method_family = none)]
         pub fn isVerticallyResizable(&self) -> bool;
-    );
 
-    extern_methods!(
         /// Setter for [`isVerticallyResizable`][Self::isVerticallyResizable].
         #[unsafe(method(setVerticallyResizable:))]
         #[unsafe(method_family = none)]
         pub fn setVerticallyResizable(&self, vertically_resizable: bool);
+    );
 
+    extern_methods!(
         #[unsafe(method(sizeToFit))]
         #[unsafe(method_family = none)]
         pub fn sizeToFit(&self);

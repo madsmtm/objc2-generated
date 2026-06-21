@@ -222,16 +222,6 @@ impl<ObjectType: Message> SBElementArray<ObjectType> {
             this: Allocated<Self>,
             num_items: NSUInteger,
         ) -> Retained<Self>;
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 

@@ -95,18 +95,6 @@ impl CKOperationGroup {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// Creates an operation group from a serialized instance.
-        ///
-        /// - Parameters:
-        /// - aDecoder: The coder to use when deserializing the group.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
-
         /// The operation group's unique identifier.
         ///
         /// The framework generates this value and it's unique to this operation group. The system sends this identifier to CloudKit, which can use it to identify server-side logs for ``CKOperationGroup``.

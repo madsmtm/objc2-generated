@@ -311,16 +311,6 @@ impl UITableViewCell {
             reuse_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(
             feature = "UICellConfigurationState",
             feature = "UIViewConfigurationState"
@@ -613,13 +603,13 @@ impl UITableViewCell {
         #[unsafe(method(setEditingAccessoryView:))]
         #[unsafe(method_family = none)]
         pub fn setEditingAccessoryView(&self, editing_accessory_view: Option<&UIView>);
-    );
 
-    extern_methods!(
         #[unsafe(method(indentationLevel))]
         #[unsafe(method_family = none)]
         pub fn indentationLevel(&self) -> NSInteger;
+    );
 
+    extern_methods!(
         /// Setter for [`indentationLevel`][Self::indentationLevel].
         #[unsafe(method(setIndentationLevel:))]
         #[unsafe(method_family = none)]

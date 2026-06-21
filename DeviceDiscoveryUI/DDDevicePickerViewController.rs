@@ -53,8 +53,6 @@ impl DDDevicePickerViewController {
 
         // -initWithNibName:bundle: (unavailable)
 
-        // -initWithCoder: (unavailable)
-
         #[cfg(feature = "objc2-network")]
         #[unsafe(method(isSupportedForBrowseDescriptor:parameters:))]
         #[unsafe(method_family = none)]

@@ -194,18 +194,6 @@ impl SKSpriteNode {
             size: CGSize,
         ) -> Retained<Self>;
 
-        /// Support coding and decoding via NSKeyedArchiver.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "SKTexture")]
         /// Texture to be drawn (is stretched to fill the sprite)
         #[unsafe(method(texture))]

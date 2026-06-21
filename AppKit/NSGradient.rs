@@ -99,16 +99,6 @@ impl NSGradient {
             color_space: &NSColorSpace,
         ) -> Option<Retained<Self>>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(drawFromPoint:toPoint:options:))]
         #[unsafe(method_family = none)]
         pub fn drawFromPoint_toPoint_options(

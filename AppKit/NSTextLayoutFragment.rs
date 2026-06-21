@@ -95,16 +95,6 @@ impl NSTextLayoutFragment {
             range_in_element: Option<&NSTextRange>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         // -init (unavailable)
 
         #[cfg(feature = "NSTextLayoutManager")]

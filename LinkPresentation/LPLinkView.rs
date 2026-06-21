@@ -97,8 +97,6 @@ extern_conformance!(
 #[cfg(target_os = "macos")]
 impl LPLinkView {
     extern_methods!(
-        // -initWithCoder: (unavailable)
-
         // -encodeWithCoder: (unavailable)
 
         /// Initializes a placeholder link view without metadata for a given URL.

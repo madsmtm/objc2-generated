@@ -82,17 +82,6 @@ impl TVContentIdentifier {
             identifier: &NSString,
             container: Option<&TVContentIdentifier>,
         ) -> Retained<Self>;
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[deprecated = "TVContentIdentifier has been replaced by TVTopShelfContentProvider"]
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 

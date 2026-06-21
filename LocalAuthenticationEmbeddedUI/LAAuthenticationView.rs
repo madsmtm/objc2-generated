@@ -81,8 +81,6 @@ impl LAAuthenticationView {
     extern_methods!(
         // -initWithFrame: (unavailable)
 
-        // -initWithCoder: (unavailable)
-
         /// Creates a new view and pairs it with the specified authentication context.
         ///
         /// The authentication is controlled using the provided authentication

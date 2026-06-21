@@ -78,18 +78,6 @@ impl NSDistantObject {
             connection: &NSConnection,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[deprecated = "Use NSXPCConnection instead"]
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         /// # Safety
         ///
         /// `proto` possibly has further requirements.

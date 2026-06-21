@@ -99,16 +99,6 @@ impl NSAnimation {
             animation_curve: NSAnimationCurve,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(startAnimation))]
         #[unsafe(method_family = none)]
         pub fn startAnimation(&self);
@@ -396,16 +386,6 @@ impl NSViewAnimation {
             duration: NSTimeInterval,
             animation_curve: NSAnimationCurve,
         ) -> Retained<Self>;
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 

@@ -153,8 +153,6 @@ impl UICloudSharingController {
     extern_methods!(
         // -initWithNibName:bundle: (unavailable)
 
-        // -initWithCoder: (unavailable)
-
         #[cfg(all(feature = "block2", feature = "objc2-cloud-kit"))]
         /// # Safety
         ///

@@ -72,16 +72,6 @@ impl NSAppearance {
             bundle: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(allowsVibrancy))]
         #[unsafe(method_family = none)]
         pub fn allowsVibrancy(&self) -> bool;

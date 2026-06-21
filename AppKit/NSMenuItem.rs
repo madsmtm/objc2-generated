@@ -92,13 +92,6 @@ impl NSMenuItem {
             char_code: &NSString,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
         #[cfg(feature = "NSMenu")]
         /// Note: Never call the setter method directly: it is there only for subclassers.
         ///
@@ -357,13 +350,13 @@ impl NSMenuItem {
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
-    );
 
-    extern_methods!(
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub fn action(&self) -> Option<Sel>;
+    );
 
+    extern_methods!(
         /// Setter for [`action`][Self::action].
         ///
         /// # Safety

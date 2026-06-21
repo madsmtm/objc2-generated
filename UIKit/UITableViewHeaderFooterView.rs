@@ -115,16 +115,6 @@ impl UITableViewHeaderFooterView {
             reuse_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "UIViewConfigurationState")]
         /// Returns the current configuration state for the header/footer.
         /// To add your own custom state(s), override the getter and call super to obtain an instance with the

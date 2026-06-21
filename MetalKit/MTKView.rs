@@ -101,17 +101,6 @@ impl MTKView {
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 
-        /// Returns a view initalized from data in a given unarchiver
-        ///
-        /// Parameter `coder`: An unarchiver object
-        ///
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
         /// The delegate handling common view operations
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]

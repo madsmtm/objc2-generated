@@ -203,16 +203,6 @@ impl IOBluetoothObjectPushUIController {
             window: Option<&NSWindow>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(initWithWindowNibName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibName(

@@ -128,13 +128,6 @@ impl UIBarButtonItemAppearance {
         #[unsafe(method_family = init)]
         pub fn initWithStyle(this: Allocated<Self>, style: UIBarButtonItemStyle) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
         #[unsafe(method(copy))]
         #[unsafe(method_family = copy)]
         pub fn copy(&self) -> Retained<Self>;

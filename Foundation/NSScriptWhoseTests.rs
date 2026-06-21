@@ -62,17 +62,6 @@ impl NSScriptWhoseTest {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -141,17 +130,6 @@ impl NSLogicalTest {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -190,17 +168,6 @@ extern_conformance!(
 impl NSSpecifierTest {
     extern_methods!(
         // -init (unavailable)
-
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         /// # Safety

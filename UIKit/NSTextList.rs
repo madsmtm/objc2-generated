@@ -163,16 +163,6 @@ impl NSTextList {
             options: NSUInteger,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(markerFormat))]
         #[unsafe(method_family = none)]
         pub fn markerFormat(&self) -> Retained<NSTextListMarkerFormat>;

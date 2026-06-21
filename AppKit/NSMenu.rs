@@ -124,13 +124,6 @@ impl NSMenu {
         #[unsafe(method_family = init)]
         pub fn initWithTitle(this: Allocated<Self>, title: &NSString) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub fn title(&self) -> Retained<NSString>;
@@ -416,13 +409,13 @@ impl NSMenu {
         #[unsafe(method(setAllowsContextMenuPlugIns:))]
         #[unsafe(method_family = none)]
         pub fn setAllowsContextMenuPlugIns(&self, allows_context_menu_plug_ins: bool);
-    );
 
-    extern_methods!(
         #[unsafe(method(automaticallyInsertsWritingToolsItems))]
         #[unsafe(method_family = none)]
         pub fn automaticallyInsertsWritingToolsItems(&self) -> bool;
+    );
 
+    extern_methods!(
         /// Setter for [`automaticallyInsertsWritingToolsItems`][Self::automaticallyInsertsWritingToolsItems].
         #[unsafe(method(setAutomaticallyInsertsWritingToolsItems:))]
         #[unsafe(method_family = none)]

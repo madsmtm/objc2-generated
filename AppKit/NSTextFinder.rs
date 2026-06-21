@@ -110,13 +110,6 @@ impl NSTextFinder {
 
         /// # Safety
         ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
-        /// # Safety
-        ///
         /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(client))]
         #[unsafe(method_family = none)]

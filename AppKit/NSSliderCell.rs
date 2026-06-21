@@ -203,13 +203,6 @@ impl NSSliderCell {
         #[unsafe(method(initImageCell:))]
         #[unsafe(method_family = init)]
         pub fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Retained<Self>;
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     );
 }
 

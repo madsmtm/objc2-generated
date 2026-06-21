@@ -186,16 +186,6 @@ impl UISearchBar {
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(feature = "UIInterface")]
         #[unsafe(method(barStyle))]
         #[unsafe(method_family = none)]
@@ -457,9 +447,7 @@ impl UISearchBar {
             background_image: Option<&UIImage>,
             state: UIControlState,
         );
-    );
 
-    extern_methods!(
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
         #[unsafe(method(searchFieldBackgroundImageForState:))]
         #[unsafe(method_family = none)]
@@ -467,7 +455,9 @@ impl UISearchBar {
             &self,
             state: UIControlState,
         ) -> Option<Retained<UIImage>>;
+    );
 
+    extern_methods!(
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
         #[unsafe(method(setImage:forSearchBarIcon:state:))]
         #[unsafe(method_family = none)]

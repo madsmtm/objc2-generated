@@ -74,16 +74,6 @@ impl NSControl {
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub fn target(&self) -> Option<Retained<AnyObject>>;
@@ -346,14 +336,14 @@ impl NSControl {
         #[unsafe(method(usesSingleLineMode))]
         #[unsafe(method_family = none)]
         pub fn usesSingleLineMode(&self) -> bool;
-    );
 
-    extern_methods!(
         /// Setter for [`usesSingleLineMode`][Self::usesSingleLineMode].
         #[unsafe(method(setUsesSingleLineMode:))]
         #[unsafe(method_family = none)]
         pub fn setUsesSingleLineMode(&self, uses_single_line_mode: bool);
+    );
 
+    extern_methods!(
         #[cfg(feature = "NSParagraphStyle")]
         #[unsafe(method(lineBreakMode))]
         #[unsafe(method_family = none)]

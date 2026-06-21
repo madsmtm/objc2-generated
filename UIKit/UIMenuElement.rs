@@ -138,15 +138,5 @@ impl UIMenuElement {
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub fn image(&self) -> Option<Retained<UIImage>>;
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }

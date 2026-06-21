@@ -193,22 +193,6 @@ impl UIAction {
     );
 }
 
-/// Methods declared on superclass `UIMenuElement`.
-#[cfg(feature = "UIMenuElement")]
-impl UIAction {
-    extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// UICaptureTextFromCameraSupporting.
 #[cfg(feature = "UIMenuElement")]
 impl UIAction {

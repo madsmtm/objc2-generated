@@ -99,16 +99,6 @@ extern_conformance!(
 
 impl UIPrintInfo {
     extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(printInfo))]
         #[unsafe(method_family = none)]
         pub fn printInfo(mtm: MainThreadMarker) -> Retained<UIPrintInfo>;

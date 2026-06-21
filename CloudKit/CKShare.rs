@@ -213,20 +213,6 @@ impl CKShare {
             record_zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
 
-        /// Creates a share from a serialized instance.
-        ///
-        /// - Parameters:
-        /// - aDecoder: The coder to use when deserializing the share.
-        ///
-        /// When saving a newly created ``CKShare``, you must save the share and its ``CKShare/Metadata/rootRecord`` in the same ``CKModifyRecordsOperation`` batch.
-        ///
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
-
         #[cfg(feature = "CKShareParticipant")]
         /// The permission for anyone with access to the share's URL.
         ///

@@ -35,16 +35,6 @@ impl UIBarButtonItemGroup {
             representative_item: Option<&UIBarButtonItem>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Construct a UIBarButtonItemGroup that cannot be moved or removed under UINavigationBar customization.
         #[unsafe(method(fixedGroupWithRepresentativeItem:items:))]

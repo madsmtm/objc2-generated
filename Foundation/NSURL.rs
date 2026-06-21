@@ -2245,20 +2245,7 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NSFileSecurity {}
 );
 
-impl NSFileSecurity {
-    extern_methods!(
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
+impl NSFileSecurity {}
 
 /// Methods declared on superclass `NSObject`.
 impl NSFileSecurity {

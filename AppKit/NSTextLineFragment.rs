@@ -43,16 +43,6 @@ impl NSTextLineFragment {
 
         /// # Safety
         ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
-        /// # Safety
-        ///
         /// `attributes` generic should be of the correct type.
         #[unsafe(method(initWithString:attributes:range:))]
         #[unsafe(method_family = init)]

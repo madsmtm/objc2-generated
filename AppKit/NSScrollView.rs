@@ -103,16 +103,6 @@ impl NSScrollView {
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[cfg(all(feature = "NSCell", feature = "NSScroller"))]
         /// # Safety
         ///
@@ -392,15 +382,15 @@ impl NSScrollView {
         #[unsafe(method(scrollerKnobStyle))]
         #[unsafe(method_family = none)]
         pub fn scrollerKnobStyle(&self) -> NSScrollerKnobStyle;
-    );
 
-    extern_methods!(
         #[cfg(feature = "NSScroller")]
         /// Setter for [`scrollerKnobStyle`][Self::scrollerKnobStyle].
         #[unsafe(method(setScrollerKnobStyle:))]
         #[unsafe(method_family = none)]
         pub fn setScrollerKnobStyle(&self, scroller_knob_style: NSScrollerKnobStyle);
+    );
 
+    extern_methods!(
         #[unsafe(method(flashScrollers))]
         #[unsafe(method_family = none)]
         pub fn flashScrollers(&self);

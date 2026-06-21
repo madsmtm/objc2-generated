@@ -116,17 +116,6 @@ impl NSFileWrapper {
             serialize_representation: &NSData,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `in_coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            in_coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(isDirectory))]
         #[unsafe(method_family = none)]
         pub fn isDirectory(&self) -> bool;

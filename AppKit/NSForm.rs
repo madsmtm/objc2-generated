@@ -281,27 +281,6 @@ impl NSForm {
     );
 }
 
-/// Methods declared on superclass `NSControl`.
-#[cfg(all(
-    feature = "NSControl",
-    feature = "NSMatrix",
-    feature = "NSResponder",
-    feature = "NSView"
-))]
-impl NSForm {
-    extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-    );
-}
-
 /// Methods declared on superclass `NSResponder`.
 #[cfg(all(
     feature = "NSControl",

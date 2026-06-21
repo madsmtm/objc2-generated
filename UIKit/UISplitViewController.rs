@@ -248,16 +248,6 @@ extern_conformance!(
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UISplitViewController {
     extern_methods!(
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub fn initWithNibName_bundle(
@@ -546,15 +536,15 @@ impl UISplitViewController {
         #[unsafe(method(minimumSecondaryColumnWidth))]
         #[unsafe(method_family = none)]
         pub fn minimumSecondaryColumnWidth(&self) -> CGFloat;
-    );
 
-    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumSecondaryColumnWidth`][Self::minimumSecondaryColumnWidth].
         #[unsafe(method(setMinimumSecondaryColumnWidth:))]
         #[unsafe(method_family = none)]
         pub fn setMinimumSecondaryColumnWidth(&self, minimum_secondary_column_width: CGFloat);
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(preferredInspectorColumnWidthFraction))]
         #[unsafe(method_family = none)]

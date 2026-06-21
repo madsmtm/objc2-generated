@@ -180,17 +180,6 @@ impl NSComparisonPredicate {
             selector: Sel,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "NSCoder")]
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         #[unsafe(method(predicateOperatorType))]
         #[unsafe(method_family = none)]
         pub fn predicateOperatorType(&self) -> NSPredicateOperatorType;

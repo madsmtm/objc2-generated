@@ -77,16 +77,6 @@ impl SKAudioNode {
             node: Option<&AVAudioNode>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
-
         /// Convenience initializer that creates an AVAudioNode from the named audio asset in the main bundle.
         ///
         /// See: initWithAVAudioNode

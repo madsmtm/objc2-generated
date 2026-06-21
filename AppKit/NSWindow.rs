@@ -591,8 +591,6 @@ impl NSWindow {
             screen: Option<&NSScreen>,
         ) -> Retained<Self>;
 
-        // -initWithCoder: (unavailable)
-
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub fn title(&self) -> Retained<NSString>;
@@ -849,9 +847,7 @@ impl NSWindow {
         #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
         pub fn frame(&self) -> NSRect;
-    );
 
-    extern_methods!(
         /// Subclasses can override
         /// `animationResizeTime:`to control the total time for the frame change.
         /// `newFrame`is the rect passed into
@@ -859,7 +855,9 @@ impl NSWindow {
         #[unsafe(method(animationResizeTime:))]
         #[unsafe(method_family = none)]
         pub fn animationResizeTime(&self, new_frame: NSRect) -> NSTimeInterval;
+    );
 
+    extern_methods!(
         /// `setFrame:display:animate:`is equivalent to
         /// `setFrame:display:`if the
         /// `animateFlag`is NO.
@@ -1103,14 +1101,14 @@ impl NSWindow {
         #[unsafe(method(orderOut:))]
         #[unsafe(method_family = none)]
         pub fn orderOut(&self, sender: Option<&AnyObject>);
-    );
 
-    extern_methods!(
         #[cfg(feature = "NSGraphics")]
         #[unsafe(method(orderWindow:relativeTo:))]
         #[unsafe(method_family = none)]
         pub fn orderWindow_relativeTo(&self, place: NSWindowOrderingMode, other_win: NSInteger);
+    );
 
+    extern_methods!(
         #[unsafe(method(orderFrontRegardless))]
         #[unsafe(method_family = none)]
         pub fn orderFrontRegardless(&self);
@@ -1353,14 +1351,14 @@ impl NSWindow {
         #[unsafe(method(screen))]
         #[unsafe(method_family = none)]
         pub fn screen(&self) -> Option<Retained<NSScreen>>;
-    );
 
-    extern_methods!(
         #[cfg(feature = "NSScreen")]
         #[unsafe(method(deepestScreen))]
         #[unsafe(method_family = none)]
         pub fn deepestScreen(&self) -> Option<Retained<NSScreen>>;
+    );
 
+    extern_methods!(
         #[unsafe(method(hasShadow))]
         #[unsafe(method_family = none)]
         pub fn hasShadow(&self) -> bool;
@@ -1617,14 +1615,14 @@ impl NSWindow {
         #[unsafe(method(sheets))]
         #[unsafe(method_family = none)]
         pub fn sheets(&self) -> Retained<NSArray<NSWindow>>;
-    );
 
-    extern_methods!(
         /// Returns the top-most sheet if there is one or more sheets, or nil if there is no sheet.
         #[unsafe(method(attachedSheet))]
         #[unsafe(method_family = none)]
         pub fn attachedSheet(&self) -> Option<Retained<NSWindow>>;
+    );
 
+    extern_methods!(
         #[unsafe(method(isSheet))]
         #[unsafe(method_family = none)]
         pub fn isSheet(&self) -> bool;
@@ -1925,16 +1923,16 @@ impl NSWindow {
         #[unsafe(method(tabbingIdentifier))]
         #[unsafe(method_family = none)]
         pub fn tabbingIdentifier(&self) -> Retained<NSWindowTabbingIdentifier>;
-    );
 
-    extern_methods!(
         /// Setter for [`tabbingIdentifier`][Self::tabbingIdentifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTabbingIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn setTabbingIdentifier(&self, tabbing_identifier: &NSWindowTabbingIdentifier);
+    );
 
+    extern_methods!(
         /// Actions that can be called to perform various tabbed window behaviors. UI that is hooked up to these items can be automatically validated by calling `NSWindow`'s
         /// `validateUserInterfaceItem.`
         #[unsafe(method(selectNextTab:))]

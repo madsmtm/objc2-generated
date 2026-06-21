@@ -116,15 +116,6 @@ impl SWCollaborationShareOptions {
         pub unsafe fn shareOptionsWithOptionsGroups(
             options_groups: &NSArray<SWCollaborationOptionsGroup>,
         ) -> Retained<SWCollaborationShareOptions>;
-
-        // -init (unavailable)
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     );
 }
 

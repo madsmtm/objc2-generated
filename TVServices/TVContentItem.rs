@@ -389,17 +389,6 @@ impl TVContentItem {
             this: Allocated<Self>,
             ident: &TVContentIdentifier,
         ) -> Retained<Self>;
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 
