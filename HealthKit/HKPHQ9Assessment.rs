@@ -64,9 +64,7 @@ unsafe impl RefEncode for HKPHQ9AssessmentAnswer {
 
 /// Returns the lower bound of the score range for the given PHQ-9 risk classification.
 #[inline]
-pub unsafe extern "C-unwind" fn HKMinimumScoreForPHQ9AssessmentRisk(
-    risk: HKPHQ9AssessmentRisk,
-) -> NSInteger {
+pub unsafe fn HKMinimumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger {
     extern "C-unwind" {
         fn HKMinimumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger;
     }
@@ -75,9 +73,7 @@ pub unsafe extern "C-unwind" fn HKMinimumScoreForPHQ9AssessmentRisk(
 
 /// Returns the upper bound of the score range for the given PHQ-9 risk classification.
 #[inline]
-pub unsafe extern "C-unwind" fn HKMaximumScoreForPHQ9AssessmentRisk(
-    risk: HKPHQ9AssessmentRisk,
-) -> NSInteger {
+pub unsafe fn HKMaximumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger {
     extern "C-unwind" {
         fn HKMaximumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger;
     }

@@ -169,9 +169,7 @@ impl MKMapPoint {
 
 #[cfg(feature = "objc2-core-location")]
 #[inline]
-pub unsafe extern "C-unwind" fn MKCoordinateForMapPoint(
-    map_point: MKMapPoint,
-) -> CLLocationCoordinate2D {
+pub unsafe fn MKCoordinateForMapPoint(map_point: MKMapPoint) -> CLLocationCoordinate2D {
     extern "C-unwind" {
         fn MKCoordinateForMapPoint(map_point: MKMapPoint) -> CLLocationCoordinate2D;
     }
@@ -180,9 +178,7 @@ pub unsafe extern "C-unwind" fn MKCoordinateForMapPoint(
 
 #[cfg(feature = "objc2-core-location")]
 #[inline]
-pub unsafe extern "C-unwind" fn MKMetersPerMapPointAtLatitude(
-    latitude: CLLocationDegrees,
-) -> CLLocationDistance {
+pub unsafe fn MKMetersPerMapPointAtLatitude(latitude: CLLocationDegrees) -> CLLocationDistance {
     extern "C-unwind" {
         fn MKMetersPerMapPointAtLatitude(latitude: CLLocationDegrees) -> CLLocationDistance;
     }
@@ -191,9 +187,7 @@ pub unsafe extern "C-unwind" fn MKMetersPerMapPointAtLatitude(
 
 #[cfg(feature = "objc2-core-location")]
 #[inline]
-pub unsafe extern "C-unwind" fn MKMapPointsPerMeterAtLatitude(
-    latitude: CLLocationDegrees,
-) -> c_double {
+pub unsafe fn MKMapPointsPerMeterAtLatitude(latitude: CLLocationDegrees) -> c_double {
     extern "C-unwind" {
         fn MKMapPointsPerMeterAtLatitude(latitude: CLLocationDegrees) -> c_double;
     }
@@ -202,10 +196,7 @@ pub unsafe extern "C-unwind" fn MKMapPointsPerMeterAtLatitude(
 
 #[cfg(feature = "objc2-core-location")]
 #[inline]
-pub unsafe extern "C-unwind" fn MKMetersBetweenMapPoints(
-    a: MKMapPoint,
-    b: MKMapPoint,
-) -> CLLocationDistance {
+pub unsafe fn MKMetersBetweenMapPoints(a: MKMapPoint, b: MKMapPoint) -> CLLocationDistance {
     extern "C-unwind" {
         fn MKMetersBetweenMapPoints(a: MKMapPoint, b: MKMapPoint) -> CLLocationDistance;
     }

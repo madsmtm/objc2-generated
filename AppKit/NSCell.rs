@@ -1187,7 +1187,7 @@ impl NSCell {
     feature = "objc2-core-foundation"
 ))]
 #[inline]
-pub extern "C-unwind" fn NSDrawThreePartImage(
+pub fn NSDrawThreePartImage(
     frame: NSRect,
     start_cap: Option<&NSImage>,
     center_fill: Option<&NSImage>,
@@ -1229,7 +1229,7 @@ pub extern "C-unwind" fn NSDrawThreePartImage(
     feature = "objc2-core-foundation"
 ))]
 #[inline]
-pub extern "C-unwind" fn NSDrawNinePartImage(
+pub fn NSDrawNinePartImage(
     frame: NSRect,
     top_left_corner: Option<&NSImage>,
     top_edge_fill: Option<&NSImage>,

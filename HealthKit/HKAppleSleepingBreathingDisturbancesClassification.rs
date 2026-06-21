@@ -53,7 +53,7 @@ impl HKAppleSleepingBreathingDisturbancesClassification {
 /// Parameter `classification`: Breathing Disturbances classification for desired minimum value.
 #[cfg(feature = "HKQuantity")]
 #[inline]
-pub unsafe extern "C-unwind" fn HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(
+pub unsafe fn HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(
     classification: HKAppleSleepingBreathingDisturbancesClassification,
 ) -> Retained<HKQuantity> {
     extern "C-unwind" {

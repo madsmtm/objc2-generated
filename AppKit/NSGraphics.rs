@@ -424,7 +424,7 @@ unsafe impl RefEncode for NSWindowDepth {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSBestDepth(
+pub fn NSBestDepth(
     color_space: &NSColorSpaceName,
     bps: NSInteger,
     bpp: NSInteger,
@@ -444,7 +444,7 @@ pub extern "C-unwind" fn NSBestDepth(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSPlanarFromDepth(depth: NSWindowDepth) -> bool {
+pub fn NSPlanarFromDepth(depth: NSWindowDepth) -> bool {
     extern "C-unwind" {
         fn NSPlanarFromDepth(depth: NSWindowDepth) -> Bool;
     }
@@ -452,9 +452,7 @@ pub extern "C-unwind" fn NSPlanarFromDepth(depth: NSWindowDepth) -> bool {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSColorSpaceFromDepth(
-    depth: NSWindowDepth,
-) -> Option<Retained<NSColorSpaceName>> {
+pub fn NSColorSpaceFromDepth(depth: NSWindowDepth) -> Option<Retained<NSColorSpaceName>> {
     extern "C-unwind" {
         fn NSColorSpaceFromDepth(depth: NSWindowDepth) -> *mut NSColorSpaceName;
     }
@@ -463,7 +461,7 @@ pub extern "C-unwind" fn NSColorSpaceFromDepth(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger {
+pub fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger {
     extern "C-unwind" {
         fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger;
     }
@@ -471,7 +469,7 @@ pub extern "C-unwind" fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInt
 }
 
 #[inline]
-pub extern "C-unwind" fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger {
+pub fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger {
     extern "C-unwind" {
         fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger;
     }
@@ -479,9 +477,7 @@ pub extern "C-unwind" fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInte
 }
 
 #[inline]
-pub extern "C-unwind" fn NSNumberOfColorComponents(
-    color_space_name: &NSColorSpaceName,
-) -> NSInteger {
+pub fn NSNumberOfColorComponents(color_space_name: &NSColorSpaceName) -> NSInteger {
     extern "C-unwind" {
         fn NSNumberOfColorComponents(color_space_name: &NSColorSpaceName) -> NSInteger;
     }
@@ -489,7 +485,7 @@ pub extern "C-unwind" fn NSNumberOfColorComponents(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth> {
+pub fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth> {
     extern "C-unwind" {
         fn NSAvailableWindowDepths() -> Option<NonNull<NSWindowDepth>>;
     }
@@ -576,7 +572,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSRectFill(rect: NSRect) {
+pub fn NSRectFill(rect: NSRect) {
     extern "C-unwind" {
         fn NSRectFill(rect: NSRect);
     }
@@ -587,7 +583,7 @@ pub extern "C-unwind" fn NSRectFill(rect: NSRect) {
 ///
 /// `rects` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger) {
+pub unsafe fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger) {
     extern "C-unwind" {
         fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger);
     }
@@ -600,7 +596,7 @@ pub unsafe extern "C-unwind" fn NSRectFillList(rects: NonNull<NSRect>, count: NS
 /// - `grays` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSRectFillListWithGrays(
+pub unsafe fn NSRectFillListWithGrays(
     rects: NonNull<NSRect>,
     grays: NonNull<CGFloat>,
     num: NSInteger,
@@ -617,7 +613,7 @@ pub unsafe extern "C-unwind" fn NSRectFillListWithGrays(
 /// - `colors` must be a valid pointer.
 #[cfg(feature = "NSColor")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSRectFillListWithColors(
+pub unsafe fn NSRectFillListWithColors(
     rects: NonNull<NSRect>,
     colors: NonNull<NonNull<NSColor>>,
     num: NSInteger,
@@ -633,7 +629,7 @@ pub unsafe extern "C-unwind" fn NSRectFillListWithColors(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation) {
+pub fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation) {
     extern "C-unwind" {
         fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation);
     }
@@ -644,7 +640,7 @@ pub extern "C-unwind" fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositin
 ///
 /// `rects` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn NSRectFillListUsingOperation(
+pub unsafe fn NSRectFillListUsingOperation(
     rects: NonNull<NSRect>,
     count: NSInteger,
     op: NSCompositingOperation,
@@ -665,7 +661,7 @@ pub unsafe extern "C-unwind" fn NSRectFillListUsingOperation(
 /// - `colors` must be a valid pointer.
 #[cfg(feature = "NSColor")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSRectFillListWithColorsUsingOperation(
+pub unsafe fn NSRectFillListWithColorsUsingOperation(
     rects: NonNull<NSRect>,
     colors: NonNull<NonNull<NSColor>>,
     num: NSInteger,
@@ -683,7 +679,7 @@ pub unsafe extern "C-unwind" fn NSRectFillListWithColorsUsingOperation(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSFrameRect(rect: NSRect) {
+pub fn NSFrameRect(rect: NSRect) {
     extern "C-unwind" {
         fn NSFrameRect(rect: NSRect);
     }
@@ -692,7 +688,7 @@ pub extern "C-unwind" fn NSFrameRect(rect: NSRect) {
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat) {
+pub fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat) {
     extern "C-unwind" {
         fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat);
     }
@@ -701,7 +697,7 @@ pub extern "C-unwind" fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn NSFrameRectWithWidthUsingOperation(
+pub fn NSFrameRectWithWidthUsingOperation(
     rect: NSRect,
     frame_width: CGFloat,
     op: NSCompositingOperation,
@@ -717,7 +713,7 @@ pub extern "C-unwind" fn NSFrameRectWithWidthUsingOperation(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSRectClip(rect: NSRect) {
+pub fn NSRectClip(rect: NSRect) {
     extern "C-unwind" {
         fn NSRectClip(rect: NSRect);
     }
@@ -728,7 +724,7 @@ pub extern "C-unwind" fn NSRectClip(rect: NSRect) {
 ///
 /// `rects` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger) {
+pub unsafe fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger) {
     extern "C-unwind" {
         fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger);
     }
@@ -741,7 +737,7 @@ pub unsafe extern "C-unwind" fn NSRectClipList(rects: NonNull<NSRect>, count: NS
 /// - `grays` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSDrawTiledRects(
+pub unsafe fn NSDrawTiledRects(
     bounds_rect: NSRect,
     clip_rect: NSRect,
     sides: NonNull<NSRectEdge>,
@@ -761,7 +757,7 @@ pub unsafe extern "C-unwind" fn NSDrawTiledRects(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect) {
+pub fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
         fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect);
     }
@@ -769,7 +765,7 @@ pub extern "C-unwind" fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect) {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSDrawGroove(rect: NSRect, clip_rect: NSRect) {
+pub fn NSDrawGroove(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
         fn NSDrawGroove(rect: NSRect, clip_rect: NSRect);
     }
@@ -777,7 +773,7 @@ pub extern "C-unwind" fn NSDrawGroove(rect: NSRect, clip_rect: NSRect) {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect) {
+pub fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
         fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect);
     }
@@ -785,7 +781,7 @@ pub extern "C-unwind" fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect) {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSDrawButton(rect: NSRect, clip_rect: NSRect) {
+pub fn NSDrawButton(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
         fn NSDrawButton(rect: NSRect, clip_rect: NSRect);
     }
@@ -793,7 +789,7 @@ pub extern "C-unwind" fn NSDrawButton(rect: NSRect, clip_rect: NSRect) {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSEraseRect(rect: NSRect) {
+pub fn NSEraseRect(rect: NSRect) {
     extern "C-unwind" {
         fn NSEraseRect(rect: NSRect);
     }
@@ -803,7 +799,7 @@ pub extern "C-unwind" fn NSEraseRect(rect: NSRect) {
 #[cfg(feature = "NSColor")]
 #[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
 #[inline]
-pub extern "C-unwind" fn NSReadPixel(passed_point: NSPoint) -> Option<Retained<NSColor>> {
+pub fn NSReadPixel(passed_point: NSPoint) -> Option<Retained<NSColor>> {
     extern "C-unwind" {
         fn NSReadPixel(passed_point: NSPoint) -> *mut NSColor;
     }
@@ -815,7 +811,7 @@ pub extern "C-unwind" fn NSReadPixel(passed_point: NSPoint) -> Option<Retained<N
 ///
 /// `data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn NSDrawBitmap(
+pub unsafe fn NSDrawBitmap(
     rect: NSRect,
     width: NSInteger,
     height: NSInteger,
@@ -862,7 +858,7 @@ pub unsafe extern "C-unwind" fn NSDrawBitmap(
 
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NSHighlightRect(rect: NSRect) {
+pub fn NSHighlightRect(rect: NSRect) {
     extern "C-unwind" {
         fn NSHighlightRect(rect: NSRect);
     }
@@ -870,7 +866,7 @@ pub extern "C-unwind" fn NSHighlightRect(rect: NSRect) {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSBeep() {
+pub fn NSBeep() {
     extern "C-unwind" {
         fn NSBeep();
     }
@@ -882,7 +878,7 @@ pub extern "C-unwind" fn NSBeep() {
 /// `window_dump_string` must be a valid pointer.
 #[deprecated = "Doesn't return anything useful since 10.0"]
 #[inline]
-pub unsafe extern "C-unwind" fn NSGetWindowServerMemory(
+pub unsafe fn NSGetWindowServerMemory(
     context: NSInteger,
     virtual_memory: &mut NSInteger,
     window_backing_memory: &mut NSInteger,
@@ -912,7 +908,7 @@ pub unsafe extern "C-unwind" fn NSGetWindowServerMemory(
 /// - `colors` must be a valid pointer.
 #[cfg(feature = "NSColor")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSDrawColorTiledRects(
+pub unsafe fn NSDrawColorTiledRects(
     bounds_rect: NSRect,
     clip_rect: NSRect,
     sides: NonNull<NSRectEdge>,
@@ -932,7 +928,7 @@ pub unsafe extern "C-unwind" fn NSDrawColorTiledRects(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect) {
+pub fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
         fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect);
     }
@@ -940,7 +936,7 @@ pub extern "C-unwind" fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect) {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect) {
+pub fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
         fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect);
     }
@@ -948,7 +944,7 @@ pub extern "C-unwind" fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect) {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSDottedFrameRect(rect: NSRect) {
+pub fn NSDottedFrameRect(rect: NSRect) {
     extern "C-unwind" {
         fn NSDottedFrameRect(rect: NSRect);
     }
@@ -956,7 +952,7 @@ pub extern "C-unwind" fn NSDottedFrameRect(rect: NSRect) {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSDrawWindowBackground(rect: NSRect) {
+pub fn NSDrawWindowBackground(rect: NSRect) {
     extern "C-unwind" {
         fn NSDrawWindowBackground(rect: NSRect);
     }
@@ -964,7 +960,7 @@ pub extern "C-unwind" fn NSDrawWindowBackground(rect: NSRect) {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSSetFocusRingStyle(placement: NSFocusRingPlacement) {
+pub fn NSSetFocusRingStyle(placement: NSFocusRingPlacement) {
     extern "C-unwind" {
         fn NSSetFocusRingStyle(placement: NSFocusRingPlacement);
     }
@@ -973,7 +969,7 @@ pub extern "C-unwind" fn NSSetFocusRingStyle(placement: NSFocusRingPlacement) {
 
 #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSDisableScreenUpdates."]
 #[inline]
-pub extern "C-unwind" fn NSDisableScreenUpdates() {
+pub fn NSDisableScreenUpdates() {
     extern "C-unwind" {
         fn NSDisableScreenUpdates();
     }
@@ -982,7 +978,7 @@ pub extern "C-unwind" fn NSDisableScreenUpdates() {
 
 #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSEnableScreenUpdates."]
 #[inline]
-pub extern "C-unwind" fn NSEnableScreenUpdates() {
+pub fn NSEnableScreenUpdates() {
     extern "C-unwind" {
         fn NSEnableScreenUpdates();
     }
@@ -1017,7 +1013,7 @@ unsafe impl RefEncode for NSAnimationEffect {
 /// - `context_info` must be a valid pointer or null.
 #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn NSShowAnimationEffect(
+pub unsafe fn NSShowAnimationEffect(
     animation_effect: NSAnimationEffect,
     center_location: NSPoint,
     size: NSSize,
@@ -1049,7 +1045,7 @@ pub unsafe extern "C-unwind" fn NSShowAnimationEffect(
 
 #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
 #[inline]
-pub extern "C-unwind" fn NSCountWindows(count: &mut NSInteger) {
+pub fn NSCountWindows(count: &mut NSInteger) {
     extern "C-unwind" {
         fn NSCountWindows(count: &mut NSInteger);
     }
@@ -1061,7 +1057,7 @@ pub extern "C-unwind" fn NSCountWindows(count: &mut NSInteger) {
 /// `list` must be a valid pointer.
 #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>) {
+pub unsafe fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>) {
     extern "C-unwind" {
         fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>);
     }
@@ -1070,7 +1066,7 @@ pub unsafe extern "C-unwind" fn NSWindowList(size: NSInteger, list: NonNull<NSIn
 
 #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
 #[inline]
-pub extern "C-unwind" fn NSCountWindowsForContext(context: NSInteger, count: &mut NSInteger) {
+pub fn NSCountWindowsForContext(context: NSInteger, count: &mut NSInteger) {
     extern "C-unwind" {
         fn NSCountWindowsForContext(context: NSInteger, count: &mut NSInteger);
     }
@@ -1082,7 +1078,7 @@ pub extern "C-unwind" fn NSCountWindowsForContext(context: NSInteger, count: &mu
 /// `list` must be a valid pointer.
 #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn NSWindowListForContext(
+pub unsafe fn NSWindowListForContext(
     context: NSInteger,
     size: NSInteger,
     list: NonNull<NSInteger>,
@@ -1095,7 +1091,7 @@ pub unsafe extern "C-unwind" fn NSWindowListForContext(
 
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint) {
+pub fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint) {
     extern "C-unwind" {
         fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint);
     }

@@ -30,7 +30,7 @@ pub type NSInterfaceStyle = NSUInteger;
 #[cfg(feature = "NSResponder")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn NSInterfaceStyleForKey(
+pub unsafe fn NSInterfaceStyleForKey(
     key: Option<&NSString>,
     responder: Option<&NSResponder>,
 ) -> NSInterfaceStyle {

@@ -1991,7 +1991,7 @@ extern "C" {
 /// - `element` should be of the correct type.
 /// - `user_info` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSAccessibilityPostNotificationWithUserInfo(
+pub unsafe fn NSAccessibilityPostNotificationWithUserInfo(
     element: &AnyObject,
     notification: &NSAccessibilityNotificationName,
     user_info: Option<&NSDictionary<NSAccessibilityNotificationUserInfoKey, AnyObject>>,

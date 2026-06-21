@@ -41,7 +41,7 @@ cf_objc2_type!(
 /// The result range can be used as an input parameter of DCSCopyTextDefinition()
 /// and HIDictionaryWindowShow() in Carbon framework.
 #[inline]
-pub unsafe extern "C-unwind" fn DCSGetTermRangeInString(
+pub unsafe fn DCSGetTermRangeInString(
     dictionary: Option<&DCSDictionary>,
     text_string: &CFString,
     offset: CFIndex,
@@ -66,7 +66,7 @@ pub unsafe extern "C-unwind" fn DCSGetTermRangeInString(
 ///
 /// Returns: Returns a definition of the specified term in range in plain text
 #[inline]
-pub unsafe extern "C-unwind" fn DCSCopyTextDefinition(
+pub unsafe fn DCSCopyTextDefinition(
     dictionary: Option<&DCSDictionary>,
     text_string: &CFString,
     range: CFRange,

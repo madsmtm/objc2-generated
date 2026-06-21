@@ -129,7 +129,7 @@ pub type SecureDownloadTrustEvaluateCallback = Option<
 #[cfg(feature = "SecTrust")]
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecureDownloadCreateWithTicket(
+pub unsafe fn SecureDownloadCreateWithTicket(
     ticket: &CFData,
     setup: SecureDownloadTrustSetupCallback,
     setup_context: *mut c_void,
@@ -176,7 +176,7 @@ pub unsafe extern "C-unwind" fn SecureDownloadCreateWithTicket(
 /// - `urls` must be a valid pointer.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecureDownloadCopyURLs(
+pub unsafe fn SecureDownloadCopyURLs(
     download_ref: SecureDownloadRef,
     urls: *mut *const CFArray,
 ) -> OSStatus {
@@ -203,7 +203,7 @@ pub unsafe extern "C-unwind" fn SecureDownloadCopyURLs(
 /// - `name` must be a valid pointer.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecureDownloadCopyName(
+pub unsafe fn SecureDownloadCopyName(
     download_ref: SecureDownloadRef,
     name: *mut *const CFString,
 ) -> OSStatus {
@@ -228,7 +228,7 @@ pub unsafe extern "C-unwind" fn SecureDownloadCopyName(
 /// - `date` must be a valid pointer.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecureDownloadCopyCreationDate(
+pub unsafe fn SecureDownloadCopyCreationDate(
     download_ref: SecureDownloadRef,
     date: *mut *const CFDate,
 ) -> OSStatus {
@@ -255,7 +255,7 @@ pub unsafe extern "C-unwind" fn SecureDownloadCopyCreationDate(
 /// - `download_size` must be a valid pointer.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecureDownloadGetDownloadSize(
+pub unsafe fn SecureDownloadGetDownloadSize(
     download_ref: SecureDownloadRef,
     download_size: *mut i64,
 ) -> OSStatus {
@@ -283,7 +283,7 @@ pub unsafe extern "C-unwind" fn SecureDownloadGetDownloadSize(
 /// `download_ref` must be a valid pointer.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecureDownloadUpdateWithData(
+pub unsafe fn SecureDownloadUpdateWithData(
     download_ref: SecureDownloadRef,
     data: &CFData,
 ) -> OSStatus {
@@ -306,9 +306,7 @@ pub unsafe extern "C-unwind" fn SecureDownloadUpdateWithData(
 /// `download_ref` must be a valid pointer.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecureDownloadFinished(
-    download_ref: SecureDownloadRef,
-) -> OSStatus {
+pub unsafe fn SecureDownloadFinished(download_ref: SecureDownloadRef) -> OSStatus {
     extern "C-unwind" {
         fn SecureDownloadFinished(download_ref: SecureDownloadRef) -> OSStatus;
     }
@@ -326,7 +324,7 @@ pub unsafe extern "C-unwind" fn SecureDownloadFinished(
 /// `download_ref` must be a valid pointer.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecureDownloadRelease(download_ref: SecureDownloadRef) -> OSStatus {
+pub unsafe fn SecureDownloadRelease(download_ref: SecureDownloadRef) -> OSStatus {
     extern "C-unwind" {
         fn SecureDownloadRelease(download_ref: SecureDownloadRef) -> OSStatus;
     }
@@ -346,7 +344,7 @@ pub unsafe extern "C-unwind" fn SecureDownloadRelease(download_ref: SecureDownlo
 /// `ticket_location` must be a valid pointer.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecureDownloadCopyTicketLocation(
+pub unsafe fn SecureDownloadCopyTicketLocation(
     url: &CFURL,
     ticket_location: *mut *const CFURL,
 ) -> OSStatus {

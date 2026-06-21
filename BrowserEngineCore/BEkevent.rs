@@ -10,7 +10,7 @@ use crate::*;
 /// - `eventlist` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn be_kevent(
+pub unsafe fn be_kevent(
     kq: c_int,
     changelist: *const libc::kevent,
     nchanges: c_int,
@@ -37,7 +37,7 @@ pub unsafe extern "C-unwind" fn be_kevent(
 /// - `eventlist` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn be_kevent64(
+pub unsafe fn be_kevent64(
     kq: c_int,
     changelist: *const libc::kevent64_s,
     nchanges: c_int,

@@ -310,7 +310,7 @@ impl CFWriteStream {
 /// - `read_stream` must be a valid pointer.
 /// - `write_stream` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CFStreamCreateBoundPair(
+pub unsafe fn CFStreamCreateBoundPair(
     alloc: Option<&CFAllocator>,
     read_stream: &mut *mut CFReadStream,
     write_stream: &mut *mut CFWriteStream,
@@ -446,7 +446,7 @@ extern "C" {
 #[cfg(feature = "CFSocket")]
 #[deprecated = "Use nw_connection_t in Network framework instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStreamCreatePairWithSocket(
+pub unsafe fn CFStreamCreatePairWithSocket(
     alloc: Option<&CFAllocator>,
     sock: CFSocketNativeHandle,
     read_stream: Option<&mut *mut CFReadStream>,
@@ -469,7 +469,7 @@ pub unsafe extern "C-unwind" fn CFStreamCreatePairWithSocket(
 /// - `write_stream` must be a valid pointer.
 #[deprecated = "Use nw_connection_t in Network framework instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStreamCreatePairWithSocketToHost(
+pub unsafe fn CFStreamCreatePairWithSocketToHost(
     alloc: Option<&CFAllocator>,
     host: &CFString,
     port: u32,
@@ -496,7 +496,7 @@ pub unsafe extern "C-unwind" fn CFStreamCreatePairWithSocketToHost(
 #[cfg(all(feature = "CFData", feature = "CFSocket"))]
 #[deprecated = "Use nw_connection_t in Network framework instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStreamCreatePairWithPeerSocketSignature(
+pub unsafe fn CFStreamCreatePairWithPeerSocketSignature(
     alloc: Option<&CFAllocator>,
     signature: &CFSocketSignature,
     read_stream: Option<&mut *mut CFReadStream>,

@@ -9,7 +9,7 @@ use crate::*;
 
 /// Creates an error object for the given POSIX error code.
 #[inline]
-pub unsafe extern "C-unwind" fn fs_errorForPOSIXError(param1: c_int) -> Retained<NSError> {
+pub unsafe fn fs_errorForPOSIXError(param1: c_int) -> Retained<NSError> {
     extern "C-unwind" {
         fn fs_errorForPOSIXError(param1: c_int) -> *mut NSError;
     }
@@ -20,7 +20,7 @@ pub unsafe extern "C-unwind" fn fs_errorForPOSIXError(param1: c_int) -> Retained
 
 /// Creates an error object for the given Mach error code.
 #[inline]
-pub unsafe extern "C-unwind" fn fs_errorForMachError(error_code: c_int) -> Retained<NSError> {
+pub unsafe fn fs_errorForMachError(error_code: c_int) -> Retained<NSError> {
     extern "C-unwind" {
         fn fs_errorForMachError(error_code: c_int) -> *mut NSError;
     }
@@ -31,7 +31,7 @@ pub unsafe extern "C-unwind" fn fs_errorForMachError(error_code: c_int) -> Retai
 
 /// Creates an error object for the given Cocoa error code.
 #[inline]
-pub unsafe extern "C-unwind" fn fs_errorForCocoaError(error_code: c_int) -> Retained<NSError> {
+pub unsafe fn fs_errorForCocoaError(error_code: c_int) -> Retained<NSError> {
     extern "C-unwind" {
         fn fs_errorForCocoaError(error_code: c_int) -> *mut NSError;
     }

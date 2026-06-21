@@ -106,7 +106,7 @@ extern "C" {
 #[cfg(feature = "CFHTTPMessage")]
 #[deprecated = "Use NSURLSession API for http requests"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFReadStreamCreateForHTTPRequest(
+pub unsafe fn CFReadStreamCreateForHTTPRequest(
     alloc: Option<&CFAllocator>,
     request: &CFHTTPMessage,
 ) -> CFRetained<CFReadStream> {
@@ -124,7 +124,7 @@ pub unsafe extern "C-unwind" fn CFReadStreamCreateForHTTPRequest(
 #[cfg(feature = "CFHTTPMessage")]
 #[deprecated = "Use NSURLSession API for http requests"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFReadStreamCreateForStreamedHTTPRequest(
+pub unsafe fn CFReadStreamCreateForStreamedHTTPRequest(
     alloc: Option<&CFAllocator>,
     request_headers: &CFHTTPMessage,
     request_body: &CFReadStream,

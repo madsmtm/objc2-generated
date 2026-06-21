@@ -1334,10 +1334,7 @@ pub const kIOHIDOpenedByFastPathClient: c_uint = 0x20000;
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOHIDCreateSharedMemory(
-    connect: io_connect_t,
-    version: c_uint,
-) -> libc::kern_return_t {
+pub fn IOHIDCreateSharedMemory(connect: io_connect_t, version: c_uint) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDCreateSharedMemory(connect: io_connect_t, version: c_uint) -> libc::kern_return_t;
     }
@@ -1346,10 +1343,7 @@ pub extern "C-unwind" fn IOHIDCreateSharedMemory(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOHIDSetEventsEnable(
-    connect: io_connect_t,
-    enable: bool,
-) -> libc::kern_return_t {
+pub fn IOHIDSetEventsEnable(connect: io_connect_t, enable: bool) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDSetEventsEnable(
             connect: io_connect_t,
@@ -1362,10 +1356,7 @@ pub extern "C-unwind" fn IOHIDSetEventsEnable(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn IOHIDSetCursorEnable(
-    connect: io_connect_t,
-    enable: bool,
-) -> libc::kern_return_t {
+pub fn IOHIDSetCursorEnable(connect: io_connect_t, enable: bool) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDSetCursorEnable(
             connect: io_connect_t,
@@ -1390,7 +1381,7 @@ pub const kIOHIDPostHIDManagerEvent: c_uint = 0x00000008;
 #[cfg(all(feature = "graphics", feature = "libc"))]
 #[deprecated = "Use CGSEventTap for posting HID events, IOHIDUserDevice for simulating HID device, IOPMAssertionDeclareUserActivity for reporting user activity"]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDPostEvent(
+pub unsafe fn IOHIDPostEvent(
     connect: io_connect_t,
     event_type: u32,
     location: IOGPoint,
@@ -1426,11 +1417,7 @@ pub unsafe extern "C-unwind" fn IOHIDPostEvent(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn IOHIDSetMouseLocation(
-    connect: io_connect_t,
-    x: c_int,
-    y: c_int,
-) -> libc::kern_return_t {
+pub fn IOHIDSetMouseLocation(connect: io_connect_t, x: c_int, y: c_int) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDSetMouseLocation(connect: io_connect_t, x: c_int, y: c_int) -> libc::kern_return_t;
     }
@@ -1443,7 +1430,7 @@ pub extern "C-unwind" fn IOHIDSetMouseLocation(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDGetButtonEventNum(
+pub unsafe fn IOHIDGetButtonEventNum(
     connect: io_connect_t,
     button: NXMouseButton,
     event_num: *mut c_int,
@@ -1464,7 +1451,7 @@ pub unsafe extern "C-unwind" fn IOHIDGetButtonEventNum(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDGetScrollAcceleration(
+pub unsafe fn IOHIDGetScrollAcceleration(
     handle: io_connect_t,
     acceleration: *mut c_double,
 ) -> libc::kern_return_t {
@@ -1480,7 +1467,7 @@ pub unsafe extern "C-unwind" fn IOHIDGetScrollAcceleration(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn IOHIDSetScrollAcceleration(
+pub fn IOHIDSetScrollAcceleration(
     handle: io_connect_t,
     acceleration: c_double,
 ) -> libc::kern_return_t {
@@ -1499,7 +1486,7 @@ pub extern "C-unwind" fn IOHIDSetScrollAcceleration(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDGetMouseAcceleration(
+pub unsafe fn IOHIDGetMouseAcceleration(
     handle: io_connect_t,
     acceleration: *mut c_double,
 ) -> libc::kern_return_t {
@@ -1515,7 +1502,7 @@ pub unsafe extern "C-unwind" fn IOHIDGetMouseAcceleration(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn IOHIDSetMouseAcceleration(
+pub fn IOHIDSetMouseAcceleration(
     handle: io_connect_t,
     acceleration: c_double,
 ) -> libc::kern_return_t {
@@ -1534,7 +1521,7 @@ pub extern "C-unwind" fn IOHIDSetMouseAcceleration(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDGetMouseButtonMode(
+pub unsafe fn IOHIDGetMouseButtonMode(
     handle: io_connect_t,
     mode: *mut c_int,
 ) -> libc::kern_return_t {
@@ -1547,10 +1534,7 @@ pub unsafe extern "C-unwind" fn IOHIDGetMouseButtonMode(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn IOHIDSetMouseButtonMode(
-    handle: io_connect_t,
-    mode: c_int,
-) -> libc::kern_return_t {
+pub fn IOHIDSetMouseButtonMode(handle: io_connect_t, mode: c_int) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDSetMouseButtonMode(handle: io_connect_t, mode: c_int) -> libc::kern_return_t;
     }
@@ -1564,7 +1548,7 @@ pub extern "C-unwind" fn IOHIDSetMouseButtonMode(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDGetAccelerationWithKey(
+pub unsafe fn IOHIDGetAccelerationWithKey(
     handle: io_connect_t,
     key: Option<&CFString>,
     acceleration: *mut c_double,
@@ -1585,7 +1569,7 @@ pub unsafe extern "C-unwind" fn IOHIDGetAccelerationWithKey(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDSetAccelerationWithKey(
+pub unsafe fn IOHIDSetAccelerationWithKey(
     handle: io_connect_t,
     key: Option<&CFString>,
     acceleration: c_double,
@@ -1608,7 +1592,7 @@ pub unsafe extern "C-unwind" fn IOHIDSetAccelerationWithKey(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDGetParameter(
+pub unsafe fn IOHIDGetParameter(
     handle: io_connect_t,
     key: Option<&CFString>,
     max_size: IOByteCount,
@@ -1634,7 +1618,7 @@ pub unsafe extern "C-unwind" fn IOHIDGetParameter(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDSetParameter(
+pub unsafe fn IOHIDSetParameter(
     handle: io_connect_t,
     key: Option<&CFString>,
     bytes: *const c_void,
@@ -1657,7 +1641,7 @@ pub unsafe extern "C-unwind" fn IOHIDSetParameter(
 /// - `parameter` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDCopyCFTypeParameter(
+pub unsafe fn IOHIDCopyCFTypeParameter(
     handle: io_connect_t,
     key: Option<&CFString>,
     parameter: *mut *const CFType,
@@ -1679,7 +1663,7 @@ pub unsafe extern "C-unwind" fn IOHIDCopyCFTypeParameter(
 /// - `parameter` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDSetCFTypeParameter(
+pub unsafe fn IOHIDSetCFTypeParameter(
     handle: io_connect_t,
     key: Option<&CFString>,
     parameter: Option<&CFType>,
@@ -1699,7 +1683,7 @@ pub unsafe extern "C-unwind" fn IOHIDSetCFTypeParameter(
 /// `state` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDGetStateForSelector(
+pub unsafe fn IOHIDGetStateForSelector(
     handle: io_connect_t,
     selector: c_int,
     state: *mut u32,
@@ -1716,7 +1700,7 @@ pub unsafe extern "C-unwind" fn IOHIDGetStateForSelector(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOHIDSetStateForSelector(
+pub fn IOHIDSetStateForSelector(
     handle: io_connect_t,
     selector: c_int,
     state: u32,
@@ -1736,7 +1720,7 @@ pub extern "C-unwind" fn IOHIDSetStateForSelector(
 /// `state` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDGetModifierLockState(
+pub unsafe fn IOHIDGetModifierLockState(
     handle: io_connect_t,
     selector: c_int,
     state: *mut bool,
@@ -1753,7 +1737,7 @@ pub unsafe extern "C-unwind" fn IOHIDGetModifierLockState(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOHIDSetModifierLockState(
+pub fn IOHIDSetModifierLockState(
     handle: io_connect_t,
     selector: c_int,
     state: bool,
@@ -1774,7 +1758,7 @@ pub extern "C-unwind" fn IOHIDSetModifierLockState(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDRegisterVirtualDisplay(
+pub unsafe fn IOHIDRegisterVirtualDisplay(
     handle: io_connect_t,
     display_token: *mut u32,
 ) -> libc::kern_return_t {
@@ -1790,7 +1774,7 @@ pub unsafe extern "C-unwind" fn IOHIDRegisterVirtualDisplay(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn IOHIDUnregisterVirtualDisplay(
+pub fn IOHIDUnregisterVirtualDisplay(
     handle: io_connect_t,
     display_token: u32,
 ) -> libc::kern_return_t {
@@ -1809,7 +1793,7 @@ pub extern "C-unwind" fn IOHIDUnregisterVirtualDisplay(
 #[cfg(all(feature = "graphics", feature = "libc"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDSetVirtualDisplayBounds(
+pub unsafe fn IOHIDSetVirtualDisplayBounds(
     handle: io_connect_t,
     display_token: u32,
     bounds: *const IOGBounds,
@@ -1830,7 +1814,7 @@ pub unsafe extern "C-unwind" fn IOHIDSetVirtualDisplayBounds(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDGetActivityState(
+pub unsafe fn IOHIDGetActivityState(
     handle: io_connect_t,
     hid_activity_idle: *mut bool,
 ) -> libc::kern_return_t {
@@ -1896,7 +1880,7 @@ unsafe impl RefEncode for IOHIDAccessType {
 ///
 /// Returns: Returns an access type defined in the IOHIDAccessType enumerator.
 #[inline]
-pub extern "C-unwind" fn IOHIDCheckAccess(request_type: IOHIDRequestType) -> IOHIDAccessType {
+pub fn IOHIDCheckAccess(request_type: IOHIDRequestType) -> IOHIDAccessType {
     extern "C-unwind" {
         fn IOHIDCheckAccess(request_type: IOHIDRequestType) -> IOHIDAccessType;
     }
@@ -1917,7 +1901,7 @@ pub extern "C-unwind" fn IOHIDCheckAccess(request_type: IOHIDRequestType) -> IOH
 ///
 /// Returns: Returns true if access was granted.
 #[inline]
-pub extern "C-unwind" fn IOHIDRequestAccess(request_type: IOHIDRequestType) -> bool {
+pub fn IOHIDRequestAccess(request_type: IOHIDRequestType) -> bool {
     extern "C-unwind" {
         fn IOHIDRequestAccess(request_type: IOHIDRequestType) -> bool;
     }
@@ -1931,7 +1915,7 @@ pub type NXEventHandle = libc::mach_port_t;
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NXOpenEventStatus() -> NXEventHandle {
+pub fn NXOpenEventStatus() -> NXEventHandle {
     extern "C-unwind" {
         fn NXOpenEventStatus() -> NXEventHandle;
     }
@@ -1941,7 +1925,7 @@ pub extern "C-unwind" fn NXOpenEventStatus() -> NXEventHandle {
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NXCloseEventStatus(handle: NXEventHandle) {
+pub fn NXCloseEventStatus(handle: NXEventHandle) {
     extern "C-unwind" {
         fn NXCloseEventStatus(handle: NXEventHandle);
     }
@@ -1956,7 +1940,7 @@ pub extern "C-unwind" fn NXCloseEventStatus(handle: NXEventHandle) {
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn NXEventSystemInfo(
+pub unsafe fn NXEventSystemInfo(
     handle: NXEventHandle,
     flavor: *mut c_char,
     evs_info: *mut c_int,
@@ -1976,7 +1960,7 @@ pub unsafe extern "C-unwind" fn NXEventSystemInfo(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NXSetKeyRepeatInterval(handle: NXEventHandle, seconds: c_double) {
+pub fn NXSetKeyRepeatInterval(handle: NXEventHandle, seconds: c_double) {
     extern "C-unwind" {
         fn NXSetKeyRepeatInterval(handle: NXEventHandle, seconds: c_double);
     }
@@ -1986,7 +1970,7 @@ pub extern "C-unwind" fn NXSetKeyRepeatInterval(handle: NXEventHandle, seconds: 
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NXKeyRepeatInterval(handle: NXEventHandle) -> c_double {
+pub fn NXKeyRepeatInterval(handle: NXEventHandle) -> c_double {
     extern "C-unwind" {
         fn NXKeyRepeatInterval(handle: NXEventHandle) -> c_double;
     }
@@ -1996,7 +1980,7 @@ pub extern "C-unwind" fn NXKeyRepeatInterval(handle: NXEventHandle) -> c_double 
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NXSetKeyRepeatThreshold(handle: NXEventHandle, threshold: c_double) {
+pub fn NXSetKeyRepeatThreshold(handle: NXEventHandle, threshold: c_double) {
     extern "C-unwind" {
         fn NXSetKeyRepeatThreshold(handle: NXEventHandle, threshold: c_double);
     }
@@ -2006,7 +1990,7 @@ pub extern "C-unwind" fn NXSetKeyRepeatThreshold(handle: NXEventHandle, threshol
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NXKeyRepeatThreshold(handle: NXEventHandle) -> c_double {
+pub fn NXKeyRepeatThreshold(handle: NXEventHandle) -> c_double {
     extern "C-unwind" {
         fn NXKeyRepeatThreshold(handle: NXEventHandle) -> c_double;
     }
@@ -2016,7 +2000,7 @@ pub extern "C-unwind" fn NXKeyRepeatThreshold(handle: NXEventHandle) -> c_double
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NXResetKeyboard(handle: NXEventHandle) {
+pub fn NXResetKeyboard(handle: NXEventHandle) {
     extern "C-unwind" {
         fn NXResetKeyboard(handle: NXEventHandle);
     }
@@ -2026,7 +2010,7 @@ pub extern "C-unwind" fn NXResetKeyboard(handle: NXEventHandle) {
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NXSetClickTime(handle: NXEventHandle, seconds: c_double) {
+pub fn NXSetClickTime(handle: NXEventHandle, seconds: c_double) {
     extern "C-unwind" {
         fn NXSetClickTime(handle: NXEventHandle, seconds: c_double);
     }
@@ -2036,7 +2020,7 @@ pub extern "C-unwind" fn NXSetClickTime(handle: NXEventHandle, seconds: c_double
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NXClickTime(handle: NXEventHandle) -> c_double {
+pub fn NXClickTime(handle: NXEventHandle) -> c_double {
     extern "C-unwind" {
         fn NXClickTime(handle: NXEventHandle) -> c_double;
     }
@@ -2049,7 +2033,7 @@ pub extern "C-unwind" fn NXClickTime(handle: NXEventHandle) -> c_double {
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn NXSetClickSpace(handle: NXEventHandle, area: *mut NXSize) {
+pub unsafe fn NXSetClickSpace(handle: NXEventHandle, area: *mut NXSize) {
     extern "C-unwind" {
         fn NXSetClickSpace(handle: NXEventHandle, area: *mut NXSize);
     }
@@ -2062,7 +2046,7 @@ pub unsafe extern "C-unwind" fn NXSetClickSpace(handle: NXEventHandle, area: *mu
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn NXGetClickSpace(handle: NXEventHandle, area: *mut NXSize) {
+pub unsafe fn NXGetClickSpace(handle: NXEventHandle, area: *mut NXSize) {
     extern "C-unwind" {
         fn NXGetClickSpace(handle: NXEventHandle, area: *mut NXSize);
     }
@@ -2072,7 +2056,7 @@ pub unsafe extern "C-unwind" fn NXGetClickSpace(handle: NXEventHandle, area: *mu
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn NXResetMouse(handle: NXEventHandle) {
+pub fn NXResetMouse(handle: NXEventHandle) {
     extern "C-unwind" {
         fn NXResetMouse(handle: NXEventHandle);
     }

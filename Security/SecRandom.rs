@@ -60,11 +60,7 @@ extern "C" {
 /// - `bytes` must be a valid pointer.
 #[must_use]
 #[inline]
-pub unsafe extern "C-unwind" fn SecRandomCopyBytes(
-    rnd: SecRandomRef,
-    count: usize,
-    bytes: NonNull<c_void>,
-) -> c_int {
+pub unsafe fn SecRandomCopyBytes(rnd: SecRandomRef, count: usize, bytes: NonNull<c_void>) -> c_int {
     extern "C-unwind" {
         fn SecRandomCopyBytes(rnd: SecRandomRef, count: usize, bytes: NonNull<c_void>) -> c_int;
     }

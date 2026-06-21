@@ -39,7 +39,7 @@ unsafe impl RefEncode for CFPropertyListMutabilityOptions {
 #[cfg(feature = "CFData")]
 #[deprecated = "Use CFPropertyListCreateWithData instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn CFPropertyListCreateFromXMLData(
+pub unsafe fn CFPropertyListCreateFromXMLData(
     allocator: Option<&CFAllocator>,
     xml_data: &CFData,
     mutability_option: CFOptionFlags,
@@ -65,7 +65,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromXMLData(
 #[cfg(feature = "CFData")]
 #[deprecated = "Use CFPropertyListCreateData instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn CFPropertyListCreateXMLData(
+pub unsafe fn CFPropertyListCreateXMLData(
     allocator: Option<&CFAllocator>,
     property_list: &CFPropertyList,
 ) -> Option<CFRetained<CFData>> {
@@ -83,7 +83,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateXMLData(
 ///
 /// `property_list` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CFPropertyListCreateDeepCopy(
+pub unsafe fn CFPropertyListCreateDeepCopy(
     allocator: Option<&CFAllocator>,
     property_list: &CFPropertyList,
     mutability_option: CFOptionFlags,
@@ -127,10 +127,7 @@ unsafe impl RefEncode for CFPropertyListFormat {
 ///
 /// `plist` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CFPropertyListIsValid(
-    plist: &CFPropertyList,
-    format: CFPropertyListFormat,
-) -> bool {
+pub unsafe fn CFPropertyListIsValid(plist: &CFPropertyList, format: CFPropertyListFormat) -> bool {
     extern "C-unwind" {
         fn CFPropertyListIsValid(plist: &CFPropertyList, format: CFPropertyListFormat) -> Boolean;
     }
@@ -145,7 +142,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListIsValid(
 #[cfg(feature = "CFStream")]
 #[deprecated = "Use CFPropertyListWrite instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn CFPropertyListWriteToStream(
+pub unsafe fn CFPropertyListWriteToStream(
     property_list: &CFPropertyList,
     stream: &CFWriteStream,
     format: CFPropertyListFormat,
@@ -168,7 +165,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListWriteToStream(
 #[cfg(feature = "CFStream")]
 #[deprecated = "Use CFPropertyListCreateWithStream instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn CFPropertyListCreateFromStream(
+pub unsafe fn CFPropertyListCreateFromStream(
     allocator: Option<&CFAllocator>,
     stream: &CFReadStream,
     stream_length: CFIndex,
@@ -213,7 +210,7 @@ pub const kCFPropertyListWriteStreamError: CFIndex = 3851;
 /// `error` must be a valid pointer.
 #[cfg(all(feature = "CFData", feature = "CFError"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
+pub unsafe fn CFPropertyListCreateWithData(
     allocator: Option<&CFAllocator>,
     data: &CFData,
     options: CFOptionFlags,
@@ -238,7 +235,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
 /// `error` must be a valid pointer.
 #[cfg(all(feature = "CFError", feature = "CFStream"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
+pub unsafe fn CFPropertyListCreateWithStream(
     allocator: Option<&CFAllocator>,
     stream: Option<&CFReadStream>,
     stream_length: CFIndex,
@@ -268,7 +265,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
 /// - `error` must be a valid pointer.
 #[cfg(all(feature = "CFError", feature = "CFStream"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFPropertyListWrite(
+pub unsafe fn CFPropertyListWrite(
     property_list: &CFPropertyList,
     stream: &CFWriteStream,
     format: CFPropertyListFormat,
@@ -293,7 +290,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListWrite(
 /// - `error` must be a valid pointer.
 #[cfg(all(feature = "CFData", feature = "CFError"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFPropertyListCreateData(
+pub unsafe fn CFPropertyListCreateData(
     allocator: Option<&CFAllocator>,
     property_list: &CFPropertyList,
     format: CFPropertyListFormat,

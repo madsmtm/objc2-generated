@@ -10,7 +10,7 @@ use crate::*;
 
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
-pub unsafe extern "C-unwind" fn AXNameFromColor(color: &CGColor) -> Retained<NSString> {
+pub unsafe fn AXNameFromColor(color: &CGColor) -> Retained<NSString> {
     extern "C-unwind" {
         fn AXNameFromColor(color: &CGColor) -> *mut NSString;
     }

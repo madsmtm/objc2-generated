@@ -688,7 +688,7 @@ impl SKIndex {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn SKLoadDefaultExtractorPlugIns() {
+pub unsafe fn SKLoadDefaultExtractorPlugIns() {
     extern "C-unwind" {
         fn SKLoadDefaultExtractorPlugIns();
     }

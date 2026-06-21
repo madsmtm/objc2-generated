@@ -1636,7 +1636,7 @@ pub type IOGraphicsAcceleratorInterface = IOGraphicsAcceleratorInterfaceStruct;
 /// - `p_framebuffer_index` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOAccelFindAccelerator(
+pub unsafe fn IOAccelFindAccelerator(
     framebuffer: io_service_t,
     p_accelerator: *mut io_service_t,
     p_framebuffer_index: *mut u32,
@@ -4037,7 +4037,7 @@ pub const kIOFBCursorMemory: c_uint = 100;
 /// `connect` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOFramebufferOpen(
+pub unsafe fn IOFramebufferOpen(
     service: io_service_t,
     owning_task: task_port_t,
     r#type: c_uint,
@@ -4072,7 +4072,7 @@ pub const kIODisplayNoProductName: c_uint = 0x00000400;
 /// Returns: The returned CFDictionary that should be released by the caller with CFRelease().
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IODisplayCreateInfoDictionary(
+pub fn IODisplayCreateInfoDictionary(
     framebuffer: io_service_t,
     options: IOOptionBits,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -4107,7 +4107,7 @@ pub extern "C-unwind" fn IODisplayCreateInfoDictionary(
 /// - `matching2` generic must be of the correct type.
 /// - `matching2` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IODisplayMatchDictionaries(
+pub unsafe fn IODisplayMatchDictionaries(
     matching1: Option<&CFDictionary>,
     matching2: Option<&CFDictionary>,
     options: IOOptionBits,
@@ -4124,10 +4124,7 @@ pub unsafe extern "C-unwind" fn IODisplayMatchDictionaries(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IODisplayForFramebuffer(
-    framebuffer: io_service_t,
-    options: IOOptionBits,
-) -> io_service_t {
+pub fn IODisplayForFramebuffer(framebuffer: io_service_t, options: IOOptionBits) -> io_service_t {
     extern "C-unwind" {
         fn IODisplayForFramebuffer(
             framebuffer: io_service_t,
@@ -4144,7 +4141,7 @@ pub extern "C-unwind" fn IODisplayForFramebuffer(
 /// - `params` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODisplaySetParameters(
+pub unsafe fn IODisplaySetParameters(
     service: io_service_t,
     options: IOOptionBits,
     params: Option<&CFDictionary>,
@@ -4164,7 +4161,7 @@ pub unsafe extern "C-unwind" fn IODisplaySetParameters(
 /// `parameter_name` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODisplaySetFloatParameter(
+pub unsafe fn IODisplaySetFloatParameter(
     service: io_service_t,
     options: IOOptionBits,
     parameter_name: Option<&CFString>,
@@ -4186,7 +4183,7 @@ pub unsafe extern "C-unwind" fn IODisplaySetFloatParameter(
 /// `parameter_name` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODisplaySetIntegerParameter(
+pub unsafe fn IODisplaySetIntegerParameter(
     service: io_service_t,
     options: IOOptionBits,
     parameter_name: Option<&CFString>,
@@ -4208,7 +4205,7 @@ pub unsafe extern "C-unwind" fn IODisplaySetIntegerParameter(
 /// `params` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODisplayCopyParameters(
+pub unsafe fn IODisplayCopyParameters(
     service: io_service_t,
     options: IOOptionBits,
     params: *mut *const CFDictionary,
@@ -4228,7 +4225,7 @@ pub unsafe extern "C-unwind" fn IODisplayCopyParameters(
 /// `params` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODisplayCopyFloatParameters(
+pub unsafe fn IODisplayCopyFloatParameters(
     service: io_service_t,
     options: IOOptionBits,
     params: *mut *const CFDictionary,
@@ -4249,7 +4246,7 @@ pub unsafe extern "C-unwind" fn IODisplayCopyFloatParameters(
 /// - `value` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODisplayGetFloatParameter(
+pub unsafe fn IODisplayGetFloatParameter(
     service: io_service_t,
     options: IOOptionBits,
     parameter_name: Option<&CFString>,
@@ -4274,7 +4271,7 @@ pub unsafe extern "C-unwind" fn IODisplayGetFloatParameter(
 /// - `max` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODisplayGetIntegerRangeParameter(
+pub unsafe fn IODisplayGetIntegerRangeParameter(
     service: io_service_t,
     options: IOOptionBits,
     parameter_name: Option<&CFString>,
@@ -4297,10 +4294,7 @@ pub unsafe extern "C-unwind" fn IODisplayGetIntegerRangeParameter(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IODisplayCommitParameters(
-    service: io_service_t,
-    options: IOOptionBits,
-) -> IOReturn {
+pub fn IODisplayCommitParameters(service: io_service_t, options: IOOptionBits) -> IOReturn {
     extern "C-unwind" {
         fn IODisplayCommitParameters(service: io_service_t, options: IOOptionBits) -> IOReturn;
     }

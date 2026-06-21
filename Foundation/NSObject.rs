@@ -123,7 +123,7 @@ unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 /// - `zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSAllocateObject(
+pub unsafe fn NSAllocateObject(
     a_class: &AnyClass,
     extra_bytes: NSUInteger,
     zone: *mut NSZone,
@@ -147,7 +147,7 @@ pub unsafe extern "C-unwind" fn NSAllocateObject(
 #[cfg(feature = "NSZone")]
 #[deprecated = "Not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn NSCopyObject(
+pub unsafe fn NSCopyObject(
     object: &AnyObject,
     extra_bytes: NSUInteger,
     zone: *mut NSZone,
@@ -170,10 +170,7 @@ pub unsafe extern "C-unwind" fn NSCopyObject(
 /// - `requested_zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSShouldRetainWithZone(
-    an_object: &AnyObject,
-    requested_zone: *mut NSZone,
-) -> bool {
+pub unsafe fn NSShouldRetainWithZone(an_object: &AnyObject, requested_zone: *mut NSZone) -> bool {
     extern "C-unwind" {
         fn NSShouldRetainWithZone(an_object: &AnyObject, requested_zone: *mut NSZone) -> Bool;
     }

@@ -60,10 +60,7 @@ impl SCDynamicStore {
 /// - `info` generic must be of the correct type.
 /// - `info` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn DHCPInfoGetOptionData(
-    info: &CFDictionary,
-    code: u8,
-) -> Option<CFRetained<CFData>> {
+pub unsafe fn DHCPInfoGetOptionData(info: &CFDictionary, code: u8) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
         fn DHCPInfoGetOptionData(info: &CFDictionary, code: u8) -> Option<NonNull<CFData>>;
     }
@@ -88,9 +85,7 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetOptionData(
 /// - `info` generic must be of the correct type.
 /// - `info` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseStartTime(
-    info: &CFDictionary,
-) -> Option<CFRetained<CFDate>> {
+pub unsafe fn DHCPInfoGetLeaseStartTime(info: &CFDictionary) -> Option<CFRetained<CFDate>> {
     extern "C-unwind" {
         fn DHCPInfoGetLeaseStartTime(info: &CFDictionary) -> Option<NonNull<CFDate>>;
     }
@@ -116,9 +111,7 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseStartTime(
 /// - `info` generic must be of the correct type.
 /// - `info` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseExpirationTime(
-    info: &CFDictionary,
-) -> Option<CFRetained<CFDate>> {
+pub unsafe fn DHCPInfoGetLeaseExpirationTime(info: &CFDictionary) -> Option<CFRetained<CFDate>> {
     extern "C-unwind" {
         fn DHCPInfoGetLeaseExpirationTime(info: &CFDictionary) -> Option<NonNull<CFDate>>;
     }

@@ -408,7 +408,7 @@ impl MIDIThruConnectionParams {
 /// `out_connection` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIThruConnectionCreate(
+pub unsafe fn MIDIThruConnectionCreate(
     in_persistent_owner_id: Option<&CFString>,
     in_connection_params: &CFData,
     out_connection: NonNull<MIDIThruConnectionRef>,
@@ -432,9 +432,7 @@ pub unsafe extern "C-unwind" fn MIDIThruConnectionCreate(
 /// Returns: An OSStatus result code.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIThruConnectionDispose(
-    connection: MIDIThruConnectionRef,
-) -> OSStatus {
+pub unsafe fn MIDIThruConnectionDispose(connection: MIDIThruConnectionRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDIThruConnectionDispose(connection: MIDIThruConnectionRef) -> OSStatus;
     }
@@ -457,7 +455,7 @@ pub unsafe extern "C-unwind" fn MIDIThruConnectionDispose(
 /// `out_connection_params` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIThruConnectionGetParams(
+pub unsafe fn MIDIThruConnectionGetParams(
     connection: MIDIThruConnectionRef,
     out_connection_params: NonNull<NonNull<CFData>>,
 ) -> OSStatus {
@@ -479,7 +477,7 @@ pub unsafe extern "C-unwind" fn MIDIThruConnectionGetParams(
 /// Returns: An OSStatus result code.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIThruConnectionSetParams(
+pub unsafe fn MIDIThruConnectionSetParams(
     connection: MIDIThruConnectionRef,
     in_connection_params: &CFData,
 ) -> OSStatus {
@@ -505,7 +503,7 @@ pub unsafe extern "C-unwind" fn MIDIThruConnectionSetParams(
 /// `out_connection_list` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIThruConnectionFind(
+pub unsafe fn MIDIThruConnectionFind(
     in_persistent_owner_id: &CFString,
     out_connection_list: NonNull<NonNull<CFData>>,
 ) -> OSStatus {

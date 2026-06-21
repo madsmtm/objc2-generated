@@ -26,7 +26,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGEXRToneMappingGammaGetDefaultOptions() -> CFRetained<CFDictionary> {
+pub fn CGEXRToneMappingGammaGetDefaultOptions() -> CFRetained<CFDictionary> {
     extern "C-unwind" {
         fn CGEXRToneMappingGammaGetDefaultOptions() -> Option<NonNull<CFDictionary>>;
     }

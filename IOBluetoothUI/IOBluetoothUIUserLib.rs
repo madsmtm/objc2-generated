@@ -78,7 +78,7 @@ pub const kIOBluetoothUIUserCanceledErr: c_int = -1001;
 /// - `description_text` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothValidateHardwareWithDescription(
+pub unsafe fn IOBluetoothValidateHardwareWithDescription(
     cancel_button_title: Option<&CFString>,
     description_text: Option<&CFString>,
 ) -> IOReturn {
@@ -93,7 +93,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothValidateHardwareWithDescription(
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothGetPairingController(
+pub unsafe fn IOBluetoothGetPairingController(
 ) -> Option<CFRetained<IOBluetoothPairingControllerRef>> {
     extern "C-unwind" {
         fn IOBluetoothGetPairingController() -> Option<NonNull<IOBluetoothPairingControllerRef>>;
@@ -104,7 +104,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothGetPairingController(
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothGetDeviceSelectorController(
+pub unsafe fn IOBluetoothGetDeviceSelectorController(
 ) -> Option<CFRetained<IOBluetoothDeviceSelectorControllerRef>> {
     extern "C-unwind" {
         fn IOBluetoothGetDeviceSelectorController(

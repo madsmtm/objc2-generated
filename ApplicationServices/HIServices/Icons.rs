@@ -254,7 +254,7 @@ pub type IconGetterUPP = IconGetterProcPtr;
 ///
 /// `user_routine` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn NewIconActionUPP(user_routine: IconActionProcPtr) -> IconActionUPP {
+pub unsafe fn NewIconActionUPP(user_routine: IconActionProcPtr) -> IconActionUPP {
     extern "C-unwind" {
         fn NewIconActionUPP(user_routine: IconActionProcPtr) -> IconActionUPP;
     }
@@ -265,7 +265,7 @@ pub unsafe extern "C-unwind" fn NewIconActionUPP(user_routine: IconActionProcPtr
 ///
 /// `user_routine` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn NewIconGetterUPP(user_routine: IconGetterProcPtr) -> IconGetterUPP {
+pub unsafe fn NewIconGetterUPP(user_routine: IconGetterProcPtr) -> IconGetterUPP {
     extern "C-unwind" {
         fn NewIconGetterUPP(user_routine: IconGetterProcPtr) -> IconGetterUPP;
     }
@@ -276,7 +276,7 @@ pub unsafe extern "C-unwind" fn NewIconGetterUPP(user_routine: IconGetterProcPtr
 ///
 /// `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn DisposeIconActionUPP(user_upp: IconActionUPP) {
+pub unsafe fn DisposeIconActionUPP(user_upp: IconActionUPP) {
     extern "C-unwind" {
         fn DisposeIconActionUPP(user_upp: IconActionUPP);
     }
@@ -287,7 +287,7 @@ pub unsafe extern "C-unwind" fn DisposeIconActionUPP(user_upp: IconActionUPP) {
 ///
 /// `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn DisposeIconGetterUPP(user_upp: IconGetterUPP) {
+pub unsafe fn DisposeIconGetterUPP(user_upp: IconGetterUPP) {
     extern "C-unwind" {
         fn DisposeIconGetterUPP(user_upp: IconGetterUPP);
     }
@@ -300,7 +300,7 @@ pub unsafe extern "C-unwind" fn DisposeIconGetterUPP(user_upp: IconGetterUPP) {
 /// - `your_data_ptr` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn InvokeIconActionUPP(
+pub unsafe fn InvokeIconActionUPP(
     the_type: ResType,
     the_icon: *mut Handle,
     your_data_ptr: *mut c_void,
@@ -322,7 +322,7 @@ pub unsafe extern "C-unwind" fn InvokeIconActionUPP(
 /// - `your_data_ptr` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn InvokeIconGetterUPP(
+pub unsafe fn InvokeIconGetterUPP(
     the_type: ResType,
     your_data_ptr: *mut c_void,
     user_upp: IconGetterUPP,
@@ -353,7 +353,7 @@ pub const kPlotIconRefNoMask: c_uint = 1 << 2;
 /// - `icon_family` must be a valid pointer.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
-pub unsafe extern "C-unwind" fn IconRefToIconFamily(
+pub unsafe fn IconRefToIconFamily(
     the_icon_ref: IconRef,
     which_icons: IconSelectorValue,
     icon_family: *mut IconFamilyHandle,
@@ -374,7 +374,7 @@ pub unsafe extern "C-unwind" fn IconRefToIconFamily(
 /// - `h` must be a valid pointer.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
-pub unsafe extern "C-unwind" fn SetIconFamilyData(
+pub unsafe fn SetIconFamilyData(
     icon_family: IconFamilyHandle,
     icon_type: OSType,
     h: Handle,
@@ -391,7 +391,7 @@ pub unsafe extern "C-unwind" fn SetIconFamilyData(
 /// - `h` must be a valid pointer.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
-pub unsafe extern "C-unwind" fn GetIconFamilyData(
+pub unsafe fn GetIconFamilyData(
     icon_family: IconFamilyHandle,
     icon_type: OSType,
     h: Handle,
@@ -409,7 +409,7 @@ pub unsafe extern "C-unwind" fn GetIconFamilyData(
 /// - `the_icon_ref` must be a valid pointer.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
-pub unsafe extern "C-unwind" fn IconRefContainsCGPoint(
+pub unsafe fn IconRefContainsCGPoint(
     test_pt: *const CGPoint,
     icon_rect: *const CGRect,
     align: IconAlignmentType,
@@ -444,7 +444,7 @@ pub unsafe extern "C-unwind" fn IconRefContainsCGPoint(
 /// - `the_icon_ref` must be a valid pointer.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
-pub unsafe extern "C-unwind" fn IconRefIntersectsCGRect(
+pub unsafe fn IconRefIntersectsCGRect(
     test_rect: *const CGRect,
     icon_rect: *const CGRect,
     align: IconAlignmentType,
@@ -478,7 +478,7 @@ pub unsafe extern "C-unwind" fn IconRefIntersectsCGRect(
 /// - `the_icon_ref` must be a valid pointer.
 #[cfg(all(feature = "HIShape", feature = "objc2-core-services"))]
 #[inline]
-pub unsafe extern "C-unwind" fn IconRefToHIShape(
+pub unsafe fn IconRefToHIShape(
     icon_rect: *const CGRect,
     align: IconAlignmentType,
     icon_services_usage_flags: IconServicesUsageFlags,
@@ -502,7 +502,7 @@ pub unsafe extern "C-unwind" fn IconRefToHIShape(
 /// `icon_ref` must be a valid pointer.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
-pub unsafe extern "C-unwind" fn IsIconRefMaskEmpty(icon_ref: IconRef) -> bool {
+pub unsafe fn IsIconRefMaskEmpty(icon_ref: IconRef) -> bool {
     extern "C-unwind" {
         fn IsIconRefMaskEmpty(icon_ref: IconRef) -> Boolean;
     }
@@ -516,7 +516,7 @@ pub unsafe extern "C-unwind" fn IsIconRefMaskEmpty(icon_ref: IconRef) -> bool {
 /// - `out_transform` must be a valid pointer.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
-pub unsafe extern "C-unwind" fn GetIconRefVariant(
+pub unsafe fn GetIconRefVariant(
     in_icon_ref: IconRef,
     in_variant: OSType,
     out_transform: *mut IconTransformType,

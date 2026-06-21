@@ -182,7 +182,7 @@ extern "C" {
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecEncryptTransformCreate(
+pub unsafe fn SecEncryptTransformCreate(
     key_ref: &SecKey,
     error: *mut *mut CFError,
 ) -> Option<CFRetained<SecTransform>> {
@@ -217,7 +217,7 @@ pub unsafe extern "C-unwind" fn SecEncryptTransformCreate(
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecDecryptTransformCreate(
+pub unsafe fn SecDecryptTransformCreate(
     key_ref: &SecKey,
     error: *mut *mut CFError,
 ) -> Option<CFRetained<SecTransform>> {
@@ -236,7 +236,7 @@ pub unsafe extern "C-unwind" fn SecDecryptTransformCreate(
 /// Returns: the CFTypeID
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
-pub extern "C-unwind" fn SecDecryptTransformGetTypeID() -> CFTypeID {
+pub fn SecDecryptTransformGetTypeID() -> CFTypeID {
     extern "C-unwind" {
         fn SecDecryptTransformGetTypeID() -> CFTypeID;
     }
@@ -248,7 +248,7 @@ pub extern "C-unwind" fn SecDecryptTransformGetTypeID() -> CFTypeID {
 /// Returns: the CFTypeID
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
-pub extern "C-unwind" fn SecEncryptTransformGetTypeID() -> CFTypeID {
+pub fn SecEncryptTransformGetTypeID() -> CFTypeID {
     extern "C-unwind" {
         fn SecEncryptTransformGetTypeID() -> CFTypeID;
     }

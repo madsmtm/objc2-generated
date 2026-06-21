@@ -506,7 +506,7 @@ extern "C" {
 /// `definition` must be a valid pointer.
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[inline]
-pub unsafe extern "C-unwind" fn JSClassCreate(definition: *const JSClassDefinition) -> JSClassRef {
+pub unsafe fn JSClassCreate(definition: *const JSClassDefinition) -> JSClassRef {
     extern "C-unwind" {
         fn JSClassCreate(definition: *const JSClassDefinition) -> JSClassRef;
     }
@@ -524,7 +524,7 @@ pub unsafe extern "C-unwind" fn JSClassCreate(definition: *const JSClassDefiniti
 /// `js_class` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSClassRetain(js_class: JSClassRef) -> JSClassRef {
+pub unsafe fn JSClassRetain(js_class: JSClassRef) -> JSClassRef {
     extern "C-unwind" {
         fn JSClassRetain(js_class: JSClassRef) -> JSClassRef;
     }
@@ -540,7 +540,7 @@ pub unsafe extern "C-unwind" fn JSClassRetain(js_class: JSClassRef) -> JSClassRe
 /// `js_class` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSClassRelease(js_class: JSClassRef) {
+pub unsafe fn JSClassRelease(js_class: JSClassRef) {
     extern "C-unwind" {
         fn JSClassRelease(js_class: JSClassRef);
     }
@@ -568,7 +568,7 @@ pub unsafe extern "C-unwind" fn JSClassRelease(js_class: JSClassRef) {
 /// - `data` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMake(
+pub unsafe fn JSObjectMake(
     ctx: JSContextRef,
     js_class: JSClassRef,
     data: *mut c_void,
@@ -596,7 +596,7 @@ pub unsafe extern "C-unwind" fn JSObjectMake(
 /// - `call_as_function` must be implemented correctly.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeFunctionWithCallback(
+pub unsafe fn JSObjectMakeFunctionWithCallback(
     ctx: JSContextRef,
     name: JSStringRef,
     call_as_function: JSObjectCallAsFunctionCallback,
@@ -630,7 +630,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeFunctionWithCallback(
 /// - `call_as_constructor` must be implemented correctly.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeConstructor(
+pub unsafe fn JSObjectMakeConstructor(
     ctx: JSContextRef,
     js_class: JSClassRef,
     call_as_constructor: JSObjectCallAsConstructorCallback,
@@ -667,7 +667,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeConstructor(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeArray(
+pub unsafe fn JSObjectMakeArray(
     ctx: JSContextRef,
     argument_count: usize,
     arguments: *mut JSValueRef,
@@ -703,7 +703,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeArray(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeDate(
+pub unsafe fn JSObjectMakeDate(
     ctx: JSContextRef,
     argument_count: usize,
     arguments: *mut JSValueRef,
@@ -739,7 +739,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeDate(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeError(
+pub unsafe fn JSObjectMakeError(
     ctx: JSContextRef,
     argument_count: usize,
     arguments: *mut JSValueRef,
@@ -775,7 +775,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeError(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeRegExp(
+pub unsafe fn JSObjectMakeRegExp(
     ctx: JSContextRef,
     argument_count: usize,
     arguments: *mut JSValueRef,
@@ -812,7 +812,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeRegExp(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeDeferredPromise(
+pub unsafe fn JSObjectMakeDeferredPromise(
     ctx: JSContextRef,
     resolve: *mut JSObjectRef,
     reject: *mut JSObjectRef,
@@ -861,7 +861,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeDeferredPromise(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeFunction(
+pub unsafe fn JSObjectMakeFunction(
     ctx: JSContextRef,
     name: JSStringRef,
     parameter_count: c_uint,
@@ -911,10 +911,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeFunction(
 /// - `object` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetPrototype(
-    ctx: JSContextRef,
-    object: JSObjectRef,
-) -> JSValueRef {
+pub unsafe fn JSObjectGetPrototype(ctx: JSContextRef, object: JSObjectRef) -> JSValueRef {
     extern "C-unwind" {
         fn JSObjectGetPrototype(ctx: JSContextRef, object: JSObjectRef) -> JSValueRef;
     }
@@ -936,11 +933,7 @@ pub unsafe extern "C-unwind" fn JSObjectGetPrototype(
 /// - `value` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectSetPrototype(
-    ctx: JSContextRef,
-    object: JSObjectRef,
-    value: JSValueRef,
-) {
+pub unsafe fn JSObjectSetPrototype(ctx: JSContextRef, object: JSObjectRef, value: JSValueRef) {
     extern "C-unwind" {
         fn JSObjectSetPrototype(ctx: JSContextRef, object: JSObjectRef, value: JSValueRef);
     }
@@ -962,7 +955,7 @@ pub unsafe extern "C-unwind" fn JSObjectSetPrototype(
 /// - `property_name` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectHasProperty(
+pub unsafe fn JSObjectHasProperty(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_name: JSStringRef,
@@ -997,7 +990,7 @@ pub unsafe extern "C-unwind" fn JSObjectHasProperty(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetProperty(
+pub unsafe fn JSObjectGetProperty(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_name: JSStringRef,
@@ -1037,7 +1030,7 @@ pub unsafe extern "C-unwind" fn JSObjectGetProperty(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectSetProperty(
+pub unsafe fn JSObjectSetProperty(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_name: JSStringRef,
@@ -1078,7 +1071,7 @@ pub unsafe extern "C-unwind" fn JSObjectSetProperty(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectDeleteProperty(
+pub unsafe fn JSObjectDeleteProperty(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_name: JSStringRef,
@@ -1115,7 +1108,7 @@ pub unsafe extern "C-unwind" fn JSObjectDeleteProperty(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectHasPropertyForKey(
+pub unsafe fn JSObjectHasPropertyForKey(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_key: JSValueRef,
@@ -1154,7 +1147,7 @@ pub unsafe extern "C-unwind" fn JSObjectHasPropertyForKey(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetPropertyForKey(
+pub unsafe fn JSObjectGetPropertyForKey(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_key: JSValueRef,
@@ -1196,7 +1189,7 @@ pub unsafe extern "C-unwind" fn JSObjectGetPropertyForKey(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectSetPropertyForKey(
+pub unsafe fn JSObjectSetPropertyForKey(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_key: JSValueRef,
@@ -1239,7 +1232,7 @@ pub unsafe extern "C-unwind" fn JSObjectSetPropertyForKey(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectDeletePropertyForKey(
+pub unsafe fn JSObjectDeletePropertyForKey(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_key: JSValueRef,
@@ -1277,7 +1270,7 @@ pub unsafe extern "C-unwind" fn JSObjectDeletePropertyForKey(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetPropertyAtIndex(
+pub unsafe fn JSObjectGetPropertyAtIndex(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_index: c_uint,
@@ -1316,7 +1309,7 @@ pub unsafe extern "C-unwind" fn JSObjectGetPropertyAtIndex(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectSetPropertyAtIndex(
+pub unsafe fn JSObjectSetPropertyAtIndex(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_index: c_uint,
@@ -1346,7 +1339,7 @@ pub unsafe extern "C-unwind" fn JSObjectSetPropertyAtIndex(
 /// `object` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetPrivate(object: JSObjectRef) -> *mut c_void {
+pub unsafe fn JSObjectGetPrivate(object: JSObjectRef) -> *mut c_void {
     extern "C-unwind" {
         fn JSObjectGetPrivate(object: JSObjectRef) -> *mut c_void;
     }
@@ -1369,7 +1362,7 @@ pub unsafe extern "C-unwind" fn JSObjectGetPrivate(object: JSObjectRef) -> *mut 
 /// - `data` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectSetPrivate(object: JSObjectRef, data: *mut c_void) -> bool {
+pub unsafe fn JSObjectSetPrivate(object: JSObjectRef, data: *mut c_void) -> bool {
     extern "C-unwind" {
         fn JSObjectSetPrivate(object: JSObjectRef, data: *mut c_void) -> bool;
     }
@@ -1390,7 +1383,7 @@ pub unsafe extern "C-unwind" fn JSObjectSetPrivate(object: JSObjectRef, data: *m
 /// - `object` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectIsFunction(ctx: JSContextRef, object: JSObjectRef) -> bool {
+pub unsafe fn JSObjectIsFunction(ctx: JSContextRef, object: JSObjectRef) -> bool {
     extern "C-unwind" {
         fn JSObjectIsFunction(ctx: JSContextRef, object: JSObjectRef) -> bool;
     }
@@ -1422,7 +1415,7 @@ pub unsafe extern "C-unwind" fn JSObjectIsFunction(ctx: JSContextRef, object: JS
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectCallAsFunction(
+pub unsafe fn JSObjectCallAsFunction(
     ctx: JSContextRef,
     object: JSObjectRef,
     this_object: JSObjectRef,
@@ -1466,10 +1459,7 @@ pub unsafe extern "C-unwind" fn JSObjectCallAsFunction(
 /// - `object` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectIsConstructor(
-    ctx: JSContextRef,
-    object: JSObjectRef,
-) -> bool {
+pub unsafe fn JSObjectIsConstructor(ctx: JSContextRef, object: JSObjectRef) -> bool {
     extern "C-unwind" {
         fn JSObjectIsConstructor(ctx: JSContextRef, object: JSObjectRef) -> bool;
     }
@@ -1498,7 +1488,7 @@ pub unsafe extern "C-unwind" fn JSObjectIsConstructor(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectCallAsConstructor(
+pub unsafe fn JSObjectCallAsConstructor(
     ctx: JSContextRef,
     object: JSObjectRef,
     argument_count: usize,
@@ -1531,7 +1521,7 @@ pub unsafe extern "C-unwind" fn JSObjectCallAsConstructor(
 /// - `object` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectCopyPropertyNames(
+pub unsafe fn JSObjectCopyPropertyNames(
     ctx: JSContextRef,
     object: JSObjectRef,
 ) -> JSPropertyNameArrayRef {
@@ -1555,9 +1545,7 @@ pub unsafe extern "C-unwind" fn JSObjectCopyPropertyNames(
 /// `array` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSPropertyNameArrayRetain(
-    array: JSPropertyNameArrayRef,
-) -> JSPropertyNameArrayRef {
+pub unsafe fn JSPropertyNameArrayRetain(array: JSPropertyNameArrayRef) -> JSPropertyNameArrayRef {
     extern "C-unwind" {
         fn JSPropertyNameArrayRetain(array: JSPropertyNameArrayRef) -> JSPropertyNameArrayRef;
     }
@@ -1573,7 +1561,7 @@ pub unsafe extern "C-unwind" fn JSPropertyNameArrayRetain(
 /// `array` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSPropertyNameArrayRelease(array: JSPropertyNameArrayRef) {
+pub unsafe fn JSPropertyNameArrayRelease(array: JSPropertyNameArrayRef) {
     extern "C-unwind" {
         fn JSPropertyNameArrayRelease(array: JSPropertyNameArrayRef);
     }
@@ -1591,9 +1579,7 @@ pub unsafe extern "C-unwind" fn JSPropertyNameArrayRelease(array: JSPropertyName
 /// `array` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSPropertyNameArrayGetCount(
-    array: JSPropertyNameArrayRef,
-) -> usize {
+pub unsafe fn JSPropertyNameArrayGetCount(array: JSPropertyNameArrayRef) -> usize {
     extern "C-unwind" {
         fn JSPropertyNameArrayGetCount(array: JSPropertyNameArrayRef) -> usize;
     }
@@ -1613,7 +1599,7 @@ pub unsafe extern "C-unwind" fn JSPropertyNameArrayGetCount(
 /// `array` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSPropertyNameArrayGetNameAtIndex(
+pub unsafe fn JSPropertyNameArrayGetNameAtIndex(
     array: JSPropertyNameArrayRef,
     index: usize,
 ) -> JSStringRef {
@@ -1638,7 +1624,7 @@ pub unsafe extern "C-unwind" fn JSPropertyNameArrayGetNameAtIndex(
 /// - `property_name` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSPropertyNameAccumulatorAddName(
+pub unsafe fn JSPropertyNameAccumulatorAddName(
     accumulator: JSPropertyNameAccumulatorRef,
     property_name: JSStringRef,
 ) {

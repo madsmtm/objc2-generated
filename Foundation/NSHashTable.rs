@@ -248,7 +248,7 @@ unsafe impl RefEncode for NSHashEnumerator {
 ///
 /// `table` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSFreeHashTable(table: &NSHashTable) {
+pub unsafe fn NSFreeHashTable(table: &NSHashTable) {
     extern "C-unwind" {
         fn NSFreeHashTable(table: &NSHashTable);
     }
@@ -259,7 +259,7 @@ pub unsafe extern "C-unwind" fn NSFreeHashTable(table: &NSHashTable) {
 ///
 /// `table` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSResetHashTable(table: &NSHashTable) {
+pub unsafe fn NSResetHashTable(table: &NSHashTable) {
     extern "C-unwind" {
         fn NSResetHashTable(table: &NSHashTable);
     }
@@ -271,10 +271,7 @@ pub unsafe extern "C-unwind" fn NSResetHashTable(table: &NSHashTable) {
 /// - `table1` generic should be of the correct type.
 /// - `table2` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSCompareHashTables(
-    table1: &NSHashTable,
-    table2: &NSHashTable,
-) -> bool {
+pub unsafe fn NSCompareHashTables(table1: &NSHashTable, table2: &NSHashTable) -> bool {
     extern "C-unwind" {
         fn NSCompareHashTables(table1: &NSHashTable, table2: &NSHashTable) -> Bool;
     }
@@ -286,7 +283,7 @@ pub unsafe extern "C-unwind" fn NSCompareHashTables(
 /// `table` generic should be of the correct type.
 #[cfg(feature = "NSZone")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSCopyHashTableWithZone(
+pub unsafe fn NSCopyHashTableWithZone(
     table: &NSHashTable,
     zone: Option<&NSZone>,
 ) -> Retained<NSHashTable> {
@@ -303,10 +300,7 @@ pub unsafe extern "C-unwind" fn NSCopyHashTableWithZone(
 /// - `table` generic should be of the correct type.
 /// - `pointer` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSHashGet(
-    table: &NSHashTable,
-    pointer: *const c_void,
-) -> NonNull<c_void> {
+pub unsafe fn NSHashGet(table: &NSHashTable, pointer: *const c_void) -> NonNull<c_void> {
     extern "C-unwind" {
         fn NSHashGet(table: &NSHashTable, pointer: *const c_void) -> Option<NonNull<c_void>>;
     }
@@ -319,7 +313,7 @@ pub unsafe extern "C-unwind" fn NSHashGet(
 /// - `table` generic should be of the correct type.
 /// - `pointer` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSHashInsert(table: &NSHashTable, pointer: *const c_void) {
+pub unsafe fn NSHashInsert(table: &NSHashTable, pointer: *const c_void) {
     extern "C-unwind" {
         fn NSHashInsert(table: &NSHashTable, pointer: *const c_void);
     }
@@ -331,10 +325,7 @@ pub unsafe extern "C-unwind" fn NSHashInsert(table: &NSHashTable, pointer: *cons
 /// - `table` generic should be of the correct type.
 /// - `pointer` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSHashInsertKnownAbsent(
-    table: &NSHashTable,
-    pointer: *const c_void,
-) {
+pub unsafe fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *const c_void) {
     extern "C-unwind" {
         fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *const c_void);
     }
@@ -346,10 +337,7 @@ pub unsafe extern "C-unwind" fn NSHashInsertKnownAbsent(
 /// - `table` generic should be of the correct type.
 /// - `pointer` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSHashInsertIfAbsent(
-    table: &NSHashTable,
-    pointer: *const c_void,
-) -> *mut c_void {
+pub unsafe fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *const c_void) -> *mut c_void {
     extern "C-unwind" {
         fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *const c_void) -> *mut c_void;
     }
@@ -361,7 +349,7 @@ pub unsafe extern "C-unwind" fn NSHashInsertIfAbsent(
 /// - `table` generic should be of the correct type.
 /// - `pointer` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSHashRemove(table: &NSHashTable, pointer: *const c_void) {
+pub unsafe fn NSHashRemove(table: &NSHashTable, pointer: *const c_void) {
     extern "C-unwind" {
         fn NSHashRemove(table: &NSHashTable, pointer: *const c_void);
     }
@@ -372,7 +360,7 @@ pub unsafe extern "C-unwind" fn NSHashRemove(table: &NSHashTable, pointer: *cons
 ///
 /// `table` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator {
+pub unsafe fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator {
     extern "C-unwind" {
         fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator;
     }
@@ -383,9 +371,7 @@ pub unsafe extern "C-unwind" fn NSEnumerateHashTable(table: &NSHashTable) -> NSH
 ///
 /// `enumerator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn NSNextHashEnumeratorItem(
-    enumerator: NonNull<NSHashEnumerator>,
-) -> *mut c_void {
+pub unsafe fn NSNextHashEnumeratorItem(enumerator: NonNull<NSHashEnumerator>) -> *mut c_void {
     extern "C-unwind" {
         fn NSNextHashEnumeratorItem(enumerator: NonNull<NSHashEnumerator>) -> *mut c_void;
     }
@@ -396,7 +382,7 @@ pub unsafe extern "C-unwind" fn NSNextHashEnumeratorItem(
 ///
 /// `enumerator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>) {
+pub unsafe fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>) {
     extern "C-unwind" {
         fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>);
     }
@@ -407,7 +393,7 @@ pub unsafe extern "C-unwind" fn NSEndHashTableEnumeration(enumerator: NonNull<NS
 ///
 /// `table` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSCountHashTable(table: &NSHashTable) -> NSUInteger {
+pub unsafe fn NSCountHashTable(table: &NSHashTable) -> NSUInteger {
     extern "C-unwind" {
         fn NSCountHashTable(table: &NSHashTable) -> NSUInteger;
     }
@@ -437,7 +423,7 @@ impl NSString {
 /// `table` generic should be of the correct type.
 #[cfg(feature = "NSArray")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSAllHashTableObjects(table: &NSHashTable) -> Retained<NSArray> {
+pub unsafe fn NSAllHashTableObjects(table: &NSHashTable) -> Retained<NSArray> {
     extern "C-unwind" {
         fn NSAllHashTableObjects(table: &NSHashTable) -> *mut NSArray;
     }
@@ -503,7 +489,7 @@ unsafe impl RefEncode for NSHashTableCallBacks {
 /// - `call_backs` struct field `describe` must be implemented correctly.
 #[cfg(all(feature = "NSString", feature = "NSZone"))]
 #[inline]
-pub unsafe extern "C-unwind" fn NSCreateHashTableWithZone(
+pub unsafe fn NSCreateHashTableWithZone(
     call_backs: NSHashTableCallBacks,
     capacity: NSUInteger,
     zone: Option<&NSZone>,
@@ -529,7 +515,7 @@ pub unsafe extern "C-unwind" fn NSCreateHashTableWithZone(
 /// - `call_backs` struct field `describe` must be implemented correctly.
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSCreateHashTable(
+pub unsafe fn NSCreateHashTable(
     call_backs: NSHashTableCallBacks,
     capacity: NSUInteger,
 ) -> Retained<NSHashTable> {

@@ -32,7 +32,7 @@ unsafe impl RefEncode for UIAccessibilityZoomType {
     feature = "objc2-core-foundation"
 ))]
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityZoomFocusChanged(
+pub fn UIAccessibilityZoomFocusChanged(
     r#type: UIAccessibilityZoomType,
     frame: CGRect,
     view: &UIView,
@@ -48,7 +48,7 @@ pub extern "C-unwind" fn UIAccessibilityZoomFocusChanged(
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityRegisterGestureConflictWithZoom() {
+pub fn UIAccessibilityRegisterGestureConflictWithZoom() {
     extern "C-unwind" {
         fn UIAccessibilityRegisterGestureConflictWithZoom();
     }

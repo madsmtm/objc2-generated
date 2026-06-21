@@ -86,9 +86,7 @@ impl JSContext {
 /// `global_object_class` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSGlobalContextCreate(
-    global_object_class: JSClassRef,
-) -> JSGlobalContextRef {
+pub unsafe fn JSGlobalContextCreate(global_object_class: JSClassRef) -> JSGlobalContextRef {
     extern "C-unwind" {
         fn JSGlobalContextCreate(global_object_class: JSClassRef) -> JSGlobalContextRef;
     }
@@ -115,7 +113,7 @@ pub unsafe extern "C-unwind" fn JSGlobalContextCreate(
 /// - `global_object_class` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSGlobalContextCreateInGroup(
+pub unsafe fn JSGlobalContextCreateInGroup(
     group: JSContextGroupRef,
     global_object_class: JSClassRef,
 ) -> JSGlobalContextRef {
@@ -139,9 +137,7 @@ pub unsafe extern "C-unwind" fn JSGlobalContextCreateInGroup(
 /// `ctx` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSGlobalContextRetain(
-    ctx: JSGlobalContextRef,
-) -> JSGlobalContextRef {
+pub unsafe fn JSGlobalContextRetain(ctx: JSGlobalContextRef) -> JSGlobalContextRef {
     extern "C-unwind" {
         fn JSGlobalContextRetain(ctx: JSGlobalContextRef) -> JSGlobalContextRef;
     }
@@ -157,7 +153,7 @@ pub unsafe extern "C-unwind" fn JSGlobalContextRetain(
 /// `ctx` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSGlobalContextRelease(ctx: JSGlobalContextRef) {
+pub unsafe fn JSGlobalContextRelease(ctx: JSGlobalContextRef) {
     extern "C-unwind" {
         fn JSGlobalContextRelease(ctx: JSGlobalContextRef);
     }
@@ -237,7 +233,7 @@ impl JSContext {
 /// `ctx` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSGlobalContextCopyName(ctx: JSGlobalContextRef) -> JSStringRef {
+pub unsafe fn JSGlobalContextCopyName(ctx: JSGlobalContextRef) -> JSStringRef {
     extern "C-unwind" {
         fn JSGlobalContextCopyName(ctx: JSGlobalContextRef) -> JSStringRef;
     }
@@ -256,7 +252,7 @@ pub unsafe extern "C-unwind" fn JSGlobalContextCopyName(ctx: JSGlobalContextRef)
 /// - `name` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSGlobalContextSetName(ctx: JSGlobalContextRef, name: JSStringRef) {
+pub unsafe fn JSGlobalContextSetName(ctx: JSGlobalContextRef, name: JSStringRef) {
     extern "C-unwind" {
         fn JSGlobalContextSetName(ctx: JSGlobalContextRef, name: JSStringRef);
     }
@@ -274,7 +270,7 @@ pub unsafe extern "C-unwind" fn JSGlobalContextSetName(ctx: JSGlobalContextRef, 
 /// `ctx` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSGlobalContextIsInspectable(ctx: JSGlobalContextRef) -> bool {
+pub unsafe fn JSGlobalContextIsInspectable(ctx: JSGlobalContextRef) -> bool {
     extern "C-unwind" {
         fn JSGlobalContextIsInspectable(ctx: JSGlobalContextRef) -> bool;
     }
@@ -292,10 +288,7 @@ pub unsafe extern "C-unwind" fn JSGlobalContextIsInspectable(ctx: JSGlobalContex
 /// `ctx` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSGlobalContextSetInspectable(
-    ctx: JSGlobalContextRef,
-    inspectable: bool,
-) {
+pub unsafe fn JSGlobalContextSetInspectable(ctx: JSGlobalContextRef, inspectable: bool) {
     extern "C-unwind" {
         fn JSGlobalContextSetInspectable(ctx: JSGlobalContextRef, inspectable: bool);
     }

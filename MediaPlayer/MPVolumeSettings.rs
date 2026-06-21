@@ -7,7 +7,7 @@ use crate::*;
 
 #[deprecated = "Use MPVolumeView to present volume controls."]
 #[inline]
-pub unsafe extern "C-unwind" fn MPVolumeSettingsAlertShow() {
+pub unsafe fn MPVolumeSettingsAlertShow() {
     extern "C-unwind" {
         fn MPVolumeSettingsAlertShow();
     }
@@ -16,7 +16,7 @@ pub unsafe extern "C-unwind" fn MPVolumeSettingsAlertShow() {
 
 #[deprecated = "Use MPVolumeView to present volume controls."]
 #[inline]
-pub unsafe extern "C-unwind" fn MPVolumeSettingsAlertHide() {
+pub unsafe fn MPVolumeSettingsAlertHide() {
     extern "C-unwind" {
         fn MPVolumeSettingsAlertHide();
     }
@@ -25,7 +25,7 @@ pub unsafe extern "C-unwind" fn MPVolumeSettingsAlertHide() {
 
 #[deprecated = "Use MPVolumeView to present volume controls."]
 #[inline]
-pub unsafe extern "C-unwind" fn MPVolumeSettingsAlertIsVisible() -> bool {
+pub unsafe fn MPVolumeSettingsAlertIsVisible() -> bool {
     extern "C-unwind" {
         fn MPVolumeSettingsAlertIsVisible() -> Bool;
     }

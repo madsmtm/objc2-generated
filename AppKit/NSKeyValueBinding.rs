@@ -109,7 +109,7 @@ extern "C" {
 ///
 /// `object` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSIsControllerMarker(object: Option<&AnyObject>) -> bool {
+pub unsafe fn NSIsControllerMarker(object: Option<&AnyObject>) -> bool {
     extern "C-unwind" {
         fn NSIsControllerMarker(object: Option<&AnyObject>) -> Bool;
     }

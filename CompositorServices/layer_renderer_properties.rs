@@ -174,7 +174,7 @@ pub type cp_layer_renderer_properties_t = CP_OBJECT_cp_layer_renderer_properties
     feature = "objc2-core-foundation"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_create_using_configuration(
+pub unsafe fn cp_layer_renderer_properties_create_using_configuration(
     configuration: &cp_layer_renderer_configuration_t,
     error: *mut *mut CFError,
 ) -> Option<Retained<cp_layer_renderer_properties_t>> {
@@ -200,7 +200,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_create_using_config
 /// use for rendering. Fetch the topology details using the
 /// ``cp_layer_renderer_properties_get_texture_topology`` function.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_get_texture_topology_count(
+pub unsafe fn cp_layer_renderer_properties_get_texture_topology_count(
     layer_properties: &cp_layer_renderer_properties_t,
 ) -> usize {
     extern "C-unwind" {
@@ -227,7 +227,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_get_texture_topolog
 /// Use that information to allocate the resources you need to manage
 /// your content.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_get_texture_topology(
+pub unsafe fn cp_layer_renderer_properties_get_texture_topology(
     layer_properties: &cp_layer_renderer_properties_t,
     index: usize,
 ) -> cp_texture_topology_t {
@@ -253,7 +253,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_get_texture_topolog
 /// Should use ``cp_drawable_get_view_count`` when drawing to
 /// determine how many views the specific frame has.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_get_view_count(
+pub unsafe fn cp_layer_renderer_properties_get_view_count(
     layer_properties: &cp_layer_renderer_properties_t,
 ) -> usize {
     extern "C-unwind" {
@@ -275,7 +275,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_get_view_count(
 /// ``cp_layer_renderer_configuration_get_tracking_areas_format`` function.
 #[cfg(feature = "tracking_area")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_get_tracking_areas_max_value(
+pub unsafe fn cp_layer_renderer_properties_get_tracking_areas_max_value(
     properties: &cp_layer_renderer_properties_t,
 ) -> cp_tracking_area_render_value {
     extern "C-unwind" {

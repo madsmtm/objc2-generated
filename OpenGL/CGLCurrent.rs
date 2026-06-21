@@ -8,7 +8,7 @@ use crate::*;
 /// `ctx` must be a valid pointer or null.
 #[cfg(feature = "CGLTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGLSetCurrentContext(ctx: CGLContextObj) -> CGLError {
+pub unsafe fn CGLSetCurrentContext(ctx: CGLContextObj) -> CGLError {
     extern "C-unwind" {
         fn CGLSetCurrentContext(ctx: CGLContextObj) -> CGLError;
     }
@@ -17,7 +17,7 @@ pub unsafe extern "C-unwind" fn CGLSetCurrentContext(ctx: CGLContextObj) -> CGLE
 
 #[cfg(feature = "CGLTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGLGetCurrentContext() -> CGLContextObj {
+pub unsafe fn CGLGetCurrentContext() -> CGLContextObj {
     extern "C-unwind" {
         fn CGLGetCurrentContext() -> CGLContextObj;
     }

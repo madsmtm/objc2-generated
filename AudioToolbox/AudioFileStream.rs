@@ -249,7 +249,7 @@ pub const kAudioFileStreamProperty_InfoDictionary: AudioFileStreamPropertyID = 0
 /// - `out_audio_file_stream` must be a valid pointer or null.
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioFileStreamOpen(
+pub unsafe fn AudioFileStreamOpen(
     in_client_data: *mut c_void,
     in_property_listener_proc: AudioFileStream_PropertyListenerProc,
     in_packets_proc: AudioFileStream_PacketsProc,
@@ -296,7 +296,7 @@ pub unsafe extern "C-unwind" fn AudioFileStreamOpen(
 /// - `in_audio_file_stream` must be a valid pointer.
 /// - `in_data` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioFileStreamParseBytes(
+pub unsafe fn AudioFileStreamParseBytes(
     in_audio_file_stream: AudioFileStreamID,
     in_data_byte_size: u32,
     in_data: *const c_void,
@@ -335,7 +335,7 @@ pub unsafe extern "C-unwind" fn AudioFileStreamParseBytes(
 ///
 /// `in_audio_file_stream` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioFileStreamSeek(
+pub unsafe fn AudioFileStreamSeek(
     in_audio_file_stream: AudioFileStreamID,
     in_packet_offset: i64,
     out_data_byte_offset: &mut i64,
@@ -378,7 +378,7 @@ pub unsafe extern "C-unwind" fn AudioFileStreamSeek(
 ///
 /// `in_audio_file_stream` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioFileStreamGetPropertyInfo(
+pub unsafe fn AudioFileStreamGetPropertyInfo(
     in_audio_file_stream: AudioFileStreamID,
     in_property_id: AudioFileStreamPropertyID,
     out_property_data_size: Option<&mut u32>,
@@ -422,7 +422,7 @@ pub unsafe extern "C-unwind" fn AudioFileStreamGetPropertyInfo(
 /// - `in_audio_file_stream` must be a valid pointer.
 /// - `out_property_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioFileStreamGetProperty(
+pub unsafe fn AudioFileStreamGetProperty(
     in_audio_file_stream: AudioFileStreamID,
     in_property_id: AudioFileStreamPropertyID,
     io_property_data_size: &mut u32,
@@ -465,7 +465,7 @@ pub unsafe extern "C-unwind" fn AudioFileStreamGetProperty(
 /// - `in_audio_file_stream` must be a valid pointer.
 /// - `in_property_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioFileStreamSetProperty(
+pub unsafe fn AudioFileStreamSetProperty(
     in_audio_file_stream: AudioFileStreamID,
     in_property_id: AudioFileStreamPropertyID,
     in_property_data_size: u32,
@@ -498,9 +498,7 @@ pub unsafe extern "C-unwind" fn AudioFileStreamSetProperty(
 ///
 /// `in_audio_file_stream` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioFileStreamClose(
-    in_audio_file_stream: AudioFileStreamID,
-) -> OSStatus {
+pub unsafe fn AudioFileStreamClose(in_audio_file_stream: AudioFileStreamID) -> OSStatus {
     extern "C-unwind" {
         fn AudioFileStreamClose(in_audio_file_stream: AudioFileStreamID) -> OSStatus;
     }

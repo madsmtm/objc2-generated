@@ -225,7 +225,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatType(
+pub fn CVPixelFormatDescriptionCreateWithPixelFormatType(
     allocator: Option<&CFAllocator>,
     pixel_format: OSType,
 ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
@@ -240,7 +240,7 @@ pub extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatType(
 }
 
 #[inline]
-pub extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
+pub fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
     allocator: Option<&CFAllocator>,
 ) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
     extern "C-unwind" {
@@ -256,7 +256,7 @@ pub extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTy
 ///
 /// `description` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(
+pub unsafe fn CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(
     description: &CFDictionary<CFString, CFType>,
     pixel_format: OSType,
 ) {
@@ -277,9 +277,7 @@ pub unsafe extern "C-unwind" fn CVPixelFormatDescriptionRegisterDescriptionWithP
 ///
 /// Returns: A string with a user displayable conversion of a pixel format.
 #[inline]
-pub extern "C-unwind" fn CVPixelFormatTypeCopyFourCharCodeString(
-    pixel_format: OSType,
-) -> CFRetained<CFString> {
+pub fn CVPixelFormatTypeCopyFourCharCodeString(pixel_format: OSType) -> CFRetained<CFString> {
     extern "C-unwind" {
         fn CVPixelFormatTypeCopyFourCharCodeString(
             pixel_format: OSType,
@@ -296,7 +294,7 @@ pub extern "C-unwind" fn CVPixelFormatTypeCopyFourCharCodeString(
 ///
 /// Returns: True if pixel format is supported on the current platform.
 #[inline]
-pub extern "C-unwind" fn CVIsCompressedPixelFormatAvailable(pixel_format_type: OSType) -> bool {
+pub fn CVIsCompressedPixelFormatAvailable(pixel_format_type: OSType) -> bool {
     extern "C-unwind" {
         fn CVIsCompressedPixelFormatAvailable(pixel_format_type: OSType) -> Boolean;
     }

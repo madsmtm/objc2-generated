@@ -16,7 +16,7 @@ use crate::*;
 /// Returns: A JSString containing string. Ownership follows the Create Rule.
 #[cfg(all(feature = "JSBase", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringCreateWithCFString(string: &CFString) -> JSStringRef {
+pub unsafe fn JSStringCreateWithCFString(string: &CFString) -> JSStringRef {
     extern "C-unwind" {
         fn JSStringCreateWithCFString(string: &CFString) -> JSStringRef;
     }
@@ -36,7 +36,7 @@ pub unsafe extern "C-unwind" fn JSStringCreateWithCFString(string: &CFString) ->
 /// `string` must be a valid pointer.
 #[cfg(all(feature = "JSBase", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringCopyCFString(
+pub unsafe fn JSStringCopyCFString(
     alloc: Option<&CFAllocator>,
     string: JSStringRef,
 ) -> Option<CFRetained<CFString>> {

@@ -23,7 +23,7 @@ extern "C" {
 /// Returns: YES if the rect is the identity rect; otherwise, NO.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn VNNormalizedRectIsIdentityRect(normalized_rect: CGRect) -> bool {
+pub unsafe fn VNNormalizedRectIsIdentityRect(normalized_rect: CGRect) -> bool {
     extern "C-unwind" {
         fn VNNormalizedRectIsIdentityRect(normalized_rect: CGRect) -> bool;
     }
@@ -45,7 +45,7 @@ pub unsafe extern "C-unwind" fn VNNormalizedRectIsIdentityRect(normalized_rect: 
 /// Returns: the point in image coordinates.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn VNImagePointForNormalizedPoint(
+pub unsafe fn VNImagePointForNormalizedPoint(
     normalized_point: CGPoint,
     image_width: usize,
     image_height: usize,
@@ -78,7 +78,7 @@ pub unsafe extern "C-unwind" fn VNImagePointForNormalizedPoint(
 /// Returns: the point in image coordinates from a normalized point that was reported in relation to a region of interest.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn VNImagePointForNormalizedPointUsingRegionOfInterest(
+pub unsafe fn VNImagePointForNormalizedPointUsingRegionOfInterest(
     normalized_point: CGPoint,
     image_width: usize,
     image_height: usize,
@@ -117,7 +117,7 @@ pub unsafe extern "C-unwind" fn VNImagePointForNormalizedPointUsingRegionOfInter
 /// Returns: the point in normalized coordinates.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn VNNormalizedPointForImagePoint(
+pub unsafe fn VNNormalizedPointForImagePoint(
     image_point: CGPoint,
     image_width: usize,
     image_height: usize,
@@ -150,7 +150,7 @@ pub unsafe extern "C-unwind" fn VNNormalizedPointForImagePoint(
 /// Returns: the point in normalized coordinates in relation to the region of interest.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn VNNormalizedPointForImagePointUsingRegionOfInterest(
+pub unsafe fn VNNormalizedPointForImagePointUsingRegionOfInterest(
     image_point: CGPoint,
     image_width: usize,
     image_height: usize,
@@ -189,7 +189,7 @@ pub unsafe extern "C-unwind" fn VNNormalizedPointForImagePointUsingRegionOfInter
 /// Returns: the rectangle in pixel coordinates.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn VNImageRectForNormalizedRect(
+pub unsafe fn VNImageRectForNormalizedRect(
     normalized_rect: CGRect,
     image_width: usize,
     image_height: usize,
@@ -222,7 +222,7 @@ pub unsafe extern "C-unwind" fn VNImageRectForNormalizedRect(
 /// Returns: the rectangle in pixel coordinates from a normalized rectangle that was reported in relation to a region of interest.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn VNImageRectForNormalizedRectUsingRegionOfInterest(
+pub unsafe fn VNImageRectForNormalizedRectUsingRegionOfInterest(
     normalized_rect: CGRect,
     image_width: usize,
     image_height: usize,
@@ -261,7 +261,7 @@ pub unsafe extern "C-unwind" fn VNImageRectForNormalizedRectUsingRegionOfInteres
 /// Returns: the normalized rectangle.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn VNNormalizedRectForImageRect(
+pub unsafe fn VNNormalizedRectForImageRect(
     image_rect: CGRect,
     image_width: usize,
     image_height: usize,
@@ -294,7 +294,7 @@ pub unsafe extern "C-unwind" fn VNNormalizedRectForImageRect(
 /// Returns: the normalized rectangle in relation to the region of interest.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn VNNormalizedRectForImageRectUsingRegionOfInterest(
+pub unsafe fn VNNormalizedRectForImageRectUsingRegionOfInterest(
     image_rect: CGRect,
     image_width: usize,
     image_height: usize,

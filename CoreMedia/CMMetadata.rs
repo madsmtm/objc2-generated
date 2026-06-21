@@ -253,7 +253,7 @@ extern "C" {
 /// - `key` should be of the correct type.
 /// - `identifier_out` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataCreateIdentifierForKeyAndKeySpace(
+pub unsafe fn CMMetadataCreateIdentifierForKeyAndKeySpace(
     allocator: Option<&CFAllocator>,
     key: &CFType,
     key_space: &CFString,
@@ -289,7 +289,7 @@ pub unsafe extern "C-unwind" fn CMMetadataCreateIdentifierForKeyAndKeySpace(
 ///
 /// `key_out` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataCreateKeyFromIdentifier(
+pub unsafe fn CMMetadataCreateKeyFromIdentifier(
     allocator: Option<&CFAllocator>,
     identifier: &CFString,
     key_out: NonNull<*const CFType>,
@@ -311,7 +311,7 @@ pub unsafe extern "C-unwind" fn CMMetadataCreateKeyFromIdentifier(
 ///
 /// `key_out` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataCreateKeyFromIdentifierAsCFData(
+pub unsafe fn CMMetadataCreateKeyFromIdentifierAsCFData(
     allocator: Option<&CFAllocator>,
     identifier: &CFString,
     key_out: NonNull<*const CFData>,
@@ -332,7 +332,7 @@ pub unsafe extern "C-unwind" fn CMMetadataCreateKeyFromIdentifierAsCFData(
 ///
 /// `key_space_out` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataCreateKeySpaceFromIdentifier(
+pub unsafe fn CMMetadataCreateKeySpaceFromIdentifier(
     allocator: Option<&CFAllocator>,
     identifier: &CFString,
     key_space_out: NonNull<*const CFString>,
@@ -585,7 +585,7 @@ extern "C" {
 ///
 /// `conforming_data_types` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryRegisterDataType(
+pub unsafe fn CMMetadataDataTypeRegistryRegisterDataType(
     data_type: &CFString,
     description: &CFString,
     conforming_data_types: &CFArray,
@@ -604,9 +604,7 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryRegisterDataType(
 
 /// Tests a data type identifier to see if it has been registered.
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsRegistered(
-    data_type: &CFString,
-) -> bool {
+pub unsafe fn CMMetadataDataTypeRegistryDataTypeIsRegistered(data_type: &CFString) -> bool {
     extern "C-unwind" {
         fn CMMetadataDataTypeRegistryDataTypeIsRegistered(data_type: &CFString) -> Boolean;
     }
@@ -616,7 +614,7 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsRegistered(
 
 /// Returns the data type's description (if any was provided when it was registered).
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetDataTypeDescription(
+pub unsafe fn CMMetadataDataTypeRegistryGetDataTypeDescription(
     data_type: &CFString,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {
@@ -635,7 +633,7 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetDataTypeDescription
 /// Returns: List of conforming data types registered for the given data type.
 /// NULL is returned if the data type has not been registered.
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetConformingDataTypes(
+pub unsafe fn CMMetadataDataTypeRegistryGetConformingDataTypes(
     data_type: &CFString,
 ) -> CFRetained<CFArray> {
     extern "C-unwind" {
@@ -664,7 +662,7 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetConformingDataTypes
 ///
 /// Returns: True if the first data type conforms to the second data type.
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeConformsToDataType(
+pub unsafe fn CMMetadataDataTypeRegistryDataTypeConformsToDataType(
     data_type: &CFString,
     conforms_to_data_type: &CFString,
 ) -> bool {
@@ -686,8 +684,7 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeConformsToData
 /// registry.  All valid data types will have their conformance search
 /// end with a base data type.
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypes(
-) -> Option<CFRetained<CFArray>> {
+pub unsafe fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> Option<NonNull<CFArray>>;
     }
@@ -701,9 +698,7 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypes(
 /// data type identifier is in the array returned by
 /// CMMetadataDataTypeRegistryGetBaseDataTypes.
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(
-    data_type: &CFString,
-) -> bool {
+pub unsafe fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(data_type: &CFString) -> bool {
     extern "C-unwind" {
         fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(data_type: &CFString) -> Boolean;
     }
@@ -718,7 +713,7 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType
 /// registry.  All valid data types will have their conformance search
 /// end with a base data type.
 #[inline]
-pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(
+pub unsafe fn CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(
     data_type: &CFString,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {

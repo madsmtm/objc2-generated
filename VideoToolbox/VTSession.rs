@@ -38,7 +38,7 @@ pub type VTSession = CFType;
 /// - `session` should be of the correct type.
 /// - `supported_property_dictionary_out` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn VTSessionCopySupportedPropertyDictionary(
+pub unsafe fn VTSessionCopySupportedPropertyDictionary(
     session: &VTSession,
     supported_property_dictionary_out: NonNull<*const CFDictionary>,
 ) -> OSStatus {
@@ -120,7 +120,7 @@ extern "C" {
 /// - `session` should be of the correct type.
 /// - `property_value` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn VTSessionSetProperty(
+pub unsafe fn VTSessionSetProperty(
     session: &VTSession,
     property_key: &CFString,
     property_value: Option<&CFType>,
@@ -161,7 +161,7 @@ pub unsafe extern "C-unwind" fn VTSessionSetProperty(
 /// - `session` should be of the correct type.
 /// - `property_value_out` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn VTSessionCopyProperty(
+pub unsafe fn VTSessionCopyProperty(
     session: &VTSession,
     property_key: &CFString,
     allocator: Option<&CFAllocator>,
@@ -188,7 +188,7 @@ pub unsafe extern "C-unwind" fn VTSessionCopyProperty(
 /// - `property_dictionary` generic must be of the correct type.
 /// - `property_dictionary` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn VTSessionSetProperties(
+pub unsafe fn VTSessionSetProperties(
     session: &VTSession,
     property_dictionary: &CFDictionary,
 ) -> OSStatus {
@@ -211,7 +211,7 @@ pub unsafe extern "C-unwind" fn VTSessionSetProperties(
 /// - `session` should be of the correct type.
 /// - `dictionary_out` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn VTSessionCopySerializableProperties(
+pub unsafe fn VTSessionCopySerializableProperties(
     session: &VTSession,
     allocator: Option<&CFAllocator>,
     dictionary_out: NonNull<*const CFDictionary>,

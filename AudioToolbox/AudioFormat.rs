@@ -328,7 +328,7 @@ pub const kAudioFormatProperty_ID3TagToDictionary: AudioFormatPropertyID = 0x696
 ///
 /// `in_specifier` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioFormatGetPropertyInfo(
+pub unsafe fn AudioFormatGetPropertyInfo(
     in_property_id: AudioFormatPropertyID,
     in_specifier_size: u32,
     in_specifier: *const c_void,
@@ -372,7 +372,7 @@ pub unsafe extern "C-unwind" fn AudioFormatGetPropertyInfo(
 /// - `in_specifier` must be a valid pointer or null.
 /// - `out_property_data` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioFormatGetProperty(
+pub unsafe fn AudioFormatGetProperty(
     in_property_id: AudioFormatPropertyID,
     in_specifier_size: u32,
     in_specifier: *const c_void,

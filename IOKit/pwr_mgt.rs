@@ -1073,9 +1073,7 @@ unsafe impl RefEncode for IOPMUserClientNotificationType {
 /// Returns: Returns a io_connect_t handle on the root domain. Must be released with IOServiceClose() when done.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOPMFindPowerManagement(
-    master_device_port: libc::mach_port_t,
-) -> io_connect_t {
+pub fn IOPMFindPowerManagement(master_device_port: libc::mach_port_t) -> io_connect_t {
     extern "C-unwind" {
         fn IOPMFindPowerManagement(master_device_port: libc::mach_port_t) -> io_connect_t;
     }
@@ -1093,7 +1091,7 @@ pub extern "C-unwind" fn IOPMFindPowerManagement(
 /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOPMSetAggressiveness(
+pub fn IOPMSetAggressiveness(
     fb: io_connect_t,
     r#type: c_ulong,
     aggressiveness: c_ulong,
@@ -1123,7 +1121,7 @@ pub extern "C-unwind" fn IOPMSetAggressiveness(
 /// `aggressiveness` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMGetAggressiveness(
+pub unsafe fn IOPMGetAggressiveness(
     fb: io_connect_t,
     r#type: c_ulong,
     aggressiveness: *mut c_ulong,
@@ -1143,7 +1141,7 @@ pub unsafe extern "C-unwind" fn IOPMGetAggressiveness(
 /// Returns: Returns true if the system supports sleep, false if some hardware prevents full sleep.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOPMSleepEnabled() -> bool {
+pub fn IOPMSleepEnabled() -> bool {
     extern "C-unwind" {
         fn IOPMSleepEnabled() -> libc::boolean_t;
     }
@@ -1160,7 +1158,7 @@ pub extern "C-unwind" fn IOPMSleepEnabled() -> bool {
 /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn {
+pub fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn {
     extern "C-unwind" {
         fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn;
     }
@@ -1236,7 +1234,7 @@ pub extern "C-unwind" fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn {
 /// `info` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMCopyBatteryInfo(
+pub unsafe fn IOPMCopyBatteryInfo(
     master_port: libc::mach_port_t,
     info: *mut *const CFArray,
 ) -> IOReturn {
@@ -1263,7 +1261,7 @@ pub unsafe extern "C-unwind" fn IOPMCopyBatteryInfo(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegisterApp(
+pub unsafe fn IORegisterApp(
     refcon: *mut c_void,
     the_driver: io_service_t,
     the_port_ref: *mut IONotificationPortRef,
@@ -1405,7 +1403,7 @@ pub unsafe extern "C-unwind" fn IORegisterApp(
 /// - `notifier` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegisterForSystemPower(
+pub unsafe fn IORegisterForSystemPower(
     refcon: *mut c_void,
     the_port_ref: *mut IONotificationPortRef,
     callback: IOServiceInterestCallback,
@@ -1433,7 +1431,7 @@ pub unsafe extern "C-unwind" fn IORegisterForSystemPower(
 /// `notifier` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODeregisterApp(notifier: *mut io_object_t) -> IOReturn {
+pub unsafe fn IODeregisterApp(notifier: *mut io_object_t) -> IOReturn {
     extern "C-unwind" {
         fn IODeregisterApp(notifier: *mut io_object_t) -> IOReturn;
     }
@@ -1451,7 +1449,7 @@ pub unsafe extern "C-unwind" fn IODeregisterApp(notifier: *mut io_object_t) -> I
 /// `notifier` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODeregisterForSystemPower(notifier: *mut io_object_t) -> IOReturn {
+pub unsafe fn IODeregisterForSystemPower(notifier: *mut io_object_t) -> IOReturn {
     extern "C-unwind" {
         fn IODeregisterForSystemPower(notifier: *mut io_object_t) -> IOReturn;
     }
@@ -1470,10 +1468,7 @@ pub unsafe extern "C-unwind" fn IODeregisterForSystemPower(notifier: *mut io_obj
 /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOAllowPowerChange(
-    kernel_port: io_connect_t,
-    notification_id: isize,
-) -> IOReturn {
+pub fn IOAllowPowerChange(kernel_port: io_connect_t, notification_id: isize) -> IOReturn {
     extern "C-unwind" {
         fn IOAllowPowerChange(kernel_port: io_connect_t, notification_id: isize) -> IOReturn;
     }
@@ -1497,10 +1492,7 @@ pub extern "C-unwind" fn IOAllowPowerChange(
 /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOCancelPowerChange(
-    kernel_port: io_connect_t,
-    notification_id: isize,
-) -> IOReturn {
+pub fn IOCancelPowerChange(kernel_port: io_connect_t, notification_id: isize) -> IOReturn {
     extern "C-unwind" {
         fn IOCancelPowerChange(kernel_port: io_connect_t, notification_id: isize) -> IOReturn;
     }
@@ -1563,7 +1555,7 @@ pub extern "C-unwind" fn IOCancelPowerChange(
 /// - `my_id` might not allow `None`.
 /// - `type` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMSchedulePowerEvent(
+pub unsafe fn IOPMSchedulePowerEvent(
     time_to_wake: Option<&CFDate>,
     my_id: Option<&CFString>,
     r#type: Option<&CFString>,
@@ -1596,7 +1588,7 @@ pub unsafe extern "C-unwind" fn IOPMSchedulePowerEvent(
 /// - `my_id` might not allow `None`.
 /// - `type` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMCancelScheduledPowerEvent(
+pub unsafe fn IOPMCancelScheduledPowerEvent(
     time_to_wake: Option<&CFDate>,
     my_id: Option<&CFString>,
     r#type: Option<&CFString>,
@@ -1617,7 +1609,7 @@ pub unsafe extern "C-unwind" fn IOPMCancelScheduledPowerEvent(
 ///
 /// Returns: A CFArray of CFDictionaries of power events. The CFArray must be released by the caller. NULL if there are no scheduled events.
 #[inline]
-pub extern "C-unwind" fn IOPMCopyScheduledPowerEvents() -> Option<CFRetained<CFArray>> {
+pub fn IOPMCopyScheduledPowerEvents() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn IOPMCopyScheduledPowerEvents() -> Option<NonNull<CFArray>>;
     }
@@ -1816,7 +1808,7 @@ unsafe impl RefEncode for IOPMUserActiveType {
 /// - `timeout_action` might not allow `None`.
 /// - `assertion_id` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMAssertionCreateWithDescription(
+pub unsafe fn IOPMAssertionCreateWithDescription(
     assertion_type: Option<&CFString>,
     name: Option<&CFString>,
     details: Option<&CFString>,
@@ -1968,7 +1960,7 @@ pub unsafe extern "C-unwind" fn IOPMAssertionCreateWithDescription(
 /// - `assertion_properties` might not allow `None`.
 /// - `assertion_id` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMAssertionCreateWithProperties(
+pub unsafe fn IOPMAssertionCreateWithProperties(
     assertion_properties: Option<&CFDictionary>,
     assertion_id: *mut IOPMAssertionID,
 ) -> IOReturn {
@@ -2037,7 +2029,7 @@ pub unsafe extern "C-unwind" fn IOPMAssertionCreateWithProperties(
 /// - `assertion_name` might not allow `None`.
 /// - `assertion_id` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMAssertionDeclareUserActivity(
+pub unsafe fn IOPMAssertionDeclareUserActivity(
     assertion_name: Option<&CFString>,
     user_type: IOPMUserActiveType,
     assertion_id: *mut IOPMAssertionID,
@@ -2154,7 +2146,7 @@ pub unsafe extern "C-unwind" fn IOPMAssertionDeclareUserActivity(
 /// - `assertion_name` might not allow `None`.
 /// - `assertion_id` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMDeclareNetworkClientActivity(
+pub unsafe fn IOPMDeclareNetworkClientActivity(
     assertion_name: Option<&CFString>,
     assertion_id: *mut IOPMAssertionID,
 ) -> IOReturn {
@@ -2182,7 +2174,7 @@ pub unsafe extern "C-unwind" fn IOPMDeclareNetworkClientActivity(
 ///
 /// Parameter `theAssertion`: The assertion ID to retain.
 #[inline]
-pub extern "C-unwind" fn IOPMAssertionRetain(the_assertion: IOPMAssertionID) {
+pub fn IOPMAssertionRetain(the_assertion: IOPMAssertionID) {
     extern "C-unwind" {
         fn IOPMAssertionRetain(the_assertion: IOPMAssertionID);
     }
@@ -2222,7 +2214,7 @@ pub extern "C-unwind" fn IOPMAssertionRetain(the_assertion: IOPMAssertionID) {
 ///
 /// Returns: Returns kIOReturnSuccess on success.
 #[inline]
-pub extern "C-unwind" fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> IOReturn {
+pub fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> IOReturn {
     extern "C-unwind" {
         fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> IOReturn;
     }
@@ -2248,7 +2240,7 @@ pub extern "C-unwind" fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> 
 /// .
 /// It's the caller's responsibility to release this dictionary.
 #[inline]
-pub extern "C-unwind" fn IOPMAssertionCopyProperties(
+pub fn IOPMAssertionCopyProperties(
     the_assertion: IOPMAssertionID,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -2330,7 +2322,7 @@ pub extern "C-unwind" fn IOPMAssertionCopyProperties(
 /// - `the_value` should be of the correct type.
 /// - `the_value` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMAssertionSetProperty(
+pub unsafe fn IOPMAssertionSetProperty(
     the_assertion: IOPMAssertionID,
     the_property: Option<&CFString>,
     the_value: Option<&CFType>,
@@ -2366,9 +2358,7 @@ pub unsafe extern "C-unwind" fn IOPMAssertionSetProperty(
 ///
 /// `assertions_by_pid` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMCopyAssertionsByProcess(
-    assertions_by_pid: *mut *const CFDictionary,
-) -> IOReturn {
+pub unsafe fn IOPMCopyAssertionsByProcess(assertions_by_pid: *mut *const CFDictionary) -> IOReturn {
     extern "C-unwind" {
         fn IOPMCopyAssertionsByProcess(assertions_by_pid: *mut *const CFDictionary) -> IOReturn;
     }
@@ -2392,9 +2382,7 @@ pub unsafe extern "C-unwind" fn IOPMCopyAssertionsByProcess(
 ///
 /// `assertions_status` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMCopyAssertionsStatus(
-    assertions_status: *mut *const CFDictionary,
-) -> IOReturn {
+pub unsafe fn IOPMCopyAssertionsStatus(assertions_status: *mut *const CFDictionary) -> IOReturn {
     extern "C-unwind" {
         fn IOPMCopyAssertionsStatus(assertions_status: *mut *const CFDictionary) -> IOReturn;
     }
@@ -2433,7 +2421,7 @@ pub unsafe extern "C-unwind" fn IOPMCopyAssertionsStatus(
 /// - `assertion_id` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMAssertionCreate(
+pub unsafe fn IOPMAssertionCreate(
     assertion_type: Option<&CFString>,
     assertion_level: IOPMAssertionLevel,
     assertion_id: *mut IOPMAssertionID,
@@ -2477,7 +2465,7 @@ pub unsafe extern "C-unwind" fn IOPMAssertionCreate(
 /// - `assertion_name` might not allow `None`.
 /// - `assertion_id` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMAssertionCreateWithName(
+pub unsafe fn IOPMAssertionCreateWithName(
     assertion_type: Option<&CFString>,
     assertion_level: IOPMAssertionLevel,
     assertion_name: Option<&CFString>,
@@ -2545,7 +2533,7 @@ pub const kIOSystemLoadAdvisoryLevelGreat: c_uint = 3;
 /// kIOSystemLoadAdvisoryLevelBad - A Bad time to perform time-insensitive work.
 /// </ul>
 #[inline]
-pub extern "C-unwind" fn IOGetSystemLoadAdvisory() -> IOSystemLoadAdvisoryLevel {
+pub fn IOGetSystemLoadAdvisory() -> IOSystemLoadAdvisoryLevel {
     extern "C-unwind" {
         fn IOGetSystemLoadAdvisory() -> IOSystemLoadAdvisoryLevel;
     }
@@ -2561,7 +2549,7 @@ pub extern "C-unwind" fn IOGetSystemLoadAdvisory() -> IOSystemLoadAdvisoryLevel 
 /// Returns: Returns a CFDictionaryRef, or NULL on error. Caller must release the
 /// returned dictionary.
 #[inline]
-pub extern "C-unwind" fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained<CFDictionary>> {
+pub fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
         fn IOCopySystemLoadAdvisoryDetailed() -> Option<NonNull<CFDictionary>>;
     }
@@ -2593,9 +2581,7 @@ pub extern "C-unwind" fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained
 ///
 /// `cpu_power_status` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMCopyCPUPowerStatus(
-    cpu_power_status: *mut *const CFDictionary,
-) -> IOReturn {
+pub unsafe fn IOPMCopyCPUPowerStatus(cpu_power_status: *mut *const CFDictionary) -> IOReturn {
     extern "C-unwind" {
         fn IOPMCopyCPUPowerStatus(cpu_power_status: *mut *const CFDictionary) -> IOReturn;
     }
@@ -2624,7 +2610,7 @@ pub unsafe extern "C-unwind" fn IOPMCopyCPUPowerStatus(
 ///
 /// `thermal_level` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMGetThermalWarningLevel(thermal_level: *mut u32) -> IOReturn {
+pub unsafe fn IOPMGetThermalWarningLevel(thermal_level: *mut u32) -> IOReturn {
     extern "C-unwind" {
         fn IOPMGetThermalWarningLevel(thermal_level: *mut u32) -> IOReturn;
     }

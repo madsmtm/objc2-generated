@@ -35,7 +35,7 @@ use crate::*;
 /// - `image_out` must be a valid pointer.
 #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-core-video"))]
 #[inline]
-pub unsafe extern "C-unwind" fn VTCreateCGImageFromCVPixelBuffer(
+pub unsafe fn VTCreateCGImageFromCVPixelBuffer(
     pixel_buffer: &CVPixelBuffer,
     options: Option<&CFDictionary>,
     image_out: NonNull<*mut CGImage>,
@@ -59,9 +59,7 @@ pub unsafe extern "C-unwind" fn VTCreateCGImageFromCVPixelBuffer(
 /// Supplemental video decoders registered through this API will not work in applications which have not performed this opt in.  For broadest ecosystem compatibility, we encourage use of platform-standard formats such as H.264, HEVC, and AV1.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn VTRegisterSupplementalVideoDecoderIfAvailable(
-    codec_type: CMVideoCodecType,
-) {
+pub unsafe fn VTRegisterSupplementalVideoDecoderIfAvailable(codec_type: CMVideoCodecType) {
     extern "C-unwind" {
         fn VTRegisterSupplementalVideoDecoderIfAvailable(codec_type: CMVideoCodecType);
     }
@@ -83,7 +81,7 @@ pub unsafe extern "C-unwind" fn VTRegisterSupplementalVideoDecoderIfAvailable(
 /// `media_extension_properties_out` must be a valid pointer.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn VTCopyVideoDecoderExtensionProperties(
+pub unsafe fn VTCopyVideoDecoderExtensionProperties(
     format_desc: &CMFormatDescription,
     media_extension_properties_out: NonNull<*const CFDictionary>,
 ) -> OSStatus {
@@ -111,7 +109,7 @@ pub unsafe extern "C-unwind" fn VTCopyVideoDecoderExtensionProperties(
 /// `media_extension_properties_out` must be a valid pointer.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn VTCopyRAWProcessorExtensionProperties(
+pub unsafe fn VTCopyRAWProcessorExtensionProperties(
     format_desc: &CMFormatDescription,
     media_extension_properties_out: NonNull<*const CFDictionary>,
 ) -> OSStatus {

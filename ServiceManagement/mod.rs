@@ -138,7 +138,7 @@ extern "C" {
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SMJobCopyDictionary(
+pub unsafe fn SMJobCopyDictionary(
     domain: Option<&CFString>,
     job_label: Option<&CFString>,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -185,9 +185,7 @@ pub unsafe extern "C-unwind" fn SMJobCopyDictionary(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SMCopyAllJobDictionaries(
-    domain: Option<&CFString>,
-) -> Option<CFRetained<CFArray>> {
+pub unsafe fn SMCopyAllJobDictionaries(domain: Option<&CFString>) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn SMCopyAllJobDictionaries(domain: Option<&CFString>) -> Option<NonNull<CFArray>>;
     }
@@ -237,7 +235,7 @@ pub unsafe extern "C-unwind" fn SMCopyAllJobDictionaries(
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SMJobSubmit(
+pub unsafe fn SMJobSubmit(
     domain: Option<&CFString>,
     job: Option<&CFDictionary>,
     auth: AuthorizationRef,
@@ -300,7 +298,7 @@ pub unsafe extern "C-unwind" fn SMJobSubmit(
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SMJobRemove(
+pub unsafe fn SMJobRemove(
     domain: Option<&CFString>,
     job_label: Option<&CFString>,
     auth: AuthorizationRef,
@@ -402,7 +400,7 @@ pub unsafe extern "C-unwind" fn SMJobRemove(
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated = "Please use SMAppService instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn SMJobBless(
+pub unsafe fn SMJobBless(
     domain: Option<&CFString>,
     executable_label: Option<&CFString>,
     auth: AuthorizationRef,

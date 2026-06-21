@@ -9,7 +9,7 @@ use crate::*;
 ///
 /// Returns: A boolean
 #[inline]
-pub unsafe extern "C-unwind" fn MADimFlashingLightsEnabled() -> bool {
+pub unsafe fn MADimFlashingLightsEnabled() -> bool {
     extern "C-unwind" {
         fn MADimFlashingLightsEnabled() -> bool;
     }

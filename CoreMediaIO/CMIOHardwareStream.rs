@@ -232,7 +232,7 @@ pub const kCMIOStreamPropertyPreferredFrameRate: c_uint = 0x70726672;
 /// - `queue` must be a valid pointer.
 #[cfg(all(feature = "CMIOHardwareObject", feature = "objc2-core-media"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOStreamCopyBufferQueue(
+pub unsafe fn CMIOStreamCopyBufferQueue(
     stream_id: CMIOStreamID,
     queue_altered_proc: CMIODeviceStreamQueueAlteredProc,
     queue_altered_ref_con: *mut c_void,
@@ -354,7 +354,7 @@ impl CMIOStreamDeck {
 /// - `clock` must be a valid pointer.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOStreamClockCreate(
+pub unsafe fn CMIOStreamClockCreate(
     allocator: Option<&CFAllocator>,
     clock_name: Option<&CFString>,
     source_identifier: *const c_void,
@@ -409,7 +409,7 @@ pub unsafe extern "C-unwind" fn CMIOStreamClockCreate(
 /// - `clock` might not allow `None`.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOStreamClockPostTimingEvent(
+pub unsafe fn CMIOStreamClockPostTimingEvent(
     event_time: CMTime,
     host_time: u64,
     resynchronize: bool,
@@ -442,7 +442,7 @@ pub unsafe extern "C-unwind" fn CMIOStreamClockPostTimingEvent(
 /// - `clock` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOStreamClockInvalidate(clock: Option<&CFType>) -> OSStatus {
+pub unsafe fn CMIOStreamClockInvalidate(clock: Option<&CFType>) -> OSStatus {
     extern "C-unwind" {
         fn CMIOStreamClockInvalidate(clock: Option<&CFType>) -> OSStatus;
     }
@@ -463,7 +463,7 @@ pub unsafe extern "C-unwind" fn CMIOStreamClockInvalidate(clock: Option<&CFType>
 /// - `clock` might not allow `None`.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOStreamClockConvertHostTimeToDeviceTime(
+pub unsafe fn CMIOStreamClockConvertHostTimeToDeviceTime(
     host_time: u64,
     clock: Option<&CFType>,
 ) -> CMTime {

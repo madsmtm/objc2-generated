@@ -825,7 +825,7 @@ extern "C" {
 ///
 /// Returns: Returns the last error encountered.
 #[inline]
-pub extern "C-unwind" fn SCCopyLastError() -> CFRetained<CFError> {
+pub fn SCCopyLastError() -> CFRetained<CFError> {
     extern "C-unwind" {
         fn SCCopyLastError() -> Option<NonNull<CFError>>;
     }
@@ -839,7 +839,7 @@ pub extern "C-unwind" fn SCCopyLastError() -> CFRetained<CFError> {
 ///
 /// Returns: Returns the last error encountered.
 #[inline]
-pub extern "C-unwind" fn SCError() -> c_int {
+pub fn SCError() -> c_int {
     extern "C-unwind" {
         fn SCError() -> c_int;
     }
@@ -854,7 +854,7 @@ pub extern "C-unwind" fn SCError() -> c_int {
 ///
 /// Returns: Returns a pointer to the error message string.
 #[inline]
-pub extern "C-unwind" fn SCErrorString(status: c_int) -> NonNull<c_char> {
+pub fn SCErrorString(status: c_int) -> NonNull<c_char> {
     extern "C-unwind" {
         fn SCErrorString(status: c_int) -> Option<NonNull<c_char>>;
     }

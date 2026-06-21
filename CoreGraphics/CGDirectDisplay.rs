@@ -38,7 +38,7 @@ cf_objc2_type!(
 );
 
 #[inline]
-pub extern "C-unwind" fn CGMainDisplayID() -> CGDirectDisplayID {
+pub fn CGMainDisplayID() -> CGDirectDisplayID {
     extern "C-unwind" {
         fn CGMainDisplayID() -> CGDirectDisplayID;
     }
@@ -50,7 +50,7 @@ pub extern "C-unwind" fn CGMainDisplayID() -> CGDirectDisplayID {
 /// `displays` must be a valid pointer or null.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGGetDisplaysWithPoint(
+pub unsafe fn CGGetDisplaysWithPoint(
     point: CGPoint,
     max_displays: u32,
     displays: *mut CGDirectDisplayID,
@@ -72,7 +72,7 @@ pub unsafe extern "C-unwind" fn CGGetDisplaysWithPoint(
 /// `displays` must be a valid pointer or null.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGGetDisplaysWithRect(
+pub unsafe fn CGGetDisplaysWithRect(
     rect: CGRect,
     max_displays: u32,
     displays: *mut CGDirectDisplayID,
@@ -94,7 +94,7 @@ pub unsafe extern "C-unwind" fn CGGetDisplaysWithRect(
 /// `displays` must be a valid pointer or null.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGGetDisplaysWithOpenGLDisplayMask(
+pub unsafe fn CGGetDisplaysWithOpenGLDisplayMask(
     mask: CGOpenGLDisplayMask,
     max_displays: u32,
     displays: *mut CGDirectDisplayID,
@@ -118,7 +118,7 @@ pub unsafe extern "C-unwind" fn CGGetDisplaysWithOpenGLDisplayMask(
 /// `active_displays` must be a valid pointer or null.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGGetActiveDisplayList(
+pub unsafe fn CGGetActiveDisplayList(
     max_displays: u32,
     active_displays: *mut CGDirectDisplayID,
     display_count: Option<&mut u32>,
@@ -138,7 +138,7 @@ pub unsafe extern "C-unwind" fn CGGetActiveDisplayList(
 /// `online_displays` must be a valid pointer or null.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGGetOnlineDisplayList(
+pub unsafe fn CGGetOnlineDisplayList(
     max_displays: u32,
     online_displays: *mut CGDirectDisplayID,
     display_count: Option<&mut u32>,
@@ -154,9 +154,7 @@ pub unsafe extern "C-unwind" fn CGGetOnlineDisplayList(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGDisplayIDToOpenGLDisplayMask(
-    display: CGDirectDisplayID,
-) -> CGOpenGLDisplayMask {
+pub fn CGDisplayIDToOpenGLDisplayMask(display: CGDirectDisplayID) -> CGOpenGLDisplayMask {
     extern "C-unwind" {
         fn CGDisplayIDToOpenGLDisplayMask(display: CGDirectDisplayID) -> CGOpenGLDisplayMask;
     }
@@ -164,9 +162,7 @@ pub extern "C-unwind" fn CGDisplayIDToOpenGLDisplayMask(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGOpenGLDisplayMaskToDisplayID(
-    mask: CGOpenGLDisplayMask,
-) -> CGDirectDisplayID {
+pub fn CGOpenGLDisplayMaskToDisplayID(mask: CGOpenGLDisplayMask) -> CGDirectDisplayID {
     extern "C-unwind" {
         fn CGOpenGLDisplayMaskToDisplayID(mask: CGOpenGLDisplayMask) -> CGDirectDisplayID;
     }
@@ -174,7 +170,7 @@ pub extern "C-unwind" fn CGOpenGLDisplayMaskToDisplayID(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGDisplayBounds(display: CGDirectDisplayID) -> CGRect {
+pub fn CGDisplayBounds(display: CGDirectDisplayID) -> CGRect {
     extern "C-unwind" {
         fn CGDisplayBounds(display: CGDirectDisplayID) -> CGRect;
     }
@@ -182,7 +178,7 @@ pub extern "C-unwind" fn CGDisplayBounds(display: CGDirectDisplayID) -> CGRect {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGDisplayPixelsWide(display: CGDirectDisplayID) -> usize {
+pub fn CGDisplayPixelsWide(display: CGDirectDisplayID) -> usize {
     extern "C-unwind" {
         fn CGDisplayPixelsWide(display: CGDirectDisplayID) -> usize;
     }
@@ -190,7 +186,7 @@ pub extern "C-unwind" fn CGDisplayPixelsWide(display: CGDirectDisplayID) -> usiz
 }
 
 #[inline]
-pub extern "C-unwind" fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usize {
+pub fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usize {
     extern "C-unwind" {
         fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usize;
     }
@@ -202,7 +198,7 @@ pub extern "C-unwind" fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usiz
 /// - `options` generic must be of the correct type.
 /// - `options` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayCopyAllDisplayModes(
+pub unsafe fn CGDisplayCopyAllDisplayModes(
     display: CGDirectDisplayID,
     options: Option<&CFDictionary>,
 ) -> Option<CFRetained<CFArray<CGDisplayMode>>> {
@@ -222,9 +218,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGDisplayCopyDisplayMode(
-    display: CGDirectDisplayID,
-) -> Option<CFRetained<CGDisplayMode>> {
+pub fn CGDisplayCopyDisplayMode(display: CGDirectDisplayID) -> Option<CFRetained<CGDisplayMode>> {
     extern "C-unwind" {
         fn CGDisplayCopyDisplayMode(display: CGDirectDisplayID) -> Option<NonNull<CGDisplayMode>>;
     }
@@ -238,7 +232,7 @@ pub extern "C-unwind" fn CGDisplayCopyDisplayMode(
 /// - `options` generic must be of the correct type.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplaySetDisplayMode(
+pub unsafe fn CGDisplaySetDisplayMode(
     display: CGDirectDisplayID,
     mode: Option<&CGDisplayMode>,
     options: Option<&CFDictionary>,
@@ -358,7 +352,7 @@ pub type CGGammaValue = c_float;
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub extern "C-unwind" fn CGSetDisplayTransferByFormula(
+pub fn CGSetDisplayTransferByFormula(
     display: CGDirectDisplayID,
     red_min: CGGammaValue,
     red_max: CGGammaValue,
@@ -402,7 +396,7 @@ pub extern "C-unwind" fn CGSetDisplayTransferByFormula(
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub extern "C-unwind" fn CGGetDisplayTransferByFormula(
+pub fn CGGetDisplayTransferByFormula(
     display: CGDirectDisplayID,
     red_min: Option<&mut CGGammaValue>,
     red_max: Option<&mut CGGammaValue>,
@@ -445,7 +439,7 @@ pub extern "C-unwind" fn CGGetDisplayTransferByFormula(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGDisplayGammaTableCapacity(display: CGDirectDisplayID) -> u32 {
+pub fn CGDisplayGammaTableCapacity(display: CGDirectDisplayID) -> u32 {
     extern "C-unwind" {
         fn CGDisplayGammaTableCapacity(display: CGDirectDisplayID) -> u32;
     }
@@ -459,7 +453,7 @@ pub extern "C-unwind" fn CGDisplayGammaTableCapacity(display: CGDirectDisplayID)
 /// - `blue_table` must be a valid pointer or null.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGSetDisplayTransferByTable(
+pub unsafe fn CGSetDisplayTransferByTable(
     display: CGDirectDisplayID,
     table_size: u32,
     red_table: *const CGGammaValue,
@@ -485,7 +479,7 @@ pub unsafe extern "C-unwind" fn CGSetDisplayTransferByTable(
 /// - `blue_table` must be a valid pointer or null.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGGetDisplayTransferByTable(
+pub unsafe fn CGGetDisplayTransferByTable(
     display: CGDirectDisplayID,
     capacity: u32,
     red_table: *mut CGGammaValue,
@@ -522,7 +516,7 @@ pub unsafe extern "C-unwind" fn CGGetDisplayTransferByTable(
 /// - `blue_table` must be a valid pointer.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGSetDisplayTransferByByteTable(
+pub unsafe fn CGSetDisplayTransferByByteTable(
     display: CGDirectDisplayID,
     table_size: u32,
     red_table: NonNull<u8>,
@@ -544,7 +538,7 @@ pub unsafe extern "C-unwind" fn CGSetDisplayTransferByByteTable(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGDisplayRestoreColorSyncSettings() {
+pub fn CGDisplayRestoreColorSyncSettings() {
     extern "C-unwind" {
         fn CGDisplayRestoreColorSyncSettings();
     }
@@ -580,7 +574,7 @@ unsafe impl RefEncode for CGCaptureOptions {
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub extern "C-unwind" fn CGDisplayIsCaptured(display: CGDirectDisplayID) -> bool {
+pub fn CGDisplayIsCaptured(display: CGDirectDisplayID) -> bool {
     extern "C-unwind" {
         fn CGDisplayIsCaptured(display: CGDirectDisplayID) -> libc::boolean_t;
     }
@@ -590,7 +584,7 @@ pub extern "C-unwind" fn CGDisplayIsCaptured(display: CGDirectDisplayID) -> bool
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub extern "C-unwind" fn CGDisplayCapture(display: CGDirectDisplayID) -> CGError {
+pub fn CGDisplayCapture(display: CGDirectDisplayID) -> CGError {
     extern "C-unwind" {
         fn CGDisplayCapture(display: CGDirectDisplayID) -> CGError;
     }
@@ -599,7 +593,7 @@ pub extern "C-unwind" fn CGDisplayCapture(display: CGDirectDisplayID) -> CGError
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub extern "C-unwind" fn CGDisplayCaptureWithOptions(
+pub fn CGDisplayCaptureWithOptions(
     display: CGDirectDisplayID,
     options: CGCaptureOptions,
 ) -> CGError {
@@ -614,7 +608,7 @@ pub extern "C-unwind" fn CGDisplayCaptureWithOptions(
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub extern "C-unwind" fn CGDisplayRelease(display: CGDirectDisplayID) -> CGError {
+pub fn CGDisplayRelease(display: CGDirectDisplayID) -> CGError {
     extern "C-unwind" {
         fn CGDisplayRelease(display: CGDirectDisplayID) -> CGError;
     }
@@ -623,7 +617,7 @@ pub extern "C-unwind" fn CGDisplayRelease(display: CGDirectDisplayID) -> CGError
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub extern "C-unwind" fn CGCaptureAllDisplays() -> CGError {
+pub fn CGCaptureAllDisplays() -> CGError {
     extern "C-unwind" {
         fn CGCaptureAllDisplays() -> CGError;
     }
@@ -632,7 +626,7 @@ pub extern "C-unwind" fn CGCaptureAllDisplays() -> CGError {
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub extern "C-unwind" fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptions) -> CGError {
+pub fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptions) -> CGError {
     extern "C-unwind" {
         fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptions) -> CGError;
     }
@@ -641,7 +635,7 @@ pub extern "C-unwind" fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptio
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub extern "C-unwind" fn CGReleaseAllDisplays() -> CGError {
+pub fn CGReleaseAllDisplays() -> CGError {
     extern "C-unwind" {
         fn CGReleaseAllDisplays() -> CGError;
     }
@@ -650,7 +644,7 @@ pub extern "C-unwind" fn CGReleaseAllDisplays() -> CGError {
 
 #[cfg(feature = "CGWindow")]
 #[inline]
-pub extern "C-unwind" fn CGShieldingWindowID(display: CGDirectDisplayID) -> CGWindowID {
+pub fn CGShieldingWindowID(display: CGDirectDisplayID) -> CGWindowID {
     extern "C-unwind" {
         fn CGShieldingWindowID(display: CGDirectDisplayID) -> CGWindowID;
     }
@@ -659,7 +653,7 @@ pub extern "C-unwind" fn CGShieldingWindowID(display: CGDirectDisplayID) -> CGWi
 
 #[cfg(feature = "CGWindowLevel")]
 #[inline]
-pub extern "C-unwind" fn CGShieldingWindowLevel() -> CGWindowLevel {
+pub fn CGShieldingWindowLevel() -> CGWindowLevel {
     extern "C-unwind" {
         fn CGShieldingWindowLevel() -> CGWindowLevel;
     }
@@ -669,9 +663,7 @@ pub extern "C-unwind" fn CGShieldingWindowLevel() -> CGWindowLevel {
 #[cfg(feature = "CGImage")]
 #[deprecated = "Please use ScreenCaptureKit instead."]
 #[inline]
-pub extern "C-unwind" fn CGDisplayCreateImage(
-    display_id: CGDirectDisplayID,
-) -> Option<CFRetained<CGImage>> {
+pub fn CGDisplayCreateImage(display_id: CGDirectDisplayID) -> Option<CFRetained<CGImage>> {
     extern "C-unwind" {
         fn CGDisplayCreateImage(display_id: CGDirectDisplayID) -> Option<NonNull<CGImage>>;
     }
@@ -682,7 +674,7 @@ pub extern "C-unwind" fn CGDisplayCreateImage(
 #[cfg(feature = "CGImage")]
 #[deprecated = "Please use ScreenCaptureKit instead."]
 #[inline]
-pub extern "C-unwind" fn CGDisplayCreateImageForRect(
+pub fn CGDisplayCreateImageForRect(
     display: CGDirectDisplayID,
     rect: CGRect,
 ) -> Option<CFRetained<CGImage>> {
@@ -698,7 +690,7 @@ pub extern "C-unwind" fn CGDisplayCreateImageForRect(
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub extern "C-unwind" fn CGDisplayHideCursor(display: CGDirectDisplayID) -> CGError {
+pub fn CGDisplayHideCursor(display: CGDirectDisplayID) -> CGError {
     extern "C-unwind" {
         fn CGDisplayHideCursor(display: CGDirectDisplayID) -> CGError;
     }
@@ -707,7 +699,7 @@ pub extern "C-unwind" fn CGDisplayHideCursor(display: CGDirectDisplayID) -> CGEr
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub extern "C-unwind" fn CGDisplayShowCursor(display: CGDirectDisplayID) -> CGError {
+pub fn CGDisplayShowCursor(display: CGDirectDisplayID) -> CGError {
     extern "C-unwind" {
         fn CGDisplayShowCursor(display: CGDirectDisplayID) -> CGError;
     }
@@ -716,10 +708,7 @@ pub extern "C-unwind" fn CGDisplayShowCursor(display: CGDirectDisplayID) -> CGEr
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub extern "C-unwind" fn CGDisplayMoveCursorToPoint(
-    display: CGDirectDisplayID,
-    point: CGPoint,
-) -> CGError {
+pub fn CGDisplayMoveCursorToPoint(display: CGDirectDisplayID, point: CGPoint) -> CGError {
     extern "C-unwind" {
         fn CGDisplayMoveCursorToPoint(display: CGDirectDisplayID, point: CGPoint) -> CGError;
     }
@@ -727,7 +716,7 @@ pub extern "C-unwind" fn CGDisplayMoveCursorToPoint(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGGetLastMouseDelta(delta_x: Option<&mut i32>, delta_y: Option<&mut i32>) {
+pub fn CGGetLastMouseDelta(delta_x: Option<&mut i32>, delta_y: Option<&mut i32>) {
     extern "C-unwind" {
         fn CGGetLastMouseDelta(delta_x: Option<&mut i32>, delta_y: Option<&mut i32>);
     }
@@ -736,9 +725,7 @@ pub extern "C-unwind" fn CGGetLastMouseDelta(delta_x: Option<&mut i32>, delta_y:
 
 #[cfg(feature = "CGContext")]
 #[inline]
-pub extern "C-unwind" fn CGDisplayGetDrawingContext(
-    display: CGDirectDisplayID,
-) -> Option<CFRetained<CGContext>> {
+pub fn CGDisplayGetDrawingContext(display: CGDirectDisplayID) -> Option<CFRetained<CGContext>> {
     extern "C-unwind" {
         fn CGDisplayGetDrawingContext(display: CGDirectDisplayID) -> Option<NonNull<CGContext>>;
     }
@@ -755,7 +742,7 @@ pub type CGDisplayErr = CGError;
 
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayAvailableModes(
+pub unsafe fn CGDisplayAvailableModes(
     dsp: CGDirectDisplayID,
 ) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
     extern "C-unwind" {
@@ -770,7 +757,7 @@ pub unsafe extern "C-unwind" fn CGDisplayAvailableModes(
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
+pub unsafe fn CGDisplayBestModeForParameters(
     display: CGDirectDisplayID,
     bits_per_pixel: usize,
     width: usize,
@@ -795,7 +782,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
+pub unsafe fn CGDisplayBestModeForParametersAndRefreshRate(
     display: CGDirectDisplayID,
     bits_per_pixel: usize,
     width: usize,
@@ -828,7 +815,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
 
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
+pub unsafe fn CGDisplayCurrentMode(
     display: CGDirectDisplayID,
 ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
@@ -846,7 +833,7 @@ pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
 #[cfg(feature = "CGError")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplaySwitchToMode(
+pub unsafe fn CGDisplaySwitchToMode(
     display: CGDirectDisplayID,
     mode: Option<&CFDictionary<CFString, CFType>>,
 ) -> CGError {

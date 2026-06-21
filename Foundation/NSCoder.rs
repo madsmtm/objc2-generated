@@ -595,9 +595,7 @@ impl NSCoder {
 /// `decoder` possibly has further requirements.
 #[deprecated = "Not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn NXReadNSObjectFromCoder(
-    decoder: &NSCoder,
-) -> Option<Retained<NSObject>> {
+pub unsafe fn NXReadNSObjectFromCoder(decoder: &NSCoder) -> Option<Retained<NSObject>> {
     extern "C-unwind" {
         fn NXReadNSObjectFromCoder(decoder: &NSCoder) -> *mut NSObject;
     }

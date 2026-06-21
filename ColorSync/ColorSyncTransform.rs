@@ -508,7 +508,7 @@ extern "C" {
 /// - `options` generic must be of the correct type.
 /// - `options` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn ColorSyncCreateCodeFragment(
+pub unsafe fn ColorSyncCreateCodeFragment(
     profile_sequence: &CFArray,
     options: &CFDictionary,
 ) -> CFRetained<CFType> {

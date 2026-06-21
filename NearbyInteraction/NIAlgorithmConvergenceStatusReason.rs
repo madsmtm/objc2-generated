@@ -48,7 +48,7 @@ extern "C" {
 
 /// Helper methods for getting the localized description of the convergence reason
 #[inline]
-pub unsafe extern "C-unwind" fn NIAlgorithmConvergenceStatusReasonDescription(
+pub unsafe fn NIAlgorithmConvergenceStatusReasonDescription(
     reason: &NIAlgorithmConvergenceStatusReason,
 ) -> Retained<NSString> {
     extern "C-unwind" {

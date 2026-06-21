@@ -1748,7 +1748,7 @@ impl NSApplication {
 /// `NSShowsServicesMenuItem()`always returns
 /// `YES.`
 #[inline]
-pub extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) -> bool {
+pub fn NSShowsServicesMenuItem(item_name: &NSString) -> bool {
     extern "C-unwind" {
         fn NSShowsServicesMenuItem(item_name: &NSString) -> Bool;
     }
@@ -1757,10 +1757,7 @@ pub extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) -> bool {
 
 /// `NSSetShowsServicesMenuItem()`has no effect, and always returns 0.
 #[inline]
-pub extern "C-unwind" fn NSSetShowsServicesMenuItem(
-    item_name: &NSString,
-    enabled: bool,
-) -> NSInteger {
+pub fn NSSetShowsServicesMenuItem(item_name: &NSString, enabled: bool) -> NSInteger {
     extern "C-unwind" {
         fn NSSetShowsServicesMenuItem(item_name: &NSString, enabled: Bool) -> NSInteger;
     }
@@ -1770,7 +1767,7 @@ pub extern "C-unwind" fn NSSetShowsServicesMenuItem(
 /// `NSUpdateDynamicServices()`causes the services information for the system to be updated.
 /// This will only be necessary if your program adds dynamic services to the system (i.e. services not found in mach-o segments of executables).
 #[inline]
-pub extern "C-unwind" fn NSUpdateDynamicServices() {
+pub fn NSUpdateDynamicServices() {
     extern "C-unwind" {
         fn NSUpdateDynamicServices();
     }
@@ -1779,10 +1776,7 @@ pub extern "C-unwind" fn NSUpdateDynamicServices() {
 
 #[cfg(feature = "NSPasteboard")]
 #[inline]
-pub extern "C-unwind" fn NSPerformService(
-    item_name: &NSString,
-    pboard: Option<&NSPasteboard>,
-) -> bool {
+pub fn NSPerformService(item_name: &NSString, pboard: Option<&NSPasteboard>) -> bool {
     extern "C-unwind" {
         fn NSPerformService(item_name: &NSString, pboard: Option<&NSPasteboard>) -> Bool;
     }
@@ -1798,7 +1792,7 @@ pub type NSServiceProviderName = NSString;
 ///
 /// `provider` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSRegisterServicesProvider(
+pub unsafe fn NSRegisterServicesProvider(
     provider: Option<&AnyObject>,
     name: &NSServiceProviderName,
 ) {
@@ -1809,7 +1803,7 @@ pub unsafe extern "C-unwind" fn NSRegisterServicesProvider(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSUnregisterServicesProvider(name: &NSServiceProviderName) {
+pub fn NSUnregisterServicesProvider(name: &NSServiceProviderName) {
     extern "C-unwind" {
         fn NSUnregisterServicesProvider(name: &NSServiceProviderName);
     }

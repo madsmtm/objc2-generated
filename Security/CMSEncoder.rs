@@ -404,7 +404,7 @@ impl CMSEncoder {
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CMSEncode(
+pub unsafe fn CMSEncode(
     signers: Option<&CFType>,
     recipients: Option<&CFType>,
     e_content_type: *const SecAsn1Oid,
@@ -448,7 +448,7 @@ pub unsafe extern "C-unwind" fn CMSEncode(
 /// - `content` must be a valid pointer.
 /// - `encoded_content_out` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSEncodeContent(
+pub unsafe fn CMSEncodeContent(
     signers: Option<&CFType>,
     recipients: Option<&CFType>,
     e_content_type_oid: Option<&CFType>,

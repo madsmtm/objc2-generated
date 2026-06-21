@@ -23,7 +23,7 @@ use crate::*;
 /// 5. If present, CoreMIDI now owns a connection the peripheral.
 /// 6. Using CoreBluetooth API, disconnect from the peripheral now managed by CoreMIDI.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIBluetoothDriverActivateAllConnections() -> OSStatus {
+pub unsafe fn MIDIBluetoothDriverActivateAllConnections() -> OSStatus {
     extern "C-unwind" {
         fn MIDIBluetoothDriverActivateAllConnections() -> OSStatus;
     }
@@ -42,7 +42,7 @@ pub unsafe extern "C-unwind" fn MIDIBluetoothDriverActivateAllConnections() -> O
 /// If a CoreMIDI is connected to a BLE MIDI peripheral with the supplied UUID, it will disconnect.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIBluetoothDriverDisconnect(uuid: &CFString) -> OSStatus {
+pub unsafe fn MIDIBluetoothDriverDisconnect(uuid: &CFString) -> OSStatus {
     extern "C-unwind" {
         fn MIDIBluetoothDriverDisconnect(uuid: &CFString) -> OSStatus;
     }

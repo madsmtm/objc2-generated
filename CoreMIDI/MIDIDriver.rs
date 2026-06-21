@@ -220,7 +220,7 @@ extern "C" {
 /// - `out_device` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDeviceCreate(
+pub unsafe fn MIDIDeviceCreate(
     owner: MIDIDriverRef,
     name: &CFString,
     manufacturer: &CFString,
@@ -254,7 +254,7 @@ pub unsafe extern "C-unwind" fn MIDIDeviceCreate(
 /// Returns: An OSStatus result code.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDeviceDispose(device: MIDIDeviceRef) -> OSStatus {
+pub unsafe fn MIDIDeviceDispose(device: MIDIDeviceRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDIDeviceDispose(device: MIDIDeviceRef) -> OSStatus;
     }
@@ -269,9 +269,7 @@ pub unsafe extern "C-unwind" fn MIDIDeviceDispose(device: MIDIDeviceRef) -> OSSt
 /// Returns: The number of devices in the list, or 0 if an error occurred.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDeviceListGetNumberOfDevices(
-    dev_list: MIDIDeviceListRef,
-) -> ItemCount {
+pub unsafe fn MIDIDeviceListGetNumberOfDevices(dev_list: MIDIDeviceListRef) -> ItemCount {
     extern "C-unwind" {
         fn MIDIDeviceListGetNumberOfDevices(dev_list: MIDIDeviceListRef) -> ItemCount;
     }
@@ -289,7 +287,7 @@ pub unsafe extern "C-unwind" fn MIDIDeviceListGetNumberOfDevices(
 /// Returns: A reference to a device, or NULL if an error occurred.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDeviceListGetDevice(
+pub unsafe fn MIDIDeviceListGetDevice(
     dev_list: MIDIDeviceListRef,
     index0: ItemCount,
 ) -> MIDIDeviceRef {
@@ -310,10 +308,7 @@ pub unsafe extern "C-unwind" fn MIDIDeviceListGetDevice(
 /// Returns: An OSStatus result code.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDeviceListAddDevice(
-    dev_list: MIDIDeviceListRef,
-    dev: MIDIDeviceRef,
-) -> OSStatus {
+pub unsafe fn MIDIDeviceListAddDevice(dev_list: MIDIDeviceListRef, dev: MIDIDeviceRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDIDeviceListAddDevice(dev_list: MIDIDeviceListRef, dev: MIDIDeviceRef) -> OSStatus;
     }
@@ -328,7 +323,7 @@ pub unsafe extern "C-unwind" fn MIDIDeviceListAddDevice(
 /// Returns: An OSStatus result code.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDeviceListDispose(dev_list: MIDIDeviceListRef) -> OSStatus {
+pub unsafe fn MIDIDeviceListDispose(dev_list: MIDIDeviceListRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDIDeviceListDispose(dev_list: MIDIDeviceListRef) -> OSStatus;
     }
@@ -364,7 +359,7 @@ pub unsafe extern "C-unwind" fn MIDIDeviceListDispose(dev_list: MIDIDeviceListRe
 /// - `ref2` must be a valid pointer or null.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIEndpointSetRefCons(
+pub unsafe fn MIDIEndpointSetRefCons(
     endpt: MIDIEndpointRef,
     ref1: *mut c_void,
     ref2: *mut c_void,
@@ -396,7 +391,7 @@ pub unsafe extern "C-unwind" fn MIDIEndpointSetRefCons(
 /// - `ref2` must be a valid pointer or null.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIEndpointGetRefCons(
+pub unsafe fn MIDIEndpointGetRefCons(
     endpt: MIDIEndpointRef,
     ref1: *mut NonNull<c_void>,
     ref2: *mut NonNull<c_void>,
@@ -429,7 +424,7 @@ pub unsafe extern "C-unwind" fn MIDIEndpointGetRefCons(
 /// Returns: The CFRunLoopRef of the server's driver I/O thread.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetDriverIORunLoop() -> CFRetained<CFRunLoop> {
+pub unsafe fn MIDIGetDriverIORunLoop() -> CFRetained<CFRunLoop> {
     extern "C-unwind" {
         fn MIDIGetDriverIORunLoop() -> Option<NonNull<CFRunLoop>>;
     }
@@ -455,9 +450,7 @@ pub unsafe extern "C-unwind" fn MIDIGetDriverIORunLoop() -> CFRetained<CFRunLoop
 /// `driver` must be a valid pointer.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetDriverDeviceList(
-    driver: MIDIDriverRef,
-) -> MIDIDeviceListRef {
+pub unsafe fn MIDIGetDriverDeviceList(driver: MIDIDriverRef) -> MIDIDeviceListRef {
     extern "C-unwind" {
         fn MIDIGetDriverDeviceList(driver: MIDIDriverRef) -> MIDIDeviceListRef;
     }
@@ -480,10 +473,7 @@ pub unsafe extern "C-unwind" fn MIDIGetDriverDeviceList(
 ///
 /// `driver` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDriverEnableMonitoring(
-    driver: MIDIDriverRef,
-    enabled: bool,
-) -> OSStatus {
+pub unsafe fn MIDIDriverEnableMonitoring(driver: MIDIDriverRef, enabled: bool) -> OSStatus {
     extern "C-unwind" {
         fn MIDIDriverEnableMonitoring(driver: MIDIDriverRef, enabled: Boolean) -> OSStatus;
     }

@@ -651,7 +651,7 @@ unsafe impl RefEncode for MusicTrackLoopInfo {
 ///
 /// `out_player` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NewMusicPlayer(out_player: &mut MusicPlayer) -> OSStatus {
+pub unsafe fn NewMusicPlayer(out_player: &mut MusicPlayer) -> OSStatus {
     extern "C-unwind" {
         fn NewMusicPlayer(out_player: &mut MusicPlayer) -> OSStatus;
     }
@@ -666,7 +666,7 @@ pub unsafe extern "C-unwind" fn NewMusicPlayer(out_player: &mut MusicPlayer) -> 
 ///
 /// `in_player` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn DisposeMusicPlayer(in_player: MusicPlayer) -> OSStatus {
+pub unsafe fn DisposeMusicPlayer(in_player: MusicPlayer) -> OSStatus {
     extern "C-unwind" {
         fn DisposeMusicPlayer(in_player: MusicPlayer) -> OSStatus;
     }
@@ -687,7 +687,7 @@ pub unsafe extern "C-unwind" fn DisposeMusicPlayer(in_player: MusicPlayer) -> OS
 /// - `in_player` must be a valid pointer.
 /// - `in_sequence` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerSetSequence(
+pub unsafe fn MusicPlayerSetSequence(
     in_player: MusicPlayer,
     in_sequence: MusicSequence,
 ) -> OSStatus {
@@ -710,7 +710,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerSetSequence(
 /// - `in_player` must be a valid pointer.
 /// - `out_sequence` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerGetSequence(
+pub unsafe fn MusicPlayerGetSequence(
     in_player: MusicPlayer,
     out_sequence: &mut MusicSequence,
 ) -> OSStatus {
@@ -738,10 +738,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerGetSequence(
 ///
 /// `in_player` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerSetTime(
-    in_player: MusicPlayer,
-    in_time: MusicTimeStamp,
-) -> OSStatus {
+pub unsafe fn MusicPlayerSetTime(in_player: MusicPlayer, in_time: MusicTimeStamp) -> OSStatus {
     extern "C-unwind" {
         fn MusicPlayerSetTime(in_player: MusicPlayer, in_time: MusicTimeStamp) -> OSStatus;
     }
@@ -761,7 +758,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerSetTime(
 ///
 /// `in_player` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerGetTime(
+pub unsafe fn MusicPlayerGetTime(
     in_player: MusicPlayer,
     out_time: &mut MusicTimeStamp,
 ) -> OSStatus {
@@ -792,7 +789,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerGetTime(
 ///
 /// `in_player` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerGetHostTimeForBeats(
+pub unsafe fn MusicPlayerGetHostTimeForBeats(
     in_player: MusicPlayer,
     in_beats: MusicTimeStamp,
     out_host_time: &mut u64,
@@ -828,7 +825,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerGetHostTimeForBeats(
 ///
 /// `in_player` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerGetBeatsForHostTime(
+pub unsafe fn MusicPlayerGetBeatsForHostTime(
     in_player: MusicPlayer,
     in_host_time: u64,
     out_beats: &mut MusicTimeStamp,
@@ -854,7 +851,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerGetBeatsForHostTime(
 ///
 /// `in_player` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerPreroll(in_player: MusicPlayer) -> OSStatus {
+pub unsafe fn MusicPlayerPreroll(in_player: MusicPlayer) -> OSStatus {
     extern "C-unwind" {
         fn MusicPlayerPreroll(in_player: MusicPlayer) -> OSStatus;
     }
@@ -871,7 +868,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerPreroll(in_player: MusicPlayer) -> OS
 ///
 /// `in_player` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerStart(in_player: MusicPlayer) -> OSStatus {
+pub unsafe fn MusicPlayerStart(in_player: MusicPlayer) -> OSStatus {
     extern "C-unwind" {
         fn MusicPlayerStart(in_player: MusicPlayer) -> OSStatus;
     }
@@ -886,7 +883,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerStart(in_player: MusicPlayer) -> OSSt
 ///
 /// `in_player` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerStop(in_player: MusicPlayer) -> OSStatus {
+pub unsafe fn MusicPlayerStop(in_player: MusicPlayer) -> OSStatus {
     extern "C-unwind" {
         fn MusicPlayerStop(in_player: MusicPlayer) -> OSStatus;
     }
@@ -908,7 +905,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerStop(in_player: MusicPlayer) -> OSSta
 ///
 /// `in_player` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerIsPlaying(
+pub unsafe fn MusicPlayerIsPlaying(
     in_player: MusicPlayer,
     out_is_playing: &mut Boolean,
 ) -> OSStatus {
@@ -929,10 +926,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerIsPlaying(
 ///
 /// `in_player` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerSetPlayRateScalar(
-    in_player: MusicPlayer,
-    in_scale_rate: f64,
-) -> OSStatus {
+pub unsafe fn MusicPlayerSetPlayRateScalar(in_player: MusicPlayer, in_scale_rate: f64) -> OSStatus {
     extern "C-unwind" {
         fn MusicPlayerSetPlayRateScalar(in_player: MusicPlayer, in_scale_rate: f64) -> OSStatus;
     }
@@ -949,7 +943,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerSetPlayRateScalar(
 ///
 /// `in_player` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicPlayerGetPlayRateScalar(
+pub unsafe fn MusicPlayerGetPlayRateScalar(
     in_player: MusicPlayer,
     out_scale_rate: &mut f64,
 ) -> OSStatus {
@@ -979,7 +973,7 @@ pub unsafe extern "C-unwind" fn MusicPlayerGetPlayRateScalar(
 ///
 /// `out_sequence` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NewMusicSequence(out_sequence: &mut MusicSequence) -> OSStatus {
+pub unsafe fn NewMusicSequence(out_sequence: &mut MusicSequence) -> OSStatus {
     extern "C-unwind" {
         fn NewMusicSequence(out_sequence: &mut MusicSequence) -> OSStatus;
     }
@@ -996,7 +990,7 @@ pub unsafe extern "C-unwind" fn NewMusicSequence(out_sequence: &mut MusicSequenc
 ///
 /// `in_sequence` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn DisposeMusicSequence(in_sequence: MusicSequence) -> OSStatus {
+pub unsafe fn DisposeMusicSequence(in_sequence: MusicSequence) -> OSStatus {
     extern "C-unwind" {
         fn DisposeMusicSequence(in_sequence: MusicSequence) -> OSStatus;
     }
@@ -1014,7 +1008,7 @@ pub unsafe extern "C-unwind" fn DisposeMusicSequence(in_sequence: MusicSequence)
 /// - `in_sequence` must be a valid pointer.
 /// - `out_track` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceNewTrack(
+pub unsafe fn MusicSequenceNewTrack(
     in_sequence: MusicSequence,
     out_track: &mut MusicTrack,
 ) -> OSStatus {
@@ -1038,7 +1032,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceNewTrack(
 /// - `in_sequence` must be a valid pointer.
 /// - `in_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceDisposeTrack(
+pub unsafe fn MusicSequenceDisposeTrack(
     in_sequence: MusicSequence,
     in_track: MusicTrack,
 ) -> OSStatus {
@@ -1059,7 +1053,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceDisposeTrack(
 ///
 /// `in_sequence` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceGetTrackCount(
+pub unsafe fn MusicSequenceGetTrackCount(
     in_sequence: MusicSequence,
     out_number_of_tracks: &mut u32,
 ) -> OSStatus {
@@ -1090,7 +1084,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetTrackCount(
 /// - `in_sequence` must be a valid pointer.
 /// - `out_track` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceGetIndTrack(
+pub unsafe fn MusicSequenceGetIndTrack(
     in_sequence: MusicSequence,
     in_track_index: u32,
     out_track: &mut MusicTrack,
@@ -1121,7 +1115,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetIndTrack(
 /// - `in_sequence` must be a valid pointer.
 /// - `in_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceGetTrackIndex(
+pub unsafe fn MusicSequenceGetTrackIndex(
     in_sequence: MusicSequence,
     in_track: MusicTrack,
     out_track_index: &mut u32,
@@ -1151,7 +1145,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetTrackIndex(
 /// - `in_sequence` must be a valid pointer.
 /// - `out_track` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceGetTempoTrack(
+pub unsafe fn MusicSequenceGetTempoTrack(
     in_sequence: MusicSequence,
     out_track: &mut MusicTrack,
 ) -> OSStatus {
@@ -1183,10 +1177,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetTempoTrack(
 /// - `in_graph` must be a valid pointer or null.
 #[cfg(feature = "AUGraph")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceSetAUGraph(
-    in_sequence: MusicSequence,
-    in_graph: AUGraph,
-) -> OSStatus {
+pub unsafe fn MusicSequenceSetAUGraph(in_sequence: MusicSequence, in_graph: AUGraph) -> OSStatus {
     extern "C-unwind" {
         fn MusicSequenceSetAUGraph(in_sequence: MusicSequence, in_graph: AUGraph) -> OSStatus;
     }
@@ -1214,7 +1205,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceSetAUGraph(
 /// - `out_graph` must be a valid pointer or null.
 #[cfg(feature = "AUGraph")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceGetAUGraph(
+pub unsafe fn MusicSequenceGetAUGraph(
     in_sequence: MusicSequence,
     out_graph: &mut AUGraph,
 ) -> OSStatus {
@@ -1240,7 +1231,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetAUGraph(
 /// `in_sequence` must be a valid pointer.
 #[cfg(feature = "objc2-core-midi")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceSetMIDIEndpoint(
+pub unsafe fn MusicSequenceSetMIDIEndpoint(
     in_sequence: MusicSequence,
     in_endpoint: MIDIEndpointRef,
 ) -> OSStatus {
@@ -1282,7 +1273,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceSetMIDIEndpoint(
 ///
 /// `in_sequence` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceSetSequenceType(
+pub unsafe fn MusicSequenceSetSequenceType(
     in_sequence: MusicSequence,
     in_type: MusicSequenceType,
 ) -> OSStatus {
@@ -1307,7 +1298,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceSetSequenceType(
 ///
 /// `in_sequence` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceGetSequenceType(
+pub unsafe fn MusicSequenceGetSequenceType(
     in_sequence: MusicSequence,
     out_type: &mut MusicSequenceType,
 ) -> OSStatus {
@@ -1338,7 +1329,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetSequenceType(
 /// `in_sequence` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceFileLoad(
+pub unsafe fn MusicSequenceFileLoad(
     in_sequence: MusicSequence,
     in_file_ref: &CFURL,
     in_file_type_hint: MusicSequenceFileTypeID,
@@ -1374,7 +1365,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceFileLoad(
 /// `in_sequence` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceFileLoadData(
+pub unsafe fn MusicSequenceFileLoadData(
     in_sequence: MusicSequence,
     in_data: &CFData,
     in_file_type_hint: MusicSequenceFileTypeID,
@@ -1449,7 +1440,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceFileLoadData(
 /// `in_sequence` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceFileCreate(
+pub unsafe fn MusicSequenceFileCreate(
     in_sequence: MusicSequence,
     in_file_ref: &CFURL,
     in_file_type: MusicSequenceFileTypeID,
@@ -1498,7 +1489,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceFileCreate(
 /// - `out_data` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceFileCreateData(
+pub unsafe fn MusicSequenceFileCreateData(
     in_sequence: MusicSequence,
     in_file_type: MusicSequenceFileTypeID,
     in_flags: MusicSequenceFileFlags,
@@ -1527,7 +1518,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceFileCreateData(
 ///
 /// `in_sequence` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceReverse(in_sequence: MusicSequence) -> OSStatus {
+pub unsafe fn MusicSequenceReverse(in_sequence: MusicSequence) -> OSStatus {
     extern "C-unwind" {
         fn MusicSequenceReverse(in_sequence: MusicSequence) -> OSStatus;
     }
@@ -1548,7 +1539,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceReverse(in_sequence: MusicSequence)
 ///
 /// `in_sequence` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceGetSecondsForBeats(
+pub unsafe fn MusicSequenceGetSecondsForBeats(
     in_sequence: MusicSequence,
     in_beats: MusicTimeStamp,
     out_seconds: &mut f64,
@@ -1577,7 +1568,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetSecondsForBeats(
 ///
 /// `in_sequence` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceGetBeatsForSeconds(
+pub unsafe fn MusicSequenceGetBeatsForSeconds(
     in_sequence: MusicSequence,
     in_seconds: f64,
     out_beats: &mut MusicTimeStamp,
@@ -1627,7 +1618,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetBeatsForSeconds(
 /// - `in_callback` must be implemented correctly.
 /// - `in_client_data` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceSetUserCallback(
+pub unsafe fn MusicSequenceSetUserCallback(
     in_sequence: MusicSequence,
     in_callback: MusicSequenceUserCallback,
     in_client_data: *mut c_void,
@@ -1660,7 +1651,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceSetUserCallback(
 ///
 /// `in_sequence` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceBeatsToBarBeatTime(
+pub unsafe fn MusicSequenceBeatsToBarBeatTime(
     in_sequence: MusicSequence,
     in_beats: MusicTimeStamp,
     in_subbeat_divisor: u32,
@@ -1700,7 +1691,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceBeatsToBarBeatTime(
 ///
 /// `in_sequence` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceBarBeatTimeToBeats(
+pub unsafe fn MusicSequenceBarBeatTimeToBeats(
     in_sequence: MusicSequence,
     in_bar_beat_time: &CABarBeatTime,
     out_beats: &mut MusicTimeStamp,
@@ -1734,7 +1725,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceBarBeatTimeToBeats(
 /// `in_sequence` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceGetInfoDictionary(
+pub unsafe fn MusicSequenceGetInfoDictionary(
     in_sequence: MusicSequence,
 ) -> CFRetained<CFDictionary<CFString, CFType>> {
     extern "C-unwind" {
@@ -1758,7 +1749,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetInfoDictionary(
 /// - `in_track` must be a valid pointer.
 /// - `out_sequence` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackGetSequence(
+pub unsafe fn MusicTrackGetSequence(
     in_track: MusicTrack,
     out_sequence: &mut MusicSequence,
 ) -> OSStatus {
@@ -1785,10 +1776,7 @@ pub unsafe extern "C-unwind" fn MusicTrackGetSequence(
 /// `in_track` must be a valid pointer.
 #[cfg(feature = "AUGraph")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackSetDestNode(
-    in_track: MusicTrack,
-    in_node: AUNode,
-) -> OSStatus {
+pub unsafe fn MusicTrackSetDestNode(in_track: MusicTrack, in_node: AUNode) -> OSStatus {
     extern "C-unwind" {
         fn MusicTrackSetDestNode(in_track: MusicTrack, in_node: AUNode) -> OSStatus;
     }
@@ -1808,7 +1796,7 @@ pub unsafe extern "C-unwind" fn MusicTrackSetDestNode(
 /// `in_track` must be a valid pointer.
 #[cfg(feature = "objc2-core-midi")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackSetDestMIDIEndpoint(
+pub unsafe fn MusicTrackSetDestMIDIEndpoint(
     in_track: MusicTrack,
     in_endpoint: MIDIEndpointRef,
 ) -> OSStatus {
@@ -1835,10 +1823,7 @@ pub unsafe extern "C-unwind" fn MusicTrackSetDestMIDIEndpoint(
 /// `in_track` must be a valid pointer.
 #[cfg(feature = "AUGraph")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackGetDestNode(
-    in_track: MusicTrack,
-    out_node: &mut AUNode,
-) -> OSStatus {
+pub unsafe fn MusicTrackGetDestNode(in_track: MusicTrack, out_node: &mut AUNode) -> OSStatus {
     extern "C-unwind" {
         fn MusicTrackGetDestNode(in_track: MusicTrack, out_node: &mut AUNode) -> OSStatus;
     }
@@ -1859,7 +1844,7 @@ pub unsafe extern "C-unwind" fn MusicTrackGetDestNode(
 /// `in_track` must be a valid pointer.
 #[cfg(feature = "objc2-core-midi")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackGetDestMIDIEndpoint(
+pub unsafe fn MusicTrackGetDestMIDIEndpoint(
     in_track: MusicTrack,
     out_endpoint: &mut MIDIEndpointRef,
 ) -> OSStatus {
@@ -1889,7 +1874,7 @@ pub unsafe extern "C-unwind" fn MusicTrackGetDestMIDIEndpoint(
 /// - `in_track` must be a valid pointer.
 /// - `in_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackSetProperty(
+pub unsafe fn MusicTrackSetProperty(
     in_track: MusicTrack,
     in_property_id: u32,
     in_data: NonNull<c_void>,
@@ -1927,7 +1912,7 @@ pub unsafe extern "C-unwind" fn MusicTrackSetProperty(
 /// - `in_track` must be a valid pointer.
 /// - `out_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackGetProperty(
+pub unsafe fn MusicTrackGetProperty(
     in_track: MusicTrack,
     in_property_id: u32,
     out_data: NonNull<c_void>,
@@ -1966,7 +1951,7 @@ pub unsafe extern "C-unwind" fn MusicTrackGetProperty(
 ///
 /// `in_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackMoveEvents(
+pub unsafe fn MusicTrackMoveEvents(
     in_track: MusicTrack,
     in_start_time: MusicTimeStamp,
     in_end_time: MusicTimeStamp,
@@ -1999,7 +1984,7 @@ pub unsafe extern "C-unwind" fn MusicTrackMoveEvents(
 ///
 /// `in_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackClear(
+pub unsafe fn MusicTrackClear(
     in_track: MusicTrack,
     in_start_time: MusicTimeStamp,
     in_end_time: MusicTimeStamp,
@@ -2033,7 +2018,7 @@ pub unsafe extern "C-unwind" fn MusicTrackClear(
 ///
 /// `in_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackCut(
+pub unsafe fn MusicTrackCut(
     in_track: MusicTrack,
     in_start_time: MusicTimeStamp,
     in_end_time: MusicTimeStamp,
@@ -2074,7 +2059,7 @@ pub unsafe extern "C-unwind" fn MusicTrackCut(
 /// - `in_source_track` must be a valid pointer.
 /// - `in_dest_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackCopyInsert(
+pub unsafe fn MusicTrackCopyInsert(
     in_source_track: MusicTrack,
     in_source_start_time: MusicTimeStamp,
     in_source_end_time: MusicTimeStamp,
@@ -2126,7 +2111,7 @@ pub unsafe extern "C-unwind" fn MusicTrackCopyInsert(
 /// - `in_source_track` must be a valid pointer.
 /// - `in_dest_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackMerge(
+pub unsafe fn MusicTrackMerge(
     in_source_track: MusicTrack,
     in_source_start_time: MusicTimeStamp,
     in_source_end_time: MusicTimeStamp,
@@ -2167,7 +2152,7 @@ pub unsafe extern "C-unwind" fn MusicTrackMerge(
 ///
 /// `in_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackNewMIDINoteEvent(
+pub unsafe fn MusicTrackNewMIDINoteEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
     in_message: &MIDINoteMessage,
@@ -2196,7 +2181,7 @@ pub unsafe extern "C-unwind" fn MusicTrackNewMIDINoteEvent(
 ///
 /// `in_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackNewMIDIChannelEvent(
+pub unsafe fn MusicTrackNewMIDIChannelEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
     in_message: &MIDIChannelMessage,
@@ -2225,7 +2210,7 @@ pub unsafe extern "C-unwind" fn MusicTrackNewMIDIChannelEvent(
 ///
 /// `in_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackNewMIDIRawDataEvent(
+pub unsafe fn MusicTrackNewMIDIRawDataEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
     in_raw_data: &MIDIRawData,
@@ -2255,7 +2240,7 @@ pub unsafe extern "C-unwind" fn MusicTrackNewMIDIRawDataEvent(
 /// `in_track` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackNewExtendedNoteEvent(
+pub unsafe fn MusicTrackNewExtendedNoteEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
     in_info: &ExtendedNoteOnEvent,
@@ -2285,7 +2270,7 @@ pub unsafe extern "C-unwind" fn MusicTrackNewExtendedNoteEvent(
 /// `in_track` must be a valid pointer.
 #[cfg(feature = "AUComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackNewParameterEvent(
+pub unsafe fn MusicTrackNewParameterEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
     in_info: &ParameterEvent,
@@ -2314,7 +2299,7 @@ pub unsafe extern "C-unwind" fn MusicTrackNewParameterEvent(
 ///
 /// `in_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackNewExtendedTempoEvent(
+pub unsafe fn MusicTrackNewExtendedTempoEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
     in_bpm: f64,
@@ -2343,7 +2328,7 @@ pub unsafe extern "C-unwind" fn MusicTrackNewExtendedTempoEvent(
 ///
 /// `in_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackNewMetaEvent(
+pub unsafe fn MusicTrackNewMetaEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
     in_meta_event: &MIDIMetaEvent,
@@ -2372,7 +2357,7 @@ pub unsafe extern "C-unwind" fn MusicTrackNewMetaEvent(
 ///
 /// `in_track` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackNewUserEvent(
+pub unsafe fn MusicTrackNewUserEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
     in_user_data: &MusicEventUserData,
@@ -2403,7 +2388,7 @@ pub unsafe extern "C-unwind" fn MusicTrackNewUserEvent(
 /// - `in_preset_event` struct field `preset` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackNewAUPresetEvent(
+pub unsafe fn MusicTrackNewAUPresetEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
     in_preset_event: &AUPresetEvent,
@@ -2433,7 +2418,7 @@ pub unsafe extern "C-unwind" fn MusicTrackNewAUPresetEvent(
 /// - `in_track` must be a valid pointer.
 /// - `out_iterator` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NewMusicEventIterator(
+pub unsafe fn NewMusicEventIterator(
     in_track: MusicTrack,
     out_iterator: &mut MusicEventIterator,
 ) -> OSStatus {
@@ -2454,9 +2439,7 @@ pub unsafe extern "C-unwind" fn NewMusicEventIterator(
 ///
 /// `in_iterator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn DisposeMusicEventIterator(
-    in_iterator: MusicEventIterator,
-) -> OSStatus {
+pub unsafe fn DisposeMusicEventIterator(in_iterator: MusicEventIterator) -> OSStatus {
     extern "C-unwind" {
         fn DisposeMusicEventIterator(in_iterator: MusicEventIterator) -> OSStatus;
     }
@@ -2480,7 +2463,7 @@ pub unsafe extern "C-unwind" fn DisposeMusicEventIterator(
 ///
 /// `in_iterator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicEventIteratorSeek(
+pub unsafe fn MusicEventIteratorSeek(
     in_iterator: MusicEventIterator,
     in_time_stamp: MusicTimeStamp,
 ) -> OSStatus {
@@ -2507,9 +2490,7 @@ pub unsafe extern "C-unwind" fn MusicEventIteratorSeek(
 ///
 /// `in_iterator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicEventIteratorNextEvent(
-    in_iterator: MusicEventIterator,
-) -> OSStatus {
+pub unsafe fn MusicEventIteratorNextEvent(in_iterator: MusicEventIterator) -> OSStatus {
     extern "C-unwind" {
         fn MusicEventIteratorNextEvent(in_iterator: MusicEventIterator) -> OSStatus;
     }
@@ -2529,9 +2510,7 @@ pub unsafe extern "C-unwind" fn MusicEventIteratorNextEvent(
 ///
 /// `in_iterator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicEventIteratorPreviousEvent(
-    in_iterator: MusicEventIterator,
-) -> OSStatus {
+pub unsafe fn MusicEventIteratorPreviousEvent(in_iterator: MusicEventIterator) -> OSStatus {
     extern "C-unwind" {
         fn MusicEventIteratorPreviousEvent(in_iterator: MusicEventIterator) -> OSStatus;
     }
@@ -2562,7 +2541,7 @@ pub unsafe extern "C-unwind" fn MusicEventIteratorPreviousEvent(
 /// - `in_iterator` must be a valid pointer.
 /// - `out_event_data` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicEventIteratorGetEventInfo(
+pub unsafe fn MusicEventIteratorGetEventInfo(
     in_iterator: MusicEventIterator,
     out_time_stamp: &mut MusicTimeStamp,
     out_event_type: &mut MusicEventType,
@@ -2607,7 +2586,7 @@ pub unsafe extern "C-unwind" fn MusicEventIteratorGetEventInfo(
 /// - `in_iterator` must be a valid pointer.
 /// - `in_event_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicEventIteratorSetEventInfo(
+pub unsafe fn MusicEventIteratorSetEventInfo(
     in_iterator: MusicEventIterator,
     in_event_type: MusicEventType,
     in_event_data: NonNull<c_void>,
@@ -2637,7 +2616,7 @@ pub unsafe extern "C-unwind" fn MusicEventIteratorSetEventInfo(
 ///
 /// `in_iterator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicEventIteratorSetEventTime(
+pub unsafe fn MusicEventIteratorSetEventTime(
     in_iterator: MusicEventIterator,
     in_time_stamp: MusicTimeStamp,
 ) -> OSStatus {
@@ -2661,9 +2640,7 @@ pub unsafe extern "C-unwind" fn MusicEventIteratorSetEventTime(
 ///
 /// `in_iterator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicEventIteratorDeleteEvent(
-    in_iterator: MusicEventIterator,
-) -> OSStatus {
+pub unsafe fn MusicEventIteratorDeleteEvent(in_iterator: MusicEventIterator) -> OSStatus {
     extern "C-unwind" {
         fn MusicEventIteratorDeleteEvent(in_iterator: MusicEventIterator) -> OSStatus;
     }
@@ -2696,7 +2673,7 @@ pub unsafe extern "C-unwind" fn MusicEventIteratorDeleteEvent(
 ///
 /// `in_iterator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicEventIteratorHasPreviousEvent(
+pub unsafe fn MusicEventIteratorHasPreviousEvent(
     in_iterator: MusicEventIterator,
     out_has_prev_event: &mut Boolean,
 ) -> OSStatus {
@@ -2735,7 +2712,7 @@ pub unsafe extern "C-unwind" fn MusicEventIteratorHasPreviousEvent(
 ///
 /// `in_iterator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicEventIteratorHasNextEvent(
+pub unsafe fn MusicEventIteratorHasNextEvent(
     in_iterator: MusicEventIterator,
     out_has_next_event: &mut Boolean,
 ) -> OSStatus {
@@ -2758,7 +2735,7 @@ pub unsafe extern "C-unwind" fn MusicEventIteratorHasNextEvent(
 ///
 /// `in_iterator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MusicEventIteratorHasCurrentEvent(
+pub unsafe fn MusicEventIteratorHasCurrentEvent(
     in_iterator: MusicEventIterator,
     out_has_cur_event: &mut Boolean,
 ) -> OSStatus {
@@ -2777,7 +2754,7 @@ pub unsafe extern "C-unwind" fn MusicEventIteratorHasCurrentEvent(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceLoadSMFDataWithFlags(
+pub unsafe fn MusicSequenceLoadSMFDataWithFlags(
     in_sequence: MusicSequence,
     in_data: &CFData,
     in_flags: MusicSequenceLoadFlags,
@@ -2799,7 +2776,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceLoadSMFDataWithFlags(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicSequenceSaveSMFData(
+pub unsafe fn MusicSequenceSaveSMFData(
     in_sequence: MusicSequence,
     out_data: &mut *const CFData,
     in_resolution: u16,
@@ -2820,7 +2797,7 @@ pub unsafe extern "C-unwind" fn MusicSequenceSaveSMFData(
 /// - `out_new_track` must be a valid pointer or null.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn NewMusicTrackFrom(
+pub unsafe fn NewMusicTrackFrom(
     in_source_track: MusicTrack,
     in_source_start_time: MusicTimeStamp,
     in_source_end_time: MusicTimeStamp,
@@ -2880,7 +2857,7 @@ unsafe impl RefEncode for ExtendedControlEvent {
 #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicTrackNewExtendedControlEvent(
+pub unsafe fn MusicTrackNewExtendedControlEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
     in_info: &ExtendedControlEvent,

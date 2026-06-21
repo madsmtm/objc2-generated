@@ -150,7 +150,7 @@ pub type AUParameterListenerProc = Option<
     feature = "dispatch2"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn AUListenerCreateWithDispatchQueue(
+pub unsafe fn AUListenerCreateWithDispatchQueue(
     out_listener: &mut AUParameterListenerRef,
     in_notification_interval: f32,
     in_dispatch_queue: &DispatchQueue,
@@ -211,7 +211,7 @@ pub unsafe extern "C-unwind" fn AUListenerCreateWithDispatchQueue(
     feature = "objc2-core-foundation"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn AUListenerCreate(
+pub unsafe fn AUListenerCreate(
     in_proc: AUParameterListenerProc,
     in_user_data: NonNull<c_void>,
     in_run_loop: Option<&CFRunLoop>,
@@ -249,7 +249,7 @@ pub unsafe extern "C-unwind" fn AUListenerCreate(
 ///
 /// `in_listener` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AUListenerDispose(in_listener: AUParameterListenerRef) -> OSStatus {
+pub unsafe fn AUListenerDispose(in_listener: AUParameterListenerRef) -> OSStatus {
     extern "C-unwind" {
         fn AUListenerDispose(in_listener: AUParameterListenerRef) -> OSStatus;
     }
@@ -277,7 +277,7 @@ pub unsafe extern "C-unwind" fn AUListenerDispose(in_listener: AUParameterListen
 /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AUListenerAddParameter(
+pub unsafe fn AUListenerAddParameter(
     in_listener: AUParameterListenerRef,
     in_object: *mut c_void,
     in_parameter: &AudioUnitParameter,
@@ -307,7 +307,7 @@ pub unsafe extern "C-unwind" fn AUListenerAddParameter(
 /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AUListenerRemoveParameter(
+pub unsafe fn AUListenerRemoveParameter(
     in_listener: AUParameterListenerRef,
     in_object: *mut c_void,
     in_parameter: &AudioUnitParameter,
@@ -350,7 +350,7 @@ pub unsafe extern "C-unwind" fn AUListenerRemoveParameter(
 /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AUParameterSet(
+pub unsafe fn AUParameterSet(
     in_sending_listener: AUParameterListenerRef,
     in_sending_object: *mut c_void,
     in_parameter: &AudioUnitParameter,
@@ -408,7 +408,7 @@ pub unsafe extern "C-unwind" fn AUParameterSet(
 /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AUParameterListenerNotify(
+pub unsafe fn AUParameterListenerNotify(
     in_sending_listener: AUParameterListenerRef,
     in_sending_object: *mut c_void,
     in_parameter: &AudioUnitParameter,
@@ -438,7 +438,7 @@ pub unsafe extern "C-unwind" fn AUParameterListenerNotify(
 /// `in_parameter` struct field `mAudioUnit` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AUParameterValueFromLinear(
+pub unsafe fn AUParameterValueFromLinear(
     in_linear_value: f32,
     in_parameter: &AudioUnitParameter,
 ) -> AudioUnitParameterValue {
@@ -467,7 +467,7 @@ pub unsafe extern "C-unwind" fn AUParameterValueFromLinear(
 /// `in_parameter` struct field `mAudioUnit` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AUParameterValueToLinear(
+pub unsafe fn AUParameterValueToLinear(
     in_parameter_value: AudioUnitParameterValue,
     in_parameter: &AudioUnitParameter,
 ) -> f32 {
@@ -517,7 +517,7 @@ pub unsafe extern "C-unwind" fn AUParameterValueToLinear(
 /// - `in_text_buffer` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AUParameterFormatValue(
+pub unsafe fn AUParameterFormatValue(
     in_parameter_value: f64,
     in_parameter: &AudioUnitParameter,
     in_text_buffer: NonNull<c_char>,

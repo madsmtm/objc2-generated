@@ -16,7 +16,7 @@ pub type CFTimeInterval = c_double;
 pub type CFAbsoluteTime = CFTimeInterval;
 
 #[inline]
-pub extern "C-unwind" fn CFAbsoluteTimeGetCurrent() -> CFAbsoluteTime {
+pub fn CFAbsoluteTimeGetCurrent() -> CFAbsoluteTime {
     extern "C-unwind" {
         fn CFAbsoluteTimeGetCurrent() -> CFAbsoluteTime;
     }
@@ -267,7 +267,7 @@ impl CFGregorianDate {
 
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
 #[inline]
-pub extern "C-unwind" fn CFAbsoluteTimeGetGregorianDate(
+pub fn CFAbsoluteTimeGetGregorianDate(
     at: CFAbsoluteTime,
     tz: Option<&CFTimeZone>,
 ) -> CFGregorianDate {
@@ -282,7 +282,7 @@ pub extern "C-unwind" fn CFAbsoluteTimeGetGregorianDate(
 
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
 #[inline]
-pub extern "C-unwind" fn CFAbsoluteTimeAddGregorianUnits(
+pub fn CFAbsoluteTimeAddGregorianUnits(
     at: CFAbsoluteTime,
     tz: Option<&CFTimeZone>,
     units: CFGregorianUnits,
@@ -299,7 +299,7 @@ pub extern "C-unwind" fn CFAbsoluteTimeAddGregorianUnits(
 
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
 #[inline]
-pub extern "C-unwind" fn CFAbsoluteTimeGetDifferenceAsGregorianUnits(
+pub fn CFAbsoluteTimeGetDifferenceAsGregorianUnits(
     at1: CFAbsoluteTime,
     at2: CFAbsoluteTime,
     tz: Option<&CFTimeZone>,
@@ -318,10 +318,7 @@ pub extern "C-unwind" fn CFAbsoluteTimeGetDifferenceAsGregorianUnits(
 
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
 #[inline]
-pub extern "C-unwind" fn CFAbsoluteTimeGetDayOfWeek(
-    at: CFAbsoluteTime,
-    tz: Option<&CFTimeZone>,
-) -> i32 {
+pub fn CFAbsoluteTimeGetDayOfWeek(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32 {
     extern "C-unwind" {
         fn CFAbsoluteTimeGetDayOfWeek(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
     }
@@ -330,10 +327,7 @@ pub extern "C-unwind" fn CFAbsoluteTimeGetDayOfWeek(
 
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
 #[inline]
-pub extern "C-unwind" fn CFAbsoluteTimeGetDayOfYear(
-    at: CFAbsoluteTime,
-    tz: Option<&CFTimeZone>,
-) -> i32 {
+pub fn CFAbsoluteTimeGetDayOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32 {
     extern "C-unwind" {
         fn CFAbsoluteTimeGetDayOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
     }
@@ -342,10 +336,7 @@ pub extern "C-unwind" fn CFAbsoluteTimeGetDayOfYear(
 
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
 #[inline]
-pub extern "C-unwind" fn CFAbsoluteTimeGetWeekOfYear(
-    at: CFAbsoluteTime,
-    tz: Option<&CFTimeZone>,
-) -> i32 {
+pub fn CFAbsoluteTimeGetWeekOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32 {
     extern "C-unwind" {
         fn CFAbsoluteTimeGetWeekOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
     }

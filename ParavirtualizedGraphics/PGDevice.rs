@@ -260,7 +260,7 @@ extern_protocol!(
 ///
 /// Parameter `descriptor`: The device descriptor for the new device.
 #[inline]
-pub unsafe extern "C-unwind" fn PGNewDeviceWithDescriptor(
+pub unsafe fn PGNewDeviceWithDescriptor(
     descriptor: &PGDeviceDescriptor,
 ) -> Option<Retained<ProtocolObject<dyn PGDevice>>> {
     extern "C-unwind" {
@@ -276,7 +276,7 @@ pub unsafe extern "C-unwind" fn PGNewDeviceWithDescriptor(
 ///
 /// Parameter `descriptor`: The device descriptor for the new device.
 #[inline]
-pub unsafe extern "C-unwind" fn PGCreateDeviceWithDescriptor(
+pub unsafe fn PGCreateDeviceWithDescriptor(
     descriptor: &PGDeviceDescriptor,
 ) -> Option<Retained<ProtocolObject<dyn PGDevice>>> {
     extern "C-unwind" {
@@ -292,7 +292,7 @@ pub unsafe extern "C-unwind" fn PGCreateDeviceWithDescriptor(
 ///
 /// Note: See PGDeviceDescriptor's displayPortCount property.
 #[inline]
-pub unsafe extern "C-unwind" fn PGMaxDisplayPortCount() -> u32 {
+pub unsafe fn PGMaxDisplayPortCount() -> u32 {
     extern "C-unwind" {
         fn PGMaxDisplayPortCount() -> u32;
     }
@@ -340,7 +340,7 @@ unsafe impl RefEncode for PGResumeErrorCode {
 ///
 /// Returns: The URL.
 #[inline]
-pub unsafe extern "C-unwind" fn PGCopyOptionROMURL() -> Retained<NSURL> {
+pub unsafe fn PGCopyOptionROMURL() -> Retained<NSURL> {
     extern "C-unwind" {
         fn PGCopyOptionROMURL() -> *mut NSURL;
     }

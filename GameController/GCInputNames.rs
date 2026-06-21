@@ -166,9 +166,7 @@ extern "C" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn GCInputBackLeftButton(
-    position: NSInteger,
-) -> Option<Retained<GCInputButtonName>> {
+pub unsafe fn GCInputBackLeftButton(position: NSInteger) -> Option<Retained<GCInputButtonName>> {
     extern "C-unwind" {
         fn GCInputBackLeftButton(position: NSInteger) -> *mut GCInputButtonName;
     }
@@ -177,9 +175,7 @@ pub unsafe extern "C-unwind" fn GCInputBackLeftButton(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn GCInputBackRightButton(
-    position: NSInteger,
-) -> Option<Retained<GCInputButtonName>> {
+pub unsafe fn GCInputBackRightButton(position: NSInteger) -> Option<Retained<GCInputButtonName>> {
     extern "C-unwind" {
         fn GCInputBackRightButton(position: NSInteger) -> *mut GCInputButtonName;
     }
@@ -295,7 +291,7 @@ extern "C" {
 
 /// Gets the name of an arcade button at a certain position.
 #[inline]
-pub unsafe extern "C-unwind" fn GCInputArcadeButtonName(
+pub unsafe fn GCInputArcadeButtonName(
     row: NSInteger,
     column: NSInteger,
 ) -> Option<Retained<GCInputButtonName>> {

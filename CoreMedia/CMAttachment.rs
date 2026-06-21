@@ -51,7 +51,7 @@ pub const kCMAttachmentMode_ShouldPropagate: CMAttachmentMode = 1;
 ///
 /// `value` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSetAttachment(
+pub unsafe fn CMSetAttachment(
     target: &CMAttachmentBearer,
     key: &CFString,
     value: Option<&CFType>,
@@ -84,7 +84,7 @@ pub unsafe extern "C-unwind" fn CMSetAttachment(
 ///
 /// `attachment_mode_out` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn CMGetAttachment(
+pub unsafe fn CMGetAttachment(
     target: &CMAttachmentBearer,
     key: &CFString,
     attachment_mode_out: *mut CMAttachmentMode,
@@ -108,7 +108,7 @@ pub unsafe extern "C-unwind" fn CMGetAttachment(
 ///
 /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
 #[inline]
-pub unsafe extern "C-unwind" fn CMRemoveAttachment(target: &CMAttachmentBearer, key: &CFString) {
+pub unsafe fn CMRemoveAttachment(target: &CMAttachmentBearer, key: &CFString) {
     extern "C-unwind" {
         fn CMRemoveAttachment(target: &CMAttachmentBearer, key: &CFString);
     }
@@ -121,7 +121,7 @@ pub unsafe extern "C-unwind" fn CMRemoveAttachment(target: &CMAttachmentBearer, 
 ///
 /// Parameter `target`: Target CMAttachmentBearer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMRemoveAllAttachments(target: &CMAttachmentBearer) {
+pub unsafe fn CMRemoveAllAttachments(target: &CMAttachmentBearer) {
     extern "C-unwind" {
         fn CMRemoveAllAttachments(target: &CMAttachmentBearer);
     }
@@ -139,7 +139,7 @@ pub unsafe extern "C-unwind" fn CMRemoveAllAttachments(target: &CMAttachmentBear
 /// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, NULL is returned.  Returns NULL
 /// for invalid attachment mode.
 #[inline]
-pub unsafe extern "C-unwind" fn CMCopyDictionaryOfAttachments(
+pub unsafe fn CMCopyDictionaryOfAttachments(
     allocator: Option<&CFAllocator>,
     target: &CMAttachmentBearer,
     attachment_mode: CMAttachmentMode,
@@ -166,7 +166,7 @@ pub unsafe extern "C-unwind" fn CMCopyDictionaryOfAttachments(
 /// - `the_attachments` generic must be of the correct type.
 /// - `the_attachments` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSetAttachments(
+pub unsafe fn CMSetAttachments(
     target: &CMAttachmentBearer,
     the_attachments: &CFDictionary,
     attachment_mode: CMAttachmentMode,
@@ -190,7 +190,7 @@ pub unsafe extern "C-unwind" fn CMSetAttachments(
 ///
 /// Parameter `destination`: CMAttachmentBearer to copy attachments to.
 #[inline]
-pub unsafe extern "C-unwind" fn CMPropagateAttachments(
+pub unsafe fn CMPropagateAttachments(
     source: &CMAttachmentBearer,
     destination: &CMAttachmentBearer,
 ) {

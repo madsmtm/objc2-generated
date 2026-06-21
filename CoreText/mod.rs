@@ -2466,7 +2466,7 @@ pub const kCTVersionNumber11_0: c_uint = 0x000D0000;
 /// kCTVersionNumber11_0.
 #[deprecated = "Use -[NSProcessInfo operatingSystemVersion]"]
 #[inline]
-pub extern "C-unwind" fn CTGetCoreTextVersion() -> u32 {
+pub fn CTGetCoreTextVersion() -> u32 {
     extern "C-unwind" {
         fn CTGetCoreTextVersion() -> u32;
     }

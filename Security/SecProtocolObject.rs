@@ -12,7 +12,7 @@ use crate::*;
 ///
 /// `obj` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn sec_retain(obj: *mut c_void) -> *mut c_void {
+pub unsafe fn sec_retain(obj: *mut c_void) -> *mut c_void {
     extern "C-unwind" {
         fn sec_retain(obj: *mut c_void) -> *mut c_void;
     }
@@ -23,7 +23,7 @@ pub unsafe extern "C-unwind" fn sec_retain(obj: *mut c_void) -> *mut c_void {
 ///
 /// `obj` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn sec_release(obj: *mut c_void) {
+pub unsafe fn sec_release(obj: *mut c_void) {
     extern "C-unwind" {
         fn sec_release(obj: *mut c_void);
     }

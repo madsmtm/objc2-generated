@@ -24,7 +24,7 @@ use crate::*;
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray<CFString>) -> bool {
+pub fn CNSetSupportedSSIDs(ssid_array: &CFArray<CFString>) -> bool {
     extern "C-unwind" {
         fn CNSetSupportedSSIDs(ssid_array: &CFArray<CFString>) -> Boolean;
     }
@@ -42,7 +42,7 @@ pub extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray<CFString>) -> 
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn CNMarkPortalOnline(interface_name: &CFString) -> bool {
+pub fn CNMarkPortalOnline(interface_name: &CFString) -> bool {
     extern "C-unwind" {
         fn CNMarkPortalOnline(interface_name: &CFString) -> Boolean;
     }
@@ -58,7 +58,7 @@ pub extern "C-unwind" fn CNMarkPortalOnline(interface_name: &CFString) -> bool {
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -> bool {
+pub fn CNMarkPortalOffline(interface_name: &CFString) -> bool {
     extern "C-unwind" {
         fn CNMarkPortalOffline(interface_name: &CFString) -> Boolean;
     }
@@ -72,7 +72,7 @@ pub extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -> bool 
 /// Returns NULL if an error was encountered.
 /// You MUST release the returned value.
 #[inline]
-pub extern "C-unwind" fn CNCopySupportedInterfaces() -> Option<CFRetained<CFArray<CFString>>> {
+pub fn CNCopySupportedInterfaces() -> Option<CFRetained<CFArray<CFString>>> {
     extern "C-unwind" {
         fn CNCopySupportedInterfaces() -> Option<NonNull<CFArray<CFString>>>;
     }
@@ -137,7 +137,7 @@ extern "C" {
 /// You MUST release the returned value.
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn CNCopyCurrentNetworkInfo(
+pub fn CNCopyCurrentNetworkInfo(
     interface_name: &CFString,
 ) -> Option<CFRetained<CFDictionary<CFString, CFPropertyList>>> {
     extern "C-unwind" {

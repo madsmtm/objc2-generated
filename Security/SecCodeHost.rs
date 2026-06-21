@@ -18,7 +18,7 @@ pub const kSecCSGenerateGuestHash: u32 = 2;
 #[cfg(feature = "CSCommon")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SecHostCreateGuest(
+pub unsafe fn SecHostCreateGuest(
     host: SecGuestRef,
     status: u32,
     path: &CFURL,
@@ -42,7 +42,7 @@ pub unsafe extern "C-unwind" fn SecHostCreateGuest(
 #[cfg(feature = "CSCommon")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SecHostRemoveGuest(
+pub unsafe fn SecHostRemoveGuest(
     host: SecGuestRef,
     guest: SecGuestRef,
     flags: SecCSFlags,
@@ -57,10 +57,7 @@ pub unsafe extern "C-unwind" fn SecHostRemoveGuest(
 #[cfg(feature = "CSCommon")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SecHostSelectGuest(
-    guest_ref: SecGuestRef,
-    flags: SecCSFlags,
-) -> OSStatus {
+pub unsafe fn SecHostSelectGuest(guest_ref: SecGuestRef, flags: SecCSFlags) -> OSStatus {
     extern "C-unwind" {
         fn SecHostSelectGuest(guest_ref: SecGuestRef, flags: SecCSFlags) -> OSStatus;
     }
@@ -73,10 +70,7 @@ pub unsafe extern "C-unwind" fn SecHostSelectGuest(
 #[cfg(feature = "CSCommon")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SecHostSelectedGuest(
-    flags: SecCSFlags,
-    guest_ref: NonNull<SecGuestRef>,
-) -> OSStatus {
+pub unsafe fn SecHostSelectedGuest(flags: SecCSFlags, guest_ref: NonNull<SecGuestRef>) -> OSStatus {
     extern "C-unwind" {
         fn SecHostSelectedGuest(flags: SecCSFlags, guest_ref: NonNull<SecGuestRef>) -> OSStatus;
     }
@@ -90,7 +84,7 @@ pub unsafe extern "C-unwind" fn SecHostSelectedGuest(
 #[cfg(feature = "CSCommon")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SecHostSetGuestStatus(
+pub unsafe fn SecHostSetGuestStatus(
     guest_ref: SecGuestRef,
     status: u32,
     attributes: Option<&CFDictionary>,
@@ -110,7 +104,7 @@ pub unsafe extern "C-unwind" fn SecHostSetGuestStatus(
 #[cfg(all(feature = "CSCommon", feature = "libc"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SecHostSetHostingPort(
+pub unsafe fn SecHostSetHostingPort(
     hosting_port: libc::mach_port_t,
     flags: SecCSFlags,
 ) -> OSStatus {

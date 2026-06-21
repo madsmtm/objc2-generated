@@ -42,7 +42,7 @@ pub type MIDISetupRef = MIDIObjectRef;
 #[cfg(feature = "MIDIServices")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISetupCreate(out_setup: NonNull<MIDISetupRef>) -> OSStatus {
+pub unsafe fn MIDISetupCreate(out_setup: NonNull<MIDISetupRef>) -> OSStatus {
     extern "C-unwind" {
         fn MIDISetupCreate(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
     }
@@ -62,7 +62,7 @@ pub unsafe extern "C-unwind" fn MIDISetupCreate(out_setup: NonNull<MIDISetupRef>
 #[cfg(feature = "MIDIServices")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISetupDispose(setup: MIDISetupRef) -> OSStatus {
+pub unsafe fn MIDISetupDispose(setup: MIDISetupRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDISetupDispose(setup: MIDISetupRef) -> OSStatus;
     }
@@ -93,7 +93,7 @@ pub unsafe extern "C-unwind" fn MIDISetupDispose(setup: MIDISetupRef) -> OSStatu
 #[cfg(feature = "MIDIServices")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISetupInstall(setup: MIDISetupRef) -> OSStatus {
+pub unsafe fn MIDISetupInstall(setup: MIDISetupRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDISetupInstall(setup: MIDISetupRef) -> OSStatus;
     }
@@ -123,7 +123,7 @@ pub unsafe extern "C-unwind" fn MIDISetupInstall(setup: MIDISetupRef) -> OSStatu
 #[cfg(feature = "MIDIServices")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetupRef>) -> OSStatus {
+pub unsafe fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetupRef>) -> OSStatus {
     extern "C-unwind" {
         fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
     }
@@ -152,10 +152,7 @@ pub unsafe extern "C-unwind" fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetup
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISetupToData(
-    setup: MIDISetupRef,
-    out_data: NonNull<*const CFData>,
-) -> OSStatus {
+pub unsafe fn MIDISetupToData(setup: MIDISetupRef, out_data: NonNull<*const CFData>) -> OSStatus {
     extern "C-unwind" {
         fn MIDISetupToData(setup: MIDISetupRef, out_data: NonNull<*const CFData>) -> OSStatus;
     }
@@ -184,10 +181,7 @@ pub unsafe extern "C-unwind" fn MIDISetupToData(
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISetupFromData(
-    data: &CFData,
-    out_setup: NonNull<MIDISetupRef>,
-) -> OSStatus {
+pub unsafe fn MIDISetupFromData(data: &CFData, out_setup: NonNull<MIDISetupRef>) -> OSStatus {
     extern "C-unwind" {
         fn MIDISetupFromData(data: &CFData, out_setup: NonNull<MIDISetupRef>) -> OSStatus;
     }
@@ -227,7 +221,7 @@ pub unsafe extern "C-unwind" fn MIDISetupFromData(
 /// `new_entity` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDeviceNewEntity(
+pub unsafe fn MIDIDeviceNewEntity(
     device: MIDIDeviceRef,
     name: &CFString,
     protocol: MIDIProtocolID,
@@ -289,7 +283,7 @@ pub unsafe extern "C-unwind" fn MIDIDeviceNewEntity(
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDeviceAddEntity(
+pub unsafe fn MIDIDeviceAddEntity(
     device: MIDIDeviceRef,
     name: &CFString,
     embedded: bool,
@@ -332,10 +326,7 @@ pub unsafe extern "C-unwind" fn MIDIDeviceAddEntity(
 /// Returns: An OSStatus result code.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDeviceRemoveEntity(
-    device: MIDIDeviceRef,
-    entity: MIDIEntityRef,
-) -> OSStatus {
+pub unsafe fn MIDIDeviceRemoveEntity(device: MIDIDeviceRef, entity: MIDIEntityRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDIDeviceRemoveEntity(device: MIDIDeviceRef, entity: MIDIEntityRef) -> OSStatus;
     }
@@ -360,7 +351,7 @@ pub unsafe extern "C-unwind" fn MIDIDeviceRemoveEntity(
 /// Returns: An OSStatus result code.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIEntityAddOrRemoveEndpoints(
+pub unsafe fn MIDIEntityAddOrRemoveEndpoints(
     entity: MIDIEntityRef,
     num_source_endpoints: ItemCount,
     num_destination_endpoints: ItemCount,
@@ -389,7 +380,7 @@ pub unsafe extern "C-unwind" fn MIDIEntityAddOrRemoveEndpoints(
 /// Parameter `device`: The device to be added.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISetupAddDevice(device: MIDIDeviceRef) -> OSStatus {
+pub unsafe fn MIDISetupAddDevice(device: MIDIDeviceRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDISetupAddDevice(device: MIDIDeviceRef) -> OSStatus;
     }
@@ -413,7 +404,7 @@ pub unsafe extern "C-unwind" fn MIDISetupAddDevice(device: MIDIDeviceRef) -> OSS
 /// Parameter `device`: The device to be added.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISetupRemoveDevice(device: MIDIDeviceRef) -> OSStatus {
+pub unsafe fn MIDISetupRemoveDevice(device: MIDIDeviceRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDISetupRemoveDevice(device: MIDIDeviceRef) -> OSStatus;
     }
@@ -429,7 +420,7 @@ pub unsafe extern "C-unwind" fn MIDISetupRemoveDevice(device: MIDIDeviceRef) -> 
 /// Parameter `device`: The device to be added.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISetupAddExternalDevice(device: MIDIDeviceRef) -> OSStatus {
+pub unsafe fn MIDISetupAddExternalDevice(device: MIDIDeviceRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDISetupAddExternalDevice(device: MIDIDeviceRef) -> OSStatus;
     }
@@ -445,7 +436,7 @@ pub unsafe extern "C-unwind" fn MIDISetupAddExternalDevice(device: MIDIDeviceRef
 /// Parameter `device`: The device to be removed.
 #[cfg(feature = "MIDIServices")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISetupRemoveExternalDevice(device: MIDIDeviceRef) -> OSStatus {
+pub unsafe fn MIDISetupRemoveExternalDevice(device: MIDIDeviceRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDISetupRemoveExternalDevice(device: MIDIDeviceRef) -> OSStatus;
     }
@@ -482,7 +473,7 @@ pub unsafe extern "C-unwind" fn MIDISetupRemoveExternalDevice(device: MIDIDevice
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetSerialPortOwner(
+pub unsafe fn MIDIGetSerialPortOwner(
     port_name: &CFString,
     out_driver_name: NonNull<*const CFString>,
 ) -> OSStatus {
@@ -514,10 +505,7 @@ pub unsafe extern "C-unwind" fn MIDIGetSerialPortOwner(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISetSerialPortOwner(
-    port_name: &CFString,
-    driver_name: &CFString,
-) -> OSStatus {
+pub unsafe fn MIDISetSerialPortOwner(port_name: &CFString, driver_name: &CFString) -> OSStatus {
     extern "C-unwind" {
         fn MIDISetSerialPortOwner(port_name: &CFString, driver_name: &CFString) -> OSStatus;
     }
@@ -547,9 +535,7 @@ pub unsafe extern "C-unwind" fn MIDISetSerialPortOwner(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetSerialPortDrivers(
-    out_driver_names: NonNull<*const CFArray>,
-) -> OSStatus {
+pub unsafe fn MIDIGetSerialPortDrivers(out_driver_names: NonNull<*const CFArray>) -> OSStatus {
     extern "C-unwind" {
         fn MIDIGetSerialPortDrivers(out_driver_names: NonNull<*const CFArray>) -> OSStatus;
     }
@@ -581,7 +567,7 @@ pub unsafe extern "C-unwind" fn MIDIGetSerialPortDrivers(
 /// `out_device` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIExternalDeviceCreate(
+pub unsafe fn MIDIExternalDeviceCreate(
     name: &CFString,
     manufacturer: &CFString,
     model: &CFString,

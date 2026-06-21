@@ -211,7 +211,7 @@ impl NSException {}
 pub type NSUncaughtExceptionHandler = core::ffi::c_void;
 
 #[inline]
-pub extern "C-unwind" fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler {
+pub fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler {
     extern "C-unwind" {
         fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler;
     }
@@ -222,9 +222,7 @@ pub extern "C-unwind" fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExcep
 ///
 /// `_` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSSetUncaughtExceptionHandler(
-    param1: *mut NSUncaughtExceptionHandler,
-) {
+pub unsafe fn NSSetUncaughtExceptionHandler(param1: *mut NSUncaughtExceptionHandler) {
     extern "C-unwind" {
         fn NSSetUncaughtExceptionHandler(param1: *mut NSUncaughtExceptionHandler);
     }

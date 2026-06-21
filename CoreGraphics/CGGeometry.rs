@@ -40,7 +40,7 @@ extern "C" {
 // TODO: pub fn CGRectMake(x: CGFloat,y: CGFloat,width: CGFloat,height: CGFloat,) -> CGRect;
 
 #[inline]
-pub extern "C-unwind" fn CGRectGetMinX(rect: CGRect) -> CGFloat {
+pub fn CGRectGetMinX(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
         fn CGRectGetMinX(rect: CGRect) -> CGFloat;
     }
@@ -48,7 +48,7 @@ pub extern "C-unwind" fn CGRectGetMinX(rect: CGRect) -> CGFloat {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectGetMidX(rect: CGRect) -> CGFloat {
+pub fn CGRectGetMidX(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
         fn CGRectGetMidX(rect: CGRect) -> CGFloat;
     }
@@ -56,7 +56,7 @@ pub extern "C-unwind" fn CGRectGetMidX(rect: CGRect) -> CGFloat {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectGetMaxX(rect: CGRect) -> CGFloat {
+pub fn CGRectGetMaxX(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
         fn CGRectGetMaxX(rect: CGRect) -> CGFloat;
     }
@@ -64,7 +64,7 @@ pub extern "C-unwind" fn CGRectGetMaxX(rect: CGRect) -> CGFloat {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectGetMinY(rect: CGRect) -> CGFloat {
+pub fn CGRectGetMinY(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
         fn CGRectGetMinY(rect: CGRect) -> CGFloat;
     }
@@ -72,7 +72,7 @@ pub extern "C-unwind" fn CGRectGetMinY(rect: CGRect) -> CGFloat {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectGetMidY(rect: CGRect) -> CGFloat {
+pub fn CGRectGetMidY(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
         fn CGRectGetMidY(rect: CGRect) -> CGFloat;
     }
@@ -80,7 +80,7 @@ pub extern "C-unwind" fn CGRectGetMidY(rect: CGRect) -> CGFloat {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectGetMaxY(rect: CGRect) -> CGFloat {
+pub fn CGRectGetMaxY(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
         fn CGRectGetMaxY(rect: CGRect) -> CGFloat;
     }
@@ -88,7 +88,7 @@ pub extern "C-unwind" fn CGRectGetMaxY(rect: CGRect) -> CGFloat {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectGetWidth(rect: CGRect) -> CGFloat {
+pub fn CGRectGetWidth(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
         fn CGRectGetWidth(rect: CGRect) -> CGFloat;
     }
@@ -96,7 +96,7 @@ pub extern "C-unwind" fn CGRectGetWidth(rect: CGRect) -> CGFloat {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectGetHeight(rect: CGRect) -> CGFloat {
+pub fn CGRectGetHeight(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
         fn CGRectGetHeight(rect: CGRect) -> CGFloat;
     }
@@ -104,7 +104,7 @@ pub extern "C-unwind" fn CGRectGetHeight(rect: CGRect) -> CGFloat {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGPointEqualToPoint(point1: CGPoint, point2: CGPoint) -> bool {
+pub fn CGPointEqualToPoint(point1: CGPoint, point2: CGPoint) -> bool {
     extern "C-unwind" {
         fn CGPointEqualToPoint(point1: CGPoint, point2: CGPoint) -> bool;
     }
@@ -112,7 +112,7 @@ pub extern "C-unwind" fn CGPointEqualToPoint(point1: CGPoint, point2: CGPoint) -
 }
 
 #[inline]
-pub extern "C-unwind" fn CGSizeEqualToSize(size1: CGSize, size2: CGSize) -> bool {
+pub fn CGSizeEqualToSize(size1: CGSize, size2: CGSize) -> bool {
     extern "C-unwind" {
         fn CGSizeEqualToSize(size1: CGSize, size2: CGSize) -> bool;
     }
@@ -120,7 +120,7 @@ pub extern "C-unwind" fn CGSizeEqualToSize(size1: CGSize, size2: CGSize) -> bool
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectEqualToRect(rect1: CGRect, rect2: CGRect) -> bool {
+pub fn CGRectEqualToRect(rect1: CGRect, rect2: CGRect) -> bool {
     extern "C-unwind" {
         fn CGRectEqualToRect(rect1: CGRect, rect2: CGRect) -> bool;
     }
@@ -129,7 +129,7 @@ pub extern "C-unwind" fn CGRectEqualToRect(rect1: CGRect, rect2: CGRect) -> bool
 
 #[must_use]
 #[inline]
-pub extern "C-unwind" fn CGRectStandardize(rect: CGRect) -> CGRect {
+pub fn CGRectStandardize(rect: CGRect) -> CGRect {
     extern "C-unwind" {
         fn CGRectStandardize(rect: CGRect) -> CGRect;
     }
@@ -137,7 +137,7 @@ pub extern "C-unwind" fn CGRectStandardize(rect: CGRect) -> CGRect {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectIsEmpty(rect: CGRect) -> bool {
+pub fn CGRectIsEmpty(rect: CGRect) -> bool {
     extern "C-unwind" {
         fn CGRectIsEmpty(rect: CGRect) -> bool;
     }
@@ -145,7 +145,7 @@ pub extern "C-unwind" fn CGRectIsEmpty(rect: CGRect) -> bool {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectIsNull(rect: CGRect) -> bool {
+pub fn CGRectIsNull(rect: CGRect) -> bool {
     extern "C-unwind" {
         fn CGRectIsNull(rect: CGRect) -> bool;
     }
@@ -153,7 +153,7 @@ pub extern "C-unwind" fn CGRectIsNull(rect: CGRect) -> bool {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectIsInfinite(rect: CGRect) -> bool {
+pub fn CGRectIsInfinite(rect: CGRect) -> bool {
     extern "C-unwind" {
         fn CGRectIsInfinite(rect: CGRect) -> bool;
     }
@@ -162,7 +162,7 @@ pub extern "C-unwind" fn CGRectIsInfinite(rect: CGRect) -> bool {
 
 #[must_use]
 #[inline]
-pub extern "C-unwind" fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect {
+pub fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect {
     extern "C-unwind" {
         fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect;
     }
@@ -171,7 +171,7 @@ pub extern "C-unwind" fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> 
 
 #[must_use]
 #[inline]
-pub extern "C-unwind" fn CGRectIntegral(rect: CGRect) -> CGRect {
+pub fn CGRectIntegral(rect: CGRect) -> CGRect {
     extern "C-unwind" {
         fn CGRectIntegral(rect: CGRect) -> CGRect;
     }
@@ -180,7 +180,7 @@ pub extern "C-unwind" fn CGRectIntegral(rect: CGRect) -> CGRect {
 
 #[must_use]
 #[inline]
-pub extern "C-unwind" fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect {
+pub fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect {
     extern "C-unwind" {
         fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect;
     }
@@ -189,7 +189,7 @@ pub extern "C-unwind" fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect {
 
 #[must_use]
 #[inline]
-pub extern "C-unwind" fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect {
+pub fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect {
     extern "C-unwind" {
         fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect;
     }
@@ -198,7 +198,7 @@ pub extern "C-unwind" fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect {
 
 #[must_use]
 #[inline]
-pub extern "C-unwind" fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect {
+pub fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect {
     extern "C-unwind" {
         fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect;
     }
@@ -206,7 +206,7 @@ pub extern "C-unwind" fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) ->
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectDivide(
+pub fn CGRectDivide(
     rect: CGRect,
     slice: &mut CGRect,
     remainder: &mut CGRect,
@@ -226,7 +226,7 @@ pub extern "C-unwind" fn CGRectDivide(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectContainsPoint(rect: CGRect, point: CGPoint) -> bool {
+pub fn CGRectContainsPoint(rect: CGRect, point: CGPoint) -> bool {
     extern "C-unwind" {
         fn CGRectContainsPoint(rect: CGRect, point: CGPoint) -> bool;
     }
@@ -234,7 +234,7 @@ pub extern "C-unwind" fn CGRectContainsPoint(rect: CGRect, point: CGPoint) -> bo
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectContainsRect(rect1: CGRect, rect2: CGRect) -> bool {
+pub fn CGRectContainsRect(rect1: CGRect, rect2: CGRect) -> bool {
     extern "C-unwind" {
         fn CGRectContainsRect(rect1: CGRect, rect2: CGRect) -> bool;
     }
@@ -242,7 +242,7 @@ pub extern "C-unwind" fn CGRectContainsRect(rect1: CGRect, rect2: CGRect) -> boo
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> bool {
+pub fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> bool {
     extern "C-unwind" {
         fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> bool;
     }
@@ -251,9 +251,7 @@ pub extern "C-unwind" fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> b
 
 /// * Persistent representations. **
 #[inline]
-pub extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
-    point: CGPoint,
-) -> CFRetained<CFDictionary> {
+pub fn CGPointCreateDictionaryRepresentation(point: CGPoint) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
         fn CGPointCreateDictionaryRepresentation(point: CGPoint) -> Option<NonNull<CFDictionary>>;
     }
@@ -267,7 +265,7 @@ pub extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
 /// - `dict` generic must be of the correct type.
 /// - `dict` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CGPointMakeWithDictionaryRepresentation(
+pub unsafe fn CGPointMakeWithDictionaryRepresentation(
     dict: &CFDictionary,
     point: &mut CGPoint,
 ) -> bool {
@@ -281,9 +279,7 @@ pub unsafe extern "C-unwind" fn CGPointMakeWithDictionaryRepresentation(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
-    size: CGSize,
-) -> CFRetained<CFDictionary> {
+pub fn CGSizeCreateDictionaryRepresentation(size: CGSize) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
         fn CGSizeCreateDictionaryRepresentation(size: CGSize) -> Option<NonNull<CFDictionary>>;
     }
@@ -297,7 +293,7 @@ pub extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
 /// - `dict` generic must be of the correct type.
 /// - `dict` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CGSizeMakeWithDictionaryRepresentation(
+pub unsafe fn CGSizeMakeWithDictionaryRepresentation(
     dict: &CFDictionary,
     size: &mut CGSize,
 ) -> bool {
@@ -308,9 +304,7 @@ pub unsafe extern "C-unwind" fn CGSizeMakeWithDictionaryRepresentation(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
-    param1: CGRect,
-) -> CFRetained<CFDictionary> {
+pub fn CGRectCreateDictionaryRepresentation(param1: CGRect) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
         fn CGRectCreateDictionaryRepresentation(param1: CGRect) -> Option<NonNull<CFDictionary>>;
     }
@@ -324,7 +318,7 @@ pub extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
 /// - `dict` generic must be of the correct type.
 /// - `dict` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CGRectMakeWithDictionaryRepresentation(
+pub unsafe fn CGRectMakeWithDictionaryRepresentation(
     dict: &CFDictionary,
     rect: &mut CGRect,
 ) -> bool {

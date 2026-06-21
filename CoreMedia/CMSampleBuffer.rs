@@ -582,7 +582,7 @@ impl CMSampleBuffer {
     feature = "objc2-core-audio-types"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateWithPacketDescriptions(
+pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptions(
     allocator: Option<&CFAllocator>,
     data_buffer: Option<&CMBlockBuffer>,
     data_ready: bool,
@@ -641,7 +641,7 @@ pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateWithPacketDescriptions(
     feature = "objc2-core-audio-types"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler(
+pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler(
     allocator: Option<&CFAllocator>,
     data_buffer: Option<&CMBlockBuffer>,
     data_ready: bool,
@@ -700,7 +700,7 @@ pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateWithPacketDescriptionsA
     feature = "objc2-core-audio-types"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateReadyWithPacketDescriptions(
+pub unsafe fn CMAudioSampleBufferCreateReadyWithPacketDescriptions(
     allocator: Option<&CFAllocator>,
     data_buffer: &CMBlockBuffer,
     format_description: &CMFormatDescription,

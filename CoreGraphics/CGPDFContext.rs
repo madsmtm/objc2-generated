@@ -13,7 +13,7 @@ use crate::*;
 /// `auxiliary_info` generic should be of the correct type.
 #[cfg(all(feature = "CGContext", feature = "CGDataConsumer"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGPDFContextCreate(
+pub unsafe fn CGPDFContextCreate(
     consumer: &CGDataConsumer,
     media_box: Option<&CGRect>,
     auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
@@ -34,7 +34,7 @@ pub unsafe extern "C-unwind" fn CGPDFContextCreate(
 /// `auxiliary_info` generic should be of the correct type.
 #[cfg(feature = "CGContext")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGPDFContextCreateWithURL(
+pub unsafe fn CGPDFContextCreateWithURL(
     url: &CFURL,
     media_box: Option<&CGRect>,
     auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
@@ -52,7 +52,7 @@ pub unsafe extern "C-unwind" fn CGPDFContextCreateWithURL(
 
 #[cfg(feature = "CGContext")]
 #[inline]
-pub extern "C-unwind" fn CGPDFContextClose(context: &CGContext) {
+pub fn CGPDFContextClose(context: &CGContext) {
     extern "C-unwind" {
         fn CGPDFContextClose(context: &CGContext);
     }
@@ -64,7 +64,7 @@ pub extern "C-unwind" fn CGPDFContextClose(context: &CGContext) {
 /// `page_info` generic should be of the correct type.
 #[cfg(feature = "CGContext")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGPDFContextBeginPage(
+pub unsafe fn CGPDFContextBeginPage(
     context: &CGContext,
     page_info: Option<&CFDictionary<CFString, CFType>>,
 ) {
@@ -79,7 +79,7 @@ pub unsafe extern "C-unwind" fn CGPDFContextBeginPage(
 
 #[cfg(feature = "CGContext")]
 #[inline]
-pub extern "C-unwind" fn CGPDFContextEndPage(context: &CGContext) {
+pub fn CGPDFContextEndPage(context: &CGContext) {
     extern "C-unwind" {
         fn CGPDFContextEndPage(context: &CGContext);
     }
@@ -88,10 +88,7 @@ pub extern "C-unwind" fn CGPDFContextEndPage(context: &CGContext) {
 
 #[cfg(feature = "CGContext")]
 #[inline]
-pub extern "C-unwind" fn CGPDFContextAddDocumentMetadata(
-    context: &CGContext,
-    metadata: Option<&CFData>,
-) {
+pub fn CGPDFContextAddDocumentMetadata(context: &CGContext, metadata: Option<&CFData>) {
     extern "C-unwind" {
         fn CGPDFContextAddDocumentMetadata(context: &CGContext, metadata: Option<&CFData>);
     }
@@ -103,7 +100,7 @@ pub extern "C-unwind" fn CGPDFContextAddDocumentMetadata(
 /// `parent_tree_dictionary` must be a valid pointer.
 #[cfg(all(feature = "CGContext", feature = "CGPDFDictionary"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGPDFContextSetParentTree(
+pub unsafe fn CGPDFContextSetParentTree(
     context: &CGContext,
     parent_tree_dictionary: CGPDFDictionaryRef,
 ) {
@@ -121,10 +118,7 @@ pub unsafe extern "C-unwind" fn CGPDFContextSetParentTree(
 /// `id_tree_dictionary` must be a valid pointer.
 #[cfg(all(feature = "CGContext", feature = "CGPDFDictionary"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGPDFContextSetIDTree(
-    context: &CGContext,
-    id_tree_dictionary: CGPDFDictionaryRef,
-) {
+pub unsafe fn CGPDFContextSetIDTree(context: &CGContext, id_tree_dictionary: CGPDFDictionaryRef) {
     extern "C-unwind" {
         fn CGPDFContextSetIDTree(context: &CGContext, id_tree_dictionary: CGPDFDictionaryRef);
     }
@@ -137,7 +131,7 @@ pub unsafe extern "C-unwind" fn CGPDFContextSetIDTree(
 /// - `page_tag_structure_tree_dictionary` generic must be of the correct type.
 #[cfg(feature = "CGContext")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGPDFContextSetPageTagStructureTree(
+pub unsafe fn CGPDFContextSetPageTagStructureTree(
     context: &CGContext,
     page_tag_structure_tree_dictionary: &CFDictionary,
 ) {
@@ -152,7 +146,7 @@ pub unsafe extern "C-unwind" fn CGPDFContextSetPageTagStructureTree(
 
 #[cfg(feature = "CGContext")]
 #[inline]
-pub extern "C-unwind" fn CGPDFContextSetURLForRect(context: &CGContext, url: &CFURL, rect: CGRect) {
+pub fn CGPDFContextSetURLForRect(context: &CGContext, url: &CFURL, rect: CGRect) {
     extern "C-unwind" {
         fn CGPDFContextSetURLForRect(context: &CGContext, url: &CFURL, rect: CGRect);
     }
@@ -161,11 +155,7 @@ pub extern "C-unwind" fn CGPDFContextSetURLForRect(context: &CGContext, url: &CF
 
 #[cfg(feature = "CGContext")]
 #[inline]
-pub extern "C-unwind" fn CGPDFContextAddDestinationAtPoint(
-    context: &CGContext,
-    name: &CFString,
-    point: CGPoint,
-) {
+pub fn CGPDFContextAddDestinationAtPoint(context: &CGContext, name: &CFString, point: CGPoint) {
     extern "C-unwind" {
         fn CGPDFContextAddDestinationAtPoint(context: &CGContext, name: &CFString, point: CGPoint);
     }
@@ -174,11 +164,7 @@ pub extern "C-unwind" fn CGPDFContextAddDestinationAtPoint(
 
 #[cfg(feature = "CGContext")]
 #[inline]
-pub extern "C-unwind" fn CGPDFContextSetDestinationForRect(
-    context: &CGContext,
-    name: &CFString,
-    rect: CGRect,
-) {
+pub fn CGPDFContextSetDestinationForRect(context: &CGContext, name: &CFString, rect: CGRect) {
     extern "C-unwind" {
         fn CGPDFContextSetDestinationForRect(context: &CGContext, name: &CFString, rect: CGRect);
     }
@@ -311,10 +297,7 @@ extern "C" {
 /// - `outline` generic must be of the correct type.
 #[cfg(feature = "CGContext")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGPDFContextSetOutline(
-    context: &CGContext,
-    outline: Option<&CFDictionary>,
-) {
+pub unsafe fn CGPDFContextSetOutline(context: &CGContext, outline: Option<&CFDictionary>) {
     extern "C-unwind" {
         fn CGPDFContextSetOutline(context: &CGContext, outline: Option<&CFDictionary>);
     }
@@ -491,7 +474,7 @@ extern "C" {
 /// - `tag_properties` generic must be of the correct type.
 #[cfg(feature = "CGContext")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGPDFContextBeginTag(
+pub unsafe fn CGPDFContextBeginTag(
     context: &CGContext,
     tag_type: CGPDFTagType,
     tag_properties: &CFDictionary,
@@ -508,7 +491,7 @@ pub unsafe extern "C-unwind" fn CGPDFContextBeginTag(
 
 #[cfg(feature = "CGContext")]
 #[inline]
-pub extern "C-unwind" fn CGPDFContextEndTag(context: &CGContext) {
+pub fn CGPDFContextEndTag(context: &CGContext) {
     extern "C-unwind" {
         fn CGPDFContextEndTag(context: &CGContext);
     }

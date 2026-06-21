@@ -145,7 +145,7 @@ pub type dispatch_block_t = block2::DynBlock<dyn Fn()>;
 ///
 /// `object` must be a valid pointer.
 #[inline]
-pub unsafe extern "C" fn dispatch_retain(object: NonNull<dispatch_object_s>) {
+pub unsafe fn dispatch_retain(object: NonNull<dispatch_object_s>) {
     extern "C" {
         fn dispatch_retain(object: NonNull<dispatch_object_s>);
     }
@@ -168,7 +168,7 @@ pub unsafe extern "C" fn dispatch_retain(object: NonNull<dispatch_object_s>) {
 ///
 /// `object` must be a valid pointer.
 #[inline]
-pub unsafe extern "C" fn dispatch_release(object: NonNull<dispatch_object_s>) {
+pub unsafe fn dispatch_release(object: NonNull<dispatch_object_s>) {
     extern "C" {
         fn dispatch_release(object: NonNull<dispatch_object_s>);
     }
@@ -184,7 +184,7 @@ pub unsafe extern "C" fn dispatch_release(object: NonNull<dispatch_object_s>) {
 /// Returns: The context of the object; may be NULL.
 #[must_use]
 #[inline]
-pub extern "C" fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *mut c_void {
+pub fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *mut c_void {
     extern "C" {
         fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *mut c_void;
     }
@@ -204,10 +204,7 @@ pub extern "C" fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *m
 /// - `object` must be a valid pointer.
 /// - `context` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C" fn dispatch_set_context(
-    object: NonNull<dispatch_object_s>,
-    context: *mut c_void,
-) {
+pub unsafe fn dispatch_set_context(object: NonNull<dispatch_object_s>, context: *mut c_void) {
     extern "C" {
         fn dispatch_set_context(object: NonNull<dispatch_object_s>, context: *mut c_void);
     }
@@ -236,7 +233,7 @@ pub unsafe extern "C" fn dispatch_set_context(
 /// - `object` must be a valid pointer.
 /// - `finalizer` must be implemented correctly.
 #[inline]
-pub unsafe extern "C" fn dispatch_set_finalizer_f(
+pub unsafe fn dispatch_set_finalizer_f(
     object: NonNull<dispatch_object_s>,
     finalizer: dispatch_function_t,
 ) {
@@ -267,7 +264,7 @@ pub unsafe extern "C" fn dispatch_set_finalizer_f(
 /// Parameter `object`: The object to be activated.
 /// The result of passing NULL in this parameter is undefined.
 #[inline]
-pub extern "C" fn dispatch_activate(object: NonNull<dispatch_object_s>) {
+pub fn dispatch_activate(object: NonNull<dispatch_object_s>) {
     extern "C" {
         fn dispatch_activate(object: NonNull<dispatch_object_s>);
     }
@@ -288,7 +285,7 @@ pub extern "C" fn dispatch_activate(object: NonNull<dispatch_object_s>) {
 /// Parameter `object`: The object to be suspended.
 /// The result of passing NULL in this parameter is undefined.
 #[inline]
-pub extern "C" fn dispatch_suspend(object: NonNull<dispatch_object_s>) {
+pub fn dispatch_suspend(object: NonNull<dispatch_object_s>) {
     extern "C" {
         fn dispatch_suspend(object: NonNull<dispatch_object_s>);
     }
@@ -315,7 +312,7 @@ pub extern "C" fn dispatch_suspend(object: NonNull<dispatch_object_s>) {
 /// Parameter `object`: The object to be resumed.
 /// The result of passing NULL in this parameter is undefined.
 #[inline]
-pub extern "C" fn dispatch_resume(object: NonNull<dispatch_object_s>) {
+pub fn dispatch_resume(object: NonNull<dispatch_object_s>) {
     extern "C" {
         fn dispatch_resume(object: NonNull<dispatch_object_s>);
     }
@@ -359,7 +356,7 @@ pub extern "C" fn dispatch_resume(object: NonNull<dispatch_object_s>) {
 ///
 /// `object` must be a valid pointer.
 #[inline]
-pub unsafe extern "C" fn dispatch_set_qos_class_floor(
+pub unsafe fn dispatch_set_qos_class_floor(
     object: NonNull<dispatch_object_s>,
     qos_class: DispatchQoS,
     relative_priority: c_int,
@@ -1294,7 +1291,7 @@ impl DispatchQueue {
 /// - `object` must be a valid pointer.
 /// - `queue` possibly has additional threading requirements.
 #[inline]
-pub unsafe extern "C" fn dispatch_set_target_queue(
+pub unsafe fn dispatch_set_target_queue(
     object: NonNull<dispatch_object_s>,
     queue: Option<&DispatchQueue>,
 ) {
@@ -1640,7 +1637,7 @@ impl DispatchQueue {
 /// `key` must be a valid pointer.
 #[must_use]
 #[inline]
-pub unsafe extern "C" fn dispatch_get_specific(key: NonNull<c_void>) -> *mut c_void {
+pub unsafe fn dispatch_get_specific(key: NonNull<c_void>) -> *mut c_void {
     extern "C" {
         fn dispatch_get_specific(key: NonNull<c_void>) -> *mut c_void;
     }
@@ -1741,7 +1738,7 @@ impl DispatchQueue {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn dispatch_allow_send_signals(preserve_signum: c_int) -> c_int {
+pub unsafe fn dispatch_allow_send_signals(preserve_signum: c_int) -> c_int {
     extern "C-unwind" {
         fn dispatch_allow_send_signals(preserve_signum: c_int) -> c_int;
     }
@@ -2251,7 +2248,7 @@ unsafe impl RefEncode for dispatch_block_flags_t {
 #[cfg(feature = "block2")]
 #[must_use]
 #[inline]
-pub extern "C" fn dispatch_block_create(
+pub fn dispatch_block_create(
     flags: dispatch_block_flags_t,
     block: &dispatch_block_t,
 ) -> NonNull<dispatch_block_t> {
@@ -2329,7 +2326,7 @@ pub extern "C" fn dispatch_block_create(
 #[cfg(feature = "block2")]
 #[must_use]
 #[inline]
-pub extern "C" fn dispatch_block_create_with_qos_class(
+pub fn dispatch_block_create_with_qos_class(
     flags: dispatch_block_flags_t,
     qos_class: DispatchQoS,
     relative_priority: c_int,
@@ -2370,7 +2367,7 @@ pub extern "C" fn dispatch_block_create_with_qos_class(
 /// Parameter `block`: The block to create the temporary block object from.
 #[cfg(feature = "block2")]
 #[inline]
-pub extern "C" fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &dispatch_block_t) {
+pub fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &dispatch_block_t) {
     extern "C" {
         fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &dispatch_block_t);
     }
@@ -2419,7 +2416,7 @@ pub extern "C" fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &
 /// specified timeout) or non-zero on error (i.e. timed out).
 #[cfg(feature = "block2")]
 #[inline]
-pub extern "C" fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTime) -> isize {
+pub fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTime) -> isize {
     extern "C" {
         fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTime) -> isize;
     }
@@ -2463,7 +2460,7 @@ pub extern "C" fn dispatch_block_wait(block: &dispatch_block_t, timeout: Dispatc
 /// `queue` possibly has additional threading requirements.
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe extern "C" fn dispatch_block_notify(
+pub unsafe fn dispatch_block_notify(
     block: &dispatch_block_t,
     queue: &DispatchQueue,
     notification_block: &dispatch_block_t,
@@ -2501,7 +2498,7 @@ pub unsafe extern "C" fn dispatch_block_notify(
 /// dispatch_block_create* functions is undefined.
 #[cfg(feature = "block2")]
 #[inline]
-pub extern "C" fn dispatch_block_cancel(block: &dispatch_block_t) {
+pub fn dispatch_block_cancel(block: &dispatch_block_t) {
     extern "C" {
         fn dispatch_block_cancel(block: &dispatch_block_t);
     }
@@ -2520,7 +2517,7 @@ pub extern "C" fn dispatch_block_cancel(block: &dispatch_block_t) {
 #[cfg(feature = "block2")]
 #[must_use]
 #[inline]
-pub extern "C" fn dispatch_block_testcancel(block: &dispatch_block_t) -> isize {
+pub fn dispatch_block_testcancel(block: &dispatch_block_t) -> isize {
     extern "C" {
         fn dispatch_block_testcancel(block: &dispatch_block_t) -> isize;
     }
@@ -3745,7 +3742,7 @@ pub type dispatch_fd_t = c_int;
 /// `queue` possibly has additional threading requirements.
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe extern "C" fn dispatch_read(
+pub unsafe fn dispatch_read(
     fd: dispatch_fd_t,
     length: usize,
     queue: &DispatchQueue,
@@ -3799,7 +3796,7 @@ pub unsafe extern "C" fn dispatch_read(
 /// `queue` possibly has additional threading requirements.
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe extern "C" fn dispatch_write(
+pub unsafe fn dispatch_write(
     fd: dispatch_fd_t,
     data: &DispatchData,
     queue: &DispatchQueue,

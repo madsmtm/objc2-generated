@@ -151,7 +151,7 @@ pub type JSValueRef = *const OpaqueJSValue;
 /// - `source_url` must be a valid pointer.
 /// - `exception` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn JSEvaluateScript(
+pub unsafe fn JSEvaluateScript(
     ctx: JSContextRef,
     script: JSStringRef,
     this_object: JSObjectRef,
@@ -202,7 +202,7 @@ pub unsafe extern "C-unwind" fn JSEvaluateScript(
 /// - `source_url` must be a valid pointer.
 /// - `exception` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn JSCheckScriptSyntax(
+pub unsafe fn JSCheckScriptSyntax(
     ctx: JSContextRef,
     script: JSStringRef,
     source_url: JSStringRef,
@@ -238,7 +238,7 @@ pub unsafe extern "C-unwind" fn JSCheckScriptSyntax(
 ///
 /// `ctx` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn JSGarbageCollect(ctx: JSContextRef) {
+pub unsafe fn JSGarbageCollect(ctx: JSContextRef) {
     extern "C-unwind" {
         fn JSGarbageCollect(ctx: JSContextRef);
     }

@@ -202,7 +202,7 @@ pub type MusicDeviceComponent = AudioComponentInstance;
 /// `in_unit` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicDeviceMIDIEvent(
+pub unsafe fn MusicDeviceMIDIEvent(
     in_unit: MusicDeviceComponent,
     in_status: u32,
     in_data1: u32,
@@ -251,7 +251,7 @@ pub unsafe extern "C-unwind" fn MusicDeviceMIDIEvent(
 /// - `in_data` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicDeviceSysEx(
+pub unsafe fn MusicDeviceSysEx(
     in_unit: MusicDeviceComponent,
     in_data: NonNull<u8>,
     in_length: u32,
@@ -299,7 +299,7 @@ pub unsafe extern "C-unwind" fn MusicDeviceSysEx(
 /// `in_unit` must be a valid pointer.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-midi"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicDeviceMIDIEventList(
+pub unsafe fn MusicDeviceMIDIEventList(
     in_unit: MusicDeviceComponent,
     in_offset_sample_frame: u32,
     evt_list: &MIDIEventList,
@@ -358,7 +358,7 @@ pub unsafe extern "C-unwind" fn MusicDeviceMIDIEventList(
 /// `in_unit` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicDeviceStartNote(
+pub unsafe fn MusicDeviceStartNote(
     in_unit: MusicDeviceComponent,
     in_instrument: MusicDeviceInstrumentID,
     in_group_id: MusicDeviceGroupID,
@@ -411,7 +411,7 @@ pub unsafe extern "C-unwind" fn MusicDeviceStartNote(
 /// `in_unit` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicDeviceStopNote(
+pub unsafe fn MusicDeviceStopNote(
     in_unit: MusicDeviceComponent,
     in_group_id: MusicDeviceGroupID,
     in_note_instance_id: NoteInstanceID,
@@ -533,7 +533,7 @@ pub type MusicDeviceStopNoteProc = Option<
 #[cfg(feature = "AudioComponent")]
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicDevicePrepareInstrument(
+pub unsafe fn MusicDevicePrepareInstrument(
     in_unit: MusicDeviceComponent,
     in_instrument: MusicDeviceInstrumentID,
 ) -> OSStatus {
@@ -552,7 +552,7 @@ pub unsafe extern "C-unwind" fn MusicDevicePrepareInstrument(
 #[cfg(feature = "AudioComponent")]
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn MusicDeviceReleaseInstrument(
+pub unsafe fn MusicDeviceReleaseInstrument(
     in_unit: MusicDeviceComponent,
     in_instrument: MusicDeviceInstrumentID,
 ) -> OSStatus {

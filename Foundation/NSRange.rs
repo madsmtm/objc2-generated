@@ -17,7 +17,7 @@ pub type NSRangePointer = *mut NSRange;
 // TODO: pub fn NSEqualRanges(range1: NSRange,range2: NSRange,) -> Bool;
 
 #[inline]
-pub extern "C-unwind" fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRange {
+pub fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRange {
     extern "C-unwind" {
         fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRange;
     }
@@ -25,7 +25,7 @@ pub extern "C-unwind" fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRan
 }
 
 #[inline]
-pub extern "C-unwind" fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange {
+pub fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange {
     extern "C-unwind" {
         fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange;
     }
@@ -49,7 +49,7 @@ impl NSString {
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub extern "C-unwind" fn NSRangeFromString(a_string: &NSString) -> NSRange {
+pub fn NSRangeFromString(a_string: &NSString) -> NSRange {
     extern "C-unwind" {
         fn NSRangeFromString(a_string: &NSString) -> NSRange;
     }

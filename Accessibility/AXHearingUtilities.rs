@@ -34,7 +34,7 @@ unsafe impl RefEncode for AXHearingDeviceEar {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar {
+pub unsafe fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar {
     extern "C-unwind" {
         fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;
     }
@@ -47,7 +47,7 @@ extern "C" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> bool {
+pub unsafe fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> bool {
     extern "C-unwind" {
         fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> Bool;
     }
@@ -55,7 +55,7 @@ pub unsafe extern "C-unwind" fn AXSupportsBidirectionalAXMFiHearingDeviceStreami
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn AXMFiHearingDevicePairedUUIDs() -> Retained<NSArray<NSUUID>> {
+pub unsafe fn AXMFiHearingDevicePairedUUIDs() -> Retained<NSArray<NSUUID>> {
     extern "C-unwind" {
         fn AXMFiHearingDevicePairedUUIDs() -> *mut NSArray<NSUUID>;
     }

@@ -121,7 +121,7 @@ impl MDItem {
 /// - `urls` generic must be of the correct type.
 /// - `urls` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn MDItemsCreateWithURLs(
+pub unsafe fn MDItemsCreateWithURLs(
     allocator: Option<&CFAllocator>,
     urls: Option<&CFArray>,
 ) -> Option<CFRetained<CFArray>> {
@@ -225,7 +225,7 @@ impl MDItem {
 /// - `names` generic must be of the correct type.
 /// - `names` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn MDItemsCopyAttributes(
+pub unsafe fn MDItemsCopyAttributes(
     items: Option<&CFArray>,
     names: Option<&CFArray>,
 ) -> Option<CFRetained<CFArray>> {

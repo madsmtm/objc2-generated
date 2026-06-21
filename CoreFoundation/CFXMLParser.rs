@@ -599,7 +599,7 @@ impl CFXMLTree {
 /// - `entities_dictionary` generic must be of the correct type.
 #[cfg(feature = "CFDictionary")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
+pub unsafe fn CFXMLCreateStringByEscapingEntities(
     allocator: Option<&CFAllocator>,
     string: &CFString,
     entities_dictionary: Option<&CFDictionary>,
@@ -622,7 +622,7 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
 /// - `entities_dictionary` generic must be of the correct type.
 #[cfg(feature = "CFDictionary")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFXMLCreateStringByUnescapingEntities(
+pub unsafe fn CFXMLCreateStringByUnescapingEntities(
     allocator: Option<&CFAllocator>,
     string: &CFString,
     entities_dictionary: Option<&CFDictionary>,

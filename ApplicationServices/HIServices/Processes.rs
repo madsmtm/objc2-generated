@@ -228,7 +228,7 @@ pub const kQuitNotQuitDuringLogoutMask: c_uint = 0x0200;
 /// `p_psn` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
+pub unsafe fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
     extern "C-unwind" {
         fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
     }
@@ -248,7 +248,7 @@ pub unsafe extern "C-unwind" fn GetCurrentProcess(p_psn: *mut ProcessSerialNumbe
 /// `p_psn` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
+pub unsafe fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
     extern "C-unwind" {
         fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
     }
@@ -271,7 +271,7 @@ pub unsafe extern "C-unwind" fn GetFrontProcess(p_psn: *mut ProcessSerialNumber)
 /// `p_psn` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
+pub unsafe fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
     extern "C-unwind" {
         fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
     }
@@ -283,7 +283,7 @@ pub unsafe extern "C-unwind" fn GetNextProcess(p_psn: *mut ProcessSerialNumber) 
 /// `psn` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn ProcessInformationCopyDictionary(
+pub unsafe fn ProcessInformationCopyDictionary(
     psn: *const ProcessSerialNumber,
     info_to_return: u32,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -311,7 +311,7 @@ pub unsafe extern "C-unwind" fn ProcessInformationCopyDictionary(
 /// `p_psn` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SetFrontProcess(p_psn: *const ProcessSerialNumber) -> OSErr {
+pub unsafe fn SetFrontProcess(p_psn: *const ProcessSerialNumber) -> OSErr {
     extern "C-unwind" {
         fn SetFrontProcess(p_psn: *const ProcessSerialNumber) -> OSErr;
     }
@@ -328,7 +328,7 @@ pub const kSetFrontProcessCausedByUser: c_uint = 1 << 1;
 /// `in_process` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SetFrontProcessWithOptions(
+pub unsafe fn SetFrontProcessWithOptions(
     in_process: *const ProcessSerialNumber,
     in_options: OptionBits,
 ) -> OSStatus {
@@ -346,7 +346,7 @@ pub unsafe extern "C-unwind" fn SetFrontProcessWithOptions(
 /// `psn` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn WakeUpProcess(psn: *const ProcessSerialNumber) -> OSErr {
+pub unsafe fn WakeUpProcess(psn: *const ProcessSerialNumber) -> OSErr {
     extern "C-unwind" {
         fn WakeUpProcess(psn: *const ProcessSerialNumber) -> OSErr;
     }
@@ -360,7 +360,7 @@ pub unsafe extern "C-unwind" fn WakeUpProcess(psn: *const ProcessSerialNumber) -
 /// - `result` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SameProcess(
+pub unsafe fn SameProcess(
     psn1: *const ProcessSerialNumber,
     psn2: *const ProcessSerialNumber,
     result: *mut Boolean,
@@ -377,7 +377,7 @@ pub unsafe extern "C-unwind" fn SameProcess(
 
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn ExitToShell() {
+pub unsafe fn ExitToShell() {
     extern "C-unwind" {
         fn ExitToShell();
     }
@@ -389,7 +389,7 @@ pub unsafe extern "C-unwind" fn ExitToShell() {
 /// `in_process` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn KillProcess(in_process: *const ProcessSerialNumber) -> OSErr {
+pub unsafe fn KillProcess(in_process: *const ProcessSerialNumber) -> OSErr {
     extern "C-unwind" {
         fn KillProcess(in_process: *const ProcessSerialNumber) -> OSErr;
     }
@@ -402,7 +402,7 @@ pub unsafe extern "C-unwind" fn KillProcess(in_process: *const ProcessSerialNumb
 /// - `name` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CopyProcessName(
+pub unsafe fn CopyProcessName(
     psn: *const ProcessSerialNumber,
     name: *mut *const CFString,
 ) -> OSStatus {
@@ -420,10 +420,7 @@ pub unsafe extern "C-unwind" fn CopyProcessName(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn GetProcessPID(
-    psn: *const ProcessSerialNumber,
-    pid: *mut libc::pid_t,
-) -> OSStatus {
+pub unsafe fn GetProcessPID(psn: *const ProcessSerialNumber, pid: *mut libc::pid_t) -> OSStatus {
     extern "C-unwind" {
         fn GetProcessPID(psn: *const ProcessSerialNumber, pid: *mut libc::pid_t) -> OSStatus;
     }
@@ -436,10 +433,7 @@ pub unsafe extern "C-unwind" fn GetProcessPID(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn GetProcessForPID(
-    pid: libc::pid_t,
-    psn: *mut ProcessSerialNumber,
-) -> OSStatus {
+pub unsafe fn GetProcessForPID(pid: libc::pid_t, psn: *mut ProcessSerialNumber) -> OSStatus {
     extern "C-unwind" {
         fn GetProcessForPID(pid: libc::pid_t, psn: *mut ProcessSerialNumber) -> OSStatus;
     }
@@ -455,7 +449,7 @@ pub unsafe extern "C-unwind" fn GetProcessForPID(
 /// `psn` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IsProcessVisible(psn: *const ProcessSerialNumber) -> bool {
+pub unsafe fn IsProcessVisible(psn: *const ProcessSerialNumber) -> bool {
     extern "C-unwind" {
         fn IsProcessVisible(psn: *const ProcessSerialNumber) -> Boolean;
     }
@@ -468,10 +462,7 @@ pub unsafe extern "C-unwind" fn IsProcessVisible(psn: *const ProcessSerialNumber
 /// `psn` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn ShowHideProcess(
-    psn: *const ProcessSerialNumber,
-    visible: bool,
-) -> OSErr {
+pub unsafe fn ShowHideProcess(psn: *const ProcessSerialNumber, visible: bool) -> OSErr {
     extern "C-unwind" {
         fn ShowHideProcess(psn: *const ProcessSerialNumber, visible: Boolean) -> OSErr;
     }
@@ -482,7 +473,7 @@ pub unsafe extern "C-unwind" fn ShowHideProcess(
 ///
 /// `psn` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn TransformProcessType(
+pub unsafe fn TransformProcessType(
     psn: *const ProcessSerialNumber,
     transform_state: ProcessApplicationTransformState,
 ) -> OSStatus {

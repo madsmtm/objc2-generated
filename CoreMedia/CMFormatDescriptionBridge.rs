@@ -225,7 +225,7 @@ impl CMVideoFormatDescription {
 ///
 /// `image_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapBigEndianImageDescriptionToHost(
+pub unsafe fn CMSwapBigEndianImageDescriptionToHost(
     image_description_data: NonNull<u8>,
     image_description_size: usize,
 ) -> OSStatus {
@@ -249,7 +249,7 @@ pub unsafe extern "C-unwind" fn CMSwapBigEndianImageDescriptionToHost(
 ///
 /// `image_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapHostEndianImageDescriptionToBig(
+pub unsafe fn CMSwapHostEndianImageDescriptionToBig(
     image_description_data: NonNull<u8>,
     image_description_size: usize,
 ) -> OSStatus {
@@ -447,7 +447,7 @@ impl CMAudioFormatDescription {
 /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
 #[cfg(feature = "CMBlockBuffer")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout(
+pub unsafe fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout(
     sound_description_block_buffer: &CMBlockBuffer,
     flavor: Option<&CMSoundDescriptionFlavor>,
 ) -> bool {
@@ -477,7 +477,7 @@ pub unsafe extern "C-unwind" fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRS
 ///
 /// `sound_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapBigEndianSoundDescriptionToHost(
+pub unsafe fn CMSwapBigEndianSoundDescriptionToHost(
     sound_description_data: NonNull<u8>,
     sound_description_size: usize,
 ) -> OSStatus {
@@ -501,7 +501,7 @@ pub unsafe extern "C-unwind" fn CMSwapBigEndianSoundDescriptionToHost(
 ///
 /// `sound_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapHostEndianSoundDescriptionToBig(
+pub unsafe fn CMSwapHostEndianSoundDescriptionToBig(
     sound_description_data: NonNull<u8>,
     sound_description_size: usize,
 ) -> OSStatus {
@@ -676,7 +676,7 @@ impl CMTextFormatDescription {
 ///
 /// `text_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapBigEndianTextDescriptionToHost(
+pub unsafe fn CMSwapBigEndianTextDescriptionToHost(
     text_description_data: NonNull<u8>,
     text_description_size: usize,
 ) -> OSStatus {
@@ -700,7 +700,7 @@ pub unsafe extern "C-unwind" fn CMSwapBigEndianTextDescriptionToHost(
 ///
 /// `text_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapHostEndianTextDescriptionToBig(
+pub unsafe fn CMSwapHostEndianTextDescriptionToBig(
     text_description_data: NonNull<u8>,
     text_description_size: usize,
 ) -> OSStatus {
@@ -871,7 +871,7 @@ impl CMClosedCaptionFormatDescription {
 ///
 /// `closed_caption_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapBigEndianClosedCaptionDescriptionToHost(
+pub unsafe fn CMSwapBigEndianClosedCaptionDescriptionToHost(
     closed_caption_description_data: NonNull<u8>,
     closed_caption_description_size: usize,
 ) -> OSStatus {
@@ -900,7 +900,7 @@ pub unsafe extern "C-unwind" fn CMSwapBigEndianClosedCaptionDescriptionToHost(
 ///
 /// `closed_caption_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapHostEndianClosedCaptionDescriptionToBig(
+pub unsafe fn CMSwapHostEndianClosedCaptionDescriptionToBig(
     closed_caption_description_data: NonNull<u8>,
     closed_caption_description_size: usize,
 ) -> OSStatus {
@@ -1070,7 +1070,7 @@ impl CMTimeCodeFormatDescription {
 ///
 /// `time_code_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapBigEndianTimeCodeDescriptionToHost(
+pub unsafe fn CMSwapBigEndianTimeCodeDescriptionToHost(
     time_code_description_data: NonNull<u8>,
     time_code_description_size: usize,
 ) -> OSStatus {
@@ -1099,7 +1099,7 @@ pub unsafe extern "C-unwind" fn CMSwapBigEndianTimeCodeDescriptionToHost(
 ///
 /// `time_code_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapHostEndianTimeCodeDescriptionToBig(
+pub unsafe fn CMSwapHostEndianTimeCodeDescriptionToBig(
     time_code_description_data: NonNull<u8>,
     time_code_description_size: usize,
 ) -> OSStatus {
@@ -1269,7 +1269,7 @@ impl CMMetadataFormatDescription {
 ///
 /// `metadata_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapBigEndianMetadataDescriptionToHost(
+pub unsafe fn CMSwapBigEndianMetadataDescriptionToHost(
     metadata_description_data: NonNull<u8>,
     metadata_description_size: usize,
 ) -> OSStatus {
@@ -1298,7 +1298,7 @@ pub unsafe extern "C-unwind" fn CMSwapBigEndianMetadataDescriptionToHost(
 ///
 /// `metadata_description_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSwapHostEndianMetadataDescriptionToBig(
+pub unsafe fn CMSwapHostEndianMetadataDescriptionToBig(
     metadata_description_data: NonNull<u8>,
     metadata_description_size: usize,
 ) -> OSStatus {

@@ -11,7 +11,7 @@ use crate::*;
 ///
 /// `in_object` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CAShow(in_object: NonNull<c_void>) {
+pub unsafe fn CAShow(in_object: NonNull<c_void>) {
     extern "C-unwind" {
         fn CAShow(in_object: NonNull<c_void>);
     }
@@ -26,10 +26,7 @@ pub unsafe extern "C-unwind" fn CAShow(in_object: NonNull<c_void>) {
 /// - `in_file` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn CAShowFile(
-    in_object: NonNull<c_void>,
-    in_file: NonNull<libc::FILE>,
-) {
+pub unsafe fn CAShowFile(in_object: NonNull<c_void>, in_file: NonNull<libc::FILE>) {
     extern "C-unwind" {
         fn CAShowFile(in_object: NonNull<c_void>, in_file: NonNull<libc::FILE>);
     }

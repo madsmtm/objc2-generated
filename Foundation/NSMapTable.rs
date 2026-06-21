@@ -270,7 +270,7 @@ unsafe impl RefEncode for NSMapEnumerator {
 ///
 /// `table` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSResetMapTable(table: &NSMapTable) {
+pub unsafe fn NSResetMapTable(table: &NSMapTable) {
     extern "C-unwind" {
         fn NSResetMapTable(table: &NSMapTable);
     }
@@ -282,10 +282,7 @@ pub unsafe extern "C-unwind" fn NSResetMapTable(table: &NSMapTable) {
 /// - `table1` generic should be of the correct type.
 /// - `table2` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSCompareMapTables(
-    table1: &NSMapTable,
-    table2: &NSMapTable,
-) -> bool {
+pub unsafe fn NSCompareMapTables(table1: &NSMapTable, table2: &NSMapTable) -> bool {
     extern "C-unwind" {
         fn NSCompareMapTables(table1: &NSMapTable, table2: &NSMapTable) -> Bool;
     }
@@ -297,7 +294,7 @@ pub unsafe extern "C-unwind" fn NSCompareMapTables(
 /// `table` generic should be of the correct type.
 #[cfg(feature = "NSZone")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSCopyMapTableWithZone(
+pub unsafe fn NSCopyMapTableWithZone(
     table: &NSMapTable,
     zone: Option<&NSZone>,
 ) -> Retained<NSMapTable> {
@@ -316,7 +313,7 @@ pub unsafe extern "C-unwind" fn NSCopyMapTableWithZone(
 /// - `original_key` must be a valid pointer or null.
 /// - `value` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSMapMember(
+pub unsafe fn NSMapMember(
     table: &NSMapTable,
     key: NonNull<c_void>,
     original_key: Option<&mut *mut c_void>,
@@ -338,7 +335,7 @@ pub unsafe extern "C-unwind" fn NSMapMember(
 /// - `table` generic should be of the correct type.
 /// - `key` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSMapGet(table: &NSMapTable, key: *const c_void) -> *mut c_void {
+pub unsafe fn NSMapGet(table: &NSMapTable, key: *const c_void) -> *mut c_void {
     extern "C-unwind" {
         fn NSMapGet(table: &NSMapTable, key: *const c_void) -> *mut c_void;
     }
@@ -351,11 +348,7 @@ pub unsafe extern "C-unwind" fn NSMapGet(table: &NSMapTable, key: *const c_void)
 /// - `key` must be a valid pointer or null.
 /// - `value` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSMapInsert(
-    table: &NSMapTable,
-    key: *const c_void,
-    value: *const c_void,
-) {
+pub unsafe fn NSMapInsert(table: &NSMapTable, key: *const c_void, value: *const c_void) {
     extern "C-unwind" {
         fn NSMapInsert(table: &NSMapTable, key: *const c_void, value: *const c_void);
     }
@@ -368,11 +361,7 @@ pub unsafe extern "C-unwind" fn NSMapInsert(
 /// - `key` must be a valid pointer or null.
 /// - `value` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSMapInsertKnownAbsent(
-    table: &NSMapTable,
-    key: *const c_void,
-    value: *const c_void,
-) {
+pub unsafe fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *const c_void, value: *const c_void) {
     extern "C-unwind" {
         fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *const c_void, value: *const c_void);
     }
@@ -385,7 +374,7 @@ pub unsafe extern "C-unwind" fn NSMapInsertKnownAbsent(
 /// - `key` must be a valid pointer or null.
 /// - `value` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSMapInsertIfAbsent(
+pub unsafe fn NSMapInsertIfAbsent(
     table: &NSMapTable,
     key: *const c_void,
     value: *const c_void,
@@ -405,7 +394,7 @@ pub unsafe extern "C-unwind" fn NSMapInsertIfAbsent(
 /// - `table` generic should be of the correct type.
 /// - `key` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSMapRemove(table: &NSMapTable, key: *const c_void) {
+pub unsafe fn NSMapRemove(table: &NSMapTable, key: *const c_void) {
     extern "C-unwind" {
         fn NSMapRemove(table: &NSMapTable, key: *const c_void);
     }
@@ -416,7 +405,7 @@ pub unsafe extern "C-unwind" fn NSMapRemove(table: &NSMapTable, key: *const c_vo
 ///
 /// `table` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator {
+pub unsafe fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator {
     extern "C-unwind" {
         fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator;
     }
@@ -429,7 +418,7 @@ pub unsafe extern "C-unwind" fn NSEnumerateMapTable(table: &NSMapTable) -> NSMap
 /// - `key` must be a valid pointer or null.
 /// - `value` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSNextMapEnumeratorPair(
+pub unsafe fn NSNextMapEnumeratorPair(
     enumerator: NonNull<NSMapEnumerator>,
     key: Option<&mut *mut c_void>,
     value: Option<&mut *mut c_void>,
@@ -448,7 +437,7 @@ pub unsafe extern "C-unwind" fn NSNextMapEnumeratorPair(
 ///
 /// `enumerator` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>) {
+pub unsafe fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>) {
     extern "C-unwind" {
         fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>);
     }
@@ -459,7 +448,7 @@ pub unsafe extern "C-unwind" fn NSEndMapTableEnumeration(enumerator: NonNull<NSM
 ///
 /// `table` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSCountMapTable(table: &NSMapTable) -> NSUInteger {
+pub unsafe fn NSCountMapTable(table: &NSMapTable) -> NSUInteger {
     extern "C-unwind" {
         fn NSCountMapTable(table: &NSMapTable) -> NSUInteger;
     }
@@ -489,7 +478,7 @@ impl NSString {
 /// `table` generic should be of the correct type.
 #[cfg(feature = "NSArray")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSAllMapTableKeys(table: &NSMapTable) -> Retained<NSArray> {
+pub unsafe fn NSAllMapTableKeys(table: &NSMapTable) -> Retained<NSArray> {
     extern "C-unwind" {
         fn NSAllMapTableKeys(table: &NSMapTable) -> *mut NSArray;
     }
@@ -503,7 +492,7 @@ pub unsafe extern "C-unwind" fn NSAllMapTableKeys(table: &NSMapTable) -> Retaine
 /// `table` generic should be of the correct type.
 #[cfg(feature = "NSArray")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSAllMapTableValues(table: &NSMapTable) -> Retained<NSArray> {
+pub unsafe fn NSAllMapTableValues(table: &NSMapTable) -> Retained<NSArray> {
     extern "C-unwind" {
         fn NSAllMapTableValues(table: &NSMapTable) -> *mut NSArray;
     }
@@ -593,7 +582,7 @@ unsafe impl RefEncode for NSMapTableValueCallBacks {
 /// - `value_call_backs` struct field `describe` must be implemented correctly.
 #[cfg(all(feature = "NSString", feature = "NSZone"))]
 #[inline]
-pub unsafe extern "C-unwind" fn NSCreateMapTableWithZone(
+pub unsafe fn NSCreateMapTableWithZone(
     key_call_backs: NSMapTableKeyCallBacks,
     value_call_backs: NSMapTableValueCallBacks,
     capacity: NSUInteger,
@@ -625,7 +614,7 @@ pub unsafe extern "C-unwind" fn NSCreateMapTableWithZone(
 /// - `value_call_backs` struct field `describe` must be implemented correctly.
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSCreateMapTable(
+pub unsafe fn NSCreateMapTable(
     key_call_backs: NSMapTableKeyCallBacks,
     value_call_backs: NSMapTableValueCallBacks,
     capacity: NSUInteger,

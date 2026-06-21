@@ -63,7 +63,7 @@ impl SecAsn1Coder {
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecAsn1Decode(
+pub unsafe fn SecAsn1Decode(
     coder: SecAsn1CoderRef,
     src: NonNull<c_void>,
     len: usize,
@@ -91,7 +91,7 @@ pub unsafe extern "C-unwind" fn SecAsn1Decode(
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecAsn1DecodeData(
+pub unsafe fn SecAsn1DecodeData(
     coder: SecAsn1CoderRef,
     src: NonNull<SecAsn1Item>,
     templ: NonNull<SecAsn1Template>,
@@ -117,7 +117,7 @@ pub unsafe extern "C-unwind" fn SecAsn1DecodeData(
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecAsn1EncodeItem(
+pub unsafe fn SecAsn1EncodeItem(
     coder: SecAsn1CoderRef,
     src: NonNull<c_void>,
     templates: NonNull<SecAsn1Template>,
@@ -139,10 +139,7 @@ pub unsafe extern "C-unwind" fn SecAsn1EncodeItem(
 /// `coder` must be a valid pointer.
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecAsn1Malloc(
-    coder: SecAsn1CoderRef,
-    len: usize,
-) -> NonNull<c_void> {
+pub unsafe fn SecAsn1Malloc(coder: SecAsn1CoderRef, len: usize) -> NonNull<c_void> {
     extern "C-unwind" {
         fn SecAsn1Malloc(coder: SecAsn1CoderRef, len: usize) -> Option<NonNull<c_void>>;
     }
@@ -157,7 +154,7 @@ pub unsafe extern "C-unwind" fn SecAsn1Malloc(
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecAsn1AllocItem(
+pub unsafe fn SecAsn1AllocItem(
     coder: SecAsn1CoderRef,
     item: NonNull<SecAsn1Item>,
     len: usize,
@@ -180,7 +177,7 @@ pub unsafe extern "C-unwind" fn SecAsn1AllocItem(
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecAsn1AllocCopy(
+pub unsafe fn SecAsn1AllocCopy(
     coder: SecAsn1CoderRef,
     src: NonNull<c_void>,
     len: usize,
@@ -205,7 +202,7 @@ pub unsafe extern "C-unwind" fn SecAsn1AllocCopy(
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecAsn1AllocCopyItem(
+pub unsafe fn SecAsn1AllocCopyItem(
     coder: SecAsn1CoderRef,
     src: NonNull<SecAsn1Item>,
     dest: NonNull<SecAsn1Item>,
@@ -227,10 +224,7 @@ pub unsafe extern "C-unwind" fn SecAsn1AllocCopyItem(
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecAsn1OidCompare(
-    oid1: NonNull<SecAsn1Oid>,
-    oid2: NonNull<SecAsn1Oid>,
-) -> bool {
+pub unsafe fn SecAsn1OidCompare(oid1: NonNull<SecAsn1Oid>, oid2: NonNull<SecAsn1Oid>) -> bool {
     extern "C-unwind" {
         fn SecAsn1OidCompare(oid1: NonNull<SecAsn1Oid>, oid2: NonNull<SecAsn1Oid>) -> bool;
     }

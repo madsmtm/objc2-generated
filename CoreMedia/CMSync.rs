@@ -818,7 +818,7 @@ impl CMTimebase {
 /// - `of_clock_or_timebase` should be of the correct type.
 /// - `relative_to_clock_or_timebase` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSyncGetRelativeRate(
+pub unsafe fn CMSyncGetRelativeRate(
     of_clock_or_timebase: &CMClockOrTimebase,
     relative_to_clock_or_timebase: &CMClockOrTimebase,
 ) -> f64 {
@@ -848,7 +848,7 @@ pub unsafe extern "C-unwind" fn CMSyncGetRelativeRate(
 /// - `out_relative_to_clock_or_timebase_anchor_time` must be a valid pointer or null.
 #[cfg(feature = "CMTime")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMSyncGetRelativeRateAndAnchorTime(
+pub unsafe fn CMSyncGetRelativeRateAndAnchorTime(
     of_clock_or_timebase: &CMClockOrTimebase,
     relative_to_clock_or_timebase: &CMClockOrTimebase,
     out_relative_rate: *mut f64,
@@ -889,7 +889,7 @@ pub unsafe extern "C-unwind" fn CMSyncGetRelativeRateAndAnchorTime(
 /// - `to_clock_or_timebase` should be of the correct type.
 #[cfg(feature = "CMTime")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMSyncConvertTime(
+pub unsafe fn CMSyncConvertTime(
     time: CMTime,
     from_clock_or_timebase: &CMClockOrTimebase,
     to_clock_or_timebase: &CMClockOrTimebase,
@@ -914,7 +914,7 @@ pub unsafe extern "C-unwind" fn CMSyncConvertTime(
 /// - `clock_or_timebase1` should be of the correct type.
 /// - `clock_or_timebase2` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CMSyncMightDrift(
+pub unsafe fn CMSyncMightDrift(
     clock_or_timebase1: &CMClockOrTimebase,
     clock_or_timebase2: &CMClockOrTimebase,
 ) -> bool {
@@ -941,7 +941,7 @@ pub unsafe extern "C-unwind" fn CMSyncMightDrift(
 /// `clock_or_timebase` should be of the correct type.
 #[cfg(feature = "CMTime")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMSyncGetTime(clock_or_timebase: &CMClockOrTimebase) -> CMTime {
+pub unsafe fn CMSyncGetTime(clock_or_timebase: &CMClockOrTimebase) -> CMTime {
     extern "C-unwind" {
         fn CMSyncGetTime(clock_or_timebase: &CMClockOrTimebase) -> CMTime;
     }

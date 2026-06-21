@@ -15,8 +15,7 @@ use crate::*;
 ///
 /// Returns: An array of CFStrings.
 #[inline]
-pub extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetained<CFArray<CFString>>
-{
+pub fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetained<CFArray<CFString>> {
     extern "C-unwind" {
         fn CTFontManagerCopyAvailablePostScriptNames() -> Option<NonNull<CFArray<CFString>>>;
     }
@@ -30,8 +29,7 @@ pub extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetain
 ///
 /// Returns: An array of CFStrings.
 #[inline]
-pub extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetained<CFArray<CFString>>
-{
+pub fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetained<CFArray<CFString>> {
     extern "C-unwind" {
         fn CTFontManagerCopyAvailableFontFamilyNames() -> Option<NonNull<CFArray<CFString>>>;
     }
@@ -45,7 +43,7 @@ pub extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetain
 ///
 /// Returns: An array of CFURLs.
 #[inline]
-pub extern "C-unwind" fn CTFontManagerCopyAvailableFontURLs() -> CFRetained<CFArray<CFURL>> {
+pub fn CTFontManagerCopyAvailableFontURLs() -> CFRetained<CFArray<CFURL>> {
     extern "C-unwind" {
         fn CTFontManagerCopyAvailableFontURLs() -> Option<NonNull<CFArray<CFURL>>>;
     }
@@ -72,7 +70,7 @@ pub extern "C-unwind" fn CTFontManagerCopyAvailableFontURLs() -> CFRetained<CFAr
 /// - `family2` must be a valid pointer.
 /// - `context` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerCompareFontFamilyNames(
+pub unsafe fn CTFontManagerCompareFontFamilyNames(
     family1: NonNull<c_void>,
     family2: NonNull<c_void>,
     context: *mut c_void,
@@ -97,7 +95,7 @@ pub unsafe extern "C-unwind" fn CTFontManagerCompareFontFamilyNames(
 /// Returns: An array of CTFontDescriptors or NULL if there are no valid fonts.
 #[cfg(feature = "CTFontDescriptor")]
 #[inline]
-pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromURL(
+pub fn CTFontManagerCreateFontDescriptorsFromURL(
     file_url: &CFURL,
 ) -> Option<CFRetained<CFArray<CTFontDescriptor>>> {
     extern "C-unwind" {
@@ -122,7 +120,7 @@ pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromURL(
 /// Returns: A font descriptor created from the data or NULL if it is not a valid font.
 #[cfg(feature = "CTFontDescriptor")]
 #[inline]
-pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorFromData(
+pub fn CTFontManagerCreateFontDescriptorFromData(
     data: &CFData,
 ) -> Option<CFRetained<CTFontDescriptor>> {
     extern "C-unwind" {
@@ -144,7 +142,7 @@ pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorFromData(
 /// Returns: An array of font descriptors. This can be an empty array in the event of invalid or unsupported font data.
 #[cfg(feature = "CTFontDescriptor")]
 #[inline]
-pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromData(
+pub fn CTFontManagerCreateFontDescriptorsFromData(
     data: &CFData,
 ) -> CFRetained<CFArray<CTFontDescriptor>> {
     extern "C-unwind" {
@@ -225,7 +223,7 @@ extern "C" {
 ///
 /// `error` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerRegisterFontsForURL(
+pub unsafe fn CTFontManagerRegisterFontsForURL(
     font_url: &CFURL,
     scope: CTFontManagerScope,
     error: Option<&mut *mut CFError>,
@@ -259,7 +257,7 @@ pub unsafe extern "C-unwind" fn CTFontManagerRegisterFontsForURL(
 ///
 /// `error` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerUnregisterFontsForURL(
+pub unsafe fn CTFontManagerUnregisterFontsForURL(
     font_url: &CFURL,
     scope: CTFontManagerScope,
     error: Option<&mut *mut CFError>,
@@ -296,7 +294,7 @@ pub unsafe extern "C-unwind" fn CTFontManagerUnregisterFontsForURL(
 #[cfg(feature = "objc2-core-graphics")]
 #[deprecated = "Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerRegisterGraphicsFont(
+pub unsafe fn CTFontManagerRegisterGraphicsFont(
     font: &CGFont,
     error: Option<&mut *mut CFError>,
 ) -> bool {
@@ -326,7 +324,7 @@ pub unsafe extern "C-unwind" fn CTFontManagerRegisterGraphicsFont(
 #[cfg(feature = "objc2-core-graphics")]
 #[deprecated = "Use the API corresponding to the one used to register the font"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerUnregisterGraphicsFont(
+pub unsafe fn CTFontManagerUnregisterGraphicsFont(
     font: &CGFont,
     error: Option<&mut *mut CFError>,
 ) -> bool {
@@ -358,7 +356,7 @@ pub unsafe extern "C-unwind" fn CTFontManagerUnregisterGraphicsFont(
 /// `errors` must be a valid pointer or null.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerRegisterFontsForURLs(
+pub unsafe fn CTFontManagerRegisterFontsForURLs(
     font_ur_ls: &CFArray<CFURL>,
     scope: CTFontManagerScope,
     errors: Option<&mut *const CFArray<CFError>>,
@@ -393,7 +391,7 @@ pub unsafe extern "C-unwind" fn CTFontManagerRegisterFontsForURLs(
 /// `errors` must be a valid pointer or null.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerUnregisterFontsForURLs(
+pub unsafe fn CTFontManagerUnregisterFontsForURLs(
     font_ur_ls: &CFArray<CFURL>,
     scope: CTFontManagerScope,
     errors: Option<&mut *const CFArray<CFError>>,
@@ -426,7 +424,7 @@ pub unsafe extern "C-unwind" fn CTFontManagerUnregisterFontsForURLs(
 /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
 #[cfg(feature = "block2")]
 #[inline]
-pub extern "C-unwind" fn CTFontManagerRegisterFontURLs(
+pub fn CTFontManagerRegisterFontURLs(
     font_ur_ls: &CFArray<CFURL>,
     scope: CTFontManagerScope,
     enabled: bool,
@@ -456,7 +454,7 @@ pub extern "C-unwind" fn CTFontManagerRegisterFontURLs(
 /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter will be an empty array if all files are unregistered. Otherwise, it will contain an array of CFError references. Each error reference will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully unregistered. Note, the handler may be called multiple times during the unregistration process. The done parameter will be set to true when the unregistration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
 #[cfg(feature = "block2")]
 #[inline]
-pub extern "C-unwind" fn CTFontManagerUnregisterFontURLs(
+pub fn CTFontManagerUnregisterFontURLs(
     font_ur_ls: &CFArray<CFURL>,
     scope: CTFontManagerScope,
     registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
@@ -489,7 +487,7 @@ pub extern "C-unwind" fn CTFontManagerUnregisterFontURLs(
 /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font descriptors corresponding to kCTFontManagerErrorFontDescriptorsKey. These represent the font descriptors that caused the error, and were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
 #[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
 #[inline]
-pub extern "C-unwind" fn CTFontManagerRegisterFontDescriptors(
+pub fn CTFontManagerRegisterFontDescriptors(
     font_descriptors: &CFArray<CTFontDescriptor>,
     scope: CTFontManagerScope,
     enabled: bool,
@@ -520,7 +518,7 @@ pub extern "C-unwind" fn CTFontManagerRegisterFontDescriptors(
 /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter will be an empty array if all font descriptors are unregistered. Otherwise, it will contain an array of CFError references. Each error reference will contain a CFArray of font descriptors corresponding to kCTFontManagerErrorFontDescriptorsKey. These represent the font descriptors that caused the error, and were not successfully unregistered. Note, the handler may be called multiple times during the unregistration process. The done parameter will be set to true when the unregistration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
 #[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
 #[inline]
-pub extern "C-unwind" fn CTFontManagerUnregisterFontDescriptors(
+pub fn CTFontManagerUnregisterFontDescriptors(
     font_descriptors: &CFArray<CTFontDescriptor>,
     scope: CTFontManagerScope,
     registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
@@ -557,7 +555,7 @@ pub extern "C-unwind" fn CTFontManagerUnregisterFontDescriptors(
 /// Parameter `registrationHandler`: Block called as errors are discovered, or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font asset names corresponding to kCTFontManagerErrorFontAssetNameKey. These represent the font asset names that were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
 #[cfg(feature = "block2")]
 #[inline]
-pub extern "C-unwind" fn CTFontManagerRegisterFontsWithAssetNames(
+pub fn CTFontManagerRegisterFontsWithAssetNames(
     font_asset_names: &CFArray<CFString>,
     bundle: Option<&CFBundle>,
     scope: CTFontManagerScope,
@@ -593,10 +591,7 @@ pub extern "C-unwind" fn CTFontManagerRegisterFontsWithAssetNames(
 /// Parameter `enable`: Boolean value indicating whether the fonts matching descriptors should be enabled for font descriptor matching.
 #[cfg(feature = "CTFontDescriptor")]
 #[inline]
-pub extern "C-unwind" fn CTFontManagerEnableFontDescriptors(
-    descriptors: &CFArray<CTFontDescriptor>,
-    enable: bool,
-) {
+pub fn CTFontManagerEnableFontDescriptors(descriptors: &CFArray<CTFontDescriptor>, enable: bool) {
     extern "C-unwind" {
         fn CTFontManagerEnableFontDescriptors(
             descriptors: &CFArray<CTFontDescriptor>,
@@ -614,7 +609,7 @@ pub extern "C-unwind" fn CTFontManagerEnableFontDescriptors(
 ///
 /// Returns: Returns the registration scope of the specified URL, will return kCTFontManagerScopeNone if not currently registered.
 #[inline]
-pub extern "C-unwind" fn CTFontManagerGetScopeForURL(font_url: &CFURL) -> CTFontManagerScope {
+pub fn CTFontManagerGetScopeForURL(font_url: &CFURL) -> CTFontManagerScope {
     extern "C-unwind" {
         fn CTFontManagerGetScopeForURL(font_url: &CFURL) -> CTFontManagerScope;
     }
@@ -636,7 +631,7 @@ pub extern "C-unwind" fn CTFontManagerGetScopeForURL(font_url: &CFURL) -> CTFont
 /// Returns: Array of of font descriptors registered by the application. Array may be empty if nothing is registered.
 #[cfg(feature = "CTFontDescriptor")]
 #[inline]
-pub extern "C-unwind" fn CTFontManagerCopyRegisteredFontDescriptors(
+pub fn CTFontManagerCopyRegisteredFontDescriptors(
     scope: CTFontManagerScope,
     enabled: bool,
 ) -> CFRetained<CFArray<CTFontDescriptor>> {
@@ -663,7 +658,7 @@ pub extern "C-unwind" fn CTFontManagerCopyRegisteredFontDescriptors(
 /// Parameter `completionHandler`: Block called after request operation completes. Block takes a single parameter containing an array of those descriptors that could not be resolved/found. The array can be empty if all descriptors were resolved.
 #[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
 #[inline]
-pub extern "C-unwind" fn CTFontManagerRequestFonts(
+pub fn CTFontManagerRequestFonts(
     font_descriptors: &CFArray<CTFontDescriptor>,
     completion_handler: &block2::DynBlock<dyn Fn(NonNull<CFArray>)>,
 ) {
@@ -687,7 +682,7 @@ pub extern "C-unwind" fn CTFontManagerRequestFonts(
 ///
 /// Returns: This function returns true if the file is in a supported font format.
 #[inline]
-pub extern "C-unwind" fn CTFontManagerIsSupportedFont(font_url: &CFURL) -> bool {
+pub fn CTFontManagerIsSupportedFont(font_url: &CFURL) -> bool {
     extern "C-unwind" {
         fn CTFontManagerIsSupportedFont(font_url: &CFURL) -> bool;
     }
@@ -708,7 +703,7 @@ pub extern "C-unwind" fn CTFontManagerIsSupportedFont(font_url: &CFURL) -> bool 
 #[cfg(all(feature = "block2", feature = "libc"))]
 #[deprecated = "This functionality will be removed in a future release"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerCreateFontRequestRunLoopSource(
+pub unsafe fn CTFontManagerCreateFontRequestRunLoopSource(
     source_order: CFIndex,
     create_matches_callback: &block2::DynBlock<
         dyn Fn(NonNull<CFDictionary>, libc::pid_t) -> NonNull<CFArray>,
@@ -785,7 +780,7 @@ unsafe impl RefEncode for CTFontManagerAutoActivationSetting {
 ///
 /// Function will apply the setting to the appropriate preferences location.
 #[inline]
-pub extern "C-unwind" fn CTFontManagerSetAutoActivationSetting(
+pub fn CTFontManagerSetAutoActivationSetting(
     bundle_identifier: Option<&CFString>,
     setting: CTFontManagerAutoActivationSetting,
 ) {
@@ -806,7 +801,7 @@ pub extern "C-unwind" fn CTFontManagerSetAutoActivationSetting(
 ///
 /// Returns: Will return the auto-activation setting for specified bundle identifier.
 #[inline]
-pub extern "C-unwind" fn CTFontManagerGetAutoActivationSetting(
+pub fn CTFontManagerGetAutoActivationSetting(
     bundle_identifier: Option<&CFString>,
 ) -> CTFontManagerAutoActivationSetting {
     extern "C-unwind" {

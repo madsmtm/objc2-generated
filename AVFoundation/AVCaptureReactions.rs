@@ -75,7 +75,7 @@ extern "C" {
 
 /// Returns the name for UIImage or NSImage systemImageNamed: method to obtain the recommended iconography for a specified reaction type.
 #[inline]
-pub unsafe extern "C-unwind" fn AVCaptureReactionSystemImageNameForType(
+pub unsafe fn AVCaptureReactionSystemImageNameForType(
     reaction_type: &AVCaptureReactionType,
 ) -> Retained<NSString> {
     extern "C-unwind" {

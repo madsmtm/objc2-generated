@@ -33,7 +33,7 @@ extern "C" {
 #[cfg(feature = "block2")]
 #[deprecated = "Use ASCredentialDataManager.save(password:for:title:anchor:)  (AuthenticationServices framework)"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecAddSharedWebCredential(
+pub unsafe fn SecAddSharedWebCredential(
     fqdn: &CFString,
     account: &CFString,
     password: Option<&CFString>,
@@ -72,7 +72,7 @@ pub unsafe extern "C-unwind" fn SecAddSharedWebCredential(
 #[cfg(feature = "block2")]
 #[deprecated = "Use ASAuthorizationController to make an ASAuthorizationPasswordRequest (AuthenticationServices framework)"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecRequestSharedWebCredential(
+pub unsafe fn SecRequestSharedWebCredential(
     fqdn: Option<&CFString>,
     account: Option<&CFString>,
     completion_handler: &block2::DynBlock<dyn Fn(*const CFArray, *mut CFError)>,
@@ -91,8 +91,7 @@ pub unsafe extern "C-unwind" fn SecRequestSharedWebCredential(
 ///
 /// Returns: CFStringRef password in the form xxx-xxx-xxx-xxx where x is taken from the sets "abcdefghkmnopqrstuvwxy", "ABCDEFGHJKLMNPQRSTUVWXYZ", "3456789" with at least one character from each set being present.
 #[inline]
-pub unsafe extern "C-unwind" fn SecCreateSharedWebCredentialPassword(
-) -> Option<CFRetained<CFString>> {
+pub unsafe fn SecCreateSharedWebCredentialPassword() -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn SecCreateSharedWebCredentialPassword() -> Option<NonNull<CFString>>;
     }

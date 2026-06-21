@@ -107,7 +107,7 @@ unsafe impl RefEncode for CGWindowLevelKey {
 pub type CGWindowLevel = i32;
 
 #[inline]
-pub extern "C-unwind" fn CGWindowLevelForKey(key: CGWindowLevelKey) -> CGWindowLevel {
+pub fn CGWindowLevelForKey(key: CGWindowLevelKey) -> CGWindowLevel {
     extern "C-unwind" {
         fn CGWindowLevelForKey(key: CGWindowLevelKey) -> CGWindowLevel;
     }

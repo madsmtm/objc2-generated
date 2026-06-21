@@ -183,7 +183,7 @@ extern "C" {
 #[cfg(feature = "CFHost")]
 #[deprecated = "Use Network framework instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStreamCreatePairWithSocketToCFHost(
+pub unsafe fn CFStreamCreatePairWithSocketToCFHost(
     alloc: Option<&CFAllocator>,
     host: &CFHost,
     port: i32,
@@ -209,7 +209,7 @@ pub unsafe extern "C-unwind" fn CFStreamCreatePairWithSocketToCFHost(
 #[cfg(feature = "CFNetServices")]
 #[deprecated = "Use Network framework instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStreamCreatePairWithSocketToNetService(
+pub unsafe fn CFStreamCreatePairWithSocketToNetService(
     alloc: Option<&CFAllocator>,
     service: &CFNetService,
     read_stream: *mut *mut CFReadStream,

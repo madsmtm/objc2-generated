@@ -112,7 +112,7 @@ pub const errSessionInvalidFlags: OSStatus = -60011;
 /// - `session_id` must be a valid pointer or null.
 /// - `attributes` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn SessionGetInfo(
+pub unsafe fn SessionGetInfo(
     session: SecuritySessionId,
     session_id: *mut SecuritySessionId,
     attributes: *mut SessionAttributeBits,
@@ -159,7 +159,7 @@ pub unsafe extern "C-unwind" fn SessionGetInfo(
 /// errSessionAuthorizationDenied -60502 Attempt to re-initialize a session
 /// errSessionInvalidFlags -60011 Attempt to specify unsupported flag bits
 #[inline]
-pub unsafe extern "C-unwind" fn SessionCreate(
+pub unsafe fn SessionCreate(
     flags: SessionCreationFlags,
     attributes: SessionAttributeBits,
 ) -> OSStatus {

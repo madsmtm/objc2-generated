@@ -155,7 +155,7 @@ impl GCGamepadSnapShotDataV100 {
 /// `snapshot_data` must be a valid pointer or null.
 #[deprecated = "Use GCExtendedGamepad instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn NSDataFromGCGamepadSnapShotDataV100(
+pub unsafe fn NSDataFromGCGamepadSnapShotDataV100(
     snapshot_data: *mut GCGamepadSnapShotDataV100,
 ) -> Option<Retained<NSData>> {
     extern "C-unwind" {

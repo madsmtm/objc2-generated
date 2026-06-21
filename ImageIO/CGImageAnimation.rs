@@ -70,7 +70,7 @@ pub type CGImageSourceAnimationBlock =
 /// - `options` generic must be of the correct type.
 #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGAnimateImageAtURLWithBlock(
+pub unsafe fn CGAnimateImageAtURLWithBlock(
     url: &CFURL,
     options: Option<&CFDictionary>,
     block: &CGImageSourceAnimationBlock,
@@ -97,7 +97,7 @@ pub unsafe extern "C-unwind" fn CGAnimateImageAtURLWithBlock(
 /// - `options` generic must be of the correct type.
 #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGAnimateImageDataWithBlock(
+pub unsafe fn CGAnimateImageDataWithBlock(
     data: &CFData,
     options: Option<&CFDictionary>,
     block: &CGImageSourceAnimationBlock,

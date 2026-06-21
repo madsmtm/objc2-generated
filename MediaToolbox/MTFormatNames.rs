@@ -9,7 +9,7 @@ use crate::*;
 
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn MTCopyLocalizedNameForMediaType(
+pub unsafe fn MTCopyLocalizedNameForMediaType(
     media_type: CMMediaType,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -21,7 +21,7 @@ pub unsafe extern "C-unwind" fn MTCopyLocalizedNameForMediaType(
 
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn MTCopyLocalizedNameForMediaSubType(
+pub unsafe fn MTCopyLocalizedNameForMediaSubType(
     media_type: CMMediaType,
     media_sub_type: FourCharCode,
 ) -> Option<CFRetained<CFString>> {

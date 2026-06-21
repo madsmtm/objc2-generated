@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 #[inline]
-pub unsafe extern "C-unwind" fn EventKitUIBundle() -> Option<Retained<NSBundle>> {
+pub unsafe fn EventKitUIBundle() -> Option<Retained<NSBundle>> {
     extern "C-unwind" {
         fn EventKitUIBundle() -> *mut NSBundle;
     }

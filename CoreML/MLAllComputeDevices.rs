@@ -14,8 +14,8 @@ use crate::*;
 /// then the subsequent call to`MLAllComputeDevices` will return an array without the compute device.
 #[cfg(feature = "MLComputeDeviceProtocol")]
 #[inline]
-pub unsafe extern "C-unwind" fn MLAllComputeDevices(
-) -> Retained<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>> {
+pub unsafe fn MLAllComputeDevices() -> Retained<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>
+{
     extern "C-unwind" {
         fn MLAllComputeDevices() -> *mut NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>;
     }

@@ -101,7 +101,7 @@ extern "C" {
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecEncodeTransformCreate(
+pub unsafe fn SecEncodeTransformCreate(
     encode_type: &CFType,
     error: *mut *mut CFError,
 ) -> Option<CFRetained<SecTransform>> {

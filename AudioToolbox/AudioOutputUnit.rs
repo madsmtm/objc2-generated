@@ -10,7 +10,7 @@ use crate::*;
 /// `ci` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioOutputUnitStart(ci: AudioUnit) -> OSStatus {
+pub unsafe fn AudioOutputUnitStart(ci: AudioUnit) -> OSStatus {
     extern "C-unwind" {
         fn AudioOutputUnitStart(ci: AudioUnit) -> OSStatus;
     }
@@ -22,7 +22,7 @@ pub unsafe extern "C-unwind" fn AudioOutputUnitStart(ci: AudioUnit) -> OSStatus 
 /// `ci` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioOutputUnitStop(ci: AudioUnit) -> OSStatus {
+pub unsafe fn AudioOutputUnitStop(ci: AudioUnit) -> OSStatus {
     extern "C-unwind" {
         fn AudioOutputUnitStop(ci: AudioUnit) -> OSStatus;
     }

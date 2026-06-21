@@ -61,7 +61,7 @@ extern "C" {
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecSignTransformCreate(
+pub unsafe fn SecSignTransformCreate(
     key: &SecKey,
     error: *mut *mut CFError,
 ) -> Option<CFRetained<SecTransform>> {
@@ -103,7 +103,7 @@ pub unsafe extern "C-unwind" fn SecSignTransformCreate(
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecVerifyTransformCreate(
+pub unsafe fn SecVerifyTransformCreate(
     key: &SecKey,
     signature: Option<&CFData>,
     error: *mut *mut CFError,

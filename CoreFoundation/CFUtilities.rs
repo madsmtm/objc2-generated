@@ -6,7 +6,7 @@ use crate::*;
 
 #[cfg(feature = "CFURL")]
 #[inline]
-pub extern "C-unwind" fn CFCopyHomeDirectoryURL() -> Option<CFRetained<CFURL>> {
+pub fn CFCopyHomeDirectoryURL() -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
         fn CFCopyHomeDirectoryURL() -> Option<NonNull<CFURL>>;
     }

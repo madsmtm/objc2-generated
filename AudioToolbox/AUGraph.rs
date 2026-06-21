@@ -53,7 +53,7 @@ pub const kAUGraphErr_InvalidAudioUnit: OSStatus = -10864;
 /// `out_graph` must be a valid pointer or null.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn NewAUGraph(out_graph: &mut AUGraph) -> OSStatus {
+pub unsafe fn NewAUGraph(out_graph: &mut AUGraph) -> OSStatus {
     extern "C-unwind" {
         fn NewAUGraph(out_graph: &mut AUGraph) -> OSStatus;
     }
@@ -72,7 +72,7 @@ pub unsafe extern "C-unwind" fn NewAUGraph(out_graph: &mut AUGraph) -> OSStatus 
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn DisposeAUGraph(in_graph: AUGraph) -> OSStatus {
+pub unsafe fn DisposeAUGraph(in_graph: AUGraph) -> OSStatus {
     extern "C-unwind" {
         fn DisposeAUGraph(in_graph: AUGraph) -> OSStatus;
     }
@@ -97,7 +97,7 @@ pub unsafe extern "C-unwind" fn DisposeAUGraph(in_graph: AUGraph) -> OSStatus {
 #[cfg(feature = "AudioComponent")]
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphAddNode(
+pub unsafe fn AUGraphAddNode(
     in_graph: AUGraph,
     in_description: &AudioComponentDescription,
     out_node: &mut AUNode,
@@ -127,7 +127,7 @@ pub unsafe extern "C-unwind" fn AUGraphAddNode(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphRemoveNode(in_graph: AUGraph, in_node: AUNode) -> OSStatus {
+pub unsafe fn AUGraphRemoveNode(in_graph: AUGraph, in_node: AUNode) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphRemoveNode(in_graph: AUGraph, in_node: AUNode) -> OSStatus;
     }
@@ -146,10 +146,7 @@ pub unsafe extern "C-unwind" fn AUGraphRemoveNode(in_graph: AUGraph, in_node: AU
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphGetNodeCount(
-    in_graph: AUGraph,
-    out_number_of_nodes: &mut u32,
-) -> OSStatus {
+pub unsafe fn AUGraphGetNodeCount(in_graph: AUGraph, out_number_of_nodes: &mut u32) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphGetNodeCount(in_graph: AUGraph, out_number_of_nodes: &mut u32) -> OSStatus;
     }
@@ -173,7 +170,7 @@ pub unsafe extern "C-unwind" fn AUGraphGetNodeCount(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphGetIndNode(
+pub unsafe fn AUGraphGetIndNode(
     in_graph: AUGraph,
     in_index: u32,
     out_node: &mut AUNode,
@@ -205,7 +202,7 @@ pub unsafe extern "C-unwind" fn AUGraphGetIndNode(
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphNodeInfo(
+pub unsafe fn AUGraphNodeInfo(
     in_graph: AUGraph,
     in_node: AUNode,
     out_description: Option<&mut AudioComponentDescription>,
@@ -241,10 +238,7 @@ pub unsafe extern "C-unwind" fn AUGraphNodeInfo(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphNewNodeSubGraph(
-    in_graph: AUGraph,
-    out_node: &mut AUNode,
-) -> OSStatus {
+pub unsafe fn AUGraphNewNodeSubGraph(in_graph: AUGraph, out_node: &mut AUNode) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphNewNodeSubGraph(in_graph: AUGraph, out_node: &mut AUNode) -> OSStatus;
     }
@@ -268,7 +262,7 @@ pub unsafe extern "C-unwind" fn AUGraphNewNodeSubGraph(
 /// - `out_sub_graph` must be a valid pointer or null.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphGetNodeInfoSubGraph(
+pub unsafe fn AUGraphGetNodeInfoSubGraph(
     in_graph: AUGraph,
     in_node: AUNode,
     out_sub_graph: &mut AUGraph,
@@ -299,7 +293,7 @@ pub unsafe extern "C-unwind" fn AUGraphGetNodeInfoSubGraph(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphIsNodeSubGraph(
+pub unsafe fn AUGraphIsNodeSubGraph(
     in_graph: AUGraph,
     in_node: AUNode,
     out_flag: &mut Boolean,
@@ -405,7 +399,7 @@ unsafe impl RefEncode for AUNodeRenderCallback {
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphConnectNodeInput(
+pub unsafe fn AUGraphConnectNodeInput(
     in_graph: AUGraph,
     in_source_node: AUNode,
     in_source_output_number: u32,
@@ -448,7 +442,7 @@ pub unsafe extern "C-unwind" fn AUGraphConnectNodeInput(
 ))]
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphSetNodeInputCallback(
+pub unsafe fn AUGraphSetNodeInputCallback(
     in_graph: AUGraph,
     in_dest_node: AUNode,
     in_dest_input_number: u32,
@@ -482,7 +476,7 @@ pub unsafe extern "C-unwind" fn AUGraphSetNodeInputCallback(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphDisconnectNodeInput(
+pub unsafe fn AUGraphDisconnectNodeInput(
     in_graph: AUGraph,
     in_dest_node: AUNode,
     in_dest_input_number: u32,
@@ -506,7 +500,7 @@ pub unsafe extern "C-unwind" fn AUGraphDisconnectNodeInput(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphClearConnections(in_graph: AUGraph) -> OSStatus {
+pub unsafe fn AUGraphClearConnections(in_graph: AUGraph) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphClearConnections(in_graph: AUGraph) -> OSStatus;
     }
@@ -522,7 +516,7 @@ pub unsafe extern "C-unwind" fn AUGraphClearConnections(in_graph: AUGraph) -> OS
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphGetNumberOfInteractions(
+pub unsafe fn AUGraphGetNumberOfInteractions(
     in_graph: AUGraph,
     out_num_interactions: &mut u32,
 ) -> OSStatus {
@@ -544,7 +538,7 @@ pub unsafe extern "C-unwind" fn AUGraphGetNumberOfInteractions(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphCountNodeInteractions(
+pub unsafe fn AUGraphCountNodeInteractions(
     in_graph: AUGraph,
     in_node: AUNode,
     out_num_interactions: &mut u32,
@@ -602,10 +596,7 @@ pub unsafe extern "C-unwind" fn AUGraphCountNodeInteractions(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphUpdate(
-    in_graph: AUGraph,
-    out_is_updated: Option<&mut Boolean>,
-) -> OSStatus {
+pub unsafe fn AUGraphUpdate(in_graph: AUGraph, out_is_updated: Option<&mut Boolean>) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphUpdate(in_graph: AUGraph, out_is_updated: Option<&mut Boolean>) -> OSStatus;
     }
@@ -621,7 +612,7 @@ pub unsafe extern "C-unwind" fn AUGraphUpdate(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphOpen(in_graph: AUGraph) -> OSStatus {
+pub unsafe fn AUGraphOpen(in_graph: AUGraph) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphOpen(in_graph: AUGraph) -> OSStatus;
     }
@@ -637,7 +628,7 @@ pub unsafe extern "C-unwind" fn AUGraphOpen(in_graph: AUGraph) -> OSStatus {
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphClose(in_graph: AUGraph) -> OSStatus {
+pub unsafe fn AUGraphClose(in_graph: AUGraph) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphClose(in_graph: AUGraph) -> OSStatus;
     }
@@ -658,7 +649,7 @@ pub unsafe extern "C-unwind" fn AUGraphClose(in_graph: AUGraph) -> OSStatus {
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphInitialize(in_graph: AUGraph) -> OSStatus {
+pub unsafe fn AUGraphInitialize(in_graph: AUGraph) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphInitialize(in_graph: AUGraph) -> OSStatus;
     }
@@ -674,7 +665,7 @@ pub unsafe extern "C-unwind" fn AUGraphInitialize(in_graph: AUGraph) -> OSStatus
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphUninitialize(in_graph: AUGraph) -> OSStatus {
+pub unsafe fn AUGraphUninitialize(in_graph: AUGraph) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphUninitialize(in_graph: AUGraph) -> OSStatus;
     }
@@ -692,7 +683,7 @@ pub unsafe extern "C-unwind" fn AUGraphUninitialize(in_graph: AUGraph) -> OSStat
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphStart(in_graph: AUGraph) -> OSStatus {
+pub unsafe fn AUGraphStart(in_graph: AUGraph) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphStart(in_graph: AUGraph) -> OSStatus;
     }
@@ -708,7 +699,7 @@ pub unsafe extern "C-unwind" fn AUGraphStart(in_graph: AUGraph) -> OSStatus {
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphStop(in_graph: AUGraph) -> OSStatus {
+pub unsafe fn AUGraphStop(in_graph: AUGraph) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphStop(in_graph: AUGraph) -> OSStatus;
     }
@@ -722,10 +713,7 @@ pub unsafe extern "C-unwind" fn AUGraphStop(in_graph: AUGraph) -> OSStatus {
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphIsOpen(
-    in_graph: AUGraph,
-    out_is_open: &mut Boolean,
-) -> OSStatus {
+pub unsafe fn AUGraphIsOpen(in_graph: AUGraph, out_is_open: &mut Boolean) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphIsOpen(in_graph: AUGraph, out_is_open: &mut Boolean) -> OSStatus;
     }
@@ -739,7 +727,7 @@ pub unsafe extern "C-unwind" fn AUGraphIsOpen(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphIsInitialized(
+pub unsafe fn AUGraphIsInitialized(
     in_graph: AUGraph,
     out_is_initialized: &mut Boolean,
 ) -> OSStatus {
@@ -756,10 +744,7 @@ pub unsafe extern "C-unwind" fn AUGraphIsInitialized(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphIsRunning(
-    in_graph: AUGraph,
-    out_is_running: &mut Boolean,
-) -> OSStatus {
+pub unsafe fn AUGraphIsRunning(in_graph: AUGraph, out_is_running: &mut Boolean) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphIsRunning(in_graph: AUGraph, out_is_running: &mut Boolean) -> OSStatus;
     }
@@ -775,10 +760,7 @@ pub unsafe extern "C-unwind" fn AUGraphIsRunning(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphGetCPULoad(
-    in_graph: AUGraph,
-    out_average_cpu_load: &mut f32,
-) -> OSStatus {
+pub unsafe fn AUGraphGetCPULoad(in_graph: AUGraph, out_average_cpu_load: &mut f32) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphGetCPULoad(in_graph: AUGraph, out_average_cpu_load: &mut f32) -> OSStatus;
     }
@@ -795,10 +777,7 @@ pub unsafe extern "C-unwind" fn AUGraphGetCPULoad(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphGetMaxCPULoad(
-    in_graph: AUGraph,
-    out_max_load: &mut f32,
-) -> OSStatus {
+pub unsafe fn AUGraphGetMaxCPULoad(in_graph: AUGraph, out_max_load: &mut f32) -> OSStatus {
     extern "C-unwind" {
         fn AUGraphGetMaxCPULoad(in_graph: AUGraph, out_max_load: &mut f32) -> OSStatus;
     }
@@ -819,7 +798,7 @@ pub unsafe extern "C-unwind" fn AUGraphGetMaxCPULoad(
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphAddRenderNotify(
+pub unsafe fn AUGraphAddRenderNotify(
     in_graph: AUGraph,
     in_callback: AURenderCallback,
     in_ref_con: *mut c_void,
@@ -847,7 +826,7 @@ pub unsafe extern "C-unwind" fn AUGraphAddRenderNotify(
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphRemoveRenderNotify(
+pub unsafe fn AUGraphRemoveRenderNotify(
     in_graph: AUGraph,
     in_callback: AURenderCallback,
     in_ref_con: *mut c_void,
@@ -867,7 +846,7 @@ pub unsafe extern "C-unwind" fn AUGraphRemoveRenderNotify(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphGetNumberOfConnections(
+pub unsafe fn AUGraphGetNumberOfConnections(
     in_graph: AUGraph,
     out_num_connections: &mut u32,
 ) -> OSStatus {
@@ -885,7 +864,7 @@ pub unsafe extern "C-unwind" fn AUGraphGetNumberOfConnections(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphGetConnectionInfo(
+pub unsafe fn AUGraphGetConnectionInfo(
     in_graph: AUGraph,
     in_connection_index: u32,
     out_source_node: &mut AUNode,
@@ -920,7 +899,7 @@ pub unsafe extern "C-unwind" fn AUGraphGetConnectionInfo(
 /// `in_graph` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphCountNodeConnections(
+pub unsafe fn AUGraphCountNodeConnections(
     in_graph: AUGraph,
     in_node: AUNode,
     out_num_connections: &mut u32,
@@ -941,7 +920,7 @@ pub unsafe extern "C-unwind" fn AUGraphCountNodeConnections(
 /// - `out_connections` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AUGraphGetNodeConnections(
+pub unsafe fn AUGraphGetNodeConnections(
     in_graph: AUGraph,
     in_node: AUNode,
     out_connections: NonNull<AudioUnitNodeConnection>,

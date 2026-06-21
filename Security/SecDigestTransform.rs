@@ -128,7 +128,7 @@ extern "C" {
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SecDigestTransformCreate(
+pub unsafe fn SecDigestTransformCreate(
     digest_type: Option<&CFType>,
     digest_length: CFIndex,
     error: *mut *mut CFError,
@@ -149,7 +149,7 @@ pub unsafe extern "C-unwind" fn SecDigestTransformCreate(
 /// Returns: The CFTypeID
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
-pub extern "C-unwind" fn SecDigestTransformGetTypeID() -> CFTypeID {
+pub fn SecDigestTransformGetTypeID() -> CFTypeID {
     extern "C-unwind" {
         fn SecDigestTransformGetTypeID() -> CFTypeID;
     }

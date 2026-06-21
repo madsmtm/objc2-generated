@@ -694,7 +694,7 @@ pub const kAudioObjectPropertyListenerRemoved: AudioObjectPropertySelector = 0x6
 ///
 /// Parameter `inObjectID`: The AudioObject to show.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioObjectShow(in_object_id: AudioObjectID) {
+pub unsafe fn AudioObjectShow(in_object_id: AudioObjectID) {
     extern "C-unwind" {
         fn AudioObjectShow(in_object_id: AudioObjectID);
     }
@@ -709,7 +709,7 @@ pub unsafe extern "C-unwind" fn AudioObjectShow(in_object_id: AudioObjectID) {
 ///
 /// Returns: A Boolean indicating whether or not the AudioObject has the given property.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioObjectHasProperty(
+pub unsafe fn AudioObjectHasProperty(
     in_object_id: AudioObjectID,
     in_address: &AudioObjectPropertyAddress,
 ) -> bool {
@@ -734,7 +734,7 @@ pub unsafe extern "C-unwind" fn AudioObjectHasProperty(
 ///
 /// Returns: An OSStatus indicating success or failure.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioObjectIsPropertySettable(
+pub unsafe fn AudioObjectIsPropertySettable(
     in_object_id: AudioObjectID,
     in_address: &AudioObjectPropertyAddress,
     out_is_settable: &mut Boolean,
@@ -771,7 +771,7 @@ pub unsafe extern "C-unwind" fn AudioObjectIsPropertySettable(
 ///
 /// `in_qualifier_data` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioObjectGetPropertyDataSize(
+pub unsafe fn AudioObjectGetPropertyDataSize(
     in_object_id: AudioObjectID,
     in_address: &AudioObjectPropertyAddress,
     in_qualifier_data_size: u32,
@@ -826,7 +826,7 @@ pub unsafe extern "C-unwind" fn AudioObjectGetPropertyDataSize(
 /// - `in_qualifier_data` must be a valid pointer or null.
 /// - `out_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioObjectGetPropertyData(
+pub unsafe fn AudioObjectGetPropertyData(
     in_object_id: AudioObjectID,
     in_address: &AudioObjectPropertyAddress,
     in_qualifier_data_size: u32,
@@ -886,7 +886,7 @@ pub unsafe extern "C-unwind" fn AudioObjectGetPropertyData(
 /// - `in_qualifier_data` must be a valid pointer or null.
 /// - `in_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioObjectSetPropertyData(
+pub unsafe fn AudioObjectSetPropertyData(
     in_object_id: AudioObjectID,
     in_address: &AudioObjectPropertyAddress,
     in_qualifier_data_size: u32,
@@ -935,7 +935,7 @@ pub unsafe extern "C-unwind" fn AudioObjectSetPropertyData(
 /// - `in_listener` must be implemented correctly.
 /// - `in_client_data` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioObjectAddPropertyListener(
+pub unsafe fn AudioObjectAddPropertyListener(
     in_object_id: AudioObjectID,
     in_address: &AudioObjectPropertyAddress,
     in_listener: AudioObjectPropertyListenerProc,
@@ -971,7 +971,7 @@ pub unsafe extern "C-unwind" fn AudioObjectAddPropertyListener(
 /// - `in_listener` must be implemented correctly.
 /// - `in_client_data` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioObjectRemovePropertyListener(
+pub unsafe fn AudioObjectRemovePropertyListener(
     in_object_id: AudioObjectID,
     in_address: &AudioObjectPropertyAddress,
     in_listener: AudioObjectPropertyListenerProc,
@@ -1017,7 +1017,7 @@ pub unsafe extern "C-unwind" fn AudioObjectRemovePropertyListener(
 /// `in_dispatch_queue` possibly has additional threading requirements.
 #[cfg(all(feature = "block2", feature = "dispatch2"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioObjectAddPropertyListenerBlock(
+pub unsafe fn AudioObjectAddPropertyListenerBlock(
     in_object_id: AudioObjectID,
     in_address: &AudioObjectPropertyAddress,
     in_dispatch_queue: Option<&DispatchQueue>,
@@ -1060,7 +1060,7 @@ pub unsafe extern "C-unwind" fn AudioObjectAddPropertyListenerBlock(
 /// `in_dispatch_queue` possibly has additional threading requirements.
 #[cfg(all(feature = "block2", feature = "dispatch2"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioObjectRemovePropertyListenerBlock(
+pub unsafe fn AudioObjectRemovePropertyListenerBlock(
     in_object_id: AudioObjectID,
     in_address: &AudioObjectPropertyAddress,
     in_dispatch_queue: Option<&DispatchQueue>,
@@ -1193,7 +1193,7 @@ pub const kAudioHardwarePropertyTranslateUIDToTap: AudioObjectPropertySelector =
 ///
 /// Returns: An OSStatus indicating success or failure.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareUnload() -> OSStatus {
+pub unsafe fn AudioHardwareUnload() -> OSStatus {
     extern "C-unwind" {
         fn AudioHardwareUnload() -> OSStatus;
     }
@@ -1213,7 +1213,7 @@ pub unsafe extern "C-unwind" fn AudioHardwareUnload() -> OSStatus {
 ///
 /// `in_description` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareCreateAggregateDevice(
+pub unsafe fn AudioHardwareCreateAggregateDevice(
     in_description: &CFDictionary<CFString, CFType>,
     out_device_id: &mut AudioObjectID,
 ) -> OSStatus {
@@ -1235,9 +1235,7 @@ pub unsafe extern "C-unwind" fn AudioHardwareCreateAggregateDevice(
 ///
 /// Returns: An OSStatus indicating success or failure.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareDestroyAggregateDevice(
-    in_device_id: AudioObjectID,
-) -> OSStatus {
+pub unsafe fn AudioHardwareDestroyAggregateDevice(in_device_id: AudioObjectID) -> OSStatus {
     extern "C-unwind" {
         fn AudioHardwareDestroyAggregateDevice(in_device_id: AudioObjectID) -> OSStatus;
     }
@@ -1577,7 +1575,7 @@ pub const kAudioDevicePropertyWantsStreamFormatsRestored: AudioObjectPropertySel
 /// - `out_io_proc_id` must be implemented correctly.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceCreateIOProcID(
+pub unsafe fn AudioDeviceCreateIOProcID(
     in_device: AudioObjectID,
     in_proc: AudioDeviceIOProc,
     in_client_data: *mut c_void,
@@ -1621,7 +1619,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceCreateIOProcID(
     feature = "objc2-core-audio-types"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceCreateIOProcIDWithBlock(
+pub unsafe fn AudioDeviceCreateIOProcIDWithBlock(
     out_io_proc_id: &mut AudioDeviceIOProcID,
     in_device: AudioObjectID,
     in_dispatch_queue: Option<&DispatchQueue>,
@@ -1661,7 +1659,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceCreateIOProcIDWithBlock(
 /// `in_io_proc_id` must be implemented correctly.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceDestroyIOProcID(
+pub unsafe fn AudioDeviceDestroyIOProcID(
     in_device: AudioObjectID,
     in_io_proc_id: AudioDeviceIOProcID,
 ) -> OSStatus {
@@ -1691,7 +1689,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceDestroyIOProcID(
 /// `in_proc_id` must be implemented correctly.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceStart(
+pub unsafe fn AudioDeviceStart(
     in_device: AudioObjectID,
     in_proc_id: AudioDeviceIOProcID,
 ) -> OSStatus {
@@ -1724,7 +1722,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceStart(
 /// `in_proc_id` must be implemented correctly.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceStartAtTime(
+pub unsafe fn AudioDeviceStartAtTime(
     in_device: AudioObjectID,
     in_proc_id: AudioDeviceIOProcID,
     io_requested_start_time: &mut AudioTimeStamp,
@@ -1754,7 +1752,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceStartAtTime(
 /// `in_proc_id` must be implemented correctly.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceStop(
+pub unsafe fn AudioDeviceStop(
     in_device: AudioObjectID,
     in_proc_id: AudioDeviceIOProcID,
 ) -> OSStatus {
@@ -1778,7 +1776,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceStop(
 /// returned if the AudioDevice isn't running.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceGetCurrentTime(
+pub unsafe fn AudioDeviceGetCurrentTime(
     in_device: AudioObjectID,
     out_time: &mut AudioTimeStamp,
 ) -> OSStatus {
@@ -1807,7 +1805,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetCurrentTime(
 /// returned if the AudioDevice isn't running.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceTranslateTime(
+pub unsafe fn AudioDeviceTranslateTime(
     in_device: AudioObjectID,
     in_time: &AudioTimeStamp,
     out_time: &mut AudioTimeStamp,
@@ -1848,7 +1846,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceTranslateTime(
 /// not support starting at a specific time.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceGetNearestStartTime(
+pub unsafe fn AudioDeviceGetNearestStartTime(
     in_device: AudioObjectID,
     io_requested_start_time: &mut AudioTimeStamp,
     in_flags: u32,
@@ -1964,7 +1962,7 @@ pub const kAudioTapPropertyFormat: AudioObjectPropertySelector = 0x74666d74;
 /// Returns: An OSStatus indicating success or failure.
 #[cfg(feature = "objc2")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareCreateProcessTap(
+pub unsafe fn AudioHardwareCreateProcessTap(
     in_description: &CATapDescription,
     out_tap_id: &mut AudioObjectID,
 ) -> OSStatus {
@@ -1983,9 +1981,7 @@ pub unsafe extern "C-unwind" fn AudioHardwareCreateProcessTap(
 ///
 /// Returns: An OSStatus indicating success or failure.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareDestroyProcessTap(
-    in_tap_id: AudioObjectID,
-) -> OSStatus {
+pub unsafe fn AudioHardwareDestroyProcessTap(in_tap_id: AudioObjectID) -> OSStatus {
     extern "C-unwind" {
         fn AudioHardwareDestroyProcessTap(in_tap_id: AudioObjectID) -> OSStatus;
     }

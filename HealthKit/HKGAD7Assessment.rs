@@ -60,9 +60,7 @@ unsafe impl RefEncode for HKGAD7AssessmentAnswer {
 
 /// Returns the lower bound of the score range for the given GAD-7 risk classification.
 #[inline]
-pub unsafe extern "C-unwind" fn HKMinimumScoreForGAD7AssessmentRisk(
-    risk: HKGAD7AssessmentRisk,
-) -> NSInteger {
+pub unsafe fn HKMinimumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger {
     extern "C-unwind" {
         fn HKMinimumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger;
     }
@@ -71,9 +69,7 @@ pub unsafe extern "C-unwind" fn HKMinimumScoreForGAD7AssessmentRisk(
 
 /// Returns the upper bound of the score range for the given GAD-7 risk classification.
 #[inline]
-pub unsafe extern "C-unwind" fn HKMaximumScoreForGAD7AssessmentRisk(
-    risk: HKGAD7AssessmentRisk,
-) -> NSInteger {
+pub unsafe fn HKMaximumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger {
     extern "C-unwind" {
         fn HKMaximumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger;
     }

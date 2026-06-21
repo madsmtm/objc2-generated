@@ -44,7 +44,7 @@ pub const kAuthorizationComment: &CStr =
 /// - `right_name` must be a valid pointer.
 /// - `right_definition` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AuthorizationRightGet(
+pub unsafe fn AuthorizationRightGet(
     right_name: NonNull<c_char>,
     right_definition: *mut *const CFDictionary,
 ) -> OSStatus {
@@ -88,7 +88,7 @@ pub unsafe extern "C-unwind" fn AuthorizationRightGet(
 /// - `right_definition` should be of the correct type.
 #[cfg(feature = "Authorization")]
 #[inline]
-pub unsafe extern "C-unwind" fn AuthorizationRightSet(
+pub unsafe fn AuthorizationRightSet(
     auth_ref: AuthorizationRef,
     right_name: NonNull<c_char>,
     right_definition: &CFType,
@@ -131,7 +131,7 @@ pub unsafe extern "C-unwind" fn AuthorizationRightSet(
 /// - `right_name` must be a valid pointer.
 #[cfg(feature = "Authorization")]
 #[inline]
-pub unsafe extern "C-unwind" fn AuthorizationRightRemove(
+pub unsafe fn AuthorizationRightRemove(
     auth_ref: AuthorizationRef,
     right_name: NonNull<c_char>,
 ) -> OSStatus {

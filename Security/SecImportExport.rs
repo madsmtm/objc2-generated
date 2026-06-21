@@ -268,7 +268,7 @@ impl SecKeychainItem {
 /// - `exported_data` must be a valid pointer.
 #[cfg(feature = "SecBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn SecItemExport(
+pub unsafe fn SecItemExport(
     sec_item_or_array: &CFType,
     output_format: SecExternalFormat,
     flags: SecItemImportExportFlags,
@@ -352,7 +352,7 @@ impl SecKeychainItem {
 /// - `out_items` must be a valid pointer or null.
 #[cfg(feature = "SecBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn SecItemImport(
+pub unsafe fn SecItemImport(
     imported_data: &CFData,
     file_name_or_extension: Option<&CFString>,
     input_format: *mut SecExternalFormat,
@@ -482,7 +482,7 @@ extern "C" {
 /// - `options` generic must be of the correct type.
 /// - `items` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn SecPKCS12Import(
+pub unsafe fn SecPKCS12Import(
     pkcs12_data: &CFData,
     options: &CFDictionary,
     items: NonNull<*const CFArray>,

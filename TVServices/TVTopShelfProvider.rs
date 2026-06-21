@@ -84,7 +84,7 @@ extern "C" {
 #[cfg(all(feature = "TVContentItem", feature = "objc2-core-foundation"))]
 #[deprecated = "TVTopShelfImageSizeForShape has been replaced by [TVTopShelfSectionedContent imageSizeForImageShape:] and [TVTopShelfInsetContent imageSize]"]
 #[inline]
-pub unsafe extern "C-unwind" fn TVTopShelfImageSizeForShape(
+pub unsafe fn TVTopShelfImageSizeForShape(
     shape: TVContentItemImageShape,
     style: TVTopShelfContentStyle,
 ) -> CGSize {

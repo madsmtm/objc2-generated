@@ -275,7 +275,7 @@ unsafe impl RefEncode for IOBluetoothDeviceSearchTypesBits {
 ///
 /// `device` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothIgnoreHIDDevice(device: Option<&IOBluetoothDeviceRef>) {
+pub unsafe fn IOBluetoothIgnoreHIDDevice(device: Option<&IOBluetoothDeviceRef>) {
     extern "C-unwind" {
         fn IOBluetoothIgnoreHIDDevice(device: Option<&IOBluetoothDeviceRef>);
     }
@@ -290,9 +290,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothIgnoreHIDDevice(device: Option<&IOBlu
 ///
 /// `device` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothRemoveIgnoredHIDDevice(
-    device: Option<&IOBluetoothDeviceRef>,
-) {
+pub unsafe fn IOBluetoothRemoveIgnoredHIDDevice(device: Option<&IOBluetoothDeviceRef>) {
     extern "C-unwind" {
         fn IOBluetoothRemoveIgnoredHIDDevice(device: Option<&IOBluetoothDeviceRef>);
     }
@@ -425,7 +423,7 @@ impl IOBluetoothL2CAPChannelRef {
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothAddSCOAudioDevice(
+pub unsafe fn IOBluetoothAddSCOAudioDevice(
     device: Option<&IOBluetoothDeviceRef>,
     config_dict: Option<&CFDictionary>,
 ) -> IOReturn {
@@ -449,9 +447,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothAddSCOAudioDevice(
 /// `device` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothRemoveSCOAudioDevice(
-    device: Option<&IOBluetoothDeviceRef>,
-) -> IOReturn {
+pub unsafe fn IOBluetoothRemoveSCOAudioDevice(device: Option<&IOBluetoothDeviceRef>) -> IOReturn {
     extern "C-unwind" {
         fn IOBluetoothRemoveSCOAudioDevice(device: Option<&IOBluetoothDeviceRef>) -> IOReturn;
     }

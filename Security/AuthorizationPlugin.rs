@@ -350,7 +350,7 @@ unsafe impl RefEncode for AuthorizationPluginInterface {
 /// - `out_plugin_interface` must be a valid pointer.
 #[cfg(feature = "Authorization")]
 #[inline]
-pub unsafe extern "C-unwind" fn AuthorizationPluginCreate(
+pub unsafe fn AuthorizationPluginCreate(
     callbacks: NonNull<AuthorizationCallbacks>,
     out_plugin: NonNull<AuthorizationPluginRef>,
     out_plugin_interface: NonNull<*const AuthorizationPluginInterface>,

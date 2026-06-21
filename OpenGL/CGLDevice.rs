@@ -26,7 +26,7 @@ pub type CGLShareGroupObj = *mut CGLShareGroupRec;
 /// `ctx` must be a valid pointer.
 #[cfg(feature = "CGLTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn CGLGetShareGroup(ctx: CGLContextObj) -> CGLShareGroupObj {
+pub unsafe fn CGLGetShareGroup(ctx: CGLContextObj) -> CGLShareGroupObj {
     extern "C-unwind" {
         fn CGLGetShareGroup(ctx: CGLContextObj) -> CGLShareGroupObj;
     }
@@ -49,7 +49,7 @@ unsafe impl RefEncode for _cl_device_id {
 pub type cl_device_id = *mut _cl_device_id;
 
 #[inline]
-pub unsafe extern "C-unwind" fn CGLGetDeviceFromGLRenderer(renderer_id: GLint) -> cl_device_id {
+pub unsafe fn CGLGetDeviceFromGLRenderer(renderer_id: GLint) -> cl_device_id {
     extern "C-unwind" {
         fn CGLGetDeviceFromGLRenderer(renderer_id: GLint) -> cl_device_id;
     }

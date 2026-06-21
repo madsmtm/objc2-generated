@@ -17,7 +17,7 @@ use crate::*;
 /// Returns: Returns TRUE if the accessibility API is currently enabled, otherwise FALSE.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AXAPIEnabled() -> bool {
+pub unsafe fn AXAPIEnabled() -> bool {
     extern "C-unwind" {
         fn AXAPIEnabled() -> Boolean;
     }
@@ -40,9 +40,7 @@ pub unsafe extern "C-unwind" fn AXAPIEnabled() -> bool {
 /// - `options` generic must be of the correct type.
 /// - `options` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn AXIsProcessTrustedWithOptions(
-    options: Option<&CFDictionary>,
-) -> bool {
+pub unsafe fn AXIsProcessTrustedWithOptions(options: Option<&CFDictionary>) -> bool {
     extern "C-unwind" {
         fn AXIsProcessTrustedWithOptions(options: Option<&CFDictionary>) -> Boolean;
     }
@@ -60,7 +58,7 @@ extern "C" {
 ///
 /// Returns: Returns TRUE if the current process is a trusted accessibility client, FALSE if it is not.
 #[inline]
-pub unsafe extern "C-unwind" fn AXIsProcessTrusted() -> bool {
+pub unsafe fn AXIsProcessTrusted() -> bool {
     extern "C-unwind" {
         fn AXIsProcessTrusted() -> Boolean;
     }
@@ -85,7 +83,7 @@ pub unsafe extern "C-unwind" fn AXIsProcessTrusted() -> bool {
 #[cfg(feature = "AXError")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AXMakeProcessTrusted(executable_path: &CFString) -> AXError {
+pub unsafe fn AXMakeProcessTrusted(executable_path: &CFString) -> AXError {
     extern "C-unwind" {
         fn AXMakeProcessTrusted(executable_path: &CFString) -> AXError;
     }

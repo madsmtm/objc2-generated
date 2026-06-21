@@ -193,7 +193,7 @@ unsafe impl RefEncode for MPSImageType {
 
 #[cfg(feature = "MPSImage")]
 #[inline]
-pub unsafe extern "C-unwind" fn MPSGetImageType(image: &MPSImage) -> MPSImageType {
+pub unsafe fn MPSGetImageType(image: &MPSImage) -> MPSImageType {
     extern "C-unwind" {
         fn MPSGetImageType(image: &MPSImage) -> MPSImageType;
     }

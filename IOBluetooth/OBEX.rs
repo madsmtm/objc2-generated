@@ -1156,7 +1156,7 @@ pub type OBEXSessionEventCallback = Option<unsafe extern "C-unwind" fn(*const OB
 /// `in_session_ref` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionDelete(in_session_ref: OBEXSessionRef) -> OBEXError {
+pub unsafe fn OBEXSessionDelete(in_session_ref: OBEXSessionRef) -> OBEXError {
     extern "C-unwind" {
         fn OBEXSessionDelete(in_session_ref: OBEXSessionRef) -> OBEXError;
     }
@@ -1185,7 +1185,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionDelete(in_session_ref: OBEXSessionRef
 /// - `out_is_connected` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionHasOpenOBEXConnection(
+pub unsafe fn OBEXSessionHasOpenOBEXConnection(
     in_session_ref: OBEXSessionRef,
     out_is_connected: *mut Boolean,
 ) -> OBEXError {
@@ -1219,7 +1219,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionHasOpenOBEXConnection(
 /// - `out_length` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionGetMaxPacketLength(
+pub unsafe fn OBEXSessionGetMaxPacketLength(
     in_session_ref: OBEXSessionRef,
     out_length: *mut OBEXMaxPacketLength,
 ) -> OBEXError {
@@ -1260,7 +1260,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionGetMaxPacketLength(
 /// - `out_length` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionGetAvailableCommandPayloadLength(
+pub unsafe fn OBEXSessionGetAvailableCommandPayloadLength(
     in_session_ref: OBEXSessionRef,
     in_op_code: OBEXOpCode,
     out_length: *mut OBEXMaxPacketLength,
@@ -1305,7 +1305,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionGetAvailableCommandPayloadLength(
 /// - `out_length` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionGetAvailableCommandResponsePayloadLength(
+pub unsafe fn OBEXSessionGetAvailableCommandResponsePayloadLength(
     in_session_ref: OBEXSessionRef,
     in_op_code: OBEXOpCode,
     out_length: *mut OBEXMaxPacketLength,
@@ -1360,7 +1360,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionGetAvailableCommandResponsePayloadLen
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionConnect(
+pub unsafe fn OBEXSessionConnect(
     in_session_ref: OBEXSessionRef,
     in_flags: OBEXFlags,
     in_max_packet_length: OBEXMaxPacketLength,
@@ -1424,7 +1424,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionConnect(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionDisconnect(
+pub unsafe fn OBEXSessionDisconnect(
     in_session_ref: OBEXSessionRef,
     in_optional_headers: *mut c_void,
     in_optional_headers_length: usize,
@@ -1490,7 +1490,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionDisconnect(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionPut(
+pub unsafe fn OBEXSessionPut(
     in_session_ref: OBEXSessionRef,
     in_is_final_chunk: bool,
     in_headers_data: *mut c_void,
@@ -1558,7 +1558,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionPut(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionGet(
+pub unsafe fn OBEXSessionGet(
     in_session_ref: OBEXSessionRef,
     in_is_final_chunk: bool,
     in_headers_data: *mut c_void,
@@ -1619,7 +1619,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionGet(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionAbort(
+pub unsafe fn OBEXSessionAbort(
     in_session_ref: OBEXSessionRef,
     in_optional_headers: *mut c_void,
     in_optional_headers_length: usize,
@@ -1681,7 +1681,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionAbort(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionSetPath(
+pub unsafe fn OBEXSessionSetPath(
     in_session_ref: OBEXSessionRef,
     in_flags: OBEXFlags,
     in_constants: OBEXConstants,
@@ -1752,7 +1752,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionSetPath(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionConnectResponse(
+pub unsafe fn OBEXSessionConnectResponse(
     in_session_ref: OBEXSessionRef,
     in_response_op_code: OBEXOpCode,
     in_flags: OBEXFlags,
@@ -1821,7 +1821,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionConnectResponse(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionDisconnectResponse(
+pub unsafe fn OBEXSessionDisconnectResponse(
     in_session_ref: OBEXSessionRef,
     in_response_op_code: OBEXOpCode,
     in_optional_headers: *mut c_void,
@@ -1884,7 +1884,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionDisconnectResponse(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionGetResponse(
+pub unsafe fn OBEXSessionGetResponse(
     in_session_ref: OBEXSessionRef,
     in_response_op_code: OBEXOpCode,
     in_optional_headers: *mut c_void,
@@ -1947,7 +1947,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionGetResponse(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionPutResponse(
+pub unsafe fn OBEXSessionPutResponse(
     in_session_ref: OBEXSessionRef,
     in_response_op_code: OBEXOpCode,
     in_optional_headers: *mut c_void,
@@ -2010,7 +2010,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionPutResponse(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionAbortResponse(
+pub unsafe fn OBEXSessionAbortResponse(
     in_session_ref: OBEXSessionRef,
     in_response_op_code: OBEXOpCode,
     in_optional_headers: *mut c_void,
@@ -2073,7 +2073,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionAbortResponse(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionSetPathResponse(
+pub unsafe fn OBEXSessionSetPathResponse(
     in_session_ref: OBEXSessionRef,
     in_response_op_code: OBEXOpCode,
     in_optional_headers: *mut c_void,
@@ -2128,7 +2128,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionSetPathResponse(
 /// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXSessionSetServerCallback(
+pub unsafe fn OBEXSessionSetServerCallback(
     in_session_ref: OBEXSessionRef,
     in_callback: OBEXSessionEventCallback,
     in_user_ref_con: *mut c_void,
@@ -2229,7 +2229,7 @@ pub unsafe extern "C-unwind" fn OBEXSessionSetServerCallback(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXCreateVCard(
+pub unsafe fn OBEXCreateVCard(
     in_first_name: *const c_void,
     in_first_name_length: u32,
     in_last_name: *const c_void,
@@ -2389,7 +2389,7 @@ pub unsafe extern "C-unwind" fn OBEXCreateVCard(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXCreateVEvent(
+pub unsafe fn OBEXCreateVEvent(
     in_charset: *const c_char,
     in_charset_length: u32,
     in_encoding: *const c_char,
@@ -2643,7 +2643,7 @@ extern "C" {
 /// `in_data` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXGetHeaders(
+pub unsafe fn OBEXGetHeaders(
     in_data: *const c_void,
     in_data_size: usize,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -2701,7 +2701,7 @@ pub unsafe extern "C-unwind" fn OBEXGetHeaders(
 /// - `dictionary_of_headers` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXHeadersToBytes(
+pub unsafe fn OBEXHeadersToBytes(
     dictionary_of_headers: Option<&CFDictionary>,
 ) -> Option<CFRetained<CFMutableData>> {
     extern "C-unwind" {
@@ -2731,7 +2731,7 @@ pub unsafe extern "C-unwind" fn OBEXHeadersToBytes(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddNameHeader(
+pub unsafe fn OBEXAddNameHeader(
     name: Option<&CFString>,
     dict_ref: Option<&CFMutableDictionary>,
 ) -> OBEXError {
@@ -2762,7 +2762,7 @@ pub unsafe extern "C-unwind" fn OBEXAddNameHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddDescriptionHeader(
+pub unsafe fn OBEXAddDescriptionHeader(
     description: Option<&CFString>,
     dict_ref: Option<&CFMutableDictionary>,
 ) -> OBEXError {
@@ -2792,10 +2792,7 @@ pub unsafe extern "C-unwind" fn OBEXAddDescriptionHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddCountHeader(
-    count: u32,
-    dict_ref: Option<&CFMutableDictionary>,
-) -> OBEXError {
+pub unsafe fn OBEXAddCountHeader(count: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddCountHeader(count: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
     }
@@ -2819,7 +2816,7 @@ pub unsafe extern "C-unwind" fn OBEXAddCountHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddTime4ByteHeader(
+pub unsafe fn OBEXAddTime4ByteHeader(
     time4_byte: u32,
     dict_ref: Option<&CFMutableDictionary>,
 ) -> OBEXError {
@@ -2849,7 +2846,7 @@ pub unsafe extern "C-unwind" fn OBEXAddTime4ByteHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddLengthHeader(
+pub unsafe fn OBEXAddLengthHeader(
     length: u32,
     dict_ref: Option<&CFMutableDictionary>,
 ) -> OBEXError {
@@ -2877,7 +2874,7 @@ pub unsafe extern "C-unwind" fn OBEXAddLengthHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddTypeHeader(
+pub unsafe fn OBEXAddTypeHeader(
     r#type: Option<&CFString>,
     dict_ref: Option<&CFMutableDictionary>,
 ) -> OBEXError {
@@ -2908,7 +2905,7 @@ pub unsafe extern "C-unwind" fn OBEXAddTypeHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddTimeISOHeader(
+pub unsafe fn OBEXAddTimeISOHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     dict_ref: Option<&CFMutableDictionary>,
@@ -2943,7 +2940,7 @@ pub unsafe extern "C-unwind" fn OBEXAddTimeISOHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddTargetHeader(
+pub unsafe fn OBEXAddTargetHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     dict_ref: Option<&CFMutableDictionary>,
@@ -2978,7 +2975,7 @@ pub unsafe extern "C-unwind" fn OBEXAddTargetHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddHTTPHeader(
+pub unsafe fn OBEXAddHTTPHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     dict_ref: Option<&CFMutableDictionary>,
@@ -3015,7 +3012,7 @@ pub unsafe extern "C-unwind" fn OBEXAddHTTPHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddBodyHeader(
+pub unsafe fn OBEXAddBodyHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     is_end_of_body: bool,
@@ -3059,7 +3056,7 @@ pub unsafe extern "C-unwind" fn OBEXAddBodyHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddWhoHeader(
+pub unsafe fn OBEXAddWhoHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     dict_ref: Option<&CFMutableDictionary>,
@@ -3098,7 +3095,7 @@ pub unsafe extern "C-unwind" fn OBEXAddWhoHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddConnectionIDHeader(
+pub unsafe fn OBEXAddConnectionIDHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     dict_ref: Option<&CFMutableDictionary>,
@@ -3133,7 +3130,7 @@ pub unsafe extern "C-unwind" fn OBEXAddConnectionIDHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddApplicationParameterHeader(
+pub unsafe fn OBEXAddApplicationParameterHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     dict_ref: Option<&CFMutableDictionary>,
@@ -3184,7 +3181,7 @@ pub unsafe extern "C-unwind" fn OBEXAddApplicationParameterHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddByteSequenceHeader(
+pub unsafe fn OBEXAddByteSequenceHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     dict_ref: Option<&CFMutableDictionary>,
@@ -3219,7 +3216,7 @@ pub unsafe extern "C-unwind" fn OBEXAddByteSequenceHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddObjectClassHeader(
+pub unsafe fn OBEXAddObjectClassHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     dict_ref: Option<&CFMutableDictionary>,
@@ -3254,7 +3251,7 @@ pub unsafe extern "C-unwind" fn OBEXAddObjectClassHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddAuthorizationChallengeHeader(
+pub unsafe fn OBEXAddAuthorizationChallengeHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     dict_ref: Option<&CFMutableDictionary>,
@@ -3289,7 +3286,7 @@ pub unsafe extern "C-unwind" fn OBEXAddAuthorizationChallengeHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddAuthorizationResponseHeader(
+pub unsafe fn OBEXAddAuthorizationResponseHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     dict_ref: Option<&CFMutableDictionary>,
@@ -3324,7 +3321,7 @@ pub unsafe extern "C-unwind" fn OBEXAddAuthorizationResponseHeader(
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn OBEXAddUserDefinedHeader(
+pub unsafe fn OBEXAddUserDefinedHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     dict_ref: Option<&CFMutableDictionary>,

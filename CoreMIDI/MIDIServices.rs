@@ -1561,7 +1561,7 @@ extern "C" {
 /// - `out_client` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIClientCreate(
+pub unsafe fn MIDIClientCreate(
     name: &CFString,
     notify_proc: MIDINotifyProc,
     notify_ref_con: *mut c_void,
@@ -1599,7 +1599,7 @@ pub unsafe extern "C-unwind" fn MIDIClientCreate(
 /// `out_client` must be a valid pointer.
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIClientCreateWithBlock(
+pub unsafe fn MIDIClientCreateWithBlock(
     name: &CFString,
     out_client: NonNull<MIDIClientRef>,
     notify_block: Option<&MIDINotifyBlock>,
@@ -1629,7 +1629,7 @@ pub unsafe extern "C-unwind" fn MIDIClientCreateWithBlock(
 /// to MIDIClientCreate and MIDIClientCreateWithBlock by that application to fail. For this reason,
 /// disposing all of an application's MIDIClients is strongly discouraged.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIClientDispose(client: MIDIClientRef) -> OSStatus {
+pub unsafe fn MIDIClientDispose(client: MIDIClientRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDIClientDispose(client: MIDIClientRef) -> OSStatus;
     }
@@ -1666,7 +1666,7 @@ pub unsafe extern "C-unwind" fn MIDIClientDispose(client: MIDIClientRef) -> OSSt
 /// `out_port` must be a valid pointer.
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIInputPortCreateWithProtocol(
+pub unsafe fn MIDIInputPortCreateWithProtocol(
     client: MIDIClientRef,
     port_name: &CFString,
     protocol: MIDIProtocolID,
@@ -1717,7 +1717,7 @@ pub unsafe extern "C-unwind" fn MIDIInputPortCreateWithProtocol(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIInputPortCreate(
+pub unsafe fn MIDIInputPortCreate(
     client: MIDIClientRef,
     port_name: &CFString,
     read_proc: MIDIReadProc,
@@ -1764,7 +1764,7 @@ pub unsafe extern "C-unwind" fn MIDIInputPortCreate(
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIInputPortCreateWithBlock(
+pub unsafe fn MIDIInputPortCreateWithBlock(
     client: MIDIClientRef,
     port_name: &CFString,
     out_port: NonNull<MIDIPortRef>,
@@ -1807,7 +1807,7 @@ pub unsafe extern "C-unwind" fn MIDIInputPortCreateWithBlock(
 /// `out_port` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIOutputPortCreate(
+pub unsafe fn MIDIOutputPortCreate(
     client: MIDIClientRef,
     port_name: &CFString,
     out_port: NonNull<MIDIPortRef>,
@@ -1834,7 +1834,7 @@ pub unsafe extern "C-unwind" fn MIDIOutputPortCreate(
 /// are automatically disposed at termination, or explicitly, via MIDIClientDispose, the
 /// client's ports are automatically disposed at that time.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIPortDispose(port: MIDIPortRef) -> OSStatus {
+pub unsafe fn MIDIPortDispose(port: MIDIPortRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDIPortDispose(port: MIDIPortRef) -> OSStatus;
     }
@@ -1858,7 +1858,7 @@ pub unsafe extern "C-unwind" fn MIDIPortDispose(port: MIDIPortRef) -> OSStatus {
 ///
 /// `conn_ref_con` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIPortConnectSource(
+pub unsafe fn MIDIPortConnectSource(
     port: MIDIPortRef,
     source: MIDIEndpointRef,
     conn_ref_con: *mut c_void,
@@ -1884,10 +1884,7 @@ pub unsafe extern "C-unwind" fn MIDIPortConnectSource(
 ///
 /// Returns: An OSStatus result code.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIPortDisconnectSource(
-    port: MIDIPortRef,
-    source: MIDIEndpointRef,
-) -> OSStatus {
+pub unsafe fn MIDIPortDisconnectSource(port: MIDIPortRef, source: MIDIEndpointRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDIPortDisconnectSource(port: MIDIPortRef, source: MIDIEndpointRef) -> OSStatus;
     }
@@ -1900,7 +1897,7 @@ pub unsafe extern "C-unwind" fn MIDIPortDisconnectSource(
 /// Returns: The number of devices in the system, or 0 if an error
 /// occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetNumberOfDevices() -> ItemCount {
+pub unsafe fn MIDIGetNumberOfDevices() -> ItemCount {
     extern "C-unwind" {
         fn MIDIGetNumberOfDevices() -> ItemCount;
     }
@@ -1931,7 +1928,7 @@ pub unsafe extern "C-unwind" fn MIDIGetNumberOfDevices() -> ItemCount {
 /// MIDIGetNumberOfDestinations and MIDIGetDestination, rather iterating through devices and
 /// entities to locate endpoints.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetDevice(device_index0: ItemCount) -> MIDIDeviceRef {
+pub unsafe fn MIDIGetDevice(device_index0: ItemCount) -> MIDIDeviceRef {
     extern "C-unwind" {
         fn MIDIGetDevice(device_index0: ItemCount) -> MIDIDeviceRef;
     }
@@ -1947,7 +1944,7 @@ pub unsafe extern "C-unwind" fn MIDIGetDevice(device_index0: ItemCount) -> MIDID
 /// Returns: The number of entities the device contains, or 0 if an
 /// error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDeviceGetNumberOfEntities(device: MIDIDeviceRef) -> ItemCount {
+pub unsafe fn MIDIDeviceGetNumberOfEntities(device: MIDIDeviceRef) -> ItemCount {
     extern "C-unwind" {
         fn MIDIDeviceGetNumberOfEntities(device: MIDIDeviceRef) -> ItemCount;
     }
@@ -1965,7 +1962,7 @@ pub unsafe extern "C-unwind" fn MIDIDeviceGetNumberOfEntities(device: MIDIDevice
 ///
 /// Returns: A reference to an entity, or NULL if an error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDeviceGetEntity(
+pub unsafe fn MIDIDeviceGetEntity(
     device: MIDIDeviceRef,
     entity_index0: ItemCount,
 ) -> MIDIEntityRef {
@@ -1984,7 +1981,7 @@ pub unsafe extern "C-unwind" fn MIDIDeviceGetEntity(
 /// Returns: The number of sources the entity contains, or 0 if an
 /// error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIEntityGetNumberOfSources(entity: MIDIEntityRef) -> ItemCount {
+pub unsafe fn MIDIEntityGetNumberOfSources(entity: MIDIEntityRef) -> ItemCount {
     extern "C-unwind" {
         fn MIDIEntityGetNumberOfSources(entity: MIDIEntityRef) -> ItemCount;
     }
@@ -2002,7 +1999,7 @@ pub unsafe extern "C-unwind" fn MIDIEntityGetNumberOfSources(entity: MIDIEntityR
 ///
 /// Returns: A reference to a source, or NULL if an error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIEntityGetSource(
+pub unsafe fn MIDIEntityGetSource(
     entity: MIDIEntityRef,
     source_index0: ItemCount,
 ) -> MIDIEndpointRef {
@@ -2021,9 +2018,7 @@ pub unsafe extern "C-unwind" fn MIDIEntityGetSource(
 /// Returns: The number of destinations the entity contains, or 0
 /// if an error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIEntityGetNumberOfDestinations(
-    entity: MIDIEntityRef,
-) -> ItemCount {
+pub unsafe fn MIDIEntityGetNumberOfDestinations(entity: MIDIEntityRef) -> ItemCount {
     extern "C-unwind" {
         fn MIDIEntityGetNumberOfDestinations(entity: MIDIEntityRef) -> ItemCount;
     }
@@ -2041,7 +2036,7 @@ pub unsafe extern "C-unwind" fn MIDIEntityGetNumberOfDestinations(
 ///
 /// Returns: A reference to a destination, or NULL if an error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIEntityGetDestination(
+pub unsafe fn MIDIEntityGetDestination(
     entity: MIDIEntityRef,
     dest_index0: ItemCount,
 ) -> MIDIEndpointRef {
@@ -2065,7 +2060,7 @@ pub unsafe extern "C-unwind" fn MIDIEntityGetDestination(
 ///
 /// `out_device` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIEntityGetDevice(
+pub unsafe fn MIDIEntityGetDevice(
     in_entity: MIDIEntityRef,
     out_device: *mut MIDIDeviceRef,
 ) -> OSStatus {
@@ -2084,7 +2079,7 @@ pub unsafe extern "C-unwind" fn MIDIEntityGetDevice(
 /// Returns: The number of sources in the system, or 0 if an error
 /// occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetNumberOfSources() -> ItemCount {
+pub unsafe fn MIDIGetNumberOfSources() -> ItemCount {
     extern "C-unwind" {
         fn MIDIGetNumberOfSources() -> ItemCount;
     }
@@ -2099,7 +2094,7 @@ pub unsafe extern "C-unwind" fn MIDIGetNumberOfSources() -> ItemCount {
 ///
 /// Returns: A reference to a source, or NULL if an error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetSource(source_index0: ItemCount) -> MIDIEndpointRef {
+pub unsafe fn MIDIGetSource(source_index0: ItemCount) -> MIDIEndpointRef {
     extern "C-unwind" {
         fn MIDIGetSource(source_index0: ItemCount) -> MIDIEndpointRef;
     }
@@ -2112,7 +2107,7 @@ pub unsafe extern "C-unwind" fn MIDIGetSource(source_index0: ItemCount) -> MIDIE
 /// Returns: The number of destinations in the system, or 0 if an error
 /// occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetNumberOfDestinations() -> ItemCount {
+pub unsafe fn MIDIGetNumberOfDestinations() -> ItemCount {
     extern "C-unwind" {
         fn MIDIGetNumberOfDestinations() -> ItemCount;
     }
@@ -2127,7 +2122,7 @@ pub unsafe extern "C-unwind" fn MIDIGetNumberOfDestinations() -> ItemCount {
 ///
 /// Returns: A reference to a destination, or NULL if an error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetDestination(dest_index0: ItemCount) -> MIDIEndpointRef {
+pub unsafe fn MIDIGetDestination(dest_index0: ItemCount) -> MIDIEndpointRef {
     extern "C-unwind" {
         fn MIDIGetDestination(dest_index0: ItemCount) -> MIDIEndpointRef;
     }
@@ -2148,7 +2143,7 @@ pub unsafe extern "C-unwind" fn MIDIGetDestination(dest_index0: ItemCount) -> MI
 ///
 /// `out_entity` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIEndpointGetEntity(
+pub unsafe fn MIDIEndpointGetEntity(
     in_endpoint: MIDIEndpointRef,
     out_entity: *mut MIDIEntityRef,
 ) -> OSStatus {
@@ -2199,7 +2194,7 @@ pub unsafe extern "C-unwind" fn MIDIEndpointGetEntity(
 /// `out_dest` must be a valid pointer.
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDestinationCreateWithProtocol(
+pub unsafe fn MIDIDestinationCreateWithProtocol(
     client: MIDIClientRef,
     name: &CFString,
     protocol: MIDIProtocolID,
@@ -2258,7 +2253,7 @@ pub unsafe extern "C-unwind" fn MIDIDestinationCreateWithProtocol(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDestinationCreate(
+pub unsafe fn MIDIDestinationCreate(
     client: MIDIClientRef,
     name: &CFString,
     read_proc: MIDIReadProc,
@@ -2313,7 +2308,7 @@ pub unsafe extern "C-unwind" fn MIDIDestinationCreate(
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIDestinationCreateWithBlock(
+pub unsafe fn MIDIDestinationCreateWithBlock(
     client: MIDIClientRef,
     name: &CFString,
     out_dest: NonNull<MIDIEndpointRef>,
@@ -2363,7 +2358,7 @@ pub unsafe extern "C-unwind" fn MIDIDestinationCreateWithBlock(
 /// `out_src` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISourceCreateWithProtocol(
+pub unsafe fn MIDISourceCreateWithProtocol(
     client: MIDIClientRef,
     name: &CFString,
     protocol: MIDIProtocolID,
@@ -2410,7 +2405,7 @@ pub unsafe extern "C-unwind" fn MIDISourceCreateWithProtocol(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISourceCreate(
+pub unsafe fn MIDISourceCreate(
     client: MIDIClientRef,
     name: &CFString,
     out_src: NonNull<MIDIEndpointRef>,
@@ -2433,7 +2428,7 @@ pub unsafe extern "C-unwind" fn MIDISourceCreate(
 ///
 /// Returns: An OSStatus result code.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIEndpointDispose(endpt: MIDIEndpointRef) -> OSStatus {
+pub unsafe fn MIDIEndpointDispose(endpt: MIDIEndpointRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDIEndpointDispose(endpt: MIDIEndpointRef) -> OSStatus;
     }
@@ -2451,7 +2446,7 @@ pub unsafe extern "C-unwind" fn MIDIEndpointDispose(endpt: MIDIEndpointRef) -> O
 /// cable. Their presence is completely optional, only when a UI (such as Audio MIDI Setup)
 /// adds them.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetNumberOfExternalDevices() -> ItemCount {
+pub unsafe fn MIDIGetNumberOfExternalDevices() -> ItemCount {
     extern "C-unwind" {
         fn MIDIGetNumberOfExternalDevices() -> ItemCount;
     }
@@ -2469,7 +2464,7 @@ pub unsafe extern "C-unwind" fn MIDIGetNumberOfExternalDevices() -> ItemCount {
 ///
 /// Use this to enumerate the external devices in the system.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIGetExternalDevice(device_index0: ItemCount) -> MIDIDeviceRef {
+pub unsafe fn MIDIGetExternalDevice(device_index0: ItemCount) -> MIDIDeviceRef {
     extern "C-unwind" {
         fn MIDIGetExternalDevice(device_index0: ItemCount) -> MIDIDeviceRef;
     }
@@ -2495,7 +2490,7 @@ pub unsafe extern "C-unwind" fn MIDIGetExternalDevice(device_index0: ItemCount) 
 /// `out_value` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIObjectGetIntegerProperty(
+pub unsafe fn MIDIObjectGetIntegerProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
     out_value: NonNull<i32>,
@@ -2525,7 +2520,7 @@ pub unsafe extern "C-unwind" fn MIDIObjectGetIntegerProperty(
 /// (See the MIDIObjectRef documentation for information about properties.)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIObjectSetIntegerProperty(
+pub unsafe fn MIDIObjectSetIntegerProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
     value: i32,
@@ -2559,7 +2554,7 @@ pub unsafe extern "C-unwind" fn MIDIObjectSetIntegerProperty(
 /// `str` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIObjectGetStringProperty(
+pub unsafe fn MIDIObjectGetStringProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
     str: NonNull<*const CFString>,
@@ -2589,7 +2584,7 @@ pub unsafe extern "C-unwind" fn MIDIObjectGetStringProperty(
 /// (See the MIDIObjectRef documentation for information about properties.)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIObjectSetStringProperty(
+pub unsafe fn MIDIObjectSetStringProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
     str: &CFString,
@@ -2624,7 +2619,7 @@ pub unsafe extern "C-unwind" fn MIDIObjectSetStringProperty(
 /// `out_data` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIObjectGetDataProperty(
+pub unsafe fn MIDIObjectGetDataProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
     out_data: NonNull<*const CFData>,
@@ -2654,7 +2649,7 @@ pub unsafe extern "C-unwind" fn MIDIObjectGetDataProperty(
 /// (See the MIDIObjectRef documentation for information about properties.)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIObjectSetDataProperty(
+pub unsafe fn MIDIObjectSetDataProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
     data: &CFData,
@@ -2688,7 +2683,7 @@ pub unsafe extern "C-unwind" fn MIDIObjectSetDataProperty(
 /// `out_dict` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIObjectGetDictionaryProperty(
+pub unsafe fn MIDIObjectGetDictionaryProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
     out_dict: NonNull<*const CFDictionary>,
@@ -2723,7 +2718,7 @@ pub unsafe extern "C-unwind" fn MIDIObjectGetDictionaryProperty(
 /// - `dict` generic must be of the correct type.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIObjectSetDictionaryProperty(
+pub unsafe fn MIDIObjectSetDictionaryProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
     dict: &CFDictionary,
@@ -2762,7 +2757,7 @@ pub unsafe extern "C-unwind" fn MIDIObjectSetDictionaryProperty(
 /// `out_properties` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIObjectGetProperties(
+pub unsafe fn MIDIObjectGetProperties(
     obj: MIDIObjectRef,
     out_properties: NonNull<*const CFPropertyList>,
     deep: bool,
@@ -2787,10 +2782,7 @@ pub unsafe extern "C-unwind" fn MIDIObjectGetProperties(
 /// Returns: An OSStatus result code.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIObjectRemoveProperty(
-    obj: MIDIObjectRef,
-    property_id: &CFString,
-) -> OSStatus {
+pub unsafe fn MIDIObjectRemoveProperty(obj: MIDIObjectRef, property_id: &CFString) -> OSStatus {
     extern "C-unwind" {
         fn MIDIObjectRemoveProperty(obj: MIDIObjectRef, property_id: &CFString) -> OSStatus;
     }
@@ -2820,7 +2812,7 @@ pub unsafe extern "C-unwind" fn MIDIObjectRemoveProperty(
 /// - `out_object` must be a valid pointer or null.
 /// - `out_object_type` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIObjectFindByUniqueID(
+pub unsafe fn MIDIObjectFindByUniqueID(
     in_unique_id: MIDIUniqueID,
     out_object: *mut MIDIObjectRef,
     out_object_type: *mut MIDIObjectType,
@@ -2854,7 +2846,7 @@ pub unsafe extern "C-unwind" fn MIDIObjectFindByUniqueID(
 ///
 /// `evtlist` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISendEventList(
+pub unsafe fn MIDISendEventList(
     port: MIDIPortRef,
     dest: MIDIEndpointRef,
     evtlist: NonNull<MIDIEventList>,
@@ -2889,7 +2881,7 @@ pub unsafe extern "C-unwind" fn MIDISendEventList(
 /// `pktlist` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISend(
+pub unsafe fn MIDISend(
     port: MIDIPortRef,
     dest: MIDIEndpointRef,
     pktlist: NonNull<MIDIPacketList>,
@@ -2918,7 +2910,7 @@ pub unsafe extern "C-unwind" fn MIDISend(
 ///
 /// `request` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus {
+pub unsafe fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus {
     extern "C-unwind" {
         fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus;
     }
@@ -2939,9 +2931,7 @@ pub unsafe extern "C-unwind" fn MIDISendSysex(request: NonNull<MIDISysexSendRequ
 ///
 /// `ump_request` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISendUMPSysex(
-    ump_request: NonNull<MIDISysexSendRequestUMP>,
-) -> OSStatus {
+pub unsafe fn MIDISendUMPSysex(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus {
     extern "C-unwind" {
         fn MIDISendUMPSysex(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
     }
@@ -2962,9 +2952,7 @@ pub unsafe extern "C-unwind" fn MIDISendUMPSysex(
 ///
 /// `ump_request` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDISendUMPSysex8(
-    ump_request: NonNull<MIDISysexSendRequestUMP>,
-) -> OSStatus {
+pub unsafe fn MIDISendUMPSysex8(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus {
     extern "C-unwind" {
         fn MIDISendUMPSysex8(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
     }
@@ -3035,7 +3023,7 @@ impl MIDIEventPacket {
 ///
 /// `evtlist` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIReceivedEventList(
+pub unsafe fn MIDIReceivedEventList(
     src: MIDIEndpointRef,
     evtlist: NonNull<MIDIEventList>,
 ) -> OSStatus {
@@ -3070,10 +3058,7 @@ pub unsafe extern "C-unwind" fn MIDIReceivedEventList(
 /// `pktlist` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIReceived(
-    src: MIDIEndpointRef,
-    pktlist: NonNull<MIDIPacketList>,
-) -> OSStatus {
+pub unsafe fn MIDIReceived(src: MIDIEndpointRef, pktlist: NonNull<MIDIPacketList>) -> OSStatus {
     extern "C-unwind" {
         fn MIDIReceived(src: MIDIEndpointRef, pktlist: NonNull<MIDIPacketList>) -> OSStatus;
     }
@@ -3091,7 +3076,7 @@ pub unsafe extern "C-unwind" fn MIDIReceived(
 /// Clients may use MIDIFlushOutput to cancel the sending of packets that were previously
 /// scheduled for future delivery.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIFlushOutput(dest: MIDIEndpointRef) -> OSStatus {
+pub unsafe fn MIDIFlushOutput(dest: MIDIEndpointRef) -> OSStatus {
     extern "C-unwind" {
         fn MIDIFlushOutput(dest: MIDIEndpointRef) -> OSStatus;
     }
@@ -3106,7 +3091,7 @@ pub unsafe extern "C-unwind" fn MIDIFlushOutput(dest: MIDIEndpointRef) -> OSStat
 ///
 /// Returns: An OSStatus result code.
 #[inline]
-pub unsafe extern "C-unwind" fn MIDIRestart() -> OSStatus {
+pub unsafe fn MIDIRestart() -> OSStatus {
     extern "C-unwind" {
         fn MIDIRestart() -> OSStatus;
     }

@@ -1095,7 +1095,7 @@ impl AVContentKey {
 /// `out_error` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn AVSampleBufferAttachContentKey(
+pub unsafe fn AVSampleBufferAttachContentKey(
     sbuf: &CMSampleBuffer,
     content_key: &AVContentKey,
     out_error: *mut *mut NSError,

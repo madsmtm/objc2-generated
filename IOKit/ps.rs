@@ -303,7 +303,7 @@ unsafe impl RefEncode for IOPSLowBatteryWarningLevel {
 /// battery warnings, you should alert the user at least when the system
 /// is in kIOPSLowBatteryWarnFinal.
 #[inline]
-pub extern "C-unwind" fn IOPSGetBatteryWarningLevel() -> IOPSLowBatteryWarningLevel {
+pub fn IOPSGetBatteryWarningLevel() -> IOPSLowBatteryWarningLevel {
     extern "C-unwind" {
         fn IOPSGetBatteryWarningLevel() -> IOPSLowBatteryWarningLevel;
     }
@@ -394,7 +394,7 @@ pub extern "C-unwind" fn IOPSGetBatteryWarningLevel() -> IOPSLowBatteryWarningLe
 /// Otherwise returns a positive number of type CFTimeInterval, indicating the time
 /// remaining in seconds until all power sources are depleted.
 #[inline]
-pub extern "C-unwind" fn IOPSGetTimeRemainingEstimate() -> CFTimeInterval {
+pub fn IOPSGetTimeRemainingEstimate() -> CFTimeInterval {
     extern "C-unwind" {
         fn IOPSGetTimeRemainingEstimate() -> CFTimeInterval;
     }
@@ -415,7 +415,7 @@ pub type IOPowerSourceCallbackType = Option<unsafe extern "C-unwind" fn(*mut c_v
 /// Returns: NULL if errors were encountered, a CFTypeRef otherwise.
 /// Caller must CFRelease() the return value when done accessing it.
 #[inline]
-pub extern "C-unwind" fn IOPSCopyPowerSourcesInfo() -> Option<CFRetained<CFType>> {
+pub fn IOPSCopyPowerSourcesInfo() -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn IOPSCopyPowerSourcesInfo() -> Option<NonNull<CFType>>;
     }
@@ -441,9 +441,7 @@ pub extern "C-unwind" fn IOPSCopyPowerSourcesInfo() -> Option<CFRetained<CFType>
 /// - `blob` should be of the correct type.
 /// - `blob` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPSCopyPowerSourcesList(
-    blob: Option<&CFType>,
-) -> Option<CFRetained<CFArray>> {
+pub unsafe fn IOPSCopyPowerSourcesList(blob: Option<&CFType>) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn IOPSCopyPowerSourcesList(blob: Option<&CFType>) -> Option<NonNull<CFArray>>;
     }
@@ -476,7 +474,7 @@ pub unsafe extern "C-unwind" fn IOPSCopyPowerSourcesList(
 /// - `ps` should be of the correct type.
 /// - `ps` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPSGetPowerSourceDescription(
+pub unsafe fn IOPSGetPowerSourceDescription(
     blob: Option<&CFType>,
     ps: Option<&CFType>,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -506,7 +504,7 @@ pub unsafe extern "C-unwind" fn IOPSGetPowerSourceDescription(
 /// - `snapshot` should be of the correct type.
 /// - `snapshot` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPSGetProvidingPowerSourceType(
+pub unsafe fn IOPSGetProvidingPowerSourceType(
     snapshot: Option<&CFType>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -564,7 +562,7 @@ pub unsafe extern "C-unwind" fn IOPSGetProvidingPowerSourceType(
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPSNotificationCreateRunLoopSource(
+pub unsafe fn IOPSNotificationCreateRunLoopSource(
     callback: IOPowerSourceCallbackType,
     context: *mut c_void,
 ) -> Option<CFRetained<CFRunLoopSource>> {
@@ -613,7 +611,7 @@ pub unsafe extern "C-unwind" fn IOPSNotificationCreateRunLoopSource(
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPSCreateLimitedPowerNotification(
+pub unsafe fn IOPSCreateLimitedPowerNotification(
     callback: IOPowerSourceCallbackType,
     context: *mut c_void,
 ) -> Option<CFRetained<CFRunLoopSource>> {
@@ -638,7 +636,7 @@ pub unsafe extern "C-unwind" fn IOPSCreateLimitedPowerNotification(
 /// Returns: Returns a CFDictionary on success. Caller must release the returned
 /// dictionary. If no adapter is attached, or if there's an error,  returns NULL.
 #[inline]
-pub extern "C-unwind" fn IOPSCopyExternalPowerAdapterDetails() -> Option<CFRetained<CFDictionary>> {
+pub fn IOPSCopyExternalPowerAdapterDetails() -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
         fn IOPSCopyExternalPowerAdapterDetails() -> Option<NonNull<CFDictionary>>;
     }

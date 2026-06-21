@@ -73,7 +73,7 @@ pub const kAudioServicesPropertyCompletePlaybackIfAppDies: AudioServicesProperty
 /// Parameter `outSystemSoundID`: Returns a SystemSoundID.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesCreateSystemSoundID(
+pub unsafe fn AudioServicesCreateSystemSoundID(
     in_file_url: &CFURL,
     out_system_sound_id: &mut SystemSoundID,
 ) -> OSStatus {
@@ -94,9 +94,7 @@ pub unsafe extern "C-unwind" fn AudioServicesCreateSystemSoundID(
 ///
 /// Parameter `inSystemSoundID`: A SystemSoundID that the application no longer needs to use.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesDisposeSystemSoundID(
-    in_system_sound_id: SystemSoundID,
-) -> OSStatus {
+pub unsafe fn AudioServicesDisposeSystemSoundID(in_system_sound_id: SystemSoundID) -> OSStatus {
     extern "C-unwind" {
         fn AudioServicesDisposeSystemSoundID(in_system_sound_id: SystemSoundID) -> OSStatus;
     }
@@ -116,7 +114,7 @@ pub unsafe extern "C-unwind" fn AudioServicesDisposeSystemSoundID(
 /// responsible for handling thread safety.
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesPlayAlertSoundWithCompletion(
+pub unsafe fn AudioServicesPlayAlertSoundWithCompletion(
     in_system_sound_id: SystemSoundID,
     in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
 ) {
@@ -140,7 +138,7 @@ pub unsafe extern "C-unwind" fn AudioServicesPlayAlertSoundWithCompletion(
 /// responsible for handling thread safety.
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesPlaySystemSoundWithCompletion(
+pub unsafe fn AudioServicesPlaySystemSoundWithCompletion(
     in_system_sound_id: SystemSoundID,
     in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
 ) {
@@ -174,7 +172,7 @@ pub unsafe extern "C-unwind" fn AudioServicesPlaySystemSoundWithCompletion(
 ///
 /// `in_specifier` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesGetPropertyInfo(
+pub unsafe fn AudioServicesGetPropertyInfo(
     in_property_id: AudioServicesPropertyID,
     in_specifier_size: u32,
     in_specifier: *const c_void,
@@ -224,7 +222,7 @@ pub unsafe extern "C-unwind" fn AudioServicesGetPropertyInfo(
 /// - `in_specifier` must be a valid pointer or null.
 /// - `out_property_data` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesGetProperty(
+pub unsafe fn AudioServicesGetProperty(
     in_property_id: AudioServicesPropertyID,
     in_specifier_size: u32,
     in_specifier: *const c_void,
@@ -271,7 +269,7 @@ pub unsafe extern "C-unwind" fn AudioServicesGetProperty(
 /// - `in_specifier` must be a valid pointer or null.
 /// - `in_property_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesSetProperty(
+pub unsafe fn AudioServicesSetProperty(
     in_property_id: AudioServicesPropertyID,
     in_specifier_size: u32,
     in_specifier: *const c_void,
@@ -310,7 +308,7 @@ pub unsafe extern "C-unwind" fn AudioServicesSetProperty(
 /// can pass the kSystemSoundID_UserPreferredAlert constant to playback the alert sound
 /// selected by the user in System Preferences. On iOS there is no preferred user alert sound.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesPlayAlertSound(in_system_sound_id: SystemSoundID) {
+pub unsafe fn AudioServicesPlayAlertSound(in_system_sound_id: SystemSoundID) {
     extern "C-unwind" {
         fn AudioServicesPlayAlertSound(in_system_sound_id: SystemSoundID);
     }
@@ -327,7 +325,7 @@ pub unsafe extern "C-unwind" fn AudioServicesPlayAlertSound(in_system_sound_id: 
 ///
 /// Parameter `inSystemSoundID`: A SystemSoundID for the System Sound server to play.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesPlaySystemSound(in_system_sound_id: SystemSoundID) {
+pub unsafe fn AudioServicesPlaySystemSound(in_system_sound_id: SystemSoundID) {
     extern "C-unwind" {
         fn AudioServicesPlaySystemSound(in_system_sound_id: SystemSoundID);
     }
@@ -366,7 +364,7 @@ pub unsafe extern "C-unwind" fn AudioServicesPlaySystemSound(in_system_sound_id:
 /// - `in_client_data` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesAddSystemSoundCompletion(
+pub unsafe fn AudioServicesAddSystemSoundCompletion(
     in_system_sound_id: SystemSoundID,
     in_run_loop: Option<&CFRunLoop>,
     in_run_loop_mode: Option<&CFString>,
@@ -406,9 +404,7 @@ pub unsafe extern "C-unwind" fn AudioServicesAddSystemSoundCompletion(
 /// Parameter `inSystemSoundID`: The SystemSoundID for which completion routines should be
 /// removed.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesRemoveSystemSoundCompletion(
-    in_system_sound_id: SystemSoundID,
-) {
+pub unsafe fn AudioServicesRemoveSystemSoundCompletion(in_system_sound_id: SystemSoundID) {
     extern "C-unwind" {
         fn AudioServicesRemoveSystemSoundCompletion(in_system_sound_id: SystemSoundID);
     }
@@ -442,7 +438,7 @@ extern "C" {
 /// `in_details` generic should be of the correct type.
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesPlaySystemSoundWithDetails(
+pub unsafe fn AudioServicesPlaySystemSoundWithDetails(
     in_system_sound_id: SystemSoundID,
     in_details: Option<&CFDictionary<CFString, CFType>>,
     in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
@@ -474,7 +470,7 @@ pub unsafe extern "C-unwind" fn AudioServicesPlaySystemSoundWithDetails(
 /// `in_details` generic should be of the correct type.
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioServicesPlayAlertSoundWithDetails(
+pub unsafe fn AudioServicesPlayAlertSoundWithDetails(
     in_system_sound_id: SystemSoundID,
     in_details: Option<&CFDictionary<CFString, CFType>>,
     in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,

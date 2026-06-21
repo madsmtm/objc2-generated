@@ -193,7 +193,7 @@ extern "C" {
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 #[inline]
-pub extern "C-unwind" fn NSAccessibilityFrameInView(parent_view: &NSView, frame: NSRect) -> NSRect {
+pub fn NSAccessibilityFrameInView(parent_view: &NSView, frame: NSRect) -> NSRect {
     extern "C-unwind" {
         fn NSAccessibilityFrameInView(parent_view: &NSView, frame: NSRect) -> NSRect;
     }
@@ -202,10 +202,7 @@ pub extern "C-unwind" fn NSAccessibilityFrameInView(parent_view: &NSView, frame:
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 #[inline]
-pub extern "C-unwind" fn NSAccessibilityPointInView(
-    parent_view: &NSView,
-    point: NSPoint,
-) -> NSPoint {
+pub fn NSAccessibilityPointInView(parent_view: &NSView, point: NSPoint) -> NSPoint {
     extern "C-unwind" {
         fn NSAccessibilityPointInView(parent_view: &NSView, point: NSPoint) -> NSPoint;
     }
@@ -213,7 +210,7 @@ pub extern "C-unwind" fn NSAccessibilityPointInView(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSAccessibilitySetMayContainProtectedContent(flag: bool) -> bool {
+pub fn NSAccessibilitySetMayContainProtectedContent(flag: bool) -> bool {
     extern "C-unwind" {
         fn NSAccessibilitySetMayContainProtectedContent(flag: Bool) -> Bool;
     }
@@ -222,7 +219,7 @@ pub extern "C-unwind" fn NSAccessibilitySetMayContainProtectedContent(flag: bool
 
 #[cfg(feature = "NSAccessibilityConstants")]
 #[inline]
-pub extern "C-unwind" fn NSAccessibilityRoleDescription(
+pub fn NSAccessibilityRoleDescription(
     role: &NSAccessibilityRole,
     subrole: Option<&NSAccessibilitySubrole>,
 ) -> Option<Retained<NSString>> {
@@ -240,7 +237,7 @@ pub extern "C-unwind" fn NSAccessibilityRoleDescription(
 ///
 /// `element` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSAccessibilityRoleDescriptionForUIElement(
+pub unsafe fn NSAccessibilityRoleDescriptionForUIElement(
     element: &AnyObject,
 ) -> Option<Retained<NSString>> {
     extern "C-unwind" {
@@ -252,7 +249,7 @@ pub unsafe extern "C-unwind" fn NSAccessibilityRoleDescriptionForUIElement(
 
 #[cfg(feature = "NSAccessibilityConstants")]
 #[inline]
-pub extern "C-unwind" fn NSAccessibilityActionDescription(
+pub fn NSAccessibilityActionDescription(
     action: &NSAccessibilityActionName,
 ) -> Option<Retained<NSString>> {
     extern "C-unwind" {
@@ -272,7 +269,7 @@ pub extern "C-unwind" fn NSAccessibilityActionDescription(
 #[cfg(feature = "NSAccessibilityConstants")]
 #[deprecated = "Exceptions are no longer appropriate for indicating errors in accessibility API. Unexpected values should be handled through appropriate type checking."]
 #[inline]
-pub unsafe extern "C-unwind" fn NSAccessibilityRaiseBadArgumentException(
+pub unsafe fn NSAccessibilityRaiseBadArgumentException(
     element: Option<&AnyObject>,
     attribute: Option<&NSAccessibilityAttributeName>,
     value: Option<&AnyObject>,
@@ -293,9 +290,7 @@ pub unsafe extern "C-unwind" fn NSAccessibilityRaiseBadArgumentException(
 ///
 /// `element` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredAncestor(
-    element: &AnyObject,
-) -> Option<Retained<AnyObject>> {
+pub unsafe fn NSAccessibilityUnignoredAncestor(element: &AnyObject) -> Option<Retained<AnyObject>> {
     extern "C-unwind" {
         fn NSAccessibilityUnignoredAncestor(element: &AnyObject) -> *mut AnyObject;
     }
@@ -307,7 +302,7 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredAncestor(
 ///
 /// `element` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredDescendant(
+pub unsafe fn NSAccessibilityUnignoredDescendant(
     element: &AnyObject,
 ) -> Option<Retained<AnyObject>> {
     extern "C-unwind" {
@@ -321,9 +316,7 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredDescendant(
 ///
 /// `original_children` generic should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildren(
-    original_children: &NSArray,
-) -> Retained<NSArray> {
+pub unsafe fn NSAccessibilityUnignoredChildren(original_children: &NSArray) -> Retained<NSArray> {
     extern "C-unwind" {
         fn NSAccessibilityUnignoredChildren(original_children: &NSArray) -> *mut NSArray;
     }
@@ -336,7 +329,7 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildren(
 ///
 /// `original_child` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildrenForOnlyChild(
+pub unsafe fn NSAccessibilityUnignoredChildrenForOnlyChild(
     original_child: &AnyObject,
 ) -> Retained<NSArray> {
     extern "C-unwind" {
@@ -355,7 +348,7 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildrenForOnlyChild(
 /// `element` should be of the correct type.
 #[cfg(feature = "NSAccessibilityConstants")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSAccessibilityPostNotification(
+pub unsafe fn NSAccessibilityPostNotification(
     element: &AnyObject,
     notification: &NSAccessibilityNotificationName,
 ) {

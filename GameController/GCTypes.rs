@@ -36,7 +36,7 @@ impl GCPoint2 {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromGCPoint2(point: GCPoint2) -> Retained<NSString> {
+pub unsafe fn NSStringFromGCPoint2(point: GCPoint2) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromGCPoint2(point: GCPoint2) -> *mut NSString;
     }

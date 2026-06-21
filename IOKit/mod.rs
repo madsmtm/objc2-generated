@@ -9632,7 +9632,7 @@ extern "C" {
 /// `main_port` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOMainPort(
+pub unsafe fn IOMainPort(
     bootstrap_port: libc::mach_port_t,
     main_port: *mut libc::mach_port_t,
 ) -> libc::kern_return_t {
@@ -9662,7 +9662,7 @@ extern "C" {
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOMasterPort(
+pub unsafe fn IOMasterPort(
     bootstrap_port: libc::mach_port_t,
     main_port: *mut libc::mach_port_t,
 ) -> libc::kern_return_t {
@@ -9869,7 +9869,7 @@ impl IONotificationPort {
 /// `recv_port` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOCreateReceivePort(
+pub unsafe fn IOCreateReceivePort(
     msg_type: u32,
     recv_port: *mut libc::mach_port_t,
 ) -> libc::kern_return_t {
@@ -9891,7 +9891,7 @@ pub unsafe extern "C-unwind" fn IOCreateReceivePort(
 /// Returns: A kern_return_t error code.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOObjectRelease(object: io_object_t) -> libc::kern_return_t {
+pub fn IOObjectRelease(object: io_object_t) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOObjectRelease(object: io_object_t) -> libc::kern_return_t;
     }
@@ -9907,7 +9907,7 @@ pub extern "C-unwind" fn IOObjectRelease(object: io_object_t) -> libc::kern_retu
 /// Returns: A kern_return_t error code.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOObjectRetain(object: io_object_t) -> libc::kern_return_t {
+pub fn IOObjectRetain(object: io_object_t) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOObjectRetain(object: io_object_t) -> libc::kern_return_t;
     }
@@ -9929,7 +9929,7 @@ pub extern "C-unwind" fn IOObjectRetain(object: io_object_t) -> libc::kern_retur
 /// `class_name` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOObjectGetClass(
+pub unsafe fn IOObjectGetClass(
     object: io_object_t,
     class_name: Option<&mut io_name_t>,
 ) -> libc::kern_return_t {
@@ -9951,7 +9951,7 @@ pub unsafe extern "C-unwind" fn IOObjectGetClass(
 /// Returns: The resulting CFStringRef. This should be released by the caller. If a valid object is not passed in, then NULL is returned.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOObjectCopyClass(object: io_object_t) -> Option<CFRetained<CFString>> {
+pub fn IOObjectCopyClass(object: io_object_t) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn IOObjectCopyClass(object: io_object_t) -> Option<NonNull<CFString>>;
     }
@@ -9971,7 +9971,7 @@ pub extern "C-unwind" fn IOObjectCopyClass(object: io_object_t) -> Option<CFReta
 ///
 /// `classname` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IOObjectCopySuperclassForClass(
+pub unsafe fn IOObjectCopySuperclassForClass(
     classname: Option<&CFString>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -9995,7 +9995,7 @@ pub unsafe extern "C-unwind" fn IOObjectCopySuperclassForClass(
 ///
 /// `classname` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IOObjectCopyBundleIdentifierForClass(
+pub unsafe fn IOObjectCopyBundleIdentifierForClass(
     classname: Option<&CFString>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -10022,10 +10022,7 @@ pub unsafe extern "C-unwind" fn IOObjectCopyBundleIdentifierForClass(
 /// `class_name` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOObjectConformsTo(
-    object: io_object_t,
-    class_name: Option<&io_name_t>,
-) -> bool {
+pub unsafe fn IOObjectConformsTo(object: io_object_t, class_name: Option<&io_name_t>) -> bool {
     extern "C-unwind" {
         fn IOObjectConformsTo(
             object: io_object_t,
@@ -10047,7 +10044,7 @@ pub unsafe extern "C-unwind" fn IOObjectConformsTo(
 /// Returns: If both object handles are valid, and represent the same object in the kernel true is returned, otherwise false.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOObjectIsEqualTo(object: io_object_t, an_object: io_object_t) -> bool {
+pub fn IOObjectIsEqualTo(object: io_object_t, an_object: io_object_t) -> bool {
     extern "C-unwind" {
         fn IOObjectIsEqualTo(object: io_object_t, an_object: io_object_t) -> libc::boolean_t;
     }
@@ -10064,7 +10061,7 @@ pub extern "C-unwind" fn IOObjectIsEqualTo(object: io_object_t, an_object: io_ob
 /// Returns: If the object handle is valid, the kernel objects retain count is returned, otherwise zero is returned.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOObjectGetKernelRetainCount(object: io_object_t) -> u32 {
+pub fn IOObjectGetKernelRetainCount(object: io_object_t) -> u32 {
     extern "C-unwind" {
         fn IOObjectGetKernelRetainCount(object: io_object_t) -> u32;
     }
@@ -10080,7 +10077,7 @@ pub extern "C-unwind" fn IOObjectGetKernelRetainCount(object: io_object_t) -> u3
 /// Returns: If the object handle is valid, the objects user retain count is returned, otherwise zero is returned.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOObjectGetUserRetainCount(object: io_object_t) -> u32 {
+pub fn IOObjectGetUserRetainCount(object: io_object_t) -> u32 {
     extern "C-unwind" {
         fn IOObjectGetUserRetainCount(object: io_object_t) -> u32;
     }
@@ -10096,7 +10093,7 @@ pub extern "C-unwind" fn IOObjectGetUserRetainCount(object: io_object_t) -> u32 
 /// Returns: If the object handle is valid, the kernel objects retain count is returned, otherwise zero is returned.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOObjectGetRetainCount(object: io_object_t) -> u32 {
+pub fn IOObjectGetRetainCount(object: io_object_t) -> u32 {
     extern "C-unwind" {
         fn IOObjectGetRetainCount(object: io_object_t) -> u32;
     }
@@ -10112,7 +10109,7 @@ pub extern "C-unwind" fn IOObjectGetRetainCount(object: io_object_t) -> u32 {
 /// Returns: If the iterator handle is valid, the next element in the iteration is returned, otherwise zero is returned. The element should be released by the caller when it is finished.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOIteratorNext(iterator: io_iterator_t) -> io_object_t {
+pub fn IOIteratorNext(iterator: io_iterator_t) -> io_object_t {
     extern "C-unwind" {
         fn IOIteratorNext(iterator: io_iterator_t) -> io_object_t;
     }
@@ -10126,7 +10123,7 @@ pub extern "C-unwind" fn IOIteratorNext(iterator: io_iterator_t) -> io_object_t 
 /// Parameter `iterator`: An IOKit iterator handle.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOIteratorReset(iterator: io_iterator_t) {
+pub fn IOIteratorReset(iterator: io_iterator_t) {
     extern "C-unwind" {
         fn IOIteratorReset(iterator: io_iterator_t);
     }
@@ -10142,7 +10139,7 @@ pub extern "C-unwind" fn IOIteratorReset(iterator: io_iterator_t) {
 /// Returns: True if the iterator handle is valid, otherwise false is returned.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
+pub fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
     extern "C-unwind" {
         fn IOIteratorIsValid(iterator: io_iterator_t) -> libc::boolean_t;
     }
@@ -10160,7 +10157,7 @@ pub extern "C-unwind" fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOServiceAddNotification(
+pub unsafe fn IOServiceAddNotification(
     main_port: libc::mach_port_t,
     notification_type: Option<&io_name_t>,
     matching: Option<&CFDictionary>,
@@ -10219,7 +10216,7 @@ pub unsafe extern "C-unwind" fn IOServiceAddNotification(
 /// - `notification` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOServiceAddInterestNotification(
+pub unsafe fn IOServiceAddInterestNotification(
     notify_port: IONotificationPortRef,
     service: io_service_t,
     interest_type: Option<&io_name_t>,
@@ -10269,7 +10266,7 @@ pub unsafe extern "C-unwind" fn IOServiceAddInterestNotification(
 /// - `matches` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOServiceMatchPropertyTable(
+pub unsafe fn IOServiceMatchPropertyTable(
     service: io_service_t,
     matching: Option<&CFDictionary>,
     matches: *mut libc::boolean_t,
@@ -10299,7 +10296,7 @@ pub unsafe extern "C-unwind" fn IOServiceMatchPropertyTable(
 /// `busy_state` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOServiceGetBusyState(
+pub unsafe fn IOServiceGetBusyState(
     service: io_service_t,
     busy_state: *mut u32,
 ) -> libc::kern_return_t {
@@ -10327,7 +10324,7 @@ pub unsafe extern "C-unwind" fn IOServiceGetBusyState(
 /// `busy_state` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOKitGetBusyState(
+pub unsafe fn IOKitGetBusyState(
     main_port: libc::mach_port_t,
     busy_state: *mut u32,
 ) -> libc::kern_return_t {
@@ -10361,7 +10358,7 @@ pub unsafe extern "C-unwind" fn IOKitGetBusyState(
 /// `connect` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOServiceOpen(
+pub unsafe fn IOServiceOpen(
     service: io_service_t,
     owning_task: task_port_t,
     r#type: u32,
@@ -10389,10 +10386,7 @@ pub unsafe extern "C-unwind" fn IOServiceOpen(
 /// Returns: A return code generated by IOService::requestProbe.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOServiceRequestProbe(
-    service: io_service_t,
-    options: u32,
-) -> libc::kern_return_t {
+pub fn IOServiceRequestProbe(service: io_service_t, options: u32) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOServiceRequestProbe(service: io_service_t, options: u32) -> libc::kern_return_t;
     }
@@ -10413,10 +10407,7 @@ pub const kIOServiceInteractionAllowed: c_uint = 0x00000001;
 /// Returns: kIOReturnSuccess if the IOService is authorized, kIOReturnNotPermitted if the IOService is not authorized.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOServiceAuthorize(
-    service: io_service_t,
-    options: u32,
-) -> libc::kern_return_t {
+pub fn IOServiceAuthorize(service: io_service_t, options: u32) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOServiceAuthorize(service: io_service_t, options: u32) -> libc::kern_return_t;
     }
@@ -10425,10 +10416,7 @@ pub extern "C-unwind" fn IOServiceAuthorize(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOServiceOpenAsFileDescriptor(
-    service: io_service_t,
-    oflag: c_int,
-) -> c_int {
+pub fn IOServiceOpenAsFileDescriptor(service: io_service_t, oflag: c_int) -> c_int {
     extern "C-unwind" {
         fn IOServiceOpenAsFileDescriptor(service: io_service_t, oflag: c_int) -> c_int;
     }
@@ -10444,7 +10432,7 @@ pub extern "C-unwind" fn IOServiceOpenAsFileDescriptor(
 /// Returns: A kern_return_t error code.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOServiceClose(connect: io_connect_t) -> libc::kern_return_t {
+pub fn IOServiceClose(connect: io_connect_t) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOServiceClose(connect: io_connect_t) -> libc::kern_return_t;
     }
@@ -10460,7 +10448,7 @@ pub extern "C-unwind" fn IOServiceClose(connect: io_connect_t) -> libc::kern_ret
 /// Returns: A kern_return_t error code.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOConnectAddRef(connect: io_connect_t) -> libc::kern_return_t {
+pub fn IOConnectAddRef(connect: io_connect_t) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectAddRef(connect: io_connect_t) -> libc::kern_return_t;
     }
@@ -10476,7 +10464,7 @@ pub extern "C-unwind" fn IOConnectAddRef(connect: io_connect_t) -> libc::kern_re
 /// Returns: A kern_return_t error code.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOConnectRelease(connect: io_connect_t) -> libc::kern_return_t {
+pub fn IOConnectRelease(connect: io_connect_t) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectRelease(connect: io_connect_t) -> libc::kern_return_t;
     }
@@ -10498,7 +10486,7 @@ pub extern "C-unwind" fn IOConnectRelease(connect: io_connect_t) -> libc::kern_r
 /// `service` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectGetService(
+pub unsafe fn IOConnectGetService(
     connect: io_connect_t,
     service: *mut io_service_t,
 ) -> libc::kern_return_t {
@@ -10526,7 +10514,7 @@ pub unsafe extern "C-unwind" fn IOConnectGetService(
 /// Returns: A kern_return_t error code.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOConnectSetNotificationPort(
+pub fn IOConnectSetNotificationPort(
     connect: io_connect_t,
     r#type: u32,
     port: libc::mach_port_t,
@@ -10549,7 +10537,7 @@ pub extern "C-unwind" fn IOConnectSetNotificationPort(
 /// - `of_size` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectMapMemory(
+pub unsafe fn IOConnectMapMemory(
     connect: io_connect_t,
     memory_type: u32,
     into_task: task_port_t,
@@ -10601,7 +10589,7 @@ pub unsafe extern "C-unwind" fn IOConnectMapMemory(
 /// - `of_size` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectMapMemory64(
+pub unsafe fn IOConnectMapMemory64(
     connect: io_connect_t,
     memory_type: u32,
     into_task: task_port_t,
@@ -10633,7 +10621,7 @@ pub unsafe extern "C-unwind" fn IOConnectMapMemory64(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectUnmapMemory(
+pub unsafe fn IOConnectUnmapMemory(
     connect: io_connect_t,
     memory_type: u32,
     from_task: task_port_t,
@@ -10665,7 +10653,7 @@ pub unsafe extern "C-unwind" fn IOConnectUnmapMemory(
 /// Returns: A kern_return_t error code.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectUnmapMemory64(
+pub unsafe fn IOConnectUnmapMemory64(
     connect: io_connect_t,
     memory_type: u32,
     from_task: task_port_t,
@@ -10698,7 +10686,7 @@ pub unsafe extern "C-unwind" fn IOConnectUnmapMemory64(
 /// - `properties` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectSetCFProperties(
+pub unsafe fn IOConnectSetCFProperties(
     connect: io_connect_t,
     properties: Option<&CFType>,
 ) -> libc::kern_return_t {
@@ -10730,7 +10718,7 @@ pub unsafe extern "C-unwind" fn IOConnectSetCFProperties(
 /// - `property` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectSetCFProperty(
+pub unsafe fn IOConnectSetCFProperty(
     connect: io_connect_t,
     property_name: Option<&CFString>,
     property: Option<&CFType>,
@@ -10755,7 +10743,7 @@ pub unsafe extern "C-unwind" fn IOConnectSetCFProperty(
 /// - `output_struct_cnt` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectCallMethod(
+pub unsafe fn IOConnectCallMethod(
     connection: libc::mach_port_t,
     selector: u32,
     input: *const u64,
@@ -10808,7 +10796,7 @@ pub unsafe extern "C-unwind" fn IOConnectCallMethod(
 /// - `output_struct_cnt` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectCallAsyncMethod(
+pub unsafe fn IOConnectCallAsyncMethod(
     connection: libc::mach_port_t,
     selector: u32,
     wake_port: libc::mach_port_t,
@@ -10866,7 +10854,7 @@ pub unsafe extern "C-unwind" fn IOConnectCallAsyncMethod(
 /// - `output_struct_cnt` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectCallStructMethod(
+pub unsafe fn IOConnectCallStructMethod(
     connection: libc::mach_port_t,
     selector: u32,
     input_struct: *const c_void,
@@ -10904,7 +10892,7 @@ pub unsafe extern "C-unwind" fn IOConnectCallStructMethod(
 /// - `output_struct_cnt` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectCallAsyncStructMethod(
+pub unsafe fn IOConnectCallAsyncStructMethod(
     connection: libc::mach_port_t,
     selector: u32,
     wake_port: libc::mach_port_t,
@@ -10950,7 +10938,7 @@ pub unsafe extern "C-unwind" fn IOConnectCallAsyncStructMethod(
 /// - `output_cnt` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectCallScalarMethod(
+pub unsafe fn IOConnectCallScalarMethod(
     connection: libc::mach_port_t,
     selector: u32,
     input: *const u64,
@@ -10979,7 +10967,7 @@ pub unsafe extern "C-unwind" fn IOConnectCallScalarMethod(
 /// - `output_cnt` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOConnectCallAsyncScalarMethod(
+pub unsafe fn IOConnectCallAsyncScalarMethod(
     connection: libc::mach_port_t,
     selector: u32,
     wake_port: libc::mach_port_t,
@@ -11020,7 +11008,7 @@ pub unsafe extern "C-unwind" fn IOConnectCallAsyncScalarMethod(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOConnectTrap0(connect: io_connect_t, index: u32) -> libc::kern_return_t {
+pub fn IOConnectTrap0(connect: io_connect_t, index: u32) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectTrap0(connect: io_connect_t, index: u32) -> libc::kern_return_t;
     }
@@ -11029,11 +11017,7 @@ pub extern "C-unwind" fn IOConnectTrap0(connect: io_connect_t, index: u32) -> li
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOConnectTrap1(
-    connect: io_connect_t,
-    index: u32,
-    p1: usize,
-) -> libc::kern_return_t {
+pub fn IOConnectTrap1(connect: io_connect_t, index: u32, p1: usize) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectTrap1(connect: io_connect_t, index: u32, p1: usize) -> libc::kern_return_t;
     }
@@ -11042,7 +11026,7 @@ pub extern "C-unwind" fn IOConnectTrap1(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOConnectTrap2(
+pub fn IOConnectTrap2(
     connect: io_connect_t,
     index: u32,
     p1: usize,
@@ -11061,7 +11045,7 @@ pub extern "C-unwind" fn IOConnectTrap2(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOConnectTrap3(
+pub fn IOConnectTrap3(
     connect: io_connect_t,
     index: u32,
     p1: usize,
@@ -11082,7 +11066,7 @@ pub extern "C-unwind" fn IOConnectTrap3(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOConnectTrap4(
+pub fn IOConnectTrap4(
     connect: io_connect_t,
     index: u32,
     p1: usize,
@@ -11105,7 +11089,7 @@ pub extern "C-unwind" fn IOConnectTrap4(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOConnectTrap5(
+pub fn IOConnectTrap5(
     connect: io_connect_t,
     index: u32,
     p1: usize,
@@ -11130,7 +11114,7 @@ pub extern "C-unwind" fn IOConnectTrap5(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOConnectTrap6(
+pub fn IOConnectTrap6(
     connect: io_connect_t,
     index: u32,
     p1: usize,
@@ -11166,10 +11150,7 @@ pub extern "C-unwind" fn IOConnectTrap6(
 /// Returns: A kern_return_t error code returned by the family.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOConnectAddClient(
-    connect: io_connect_t,
-    client: io_connect_t,
-) -> libc::kern_return_t {
+pub fn IOConnectAddClient(connect: io_connect_t, client: io_connect_t) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectAddClient(connect: io_connect_t, client: io_connect_t) -> libc::kern_return_t;
     }
@@ -11185,9 +11166,7 @@ pub extern "C-unwind" fn IOConnectAddClient(
 /// Returns: A handle to the IORegistryEntry root instance, to be released with IOObjectRelease by the caller, or MACH_PORT_NULL on failure.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IORegistryGetRootEntry(
-    main_port: libc::mach_port_t,
-) -> io_registry_entry_t {
+pub fn IORegistryGetRootEntry(main_port: libc::mach_port_t) -> io_registry_entry_t {
     extern "C-unwind" {
         fn IORegistryGetRootEntry(main_port: libc::mach_port_t) -> io_registry_entry_t;
     }
@@ -11211,7 +11190,7 @@ pub extern "C-unwind" fn IORegistryGetRootEntry(
 /// `path` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryFromPath(
+pub unsafe fn IORegistryEntryFromPath(
     main_port: libc::mach_port_t,
     path: Option<&io_string_t>,
 ) -> io_registry_entry_t {
@@ -11241,7 +11220,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryFromPath(
 /// `path` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryCopyFromPath(
+pub unsafe fn IORegistryEntryCopyFromPath(
     main_port: libc::mach_port_t,
     path: Option<&CFString>,
 ) -> io_registry_entry_t {
@@ -11279,7 +11258,7 @@ pub const kIORegistryIterateParents: c_uint = 0x00000002;
 /// - `iterator` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryCreateIterator(
+pub unsafe fn IORegistryCreateIterator(
     main_port: libc::mach_port_t,
     plane: Option<&io_name_t>,
     options: IOOptionBits,
@@ -11316,7 +11295,7 @@ pub unsafe extern "C-unwind" fn IORegistryCreateIterator(
 /// - `iterator` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryCreateIterator(
+pub unsafe fn IORegistryEntryCreateIterator(
     entry: io_registry_entry_t,
     plane: Option<&io_name_t>,
     options: IOOptionBits,
@@ -11340,9 +11319,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryCreateIterator(
 /// Returns: A kern_return_t error code.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IORegistryIteratorEnterEntry(
-    iterator: io_iterator_t,
-) -> libc::kern_return_t {
+pub fn IORegistryIteratorEnterEntry(iterator: io_iterator_t) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryIteratorEnterEntry(iterator: io_iterator_t) -> libc::kern_return_t;
     }
@@ -11356,9 +11333,7 @@ pub extern "C-unwind" fn IORegistryIteratorEnterEntry(
 /// Returns: kIOReturnSuccess if a level of recursion was undone, kIOReturnNoDevice if no recursive levels are left in the iteration.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IORegistryIteratorExitEntry(
-    iterator: io_iterator_t,
-) -> libc::kern_return_t {
+pub fn IORegistryIteratorExitEntry(iterator: io_iterator_t) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryIteratorExitEntry(iterator: io_iterator_t) -> libc::kern_return_t;
     }
@@ -11380,7 +11355,7 @@ pub extern "C-unwind" fn IORegistryIteratorExitEntry(
 /// `name` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryGetName(
+pub unsafe fn IORegistryEntryGetName(
     entry: io_registry_entry_t,
     name: Option<&mut io_name_t>,
 ) -> libc::kern_return_t {
@@ -11411,7 +11386,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryGetName(
 /// - `name` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryGetNameInPlane(
+pub unsafe fn IORegistryEntryGetNameInPlane(
     entry: io_registry_entry_t,
     plane: Option<&io_name_t>,
     name: Option<&mut io_name_t>,
@@ -11444,7 +11419,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryGetNameInPlane(
 /// - `location` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryGetLocationInPlane(
+pub unsafe fn IORegistryEntryGetLocationInPlane(
     entry: io_registry_entry_t,
     plane: Option<&io_name_t>,
     location: Option<&mut io_name_t>,
@@ -11477,7 +11452,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryGetLocationInPlane(
 /// - `path` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryGetPath(
+pub unsafe fn IORegistryEntryGetPath(
     entry: io_registry_entry_t,
     plane: Option<&io_name_t>,
     path: Option<&mut io_string_t>,
@@ -11507,7 +11482,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryGetPath(
 /// `plane` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryCopyPath(
+pub unsafe fn IORegistryEntryCopyPath(
     entry: io_registry_entry_t,
     plane: Option<&io_name_t>,
 ) -> Option<CFRetained<CFString>> {
@@ -11536,7 +11511,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryCopyPath(
 /// `entry_id` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryGetRegistryEntryID(
+pub unsafe fn IORegistryEntryGetRegistryEntryID(
     entry: io_registry_entry_t,
     entry_id: *mut u64,
 ) -> libc::kern_return_t {
@@ -11568,7 +11543,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryGetRegistryEntryID(
 /// `properties` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperties(
+pub unsafe fn IORegistryEntryCreateCFProperties(
     entry: io_registry_entry_t,
     properties: *mut *mut CFMutableDictionary,
     allocator: Option<&CFAllocator>,
@@ -11604,7 +11579,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperties(
 /// `key` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperty(
+pub unsafe fn IORegistryEntryCreateCFProperty(
     entry: io_registry_entry_t,
     key: Option<&CFString>,
     allocator: Option<&CFAllocator>,
@@ -11645,7 +11620,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperty(
 /// - `key` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntrySearchCFProperty(
+pub unsafe fn IORegistryEntrySearchCFProperty(
     entry: io_registry_entry_t,
     plane: Option<&io_name_t>,
     key: Option<&CFString>,
@@ -11672,7 +11647,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntrySearchCFProperty(
 /// - `size` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryGetProperty(
+pub unsafe fn IORegistryEntryGetProperty(
     entry: io_registry_entry_t,
     property_name: Option<&io_name_t>,
     buffer: Option<&mut io_struct_inband_t>,
@@ -11705,7 +11680,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryGetProperty(
 /// - `properties` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntrySetCFProperties(
+pub unsafe fn IORegistryEntrySetCFProperties(
     entry: io_registry_entry_t,
     properties: Option<&CFType>,
 ) -> libc::kern_return_t {
@@ -11737,7 +11712,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntrySetCFProperties(
 /// - `property` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntrySetCFProperty(
+pub unsafe fn IORegistryEntrySetCFProperty(
     entry: io_registry_entry_t,
     property_name: Option<&CFString>,
     property: Option<&CFType>,
@@ -11770,7 +11745,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntrySetCFProperty(
 /// - `iterator` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryGetChildIterator(
+pub unsafe fn IORegistryEntryGetChildIterator(
     entry: io_registry_entry_t,
     plane: Option<&io_name_t>,
     iterator: *mut io_iterator_t,
@@ -11803,7 +11778,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryGetChildIterator(
 /// - `child` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryGetChildEntry(
+pub unsafe fn IORegistryEntryGetChildEntry(
     entry: io_registry_entry_t,
     plane: Option<&io_name_t>,
     child: *mut io_registry_entry_t,
@@ -11836,7 +11811,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryGetChildEntry(
 /// - `iterator` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryGetParentIterator(
+pub unsafe fn IORegistryEntryGetParentIterator(
     entry: io_registry_entry_t,
     plane: Option<&io_name_t>,
     iterator: *mut io_iterator_t,
@@ -11869,7 +11844,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryGetParentIterator(
 /// - `parent` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryGetParentEntry(
+pub unsafe fn IORegistryEntryGetParentEntry(
     entry: io_registry_entry_t,
     plane: Option<&io_name_t>,
     parent: *mut io_registry_entry_t,
@@ -11899,7 +11874,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryGetParentEntry(
 /// `plane` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryInPlane(
+pub unsafe fn IORegistryEntryInPlane(
     entry: io_registry_entry_t,
     plane: Option<&io_name_t>,
 ) -> bool {
@@ -11927,9 +11902,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryInPlane(
 /// - The returned generic must be of the correct type.
 /// - The returned generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn IOServiceMatching(
-    name: *const c_char,
-) -> Option<CFRetained<CFMutableDictionary>> {
+pub unsafe fn IOServiceMatching(name: *const c_char) -> Option<CFRetained<CFMutableDictionary>> {
     extern "C-unwind" {
         fn IOServiceMatching(name: *const c_char) -> Option<NonNull<CFMutableDictionary>>;
     }
@@ -11951,7 +11924,7 @@ pub unsafe extern "C-unwind" fn IOServiceMatching(
 /// - The returned generic must be of the correct type.
 /// - The returned generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn IOServiceNameMatching(
+pub unsafe fn IOServiceNameMatching(
     name: *const c_char,
 ) -> Option<CFRetained<CFMutableDictionary>> {
     extern "C-unwind" {
@@ -11980,7 +11953,7 @@ pub unsafe extern "C-unwind" fn IOServiceNameMatching(
 /// - The returned generic must be of the correct type.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBSDNameMatching(
+pub unsafe fn IOBSDNameMatching(
     main_port: libc::mach_port_t,
     options: u32,
     bsd_name: *const c_char,
@@ -12004,7 +11977,7 @@ pub unsafe extern "C-unwind" fn IOBSDNameMatching(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOOpenFirmwarePathMatching(
+pub unsafe fn IOOpenFirmwarePathMatching(
     main_port: libc::mach_port_t,
     options: u32,
     path: *const c_char,
@@ -12033,9 +12006,7 @@ pub unsafe extern "C-unwind" fn IOOpenFirmwarePathMatching(
 /// - The returned generic must be of the correct type.
 /// - The returned generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn IORegistryEntryIDMatching(
-    entry_id: u64,
-) -> Option<CFRetained<CFMutableDictionary>> {
+pub unsafe fn IORegistryEntryIDMatching(entry_id: u64) -> Option<CFRetained<CFMutableDictionary>> {
     extern "C-unwind" {
         fn IORegistryEntryIDMatching(entry_id: u64) -> Option<NonNull<CFMutableDictionary>>;
     }
@@ -12050,7 +12021,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryIDMatching(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOServiceOFPathToBSDName(
+pub unsafe fn IOServiceOFPathToBSDName(
     main_port: libc::mach_port_t,
     open_firmware_path: Option<&io_name_t>,
     bsd_name: Option<&mut io_name_t>,
@@ -12123,7 +12094,7 @@ pub type IOAsyncCallback =
 /// `buffer` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOCatalogueSendData(
+pub unsafe fn IOCatalogueSendData(
     main_port: libc::mach_port_t,
     flag: u32,
     buffer: *const c_char,
@@ -12145,7 +12116,7 @@ pub unsafe extern "C-unwind" fn IOCatalogueSendData(
 /// `description` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOCatalogueTerminate(
+pub unsafe fn IOCatalogueTerminate(
     main_port: libc::mach_port_t,
     flag: u32,
     description: Option<&mut io_name_t>,
@@ -12166,7 +12137,7 @@ pub unsafe extern "C-unwind" fn IOCatalogueTerminate(
 /// - `size` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOCatalogueGetData(
+pub unsafe fn IOCatalogueGetData(
     main_port: libc::mach_port_t,
     flag: u32,
     buffer: *mut *mut c_char,
@@ -12188,7 +12159,7 @@ pub unsafe extern "C-unwind" fn IOCatalogueGetData(
 /// `name` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOCatalogueModuleLoaded(
+pub unsafe fn IOCatalogueModuleLoaded(
     main_port: libc::mach_port_t,
     name: Option<&mut io_name_t>,
 ) -> libc::kern_return_t {
@@ -12203,10 +12174,7 @@ pub unsafe extern "C-unwind" fn IOCatalogueModuleLoaded(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IOCatalogueReset(
-    main_port: libc::mach_port_t,
-    flag: u32,
-) -> libc::kern_return_t {
+pub fn IOCatalogueReset(main_port: libc::mach_port_t, flag: u32) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOCatalogueReset(main_port: libc::mach_port_t, flag: u32) -> libc::kern_return_t;
     }
@@ -12284,9 +12252,7 @@ unsafe impl RefEncode for IODataQueueMemory {
 ///
 /// `data_queue` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IODataQueueDataAvailable(
-    data_queue: *mut IODataQueueMemory,
-) -> bool {
+pub unsafe fn IODataQueueDataAvailable(data_queue: *mut IODataQueueMemory) -> bool {
     extern "C-unwind" {
         fn IODataQueueDataAvailable(data_queue: *mut IODataQueueMemory) -> Boolean;
     }
@@ -12306,9 +12272,7 @@ pub unsafe extern "C-unwind" fn IODataQueueDataAvailable(
 ///
 /// `data_queue` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IODataQueuePeek(
-    data_queue: *mut IODataQueueMemory,
-) -> *mut IODataQueueEntry {
+pub unsafe fn IODataQueuePeek(data_queue: *mut IODataQueueMemory) -> *mut IODataQueueEntry {
     extern "C-unwind" {
         fn IODataQueuePeek(data_queue: *mut IODataQueueMemory) -> *mut IODataQueueEntry;
     }
@@ -12333,7 +12297,7 @@ pub unsafe extern "C-unwind" fn IODataQueuePeek(
 /// - `data` must be a valid pointer.
 /// - `data_size` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IODataQueueDequeue(
+pub unsafe fn IODataQueueDequeue(
     data_queue: *mut IODataQueueMemory,
     data: *mut c_void,
     data_size: *mut u32,
@@ -12363,7 +12327,7 @@ pub unsafe extern "C-unwind" fn IODataQueueDequeue(
 /// `data_queue` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODataQueueWaitForAvailableData(
+pub unsafe fn IODataQueueWaitForAvailableData(
     data_queue: *mut IODataQueueMemory,
     notification_port: libc::mach_port_t,
 ) -> IOReturn {
@@ -12383,7 +12347,7 @@ pub unsafe extern "C-unwind" fn IODataQueueWaitForAvailableData(
 /// Returns: Returns a newly allocated mach port on success.  On failure, it returns MACH_PORT_NULL.
 #[cfg(feature = "libc")]
 #[inline]
-pub extern "C-unwind" fn IODataQueueAllocateNotificationPort() -> libc::mach_port_t {
+pub fn IODataQueueAllocateNotificationPort() -> libc::mach_port_t {
     extern "C-unwind" {
         fn IODataQueueAllocateNotificationPort() -> libc::mach_port_t;
     }
@@ -12413,7 +12377,7 @@ pub extern "C-unwind" fn IODataQueueAllocateNotificationPort() -> libc::mach_por
 /// - `data_queue` must be a valid pointer.
 /// - `data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IODataQueueEnqueue(
+pub unsafe fn IODataQueueEnqueue(
     data_queue: *mut IODataQueueMemory,
     data: *mut c_void,
     data_size: u32,
@@ -12446,7 +12410,7 @@ pub unsafe extern "C-unwind" fn IODataQueueEnqueue(
 /// `data_queue` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODataQueueSetNotificationPort(
+pub unsafe fn IODataQueueSetNotificationPort(
     data_queue: *mut IODataQueueMemory,
     notify_port: libc::mach_port_t,
 ) -> IOReturn {
@@ -12518,7 +12482,7 @@ pub type IOCFPlugInInterface = IOCFPlugInInterfaceStruct;
 /// - `the_score` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOCreatePlugInInterfaceForService(
+pub unsafe fn IOCreatePlugInInterfaceForService(
     service: io_service_t,
     plugin_type: Option<&CFUUID>,
     interface_type: Option<&CFUUID>,
@@ -12550,7 +12514,7 @@ pub unsafe extern "C-unwind" fn IOCreatePlugInInterfaceForService(
 /// `interface` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODestroyPlugInInterface(
+pub unsafe fn IODestroyPlugInInterface(
     interface: *mut *mut IOCFPlugInInterface,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
@@ -12569,7 +12533,7 @@ pub const kIOCFSerializeToBinary: c_uint = 0x00000001;
 /// - `object` should be of the correct type.
 /// - `object` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn IOCFSerialize(
+pub unsafe fn IOCFSerialize(
     object: Option<&CFType>,
     options: CFOptionFlags,
 ) -> Option<CFRetained<CFData>> {
@@ -12589,7 +12553,7 @@ pub unsafe extern "C-unwind" fn IOCFSerialize(
 /// - `property` might not allow `None`.
 /// - `error_code` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOURLCreatePropertyFromResource(
+pub unsafe fn IOURLCreatePropertyFromResource(
     alloc: Option<&CFAllocator>,
     url: Option<&CFURL>,
     property: Option<&CFString>,
@@ -12616,7 +12580,7 @@ pub unsafe extern "C-unwind" fn IOURLCreatePropertyFromResource(
 /// - `desired_properties` might not allow `None`.
 /// - `error_code` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOURLCreateDataAndPropertiesFromResource(
+pub unsafe fn IOURLCreateDataAndPropertiesFromResource(
     alloc: Option<&CFAllocator>,
     url: Option<&CFURL>,
     resource_data: *mut *const CFData,
@@ -12656,7 +12620,7 @@ pub unsafe extern "C-unwind" fn IOURLCreateDataAndPropertiesFromResource(
 /// - `properties_to_write` might not allow `None`.
 /// - `error_code` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOURLWriteDataAndPropertiesToResource(
+pub unsafe fn IOURLWriteDataAndPropertiesToResource(
     url: Option<&CFURL>,
     data_to_write: Option<&CFData>,
     properties_to_write: Option<&CFDictionary>,
@@ -12756,7 +12720,7 @@ pub const kIOCatalogServiceTerminate: c_uint = 3;
 /// - `buffer` must be a valid pointer.
 /// - `error_string` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOCFUnserialize(
+pub unsafe fn IOCFUnserialize(
     buffer: *const c_char,
     allocator: Option<&CFAllocator>,
     options: CFOptionFlags,
@@ -12779,7 +12743,7 @@ pub unsafe extern "C-unwind" fn IOCFUnserialize(
 /// - `buffer` must be a valid pointer.
 /// - `error_string` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOCFUnserializeBinary(
+pub unsafe fn IOCFUnserializeBinary(
     buffer: *const c_char,
     buffer_size: usize,
     allocator: Option<&CFAllocator>,
@@ -12805,7 +12769,7 @@ pub unsafe extern "C-unwind" fn IOCFUnserializeBinary(
 /// - `buffer` must be a valid pointer.
 /// - `error_string` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOCFUnserializeWithSize(
+pub unsafe fn IOCFUnserializeWithSize(
     buffer: *const c_char,
     buffer_size: usize,
     allocator: Option<&CFAllocator>,

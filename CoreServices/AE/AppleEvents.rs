@@ -140,7 +140,7 @@ pub const errAEEventNotPermitted: c_int = -1743;
 /// - `handler_refcon` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn AEInstallEventHandler(
+pub unsafe fn AEInstallEventHandler(
     the_ae_event_class: AEEventClass,
     the_ae_event_id: AEEventID,
     handler: AEEventHandlerUPP,
@@ -172,7 +172,7 @@ pub unsafe extern "C-unwind" fn AEInstallEventHandler(
 /// `handler` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn AERemoveEventHandler(
+pub unsafe fn AERemoveEventHandler(
     the_ae_event_class: AEEventClass,
     the_ae_event_id: AEEventID,
     handler: AEEventHandlerUPP,
@@ -202,7 +202,7 @@ pub unsafe extern "C-unwind" fn AERemoveEventHandler(
 /// - `handler_refcon` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetEventHandler(
+pub unsafe fn AEGetEventHandler(
     the_ae_event_class: AEEventClass,
     the_ae_event_id: AEEventID,
     handler: *mut AEEventHandlerUPP,
@@ -239,7 +239,7 @@ pub unsafe extern "C-unwind" fn AEGetEventHandler(
 /// `handler` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn AEInstallSpecialHandler(
+pub unsafe fn AEInstallSpecialHandler(
     function_class: AEKeyword,
     handler: AEEventHandlerUPP,
     is_sys_handler: bool,
@@ -259,7 +259,7 @@ pub unsafe extern "C-unwind" fn AEInstallSpecialHandler(
 /// `handler` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn AERemoveSpecialHandler(
+pub unsafe fn AERemoveSpecialHandler(
     function_class: AEKeyword,
     handler: AEEventHandlerUPP,
     is_sys_handler: bool,
@@ -279,7 +279,7 @@ pub unsafe extern "C-unwind" fn AERemoveSpecialHandler(
 /// `handler` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetSpecialHandler(
+pub unsafe fn AEGetSpecialHandler(
     function_class: AEKeyword,
     handler: *mut AEEventHandlerUPP,
     is_sys_handler: bool,
@@ -306,7 +306,7 @@ pub unsafe extern "C-unwind" fn AEGetSpecialHandler(
 /// `result` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn AEManagerInfo(key_word: AEKeyword, result: *mut c_long) -> OSErr {
+pub unsafe fn AEManagerInfo(key_word: AEKeyword, result: *mut c_long) -> OSErr {
     extern "C-unwind" {
         fn AEManagerInfo(key_word: AEKeyword, result: *mut c_long) -> OSErr;
     }
@@ -385,7 +385,7 @@ pub type AERemoteProcessResolverRef = *mut AERemoteProcessResolver;
 ///
 /// `url` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn AECreateRemoteProcessResolver(
+pub unsafe fn AECreateRemoteProcessResolver(
     allocator: Option<&CFAllocator>,
     url: Option<&CFURL>,
 ) -> AERemoteProcessResolverRef {
@@ -402,7 +402,7 @@ pub unsafe extern "C-unwind" fn AECreateRemoteProcessResolver(
 ///
 /// `ref` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEDisposeRemoteProcessResolver(r#ref: AERemoteProcessResolverRef) {
+pub unsafe fn AEDisposeRemoteProcessResolver(r#ref: AERemoteProcessResolverRef) {
     extern "C-unwind" {
         fn AEDisposeRemoteProcessResolver(r#ref: AERemoteProcessResolverRef);
     }
@@ -522,7 +522,7 @@ impl AERemoteProcessResolver {
 /// `target` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn AEDeterminePermissionToAutomateTarget(
+pub unsafe fn AEDeterminePermissionToAutomateTarget(
     target: *const AEAddressDesc,
     the_ae_event_class: AEEventClass,
     the_ae_event_id: AEEventID,

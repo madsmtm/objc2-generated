@@ -17,7 +17,7 @@ use crate::*;
 /// - `options` generic must be of the correct type.
 /// - `list_of_video_encoders_out` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn VTCopyVideoEncoderList(
+pub unsafe fn VTCopyVideoEncoderList(
     options: Option<&CFDictionary>,
     list_of_video_encoders_out: NonNull<*const CFArray>,
 ) -> OSStatus {
@@ -112,7 +112,7 @@ extern "C" {
 /// - `supported_properties_out` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn VTCopySupportedPropertyDictionaryForEncoder(
+pub unsafe fn VTCopySupportedPropertyDictionaryForEncoder(
     width: i32,
     height: i32,
     codec_type: CMVideoCodecType,

@@ -478,7 +478,7 @@ impl VTDecompressionSession {
 /// available at all times.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn VTIsHardwareDecodeSupported(codec_type: CMVideoCodecType) -> bool {
+pub unsafe fn VTIsHardwareDecodeSupported(codec_type: CMVideoCodecType) -> bool {
     extern "C-unwind" {
         fn VTIsHardwareDecodeSupported(codec_type: CMVideoCodecType) -> Boolean;
     }
@@ -490,7 +490,7 @@ pub unsafe extern "C-unwind" fn VTIsHardwareDecodeSupported(codec_type: CMVideoC
 ///
 /// This call returning true does not guarantee that decode resources will be available at all times.
 #[inline]
-pub unsafe extern "C-unwind" fn VTIsStereoMVHEVCDecodeSupported() -> bool {
+pub unsafe fn VTIsStereoMVHEVCDecodeSupported() -> bool {
     extern "C-unwind" {
         fn VTIsStereoMVHEVCDecodeSupported() -> Boolean;
     }

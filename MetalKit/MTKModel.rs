@@ -332,7 +332,7 @@ impl MTKMesh {
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Model I/O vertex descriptor.  It does not add any semantic information such at attributes names.  Names must be set in the returned Model I/O vertex descriptor before it can be applied to a a Model I/O mesh.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
-pub extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetal(
+pub fn MTKModelIOVertexDescriptorFromMetal(
     metal_descriptor: &MTLVertexDescriptor,
 ) -> Retained<MDLVertexDescriptor> {
     extern "C-unwind" {
@@ -354,7 +354,7 @@ pub extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetal(
 /// `error` must be a valid pointer or null.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
-pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetalWithError(
+pub unsafe fn MTKModelIOVertexDescriptorFromMetalWithError(
     metal_descriptor: &MTLVertexDescriptor,
     error: *mut *mut NSError,
 ) -> Retained<MDLVertexDescriptor> {
@@ -374,7 +374,7 @@ pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetalWithError(
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Metal vertex descriptor. It simply copies attributes 1 for 1. Thus attributes in the given Model I/O vertex descriptor must be arranged in the correct order for the resulting descriptor to properly map mesh data to vertex shader inputs.  Layout stepFunction and stepRates for the resulting MTLVertexDescriptor must also be set by application.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
-pub extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIO(
+pub fn MTKMetalVertexDescriptorFromModelIO(
     model_io_descriptor: &MDLVertexDescriptor,
 ) -> Option<Retained<MTLVertexDescriptor>> {
     extern "C-unwind" {
@@ -395,7 +395,7 @@ pub extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIO(
 /// `error` must be a valid pointer or null.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
-pub unsafe extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIOWithError(
+pub unsafe fn MTKMetalVertexDescriptorFromModelIOWithError(
     model_io_descriptor: &MDLVertexDescriptor,
     error: *mut *mut NSError,
 ) -> Option<Retained<MTLVertexDescriptor>> {
@@ -414,9 +414,7 @@ pub unsafe extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIOWithError(
 /// Returns: A Model I/O vertexformat correspoinding to the given Metal vertex format.  Returns MDLVertexFormatInvalid if no matching Model I/O vertex format exists.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
-pub extern "C-unwind" fn MTKModelIOVertexFormatFromMetal(
-    vertex_format: MTLVertexFormat,
-) -> MDLVertexFormat {
+pub fn MTKModelIOVertexFormatFromMetal(vertex_format: MTLVertexFormat) -> MDLVertexFormat {
     extern "C-unwind" {
         fn MTKModelIOVertexFormatFromMetal(vertex_format: MTLVertexFormat) -> MDLVertexFormat;
     }
@@ -428,9 +426,7 @@ pub extern "C-unwind" fn MTKModelIOVertexFormatFromMetal(
 /// Returns: A Metal vertexformat correspoinding to the given Model I/O vertex format.  Returns MTLVertexFormatInvalid if no matching Metal vertex format exists.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
-pub extern "C-unwind" fn MTKMetalVertexFormatFromModelIO(
-    vertex_format: MDLVertexFormat,
-) -> MTLVertexFormat {
+pub fn MTKMetalVertexFormatFromModelIO(vertex_format: MDLVertexFormat) -> MTLVertexFormat {
     extern "C-unwind" {
         fn MTKMetalVertexFormatFromModelIO(vertex_format: MDLVertexFormat) -> MTLVertexFormat;
     }

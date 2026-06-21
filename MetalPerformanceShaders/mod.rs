@@ -69,9 +69,7 @@ use crate::*;
 /// Returns: YES             The device is supported.
 /// NO              The device is not supported
 #[inline]
-pub unsafe extern "C-unwind" fn MPSSupportsMTLDevice(
-    device: Option<&ProtocolObject<dyn MTLDevice>>,
-) -> bool {
+pub unsafe fn MPSSupportsMTLDevice(device: Option<&ProtocolObject<dyn MTLDevice>>) -> bool {
     extern "C-unwind" {
         fn MPSSupportsMTLDevice(device: Option<&ProtocolObject<dyn MTLDevice>>) -> Bool;
     }
@@ -131,7 +129,7 @@ pub unsafe extern "C-unwind" fn MPSSupportsMTLDevice(
 /// up according to device alignment requirements. This should be the maximum
 /// `                         amount of temporary memory used at any point in the command buffer.
 #[inline]
-pub unsafe extern "C-unwind" fn MPSHintTemporaryMemoryHighWaterMark(
+pub unsafe fn MPSHintTemporaryMemoryHighWaterMark(
     cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
     bytes: NSUInteger,
 ) {
@@ -165,7 +163,7 @@ pub unsafe extern "C-unwind" fn MPSHintTemporaryMemoryHighWaterMark(
 /// Parameter `seconds`: The number of seconds to cache used MTLHeaps before retiring them.
 /// NaN will be interpeted as 0.
 #[inline]
-pub unsafe extern "C-unwind" fn MPSSetHeapCacheDuration(
+pub unsafe fn MPSSetHeapCacheDuration(
     cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
     seconds: c_double,
 ) {
@@ -232,7 +230,7 @@ unsafe impl RefEncode for MPSDeviceOptions {
 ///
 /// Returns: A valid MTLDevice supported by MPS or nil if none are available.
 #[inline]
-pub unsafe extern "C-unwind" fn MPSGetPreferredDevice(
+pub unsafe fn MPSGetPreferredDevice(
     options: MPSDeviceOptions,
 ) -> Option<Retained<ProtocolObject<dyn MTLDevice>>> {
     extern "C-unwind" {

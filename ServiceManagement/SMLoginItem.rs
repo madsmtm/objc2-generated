@@ -28,10 +28,7 @@ use crate::*;
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Please use SMAppService instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn SMLoginItemSetEnabled(
-    identifier: Option<&CFString>,
-    enabled: bool,
-) -> bool {
+pub unsafe fn SMLoginItemSetEnabled(identifier: Option<&CFString>, enabled: bool) -> bool {
     extern "C-unwind" {
         fn SMLoginItemSetEnabled(identifier: Option<&CFString>, enabled: Boolean) -> Boolean;
     }

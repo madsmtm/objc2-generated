@@ -16,7 +16,7 @@ use crate::*;
 /// `viewport` must be a valid pointer.
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn GLKMathProject(
+pub unsafe fn GLKMathProject(
     object: GLKVector3,
     model: GLKMatrix4,
     projection: GLKMatrix4,
@@ -39,7 +39,7 @@ pub unsafe extern "C-unwind" fn GLKMathProject(
 /// - `success` must be a valid pointer or null.
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn GLKMathUnproject(
+pub unsafe fn GLKMathUnproject(
     window: GLKVector3,
     model: GLKMatrix4,
     projection: GLKMatrix4,
@@ -60,7 +60,7 @@ pub unsafe extern "C-unwind" fn GLKMathUnproject(
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix2(matrix: GLKMatrix2) -> Retained<NSString> {
+pub unsafe fn NSStringFromGLKMatrix2(matrix: GLKMatrix2) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromGLKMatrix2(matrix: GLKMatrix2) -> *mut NSString;
     }
@@ -71,7 +71,7 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix2(matrix: GLKMatrix2) -> Re
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix3(matrix: GLKMatrix3) -> Retained<NSString> {
+pub unsafe fn NSStringFromGLKMatrix3(matrix: GLKMatrix3) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromGLKMatrix3(matrix: GLKMatrix3) -> *mut NSString;
     }
@@ -82,7 +82,7 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix3(matrix: GLKMatrix3) -> Re
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix4(matrix: GLKMatrix4) -> Retained<NSString> {
+pub unsafe fn NSStringFromGLKMatrix4(matrix: GLKMatrix4) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromGLKMatrix4(matrix: GLKMatrix4) -> *mut NSString;
     }
@@ -93,7 +93,7 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix4(matrix: GLKMatrix4) -> Re
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromGLKVector2(vector: GLKVector2) -> Retained<NSString> {
+pub unsafe fn NSStringFromGLKVector2(vector: GLKVector2) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromGLKVector2(vector: GLKVector2) -> *mut NSString;
     }
@@ -104,7 +104,7 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKVector2(vector: GLKVector2) -> Re
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromGLKVector3(vector: GLKVector3) -> Retained<NSString> {
+pub unsafe fn NSStringFromGLKVector3(vector: GLKVector3) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromGLKVector3(vector: GLKVector3) -> *mut NSString;
     }
@@ -115,7 +115,7 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKVector3(vector: GLKVector3) -> Re
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromGLKVector4(vector: GLKVector4) -> Retained<NSString> {
+pub unsafe fn NSStringFromGLKVector4(vector: GLKVector4) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromGLKVector4(vector: GLKVector4) -> *mut NSString;
     }
@@ -126,9 +126,7 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKVector4(vector: GLKVector4) -> Re
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromGLKQuaternion(
-    quaternion: GLKQuaternion,
-) -> Retained<NSString> {
+pub unsafe fn NSStringFromGLKQuaternion(quaternion: GLKQuaternion) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromGLKQuaternion(quaternion: GLKQuaternion) -> *mut NSString;
     }

@@ -501,9 +501,7 @@ pub type AECoercePtrUPP = AECoercePtrProcPtr;
 ///
 /// `user_routine` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn NewAECoerceDescUPP(
-    user_routine: AECoerceDescProcPtr,
-) -> AECoerceDescUPP {
+pub unsafe fn NewAECoerceDescUPP(user_routine: AECoerceDescProcPtr) -> AECoerceDescUPP {
     extern "C-unwind" {
         fn NewAECoerceDescUPP(user_routine: AECoerceDescProcPtr) -> AECoerceDescUPP;
     }
@@ -514,9 +512,7 @@ pub unsafe extern "C-unwind" fn NewAECoerceDescUPP(
 ///
 /// `user_routine` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn NewAECoercePtrUPP(
-    user_routine: AECoercePtrProcPtr,
-) -> AECoercePtrUPP {
+pub unsafe fn NewAECoercePtrUPP(user_routine: AECoercePtrProcPtr) -> AECoercePtrUPP {
     extern "C-unwind" {
         fn NewAECoercePtrUPP(user_routine: AECoercePtrProcPtr) -> AECoercePtrUPP;
     }
@@ -527,7 +523,7 @@ pub unsafe extern "C-unwind" fn NewAECoercePtrUPP(
 ///
 /// `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn DisposeAECoerceDescUPP(user_upp: AECoerceDescUPP) {
+pub unsafe fn DisposeAECoerceDescUPP(user_upp: AECoerceDescUPP) {
     extern "C-unwind" {
         fn DisposeAECoerceDescUPP(user_upp: AECoerceDescUPP);
     }
@@ -538,7 +534,7 @@ pub unsafe extern "C-unwind" fn DisposeAECoerceDescUPP(user_upp: AECoerceDescUPP
 ///
 /// `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn DisposeAECoercePtrUPP(user_upp: AECoercePtrUPP) {
+pub unsafe fn DisposeAECoercePtrUPP(user_upp: AECoercePtrUPP) {
     extern "C-unwind" {
         fn DisposeAECoercePtrUPP(user_upp: AECoercePtrUPP);
     }
@@ -552,7 +548,7 @@ pub unsafe extern "C-unwind" fn DisposeAECoercePtrUPP(user_upp: AECoercePtrUPP) 
 /// - `to_desc` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn InvokeAECoerceDescUPP(
+pub unsafe fn InvokeAECoerceDescUPP(
     from_desc: *const AEDesc,
     to_type: DescType,
     handler_refcon: SRefCon,
@@ -578,7 +574,7 @@ pub unsafe extern "C-unwind" fn InvokeAECoerceDescUPP(
 /// - `result` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn InvokeAECoercePtrUPP(
+pub unsafe fn InvokeAECoercePtrUPP(
     type_code: DescType,
     data_ptr: *const c_void,
     data_size: Size,
@@ -619,7 +615,7 @@ pub type AECoercionHandlerUPP = AECoerceDescUPP;
 /// - `handler` must be implemented correctly.
 /// - `handler_refcon` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEInstallCoercionHandler(
+pub unsafe fn AEInstallCoercionHandler(
     from_type: DescType,
     to_type: DescType,
     handler: AECoercionHandlerUPP,
@@ -653,7 +649,7 @@ pub unsafe extern "C-unwind" fn AEInstallCoercionHandler(
 ///
 /// `handler` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn AERemoveCoercionHandler(
+pub unsafe fn AERemoveCoercionHandler(
     from_type: DescType,
     to_type: DescType,
     handler: AECoercionHandlerUPP,
@@ -676,7 +672,7 @@ pub unsafe extern "C-unwind" fn AERemoveCoercionHandler(
 /// - `handler_refcon` must be a valid pointer.
 /// - `from_type_is_desc` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetCoercionHandler(
+pub unsafe fn AEGetCoercionHandler(
     from_type: DescType,
     to_type: DescType,
     handler: *mut AECoercionHandlerUPP,
@@ -715,7 +711,7 @@ pub unsafe extern "C-unwind" fn AEGetCoercionHandler(
 /// - `data_ptr` must be a valid pointer.
 /// - `result` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AECoercePtr(
+pub unsafe fn AECoercePtr(
     type_code: DescType,
     data_ptr: *const c_void,
     data_size: Size,
@@ -739,7 +735,7 @@ pub unsafe extern "C-unwind" fn AECoercePtr(
 /// - `the_ae_desc` must be a valid pointer.
 /// - `result` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AECoerceDesc(
+pub unsafe fn AECoerceDesc(
     the_ae_desc: *const AEDesc,
     to_type: DescType,
     result: *mut AEDesc,
@@ -764,7 +760,7 @@ pub unsafe extern "C-unwind" fn AECoerceDesc(
 ///
 /// `desc` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEInitializeDesc(desc: *mut AEDesc) {
+pub unsafe fn AEInitializeDesc(desc: *mut AEDesc) {
     extern "C-unwind" {
         fn AEInitializeDesc(desc: *mut AEDesc);
     }
@@ -776,7 +772,7 @@ pub unsafe extern "C-unwind" fn AEInitializeDesc(desc: *mut AEDesc) {
 /// - `data_ptr` must be a valid pointer.
 /// - `result` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AECreateDesc(
+pub unsafe fn AECreateDesc(
     type_code: DescType,
     data_ptr: *const c_void,
     data_size: Size,
@@ -797,7 +793,7 @@ pub unsafe extern "C-unwind" fn AECreateDesc(
 ///
 /// `the_ae_desc` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEDisposeDesc(the_ae_desc: *mut AEDesc) -> OSErr {
+pub unsafe fn AEDisposeDesc(the_ae_desc: *mut AEDesc) -> OSErr {
     extern "C-unwind" {
         fn AEDisposeDesc(the_ae_desc: *mut AEDesc) -> OSErr;
     }
@@ -809,10 +805,7 @@ pub unsafe extern "C-unwind" fn AEDisposeDesc(the_ae_desc: *mut AEDesc) -> OSErr
 /// - `the_ae_desc` must be a valid pointer.
 /// - `result` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEDuplicateDesc(
-    the_ae_desc: *const AEDesc,
-    result: *mut AEDesc,
-) -> OSErr {
+pub unsafe fn AEDuplicateDesc(the_ae_desc: *const AEDesc, result: *mut AEDesc) -> OSErr {
     extern "C-unwind" {
         fn AEDuplicateDesc(the_ae_desc: *const AEDesc, result: *mut AEDesc) -> OSErr;
     }
@@ -833,7 +826,7 @@ pub type AEDisposeExternalUPP = AEDisposeExternalProcPtr;
 /// - `dispose_refcon` must be a valid pointer.
 /// - `the_desc` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AECreateDescFromExternalPtr(
+pub unsafe fn AECreateDescFromExternalPtr(
     descriptor_type: OSType,
     data_ptr: *const c_void,
     data_length: Size,
@@ -869,7 +862,7 @@ pub unsafe extern "C-unwind" fn AECreateDescFromExternalPtr(
 /// - `desc2` must be a valid pointer.
 /// - `result_p` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AECompareDesc(
+pub unsafe fn AECompareDesc(
     desc1: *const AEDesc,
     desc2: *const AEDesc,
     result_p: *mut Boolean,
@@ -897,7 +890,7 @@ pub unsafe extern "C-unwind" fn AECompareDesc(
 /// - `factoring_ptr` must be a valid pointer.
 /// - `result_list` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AECreateList(
+pub unsafe fn AECreateList(
     factoring_ptr: *const c_void,
     factored_size: Size,
     is_record: bool,
@@ -919,10 +912,7 @@ pub unsafe extern "C-unwind" fn AECreateList(
 /// - `the_ae_desc_list` must be a valid pointer.
 /// - `the_count` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AECountItems(
-    the_ae_desc_list: *const AEDescList,
-    the_count: *mut c_long,
-) -> OSErr {
+pub unsafe fn AECountItems(the_ae_desc_list: *const AEDescList, the_count: *mut c_long) -> OSErr {
     extern "C-unwind" {
         fn AECountItems(the_ae_desc_list: *const AEDescList, the_count: *mut c_long) -> OSErr;
     }
@@ -934,7 +924,7 @@ pub unsafe extern "C-unwind" fn AECountItems(
 /// - `the_ae_desc_list` must be a valid pointer.
 /// - `data_ptr` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEPutPtr(
+pub unsafe fn AEPutPtr(
     the_ae_desc_list: *mut AEDescList,
     index: c_long,
     type_code: DescType,
@@ -958,7 +948,7 @@ pub unsafe extern "C-unwind" fn AEPutPtr(
 /// - `the_ae_desc_list` must be a valid pointer.
 /// - `the_ae_desc` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEPutDesc(
+pub unsafe fn AEPutDesc(
     the_ae_desc_list: *mut AEDescList,
     index: c_long,
     the_ae_desc: *const AEDesc,
@@ -981,7 +971,7 @@ pub unsafe extern "C-unwind" fn AEPutDesc(
 /// - `data_ptr` must be a valid pointer.
 /// - `actual_size` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetNthPtr(
+pub unsafe fn AEGetNthPtr(
     the_ae_desc_list: *const AEDescList,
     index: c_long,
     desired_type: DescType,
@@ -1023,7 +1013,7 @@ pub unsafe extern "C-unwind" fn AEGetNthPtr(
 /// - `the_ae_keyword` must be a valid pointer.
 /// - `result` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetNthDesc(
+pub unsafe fn AEGetNthDesc(
     the_ae_desc_list: *const AEDescList,
     index: c_long,
     desired_type: DescType,
@@ -1056,7 +1046,7 @@ pub unsafe extern "C-unwind" fn AEGetNthDesc(
 /// - `type_code` must be a valid pointer.
 /// - `data_size` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AESizeOfNthItem(
+pub unsafe fn AESizeOfNthItem(
     the_ae_desc_list: *const AEDescList,
     index: c_long,
     type_code: *mut DescType,
@@ -1081,7 +1071,7 @@ pub unsafe extern "C-unwind" fn AESizeOfNthItem(
 /// - `item_size` must be a valid pointer.
 /// - `item_count` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetArray(
+pub unsafe fn AEGetArray(
     the_ae_desc_list: *const AEDescList,
     array_type: AEArrayType,
     array_ptr: AEArrayDataPointer,
@@ -1119,7 +1109,7 @@ pub unsafe extern "C-unwind" fn AEGetArray(
 /// - `the_ae_desc_list` must be a valid pointer.
 /// - `array_ptr` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEPutArray(
+pub unsafe fn AEPutArray(
     the_ae_desc_list: *mut AEDescList,
     array_type: AEArrayType,
     array_ptr: *const AEArrayData,
@@ -1153,10 +1143,7 @@ pub unsafe extern "C-unwind" fn AEPutArray(
 ///
 /// `the_ae_desc_list` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEDeleteItem(
-    the_ae_desc_list: *mut AEDescList,
-    index: c_long,
-) -> OSErr {
+pub unsafe fn AEDeleteItem(the_ae_desc_list: *mut AEDescList, index: c_long) -> OSErr {
     extern "C-unwind" {
         fn AEDeleteItem(the_ae_desc_list: *mut AEDescList, index: c_long) -> OSErr;
     }
@@ -1179,7 +1166,7 @@ pub unsafe extern "C-unwind" fn AEDeleteItem(
 ///
 /// `the_desc` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AECheckIsRecord(the_desc: *const AEDesc) -> bool {
+pub unsafe fn AECheckIsRecord(the_desc: *const AEDesc) -> bool {
     extern "C-unwind" {
         fn AECheckIsRecord(the_desc: *const AEDesc) -> Boolean;
     }
@@ -1196,7 +1183,7 @@ pub unsafe extern "C-unwind" fn AECheckIsRecord(the_desc: *const AEDesc) -> bool
 /// - `target` must be a valid pointer.
 /// - `result` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AECreateAppleEvent(
+pub unsafe fn AECreateAppleEvent(
     the_ae_event_class: AEEventClass,
     the_ae_event_id: AEEventID,
     target: *const AEAddressDesc,
@@ -1239,7 +1226,7 @@ pub unsafe extern "C-unwind" fn AECreateAppleEvent(
 /// - `the_apple_event` must be a valid pointer.
 /// - `data_ptr` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEPutParamPtr(
+pub unsafe fn AEPutParamPtr(
     the_apple_event: *mut AppleEvent,
     the_ae_keyword: AEKeyword,
     type_code: DescType,
@@ -1271,7 +1258,7 @@ pub unsafe extern "C-unwind" fn AEPutParamPtr(
 /// - `the_apple_event` must be a valid pointer.
 /// - `the_ae_desc` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEPutParamDesc(
+pub unsafe fn AEPutParamDesc(
     the_apple_event: *mut AppleEvent,
     the_ae_keyword: AEKeyword,
     the_ae_desc: *const AEDesc,
@@ -1293,7 +1280,7 @@ pub unsafe extern "C-unwind" fn AEPutParamDesc(
 /// - `data_ptr` must be a valid pointer.
 /// - `actual_size` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetParamPtr(
+pub unsafe fn AEGetParamPtr(
     the_apple_event: *const AppleEvent,
     the_ae_keyword: AEKeyword,
     desired_type: DescType,
@@ -1331,7 +1318,7 @@ pub unsafe extern "C-unwind" fn AEGetParamPtr(
 /// - `the_apple_event` must be a valid pointer.
 /// - `result` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetParamDesc(
+pub unsafe fn AEGetParamDesc(
     the_apple_event: *const AppleEvent,
     the_ae_keyword: AEKeyword,
     desired_type: DescType,
@@ -1354,7 +1341,7 @@ pub unsafe extern "C-unwind" fn AEGetParamDesc(
 /// - `type_code` must be a valid pointer.
 /// - `data_size` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AESizeOfParam(
+pub unsafe fn AESizeOfParam(
     the_apple_event: *const AppleEvent,
     the_ae_keyword: AEKeyword,
     type_code: *mut DescType,
@@ -1375,10 +1362,7 @@ pub unsafe extern "C-unwind" fn AESizeOfParam(
 ///
 /// `the_apple_event` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEDeleteParam(
-    the_apple_event: *mut AppleEvent,
-    the_ae_keyword: AEKeyword,
-) -> OSErr {
+pub unsafe fn AEDeleteParam(the_apple_event: *mut AppleEvent, the_ae_keyword: AEKeyword) -> OSErr {
     extern "C-unwind" {
         fn AEDeleteParam(the_apple_event: *mut AppleEvent, the_ae_keyword: AEKeyword) -> OSErr;
     }
@@ -1392,7 +1376,7 @@ pub unsafe extern "C-unwind" fn AEDeleteParam(
 /// - `data_ptr` must be a valid pointer.
 /// - `actual_size` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetAttributePtr(
+pub unsafe fn AEGetAttributePtr(
     the_apple_event: *const AppleEvent,
     the_ae_keyword: AEKeyword,
     desired_type: DescType,
@@ -1430,7 +1414,7 @@ pub unsafe extern "C-unwind" fn AEGetAttributePtr(
 /// - `the_apple_event` must be a valid pointer.
 /// - `result` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetAttributeDesc(
+pub unsafe fn AEGetAttributeDesc(
     the_apple_event: *const AppleEvent,
     the_ae_keyword: AEKeyword,
     desired_type: DescType,
@@ -1453,7 +1437,7 @@ pub unsafe extern "C-unwind" fn AEGetAttributeDesc(
 /// - `type_code` must be a valid pointer.
 /// - `data_size` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AESizeOfAttribute(
+pub unsafe fn AESizeOfAttribute(
     the_apple_event: *const AppleEvent,
     the_ae_keyword: AEKeyword,
     type_code: *mut DescType,
@@ -1475,7 +1459,7 @@ pub unsafe extern "C-unwind" fn AESizeOfAttribute(
 /// - `the_apple_event` must be a valid pointer.
 /// - `data_ptr` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEPutAttributePtr(
+pub unsafe fn AEPutAttributePtr(
     the_apple_event: *mut AppleEvent,
     the_ae_keyword: AEKeyword,
     type_code: DescType,
@@ -1507,7 +1491,7 @@ pub unsafe extern "C-unwind" fn AEPutAttributePtr(
 /// - `the_apple_event` must be a valid pointer.
 /// - `the_ae_desc` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEPutAttributeDesc(
+pub unsafe fn AEPutAttributeDesc(
     the_apple_event: *mut AppleEvent,
     the_ae_keyword: AEKeyword,
     the_ae_desc: *const AEDesc,
@@ -1538,7 +1522,7 @@ pub unsafe extern "C-unwind" fn AEPutAttributeDesc(
 ///
 /// `the_ae_desc` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AESizeOfFlattenedDesc(the_ae_desc: *const AEDesc) -> Size {
+pub unsafe fn AESizeOfFlattenedDesc(the_ae_desc: *const AEDesc) -> Size {
     extern "C-unwind" {
         fn AESizeOfFlattenedDesc(the_ae_desc: *const AEDesc) -> Size;
     }
@@ -1551,7 +1535,7 @@ pub unsafe extern "C-unwind" fn AESizeOfFlattenedDesc(the_ae_desc: *const AEDesc
 /// - `buffer` must be a valid pointer.
 /// - `actual_size` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEFlattenDesc(
+pub unsafe fn AEFlattenDesc(
     the_ae_desc: *const AEDesc,
     buffer: Ptr,
     buffer_size: Size,
@@ -1574,10 +1558,7 @@ pub unsafe extern "C-unwind" fn AEFlattenDesc(
 /// - `result` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AEUnflattenDesc(
-    buffer: *const c_void,
-    result: *mut AEDesc,
-) -> OSStatus {
+pub unsafe fn AEUnflattenDesc(buffer: *const c_void, result: *mut AEDesc) -> OSStatus {
     extern "C-unwind" {
         fn AEUnflattenDesc(buffer: *const c_void, result: *mut AEDesc) -> OSStatus;
     }
@@ -1601,7 +1582,7 @@ pub unsafe extern "C-unwind" fn AEUnflattenDesc(
 /// - `buffer` must be a valid pointer.
 /// - `result` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEUnflattenDescFromBytes(
+pub unsafe fn AEUnflattenDescFromBytes(
     buffer: *const c_void,
     buffer_len: usize,
     result: *mut AEDesc,
@@ -1627,7 +1608,7 @@ pub unsafe extern "C-unwind" fn AEUnflattenDescFromBytes(
 /// - `the_ae_desc` must be a valid pointer.
 /// - `data_ptr` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetDescData(
+pub unsafe fn AEGetDescData(
     the_ae_desc: *const AEDesc,
     data_ptr: *mut c_void,
     maximum_size: Size,
@@ -1646,7 +1627,7 @@ pub unsafe extern "C-unwind" fn AEGetDescData(
 ///
 /// `the_ae_desc` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetDescDataSize(the_ae_desc: *const AEDesc) -> Size {
+pub unsafe fn AEGetDescDataSize(the_ae_desc: *const AEDesc) -> Size {
     extern "C-unwind" {
         fn AEGetDescDataSize(the_ae_desc: *const AEDesc) -> Size;
     }
@@ -1658,7 +1639,7 @@ pub unsafe extern "C-unwind" fn AEGetDescDataSize(the_ae_desc: *const AEDesc) ->
 /// - `data_ptr` must be a valid pointer.
 /// - `the_ae_desc` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEReplaceDescData(
+pub unsafe fn AEReplaceDescData(
     type_code: DescType,
     data_ptr: *const c_void,
     data_size: Size,
@@ -1680,7 +1661,7 @@ pub unsafe extern "C-unwind" fn AEReplaceDescData(
 /// - `data_desc` must be a valid pointer.
 /// - `buffer` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetDescDataRange(
+pub unsafe fn AEGetDescDataRange(
     data_desc: *const AEDesc,
     buffer: *mut c_void,
     offset: Size,
@@ -1712,7 +1693,7 @@ pub type AEEventHandlerUPP = AEEventHandlerProcPtr;
 ///
 /// `user_routine` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn NewAEDisposeExternalUPP(
+pub unsafe fn NewAEDisposeExternalUPP(
     user_routine: AEDisposeExternalProcPtr,
 ) -> AEDisposeExternalUPP {
     extern "C-unwind" {
@@ -1725,9 +1706,7 @@ pub unsafe extern "C-unwind" fn NewAEDisposeExternalUPP(
 ///
 /// `user_routine` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn NewAEEventHandlerUPP(
-    user_routine: AEEventHandlerProcPtr,
-) -> AEEventHandlerUPP {
+pub unsafe fn NewAEEventHandlerUPP(user_routine: AEEventHandlerProcPtr) -> AEEventHandlerUPP {
     extern "C-unwind" {
         fn NewAEEventHandlerUPP(user_routine: AEEventHandlerProcPtr) -> AEEventHandlerUPP;
     }
@@ -1738,7 +1717,7 @@ pub unsafe extern "C-unwind" fn NewAEEventHandlerUPP(
 ///
 /// `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn DisposeAEDisposeExternalUPP(user_upp: AEDisposeExternalUPP) {
+pub unsafe fn DisposeAEDisposeExternalUPP(user_upp: AEDisposeExternalUPP) {
     extern "C-unwind" {
         fn DisposeAEDisposeExternalUPP(user_upp: AEDisposeExternalUPP);
     }
@@ -1749,7 +1728,7 @@ pub unsafe extern "C-unwind" fn DisposeAEDisposeExternalUPP(user_upp: AEDisposeE
 ///
 /// `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn DisposeAEEventHandlerUPP(user_upp: AEEventHandlerUPP) {
+pub unsafe fn DisposeAEEventHandlerUPP(user_upp: AEEventHandlerUPP) {
     extern "C-unwind" {
         fn DisposeAEEventHandlerUPP(user_upp: AEEventHandlerUPP);
     }
@@ -1762,7 +1741,7 @@ pub unsafe extern "C-unwind" fn DisposeAEEventHandlerUPP(user_upp: AEEventHandle
 /// - `refcon` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn InvokeAEDisposeExternalUPP(
+pub unsafe fn InvokeAEDisposeExternalUPP(
     data_ptr: *const c_void,
     data_length: Size,
     refcon: SRefCon,
@@ -1786,7 +1765,7 @@ pub unsafe extern "C-unwind" fn InvokeAEDisposeExternalUPP(
 /// - `handler_refcon` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[inline]
-pub unsafe extern "C-unwind" fn InvokeAEEventHandlerUPP(
+pub unsafe fn InvokeAEEventHandlerUPP(
     the_apple_event: *const AppleEvent,
     reply: *mut AppleEvent,
     handler_refcon: SRefCon,

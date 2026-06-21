@@ -44,8 +44,7 @@ unsafe impl RefEncode for MTLIOCompressionMethod {
 /// GPU.  On other systems that support more than one GPU it will return the GPU that
 /// is associated with the main display.
 #[inline]
-pub extern "C-unwind" fn MTLCreateSystemDefaultDevice(
-) -> Option<Retained<ProtocolObject<dyn MTLDevice>>> {
+pub fn MTLCreateSystemDefaultDevice() -> Option<Retained<ProtocolObject<dyn MTLDevice>>> {
     extern "C-unwind" {
         fn MTLCreateSystemDefaultDevice() -> *mut ProtocolObject<dyn MTLDevice>;
     }
@@ -104,7 +103,7 @@ pub type MTLDeviceNotificationHandler = block2::DynBlock<
 /// - `handler` block must be sendable.
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe extern "C-unwind" fn MTLCopyAllDevicesWithObserver(
+pub unsafe fn MTLCopyAllDevicesWithObserver(
     observer: NonNull<*mut ProtocolObject<dyn NSObjectProtocol>>,
     handler: &MTLDeviceNotificationHandler,
 ) -> Retained<NSArray<ProtocolObject<dyn MTLDevice>>> {
@@ -125,9 +124,7 @@ pub unsafe extern "C-unwind" fn MTLCopyAllDevicesWithObserver(
 ///
 /// `observer` should be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn MTLRemoveDeviceObserver(
-    observer: &ProtocolObject<dyn NSObjectProtocol>,
-) {
+pub unsafe fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>) {
     extern "C-unwind" {
         fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>);
     }

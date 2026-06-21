@@ -22,7 +22,7 @@ use crate::*;
 /// - `exception` must be a valid pointer.
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeTypedArray(
+pub unsafe fn JSObjectMakeTypedArray(
     ctx: JSContextRef,
     array_type: JSTypedArrayType,
     length: usize,
@@ -68,7 +68,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeTypedArray(
 /// - `exception` must be a valid pointer.
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeTypedArrayWithBytesNoCopy(
+pub unsafe fn JSObjectMakeTypedArrayWithBytesNoCopy(
     ctx: JSContextRef,
     array_type: JSTypedArrayType,
     bytes: *mut c_void,
@@ -120,7 +120,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeTypedArrayWithBytesNoCopy(
 /// - `exception` must be a valid pointer.
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeTypedArrayWithArrayBuffer(
+pub unsafe fn JSObjectMakeTypedArrayWithArrayBuffer(
     ctx: JSContextRef,
     array_type: JSTypedArrayType,
     buffer: JSObjectRef,
@@ -160,7 +160,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeTypedArrayWithArrayBuffer(
 /// - `exception` must be a valid pointer.
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeTypedArrayWithArrayBufferAndOffset(
+pub unsafe fn JSObjectMakeTypedArrayWithArrayBufferAndOffset(
     ctx: JSContextRef,
     array_type: JSTypedArrayType,
     buffer: JSObjectRef,
@@ -209,7 +209,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeTypedArrayWithArrayBufferAndOffset(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetTypedArrayBytesPtr(
+pub unsafe fn JSObjectGetTypedArrayBytesPtr(
     ctx: JSContextRef,
     object: JSObjectRef,
     exception: *mut JSValueRef,
@@ -241,7 +241,7 @@ pub unsafe extern "C-unwind" fn JSObjectGetTypedArrayBytesPtr(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetTypedArrayLength(
+pub unsafe fn JSObjectGetTypedArrayLength(
     ctx: JSContextRef,
     object: JSObjectRef,
     exception: *mut JSValueRef,
@@ -273,7 +273,7 @@ pub unsafe extern "C-unwind" fn JSObjectGetTypedArrayLength(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetTypedArrayByteLength(
+pub unsafe fn JSObjectGetTypedArrayByteLength(
     ctx: JSContextRef,
     object: JSObjectRef,
     exception: *mut JSValueRef,
@@ -305,7 +305,7 @@ pub unsafe extern "C-unwind" fn JSObjectGetTypedArrayByteLength(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetTypedArrayByteOffset(
+pub unsafe fn JSObjectGetTypedArrayByteOffset(
     ctx: JSContextRef,
     object: JSObjectRef,
     exception: *mut JSValueRef,
@@ -337,7 +337,7 @@ pub unsafe extern "C-unwind" fn JSObjectGetTypedArrayByteOffset(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetTypedArrayBuffer(
+pub unsafe fn JSObjectGetTypedArrayBuffer(
     ctx: JSContextRef,
     object: JSObjectRef,
     exception: *mut JSValueRef,
@@ -379,7 +379,7 @@ pub unsafe extern "C-unwind" fn JSObjectGetTypedArrayBuffer(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectMakeArrayBufferWithBytesNoCopy(
+pub unsafe fn JSObjectMakeArrayBufferWithBytesNoCopy(
     ctx: JSContextRef,
     bytes: *mut c_void,
     byte_length: usize,
@@ -426,7 +426,7 @@ pub unsafe extern "C-unwind" fn JSObjectMakeArrayBufferWithBytesNoCopy(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetArrayBufferBytesPtr(
+pub unsafe fn JSObjectGetArrayBufferBytesPtr(
     ctx: JSContextRef,
     object: JSObjectRef,
     exception: *mut JSValueRef,
@@ -458,7 +458,7 @@ pub unsafe extern "C-unwind" fn JSObjectGetArrayBufferBytesPtr(
 /// - `exception` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSObjectGetArrayBufferByteLength(
+pub unsafe fn JSObjectGetArrayBufferByteLength(
     ctx: JSContextRef,
     object: JSObjectRef,
     exception: *mut JSValueRef,

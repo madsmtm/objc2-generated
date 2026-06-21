@@ -492,7 +492,7 @@ unsafe impl RefEncode for NSMultibyteGlyphPacking {
 /// - `packed_glyphs` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn NSConvertGlyphsToPackedGlyphs(
+pub unsafe fn NSConvertGlyphsToPackedGlyphs(
     gl_buf: NonNull<NSGlyph>,
     count: NSInteger,
     packing: NSMultibyteGlyphPacking,

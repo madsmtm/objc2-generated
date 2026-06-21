@@ -27,7 +27,7 @@ use crate::*;
 #[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
+pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
     in_sdp_service_ref: &IOBluetoothSDPServiceRecordRef,
     out_session_ref: *mut OBEXSessionRef,
 ) -> OBEXError {
@@ -74,7 +74,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPSe
 ))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(
+pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(
     in_device_ref: &IOBluetoothDeviceRef,
     in_channel_id: BluetoothRFCOMMChannelID,
     out_session_ref: *mut OBEXSessionRef,
@@ -123,7 +123,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothOBEXSessionCreateWithIOBluetoothDevic
 #[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
+pub unsafe fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
     in_rfcomm_channel_ref: &IOBluetoothRFCOMMChannelRef,
     in_callback: OBEXSessionEventCallback,
     in_user_ref_con: *mut c_void,
@@ -179,7 +179,7 @@ pub type IOBluetoothOBEXSessionOpenConnectionCallback =
 #[cfg(feature = "OBEX")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothOBEXSessionOpenTransportConnection(
+pub unsafe fn IOBluetoothOBEXSessionOpenTransportConnection(
     in_session_ref: OBEXSessionRef,
     in_callback: IOBluetoothOBEXSessionOpenConnectionCallback,
     in_user_ref_con: *mut c_void,

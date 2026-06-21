@@ -14,7 +14,7 @@ pub const typeReplyPortAttr: DescType = keyReplyPortAttr;
 
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn AEGetRegisteredMachPort() -> libc::mach_port_t {
+pub unsafe fn AEGetRegisteredMachPort() -> libc::mach_port_t {
     extern "C-unwind" {
         fn AEGetRegisteredMachPort() -> libc::mach_port_t;
     }
@@ -27,7 +27,7 @@ pub unsafe extern "C-unwind" fn AEGetRegisteredMachPort() -> libc::mach_port_t {
 /// - `reply` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn AESendMessage(
+pub unsafe fn AESendMessage(
     event: *const AppleEvent,
     reply: *mut AppleEvent,
     send_mode: AESendMode,

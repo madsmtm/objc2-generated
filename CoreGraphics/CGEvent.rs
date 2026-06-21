@@ -529,7 +529,7 @@ impl CGEvent {
 /// `tap_list` must be a valid pointer or null.
 #[cfg(all(feature = "CGError", feature = "CGEventTypes", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGGetEventTapList(
+pub unsafe fn CGGetEventTapList(
     max_number_of_taps: u32,
     tap_list: *mut CGEventTapInformation,
     event_tap_count: Option<&mut u32>,
@@ -545,7 +545,7 @@ pub unsafe extern "C-unwind" fn CGGetEventTapList(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGPreflightListenEventAccess() -> bool {
+pub fn CGPreflightListenEventAccess() -> bool {
     extern "C-unwind" {
         fn CGPreflightListenEventAccess() -> bool;
     }
@@ -553,7 +553,7 @@ pub extern "C-unwind" fn CGPreflightListenEventAccess() -> bool {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRequestListenEventAccess() -> bool {
+pub fn CGRequestListenEventAccess() -> bool {
     extern "C-unwind" {
         fn CGRequestListenEventAccess() -> bool;
     }
@@ -561,7 +561,7 @@ pub extern "C-unwind" fn CGRequestListenEventAccess() -> bool {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGPreflightPostEventAccess() -> bool {
+pub fn CGPreflightPostEventAccess() -> bool {
     extern "C-unwind" {
         fn CGPreflightPostEventAccess() -> bool;
     }
@@ -569,7 +569,7 @@ pub extern "C-unwind" fn CGPreflightPostEventAccess() -> bool {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRequestPostEventAccess() -> bool {
+pub fn CGRequestPostEventAccess() -> bool {
     extern "C-unwind" {
         fn CGRequestPostEventAccess() -> bool;
     }

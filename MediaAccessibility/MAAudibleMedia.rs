@@ -23,8 +23,7 @@ extern "C" {
 ///
 /// Returns: An array containing the preferred order of media characteristics for audible media.
 #[inline]
-pub unsafe extern "C-unwind" fn MAAudibleMediaCopyPreferredCharacteristics() -> CFRetained<CFArray>
-{
+pub unsafe fn MAAudibleMediaCopyPreferredCharacteristics() -> CFRetained<CFArray> {
     extern "C-unwind" {
         fn MAAudibleMediaCopyPreferredCharacteristics() -> Option<NonNull<CFArray>>;
     }

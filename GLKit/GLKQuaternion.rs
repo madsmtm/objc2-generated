@@ -23,7 +23,7 @@ extern "C" {
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn GLKQuaternionMakeWithMatrix3(matrix: GLKMatrix3) -> GLKQuaternion {
+pub unsafe fn GLKQuaternionMakeWithMatrix3(matrix: GLKMatrix3) -> GLKQuaternion {
     extern "C-unwind" {
         fn GLKQuaternionMakeWithMatrix3(matrix: GLKMatrix3) -> GLKQuaternion;
     }
@@ -32,7 +32,7 @@ pub unsafe extern "C-unwind" fn GLKQuaternionMakeWithMatrix3(matrix: GLKMatrix3)
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn GLKQuaternionMakeWithMatrix4(matrix: GLKMatrix4) -> GLKQuaternion {
+pub unsafe fn GLKQuaternionMakeWithMatrix4(matrix: GLKMatrix4) -> GLKQuaternion {
     extern "C-unwind" {
         fn GLKQuaternionMakeWithMatrix4(matrix: GLKMatrix4) -> GLKQuaternion;
     }
@@ -41,7 +41,7 @@ pub unsafe extern "C-unwind" fn GLKQuaternionMakeWithMatrix4(matrix: GLKMatrix4)
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn GLKQuaternionAngle(quaternion: GLKQuaternion) -> c_float {
+pub unsafe fn GLKQuaternionAngle(quaternion: GLKQuaternion) -> c_float {
     extern "C-unwind" {
         fn GLKQuaternionAngle(quaternion: GLKQuaternion) -> c_float;
     }
@@ -50,7 +50,7 @@ pub unsafe extern "C-unwind" fn GLKQuaternionAngle(quaternion: GLKQuaternion) ->
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn GLKQuaternionAxis(quaternion: GLKQuaternion) -> GLKVector3 {
+pub unsafe fn GLKQuaternionAxis(quaternion: GLKQuaternion) -> GLKVector3 {
     extern "C-unwind" {
         fn GLKQuaternionAxis(quaternion: GLKQuaternion) -> GLKVector3;
     }
@@ -65,7 +65,7 @@ pub unsafe extern "C-unwind" fn GLKQuaternionAxis(quaternion: GLKQuaternion) -> 
 
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn GLKQuaternionSlerp(
+pub unsafe fn GLKQuaternionSlerp(
     quaternion_start: GLKQuaternion,
     quaternion_end: GLKQuaternion,
     t: c_float,
@@ -95,7 +95,7 @@ pub unsafe extern "C-unwind" fn GLKQuaternionSlerp(
 /// `vectors` must be a valid pointer.
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn GLKQuaternionRotateVector3Array(
+pub unsafe fn GLKQuaternionRotateVector3Array(
     quaternion: GLKQuaternion,
     vectors: NonNull<GLKVector3>,
     vector_count: usize,
@@ -117,7 +117,7 @@ pub unsafe extern "C-unwind" fn GLKQuaternionRotateVector3Array(
 /// `vectors` must be a valid pointer.
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn GLKQuaternionRotateVector4Array(
+pub unsafe fn GLKQuaternionRotateVector4Array(
     quaternion: GLKQuaternion,
     vectors: NonNull<GLKVector4>,
     vector_count: usize,

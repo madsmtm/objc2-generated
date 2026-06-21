@@ -574,7 +574,7 @@ extern "C" {
 /// - `s_buf_out` must be a valid pointer.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOSampleBufferCreate(
+pub unsafe fn CMIOSampleBufferCreate(
     allocator: Option<&CFAllocator>,
     data_buffer: Option<&CMBlockBuffer>,
     format_description: Option<&CMFormatDescription>,
@@ -657,7 +657,7 @@ pub unsafe extern "C-unwind" fn CMIOSampleBufferCreate(
     feature = "objc2-core-video"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOSampleBufferCreateForImageBuffer(
+pub unsafe fn CMIOSampleBufferCreateForImageBuffer(
     allocator: Option<&CFAllocator>,
     image_buffer: Option<&CVImageBuffer>,
     format_description: Option<&CMVideoFormatDescription>,
@@ -708,7 +708,7 @@ pub unsafe extern "C-unwind" fn CMIOSampleBufferCreateForImageBuffer(
 /// - `s_buf_out` must be a valid pointer.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOSampleBufferCreateNoDataMarker(
+pub unsafe fn CMIOSampleBufferCreateNoDataMarker(
     allocator: Option<&CFAllocator>,
     no_data_event: u32,
     format_description: Option<&CMFormatDescription>,
@@ -755,7 +755,7 @@ pub unsafe extern "C-unwind" fn CMIOSampleBufferCreateNoDataMarker(
 /// `sbuf` might not allow `None`.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOSampleBufferSetSequenceNumber(
+pub unsafe fn CMIOSampleBufferSetSequenceNumber(
     allocator: Option<&CFAllocator>,
     sbuf: Option<&CMSampleBuffer>,
     sequence_number: u64,
@@ -783,9 +783,7 @@ pub unsafe extern "C-unwind" fn CMIOSampleBufferSetSequenceNumber(
 /// `sbuf` might not allow `None`.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOSampleBufferGetSequenceNumber(
-    sbuf: Option<&CMSampleBuffer>,
-) -> u64 {
+pub unsafe fn CMIOSampleBufferGetSequenceNumber(sbuf: Option<&CMSampleBuffer>) -> u64 {
     extern "C-unwind" {
         fn CMIOSampleBufferGetSequenceNumber(sbuf: Option<&CMSampleBuffer>) -> u64;
     }
@@ -806,7 +804,7 @@ pub unsafe extern "C-unwind" fn CMIOSampleBufferGetSequenceNumber(
 /// `sbuf` might not allow `None`.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOSampleBufferSetDiscontinuityFlags(
+pub unsafe fn CMIOSampleBufferSetDiscontinuityFlags(
     allocator: Option<&CFAllocator>,
     sbuf: Option<&CMSampleBuffer>,
     discontinuity_flags: u32,
@@ -834,9 +832,7 @@ pub unsafe extern "C-unwind" fn CMIOSampleBufferSetDiscontinuityFlags(
 /// `sbuf` might not allow `None`.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOSampleBufferGetDiscontinuityFlags(
-    sbuf: Option<&CMSampleBuffer>,
-) -> u32 {
+pub unsafe fn CMIOSampleBufferGetDiscontinuityFlags(sbuf: Option<&CMSampleBuffer>) -> u32 {
     extern "C-unwind" {
         fn CMIOSampleBufferGetDiscontinuityFlags(sbuf: Option<&CMSampleBuffer>) -> u32;
     }
@@ -858,7 +854,7 @@ pub unsafe extern "C-unwind" fn CMIOSampleBufferGetDiscontinuityFlags(
 /// - `dest_s_buf` might not allow `None`.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOSampleBufferCopyNonRequiredAttachments(
+pub unsafe fn CMIOSampleBufferCopyNonRequiredAttachments(
     source_s_buf: Option<&CMSampleBuffer>,
     dest_s_buf: Option<&CMSampleBuffer>,
     attachment_mode: CMAttachmentMode,
@@ -891,7 +887,7 @@ pub unsafe extern "C-unwind" fn CMIOSampleBufferCopyNonRequiredAttachments(
 /// - `dest_s_buf` might not allow `None`.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIOSampleBufferCopySampleAttachments(
+pub unsafe fn CMIOSampleBufferCopySampleAttachments(
     source_s_buf: Option<&CMSampleBuffer>,
     dest_s_buf: Option<&CMSampleBuffer>,
 ) -> OSStatus {

@@ -663,7 +663,7 @@ extern "C" {
 /// `in_unit` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitInitialize(in_unit: AudioUnit) -> OSStatus {
+pub unsafe fn AudioUnitInitialize(in_unit: AudioUnit) -> OSStatus {
     extern "C-unwind" {
         fn AudioUnitInitialize(in_unit: AudioUnit) -> OSStatus;
     }
@@ -691,7 +691,7 @@ pub unsafe extern "C-unwind" fn AudioUnitInitialize(in_unit: AudioUnit) -> OSSta
 /// `in_unit` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitUninitialize(in_unit: AudioUnit) -> OSStatus {
+pub unsafe fn AudioUnitUninitialize(in_unit: AudioUnit) -> OSStatus {
     extern "C-unwind" {
         fn AudioUnitUninitialize(in_unit: AudioUnit) -> OSStatus;
     }
@@ -729,7 +729,7 @@ pub unsafe extern "C-unwind" fn AudioUnitUninitialize(in_unit: AudioUnit) -> OSS
 /// `in_unit` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitGetPropertyInfo(
+pub unsafe fn AudioUnitGetPropertyInfo(
     in_unit: AudioUnit,
     in_id: AudioUnitPropertyID,
     in_scope: AudioUnitScope,
@@ -788,7 +788,7 @@ pub unsafe extern "C-unwind" fn AudioUnitGetPropertyInfo(
 /// - `out_data` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitGetProperty(
+pub unsafe fn AudioUnitGetProperty(
     in_unit: AudioUnit,
     in_id: AudioUnitPropertyID,
     in_scope: AudioUnitScope,
@@ -840,7 +840,7 @@ pub unsafe extern "C-unwind" fn AudioUnitGetProperty(
 /// - `in_data` must be a valid pointer or null.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitSetProperty(
+pub unsafe fn AudioUnitSetProperty(
     in_unit: AudioUnit,
     in_id: AudioUnitPropertyID,
     in_scope: AudioUnitScope,
@@ -890,7 +890,7 @@ pub unsafe extern "C-unwind" fn AudioUnitSetProperty(
 /// - `in_proc_user_data` must be a valid pointer or null.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitAddPropertyListener(
+pub unsafe fn AudioUnitAddPropertyListener(
     in_unit: AudioUnit,
     in_id: AudioUnitPropertyID,
     in_proc: AudioUnitPropertyListenerProc,
@@ -931,7 +931,7 @@ pub unsafe extern "C-unwind" fn AudioUnitAddPropertyListener(
 /// - `in_proc_user_data` must be a valid pointer or null.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitRemovePropertyListenerWithUserData(
+pub unsafe fn AudioUnitRemovePropertyListenerWithUserData(
     in_unit: AudioUnit,
     in_id: AudioUnitPropertyID,
     in_proc: AudioUnitPropertyListenerProc,
@@ -979,7 +979,7 @@ pub unsafe extern "C-unwind" fn AudioUnitRemovePropertyListenerWithUserData(
 /// - `in_proc_user_data` must be a valid pointer or null.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitAddRenderNotify(
+pub unsafe fn AudioUnitAddRenderNotify(
     in_unit: AudioUnit,
     in_proc: AURenderCallback,
     in_proc_user_data: *mut c_void,
@@ -1014,7 +1014,7 @@ pub unsafe extern "C-unwind" fn AudioUnitAddRenderNotify(
 /// - `in_proc_user_data` must be a valid pointer or null.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitRemoveRenderNotify(
+pub unsafe fn AudioUnitRemoveRenderNotify(
     in_unit: AudioUnit,
     in_proc: AURenderCallback,
     in_proc_user_data: *mut c_void,
@@ -1053,7 +1053,7 @@ pub unsafe extern "C-unwind" fn AudioUnitRemoveRenderNotify(
 /// `in_unit` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitGetParameter(
+pub unsafe fn AudioUnitGetParameter(
     in_unit: AudioUnit,
     in_id: AudioUnitParameterID,
     in_scope: AudioUnitScope,
@@ -1100,7 +1100,7 @@ pub unsafe extern "C-unwind" fn AudioUnitGetParameter(
 /// `in_unit` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitSetParameter(
+pub unsafe fn AudioUnitSetParameter(
     in_unit: AudioUnit,
     in_id: AudioUnitParameterID,
     in_scope: AudioUnitScope,
@@ -1176,7 +1176,7 @@ pub unsafe extern "C-unwind" fn AudioUnitSetParameter(
 /// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitRender(
+pub unsafe fn AudioUnitRender(
     in_unit: AudioUnit,
     io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
     in_time_stamp: &AudioTimeStamp,
@@ -1214,7 +1214,7 @@ pub unsafe extern "C-unwind" fn AudioUnitRender(
 /// - `io_data` must be a valid pointer.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitProcess(
+pub unsafe fn AudioUnitProcess(
     in_unit: AudioUnit,
     io_action_flags: *mut AudioUnitRenderActionFlags,
     in_time_stamp: NonNull<AudioTimeStamp>,
@@ -1248,7 +1248,7 @@ pub unsafe extern "C-unwind" fn AudioUnitProcess(
 /// - `io_output_buffer_lists` must be a valid pointer.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitProcessMultiple(
+pub unsafe fn AudioUnitProcessMultiple(
     in_unit: AudioUnit,
     io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
     in_time_stamp: &AudioTimeStamp,
@@ -1312,7 +1312,7 @@ pub unsafe extern "C-unwind" fn AudioUnitProcessMultiple(
 /// `in_unit` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitReset(
+pub unsafe fn AudioUnitReset(
     in_unit: AudioUnit,
     in_scope: AudioUnitScope,
     in_element: AudioUnitElement,
@@ -1351,7 +1351,7 @@ pub unsafe extern "C-unwind" fn AudioUnitReset(
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
 #[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioOutputUnitPublish(
+pub unsafe fn AudioOutputUnitPublish(
     in_desc: NonNull<AudioComponentDescription>,
     in_name: &CFString,
     in_version: u32,
@@ -1384,9 +1384,7 @@ pub unsafe extern "C-unwind" fn AudioOutputUnitPublish(
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
 #[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioComponentGetLastActiveTime(
-    comp: AudioComponent,
-) -> CFAbsoluteTime {
+pub unsafe fn AudioComponentGetLastActiveTime(comp: AudioComponent) -> CFAbsoluteTime {
     extern "C-unwind" {
         fn AudioComponentGetLastActiveTime(comp: AudioComponent) -> CFAbsoluteTime;
     }
@@ -1411,7 +1409,7 @@ pub unsafe extern "C-unwind" fn AudioComponentGetLastActiveTime(
 /// `audio_component_info` generic generic should be of the correct type.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitExtensionSetComponentList(
+pub unsafe fn AudioUnitExtensionSetComponentList(
     extension_identifier: &CFString,
     audio_component_info: Option<&CFArray<CFDictionary<CFString, CFType>>>,
 ) -> OSStatus {
@@ -1433,7 +1431,7 @@ pub unsafe extern "C-unwind" fn AudioUnitExtensionSetComponentList(
 /// The caller should release this value when done with it.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioUnitExtensionCopyComponentList(
+pub unsafe fn AudioUnitExtensionCopyComponentList(
     extension_identifier: &CFString,
 ) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
     extern "C-unwind" {

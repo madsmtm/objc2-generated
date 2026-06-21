@@ -351,7 +351,7 @@ unsafe impl RefEncode for SecKeychainAttributeInfo {
 ///
 /// `reserved` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn SecCopyErrorMessageString(
+pub unsafe fn SecCopyErrorMessageString(
     status: OSStatus,
     reserved: *mut c_void,
 ) -> Option<CFRetained<CFString>> {

@@ -258,7 +258,7 @@ impl DefaultRetained for _XCTestCaseInterruptionException {
 }
 
 #[inline]
-pub(crate) extern "C-unwind" fn _XCTPreformattedFailureHandler(
+pub(crate) fn _XCTPreformattedFailureHandler(
     test: Option<&XCTestCase>,
     expected: bool,
     file_path: &NSString,
@@ -353,7 +353,7 @@ unsafe impl RefEncode for _XCTAssertionType {
 }
 
 #[inline]
-pub(crate) extern "C-unwind" fn _XCTFailureFormat(
+pub(crate) fn _XCTFailureFormat(
     assertion_type: _XCTAssertionType,
     format_index: NSUInteger,
 ) -> Retained<NSString> {
@@ -369,7 +369,7 @@ pub(crate) extern "C-unwind" fn _XCTFailureFormat(
 }
 
 #[inline]
-pub(crate) extern "C-unwind" fn _XCTDescriptionForValue(value: &NSValue) -> Retained<NSString> {
+pub(crate) fn _XCTDescriptionForValue(value: &NSValue) -> Retained<NSString> {
     extern "C-unwind" {
         fn _XCTDescriptionForValue(value: &NSValue) -> *mut NSString;
     }
@@ -379,7 +379,7 @@ pub(crate) extern "C-unwind" fn _XCTDescriptionForValue(value: &NSValue) -> Reta
 }
 
 #[inline]
-pub(crate) extern "C-unwind" fn _XCTGetCurrentExceptionReasonWithFallback(
+pub(crate) fn _XCTGetCurrentExceptionReasonWithFallback(
     fallback: Option<&NSString>,
 ) -> Retained<NSString> {
     extern "C-unwind" {
@@ -1511,7 +1511,7 @@ impl DefaultRetained for XCTestObservationCenter {
 
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn XCTSelfTestMain() -> c_int {
+pub fn XCTSelfTestMain() -> c_int {
     extern "C-unwind" {
         fn XCTSelfTestMain() -> c_int;
     }
@@ -2181,7 +2181,7 @@ impl DefaultRetained for XCTContext {
 /// Parameter `failureReason`: Explanation of the issue being suppressed. If it contains
 /// a URL, that URL can be extracted and presented as a link in reporting UI (Xcode and CI).
 #[inline]
-pub extern "C-unwind" fn XCTExpectFailure(failure_reason: Option<&NSString>) {
+pub fn XCTExpectFailure(failure_reason: Option<&NSString>) {
     extern "C-unwind" {
         fn XCTExpectFailure(failure_reason: Option<&NSString>);
     }
@@ -2195,7 +2195,7 @@ pub extern "C-unwind" fn XCTExpectFailure(failure_reason: Option<&NSString>) {
 /// disable "strict" behavior, which relaxes the requirement that a call to XCTExpectFailure must be matched
 /// against at least one recorded issue.
 #[inline]
-pub extern "C-unwind" fn XCTExpectFailureWithOptions(
+pub fn XCTExpectFailureWithOptions(
     failure_reason: Option<&NSString>,
     options: &XCTExpectedFailureOptions,
 ) {
@@ -2216,7 +2216,7 @@ pub extern "C-unwind" fn XCTExpectFailureWithOptions(
 /// running on a different thread will not be matched.
 #[cfg(feature = "block2")]
 #[inline]
-pub extern "C-unwind" fn XCTExpectFailureInBlock(
+pub fn XCTExpectFailureInBlock(
     failure_reason: Option<&NSString>,
     failing_block: &block2::DynBlock<dyn Fn()>,
 ) {
@@ -2233,7 +2233,7 @@ pub extern "C-unwind" fn XCTExpectFailureInBlock(
 /// limits the scope in which issues are matched.
 #[cfg(feature = "block2")]
 #[inline]
-pub extern "C-unwind" fn XCTExpectFailureWithOptionsInBlock(
+pub fn XCTExpectFailureWithOptionsInBlock(
     failure_reason: Option<&NSString>,
     options: &XCTExpectedFailureOptions,
     failing_block: &block2::DynBlock<dyn Fn()>,

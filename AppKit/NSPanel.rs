@@ -175,7 +175,7 @@ impl NSPanel {
 /// - `panel` might not allow `None`.
 #[deprecated = "Use NSAlert instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn NSReleaseAlertPanel(panel: Option<&AnyObject>) {
+pub unsafe fn NSReleaseAlertPanel(panel: Option<&AnyObject>) {
     extern "C-unwind" {
         fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
     }

@@ -887,7 +887,7 @@ extern "C" {
 /// - `user_info` must be a valid pointer or null.
 /// - `error` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn ColorSyncIterateInstalledProfiles(
+pub unsafe fn ColorSyncIterateInstalledProfiles(
     call_back: ColorSyncProfileIterateCallback,
     seed: *mut u32,
     user_info: *mut c_void,
@@ -918,7 +918,7 @@ extern "C" {
 /// - `options` generic must be of the correct type.
 /// - `error` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn ColorSyncIterateInstalledProfilesWithOptions(
+pub unsafe fn ColorSyncIterateInstalledProfilesWithOptions(
     call_back: ColorSyncProfileIterateCallback,
     seed: *mut u32,
     user_info: *mut c_void,

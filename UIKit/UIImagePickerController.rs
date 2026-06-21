@@ -654,9 +654,7 @@ impl UIImage {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(
-    video_path: &NSString,
-) -> bool {
+pub fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(video_path: &NSString) -> bool {
     extern "C-unwind" {
         fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(video_path: &NSString) -> Bool;
     }
@@ -669,7 +667,7 @@ pub extern "C-unwind" fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(
 /// - `completion_selector` must be a valid selector.
 /// - `context_info` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn UISaveVideoAtPathToSavedPhotosAlbum(
+pub unsafe fn UISaveVideoAtPathToSavedPhotosAlbum(
     video_path: &NSString,
     completion_target: Option<&AnyObject>,
     completion_selector: Option<Sel>,

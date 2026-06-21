@@ -183,9 +183,7 @@ pub const kAudioHardwarePropertyBootChimeVolumeDecibelsToScalarTransferFunction:
 /// Returns: An OSStatus indicating success or failure.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareAddRunLoopSource(
-    in_run_loop_source: &CFRunLoopSource,
-) -> OSStatus {
+pub unsafe fn AudioHardwareAddRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus {
     extern "C-unwind" {
         fn AudioHardwareAddRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus;
     }
@@ -204,9 +202,7 @@ pub unsafe extern "C-unwind" fn AudioHardwareAddRunLoopSource(
 /// Returns: An OSStatus indicating success or failure.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareRemoveRunLoopSource(
-    in_run_loop_source: &CFRunLoopSource,
-) -> OSStatus {
+pub unsafe fn AudioHardwareRemoveRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus {
     extern "C-unwind" {
         fn AudioHardwareRemoveRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus;
     }
@@ -232,7 +228,7 @@ pub unsafe extern "C-unwind" fn AudioHardwareRemoveRunLoopSource(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareGetPropertyInfo(
+pub unsafe fn AudioHardwareGetPropertyInfo(
     in_property_id: AudioHardwarePropertyID,
     out_size: Option<&mut u32>,
     out_writable: Option<&mut Boolean>,
@@ -269,7 +265,7 @@ pub unsafe extern "C-unwind" fn AudioHardwareGetPropertyInfo(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareGetProperty(
+pub unsafe fn AudioHardwareGetProperty(
     in_property_id: AudioHardwarePropertyID,
     io_property_data_size: &mut u32,
     out_property_data: NonNull<c_void>,
@@ -306,7 +302,7 @@ pub unsafe extern "C-unwind" fn AudioHardwareGetProperty(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareSetProperty(
+pub unsafe fn AudioHardwareSetProperty(
     in_property_id: AudioHardwarePropertyID,
     in_property_data_size: u32,
     in_property_data: NonNull<c_void>,
@@ -342,7 +338,7 @@ pub unsafe extern "C-unwind" fn AudioHardwareSetProperty(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareAddPropertyListener(
+pub unsafe fn AudioHardwareAddPropertyListener(
     in_property_id: AudioHardwarePropertyID,
     in_proc: AudioHardwarePropertyListenerProc,
     in_client_data: *mut c_void,
@@ -376,7 +372,7 @@ pub unsafe extern "C-unwind" fn AudioHardwareAddPropertyListener(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioHardwareRemovePropertyListener(
+pub unsafe fn AudioHardwareRemovePropertyListener(
     in_property_id: AudioHardwarePropertyID,
     in_proc: AudioHardwarePropertyListenerProc,
 ) -> OSStatus {
@@ -562,7 +558,7 @@ pub const kAudioDevicePropertyHighPassFilterSettingNameForID: AudioObjectPropert
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceAddIOProc(
+pub unsafe fn AudioDeviceAddIOProc(
     in_device: AudioDeviceID,
     in_proc: AudioDeviceIOProc,
     in_client_data: *mut c_void,
@@ -592,7 +588,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceAddIOProc(
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceRemoveIOProc(
+pub unsafe fn AudioDeviceRemoveIOProc(
     in_device: AudioDeviceID,
     in_proc: AudioDeviceIOProc,
 ) -> OSStatus {
@@ -632,7 +628,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceRemoveIOProc(
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceRead(
+pub unsafe fn AudioDeviceRead(
     in_device: AudioDeviceID,
     in_start_time: &AudioTimeStamp,
     out_data: &mut AudioBufferList,
@@ -672,7 +668,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceRead(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceGetPropertyInfo(
+pub unsafe fn AudioDeviceGetPropertyInfo(
     in_device: AudioDeviceID,
     in_channel: u32,
     is_input: bool,
@@ -729,7 +725,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetPropertyInfo(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceGetProperty(
+pub unsafe fn AudioDeviceGetProperty(
     in_device: AudioDeviceID,
     in_channel: u32,
     is_input: bool,
@@ -791,7 +787,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetProperty(
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceSetProperty(
+pub unsafe fn AudioDeviceSetProperty(
     in_device: AudioDeviceID,
     in_when: Option<&AudioTimeStamp>,
     in_channel: u32,
@@ -851,7 +847,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceSetProperty(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceAddPropertyListener(
+pub unsafe fn AudioDeviceAddPropertyListener(
     in_device: AudioDeviceID,
     in_channel: u32,
     is_input: bool,
@@ -906,7 +902,7 @@ pub unsafe extern "C-unwind" fn AudioDeviceAddPropertyListener(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioDeviceRemovePropertyListener(
+pub unsafe fn AudioDeviceRemovePropertyListener(
     in_device: AudioDeviceID,
     in_channel: u32,
     is_input: bool,
@@ -1006,7 +1002,7 @@ pub const kAudioStreamPropertyPhysicalFormatMatch: AudioObjectPropertySelector =
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioStreamGetPropertyInfo(
+pub unsafe fn AudioStreamGetPropertyInfo(
     in_stream: AudioStreamID,
     in_channel: u32,
     in_property_id: AudioDevicePropertyID,
@@ -1058,7 +1054,7 @@ pub unsafe extern "C-unwind" fn AudioStreamGetPropertyInfo(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioStreamGetProperty(
+pub unsafe fn AudioStreamGetProperty(
     in_stream: AudioStreamID,
     in_channel: u32,
     in_property_id: AudioDevicePropertyID,
@@ -1115,7 +1111,7 @@ pub unsafe extern "C-unwind" fn AudioStreamGetProperty(
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioStreamSetProperty(
+pub unsafe fn AudioStreamSetProperty(
     in_stream: AudioStreamID,
     in_when: Option<&AudioTimeStamp>,
     in_channel: u32,
@@ -1170,7 +1166,7 @@ pub unsafe extern "C-unwind" fn AudioStreamSetProperty(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioStreamAddPropertyListener(
+pub unsafe fn AudioStreamAddPropertyListener(
     in_stream: AudioStreamID,
     in_channel: u32,
     in_property_id: AudioDevicePropertyID,
@@ -1220,7 +1216,7 @@ pub unsafe extern "C-unwind" fn AudioStreamAddPropertyListener(
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioStreamRemovePropertyListener(
+pub unsafe fn AudioStreamRemovePropertyListener(
     in_stream: AudioStreamID,
     in_channel: u32,
     in_property_id: AudioDevicePropertyID,

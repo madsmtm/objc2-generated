@@ -18,7 +18,7 @@ use crate::*;
 ///
 /// `obj` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_retain(obj: *mut c_void) -> *mut c_void {
+pub unsafe fn cp_retain(obj: *mut c_void) -> *mut c_void {
     extern "C-unwind" {
         fn cp_retain(obj: *mut c_void) -> *mut c_void;
     }
@@ -38,7 +38,7 @@ pub unsafe extern "C-unwind" fn cp_retain(obj: *mut c_void) -> *mut c_void {
 ///
 /// `obj` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_release(obj: *mut c_void) {
+pub unsafe fn cp_release(obj: *mut c_void) {
     extern "C-unwind" {
         fn cp_release(obj: *mut c_void);
     }

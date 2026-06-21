@@ -130,7 +130,7 @@ unsafe impl RefEncode for UIGuidedAccessAccessibilityFeature {
 
 #[cfg(feature = "block2")]
 #[inline]
-pub extern "C-unwind" fn UIGuidedAccessConfigureAccessibilityFeatures(
+pub fn UIGuidedAccessConfigureAccessibilityFeatures(
     features: UIGuidedAccessAccessibilityFeature,
     enabled: bool,
     completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,

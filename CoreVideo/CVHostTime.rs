@@ -11,7 +11,7 @@ use crate::*;
 ///
 /// Returns: The current host time.
 #[inline]
-pub extern "C-unwind" fn CVGetCurrentHostTime() -> u64 {
+pub fn CVGetCurrentHostTime() -> u64 {
     extern "C-unwind" {
         fn CVGetCurrentHostTime() -> u64;
     }
@@ -25,7 +25,7 @@ pub extern "C-unwind" fn CVGetCurrentHostTime() -> u64 {
 ///
 /// Returns: The current host frequency.
 #[inline]
-pub extern "C-unwind" fn CVGetHostClockFrequency() -> c_double {
+pub fn CVGetHostClockFrequency() -> c_double {
     extern "C-unwind" {
         fn CVGetHostClockFrequency() -> c_double;
     }
@@ -36,7 +36,7 @@ pub extern "C-unwind" fn CVGetHostClockFrequency() -> c_double {
 ///
 /// Returns: The smallest valid increment in the host time base.
 #[inline]
-pub extern "C-unwind" fn CVGetHostClockMinimumTimeDelta() -> u32 {
+pub fn CVGetHostClockMinimumTimeDelta() -> u32 {
     extern "C-unwind" {
         fn CVGetHostClockMinimumTimeDelta() -> u32;
     }

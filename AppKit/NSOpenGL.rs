@@ -45,7 +45,7 @@ unsafe impl RefEncode for NSOpenGLGlobalOption {
 #[cfg(target_vendor = "apple")]
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 #[inline]
-pub extern "C-unwind" fn NSOpenGLSetOption(pname: NSOpenGLGlobalOption, param: GLint) {
+pub fn NSOpenGLSetOption(pname: NSOpenGLGlobalOption, param: GLint) {
     extern "C-unwind" {
         fn NSOpenGLSetOption(pname: NSOpenGLGlobalOption, param: GLint);
     }
@@ -56,7 +56,7 @@ pub extern "C-unwind" fn NSOpenGLSetOption(pname: NSOpenGLGlobalOption, param: G
 #[cfg(target_vendor = "apple")]
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 #[inline]
-pub extern "C-unwind" fn NSOpenGLGetOption(pname: NSOpenGLGlobalOption, param: &mut GLint) {
+pub fn NSOpenGLGetOption(pname: NSOpenGLGlobalOption, param: &mut GLint) {
     extern "C-unwind" {
         fn NSOpenGLGetOption(pname: NSOpenGLGlobalOption, param: &mut GLint);
     }
@@ -67,7 +67,7 @@ pub extern "C-unwind" fn NSOpenGLGetOption(pname: NSOpenGLGlobalOption, param: &
 #[cfg(target_vendor = "apple")]
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 #[inline]
-pub extern "C-unwind" fn NSOpenGLGetVersion(major: Option<&mut GLint>, minor: Option<&mut GLint>) {
+pub fn NSOpenGLGetVersion(major: Option<&mut GLint>, minor: Option<&mut GLint>) {
     extern "C-unwind" {
         fn NSOpenGLGetVersion(major: Option<&mut GLint>, minor: Option<&mut GLint>);
     }

@@ -394,7 +394,7 @@ pub type SRAbsoluteTime = CFTimeInterval;
 /// This timestamp ticks across sleeps and reboots.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn SRAbsoluteTimeGetCurrent() -> SRAbsoluteTime {
+pub unsafe fn SRAbsoluteTimeGetCurrent() -> SRAbsoluteTime {
     extern "C-unwind" {
         fn SRAbsoluteTimeGetCurrent() -> SRAbsoluteTime;
     }
@@ -410,7 +410,7 @@ pub unsafe extern "C-unwind" fn SRAbsoluteTimeGetCurrent() -> SRAbsoluteTime {
 /// is undefined.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn SRAbsoluteTimeFromContinuousTime(cont: u64) -> SRAbsoluteTime {
+pub unsafe fn SRAbsoluteTimeFromContinuousTime(cont: u64) -> SRAbsoluteTime {
     extern "C-unwind" {
         fn SRAbsoluteTimeFromContinuousTime(cont: u64) -> SRAbsoluteTime;
     }
@@ -424,9 +424,7 @@ pub unsafe extern "C-unwind" fn SRAbsoluteTimeFromContinuousTime(cont: u64) -> S
 /// the result will be 5 seconds fast to when the event happened relative to UTC.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn SRAbsoluteTimeToCFAbsoluteTime(
-    sr: SRAbsoluteTime,
-) -> CFAbsoluteTime {
+pub unsafe fn SRAbsoluteTimeToCFAbsoluteTime(sr: SRAbsoluteTime) -> CFAbsoluteTime {
     extern "C-unwind" {
         fn SRAbsoluteTimeToCFAbsoluteTime(sr: SRAbsoluteTime) -> CFAbsoluteTime;
     }
@@ -440,9 +438,7 @@ pub unsafe extern "C-unwind" fn SRAbsoluteTimeToCFAbsoluteTime(
 /// the result will be 5 seconds fast to when the event happened relative to UTC.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn SRAbsoluteTimeFromCFAbsoluteTime(
-    cf: CFAbsoluteTime,
-) -> SRAbsoluteTime {
+pub unsafe fn SRAbsoluteTimeFromCFAbsoluteTime(cf: CFAbsoluteTime) -> SRAbsoluteTime {
     extern "C-unwind" {
         fn SRAbsoluteTimeFromCFAbsoluteTime(cf: CFAbsoluteTime) -> SRAbsoluteTime;
     }

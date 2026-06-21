@@ -24,7 +24,7 @@ use crate::*;
 ///
 /// `options` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn DHCPClientPreferencesSetApplicationOptions(
+pub unsafe fn DHCPClientPreferencesSetApplicationOptions(
     application_id: &CFString,
     options: *const u8,
     count: CFIndex,
@@ -53,7 +53,7 @@ pub unsafe extern "C-unwind" fn DHCPClientPreferencesSetApplicationOptions(
 ///
 /// When you are finished, use free() to release a non-NULL return value.
 #[inline]
-pub extern "C-unwind" fn DHCPClientPreferencesCopyApplicationOptions(
+pub fn DHCPClientPreferencesCopyApplicationOptions(
     application_id: &CFString,
     count: &mut CFIndex,
 ) -> *mut u8 {

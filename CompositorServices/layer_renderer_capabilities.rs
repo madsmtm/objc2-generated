@@ -51,7 +51,7 @@ pub type cp_layer_renderer_capabilities_t = CP_OBJECT_cp_layer_renderer_capabili
 /// someone’s peripheral vision at a lower resolution than content under
 /// their direct gaze.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supports_foveation(
+pub unsafe fn cp_layer_renderer_capabilities_supports_foveation(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
 ) -> bool {
     extern "C-unwind" {
@@ -99,7 +99,7 @@ unsafe impl RefEncode for cp_supported_color_formats_options {
 /// To iterate over the color formats, use the ``cp_layer_renderer_capabilities_supported_color_format``
 /// function.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_formats_count_with_options(
+pub unsafe fn cp_layer_renderer_capabilities_supported_color_formats_count_with_options(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
     options: cp_supported_color_formats_options,
 ) -> usize {
@@ -127,7 +127,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_f
 /// To iterate over the color formats, use the ``cp_layer_renderer_capabilities_supported_color_format``
 /// function.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_formats_count(
+pub unsafe fn cp_layer_renderer_capabilities_supported_color_formats_count(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
 ) -> usize {
     extern "C-unwind" {
@@ -151,7 +151,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_f
 /// you can apply to the layer.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_format_with_options(
+pub unsafe fn cp_layer_renderer_capabilities_supported_color_format_with_options(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
     options: cp_supported_color_formats_options,
     index: usize,
@@ -183,7 +183,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_f
 /// you can apply to the layer.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_format(
+pub unsafe fn cp_layer_renderer_capabilities_supported_color_format(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
     index: usize,
 ) -> MTLPixelFormat {
@@ -205,7 +205,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_color_f
 /// To iterate over the depth formats, use the ``cp_layer_renderer_capabilities_supported_depth_format``
 /// function.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_depth_formats_count(
+pub unsafe fn cp_layer_renderer_capabilities_supported_depth_formats_count(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
 ) -> usize {
     extern "C-unwind" {
@@ -227,7 +227,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_depth_f
 /// supports.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_depth_format(
+pub unsafe fn cp_layer_renderer_capabilities_supported_depth_format(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
     index: usize,
 ) -> MTLPixelFormat {
@@ -249,7 +249,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_depth_f
 /// To iterate over the index formats, use the ``cp_layer_renderer_capabilities_supported_tracking_areas_format``
 /// function.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_tracking_areas_formats_count(
+pub unsafe fn cp_layer_renderer_capabilities_supported_tracking_areas_formats_count(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
 ) -> usize {
     extern "C-unwind" {
@@ -273,7 +273,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_trackin
 /// supports.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_tracking_areas_format(
+pub unsafe fn cp_layer_renderer_capabilities_supported_tracking_areas_format(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
     index: usize,
 ) -> MTLPixelFormat {
@@ -327,7 +327,7 @@ unsafe impl RefEncode for cp_supported_layouts_options {
 /// To iterate over the layouts, use the ``cp_layer_renderer_capabilities_supported_layout``
 /// function.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_layouts_count(
+pub unsafe fn cp_layer_renderer_capabilities_supported_layouts_count(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
     options: cp_supported_layouts_options,
 ) -> usize {
@@ -354,7 +354,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_layouts
 /// Use this function to determine what texture layouts the layer supports.
 #[cfg(feature = "layer_renderer_layout")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_layout(
+pub unsafe fn cp_layer_renderer_capabilities_supported_layout(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
     options: cp_supported_layouts_options,
     index: usize,
@@ -385,7 +385,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_layout(
 /// - Returns: The minimum allowed distance in meters from the camera
 /// origin to the near projection plane.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_minimum_near_plane_distance(
+pub unsafe fn cp_layer_renderer_capabilities_supported_minimum_near_plane_distance(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
 ) -> c_float {
     extern "C-unwind" {
@@ -407,7 +407,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_supported_minimum
 /// To iterate over the stencil formats, use the ``cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format``
 /// function.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_formats_count(
+pub unsafe fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_formats_count(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
 ) -> usize {
     extern "C-unwind" {
@@ -433,7 +433,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_drawable_render_c
 /// you can apply to the layer.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format(
+pub unsafe fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
     index: usize,
 ) -> MTLPixelFormat {
@@ -465,7 +465,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_drawable_render_c
 /// - Returns: The default render quality allowed for drawing.
 #[cfg(feature = "cp_types")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_capabilities_get_default_render_quality(
+pub unsafe fn cp_layer_renderer_capabilities_get_default_render_quality(
     layer_capabilities: &cp_layer_renderer_capabilities_t,
 ) -> cp_render_quality_t {
     extern "C-unwind" {

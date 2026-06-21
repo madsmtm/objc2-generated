@@ -272,7 +272,7 @@ pub type DADiskAppearedCallback = Option<unsafe extern "C-unwind" fn(NonNull<DAD
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DASession"))]
 #[inline]
-pub unsafe extern "C-unwind" fn DARegisterDiskAppearedCallback(
+pub unsafe fn DARegisterDiskAppearedCallback(
     session: &DASession,
     r#match: Option<&CFDictionary>,
     callback: DADiskAppearedCallback,
@@ -323,7 +323,7 @@ pub type DADiskDescriptionChangedCallback =
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DASession"))]
 #[inline]
-pub unsafe extern "C-unwind" fn DARegisterDiskDescriptionChangedCallback(
+pub unsafe fn DARegisterDiskDescriptionChangedCallback(
     session: &DASession,
     r#match: Option<&CFDictionary>,
     watch: Option<&CFArray>,
@@ -371,7 +371,7 @@ pub type DADiskDisappearedCallback =
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DASession"))]
 #[inline]
-pub unsafe extern "C-unwind" fn DARegisterDiskDisappearedCallback(
+pub unsafe fn DARegisterDiskDisappearedCallback(
     session: &DASession,
     r#match: Option<&CFDictionary>,
     callback: DADiskDisappearedCallback,
@@ -522,7 +522,7 @@ pub type DADiskMountApprovalCallback =
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
 #[inline]
-pub unsafe extern "C-unwind" fn DARegisterDiskMountApprovalCallback(
+pub unsafe fn DARegisterDiskMountApprovalCallback(
     session: &DASession,
     r#match: Option<&CFDictionary>,
     callback: DADiskMountApprovalCallback,
@@ -676,7 +676,7 @@ pub type DADiskUnmountApprovalCallback =
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
 #[inline]
-pub unsafe extern "C-unwind" fn DARegisterDiskUnmountApprovalCallback(
+pub unsafe fn DARegisterDiskUnmountApprovalCallback(
     session: &DASession,
     r#match: Option<&CFDictionary>,
     callback: DADiskUnmountApprovalCallback,
@@ -778,7 +778,7 @@ pub type DADiskEjectApprovalCallback =
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
 #[inline]
-pub unsafe extern "C-unwind" fn DARegisterDiskEjectApprovalCallback(
+pub unsafe fn DARegisterDiskEjectApprovalCallback(
     session: &DASession,
     r#match: Option<&CFDictionary>,
     callback: DADiskEjectApprovalCallback,
@@ -944,7 +944,7 @@ pub type DADiskPeekCallback = Option<unsafe extern "C-unwind" fn(NonNull<DADisk>
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DASession"))]
 #[inline]
-pub unsafe extern "C-unwind" fn DARegisterDiskPeekCallback(
+pub unsafe fn DARegisterDiskPeekCallback(
     session: &DASession,
     r#match: Option<&CFDictionary>,
     order: CFIndex,
@@ -1014,7 +1014,7 @@ impl DADisk {
 /// - `context` must be a valid pointer or null.
 #[cfg(feature = "DASession")]
 #[inline]
-pub unsafe extern "C-unwind" fn DAUnregisterCallback(
+pub unsafe fn DAUnregisterCallback(
     session: &DASession,
     callback: NonNull<c_void>,
     context: *mut c_void,
@@ -1035,7 +1035,7 @@ pub unsafe extern "C-unwind" fn DAUnregisterCallback(
 /// - `context` must be a valid pointer or null.
 #[cfg(feature = "DASession")]
 #[inline]
-pub unsafe extern "C-unwind" fn DAUnregisterApprovalCallback(
+pub unsafe fn DAUnregisterApprovalCallback(
     session: &DASession,
     callback: NonNull<c_void>,
     context: *mut c_void,

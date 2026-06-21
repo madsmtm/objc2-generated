@@ -452,7 +452,7 @@ impl VTCompressionSession {
 ///
 /// This call returning true does not guarantee that encode resources will be available at all times.
 #[inline]
-pub unsafe extern "C-unwind" fn VTIsStereoMVHEVCEncodeSupported() -> bool {
+pub unsafe fn VTIsStereoMVHEVCEncodeSupported() -> bool {
     extern "C-unwind" {
         fn VTIsStereoMVHEVCEncodeSupported() -> Boolean;
     }

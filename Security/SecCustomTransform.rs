@@ -514,7 +514,7 @@ impl SecTransform {
 /// - `attribute` should be of the correct type.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SecTranformCustomGetAttribute(
+pub unsafe fn SecTranformCustomGetAttribute(
     r#ref: SecTransformImplementationRef,
     attribute: &SecTransformStringOrAttribute,
     r#type: SecTransformMetaAttributeType,

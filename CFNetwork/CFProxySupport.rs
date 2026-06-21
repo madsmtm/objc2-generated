@@ -15,8 +15,7 @@ use crate::*;
 /// was encountered.
 /// The caller is responsible for releasing the returned dictionary.
 #[inline]
-pub unsafe extern "C-unwind" fn CFNetworkCopySystemProxySettings(
-) -> Option<CFRetained<CFDictionary>> {
+pub unsafe fn CFNetworkCopySystemProxySettings() -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
         fn CFNetworkCopySystemProxySettings() -> Option<NonNull<CFDictionary>>;
     }
@@ -29,7 +28,7 @@ pub unsafe extern "C-unwind" fn CFNetworkCopySystemProxySettings(
 /// - `proxy_settings` generic must be of the correct type.
 /// - `proxy_settings` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForURL(
+pub unsafe fn CFNetworkCopyProxiesForURL(
     url: &CFURL,
     proxy_settings: &CFDictionary,
 ) -> CFRetained<CFArray> {
@@ -52,7 +51,7 @@ pub type CFProxyAutoConfigurationResultCallback =
 ///
 /// `error` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForAutoConfigurationScript(
+pub unsafe fn CFNetworkCopyProxiesForAutoConfigurationScript(
     proxy_auto_configuration_script: &CFString,
     target_url: &CFURL,
     error: *mut *mut CFError,
@@ -79,7 +78,7 @@ pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForAutoConfigurationScript(
 /// - `cb` must be implemented correctly.
 /// - `client_context` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CFNetworkExecuteProxyAutoConfigurationScript(
+pub unsafe fn CFNetworkExecuteProxyAutoConfigurationScript(
     proxy_auto_configuration_script: &CFString,
     target_url: &CFURL,
     cb: CFProxyAutoConfigurationResultCallback,
@@ -110,7 +109,7 @@ pub unsafe extern "C-unwind" fn CFNetworkExecuteProxyAutoConfigurationScript(
 /// - `cb` must be implemented correctly.
 /// - `client_context` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn CFNetworkExecuteProxyAutoConfigurationURL(
+pub unsafe fn CFNetworkExecuteProxyAutoConfigurationURL(
     proxy_auto_config_url: &CFURL,
     target_url: &CFURL,
     cb: CFProxyAutoConfigurationResultCallback,

@@ -530,7 +530,7 @@ impl CMTaggedBufferGroup {
     feature = "CMTime"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferCreateForTaggedBufferGroup(
+pub unsafe fn CMSampleBufferCreateForTaggedBufferGroup(
     allocator: Option<&CFAllocator>,
     tagged_buffer_group: &CMTaggedBufferGroup,
     sbuf_pts: CMTime,

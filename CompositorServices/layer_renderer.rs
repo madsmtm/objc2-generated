@@ -96,7 +96,7 @@ pub type cp_layer_renderer_t = CP_OBJECT_cp_layer_renderer;
 /// returned structure don't affect the layer's current configuration.
 #[cfg(feature = "layer_renderer_configuration")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_get_configuration(
+pub unsafe fn cp_layer_renderer_get_configuration(
     layer_renderer: &cp_layer_renderer_t,
 ) -> Retained<cp_layer_renderer_configuration_t> {
     extern "C-unwind" {
@@ -120,7 +120,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_configuration(
 /// textures.
 #[cfg(feature = "layer_renderer_properties")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_get_properties(
+pub unsafe fn cp_layer_renderer_get_properties(
     layer_renderer: &cp_layer_renderer_t,
 ) -> Retained<cp_layer_renderer_properties_t> {
     extern "C-unwind" {
@@ -144,7 +144,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_properties(
 /// the layer.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_get_device(
+pub unsafe fn cp_layer_renderer_get_device(
     layer_renderer: &cp_layer_renderer_t,
 ) -> Retained<ProtocolObject<dyn MTLDevice>> {
     extern "C-unwind" {
@@ -165,7 +165,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_device(
 /// ``cp_layer_renderer_configuration_set_supports_mtl4``
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_get_mtl4_command_queue(
+pub unsafe fn cp_layer_renderer_get_mtl4_command_queue(
     layer_renderer: &cp_layer_renderer_t,
 ) -> Retained<ProtocolObject<dyn MTL4CommandQueue>> {
     extern "C-unwind" {
@@ -191,7 +191,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_mtl4_command_queue(
 /// ``cp_layer_renderer/cp_layer_renderer_state_invalidated`` state, it's safe to
 /// clean up and deallocate your render loop structures.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_get_state(
+pub unsafe fn cp_layer_renderer_get_state(
     layer_renderer: &cp_layer_renderer_t,
 ) -> cp_layer_renderer_state {
     extern "C-unwind" {
@@ -214,9 +214,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_state(
 /// incoming layer-related events until the layer exits the paused
 /// state.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_wait_until_running(
-    layer_renderer: &cp_layer_renderer_t,
-) {
+pub unsafe fn cp_layer_renderer_wait_until_running(layer_renderer: &cp_layer_renderer_t) {
     extern "C-unwind" {
         fn cp_layer_renderer_wait_until_running(layer_renderer: &cp_layer_renderer_t);
     }
@@ -243,7 +241,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_wait_until_running(
 /// can differentiate frames you are currently drawing.
 #[cfg(feature = "frame")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_query_next_frame(
+pub unsafe fn cp_layer_renderer_query_next_frame(
     layer_renderer: &cp_layer_renderer_t,
 ) -> cp_frame_t {
     extern "C-unwind" {
@@ -264,7 +262,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_query_next_frame(
 /// Lowering the number of frames being rendered every second will decrease the power usage per frame.
 /// This value should only be increased if appropriate for the content being rendered.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_get_minimum_frame_repeat_count(
+pub unsafe fn cp_layer_renderer_get_minimum_frame_repeat_count(
     layer_renderer: &cp_layer_renderer_t,
 ) -> c_int {
     extern "C-unwind" {
@@ -288,7 +286,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_minimum_frame_repeat_count
 /// Lowering the number of frames being rendered every second will decrease the power usage per frame.
 /// This value should only be increased if appropriate for the content being rendered.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_set_minimum_frame_repeat_count(
+pub unsafe fn cp_layer_renderer_set_minimum_frame_repeat_count(
     layer_renderer: &cp_layer_renderer_t,
     frame_repeat_count: c_int,
 ) {
@@ -319,7 +317,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_set_minimum_frame_repeat_count
 /// It is generally preferable to reduce anything else before increasing the frame repeat count.
 #[cfg(feature = "cp_types")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_get_render_quality(
+pub unsafe fn cp_layer_renderer_get_render_quality(
     layer_renderer: &cp_layer_renderer_t,
 ) -> cp_render_quality_t {
     extern "C-unwind" {
@@ -351,7 +349,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_render_quality(
 /// It is generally preferable to reduce anything else before increasing the frame repeat count.
 #[cfg(feature = "cp_types")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_set_render_quality(
+pub unsafe fn cp_layer_renderer_set_render_quality(
     layer_renderer: &cp_layer_renderer_t,
     render_quality: cp_render_quality_t,
 ) {

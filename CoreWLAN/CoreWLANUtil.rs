@@ -34,7 +34,7 @@ use crate::*;
 /// `password` must be a valid pointer or null.
 #[cfg(feature = "CoreWLANTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainFindWiFiPassword(
+pub unsafe fn CWKeychainFindWiFiPassword(
     domain: CWKeychainDomain,
     ssid: &NSData,
     password: *mut *mut NSString,
@@ -68,7 +68,7 @@ pub unsafe extern "C-unwind" fn CWKeychainFindWiFiPassword(
 /// Sets the Wi-Fi network keychain password for the specified SSID and keychain domain.
 #[cfg(feature = "CoreWLANTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainSetWiFiPassword(
+pub unsafe fn CWKeychainSetWiFiPassword(
     domain: CWKeychainDomain,
     ssid: &NSData,
     password: &NSString,
@@ -99,10 +99,7 @@ pub unsafe extern "C-unwind" fn CWKeychainSetWiFiPassword(
 /// Deletes the password for the specified SSID and keychain domain.
 #[cfg(feature = "CoreWLANTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainDeleteWiFiPassword(
-    domain: CWKeychainDomain,
-    ssid: &NSData,
-) -> OSStatus {
+pub unsafe fn CWKeychainDeleteWiFiPassword(domain: CWKeychainDomain, ssid: &NSData) -> OSStatus {
     extern "C-unwind" {
         fn CWKeychainDeleteWiFiPassword(domain: CWKeychainDomain, ssid: &NSData) -> OSStatus;
     }
@@ -138,7 +135,7 @@ pub unsafe extern "C-unwind" fn CWKeychainDeleteWiFiPassword(
 /// - `password` must be a valid pointer or null.
 #[cfg(feature = "CoreWLANTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainFindWiFiEAPUsernameAndPassword(
+pub unsafe fn CWKeychainFindWiFiEAPUsernameAndPassword(
     domain: CWKeychainDomain,
     ssid: &NSData,
     username: *mut *mut NSString,
@@ -177,7 +174,7 @@ pub unsafe extern "C-unwind" fn CWKeychainFindWiFiEAPUsernameAndPassword(
 /// Sets the 802.1X username and password for the specified SSID and keychain domain.
 #[cfg(feature = "CoreWLANTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainSetWiFiEAPUsernameAndPassword(
+pub unsafe fn CWKeychainSetWiFiEAPUsernameAndPassword(
     domain: CWKeychainDomain,
     ssid: &NSData,
     username: Option<&NSString>,
@@ -210,7 +207,7 @@ pub unsafe extern "C-unwind" fn CWKeychainSetWiFiEAPUsernameAndPassword(
 /// Deletes the 802.1X username and password for the specified SSID and keychain domain.
 #[cfg(feature = "CoreWLANTypes")]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainDeleteWiFiEAPUsernameAndPassword(
+pub unsafe fn CWKeychainDeleteWiFiEAPUsernameAndPassword(
     domain: CWKeychainDomain,
     ssid: &NSData,
 ) -> OSStatus {
@@ -247,7 +244,7 @@ pub unsafe extern "C-unwind" fn CWKeychainDeleteWiFiEAPUsernameAndPassword(
 /// `identity` must be a valid pointer or null.
 #[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainCopyWiFiEAPIdentity(
+pub unsafe fn CWKeychainCopyWiFiEAPIdentity(
     domain: CWKeychainDomain,
     ssid: &NSData,
     identity: *mut *mut SecIdentity,
@@ -282,7 +279,7 @@ pub unsafe extern "C-unwind" fn CWKeychainCopyWiFiEAPIdentity(
 /// Associates an identity to the specified SSID and keychain domain.
 #[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainSetWiFiEAPIdentity(
+pub unsafe fn CWKeychainSetWiFiEAPIdentity(
     domain: CWKeychainDomain,
     ssid: &NSData,
     identity: Option<&SecIdentity>,
@@ -315,9 +312,7 @@ pub unsafe extern "C-unwind" fn CWKeychainSetWiFiEAPIdentity(
 /// `list` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainCopyEAPIdentityList(
-    list: *mut *const CFArray,
-) -> OSStatus {
+pub unsafe fn CWKeychainCopyEAPIdentityList(list: *mut *const CFArray) -> OSStatus {
     extern "C-unwind" {
         fn CWKeychainCopyEAPIdentityList(list: *mut *const CFArray) -> OSStatus;
     }
@@ -352,7 +347,7 @@ pub unsafe extern "C-unwind" fn CWKeychainCopyEAPIdentityList(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Use CWKeychainFindWiFiEAPUsernameAndPassword() instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainCopyEAPUsernameAndPassword(
+pub unsafe fn CWKeychainCopyEAPUsernameAndPassword(
     ssid_data: &CFData,
     username: *mut *const CFString,
     password: *mut *const CFString,
@@ -388,7 +383,7 @@ pub unsafe extern "C-unwind" fn CWKeychainCopyEAPUsernameAndPassword(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Use CWKeychainSetWiFiEAPUsernameAndPassword() instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainSetEAPUsernameAndPassword(
+pub unsafe fn CWKeychainSetEAPUsernameAndPassword(
     ssid_data: &CFData,
     username: Option<&CFString>,
     password: Option<&CFString>,
@@ -418,9 +413,7 @@ pub unsafe extern "C-unwind" fn CWKeychainSetEAPUsernameAndPassword(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Use CWKeychainDeleteWiFiEAPUsernameAndPassword() instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainDeleteEAPUsernameAndPassword(
-    ssid_data: &CFData,
-) -> OSStatus {
+pub unsafe fn CWKeychainDeleteEAPUsernameAndPassword(ssid_data: &CFData) -> OSStatus {
     extern "C-unwind" {
         fn CWKeychainDeleteEAPUsernameAndPassword(ssid_data: &CFData) -> OSStatus;
     }
@@ -450,7 +443,7 @@ pub unsafe extern "C-unwind" fn CWKeychainDeleteEAPUsernameAndPassword(
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated = "Use CWKeychainCopyWiFiEAPIdentity() instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainCopyEAPIdentity(
+pub unsafe fn CWKeychainCopyEAPIdentity(
     ssid_data: &CFData,
     identity: *mut *mut SecIdentity,
 ) -> OSStatus {
@@ -482,7 +475,7 @@ pub unsafe extern "C-unwind" fn CWKeychainCopyEAPIdentity(
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated = "Use CWKeychainSetWiFiEAPIdentity() instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainSetEAPIdentity(
+pub unsafe fn CWKeychainSetEAPIdentity(
     ssid_data: &CFData,
     identity: Option<&SecIdentity>,
 ) -> OSStatus {
@@ -511,10 +504,7 @@ pub unsafe extern "C-unwind" fn CWKeychainSetEAPIdentity(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Use CWKeychainSetWiFiPassword() instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainSetPassword(
-    ssid_data: &CFData,
-    password: &CFString,
-) -> OSStatus {
+pub unsafe fn CWKeychainSetPassword(ssid_data: &CFData, password: &CFString) -> OSStatus {
     extern "C-unwind" {
         fn CWKeychainSetPassword(ssid_data: &CFData, password: &CFString) -> OSStatus;
     }
@@ -544,7 +534,7 @@ pub unsafe extern "C-unwind" fn CWKeychainSetPassword(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Use CWKeychainFindWiFiPassword() instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainCopyPassword(
+pub unsafe fn CWKeychainCopyPassword(
     ssid_data: &CFData,
     password: *mut *const CFString,
 ) -> OSStatus {
@@ -569,7 +559,7 @@ pub unsafe extern "C-unwind" fn CWKeychainCopyPassword(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Use CWKeychainDeleteWiFiPassword() instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CWKeychainDeletePassword(ssid_data: &CFData) -> OSStatus {
+pub unsafe fn CWKeychainDeletePassword(ssid_data: &CFData) -> OSStatus {
     extern "C-unwind" {
         fn CWKeychainDeletePassword(ssid_data: &CFData) -> OSStatus;
     }
@@ -586,9 +576,7 @@ pub unsafe extern "C-unwind" fn CWKeychainDeletePassword(ssid_data: &CFData) -> 
 /// When duplicate networks exist, the network with the best RSSI value will be chosen.
 #[cfg(feature = "CWNetwork")]
 #[inline]
-pub unsafe extern "C-unwind" fn CWMergeNetworks(
-    networks: &NSSet<CWNetwork>,
-) -> Retained<NSSet<CWNetwork>> {
+pub unsafe fn CWMergeNetworks(networks: &NSSet<CWNetwork>) -> Retained<NSSet<CWNetwork>> {
     extern "C-unwind" {
         fn CWMergeNetworks(networks: &NSSet<CWNetwork>) -> *mut NSSet<CWNetwork>;
     }

@@ -20,7 +20,7 @@ use crate::*;
 ///
 /// `error` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MAImageCaptioningCopyCaption(
+pub unsafe fn MAImageCaptioningCopyCaption(
     url: &CFURL,
     error: *mut *mut CFError,
 ) -> Option<CFRetained<CFString>> {
@@ -51,7 +51,7 @@ pub unsafe extern "C-unwind" fn MAImageCaptioningCopyCaption(
 ///
 /// `error` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MAImageCaptioningSetCaption(
+pub unsafe fn MAImageCaptioningSetCaption(
     url: &CFURL,
     string: Option<&CFString>,
     error: *mut *mut CFError,
@@ -73,7 +73,7 @@ pub unsafe extern "C-unwind" fn MAImageCaptioningSetCaption(
 ///
 /// This returns the appropriate metadata tag path to be used.
 #[inline]
-pub unsafe extern "C-unwind" fn MAImageCaptioningCopyMetadataTagPath() -> CFRetained<CFString> {
+pub unsafe fn MAImageCaptioningCopyMetadataTagPath() -> CFRetained<CFString> {
     extern "C-unwind" {
         fn MAImageCaptioningCopyMetadataTagPath() -> Option<NonNull<CFString>>;
     }

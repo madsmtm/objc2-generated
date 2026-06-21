@@ -9,10 +9,7 @@ use crate::*;
 /// `the_descriptor` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn CreateOffsetDescriptor(
-    the_offset: c_long,
-    the_descriptor: *mut AEDesc,
-) -> OSErr {
+pub unsafe fn CreateOffsetDescriptor(the_offset: c_long, the_descriptor: *mut AEDesc) -> OSErr {
     extern "C-unwind" {
         fn CreateOffsetDescriptor(the_offset: c_long, the_descriptor: *mut AEDesc) -> OSErr;
     }
@@ -26,7 +23,7 @@ pub unsafe extern "C-unwind" fn CreateOffsetDescriptor(
 /// - `the_descriptor` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn CreateCompDescriptor(
+pub unsafe fn CreateCompDescriptor(
     comparison_operator: DescType,
     operand1: *mut AEDesc,
     operand2: *mut AEDesc,
@@ -59,7 +56,7 @@ pub unsafe extern "C-unwind" fn CreateCompDescriptor(
 /// - `the_descriptor` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn CreateLogicalDescriptor(
+pub unsafe fn CreateLogicalDescriptor(
     the_logical_terms: *mut AEDescList,
     the_logic_operator: DescType,
     dispose_inputs: bool,
@@ -90,7 +87,7 @@ pub unsafe extern "C-unwind" fn CreateLogicalDescriptor(
 /// - `obj_specifier` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn CreateObjSpecifier(
+pub unsafe fn CreateObjSpecifier(
     desired_class: DescType,
     the_container: *mut AEDesc,
     key_form: DescType,
@@ -127,7 +124,7 @@ pub unsafe extern "C-unwind" fn CreateObjSpecifier(
 /// - `the_descriptor` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe extern "C-unwind" fn CreateRangeDescriptor(
+pub unsafe fn CreateRangeDescriptor(
     range_start: *mut AEDesc,
     range_stop: *mut AEDesc,
     dispose_inputs: bool,

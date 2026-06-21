@@ -7,7 +7,7 @@ use crate::*;
 
 #[cfg(feature = "CPManeuver")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromCPManeuverType(
+pub unsafe fn NSStringFromCPManeuverType(
     maneuver_type: CPManeuverType,
 ) -> Option<Retained<NSString>> {
     extern "C-unwind" {
@@ -19,7 +19,7 @@ pub unsafe extern "C-unwind" fn NSStringFromCPManeuverType(
 
 #[cfg(feature = "CPManeuver")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromCPJunctionType(
+pub unsafe fn NSStringFromCPJunctionType(
     junction_type: CPJunctionType,
 ) -> Option<Retained<NSString>> {
     extern "C-unwind" {
@@ -31,9 +31,7 @@ pub unsafe extern "C-unwind" fn NSStringFromCPJunctionType(
 
 #[cfg(feature = "CPManeuver")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromCPTrafficSide(
-    traffic_side: CPTrafficSide,
-) -> Option<Retained<NSString>> {
+pub unsafe fn NSStringFromCPTrafficSide(traffic_side: CPTrafficSide) -> Option<Retained<NSString>> {
     extern "C-unwind" {
         fn NSStringFromCPTrafficSide(traffic_side: CPTrafficSide) -> *mut NSString;
     }
@@ -43,9 +41,7 @@ pub unsafe extern "C-unwind" fn NSStringFromCPTrafficSide(
 
 #[cfg(feature = "CPLane")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromCPLaneStatus(
-    lane_status: CPLaneStatus,
-) -> Option<Retained<NSString>> {
+pub unsafe fn NSStringFromCPLaneStatus(lane_status: CPLaneStatus) -> Option<Retained<NSString>> {
     extern "C-unwind" {
         fn NSStringFromCPLaneStatus(lane_status: CPLaneStatus) -> *mut NSString;
     }
@@ -55,9 +51,7 @@ pub unsafe extern "C-unwind" fn NSStringFromCPLaneStatus(
 
 #[cfg(feature = "CPRerouteReason")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromCPRerouteReason(
-    reason: CPRerouteReason,
-) -> Option<Retained<NSString>> {
+pub unsafe fn NSStringFromCPRerouteReason(reason: CPRerouteReason) -> Option<Retained<NSString>> {
     extern "C-unwind" {
         fn NSStringFromCPRerouteReason(reason: CPRerouteReason) -> *mut NSString;
     }

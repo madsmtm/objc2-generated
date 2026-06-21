@@ -417,7 +417,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_api_version?language=objc)
 pub const COLORSYNC_API_VERSION: c_uint = 0x1A010000;
 #[inline]
-pub unsafe extern "C-unwind" fn ColorSyncAPIVersion() -> u32 {
+pub unsafe fn ColorSyncAPIVersion() -> u32 {
     extern "C-unwind" {
         fn ColorSyncAPIVersion() -> u32;
     }

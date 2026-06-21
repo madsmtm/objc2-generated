@@ -13,7 +13,7 @@ use crate::*;
 
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
 #[inline]
-pub extern "C-unwind" fn UIGraphicsGetCurrentContext() -> Option<CFRetained<CGContext>> {
+pub fn UIGraphicsGetCurrentContext() -> Option<CFRetained<CGContext>> {
     extern "C-unwind" {
         fn UIGraphicsGetCurrentContext() -> Option<NonNull<CGContext>>;
     }
@@ -23,7 +23,7 @@ pub extern "C-unwind" fn UIGraphicsGetCurrentContext() -> Option<CFRetained<CGCo
 
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
-pub unsafe extern "C-unwind" fn UIGraphicsPushContext(context: &CGContext) {
+pub unsafe fn UIGraphicsPushContext(context: &CGContext) {
     extern "C-unwind" {
         fn UIGraphicsPushContext(context: &CGContext);
     }
@@ -31,7 +31,7 @@ pub unsafe extern "C-unwind" fn UIGraphicsPushContext(context: &CGContext) {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn UIGraphicsPopContext() {
+pub unsafe fn UIGraphicsPopContext() {
     extern "C-unwind" {
         fn UIGraphicsPopContext();
     }
@@ -40,7 +40,7 @@ pub unsafe extern "C-unwind" fn UIGraphicsPopContext() {
 
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
 #[inline]
-pub extern "C-unwind" fn UIRectFillUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode) {
+pub fn UIRectFillUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode) {
     extern "C-unwind" {
         fn UIRectFillUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode);
     }
@@ -49,7 +49,7 @@ pub extern "C-unwind" fn UIRectFillUsingBlendMode(rect: CGRect, blend_mode: CGBl
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn UIRectFill(rect: CGRect) {
+pub fn UIRectFill(rect: CGRect) {
     extern "C-unwind" {
         fn UIRectFill(rect: CGRect);
     }
@@ -58,7 +58,7 @@ pub extern "C-unwind" fn UIRectFill(rect: CGRect) {
 
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
 #[inline]
-pub extern "C-unwind" fn UIRectFrameUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode) {
+pub fn UIRectFrameUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode) {
     extern "C-unwind" {
         fn UIRectFrameUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode);
     }
@@ -67,7 +67,7 @@ pub extern "C-unwind" fn UIRectFrameUsingBlendMode(rect: CGRect, blend_mode: CGB
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn UIRectFrame(rect: CGRect) {
+pub fn UIRectFrame(rect: CGRect) {
     extern "C-unwind" {
         fn UIRectFrame(rect: CGRect);
     }
@@ -76,7 +76,7 @@ pub extern "C-unwind" fn UIRectFrame(rect: CGRect) {
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn UIRectClip(rect: CGRect) {
+pub fn UIRectClip(rect: CGRect) {
     extern "C-unwind" {
         fn UIRectClip(rect: CGRect);
     }
@@ -86,7 +86,7 @@ pub extern "C-unwind" fn UIRectClip(rect: CGRect) {
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Replace usage of UIGraphicsBeginImageContext with UIGraphicsImageRenderer."]
 #[inline]
-pub extern "C-unwind" fn UIGraphicsBeginImageContext(size: CGSize) {
+pub fn UIGraphicsBeginImageContext(size: CGSize) {
     extern "C-unwind" {
         fn UIGraphicsBeginImageContext(size: CGSize);
     }
@@ -96,11 +96,7 @@ pub extern "C-unwind" fn UIGraphicsBeginImageContext(size: CGSize) {
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Replace usage of UIGraphicsBeginImageContextWithOptions with UIGraphicsImageRenderer."]
 #[inline]
-pub extern "C-unwind" fn UIGraphicsBeginImageContextWithOptions(
-    size: CGSize,
-    opaque: bool,
-    scale: CGFloat,
-) {
+pub fn UIGraphicsBeginImageContextWithOptions(size: CGSize, opaque: bool, scale: CGFloat) {
     extern "C-unwind" {
         fn UIGraphicsBeginImageContextWithOptions(size: CGSize, opaque: Bool, scale: CGFloat);
     }
@@ -110,7 +106,7 @@ pub extern "C-unwind" fn UIGraphicsBeginImageContextWithOptions(
 #[cfg(feature = "UIImage")]
 #[deprecated = "Replace usage of UIGraphicsGetImageFromCurrentImageContext with UIGraphicsImageRendererContext.currentImage."]
 #[inline]
-pub extern "C-unwind" fn UIGraphicsGetImageFromCurrentImageContext() -> Option<Retained<UIImage>> {
+pub fn UIGraphicsGetImageFromCurrentImageContext() -> Option<Retained<UIImage>> {
     extern "C-unwind" {
         fn UIGraphicsGetImageFromCurrentImageContext() -> *mut UIImage;
     }
@@ -120,7 +116,7 @@ pub extern "C-unwind" fn UIGraphicsGetImageFromCurrentImageContext() -> Option<R
 
 #[deprecated = "UIGraphicsEndImageContext should only be used alongside UIGraphicsBeginImageContext[WithOptions]."]
 #[inline]
-pub extern "C-unwind" fn UIGraphicsEndImageContext() {
+pub fn UIGraphicsEndImageContext() {
     extern "C-unwind" {
         fn UIGraphicsEndImageContext();
     }
@@ -132,7 +128,7 @@ pub extern "C-unwind" fn UIGraphicsEndImageContext() {
 /// `document_info` generic should be of the correct type.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFContextToFile(
+pub unsafe fn UIGraphicsBeginPDFContextToFile(
     path: &NSString,
     bounds: CGRect,
     document_info: Option<&NSDictionary>,
@@ -152,7 +148,7 @@ pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFContextToFile(
 /// `document_info` generic should be of the correct type.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFContextToData(
+pub unsafe fn UIGraphicsBeginPDFContextToData(
     data: &NSMutableData,
     bounds: CGRect,
     document_info: Option<&NSDictionary>,
@@ -168,7 +164,7 @@ pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFContextToData(
 }
 
 #[inline]
-pub extern "C-unwind" fn UIGraphicsEndPDFContext() {
+pub fn UIGraphicsEndPDFContext() {
     extern "C-unwind" {
         fn UIGraphicsEndPDFContext();
     }
@@ -176,7 +172,7 @@ pub extern "C-unwind" fn UIGraphicsEndPDFContext() {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIGraphicsBeginPDFPage() {
+pub fn UIGraphicsBeginPDFPage() {
     extern "C-unwind" {
         fn UIGraphicsBeginPDFPage();
     }
@@ -188,10 +184,7 @@ pub extern "C-unwind" fn UIGraphicsBeginPDFPage() {
 /// `page_info` generic should be of the correct type.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFPageWithInfo(
-    bounds: CGRect,
-    page_info: Option<&NSDictionary>,
-) {
+pub unsafe fn UIGraphicsBeginPDFPageWithInfo(bounds: CGRect, page_info: Option<&NSDictionary>) {
     extern "C-unwind" {
         fn UIGraphicsBeginPDFPageWithInfo(bounds: CGRect, page_info: Option<&NSDictionary>);
     }
@@ -200,7 +193,7 @@ pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFPageWithInfo(
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn UIGraphicsGetPDFContextBounds() -> CGRect {
+pub fn UIGraphicsGetPDFContextBounds() -> CGRect {
     extern "C-unwind" {
         fn UIGraphicsGetPDFContextBounds() -> CGRect;
     }
@@ -209,7 +202,7 @@ pub extern "C-unwind" fn UIGraphicsGetPDFContextBounds() -> CGRect {
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn UIGraphicsSetPDFContextURLForRect(url: &NSURL, rect: CGRect) {
+pub fn UIGraphicsSetPDFContextURLForRect(url: &NSURL, rect: CGRect) {
     extern "C-unwind" {
         fn UIGraphicsSetPDFContextURLForRect(url: &NSURL, rect: CGRect);
     }
@@ -218,10 +211,7 @@ pub extern "C-unwind" fn UIGraphicsSetPDFContextURLForRect(url: &NSURL, rect: CG
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn UIGraphicsAddPDFContextDestinationAtPoint(
-    name: &NSString,
-    point: CGPoint,
-) {
+pub fn UIGraphicsAddPDFContextDestinationAtPoint(name: &NSString, point: CGPoint) {
     extern "C-unwind" {
         fn UIGraphicsAddPDFContextDestinationAtPoint(name: &NSString, point: CGPoint);
     }
@@ -230,7 +220,7 @@ pub extern "C-unwind" fn UIGraphicsAddPDFContextDestinationAtPoint(
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn UIGraphicsSetPDFContextDestinationForRect(name: &NSString, rect: CGRect) {
+pub fn UIGraphicsSetPDFContextDestinationForRect(name: &NSString, rect: CGRect) {
     extern "C-unwind" {
         fn UIGraphicsSetPDFContextDestinationForRect(name: &NSString, rect: CGRect);
     }

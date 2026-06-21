@@ -15,8 +15,7 @@ pub const kCGNotifyGUISessionUserChanged: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.GUISessionUserChanged\0")
 };
 #[inline]
-pub extern "C-unwind" fn CGSessionCopyCurrentDictionary(
-) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+pub fn CGSessionCopyCurrentDictionary() -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn CGSessionCopyCurrentDictionary() -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }

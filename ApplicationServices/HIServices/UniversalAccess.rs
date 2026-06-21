@@ -33,7 +33,7 @@ pub const kUAZoomFocusTypeInsertionPoint: c_uint = 1;
 /// has zoomed all the way out.
 /// Availability: Available in Mac OS X v10.4 and later (not available in CarbonLib 1.x and not available for nonCarbon CFM).
 #[inline]
-pub unsafe extern "C-unwind" fn UAZoomEnabled() -> bool {
+pub unsafe fn UAZoomEnabled() -> bool {
     extern "C-unwind" {
         fn UAZoomEnabled() -> Boolean;
     }
@@ -100,7 +100,7 @@ pub unsafe extern "C-unwind" fn UAZoomEnabled() -> bool {
 /// - `in_rect` must be a valid pointer.
 /// - `in_highlight_rect` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn UAZoomChangeFocus(
+pub unsafe fn UAZoomChangeFocus(
     in_rect: *const CGRect,
     in_highlight_rect: *const CGRect,
     in_type: UAZoomChangeFocusType,

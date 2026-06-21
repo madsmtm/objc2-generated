@@ -7,7 +7,7 @@ use crate::*;
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn CACurrentMediaTime() -> CFTimeInterval {
+pub fn CACurrentMediaTime() -> CFTimeInterval {
     extern "C-unwind" {
         fn CACurrentMediaTime() -> CFTimeInterval;
     }

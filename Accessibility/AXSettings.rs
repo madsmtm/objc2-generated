@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 #[inline]
-pub unsafe extern "C-unwind" fn AXPrefersHorizontalTextLayout() -> bool {
+pub unsafe fn AXPrefersHorizontalTextLayout() -> bool {
     extern "C-unwind" {
         fn AXPrefersHorizontalTextLayout() -> Bool;
     }
@@ -21,7 +21,7 @@ extern "C" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn AXAnimatedImagesEnabled() -> bool {
+pub unsafe fn AXAnimatedImagesEnabled() -> bool {
     extern "C-unwind" {
         fn AXAnimatedImagesEnabled() -> Bool;
     }
@@ -36,7 +36,7 @@ extern "C" {
 /// Returns whether Assistive Access is running.
 /// The value does not change during a process's lifetime, so it is not necessary to observe changes.
 #[inline]
-pub unsafe extern "C-unwind" fn AXAssistiveAccessEnabled() -> bool {
+pub unsafe fn AXAssistiveAccessEnabled() -> bool {
     extern "C-unwind" {
         fn AXAssistiveAccessEnabled() -> Bool;
     }
@@ -44,7 +44,7 @@ pub unsafe extern "C-unwind" fn AXAssistiveAccessEnabled() -> bool {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn AXPrefersNonBlinkingTextInsertionIndicator() -> bool {
+pub unsafe fn AXPrefersNonBlinkingTextInsertionIndicator() -> bool {
     extern "C-unwind" {
         fn AXPrefersNonBlinkingTextInsertionIndicator() -> Bool;
     }
@@ -58,7 +58,7 @@ extern "C" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn AXPrefersActionSliderAlternative() -> bool {
+pub unsafe fn AXPrefersActionSliderAlternative() -> bool {
     extern "C-unwind" {
         fn AXPrefersActionSliderAlternative() -> Bool;
     }
@@ -71,7 +71,7 @@ extern "C" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn AXShowBordersEnabled() -> bool {
+pub unsafe fn AXShowBordersEnabled() -> bool {
     extern "C-unwind" {
         fn AXShowBordersEnabled() -> Bool;
     }
@@ -84,7 +84,7 @@ extern "C" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn AXReduceHighlightingEffectsEnabled() -> bool {
+pub unsafe fn AXReduceHighlightingEffectsEnabled() -> bool {
     extern "C-unwind" {
         fn AXReduceHighlightingEffectsEnabled() -> Bool;
     }
@@ -126,7 +126,7 @@ unsafe impl RefEncode for AXSettingsFeature {
 
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe extern "C-unwind" fn AXOpenSettingsFeature(
+pub unsafe fn AXOpenSettingsFeature(
     feature: AXSettingsFeature,
     completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
 ) {
@@ -140,9 +140,7 @@ pub unsafe extern "C-unwind" fn AXOpenSettingsFeature(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn AXOpenSettingsFeatureIsSupported(
-    feature: AXSettingsFeature,
-) -> bool {
+pub unsafe fn AXOpenSettingsFeatureIsSupported(feature: AXSettingsFeature) -> bool {
     extern "C-unwind" {
         fn AXOpenSettingsFeatureIsSupported(feature: AXSettingsFeature) -> Boolean;
     }

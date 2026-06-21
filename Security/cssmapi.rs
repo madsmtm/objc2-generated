@@ -13,7 +13,7 @@ use crate::*;
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_Init(
+pub unsafe fn CSSM_Init(
     version: *const CSSM_VERSION,
     scope: CSSM_PRIVILEGE_SCOPE,
     caller_guid: *const CSSM_GUID,
@@ -46,7 +46,7 @@ pub unsafe extern "C-unwind" fn CSSM_Init(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_Terminate() -> CSSM_RETURN {
+pub unsafe fn CSSM_Terminate() -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_Terminate() -> CSSM_RETURN;
     }
@@ -61,7 +61,7 @@ pub unsafe extern "C-unwind" fn CSSM_Terminate() -> CSSM_RETURN {
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_ModuleLoad(
+pub unsafe fn CSSM_ModuleLoad(
     module_guid: *const CSSM_GUID,
     key_hierarchy: CSSM_KEY_HIERARCHY,
     app_notify_callback: CSSM_API_ModuleEventHandler,
@@ -93,7 +93,7 @@ pub unsafe extern "C-unwind" fn CSSM_ModuleLoad(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_ModuleUnload(
+pub unsafe fn CSSM_ModuleUnload(
     module_guid: *const CSSM_GUID,
     app_notify_callback: CSSM_API_ModuleEventHandler,
     app_notify_callback_ctx: *mut c_void,
@@ -114,7 +114,7 @@ pub unsafe extern "C-unwind" fn CSSM_ModuleUnload(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_Introduce(
+pub unsafe fn CSSM_Introduce(
     module_id: *const CSSM_GUID,
     key_hierarchy: CSSM_KEY_HIERARCHY,
 ) -> CSSM_RETURN {
@@ -133,7 +133,7 @@ pub unsafe extern "C-unwind" fn CSSM_Introduce(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_Unintroduce(module_id: *const CSSM_GUID) -> CSSM_RETURN {
+pub unsafe fn CSSM_Unintroduce(module_id: *const CSSM_GUID) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_Unintroduce(module_id: *const CSSM_GUID) -> CSSM_RETURN;
     }
@@ -151,7 +151,7 @@ pub unsafe extern "C-unwind" fn CSSM_Unintroduce(module_id: *const CSSM_GUID) ->
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_ModuleAttach(
+pub unsafe fn CSSM_ModuleAttach(
     module_guid: *const CSSM_GUID,
     version: *const CSSM_VERSION,
     memory_funcs: *const CSSM_API_MEMORY_FUNCS,
@@ -199,9 +199,7 @@ pub unsafe extern "C-unwind" fn CSSM_ModuleAttach(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_ModuleDetach(
-    module_handle: CSSM_MODULE_HANDLE,
-) -> CSSM_RETURN {
+pub unsafe fn CSSM_ModuleDetach(module_handle: CSSM_MODULE_HANDLE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_ModuleDetach(module_handle: CSSM_MODULE_HANDLE) -> CSSM_RETURN;
     }
@@ -211,7 +209,7 @@ pub unsafe extern "C-unwind" fn CSSM_ModuleDetach(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_SetPrivilege(privilege: CSSM_PRIVILEGE) -> CSSM_RETURN {
+pub unsafe fn CSSM_SetPrivilege(privilege: CSSM_PRIVILEGE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_SetPrivilege(privilege: CSSM_PRIVILEGE) -> CSSM_RETURN;
     }
@@ -224,7 +222,7 @@ pub unsafe extern "C-unwind" fn CSSM_SetPrivilege(privilege: CSSM_PRIVILEGE) -> 
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GetPrivilege(privilege: *mut CSSM_PRIVILEGE) -> CSSM_RETURN {
+pub unsafe fn CSSM_GetPrivilege(privilege: *mut CSSM_PRIVILEGE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_GetPrivilege(privilege: *mut CSSM_PRIVILEGE) -> CSSM_RETURN;
     }
@@ -237,7 +235,7 @@ pub unsafe extern "C-unwind" fn CSSM_GetPrivilege(privilege: *mut CSSM_PRIVILEGE
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GetModuleGUIDFromHandle(
+pub unsafe fn CSSM_GetModuleGUIDFromHandle(
     module_handle: CSSM_MODULE_HANDLE,
     module_guid: CSSM_GUID_PTR,
 ) -> CSSM_RETURN {
@@ -256,7 +254,7 @@ pub unsafe extern "C-unwind" fn CSSM_GetModuleGUIDFromHandle(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GetSubserviceUIDFromHandle(
+pub unsafe fn CSSM_GetSubserviceUIDFromHandle(
     module_handle: CSSM_MODULE_HANDLE,
     subservice_uid: CSSM_SUBSERVICE_UID_PTR,
 ) -> CSSM_RETURN {
@@ -276,7 +274,7 @@ pub unsafe extern "C-unwind" fn CSSM_GetSubserviceUIDFromHandle(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_ListAttachedModuleManagers(
+pub unsafe fn CSSM_ListAttachedModuleManagers(
     number_of_module_managers: *mut uint32,
     module_manager_guids: CSSM_GUID_PTR,
 ) -> CSSM_RETURN {
@@ -295,7 +293,7 @@ pub unsafe extern "C-unwind" fn CSSM_ListAttachedModuleManagers(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GetAPIMemoryFunctions(
+pub unsafe fn CSSM_GetAPIMemoryFunctions(
     add_in_handle: CSSM_MODULE_HANDLE,
     app_memory_funcs: CSSM_API_MEMORY_FUNCS_PTR,
 ) -> CSSM_RETURN {
@@ -316,7 +314,7 @@ pub unsafe extern "C-unwind" fn CSSM_GetAPIMemoryFunctions(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_CreateSignatureContext(
+pub unsafe fn CSSM_CSP_CreateSignatureContext(
     csp_handle: CSSM_CSP_HANDLE,
     algorithm_id: CSSM_ALGORITHMS,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
@@ -353,7 +351,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_CreateSignatureContext(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_CreateSymmetricContext(
+pub unsafe fn CSSM_CSP_CreateSymmetricContext(
     csp_handle: CSSM_CSP_HANDLE,
     algorithm_id: CSSM_ALGORITHMS,
     mode: CSSM_ENCRYPT_MODE,
@@ -398,7 +396,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_CreateSymmetricContext(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_CreateDigestContext(
+pub unsafe fn CSSM_CSP_CreateDigestContext(
     csp_handle: CSSM_CSP_HANDLE,
     algorithm_id: CSSM_ALGORITHMS,
     new_context_handle: *mut CSSM_CC_HANDLE,
@@ -420,7 +418,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_CreateDigestContext(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_CreateMacContext(
+pub unsafe fn CSSM_CSP_CreateMacContext(
     csp_handle: CSSM_CSP_HANDLE,
     algorithm_id: CSSM_ALGORITHMS,
     key: *const CSSM_KEY,
@@ -444,7 +442,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_CreateMacContext(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_CreateRandomGenContext(
+pub unsafe fn CSSM_CSP_CreateRandomGenContext(
     csp_handle: CSSM_CSP_HANDLE,
     algorithm_id: CSSM_ALGORITHMS,
     seed: *const CSSM_CRYPTO_DATA,
@@ -473,7 +471,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_CreateRandomGenContext(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_CreateAsymmetricContext(
+pub unsafe fn CSSM_CSP_CreateAsymmetricContext(
     csp_handle: CSSM_CSP_HANDLE,
     algorithm_id: CSSM_ALGORITHMS,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
@@ -513,7 +511,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_CreateAsymmetricContext(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_CreateDeriveKeyContext(
+pub unsafe fn CSSM_CSP_CreateDeriveKeyContext(
     csp_handle: CSSM_CSP_HANDLE,
     algorithm_id: CSSM_ALGORITHMS,
     derive_key_type: CSSM_KEY_TYPE,
@@ -566,7 +564,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_CreateDeriveKeyContext(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_CreateKeyGenContext(
+pub unsafe fn CSSM_CSP_CreateKeyGenContext(
     csp_handle: CSSM_CSP_HANDLE,
     algorithm_id: CSSM_ALGORITHMS,
     key_size_in_bits: uint32,
@@ -612,7 +610,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_CreateKeyGenContext(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_CreatePassThroughContext(
+pub unsafe fn CSSM_CSP_CreatePassThroughContext(
     csp_handle: CSSM_CSP_HANDLE,
     key: *const CSSM_KEY,
     new_context_handle: *mut CSSM_CC_HANDLE,
@@ -638,7 +636,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_CreatePassThroughContext(
 ))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GetContext(
+pub unsafe fn CSSM_GetContext(
     cc_handle: CSSM_CC_HANDLE,
     context: *mut CSSM_CONTEXT_PTR,
 ) -> CSSM_RETURN {
@@ -662,7 +660,7 @@ pub unsafe extern "C-unwind" fn CSSM_GetContext(
 ))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_FreeContext(context: CSSM_CONTEXT_PTR) -> CSSM_RETURN {
+pub unsafe fn CSSM_FreeContext(context: CSSM_CONTEXT_PTR) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_FreeContext(context: CSSM_CONTEXT_PTR) -> CSSM_RETURN;
     }
@@ -680,7 +678,7 @@ pub unsafe extern "C-unwind" fn CSSM_FreeContext(context: CSSM_CONTEXT_PTR) -> C
 ))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_SetContext(
+pub unsafe fn CSSM_SetContext(
     cc_handle: CSSM_CC_HANDLE,
     context: *const CSSM_CONTEXT,
 ) -> CSSM_RETURN {
@@ -693,7 +691,7 @@ pub unsafe extern "C-unwind" fn CSSM_SetContext(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DeleteContext(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+pub unsafe fn CSSM_DeleteContext(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_DeleteContext(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
     }
@@ -712,7 +710,7 @@ pub unsafe extern "C-unwind" fn CSSM_DeleteContext(cc_handle: CSSM_CC_HANDLE) ->
 ))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GetContextAttribute(
+pub unsafe fn CSSM_GetContextAttribute(
     context: *const CSSM_CONTEXT,
     attribute_type: uint32,
     context_attribute: *mut CSSM_CONTEXT_ATTRIBUTE_PTR,
@@ -738,7 +736,7 @@ pub unsafe extern "C-unwind" fn CSSM_GetContextAttribute(
 ))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_UpdateContextAttributes(
+pub unsafe fn CSSM_UpdateContextAttributes(
     cc_handle: CSSM_CC_HANDLE,
     number_of_attributes: uint32,
     context_attributes: *const CSSM_CONTEXT_ATTRIBUTE,
@@ -764,7 +762,7 @@ pub unsafe extern "C-unwind" fn CSSM_UpdateContextAttributes(
 ))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DeleteContextAttributes(
+pub unsafe fn CSSM_DeleteContextAttributes(
     cc_handle: CSSM_CC_HANDLE,
     number_of_attributes: uint32,
     context_attributes: *const CSSM_CONTEXT_ATTRIBUTE,
@@ -787,7 +785,7 @@ pub unsafe extern "C-unwind" fn CSSM_DeleteContextAttributes(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_Login(
+pub unsafe fn CSSM_CSP_Login(
     csp_handle: CSSM_CSP_HANDLE,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
     login_name: *const SecAsn1Item,
@@ -807,7 +805,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_Login(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_Logout(csp_handle: CSSM_CSP_HANDLE) -> CSSM_RETURN {
+pub unsafe fn CSSM_CSP_Logout(csp_handle: CSSM_CSP_HANDLE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_CSP_Logout(csp_handle: CSSM_CSP_HANDLE) -> CSSM_RETURN;
     }
@@ -822,7 +820,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_Logout(csp_handle: CSSM_CSP_HANDLE) -> 
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_GetLoginAcl(
+pub unsafe fn CSSM_CSP_GetLoginAcl(
     csp_handle: CSSM_CSP_HANDLE,
     selection_tag: *const CSSM_STRING,
     number_of_acl_infos: *mut uint32,
@@ -846,7 +844,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_GetLoginAcl(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_ChangeLoginAcl(
+pub unsafe fn CSSM_CSP_ChangeLoginAcl(
     csp_handle: CSSM_CSP_HANDLE,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
     acl_edit: *const CSSM_ACL_EDIT,
@@ -870,7 +868,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_ChangeLoginAcl(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GetKeyAcl(
+pub unsafe fn CSSM_GetKeyAcl(
     csp_handle: CSSM_CSP_HANDLE,
     key: *const CSSM_KEY,
     selection_tag: *const CSSM_STRING,
@@ -905,7 +903,7 @@ pub unsafe extern "C-unwind" fn CSSM_GetKeyAcl(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_ChangeKeyAcl(
+pub unsafe fn CSSM_ChangeKeyAcl(
     csp_handle: CSSM_CSP_HANDLE,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
     acl_edit: *const CSSM_ACL_EDIT,
@@ -929,7 +927,7 @@ pub unsafe extern "C-unwind" fn CSSM_ChangeKeyAcl(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GetKeyOwner(
+pub unsafe fn CSSM_GetKeyOwner(
     csp_handle: CSSM_CSP_HANDLE,
     key: *const CSSM_KEY,
     owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
@@ -952,7 +950,7 @@ pub unsafe extern "C-unwind" fn CSSM_GetKeyOwner(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_ChangeKeyOwner(
+pub unsafe fn CSSM_ChangeKeyOwner(
     csp_handle: CSSM_CSP_HANDLE,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
     key: *const CSSM_KEY,
@@ -975,7 +973,7 @@ pub unsafe extern "C-unwind" fn CSSM_ChangeKeyOwner(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_GetLoginOwner(
+pub unsafe fn CSSM_CSP_GetLoginOwner(
     csp_handle: CSSM_CSP_HANDLE,
     owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
 ) -> CSSM_RETURN {
@@ -995,7 +993,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_GetLoginOwner(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_ChangeLoginOwner(
+pub unsafe fn CSSM_CSP_ChangeLoginOwner(
     csp_handle: CSSM_CSP_HANDLE,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
     new_owner: *const CSSM_ACL_OWNER_PROTOTYPE,
@@ -1017,7 +1015,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_ChangeLoginOwner(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_SignData(
+pub unsafe fn CSSM_SignData(
     cc_handle: CSSM_CC_HANDLE,
     data_bufs: *const SecAsn1Item,
     data_buf_count: uint32,
@@ -1047,7 +1045,7 @@ pub unsafe extern "C-unwind" fn CSSM_SignData(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_SignDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+pub unsafe fn CSSM_SignDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_SignDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
     }
@@ -1060,7 +1058,7 @@ pub unsafe extern "C-unwind" fn CSSM_SignDataInit(cc_handle: CSSM_CC_HANDLE) -> 
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_SignDataUpdate(
+pub unsafe fn CSSM_SignDataUpdate(
     cc_handle: CSSM_CC_HANDLE,
     data_bufs: *const SecAsn1Item,
     data_buf_count: uint32,
@@ -1081,7 +1079,7 @@ pub unsafe extern "C-unwind" fn CSSM_SignDataUpdate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_SignDataFinal(
+pub unsafe fn CSSM_SignDataFinal(
     cc_handle: CSSM_CC_HANDLE,
     signature: CSSM_DATA_PTR,
 ) -> CSSM_RETURN {
@@ -1098,7 +1096,7 @@ pub unsafe extern "C-unwind" fn CSSM_SignDataFinal(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_VerifyData(
+pub unsafe fn CSSM_VerifyData(
     cc_handle: CSSM_CC_HANDLE,
     data_bufs: *const SecAsn1Item,
     data_buf_count: uint32,
@@ -1128,7 +1126,7 @@ pub unsafe extern "C-unwind" fn CSSM_VerifyData(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_VerifyDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+pub unsafe fn CSSM_VerifyDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_VerifyDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
     }
@@ -1141,7 +1139,7 @@ pub unsafe extern "C-unwind" fn CSSM_VerifyDataInit(cc_handle: CSSM_CC_HANDLE) -
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_VerifyDataUpdate(
+pub unsafe fn CSSM_VerifyDataUpdate(
     cc_handle: CSSM_CC_HANDLE,
     data_bufs: *const SecAsn1Item,
     data_buf_count: uint32,
@@ -1162,7 +1160,7 @@ pub unsafe extern "C-unwind" fn CSSM_VerifyDataUpdate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_VerifyDataFinal(
+pub unsafe fn CSSM_VerifyDataFinal(
     cc_handle: CSSM_CC_HANDLE,
     signature: *const SecAsn1Item,
 ) -> CSSM_RETURN {
@@ -1182,7 +1180,7 @@ pub unsafe extern "C-unwind" fn CSSM_VerifyDataFinal(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DigestData(
+pub unsafe fn CSSM_DigestData(
     cc_handle: CSSM_CC_HANDLE,
     data_bufs: *const SecAsn1Item,
     data_buf_count: uint32,
@@ -1202,7 +1200,7 @@ pub unsafe extern "C-unwind" fn CSSM_DigestData(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DigestDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+pub unsafe fn CSSM_DigestDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_DigestDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
     }
@@ -1215,7 +1213,7 @@ pub unsafe extern "C-unwind" fn CSSM_DigestDataInit(cc_handle: CSSM_CC_HANDLE) -
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DigestDataUpdate(
+pub unsafe fn CSSM_DigestDataUpdate(
     cc_handle: CSSM_CC_HANDLE,
     data_bufs: *const SecAsn1Item,
     data_buf_count: uint32,
@@ -1236,7 +1234,7 @@ pub unsafe extern "C-unwind" fn CSSM_DigestDataUpdate(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DigestDataClone(
+pub unsafe fn CSSM_DigestDataClone(
     cc_handle: CSSM_CC_HANDLE,
     clonednew_cc_handle: *mut CSSM_CC_HANDLE,
 ) -> CSSM_RETURN {
@@ -1255,7 +1253,7 @@ pub unsafe extern "C-unwind" fn CSSM_DigestDataClone(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DigestDataFinal(
+pub unsafe fn CSSM_DigestDataFinal(
     cc_handle: CSSM_CC_HANDLE,
     digest: CSSM_DATA_PTR,
 ) -> CSSM_RETURN {
@@ -1272,7 +1270,7 @@ pub unsafe extern "C-unwind" fn CSSM_DigestDataFinal(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GenerateMac(
+pub unsafe fn CSSM_GenerateMac(
     cc_handle: CSSM_CC_HANDLE,
     data_bufs: *const SecAsn1Item,
     data_buf_count: uint32,
@@ -1292,7 +1290,7 @@ pub unsafe extern "C-unwind" fn CSSM_GenerateMac(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GenerateMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+pub unsafe fn CSSM_GenerateMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_GenerateMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
     }
@@ -1305,7 +1303,7 @@ pub unsafe extern "C-unwind" fn CSSM_GenerateMacInit(cc_handle: CSSM_CC_HANDLE) 
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GenerateMacUpdate(
+pub unsafe fn CSSM_GenerateMacUpdate(
     cc_handle: CSSM_CC_HANDLE,
     data_bufs: *const SecAsn1Item,
     data_buf_count: uint32,
@@ -1326,10 +1324,7 @@ pub unsafe extern "C-unwind" fn CSSM_GenerateMacUpdate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GenerateMacFinal(
-    cc_handle: CSSM_CC_HANDLE,
-    mac: CSSM_DATA_PTR,
-) -> CSSM_RETURN {
+pub unsafe fn CSSM_GenerateMacFinal(cc_handle: CSSM_CC_HANDLE, mac: CSSM_DATA_PTR) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_GenerateMacFinal(cc_handle: CSSM_CC_HANDLE, mac: CSSM_DATA_PTR) -> CSSM_RETURN;
     }
@@ -1343,7 +1338,7 @@ pub unsafe extern "C-unwind" fn CSSM_GenerateMacFinal(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_VerifyMac(
+pub unsafe fn CSSM_VerifyMac(
     cc_handle: CSSM_CC_HANDLE,
     data_bufs: *const SecAsn1Item,
     data_buf_count: uint32,
@@ -1363,7 +1358,7 @@ pub unsafe extern "C-unwind" fn CSSM_VerifyMac(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_VerifyMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+pub unsafe fn CSSM_VerifyMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_VerifyMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
     }
@@ -1376,7 +1371,7 @@ pub unsafe extern "C-unwind" fn CSSM_VerifyMacInit(cc_handle: CSSM_CC_HANDLE) ->
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_VerifyMacUpdate(
+pub unsafe fn CSSM_VerifyMacUpdate(
     cc_handle: CSSM_CC_HANDLE,
     data_bufs: *const SecAsn1Item,
     data_buf_count: uint32,
@@ -1397,7 +1392,7 @@ pub unsafe extern "C-unwind" fn CSSM_VerifyMacUpdate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_VerifyMacFinal(
+pub unsafe fn CSSM_VerifyMacFinal(
     cc_handle: CSSM_CC_HANDLE,
     mac: *const SecAsn1Item,
 ) -> CSSM_RETURN {
@@ -1413,7 +1408,7 @@ pub unsafe extern "C-unwind" fn CSSM_VerifyMacFinal(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_QuerySize(
+pub unsafe fn CSSM_QuerySize(
     cc_handle: CSSM_CC_HANDLE,
     encrypt: CSSM_BOOL,
     query_size_count: uint32,
@@ -1439,7 +1434,7 @@ pub unsafe extern "C-unwind" fn CSSM_QuerySize(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_EncryptData(
+pub unsafe fn CSSM_EncryptData(
     cc_handle: CSSM_CC_HANDLE,
     clear_bufs: *const SecAsn1Item,
     clear_buf_count: uint32,
@@ -1481,7 +1476,7 @@ pub unsafe extern "C-unwind" fn CSSM_EncryptData(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_EncryptDataP(
+pub unsafe fn CSSM_EncryptDataP(
     cc_handle: CSSM_CC_HANDLE,
     clear_bufs: *const SecAsn1Item,
     clear_buf_count: uint32,
@@ -1520,7 +1515,7 @@ pub unsafe extern "C-unwind" fn CSSM_EncryptDataP(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_EncryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+pub unsafe fn CSSM_EncryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_EncryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
     }
@@ -1530,7 +1525,7 @@ pub unsafe extern "C-unwind" fn CSSM_EncryptDataInit(cc_handle: CSSM_CC_HANDLE) 
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_EncryptDataInitP(
+pub unsafe fn CSSM_EncryptDataInitP(
     cc_handle: CSSM_CC_HANDLE,
     privilege: CSSM_PRIVILEGE,
 ) -> CSSM_RETURN {
@@ -1551,7 +1546,7 @@ pub unsafe extern "C-unwind" fn CSSM_EncryptDataInitP(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_EncryptDataUpdate(
+pub unsafe fn CSSM_EncryptDataUpdate(
     cc_handle: CSSM_CC_HANDLE,
     clear_bufs: *const SecAsn1Item,
     clear_buf_count: uint32,
@@ -1587,7 +1582,7 @@ pub unsafe extern "C-unwind" fn CSSM_EncryptDataUpdate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_EncryptDataFinal(
+pub unsafe fn CSSM_EncryptDataFinal(
     cc_handle: CSSM_CC_HANDLE,
     rem_data: CSSM_DATA_PTR,
 ) -> CSSM_RETURN {
@@ -1607,7 +1602,7 @@ pub unsafe extern "C-unwind" fn CSSM_EncryptDataFinal(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DecryptData(
+pub unsafe fn CSSM_DecryptData(
     cc_handle: CSSM_CC_HANDLE,
     cipher_bufs: *const SecAsn1Item,
     cipher_buf_count: uint32,
@@ -1649,7 +1644,7 @@ pub unsafe extern "C-unwind" fn CSSM_DecryptData(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DecryptDataP(
+pub unsafe fn CSSM_DecryptDataP(
     cc_handle: CSSM_CC_HANDLE,
     cipher_bufs: *const SecAsn1Item,
     cipher_buf_count: uint32,
@@ -1688,7 +1683,7 @@ pub unsafe extern "C-unwind" fn CSSM_DecryptDataP(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DecryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
+pub unsafe fn CSSM_DecryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_DecryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
     }
@@ -1698,7 +1693,7 @@ pub unsafe extern "C-unwind" fn CSSM_DecryptDataInit(cc_handle: CSSM_CC_HANDLE) 
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DecryptDataInitP(
+pub unsafe fn CSSM_DecryptDataInitP(
     cc_handle: CSSM_CC_HANDLE,
     privilege: CSSM_PRIVILEGE,
 ) -> CSSM_RETURN {
@@ -1719,7 +1714,7 @@ pub unsafe extern "C-unwind" fn CSSM_DecryptDataInitP(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DecryptDataUpdate(
+pub unsafe fn CSSM_DecryptDataUpdate(
     cc_handle: CSSM_CC_HANDLE,
     cipher_bufs: *const SecAsn1Item,
     cipher_buf_count: uint32,
@@ -1755,7 +1750,7 @@ pub unsafe extern "C-unwind" fn CSSM_DecryptDataUpdate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DecryptDataFinal(
+pub unsafe fn CSSM_DecryptDataFinal(
     cc_handle: CSSM_CC_HANDLE,
     rem_data: CSSM_DATA_PTR,
 ) -> CSSM_RETURN {
@@ -1773,7 +1768,7 @@ pub unsafe extern "C-unwind" fn CSSM_DecryptDataFinal(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_QueryKeySizeInBits(
+pub unsafe fn CSSM_QueryKeySizeInBits(
     csp_handle: CSSM_CSP_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
     key: *const CSSM_KEY,
@@ -1798,7 +1793,7 @@ pub unsafe extern "C-unwind" fn CSSM_QueryKeySizeInBits(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GenerateKey(
+pub unsafe fn CSSM_GenerateKey(
     cc_handle: CSSM_CC_HANDLE,
     key_usage: uint32,
     key_attr: uint32,
@@ -1836,7 +1831,7 @@ pub unsafe extern "C-unwind" fn CSSM_GenerateKey(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GenerateKeyP(
+pub unsafe fn CSSM_GenerateKeyP(
     cc_handle: CSSM_CC_HANDLE,
     key_usage: uint32,
     key_attr: uint32,
@@ -1879,7 +1874,7 @@ pub unsafe extern "C-unwind" fn CSSM_GenerateKeyP(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GenerateKeyPair(
+pub unsafe fn CSSM_GenerateKeyPair(
     cc_handle: CSSM_CC_HANDLE,
     public_key_usage: uint32,
     public_key_attr: uint32,
@@ -1931,7 +1926,7 @@ pub unsafe extern "C-unwind" fn CSSM_GenerateKeyPair(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GenerateKeyPairP(
+pub unsafe fn CSSM_GenerateKeyPairP(
     cc_handle: CSSM_CC_HANDLE,
     public_key_usage: uint32,
     public_key_attr: uint32,
@@ -1982,7 +1977,7 @@ pub unsafe extern "C-unwind" fn CSSM_GenerateKeyPairP(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GenerateRandom(
+pub unsafe fn CSSM_GenerateRandom(
     cc_handle: CSSM_CC_HANDLE,
     random_number: CSSM_DATA_PTR,
 ) -> CSSM_RETURN {
@@ -2002,7 +1997,7 @@ pub unsafe extern "C-unwind" fn CSSM_GenerateRandom(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_ObtainPrivateKeyFromPublicKey(
+pub unsafe fn CSSM_CSP_ObtainPrivateKeyFromPublicKey(
     csp_handle: CSSM_CSP_HANDLE,
     public_key: *const CSSM_KEY,
     private_key: CSSM_KEY_PTR,
@@ -2026,7 +2021,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_ObtainPrivateKeyFromPublicKey(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_WrapKey(
+pub unsafe fn CSSM_WrapKey(
     cc_handle: CSSM_CC_HANDLE,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
     key: *const CSSM_KEY,
@@ -2056,7 +2051,7 @@ pub unsafe extern "C-unwind" fn CSSM_WrapKey(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_UnwrapKey(
+pub unsafe fn CSSM_UnwrapKey(
     cc_handle: CSSM_CC_HANDLE,
     public_key: *const CSSM_KEY,
     wrapped_key: *const CSSM_WRAP_KEY,
@@ -2104,7 +2099,7 @@ pub unsafe extern "C-unwind" fn CSSM_UnwrapKey(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_WrapKeyP(
+pub unsafe fn CSSM_WrapKeyP(
     cc_handle: CSSM_CC_HANDLE,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
     key: *const CSSM_KEY,
@@ -2145,7 +2140,7 @@ pub unsafe extern "C-unwind" fn CSSM_WrapKeyP(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_UnwrapKeyP(
+pub unsafe fn CSSM_UnwrapKeyP(
     cc_handle: CSSM_CC_HANDLE,
     public_key: *const CSSM_KEY,
     wrapped_key: *const CSSM_WRAP_KEY,
@@ -2196,7 +2191,7 @@ pub unsafe extern "C-unwind" fn CSSM_UnwrapKeyP(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DeriveKey(
+pub unsafe fn CSSM_DeriveKey(
     cc_handle: CSSM_CC_HANDLE,
     param: CSSM_DATA_PTR,
     key_usage: uint32,
@@ -2236,7 +2231,7 @@ pub unsafe extern "C-unwind" fn CSSM_DeriveKey(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_FreeKey(
+pub unsafe fn CSSM_FreeKey(
     csp_handle: CSSM_CSP_HANDLE,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
     key_ptr: CSSM_KEY_PTR,
@@ -2259,7 +2254,7 @@ pub unsafe extern "C-unwind" fn CSSM_FreeKey(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GenerateAlgorithmParams(
+pub unsafe fn CSSM_GenerateAlgorithmParams(
     cc_handle: CSSM_CC_HANDLE,
     param_bits: uint32,
     param: CSSM_DATA_PTR,
@@ -2280,7 +2275,7 @@ pub unsafe extern "C-unwind" fn CSSM_GenerateAlgorithmParams(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_GetOperationalStatistics(
+pub unsafe fn CSSM_CSP_GetOperationalStatistics(
     csp_handle: CSSM_CSP_HANDLE,
     statistics: *mut CSSM_CSP_OPERATIONAL_STATISTICS,
 ) -> CSSM_RETURN {
@@ -2299,7 +2294,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_GetOperationalStatistics(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_GetTimeValue(
+pub unsafe fn CSSM_GetTimeValue(
     csp_handle: CSSM_CSP_HANDLE,
     time_algorithm: CSSM_ALGORITHMS,
     time_data: *mut SecAsn1Item,
@@ -2320,7 +2315,7 @@ pub unsafe extern "C-unwind" fn CSSM_GetTimeValue(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_RetrieveUniqueId(
+pub unsafe fn CSSM_RetrieveUniqueId(
     csp_handle: CSSM_CSP_HANDLE,
     unique_id: CSSM_DATA_PTR,
 ) -> CSSM_RETURN {
@@ -2339,7 +2334,7 @@ pub unsafe extern "C-unwind" fn CSSM_RetrieveUniqueId(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_RetrieveCounter(
+pub unsafe fn CSSM_RetrieveCounter(
     csp_handle: CSSM_CSP_HANDLE,
     counter: CSSM_DATA_PTR,
 ) -> CSSM_RETURN {
@@ -2356,7 +2351,7 @@ pub unsafe extern "C-unwind" fn CSSM_RetrieveCounter(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_VerifyDevice(
+pub unsafe fn CSSM_VerifyDevice(
     csp_handle: CSSM_CSP_HANDLE,
     device_cert: *const SecAsn1Item,
 ) -> CSSM_RETURN {
@@ -2376,7 +2371,7 @@ pub unsafe extern "C-unwind" fn CSSM_VerifyDevice(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CSP_PassThrough(
+pub unsafe fn CSSM_CSP_PassThrough(
     cc_handle: CSSM_CC_HANDLE,
     pass_through_id: uint32,
     in_data: *const c_void,
@@ -2403,7 +2398,7 @@ pub unsafe extern "C-unwind" fn CSSM_CSP_PassThrough(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_SubmitCredRequest(
+pub unsafe fn CSSM_TP_SubmitCredRequest(
     tp_handle: CSSM_TP_HANDLE,
     preferred_authority: *const CSSM_TP_AUTHORITY_ID,
     request_type: CSSM_TP_AUTHORITY_REQUEST_TYPE,
@@ -2446,7 +2441,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_SubmitCredRequest(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_RetrieveCredResult(
+pub unsafe fn CSSM_TP_RetrieveCredResult(
     tp_handle: CSSM_TP_HANDLE,
     reference_identifier: *const SecAsn1Item,
     caller_auth_credentials: *const CSSM_TP_CALLERAUTH_CONTEXT,
@@ -2485,7 +2480,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_RetrieveCredResult(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_ConfirmCredResult(
+pub unsafe fn CSSM_TP_ConfirmCredResult(
     tp_handle: CSSM_TP_HANDLE,
     reference_identifier: *const SecAsn1Item,
     caller_auth_credentials: *const CSSM_TP_CALLERAUTH_CONTEXT,
@@ -2520,7 +2515,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_ConfirmCredResult(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_ReceiveConfirmation(
+pub unsafe fn CSSM_TP_ReceiveConfirmation(
     tp_handle: CSSM_TP_HANDLE,
     reference_identifier: *const SecAsn1Item,
     responses: *mut CSSM_TP_CONFIRM_RESPONSE_PTR,
@@ -2544,7 +2539,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_ReceiveConfirmation(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CertReclaimKey(
+pub unsafe fn CSSM_TP_CertReclaimKey(
     tp_handle: CSSM_TP_HANDLE,
     cert_group: *const CSSM_CERTGROUP,
     cert_index: uint32,
@@ -2577,7 +2572,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CertReclaimKey(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CertReclaimAbort(
+pub unsafe fn CSSM_TP_CertReclaimAbort(
     tp_handle: CSSM_TP_HANDLE,
     key_cache_handle: CSSM_LONG_HANDLE,
 ) -> CSSM_RETURN {
@@ -2597,7 +2592,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CertReclaimAbort(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_FormRequest(
+pub unsafe fn CSSM_TP_FormRequest(
     tp_handle: CSSM_TP_HANDLE,
     preferred_authority: *const CSSM_TP_AUTHORITY_ID,
     form_type: CSSM_TP_FORM_TYPE,
@@ -2623,7 +2618,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_FormRequest(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_FormSubmit(
+pub unsafe fn CSSM_TP_FormSubmit(
     tp_handle: CSSM_TP_HANDLE,
     form_type: CSSM_TP_FORM_TYPE,
     form: *const SecAsn1Item,
@@ -2661,7 +2656,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_FormSubmit(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupVerify(
+pub unsafe fn CSSM_TP_CertGroupVerify(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     csp_handle: CSSM_CSP_HANDLE,
@@ -2698,7 +2693,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupVerify(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CertCreateTemplate(
+pub unsafe fn CSSM_TP_CertCreateTemplate(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     number_of_fields: uint32,
@@ -2733,7 +2728,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CertCreateTemplate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CertGetAllTemplateFields(
+pub unsafe fn CSSM_TP_CertGetAllTemplateFields(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     cert_template: *const SecAsn1Item,
@@ -2770,7 +2765,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CertGetAllTemplateFields(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CertSign(
+pub unsafe fn CSSM_TP_CertSign(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
@@ -2815,7 +2810,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CertSign(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CrlVerify(
+pub unsafe fn CSSM_TP_CrlVerify(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     csp_handle: CSSM_CSP_HANDLE,
@@ -2855,7 +2850,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CrlVerify(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CrlCreateTemplate(
+pub unsafe fn CSSM_TP_CrlCreateTemplate(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     number_of_fields: uint32,
@@ -2893,7 +2888,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CrlCreateTemplate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CertRevoke(
+pub unsafe fn CSSM_TP_CertRevoke(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     csp_handle: CSSM_CSP_HANDLE,
@@ -2946,7 +2941,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CertRevoke(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CertRemoveFromCrlTemplate(
+pub unsafe fn CSSM_TP_CertRemoveFromCrlTemplate(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     csp_handle: CSSM_CSP_HANDLE,
@@ -2995,7 +2990,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CertRemoveFromCrlTemplate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CrlSign(
+pub unsafe fn CSSM_TP_CrlSign(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
@@ -3040,7 +3035,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CrlSign(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_ApplyCrlToDb(
+pub unsafe fn CSSM_TP_ApplyCrlToDb(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     csp_handle: CSSM_CSP_HANDLE,
@@ -3082,7 +3077,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_ApplyCrlToDb(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupConstruct(
+pub unsafe fn CSSM_TP_CertGroupConstruct(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     csp_handle: CSSM_CSP_HANDLE,
@@ -3123,7 +3118,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupConstruct(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupPrune(
+pub unsafe fn CSSM_TP_CertGroupPrune(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     db_list: *const CSSM_DL_DB_LIST,
@@ -3157,7 +3152,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupPrune(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupToTupleGroup(
+pub unsafe fn CSSM_TP_CertGroupToTupleGroup(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     cert_group: *const CSSM_CERTGROUP,
@@ -3181,7 +3176,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_CertGroupToTupleGroup(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_TupleGroupToCertGroup(
+pub unsafe fn CSSM_TP_TupleGroupToCertGroup(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     tuple_group: *const CSSM_TUPLEGROUP,
@@ -3206,7 +3201,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_TupleGroupToCertGroup(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_TP_PassThrough(
+pub unsafe fn CSSM_TP_PassThrough(
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
@@ -3250,7 +3245,7 @@ pub unsafe extern "C-unwind" fn CSSM_TP_PassThrough(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_AC_AuthCompute(
+pub unsafe fn CSSM_AC_AuthCompute(
     ac_handle: CSSM_AC_HANDLE,
     base_authorizations: *const CSSM_TUPLEGROUP,
     credentials: *const CSSM_TUPLEGROUP,
@@ -3294,7 +3289,7 @@ pub unsafe extern "C-unwind" fn CSSM_AC_AuthCompute(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_AC_PassThrough(
+pub unsafe fn CSSM_AC_PassThrough(
     ac_handle: CSSM_AC_HANDLE,
     tp_handle: CSSM_TP_HANDLE,
     cl_handle: CSSM_CL_HANDLE,
@@ -3337,7 +3332,7 @@ pub unsafe extern "C-unwind" fn CSSM_AC_PassThrough(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertCreateTemplate(
+pub unsafe fn CSSM_CL_CertCreateTemplate(
     cl_handle: CSSM_CL_HANDLE,
     number_of_fields: uint32,
     cert_fields: *const CSSM_FIELD,
@@ -3362,7 +3357,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertCreateTemplate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertGetAllTemplateFields(
+pub unsafe fn CSSM_CL_CertGetAllTemplateFields(
     cl_handle: CSSM_CL_HANDLE,
     cert_template: *const SecAsn1Item,
     number_of_fields: *mut uint32,
@@ -3389,7 +3384,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertGetAllTemplateFields(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertSign(
+pub unsafe fn CSSM_CL_CertSign(
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
     cert_template: *const SecAsn1Item,
@@ -3427,7 +3422,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertSign(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertVerify(
+pub unsafe fn CSSM_CL_CertVerify(
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
     cert_to_be_verified: *const SecAsn1Item,
@@ -3463,7 +3458,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertVerify(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertVerifyWithKey(
+pub unsafe fn CSSM_CL_CertVerifyWithKey(
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
     cert_to_be_verified: *const SecAsn1Item,
@@ -3488,7 +3483,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertVerifyWithKey(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertGetFirstFieldValue(
+pub unsafe fn CSSM_CL_CertGetFirstFieldValue(
     cl_handle: CSSM_CL_HANDLE,
     cert: *const SecAsn1Item,
     cert_field: *const SecAsn1Oid,
@@ -3524,7 +3519,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertGetFirstFieldValue(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertGetNextFieldValue(
+pub unsafe fn CSSM_CL_CertGetNextFieldValue(
     cl_handle: CSSM_CL_HANDLE,
     results_handle: CSSM_HANDLE,
     value: *mut CSSM_DATA_PTR,
@@ -3542,7 +3537,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertGetNextFieldValue(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertAbortQuery(
+pub unsafe fn CSSM_CL_CertAbortQuery(
     cl_handle: CSSM_CL_HANDLE,
     results_handle: CSSM_HANDLE,
 ) -> CSSM_RETURN {
@@ -3562,7 +3557,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertAbortQuery(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertGetKeyInfo(
+pub unsafe fn CSSM_CL_CertGetKeyInfo(
     cl_handle: CSSM_CL_HANDLE,
     cert: *const SecAsn1Item,
     key: *mut CSSM_KEY_PTR,
@@ -3585,7 +3580,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertGetKeyInfo(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertGetAllFields(
+pub unsafe fn CSSM_CL_CertGetAllFields(
     cl_handle: CSSM_CL_HANDLE,
     cert: *const SecAsn1Item,
     number_of_fields: *mut uint32,
@@ -3608,7 +3603,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertGetAllFields(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_FreeFields(
+pub unsafe fn CSSM_CL_FreeFields(
     cl_handle: CSSM_CL_HANDLE,
     number_of_fields: uint32,
     fields: *mut CSSM_FIELD_PTR,
@@ -3630,7 +3625,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_FreeFields(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_FreeFieldValue(
+pub unsafe fn CSSM_CL_FreeFieldValue(
     cl_handle: CSSM_CL_HANDLE,
     cert_or_crl_oid: *const SecAsn1Oid,
     value: CSSM_DATA_PTR,
@@ -3652,7 +3647,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_FreeFieldValue(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertCache(
+pub unsafe fn CSSM_CL_CertCache(
     cl_handle: CSSM_CL_HANDLE,
     cert: *const SecAsn1Item,
     cert_handle: CSSM_HANDLE_PTR,
@@ -3676,7 +3671,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertCache(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertGetFirstCachedFieldValue(
+pub unsafe fn CSSM_CL_CertGetFirstCachedFieldValue(
     cl_handle: CSSM_CL_HANDLE,
     cert_handle: CSSM_HANDLE,
     cert_field: *const SecAsn1Oid,
@@ -3712,7 +3707,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertGetFirstCachedFieldValue(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertGetNextCachedFieldValue(
+pub unsafe fn CSSM_CL_CertGetNextCachedFieldValue(
     cl_handle: CSSM_CL_HANDLE,
     results_handle: CSSM_HANDLE,
     value: *mut CSSM_DATA_PTR,
@@ -3730,7 +3725,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertGetNextCachedFieldValue(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertAbortCache(
+pub unsafe fn CSSM_CL_CertAbortCache(
     cl_handle: CSSM_CL_HANDLE,
     cert_handle: CSSM_HANDLE,
 ) -> CSSM_RETURN {
@@ -3751,7 +3746,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertAbortCache(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertGroupToSignedBundle(
+pub unsafe fn CSSM_CL_CertGroupToSignedBundle(
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
     cert_group_to_bundle: *const CSSM_CERTGROUP,
@@ -3786,7 +3781,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertGroupToSignedBundle(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertGroupFromVerifiedBundle(
+pub unsafe fn CSSM_CL_CertGroupFromVerifiedBundle(
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
     cert_bundle: *const CSSM_CERT_BUNDLE,
@@ -3820,7 +3815,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertGroupFromVerifiedBundle(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CertDescribeFormat(
+pub unsafe fn CSSM_CL_CertDescribeFormat(
     cl_handle: CSSM_CL_HANDLE,
     number_of_fields: *mut uint32,
     oid_list: *mut CSSM_OID_PTR,
@@ -3842,7 +3837,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CertDescribeFormat(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlCreateTemplate(
+pub unsafe fn CSSM_CL_CrlCreateTemplate(
     cl_handle: CSSM_CL_HANDLE,
     number_of_fields: uint32,
     crl_template: *const CSSM_FIELD,
@@ -3867,7 +3862,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlCreateTemplate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlSetFields(
+pub unsafe fn CSSM_CL_CrlSetFields(
     cl_handle: CSSM_CL_HANDLE,
     number_of_fields: uint32,
     crl_template: *const CSSM_FIELD,
@@ -3903,7 +3898,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlSetFields(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlAddCert(
+pub unsafe fn CSSM_CL_CrlAddCert(
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
     cert: *const SecAsn1Item,
@@ -3944,7 +3939,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlAddCert(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlRemoveCert(
+pub unsafe fn CSSM_CL_CrlRemoveCert(
     cl_handle: CSSM_CL_HANDLE,
     cert: *const SecAsn1Item,
     old_crl: *const SecAsn1Item,
@@ -3969,7 +3964,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlRemoveCert(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlSign(
+pub unsafe fn CSSM_CL_CrlSign(
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
     unsigned_crl: *const SecAsn1Item,
@@ -4007,7 +4002,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlSign(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlVerify(
+pub unsafe fn CSSM_CL_CrlVerify(
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
     crl_to_be_verified: *const SecAsn1Item,
@@ -4043,7 +4038,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlVerify(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlVerifyWithKey(
+pub unsafe fn CSSM_CL_CrlVerifyWithKey(
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
     crl_to_be_verified: *const SecAsn1Item,
@@ -4066,7 +4061,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlVerifyWithKey(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_IsCertInCrl(
+pub unsafe fn CSSM_CL_IsCertInCrl(
     cl_handle: CSSM_CL_HANDLE,
     cert: *const SecAsn1Item,
     crl: *const SecAsn1Item,
@@ -4093,7 +4088,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_IsCertInCrl(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetFirstFieldValue(
+pub unsafe fn CSSM_CL_CrlGetFirstFieldValue(
     cl_handle: CSSM_CL_HANDLE,
     crl: *const SecAsn1Item,
     crl_field: *const SecAsn1Oid,
@@ -4129,7 +4124,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetFirstFieldValue(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetNextFieldValue(
+pub unsafe fn CSSM_CL_CrlGetNextFieldValue(
     cl_handle: CSSM_CL_HANDLE,
     results_handle: CSSM_HANDLE,
     value: *mut CSSM_DATA_PTR,
@@ -4147,7 +4142,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetNextFieldValue(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlAbortQuery(
+pub unsafe fn CSSM_CL_CrlAbortQuery(
     cl_handle: CSSM_CL_HANDLE,
     results_handle: CSSM_HANDLE,
 ) -> CSSM_RETURN {
@@ -4168,7 +4163,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlAbortQuery(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetAllFields(
+pub unsafe fn CSSM_CL_CrlGetAllFields(
     cl_handle: CSSM_CL_HANDLE,
     crl: *const SecAsn1Item,
     number_of_crl_fields: *mut uint32,
@@ -4192,7 +4187,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetAllFields(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlCache(
+pub unsafe fn CSSM_CL_CrlCache(
     cl_handle: CSSM_CL_HANDLE,
     crl: *const SecAsn1Item,
     crl_handle: CSSM_HANDLE_PTR,
@@ -4215,7 +4210,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlCache(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_IsCertInCachedCrl(
+pub unsafe fn CSSM_CL_IsCertInCachedCrl(
     cl_handle: CSSM_CL_HANDLE,
     cert: *const SecAsn1Item,
     crl_handle: CSSM_HANDLE,
@@ -4244,7 +4239,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_IsCertInCachedCrl(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetFirstCachedFieldValue(
+pub unsafe fn CSSM_CL_CrlGetFirstCachedFieldValue(
     cl_handle: CSSM_CL_HANDLE,
     crl_handle: CSSM_HANDLE,
     crl_record_index: *const SecAsn1Item,
@@ -4283,7 +4278,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetFirstCachedFieldValue(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetNextCachedFieldValue(
+pub unsafe fn CSSM_CL_CrlGetNextCachedFieldValue(
     cl_handle: CSSM_CL_HANDLE,
     results_handle: CSSM_HANDLE,
     value: *mut CSSM_DATA_PTR,
@@ -4306,7 +4301,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetNextCachedFieldValue(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetAllCachedRecordFields(
+pub unsafe fn CSSM_CL_CrlGetAllCachedRecordFields(
     cl_handle: CSSM_CL_HANDLE,
     crl_handle: CSSM_HANDLE,
     crl_record_index: *const SecAsn1Item,
@@ -4336,7 +4331,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlGetAllCachedRecordFields(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlAbortCache(
+pub unsafe fn CSSM_CL_CrlAbortCache(
     cl_handle: CSSM_CL_HANDLE,
     crl_handle: CSSM_HANDLE,
 ) -> CSSM_RETURN {
@@ -4354,7 +4349,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlAbortCache(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_CrlDescribeFormat(
+pub unsafe fn CSSM_CL_CrlDescribeFormat(
     cl_handle: CSSM_CL_HANDLE,
     number_of_fields: *mut uint32,
     oid_list: *mut CSSM_OID_PTR,
@@ -4376,7 +4371,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_CrlDescribeFormat(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_CL_PassThrough(
+pub unsafe fn CSSM_CL_PassThrough(
     cl_handle: CSSM_CL_HANDLE,
     cc_handle: CSSM_CC_HANDLE,
     pass_through_id: uint32,
@@ -4413,7 +4408,7 @@ pub unsafe extern "C-unwind" fn CSSM_CL_PassThrough(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DbOpen(
+pub unsafe fn CSSM_DL_DbOpen(
     dl_handle: CSSM_DL_HANDLE,
     db_name: *const c_char,
     db_location: *const CSSM_NET_ADDRESS,
@@ -4449,7 +4444,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DbOpen(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DbClose(dldb_handle: CSSM_DL_DB_HANDLE) -> CSSM_RETURN {
+pub unsafe fn CSSM_DL_DbClose(dldb_handle: CSSM_DL_DB_HANDLE) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_DL_DbClose(dldb_handle: CSSM_DL_DB_HANDLE) -> CSSM_RETURN;
     }
@@ -4467,7 +4462,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DbClose(dldb_handle: CSSM_DL_DB_HANDLE) 
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DbCreate(
+pub unsafe fn CSSM_DL_DbCreate(
     dl_handle: CSSM_DL_HANDLE,
     db_name: *const c_char,
     db_location: *const CSSM_NET_ADDRESS,
@@ -4511,7 +4506,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DbCreate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DbDelete(
+pub unsafe fn CSSM_DL_DbDelete(
     dl_handle: CSSM_DL_HANDLE,
     db_name: *const c_char,
     db_location: *const CSSM_NET_ADDRESS,
@@ -4536,7 +4531,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DbDelete(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_CreateRelation(
+pub unsafe fn CSSM_DL_CreateRelation(
     dldb_handle: CSSM_DL_DB_HANDLE,
     relation_id: CSSM_DB_RECORDTYPE,
     relation_name: *const c_char,
@@ -4572,7 +4567,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_CreateRelation(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DestroyRelation(
+pub unsafe fn CSSM_DL_DestroyRelation(
     dldb_handle: CSSM_DL_DB_HANDLE,
     relation_id: CSSM_DB_RECORDTYPE,
 ) -> CSSM_RETURN {
@@ -4591,7 +4586,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DestroyRelation(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_Authenticate(
+pub unsafe fn CSSM_DL_Authenticate(
     dldb_handle: CSSM_DL_DB_HANDLE,
     access_request: CSSM_DB_ACCESS_TYPE,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
@@ -4614,7 +4609,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_Authenticate(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_GetDbAcl(
+pub unsafe fn CSSM_DL_GetDbAcl(
     dldb_handle: CSSM_DL_DB_HANDLE,
     selection_tag: *const CSSM_STRING,
     number_of_acl_infos: *mut uint32,
@@ -4638,7 +4633,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_GetDbAcl(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_ChangeDbAcl(
+pub unsafe fn CSSM_DL_ChangeDbAcl(
     dldb_handle: CSSM_DL_DB_HANDLE,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
     acl_edit: *const CSSM_ACL_EDIT,
@@ -4659,7 +4654,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_ChangeDbAcl(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_GetDbOwner(
+pub unsafe fn CSSM_DL_GetDbOwner(
     dldb_handle: CSSM_DL_DB_HANDLE,
     owner: CSSM_ACL_OWNER_PROTOTYPE_PTR,
 ) -> CSSM_RETURN {
@@ -4679,7 +4674,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_GetDbOwner(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_ChangeDbOwner(
+pub unsafe fn CSSM_DL_ChangeDbOwner(
     dldb_handle: CSSM_DL_DB_HANDLE,
     access_cred: *const CSSM_ACCESS_CREDENTIALS,
     new_owner: *const CSSM_ACL_OWNER_PROTOTYPE,
@@ -4700,7 +4695,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_ChangeDbOwner(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_GetDbNames(
+pub unsafe fn CSSM_DL_GetDbNames(
     dl_handle: CSSM_DL_HANDLE,
     name_list: *mut CSSM_NAME_LIST_PTR,
 ) -> CSSM_RETURN {
@@ -4719,7 +4714,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_GetDbNames(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_GetDbNameFromHandle(
+pub unsafe fn CSSM_DL_GetDbNameFromHandle(
     dldb_handle: CSSM_DL_DB_HANDLE,
     db_name: *mut *mut c_char,
 ) -> CSSM_RETURN {
@@ -4738,7 +4733,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_GetDbNameFromHandle(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_FreeNameList(
+pub unsafe fn CSSM_DL_FreeNameList(
     dl_handle: CSSM_DL_HANDLE,
     name_list: CSSM_NAME_LIST_PTR,
 ) -> CSSM_RETURN {
@@ -4759,7 +4754,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_FreeNameList(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DataInsert(
+pub unsafe fn CSSM_DL_DataInsert(
     dldb_handle: CSSM_DL_DB_HANDLE,
     record_type: CSSM_DB_RECORDTYPE,
     attributes: *const CSSM_DB_RECORD_ATTRIBUTE_DATA,
@@ -4784,7 +4779,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DataInsert(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DataDelete(
+pub unsafe fn CSSM_DL_DataDelete(
     dldb_handle: CSSM_DL_DB_HANDLE,
     unique_record_identifier: *const CSSM_DB_UNIQUE_RECORD,
 ) -> CSSM_RETURN {
@@ -4805,7 +4800,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DataDelete(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DataModify(
+pub unsafe fn CSSM_DL_DataModify(
     dldb_handle: CSSM_DL_DB_HANDLE,
     record_type: CSSM_DB_RECORDTYPE,
     unique_record_identifier: CSSM_DB_UNIQUE_RECORD_PTR,
@@ -4845,7 +4840,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DataModify(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DataGetFirst(
+pub unsafe fn CSSM_DL_DataGetFirst(
     dldb_handle: CSSM_DL_DB_HANDLE,
     query: *const CSSM_QUERY,
     results_handle: CSSM_HANDLE_PTR,
@@ -4883,7 +4878,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DataGetFirst(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DataGetNext(
+pub unsafe fn CSSM_DL_DataGetNext(
     dldb_handle: CSSM_DL_DB_HANDLE,
     results_handle: CSSM_HANDLE,
     attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
@@ -4905,7 +4900,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DataGetNext(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DataAbortQuery(
+pub unsafe fn CSSM_DL_DataAbortQuery(
     dldb_handle: CSSM_DL_DB_HANDLE,
     results_handle: CSSM_HANDLE,
 ) -> CSSM_RETURN {
@@ -4926,7 +4921,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DataAbortQuery(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_DataGetFromUniqueRecordId(
+pub unsafe fn CSSM_DL_DataGetFromUniqueRecordId(
     dldb_handle: CSSM_DL_DB_HANDLE,
     unique_record: *const CSSM_DB_UNIQUE_RECORD,
     attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
@@ -4949,7 +4944,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_DataGetFromUniqueRecordId(
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_FreeUniqueRecord(
+pub unsafe fn CSSM_DL_FreeUniqueRecord(
     dldb_handle: CSSM_DL_DB_HANDLE,
     unique_record: CSSM_DB_UNIQUE_RECORD_PTR,
 ) -> CSSM_RETURN {
@@ -4969,7 +4964,7 @@ pub unsafe extern "C-unwind" fn CSSM_DL_FreeUniqueRecord(
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CSSM_DL_PassThrough(
+pub unsafe fn CSSM_DL_PassThrough(
     dldb_handle: CSSM_DL_DB_HANDLE,
     pass_through_id: uint32,
     input_params: *const c_void,

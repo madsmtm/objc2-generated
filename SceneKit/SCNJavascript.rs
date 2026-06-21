@@ -11,7 +11,7 @@ use crate::*;
 #[cfg(feature = "objc2-javascript-core")]
 #[cfg(not(target_os = "watchos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNExportJavaScriptModule(context: &JSContext) {
+pub unsafe fn SCNExportJavaScriptModule(context: &JSContext) {
     extern "C-unwind" {
         fn SCNExportJavaScriptModule(context: &JSContext);
     }

@@ -79,9 +79,7 @@ impl CGRenderingBufferProvider {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRenderingBufferLockBytePtr(
-    provider: &CGRenderingBufferProvider,
-) -> *mut c_void {
+pub fn CGRenderingBufferLockBytePtr(provider: &CGRenderingBufferProvider) -> *mut c_void {
     extern "C-unwind" {
         fn CGRenderingBufferLockBytePtr(provider: &CGRenderingBufferProvider) -> *mut c_void;
     }
@@ -89,7 +87,7 @@ pub extern "C-unwind" fn CGRenderingBufferLockBytePtr(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRenderingBufferUnlockBytePtr(provider: &CGRenderingBufferProvider) {
+pub fn CGRenderingBufferUnlockBytePtr(provider: &CGRenderingBufferProvider) {
     extern "C-unwind" {
         fn CGRenderingBufferUnlockBytePtr(provider: &CGRenderingBufferProvider);
     }

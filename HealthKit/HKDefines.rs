@@ -153,8 +153,7 @@ unsafe impl RefEncode for HKAuthorizationRequestStatus {
 
 /// Returns the set of `HKCategoryValueSleepAnalysis` values that are considered to be asleep.
 #[inline]
-pub unsafe extern "C-unwind" fn HKCategoryValueSleepAnalysisAsleepValues(
-) -> Retained<NSSet<NSNumber>> {
+pub unsafe fn HKCategoryValueSleepAnalysisAsleepValues() -> Retained<NSSet<NSNumber>> {
     extern "C-unwind" {
         fn HKCategoryValueSleepAnalysisAsleepValues() -> *mut NSSet<NSNumber>;
     }

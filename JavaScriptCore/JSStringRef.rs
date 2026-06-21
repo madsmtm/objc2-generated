@@ -24,10 +24,7 @@ pub type JSChar = c_ushort;
 /// `chars` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringCreateWithCharacters(
-    chars: *const JSChar,
-    num_chars: usize,
-) -> JSStringRef {
+pub unsafe fn JSStringCreateWithCharacters(chars: *const JSChar, num_chars: usize) -> JSStringRef {
     extern "C-unwind" {
         fn JSStringCreateWithCharacters(chars: *const JSChar, num_chars: usize) -> JSStringRef;
     }
@@ -45,9 +42,7 @@ pub unsafe extern "C-unwind" fn JSStringCreateWithCharacters(
 /// `string` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringCreateWithUTF8CString(
-    string: *const c_char,
-) -> JSStringRef {
+pub unsafe fn JSStringCreateWithUTF8CString(string: *const c_char) -> JSStringRef {
     extern "C-unwind" {
         fn JSStringCreateWithUTF8CString(string: *const c_char) -> JSStringRef;
     }
@@ -65,7 +60,7 @@ pub unsafe extern "C-unwind" fn JSStringCreateWithUTF8CString(
 /// `string` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringRetain(string: JSStringRef) -> JSStringRef {
+pub unsafe fn JSStringRetain(string: JSStringRef) -> JSStringRef {
     extern "C-unwind" {
         fn JSStringRetain(string: JSStringRef) -> JSStringRef;
     }
@@ -81,7 +76,7 @@ pub unsafe extern "C-unwind" fn JSStringRetain(string: JSStringRef) -> JSStringR
 /// `string` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringRelease(string: JSStringRef) {
+pub unsafe fn JSStringRelease(string: JSStringRef) {
     extern "C-unwind" {
         fn JSStringRelease(string: JSStringRef);
     }
@@ -99,7 +94,7 @@ pub unsafe extern "C-unwind" fn JSStringRelease(string: JSStringRef) {
 /// `string` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringGetLength(string: JSStringRef) -> usize {
+pub unsafe fn JSStringGetLength(string: JSStringRef) -> usize {
     extern "C-unwind" {
         fn JSStringGetLength(string: JSStringRef) -> usize;
     }
@@ -119,7 +114,7 @@ pub unsafe extern "C-unwind" fn JSStringGetLength(string: JSStringRef) -> usize 
 /// `string` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringGetCharactersPtr(string: JSStringRef) -> *const JSChar {
+pub unsafe fn JSStringGetCharactersPtr(string: JSStringRef) -> *const JSChar {
     extern "C-unwind" {
         fn JSStringGetCharactersPtr(string: JSStringRef) -> *const JSChar;
     }
@@ -141,7 +136,7 @@ pub unsafe extern "C-unwind" fn JSStringGetCharactersPtr(string: JSStringRef) ->
 /// `string` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringGetMaximumUTF8CStringSize(string: JSStringRef) -> usize {
+pub unsafe fn JSStringGetMaximumUTF8CStringSize(string: JSStringRef) -> usize {
     extern "C-unwind" {
         fn JSStringGetMaximumUTF8CStringSize(string: JSStringRef) -> usize;
     }
@@ -169,7 +164,7 @@ pub unsafe extern "C-unwind" fn JSStringGetMaximumUTF8CStringSize(string: JSStri
 /// - `buffer` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringGetUTF8CString(
+pub unsafe fn JSStringGetUTF8CString(
     string: JSStringRef,
     buffer: *mut c_char,
     buffer_size: usize,
@@ -198,7 +193,7 @@ pub unsafe extern "C-unwind" fn JSStringGetUTF8CString(
 /// - `b` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringIsEqual(a: JSStringRef, b: JSStringRef) -> bool {
+pub unsafe fn JSStringIsEqual(a: JSStringRef, b: JSStringRef) -> bool {
     extern "C-unwind" {
         fn JSStringIsEqual(a: JSStringRef, b: JSStringRef) -> bool;
     }
@@ -219,10 +214,7 @@ pub unsafe extern "C-unwind" fn JSStringIsEqual(a: JSStringRef, b: JSStringRef) 
 /// - `b` must be a valid pointer.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSStringIsEqualToUTF8CString(
-    a: JSStringRef,
-    b: *const c_char,
-) -> bool {
+pub unsafe fn JSStringIsEqualToUTF8CString(a: JSStringRef, b: *const c_char) -> bool {
     extern "C-unwind" {
         fn JSStringIsEqualToUTF8CString(a: JSStringRef, b: *const c_char) -> bool;
     }

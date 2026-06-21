@@ -244,7 +244,7 @@ impl MDLabel {
 ///
 /// Returns: A CFArrayRef containing all of the label kind strings, or NULL on failure.
 #[inline]
-pub unsafe extern "C-unwind" fn MDCopyLabelKinds() -> Option<CFRetained<CFArray>> {
+pub unsafe fn MDCopyLabelKinds() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn MDCopyLabelKinds() -> Option<NonNull<CFArray>>;
     }
@@ -262,7 +262,7 @@ pub unsafe extern "C-unwind" fn MDCopyLabelKinds() -> Option<CFRetained<CFArray>
 ///
 /// `simple_query_string` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn MDCopyLabelsMatchingExpression(
+pub unsafe fn MDCopyLabelsMatchingExpression(
     simple_query_string: Option<&CFString>,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -284,9 +284,7 @@ pub unsafe extern "C-unwind" fn MDCopyLabelsMatchingExpression(
 ///
 /// `kind` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn MDCopyLabelsWithKind(
-    kind: Option<&CFString>,
-) -> Option<CFRetained<CFArray>> {
+pub unsafe fn MDCopyLabelsWithKind(kind: Option<&CFString>) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn MDCopyLabelsWithKind(kind: Option<&CFString>) -> Option<NonNull<CFArray>>;
     }
@@ -304,9 +302,7 @@ pub unsafe extern "C-unwind" fn MDCopyLabelsWithKind(
 ///
 /// `label_uuid` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn MDCopyLabelWithUUID(
-    label_uuid: Option<&CFUUID>,
-) -> Option<CFRetained<MDLabel>> {
+pub unsafe fn MDCopyLabelWithUUID(label_uuid: Option<&CFUUID>) -> Option<CFRetained<MDLabel>> {
     extern "C-unwind" {
         fn MDCopyLabelWithUUID(label_uuid: Option<&CFUUID>) -> Option<NonNull<MDLabel>>;
     }

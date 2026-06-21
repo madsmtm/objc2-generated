@@ -151,7 +151,7 @@ extern "C" {
 /// - `device_info` generic must be of the correct type.
 /// - `device_info` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn ColorSyncRegisterDevice(
+pub unsafe fn ColorSyncRegisterDevice(
     device_class: &CFString,
     device_id: &CFUUID,
     device_info: &CFDictionary,
@@ -167,10 +167,7 @@ pub unsafe extern "C-unwind" fn ColorSyncRegisterDevice(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn ColorSyncUnregisterDevice(
-    device_class: &CFString,
-    device_id: &CFUUID,
-) -> bool {
+pub unsafe fn ColorSyncUnregisterDevice(device_class: &CFString, device_id: &CFUUID) -> bool {
     extern "C-unwind" {
         fn ColorSyncUnregisterDevice(device_class: &CFString, device_id: &CFUUID) -> bool;
     }
@@ -182,7 +179,7 @@ pub unsafe extern "C-unwind" fn ColorSyncUnregisterDevice(
 /// - `profile_info` generic must be of the correct type.
 /// - `profile_info` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn ColorSyncDeviceSetCustomProfiles(
+pub unsafe fn ColorSyncDeviceSetCustomProfiles(
     device_class: &CFString,
     device_id: &CFUUID,
     profile_info: &CFDictionary,
@@ -198,7 +195,7 @@ pub unsafe extern "C-unwind" fn ColorSyncDeviceSetCustomProfiles(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn ColorSyncDeviceCopyDeviceInfo(
+pub unsafe fn ColorSyncDeviceCopyDeviceInfo(
     device_class: &CFString,
     dev_id: &CFUUID,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -221,7 +218,7 @@ pub type ColorSyncDeviceProfileIterateCallback =
 /// - `call_back` must be implemented correctly.
 /// - `user_info` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn ColorSyncIterateDeviceProfiles(
+pub unsafe fn ColorSyncIterateDeviceProfiles(
     call_back: ColorSyncDeviceProfileIterateCallback,
     user_info: *mut c_void,
 ) {
@@ -235,9 +232,7 @@ pub unsafe extern "C-unwind" fn ColorSyncIterateDeviceProfiles(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayCreateUUIDFromDisplayID(
-    display_id: u32,
-) -> CFRetained<CFUUID> {
+pub unsafe fn CGDisplayCreateUUIDFromDisplayID(display_id: u32) -> CFRetained<CFUUID> {
     extern "C-unwind" {
         fn CGDisplayCreateUUIDFromDisplayID(display_id: u32) -> Option<NonNull<CFUUID>>;
     }
@@ -247,7 +242,7 @@ pub unsafe extern "C-unwind" fn CGDisplayCreateUUIDFromDisplayID(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayGetDisplayIDFromUUID(uuid: &CFUUID) -> u32 {
+pub unsafe fn CGDisplayGetDisplayIDFromUUID(uuid: &CFUUID) -> u32 {
     extern "C-unwind" {
         fn CGDisplayGetDisplayIDFromUUID(uuid: &CFUUID) -> u32;
     }

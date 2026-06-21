@@ -709,7 +709,7 @@ pub type AudioQueueProcessingTapCallback = Option<
 /// - `out_aq` must be a valid pointer or null.
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueNewOutput(
+pub unsafe fn AudioQueueNewOutput(
     in_format: &AudioStreamBasicDescription,
     in_callback_proc: AudioQueueOutputCallback,
     in_user_data: *mut c_void,
@@ -784,7 +784,7 @@ pub unsafe extern "C-unwind" fn AudioQueueNewOutput(
 /// - `out_aq` must be a valid pointer or null.
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueNewInput(
+pub unsafe fn AudioQueueNewInput(
     in_format: &AudioStreamBasicDescription,
     in_callback_proc: AudioQueueInputCallback,
     in_user_data: *mut c_void,
@@ -850,7 +850,7 @@ pub unsafe extern "C-unwind" fn AudioQueueNewInput(
     feature = "objc2-core-audio-types"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueNewOutputWithDispatchQueue(
+pub unsafe fn AudioQueueNewOutputWithDispatchQueue(
     out_aq: &mut AudioQueueRef,
     in_format: &AudioStreamBasicDescription,
     in_flags: u32,
@@ -912,7 +912,7 @@ pub unsafe extern "C-unwind" fn AudioQueueNewOutputWithDispatchQueue(
     feature = "objc2-core-audio-types"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueNewInputWithDispatchQueue(
+pub unsafe fn AudioQueueNewInputWithDispatchQueue(
     out_aq: &mut AudioQueueRef,
     in_format: &AudioStreamBasicDescription,
     in_flags: u32,
@@ -961,10 +961,7 @@ pub unsafe extern "C-unwind" fn AudioQueueNewInputWithDispatchQueue(
 ///
 /// `in_aq` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueDispose(
-    in_aq: AudioQueueRef,
-    in_immediate: bool,
-) -> OSStatus {
+pub unsafe fn AudioQueueDispose(in_aq: AudioQueueRef, in_immediate: bool) -> OSStatus {
     extern "C-unwind" {
         fn AudioQueueDispose(in_aq: AudioQueueRef, in_immediate: Boolean) -> OSStatus;
     }
@@ -994,7 +991,7 @@ pub unsafe extern "C-unwind" fn AudioQueueDispose(
 /// - `out_buffer` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueAllocateBuffer(
+pub unsafe fn AudioQueueAllocateBuffer(
     in_aq: AudioQueueRef,
     in_buffer_byte_size: u32,
     out_buffer: &mut AudioQueueBufferRef,
@@ -1034,7 +1031,7 @@ pub unsafe extern "C-unwind" fn AudioQueueAllocateBuffer(
 /// - `out_buffer` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueAllocateBufferWithPacketDescriptions(
+pub unsafe fn AudioQueueAllocateBufferWithPacketDescriptions(
     in_aq: AudioQueueRef,
     in_buffer_byte_size: u32,
     in_number_packet_descriptions: u32,
@@ -1079,7 +1076,7 @@ pub unsafe extern "C-unwind" fn AudioQueueAllocateBufferWithPacketDescriptions(
 /// - `in_buffer` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueFreeBuffer(
+pub unsafe fn AudioQueueFreeBuffer(
     in_aq: AudioQueueRef,
     in_buffer: AudioQueueBufferRef,
 ) -> OSStatus {
@@ -1121,7 +1118,7 @@ pub unsafe extern "C-unwind" fn AudioQueueFreeBuffer(
 /// - `in_packet_descs` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueEnqueueBuffer(
+pub unsafe fn AudioQueueEnqueueBuffer(
     in_aq: AudioQueueRef,
     in_buffer: AudioQueueBufferRef,
     in_num_packet_descs: u32,
@@ -1206,7 +1203,7 @@ pub unsafe extern "C-unwind" fn AudioQueueEnqueueBuffer(
 /// - `in_param_values` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueEnqueueBufferWithParameters(
+pub unsafe fn AudioQueueEnqueueBufferWithParameters(
     in_aq: AudioQueueRef,
     in_buffer: AudioQueueBufferRef,
     in_num_packet_descs: u32,
@@ -1266,7 +1263,7 @@ pub unsafe extern "C-unwind" fn AudioQueueEnqueueBufferWithParameters(
 /// `in_aq` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueStart(
+pub unsafe fn AudioQueueStart(
     in_aq: AudioQueueRef,
     in_start_time: Option<&AudioTimeStamp>,
 ) -> OSStatus {
@@ -1309,7 +1306,7 @@ pub unsafe extern "C-unwind" fn AudioQueueStart(
 ///
 /// `in_aq` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueuePrime(
+pub unsafe fn AudioQueuePrime(
     in_aq: AudioQueueRef,
     in_number_of_frames_to_prepare: u32,
     out_number_of_frames_prepared: Option<&mut u32>,
@@ -1359,10 +1356,7 @@ pub unsafe extern "C-unwind" fn AudioQueuePrime(
 ///
 /// `in_aq` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueStop(
-    in_aq: AudioQueueRef,
-    in_immediate: bool,
-) -> OSStatus {
+pub unsafe fn AudioQueueStop(in_aq: AudioQueueRef, in_immediate: bool) -> OSStatus {
     extern "C-unwind" {
         fn AudioQueueStop(in_aq: AudioQueueRef, in_immediate: Boolean) -> OSStatus;
     }
@@ -1383,7 +1377,7 @@ pub unsafe extern "C-unwind" fn AudioQueueStop(
 ///
 /// `in_aq` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueuePause(in_aq: AudioQueueRef) -> OSStatus {
+pub unsafe fn AudioQueuePause(in_aq: AudioQueueRef) -> OSStatus {
     extern "C-unwind" {
         fn AudioQueuePause(in_aq: AudioQueueRef) -> OSStatus;
     }
@@ -1413,7 +1407,7 @@ pub unsafe extern "C-unwind" fn AudioQueuePause(in_aq: AudioQueueRef) -> OSStatu
 ///
 /// `in_aq` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueFlush(in_aq: AudioQueueRef) -> OSStatus {
+pub unsafe fn AudioQueueFlush(in_aq: AudioQueueRef) -> OSStatus {
     extern "C-unwind" {
         fn AudioQueueFlush(in_aq: AudioQueueRef) -> OSStatus;
     }
@@ -1444,7 +1438,7 @@ pub unsafe extern "C-unwind" fn AudioQueueFlush(in_aq: AudioQueueRef) -> OSStatu
 ///
 /// `in_aq` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueReset(in_aq: AudioQueueRef) -> OSStatus {
+pub unsafe fn AudioQueueReset(in_aq: AudioQueueRef) -> OSStatus {
     extern "C-unwind" {
         fn AudioQueueReset(in_aq: AudioQueueRef) -> OSStatus;
     }
@@ -1471,7 +1465,7 @@ pub unsafe extern "C-unwind" fn AudioQueueReset(in_aq: AudioQueueRef) -> OSStatu
 ///
 /// `in_aq` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueGetParameter(
+pub unsafe fn AudioQueueGetParameter(
     in_aq: AudioQueueRef,
     in_param_id: AudioQueueParameterID,
     out_value: &mut AudioQueueParameterValue,
@@ -1500,7 +1494,7 @@ pub unsafe extern "C-unwind" fn AudioQueueGetParameter(
 ///
 /// `in_aq` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueSetParameter(
+pub unsafe fn AudioQueueSetParameter(
     in_aq: AudioQueueRef,
     in_param_id: AudioQueueParameterID,
     in_value: AudioQueueParameterValue,
@@ -1533,7 +1527,7 @@ pub unsafe extern "C-unwind" fn AudioQueueSetParameter(
 /// - `in_aq` must be a valid pointer.
 /// - `out_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueGetProperty(
+pub unsafe fn AudioQueueGetProperty(
     in_aq: AudioQueueRef,
     in_id: AudioQueuePropertyID,
     out_data: NonNull<c_void>,
@@ -1568,7 +1562,7 @@ pub unsafe extern "C-unwind" fn AudioQueueGetProperty(
 /// - `in_aq` must be a valid pointer.
 /// - `in_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueSetProperty(
+pub unsafe fn AudioQueueSetProperty(
     in_aq: AudioQueueRef,
     in_id: AudioQueuePropertyID,
     in_data: NonNull<c_void>,
@@ -1600,7 +1594,7 @@ pub unsafe extern "C-unwind" fn AudioQueueSetProperty(
 ///
 /// `in_aq` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueGetPropertySize(
+pub unsafe fn AudioQueueGetPropertySize(
     in_aq: AudioQueueRef,
     in_id: AudioQueuePropertyID,
     out_data_size: &mut u32,
@@ -1639,7 +1633,7 @@ pub unsafe extern "C-unwind" fn AudioQueueGetPropertySize(
 /// - `in_proc` must be implemented correctly.
 /// - `in_user_data` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueAddPropertyListener(
+pub unsafe fn AudioQueueAddPropertyListener(
     in_aq: AudioQueueRef,
     in_id: AudioQueuePropertyID,
     in_proc: AudioQueuePropertyListenerProc,
@@ -1674,7 +1668,7 @@ pub unsafe extern "C-unwind" fn AudioQueueAddPropertyListener(
 /// - `in_proc` must be implemented correctly.
 /// - `in_user_data` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueRemovePropertyListener(
+pub unsafe fn AudioQueueRemovePropertyListener(
     in_aq: AudioQueueRef,
     in_id: AudioQueuePropertyID,
     in_proc: AudioQueuePropertyListenerProc,
@@ -1708,7 +1702,7 @@ pub unsafe extern "C-unwind" fn AudioQueueRemovePropertyListener(
 /// - `in_aq` must be a valid pointer.
 /// - `out_timeline` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueCreateTimeline(
+pub unsafe fn AudioQueueCreateTimeline(
     in_aq: AudioQueueRef,
     out_timeline: &mut AudioQueueTimelineRef,
 ) -> OSStatus {
@@ -1739,7 +1733,7 @@ pub unsafe extern "C-unwind" fn AudioQueueCreateTimeline(
 /// - `in_aq` must be a valid pointer.
 /// - `in_timeline` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueDisposeTimeline(
+pub unsafe fn AudioQueueDisposeTimeline(
     in_aq: AudioQueueRef,
     in_timeline: AudioQueueTimelineRef,
 ) -> OSStatus {
@@ -1782,7 +1776,7 @@ pub unsafe extern "C-unwind" fn AudioQueueDisposeTimeline(
 /// - `in_timeline` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueGetCurrentTime(
+pub unsafe fn AudioQueueGetCurrentTime(
     in_aq: AudioQueueRef,
     in_timeline: AudioQueueTimelineRef,
     out_time_stamp: Option<&mut AudioTimeStamp>,
@@ -1826,7 +1820,7 @@ pub unsafe extern "C-unwind" fn AudioQueueGetCurrentTime(
 /// `in_aq` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueDeviceGetCurrentTime(
+pub unsafe fn AudioQueueDeviceGetCurrentTime(
     in_aq: AudioQueueRef,
     out_time_stamp: &mut AudioTimeStamp,
 ) -> OSStatus {
@@ -1869,7 +1863,7 @@ pub unsafe extern "C-unwind" fn AudioQueueDeviceGetCurrentTime(
 /// `in_aq` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueDeviceTranslateTime(
+pub unsafe fn AudioQueueDeviceTranslateTime(
     in_aq: AudioQueueRef,
     in_time: &AudioTimeStamp,
     out_time: &mut AudioTimeStamp,
@@ -1899,7 +1893,7 @@ pub unsafe extern "C-unwind" fn AudioQueueDeviceTranslateTime(
 /// `in_aq` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueDeviceGetNearestStartTime(
+pub unsafe fn AudioQueueDeviceGetNearestStartTime(
     in_aq: AudioQueueRef,
     io_requested_start_time: &mut AudioTimeStamp,
     in_flags: u32,
@@ -1937,7 +1931,7 @@ pub unsafe extern "C-unwind" fn AudioQueueDeviceGetNearestStartTime(
 /// `in_aq` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueSetOfflineRenderFormat(
+pub unsafe fn AudioQueueSetOfflineRenderFormat(
     in_aq: AudioQueueRef,
     in_format: Option<&AudioStreamBasicDescription>,
     in_layout: Option<&AudioChannelLayout>,
@@ -1972,7 +1966,7 @@ pub unsafe extern "C-unwind" fn AudioQueueSetOfflineRenderFormat(
 /// - `io_buffer` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueOfflineRender(
+pub unsafe fn AudioQueueOfflineRender(
     in_aq: AudioQueueRef,
     in_timestamp: &AudioTimeStamp,
     io_buffer: AudioQueueBufferRef,
@@ -2049,7 +2043,7 @@ pub unsafe extern "C-unwind" fn AudioQueueOfflineRender(
 /// - `out_aq_tap` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueProcessingTapNew(
+pub unsafe fn AudioQueueProcessingTapNew(
     in_aq: AudioQueueRef,
     in_callback: AudioQueueProcessingTapCallback,
     in_client_data: *mut c_void,
@@ -2097,9 +2091,7 @@ pub unsafe extern "C-unwind" fn AudioQueueProcessingTapNew(
 ///
 /// `in_aq_tap` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueProcessingTapDispose(
-    in_aq_tap: AudioQueueProcessingTapRef,
-) -> OSStatus {
+pub unsafe fn AudioQueueProcessingTapDispose(in_aq_tap: AudioQueueProcessingTapRef) -> OSStatus {
     extern "C-unwind" {
         fn AudioQueueProcessingTapDispose(in_aq_tap: AudioQueueProcessingTapRef) -> OSStatus;
     }
@@ -2141,7 +2133,7 @@ pub unsafe extern "C-unwind" fn AudioQueueProcessingTapDispose(
 /// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueProcessingTapGetSourceAudio(
+pub unsafe fn AudioQueueProcessingTapGetSourceAudio(
     in_aq_tap: AudioQueueProcessingTapRef,
     in_number_frames: u32,
     io_time_stamp: &mut AudioTimeStamp,
@@ -2196,7 +2188,7 @@ pub unsafe extern "C-unwind" fn AudioQueueProcessingTapGetSourceAudio(
 ///
 /// `in_aq_tap` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioQueueProcessingTapGetQueueTime(
+pub unsafe fn AudioQueueProcessingTapGetQueueTime(
     in_aq_tap: AudioQueueProcessingTapRef,
     out_queue_sample_time: &mut f64,
     out_queue_frame_count: &mut u32,

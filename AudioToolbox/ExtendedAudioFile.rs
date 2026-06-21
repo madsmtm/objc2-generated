@@ -110,7 +110,7 @@ pub const kExtAudioFileError_AsyncWriteBufferOverflow: OSStatus = -66570;
 /// `out_ext_audio_file` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileOpenURL(
+pub unsafe fn ExtAudioFileOpenURL(
     in_url: &CFURL,
     out_ext_audio_file: &mut ExtAudioFileRef,
 ) -> OSStatus {
@@ -146,7 +146,7 @@ pub unsafe extern "C-unwind" fn ExtAudioFileOpenURL(
 /// - `out_ext_audio_file` must be a valid pointer or null.
 #[cfg(feature = "AudioFile")]
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileWrapAudioFileID(
+pub unsafe fn ExtAudioFileWrapAudioFileID(
     in_file_id: AudioFileID,
     in_for_writing: bool,
     out_ext_audio_file: &mut ExtAudioFileRef,
@@ -197,7 +197,7 @@ pub unsafe extern "C-unwind" fn ExtAudioFileWrapAudioFileID(
     feature = "objc2-core-foundation"
 ))]
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileCreateWithURL(
+pub unsafe fn ExtAudioFileCreateWithURL(
     in_url: &CFURL,
     in_file_type: AudioFileTypeID,
     in_stream_desc: &AudioStreamBasicDescription,
@@ -240,9 +240,7 @@ pub unsafe extern "C-unwind" fn ExtAudioFileCreateWithURL(
 ///
 /// `in_ext_audio_file` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileDispose(
-    in_ext_audio_file: ExtAudioFileRef,
-) -> OSStatus {
+pub unsafe fn ExtAudioFileDispose(in_ext_audio_file: ExtAudioFileRef) -> OSStatus {
     extern "C-unwind" {
         fn ExtAudioFileDispose(in_ext_audio_file: ExtAudioFileRef) -> OSStatus;
     }
@@ -279,7 +277,7 @@ pub unsafe extern "C-unwind" fn ExtAudioFileDispose(
 /// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileRead(
+pub unsafe fn ExtAudioFileRead(
     in_ext_audio_file: ExtAudioFileRef,
     io_number_frames: &mut u32,
     io_data: &mut AudioBufferList,
@@ -316,7 +314,7 @@ pub unsafe extern "C-unwind" fn ExtAudioFileRead(
 /// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileWrite(
+pub unsafe fn ExtAudioFileWrite(
     in_ext_audio_file: ExtAudioFileRef,
     in_number_frames: u32,
     io_data: &AudioBufferList,
@@ -364,7 +362,7 @@ pub unsafe extern "C-unwind" fn ExtAudioFileWrite(
 /// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileWriteAsync(
+pub unsafe fn ExtAudioFileWriteAsync(
     in_ext_audio_file: ExtAudioFileRef,
     in_number_frames: u32,
     io_data: Option<&AudioBufferList>,
@@ -401,7 +399,7 @@ pub unsafe extern "C-unwind" fn ExtAudioFileWriteAsync(
 ///
 /// `in_ext_audio_file` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileSeek(
+pub unsafe fn ExtAudioFileSeek(
     in_ext_audio_file: ExtAudioFileRef,
     in_frame_offset: i64,
 ) -> OSStatus {
@@ -425,7 +423,7 @@ pub unsafe extern "C-unwind" fn ExtAudioFileSeek(
 ///
 /// `in_ext_audio_file` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileTell(
+pub unsafe fn ExtAudioFileTell(
     in_ext_audio_file: ExtAudioFileRef,
     out_frame_offset: &mut i64,
 ) -> OSStatus {
@@ -455,7 +453,7 @@ pub unsafe extern "C-unwind" fn ExtAudioFileTell(
 ///
 /// `in_ext_audio_file` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileGetPropertyInfo(
+pub unsafe fn ExtAudioFileGetPropertyInfo(
     in_ext_audio_file: ExtAudioFileRef,
     in_property_id: ExtAudioFilePropertyID,
     out_size: Option<&mut u32>,
@@ -493,7 +491,7 @@ pub unsafe extern "C-unwind" fn ExtAudioFileGetPropertyInfo(
 /// - `in_ext_audio_file` must be a valid pointer.
 /// - `out_property_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileGetProperty(
+pub unsafe fn ExtAudioFileGetProperty(
     in_ext_audio_file: ExtAudioFileRef,
     in_property_id: ExtAudioFilePropertyID,
     io_property_data_size: &mut u32,
@@ -535,7 +533,7 @@ pub unsafe extern "C-unwind" fn ExtAudioFileGetProperty(
 /// - `in_ext_audio_file` must be a valid pointer.
 /// - `in_property_data` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn ExtAudioFileSetProperty(
+pub unsafe fn ExtAudioFileSetProperty(
     in_ext_audio_file: ExtAudioFileRef,
     in_property_id: ExtAudioFilePropertyID,
     in_property_data_size: u32,

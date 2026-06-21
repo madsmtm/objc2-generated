@@ -88,7 +88,7 @@ pub type ColorSyncCMMIterateCallback =
 /// - `call_back` must be implemented correctly.
 /// - `user_info` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn ColorSyncIterateInstalledCMMs(
+pub unsafe fn ColorSyncIterateInstalledCMMs(
     call_back: ColorSyncCMMIterateCallback,
     user_info: *mut c_void,
 ) {

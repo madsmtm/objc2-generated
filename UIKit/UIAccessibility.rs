@@ -15,10 +15,7 @@ use crate::*;
     feature = "objc2-core-foundation"
 ))]
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityConvertFrameToScreenCoordinates(
-    rect: CGRect,
-    view: &UIView,
-) -> CGRect {
+pub fn UIAccessibilityConvertFrameToScreenCoordinates(rect: CGRect, view: &UIView) -> CGRect {
     extern "C-unwind" {
         fn UIAccessibilityConvertFrameToScreenCoordinates(rect: CGRect, view: &UIView) -> CGRect;
     }
@@ -27,7 +24,7 @@ pub extern "C-unwind" fn UIAccessibilityConvertFrameToScreenCoordinates(
 
 #[cfg(all(feature = "UIBezierPath", feature = "UIResponder", feature = "UIView"))]
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityConvertPathToScreenCoordinates(
+pub fn UIAccessibilityConvertPathToScreenCoordinates(
     path: &UIBezierPath,
     view: &UIView,
 ) -> Retained<UIBezierPath> {
@@ -1151,7 +1148,7 @@ unsafe impl NSObjectUIAccessibility for NSObject {}
 
 #[cfg(feature = "UIAccessibilityConstants")]
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityFocusedElement(
+pub fn UIAccessibilityFocusedElement(
     assistive_technology_identifier: Option<&UIAccessibilityAssistiveTechnologyIdentifier>,
 ) -> Option<Retained<AnyObject>> {
     extern "C-unwind" {
@@ -1595,7 +1592,7 @@ unsafe impl NSObjectUIAccessibilityTextOperations for NSObject {}
 /// `argument` should be of the correct type.
 #[cfg(feature = "UIAccessibilityConstants")]
 #[inline]
-pub unsafe extern "C-unwind" fn UIAccessibilityPostNotification(
+pub unsafe fn UIAccessibilityPostNotification(
     notification: UIAccessibilityNotifications,
     argument: Option<&AnyObject>,
 ) {
@@ -1609,7 +1606,7 @@ pub unsafe extern "C-unwind" fn UIAccessibilityPostNotification(
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsVoiceOverRunning() -> bool {
+pub fn UIAccessibilityIsVoiceOverRunning() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsVoiceOverRunning() -> Bool;
     }
@@ -1628,7 +1625,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsMonoAudioEnabled() -> bool {
+pub fn UIAccessibilityIsMonoAudioEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsMonoAudioEnabled() -> Bool;
     }
@@ -1641,7 +1638,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsClosedCaptioningEnabled() -> bool {
+pub fn UIAccessibilityIsClosedCaptioningEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsClosedCaptioningEnabled() -> Bool;
     }
@@ -1655,7 +1652,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsInvertColorsEnabled() -> bool {
+pub fn UIAccessibilityIsInvertColorsEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsInvertColorsEnabled() -> Bool;
     }
@@ -1668,7 +1665,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsGuidedAccessEnabled() -> bool {
+pub fn UIAccessibilityIsGuidedAccessEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsGuidedAccessEnabled() -> Bool;
     }
@@ -1681,7 +1678,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsBoldTextEnabled() -> bool {
+pub fn UIAccessibilityIsBoldTextEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsBoldTextEnabled() -> Bool;
     }
@@ -1695,7 +1692,7 @@ extern "C" {
 
 #[deprecated]
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityButtonShapesEnabled() -> bool {
+pub fn UIAccessibilityButtonShapesEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityButtonShapesEnabled() -> Bool;
     }
@@ -1710,7 +1707,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsGrayscaleEnabled() -> bool {
+pub fn UIAccessibilityIsGrayscaleEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsGrayscaleEnabled() -> Bool;
     }
@@ -1723,7 +1720,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsReduceTransparencyEnabled() -> bool {
+pub fn UIAccessibilityIsReduceTransparencyEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsReduceTransparencyEnabled() -> Bool;
     }
@@ -1737,7 +1734,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsReduceMotionEnabled() -> bool {
+pub fn UIAccessibilityIsReduceMotionEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsReduceMotionEnabled() -> Bool;
     }
@@ -1750,7 +1747,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityPrefersCrossFadeTransitions() -> bool {
+pub fn UIAccessibilityPrefersCrossFadeTransitions() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityPrefersCrossFadeTransitions() -> Bool;
     }
@@ -1764,7 +1761,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsVideoAutoplayEnabled() -> bool {
+pub fn UIAccessibilityIsVideoAutoplayEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsVideoAutoplayEnabled() -> Bool;
     }
@@ -1777,7 +1774,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityDarkerSystemColorsEnabled() -> bool {
+pub fn UIAccessibilityDarkerSystemColorsEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityDarkerSystemColorsEnabled() -> Bool;
     }
@@ -1791,7 +1788,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsSwitchControlRunning() -> bool {
+pub fn UIAccessibilityIsSwitchControlRunning() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsSwitchControlRunning() -> Bool;
     }
@@ -1804,7 +1801,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsSpeakSelectionEnabled() -> bool {
+pub fn UIAccessibilityIsSpeakSelectionEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsSpeakSelectionEnabled() -> Bool;
     }
@@ -1818,7 +1815,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsSpeakScreenEnabled() -> bool {
+pub fn UIAccessibilityIsSpeakScreenEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsSpeakScreenEnabled() -> Bool;
     }
@@ -1831,7 +1828,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsShakeToUndoEnabled() -> bool {
+pub fn UIAccessibilityIsShakeToUndoEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsShakeToUndoEnabled() -> Bool;
     }
@@ -1844,7 +1841,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsAssistiveTouchRunning() -> bool {
+pub fn UIAccessibilityIsAssistiveTouchRunning() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsAssistiveTouchRunning() -> Bool;
     }
@@ -1858,7 +1855,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityShouldDifferentiateWithoutColor() -> bool {
+pub fn UIAccessibilityShouldDifferentiateWithoutColor() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityShouldDifferentiateWithoutColor() -> Bool;
     }
@@ -1872,7 +1869,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityIsOnOffSwitchLabelsEnabled() -> bool {
+pub fn UIAccessibilityIsOnOffSwitchLabelsEnabled() -> bool {
     extern "C-unwind" {
         fn UIAccessibilityIsOnOffSwitchLabelsEnabled() -> Bool;
     }
@@ -1886,7 +1883,7 @@ extern "C" {
 
 #[cfg(feature = "block2")]
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityRequestGuidedAccessSession(
+pub fn UIAccessibilityRequestGuidedAccessSession(
     enable: bool,
     completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
 ) {
@@ -1927,8 +1924,7 @@ unsafe impl RefEncode for UIAccessibilityHearingDeviceEar {
 }
 
 #[inline]
-pub extern "C-unwind" fn UIAccessibilityHearingDevicePairedEar() -> UIAccessibilityHearingDeviceEar
-{
+pub fn UIAccessibilityHearingDevicePairedEar() -> UIAccessibilityHearingDeviceEar {
     extern "C-unwind" {
         fn UIAccessibilityHearingDevicePairedEar() -> UIAccessibilityHearingDeviceEar;
     }

@@ -57,7 +57,7 @@ unsafe impl RefEncode for CGColorDataFormat {
 /// - `options` might not allow `None`.
 #[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGConvertColorDataWithFormat(
+pub unsafe fn CGConvertColorDataWithFormat(
     width: usize,
     height: usize,
     dst_data: *mut c_void,

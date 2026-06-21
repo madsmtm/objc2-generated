@@ -77,7 +77,7 @@ use crate::*;
 /// `ctx` must be a valid pointer.
 #[cfg(all(feature = "CGLTypes", feature = "objc2-io-surface"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGLTexImageIOSurface2D(
+pub unsafe fn CGLTexImageIOSurface2D(
     ctx: CGLContextObj,
     target: GLenum,
     internal_format: GLenum,

@@ -65,7 +65,7 @@ pub type cp_layer_renderer_configuration_t = CP_OBJECT_cp_layer_renderer_configu
 /// information you provide.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_color_format(
+pub unsafe fn cp_layer_renderer_configuration_get_color_format(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> MTLPixelFormat {
     extern "C-unwind" {
@@ -91,7 +91,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_color_format
 /// pixel formats the layer’s color textures support.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_color_format(
+pub unsafe fn cp_layer_renderer_configuration_set_color_format(
     configuration: &cp_layer_renderer_configuration_t,
     color_format: MTLPixelFormat,
 ) {
@@ -121,7 +121,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_color_format
 /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_color_usage(
+pub unsafe fn cp_layer_renderer_configuration_get_color_usage(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> MTLTextureUsage {
     extern "C-unwind" {
@@ -150,7 +150,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_color_usage(
 /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_color_usage(
+pub unsafe fn cp_layer_renderer_configuration_set_color_usage(
     configuration: &cp_layer_renderer_configuration_t,
     color_usage: MTLTextureUsage,
 ) {
@@ -176,7 +176,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_color_usage(
 /// information you provide.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_tracking_areas_format(
+pub unsafe fn cp_layer_renderer_configuration_get_tracking_areas_format(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> MTLPixelFormat {
     extern "C-unwind" {
@@ -202,7 +202,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_tracking_are
 /// pixel formats the layer’s tracking areas textures supports.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_tracking_areas_format(
+pub unsafe fn cp_layer_renderer_configuration_set_tracking_areas_format(
     configuration: &cp_layer_renderer_configuration_t,
     tracking_areas_format: MTLPixelFormat,
 ) {
@@ -236,7 +236,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_tracking_are
 /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_tracking_areas_usage(
+pub unsafe fn cp_layer_renderer_configuration_get_tracking_areas_usage(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> MTLTextureUsage {
     extern "C-unwind" {
@@ -261,7 +261,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_tracking_are
 /// Use this function to modify the configuration details for your layer.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_tracking_areas_usage(
+pub unsafe fn cp_layer_renderer_configuration_set_tracking_areas_usage(
     configuration: &cp_layer_renderer_configuration_t,
     tracking_areas_usage: MTLTextureUsage,
 ) {
@@ -292,7 +292,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_tracking_are
 /// information you provide.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_depth_format(
+pub unsafe fn cp_layer_renderer_configuration_get_depth_format(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> MTLPixelFormat {
     extern "C-unwind" {
@@ -318,7 +318,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_depth_format
 /// pixel formats the layer’s depth textures supports.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_depth_format(
+pub unsafe fn cp_layer_renderer_configuration_set_depth_format(
     configuration: &cp_layer_renderer_configuration_t,
     depth_format: MTLPixelFormat,
 ) {
@@ -347,7 +347,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_depth_format
 /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_depth_usage(
+pub unsafe fn cp_layer_renderer_configuration_get_depth_usage(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> MTLTextureUsage {
     extern "C-unwind" {
@@ -372,7 +372,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_depth_usage(
 /// Use this function to modify the configuration details for your layer.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_depth_usage(
+pub unsafe fn cp_layer_renderer_configuration_set_depth_usage(
     configuration: &cp_layer_renderer_configuration_t,
     depth_usage: MTLTextureUsage,
 ) {
@@ -404,7 +404,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_depth_usage(
 /// the GPU generates fewer pixels in areas with low rasterization
 /// rates, and then scales up those areas before displaying them onscreen.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_foveation_enabled(
+pub unsafe fn cp_layer_renderer_configuration_get_foveation_enabled(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> bool {
     extern "C-unwind" {
@@ -434,7 +434,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_foveation_en
 /// the GPU generates fewer pixels in areas with low rasterization
 /// rates, and then scales up those areas before displaying them onscreen.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_foveation_enabled(
+pub unsafe fn cp_layer_renderer_configuration_set_foveation_enabled(
     configuration: &cp_layer_renderer_configuration_t,
     foveation_enabled: bool,
 ) {
@@ -470,7 +470,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_foveation_en
 /// When `true` the `cp_drawable_t` will provide flipped variable rasterization rate maps via the
 /// `cp_drawable_get_flipped_rasterization_rate_map` function.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps(
+pub unsafe fn cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> bool {
     extern "C-unwind" {
@@ -504,7 +504,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_generate_fli
 /// When `true` the `cp_drawable_t` will provide flipped variable rasterization rate maps via the
 /// `cp_drawable_get_flipped_rasterization_rate_map` function.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps(
+pub unsafe fn cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps(
     configuration: &cp_layer_renderer_configuration_t,
     generate_flipped_rasterization_rate_maps: bool,
 ) {
@@ -538,7 +538,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_generate_fli
 /// For more information about the supported layouts, see ``cp_layer_renderer_layout``.
 #[cfg(feature = "layer_renderer_layout")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_layout(
+pub unsafe fn cp_layer_renderer_configuration_get_layout(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> cp_layer_renderer_layout {
     extern "C-unwind" {
@@ -566,7 +566,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_layout(
 /// information about the supported layouts, see ``cp_layer_renderer_layout``.
 #[cfg(feature = "layer_renderer_layout")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_layout(
+pub unsafe fn cp_layer_renderer_configuration_set_layout(
     configuration: &cp_layer_renderer_configuration_t,
     layout: cp_layer_renderer_layout,
 ) {
@@ -591,7 +591,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_layout(
 /// textures.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_drawable_render_context_stencil_format(
+pub unsafe fn cp_layer_renderer_configuration_set_drawable_render_context_stencil_format(
     configuration: &cp_layer_renderer_configuration_t,
     stencil_format: MTLPixelFormat,
 ) {
@@ -619,7 +619,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_drawable_ren
 /// - Returns: The pixel format to use for the drawable's render context stencil textures.
 #[cfg(feature = "objc2-metal")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_drawable_render_context_stencil_format(
+pub unsafe fn cp_layer_renderer_configuration_get_drawable_render_context_stencil_format(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> MTLPixelFormat {
     extern "C-unwind" {
@@ -641,7 +641,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_drawable_ren
 /// method of your configuration provider.
 /// - Returns: The raster sample count to use for the drawable's render context.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_drawable_render_context_raster_sample_count(
+pub unsafe fn cp_layer_renderer_configuration_get_drawable_render_context_raster_sample_count(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> c_int {
     extern "C-unwind" {
@@ -666,7 +666,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_drawable_ren
 /// method of your configuration provider.
 /// - raster_sample_count: The raster sample count to apply to the drawable's render context.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_drawable_render_context_raster_sample_count(
+pub unsafe fn cp_layer_renderer_configuration_set_drawable_render_context_raster_sample_count(
     configuration: &cp_layer_renderer_configuration_t,
     raster_sample_count: c_int,
 ) {
@@ -702,7 +702,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_drawable_ren
 /// layer renderer but will not impact memory usage, see ``cp_layer_renderer_set_render_quality``.
 #[cfg(feature = "cp_types")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_max_render_quality(
+pub unsafe fn cp_layer_renderer_configuration_get_max_render_quality(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> cp_render_quality_t {
     extern "C-unwind" {
@@ -729,7 +729,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_max_render_q
 /// layer renderer but will not impact memory usage, see ``cp_layer_renderer_set_render_quality``.
 #[cfg(feature = "cp_types")]
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_max_render_quality(
+pub unsafe fn cp_layer_renderer_configuration_set_max_render_quality(
     configuration: &cp_layer_renderer_configuration_t,
     render_quality: cp_render_quality_t,
 ) {
@@ -751,7 +751,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_max_render_q
 /// method of your configuration provider.
 /// - Returns: Whether the layer supports using Metal4, otherwise defaults to Metal3.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_supports_mtl4(
+pub unsafe fn cp_layer_renderer_configuration_get_supports_mtl4(
     configuration: &cp_layer_renderer_configuration_t,
 ) -> bool {
     extern "C-unwind" {
@@ -771,7 +771,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_get_supports_mtl
 /// method of your configuration provider.
 /// - supports_mtl4: Whether the layer supports using Metal4, otherwise defaults to Metal3.
 #[inline]
-pub unsafe extern "C-unwind" fn cp_layer_renderer_configuration_set_supports_mtl4(
+pub unsafe fn cp_layer_renderer_configuration_set_supports_mtl4(
     configuration: &cp_layer_renderer_configuration_t,
     supports_mtl4: bool,
 ) {

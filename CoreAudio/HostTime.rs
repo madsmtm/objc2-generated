@@ -7,7 +7,7 @@ use crate::*;
 ///
 /// Returns: A UInt64 containing the current host time.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioGetCurrentHostTime() -> u64 {
+pub unsafe fn AudioGetCurrentHostTime() -> u64 {
     extern "C-unwind" {
         fn AudioGetCurrentHostTime() -> u64;
     }
@@ -18,7 +18,7 @@ pub unsafe extern "C-unwind" fn AudioGetCurrentHostTime() -> u64 {
 ///
 /// Returns: A Float64 containing the number of ticks per second in the host time base.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioGetHostClockFrequency() -> f64 {
+pub unsafe fn AudioGetHostClockFrequency() -> f64 {
     extern "C-unwind" {
         fn AudioGetHostClockFrequency() -> f64;
     }
@@ -31,7 +31,7 @@ pub unsafe extern "C-unwind" fn AudioGetHostClockFrequency() -> f64 {
 /// Returns: A UInt32 containing the smallest number of ticks that two succeeding values will
 /// ever differ.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioGetHostClockMinimumTimeDelta() -> u32 {
+pub unsafe fn AudioGetHostClockMinimumTimeDelta() -> u32 {
     extern "C-unwind" {
         fn AudioGetHostClockMinimumTimeDelta() -> u32;
     }
@@ -44,7 +44,7 @@ pub unsafe extern "C-unwind" fn AudioGetHostClockMinimumTimeDelta() -> u32 {
 ///
 /// Returns: A UInt64 containining the converted host time.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioConvertHostTimeToNanos(in_host_time: u64) -> u64 {
+pub unsafe fn AudioConvertHostTimeToNanos(in_host_time: u64) -> u64 {
     extern "C-unwind" {
         fn AudioConvertHostTimeToNanos(in_host_time: u64) -> u64;
     }
@@ -57,7 +57,7 @@ pub unsafe extern "C-unwind" fn AudioConvertHostTimeToNanos(in_host_time: u64) -
 ///
 /// Returns: A UInt64 containining the converted nanosecond time.
 #[inline]
-pub unsafe extern "C-unwind" fn AudioConvertNanosToHostTime(in_nanos: u64) -> u64 {
+pub unsafe fn AudioConvertNanosToHostTime(in_nanos: u64) -> u64 {
     extern "C-unwind" {
         fn AudioConvertNanosToHostTime(in_nanos: u64) -> u64;
     }

@@ -443,9 +443,7 @@ impl WSMethodInvocation {
 /// - `method_result` might not allow `None`.
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn WSMethodResultIsFault(
-    method_result: Option<&CFDictionary>,
-) -> bool {
+pub unsafe fn WSMethodResultIsFault(method_result: Option<&CFDictionary>) -> bool {
     extern "C-unwind" {
         fn WSMethodResultIsFault(method_result: Option<&CFDictionary>) -> Boolean;
     }

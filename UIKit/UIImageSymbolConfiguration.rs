@@ -132,9 +132,7 @@ unsafe impl Sync for UIImageSymbolColorRenderingMode {}
 
 #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 #[inline]
-pub extern "C-unwind" fn UIFontWeightForImageSymbolWeight(
-    symbol_weight: UIImageSymbolWeight,
-) -> UIFontWeight {
+pub fn UIFontWeightForImageSymbolWeight(symbol_weight: UIImageSymbolWeight) -> UIFontWeight {
     extern "C-unwind" {
         fn UIFontWeightForImageSymbolWeight(symbol_weight: UIImageSymbolWeight) -> UIFontWeight;
     }

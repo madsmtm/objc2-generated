@@ -109,7 +109,7 @@ extern "C" {
 /// `ref` should be of the correct type.
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn WSGetWSTypeIDFromCFType(r#ref: &CFType) -> WSTypeID {
+pub unsafe fn WSGetWSTypeIDFromCFType(r#ref: &CFType) -> WSTypeID {
     extern "C-unwind" {
         fn WSGetWSTypeIDFromCFType(r#ref: &CFType) -> WSTypeID;
     }
@@ -118,7 +118,7 @@ pub unsafe extern "C-unwind" fn WSGetWSTypeIDFromCFType(r#ref: &CFType) -> WSTyp
 
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn WSGetCFTypeIDFromWSTypeID(type_id: WSTypeID) -> CFTypeID {
+pub unsafe fn WSGetCFTypeIDFromWSTypeID(type_id: WSTypeID) -> CFTypeID {
     extern "C-unwind" {
         fn WSGetCFTypeIDFromWSTypeID(type_id: WSTypeID) -> CFTypeID;
     }

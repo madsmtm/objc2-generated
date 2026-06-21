@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 #[inline]
-pub unsafe extern "C-unwind" fn WKAccessibilityIsVoiceOverRunning() -> bool {
+pub unsafe fn WKAccessibilityIsVoiceOverRunning() -> bool {
     extern "C-unwind" {
         fn WKAccessibilityIsVoiceOverRunning() -> Bool;
     }
@@ -20,7 +20,7 @@ extern "C" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn WKAccessibilityIsReduceMotionEnabled() -> bool {
+pub unsafe fn WKAccessibilityIsReduceMotionEnabled() -> bool {
     extern "C-unwind" {
         fn WKAccessibilityIsReduceMotionEnabled() -> Bool;
     }

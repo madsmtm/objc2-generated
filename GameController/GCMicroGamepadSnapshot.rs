@@ -173,7 +173,7 @@ impl GCMicroGamepadSnapshotData {
 /// `snapshot_data` must be a valid pointer or null.
 #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapshotData(
+pub unsafe fn NSDataFromGCMicroGamepadSnapshotData(
     snapshot_data: *mut GCMicroGamepadSnapshotData,
 ) -> Option<Retained<NSData>> {
     extern "C-unwind" {
@@ -252,7 +252,7 @@ impl GCMicroGamepadSnapShotDataV100 {
 /// `snapshot_data` must be a valid pointer or null.
 #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapShotDataV100(
+pub unsafe fn NSDataFromGCMicroGamepadSnapShotDataV100(
     snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
 ) -> Option<Retained<NSData>> {
     extern "C-unwind" {

@@ -37,8 +37,7 @@ unsafe impl ConcreteType for CSIdentityAuthority {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CSGetDefaultIdentityAuthority(
-) -> Option<CFRetained<CSIdentityAuthority>> {
+pub unsafe fn CSGetDefaultIdentityAuthority() -> Option<CFRetained<CSIdentityAuthority>> {
     extern "C-unwind" {
         fn CSGetDefaultIdentityAuthority() -> Option<NonNull<CSIdentityAuthority>>;
     }
@@ -47,8 +46,7 @@ pub unsafe extern "C-unwind" fn CSGetDefaultIdentityAuthority(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CSGetLocalIdentityAuthority(
-) -> Option<CFRetained<CSIdentityAuthority>> {
+pub unsafe fn CSGetLocalIdentityAuthority() -> Option<CFRetained<CSIdentityAuthority>> {
     extern "C-unwind" {
         fn CSGetLocalIdentityAuthority() -> Option<NonNull<CSIdentityAuthority>>;
     }
@@ -57,8 +55,7 @@ pub unsafe extern "C-unwind" fn CSGetLocalIdentityAuthority(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CSGetManagedIdentityAuthority(
-) -> Option<CFRetained<CSIdentityAuthority>> {
+pub unsafe fn CSGetManagedIdentityAuthority() -> Option<CFRetained<CSIdentityAuthority>> {
     extern "C-unwind" {
         fn CSGetManagedIdentityAuthority() -> Option<NonNull<CSIdentityAuthority>>;
     }

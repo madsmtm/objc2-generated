@@ -292,7 +292,7 @@ extern "C" {
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn NSStringFromCGPoint(point: CGPoint) -> Retained<NSString> {
+pub fn NSStringFromCGPoint(point: CGPoint) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromCGPoint(point: CGPoint) -> *mut NSString;
     }
@@ -303,7 +303,7 @@ pub extern "C-unwind" fn NSStringFromCGPoint(point: CGPoint) -> Retained<NSStrin
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn NSStringFromCGVector(vector: CGVector) -> Retained<NSString> {
+pub fn NSStringFromCGVector(vector: CGVector) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromCGVector(vector: CGVector) -> *mut NSString;
     }
@@ -314,7 +314,7 @@ pub extern "C-unwind" fn NSStringFromCGVector(vector: CGVector) -> Retained<NSSt
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn NSStringFromCGSize(size: CGSize) -> Retained<NSString> {
+pub fn NSStringFromCGSize(size: CGSize) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromCGSize(size: CGSize) -> *mut NSString;
     }
@@ -325,7 +325,7 @@ pub extern "C-unwind" fn NSStringFromCGSize(size: CGSize) -> Retained<NSString> 
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn NSStringFromCGRect(rect: CGRect) -> Retained<NSString> {
+pub fn NSStringFromCGRect(rect: CGRect) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromCGRect(rect: CGRect) -> *mut NSString;
     }
@@ -336,9 +336,7 @@ pub extern "C-unwind" fn NSStringFromCGRect(rect: CGRect) -> Retained<NSString> 
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn NSStringFromCGAffineTransform(
-    transform: CGAffineTransform,
-) -> Retained<NSString> {
+pub fn NSStringFromCGAffineTransform(transform: CGAffineTransform) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromCGAffineTransform(transform: CGAffineTransform) -> *mut NSString;
     }
@@ -349,7 +347,7 @@ pub extern "C-unwind" fn NSStringFromCGAffineTransform(
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn NSStringFromUIEdgeInsets(insets: UIEdgeInsets) -> Retained<NSString> {
+pub fn NSStringFromUIEdgeInsets(insets: UIEdgeInsets) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromUIEdgeInsets(insets: UIEdgeInsets) -> *mut NSString;
     }
@@ -360,9 +358,7 @@ pub extern "C-unwind" fn NSStringFromUIEdgeInsets(insets: UIEdgeInsets) -> Retai
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn NSStringFromDirectionalEdgeInsets(
-    insets: NSDirectionalEdgeInsets,
-) -> Retained<NSString> {
+pub fn NSStringFromDirectionalEdgeInsets(insets: NSDirectionalEdgeInsets) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromDirectionalEdgeInsets(insets: NSDirectionalEdgeInsets) -> *mut NSString;
     }
@@ -373,7 +369,7 @@ pub extern "C-unwind" fn NSStringFromDirectionalEdgeInsets(
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn NSStringFromUIOffset(offset: UIOffset) -> Retained<NSString> {
+pub fn NSStringFromUIOffset(offset: UIOffset) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromUIOffset(offset: UIOffset) -> *mut NSString;
     }
@@ -384,7 +380,7 @@ pub extern "C-unwind" fn NSStringFromUIOffset(offset: UIOffset) -> Retained<NSSt
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn CGPointFromString(string: &NSString) -> CGPoint {
+pub fn CGPointFromString(string: &NSString) -> CGPoint {
     extern "C-unwind" {
         fn CGPointFromString(string: &NSString) -> CGPoint;
     }
@@ -393,7 +389,7 @@ pub extern "C-unwind" fn CGPointFromString(string: &NSString) -> CGPoint {
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn CGVectorFromString(string: &NSString) -> CGVector {
+pub fn CGVectorFromString(string: &NSString) -> CGVector {
     extern "C-unwind" {
         fn CGVectorFromString(string: &NSString) -> CGVector;
     }
@@ -402,7 +398,7 @@ pub extern "C-unwind" fn CGVectorFromString(string: &NSString) -> CGVector {
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn CGSizeFromString(string: &NSString) -> CGSize {
+pub fn CGSizeFromString(string: &NSString) -> CGSize {
     extern "C-unwind" {
         fn CGSizeFromString(string: &NSString) -> CGSize;
     }
@@ -411,7 +407,7 @@ pub extern "C-unwind" fn CGSizeFromString(string: &NSString) -> CGSize {
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn CGRectFromString(string: &NSString) -> CGRect {
+pub fn CGRectFromString(string: &NSString) -> CGRect {
     extern "C-unwind" {
         fn CGRectFromString(string: &NSString) -> CGRect;
     }
@@ -420,7 +416,7 @@ pub extern "C-unwind" fn CGRectFromString(string: &NSString) -> CGRect {
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformFromString(string: &NSString) -> CGAffineTransform {
+pub fn CGAffineTransformFromString(string: &NSString) -> CGAffineTransform {
     extern "C-unwind" {
         fn CGAffineTransformFromString(string: &NSString) -> CGAffineTransform;
     }

@@ -59,7 +59,7 @@ pub type SCNetworkConnectionFlags = u32;
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub(crate) unsafe extern "C-unwind" fn __SCNetworkCheckReachabilityByAddress(
+pub(crate) unsafe fn __SCNetworkCheckReachabilityByAddress(
     address: NonNull<libc::sockaddr>,
     addrlen: libc::socklen_t,
     flags: &mut SCNetworkConnectionFlags,
@@ -104,7 +104,7 @@ pub(crate) unsafe extern "C-unwind" fn __SCNetworkCheckReachabilityByAddress(
 /// FALSE if the status could not be determined.
 #[deprecated = "No longer supported"]
 #[inline]
-pub extern "C-unwind" fn SCNetworkCheckReachabilityByName(
+pub fn SCNetworkCheckReachabilityByName(
     nodename: &CStr,
     flags: &mut SCNetworkConnectionFlags,
 ) -> bool {
@@ -132,7 +132,7 @@ pub extern "C-unwind" fn SCNetworkCheckReachabilityByName(
 /// Returns: Returns TRUE if the notification was sent; FALSE otherwise.
 #[deprecated = "No longer supported"]
 #[inline]
-pub extern "C-unwind" fn SCNetworkInterfaceRefreshConfiguration(if_name: &CFString) -> bool {
+pub fn SCNetworkInterfaceRefreshConfiguration(if_name: &CFString) -> bool {
     extern "C-unwind" {
         fn SCNetworkInterfaceRefreshConfiguration(if_name: &CFString) -> Boolean;
     }

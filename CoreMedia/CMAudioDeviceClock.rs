@@ -19,7 +19,7 @@ use crate::*;
 /// `clock_out` must be a valid pointer.
 #[cfg(feature = "CMSync")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMAudioDeviceClockCreate(
+pub unsafe fn CMAudioDeviceClockCreate(
     allocator: Option<&CFAllocator>,
     device_uid: Option<&CFString>,
     clock_out: NonNull<*mut CMClock>,
@@ -41,7 +41,7 @@ pub unsafe extern "C-unwind" fn CMAudioDeviceClockCreate(
 /// `clock_out` must be a valid pointer.
 #[cfg(all(feature = "CMSync", feature = "objc2-core-audio"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMAudioDeviceClockCreateFromAudioDeviceID(
+pub unsafe fn CMAudioDeviceClockCreateFromAudioDeviceID(
     allocator: Option<&CFAllocator>,
     device_id: AudioDeviceID,
     clock_out: NonNull<*mut CMClock>,
@@ -61,7 +61,7 @@ pub unsafe extern "C-unwind" fn CMAudioDeviceClockCreateFromAudioDeviceID(
 /// Pass NULL for deviceUID to make the clock track the default device.
 #[cfg(feature = "CMSync")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMAudioDeviceClockSetAudioDeviceUID(
+pub unsafe fn CMAudioDeviceClockSetAudioDeviceUID(
     clock: &CMClock,
     device_uid: Option<&CFString>,
 ) -> OSStatus {
@@ -77,7 +77,7 @@ pub unsafe extern "C-unwind" fn CMAudioDeviceClockSetAudioDeviceUID(
 /// Changes the CoreAudio device the clock is tracking.
 #[cfg(all(feature = "CMSync", feature = "objc2-core-audio"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMAudioDeviceClockSetAudioDeviceID(
+pub unsafe fn CMAudioDeviceClockSetAudioDeviceID(
     clock: &CMClock,
     device_id: AudioDeviceID,
 ) -> OSStatus {
@@ -106,7 +106,7 @@ pub unsafe extern "C-unwind" fn CMAudioDeviceClockSetAudioDeviceID(
 /// - `tracking_default_device_out` must be a valid pointer or null.
 #[cfg(all(feature = "CMSync", feature = "objc2-core-audio"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMAudioDeviceClockGetAudioDevice(
+pub unsafe fn CMAudioDeviceClockGetAudioDevice(
     clock: &CMClock,
     device_uid_out: *mut *const CFString,
     device_id_out: *mut AudioDeviceID,

@@ -72,7 +72,7 @@ impl HKAppleWalkingSteadinessClassification {
 /// Parameter `classification`: Apple Walking Steadiness classification for desired minimum value.
 #[cfg(feature = "HKQuantity")]
 #[inline]
-pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
+pub unsafe fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
     classification: HKAppleWalkingSteadinessClassification,
 ) -> Retained<HKQuantity> {
     extern "C-unwind" {
@@ -90,7 +90,7 @@ pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMinimumQuantityForClassi
 /// Parameter `classification`: Apple Walking Steadiness classification for desired maximum value.
 #[cfg(feature = "HKQuantity")]
 #[inline]
-pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
+pub unsafe fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
     classification: HKAppleWalkingSteadinessClassification,
 ) -> Retained<HKQuantity> {
     extern "C-unwind" {

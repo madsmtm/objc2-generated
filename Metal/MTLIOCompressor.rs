@@ -30,7 +30,7 @@ unsafe impl RefEncode for MTLIOCompressionStatus {
 pub type MTLIOCompressionContext = *mut c_void;
 
 #[inline]
-pub extern "C-unwind" fn MTLIOCompressionContextDefaultChunkSize() -> usize {
+pub fn MTLIOCompressionContextDefaultChunkSize() -> usize {
     extern "C-unwind" {
         fn MTLIOCompressionContextDefaultChunkSize() -> usize;
     }
@@ -43,7 +43,7 @@ pub extern "C-unwind" fn MTLIOCompressionContextDefaultChunkSize() -> usize {
 /// - `chunkSize` might not be bounds-checked.
 #[cfg(feature = "MTLDevice")]
 #[inline]
-pub unsafe extern "C-unwind" fn MTLIOCreateCompressionContext(
+pub unsafe fn MTLIOCreateCompressionContext(
     path: NonNull<c_char>,
     r#type: MTLIOCompressionMethod,
     chunk_size: usize,
@@ -64,7 +64,7 @@ pub unsafe extern "C-unwind" fn MTLIOCreateCompressionContext(
 /// - `data` must be a valid pointer.
 /// - `size` might not be bounds-checked.
 #[inline]
-pub unsafe extern "C-unwind" fn MTLIOCompressionContextAppendData(
+pub unsafe fn MTLIOCompressionContextAppendData(
     context: MTLIOCompressionContext,
     data: NonNull<c_void>,
     size: usize,
@@ -83,7 +83,7 @@ pub unsafe extern "C-unwind" fn MTLIOCompressionContextAppendData(
 ///
 /// `context` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn MTLIOFlushAndDestroyCompressionContext(
+pub unsafe fn MTLIOFlushAndDestroyCompressionContext(
     context: MTLIOCompressionContext,
 ) -> MTLIOCompressionStatus {
     extern "C-unwind" {

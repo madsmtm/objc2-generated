@@ -130,7 +130,7 @@ unsafe impl RefEncode for CMTagCollectionVideoOutputPreset {
 /// `new_collection_out` must be a valid pointer.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMTagCollectionCreateWithVideoOutputPreset(
+pub unsafe fn CMTagCollectionCreateWithVideoOutputPreset(
     allocator: Option<&CFAllocator>,
     preset: CMTagCollectionVideoOutputPreset,
     new_collection_out: NonNull<*const CMTagCollection>,

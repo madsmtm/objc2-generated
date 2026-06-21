@@ -205,7 +205,7 @@ impl NSString {
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub extern "C-unwind" fn NSSelectorFromString(a_selector_name: &NSString) -> Sel {
+pub fn NSSelectorFromString(a_selector_name: &NSString) -> Sel {
     extern "C-unwind" {
         fn NSSelectorFromString(a_selector_name: &NSString) -> Sel;
     }
@@ -229,7 +229,7 @@ impl NSString {
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub extern "C-unwind" fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass> {
+pub fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass> {
     extern "C-unwind" {
         fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass>;
     }
@@ -256,7 +256,7 @@ impl NSString {
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub extern "C-unwind" fn NSProtocolFromString(namestr: &NSString) -> Option<Retained<AnyProtocol>> {
+pub fn NSProtocolFromString(namestr: &NSString) -> Option<Retained<AnyProtocol>> {
     extern "C-unwind" {
         fn NSProtocolFromString(namestr: &NSString) -> *mut AnyProtocol;
     }
@@ -268,7 +268,7 @@ pub extern "C-unwind" fn NSProtocolFromString(namestr: &NSString) -> Option<Reta
 ///
 /// `type_ptr` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn NSGetSizeAndAlignment(
+pub unsafe fn NSGetSizeAndAlignment(
     type_ptr: NonNull<c_char>,
     sizep: Option<&mut NSUInteger>,
     alignp: Option<&mut NSUInteger>,

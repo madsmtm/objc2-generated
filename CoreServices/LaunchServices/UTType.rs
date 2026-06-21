@@ -76,7 +76,7 @@ extern "C" {
 
 #[deprecated = "Use the UTType class instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTTypeCreatePreferredIdentifierForTag(
+pub unsafe fn UTTypeCreatePreferredIdentifierForTag(
     in_tag_class: &CFString,
     in_tag: &CFString,
     in_conforming_to_uti: Option<&CFString>,
@@ -96,7 +96,7 @@ pub unsafe extern "C-unwind" fn UTTypeCreatePreferredIdentifierForTag(
 
 #[deprecated = "Use the UTType class instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTTypeCreateAllIdentifiersForTag(
+pub unsafe fn UTTypeCreateAllIdentifiersForTag(
     in_tag_class: &CFString,
     in_tag: &CFString,
     in_conforming_to_uti: Option<&CFString>,
@@ -115,7 +115,7 @@ pub unsafe extern "C-unwind" fn UTTypeCreateAllIdentifiersForTag(
 
 #[deprecated = "Use the UTType class instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTTypeCopyPreferredTagWithClass(
+pub unsafe fn UTTypeCopyPreferredTagWithClass(
     in_uti: &CFString,
     in_tag_class: &CFString,
 ) -> Option<CFRetained<CFString>> {
@@ -131,7 +131,7 @@ pub unsafe extern "C-unwind" fn UTTypeCopyPreferredTagWithClass(
 
 #[deprecated = "Use the UTType class instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTTypeCopyAllTagsWithClass(
+pub unsafe fn UTTypeCopyAllTagsWithClass(
     in_uti: &CFString,
     in_tag_class: &CFString,
 ) -> Option<CFRetained<CFArray>> {
@@ -147,7 +147,7 @@ pub unsafe extern "C-unwind" fn UTTypeCopyAllTagsWithClass(
 
 #[deprecated = "Use -[UTType isEqual:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTTypeEqual(in_uti1: &CFString, in_uti2: &CFString) -> bool {
+pub unsafe fn UTTypeEqual(in_uti1: &CFString, in_uti2: &CFString) -> bool {
     extern "C-unwind" {
         fn UTTypeEqual(in_uti1: &CFString, in_uti2: &CFString) -> Boolean;
     }
@@ -157,10 +157,7 @@ pub unsafe extern "C-unwind" fn UTTypeEqual(in_uti1: &CFString, in_uti2: &CFStri
 
 #[deprecated = "Use -[UTType conformsToType:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTTypeConformsTo(
-    in_uti: &CFString,
-    in_conforms_to_uti: &CFString,
-) -> bool {
+pub unsafe fn UTTypeConformsTo(in_uti: &CFString, in_conforms_to_uti: &CFString) -> bool {
     extern "C-unwind" {
         fn UTTypeConformsTo(in_uti: &CFString, in_conforms_to_uti: &CFString) -> Boolean;
     }
@@ -170,9 +167,7 @@ pub unsafe extern "C-unwind" fn UTTypeConformsTo(
 
 #[deprecated = "Use UTType.localizedDescription instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTTypeCopyDescription(
-    in_uti: &CFString,
-) -> Option<CFRetained<CFString>> {
+pub unsafe fn UTTypeCopyDescription(in_uti: &CFString) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn UTTypeCopyDescription(in_uti: &CFString) -> Option<NonNull<CFString>>;
     }
@@ -182,7 +177,7 @@ pub unsafe extern "C-unwind" fn UTTypeCopyDescription(
 
 #[deprecated = "Use UTType.declared instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTTypeIsDeclared(in_uti: &CFString) -> bool {
+pub unsafe fn UTTypeIsDeclared(in_uti: &CFString) -> bool {
     extern "C-unwind" {
         fn UTTypeIsDeclared(in_uti: &CFString) -> Boolean;
     }
@@ -192,7 +187,7 @@ pub unsafe extern "C-unwind" fn UTTypeIsDeclared(in_uti: &CFString) -> bool {
 
 #[deprecated = "Use UTType.dynamic instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTTypeIsDynamic(in_uti: &CFString) -> bool {
+pub unsafe fn UTTypeIsDynamic(in_uti: &CFString) -> bool {
     extern "C-unwind" {
         fn UTTypeIsDynamic(in_uti: &CFString) -> Boolean;
     }
@@ -202,9 +197,7 @@ pub unsafe extern "C-unwind" fn UTTypeIsDynamic(in_uti: &CFString) -> bool {
 
 #[deprecated = "Use the UTType class instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTTypeCopyDeclaration(
-    in_uti: &CFString,
-) -> Option<CFRetained<CFDictionary>> {
+pub unsafe fn UTTypeCopyDeclaration(in_uti: &CFString) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
         fn UTTypeCopyDeclaration(in_uti: &CFString) -> Option<NonNull<CFDictionary>>;
     }
@@ -214,9 +207,7 @@ pub unsafe extern "C-unwind" fn UTTypeCopyDeclaration(
 
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn UTTypeCopyDeclaringBundleURL(
-    in_uti: &CFString,
-) -> Option<CFRetained<CFURL>> {
+pub unsafe fn UTTypeCopyDeclaringBundleURL(in_uti: &CFString) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
         fn UTTypeCopyDeclaringBundleURL(in_uti: &CFString) -> Option<NonNull<CFURL>>;
     }
@@ -226,9 +217,7 @@ pub unsafe extern "C-unwind" fn UTTypeCopyDeclaringBundleURL(
 
 #[deprecated = "HFS type codes are obsolete."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTCreateStringForOSType(
-    in_os_type: OSType,
-) -> CFRetained<CFString> {
+pub unsafe fn UTCreateStringForOSType(in_os_type: OSType) -> CFRetained<CFString> {
     extern "C-unwind" {
         fn UTCreateStringForOSType(in_os_type: OSType) -> Option<NonNull<CFString>>;
     }
@@ -239,7 +228,7 @@ pub unsafe extern "C-unwind" fn UTCreateStringForOSType(
 
 #[deprecated = "HFS type codes are obsolete."]
 #[inline]
-pub unsafe extern "C-unwind" fn UTGetOSTypeFromString(in_string: &CFString) -> OSType {
+pub unsafe fn UTGetOSTypeFromString(in_string: &CFString) -> OSType {
     extern "C-unwind" {
         fn UTGetOSTypeFromString(in_string: &CFString) -> OSType;
     }

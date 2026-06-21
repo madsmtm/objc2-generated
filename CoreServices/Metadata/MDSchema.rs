@@ -17,7 +17,7 @@ use crate::*;
 ///
 /// `content_type_uti` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn MDSchemaCopyAttributesForContentType(
+pub unsafe fn MDSchemaCopyAttributesForContentType(
     content_type_uti: Option<&CFString>,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -39,7 +39,7 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyAttributesForContentType(
 ///
 /// `name` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn MDSchemaCopyMetaAttributesForAttribute(
+pub unsafe fn MDSchemaCopyMetaAttributesForAttribute(
     name: Option<&CFString>,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -55,7 +55,7 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyMetaAttributesForAttribute(
 ///
 /// Returns: A CFArray of the attribute names.
 #[inline]
-pub unsafe extern "C-unwind" fn MDSchemaCopyAllAttributes() -> Option<CFRetained<CFArray>> {
+pub unsafe fn MDSchemaCopyAllAttributes() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn MDSchemaCopyAllAttributes() -> Option<NonNull<CFArray>>;
     }
@@ -74,7 +74,7 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyAllAttributes() -> Option<CFRetained
 ///
 /// `name` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayNameForAttribute(
+pub unsafe fn MDSchemaCopyDisplayNameForAttribute(
     name: Option<&CFString>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -97,7 +97,7 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayNameForAttribute(
 ///
 /// `name` might not allow `None`.
 #[inline]
-pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayDescriptionForAttribute(
+pub unsafe fn MDSchemaCopyDisplayDescriptionForAttribute(
     name: Option<&CFString>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {

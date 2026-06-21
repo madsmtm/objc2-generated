@@ -904,9 +904,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn NSCreateFilenamePboardType(
-    file_type: &NSString,
-) -> Option<Retained<NSPasteboardType>> {
+pub fn NSCreateFilenamePboardType(file_type: &NSString) -> Option<Retained<NSPasteboardType>> {
     extern "C-unwind" {
         fn NSCreateFilenamePboardType(file_type: &NSString) -> *mut NSPasteboardType;
     }
@@ -915,9 +913,7 @@ pub extern "C-unwind" fn NSCreateFilenamePboardType(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSCreateFileContentsPboardType(
-    file_type: &NSString,
-) -> Option<Retained<NSPasteboardType>> {
+pub fn NSCreateFileContentsPboardType(file_type: &NSString) -> Option<Retained<NSPasteboardType>> {
     extern "C-unwind" {
         fn NSCreateFileContentsPboardType(file_type: &NSString) -> *mut NSPasteboardType;
     }
@@ -926,9 +922,7 @@ pub extern "C-unwind" fn NSCreateFileContentsPboardType(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSGetFileType(
-    pboard_type: &NSPasteboardType,
-) -> Option<Retained<NSString>> {
+pub fn NSGetFileType(pboard_type: &NSPasteboardType) -> Option<Retained<NSString>> {
     extern "C-unwind" {
         fn NSGetFileType(pboard_type: &NSPasteboardType) -> *mut NSString;
     }
@@ -937,7 +931,7 @@ pub extern "C-unwind" fn NSGetFileType(
 }
 
 #[inline]
-pub extern "C-unwind" fn NSGetFileTypes(
+pub fn NSGetFileTypes(
     pboard_types: &NSArray<NSPasteboardType>,
 ) -> Option<Retained<NSArray<NSString>>> {
     extern "C-unwind" {

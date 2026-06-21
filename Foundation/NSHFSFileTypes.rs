@@ -6,9 +6,7 @@ use crate::*;
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub extern "C-unwind" fn NSFileTypeForHFSTypeCode(
-    hfs_file_type_code: OSType,
-) -> Option<Retained<NSString>> {
+pub fn NSFileTypeForHFSTypeCode(hfs_file_type_code: OSType) -> Option<Retained<NSString>> {
     extern "C-unwind" {
         fn NSFileTypeForHFSTypeCode(hfs_file_type_code: OSType) -> *mut NSString;
     }
@@ -21,9 +19,7 @@ pub extern "C-unwind" fn NSFileTypeForHFSTypeCode(
 /// `file_type_string` might not allow `None`.
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSHFSTypeCodeFromFileType(
-    file_type_string: Option<&NSString>,
-) -> OSType {
+pub unsafe fn NSHFSTypeCodeFromFileType(file_type_string: Option<&NSString>) -> OSType {
     extern "C-unwind" {
         fn NSHFSTypeCodeFromFileType(file_type_string: Option<&NSString>) -> OSType;
     }
@@ -35,9 +31,7 @@ pub unsafe extern "C-unwind" fn NSHFSTypeCodeFromFileType(
 /// `full_file_path` might not allow `None`.
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSHFSTypeOfFile(
-    full_file_path: Option<&NSString>,
-) -> Option<Retained<NSString>> {
+pub unsafe fn NSHFSTypeOfFile(full_file_path: Option<&NSString>) -> Option<Retained<NSString>> {
     extern "C-unwind" {
         fn NSHFSTypeOfFile(full_file_path: Option<&NSString>) -> *mut NSString;
     }

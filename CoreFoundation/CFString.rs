@@ -1784,7 +1784,7 @@ impl CFString {
 }
 
 #[inline]
-pub extern "C-unwind" fn CFShow(obj: Option<&CFType>) {
+pub fn CFShow(obj: Option<&CFType>) {
     extern "C-unwind" {
         fn CFShow(obj: Option<&CFType>);
     }

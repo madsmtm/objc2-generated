@@ -67,7 +67,7 @@ unsafe impl RefEncode for LSAcceptanceFlags {
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenURL:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForURL(
+pub unsafe fn LSCopyDefaultApplicationURLForURL(
     in_url: &CFURL,
     in_role_mask: LSRolesMask,
     out_error: *mut *mut CFError,
@@ -116,7 +116,7 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForURL(
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenContentType:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForContentType(
+pub unsafe fn LSCopyDefaultApplicationURLForContentType(
     in_content_type: &CFString,
     in_role_mask: LSRolesMask,
     out_error: *mut *mut CFError,
@@ -162,7 +162,7 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForContentType(
 /// `out_error` must be a valid pointer or null.
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsWithBundleIdentifier:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForBundleIdentifier(
+pub unsafe fn LSCopyApplicationURLsForBundleIdentifier(
     in_bundle_identifier: &CFString,
     out_error: *mut *mut CFError,
 ) -> Option<CFRetained<CFArray>> {
@@ -203,7 +203,7 @@ pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForBundleIdentifier(
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsToOpenURL:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForURL(
+pub unsafe fn LSCopyApplicationURLsForURL(
     in_url: &CFURL,
     in_role_mask: LSRolesMask,
 ) -> Option<CFRetained<CFArray>> {
@@ -246,7 +246,7 @@ pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForURL(
 /// `out_accepts_item` must be a valid pointer.
 #[cfg(feature = "LSConstants")]
 #[inline]
-pub unsafe extern "C-unwind" fn LSCanURLAcceptURL(
+pub unsafe fn LSCanURLAcceptURL(
     in_item_url: &CFURL,
     in_target_url: &CFURL,
     in_role_mask: LSRolesMask,
@@ -292,7 +292,7 @@ pub unsafe extern "C-unwind" fn LSCanURLAcceptURL(
 /// item does not contain info requiring registration kLSDataErr -
 /// The item's property list info is malformed.
 #[inline]
-pub unsafe extern "C-unwind" fn LSRegisterURL(in_url: &CFURL, in_update: bool) -> OSStatus {
+pub unsafe fn LSRegisterURL(in_url: &CFURL, in_update: bool) -> OSStatus {
     extern "C-unwind" {
         fn LSRegisterURL(in_url: &CFURL, in_update: Boolean) -> OSStatus;
     }
@@ -314,7 +314,7 @@ pub unsafe extern "C-unwind" fn LSRegisterURL(in_url: &CFURL, in_update: bool) -
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenContentType:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn LSCopyDefaultRoleHandlerForContentType(
+pub unsafe fn LSCopyDefaultRoleHandlerForContentType(
     in_content_type: &CFString,
     in_role: LSRolesMask,
 ) -> Option<CFRetained<CFString>> {
@@ -345,7 +345,7 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultRoleHandlerForContentType(
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsToOpenContentType:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn LSCopyAllRoleHandlersForContentType(
+pub unsafe fn LSCopyAllRoleHandlersForContentType(
     in_content_type: &CFString,
     in_role: LSRolesMask,
 ) -> Option<CFRetained<CFArray>> {
@@ -376,7 +376,7 @@ pub unsafe extern "C-unwind" fn LSCopyAllRoleHandlersForContentType(
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace setDefaultApplicationAtURL:toOpenContentType:completionHandler:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn LSSetDefaultRoleHandlerForContentType(
+pub unsafe fn LSSetDefaultRoleHandlerForContentType(
     in_content_type: &CFString,
     in_role: LSRolesMask,
     in_handler_bundle_id: &CFString,
@@ -402,7 +402,7 @@ pub unsafe extern "C-unwind" fn LSSetDefaultRoleHandlerForContentType(
 /// Returns: a CFStringRef bundle identifier of the default handler, or NULL if no handler is available
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenURL:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn LSCopyDefaultHandlerForURLScheme(
+pub unsafe fn LSCopyDefaultHandlerForURLScheme(
     in_url_scheme: &CFString,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -425,7 +425,7 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultHandlerForURLScheme(
 /// Returns: An array of bundle identifier strings
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsToOpenURL:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn LSCopyAllHandlersForURLScheme(
+pub unsafe fn LSCopyAllHandlersForURLScheme(
     in_url_scheme: &CFString,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -445,7 +445,7 @@ pub unsafe extern "C-unwind" fn LSCopyAllHandlersForURLScheme(
 /// Parameter `inHandlerBundleID`: the bundle identifier to be set as the default handler for the given scheme
 #[deprecated = "Use -[NSWorkspace setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:] instead."]
 #[inline]
-pub unsafe extern "C-unwind" fn LSSetDefaultHandlerForURLScheme(
+pub unsafe fn LSSetDefaultHandlerForURLScheme(
     in_url_scheme: &CFString,
     in_handler_bundle_id: &CFString,
 ) -> OSStatus {

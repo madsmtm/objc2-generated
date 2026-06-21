@@ -10,7 +10,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformMake(
+pub fn CGAffineTransformMake(
     a: CGFloat,
     b: CGFloat,
     c: CGFloat,
@@ -32,10 +32,7 @@ pub extern "C-unwind" fn CGAffineTransformMake(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformMakeTranslation(
-    tx: CGFloat,
-    ty: CGFloat,
-) -> CGAffineTransform {
+pub fn CGAffineTransformMakeTranslation(tx: CGFloat, ty: CGFloat) -> CGAffineTransform {
     extern "C-unwind" {
         fn CGAffineTransformMakeTranslation(tx: CGFloat, ty: CGFloat) -> CGAffineTransform;
     }
@@ -43,7 +40,7 @@ pub extern "C-unwind" fn CGAffineTransformMakeTranslation(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformMakeScale(sx: CGFloat, sy: CGFloat) -> CGAffineTransform {
+pub fn CGAffineTransformMakeScale(sx: CGFloat, sy: CGFloat) -> CGAffineTransform {
     extern "C-unwind" {
         fn CGAffineTransformMakeScale(sx: CGFloat, sy: CGFloat) -> CGAffineTransform;
     }
@@ -51,7 +48,7 @@ pub extern "C-unwind" fn CGAffineTransformMakeScale(sx: CGFloat, sy: CGFloat) ->
 }
 
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformMakeRotation(angle: CGFloat) -> CGAffineTransform {
+pub fn CGAffineTransformMakeRotation(angle: CGFloat) -> CGAffineTransform {
     extern "C-unwind" {
         fn CGAffineTransformMakeRotation(angle: CGFloat) -> CGAffineTransform;
     }
@@ -59,7 +56,7 @@ pub extern "C-unwind" fn CGAffineTransformMakeRotation(angle: CGFloat) -> CGAffi
 }
 
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformIsIdentity(t: CGAffineTransform) -> bool {
+pub fn CGAffineTransformIsIdentity(t: CGAffineTransform) -> bool {
     extern "C-unwind" {
         fn CGAffineTransformIsIdentity(t: CGAffineTransform) -> bool;
     }
@@ -67,7 +64,7 @@ pub extern "C-unwind" fn CGAffineTransformIsIdentity(t: CGAffineTransform) -> bo
 }
 
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformTranslate(
+pub fn CGAffineTransformTranslate(
     t: CGAffineTransform,
     tx: CGFloat,
     ty: CGFloat,
@@ -83,11 +80,7 @@ pub extern "C-unwind" fn CGAffineTransformTranslate(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformScale(
-    t: CGAffineTransform,
-    sx: CGFloat,
-    sy: CGFloat,
-) -> CGAffineTransform {
+pub fn CGAffineTransformScale(t: CGAffineTransform, sx: CGFloat, sy: CGFloat) -> CGAffineTransform {
     extern "C-unwind" {
         fn CGAffineTransformScale(
             t: CGAffineTransform,
@@ -99,10 +92,7 @@ pub extern "C-unwind" fn CGAffineTransformScale(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformRotate(
-    t: CGAffineTransform,
-    angle: CGFloat,
-) -> CGAffineTransform {
+pub fn CGAffineTransformRotate(t: CGAffineTransform, angle: CGFloat) -> CGAffineTransform {
     extern "C-unwind" {
         fn CGAffineTransformRotate(t: CGAffineTransform, angle: CGFloat) -> CGAffineTransform;
     }
@@ -110,7 +100,7 @@ pub extern "C-unwind" fn CGAffineTransformRotate(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformInvert(t: CGAffineTransform) -> CGAffineTransform {
+pub fn CGAffineTransformInvert(t: CGAffineTransform) -> CGAffineTransform {
     extern "C-unwind" {
         fn CGAffineTransformInvert(t: CGAffineTransform) -> CGAffineTransform;
     }
@@ -118,10 +108,7 @@ pub extern "C-unwind" fn CGAffineTransformInvert(t: CGAffineTransform) -> CGAffi
 }
 
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformConcat(
-    t1: CGAffineTransform,
-    t2: CGAffineTransform,
-) -> CGAffineTransform {
+pub fn CGAffineTransformConcat(t1: CGAffineTransform, t2: CGAffineTransform) -> CGAffineTransform {
     extern "C-unwind" {
         fn CGAffineTransformConcat(
             t1: CGAffineTransform,
@@ -132,10 +119,7 @@ pub extern "C-unwind" fn CGAffineTransformConcat(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformEqualToTransform(
-    t1: CGAffineTransform,
-    t2: CGAffineTransform,
-) -> bool {
+pub fn CGAffineTransformEqualToTransform(t1: CGAffineTransform, t2: CGAffineTransform) -> bool {
     extern "C-unwind" {
         fn CGAffineTransformEqualToTransform(t1: CGAffineTransform, t2: CGAffineTransform) -> bool;
     }
@@ -143,10 +127,7 @@ pub extern "C-unwind" fn CGAffineTransformEqualToTransform(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGPointApplyAffineTransform(
-    point: CGPoint,
-    t: CGAffineTransform,
-) -> CGPoint {
+pub fn CGPointApplyAffineTransform(point: CGPoint, t: CGAffineTransform) -> CGPoint {
     extern "C-unwind" {
         fn CGPointApplyAffineTransform(point: CGPoint, t: CGAffineTransform) -> CGPoint;
     }
@@ -154,7 +135,7 @@ pub extern "C-unwind" fn CGPointApplyAffineTransform(
 }
 
 #[inline]
-pub extern "C-unwind" fn CGSizeApplyAffineTransform(size: CGSize, t: CGAffineTransform) -> CGSize {
+pub fn CGSizeApplyAffineTransform(size: CGSize, t: CGAffineTransform) -> CGSize {
     extern "C-unwind" {
         fn CGSizeApplyAffineTransform(size: CGSize, t: CGAffineTransform) -> CGSize;
     }
@@ -162,7 +143,7 @@ pub extern "C-unwind" fn CGSizeApplyAffineTransform(size: CGSize, t: CGAffineTra
 }
 
 #[inline]
-pub extern "C-unwind" fn CGRectApplyAffineTransform(rect: CGRect, t: CGAffineTransform) -> CGRect {
+pub fn CGRectApplyAffineTransform(rect: CGRect, t: CGAffineTransform) -> CGRect {
     extern "C-unwind" {
         fn CGRectApplyAffineTransform(rect: CGRect, t: CGAffineTransform) -> CGRect;
     }
@@ -186,9 +167,7 @@ pub extern "C-unwind" fn CGRectApplyAffineTransform(rect: CGRect, t: CGAffineTra
 ///
 /// Returns: A decomposed set of geometric operations, the product of which is the CGAffineTransform.
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformDecompose(
-    transform: CGAffineTransform,
-) -> CGAffineTransformComponents {
+pub fn CGAffineTransformDecompose(transform: CGAffineTransform) -> CGAffineTransformComponents {
     extern "C-unwind" {
         fn CGAffineTransformDecompose(transform: CGAffineTransform) -> CGAffineTransformComponents;
     }
@@ -201,7 +180,7 @@ pub extern "C-unwind" fn CGAffineTransformDecompose(
 ///
 /// Returns: A new CGAffineTransform built from the provided components
 #[inline]
-pub extern "C-unwind" fn CGAffineTransformMakeWithComponents(
+pub fn CGAffineTransformMakeWithComponents(
     components: CGAffineTransformComponents,
 ) -> CGAffineTransform {
     extern "C-unwind" {

@@ -197,7 +197,7 @@ extern "C" {
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNMatrix4IsIdentity(m: SCNMatrix4) -> bool {
+pub unsafe fn SCNMatrix4IsIdentity(m: SCNMatrix4) -> bool {
     extern "C-unwind" {
         fn SCNMatrix4IsIdentity(m: SCNMatrix4) -> bool;
     }
@@ -207,7 +207,7 @@ pub unsafe extern "C-unwind" fn SCNMatrix4IsIdentity(m: SCNMatrix4) -> bool {
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMatrix4) -> bool {
+pub unsafe fn SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMatrix4) -> bool {
     extern "C-unwind" {
         fn SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMatrix4) -> bool;
     }
@@ -221,7 +221,7 @@ pub unsafe extern "C-unwind" fn SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMa
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNMatrix4MakeRotation(
+pub unsafe fn SCNMatrix4MakeRotation(
     angle: CGFloat,
     x: CGFloat,
     y: CGFloat,
@@ -239,12 +239,7 @@ pub unsafe extern "C-unwind" fn SCNMatrix4MakeRotation(
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNMatrix4Scale(
-    m: SCNMatrix4,
-    sx: CGFloat,
-    sy: CGFloat,
-    sz: CGFloat,
-) -> SCNMatrix4 {
+pub unsafe fn SCNMatrix4Scale(m: SCNMatrix4, sx: CGFloat, sy: CGFloat, sz: CGFloat) -> SCNMatrix4 {
     extern "C-unwind" {
         fn SCNMatrix4Scale(m: SCNMatrix4, sx: CGFloat, sy: CGFloat, sz: CGFloat) -> SCNMatrix4;
     }
@@ -254,7 +249,7 @@ pub unsafe extern "C-unwind" fn SCNMatrix4Scale(
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNMatrix4Rotate(
+pub unsafe fn SCNMatrix4Rotate(
     m: SCNMatrix4,
     angle: CGFloat,
     x: CGFloat,
@@ -276,7 +271,7 @@ pub unsafe extern "C-unwind" fn SCNMatrix4Rotate(
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNMatrix4Invert(m: SCNMatrix4) -> SCNMatrix4 {
+pub unsafe fn SCNMatrix4Invert(m: SCNMatrix4) -> SCNMatrix4 {
     extern "C-unwind" {
         fn SCNMatrix4Invert(m: SCNMatrix4) -> SCNMatrix4;
     }
@@ -286,7 +281,7 @@ pub unsafe extern "C-unwind" fn SCNMatrix4Invert(m: SCNMatrix4) -> SCNMatrix4 {
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4) -> SCNMatrix4 {
+pub unsafe fn SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4) -> SCNMatrix4 {
     extern "C-unwind" {
         fn SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4) -> SCNMatrix4;
     }
@@ -313,7 +308,7 @@ impl SCNVector4 {
 #[cfg(all(feature = "objc2-gl-kit", feature = "objc2-quartz-core"))]
 #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNMatrix4ToGLKMatrix4(mat: SCNMatrix4) -> GLKMatrix4 {
+pub unsafe fn SCNMatrix4ToGLKMatrix4(mat: SCNMatrix4) -> GLKMatrix4 {
     extern "C-unwind" {
         fn SCNMatrix4ToGLKMatrix4(mat: SCNMatrix4) -> GLKMatrix4;
     }
@@ -326,7 +321,7 @@ pub unsafe extern "C-unwind" fn SCNMatrix4ToGLKMatrix4(mat: SCNMatrix4) -> GLKMa
 #[cfg(all(feature = "objc2-gl-kit", feature = "objc2-quartz-core"))]
 #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNMatrix4FromGLKMatrix4(mat: GLKMatrix4) -> SCNMatrix4 {
+pub unsafe fn SCNMatrix4FromGLKMatrix4(mat: GLKMatrix4) -> SCNMatrix4 {
     extern "C-unwind" {
         fn SCNMatrix4FromGLKMatrix4(mat: GLKMatrix4) -> SCNMatrix4;
     }

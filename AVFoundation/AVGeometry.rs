@@ -22,7 +22,7 @@ use crate::*;
 /// Parameter `boundingRect`: The bounding CGRect you wish to fit into.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn AVMakeRectWithAspectRatioInsideRect(
+pub unsafe fn AVMakeRectWithAspectRatioInsideRect(
     aspect_ratio: CGSize,
     bounding_rect: CGRect,
 ) -> CGRect {

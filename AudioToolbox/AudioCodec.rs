@@ -466,7 +466,7 @@ pub const kAudioCodecBadDataError: OSStatus = 0x62616461;
 /// `in_codec` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioCodecGetPropertyInfo(
+pub unsafe fn AudioCodecGetPropertyInfo(
     in_codec: AudioCodec,
     in_property_id: AudioCodecPropertyID,
     out_size: Option<&mut u32>,
@@ -505,7 +505,7 @@ pub unsafe extern "C-unwind" fn AudioCodecGetPropertyInfo(
 /// - `out_property_data` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioCodecGetProperty(
+pub unsafe fn AudioCodecGetProperty(
     in_codec: AudioCodec,
     in_property_id: AudioCodecPropertyID,
     io_property_data_size: &mut u32,
@@ -549,7 +549,7 @@ pub unsafe extern "C-unwind" fn AudioCodecGetProperty(
 /// - `in_property_data` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioCodecSetProperty(
+pub unsafe fn AudioCodecSetProperty(
     in_codec: AudioCodec,
     in_property_id: AudioCodecPropertyID,
     in_property_data_size: u32,
@@ -598,7 +598,7 @@ pub unsafe extern "C-unwind" fn AudioCodecSetProperty(
 /// - `in_magic_cookie` must be a valid pointer or null.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioCodecInitialize(
+pub unsafe fn AudioCodecInitialize(
     in_codec: AudioCodec,
     in_input_format: Option<&AudioStreamBasicDescription>,
     in_output_format: Option<&AudioStreamBasicDescription>,
@@ -640,7 +640,7 @@ pub unsafe extern "C-unwind" fn AudioCodecInitialize(
 /// `in_codec` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioCodecUninitialize(in_codec: AudioCodec) -> OSStatus {
+pub unsafe fn AudioCodecUninitialize(in_codec: AudioCodec) -> OSStatus {
     extern "C-unwind" {
         fn AudioCodecUninitialize(in_codec: AudioCodec) -> OSStatus;
     }
@@ -680,7 +680,7 @@ pub unsafe extern "C-unwind" fn AudioCodecUninitialize(in_codec: AudioCodec) -> 
 /// - `in_packet_description` must be a valid pointer or null.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioCodecAppendInputData(
+pub unsafe fn AudioCodecAppendInputData(
     in_codec: AudioCodec,
     in_input_data: NonNull<c_void>,
     io_input_data_byte_size: &mut u32,
@@ -741,7 +741,7 @@ pub unsafe extern "C-unwind" fn AudioCodecAppendInputData(
 /// - `out_packet_description` must be a valid pointer or null.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioCodecProduceOutputPackets(
+pub unsafe fn AudioCodecProduceOutputPackets(
     in_codec: AudioCodec,
     out_output_data: NonNull<c_void>,
     io_output_data_byte_size: &mut u32,
@@ -778,7 +778,7 @@ pub unsafe extern "C-unwind" fn AudioCodecProduceOutputPackets(
 /// - `in_packet_description` must be a valid pointer or null.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioCodecAppendInputBufferList(
+pub unsafe fn AudioCodecAppendInputBufferList(
     in_codec: AudioCodec,
     in_buffer_list: &AudioBufferList,
     io_number_packets: &mut u32,
@@ -812,7 +812,7 @@ pub unsafe extern "C-unwind" fn AudioCodecAppendInputBufferList(
 /// - `out_packet_description` must be a valid pointer or null.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioCodecProduceOutputBufferList(
+pub unsafe fn AudioCodecProduceOutputBufferList(
     in_codec: AudioCodec,
     io_buffer_list: &mut AudioBufferList,
     io_number_packets: &mut u32,
@@ -854,7 +854,7 @@ pub unsafe extern "C-unwind" fn AudioCodecProduceOutputBufferList(
 /// `in_codec` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioCodecReset(in_codec: AudioCodec) -> OSStatus {
+pub unsafe fn AudioCodecReset(in_codec: AudioCodec) -> OSStatus {
     extern "C-unwind" {
         fn AudioCodecReset(in_codec: AudioCodec) -> OSStatus;
     }

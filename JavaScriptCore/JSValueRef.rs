@@ -832,7 +832,7 @@ impl JSValue {
 /// - `exception` must be a valid pointer or null.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSBigIntCreateWithDouble(
+pub unsafe fn JSBigIntCreateWithDouble(
     ctx: JSContextRef,
     value: c_double,
     exception: *mut JSValueRef,
@@ -863,7 +863,7 @@ pub unsafe extern "C-unwind" fn JSBigIntCreateWithDouble(
 /// - `exception` must be a valid pointer or null.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSBigIntCreateWithInt64(
+pub unsafe fn JSBigIntCreateWithInt64(
     ctx: JSContextRef,
     integer: i64,
     exception: *mut JSValueRef,
@@ -894,7 +894,7 @@ pub unsafe extern "C-unwind" fn JSBigIntCreateWithInt64(
 /// - `exception` must be a valid pointer or null.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSBigIntCreateWithUInt64(
+pub unsafe fn JSBigIntCreateWithUInt64(
     ctx: JSContextRef,
     integer: u64,
     exception: *mut JSValueRef,
@@ -928,7 +928,7 @@ pub unsafe extern "C-unwind" fn JSBigIntCreateWithUInt64(
 /// - `exception` must be a valid pointer or null.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn JSBigIntCreateWithString(
+pub unsafe fn JSBigIntCreateWithString(
     ctx: JSContextRef,
     string: JSStringRef,
     exception: *mut JSValueRef,

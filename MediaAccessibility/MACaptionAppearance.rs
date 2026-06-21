@@ -240,7 +240,7 @@ extern "C" {
 ///
 /// `strings` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray) {
+pub unsafe fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray) {
     extern "C-unwind" {
         fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray);
     }
@@ -280,7 +280,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceDidDisplayCaptions(strings: &
 /// MACaptionAppearanceAddSelectedLanguage(kMACaptionAppearanceDomainUser, (CFStringRef)[[legibleOption locale] localeIdentifier]);
 /// </code>
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceAddSelectedLanguage(
+pub unsafe fn MACaptionAppearanceAddSelectedLanguage(
     domain: MACaptionAppearanceDomain,
     language: &CFString,
 ) -> bool {
@@ -310,7 +310,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceAddSelectedLanguage(
 ///
 /// Languages added using MACaptionAppearanceAddSelectedLanguage are normalized, and thus the contents of this array may have slightly different strings than those passed into MACaptionAppearanceAddSelectedLanguage.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceCopySelectedLanguages(
+pub unsafe fn MACaptionAppearanceCopySelectedLanguages(
     domain: MACaptionAppearanceDomain,
 ) -> CFRetained<CFArray> {
     extern "C-unwind" {
@@ -341,7 +341,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopySelectedLanguages(
 ///
 /// .
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceGetDisplayType(
+pub unsafe fn MACaptionAppearanceGetDisplayType(
     domain: MACaptionAppearanceDomain,
 ) -> MACaptionAppearanceDisplayType {
     extern "C-unwind" {
@@ -370,7 +370,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceGetDisplayType(
 ///
 /// .
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceSetDisplayType(
+pub unsafe fn MACaptionAppearanceSetDisplayType(
     domain: MACaptionAppearanceDomain,
     display_type: MACaptionAppearanceDisplayType,
 ) {
@@ -395,7 +395,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceSetDisplayType(
 ///
 /// Returns: An array containing the preferred order of media characteristics for captions.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(
+pub unsafe fn MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(
     domain: MACaptionAppearanceDomain,
 ) -> CFRetained<CFArray> {
     extern "C-unwind" {
@@ -420,9 +420,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyPreferredCaptioningMediaC
 ///
 /// Returns: A boolean indicating if the currently-active style has been customized by the user
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceIsCustomized(
-    domain: MACaptionAppearanceDomain,
-) -> bool {
+pub unsafe fn MACaptionAppearanceIsCustomized(domain: MACaptionAppearanceDomain) -> bool {
     extern "C-unwind" {
         fn MACaptionAppearanceIsCustomized(domain: MACaptionAppearanceDomain) -> bool;
     }
@@ -454,7 +452,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceIsCustomized(
 /// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyForegroundColor(
+pub unsafe fn MACaptionAppearanceCopyForegroundColor(
     domain: MACaptionAppearanceDomain,
     behavior: *mut MACaptionAppearanceBehavior,
 ) -> CFRetained<CGColor> {
@@ -496,7 +494,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyForegroundColor(
 /// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyBackgroundColor(
+pub unsafe fn MACaptionAppearanceCopyBackgroundColor(
     domain: MACaptionAppearanceDomain,
     behavior: *mut MACaptionAppearanceBehavior,
 ) -> CFRetained<CGColor> {
@@ -538,7 +536,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyBackgroundColor(
 /// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyWindowColor(
+pub unsafe fn MACaptionAppearanceCopyWindowColor(
     domain: MACaptionAppearanceDomain,
     behavior: *mut MACaptionAppearanceBehavior,
 ) -> CFRetained<CGColor> {
@@ -577,7 +575,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyWindowColor(
 ///
 /// `behavior` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceGetForegroundOpacity(
+pub unsafe fn MACaptionAppearanceGetForegroundOpacity(
     domain: MACaptionAppearanceDomain,
     behavior: *mut MACaptionAppearanceBehavior,
 ) -> CGFloat {
@@ -614,7 +612,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceGetForegroundOpacity(
 ///
 /// `behavior` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceGetBackgroundOpacity(
+pub unsafe fn MACaptionAppearanceGetBackgroundOpacity(
     domain: MACaptionAppearanceDomain,
     behavior: *mut MACaptionAppearanceBehavior,
 ) -> CGFloat {
@@ -651,7 +649,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceGetBackgroundOpacity(
 ///
 /// `behavior` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceGetWindowOpacity(
+pub unsafe fn MACaptionAppearanceGetWindowOpacity(
     domain: MACaptionAppearanceDomain,
     behavior: *mut MACaptionAppearanceBehavior,
 ) -> CGFloat {
@@ -688,7 +686,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceGetWindowOpacity(
 ///
 /// `behavior` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceGetWindowRoundedCornerRadius(
+pub unsafe fn MACaptionAppearanceGetWindowRoundedCornerRadius(
     domain: MACaptionAppearanceDomain,
     behavior: *mut MACaptionAppearanceBehavior,
 ) -> CGFloat {
@@ -734,7 +732,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceGetWindowRoundedCornerRadius(
 /// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-text")]
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyFontDescriptorForStyle(
+pub unsafe fn MACaptionAppearanceCopyFontDescriptorForStyle(
     domain: MACaptionAppearanceDomain,
     behavior: *mut MACaptionAppearanceBehavior,
     font_style: MACaptionAppearanceFontStyle,
@@ -776,7 +774,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyFontDescriptorForStyle(
 ///
 /// `behavior` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceGetRelativeCharacterSize(
+pub unsafe fn MACaptionAppearanceGetRelativeCharacterSize(
     domain: MACaptionAppearanceDomain,
     behavior: *mut MACaptionAppearanceBehavior,
 ) -> CGFloat {
@@ -813,7 +811,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceGetRelativeCharacterSize(
 ///
 /// `behavior` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceGetTextEdgeStyle(
+pub unsafe fn MACaptionAppearanceGetTextEdgeStyle(
     domain: MACaptionAppearanceDomain,
     behavior: *mut MACaptionAppearanceBehavior,
 ) -> MACaptionAppearanceTextEdgeStyle {
@@ -830,7 +828,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceGetTextEdgeStyle(
 ///
 /// Returns: An array of strings where each string represents a unique caption profile ID.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileIDs() -> CFRetained<CFArray> {
+pub unsafe fn MACaptionAppearanceCopyProfileIDs() -> CFRetained<CFArray> {
     extern "C-unwind" {
         fn MACaptionAppearanceCopyProfileIDs() -> Option<NonNull<CFArray>>;
     }
@@ -843,7 +841,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileIDs() -> CFRetaine
 ///
 /// Parameter `profileID`: The profileID to make active.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceSetActiveProfileID(profile_id: &CFString) {
+pub unsafe fn MACaptionAppearanceSetActiveProfileID(profile_id: &CFString) {
     extern "C-unwind" {
         fn MACaptionAppearanceSetActiveProfileID(profile_id: &CFString);
     }
@@ -854,7 +852,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceSetActiveProfileID(profile_id
 ///
 /// Returns: The currently-selected profileID.
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyActiveProfileID() -> CFRetained<CFString> {
+pub unsafe fn MACaptionAppearanceCopyActiveProfileID() -> CFRetained<CFString> {
     extern "C-unwind" {
         fn MACaptionAppearanceCopyActiveProfileID() -> Option<NonNull<CFString>>;
     }
@@ -869,9 +867,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyActiveProfileID() -> CFRe
 ///
 /// Returns: A human-readable name of the provided profileID
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileName(
-    profile_id: &CFString,
-) -> CFRetained<CFString> {
+pub unsafe fn MACaptionAppearanceCopyProfileName(profile_id: &CFString) -> CFRetained<CFString> {
     extern "C-unwind" {
         fn MACaptionAppearanceCopyProfileName(profile_id: &CFString) -> Option<NonNull<CFString>>;
     }
@@ -887,7 +883,7 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileName(
 /// Parameter `aBlock`: the block of code to execute
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe extern "C-unwind" fn MACaptionAppearanceExecuteBlockForProfileID(
+pub unsafe fn MACaptionAppearanceExecuteBlockForProfileID(
     profile_id: &CFString,
     a_block: &block2::DynBlock<dyn Fn()>,
 ) {

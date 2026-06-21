@@ -224,8 +224,7 @@ extern "C" {
 
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[inline]
-pub unsafe extern "C-unwind" fn CLKAllComplicationFamilies() -> Option<Retained<NSArray<NSNumber>>>
-{
+pub unsafe fn CLKAllComplicationFamilies() -> Option<Retained<NSArray<NSNumber>>> {
     extern "C-unwind" {
         fn CLKAllComplicationFamilies() -> *mut NSArray<NSNumber>;
     }

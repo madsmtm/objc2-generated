@@ -24,7 +24,7 @@ use crate::*;
 /// - `out_device_address` must be a valid pointer.
 #[cfg(all(feature = "Bluetooth", feature = "objc2-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothNSStringToDeviceAddress(
+pub unsafe fn IOBluetoothNSStringToDeviceAddress(
     in_name_string: Option<&NSString>,
     out_device_address: *mut BluetoothDeviceAddress,
 ) -> IOReturn {
@@ -50,7 +50,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothNSStringToDeviceAddress(
 /// `device_address` must be a valid pointer.
 #[cfg(all(feature = "Bluetooth", feature = "objc2", feature = "objc2-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddress(
+pub unsafe fn IOBluetoothNSStringFromDeviceAddress(
     device_address: *const BluetoothDeviceAddress,
 ) -> Option<Retained<NSString>> {
     extern "C-unwind" {
@@ -75,7 +75,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddress(
 /// `device_address` must be a valid pointer.
 #[cfg(all(feature = "Bluetooth", feature = "objc2", feature = "objc2-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddressColon(
+pub unsafe fn IOBluetoothNSStringFromDeviceAddressColon(
     device_address: *const BluetoothDeviceAddress,
 ) -> Option<Retained<NSString>> {
     extern "C-unwind" {
@@ -100,9 +100,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddressColon(
 /// `in_file_name` might not allow `None`.
 #[cfg(feature = "objc2-foundation")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothIsFileAppleDesignatedPIMData(
-    in_file_name: Option<&NSString>,
-) -> bool {
+pub unsafe fn IOBluetoothIsFileAppleDesignatedPIMData(in_file_name: Option<&NSString>) -> bool {
     extern "C-unwind" {
         fn IOBluetoothIsFileAppleDesignatedPIMData(in_file_name: Option<&NSString>) -> Boolean;
     }
@@ -135,7 +133,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothIsFileAppleDesignatedPIMData(
 /// - `in_path` might not allow `None`.
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothGetUniqueFileNameAndPath(
+pub unsafe fn IOBluetoothGetUniqueFileNameAndPath(
     in_name: Option<&NSString>,
     in_path: Option<&NSString>,
 ) -> Option<Retained<NSString>> {
@@ -153,7 +151,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothGetUniqueFileNameAndPath(
 ///
 /// Returns: Number of HID devices.
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothNumberOfAvailableHIDDevices() -> c_long {
+pub unsafe fn IOBluetoothNumberOfAvailableHIDDevices() -> c_long {
     extern "C-unwind" {
         fn IOBluetoothNumberOfAvailableHIDDevices() -> c_long;
     }
@@ -164,7 +162,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothNumberOfAvailableHIDDevices() -> c_lo
 ///
 /// Returns: Number of HID devices.
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothNumberOfPointingHIDDevices() -> c_long {
+pub unsafe fn IOBluetoothNumberOfPointingHIDDevices() -> c_long {
     extern "C-unwind" {
         fn IOBluetoothNumberOfPointingHIDDevices() -> c_long;
     }
@@ -175,7 +173,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothNumberOfPointingHIDDevices() -> c_lon
 ///
 /// Returns: Number of HID devices.
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothNumberOfKeyboardHIDDevices() -> c_long {
+pub unsafe fn IOBluetoothNumberOfKeyboardHIDDevices() -> c_long {
     extern "C-unwind" {
         fn IOBluetoothNumberOfKeyboardHIDDevices() -> c_long;
     }
@@ -186,7 +184,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothNumberOfKeyboardHIDDevices() -> c_lon
 ///
 /// Returns: Number of HID devices.
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothNumberOfTabletHIDDevices() -> c_long {
+pub unsafe fn IOBluetoothNumberOfTabletHIDDevices() -> c_long {
     extern "C-unwind" {
         fn IOBluetoothNumberOfTabletHIDDevices() -> c_long;
     }
@@ -201,7 +199,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothNumberOfTabletHIDDevices() -> c_long 
 ///
 /// `device_type` must be a valid pointer.
 #[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothFindNumberOfRegistryEntriesOfClassName(
+pub unsafe fn IOBluetoothFindNumberOfRegistryEntriesOfClassName(
     device_type: *const c_char,
 ) -> c_long {
     extern "C-unwind" {

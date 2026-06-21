@@ -336,7 +336,7 @@ unsafe impl RefEncode for GLKVertexAttributeParameters {
 #[cfg(all(feature = "objc2-model-io", feature = "objc2-open-gl"))]
 #[cfg(target_os = "macos")]
 #[inline]
-pub unsafe extern "C-unwind" fn GLKVertexAttributeParametersFromModelIO(
+pub unsafe fn GLKVertexAttributeParametersFromModelIO(
     vertex_format: MDLVertexFormat,
 ) -> GLKVertexAttributeParameters {
     extern "C-unwind" {

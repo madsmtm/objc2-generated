@@ -24,7 +24,7 @@ use crate::*;
 /// `clock_out` must be a valid pointer.
 #[cfg(feature = "CMSync")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMAudioClockCreate(
+pub unsafe fn CMAudioClockCreate(
     allocator: Option<&CFAllocator>,
     clock_out: NonNull<*mut CMClock>,
 ) -> OSStatus {

@@ -415,7 +415,7 @@ pub type AudioSessionPropertyListener =
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioSessionInitialize(
+pub unsafe fn AudioSessionInitialize(
     in_run_loop: Option<&CFRunLoop>,
     in_run_loop_mode: Option<&CFString>,
     in_interruption_listener: AudioSessionInterruptionListener,
@@ -450,7 +450,7 @@ pub unsafe extern "C-unwind" fn AudioSessionInitialize(
 /// Parameter `active`: A Boolean indicating if you want to make this AudioSession active or inactive.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioSessionSetActive(active: bool) -> OSStatus {
+pub unsafe fn AudioSessionSetActive(active: bool) -> OSStatus {
     extern "C-unwind" {
         fn AudioSessionSetActive(active: Boolean) -> OSStatus;
     }
@@ -476,10 +476,7 @@ pub const kAudioSessionSetActiveFlag_NotifyOthersOnDeactivation: c_uint = 1 << 0
 /// Parameter `inFlags`: A bitmap containing one or more flags from the AudioSessionActivationFlags enum.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioSessionSetActiveWithFlags(
-    active: bool,
-    in_flags: u32,
-) -> OSStatus {
+pub unsafe fn AudioSessionSetActiveWithFlags(active: bool, in_flags: u32) -> OSStatus {
     extern "C-unwind" {
         fn AudioSessionSetActiveWithFlags(active: Boolean, in_flags: u32) -> OSStatus;
     }
@@ -510,7 +507,7 @@ pub unsafe extern "C-unwind" fn AudioSessionSetActiveWithFlags(
 /// - `out_data` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioSessionGetProperty(
+pub unsafe fn AudioSessionGetProperty(
     in_id: AudioSessionPropertyID,
     io_data_size: Option<&mut u32>,
     out_data: *mut c_void,
@@ -547,7 +544,7 @@ pub unsafe extern "C-unwind" fn AudioSessionGetProperty(
 /// `in_data` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioSessionSetProperty(
+pub unsafe fn AudioSessionSetProperty(
     in_id: AudioSessionPropertyID,
     in_data_size: u32,
     in_data: *const c_void,
@@ -576,7 +573,7 @@ pub unsafe extern "C-unwind" fn AudioSessionSetProperty(
 /// `out_data_size` might not allow `None`.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioSessionGetPropertySize(
+pub unsafe fn AudioSessionGetPropertySize(
     in_id: AudioSessionPropertyID,
     out_data_size: Option<&mut u32>,
 ) -> OSStatus {
@@ -612,7 +609,7 @@ pub unsafe extern "C-unwind" fn AudioSessionGetPropertySize(
 /// - `in_client_data` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioSessionAddPropertyListener(
+pub unsafe fn AudioSessionAddPropertyListener(
     in_id: AudioSessionPropertyID,
     in_proc: AudioSessionPropertyListener,
     in_client_data: *mut c_void,
@@ -632,9 +629,7 @@ pub unsafe extern "C-unwind" fn AudioSessionAddPropertyListener(
 /// see AudioSessionRemovePropertyListenerWithUserData
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioSessionRemovePropertyListener(
-    in_id: AudioSessionPropertyID,
-) -> OSStatus {
+pub unsafe fn AudioSessionRemovePropertyListener(in_id: AudioSessionPropertyID) -> OSStatus {
     extern "C-unwind" {
         fn AudioSessionRemovePropertyListener(in_id: AudioSessionPropertyID) -> OSStatus;
     }
@@ -666,7 +661,7 @@ pub unsafe extern "C-unwind" fn AudioSessionRemovePropertyListener(
 /// - `in_client_data` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn AudioSessionRemovePropertyListenerWithUserData(
+pub unsafe fn AudioSessionRemovePropertyListenerWithUserData(
     in_id: AudioSessionPropertyID,
     in_proc: AudioSessionPropertyListener,
     in_client_data: *mut c_void,

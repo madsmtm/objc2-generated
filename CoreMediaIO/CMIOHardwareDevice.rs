@@ -383,10 +383,7 @@ pub const kCMIODevicePropertyLocationExternalWirelessDevice: c_uint = 4;
 /// Returns: An OSStatus indicating success or failure.
 #[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIODeviceStartStream(
-    device_id: CMIODeviceID,
-    stream_id: CMIOStreamID,
-) -> OSStatus {
+pub unsafe fn CMIODeviceStartStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus {
     extern "C-unwind" {
         fn CMIODeviceStartStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus;
     }
@@ -402,10 +399,7 @@ pub unsafe extern "C-unwind" fn CMIODeviceStartStream(
 /// Returns: An OSStatus indicating success or failure.
 #[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIODeviceStopStream(
-    device_id: CMIODeviceID,
-    stream_id: CMIOStreamID,
-) -> OSStatus {
+pub unsafe fn CMIODeviceStopStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus {
     extern "C-unwind" {
         fn CMIODeviceStopStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus;
     }
@@ -427,7 +421,7 @@ pub unsafe extern "C-unwind" fn CMIODeviceStopStream(
 /// `io_avc_command` must be a valid pointer.
 #[cfg(feature = "CMIOHardwareObject")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIODeviceProcessAVCCommand(
+pub unsafe fn CMIODeviceProcessAVCCommand(
     device_id: CMIODeviceID,
     io_avc_command: *mut CMIODeviceAVCCommand,
 ) -> OSStatus {
@@ -454,7 +448,7 @@ pub unsafe extern "C-unwind" fn CMIODeviceProcessAVCCommand(
 /// `io_rs422_command` must be a valid pointer.
 #[cfg(feature = "CMIOHardwareObject")]
 #[inline]
-pub unsafe extern "C-unwind" fn CMIODeviceProcessRS422Command(
+pub unsafe fn CMIODeviceProcessRS422Command(
     device_id: CMIODeviceID,
     io_rs422_command: *mut CMIODeviceRS422Command,
 ) -> OSStatus {

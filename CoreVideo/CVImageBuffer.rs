@@ -352,7 +352,7 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C-unwind" fn CVYCbCrMatrixGetIntegerCodePointForString(
+pub fn CVYCbCrMatrixGetIntegerCodePointForString(
     y_cb_cr_matrix_string: Option<&CFString>,
 ) -> c_int {
     extern "C-unwind" {
@@ -364,7 +364,7 @@ pub extern "C-unwind" fn CVYCbCrMatrixGetIntegerCodePointForString(
 }
 
 #[inline]
-pub extern "C-unwind" fn CVColorPrimariesGetIntegerCodePointForString(
+pub fn CVColorPrimariesGetIntegerCodePointForString(
     color_primaries_string: Option<&CFString>,
 ) -> c_int {
     extern "C-unwind" {
@@ -376,7 +376,7 @@ pub extern "C-unwind" fn CVColorPrimariesGetIntegerCodePointForString(
 }
 
 #[inline]
-pub extern "C-unwind" fn CVTransferFunctionGetIntegerCodePointForString(
+pub fn CVTransferFunctionGetIntegerCodePointForString(
     transfer_function_string: Option<&CFString>,
 ) -> c_int {
     extern "C-unwind" {
@@ -388,7 +388,7 @@ pub extern "C-unwind" fn CVTransferFunctionGetIntegerCodePointForString(
 }
 
 #[inline]
-pub extern "C-unwind" fn CVYCbCrMatrixGetStringForIntegerCodePoint(
+pub fn CVYCbCrMatrixGetStringForIntegerCodePoint(
     y_cb_cr_matrix_code_point: c_int,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -401,7 +401,7 @@ pub extern "C-unwind" fn CVYCbCrMatrixGetStringForIntegerCodePoint(
 }
 
 #[inline]
-pub extern "C-unwind" fn CVColorPrimariesGetStringForIntegerCodePoint(
+pub fn CVColorPrimariesGetStringForIntegerCodePoint(
     color_primaries_code_point: c_int,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -414,7 +414,7 @@ pub extern "C-unwind" fn CVColorPrimariesGetStringForIntegerCodePoint(
 }
 
 #[inline]
-pub extern "C-unwind" fn CVTransferFunctionGetStringForIntegerCodePoint(
+pub fn CVTransferFunctionGetStringForIntegerCodePoint(
     transfer_function_code_point: c_int,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {

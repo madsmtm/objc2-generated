@@ -8,7 +8,7 @@ use crate::*;
 ///
 /// By calling this function, a client indicates to VideoToolbox that it wishes to support Media Extension video decoders. Any associated Video RAW Processors will also be supported as well. Note that this functionality is intended for applications supporting professional video workflows. It is not recommended for network-facing applications such as web browsers, messaging clients, mail clients, etc.
 #[inline]
-pub unsafe extern "C-unwind" fn VTRegisterProfessionalVideoWorkflowVideoDecoders() {
+pub unsafe fn VTRegisterProfessionalVideoWorkflowVideoDecoders() {
     extern "C-unwind" {
         fn VTRegisterProfessionalVideoWorkflowVideoDecoders();
     }
@@ -17,7 +17,7 @@ pub unsafe extern "C-unwind" fn VTRegisterProfessionalVideoWorkflowVideoDecoders
 
 /// Allows the client to use encoders appropriate for professional video workflows.
 #[inline]
-pub unsafe extern "C-unwind" fn VTRegisterProfessionalVideoWorkflowVideoEncoders() {
+pub unsafe fn VTRegisterProfessionalVideoWorkflowVideoEncoders() {
     extern "C-unwind" {
         fn VTRegisterProfessionalVideoWorkflowVideoEncoders();
     }
