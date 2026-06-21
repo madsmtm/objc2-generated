@@ -4,6 +4,7 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
@@ -185,10 +186,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioFileFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioFileFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -207,10 +210,12 @@ impl AudioFilePermissions {
     pub const ReadWritePermission: Self = Self(0x03);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioFilePermissions {
     const ENCODING: Encoding = i8::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioFilePermissions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -223,6 +228,7 @@ pub struct OpaqueAudioFileID {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueAudioFileID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueAudioFileID", &[]));
 }
@@ -259,6 +265,7 @@ pub struct AudioFile_SMPTE_Time {
     pub mSubFrameSampleOffset: u32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioFile_SMPTE_Time {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioFile_SMPTE_Time",
@@ -272,6 +279,7 @@ unsafe impl Encode for AudioFile_SMPTE_Time {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioFile_SMPTE_Time {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -297,7 +305,7 @@ pub struct AudioFileMarker {
     pub mChannel: u16,
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl Encode for AudioFileMarker {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioFileMarker",
@@ -313,7 +321,7 @@ unsafe impl Encode for AudioFileMarker {
     );
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl RefEncode for AudioFileMarker {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -336,7 +344,7 @@ pub struct AudioFileMarkerList {
     pub mMarkers: [AudioFileMarker; 1],
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl Encode for AudioFileMarkerList {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioFileMarkerList",
@@ -348,7 +356,7 @@ unsafe impl Encode for AudioFileMarkerList {
     );
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl RefEncode for AudioFileMarkerList {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -386,10 +394,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioFileRegionFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioFileRegionFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -421,7 +431,7 @@ pub struct AudioFileRegion {
     pub mMarkers: [AudioFileMarker; 1],
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl Encode for AudioFileRegion {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioFileRegion",
@@ -435,7 +445,7 @@ unsafe impl Encode for AudioFileRegion {
     );
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl RefEncode for AudioFileRegion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -461,7 +471,7 @@ pub struct AudioFileRegionList {
     pub mRegions: [AudioFileRegion; 1],
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl Encode for AudioFileRegionList {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioFileRegionList",
@@ -473,7 +483,7 @@ unsafe impl Encode for AudioFileRegionList {
     );
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl RefEncode for AudioFileRegionList {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -493,6 +503,7 @@ pub struct AudioFramePacketTranslation {
     pub mFrameOffsetInPacket: u32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioFramePacketTranslation {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioFramePacketTranslation",
@@ -500,6 +511,7 @@ unsafe impl Encode for AudioFramePacketTranslation {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioFramePacketTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -524,10 +536,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioBytePacketTranslationFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioBytePacketTranslationFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -546,6 +560,7 @@ pub struct AudioBytePacketTranslation {
     pub mFlags: AudioBytePacketTranslationFlags,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioBytePacketTranslation {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioBytePacketTranslation",
@@ -558,6 +573,7 @@ unsafe impl Encode for AudioBytePacketTranslation {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioBytePacketTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -581,6 +597,7 @@ pub struct AudioFilePacketTableInfo {
     pub mRemainderFrames: i32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioFilePacketTableInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioFilePacketTableInfo",
@@ -588,6 +605,7 @@ unsafe impl Encode for AudioFilePacketTableInfo {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioFilePacketTableInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -605,6 +623,7 @@ pub struct AudioPacketRangeByteCountTranslation {
     pub mByteCountUpperBound: i64,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioPacketRangeByteCountTranslation {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioPacketRangeByteCountTranslation",
@@ -612,6 +631,7 @@ unsafe impl Encode for AudioPacketRangeByteCountTranslation {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioPacketRangeByteCountTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -628,6 +648,7 @@ pub struct AudioPacketRollDistanceTranslation {
     pub mRollDistance: i64,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioPacketRollDistanceTranslation {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioPacketRollDistanceTranslation",
@@ -635,6 +656,7 @@ unsafe impl Encode for AudioPacketRollDistanceTranslation {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioPacketRollDistanceTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -651,6 +673,7 @@ pub struct AudioIndependentPacketTranslation {
     pub mIndependentlyDecodablePacket: i64,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioIndependentPacketTranslation {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioIndependentPacketTranslation",
@@ -658,6 +681,7 @@ unsafe impl Encode for AudioIndependentPacketTranslation {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioIndependentPacketTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -675,6 +699,7 @@ pub struct AudioPacketDependencyInfoTranslation {
     pub mNumberPrerollPackets: u32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioPacketDependencyInfoTranslation {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioPacketDependencyInfoTranslation",
@@ -682,6 +707,7 @@ unsafe impl Encode for AudioPacketDependencyInfoTranslation {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioPacketDependencyInfoTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1722,6 +1748,7 @@ pub struct AudioFileTypeAndFormatID {
     pub mFormatID: u32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioFileTypeAndFormatID {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioFileTypeAndFormatID",
@@ -1729,6 +1756,7 @@ unsafe impl Encode for AudioFileTypeAndFormatID {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioFileTypeAndFormatID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

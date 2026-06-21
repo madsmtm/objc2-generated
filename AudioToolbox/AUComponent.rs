@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
@@ -248,10 +249,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitRenderActionFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitRenderActionFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -388,10 +391,12 @@ impl AUParameterEventType {
     pub const ParameterEvent_Ramped: Self = Self(2);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUParameterEventType {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUParameterEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -421,7 +426,7 @@ pub struct AudioUnitParameter {
     pub mElement: AudioUnitElement,
 }
 
-#[cfg(feature = "AudioComponent")]
+#[cfg(all(feature = "AudioComponent", feature = "objc2"))]
 unsafe impl Encode for AudioUnitParameter {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitParameter",
@@ -434,7 +439,7 @@ unsafe impl Encode for AudioUnitParameter {
     );
 }
 
-#[cfg(feature = "AudioComponent")]
+#[cfg(all(feature = "AudioComponent", feature = "objc2"))]
 unsafe impl RefEncode for AudioUnitParameter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -464,7 +469,7 @@ pub struct AudioUnitProperty {
     pub mElement: AudioUnitElement,
 }
 
-#[cfg(feature = "AudioComponent")]
+#[cfg(all(feature = "AudioComponent", feature = "objc2"))]
 unsafe impl Encode for AudioUnitProperty {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitProperty",
@@ -477,7 +482,7 @@ unsafe impl Encode for AudioUnitProperty {
     );
 }
 
-#[cfg(feature = "AudioComponent")]
+#[cfg(all(feature = "AudioComponent", feature = "objc2"))]
 unsafe impl RefEncode for AudioUnitProperty {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

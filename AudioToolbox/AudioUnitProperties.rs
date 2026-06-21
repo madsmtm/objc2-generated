@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
@@ -304,7 +305,7 @@ pub struct AudioUnitConnection {
     pub destInputNumber: u32,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent", feature = "objc2"))]
 unsafe impl Encode for AudioUnitConnection {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitConnection",
@@ -312,7 +313,7 @@ unsafe impl Encode for AudioUnitConnection {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent", feature = "objc2"))]
 unsafe impl RefEncode for AudioUnitConnection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -327,11 +328,13 @@ pub struct AUChannelInfo {
     pub outChannels: i16,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUChannelInfo {
     const ENCODING: Encoding =
         Encoding::Struct("AUChannelInfo", &[<i16>::ENCODING, <i16>::ENCODING]);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUChannelInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -346,6 +349,7 @@ pub struct AudioUnitExternalBuffer {
     pub size: u32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitExternalBuffer {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitExternalBuffer",
@@ -353,6 +357,7 @@ unsafe impl Encode for AudioUnitExternalBuffer {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitExternalBuffer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -369,7 +374,11 @@ pub struct AURenderCallbackStruct {
     pub inputProcRefCon: *mut c_void,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
 unsafe impl Encode for AURenderCallbackStruct {
     const ENCODING: Encoding = Encoding::Struct(
         "AURenderCallbackStruct",
@@ -377,7 +386,11 @@ unsafe impl Encode for AURenderCallbackStruct {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
 unsafe impl RefEncode for AURenderCallbackStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -400,13 +413,13 @@ pub struct AUPreset {
     pub presetName: *const CFString,
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl Encode for AUPreset {
     const ENCODING: Encoding =
         Encoding::Struct("AUPreset", &[<i32>::ENCODING, <*const CFString>::ENCODING]);
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl RefEncode for AUPreset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -440,6 +453,7 @@ pub struct AudioUnitFrequencyResponseBin {
     pub mMagnitude: f64,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitFrequencyResponseBin {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitFrequencyResponseBin",
@@ -447,6 +461,7 @@ unsafe impl Encode for AudioUnitFrequencyResponseBin {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitFrequencyResponseBin {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -601,6 +616,7 @@ pub struct HostCallbackInfo {
     pub transportStateProc2: HostCallback_GetTransportState2,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for HostCallbackInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "HostCallbackInfo",
@@ -614,6 +630,7 @@ unsafe impl Encode for HostCallbackInfo {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for HostCallbackInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -630,7 +647,7 @@ pub struct AUDependentParameter {
     pub mParameterID: AudioUnitParameterID,
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl Encode for AUDependentParameter {
     const ENCODING: Encoding = Encoding::Struct(
         "AUDependentParameter",
@@ -638,7 +655,7 @@ unsafe impl Encode for AUDependentParameter {
     );
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl RefEncode for AUDependentParameter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -658,7 +675,7 @@ pub struct AudioUnitCocoaViewInfo {
     pub mCocoaAUViewClass: [NonNull<CFString>; 1],
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl Encode for AudioUnitCocoaViewInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitCocoaViewInfo",
@@ -669,7 +686,7 @@ unsafe impl Encode for AudioUnitCocoaViewInfo {
     );
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl RefEncode for AudioUnitCocoaViewInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -685,7 +702,7 @@ pub struct AUHostVersionIdentifier {
     pub hostVersion: u32,
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl Encode for AUHostVersionIdentifier {
     const ENCODING: Encoding = Encoding::Struct(
         "AUHostVersionIdentifier",
@@ -693,7 +710,7 @@ unsafe impl Encode for AUHostVersionIdentifier {
     );
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl RefEncode for AUHostVersionIdentifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -722,7 +739,11 @@ pub struct AUMIDIOutputCallbackStruct {
     pub userData: *mut c_void,
 }
 
-#[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-midi"))]
+#[cfg(all(
+    feature = "objc2",
+    feature = "objc2-core-audio-types",
+    feature = "objc2-core-midi"
+))]
 unsafe impl Encode for AUMIDIOutputCallbackStruct {
     const ENCODING: Encoding = Encoding::Struct(
         "AUMIDIOutputCallbackStruct",
@@ -730,7 +751,11 @@ unsafe impl Encode for AUMIDIOutputCallbackStruct {
     );
 }
 
-#[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-midi"))]
+#[cfg(all(
+    feature = "objc2",
+    feature = "objc2-core-audio-types",
+    feature = "objc2-core-midi"
+))]
 unsafe impl RefEncode for AUMIDIOutputCallbackStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -748,7 +773,11 @@ pub struct AUInputSamplesInOutputCallbackStruct {
     pub userData: *mut c_void,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
 unsafe impl Encode for AUInputSamplesInOutputCallbackStruct {
     const ENCODING: Encoding = Encoding::Struct(
         "AUInputSamplesInOutputCallbackStruct",
@@ -759,7 +788,11 @@ unsafe impl Encode for AUInputSamplesInOutputCallbackStruct {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
 unsafe impl RefEncode for AUInputSamplesInOutputCallbackStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -779,6 +812,7 @@ pub struct AudioUnitParameterHistoryInfo {
     pub historyDurationInSeconds: f32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitParameterHistoryInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitParameterHistoryInfo",
@@ -786,6 +820,7 @@ unsafe impl Encode for AudioUnitParameterHistoryInfo {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitParameterHistoryInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -919,10 +954,12 @@ impl AudioUnitParameterUnit {
     pub const MIDI2Controller: Self = Self(27);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitParameterUnit {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitParameterUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1020,10 +1057,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitParameterOptions {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitParameterOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1078,7 +1117,11 @@ pub struct AudioUnitParameterInfo {
     pub flags: AudioUnitParameterOptions,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl Encode for AudioUnitParameterInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitParameterInfo",
@@ -1096,7 +1139,11 @@ unsafe impl Encode for AudioUnitParameterInfo {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl RefEncode for AudioUnitParameterInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1123,7 +1170,11 @@ pub struct AudioUnitParameterNameInfo {
     pub outName: *const CFString,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl Encode for AudioUnitParameterNameInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitParameterNameInfo",
@@ -1135,7 +1186,11 @@ unsafe impl Encode for AudioUnitParameterNameInfo {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl RefEncode for AudioUnitParameterNameInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1156,7 +1211,11 @@ pub struct AudioUnitParameterStringFromValue {
     pub outString: *const CFString,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl Encode for AudioUnitParameterStringFromValue {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitParameterStringFromValue",
@@ -1168,7 +1227,11 @@ unsafe impl Encode for AudioUnitParameterStringFromValue {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl RefEncode for AudioUnitParameterStringFromValue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1185,7 +1248,11 @@ pub struct AudioUnitParameterValueFromString {
     pub outValue: AudioUnitParameterValue,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl Encode for AudioUnitParameterValueFromString {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitParameterValueFromString",
@@ -1197,7 +1264,11 @@ unsafe impl Encode for AudioUnitParameterValueFromString {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl RefEncode for AudioUnitParameterValueFromString {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1218,10 +1289,12 @@ impl AudioUnitRemoteControlEvent {
     pub const Rewind: Self = Self(3);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitRemoteControlEvent {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitRemoteControlEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1313,10 +1386,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUParameterMIDIMappingFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUParameterMIDIMappingFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1345,7 +1420,7 @@ pub struct AUParameterMIDIMapping {
     pub reserved3: u32,
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl Encode for AUParameterMIDIMapping {
     const ENCODING: Encoding = Encoding::Struct(
         "AUParameterMIDIMapping",
@@ -1365,7 +1440,7 @@ unsafe impl Encode for AUParameterMIDIMapping {
     );
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl RefEncode for AUParameterMIDIMapping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1457,7 +1532,7 @@ pub struct AudioUnitOtherPluginDesc {
     pub plugin: AudioClassDescription,
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl Encode for AudioUnitOtherPluginDesc {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitOtherPluginDesc",
@@ -1465,7 +1540,7 @@ unsafe impl Encode for AudioUnitOtherPluginDesc {
     );
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl RefEncode for AudioUnitOtherPluginDesc {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1485,7 +1560,11 @@ pub struct AudioUnitParameterValueTranslation {
     pub auValue: AudioUnitParameterValue,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
 unsafe impl Encode for AudioUnitParameterValueTranslation {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitParameterValueTranslation",
@@ -1499,7 +1578,11 @@ unsafe impl Encode for AudioUnitParameterValueTranslation {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
 unsafe impl RefEncode for AudioUnitParameterValueTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1517,6 +1600,7 @@ pub struct AudioUnitPresetMAS_SettingData {
     pub data: [u8; 1],
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitPresetMAS_SettingData {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitPresetMAS_SettingData",
@@ -1529,6 +1613,7 @@ unsafe impl Encode for AudioUnitPresetMAS_SettingData {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitPresetMAS_SettingData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1547,6 +1632,7 @@ pub struct AudioUnitPresetMAS_Settings {
     pub settings: [AudioUnitPresetMAS_SettingData; 1],
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitPresetMAS_Settings {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitPresetMAS_Settings",
@@ -1561,6 +1647,7 @@ unsafe impl Encode for AudioUnitPresetMAS_Settings {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitPresetMAS_Settings {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1638,6 +1725,7 @@ pub struct AudioOutputUnitMIDICallbacks {
     pub MIDISysExProc: unsafe extern "C-unwind" fn(*mut c_void, NonNull<u8>, u32),
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioOutputUnitMIDICallbacks {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioOutputUnitMIDICallbacks",
@@ -1649,6 +1737,7 @@ unsafe impl Encode for AudioOutputUnitMIDICallbacks {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioOutputUnitMIDICallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1662,7 +1751,7 @@ pub struct AudioOutputUnitStartAtTimeParams {
     pub mFlags: u32,
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl Encode for AudioOutputUnitStartAtTimeParams {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioOutputUnitStartAtTimeParams",
@@ -1670,7 +1759,7 @@ unsafe impl Encode for AudioOutputUnitStartAtTimeParams {
     );
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl RefEncode for AudioOutputUnitStartAtTimeParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1697,10 +1786,12 @@ impl AUVoiceIOSpeechActivityEvent {
     pub const HasEnded: Self = Self(1);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUVoiceIOSpeechActivityEvent {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUVoiceIOSpeechActivityEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1739,10 +1830,12 @@ impl AUVoiceIOOtherAudioDuckingLevel {
     pub const Max: Self = Self(30);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUVoiceIOOtherAudioDuckingLevel {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUVoiceIOOtherAudioDuckingLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1762,6 +1855,7 @@ pub struct AUVoiceIOOtherAudioDuckingConfiguration {
     pub mDuckingLevel: AUVoiceIOOtherAudioDuckingLevel,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUVoiceIOOtherAudioDuckingConfiguration {
     const ENCODING: Encoding = Encoding::Struct(
         "AUVoiceIOOtherAudioDuckingConfiguration",
@@ -1772,6 +1866,7 @@ unsafe impl Encode for AUVoiceIOOtherAudioDuckingConfiguration {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUVoiceIOOtherAudioDuckingConfiguration {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1829,6 +1924,7 @@ pub struct AudioUnitMeterClipping {
     pub sawNotANumber: Boolean,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitMeterClipping {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitMeterClipping",
@@ -1836,6 +1932,7 @@ unsafe impl Encode for AudioUnitMeterClipping {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitMeterClipping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1905,10 +2002,12 @@ impl AUSpatializationAlgorithm {
     pub const SpatializationAlgorithm_UseOutputType: Self = Self(7);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUSpatializationAlgorithm {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUSpatializationAlgorithm {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1955,10 +2054,12 @@ impl AUSpatialMixerSourceMode {
     pub const SpatialMixerSourceMode_AmbienceBed: Self = Self(3);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUSpatialMixerSourceMode {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUSpatialMixerSourceMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2000,10 +2101,12 @@ impl AUReverbRoomType {
     pub const ReverbRoomType_LargeHall2: Self = Self(12);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUReverbRoomType {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUReverbRoomType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2024,10 +2127,12 @@ impl AUSpatialMixerAttenuationCurve {
     pub const SpatialMixerAttenuationCurve_Linear: Self = Self(3);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUSpatialMixerAttenuationCurve {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUSpatialMixerAttenuationCurve {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2041,6 +2146,7 @@ pub struct MixerDistanceParams {
     pub mMaxAttenuation: f32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MixerDistanceParams {
     const ENCODING: Encoding = Encoding::Struct(
         "MixerDistanceParams",
@@ -2048,6 +2154,7 @@ unsafe impl Encode for MixerDistanceParams {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MixerDistanceParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2067,10 +2174,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUSpatialMixerRenderingFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUSpatialMixerRenderingFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2100,10 +2209,12 @@ impl AUSpatialMixerPersonalizedHRTFMode {
     pub const SpatialMixerPersonalizedHRTFMode_Auto: Self = Self(2);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUSpatialMixerPersonalizedHRTFMode {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUSpatialMixerPersonalizedHRTFMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2135,10 +2246,12 @@ impl AUSpatialMixerOutputType {
     pub const SpatialMixerOutputType_ExternalSpeakers: Self = Self(3);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUSpatialMixerOutputType {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUSpatialMixerOutputType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2169,10 +2282,12 @@ impl AUSpatialMixerPointSourceInHeadMode {
     pub const SpatialMixerPointSourceInHeadMode_Bypass: Self = Self(1);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUSpatialMixerPointSourceInHeadMode {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUSpatialMixerPointSourceInHeadMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2227,10 +2342,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AU3DMixerRenderingFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AU3DMixerRenderingFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2247,10 +2364,12 @@ impl AU3DMixerAttenuationCurve {
     pub const k3DMixerAttenuationCurve_Linear: Self = Self(3);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AU3DMixerAttenuationCurve {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AU3DMixerAttenuationCurve {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2306,10 +2425,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUScheduledAudioSliceFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUScheduledAudioSliceFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2384,7 +2505,7 @@ pub struct AUSamplerInstrumentData {
     pub presetID: u8,
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl Encode for AUSamplerInstrumentData {
     const ENCODING: Encoding = Encoding::Struct(
         "AUSamplerInstrumentData",
@@ -2398,7 +2519,7 @@ unsafe impl Encode for AUSamplerInstrumentData {
     );
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl RefEncode for AUSamplerInstrumentData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2525,6 +2646,7 @@ pub struct AUNumVersion {
     pub majorRev: u8,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUNumVersion {
     const ENCODING: Encoding = Encoding::Struct(
         "AUNumVersion",
@@ -2537,6 +2659,7 @@ unsafe impl Encode for AUNumVersion {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUNumVersion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2552,7 +2675,7 @@ pub struct AUHostIdentifier {
     pub hostVersion: AUNumVersion,
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl Encode for AUHostIdentifier {
     const ENCODING: Encoding = Encoding::Struct(
         "AUHostIdentifier",
@@ -2560,7 +2683,7 @@ unsafe impl Encode for AUHostIdentifier {
     );
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl RefEncode for AUHostIdentifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2620,7 +2743,7 @@ pub struct AudioUnitMIDIControlMapping {
     pub parameter: AudioUnitParameterID,
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl Encode for AudioUnitMIDIControlMapping {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitMIDIControlMapping",
@@ -2634,7 +2757,7 @@ unsafe impl Encode for AudioUnitMIDIControlMapping {
     );
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl RefEncode for AudioUnitMIDIControlMapping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2649,7 +2772,11 @@ pub struct AudioUnitParameterValueName {
     pub outName: NonNull<CFString>,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl Encode for AudioUnitParameterValueName {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitParameterValueName",
@@ -2661,7 +2788,11 @@ unsafe impl Encode for AudioUnitParameterValueName {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl RefEncode for AudioUnitParameterValueName {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2703,7 +2834,7 @@ pub struct AUSamplerBankPresetData {
     pub reserved: u8,
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl Encode for AUSamplerBankPresetData {
     const ENCODING: Encoding = Encoding::Struct(
         "AUSamplerBankPresetData",
@@ -2717,7 +2848,7 @@ unsafe impl Encode for AUSamplerBankPresetData {
     );
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl RefEncode for AUSamplerBankPresetData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

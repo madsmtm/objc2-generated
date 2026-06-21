@@ -2,7 +2,9 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
 
 use crate::*;
@@ -27,10 +29,12 @@ impl AURenderEventType {
     pub const MIDIEventList: Self = Self(10);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AURenderEventType {
     const ENCODING: Encoding = u8::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AURenderEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -38,10 +42,10 @@ unsafe impl RefEncode for AURenderEventType {
 /// AUAudioUnitImplementation.
 ///
 /// Aspects of AUAudioUnit of interest only to subclassers.
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 impl AUAudioUnit {
     extern_methods!(
-        #[cfg(feature = "AudioComponent")]
+        #[cfg(all(feature = "AudioComponent", feature = "objc2-foundation"))]
         /// Register an audio unit component implemented as an AUAudioUnit subclass.
         ///
         /// This method dynamically registers the supplied AUAudioUnit subclass with the Audio Component
@@ -105,9 +109,10 @@ impl AUAudioUnit {
 /// AUAudioUnitImplementation.
 ///
 /// Aspects of AUAudioUnitBus of interest only to the implementation of v3 AUs.
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 impl AUAudioUnitBus {
     extern_methods!(
+        #[cfg(feature = "objc2-foundation")]
         /// An array of numbers giving the supported numbers of channels for this bus.
         ///
         /// If supportedChannelCounts is nil, then any number less than or equal to maximumChannelCount
@@ -117,6 +122,7 @@ impl AUAudioUnitBus {
         #[unsafe(method_family = none)]
         pub unsafe fn supportedChannelCounts(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Setter for [`supportedChannelCounts`][Self::supportedChannelCounts].
         #[unsafe(method(setSupportedChannelCounts:))]
         #[unsafe(method_family = none)]
@@ -144,9 +150,10 @@ impl AUAudioUnitBus {
 /// AUAudioUnitBusImplementation.
 ///
 /// Aspects of AUAudioUnitBusArray of interest only to subclassers.
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 impl AUAudioUnitBusArray {
     extern_methods!(
+        #[cfg(feature = "objc2-foundation")]
         /// Sets the bus array to be a copy of the supplied array. The base class issues KVO notifications.
         #[unsafe(method(replaceBusses:))]
         #[unsafe(method_family = none)]
@@ -161,10 +168,10 @@ impl AUAudioUnitBusArray {
 ///
 /// Note: In non-ARC code, "create" methods return unretained objects (unlike "create"
 /// C functions); the caller should generally retain them.
-#[cfg(feature = "AUParameters")]
+#[cfg(all(feature = "AUParameters", feature = "objc2"))]
 impl AUParameterTree {
     extern_methods!(
-        #[cfg(feature = "AudioUnitProperties")]
+        #[cfg(all(feature = "AudioUnitProperties", feature = "objc2-foundation"))]
         /// Create an AUParameter.
         /// See AUParameter's properties for descriptions of the arguments.
         #[unsafe(method(createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:))]
@@ -182,6 +189,7 @@ impl AUParameterTree {
             dependent_parameters: Option<&NSArray<NSNumber>>,
         ) -> Retained<AUParameter>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Create an AUParameterGroup.
         ///
         /// Parameter `identifier`: An identifier for the group (non-localized, persistent).
@@ -197,6 +205,7 @@ impl AUParameterTree {
             children: &NSArray<AUParameterNode>,
         ) -> Retained<AUParameterGroup>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Create a template group which may be used as a prototype for further group instances.
         ///
         ///
@@ -210,6 +219,7 @@ impl AUParameterTree {
             children: &NSArray<AUParameterNode>,
         ) -> Retained<AUParameterGroup>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Initialize a group as a copied instance of a template group.
         ///
         /// Parameter `templateGroup`: A group to be used as a template and largely copied.
@@ -229,6 +239,7 @@ impl AUParameterTree {
             address_offset: AUParameterAddress,
         ) -> Retained<AUParameterGroup>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Create an AUParameterTree.
         ///
         /// Parameter `children`: The tree's top-level child nodes.
@@ -243,40 +254,55 @@ impl AUParameterTree {
 /// A block called to notify the AUAudioUnit implementation of changes to AUParameter values.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueobserver?language=objc)
-#[cfg(all(feature = "AUParameters", feature = "block2"))]
+#[cfg(all(feature = "AUParameters", feature = "block2", feature = "objc2"))]
 pub type AUImplementorValueObserver = block2::DynBlock<dyn Fn(NonNull<AUParameter>, AUValue)>;
 
 /// A block called to fetch an AUParameter's current value from the AUAudioUnit implementation.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueprovider?language=objc)
-#[cfg(all(feature = "AUParameters", feature = "block2"))]
+#[cfg(all(feature = "AUParameters", feature = "block2", feature = "objc2"))]
 pub type AUImplementorValueProvider = block2::DynBlock<dyn Fn(NonNull<AUParameter>) -> AUValue>;
 
 /// A block called to convert an AUParameter's value to a string.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorstringfromvaluecallback?language=objc)
-#[cfg(all(feature = "AUParameters", feature = "block2"))]
+#[cfg(all(
+    feature = "AUParameters",
+    feature = "block2",
+    feature = "objc2",
+    feature = "objc2-foundation"
+))]
 pub type AUImplementorStringFromValueCallback =
     block2::DynBlock<dyn Fn(NonNull<AUParameter>, *const AUValue) -> NonNull<NSString>>;
 
 /// A block called to convert a string to an AUParameter's value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvaluefromstringcallback?language=objc)
-#[cfg(all(feature = "AUParameters", feature = "block2"))]
+#[cfg(all(
+    feature = "AUParameters",
+    feature = "block2",
+    feature = "objc2",
+    feature = "objc2-foundation"
+))]
 pub type AUImplementorValueFromStringCallback =
     block2::DynBlock<dyn Fn(NonNull<AUParameter>, NonNull<NSString>) -> AUValue>;
 
 /// A block called to return a group or parameter's localized display name, abbreviated to the requested length.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementordisplaynamewithlengthcallback?language=objc)
-#[cfg(all(feature = "AUParameters", feature = "block2"))]
+#[cfg(all(
+    feature = "AUParameters",
+    feature = "block2",
+    feature = "objc2",
+    feature = "objc2-foundation"
+))]
 pub type AUImplementorDisplayNameWithLengthCallback =
     block2::DynBlock<dyn Fn(NonNull<AUParameterNode>, NSInteger) -> NonNull<NSString>>;
 
 /// AUParameterNodeImplementation.
 ///
 /// Aspects of AUParameterNode of interest only to AUAudioUnit subclassers.
-#[cfg(feature = "AUParameters")]
+#[cfg(all(feature = "AUParameters", feature = "objc2"))]
 impl AUParameterNode {
     extern_methods!(
         #[cfg(feature = "block2")]
@@ -329,7 +355,7 @@ impl AUParameterNode {
             implementor_value_provider: &AUImplementorValueProvider,
         );
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         /// Called to provide string representations of parameter values.
         /// If value is nil, the callback uses the current value of the parameter.
         ///
@@ -343,7 +369,7 @@ impl AUParameterNode {
             &self,
         ) -> NonNull<AUImplementorStringFromValueCallback>;
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         /// Setter for [`implementorStringFromValueCallback`][Self::implementorStringFromValueCallback].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -358,7 +384,7 @@ impl AUParameterNode {
             implementor_string_from_value_callback: &AUImplementorStringFromValueCallback,
         );
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         /// Called to convert string to numeric representations of parameter values.
         ///
         /// # Safety
@@ -371,7 +397,7 @@ impl AUParameterNode {
             &self,
         ) -> NonNull<AUImplementorValueFromStringCallback>;
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         /// Setter for [`implementorValueFromStringCallback`][Self::implementorValueFromStringCallback].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -382,7 +408,7 @@ impl AUParameterNode {
             implementor_value_from_string_callback: &AUImplementorValueFromStringCallback,
         );
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         /// Called to obtain an abbreviated version of a parameter or group name.
         ///
         /// # Safety
@@ -394,7 +420,7 @@ impl AUParameterNode {
             &self,
         ) -> NonNull<AUImplementorDisplayNameWithLengthCallback>;
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         /// Setter for [`implementorDisplayNameWithLengthCallback`][Self::implementorDisplayNameWithLengthCallback].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -411,6 +437,7 @@ impl AUParameterNode {
     );
 }
 
+#[cfg(feature = "objc2")]
 extern_class!(
     /// Wraps a v2 audio unit in an AUAudioUnit subclass.
     ///
@@ -427,16 +454,16 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitv2bridge?language=objc)
     #[unsafe(super(AUAudioUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AUAudioUnit")]
+    #[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
     pub struct AUAudioUnitV2Bridge;
 );
 
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AUAudioUnitV2Bridge {}
 );
 
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 impl AUAudioUnitV2Bridge {
     extern_methods!(
         #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
@@ -456,12 +483,12 @@ impl AUAudioUnitV2Bridge {
 }
 
 /// Methods declared on superclass `AUAudioUnit`.
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 impl AUAudioUnitV2Bridge {
     extern_methods!(
         // -init (unavailable)
 
-        #[cfg(feature = "AudioComponent")]
+        #[cfg(all(feature = "AudioComponent", feature = "objc2-foundation"))]
         /// Designated initializer.
         ///
         /// Parameter `componentDescription`: A single AUAudioUnit subclass may implement multiple audio units, for example, an effect
@@ -479,7 +506,7 @@ impl AUAudioUnitV2Bridge {
             options: AudioComponentInstantiationOptions,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[cfg(feature = "AudioComponent")]
+        #[cfg(all(feature = "AudioComponent", feature = "objc2-foundation"))]
         /// Convenience initializer (omits options).
         #[unsafe(method(initWithComponentDescription:error:_))]
         #[unsafe(method_family = init)]
@@ -491,7 +518,7 @@ impl AUAudioUnitV2Bridge {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 impl AUAudioUnitV2Bridge {
     extern_methods!(
         // +new (unavailable)
@@ -499,6 +526,7 @@ impl AUAudioUnitV2Bridge {
     );
 }
 
+#[cfg(feature = "objc2")]
 extern_protocol!(
     /// Protocol to which principal classes of v3 audio units (extensions) must conform.
     ///
@@ -509,6 +537,7 @@ extern_protocol!(
     /// implement this protocol.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitfactory?language=objc)
+    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
     pub unsafe trait AUAudioUnitFactory: NSExtensionRequestHandling {
         #[cfg(all(feature = "AUAudioUnit", feature = "AudioComponent"))]
         /// Create an instance of an extension's AUAudioUnit.

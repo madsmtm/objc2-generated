@@ -4,6 +4,7 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -68,10 +69,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioComponentFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioComponentFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -116,10 +119,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioComponentInstantiationOptions {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioComponentInstantiationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -135,6 +140,7 @@ pub struct AudioComponentDescription {
     pub componentFlagsMask: u32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioComponentDescription {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioComponentDescription",
@@ -148,6 +154,7 @@ unsafe impl Encode for AudioComponentDescription {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioComponentDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -160,6 +167,7 @@ pub struct OpaqueAudioComponent {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueAudioComponent {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueAudioComponent", &[]));
@@ -196,6 +204,7 @@ pub struct OpaqueAudioComponentInstance {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueAudioComponentInstance {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueAudioComponentInstance", &[]));
@@ -239,6 +248,7 @@ pub struct AudioComponentPlugInInterface {
     pub reserved: *mut c_void,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioComponentPlugInInterface {
     const ENCODING: Encoding = Encoding::Struct("AudioComponentPlugInInterface", &[
         <unsafe extern "C-unwind" fn(NonNull<c_void>,AudioComponentInstance,) -> OSStatus>::ENCODING,
@@ -248,6 +258,7 @@ unsafe impl Encode for AudioComponentPlugInInterface {
     ]);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioComponentPlugInInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -588,10 +599,12 @@ impl AudioComponentValidationResult {
     pub const UnauthorizedError_Init: Self = Self(5);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioComponentValidationResult {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioComponentValidationResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

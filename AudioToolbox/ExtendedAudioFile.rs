@@ -4,6 +4,7 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
@@ -20,6 +21,7 @@ pub struct OpaqueExtAudioFile {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueExtAudioFile {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueExtAudioFile", &[]));
 }

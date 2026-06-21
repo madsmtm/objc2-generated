@@ -4,6 +4,7 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -64,10 +65,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MusicSequenceLoadFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MusicSequenceLoadFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -102,10 +105,12 @@ impl MusicSequenceType {
     pub const Samples: Self = Self(0x73616d70);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MusicSequenceType {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MusicSequenceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -132,10 +137,12 @@ impl MusicSequenceFileTypeID {
     pub const iMelodyType: Self = Self(0x696d656c);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MusicSequenceFileTypeID {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MusicSequenceFileTypeID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -162,10 +169,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MusicSequenceFileFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MusicSequenceFileFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -188,6 +197,7 @@ pub struct MIDINoteMessage {
     pub duration: f32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MIDINoteMessage {
     const ENCODING: Encoding = Encoding::Struct(
         "MIDINoteMessage",
@@ -201,6 +211,7 @@ unsafe impl Encode for MIDINoteMessage {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MIDINoteMessage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -217,6 +228,7 @@ pub struct MIDIChannelMessage {
     pub reserved: u8,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MIDIChannelMessage {
     const ENCODING: Encoding = Encoding::Struct(
         "MIDIChannelMessage",
@@ -229,6 +241,7 @@ unsafe impl Encode for MIDIChannelMessage {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MIDIChannelMessage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -243,11 +256,13 @@ pub struct MIDIRawData {
     pub data: [u8; 1],
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MIDIRawData {
     const ENCODING: Encoding =
         Encoding::Struct("MIDIRawData", &[<u32>::ENCODING, <[u8; 1]>::ENCODING]);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MIDIRawData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -266,6 +281,7 @@ pub struct MIDIMetaEvent {
     pub data: [u8; 1],
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MIDIMetaEvent {
     const ENCODING: Encoding = Encoding::Struct(
         "MIDIMetaEvent",
@@ -280,6 +296,7 @@ unsafe impl Encode for MIDIMetaEvent {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MIDIMetaEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -298,6 +315,7 @@ pub struct MusicEventUserData {
     pub data: [u8; 1],
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MusicEventUserData {
     const ENCODING: Encoding = Encoding::Struct(
         "MusicEventUserData",
@@ -305,6 +323,7 @@ unsafe impl Encode for MusicEventUserData {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MusicEventUserData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -322,7 +341,7 @@ pub struct ExtendedNoteOnEvent {
     pub extendedParams: MusicDeviceNoteParams,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
+#[cfg(all(feature = "AUComponent", feature = "MusicDevice", feature = "objc2"))]
 unsafe impl Encode for ExtendedNoteOnEvent {
     const ENCODING: Encoding = Encoding::Struct(
         "ExtendedNoteOnEvent",
@@ -335,7 +354,7 @@ unsafe impl Encode for ExtendedNoteOnEvent {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
+#[cfg(all(feature = "AUComponent", feature = "MusicDevice", feature = "objc2"))]
 unsafe impl RefEncode for ExtendedNoteOnEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -353,7 +372,7 @@ pub struct ParameterEvent {
     pub value: AudioUnitParameterValue,
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl Encode for ParameterEvent {
     const ENCODING: Encoding = Encoding::Struct(
         "ParameterEvent",
@@ -366,7 +385,7 @@ unsafe impl Encode for ParameterEvent {
     );
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl RefEncode for ParameterEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -380,10 +399,12 @@ pub struct ExtendedTempoEvent {
     pub bpm: f64,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for ExtendedTempoEvent {
     const ENCODING: Encoding = Encoding::Struct("ExtendedTempoEvent", &[<f64>::ENCODING]);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for ExtendedTempoEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -400,7 +421,11 @@ pub struct AUPresetEvent {
     pub preset: NonNull<CFPropertyList>,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl Encode for AUPresetEvent {
     const ENCODING: Encoding = Encoding::Struct(
         "AUPresetEvent",
@@ -412,7 +437,11 @@ unsafe impl Encode for AUPresetEvent {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "objc2",
+    feature = "objc2-core-foundation"
+))]
 unsafe impl RefEncode for AUPresetEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -450,6 +479,7 @@ pub struct CABarBeatTime {
     pub reserved: u16,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CABarBeatTime {
     const ENCODING: Encoding = Encoding::Struct(
         "CABarBeatTime",
@@ -463,6 +493,7 @@ unsafe impl Encode for CABarBeatTime {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CABarBeatTime {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -475,6 +506,7 @@ pub struct OpaqueMusicPlayer {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueMusicPlayer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueMusicPlayer", &[]));
 }
@@ -490,6 +522,7 @@ pub struct OpaqueMusicSequence {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueMusicSequence {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueMusicSequence", &[]));
 }
@@ -505,6 +538,7 @@ pub struct OpaqueMusicTrack {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueMusicTrack {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueMusicTrack", &[]));
 }
@@ -520,6 +554,7 @@ pub struct OpaqueMusicEventIterator {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueMusicEventIterator {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueMusicEventIterator", &[]));
@@ -591,6 +626,7 @@ pub struct MusicTrackLoopInfo {
     pub numberOfLoops: i32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MusicTrackLoopInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "MusicTrackLoopInfo",
@@ -598,6 +634,7 @@ unsafe impl Encode for MusicTrackLoopInfo {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MusicTrackLoopInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -2238,7 +2275,7 @@ pub struct ExtendedControlEvent {
     pub value: AudioUnitParameterValue,
 }
 
-#[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
+#[cfg(all(feature = "AUComponent", feature = "MusicDevice", feature = "objc2"))]
 unsafe impl Encode for ExtendedControlEvent {
     const ENCODING: Encoding = Encoding::Struct(
         "ExtendedControlEvent",
@@ -2250,7 +2287,7 @@ unsafe impl Encode for ExtendedControlEvent {
     );
 }
 
-#[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
+#[cfg(all(feature = "AUComponent", feature = "MusicDevice", feature = "objc2"))]
 unsafe impl RefEncode for ExtendedControlEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

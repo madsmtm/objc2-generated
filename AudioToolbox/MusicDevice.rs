@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-midi")]
 use objc2_core_midi::*;
@@ -40,6 +41,7 @@ pub struct MusicDeviceStdNoteParams {
     pub mVelocity: f32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for MusicDeviceStdNoteParams {
     const ENCODING: Encoding = Encoding::Struct(
         "MusicDeviceStdNoteParams",
@@ -47,6 +49,7 @@ unsafe impl Encode for MusicDeviceStdNoteParams {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for MusicDeviceStdNoteParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -71,7 +74,7 @@ pub struct NoteParamsControlValue {
     pub mValue: AudioUnitParameterValue,
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl Encode for NoteParamsControlValue {
     const ENCODING: Encoding = Encoding::Struct(
         "NoteParamsControlValue",
@@ -82,7 +85,7 @@ unsafe impl Encode for NoteParamsControlValue {
     );
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl RefEncode for NoteParamsControlValue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -120,7 +123,7 @@ pub struct MusicDeviceNoteParams {
     pub mControls: [NoteParamsControlValue; 1],
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl Encode for MusicDeviceNoteParams {
     const ENCODING: Encoding = Encoding::Struct(
         "MusicDeviceNoteParams",
@@ -133,7 +136,7 @@ unsafe impl Encode for MusicDeviceNoteParams {
     );
 }
 
-#[cfg(feature = "AUComponent")]
+#[cfg(all(feature = "AUComponent", feature = "objc2"))]
 unsafe impl RefEncode for MusicDeviceNoteParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

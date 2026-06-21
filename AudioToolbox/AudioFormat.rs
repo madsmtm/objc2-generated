@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
@@ -31,10 +32,12 @@ impl AudioPanningMode {
     pub const PanningMode_VectorBasedPanning: Self = Self(4);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioPanningMode {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioPanningMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -64,7 +67,7 @@ pub struct AudioPanningInfo {
     pub mOutputChannelMap: NonNull<AudioChannelLayout>,
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl Encode for AudioPanningInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioPanningInfo",
@@ -78,7 +81,7 @@ unsafe impl Encode for AudioPanningInfo {
     );
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl RefEncode for AudioPanningInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -104,10 +107,12 @@ impl AudioBalanceFadeType {
     pub const EqualPower: Self = Self(1);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioBalanceFadeType {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioBalanceFadeType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -133,7 +138,7 @@ pub struct AudioBalanceFade {
     pub mChannelLayout: NonNull<AudioChannelLayout>,
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl Encode for AudioBalanceFade {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioBalanceFade",
@@ -146,7 +151,7 @@ unsafe impl Encode for AudioBalanceFade {
     );
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl RefEncode for AudioBalanceFade {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -169,7 +174,7 @@ pub struct AudioFormatInfo {
     pub mMagicCookieSize: u32,
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl Encode for AudioFormatInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioFormatInfo",
@@ -181,7 +186,7 @@ unsafe impl Encode for AudioFormatInfo {
     );
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl RefEncode for AudioFormatInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -207,7 +212,7 @@ pub struct ExtendedAudioFormatInfo {
     pub mClassDescription: AudioClassDescription,
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl Encode for ExtendedAudioFormatInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "ExtendedAudioFormatInfo",
@@ -220,7 +225,7 @@ unsafe impl Encode for ExtendedAudioFormatInfo {
     );
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl RefEncode for ExtendedAudioFormatInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

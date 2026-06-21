@@ -4,6 +4,7 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
@@ -18,6 +19,7 @@ pub struct OpaqueAudioConverter {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueAudioConverter {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueAudioConverter", &[]));
@@ -195,6 +197,7 @@ pub struct AudioConverterPrimeInfo {
     pub trailingFrames: u32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioConverterPrimeInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioConverterPrimeInfo",
@@ -202,6 +205,7 @@ unsafe impl Encode for AudioConverterPrimeInfo {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioConverterPrimeInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -228,10 +232,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioConverterOptions {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioConverterOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

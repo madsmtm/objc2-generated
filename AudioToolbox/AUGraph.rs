@@ -4,6 +4,7 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
 use crate::*;
@@ -16,6 +17,7 @@ pub struct OpaqueAUGraph {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueAUGraph {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueAUGraph", &[]));
 }
@@ -262,6 +264,7 @@ pub struct AudioUnitNodeConnection {
     pub destInputNumber: u32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitNodeConnection {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitNodeConnection",
@@ -274,6 +277,7 @@ unsafe impl Encode for AudioUnitNodeConnection {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitNodeConnection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -303,6 +307,7 @@ pub struct AUNodeRenderCallback {
 #[cfg(all(
     feature = "AUComponent",
     feature = "AudioUnitProperties",
+    feature = "objc2",
     feature = "objc2-core-audio-types"
 ))]
 unsafe impl Encode for AUNodeRenderCallback {
@@ -319,6 +324,7 @@ unsafe impl Encode for AUNodeRenderCallback {
 #[cfg(all(
     feature = "AUComponent",
     feature = "AudioUnitProperties",
+    feature = "objc2",
     feature = "objc2-core-audio-types"
 ))]
 unsafe impl RefEncode for AUNodeRenderCallback {

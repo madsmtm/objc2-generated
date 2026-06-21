@@ -111,51 +111,55 @@ pub use self::__AUAudioUnit::AUAudioChannelCount;
 pub use self::__AUAudioUnit::AUAudioFrameCount;
 #[cfg(feature = "AUAudioUnit")]
 pub use self::__AUAudioUnit::AUAudioObjectID;
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 pub use self::__AUAudioUnit::AUAudioUnit;
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 pub use self::__AUAudioUnit::AUAudioUnitBus;
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 pub use self::__AUAudioUnit::AUAudioUnitBusArray;
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 pub use self::__AUAudioUnit::AUAudioUnitBusType;
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 pub use self::__AUAudioUnit::AUAudioUnitPreset;
 #[cfg(feature = "AUAudioUnit")]
 pub use self::__AUAudioUnit::AUAudioUnitStatus;
 #[cfg(all(feature = "AUAudioUnit", feature = "AudioUnitProperties"))]
 pub use self::__AUAudioUnit::AUEventSampleTimeImmediate;
-#[cfg(all(feature = "AUAudioUnit", feature = "block2"))]
+#[cfg(all(feature = "AUAudioUnit", feature = "block2", feature = "objc2"))]
 pub use self::__AUAudioUnit::AUHostMusicalContextBlock;
-#[cfg(all(feature = "AUAudioUnit", feature = "block2"))]
+#[cfg(all(feature = "AUAudioUnit", feature = "block2", feature = "objc2"))]
 pub use self::__AUAudioUnit::AUHostTransportStateBlock;
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 pub use self::__AUAudioUnit::AUHostTransportStateFlags;
 #[cfg(all(
     feature = "AUAudioUnit",
     feature = "AUComponent",
     feature = "block2",
+    feature = "objc2",
     feature = "objc2-core-audio-types"
 ))]
 pub use self::__AUAudioUnit::AUInputHandler;
 #[cfg(all(
     feature = "AUAudioUnit",
     feature = "block2",
+    feature = "objc2",
     feature = "objc2-core-midi"
 ))]
 pub use self::__AUAudioUnit::AUMIDICIProfileChangedBlock;
 #[cfg(all(
     feature = "AUAudioUnit",
     feature = "AudioUnitProperties",
-    feature = "block2"
+    feature = "block2",
+    feature = "objc2"
 ))]
 pub use self::__AUAudioUnit::AUMIDIOutputEventBlock;
-#[cfg(feature = "AUAudioUnit")]
+#[cfg(all(feature = "AUAudioUnit", feature = "objc2"))]
 pub use self::__AUAudioUnit::AUMessageChannel;
 #[cfg(all(
     feature = "AUAudioUnit",
     feature = "AUComponent",
     feature = "block2",
+    feature = "objc2",
     feature = "objc2-core-audio-types"
 ))]
 pub use self::__AUAudioUnit::AURenderBlock;
@@ -163,6 +167,7 @@ pub use self::__AUAudioUnit::AURenderBlock;
     feature = "AUAudioUnit",
     feature = "AUComponent",
     feature = "block2",
+    feature = "objc2",
     feature = "objc2-core-audio-types"
 ))]
 pub use self::__AUAudioUnit::AURenderObserver;
@@ -170,13 +175,15 @@ pub use self::__AUAudioUnit::AURenderObserver;
     feature = "AUAudioUnit",
     feature = "AUComponent",
     feature = "block2",
+    feature = "objc2",
     feature = "objc2-core-audio-types"
 ))]
 pub use self::__AUAudioUnit::AURenderPullInputBlock;
 #[cfg(all(
     feature = "AUAudioUnit",
     feature = "AudioUnitProperties",
-    feature = "block2"
+    feature = "block2",
+    feature = "objc2"
 ))]
 pub use self::__AUAudioUnit::AUScheduleMIDIEventBlock;
 #[cfg(all(
@@ -186,45 +193,65 @@ pub use self::__AUAudioUnit::AUScheduleMIDIEventBlock;
     feature = "block2"
 ))]
 pub use self::__AUAudioUnit::AUScheduleParameterBlock;
-#[cfg(all(feature = "AUAudioUnit", feature = "block2"))]
+#[cfg(all(
+    feature = "AUAudioUnit",
+    feature = "block2",
+    feature = "objc2-foundation"
+))]
 pub use self::__AUAudioUnit::CallHostBlock;
-#[cfg(feature = "AUAudioUnitImplementation")]
+#[cfg(all(
+    feature = "AUAudioUnitImplementation",
+    feature = "objc2",
+    feature = "objc2-foundation"
+))]
 pub use self::__AUAudioUnitImplementation::AUAudioUnitFactory;
-#[cfg(all(feature = "AUAudioUnit", feature = "AUAudioUnitImplementation"))]
+#[cfg(all(
+    feature = "AUAudioUnit",
+    feature = "AUAudioUnitImplementation",
+    feature = "objc2"
+))]
 pub use self::__AUAudioUnitImplementation::AUAudioUnitV2Bridge;
 #[cfg(all(
     feature = "AUAudioUnitImplementation",
     feature = "AUParameters",
-    feature = "block2"
+    feature = "block2",
+    feature = "objc2",
+    feature = "objc2-foundation"
 ))]
 pub use self::__AUAudioUnitImplementation::AUImplementorDisplayNameWithLengthCallback;
 #[cfg(all(
     feature = "AUAudioUnitImplementation",
     feature = "AUParameters",
-    feature = "block2"
+    feature = "block2",
+    feature = "objc2",
+    feature = "objc2-foundation"
 ))]
 pub use self::__AUAudioUnitImplementation::AUImplementorStringFromValueCallback;
 #[cfg(all(
     feature = "AUAudioUnitImplementation",
     feature = "AUParameters",
-    feature = "block2"
+    feature = "block2",
+    feature = "objc2",
+    feature = "objc2-foundation"
 ))]
 pub use self::__AUAudioUnitImplementation::AUImplementorValueFromStringCallback;
 #[cfg(all(
     feature = "AUAudioUnitImplementation",
     feature = "AUParameters",
-    feature = "block2"
+    feature = "block2",
+    feature = "objc2"
 ))]
 pub use self::__AUAudioUnitImplementation::AUImplementorValueObserver;
 #[cfg(all(
     feature = "AUAudioUnitImplementation",
     feature = "AUParameters",
-    feature = "block2"
+    feature = "block2",
+    feature = "objc2"
 ))]
 pub use self::__AUAudioUnitImplementation::AUImplementorValueProvider;
 #[cfg(feature = "AUAudioUnitImplementation")]
 pub use self::__AUAudioUnitImplementation::AURenderEventType;
-#[cfg(feature = "AUCocoaUIView")]
+#[cfg(all(feature = "AUCocoaUIView", feature = "objc2"))]
 pub use self::__AUCocoaUIView::AUCocoaUIBase;
 #[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::kAudioComponentErr_DuplicateDescription;
@@ -720,7 +747,7 @@ pub use self::__AUGraph::DisposeAUGraph;
 pub use self::__AUGraph::NewAUGraph;
 #[cfg(feature = "AUGraph")]
 pub use self::__AUGraph::OpaqueAUGraph;
-#[cfg(feature = "AUParameters")]
+#[cfg(all(feature = "AUParameters", feature = "objc2"))]
 pub use self::__AUParameters::AUParameter;
 #[cfg(feature = "AUParameters")]
 pub use self::__AUParameters::AUParameterAddress;
@@ -728,19 +755,19 @@ pub use self::__AUParameters::AUParameterAddress;
 pub use self::__AUParameters::AUParameterAutomationEvent;
 #[cfg(feature = "AUParameters")]
 pub use self::__AUParameters::AUParameterAutomationEventType;
-#[cfg(all(feature = "AUParameters", feature = "block2"))]
+#[cfg(all(feature = "AUParameters", feature = "block2", feature = "objc2"))]
 pub use self::__AUParameters::AUParameterAutomationObserver;
-#[cfg(feature = "AUParameters")]
+#[cfg(all(feature = "AUParameters", feature = "objc2"))]
 pub use self::__AUParameters::AUParameterGroup;
-#[cfg(feature = "AUParameters")]
+#[cfg(all(feature = "AUParameters", feature = "objc2"))]
 pub use self::__AUParameters::AUParameterNode;
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub use self::__AUParameters::AUParameterObserver;
 #[cfg(feature = "AUParameters")]
 pub use self::__AUParameters::AUParameterObserverToken;
-#[cfg(all(feature = "AUParameters", feature = "block2"))]
+#[cfg(all(feature = "AUParameters", feature = "block2", feature = "objc2"))]
 pub use self::__AUParameters::AUParameterRecordingObserver;
-#[cfg(feature = "AUParameters")]
+#[cfg(all(feature = "AUParameters", feature = "objc2"))]
 pub use self::__AUParameters::AUParameterTree;
 #[cfg(feature = "AUParameters")]
 pub use self::__AUParameters::AURecordedParameterEvent;
@@ -4457,6 +4484,7 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio")]
 use objc2_core_audio::*;
@@ -5882,7 +5910,11 @@ pub struct AudioFileFDFTable {
     pub mSetUserDataFDF: SetUserDataFDF,
 }
 
-#[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
+#[cfg(all(
+    feature = "AudioFile",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
 unsafe impl Encode for AudioFileFDFTable {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioFileFDFTable",
@@ -5903,7 +5935,11 @@ unsafe impl Encode for AudioFileFDFTable {
     );
 }
 
-#[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
+#[cfg(all(
+    feature = "AudioFile",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
 unsafe impl RefEncode for AudioFileFDFTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -5929,7 +5965,11 @@ pub struct AudioFileFDFTableExtended {
     pub mReadPacketDataFDF: ReadPacketDataFDF,
 }
 
-#[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
+#[cfg(all(
+    feature = "AudioFile",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
 unsafe impl Encode for AudioFileFDFTableExtended {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioFileFDFTableExtended",
@@ -5951,7 +5991,11 @@ unsafe impl Encode for AudioFileFDFTableExtended {
     );
 }
 
-#[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
+#[cfg(all(
+    feature = "AudioFile",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
 unsafe impl RefEncode for AudioFileFDFTableExtended {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -6269,10 +6313,12 @@ impl CAClockPropertyID {
     pub const SendMIDISPP: Self = Self(0x6d737070);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CAClockPropertyID {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CAClockPropertyID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -6311,10 +6357,12 @@ impl CAClockTimebase {
     pub const AudioOutputUnit: Self = Self(0x61756f75);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CAClockTimebase {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CAClockTimebase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -6344,10 +6392,12 @@ impl CAClockSyncMode {
     pub const MTCTransport: Self = Self(0x6d6d7463);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CAClockSyncMode {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CAClockSyncMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -6406,10 +6456,12 @@ impl CAClockMessage {
     pub const WrongSMPTEFormat: Self = Self(0x3f736d70);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CAClockMessage {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CAClockMessage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -6459,10 +6511,12 @@ impl CAClockTimeFormat {
     pub const AbsoluteSeconds: Self = Self(0x61736563);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CAClockTimeFormat {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CAClockTimeFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -6500,6 +6554,7 @@ pub struct OpaqueCAClock {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueCAClock {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueCAClock", &[]));
 }
@@ -6557,6 +6612,7 @@ pub struct CATempoMapEntry {
     pub tempoBPM: CAClockTempo,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CATempoMapEntry {
     const ENCODING: Encoding = Encoding::Struct(
         "CATempoMapEntry",
@@ -6564,6 +6620,7 @@ unsafe impl Encode for CATempoMapEntry {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CATempoMapEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -6589,6 +6646,7 @@ pub struct CAMeterTrackEntry {
     pub meterDenom: u16,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CAMeterTrackEntry {
     const ENCODING: Encoding = Encoding::Struct(
         "CAMeterTrackEntry",
@@ -6596,6 +6654,7 @@ unsafe impl Encode for CAMeterTrackEntry {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CAMeterTrackEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

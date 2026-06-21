@@ -6,6 +6,7 @@ use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
 #[cfg(feature = "dispatch2")]
 use dispatch2::*;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
@@ -37,6 +38,7 @@ pub struct OpaqueAudioQueue {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueAudioQueue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueAudioQueue", &[]));
 }
@@ -54,6 +56,7 @@ pub struct OpaqueAudioQueueTimeline {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueAudioQueueTimeline {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueAudioQueueTimeline", &[]));
@@ -230,10 +233,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioQueueProcessingTapFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioQueueProcessingTapFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -285,7 +290,7 @@ pub struct AudioQueueBuffer {
     pub mPacketDescriptionCount: u32,
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl Encode for AudioQueueBuffer {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioQueueBuffer",
@@ -301,7 +306,7 @@ unsafe impl Encode for AudioQueueBuffer {
     );
 }
 
-#[cfg(feature = "objc2-core-audio-types")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
 unsafe impl RefEncode for AudioQueueBuffer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -342,6 +347,7 @@ pub struct AudioQueueParameterEvent {
     pub mValue: AudioQueueParameterValue,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioQueueParameterEvent {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioQueueParameterEvent",
@@ -352,6 +358,7 @@ unsafe impl Encode for AudioQueueParameterEvent {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioQueueParameterEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -370,6 +377,7 @@ pub struct AudioQueueLevelMeterState {
     pub mPeakPower: f32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioQueueLevelMeterState {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioQueueLevelMeterState",
@@ -377,6 +385,7 @@ unsafe impl Encode for AudioQueueLevelMeterState {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioQueueLevelMeterState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -389,6 +398,7 @@ pub struct OpaqueAudioQueueProcessingTap {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaqueAudioQueueProcessingTap {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueAudioQueueProcessingTap", &[]));
@@ -416,7 +426,7 @@ pub struct AudioQueueChannelAssignment {
     pub mChannelNumber: u32,
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl Encode for AudioQueueChannelAssignment {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioQueueChannelAssignment",
@@ -424,7 +434,7 @@ unsafe impl Encode for AudioQueueChannelAssignment {
     );
 }
 
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
 unsafe impl RefEncode for AudioQueueChannelAssignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

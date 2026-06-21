@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
@@ -73,6 +74,7 @@ pub struct AudioCodecMagicCookieInfo {
     pub mMagicCookie: *const c_void,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioCodecMagicCookieInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioCodecMagicCookieInfo",
@@ -80,6 +82,7 @@ unsafe impl Encode for AudioCodecMagicCookieInfo {
     );
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioCodecMagicCookieInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -334,11 +337,13 @@ pub struct AudioCodecPrimeInfo {
     pub trailingFrames: u32,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioCodecPrimeInfo {
     const ENCODING: Encoding =
         Encoding::Struct("AudioCodecPrimeInfo", &[<u32>::ENCODING, <u32>::ENCODING]);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioCodecPrimeInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -376,10 +381,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioSettingsFlags {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioSettingsFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

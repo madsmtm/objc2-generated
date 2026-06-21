@@ -6,6 +6,7 @@ use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
 #[cfg(feature = "dispatch2")]
 use dispatch2::*;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -45,10 +46,12 @@ impl AudioUnitEventType {
     pub const PropertyChange: Self = Self(3);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AudioUnitEventType {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AudioUnitEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -61,6 +64,7 @@ pub struct AUListenerBase {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUListenerBase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("AUListenerBase", &[]));
 }

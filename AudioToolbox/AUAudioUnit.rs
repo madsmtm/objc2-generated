@@ -2,11 +2,13 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
 #[cfg(feature = "objc2-core-midi")]
 use objc2_core_midi::*;
+#[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
 
 use crate::*;
@@ -43,9 +45,11 @@ pub type AUAudioChannelCount = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbustype?language=objc)
 // NS_ENUM
+#[cfg(feature = "objc2")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUAudioUnitBusType(pub NSInteger);
+#[cfg(feature = "objc2")]
 impl AUAudioUnitBusType {
     #[doc(alias = "AUAudioUnitBusTypeInput")]
     pub const Input: Self = Self(1);
@@ -53,10 +57,12 @@ impl AUAudioUnitBusType {
     pub const Output: Self = Self(2);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUAudioUnitBusType {
     const ENCODING: Encoding = NSInteger::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUAudioUnitBusType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -86,6 +92,7 @@ unsafe impl RefEncode for AUAudioUnitBusType {
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
+    feature = "objc2",
     feature = "objc2-core-audio-types"
 ))]
 pub type AURenderPullInputBlock = block2::DynBlock<
@@ -132,6 +139,7 @@ pub type AURenderPullInputBlock = block2::DynBlock<
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
+    feature = "objc2",
     feature = "objc2-core-audio-types"
 ))]
 pub type AURenderBlock = block2::DynBlock<
@@ -157,6 +165,7 @@ pub type AURenderBlock = block2::DynBlock<
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
+    feature = "objc2",
     feature = "objc2-core-audio-types"
 ))]
 pub type AURenderObserver = block2::DynBlock<
@@ -207,7 +216,7 @@ pub type AUScheduleParameterBlock =
 /// in the chunk. Also, running status is not allowed.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auschedulemidieventblock?language=objc)
-#[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
+#[cfg(all(feature = "AudioUnitProperties", feature = "block2", feature = "objc2"))]
 pub type AUScheduleMIDIEventBlock =
     block2::DynBlock<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>)>;
 
@@ -223,7 +232,7 @@ pub type AUScheduleMIDIEventBlock =
 /// in the chunk.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputeventblock?language=objc)
-#[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
+#[cfg(all(feature = "AudioUnitProperties", feature = "block2", feature = "objc2"))]
 pub type AUMIDIOutputEventBlock =
     block2::DynBlock<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>) -> OSStatus>;
 
@@ -252,7 +261,7 @@ pub type AUMIDIOutputEventBlock =
 /// in that particular piece of information.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostmusicalcontextblock?language=objc)
-#[cfg(feature = "block2")]
+#[cfg(all(feature = "block2", feature = "objc2"))]
 pub type AUHostMusicalContextBlock = block2::DynBlock<
     dyn Fn(
         *mut c_double,
@@ -276,7 +285,7 @@ pub type AUHostMusicalContextBlock = block2::DynBlock<
 /// Parameter `enabled`: YES if the profile was enabled, NO if the profile was disabled.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidiciprofilechangedblock?language=objc)
-#[cfg(all(feature = "block2", feature = "objc2-core-midi"))]
+#[cfg(all(feature = "block2", feature = "objc2", feature = "objc2-core-midi"))]
 pub type AUMIDICIProfileChangedBlock =
     block2::DynBlock<dyn Fn(u8, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool)>;
 
@@ -295,9 +304,11 @@ pub type AUMIDICIProfileChangedBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags?language=objc)
 // NS_OPTIONS
+#[cfg(feature = "objc2")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUHostTransportStateFlags(pub NSUInteger);
+#[cfg(feature = "objc2")]
 bitflags::bitflags! {
     impl AUHostTransportStateFlags: NSUInteger {
         #[doc(alias = "AUHostTransportStateChanged")]
@@ -312,10 +323,12 @@ bitflags::bitflags! {
     }
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for AUHostTransportStateFlags {
     const ENCODING: Encoding = NSUInteger::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for AUHostTransportStateFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -339,11 +352,12 @@ unsafe impl RefEncode for AUHostTransportStateFlags {
 /// in that particular piece of information.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateblock?language=objc)
-#[cfg(feature = "block2")]
+#[cfg(all(feature = "block2", feature = "objc2"))]
 pub type AUHostTransportStateBlock = block2::DynBlock<
     dyn Fn(*mut AUHostTransportStateFlags, *mut c_double, *mut c_double, *mut c_double) -> Bool,
 >;
 
+#[cfg(feature = "objc2")]
 extern_class!(
     /// An audio unit instance.
     ///
@@ -379,18 +393,21 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounit?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "objc2")]
     pub struct AUAudioUnit;
 );
 
+#[cfg(feature = "objc2")]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AUAudioUnit {}
 );
 
+#[cfg(feature = "objc2")]
 impl AUAudioUnit {
     extern_methods!(
         // -init (unavailable)
 
-        #[cfg(feature = "AudioComponent")]
+        #[cfg(all(feature = "AudioComponent", feature = "objc2-foundation"))]
         /// Designated initializer.
         ///
         /// Parameter `componentDescription`: A single AUAudioUnit subclass may implement multiple audio units, for example, an effect
@@ -408,7 +425,7 @@ impl AUAudioUnit {
             options: AudioComponentInstantiationOptions,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[cfg(feature = "AudioComponent")]
+        #[cfg(all(feature = "AudioComponent", feature = "objc2-foundation"))]
         /// Convenience initializer (omits options).
         #[unsafe(method(initWithComponentDescription:error:_))]
         #[unsafe(method_family = init)]
@@ -417,7 +434,11 @@ impl AUAudioUnit {
             component_description: AudioComponentDescription,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[cfg(all(feature = "AudioComponent", feature = "block2"))]
+        #[cfg(all(
+            feature = "AudioComponent",
+            feature = "block2",
+            feature = "objc2-foundation"
+        ))]
         /// Asynchronously create an AUAudioUnit instance.
         ///
         /// Parameter `componentDescription`: The AudioComponentDescription of the audio unit to instantiate.
@@ -458,6 +479,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn component(&self) -> AudioComponent;
 
+        #[cfg(feature = "objc2-foundation")]
         /// The unit's component's name.
         ///
         /// By convention, an audio unit's component name is its manufacturer's name, plus ": ",
@@ -467,16 +489,19 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn componentName(&self) -> Option<Retained<NSString>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// The audio unit's name.
         #[unsafe(method(audioUnitName))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioUnitName(&self) -> Option<Retained<NSString>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// The manufacturer's name.
         #[unsafe(method(manufacturerName))]
         #[unsafe(method_family = none)]
         pub unsafe fn manufacturerName(&self) -> Option<Retained<NSString>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// A short name for the audio unit.
         ///
         /// Audio unit host applications can display this name in situations where the audioUnitName
@@ -491,6 +516,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn componentVersion(&self) -> u32;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Allocate resources required to render.
         ///
         /// Hosts must call this before beginning to render. Subclassers should call the superclass
@@ -672,6 +698,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn setParameterTree(&self, parameter_tree: Option<&AUParameterTree>);
 
+        #[cfg(feature = "objc2-foundation")]
         /// Returns the audio unit's `count` most important parameters.
         ///
         /// This property allows a host to query an audio unit for some small number of parameters which
@@ -737,6 +764,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleMIDIEventBlock(&self) -> *mut AUScheduleMIDIEventBlock;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Count, and names of, a plug-in's MIDI outputs.
         ///
         /// A plug-in may override this method to inform hosts about its MIDI outputs. The size of the
@@ -838,6 +866,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn setHostMIDIProtocol(&self, host_midi_protocol: MIDIProtocolID);
 
+        #[cfg(feature = "objc2-foundation")]
         /// A persistable snapshot of the Audio Unit's properties and parameters, suitable for
         /// saving as a user preset.
         ///
@@ -855,6 +884,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn fullState(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Setter for [`fullState`][Self::fullState].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -866,6 +896,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn setFullState(&self, full_state: Option<&NSDictionary<NSString, AnyObject>>);
 
+        #[cfg(feature = "objc2-foundation")]
         /// A persistable snapshot of the audio unit's properties and parameters, suitable for
         /// saving in a user's document.
         ///
@@ -884,6 +915,7 @@ impl AUAudioUnit {
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Setter for [`fullStateForDocument`][Self::fullStateForDocument].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -898,6 +930,7 @@ impl AUAudioUnit {
             full_state_for_document: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
+        #[cfg(feature = "objc2-foundation")]
         /// A collection of presets provided by the audio unit's developer.
         ///
         /// A preset provides users of an audio unit with an easily-selectable, fine-tuned set of
@@ -908,6 +941,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn factoryPresets(&self) -> Option<Retained<NSArray<AUAudioUnitPreset>>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// A collection of presets saved by the user
         ///
         /// In addition to factory presets, provided by the audio unit vendor, users have the ability to
@@ -925,6 +959,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn userPresets(&self) -> Retained<NSArray<AUAudioUnitPreset>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Persistently save the current state of the audio unit into a userPreset
         ///
         /// The new preset will be added to userPresets and will become selectable by assigning it
@@ -960,6 +995,7 @@ impl AUAudioUnit {
             user_preset: &AUAudioUnitPreset,
         ) -> Result<(), Retained<NSError>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Remove a user preset.
         ///
         /// The user preset will be removed from userPresets and will be permanently deleted.
@@ -988,6 +1024,7 @@ impl AUAudioUnit {
             user_preset: &AUAudioUnitPreset,
         ) -> Result<(), Retained<NSError>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Retrieve the state stored in a user preset
         ///
         /// This method allows access to the contents of a preset without having to set that preset as
@@ -1086,6 +1123,7 @@ impl AUAudioUnit {
     );
 
     extern_methods!(
+        #[cfg(feature = "objc2-foundation")]
         /// The audio unit's processing latency, in seconds.
         ///
         /// This property reflects the delay between when an impulse in the unit's audio unit stream
@@ -1106,6 +1144,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn latency(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "objc2-foundation")]
         /// The audio unit's tail time, in seconds.
         ///
         /// This property reflects the time interval between when the input stream ends or otherwise
@@ -1178,6 +1217,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn setRenderingOffline(&self, rendering_offline: bool);
 
+        #[cfg(feature = "objc2-foundation")]
         /// Expresses valid combinations of input and output channel counts.
         ///
         /// Elements are NSNumber containing integers; [0]=input count, [1]=output count, [2]=2nd input
@@ -1265,6 +1305,7 @@ impl AUAudioUnit {
             transport_state_block: Option<&AUHostTransportStateBlock>,
         );
 
+        #[cfg(feature = "objc2-foundation")]
         /// Information about the host context in which the audio unit is connected, for display
         /// in the audio unit's view.
         ///
@@ -1276,6 +1317,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn contextName(&self) -> Option<Retained<NSString>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Setter for [`contextName`][Self::contextName].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -1283,6 +1325,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn setContextName(&self, context_name: Option<&NSString>);
 
+        #[cfg(feature = "objc2-foundation")]
         /// Information for migrating data from other audio plug-ins to the v3 Audio Unit architecture.
         ///
         /// This can be used to migrate settings from an older Audio Unit; this allows manufacturers
@@ -1302,6 +1345,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn supportsMPE(&self) -> bool;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Specify a mapping of input channels to output channels.
         ///
         /// Converter and input/output audio units may support re-ordering or splitting of input
@@ -1318,6 +1362,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn channelMap(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Setter for [`channelMap`][Self::channelMap].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -1342,7 +1387,7 @@ impl AUAudioUnit {
             channel: MIDIChannelNumber,
         ) -> Retained<MIDICIProfileState>;
 
-        #[cfg(feature = "objc2-core-midi")]
+        #[cfg(all(feature = "objc2-core-midi", feature = "objc2-foundation"))]
         /// Enable a MIDI-CI Profile on the specified cable/channel.
         ///
         /// Parameter `profile`: The MIDI-CI profile to be enabled.
@@ -1364,7 +1409,7 @@ impl AUAudioUnit {
             channel: MIDIChannelNumber,
         ) -> Result<(), Retained<NSError>>;
 
-        #[cfg(feature = "objc2-core-midi")]
+        #[cfg(all(feature = "objc2-core-midi", feature = "objc2-foundation"))]
         /// Disable a MIDI-CI Profile on the specified cable/channel.
         ///
         /// Parameter `profile`: The MIDI-CI profile to be disabled.
@@ -1410,6 +1455,7 @@ impl AUAudioUnit {
             profile_changed_block: Option<&AUMIDICIProfileChangedBlock>,
         );
 
+        #[cfg(feature = "objc2-foundation")]
         /// Returns an object for bidirectional communication between an Audio Unit and its host.
         ///
         /// Message channels provide a flexible way for custom data exchange between an Audio Unit and its host.
@@ -1431,6 +1477,7 @@ impl AUAudioUnit {
 }
 
 /// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2")]
 impl AUAudioUnit {
     extern_methods!(
         // +new (unavailable)
@@ -1457,6 +1504,7 @@ impl AUAudioUnit {
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
+    feature = "objc2",
     feature = "objc2-core-audio-types"
 ))]
 pub type AUInputHandler = block2::DynBlock<
@@ -1473,6 +1521,7 @@ pub type AUInputHandler = block2::DynBlock<
 /// Additional methods for audio units which can do input/output.
 ///
 /// These methods will fail if the audio unit is not an input/output audio unit.
+#[cfg(feature = "objc2")]
 impl AUAudioUnit {
     extern_methods!(
         /// Whether the I/O device can perform input.
@@ -1575,6 +1624,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn deviceID(&self) -> AUAudioObjectID;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Set the I/O hardware device.
         ///
         /// Parameter `deviceID`: The device to select.
@@ -1587,6 +1637,7 @@ impl AUAudioUnit {
             device_id: AUAudioObjectID,
         ) -> Result<(), Retained<NSError>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// The audio device's input latency, in seconds.
         ///
         /// Bridged to the HAL property kAudioDevicePropertyLatency, which is implemented
@@ -1595,6 +1646,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn deviceInputLatency(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "objc2-foundation")]
         /// The audio device's output latency, in seconds.
         ///
         /// Bridged to the HAL property kAudioDevicePropertyLatency, which is implemented
@@ -1608,6 +1660,7 @@ impl AUAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn isRunning(&self) -> bool;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Starts the audio hardware.
         ///
         /// Parameter `outError`: Returned in the event of failure.
@@ -1622,6 +1675,7 @@ impl AUAudioUnit {
     );
 }
 
+#[cfg(feature = "objc2")]
 extern_class!(
     /// Container for an audio unit's input or output busses.
     ///
@@ -1643,21 +1697,26 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbusarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "objc2")]
     pub struct AUAudioUnitBusArray;
 );
 
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 extern_conformance!(
     unsafe impl NSFastEnumeration for AUAudioUnitBusArray {}
 );
 
+#[cfg(feature = "objc2")]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AUAudioUnitBusArray {}
 );
 
+#[cfg(feature = "objc2")]
 impl AUAudioUnitBusArray {
     extern_methods!(
         // -init (unavailable)
 
+        #[cfg(feature = "objc2-foundation")]
         /// Initializes by making a copy of the supplied bus array.
         #[unsafe(method(initWithAudioUnit:busType:busses:))]
         #[unsafe(method_family = init)]
@@ -1695,11 +1754,13 @@ impl AUAudioUnitBusArray {
         #[unsafe(method_family = none)]
         pub unsafe fn isCountChangeable(&self) -> bool;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Change the number of busses in the array.
         #[unsafe(method(setBusCount:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBusCount_error(&self, count: NSUInteger) -> Result<(), Retained<NSError>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Add a KVO observer for a property on all busses in the array.
         ///
         /// # Safety
@@ -1716,6 +1777,7 @@ impl AUAudioUnitBusArray {
             context: *mut c_void,
         );
 
+        #[cfg(feature = "objc2-foundation")]
         /// Remove a KVO observer for a property on all busses in the array.
         ///
         /// # Safety
@@ -1748,6 +1810,7 @@ impl AUAudioUnitBusArray {
 }
 
 /// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2")]
 impl AUAudioUnitBusArray {
     extern_methods!(
         // +new (unavailable)
@@ -1755,19 +1818,23 @@ impl AUAudioUnitBusArray {
     );
 }
 
+#[cfg(feature = "objc2")]
 extern_class!(
     /// An input or output connection point on an audio unit.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "objc2")]
     pub struct AUAudioUnitBus;
 );
 
+#[cfg(feature = "objc2")]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AUAudioUnitBus {}
 );
 
+#[cfg(feature = "objc2")]
 impl AUAudioUnitBus {
     extern_methods!(
         /// Controls the audio unit's allocation strategy for a bus.
@@ -1812,11 +1879,13 @@ impl AUAudioUnitBus {
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        #[cfg(feature = "objc2-foundation")]
         /// A name for the bus. Can be set by host.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Setter for [`name`][Self::name].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -1843,11 +1912,13 @@ impl AUAudioUnitBus {
         #[unsafe(method_family = none)]
         pub unsafe fn ownerAudioUnit(&self) -> Retained<AUAudioUnit>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// This is an array of NSNumbers representing AudioChannelLayoutTag.
         #[unsafe(method(supportedChannelLayoutTags))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedChannelLayoutTags(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Information about latency in the audio unit's processing context.
         ///
         /// This should not be confused with the audio unit's latency property, where the audio unit
@@ -1888,6 +1959,7 @@ impl AUAudioUnitBus {
         #[unsafe(method_family = none)]
         pub unsafe fn contextPresentationLatency(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Setter for [`contextPresentationLatency`][Self::contextPresentationLatency].
         #[unsafe(method(setContextPresentationLatency:))]
         #[unsafe(method_family = none)]
@@ -1899,6 +1971,7 @@ impl AUAudioUnitBus {
 }
 
 /// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2")]
 impl AUAudioUnitBus {
     extern_methods!(
         #[unsafe(method(init))]
@@ -1911,6 +1984,7 @@ impl AUAudioUnitBus {
     );
 }
 
+#[cfg(feature = "objc2")]
 extern_class!(
     /// A collection of parameter settings provided by the audio unit implementor, producing a
     /// useful sound or starting point.
@@ -1918,21 +1992,26 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitpreset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "objc2")]
     pub struct AUAudioUnitPreset;
 );
 
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 extern_conformance!(
     unsafe impl NSCoding for AUAudioUnitPreset {}
 );
 
+#[cfg(feature = "objc2")]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AUAudioUnitPreset {}
 );
 
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 extern_conformance!(
     unsafe impl NSSecureCoding for AUAudioUnitPreset {}
 );
 
+#[cfg(feature = "objc2")]
 impl AUAudioUnitPreset {
     extern_methods!(
         /// The preset's unique numeric identifier.
@@ -1945,11 +2024,13 @@ impl AUAudioUnitPreset {
         #[unsafe(method_family = none)]
         pub unsafe fn setNumber(&self, number: NSInteger);
 
+        #[cfg(feature = "objc2-foundation")]
         /// The preset's name.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Setter for [`name`][Self::name].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -1960,6 +2041,7 @@ impl AUAudioUnitPreset {
 }
 
 /// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2")]
 impl AUAudioUnitPreset {
     extern_methods!(
         #[unsafe(method(init))]
@@ -1981,9 +2063,10 @@ impl AUAudioUnitPreset {
 /// NSArray, NSDictionary, NSOrderedSet, NSSet, NSString, NSData, NSNull, NSNumber, NSDate
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/callhostblock?language=objc)
-#[cfg(feature = "block2")]
+#[cfg(all(feature = "block2", feature = "objc2-foundation"))]
 pub type CallHostBlock = block2::DynBlock<dyn Fn(NonNull<NSDictionary>) -> NonNull<NSDictionary>>;
 
+#[cfg(feature = "objc2")]
 extern_protocol!(
     /// The protocol which objects returned from `[AUAudioUnit messageChannelFor:]` have to conform to.
     ///
@@ -1994,7 +2077,9 @@ extern_protocol!(
     /// The protocol offers a method to send messages to the AU and a block to send messages to the host.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumessagechannel?language=objc)
+    #[cfg(feature = "objc2")]
     pub unsafe trait AUMessageChannel {
+        #[cfg(feature = "objc2-foundation")]
         /// Calls the Audio Unit with custom data message.
         ///
         /// Parameter `message`: An NSDictionary with custom data. The allowed classes for key and value types are
@@ -2011,7 +2096,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn callAudioUnit(&self, message: &NSDictionary) -> Retained<NSDictionary>;
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         /// A callback for the AU to send a message to the host.
         ///
         /// The host has to set a block on this property.
@@ -2024,7 +2109,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn callHostBlock(&self) -> *mut CallHostBlock;
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         /// Setter for [`callHostBlock`][Self::callHostBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -2040,4 +2125,5 @@ extern_protocol!(
 );
 
 /// IntendedSpatialExperience.
+#[cfg(feature = "objc2")]
 impl AUAudioUnit {}
