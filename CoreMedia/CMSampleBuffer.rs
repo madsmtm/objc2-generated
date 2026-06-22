@@ -2484,13 +2484,13 @@ impl CMSampleBuffer {
     #[inline]
     pub unsafe fn call_block_for_each_sample(
         &self,
-        handler: &block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus>,
+        handler: &block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus + '_>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferCallBlockForEachSample(
                 sbuf: &CMSampleBuffer,
                 handler: &block2::DynBlock<
-                    dyn Fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus,
+                    dyn Fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus + '_,
                 >,
             ) -> OSStatus;
         }

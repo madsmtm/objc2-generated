@@ -7910,13 +7910,13 @@ impl NWFramerMessage {
     pub fn framer_access_value(
         message: &NWFramerMessage,
         key: &CStr,
-        access_value: &block2::DynBlock<dyn Fn(*const c_void) -> bool>,
+        access_value: &block2::DynBlock<dyn Fn(*const c_void) -> bool + '_>,
     ) -> bool {
         extern "C-unwind" {
             fn nw_framer_message_access_value(
                 message: &NWFramerMessage,
                 key: NonNull<c_char>,
-                access_value: &block2::DynBlock<dyn Fn(*const c_void) -> bool>,
+                access_value: &block2::DynBlock<dyn Fn(*const c_void) -> bool + '_>,
             ) -> bool;
         }
         unsafe {

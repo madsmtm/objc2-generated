@@ -2218,12 +2218,12 @@ pub fn XCTExpectFailureWithOptions(
 #[inline]
 pub fn XCTExpectFailureInBlock(
     failure_reason: Option<&NSString>,
-    failing_block: &block2::DynBlock<dyn Fn()>,
+    failing_block: &block2::DynBlock<dyn Fn() + '_>,
 ) {
     extern "C-unwind" {
         fn XCTExpectFailureInBlock(
             failure_reason: Option<&NSString>,
-            failing_block: &block2::DynBlock<dyn Fn()>,
+            failing_block: &block2::DynBlock<dyn Fn() + '_>,
         );
     }
     unsafe { XCTExpectFailureInBlock(failure_reason, failing_block) }
@@ -2236,13 +2236,13 @@ pub fn XCTExpectFailureInBlock(
 pub fn XCTExpectFailureWithOptionsInBlock(
     failure_reason: Option<&NSString>,
     options: &XCTExpectedFailureOptions,
-    failing_block: &block2::DynBlock<dyn Fn()>,
+    failing_block: &block2::DynBlock<dyn Fn() + '_>,
 ) {
     extern "C-unwind" {
         fn XCTExpectFailureWithOptionsInBlock(
             failure_reason: Option<&NSString>,
             options: &XCTExpectedFailureOptions,
-            failing_block: &block2::DynBlock<dyn Fn()>,
+            failing_block: &block2::DynBlock<dyn Fn() + '_>,
         );
     }
     unsafe { XCTExpectFailureWithOptionsInBlock(failure_reason, options, failing_block) }

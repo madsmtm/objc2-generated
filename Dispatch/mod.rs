@@ -560,13 +560,13 @@ impl DispatchQueue {
     pub fn apply_with_block(
         iterations: usize,
         queue: Option<&DispatchQueue>,
-        block: &block2::DynBlock<dyn Fn(usize)>,
+        block: &block2::DynBlock<dyn Fn(usize) + '_>,
     ) {
         extern "C" {
             fn dispatch_apply(
                 iterations: usize,
                 queue: Option<&DispatchQueue>,
-                block: &block2::DynBlock<dyn Fn(usize)>,
+                block: &block2::DynBlock<dyn Fn(usize) + '_>,
             );
         }
         unsafe { dispatch_apply(iterations, queue, block) }
