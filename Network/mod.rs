@@ -5350,10 +5350,14 @@ impl NWConnection {
     /// The client may call nw_connection_send() or nw_connection_receive()
     /// multiple times within the block, and the connection will attempt to
     /// batch these operations when the block returns.
+    ///
+    /// # Safety
+    ///
+    /// `batch_block` block must be sendable.
     #[doc(alias = "nw_connection_batch")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub fn batch(&self, batch_block: &dispatch_block_t) {
+    pub unsafe fn batch(&self, batch_block: &dispatch_block_t) {
         extern "C-unwind" {
             fn nw_connection_batch(connection: &NWConnection, batch_block: &dispatch_block_t);
         }

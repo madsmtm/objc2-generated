@@ -316,7 +316,8 @@ impl AVVideoOutputSpecification {
         ///
         /// # Safety
         ///
-        /// `default_output_settings` generic should be of the correct type.
+        /// - `default_output_settings` generic should be of the correct type.
+        /// - `default_output_settings` must be thread-safe.
         #[unsafe(method(setDefaultOutputSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultOutputSettings(

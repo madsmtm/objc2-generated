@@ -198,7 +198,9 @@ impl AVContentKeySession {
         /// # Safety
         ///
         /// - `identifier` should be of the correct type.
+        /// - `identifier` must be thread-safe.
         /// - `options` generic should be of the correct type.
+        /// - `options` must be thread-safe.
         #[unsafe(method(processContentKeyRequestWithIdentifier:initializationData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn processContentKeyRequestWithIdentifier_initializationData_options(

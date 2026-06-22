@@ -284,6 +284,10 @@ impl CPListImageRowItem {
         /// Setter for [`handler`][Self::handler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block's argument 2 block must be sendable.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(
@@ -411,6 +415,10 @@ impl CPListImageRowItem {
         /// Setter for [`listImageRowHandler`][Self::listImageRowHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `list_image_row_handler` block's argument 3 block must be sendable.
         #[unsafe(method(setListImageRowHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListImageRowHandler(

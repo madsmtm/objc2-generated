@@ -1431,7 +1431,8 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         /// # Safety
         ///
-        /// `value` should be of the correct type.
+        /// - `value` should be of the correct type.
+        /// - `value` must be thread-safe.
         #[unsafe(method(setTemporaryResourceValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTemporaryResourceValue_forKey(

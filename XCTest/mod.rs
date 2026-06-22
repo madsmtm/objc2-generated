@@ -4743,9 +4743,13 @@ impl XCTestCase {
         /// -waitForExpectationsWithTimeout:handler: runs the run loop while handling events until all expectations
         /// are fulfilled or the timeout is reached. Clients should not manipulate the run
         /// loop while using this API.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(waitForExpectationsWithTimeout:handler:))]
         #[unsafe(method_family = none)]
-        pub fn waitForExpectationsWithTimeout_handler(
+        pub unsafe fn waitForExpectationsWithTimeout_handler(
             &self,
             timeout: NSTimeInterval,
             handler: Option<&XCWaitCompletionHandler>,

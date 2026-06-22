@@ -700,7 +700,8 @@ impl AVAssetWriterInput {
         ///
         /// # Safety
         ///
-        /// `queue` possibly has additional threading requirements.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(respondToEachPassDescriptionOnQueue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn respondToEachPassDescriptionOnQueue_usingBlock(

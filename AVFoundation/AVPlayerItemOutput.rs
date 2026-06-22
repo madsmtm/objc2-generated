@@ -142,7 +142,8 @@ impl AVPlayerItemVideoOutput {
         ///
         /// # Safety
         ///
-        /// `pixel_buffer_attributes` generic should be of the correct type.
+        /// - `pixel_buffer_attributes` generic should be of the correct type.
+        /// - `pixel_buffer_attributes` must be thread-safe.
         #[unsafe(method(initWithPixelBufferAttributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPixelBufferAttributes(
@@ -172,7 +173,8 @@ impl AVPlayerItemVideoOutput {
         ///
         /// # Safety
         ///
-        /// `output_settings` generic should be of the correct type.
+        /// - `output_settings` generic should be of the correct type.
+        /// - `output_settings` must be thread-safe.
         #[unsafe(method(initWithOutputSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOutputSettings(

@@ -190,6 +190,10 @@ impl ENManager {
 
         #[cfg(feature = "dispatch2")]
         /// Invoked exactly once when invalidation completes. This property is cleared before it's invoked to break retain cycles.
+        ///
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(invalidationHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidationHandler(&self) -> *mut dispatch_block_t;
@@ -198,6 +202,10 @@ impl ENManager {
         /// Setter for [`invalidationHandler`][Self::invalidationHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `invalidation_handler` block must be sendable.
         #[unsafe(method(setInvalidationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInvalidationHandler(

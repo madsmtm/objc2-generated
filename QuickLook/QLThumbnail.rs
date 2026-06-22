@@ -105,6 +105,7 @@ impl QLThumbnail {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `queue` might not allow `None`.
+    /// - `completion` block must be sendable.
     /// - `completion` might not allow `None`.
     #[doc(alias = "QLThumbnailDispatchAsync")]
     #[cfg(feature = "dispatch2")]

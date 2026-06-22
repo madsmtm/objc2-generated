@@ -309,6 +309,10 @@ impl CPListItem {
         /// Setter for [`handler`][Self::handler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block's argument 2 block must be sendable.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(

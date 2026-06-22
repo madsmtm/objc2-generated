@@ -150,7 +150,8 @@ impl PHPhotoLibrary {
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// `completion_handler` block must be sendable.
+        /// - `change_block` block must be sendable.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(performChanges:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performChanges_completionHandler(
@@ -160,6 +161,9 @@ impl PHPhotoLibrary {
         );
 
         #[cfg(feature = "dispatch2")]
+        /// # Safety
+        ///
+        /// `change_block` block must be sendable.
         #[unsafe(method(performChangesAndWait:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn performChangesAndWait_error(

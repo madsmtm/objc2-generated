@@ -2709,10 +2709,14 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
+    ///
+    /// # Safety
+    ///
+    /// `handler` block must be sendable.
     #[doc(alias = "IOHIDUserDeviceSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub fn set_cancel_handler(&self, handler: &dispatch_block_t) {
+    pub unsafe fn set_cancel_handler(&self, handler: &dispatch_block_t) {
         extern "C-unwind" {
             fn IOHIDUserDeviceSetCancelHandler(
                 device: &IOHIDUserDevice,

@@ -277,7 +277,8 @@ impl IOSurface {
         #[cfg(feature = "objc2-foundation")]
         /// # Safety
         ///
-        /// `an_object` should be of the correct type.
+        /// - `an_object` should be of the correct type.
+        /// - `an_object` must be thread-safe.
         #[unsafe(method(setAttachment:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttachment_forKey(&self, an_object: &AnyObject, key: &NSString);
