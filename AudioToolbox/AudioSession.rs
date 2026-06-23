@@ -503,19 +503,18 @@ pub unsafe fn AudioSessionSetActiveWithFlags(active: bool, in_flags: u32) -> OSS
 ///
 /// # Safety
 ///
-/// - `io_data_size` might not allow `None`.
-/// - `out_data` must be a valid pointer.
+/// `out_data` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe fn AudioSessionGetProperty(
     in_id: AudioSessionPropertyID,
-    io_data_size: Option<&mut u32>,
+    io_data_size: &mut u32,
     out_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioSessionGetProperty(
             in_id: AudioSessionPropertyID,
-            io_data_size: Option<&mut u32>,
+            io_data_size: &mut u32,
             out_data: *mut c_void,
         ) -> OSStatus;
     }
@@ -567,20 +566,16 @@ pub unsafe fn AudioSessionSetProperty(
 /// Parameter `inID`: The AudioSessionPropertyID for which we want to get the size of the payload.
 ///
 /// Parameter `outDataSize`: The size of the data payload will be copied here.
-///
-/// # Safety
-///
-/// `out_data_size` might not allow `None`.
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe fn AudioSessionGetPropertySize(
     in_id: AudioSessionPropertyID,
-    out_data_size: Option<&mut u32>,
+    out_data_size: &mut u32,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioSessionGetPropertySize(
             in_id: AudioSessionPropertyID,
-            out_data_size: Option<&mut u32>,
+            out_data_size: &mut u32,
         ) -> OSStatus;
     }
     unsafe { AudioSessionGetPropertySize(in_id, out_data_size) }
