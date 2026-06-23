@@ -440,7 +440,8 @@ pub fn NSBestDepth(
             exact_match: Option<&mut Bool>,
         ) -> NSWindowDepth;
     }
-    unsafe { NSBestDepth(color_space, bps, bpp, Bool::new(planar), exact_match) }
+    let planar = Bool::new(planar);
+    unsafe { NSBestDepth(color_space, bps, bpp, planar, exact_match) }
 }
 
 #[inline]
@@ -839,6 +840,8 @@ pub unsafe fn NSDrawBitmap(
             data: NonNull<[*const c_uchar; 5]>,
         );
     }
+    let is_planar = Bool::new(is_planar);
+    let has_alpha = Bool::new(has_alpha);
     unsafe {
         NSDrawBitmap(
             rect,
@@ -848,8 +851,8 @@ pub unsafe fn NSDrawBitmap(
             spp,
             bpp,
             bpr,
-            Bool::new(is_planar),
-            Bool::new(has_alpha),
+            is_planar,
+            has_alpha,
             color_space_name,
             data,
         )

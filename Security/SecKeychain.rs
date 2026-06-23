@@ -409,12 +409,13 @@ impl SecKeychain {
                 keychain: NonNull<*mut SecKeychain>,
             ) -> OSStatus;
         }
+        let prompt_user = prompt_user as _;
         unsafe {
             SecKeychainCreate(
                 path_name,
                 password_length,
                 password,
-                prompt_user as _,
+                prompt_user,
                 initial_access,
                 keychain,
             )
@@ -528,7 +529,8 @@ impl SecKeychain {
                 use_password: Boolean,
             ) -> OSStatus;
         }
-        unsafe { SecKeychainUnlock(keychain, password_length, password, use_password as _) }
+        let use_password = use_password as _;
+        unsafe { SecKeychainUnlock(keychain, password_length, password, use_password) }
     }
 
     /// Locks the specified keychain.
@@ -1323,7 +1325,8 @@ impl SecKeychain {
         extern "C-unwind" {
             fn SecKeychainSetUserInteractionAllowed(state: Boolean) -> OSStatus;
         }
-        unsafe { SecKeychainSetUserInteractionAllowed(state as _) }
+        let state = state as _;
+        unsafe { SecKeychainSetUserInteractionAllowed(state) }
     }
 
     /// Retrieves the current state of user interaction.

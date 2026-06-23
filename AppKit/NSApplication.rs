@@ -1761,7 +1761,8 @@ pub fn NSSetShowsServicesMenuItem(item_name: &NSString, enabled: bool) -> NSInte
     extern "C-unwind" {
         fn NSSetShowsServicesMenuItem(item_name: &NSString, enabled: Bool) -> NSInteger;
     }
-    unsafe { NSSetShowsServicesMenuItem(item_name, Bool::new(enabled)) }
+    let enabled = Bool::new(enabled);
+    unsafe { NSSetShowsServicesMenuItem(item_name, enabled) }
 }
 
 /// `NSUpdateDynamicServices()`causes the services information for the system to be updated.

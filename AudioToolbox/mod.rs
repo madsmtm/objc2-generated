@@ -5151,10 +5151,11 @@ pub unsafe fn AudioFileComponentReadBytes(
             out_buffer: NonNull<c_void>,
         ) -> OSStatus;
     }
+    let in_use_cache = in_use_cache as _;
     unsafe {
         AudioFileComponentReadBytes(
             in_component,
-            in_use_cache as _,
+            in_use_cache,
             in_starting_byte,
             io_num_bytes,
             out_buffer,
@@ -5199,10 +5200,11 @@ pub unsafe fn AudioFileComponentWriteBytes(
             in_buffer: NonNull<c_void>,
         ) -> OSStatus;
     }
+    let in_use_cache = in_use_cache as _;
     unsafe {
         AudioFileComponentWriteBytes(
             in_component,
-            in_use_cache as _,
+            in_use_cache,
             in_starting_byte,
             io_num_bytes,
             in_buffer,
@@ -5264,10 +5266,11 @@ pub unsafe fn AudioFileComponentReadPackets(
             out_buffer: NonNull<c_void>,
         ) -> OSStatus;
     }
+    let in_use_cache = in_use_cache as _;
     unsafe {
         AudioFileComponentReadPackets(
             in_component,
-            in_use_cache as _,
+            in_use_cache,
             out_num_bytes,
             out_packet_descriptions,
             in_starting_packet,
@@ -5335,10 +5338,11 @@ pub unsafe fn AudioFileComponentReadPacketData(
             out_buffer: NonNull<c_void>,
         ) -> OSStatus;
     }
+    let in_use_cache = in_use_cache as _;
     unsafe {
         AudioFileComponentReadPacketData(
             in_component,
-            in_use_cache as _,
+            in_use_cache,
             io_num_bytes,
             out_packet_descriptions,
             in_starting_packet,
@@ -5398,10 +5402,11 @@ pub unsafe fn AudioFileComponentWritePackets(
             in_buffer: NonNull<c_void>,
         ) -> OSStatus;
     }
+    let in_use_cache = in_use_cache as _;
     unsafe {
         AudioFileComponentWritePackets(
             in_component,
-            in_use_cache as _,
+            in_use_cache,
             in_num_bytes,
             in_packet_descriptions,
             in_starting_packet,

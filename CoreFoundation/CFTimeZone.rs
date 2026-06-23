@@ -146,7 +146,8 @@ impl CFTimeZone {
                 try_abbrev: Boolean,
             ) -> Option<NonNull<CFTimeZone>>;
         }
-        let ret = unsafe { CFTimeZoneCreateWithName(allocator, name, try_abbrev as _) };
+        let try_abbrev = try_abbrev as _;
+        let ret = unsafe { CFTimeZoneCreateWithName(allocator, name, try_abbrev) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

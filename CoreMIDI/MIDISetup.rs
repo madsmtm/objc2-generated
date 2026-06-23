@@ -241,12 +241,13 @@ pub unsafe fn MIDIDeviceNewEntity(
             new_entity: NonNull<MIDIEntityRef>,
         ) -> OSStatus;
     }
+    let embedded = embedded as _;
     unsafe {
         MIDIDeviceNewEntity(
             device,
             name,
             protocol,
-            embedded as _,
+            embedded,
             num_source_endpoints,
             num_destination_endpoints,
             new_entity,
@@ -301,11 +302,12 @@ pub unsafe fn MIDIDeviceAddEntity(
             new_entity: NonNull<MIDIEntityRef>,
         ) -> OSStatus;
     }
+    let embedded = embedded as _;
     unsafe {
         MIDIDeviceAddEntity(
             device,
             name,
-            embedded as _,
+            embedded,
             num_source_endpoints,
             num_destination_endpoints,
             new_entity,

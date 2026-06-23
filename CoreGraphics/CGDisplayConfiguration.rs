@@ -103,7 +103,9 @@ pub unsafe fn CGConfigureDisplayStereoOperation(
             force_blue_line: libc::boolean_t,
         ) -> CGError;
     }
-    unsafe { CGConfigureDisplayStereoOperation(config, display, stereo as _, force_blue_line as _) }
+    let stereo = stereo as _;
+    let force_blue_line = force_blue_line as _;
+    unsafe { CGConfigureDisplayStereoOperation(config, display, stereo, force_blue_line) }
 }
 
 /// # Safety
@@ -294,7 +296,9 @@ pub fn CGDisplaySetStereoOperation(
             option: CGConfigureOption,
         ) -> CGError;
     }
-    unsafe { CGDisplaySetStereoOperation(display, stereo as _, force_blue_line as _, option) }
+    let stereo = stereo as _;
+    let force_blue_line = force_blue_line as _;
+    unsafe { CGDisplaySetStereoOperation(display, stereo, force_blue_line, option) }
 }
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]

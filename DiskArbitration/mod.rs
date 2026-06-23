@@ -996,7 +996,8 @@ impl DADisk {
         extern "C-unwind" {
             fn DADiskSetOptions(disk: &DADisk, options: DADiskOptions, value: Boolean) -> DAReturn;
         }
-        unsafe { DADiskSetOptions(self, options, value as _) }
+        let value = value as _;
+        unsafe { DADiskSetOptions(self, options, value) }
     }
 }
 

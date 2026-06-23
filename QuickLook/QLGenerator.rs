@@ -276,8 +276,8 @@ impl QLThumbnailRequest {
                 properties: Option<&CFDictionary>,
             ) -> Option<NonNull<CGContext>>;
         }
-        let ret =
-            unsafe { QLThumbnailRequestCreateContext(self, size, is_bitmap as _, properties) };
+        let is_bitmap = is_bitmap as _;
+        let ret = unsafe { QLThumbnailRequestCreateContext(self, size, is_bitmap, properties) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -852,7 +852,8 @@ impl QLPreviewRequest {
                 properties: Option<&CFDictionary>,
             ) -> Option<NonNull<CGContext>>;
         }
-        let ret = unsafe { QLPreviewRequestCreateContext(self, size, is_bitmap as _, properties) };
+        let is_bitmap = is_bitmap as _;
+        let ret = unsafe { QLPreviewRequestCreateContext(self, size, is_bitmap, properties) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

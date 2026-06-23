@@ -477,5 +477,6 @@ pub unsafe fn MIDIDriverEnableMonitoring(driver: MIDIDriverRef, enabled: bool) -
     extern "C-unwind" {
         fn MIDIDriverEnableMonitoring(driver: MIDIDriverRef, enabled: Boolean) -> OSStatus;
     }
-    unsafe { MIDIDriverEnableMonitoring(driver, enabled as _) }
+    let enabled = enabled as _;
+    unsafe { MIDIDriverEnableMonitoring(driver, enabled) }
 }

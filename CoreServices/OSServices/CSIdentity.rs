@@ -447,7 +447,8 @@ impl CSIdentity {
         extern "C-unwind" {
             fn CSIdentitySetIsEnabled(user: &CSIdentity, is_enabled: Boolean);
         }
-        unsafe { CSIdentitySetIsEnabled(self, is_enabled as _) }
+        let is_enabled = is_enabled as _;
+        unsafe { CSIdentitySetIsEnabled(self, is_enabled) }
     }
 
     /// # Safety

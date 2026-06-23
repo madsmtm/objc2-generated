@@ -140,12 +140,9 @@ impl VTHDRPerFrameMetadataGenerationSession {
                 scene_change: Boolean,
             ) -> OSStatus;
         }
+        let scene_change = scene_change as _;
         unsafe {
-            VTHDRPerFrameMetadataGenerationSessionAttachMetadata(
-                self,
-                pixel_buffer,
-                scene_change as _,
-            )
+            VTHDRPerFrameMetadataGenerationSessionAttachMetadata(self, pixel_buffer, scene_change)
         }
     }
 }

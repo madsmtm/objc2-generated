@@ -293,12 +293,8 @@ impl SCNetworkReachability {
                 nodename: NonNull<c_char>,
             ) -> Option<NonNull<SCNetworkReachability>>;
         }
-        let ret = unsafe {
-            SCNetworkReachabilityCreateWithName(
-                allocator,
-                NonNull::new(nodename.as_ptr().cast_mut()).unwrap(),
-            )
-        };
+        let nodename = NonNull::new(nodename.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { SCNetworkReachabilityCreateWithName(allocator, nodename) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }

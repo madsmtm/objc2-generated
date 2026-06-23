@@ -275,7 +275,8 @@ pub fn CGAssociateMouseAndMouseCursorPosition(connected: bool) -> CGError {
     extern "C-unwind" {
         fn CGAssociateMouseAndMouseCursorPosition(connected: libc::boolean_t) -> CGError;
     }
-    unsafe { CGAssociateMouseAndMouseCursorPosition(connected as _) }
+    let connected = connected as _;
+    unsafe { CGAssociateMouseAndMouseCursorPosition(connected) }
 }
 
 #[inline]
@@ -294,7 +295,8 @@ pub fn CGEnableEventStateCombining(combine_state: bool) -> CGError {
     extern "C-unwind" {
         fn CGEnableEventStateCombining(combine_state: libc::boolean_t) -> CGError;
     }
-    unsafe { CGEnableEventStateCombining(combine_state as _) }
+    let combine_state = combine_state as _;
+    unsafe { CGEnableEventStateCombining(combine_state) }
 }
 
 #[cfg(all(feature = "CGError", feature = "libc"))]
@@ -304,7 +306,8 @@ pub fn CGInhibitLocalEvents(inhibit: bool) -> CGError {
     extern "C-unwind" {
         fn CGInhibitLocalEvents(inhibit: libc::boolean_t) -> CGError;
     }
-    unsafe { CGInhibitLocalEvents(inhibit as _) }
+    let inhibit = inhibit as _;
+    unsafe { CGInhibitLocalEvents(inhibit) }
 }
 
 #[cfg(all(feature = "CGError", feature = "libc"))]
@@ -322,7 +325,8 @@ pub fn CGPostKeyboardEvent(
             key_down: libc::boolean_t,
         ) -> CGError;
     }
-    unsafe { CGPostKeyboardEvent(key_char, virtual_key, key_down as _) }
+    let key_down = key_down as _;
+    unsafe { CGPostKeyboardEvent(key_char, virtual_key, key_down) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfiltermask?language=objc)

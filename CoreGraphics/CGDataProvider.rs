@@ -241,9 +241,8 @@ impl CGDataProvider {
                 filename: NonNull<c_char>,
             ) -> Option<NonNull<CGDataProvider>>;
         }
-        let ret = unsafe {
-            CGDataProviderCreateWithFilename(NonNull::new(filename.as_ptr().cast_mut()).unwrap())
-        };
+        let filename = NonNull::new(filename.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { CGDataProviderCreateWithFilename(filename) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

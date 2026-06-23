@@ -178,7 +178,8 @@ impl NWTxtRecord {
                 key: NonNull<c_char>,
             ) -> nw_txt_record_find_key_t;
         }
-        unsafe { nw_txt_record_find_key(self, NonNull::new(key.as_ptr().cast_mut()).unwrap()) }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_txt_record_find_key(self, key) }
     }
 }
 
@@ -233,13 +234,8 @@ impl NWTxtRecord {
                 access_value: &nw_txt_record_access_key_t,
             ) -> bool;
         }
-        unsafe {
-            nw_txt_record_access_key(
-                self,
-                NonNull::new(key.as_ptr().cast_mut()).unwrap(),
-                access_value,
-            )
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_txt_record_access_key(self, key, access_value) }
     }
 
     /// Set a key-value pair on the TXT record object.
@@ -280,14 +276,8 @@ impl NWTxtRecord {
                 value_len: usize,
             ) -> bool;
         }
-        unsafe {
-            nw_txt_record_set_key(
-                self,
-                NonNull::new(key.as_ptr().cast_mut()).unwrap(),
-                value,
-                value_len,
-            )
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_txt_record_set_key(self, key, value, value_len) }
     }
 
     /// Removes a key-value pair in the TXT record object given its key.
@@ -309,7 +299,8 @@ impl NWTxtRecord {
         extern "C-unwind" {
             fn nw_txt_record_remove_key(txt_record: &NWTxtRecord, key: NonNull<c_char>) -> bool;
         }
-        unsafe { nw_txt_record_remove_key(self, NonNull::new(key.as_ptr().cast_mut()).unwrap()) }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_txt_record_remove_key(self, key) }
     }
 
     /// Count the number of keys in the TXT record object.
@@ -517,15 +508,12 @@ impl NWAdvertiseDescriptor {
                 domain: *const c_char,
             ) -> Option<NonNull<NWAdvertiseDescriptor>>;
         }
-        let ret = unsafe {
-            nw_advertise_descriptor_create_bonjour_service(
-                name.map(|ptr| ptr.as_ptr()).unwrap_or_else(core::ptr::null),
-                NonNull::new(r#type.as_ptr().cast_mut()).unwrap(),
-                domain
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
-            )
-        };
+        let name = name.map(|ptr| ptr.as_ptr()).unwrap_or_else(core::ptr::null);
+        let r#type = NonNull::new(r#type.as_ptr().cast_mut()).unwrap();
+        let domain = domain
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let ret = unsafe { nw_advertise_descriptor_create_bonjour_service(name, r#type, domain) };
         ret.map(|ret| unsafe { NWRetained::from_raw(ret) })
     }
 
@@ -656,11 +644,10 @@ impl NWAdvertiseDescriptor {
                 application_service_name: NonNull<c_char>,
             ) -> Option<NonNull<NWAdvertiseDescriptor>>;
         }
-        let ret = unsafe {
-            nw_advertise_descriptor_create_application_service(
-                NonNull::new(application_service_name.as_ptr().cast_mut()).unwrap(),
-            )
-        };
+        let application_service_name =
+            NonNull::new(application_service_name.as_ptr().cast_mut()).unwrap();
+        let ret =
+            unsafe { nw_advertise_descriptor_create_application_service(application_service_name) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { NWRetained::from_raw(ret) }
@@ -1035,12 +1022,9 @@ impl NWEndpoint {
                 port: NonNull<c_char>,
             ) -> Option<NonNull<NWEndpoint>>;
         }
-        let ret = unsafe {
-            nw_endpoint_create_host(
-                NonNull::new(hostname.as_ptr().cast_mut()).unwrap(),
-                NonNull::new(port.as_ptr().cast_mut()).unwrap(),
-            )
-        };
+        let hostname = NonNull::new(hostname.as_ptr().cast_mut()).unwrap();
+        let port = NonNull::new(port.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { nw_endpoint_create_host(hostname, port) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { NWRetained::from_raw(ret) }
@@ -1208,13 +1192,10 @@ impl NWEndpoint {
                 domain: NonNull<c_char>,
             ) -> Option<NonNull<NWEndpoint>>;
         }
-        let ret = unsafe {
-            nw_endpoint_create_bonjour_service(
-                NonNull::new(name.as_ptr().cast_mut()).unwrap(),
-                NonNull::new(r#type.as_ptr().cast_mut()).unwrap(),
-                NonNull::new(domain.as_ptr().cast_mut()).unwrap(),
-            )
-        };
+        let name = NonNull::new(name.as_ptr().cast_mut()).unwrap();
+        let r#type = NonNull::new(r#type.as_ptr().cast_mut()).unwrap();
+        let domain = NonNull::new(domain.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { nw_endpoint_create_bonjour_service(name, r#type, domain) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { NWRetained::from_raw(ret) }
@@ -1300,7 +1281,8 @@ impl NWEndpoint {
         extern "C-unwind" {
             fn nw_endpoint_create_url(url: NonNull<c_char>) -> Option<NonNull<NWEndpoint>>;
         }
-        let ret = unsafe { nw_endpoint_create_url(NonNull::new(url.as_ptr().cast_mut()).unwrap()) };
+        let url = NonNull::new(url.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { nw_endpoint_create_url(url) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { NWRetained::from_raw(ret) }
@@ -1537,13 +1519,9 @@ impl NWRelayHop {
                 field_value: NonNull<c_char>,
             );
         }
-        unsafe {
-            nw_relay_hop_add_additional_http_header_field(
-                self,
-                NonNull::new(field_name.as_ptr().cast_mut()).unwrap(),
-                NonNull::new(field_value.as_ptr().cast_mut()).unwrap(),
-            )
-        }
+        let field_name = NonNull::new(field_name.as_ptr().cast_mut()).unwrap();
+        let field_value = NonNull::new(field_value.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_relay_hop_add_additional_http_header_field(self, field_name, field_value) }
     }
 }
 
@@ -1615,10 +1593,11 @@ impl NWProxyConfig {
                 gateway_key_config_length: usize,
             ) -> Option<NonNull<NWProxyConfig>>;
         }
+        let relay_resource_path = NonNull::new(relay_resource_path.as_ptr().cast_mut()).unwrap();
         let ret = unsafe {
             nw_proxy_config_create_oblivious_http(
                 relay,
-                NonNull::new(relay_resource_path.as_ptr().cast_mut()).unwrap(),
+                relay_resource_path,
                 gateway_key_config,
                 gateway_key_config_length,
             )
@@ -1699,15 +1678,11 @@ impl NWProxyConfig {
                 password: *const c_char,
             );
         }
-        unsafe {
-            nw_proxy_config_set_username_and_password(
-                self,
-                NonNull::new(username.as_ptr().cast_mut()).unwrap(),
-                password
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
-            )
-        }
+        let username = NonNull::new(username.as_ptr().cast_mut()).unwrap();
+        let password = password
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        unsafe { nw_proxy_config_set_username_and_password(self, username, password) }
     }
 
     /// Set whether or not a proxy configuration allows failover to non-proxied connections.
@@ -1762,12 +1737,8 @@ impl NWProxyConfig {
                 match_domain: NonNull<c_char>,
             );
         }
-        unsafe {
-            nw_proxy_config_add_match_domain(
-                self,
-                NonNull::new(match_domain.as_ptr().cast_mut()).unwrap(),
-            )
-        }
+        let match_domain = NonNull::new(match_domain.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_proxy_config_add_match_domain(self, match_domain) }
     }
 
     /// Clears all match domains defined for the proxy.
@@ -1799,12 +1770,8 @@ impl NWProxyConfig {
                 excluded_domain: NonNull<c_char>,
             );
         }
-        unsafe {
-            nw_proxy_config_add_excluded_domain(
-                self,
-                NonNull::new(excluded_domain.as_ptr().cast_mut()).unwrap(),
-            )
-        }
+        let excluded_domain = NonNull::new(excluded_domain.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_proxy_config_add_excluded_domain(self, excluded_domain) }
     }
 
     /// Clears all excluded domains defined for the proxy.
@@ -1895,9 +1862,8 @@ impl NWPrivacyContext {
                 description: NonNull<c_char>,
             ) -> Option<NonNull<NWPrivacyContext>>;
         }
-        let ret = unsafe {
-            nw_privacy_context_create(NonNull::new(description.as_ptr().cast_mut()).unwrap())
-        };
+        let description = NonNull::new(description.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { nw_privacy_context_create(description) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { NWRetained::from_raw(ret) }
@@ -3382,14 +3348,11 @@ impl NWBrowseDescriptor {
                 domain: *const c_char,
             ) -> Option<NonNull<NWBrowseDescriptor>>;
         }
-        let ret = unsafe {
-            nw_browse_descriptor_create_bonjour_service(
-                NonNull::new(r#type.as_ptr().cast_mut()).unwrap(),
-                domain
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
-            )
-        };
+        let r#type = NonNull::new(r#type.as_ptr().cast_mut()).unwrap();
+        let domain = domain
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let ret = unsafe { nw_browse_descriptor_create_bonjour_service(r#type, domain) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { NWRetained::from_raw(ret) }
@@ -3491,11 +3454,10 @@ impl NWBrowseDescriptor {
                 application_service_name: NonNull<c_char>,
             ) -> Option<NonNull<NWBrowseDescriptor>>;
         }
-        let ret = unsafe {
-            nw_browse_descriptor_create_application_service(
-                NonNull::new(application_service_name.as_ptr().cast_mut()).unwrap(),
-            )
-        };
+        let application_service_name =
+            NonNull::new(application_service_name.as_ptr().cast_mut()).unwrap();
+        let ret =
+            unsafe { nw_browse_descriptor_create_application_service(application_service_name) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { NWRetained::from_raw(ret) }
@@ -4507,9 +4469,8 @@ impl NWContentContext {
                 context_identifier: NonNull<c_char>,
             ) -> Option<NonNull<NWContentContext>>;
         }
-        let ret = unsafe {
-            nw_content_context_create(NonNull::new(context_identifier.as_ptr().cast_mut()).unwrap())
-        };
+        let context_identifier = NonNull::new(context_identifier.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { nw_content_context_create(context_identifier) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { NWRetained::from_raw(ret) }
@@ -7884,14 +7845,8 @@ impl NWFramerMessage {
                 dispose_value: Option<&nw_framer_message_dispose_value_t>,
             );
         }
-        unsafe {
-            nw_framer_message_set_value(
-                message,
-                NonNull::new(key.as_ptr().cast_mut()).unwrap(),
-                value,
-                dispose_value,
-            )
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_framer_message_set_value(message, key, value, dispose_value) }
     }
 
     /// Access the value with a key on a framer message.
@@ -7923,13 +7878,8 @@ impl NWFramerMessage {
                 access_value: &block2::DynBlock<dyn Fn(*const c_void) -> bool + '_>,
             ) -> bool;
         }
-        unsafe {
-            nw_framer_message_access_value(
-                message,
-                NonNull::new(key.as_ptr().cast_mut()).unwrap(),
-                access_value,
-            )
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_framer_message_access_value(message, key, access_value) }
     }
 
     /// Set a key-value pair on a framer message, where the
@@ -7962,13 +7912,8 @@ impl NWFramerMessage {
                 value: Option<&AnyObject>,
             );
         }
-        unsafe {
-            nw_framer_message_set_object_value(
-                message,
-                NonNull::new(key.as_ptr().cast_mut()).unwrap(),
-                value,
-            )
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_framer_message_set_object_value(message, key, value) }
     }
 
     /// Copy the stored object value using a key on a framer message.
@@ -7995,12 +7940,8 @@ impl NWFramerMessage {
                 key: NonNull<c_char>,
             ) -> *mut AnyObject;
         }
-        let ret = unsafe {
-            nw_framer_message_copy_object_value(
-                message,
-                NonNull::new(key.as_ptr().cast_mut()).unwrap(),
-            )
-        };
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { nw_framer_message_copy_object_value(message, key) };
         unsafe { Retained::from_raw(ret) }
     }
 }
@@ -8077,13 +8018,8 @@ impl NWProtocolDefinition {
                 start_handler: &nw_framer_start_handler_t,
             ) -> Option<NonNull<NWProtocolDefinition>>;
         }
-        let ret = unsafe {
-            nw_framer_create_definition(
-                NonNull::new(identifier.as_ptr().cast_mut()).unwrap(),
-                flags,
-                start_handler,
-            )
-        };
+        let identifier = NonNull::new(identifier.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { nw_framer_create_definition(identifier, flags, start_handler) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { NWRetained::from_raw(ret) }
@@ -8141,13 +8077,8 @@ impl NWProtocolOptions {
                 value: Option<&AnyObject>,
             );
         }
-        unsafe {
-            nw_framer_options_set_object_value(
-                self,
-                NonNull::new(key.as_ptr().cast_mut()).unwrap(),
-                value,
-            )
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_framer_options_set_object_value(self, key, value) }
     }
 
     /// Copy the stored object value using a key on framer options.
@@ -8171,12 +8102,8 @@ impl NWProtocolOptions {
                 key: NonNull<c_char>,
             ) -> *mut AnyObject;
         }
-        let ret = unsafe {
-            nw_framer_options_copy_object_value(
-                self,
-                NonNull::new(key.as_ptr().cast_mut()).unwrap(),
-            )
-        };
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { nw_framer_options_copy_object_value(self, key) };
         unsafe { Retained::from_raw(ret) }
     }
 }
@@ -9515,12 +9442,8 @@ impl NWListener {
                 parameters: &NWParameters,
             ) -> Option<NonNull<NWListener>>;
         }
-        let ret = unsafe {
-            nw_listener_create_with_port(
-                NonNull::new(port.as_ptr().cast_mut()).unwrap(),
-                parameters,
-            )
-        };
+        let port = NonNull::new(port.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { nw_listener_create_with_port(port, parameters) };
         ret.map(|ret| unsafe { NWRetained::from_raw(ret) })
     }
 
@@ -9550,12 +9473,8 @@ impl NWListener {
                 launchd_key: NonNull<c_char>,
             ) -> Option<NonNull<NWListener>>;
         }
-        let ret = unsafe {
-            nw_listener_create_with_launchd_key(
-                parameters,
-                NonNull::new(launchd_key.as_ptr().cast_mut()).unwrap(),
-            )
-        };
+        let launchd_key = NonNull::new(launchd_key.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { nw_listener_create_with_launchd_key(parameters, launchd_key) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { NWRetained::from_raw(ret) }
@@ -10173,12 +10092,8 @@ impl NWProtocolOptions {
                 application_protocol: NonNull<c_char>,
             );
         }
-        unsafe {
-            nw_quic_add_tls_application_protocol(
-                self,
-                NonNull::new(application_protocol.as_ptr().cast_mut()).unwrap(),
-            )
-        }
+        let application_protocol = NonNull::new(application_protocol.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_quic_add_tls_application_protocol(self, application_protocol) }
     }
 
     /// Returns whether or not a QUIC stream is unidirectional.
@@ -10937,15 +10852,10 @@ impl NWProtocolMetadata {
                 reason: *const c_char,
             );
         }
-        unsafe {
-            nw_quic_set_application_error(
-                self,
-                application_error,
-                reason
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
-            )
-        }
+        let reason = reason
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        unsafe { nw_quic_set_application_error(self, application_error, reason) }
     }
 
     /// Retrieves the keep-alive interval set on a QUIC connection.
@@ -11811,13 +11721,9 @@ impl NWProtocolOptions {
                 value: NonNull<c_char>,
             );
         }
-        unsafe {
-            nw_ws_options_add_additional_header(
-                self,
-                NonNull::new(name.as_ptr().cast_mut()).unwrap(),
-                NonNull::new(value.as_ptr().cast_mut()).unwrap(),
-            )
-        }
+        let name = NonNull::new(name.as_ptr().cast_mut()).unwrap();
+        let value = NonNull::new(value.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_ws_options_add_additional_header(self, name, value) }
     }
 
     /// Add to the list of subprotocols that will be presented to a
@@ -11837,12 +11743,8 @@ impl NWProtocolOptions {
                 subprotocol: NonNull<c_char>,
             );
         }
-        unsafe {
-            nw_ws_options_add_subprotocol(
-                self,
-                NonNull::new(subprotocol.as_ptr().cast_mut()).unwrap(),
-            )
-        }
+        let subprotocol = NonNull::new(subprotocol.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_ws_options_add_subprotocol(self, subprotocol) }
     }
 
     /// Set whether the WebSocket connection should automatically reply to all
@@ -12205,14 +12107,10 @@ impl NWWsResponse {
                 selected_subprotocol: *const c_char,
             ) -> Option<NonNull<NWWsResponse>>;
         }
-        let ret = unsafe {
-            nw_ws_response_create(
-                status,
-                selected_subprotocol
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
-            )
-        };
+        let selected_subprotocol = selected_subprotocol
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let ret = unsafe { nw_ws_response_create(status, selected_subprotocol) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { NWRetained::from_raw(ret) }
@@ -12274,13 +12172,9 @@ impl NWWsResponse {
                 value: NonNull<c_char>,
             );
         }
-        unsafe {
-            nw_ws_response_add_additional_header(
-                self,
-                NonNull::new(name.as_ptr().cast_mut()).unwrap(),
-                NonNull::new(value.as_ptr().cast_mut()).unwrap(),
-            )
-        }
+        let name = NonNull::new(name.as_ptr().cast_mut()).unwrap();
+        let value = NonNull::new(value.as_ptr().cast_mut()).unwrap();
+        unsafe { nw_ws_response_add_additional_header(self, name, value) }
     }
 }
 

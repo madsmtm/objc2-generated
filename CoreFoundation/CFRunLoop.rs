@@ -251,7 +251,8 @@ impl CFRunLoop {
                 return_after_source_handled: Boolean,
             ) -> CFRunLoopRunResult;
         }
-        unsafe { CFRunLoopRunInMode(mode, seconds, return_after_source_handled as _) }
+        let return_after_source_handled = return_after_source_handled as _;
+        unsafe { CFRunLoopRunInMode(mode, seconds, return_after_source_handled) }
     }
 
     #[doc(alias = "CFRunLoopIsWaiting")]
@@ -672,8 +673,9 @@ impl CFRunLoopObserver {
                 context: Option<&CFRunLoopObserverContext>,
             ) -> Option<NonNull<CFRunLoopObserver>>;
         }
+        let repeats = repeats as _;
         let ret = unsafe {
-            CFRunLoopObserverCreate(allocator, activities, repeats as _, order, callout, context)
+            CFRunLoopObserverCreate(allocator, activities, repeats, order, callout, context)
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -697,8 +699,9 @@ impl CFRunLoopObserver {
                 block: Option<&block2::DynBlock<dyn Fn(*mut CFRunLoopObserver, CFRunLoopActivity)>>,
             ) -> Option<NonNull<CFRunLoopObserver>>;
         }
+        let repeats = repeats as _;
         let ret = unsafe {
-            CFRunLoopObserverCreateWithHandler(allocator, activities, repeats as _, order, block)
+            CFRunLoopObserverCreateWithHandler(allocator, activities, repeats, order, block)
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

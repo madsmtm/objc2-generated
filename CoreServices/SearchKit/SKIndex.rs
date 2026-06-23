@@ -162,7 +162,8 @@ impl SKIndex {
                 in_write_access: Boolean,
             ) -> Option<NonNull<SKIndex>>;
         }
-        let ret = unsafe { SKIndexOpenWithURL(in_url, in_index_name, in_write_access as _) };
+        let in_write_access = in_write_access as _;
+        let ret = unsafe { SKIndexOpenWithURL(in_url, in_index_name, in_write_access) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
@@ -341,8 +342,9 @@ impl SKIndex {
                 in_can_replace: Boolean,
             ) -> Boolean;
         }
+        let in_can_replace = in_can_replace as _;
         let ret = unsafe {
-            SKIndexAddDocumentWithText(self, in_document, in_document_text, in_can_replace as _)
+            SKIndexAddDocumentWithText(self, in_document, in_document_text, in_can_replace)
         };
         ret != 0
     }
@@ -368,9 +370,9 @@ impl SKIndex {
                 in_can_replace: Boolean,
             ) -> Boolean;
         }
-        let ret = unsafe {
-            SKIndexAddDocument(self, in_document, in_mime_type_hint, in_can_replace as _)
-        };
+        let in_can_replace = in_can_replace as _;
+        let ret =
+            unsafe { SKIndexAddDocument(self, in_document, in_mime_type_hint, in_can_replace) };
         ret != 0
     }
 

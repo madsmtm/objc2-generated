@@ -106,9 +106,9 @@ impl CFFileDescriptor {
                 context: Option<&CFFileDescriptorContext>,
             ) -> Option<NonNull<CFFileDescriptor>>;
         }
-        let ret = unsafe {
-            CFFileDescriptorCreate(allocator, fd, close_on_invalidate as _, callout, context)
-        };
+        let close_on_invalidate = close_on_invalidate as _;
+        let ret =
+            unsafe { CFFileDescriptorCreate(allocator, fd, close_on_invalidate, callout, context) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

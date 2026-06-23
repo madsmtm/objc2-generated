@@ -57,9 +57,8 @@ impl CGPDFDictionary {
                 value: Option<&mut CGPDFObjectRef>,
             ) -> bool;
         }
-        unsafe {
-            CGPDFDictionaryGetObject(dict, NonNull::new(key.as_ptr().cast_mut()).unwrap(), value)
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFDictionaryGetObject(dict, key, value) }
     }
 
     /// # Safety
@@ -80,9 +79,8 @@ impl CGPDFDictionary {
                 value: Option<&mut CGPDFBoolean>,
             ) -> bool;
         }
-        unsafe {
-            CGPDFDictionaryGetBoolean(dict, NonNull::new(key.as_ptr().cast_mut()).unwrap(), value)
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFDictionaryGetBoolean(dict, key, value) }
     }
 
     /// # Safety
@@ -103,9 +101,8 @@ impl CGPDFDictionary {
                 value: Option<&mut CGPDFInteger>,
             ) -> bool;
         }
-        unsafe {
-            CGPDFDictionaryGetInteger(dict, NonNull::new(key.as_ptr().cast_mut()).unwrap(), value)
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFDictionaryGetInteger(dict, key, value) }
     }
 
     /// # Safety
@@ -126,9 +123,8 @@ impl CGPDFDictionary {
                 value: Option<&mut CGPDFReal>,
             ) -> bool;
         }
-        unsafe {
-            CGPDFDictionaryGetNumber(dict, NonNull::new(key.as_ptr().cast_mut()).unwrap(), value)
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFDictionaryGetNumber(dict, key, value) }
     }
 
     /// # Safety
@@ -149,9 +145,8 @@ impl CGPDFDictionary {
                 value: Option<&mut *const c_char>,
             ) -> bool;
         }
-        unsafe {
-            CGPDFDictionaryGetName(dict, NonNull::new(key.as_ptr().cast_mut()).unwrap(), value)
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFDictionaryGetName(dict, key, value) }
     }
 
     /// # Safety
@@ -173,9 +168,8 @@ impl CGPDFDictionary {
                 value: Option<&mut CGPDFStringRef>,
             ) -> bool;
         }
-        unsafe {
-            CGPDFDictionaryGetString(dict, NonNull::new(key.as_ptr().cast_mut()).unwrap(), value)
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFDictionaryGetString(dict, key, value) }
     }
 
     /// # Safety
@@ -197,9 +191,8 @@ impl CGPDFDictionary {
                 value: Option<&mut CGPDFArrayRef>,
             ) -> bool;
         }
-        unsafe {
-            CGPDFDictionaryGetArray(dict, NonNull::new(key.as_ptr().cast_mut()).unwrap(), value)
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFDictionaryGetArray(dict, key, value) }
     }
 
     /// # Safety
@@ -220,13 +213,8 @@ impl CGPDFDictionary {
                 value: Option<&mut CGPDFDictionaryRef>,
             ) -> bool;
         }
-        unsafe {
-            CGPDFDictionaryGetDictionary(
-                dict,
-                NonNull::new(key.as_ptr().cast_mut()).unwrap(),
-                value,
-            )
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFDictionaryGetDictionary(dict, key, value) }
     }
 
     /// # Safety
@@ -248,9 +236,8 @@ impl CGPDFDictionary {
                 value: Option<&mut CGPDFStreamRef>,
             ) -> bool;
         }
-        unsafe {
-            CGPDFDictionaryGetStream(dict, NonNull::new(key.as_ptr().cast_mut()).unwrap(), value)
-        }
+        let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFDictionaryGetStream(dict, key, value) }
     }
 }
 

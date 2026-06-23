@@ -686,11 +686,12 @@ pub unsafe fn AudioDeviceGetPropertyInfo(
             out_writable: Option<&mut Boolean>,
         ) -> OSStatus;
     }
+    let is_input = is_input as _;
     unsafe {
         AudioDeviceGetPropertyInfo(
             in_device,
             in_channel,
-            is_input as _,
+            is_input,
             in_property_id,
             out_size,
             out_writable,
@@ -743,11 +744,12 @@ pub unsafe fn AudioDeviceGetProperty(
             out_property_data: NonNull<c_void>,
         ) -> OSStatus;
     }
+    let is_input = is_input as _;
     unsafe {
         AudioDeviceGetProperty(
             in_device,
             in_channel,
-            is_input as _,
+            is_input,
             in_property_id,
             io_property_data_size,
             out_property_data,
@@ -807,12 +809,13 @@ pub unsafe fn AudioDeviceSetProperty(
             in_property_data: NonNull<c_void>,
         ) -> OSStatus;
     }
+    let is_input = is_input as _;
     unsafe {
         AudioDeviceSetProperty(
             in_device,
             in_when,
             in_channel,
-            is_input as _,
+            is_input,
             in_property_id,
             in_property_data_size,
             in_property_data,
@@ -865,11 +868,12 @@ pub unsafe fn AudioDeviceAddPropertyListener(
             in_client_data: *mut c_void,
         ) -> OSStatus;
     }
+    let is_input = is_input as _;
     unsafe {
         AudioDeviceAddPropertyListener(
             in_device,
             in_channel,
-            is_input as _,
+            is_input,
             in_property_id,
             in_proc,
             in_client_data,
@@ -918,14 +922,9 @@ pub unsafe fn AudioDeviceRemovePropertyListener(
             in_proc: AudioDevicePropertyListenerProc,
         ) -> OSStatus;
     }
+    let is_input = is_input as _;
     unsafe {
-        AudioDeviceRemovePropertyListener(
-            in_device,
-            in_channel,
-            is_input as _,
-            in_property_id,
-            in_proc,
-        )
+        AudioDeviceRemovePropertyListener(in_device, in_channel, is_input, in_property_id, in_proc)
     }
 }
 

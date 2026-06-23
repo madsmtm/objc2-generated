@@ -1607,14 +1607,8 @@ impl CGContext {
                 text_encoding: CGTextEncoding,
             );
         }
-        unsafe {
-            CGContextSelectFont(
-                self,
-                NonNull::new(name.as_ptr().cast_mut()).unwrap(),
-                size,
-                text_encoding,
-            )
-        }
+        let name = NonNull::new(name.as_ptr().cast_mut()).unwrap();
+        unsafe { CGContextSelectFont(self, name, size, text_encoding) }
     }
 
     #[doc(alias = "CGContextShowText")]
@@ -1624,13 +1618,8 @@ impl CGContext {
         extern "C-unwind" {
             fn CGContextShowText(c: &CGContext, string: NonNull<c_char>, length: usize);
         }
-        unsafe {
-            CGContextShowText(
-                self,
-                NonNull::new(string.as_ptr().cast_mut()).unwrap(),
-                length,
-            )
-        }
+        let string = NonNull::new(string.as_ptr().cast_mut()).unwrap();
+        unsafe { CGContextShowText(self, string, length) }
     }
 
     #[doc(alias = "CGContextShowTextAtPoint")]
@@ -1646,15 +1635,8 @@ impl CGContext {
                 length: usize,
             );
         }
-        unsafe {
-            CGContextShowTextAtPoint(
-                self,
-                x,
-                y,
-                NonNull::new(string.as_ptr().cast_mut()).unwrap(),
-                length,
-            )
-        }
+        let string = NonNull::new(string.as_ptr().cast_mut()).unwrap();
+        unsafe { CGContextShowTextAtPoint(self, x, y, string, length) }
     }
 
     /// # Safety

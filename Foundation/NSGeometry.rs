@@ -332,7 +332,8 @@ pub fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped: bool) -> bool {
     extern "C-unwind" {
         fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped: Bool) -> Bool;
     }
-    unsafe { NSMouseInRect(a_point, a_rect, Bool::new(flipped)) }.as_bool()
+    let flipped = Bool::new(flipped);
+    unsafe { NSMouseInRect(a_point, a_rect, flipped) }.as_bool()
 }
 
 #[cfg(feature = "objc2-core-foundation")]

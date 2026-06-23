@@ -214,7 +214,8 @@ pub fn NSAccessibilitySetMayContainProtectedContent(flag: bool) -> bool {
     extern "C-unwind" {
         fn NSAccessibilitySetMayContainProtectedContent(flag: Bool) -> Bool;
     }
-    unsafe { NSAccessibilitySetMayContainProtectedContent(Bool::new(flag)) }.as_bool()
+    let flag = Bool::new(flag);
+    unsafe { NSAccessibilitySetMayContainProtectedContent(flag) }.as_bool()
 }
 
 #[cfg(feature = "NSAccessibilityConstants")]

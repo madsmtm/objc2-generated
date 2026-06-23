@@ -616,9 +616,9 @@ impl SCNetworkInterface {
                 filter: Boolean,
             ) -> Boolean;
         }
-        let ret = unsafe {
-            SCNetworkInterfaceCopyMediaOptions(self, current, active, available, filter as _)
-        };
+        let filter = filter as _;
+        let ret =
+            unsafe { SCNetworkInterfaceCopyMediaOptions(self, current, active, available, filter) };
         ret != 0
     }
 
@@ -1367,7 +1367,8 @@ impl SCNetworkProtocol {
                 enabled: Boolean,
             ) -> Boolean;
         }
-        let ret = unsafe { SCNetworkProtocolSetEnabled(self, enabled as _) };
+        let enabled = enabled as _;
+        let ret = unsafe { SCNetworkProtocolSetEnabled(self, enabled) };
         ret != 0
     }
 }
@@ -1651,7 +1652,8 @@ impl SCNetworkService {
         extern "C-unwind" {
             fn SCNetworkServiceSetEnabled(service: &SCNetworkService, enabled: Boolean) -> Boolean;
         }
-        let ret = unsafe { SCNetworkServiceSetEnabled(self, enabled as _) };
+        let enabled = enabled as _;
+        let ret = unsafe { SCNetworkServiceSetEnabled(self, enabled) };
         ret != 0
     }
 

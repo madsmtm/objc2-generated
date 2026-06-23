@@ -312,7 +312,8 @@ impl<T: Sized> CFSet<T> {
                 call_backs: Option<&CFSetCallBacks>,
             ) -> Option<NonNull<CFSet>>;
         }
-        let ret = unsafe { CFSetCreate(allocator, values.cast(), num_values, call_backs) };
+        let values = values.cast();
+        let ret = unsafe { CFSetCreate(allocator, values, num_values, call_backs) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
@@ -343,7 +344,8 @@ impl<T: Sized> CFSet<T> {
                 the_set: &CFSet,
             ) -> Option<NonNull<CFSet>>;
         }
-        let ret = unsafe { CFSetCreateCopy(allocator, self.as_opaque()) };
+        let the_set = self.as_opaque();
+        let ret = unsafe { CFSetCreateCopy(allocator, the_set) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
@@ -486,7 +488,8 @@ impl<T: Sized> CFSet<T> {
         extern "C-unwind" {
             fn CFSetGetCount(the_set: &CFSet) -> CFIndex;
         }
-        unsafe { CFSetGetCount(self.as_opaque()) }
+        let the_set = self.as_opaque();
+        unsafe { CFSetGetCount(the_set) }
     }
 
     /// Counts the number of times the given value occurs in the set. Since
@@ -515,7 +518,9 @@ impl<T: Sized> CFSet<T> {
         extern "C-unwind" {
             fn CFSetGetCountOfValue(the_set: &CFSet, value: *const c_void) -> CFIndex;
         }
-        unsafe { CFSetGetCountOfValue(self.as_opaque(), value.cast()) }
+        let the_set = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFSetGetCountOfValue(the_set, value) }
     }
 
     /// Reports whether or not the value is in the set.
@@ -542,7 +547,9 @@ impl<T: Sized> CFSet<T> {
         extern "C-unwind" {
             fn CFSetContainsValue(the_set: &CFSet, value: *const c_void) -> Boolean;
         }
-        let ret = unsafe { CFSetContainsValue(self.as_opaque(), value.cast()) };
+        let the_set = self.as_opaque();
+        let value = value.cast();
+        let ret = unsafe { CFSetContainsValue(the_set, value) };
         ret != 0
     }
 
@@ -569,7 +576,9 @@ impl<T: Sized> CFSet<T> {
         extern "C-unwind" {
             fn CFSetGetValue(the_set: &CFSet, value: *const c_void) -> *const c_void;
         }
-        unsafe { CFSetGetValue(self.as_opaque(), value.cast()) }.cast()
+        let the_set = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFSetGetValue(the_set, value) }.cast()
     }
 
     /// Retrieves a value in the set which hashes the same as the specified value,
@@ -614,13 +623,10 @@ impl<T: Sized> CFSet<T> {
                 value: Option<&mut *const c_void>,
             ) -> Boolean;
         }
-        let ret = unsafe {
-            CFSetGetValueIfPresent(
-                self.as_opaque(),
-                candidate.cast(),
-                value.map(|x| core::mem::transmute(x)),
-            )
-        };
+        let the_set = self.as_opaque();
+        let candidate = candidate.cast();
+        let value = value.map(|x| unsafe { core::mem::transmute(x) });
+        let ret = unsafe { CFSetGetValueIfPresent(the_set, candidate, value) };
         ret != 0
     }
 
@@ -645,7 +651,9 @@ impl<T: Sized> CFSet<T> {
         extern "C-unwind" {
             fn CFSetGetValues(the_set: &CFSet, values: *mut *const c_void);
         }
-        unsafe { CFSetGetValues(self.as_opaque(), values.cast()) }
+        let the_set = self.as_opaque();
+        let values = values.cast();
+        unsafe { CFSetGetValues(the_set, values) }
     }
 
     /// Calls a function once for each value in the set.
@@ -681,7 +689,8 @@ impl<T: Sized> CFSet<T> {
                 context: *mut c_void,
             );
         }
-        unsafe { CFSetApplyFunction(self.as_opaque(), applier, context) }
+        let the_set = self.as_opaque();
+        unsafe { CFSetApplyFunction(the_set, applier, context) }
     }
 }
 
@@ -708,7 +717,9 @@ impl<T: Sized> CFMutableSet<T> {
         extern "C-unwind" {
             fn CFSetAddValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        unsafe { CFSetAddValue(self.as_opaque(), value.cast()) }
+        let the_set = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFSetAddValue(the_set, value) }
     }
 
     /// Replaces the value in the set if it is present.
@@ -737,7 +748,9 @@ impl<T: Sized> CFMutableSet<T> {
         extern "C-unwind" {
             fn CFSetReplaceValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        unsafe { CFSetReplaceValue(self.as_opaque(), value.cast()) }
+        let the_set = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFSetReplaceValue(the_set, value) }
     }
 
     /// Replaces the value in the set if it is present, or adds the value to
@@ -767,7 +780,9 @@ impl<T: Sized> CFMutableSet<T> {
         extern "C-unwind" {
             fn CFSetSetValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        unsafe { CFSetSetValue(self.as_opaque(), value.cast()) }
+        let the_set = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFSetSetValue(the_set, value) }
     }
 
     /// Removes the specified value from the set.
@@ -792,7 +807,9 @@ impl<T: Sized> CFMutableSet<T> {
         extern "C-unwind" {
             fn CFSetRemoveValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        unsafe { CFSetRemoveValue(self.as_opaque(), value.cast()) }
+        let the_set = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFSetRemoveValue(the_set, value) }
     }
 
     /// Removes all the values from the set, making it empty.
@@ -806,6 +823,7 @@ impl<T: Sized> CFMutableSet<T> {
         extern "C-unwind" {
             fn CFSetRemoveAllValues(the_set: &CFMutableSet);
         }
-        unsafe { CFSetRemoveAllValues(self.as_opaque()) }
+        let the_set = self.as_opaque();
+        unsafe { CFSetRemoveAllValues(the_set) }
     }
 }

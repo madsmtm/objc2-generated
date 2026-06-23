@@ -114,9 +114,8 @@ pub fn SCNetworkCheckReachabilityByName(
             flags: &mut SCNetworkConnectionFlags,
         ) -> Boolean;
     }
-    let ret = unsafe {
-        SCNetworkCheckReachabilityByName(NonNull::new(nodename.as_ptr().cast_mut()).unwrap(), flags)
-    };
+    let nodename = NonNull::new(nodename.as_ptr().cast_mut()).unwrap();
+    let ret = unsafe { SCNetworkCheckReachabilityByName(nodename, flags) };
     ret != 0
 }
 

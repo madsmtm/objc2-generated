@@ -551,7 +551,8 @@ impl SCNetworkConnection {
                 linger: Boolean,
             ) -> Boolean;
         }
-        let ret = unsafe { SCNetworkConnectionStart(self, user_options, linger as _) };
+        let linger = linger as _;
+        let ret = unsafe { SCNetworkConnectionStart(self, user_options, linger) };
         ret != 0
     }
 
@@ -582,7 +583,8 @@ impl SCNetworkConnection {
                 force_disconnect: Boolean,
             ) -> Boolean;
         }
-        let ret = unsafe { SCNetworkConnectionStop(self, force_disconnect as _) };
+        let force_disconnect = force_disconnect as _;
+        let ret = unsafe { SCNetworkConnectionStop(self, force_disconnect) };
         ret != 0
     }
 

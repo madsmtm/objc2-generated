@@ -263,7 +263,8 @@ impl<T: Sized> CFArray<T> {
                 call_backs: Option<&CFArrayCallBacks>,
             ) -> Option<NonNull<CFArray>>;
         }
-        let ret = unsafe { CFArrayCreate(allocator, values.cast(), num_values, call_backs) };
+        let values = values.cast();
+        let ret = unsafe { CFArrayCreate(allocator, values, num_values, call_backs) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
@@ -298,7 +299,8 @@ impl<T: Sized> CFArray<T> {
                 the_array: &CFArray,
             ) -> Option<NonNull<CFArray>>;
         }
-        let ret = unsafe { CFArrayCreateCopy(allocator, self.as_opaque()) };
+        let the_array = self.as_opaque();
+        let ret = unsafe { CFArrayCreateCopy(allocator, the_array) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
@@ -438,7 +440,8 @@ impl<T: Sized> CFArray<T> {
         extern "C-unwind" {
             fn CFArrayGetCount(the_array: &CFArray) -> CFIndex;
         }
-        unsafe { CFArrayGetCount(self.as_opaque()) }
+        let the_array = self.as_opaque();
+        unsafe { CFArrayGetCount(the_array) }
     }
 
     /// Counts the number of times the given value occurs in the array.
@@ -477,7 +480,9 @@ impl<T: Sized> CFArray<T> {
                 value: *const c_void,
             ) -> CFIndex;
         }
-        unsafe { CFArrayGetCountOfValue(self.as_opaque(), range, value.cast()) }
+        let the_array = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFArrayGetCountOfValue(the_array, range, value) }
     }
 
     /// Reports whether or not the value is in the array.
@@ -516,7 +521,9 @@ impl<T: Sized> CFArray<T> {
                 value: *const c_void,
             ) -> Boolean;
         }
-        let ret = unsafe { CFArrayContainsValue(self.as_opaque(), range, value.cast()) };
+        let the_array = self.as_opaque();
+        let value = value.cast();
+        let ret = unsafe { CFArrayContainsValue(the_array, range, value) };
         ret != 0
     }
 
@@ -541,7 +548,8 @@ impl<T: Sized> CFArray<T> {
         extern "C-unwind" {
             fn CFArrayGetValueAtIndex(the_array: &CFArray, idx: CFIndex) -> *const c_void;
         }
-        unsafe { CFArrayGetValueAtIndex(self.as_opaque(), idx) }.cast()
+        let the_array = self.as_opaque();
+        unsafe { CFArrayGetValueAtIndex(the_array, idx) }.cast()
     }
 
     /// Fills the buffer with values from the array.
@@ -573,7 +581,9 @@ impl<T: Sized> CFArray<T> {
         extern "C-unwind" {
             fn CFArrayGetValues(the_array: &CFArray, range: CFRange, values: *mut *const c_void);
         }
-        unsafe { CFArrayGetValues(self.as_opaque(), range, values.cast()) }
+        let the_array = self.as_opaque();
+        let values = values.cast();
+        unsafe { CFArrayGetValues(the_array, range, values) }
     }
 
     /// Calls a function once for each value in the array.
@@ -623,7 +633,8 @@ impl<T: Sized> CFArray<T> {
                 context: *mut c_void,
             );
         }
-        unsafe { CFArrayApplyFunction(self.as_opaque(), range, applier, context) }
+        let the_array = self.as_opaque();
+        unsafe { CFArrayApplyFunction(the_array, range, applier, context) }
     }
 
     /// Searches the array for the value.
@@ -664,7 +675,9 @@ impl<T: Sized> CFArray<T> {
                 value: *const c_void,
             ) -> CFIndex;
         }
-        unsafe { CFArrayGetFirstIndexOfValue(self.as_opaque(), range, value.cast()) }
+        let the_array = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFArrayGetFirstIndexOfValue(the_array, range, value) }
     }
 
     /// Searches the array for the value.
@@ -705,7 +718,9 @@ impl<T: Sized> CFArray<T> {
                 value: *const c_void,
             ) -> CFIndex;
         }
-        unsafe { CFArrayGetLastIndexOfValue(self.as_opaque(), range, value.cast()) }
+        let the_array = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFArrayGetLastIndexOfValue(the_array, range, value) }
     }
 
     /// Searches the array for the value using a binary search algorithm.
@@ -772,7 +787,9 @@ impl<T: Sized> CFArray<T> {
                 context: *mut c_void,
             ) -> CFIndex;
         }
-        unsafe { CFArrayBSearchValues(self.as_opaque(), range, value.cast(), comparator, context) }
+        let the_array = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFArrayBSearchValues(the_array, range, value, comparator, context) }
     }
 }
 
@@ -800,7 +817,9 @@ impl<T: Sized> CFMutableArray<T> {
         extern "C-unwind" {
             fn CFArrayAppendValue(the_array: &CFMutableArray, value: *const c_void);
         }
-        unsafe { CFArrayAppendValue(self.as_opaque(), value.cast()) }
+        let the_array = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFArrayAppendValue(the_array, value) }
     }
 
     /// Adds the value to the array, giving it the given index.
@@ -836,7 +855,9 @@ impl<T: Sized> CFMutableArray<T> {
                 value: *const c_void,
             );
         }
-        unsafe { CFArrayInsertValueAtIndex(self.as_opaque(), idx, value.cast()) }
+        let the_array = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFArrayInsertValueAtIndex(the_array, idx, value) }
     }
 
     /// Changes the value with the given index in the array.
@@ -872,7 +893,9 @@ impl<T: Sized> CFMutableArray<T> {
                 value: *const c_void,
             );
         }
-        unsafe { CFArraySetValueAtIndex(self.as_opaque(), idx, value.cast()) }
+        let the_array = self.as_opaque();
+        let value = value.cast();
+        unsafe { CFArraySetValueAtIndex(the_array, idx, value) }
     }
 
     /// Removes the value with the given index from the array.
@@ -895,7 +918,8 @@ impl<T: Sized> CFMutableArray<T> {
         extern "C-unwind" {
             fn CFArrayRemoveValueAtIndex(the_array: &CFMutableArray, idx: CFIndex);
         }
-        unsafe { CFArrayRemoveValueAtIndex(self.as_opaque(), idx) }
+        let the_array = self.as_opaque();
+        unsafe { CFArrayRemoveValueAtIndex(the_array, idx) }
     }
 
     /// Removes all the values from the array, making it empty.
@@ -909,7 +933,8 @@ impl<T: Sized> CFMutableArray<T> {
         extern "C-unwind" {
             fn CFArrayRemoveAllValues(the_array: &CFMutableArray);
         }
-        unsafe { CFArrayRemoveAllValues(self.as_opaque()) }
+        let the_array = self.as_opaque();
+        unsafe { CFArrayRemoveAllValues(the_array) }
     }
 
     /// Replaces a range of values in the array.
@@ -965,7 +990,8 @@ impl<T: Sized> CFMutableArray<T> {
                 new_count: CFIndex,
             );
         }
-        unsafe { CFArrayReplaceValues(self.as_opaque(), range, new_values, new_count) }
+        let the_array = self.as_opaque();
+        unsafe { CFArrayReplaceValues(the_array, range, new_values, new_count) }
     }
 
     /// Exchanges the values at two indices of the array.
@@ -997,7 +1023,8 @@ impl<T: Sized> CFMutableArray<T> {
                 idx2: CFIndex,
             );
         }
-        unsafe { CFArrayExchangeValuesAtIndices(self.as_opaque(), idx1, idx2) }
+        let the_array = self.as_opaque();
+        unsafe { CFArrayExchangeValuesAtIndices(the_array, idx1, idx2) }
     }
 
     /// Sorts the values in the array using the given comparison function.
@@ -1050,7 +1077,8 @@ impl<T: Sized> CFMutableArray<T> {
                 context: *mut c_void,
             );
         }
-        unsafe { CFArraySortValues(self.as_opaque(), range, comparator, context) }
+        let the_array = self.as_opaque();
+        unsafe { CFArraySortValues(the_array, range, comparator, context) }
     }
 
     /// Adds the values from an array to another array.
@@ -1092,6 +1120,7 @@ impl<T: Sized> CFMutableArray<T> {
                 other_range: CFRange,
             );
         }
-        unsafe { CFArrayAppendArray(self.as_opaque(), other_array, other_range) }
+        let the_array = self.as_opaque();
+        unsafe { CFArrayAppendArray(the_array, other_array, other_range) }
     }
 }

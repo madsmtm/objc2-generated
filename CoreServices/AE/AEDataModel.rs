@@ -633,14 +633,16 @@ pub unsafe fn AEInstallCoercionHandler(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
+    let from_type_is_desc = from_type_is_desc as _;
+    let is_sys_handler = is_sys_handler as _;
     unsafe {
         AEInstallCoercionHandler(
             from_type,
             to_type,
             handler,
             handler_refcon,
-            from_type_is_desc as _,
-            is_sys_handler as _,
+            from_type_is_desc,
+            is_sys_handler,
         )
     }
 }
@@ -663,7 +665,8 @@ pub unsafe fn AERemoveCoercionHandler(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
-    unsafe { AERemoveCoercionHandler(from_type, to_type, handler, is_sys_handler as _) }
+    let is_sys_handler = is_sys_handler as _;
+    unsafe { AERemoveCoercionHandler(from_type, to_type, handler, is_sys_handler) }
 }
 
 /// # Safety
@@ -690,6 +693,7 @@ pub unsafe fn AEGetCoercionHandler(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
+    let is_sys_handler = is_sys_handler as _;
     unsafe {
         AEGetCoercionHandler(
             from_type,
@@ -697,7 +701,7 @@ pub unsafe fn AEGetCoercionHandler(
             handler,
             handler_refcon,
             from_type_is_desc,
-            is_sys_handler as _,
+            is_sys_handler,
         )
     }
 }
@@ -904,7 +908,8 @@ pub unsafe fn AECreateList(
             result_list: *mut AEDescList,
         ) -> OSErr;
     }
-    unsafe { AECreateList(factoring_ptr, factored_size, is_record as _, result_list) }
+    let is_record = is_record as _;
+    unsafe { AECreateList(factoring_ptr, factored_size, is_record, result_list) }
 }
 
 /// # Safety

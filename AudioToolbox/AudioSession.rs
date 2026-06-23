@@ -454,7 +454,8 @@ pub unsafe fn AudioSessionSetActive(active: bool) -> OSStatus {
     extern "C-unwind" {
         fn AudioSessionSetActive(active: Boolean) -> OSStatus;
     }
-    unsafe { AudioSessionSetActive(active as _) }
+    let active = active as _;
+    unsafe { AudioSessionSetActive(active) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionsetactiveflag_notifyothersondeactivation?language=objc)
@@ -480,7 +481,8 @@ pub unsafe fn AudioSessionSetActiveWithFlags(active: bool, in_flags: u32) -> OSS
     extern "C-unwind" {
         fn AudioSessionSetActiveWithFlags(active: Boolean, in_flags: u32) -> OSStatus;
     }
-    unsafe { AudioSessionSetActiveWithFlags(active as _, in_flags) }
+    let active = active as _;
+    unsafe { AudioSessionSetActiveWithFlags(active, in_flags) }
 }
 
 /// Get the value of a property.

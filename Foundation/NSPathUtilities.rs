@@ -292,9 +292,8 @@ pub fn NSSearchPathForDirectoriesInDomains(
             expand_tilde: Bool,
         ) -> *mut NSArray<NSString>;
     }
-    let ret = unsafe {
-        NSSearchPathForDirectoriesInDomains(directory, domain_mask, Bool::new(expand_tilde))
-    };
+    let expand_tilde = Bool::new(expand_tilde);
+    let ret = unsafe { NSSearchPathForDirectoriesInDomains(directory, domain_mask, expand_tilde) };
     unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }

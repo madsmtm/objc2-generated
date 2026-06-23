@@ -331,9 +331,8 @@ impl CFMutableAttributedString {
                 clear_other_attributes: Boolean,
             );
         }
-        unsafe {
-            CFAttributedStringSetAttributes(self, range, replacement, clear_other_attributes as _)
-        }
+        let clear_other_attributes = clear_other_attributes as _;
+        unsafe { CFAttributedStringSetAttributes(self, range, replacement, clear_other_attributes) }
     }
 
     /// Sets the value of a single attribute over the specified range, which should be valid. value should not be NULL.

@@ -141,7 +141,8 @@ impl CMSEncoder {
                 detached_content: Boolean,
             ) -> OSStatus;
         }
-        unsafe { CMSEncoderSetHasDetachedContent(self, detached_content as _) }
+        let detached_content = detached_content as _;
+        unsafe { CMSEncoderSetHasDetachedContent(self, detached_content) }
     }
 
     /// # Safety
@@ -426,12 +427,13 @@ pub unsafe fn CMSEncode(
             encoded_content_out: NonNull<*const CFData>,
         ) -> OSStatus;
     }
+    let detached_content = detached_content as _;
     unsafe {
         CMSEncode(
             signers,
             recipients,
             e_content_type,
-            detached_content as _,
+            detached_content,
             signed_attributes,
             content,
             content_len,
@@ -470,12 +472,13 @@ pub unsafe fn CMSEncodeContent(
             encoded_content_out: *mut *const CFData,
         ) -> OSStatus;
     }
+    let detached_content = detached_content as _;
     unsafe {
         CMSEncodeContent(
             signers,
             recipients,
             e_content_type_oid,
-            detached_content as _,
+            detached_content,
             signed_attributes,
             content,
             content_len,

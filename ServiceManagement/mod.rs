@@ -314,7 +314,8 @@ pub unsafe fn SMJobRemove(
             out_error: *mut *mut CFError,
         ) -> Boolean;
     }
-    let ret = unsafe { SMJobRemove(domain, job_label, auth, wait as _, out_error) };
+    let wait = wait as _;
+    let ret = unsafe { SMJobRemove(domain, job_label, auth, wait, out_error) };
     ret != 0
 }
 

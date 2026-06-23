@@ -1512,10 +1512,11 @@ pub unsafe fn OBEXSessionPut(
             in_user_ref_con: *mut c_void,
         ) -> OBEXError;
     }
+    let in_is_final_chunk = in_is_final_chunk as _;
     unsafe {
         OBEXSessionPut(
             in_session_ref,
-            in_is_final_chunk as _,
+            in_is_final_chunk,
             in_headers_data,
             in_headers_data_length,
             in_body_data,
@@ -1576,10 +1577,11 @@ pub unsafe fn OBEXSessionGet(
             in_user_ref_con: *mut c_void,
         ) -> OBEXError;
     }
+    let in_is_final_chunk = in_is_final_chunk as _;
     unsafe {
         OBEXSessionGet(
             in_session_ref,
-            in_is_final_chunk as _,
+            in_is_final_chunk,
             in_headers_data,
             in_headers_data_length,
             in_callback,
@@ -3026,11 +3028,12 @@ pub unsafe fn OBEXAddBodyHeader(
             dict_ref: Option<&CFMutableDictionary>,
         ) -> OBEXError;
     }
+    let is_end_of_body = is_end_of_body as _;
     unsafe {
         OBEXAddBodyHeader(
             in_header_data,
             in_header_data_length,
-            is_end_of_body as _,
+            is_end_of_body,
             dict_ref,
         )
     }

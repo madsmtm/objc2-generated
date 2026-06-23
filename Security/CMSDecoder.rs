@@ -199,12 +199,13 @@ impl CMSDecoder {
                 cert_verify_result_code_out: *mut OSStatus,
             ) -> OSStatus;
         }
+        let evaluate_sec_trust = evaluate_sec_trust as _;
         unsafe {
             CMSDecoderCopySignerStatus(
                 self,
                 signer_index,
                 policy_or_array,
-                evaluate_sec_trust as _,
+                evaluate_sec_trust,
                 signer_status_out,
                 sec_trust_out,
                 cert_verify_result_code_out,

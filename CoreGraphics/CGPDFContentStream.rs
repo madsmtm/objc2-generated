@@ -119,12 +119,8 @@ impl CGPDFContentStream {
                 name: NonNull<c_char>,
             ) -> CGPDFObjectRef;
         }
-        unsafe {
-            CGPDFContentStreamGetResource(
-                cs,
-                NonNull::new(category.as_ptr().cast_mut()).unwrap(),
-                NonNull::new(name.as_ptr().cast_mut()).unwrap(),
-            )
-        }
+        let category = NonNull::new(category.as_ptr().cast_mut()).unwrap();
+        let name = NonNull::new(name.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFContentStreamGetResource(cs, category, name) }
     }
 }

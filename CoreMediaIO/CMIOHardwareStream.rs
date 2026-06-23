@@ -323,7 +323,8 @@ impl CMIOStreamDeck {
                 play_on_cue: Boolean,
             ) -> OSStatus;
         }
-        unsafe { CMIOStreamDeckCueTo(stream_id, frame_number, play_on_cue as _) }
+        let play_on_cue = play_on_cue as _;
+        unsafe { CMIOStreamDeckCueTo(stream_id, frame_number, play_on_cue) }
     }
 }
 
@@ -423,7 +424,8 @@ pub unsafe fn CMIOStreamClockPostTimingEvent(
             clock: Option<&CFType>,
         ) -> OSStatus;
     }
-    unsafe { CMIOStreamClockPostTimingEvent(event_time, host_time, resynchronize as _, clock) }
+    let resynchronize = resynchronize as _;
+    unsafe { CMIOStreamClockPostTimingEvent(event_time, host_time, resynchronize, clock) }
 }
 
 /// Indicates that a clock is no longer valid.

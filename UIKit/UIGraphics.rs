@@ -100,7 +100,8 @@ pub fn UIGraphicsBeginImageContextWithOptions(size: CGSize, opaque: bool, scale:
     extern "C-unwind" {
         fn UIGraphicsBeginImageContextWithOptions(size: CGSize, opaque: Bool, scale: CGFloat);
     }
-    unsafe { UIGraphicsBeginImageContextWithOptions(size, Bool::new(opaque), scale) }
+    let opaque = Bool::new(opaque);
+    unsafe { UIGraphicsBeginImageContextWithOptions(size, opaque, scale) }
 }
 
 #[cfg(feature = "UIImage")]

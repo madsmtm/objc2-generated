@@ -248,7 +248,8 @@ impl SCPreferences {
         extern "C-unwind" {
             fn SCPreferencesLock(prefs: &SCPreferences, wait: Boolean) -> Boolean;
         }
-        let ret = unsafe { SCPreferencesLock(self, wait as _) };
+        let wait = wait as _;
+        let ret = unsafe { SCPreferencesLock(self, wait) };
         ret != 0
     }
 

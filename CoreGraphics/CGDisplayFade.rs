@@ -107,6 +107,7 @@ pub fn CGDisplayFade(
             synchronous: libc::boolean_t,
         ) -> CGError;
     }
+    let synchronous = synchronous as _;
     unsafe {
         CGDisplayFade(
             token,
@@ -116,7 +117,7 @@ pub fn CGDisplayFade(
             red_blend,
             green_blend,
             blue_blend,
-            synchronous as _,
+            synchronous,
         )
     }
 }

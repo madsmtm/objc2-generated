@@ -794,13 +794,14 @@ pub unsafe fn AEInstallObjectAccessor(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
+    let is_sys_handler = is_sys_handler as _;
     unsafe {
         AEInstallObjectAccessor(
             desired_class,
             container_type,
             the_accessor,
             accessor_refcon,
-            is_sys_handler as _,
+            is_sys_handler,
         )
     }
 }
@@ -824,14 +825,8 @@ pub unsafe fn AERemoveObjectAccessor(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
-    unsafe {
-        AERemoveObjectAccessor(
-            desired_class,
-            container_type,
-            the_accessor,
-            is_sys_handler as _,
-        )
-    }
+    let is_sys_handler = is_sys_handler as _;
+    unsafe { AERemoveObjectAccessor(desired_class, container_type, the_accessor, is_sys_handler) }
 }
 
 /// # Safety
@@ -856,13 +851,14 @@ pub unsafe fn AEGetObjectAccessor(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
+    let is_sys_handler = is_sys_handler as _;
     unsafe {
         AEGetObjectAccessor(
             desired_class,
             container_type,
             accessor,
             accessor_refcon,
-            is_sys_handler as _,
+            is_sys_handler,
         )
     }
 }

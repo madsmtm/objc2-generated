@@ -142,7 +142,6 @@ pub fn UIGuidedAccessConfigureAccessibilityFeatures(
             completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
     }
-    unsafe {
-        UIGuidedAccessConfigureAccessibilityFeatures(features, Bool::new(enabled), completion)
-    }
+    let enabled = Bool::new(enabled);
+    unsafe { UIGuidedAccessConfigureAccessibilityFeatures(features, enabled, completion) }
 }

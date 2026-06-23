@@ -245,7 +245,8 @@ impl SecPolicy {
                 hostname: Option<&CFString>,
             ) -> Option<NonNull<SecPolicy>>;
         }
-        let ret = unsafe { SecPolicyCreateSSL(server as _, hostname) };
+        let server = server as _;
+        let ret = unsafe { SecPolicyCreateSSL(server, hostname) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { CFRetained::from_raw(ret) }

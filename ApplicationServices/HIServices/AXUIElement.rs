@@ -1546,7 +1546,8 @@ impl AXUIElement {
                 key_down: Boolean,
             ) -> AXError;
         }
-        unsafe { AXUIElementPostKeyboardEvent(self, key_char, virtual_key, key_down as _) }
+        let key_down = key_down as _;
+        unsafe { AXUIElementPostKeyboardEvent(self, key_char, virtual_key, key_down) }
     }
 }
 

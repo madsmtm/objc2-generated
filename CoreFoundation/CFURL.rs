@@ -108,7 +108,8 @@ impl CFURL {
                 escape_whitespace: Boolean,
             ) -> Option<NonNull<CFData>>;
         }
-        let ret = unsafe { CFURLCreateData(allocator, self, encoding, escape_whitespace as _) };
+        let escape_whitespace = escape_whitespace as _;
+        let ret = unsafe { CFURLCreateData(allocator, self, encoding, escape_whitespace) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -155,6 +156,7 @@ impl CFURL {
                 use_compatibility_mode: Boolean,
             ) -> Option<NonNull<CFURL>>;
         }
+        let use_compatibility_mode = use_compatibility_mode as _;
         let ret = unsafe {
             CFURLCreateAbsoluteURLWithBytes(
                 alloc,
@@ -162,7 +164,7 @@ impl CFURL {
                 length,
                 encoding,
                 base_url,
-                use_compatibility_mode as _,
+                use_compatibility_mode,
             )
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -184,8 +186,9 @@ impl CFURL {
                 is_directory: Boolean,
             ) -> Option<NonNull<CFURL>>;
         }
+        let is_directory = is_directory as _;
         let ret = unsafe {
-            CFURLCreateWithFileSystemPath(allocator, file_path, path_style, is_directory as _)
+            CFURLCreateWithFileSystemPath(allocator, file_path, path_style, is_directory)
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -209,8 +212,9 @@ impl CFURL {
                 is_directory: Boolean,
             ) -> Option<NonNull<CFURL>>;
         }
+        let is_directory = is_directory as _;
         let ret = unsafe {
-            CFURLCreateFromFileSystemRepresentation(allocator, buffer, buf_len, is_directory as _)
+            CFURLCreateFromFileSystemRepresentation(allocator, buffer, buf_len, is_directory)
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -233,12 +237,13 @@ impl CFURL {
                 base_url: Option<&CFURL>,
             ) -> Option<NonNull<CFURL>>;
         }
+        let is_directory = is_directory as _;
         let ret = unsafe {
             CFURLCreateWithFileSystemPathRelativeToBase(
                 allocator,
                 file_path,
                 path_style,
-                is_directory as _,
+                is_directory,
                 base_url,
             )
         };
@@ -266,12 +271,13 @@ impl CFURL {
                 base_url: Option<&CFURL>,
             ) -> Option<NonNull<CFURL>>;
         }
+        let is_directory = is_directory as _;
         let ret = unsafe {
             CFURLCreateFromFileSystemRepresentationRelativeToBase(
                 allocator,
                 buffer,
                 buf_len,
-                is_directory as _,
+                is_directory,
                 base_url,
             )
         };
@@ -297,8 +303,9 @@ impl CFURL {
                 max_buf_len: CFIndex,
             ) -> Boolean;
         }
+        let resolve_against_base = resolve_against_base as _;
         let ret = unsafe {
-            CFURLGetFileSystemRepresentation(self, resolve_against_base as _, buffer, max_buf_len)
+            CFURLGetFileSystemRepresentation(self, resolve_against_base, buffer, max_buf_len)
         };
         ret != 0
     }
@@ -545,13 +552,9 @@ impl CFURL {
                 is_directory: Boolean,
             ) -> Option<NonNull<CFURL>>;
         }
+        let is_directory = is_directory as _;
         let ret = unsafe {
-            CFURLCreateCopyAppendingPathComponent(
-                allocator,
-                self,
-                path_component,
-                is_directory as _,
-            )
+            CFURLCreateCopyAppendingPathComponent(allocator, self, path_component, is_directory)
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

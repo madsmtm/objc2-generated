@@ -1893,7 +1893,8 @@ pub fn UIAccessibilityRequestGuidedAccessSession(
             completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
     }
-    unsafe { UIAccessibilityRequestGuidedAccessSession(Bool::new(enable), completion_handler) }
+    let enable = Bool::new(enable);
+    unsafe { UIAccessibilityRequestGuidedAccessSession(enable, completion_handler) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityhearingdeviceear?language=objc)

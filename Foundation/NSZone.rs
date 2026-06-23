@@ -28,7 +28,8 @@ pub fn NSCreateZone(
             can_free: Bool,
         ) -> Option<NonNull<NSZone>>;
     }
-    let ret = unsafe { NSCreateZone(start_size, granularity, Bool::new(can_free)) };
+    let can_free = Bool::new(can_free);
+    let ret = unsafe { NSCreateZone(start_size, granularity, can_free) };
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 

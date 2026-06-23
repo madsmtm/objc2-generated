@@ -358,7 +358,8 @@ impl SecTrust {
         extern "C-unwind" {
             fn SecTrustSetNetworkFetchAllowed(trust: &SecTrust, allow_fetch: Boolean) -> OSStatus;
         }
-        unsafe { SecTrustSetNetworkFetchAllowed(self, allow_fetch as _) }
+        let allow_fetch = allow_fetch as _;
+        unsafe { SecTrustSetNetworkFetchAllowed(self, allow_fetch) }
     }
 
     /// Returns whether a trust evaluation is permitted to fetch missing
@@ -439,7 +440,8 @@ impl SecTrust {
                 anchor_certificates_only: Boolean,
             ) -> OSStatus;
         }
-        unsafe { SecTrustSetAnchorCertificatesOnly(self, anchor_certificates_only as _) }
+        let anchor_certificates_only = anchor_certificates_only as _;
+        unsafe { SecTrustSetAnchorCertificatesOnly(self, anchor_certificates_only) }
     }
 
     /// Returns an array of custom anchor certificates used by a given

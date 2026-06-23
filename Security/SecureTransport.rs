@@ -308,7 +308,8 @@ pub unsafe fn SSLNewContext(is_server: bool, context_ptr: NonNull<*mut SSLContex
     extern "C-unwind" {
         fn SSLNewContext(is_server: Boolean, context_ptr: NonNull<*mut SSLContext>) -> OSStatus;
     }
-    unsafe { SSLNewContext(is_server as _, context_ptr) }
+    let is_server = is_server as _;
+    unsafe { SSLNewContext(is_server, context_ptr) }
 }
 
 #[deprecated = "No longer supported. Use Network.framework."]
@@ -349,7 +350,8 @@ pub unsafe fn SSLSetSessionOption(
             value: Boolean,
         ) -> OSStatus;
     }
-    unsafe { SSLSetSessionOption(context, option, value as _) }
+    let value = value as _;
+    unsafe { SSLSetSessionOption(context, option, value) }
 }
 
 /// # Safety
@@ -475,7 +477,8 @@ pub unsafe fn SSLSetProtocolVersionEnabled(
             enable: Boolean,
         ) -> OSStatus;
     }
-    unsafe { SSLSetProtocolVersionEnabled(context, protocol, enable as _) }
+    let enable = enable as _;
+    unsafe { SSLSetProtocolVersionEnabled(context, protocol, enable) }
 }
 
 /// # Safety
@@ -838,7 +841,8 @@ pub unsafe fn SSLSetSessionTicketsEnabled(context: &SSLContext, enabled: bool) -
     extern "C-unwind" {
         fn SSLSetSessionTicketsEnabled(context: &SSLContext, enabled: Boolean) -> OSStatus;
     }
-    unsafe { SSLSetSessionTicketsEnabled(context, enabled as _) }
+    let enabled = enabled as _;
+    unsafe { SSLSetSessionTicketsEnabled(context, enabled) }
 }
 
 #[deprecated = "No longer supported. Use Network.framework."]
@@ -847,7 +851,8 @@ pub unsafe fn SSLSetEnableCertVerify(context: &SSLContext, enable_verify: bool) 
     extern "C-unwind" {
         fn SSLSetEnableCertVerify(context: &SSLContext, enable_verify: Boolean) -> OSStatus;
     }
-    unsafe { SSLSetEnableCertVerify(context, enable_verify as _) }
+    let enable_verify = enable_verify as _;
+    unsafe { SSLSetEnableCertVerify(context, enable_verify) }
 }
 
 /// # Safety
@@ -874,7 +879,8 @@ pub unsafe fn SSLSetAllowsExpiredCerts(context: &SSLContext, allows_expired: boo
     extern "C-unwind" {
         fn SSLSetAllowsExpiredCerts(context: &SSLContext, allows_expired: Boolean) -> OSStatus;
     }
-    unsafe { SSLSetAllowsExpiredCerts(context, allows_expired as _) }
+    let allows_expired = allows_expired as _;
+    unsafe { SSLSetAllowsExpiredCerts(context, allows_expired) }
 }
 
 /// # Safety
@@ -901,7 +907,8 @@ pub unsafe fn SSLSetAllowsExpiredRoots(context: &SSLContext, allows_expired: boo
     extern "C-unwind" {
         fn SSLSetAllowsExpiredRoots(context: &SSLContext, allows_expired: Boolean) -> OSStatus;
     }
-    unsafe { SSLSetAllowsExpiredRoots(context, allows_expired as _) }
+    let allows_expired = allows_expired as _;
+    unsafe { SSLSetAllowsExpiredRoots(context, allows_expired) }
 }
 
 /// # Safety
@@ -928,7 +935,8 @@ pub unsafe fn SSLSetAllowsAnyRoot(context: &SSLContext, any_root: bool) -> OSSta
     extern "C-unwind" {
         fn SSLSetAllowsAnyRoot(context: &SSLContext, any_root: Boolean) -> OSStatus;
     }
-    unsafe { SSLSetAllowsAnyRoot(context, any_root as _) }
+    let any_root = any_root as _;
+    unsafe { SSLSetAllowsAnyRoot(context, any_root) }
 }
 
 /// # Safety
@@ -960,7 +968,8 @@ pub unsafe fn SSLSetTrustedRoots(
             replace_existing: Boolean,
         ) -> OSStatus;
     }
-    unsafe { SSLSetTrustedRoots(context, trusted_roots, replace_existing as _) }
+    let replace_existing = replace_existing as _;
+    unsafe { SSLSetTrustedRoots(context, trusted_roots, replace_existing) }
 }
 
 /// # Safety
@@ -1196,7 +1205,8 @@ pub unsafe fn SSLSetCertificateAuthorities(
             replace_existing: Boolean,
         ) -> OSStatus;
     }
-    unsafe { SSLSetCertificateAuthorities(context, certificate_or_array, replace_existing as _) }
+    let replace_existing = replace_existing as _;
+    unsafe { SSLSetCertificateAuthorities(context, certificate_or_array, replace_existing) }
 }
 
 /// # Safety
@@ -1300,7 +1310,8 @@ pub unsafe fn SSLSetRsaBlinding(context: &SSLContext, blinding: bool) -> OSStatu
     extern "C-unwind" {
         fn SSLSetRsaBlinding(context: &SSLContext, blinding: Boolean) -> OSStatus;
     }
-    unsafe { SSLSetRsaBlinding(context, blinding as _) }
+    let blinding = blinding as _;
+    unsafe { SSLSetRsaBlinding(context, blinding) }
 }
 
 /// # Safety

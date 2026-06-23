@@ -158,7 +158,8 @@ pub unsafe fn ExtAudioFileWrapAudioFileID(
             out_ext_audio_file: &mut ExtAudioFileRef,
         ) -> OSStatus;
     }
-    unsafe { ExtAudioFileWrapAudioFileID(in_file_id, in_for_writing as _, out_ext_audio_file) }
+    let in_for_writing = in_for_writing as _;
+    unsafe { ExtAudioFileWrapAudioFileID(in_file_id, in_for_writing, out_ext_audio_file) }
 }
 
 /// Create a new audio file.

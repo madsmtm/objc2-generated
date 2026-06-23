@@ -82,12 +82,7 @@ impl CGPDFOperatorTable {
                 callback: CGPDFOperatorCallback,
             );
         }
-        unsafe {
-            CGPDFOperatorTableSetCallback(
-                table,
-                NonNull::new(name.as_ptr().cast_mut()).unwrap(),
-                callback,
-            )
-        }
+        let name = NonNull::new(name.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFOperatorTableSetCallback(table, name, callback) }
     }
 }

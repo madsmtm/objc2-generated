@@ -2769,7 +2769,8 @@ pub unsafe fn MIDIObjectGetProperties(
             deep: Boolean,
         ) -> OSStatus;
     }
-    unsafe { MIDIObjectGetProperties(obj, out_properties, deep as _) }
+    let deep = deep as _;
+    unsafe { MIDIObjectGetProperties(obj, out_properties, deep) }
 }
 
 /// Removes an object's property.

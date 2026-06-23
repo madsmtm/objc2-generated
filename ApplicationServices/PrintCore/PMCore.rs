@@ -693,7 +693,8 @@ pub unsafe fn PMSetOrientation(
             lock: Boolean,
         ) -> OSStatus;
     }
-    unsafe { PMSetOrientation(page_format, orientation, lock as _) }
+    let lock = lock as _;
+    unsafe { PMSetOrientation(page_format, orientation, lock) }
 }
 
 /// # Safety
@@ -984,7 +985,8 @@ pub unsafe fn PMSetCollate(print_settings: PMPrintSettings, collate: bool) -> OS
     extern "C-unwind" {
         fn PMSetCollate(print_settings: PMPrintSettings, collate: Boolean) -> OSStatus;
     }
-    unsafe { PMSetCollate(print_settings, collate as _) }
+    let collate = collate as _;
+    unsafe { PMSetCollate(print_settings, collate) }
 }
 
 /// # Safety
@@ -996,7 +998,8 @@ pub unsafe fn PMSetCopies(print_settings: PMPrintSettings, copies: u32, lock: bo
     extern "C-unwind" {
         fn PMSetCopies(print_settings: PMPrintSettings, copies: u32, lock: Boolean) -> OSStatus;
     }
-    unsafe { PMSetCopies(print_settings, copies, lock as _) }
+    let lock = lock as _;
+    unsafe { PMSetCopies(print_settings, copies, lock) }
 }
 
 /// # Safety
@@ -1023,7 +1026,8 @@ pub unsafe fn PMSetFirstPage(print_settings: PMPrintSettings, first: u32, lock: 
     extern "C-unwind" {
         fn PMSetFirstPage(print_settings: PMPrintSettings, first: u32, lock: Boolean) -> OSStatus;
     }
-    unsafe { PMSetFirstPage(print_settings, first, lock as _) }
+    let lock = lock as _;
+    unsafe { PMSetFirstPage(print_settings, first, lock) }
 }
 
 /// # Safety
@@ -1035,7 +1039,8 @@ pub unsafe fn PMSetLastPage(print_settings: PMPrintSettings, last: u32, lock: bo
     extern "C-unwind" {
         fn PMSetLastPage(print_settings: PMPrintSettings, last: u32, lock: Boolean) -> OSStatus;
     }
-    unsafe { PMSetLastPage(print_settings, last, lock as _) }
+    let lock = lock as _;
+    unsafe { PMSetLastPage(print_settings, last, lock) }
 }
 
 /// # Safety
@@ -1093,7 +1098,8 @@ pub unsafe fn PMPrintSettingsSetValue(
             locked: Boolean,
         ) -> OSStatus;
     }
-    unsafe { PMPrintSettingsSetValue(print_settings, key, value, locked as _) }
+    let locked = locked as _;
+    unsafe { PMPrintSettingsSetValue(print_settings, key, value, locked) }
 }
 
 /// # Safety

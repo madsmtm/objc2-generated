@@ -209,14 +209,9 @@ impl CFNotificationCenter {
                 deliver_immediately: Boolean,
             );
         }
+        let deliver_immediately = deliver_immediately as _;
         unsafe {
-            CFNotificationCenterPostNotification(
-                self,
-                name,
-                object,
-                user_info,
-                deliver_immediately as _,
-            )
+            CFNotificationCenterPostNotification(self, name, object, user_info, deliver_immediately)
         }
     }
 }

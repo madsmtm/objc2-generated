@@ -466,7 +466,8 @@ pub unsafe fn ShowHideProcess(psn: *const ProcessSerialNumber, visible: bool) ->
     extern "C-unwind" {
         fn ShowHideProcess(psn: *const ProcessSerialNumber, visible: Boolean) -> OSErr;
     }
-    unsafe { ShowHideProcess(psn, visible as _) }
+    let visible = visible as _;
+    unsafe { ShowHideProcess(psn, visible) }
 }
 
 /// # Safety

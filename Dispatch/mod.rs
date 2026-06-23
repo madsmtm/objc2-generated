@@ -1081,15 +1081,10 @@ impl DispatchQueue {
                 target: Option<&DispatchQueue>,
             ) -> Option<NonNull<DispatchQueue>>;
         }
-        let ret = unsafe {
-            dispatch_queue_create_with_target(
-                label
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
-                attr,
-                target,
-            )
-        };
+        let label = label
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let ret = unsafe { dispatch_queue_create_with_target(label, attr, target) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { DispatchRetained::from_raw(ret) }
@@ -1148,14 +1143,10 @@ impl DispatchQueue {
                 attr: Option<&DispatchQueueAttr>,
             ) -> Option<NonNull<DispatchQueue>>;
         }
-        let ret = unsafe {
-            dispatch_queue_create(
-                label
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
-                attr,
-            )
-        };
+        let label = label
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let ret = unsafe { dispatch_queue_create(label, attr) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { DispatchRetained::from_raw(ret) }
@@ -3994,15 +3985,9 @@ impl DispatchIO {
                 cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
             ) -> Option<NonNull<DispatchIO>>;
         }
+        let path = NonNull::new(path.as_ptr().cast_mut()).unwrap();
         let ret = unsafe {
-            dispatch_io_create_with_path(
-                r#type,
-                NonNull::new(path.as_ptr().cast_mut()).unwrap(),
-                oflag,
-                mode,
-                queue,
-                cleanup_handler,
-            )
+            dispatch_io_create_with_path(r#type, path, oflag, mode, queue, cleanup_handler)
         };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -4458,13 +4443,10 @@ impl DispatchWorkloop {
         extern "C" {
             fn dispatch_workloop_create(label: *const c_char) -> Option<NonNull<DispatchWorkloop>>;
         }
-        let ret = unsafe {
-            dispatch_workloop_create(
-                label
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
-            )
-        };
+        let label = label
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let ret = unsafe { dispatch_workloop_create(label) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { DispatchRetained::from_raw(ret) }
@@ -4494,13 +4476,10 @@ impl DispatchWorkloop {
                 label: *const c_char,
             ) -> Option<NonNull<DispatchWorkloop>>;
         }
-        let ret = unsafe {
-            dispatch_workloop_create_inactive(
-                label
-                    .map(|ptr| ptr.as_ptr())
-                    .unwrap_or_else(core::ptr::null),
-            )
-        };
+        let label = label
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let ret = unsafe { dispatch_workloop_create_inactive(label) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { DispatchRetained::from_raw(ret) }

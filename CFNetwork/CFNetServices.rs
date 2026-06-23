@@ -718,8 +718,8 @@ impl CFNetServiceBrowser {
                 error: *mut CFStreamError,
             ) -> Boolean;
         }
-        let ret =
-            unsafe { CFNetServiceBrowserSearchForDomains(self, registration_domains as _, error) };
+        let registration_domains = registration_domains as _;
+        let ret = unsafe { CFNetServiceBrowserSearchForDomains(self, registration_domains, error) };
         ret != 0
     }
 

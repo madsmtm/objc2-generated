@@ -940,7 +940,8 @@ pub unsafe fn SetCustomIconsEnabled(v_ref_num: i16, enable_custom_icons: bool) -
     extern "C-unwind" {
         fn SetCustomIconsEnabled(v_ref_num: i16, enable_custom_icons: Boolean) -> OSErr;
     }
-    unsafe { SetCustomIconsEnabled(v_ref_num, enable_custom_icons as _) }
+    let enable_custom_icons = enable_custom_icons as _;
+    unsafe { SetCustomIconsEnabled(v_ref_num, enable_custom_icons) }
 }
 
 /// # Safety

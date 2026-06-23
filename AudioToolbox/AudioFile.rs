@@ -1113,10 +1113,11 @@ pub unsafe fn AudioFileReadBytes(
             out_buffer: NonNull<c_void>,
         ) -> OSStatus;
     }
+    let in_use_cache = in_use_cache as _;
     unsafe {
         AudioFileReadBytes(
             in_audio_file,
-            in_use_cache as _,
+            in_use_cache,
             in_starting_byte,
             io_num_bytes,
             out_buffer,
@@ -1160,10 +1161,11 @@ pub unsafe fn AudioFileWriteBytes(
             in_buffer: NonNull<c_void>,
         ) -> OSStatus;
     }
+    let in_use_cache = in_use_cache as _;
     unsafe {
         AudioFileWriteBytes(
             in_audio_file,
-            in_use_cache as _,
+            in_use_cache,
             in_starting_byte,
             io_num_bytes,
             in_buffer,
@@ -1233,10 +1235,11 @@ pub unsafe fn AudioFileReadPacketData(
             out_buffer: *mut c_void,
         ) -> OSStatus;
     }
+    let in_use_cache = in_use_cache as _;
     unsafe {
         AudioFileReadPacketData(
             in_audio_file,
-            in_use_cache as _,
+            in_use_cache,
             io_num_bytes,
             out_packet_descriptions,
             in_starting_packet,
@@ -1305,10 +1308,11 @@ pub unsafe fn AudioFileReadPackets(
             out_buffer: *mut c_void,
         ) -> OSStatus;
     }
+    let in_use_cache = in_use_cache as _;
     unsafe {
         AudioFileReadPackets(
             in_audio_file,
-            in_use_cache as _,
+            in_use_cache,
             out_num_bytes,
             out_packet_descriptions,
             in_starting_packet,
@@ -1368,10 +1372,11 @@ pub unsafe fn AudioFileWritePackets(
             in_buffer: NonNull<c_void>,
         ) -> OSStatus;
     }
+    let in_use_cache = in_use_cache as _;
     unsafe {
         AudioFileWritePackets(
             in_audio_file,
-            in_use_cache as _,
+            in_use_cache,
             in_num_bytes,
             in_packet_descriptions,
             in_starting_packet,
@@ -1439,10 +1444,11 @@ pub unsafe fn AudioFileWritePacketsWithDependencies(
             in_buffer: NonNull<c_void>,
         ) -> OSStatus;
     }
+    let in_use_cache = in_use_cache as _;
     unsafe {
         AudioFileWritePacketsWithDependencies(
             in_audio_file,
-            in_use_cache as _,
+            in_use_cache,
             in_num_bytes,
             in_packet_descriptions,
             in_packet_dependencies,

@@ -39,12 +39,13 @@ pub unsafe fn CreateCompDescriptor(
             the_descriptor: *mut AEDesc,
         ) -> OSErr;
     }
+    let dispose_inputs = dispose_inputs as _;
     unsafe {
         CreateCompDescriptor(
             comparison_operator,
             operand1,
             operand2,
-            dispose_inputs as _,
+            dispose_inputs,
             the_descriptor,
         )
     }
@@ -70,11 +71,12 @@ pub unsafe fn CreateLogicalDescriptor(
             the_descriptor: *mut AEDesc,
         ) -> OSErr;
     }
+    let dispose_inputs = dispose_inputs as _;
     unsafe {
         CreateLogicalDescriptor(
             the_logical_terms,
             the_logic_operator,
-            dispose_inputs as _,
+            dispose_inputs,
             the_descriptor,
         )
     }
@@ -105,13 +107,14 @@ pub unsafe fn CreateObjSpecifier(
             obj_specifier: *mut AEDesc,
         ) -> OSErr;
     }
+    let dispose_inputs = dispose_inputs as _;
     unsafe {
         CreateObjSpecifier(
             desired_class,
             the_container,
             key_form,
             key_data,
-            dispose_inputs as _,
+            dispose_inputs,
             obj_specifier,
         )
     }
@@ -138,5 +141,6 @@ pub unsafe fn CreateRangeDescriptor(
             the_descriptor: *mut AEDesc,
         ) -> OSErr;
     }
-    unsafe { CreateRangeDescriptor(range_start, range_stop, dispose_inputs as _, the_descriptor) }
+    let dispose_inputs = dispose_inputs as _;
+    unsafe { CreateRangeDescriptor(range_start, range_stop, dispose_inputs, the_descriptor) }
 }

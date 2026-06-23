@@ -138,12 +138,8 @@ impl CGPDFDocument {
                 password: NonNull<c_char>,
             ) -> bool;
         }
-        unsafe {
-            CGPDFDocumentUnlockWithPassword(
-                self,
-                NonNull::new(password.as_ptr().cast_mut()).unwrap(),
-            )
-        }
+        let password = NonNull::new(password.as_ptr().cast_mut()).unwrap();
+        unsafe { CGPDFDocumentUnlockWithPassword(self, password) }
     }
 
     #[doc(alias = "CGPDFDocumentIsUnlocked")]

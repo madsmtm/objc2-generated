@@ -1350,7 +1350,8 @@ pub fn IOHIDSetEventsEnable(connect: io_connect_t, enable: bool) -> libc::kern_r
             enable: libc::boolean_t,
         ) -> libc::kern_return_t;
     }
-    unsafe { IOHIDSetEventsEnable(connect, enable as _) }
+    let enable = enable as _;
+    unsafe { IOHIDSetEventsEnable(connect, enable) }
 }
 
 #[cfg(feature = "libc")]
@@ -1363,7 +1364,8 @@ pub fn IOHIDSetCursorEnable(connect: io_connect_t, enable: bool) -> libc::kern_r
             enable: libc::boolean_t,
         ) -> libc::kern_return_t;
     }
-    unsafe { IOHIDSetCursorEnable(connect, enable as _) }
+    let enable = enable as _;
+    unsafe { IOHIDSetCursorEnable(connect, enable) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidsetglobaleventflags?language=objc)

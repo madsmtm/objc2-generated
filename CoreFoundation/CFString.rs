@@ -111,13 +111,8 @@ impl CFString {
                 encoding: CFStringEncoding,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe {
-            CFStringCreateWithCString(
-                alloc,
-                NonNull::new(c_str.as_ptr().cast_mut()).unwrap(),
-                encoding,
-            )
-        };
+        let c_str = NonNull::new(c_str.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { CFStringCreateWithCString(alloc, c_str, encoding) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -143,13 +138,14 @@ impl CFString {
                 is_external_representation: Boolean,
             ) -> Option<NonNull<CFString>>;
         }
+        let is_external_representation = is_external_representation as _;
         let ret = unsafe {
             CFStringCreateWithBytes(
                 alloc,
                 bytes,
                 num_bytes,
                 encoding,
-                is_external_representation as _,
+                is_external_representation,
             )
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -221,13 +217,9 @@ impl CFString {
                 contents_deallocator: Option<&CFAllocator>,
             ) -> Option<NonNull<CFString>>;
         }
+        let c_str = NonNull::new(c_str.as_ptr().cast_mut()).unwrap();
         let ret = unsafe {
-            CFStringCreateWithCStringNoCopy(
-                alloc,
-                NonNull::new(c_str.as_ptr().cast_mut()).unwrap(),
-                encoding,
-                contents_deallocator,
-            )
+            CFStringCreateWithCStringNoCopy(alloc, c_str, encoding, contents_deallocator)
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -256,13 +248,14 @@ impl CFString {
                 contents_deallocator: Option<&CFAllocator>,
             ) -> Option<NonNull<CFString>>;
         }
+        let is_external_representation = is_external_representation as _;
         let ret = unsafe {
             CFStringCreateWithBytesNoCopy(
                 alloc,
                 bytes,
                 num_bytes,
                 encoding,
-                is_external_representation as _,
+                is_external_representation,
                 contents_deallocator,
             )
         };
@@ -542,13 +535,14 @@ impl CFString {
                 used_buf_len: Option<&mut CFIndex>,
             ) -> CFIndex;
         }
+        let is_external_representation = is_external_representation as _;
         unsafe {
             CFStringGetBytes(
                 self,
                 range,
                 encoding,
                 loss_byte,
-                is_external_representation as _,
+                is_external_representation,
                 buffer,
                 max_buf_len,
                 used_buf_len,
@@ -685,12 +679,8 @@ impl CFString {
                 buffer: NonNull<c_char>,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe {
-            CFStringCreateWithFileSystemRepresentation(
-                alloc,
-                NonNull::new(buffer.as_ptr().cast_mut()).unwrap(),
-            )
-        };
+        let buffer = NonNull::new(buffer.as_ptr().cast_mut()).unwrap();
+        let ret = unsafe { CFStringCreateWithFileSystemRepresentation(alloc, buffer) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }
@@ -1262,13 +1252,8 @@ impl CFMutableString {
                 encoding: CFStringEncoding,
             );
         }
-        unsafe {
-            CFStringAppendCString(
-                self,
-                NonNull::new(c_str.as_ptr().cast_mut()).unwrap(),
-                encoding,
-            )
-        }
+        let c_str = NonNull::new(c_str.as_ptr().cast_mut()).unwrap();
+        unsafe { CFStringAppendCString(self, c_str, encoding) }
     }
 
     #[doc(alias = "CFStringInsert")]
@@ -1534,7 +1519,8 @@ impl CFMutableString {
                 reverse: Boolean,
             ) -> Boolean;
         }
-        let ret = unsafe { CFStringTransform(self, range, transform, reverse as _) };
+        let reverse = reverse as _;
+        let ret = unsafe { CFStringTransform(self, range, transform, reverse) };
         ret != 0
     }
 }

@@ -151,7 +151,8 @@ impl CFHTTPMessage {
                 is_request: Boolean,
             ) -> Option<NonNull<CFHTTPMessage>>;
         }
-        let ret = unsafe { CFHTTPMessageCreateEmpty(alloc, is_request as _) };
+        let is_request = is_request as _;
+        let ret = unsafe { CFHTTPMessageCreateEmpty(alloc, is_request) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { CFRetained::from_raw(ret) }
@@ -335,6 +336,7 @@ impl CFHTTPMessage {
                 for_proxy: Boolean,
             ) -> Boolean;
         }
+        let for_proxy = for_proxy as _;
         let ret = unsafe {
             CFHTTPMessageAddAuthentication(
                 self,
@@ -342,7 +344,7 @@ impl CFHTTPMessage {
                 username,
                 password,
                 authentication_scheme,
-                for_proxy as _,
+                for_proxy,
             )
         };
         ret != 0

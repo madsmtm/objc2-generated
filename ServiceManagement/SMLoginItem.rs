@@ -32,6 +32,7 @@ pub unsafe fn SMLoginItemSetEnabled(identifier: Option<&CFString>, enabled: bool
     extern "C-unwind" {
         fn SMLoginItemSetEnabled(identifier: Option<&CFString>, enabled: Boolean) -> Boolean;
     }
-    let ret = unsafe { SMLoginItemSetEnabled(identifier, enabled as _) };
+    let enabled = enabled as _;
+    let ret = unsafe { SMLoginItemSetEnabled(identifier, enabled) };
     ret != 0
 }

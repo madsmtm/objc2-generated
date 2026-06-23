@@ -296,7 +296,8 @@ pub unsafe fn LSRegisterURL(in_url: &CFURL, in_update: bool) -> OSStatus {
     extern "C-unwind" {
         fn LSRegisterURL(in_url: &CFURL, in_update: Boolean) -> OSStatus;
     }
-    unsafe { LSRegisterURL(in_url, in_update as _) }
+    let in_update = in_update as _;
+    unsafe { LSRegisterURL(in_url, in_update) }
 }
 
 /// Returns the application bundle identifier of the default handler

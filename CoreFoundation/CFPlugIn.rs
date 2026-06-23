@@ -96,7 +96,8 @@ impl CFPlugIn {
         extern "C-unwind" {
             fn CFPlugInSetLoadOnDemand(plug_in: &CFPlugIn, flag: Boolean);
         }
-        unsafe { CFPlugInSetLoadOnDemand(self, flag as _) }
+        let flag = flag as _;
+        unsafe { CFPlugInSetLoadOnDemand(self, flag) }
     }
 
     #[doc(alias = "CFPlugInIsLoadOnDemand")]

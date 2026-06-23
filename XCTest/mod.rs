@@ -276,15 +276,9 @@ pub(crate) fn _XCTPreformattedFailureHandler(
             message: &NSString,
         );
     }
+    let expected = Bool::new(expected);
     unsafe {
-        _XCTPreformattedFailureHandler(
-            test,
-            Bool::new(expected),
-            file_path,
-            line_number,
-            condition,
-            message,
-        )
+        _XCTPreformattedFailureHandler(test, expected, file_path, line_number, condition, message)
     }
 }
 

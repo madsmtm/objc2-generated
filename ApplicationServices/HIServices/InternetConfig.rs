@@ -720,7 +720,8 @@ pub unsafe fn ICGetConfigName(
             name: Option<&mut Str255>,
         ) -> OSStatus;
     }
-    unsafe { ICGetConfigName(inst, longname as _, name) }
+    let longname = longname as _;
+    unsafe { ICGetConfigName(inst, longname, name) }
 }
 
 /// # Safety

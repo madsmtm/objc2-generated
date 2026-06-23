@@ -1209,16 +1209,18 @@ pub fn NSDrawThreePartImage(
             flipped: Bool,
         );
     }
+    let vertical = Bool::new(vertical);
+    let flipped = Bool::new(flipped);
     unsafe {
         NSDrawThreePartImage(
             frame,
             start_cap,
             center_fill,
             end_cap,
-            Bool::new(vertical),
+            vertical,
             op,
             alpha_fraction,
-            Bool::new(flipped),
+            flipped,
         )
     }
 }
@@ -1261,6 +1263,7 @@ pub fn NSDrawNinePartImage(
             flipped: Bool,
         );
     }
+    let flipped = Bool::new(flipped);
     unsafe {
         NSDrawNinePartImage(
             frame,
@@ -1275,7 +1278,7 @@ pub fn NSDrawNinePartImage(
             bottom_right_corner,
             op,
             alpha_fraction,
-            Bool::new(flipped),
+            flipped,
         )
     }
 }

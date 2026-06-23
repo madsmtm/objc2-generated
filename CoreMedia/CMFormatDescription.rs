@@ -1970,11 +1970,13 @@ impl CMVideoFormatDescription {
                 use_clean_aperture: Boolean,
             ) -> CGSize;
         }
+        let use_pixel_aspect_ratio = use_pixel_aspect_ratio as _;
+        let use_clean_aperture = use_clean_aperture as _;
         unsafe {
             CMVideoFormatDescriptionGetPresentationDimensions(
                 self,
-                use_pixel_aspect_ratio as _,
-                use_clean_aperture as _,
+                use_pixel_aspect_ratio,
+                use_clean_aperture,
             )
         }
     }
@@ -1992,7 +1994,8 @@ impl CMVideoFormatDescription {
                 origin_is_at_top_left: Boolean,
             ) -> CGRect;
         }
-        unsafe { CMVideoFormatDescriptionGetCleanAperture(self, origin_is_at_top_left as _) }
+        let origin_is_at_top_left = origin_is_at_top_left as _;
+        unsafe { CMVideoFormatDescriptionGetCleanAperture(self, origin_is_at_top_left) }
     }
 
     /// Returns an array of the keys that are used both as CMVideoFormatDescription extensions
@@ -2500,10 +2503,11 @@ impl CMTextFormatDescription {
                 default_text_box_out: NonNull<CGRect>,
             ) -> OSStatus;
         }
+        let origin_is_at_top_left = origin_is_at_top_left as _;
         unsafe {
             CMTextFormatDescriptionGetDefaultTextBox(
                 desc,
-                origin_is_at_top_left as _,
+                origin_is_at_top_left,
                 height_of_text_track,
                 default_text_box_out,
             )

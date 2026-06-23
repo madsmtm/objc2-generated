@@ -965,7 +965,8 @@ pub unsafe fn AudioQueueDispose(in_aq: AudioQueueRef, in_immediate: bool) -> OSS
     extern "C-unwind" {
         fn AudioQueueDispose(in_aq: AudioQueueRef, in_immediate: Boolean) -> OSStatus;
     }
-    unsafe { AudioQueueDispose(in_aq, in_immediate as _) }
+    let in_immediate = in_immediate as _;
+    unsafe { AudioQueueDispose(in_aq, in_immediate) }
 }
 
 /// Asks an audio queue to allocate a buffer.
@@ -1360,7 +1361,8 @@ pub unsafe fn AudioQueueStop(in_aq: AudioQueueRef, in_immediate: bool) -> OSStat
     extern "C-unwind" {
         fn AudioQueueStop(in_aq: AudioQueueRef, in_immediate: Boolean) -> OSStatus;
     }
-    unsafe { AudioQueueStop(in_aq, in_immediate as _) }
+    let in_immediate = in_immediate as _;
+    unsafe { AudioQueueStop(in_aq, in_immediate) }
 }
 
 /// Pauses audio playback or recording.

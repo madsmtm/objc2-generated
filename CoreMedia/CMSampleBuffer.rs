@@ -302,11 +302,12 @@ impl CMSampleBuffer {
                 sample_buffer_out: NonNull<*mut CMSampleBuffer>,
             ) -> OSStatus;
         }
+        let data_ready = data_ready as _;
         unsafe {
             CMSampleBufferCreate(
                 allocator,
                 data_buffer,
-                data_ready as _,
+                data_ready,
                 make_data_ready_callback,
                 make_data_ready_refcon,
                 format_description,
@@ -366,11 +367,12 @@ impl CMSampleBuffer {
                 make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
             ) -> OSStatus;
         }
+        let data_ready = data_ready as _;
         unsafe {
             CMSampleBufferCreateWithMakeDataReadyHandler(
                 allocator,
                 data_buffer,
-                data_ready as _,
+                data_ready,
                 format_description,
                 num_samples,
                 num_sample_timing_entries,
@@ -608,11 +610,12 @@ pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptions(
             sample_buffer_out: NonNull<*mut CMSampleBuffer>,
         ) -> OSStatus;
     }
+    let data_ready = data_ready as _;
     unsafe {
         CMAudioSampleBufferCreateWithPacketDescriptions(
             allocator,
             data_buffer,
-            data_ready as _,
+            data_ready,
             make_data_ready_callback,
             make_data_ready_refcon,
             format_description,
@@ -665,11 +668,12 @@ pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHan
             make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
         ) -> OSStatus;
     }
+    let data_ready = data_ready as _;
     unsafe {
         CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler(
             allocator,
             data_buffer,
-            data_ready as _,
+            data_ready,
             format_description,
             num_samples,
             presentation_time_stamp,
@@ -791,11 +795,12 @@ impl CMSampleBuffer {
                 sample_buffer_out: NonNull<*mut CMSampleBuffer>,
             ) -> OSStatus;
         }
+        let data_ready = data_ready as _;
         unsafe {
             CMSampleBufferCreateForImageBuffer(
                 allocator,
                 image_buffer,
-                data_ready as _,
+                data_ready,
                 make_data_ready_callback,
                 make_data_ready_refcon,
                 format_description,
@@ -841,11 +846,12 @@ impl CMSampleBuffer {
                 make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
             ) -> OSStatus;
         }
+        let data_ready = data_ready as _;
         unsafe {
             CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
                 allocator,
                 image_buffer,
-                data_ready as _,
+                data_ready,
                 format_description,
                 sample_timing,
                 sample_buffer_out,
@@ -1971,8 +1977,8 @@ impl CMSampleBuffer {
                 create_if_necessary: Boolean,
             ) -> Option<NonNull<CFArray>>;
         }
-        let ret =
-            unsafe { CMSampleBufferGetSampleAttachmentsArray(self, create_if_necessary as _) };
+        let create_if_necessary = create_if_necessary as _;
+        let ret = unsafe { CMSampleBufferGetSampleAttachmentsArray(self, create_if_necessary) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 }

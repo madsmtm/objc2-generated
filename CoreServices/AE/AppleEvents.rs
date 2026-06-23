@@ -156,13 +156,14 @@ pub unsafe fn AEInstallEventHandler(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
+    let is_sys_handler = is_sys_handler as _;
     unsafe {
         AEInstallEventHandler(
             the_ae_event_class,
             the_ae_event_id,
             handler,
             handler_refcon,
-            is_sys_handler as _,
+            is_sys_handler,
         )
     }
 }
@@ -186,14 +187,8 @@ pub unsafe fn AERemoveEventHandler(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
-    unsafe {
-        AERemoveEventHandler(
-            the_ae_event_class,
-            the_ae_event_id,
-            handler,
-            is_sys_handler as _,
-        )
-    }
+    let is_sys_handler = is_sys_handler as _;
+    unsafe { AERemoveEventHandler(the_ae_event_class, the_ae_event_id, handler, is_sys_handler) }
 }
 
 /// # Safety
@@ -218,13 +213,14 @@ pub unsafe fn AEGetEventHandler(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
+    let is_sys_handler = is_sys_handler as _;
     unsafe {
         AEGetEventHandler(
             the_ae_event_class,
             the_ae_event_id,
             handler,
             handler_refcon,
-            is_sys_handler as _,
+            is_sys_handler,
         )
     }
 }
@@ -251,7 +247,8 @@ pub unsafe fn AEInstallSpecialHandler(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
-    unsafe { AEInstallSpecialHandler(function_class, handler, is_sys_handler as _) }
+    let is_sys_handler = is_sys_handler as _;
+    unsafe { AEInstallSpecialHandler(function_class, handler, is_sys_handler) }
 }
 
 /// # Safety
@@ -271,7 +268,8 @@ pub unsafe fn AERemoveSpecialHandler(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
-    unsafe { AERemoveSpecialHandler(function_class, handler, is_sys_handler as _) }
+    let is_sys_handler = is_sys_handler as _;
+    unsafe { AERemoveSpecialHandler(function_class, handler, is_sys_handler) }
 }
 
 /// # Safety
@@ -291,7 +289,8 @@ pub unsafe fn AEGetSpecialHandler(
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
-    unsafe { AEGetSpecialHandler(function_class, handler, is_sys_handler as _) }
+    let is_sys_handler = is_sys_handler as _;
+    unsafe { AEGetSpecialHandler(function_class, handler, is_sys_handler) }
 }
 
 /// ************************************************************************
@@ -536,12 +535,13 @@ pub unsafe fn AEDeterminePermissionToAutomateTarget(
             ask_user_if_needed: Boolean,
         ) -> OSStatus;
     }
+    let ask_user_if_needed = ask_user_if_needed as _;
     unsafe {
         AEDeterminePermissionToAutomateTarget(
             target,
             the_ae_event_class,
             the_ae_event_id,
-            ask_user_if_needed as _,
+            ask_user_if_needed,
         )
     }
 }
