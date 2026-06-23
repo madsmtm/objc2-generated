@@ -108,8 +108,8 @@ impl ODRecordRef {
     /// - `auth_type` might not allow `None`.
     /// - `auth_items` generic must be of the correct type.
     /// - `auth_items` might not allow `None`.
-    /// - `out_auth_items` must be a valid pointer.
-    /// - `out_context` must be a valid pointer.
+    /// - `out_auth_items` might not allow `None`.
+    /// - `out_context` might not allow `None`.
     /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordSetNodeCredentialsExtended")]
     #[cfg(all(
@@ -122,8 +122,8 @@ impl ODRecordRef {
         record_type: Option<&ODRecordType>,
         auth_type: Option<&ODAuthenticationType>,
         auth_items: Option<&CFArray>,
-        out_auth_items: *mut *const CFArray,
-        out_context: *mut *const ODContextRef,
+        out_auth_items: Option<&mut Option<CFRetained<CFArray>>>,
+        out_context: Option<&mut Option<CFRetained<ODContextRef>>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
@@ -132,11 +132,23 @@ impl ODRecordRef {
                 record_type: Option<&ODRecordType>,
                 auth_type: Option<&ODAuthenticationType>,
                 auth_items: Option<&CFArray>,
-                out_auth_items: *mut *const CFArray,
-                out_context: *mut *const ODContextRef,
+                out_auth_items: Option<&mut Option<CFRetained<CFArray>>>,
+                out_context: Option<&mut Option<CFRetained<ODContextRef>>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(out_auth_items) = out_auth_items.as_ref() {
+            assert!(
+                out_auth_items.is_none(),
+                "parameter `out_auth_items` must point to `None` on entry"
+            );
+        };
+        if let Some(out_context) = out_context.as_ref() {
+            assert!(
+                out_context.is_none(),
+                "parameter `out_context` must point to `None` on entry"
+            );
+        };
         if let Some(error) = error.as_ref() {
             assert!(
                 error.is_none(),
@@ -297,8 +309,8 @@ impl ODRecordRef {
     /// - `auth_type` might not allow `None`.
     /// - `auth_items` generic must be of the correct type.
     /// - `auth_items` might not allow `None`.
-    /// - `out_auth_items` must be a valid pointer.
-    /// - `out_context` must be a valid pointer.
+    /// - `out_auth_items` might not allow `None`.
+    /// - `out_context` might not allow `None`.
     /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordVerifyPasswordExtended")]
     #[cfg(all(
@@ -310,8 +322,8 @@ impl ODRecordRef {
         &self,
         auth_type: Option<&ODAuthenticationType>,
         auth_items: Option<&CFArray>,
-        out_auth_items: *mut *const CFArray,
-        out_context: *mut *const ODContextRef,
+        out_auth_items: Option<&mut Option<CFRetained<CFArray>>>,
+        out_context: Option<&mut Option<CFRetained<ODContextRef>>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
@@ -319,11 +331,23 @@ impl ODRecordRef {
                 record: &ODRecordRef,
                 auth_type: Option<&ODAuthenticationType>,
                 auth_items: Option<&CFArray>,
-                out_auth_items: *mut *const CFArray,
-                out_context: *mut *const ODContextRef,
+                out_auth_items: Option<&mut Option<CFRetained<CFArray>>>,
+                out_context: Option<&mut Option<CFRetained<ODContextRef>>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(out_auth_items) = out_auth_items.as_ref() {
+            assert!(
+                out_auth_items.is_none(),
+                "parameter `out_auth_items` must point to `None` on entry"
+            );
+        };
+        if let Some(out_context) = out_context.as_ref() {
+            assert!(
+                out_context.is_none(),
+                "parameter `out_context` must point to `None` on entry"
+            );
+        };
         if let Some(error) = error.as_ref() {
             assert!(
                 error.is_none(),

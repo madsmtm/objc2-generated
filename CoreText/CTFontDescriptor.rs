@@ -924,24 +924,26 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
-    ///
-    /// # Safety
-    ///
-    /// `language` must be a valid pointer or null.
     #[doc(alias = "CTFontDescriptorCopyLocalizedAttribute")]
     #[inline]
-    pub unsafe fn localized_attribute(
+    pub fn localized_attribute(
         &self,
         attribute: &CFString,
-        language: Option<&mut *const CFString>,
+        language: Option<&mut Option<CFRetained<CFString>>>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CTFontDescriptorCopyLocalizedAttribute(
                 descriptor: &CTFontDescriptor,
                 attribute: &CFString,
-                language: Option<&mut *const CFString>,
+                language: Option<&mut Option<CFRetained<CFString>>>,
             ) -> Option<NonNull<CFType>>;
         }
+        if let Some(language) = language.as_ref() {
+            assert!(
+                language.is_none(),
+                "parameter `language` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CTFontDescriptorCopyLocalizedAttribute(self, attribute, language) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

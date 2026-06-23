@@ -795,7 +795,6 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `key_to_unwrap` must be a valid pointer.
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     #[doc(alias = "SecKeyUnwrapSymmetric")]
@@ -803,19 +802,23 @@ impl SecKey {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn unwrap_symmetric(
-        key_to_unwrap: NonNull<*const CFData>,
+        key_to_unwrap: &mut Option<CFRetained<CFData>>,
         unwrapping_key: &SecKey,
         parameters: &CFDictionary,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyUnwrapSymmetric(
-                key_to_unwrap: NonNull<*const CFData>,
+                key_to_unwrap: &mut Option<CFRetained<CFData>>,
                 unwrapping_key: &SecKey,
                 parameters: &CFDictionary,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
+        assert!(
+            key_to_unwrap.is_none(),
+            "parameter `key_to_unwrap` must point to `None` on entry"
+        );
         if let Some(error) = error.as_ref() {
             assert!(
                 error.is_none(),

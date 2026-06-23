@@ -12739,22 +12739,28 @@ pub const kIOCatalogServiceTerminate: c_uint = 3;
 /// # Safety
 ///
 /// - `buffer` must be a valid pointer.
-/// - `error_string` must be a valid pointer.
+/// - `error_string` might not allow `None`.
 #[inline]
 pub unsafe fn IOCFUnserialize(
     buffer: *const c_char,
     allocator: Option<&CFAllocator>,
     options: CFOptionFlags,
-    error_string: *mut *const CFString,
+    error_string: Option<&mut Option<CFRetained<CFString>>>,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn IOCFUnserialize(
             buffer: *const c_char,
             allocator: Option<&CFAllocator>,
             options: CFOptionFlags,
-            error_string: *mut *const CFString,
+            error_string: Option<&mut Option<CFRetained<CFString>>>,
         ) -> Option<NonNull<CFType>>;
     }
+    if let Some(error_string) = error_string.as_ref() {
+        assert!(
+            error_string.is_none(),
+            "parameter `error_string` must point to `None` on entry"
+        );
+    };
     let ret = unsafe { IOCFUnserialize(buffer, allocator, options, error_string) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
@@ -12762,14 +12768,14 @@ pub unsafe fn IOCFUnserialize(
 /// # Safety
 ///
 /// - `buffer` must be a valid pointer.
-/// - `error_string` must be a valid pointer.
+/// - `error_string` might not allow `None`.
 #[inline]
 pub unsafe fn IOCFUnserializeBinary(
     buffer: *const c_char,
     buffer_size: usize,
     allocator: Option<&CFAllocator>,
     options: CFOptionFlags,
-    error_string: *mut *const CFString,
+    error_string: Option<&mut Option<CFRetained<CFString>>>,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn IOCFUnserializeBinary(
@@ -12777,9 +12783,15 @@ pub unsafe fn IOCFUnserializeBinary(
             buffer_size: usize,
             allocator: Option<&CFAllocator>,
             options: CFOptionFlags,
-            error_string: *mut *const CFString,
+            error_string: Option<&mut Option<CFRetained<CFString>>>,
         ) -> Option<NonNull<CFType>>;
     }
+    if let Some(error_string) = error_string.as_ref() {
+        assert!(
+            error_string.is_none(),
+            "parameter `error_string` must point to `None` on entry"
+        );
+    };
     let ret =
         unsafe { IOCFUnserializeBinary(buffer, buffer_size, allocator, options, error_string) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -12788,14 +12800,14 @@ pub unsafe fn IOCFUnserializeBinary(
 /// # Safety
 ///
 /// - `buffer` must be a valid pointer.
-/// - `error_string` must be a valid pointer.
+/// - `error_string` might not allow `None`.
 #[inline]
 pub unsafe fn IOCFUnserializeWithSize(
     buffer: *const c_char,
     buffer_size: usize,
     allocator: Option<&CFAllocator>,
     options: CFOptionFlags,
-    error_string: *mut *const CFString,
+    error_string: Option<&mut Option<CFRetained<CFString>>>,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn IOCFUnserializeWithSize(
@@ -12803,9 +12815,15 @@ pub unsafe fn IOCFUnserializeWithSize(
             buffer_size: usize,
             allocator: Option<&CFAllocator>,
             options: CFOptionFlags,
-            error_string: *mut *const CFString,
+            error_string: Option<&mut Option<CFRetained<CFString>>>,
         ) -> Option<NonNull<CFType>>;
     }
+    if let Some(error_string) = error_string.as_ref() {
+        assert!(
+            error_string.is_none(),
+            "parameter `error_string` must point to `None` on entry"
+        );
+    };
     let ret =
         unsafe { IOCFUnserializeWithSize(buffer, buffer_size, allocator, options, error_string) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

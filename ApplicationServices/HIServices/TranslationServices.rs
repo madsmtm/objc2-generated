@@ -133,21 +133,27 @@ impl Translation {
     /// # Safety
     ///
     /// - `in_source_data` might not allow `None`.
-    /// - `out_destination_data` must be a valid pointer.
+    /// - `out_destination_data` might not allow `None`.
     #[doc(alias = "TranslationPerformForData")]
     #[inline]
     pub unsafe fn perform_for_data(
         &self,
         in_source_data: Option<&CFData>,
-        out_destination_data: *mut *const CFData,
+        out_destination_data: Option<&mut Option<CFRetained<CFData>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn TranslationPerformForData(
                 in_translation: &Translation,
                 in_source_data: Option<&CFData>,
-                out_destination_data: *mut *const CFData,
+                out_destination_data: Option<&mut Option<CFRetained<CFData>>>,
             ) -> OSStatus;
         }
+        if let Some(out_destination_data) = out_destination_data.as_ref() {
+            assert!(
+                out_destination_data.is_none(),
+                "parameter `out_destination_data` must point to `None` on entry"
+            );
+        };
         unsafe { TranslationPerformForData(self, in_source_data, out_destination_data) }
     }
 
@@ -155,23 +161,29 @@ impl Translation {
     ///
     /// - `in_source_url` might not allow `None`.
     /// - `in_destination_url` might not allow `None`.
-    /// - `out_translated_url` must be a valid pointer.
+    /// - `out_translated_url` might not allow `None`.
     #[doc(alias = "TranslationPerformForURL")]
     #[inline]
     pub unsafe fn perform_for_url(
         &self,
         in_source_url: Option<&CFURL>,
         in_destination_url: Option<&CFURL>,
-        out_translated_url: *mut *const CFURL,
+        out_translated_url: Option<&mut Option<CFRetained<CFURL>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn TranslationPerformForURL(
                 in_translation: &Translation,
                 in_source_url: Option<&CFURL>,
                 in_destination_url: Option<&CFURL>,
-                out_translated_url: *mut *const CFURL,
+                out_translated_url: Option<&mut Option<CFRetained<CFURL>>>,
             ) -> OSStatus;
         }
+        if let Some(out_translated_url) = out_translated_url.as_ref() {
+            assert!(
+                out_translated_url.is_none(),
+                "parameter `out_translated_url` must point to `None` on entry"
+            );
+        };
         unsafe {
             TranslationPerformForURL(self, in_source_url, in_destination_url, out_translated_url)
         }

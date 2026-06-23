@@ -240,20 +240,17 @@ impl CFMessagePort {
         unsafe { CFMessagePortSetInvalidationCallBack(self, callout) }
     }
 
-    /// # Safety
-    ///
-    /// `return_data` must be a valid pointer.
     #[doc(alias = "CFMessagePortSendRequest")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
-    pub unsafe fn send_request(
+    pub fn send_request(
         &self,
         msgid: i32,
         data: &CFData,
         send_timeout: CFTimeInterval,
         rcv_timeout: CFTimeInterval,
         reply_mode: Option<&CFString>,
-        return_data: &mut *const CFData,
+        return_data: &mut Option<CFRetained<CFData>>,
     ) -> i32 {
         extern "C-unwind" {
             fn CFMessagePortSendRequest(
@@ -263,9 +260,13 @@ impl CFMessagePort {
                 send_timeout: CFTimeInterval,
                 rcv_timeout: CFTimeInterval,
                 reply_mode: Option<&CFString>,
-                return_data: &mut *const CFData,
+                return_data: &mut Option<CFRetained<CFData>>,
             ) -> i32;
         }
+        assert!(
+            return_data.is_none(),
+            "parameter `return_data` must point to `None` on entry"
+        );
         unsafe {
             CFMessagePortSendRequest(
                 self,

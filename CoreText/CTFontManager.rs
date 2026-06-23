@@ -358,24 +358,26 @@ pub fn CTFontManagerUnregisterGraphicsFont(
 ///
 ///
 /// Returns: Returns true if registration of all font URLs was successful. Otherwise false.
-///
-/// # Safety
-///
-/// `errors` must be a valid pointer or null.
 #[deprecated]
 #[inline]
-pub unsafe fn CTFontManagerRegisterFontsForURLs(
+pub fn CTFontManagerRegisterFontsForURLs(
     font_ur_ls: &CFArray<CFURL>,
     scope: CTFontManagerScope,
-    errors: Option<&mut *const CFArray<CFError>>,
+    errors: Option<&mut Option<CFRetained<CFArray<CFError>>>>,
 ) -> bool {
     extern "C-unwind" {
         fn CTFontManagerRegisterFontsForURLs(
             font_ur_ls: &CFArray<CFURL>,
             scope: CTFontManagerScope,
-            errors: Option<&mut *const CFArray<CFError>>,
+            errors: Option<&mut Option<CFRetained<CFArray<CFError>>>>,
         ) -> bool;
     }
+    if let Some(errors) = errors.as_ref() {
+        assert!(
+            errors.is_none(),
+            "parameter `errors` must point to `None` on entry"
+        );
+    };
     unsafe { CTFontManagerRegisterFontsForURLs(font_ur_ls, scope, errors) }
 }
 
@@ -393,24 +395,26 @@ pub unsafe fn CTFontManagerRegisterFontsForURLs(
 ///
 ///
 /// Returns: Returns true if unregistration of all font URLs was successful. Otherwise false.
-///
-/// # Safety
-///
-/// `errors` must be a valid pointer or null.
 #[deprecated]
 #[inline]
-pub unsafe fn CTFontManagerUnregisterFontsForURLs(
+pub fn CTFontManagerUnregisterFontsForURLs(
     font_ur_ls: &CFArray<CFURL>,
     scope: CTFontManagerScope,
-    errors: Option<&mut *const CFArray<CFError>>,
+    errors: Option<&mut Option<CFRetained<CFArray<CFError>>>>,
 ) -> bool {
     extern "C-unwind" {
         fn CTFontManagerUnregisterFontsForURLs(
             font_ur_ls: &CFArray<CFURL>,
             scope: CTFontManagerScope,
-            errors: Option<&mut *const CFArray<CFError>>,
+            errors: Option<&mut Option<CFRetained<CFArray<CFError>>>>,
         ) -> bool;
     }
+    if let Some(errors) = errors.as_ref() {
+        assert!(
+            errors.is_none(),
+            "parameter `errors` must point to `None` on entry"
+        );
+    };
     unsafe { CTFontManagerUnregisterFontsForURLs(font_ur_ls, scope, errors) }
 }
 

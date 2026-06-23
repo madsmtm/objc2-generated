@@ -1044,24 +1044,26 @@ impl CTFont {
     /// See also: CTFontCopyVariationAxes
     ///
     /// See also: CTFontCopyFeatures
-    ///
-    /// # Safety
-    ///
-    /// `actual_language` must be a valid pointer or null.
     #[doc(alias = "CTFontCopyLocalizedName")]
     #[inline]
-    pub unsafe fn localized_name(
+    pub fn localized_name(
         &self,
         name_key: &CFString,
-        actual_language: Option<&mut *const CFString>,
+        actual_language: Option<&mut Option<CFRetained<CFString>>>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CTFontCopyLocalizedName(
                 font: &CTFont,
                 name_key: &CFString,
-                actual_language: Option<&mut *const CFString>,
+                actual_language: Option<&mut Option<CFRetained<CFString>>>,
             ) -> Option<NonNull<CFString>>;
         }
+        if let Some(actual_language) = actual_language.as_ref() {
+            assert!(
+                actual_language.is_none(),
+                "parameter `actual_language` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CTFontCopyLocalizedName(self, name_key, actual_language) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

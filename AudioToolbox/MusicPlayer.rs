@@ -2774,23 +2774,26 @@ pub unsafe fn MusicSequenceLoadSMFDataWithFlags(
 
 /// # Safety
 ///
-/// - `in_sequence` must be a valid pointer.
-/// - `out_data` must be a valid pointer or null.
+/// `in_sequence` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe fn MusicSequenceSaveSMFData(
     in_sequence: MusicSequence,
-    out_data: &mut *const CFData,
+    out_data: &mut Option<CFRetained<CFData>>,
     in_resolution: u16,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MusicSequenceSaveSMFData(
             in_sequence: MusicSequence,
-            out_data: &mut *const CFData,
+            out_data: &mut Option<CFRetained<CFData>>,
             in_resolution: u16,
         ) -> OSStatus;
     }
+    assert!(
+        out_data.is_none(),
+        "parameter `out_data` must point to `None` on entry"
+    );
     unsafe { MusicSequenceSaveSMFData(in_sequence, out_data, in_resolution) }
 }
 

@@ -145,17 +145,23 @@ pub unsafe fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetupRef>) -> OSStatus 
 /// releasing this CFData object when done with it.
 ///
 /// Returns: An OSStatus result code.
-///
-/// # Safety
-///
-/// `out_data` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe fn MIDISetupToData(setup: MIDISetupRef, out_data: NonNull<*const CFData>) -> OSStatus {
+pub unsafe fn MIDISetupToData(
+    setup: MIDISetupRef,
+    out_data: &mut Option<CFRetained<CFData>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn MIDISetupToData(setup: MIDISetupRef, out_data: NonNull<*const CFData>) -> OSStatus;
+        fn MIDISetupToData(
+            setup: MIDISetupRef,
+            out_data: &mut Option<CFRetained<CFData>>,
+        ) -> OSStatus;
     }
+    assert!(
+        out_data.is_none(),
+        "parameter `out_data` must point to `None` on entry"
+    );
     unsafe { MIDISetupToData(setup, out_data) }
 }
 
@@ -468,23 +474,31 @@ pub unsafe fn MIDISetupRemoveExternalDevice(device: MIDIDeviceRef) -> OSStatus {
 ///
 ///
 /// Returns: An OSStatus result code.
-///
-/// # Safety
-///
-/// `out_driver_name` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe fn MIDIGetSerialPortOwner(
     port_name: &CFString,
-    out_driver_name: NonNull<*const CFString>,
+    out_driver_name: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIGetSerialPortOwner(
             port_name: &CFString,
-            out_driver_name: NonNull<*const CFString>,
+            out_driver_name: &mut Option<CFRetained<CFString>>,
         ) -> OSStatus;
     }
+    struct RetainOutDriverNameOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainOutDriverNameOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        out_driver_name.is_none(),
+        "parameter `out_driver_name` must point to `None` on entry"
+    );
+    let out_driver_name = &mut *RetainOutDriverNameOnDrop(out_driver_name).0;
     unsafe { MIDIGetSerialPortOwner(port_name, out_driver_name) }
 }
 
@@ -530,17 +544,20 @@ pub unsafe fn MIDISetSerialPortOwner(port_name: &CFString, driver_name: &CFStrin
 ///
 ///
 /// Returns: An OSStatus result code.
-///
-/// # Safety
-///
-/// `out_driver_names` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe fn MIDIGetSerialPortDrivers(out_driver_names: NonNull<*const CFArray>) -> OSStatus {
+pub unsafe fn MIDIGetSerialPortDrivers(
+    out_driver_names: &mut Option<CFRetained<CFArray>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn MIDIGetSerialPortDrivers(out_driver_names: NonNull<*const CFArray>) -> OSStatus;
+        fn MIDIGetSerialPortDrivers(out_driver_names: &mut Option<CFRetained<CFArray>>)
+            -> OSStatus;
     }
+    assert!(
+        out_driver_names.is_none(),
+        "parameter `out_driver_names` must point to `None` on entry"
+    );
     unsafe { MIDIGetSerialPortDrivers(out_driver_names) }
 }
 

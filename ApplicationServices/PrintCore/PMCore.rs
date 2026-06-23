@@ -138,20 +138,31 @@ pub unsafe fn PMSessionEndPageNoDialog(print_session: PMPrintSession) -> OSStatu
 
 /// # Safety
 ///
-/// - `print_session` must be a valid pointer.
-/// - `context` must be a valid pointer.
+/// `print_session` must be a valid pointer.
 #[cfg(all(feature = "PMDefinitions", feature = "objc2-core-graphics"))]
 #[inline]
 pub unsafe fn PMSessionGetCGGraphicsContext(
     print_session: PMPrintSession,
-    context: NonNull<*mut CGContext>,
+    context: &mut Option<CFRetained<CGContext>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMSessionGetCGGraphicsContext(
             print_session: PMPrintSession,
-            context: NonNull<*mut CGContext>,
+            context: &mut Option<CFRetained<CGContext>>,
         ) -> OSStatus;
     }
+    struct RetainContextOnDrop<'a>(&'a mut Option<CFRetained<CGContext>>);
+    impl Drop for RetainContextOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        context.is_none(),
+        "parameter `context` must point to `None` on entry"
+    );
+    let context = &mut *RetainContextOnDrop(context).0;
     unsafe { PMSessionGetCGGraphicsContext(print_session, context) }
 }
 
@@ -376,22 +387,33 @@ pub unsafe fn PMSessionSetCurrentPMPrinter(
 
 /// # Safety
 ///
-/// - `print_session` must be a valid pointer.
-/// - `data` must be a valid pointer.
+/// `print_session` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMSessionGetDataFromSession(
     print_session: PMPrintSession,
     key: &CFString,
-    data: NonNull<*const CFType>,
+    data: &mut Option<CFRetained<CFType>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMSessionGetDataFromSession(
             print_session: PMPrintSession,
             key: &CFString,
-            data: NonNull<*const CFType>,
+            data: &mut Option<CFRetained<CFType>>,
         ) -> OSStatus;
     }
+    struct RetainDataOnDrop<'a>(&'a mut Option<CFRetained<CFType>>);
+    impl Drop for RetainDataOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        data.is_none(),
+        "parameter `data` must point to `None` on entry"
+    );
+    let data = &mut *RetainDataOnDrop(data).0;
     unsafe { PMSessionGetDataFromSession(print_session, key, data) }
 }
 
@@ -624,20 +646,31 @@ pub unsafe fn PMGetPageFormatExtendedData(
 
 /// # Safety
 ///
-/// - `page_format` must be a valid pointer.
-/// - `printer_id` must be a valid pointer.
+/// `page_format` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPageFormatGetPrinterID(
     page_format: PMPageFormat,
-    printer_id: NonNull<*const CFString>,
+    printer_id: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPageFormatGetPrinterID(
             page_format: PMPageFormat,
-            printer_id: NonNull<*const CFString>,
+            printer_id: &mut Option<CFRetained<CFString>>,
         ) -> OSStatus;
     }
+    struct RetainPrinterIdOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainPrinterIdOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        printer_id.is_none(),
+        "parameter `printer_id` must point to `None` on entry"
+    );
+    let printer_id = &mut *RetainPrinterIdOnDrop(printer_id).0;
     unsafe { PMPageFormatGetPrinterID(page_format, printer_id) }
 }
 
@@ -959,41 +992,63 @@ pub unsafe fn PMGetPageRange(
 
 /// # Safety
 ///
-/// - `print_settings` must be a valid pointer.
-/// - `name` must be a valid pointer.
+/// `print_settings` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrintSettingsGetJobName(
     print_settings: PMPrintSettings,
-    name: NonNull<*const CFString>,
+    name: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrintSettingsGetJobName(
             print_settings: PMPrintSettings,
-            name: NonNull<*const CFString>,
+            name: &mut Option<CFRetained<CFString>>,
         ) -> OSStatus;
     }
+    struct RetainNameOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainNameOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        name.is_none(),
+        "parameter `name` must point to `None` on entry"
+    );
+    let name = &mut *RetainNameOnDrop(name).0;
     unsafe { PMPrintSettingsGetJobName(print_settings, name) }
 }
 
 /// # Safety
 ///
-/// - `print_settings` must be a valid pointer.
-/// - `value` must be a valid pointer.
+/// `print_settings` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrintSettingsGetValue(
     print_settings: PMPrintSettings,
     key: &CFString,
-    value: NonNull<*const CFType>,
+    value: &mut Option<CFRetained<CFType>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrintSettingsGetValue(
             print_settings: PMPrintSettings,
             key: &CFString,
-            value: NonNull<*const CFType>,
+            value: &mut Option<CFRetained<CFType>>,
         ) -> OSStatus;
     }
+    struct RetainValueOnDrop<'a>(&'a mut Option<CFRetained<CFType>>);
+    impl Drop for RetainValueOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        value.is_none(),
+        "parameter `value` must point to `None` on entry"
+    );
+    let value = &mut *RetainValueOnDrop(value).0;
     unsafe { PMPrintSettingsGetValue(print_settings, key, value) }
 }
 
@@ -1499,20 +1554,31 @@ pub unsafe fn PMPrinterGetLanguageInfo(
 
 /// # Safety
 ///
-/// - `printer` must be a valid pointer.
-/// - `make_and_model` must be a valid pointer.
+/// `printer` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrinterGetMakeAndModelName(
     printer: PMPrinter,
-    make_and_model: NonNull<*const CFString>,
+    make_and_model: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterGetMakeAndModelName(
             printer: PMPrinter,
-            make_and_model: NonNull<*const CFString>,
+            make_and_model: &mut Option<CFRetained<CFString>>,
         ) -> OSStatus;
     }
+    struct RetainMakeAndModelOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainMakeAndModelOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        make_and_model.is_none(),
+        "parameter `make_and_model` must point to `None` on entry"
+    );
+    let make_and_model = &mut *RetainMakeAndModelOnDrop(make_and_model).0;
     unsafe { PMPrinterGetMakeAndModelName(printer, make_and_model) }
 }
 
@@ -1520,21 +1586,32 @@ pub unsafe fn PMPrinterGetMakeAndModelName(
 ///
 /// - `printer` must be a valid pointer.
 /// - `settings` must be a valid pointer or null.
-/// - `mime_types` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrinterGetMimeTypes(
     printer: PMPrinter,
     settings: PMPrintSettings,
-    mime_types: NonNull<*const CFArray>,
+    mime_types: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterGetMimeTypes(
             printer: PMPrinter,
             settings: PMPrintSettings,
-            mime_types: NonNull<*const CFArray>,
+            mime_types: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    struct RetainMimeTypesOnDrop<'a>(&'a mut Option<CFRetained<CFArray>>);
+    impl Drop for RetainMimeTypesOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        mime_types.is_none(),
+        "parameter `mime_types` must point to `None` on entry"
+    );
+    let mime_types = &mut *RetainMimeTypesOnDrop(mime_types).0;
     unsafe { PMPrinterGetMimeTypes(printer, settings, mime_types) }
 }
 
@@ -1553,20 +1630,31 @@ pub unsafe fn PMPrinterGetName(printer: PMPrinter) -> Option<CFRetained<CFString
 
 /// # Safety
 ///
-/// - `printer` must be a valid pointer.
-/// - `paper_list` must be a valid pointer.
+/// `printer` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrinterGetPaperList(
     printer: PMPrinter,
-    paper_list: NonNull<*const CFArray>,
+    paper_list: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterGetPaperList(
             printer: PMPrinter,
-            paper_list: NonNull<*const CFArray>,
+            paper_list: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    struct RetainPaperListOnDrop<'a>(&'a mut Option<CFRetained<CFArray>>);
+    impl Drop for RetainPaperListOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        paper_list.is_none(),
+        "parameter `paper_list` must point to `None` on entry"
+    );
+    let paper_list = &mut *RetainPaperListOnDrop(paper_list).0;
     unsafe { PMPrinterGetPaperList(printer, paper_list) }
 }
 
@@ -1722,20 +1810,31 @@ pub unsafe fn PMPresetCreatePrintSettings(
 
 /// # Safety
 ///
-/// - `preset` must be a valid pointer.
-/// - `attributes` must be a valid pointer.
+/// `preset` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPresetGetAttributes(
     preset: PMPreset,
-    attributes: NonNull<*const CFDictionary>,
+    attributes: &mut Option<CFRetained<CFDictionary>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPresetGetAttributes(
             preset: PMPreset,
-            attributes: NonNull<*const CFDictionary>,
+            attributes: &mut Option<CFRetained<CFDictionary>>,
         ) -> OSStatus;
     }
+    struct RetainAttributesOnDrop<'a>(&'a mut Option<CFRetained<CFDictionary>>);
+    impl Drop for RetainAttributesOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        attributes.is_none(),
+        "parameter `attributes` must point to `None` on entry"
+    );
+    let attributes = &mut *RetainAttributesOnDrop(attributes).0;
     unsafe { PMPresetGetAttributes(preset, attributes) }
 }
 
@@ -1826,31 +1925,58 @@ pub unsafe fn PMPaperGetMargins(
 
 /// # Safety
 ///
-/// - `paper` must be a valid pointer.
-/// - `paper_id` must be a valid pointer.
+/// `paper` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
-pub unsafe fn PMPaperGetID(paper: PMPaper, paper_id: NonNull<*const CFString>) -> OSStatus {
+pub unsafe fn PMPaperGetID(
+    paper: PMPaper,
+    paper_id: &mut Option<CFRetained<CFString>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn PMPaperGetID(paper: PMPaper, paper_id: NonNull<*const CFString>) -> OSStatus;
+        fn PMPaperGetID(paper: PMPaper, paper_id: &mut Option<CFRetained<CFString>>) -> OSStatus;
     }
+    struct RetainPaperIdOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainPaperIdOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        paper_id.is_none(),
+        "parameter `paper_id` must point to `None` on entry"
+    );
+    let paper_id = &mut *RetainPaperIdOnDrop(paper_id).0;
     unsafe { PMPaperGetID(paper, paper_id) }
 }
 
 /// # Safety
 ///
-/// - `paper` must be a valid pointer.
-/// - `paper_name` must be a valid pointer.
+/// `paper` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPaperGetPPDPaperName(
     paper: PMPaper,
-    paper_name: NonNull<*const CFString>,
+    paper_name: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn PMPaperGetPPDPaperName(paper: PMPaper, paper_name: NonNull<*const CFString>)
-            -> OSStatus;
+        fn PMPaperGetPPDPaperName(
+            paper: PMPaper,
+            paper_name: &mut Option<CFRetained<CFString>>,
+        ) -> OSStatus;
     }
+    struct RetainPaperNameOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainPaperNameOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        paper_name.is_none(),
+        "parameter `paper_name` must point to `None` on entry"
+    );
+    let paper_name = &mut *RetainPaperNameOnDrop(paper_name).0;
     unsafe { PMPaperGetPPDPaperName(paper, paper_name) }
 }
 
@@ -1881,17 +2007,31 @@ pub unsafe fn PMPaperCreateLocalizedName(
 
 /// # Safety
 ///
-/// - `paper` must be a valid pointer.
-/// - `printer_id` must be a valid pointer.
+/// `paper` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPaperGetPrinterID(
     paper: PMPaper,
-    printer_id: NonNull<*const CFString>,
+    printer_id: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn PMPaperGetPrinterID(paper: PMPaper, printer_id: NonNull<*const CFString>) -> OSStatus;
+        fn PMPaperGetPrinterID(
+            paper: PMPaper,
+            printer_id: &mut Option<CFRetained<CFString>>,
+        ) -> OSStatus;
     }
+    struct RetainPrinterIdOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainPrinterIdOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        printer_id.is_none(),
+        "parameter `printer_id` must point to `None` on entry"
+    );
+    let printer_id = &mut *RetainPrinterIdOnDrop(printer_id).0;
     unsafe { PMPaperGetPrinterID(paper, printer_id) }
 }
 

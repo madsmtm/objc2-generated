@@ -507,8 +507,7 @@ impl LSSharedFileListItem {
 
     /// # Safety
     ///
-    /// - `out_url` must be a valid pointer or null.
-    /// - `out_ref` must be a valid pointer or null.
+    /// `out_ref` must be a valid pointer or null.
     #[doc(alias = "LSSharedFileListItemResolve")]
     #[cfg(all(feature = "CarbonCore", feature = "Files"))]
     #[deprecated]
@@ -516,17 +515,23 @@ impl LSSharedFileListItem {
     pub unsafe fn resolve(
         &self,
         in_flags: LSSharedFileListResolutionFlags,
-        out_url: *mut *const CFURL,
+        out_url: Option<&mut Option<CFRetained<CFURL>>>,
         out_ref: *mut FSRef,
     ) -> OSStatus {
         extern "C-unwind" {
             fn LSSharedFileListItemResolve(
                 in_item: &LSSharedFileListItem,
                 in_flags: LSSharedFileListResolutionFlags,
-                out_url: *mut *const CFURL,
+                out_url: Option<&mut Option<CFRetained<CFURL>>>,
                 out_ref: *mut FSRef,
             ) -> OSStatus;
         }
+        if let Some(out_url) = out_url.as_ref() {
+            assert!(
+                out_url.is_none(),
+                "parameter `out_url` must point to `None` on entry"
+            );
+        };
         unsafe { LSSharedFileListItemResolve(self, in_flags, out_url, out_ref) }
     }
 

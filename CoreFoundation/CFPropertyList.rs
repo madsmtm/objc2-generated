@@ -140,8 +140,7 @@ pub unsafe fn CFPropertyListIsValid(plist: &CFPropertyList, format: CFPropertyLi
 
 /// # Safety
 ///
-/// - `property_list` should be of the correct type.
-/// - `error_string` must be a valid pointer.
+/// `property_list` should be of the correct type.
 #[cfg(feature = "CFStream")]
 #[deprecated = "Use CFPropertyListWrite instead."]
 #[inline]
@@ -149,16 +148,22 @@ pub unsafe fn CFPropertyListWriteToStream(
     property_list: &CFPropertyList,
     stream: &CFWriteStream,
     format: CFPropertyListFormat,
-    error_string: Option<&mut *const CFString>,
+    error_string: Option<&mut Option<CFRetained<CFString>>>,
 ) -> CFIndex {
     extern "C-unwind" {
         fn CFPropertyListWriteToStream(
             property_list: &CFPropertyList,
             stream: &CFWriteStream,
             format: CFPropertyListFormat,
-            error_string: Option<&mut *const CFString>,
+            error_string: Option<&mut Option<CFRetained<CFString>>>,
         ) -> CFIndex;
     }
+    if let Some(error_string) = error_string.as_ref() {
+        assert!(
+            error_string.is_none(),
+            "parameter `error_string` must point to `None` on entry"
+        );
+    };
     unsafe { CFPropertyListWriteToStream(property_list, stream, format, error_string) }
 }
 

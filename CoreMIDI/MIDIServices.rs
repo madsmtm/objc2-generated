@@ -2548,24 +2548,32 @@ pub unsafe fn MIDIObjectSetIntegerProperty(
 ///
 ///
 /// (See the MIDIObjectRef documentation for information about properties.)
-///
-/// # Safety
-///
-/// `str` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn MIDIObjectGetStringProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
-    str: NonNull<*const CFString>,
+    str: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIObjectGetStringProperty(
             obj: MIDIObjectRef,
             property_id: &CFString,
-            str: NonNull<*const CFString>,
+            str: &mut Option<CFRetained<CFString>>,
         ) -> OSStatus;
     }
+    struct RetainStrOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainStrOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        str.is_none(),
+        "parameter `str` must point to `None` on entry"
+    );
+    let str = &mut *RetainStrOnDrop(str).0;
     unsafe { MIDIObjectGetStringProperty(obj, property_id, str) }
 }
 
@@ -2613,24 +2621,32 @@ pub unsafe fn MIDIObjectSetStringProperty(
 /// Parameter `outData`: On successful return, the value of the property.
 ///
 /// Returns: An OSStatus result code.
-///
-/// # Safety
-///
-/// `out_data` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn MIDIObjectGetDataProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
-    out_data: NonNull<*const CFData>,
+    out_data: &mut Option<CFRetained<CFData>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIObjectGetDataProperty(
             obj: MIDIObjectRef,
             property_id: &CFString,
-            out_data: NonNull<*const CFData>,
+            out_data: &mut Option<CFRetained<CFData>>,
         ) -> OSStatus;
     }
+    struct RetainOutDataOnDrop<'a>(&'a mut Option<CFRetained<CFData>>);
+    impl Drop for RetainOutDataOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        out_data.is_none(),
+        "parameter `out_data` must point to `None` on entry"
+    );
+    let out_data = &mut *RetainOutDataOnDrop(out_data).0;
     unsafe { MIDIObjectGetDataProperty(obj, property_id, out_data) }
 }
 
@@ -2677,24 +2693,32 @@ pub unsafe fn MIDIObjectSetDataProperty(
 ///
 ///
 /// (See the MIDIObjectRef documentation for information about properties.)
-///
-/// # Safety
-///
-/// `out_dict` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn MIDIObjectGetDictionaryProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
-    out_dict: NonNull<*const CFDictionary>,
+    out_dict: &mut Option<CFRetained<CFDictionary>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIObjectGetDictionaryProperty(
             obj: MIDIObjectRef,
             property_id: &CFString,
-            out_dict: NonNull<*const CFDictionary>,
+            out_dict: &mut Option<CFRetained<CFDictionary>>,
         ) -> OSStatus;
     }
+    struct RetainOutDictOnDrop<'a>(&'a mut Option<CFRetained<CFDictionary>>);
+    impl Drop for RetainOutDictOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        out_dict.is_none(),
+        "parameter `out_dict` must point to `None` on entry"
+    );
+    let out_dict = &mut *RetainOutDictOnDrop(out_dict).0;
     unsafe { MIDIObjectGetDictionaryProperty(obj, property_id, out_dict) }
 }
 
@@ -2751,24 +2775,32 @@ pub unsafe fn MIDIObjectSetDictionaryProperty(
 /// be CFNumber, CFString, or CFData.  Arrays are arrays of such values.
 ///
 /// Properties which an object inherits from its owning object (if any) are not included.
-///
-/// # Safety
-///
-/// `out_properties` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn MIDIObjectGetProperties(
     obj: MIDIObjectRef,
-    out_properties: NonNull<*const CFPropertyList>,
+    out_properties: &mut Option<CFRetained<CFPropertyList>>,
     deep: bool,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIObjectGetProperties(
             obj: MIDIObjectRef,
-            out_properties: NonNull<*const CFPropertyList>,
+            out_properties: &mut Option<CFRetained<CFPropertyList>>,
             deep: Boolean,
         ) -> OSStatus;
     }
+    struct RetainOutPropertiesOnDrop<'a>(&'a mut Option<CFRetained<CFPropertyList>>);
+    impl Drop for RetainOutPropertiesOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    assert!(
+        out_properties.is_none(),
+        "parameter `out_properties` must point to `None` on entry"
+    );
+    let out_properties = &mut *RetainOutPropertiesOnDrop(out_properties).0;
     let deep = deep as _;
     unsafe { MIDIObjectGetProperties(obj, out_properties, deep) }
 }
@@ -2980,23 +3012,26 @@ impl MIDIEventPacket {
     ///
     /// # Safety
     ///
-    /// - `pkt` must be a valid pointer.
-    /// - `out_data` must be a valid pointer.
+    /// `pkt` must be a valid pointer.
     #[doc(alias = "MIDIEventPacketSysexBytesForGroup")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn sysex_bytes_for_group(
         pkt: NonNull<MIDIEventPacket>,
         group_index: u8,
-        out_data: NonNull<*const CFData>,
+        out_data: &mut Option<CFRetained<CFData>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn MIDIEventPacketSysexBytesForGroup(
                 pkt: NonNull<MIDIEventPacket>,
                 group_index: u8,
-                out_data: NonNull<*const CFData>,
+                out_data: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            out_data.is_none(),
+            "parameter `out_data` must point to `None` on entry"
+        );
         unsafe { MIDIEventPacketSysexBytesForGroup(pkt, group_index, out_data) }
     }
 }

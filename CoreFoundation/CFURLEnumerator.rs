@@ -144,24 +144,33 @@ unsafe impl RefEncode for CFURLEnumeratorResult {
 }
 
 impl CFURLEnumerator {
-    /// # Safety
-    ///
-    /// `url` must be a valid pointer.
     #[doc(alias = "CFURLEnumeratorGetNextURL")]
     #[cfg(all(feature = "CFError", feature = "CFURL"))]
     #[inline]
-    pub unsafe fn next_url(
+    pub fn next_url(
         &self,
-        url: &mut *const CFURL,
+        url: &mut Option<CFRetained<CFURL>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> CFURLEnumeratorResult {
         extern "C-unwind" {
             fn CFURLEnumeratorGetNextURL(
                 enumerator: &CFURLEnumerator,
-                url: &mut *const CFURL,
+                url: &mut Option<CFRetained<CFURL>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> CFURLEnumeratorResult;
         }
+        struct RetainUrlOnDrop<'a>(&'a mut Option<CFRetained<CFURL>>);
+        impl Drop for RetainUrlOnDrop<'_> {
+            #[inline]
+            fn drop(&mut self) {
+                let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+            }
+        }
+        assert!(
+            url.is_none(),
+            "parameter `url` must point to `None` on entry"
+        );
+        let url = &mut *RetainUrlOnDrop(url).0;
         if let Some(error) = error.as_ref() {
             assert!(
                 error.is_none(),
