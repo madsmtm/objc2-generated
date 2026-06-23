@@ -831,7 +831,7 @@ impl CFURL {
     #[doc(alias = "CFURLCopyResourcePropertyForKey")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub unsafe fn resource_property_for_key(
+    pub unsafe fn copy_resource_property_for_key(
         &self,
         key: &CFString,
         property_value_type_ref_ptr: *mut c_void,

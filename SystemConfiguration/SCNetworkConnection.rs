@@ -266,7 +266,7 @@ impl SCNetworkConnection {
     /// - `user_options` must be a valid pointer or null.
     #[doc(alias = "SCNetworkConnectionCopyUserPreferences")]
     #[inline]
-    pub unsafe fn user_preferences(
+    pub unsafe fn copy_user_preferences(
         selection_options: Option<&CFDictionary>,
         service_id: &mut *const CFString,
         user_options: &mut *const CFDictionary<CFString, CFType>,

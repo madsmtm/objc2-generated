@@ -69,7 +69,7 @@ impl CFFileSecurity {
     #[doc(alias = "CFFileSecurityCopyOwnerUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub unsafe fn owner_uuid(&self, owner_uuid: &mut *const CFUUID) -> bool {
+    pub unsafe fn copy_owner_uuid(&self, owner_uuid: &mut *const CFUUID) -> bool {
         extern "C-unwind" {
             fn CFFileSecurityCopyOwnerUUID(
                 file_sec: &CFFileSecurity,
@@ -100,7 +100,7 @@ impl CFFileSecurity {
     #[doc(alias = "CFFileSecurityCopyGroupUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub unsafe fn group_uuid(&self, group_uuid: &mut *const CFUUID) -> bool {
+    pub unsafe fn copy_group_uuid(&self, group_uuid: &mut *const CFUUID) -> bool {
         extern "C-unwind" {
             fn CFFileSecurityCopyGroupUUID(
                 file_sec: &CFFileSecurity,

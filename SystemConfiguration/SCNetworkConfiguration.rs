@@ -600,7 +600,7 @@ impl SCNetworkInterface {
     /// - `available` must be a valid pointer or null.
     #[doc(alias = "SCNetworkInterfaceCopyMediaOptions")]
     #[inline]
-    pub unsafe fn media_options(
+    pub unsafe fn copy_media_options(
         &self,
         current: Option<&mut *const CFDictionary<CFString, CFType>>,
         active: Option<&mut *const CFDictionary<CFString, CFType>>,
@@ -692,7 +692,7 @@ impl SCNetworkInterface {
     /// Returns: TRUE if requested information has been returned.
     #[doc(alias = "SCNetworkInterfaceCopyMTU")]
     #[inline]
-    pub fn mtu(
+    pub fn copy_mtu(
         &self,
         mtu_cur: Option<&mut c_int>,
         mtu_min: Option<&mut c_int>,

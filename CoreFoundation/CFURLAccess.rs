@@ -22,7 +22,7 @@ impl CFURL {
     ))]
     #[deprecated = "For resource data, use the CFReadStream API. For file resource properties, use CFURLCopyResourcePropertiesForKeys."]
     #[inline]
-    pub unsafe fn data_and_properties_from_resource(
+    pub unsafe fn create_data_and_properties_from_resource(
         &self,
         alloc: Option<&CFAllocator>,
         resource_data: Option<&mut *const CFData>,

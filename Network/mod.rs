@@ -1079,7 +1079,7 @@ impl NWEndpoint {
     /// nw_endpoint_type_address. This string must be freed with free().
     #[doc(alias = "nw_endpoint_copy_port_string")]
     #[inline]
-    pub fn port_string(&self) -> NonNull<c_char> {
+    pub fn copy_port_string(&self) -> NonNull<c_char> {
         extern "C-unwind" {
             fn nw_endpoint_copy_port_string(endpoint: &NWEndpoint) -> Option<NonNull<c_char>>;
         }
@@ -1149,7 +1149,7 @@ impl NWEndpoint {
     /// This string must be freed with free().
     #[doc(alias = "nw_endpoint_copy_address_string")]
     #[inline]
-    pub fn address_string(&self) -> NonNull<c_char> {
+    pub fn copy_address_string(&self) -> NonNull<c_char> {
         extern "C-unwind" {
             fn nw_endpoint_copy_address_string(endpoint: &NWEndpoint) -> Option<NonNull<c_char>>;
         }
@@ -5374,7 +5374,7 @@ impl NWConnection {
     /// The caller must call free() on the string.
     #[doc(alias = "nw_connection_copy_description")]
     #[inline]
-    pub fn description(&self) -> NonNull<c_char> {
+    pub fn copy_description(&self) -> NonNull<c_char> {
         extern "C-unwind" {
             fn nw_connection_copy_description(connection: &NWConnection)
                 -> Option<NonNull<c_char>>;
