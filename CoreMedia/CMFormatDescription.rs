@@ -85,15 +85,14 @@ impl CMFormatDescription {
     ///
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
-    /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMFormatDescriptionCreate")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         media_type: CMMediaType,
         media_sub_type: FourCharCode,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*const CMFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMFormatDescriptionCreate(
@@ -101,9 +100,13 @@ impl CMFormatDescription {
                 media_type: CMMediaType,
                 media_sub_type: FourCharCode,
                 extensions: Option<&CFDictionary>,
-                format_description_out: NonNull<*const CMFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMFormatDescriptionCreate(
                 allocator,
@@ -387,11 +390,10 @@ impl CMAudioFormatDescription {
     /// - `magic_cookie` must be a valid pointer or null.
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
-    /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMAudioFormatDescriptionCreate")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         asbd: NonNull<AudioStreamBasicDescription>,
         layout_size: usize,
@@ -399,7 +401,7 @@ impl CMAudioFormatDescription {
         magic_cookie_size: usize,
         magic_cookie: *const c_void,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*const CMAudioFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMAudioFormatDescriptionCreate(
@@ -410,9 +412,13 @@ impl CMAudioFormatDescription {
                 magic_cookie_size: usize,
                 magic_cookie: *const c_void,
                 extensions: Option<&CFDictionary>,
-                format_description_out: NonNull<*const CMAudioFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMAudioFormatDescriptionCreate(
                 allocator,
@@ -569,24 +575,27 @@ impl CMAudioFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `format_description_array` generic must be of the correct type.
-    /// - `format_description_out` must be a valid pointer.
+    /// `format_description_array` generic must be of the correct type.
     #[doc(alias = "CMAudioFormatDescriptionCreateSummary")]
     #[inline]
-    pub unsafe fn create_summary(
+    pub unsafe fn new_summary(
         allocator: Option<&CFAllocator>,
         format_description_array: &CFArray,
         flags: u32,
-        format_description_out: NonNull<*const CMAudioFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMAudioFormatDescriptionCreateSummary(
                 allocator: Option<&CFAllocator>,
                 format_description_array: &CFArray,
                 flags: u32,
-                format_description_out: NonNull<*const CMAudioFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMAudioFormatDescriptionCreateSummary(
                 allocator,
@@ -1684,16 +1693,15 @@ impl CMVideoFormatDescription {
     ///
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
-    /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMVideoFormatDescriptionCreate")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         codec_type: CMVideoCodecType,
         width: i32,
         height: i32,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*const CMVideoFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMVideoFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionCreate(
@@ -1702,9 +1710,13 @@ impl CMVideoFormatDescription {
                 width: i32,
                 height: i32,
                 extensions: Option<&CFDictionary>,
-                format_description_out: NonNull<*const CMVideoFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMVideoFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMVideoFormatDescriptionCreate(
                 allocator,
@@ -1730,25 +1742,25 @@ impl CMVideoFormatDescription {
     /// where extensions is a CFDictionary of attachments to image buffer with keys specified by
     /// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers, and also
     /// kCMFormatDescriptionExtension_BytesPerRow if applicable.
-    ///
-    /// # Safety
-    ///
-    /// `format_description_out` must be a valid pointer.
     #[doc(alias = "CMVideoFormatDescriptionCreateForImageBuffer")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
-    pub unsafe fn create_for_image_buffer(
+    pub unsafe fn new_for_image_buffer(
         allocator: Option<&CFAllocator>,
         image_buffer: &CVImageBuffer,
-        format_description_out: NonNull<*const CMVideoFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMVideoFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionCreateForImageBuffer(
                 allocator: Option<&CFAllocator>,
                 image_buffer: &CVImageBuffer,
-                format_description_out: NonNull<*const CMVideoFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMVideoFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMVideoFormatDescriptionCreateForImageBuffer(
                 allocator,
@@ -1768,16 +1780,15 @@ impl CMVideoFormatDescription {
     ///
     /// - `parameter_set_pointers` must be a valid pointer.
     /// - `parameter_set_sizes` must be a valid pointer.
-    /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMVideoFormatDescriptionCreateFromH264ParameterSets")]
     #[inline]
-    pub unsafe fn create_from_h264_parameter_sets(
+    pub unsafe fn from_h264_parameter_sets(
         allocator: Option<&CFAllocator>,
         parameter_set_count: usize,
         parameter_set_pointers: NonNull<NonNull<u8>>,
         parameter_set_sizes: NonNull<usize>,
         nal_unit_header_length: c_int,
-        format_description_out: NonNull<*const CMFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionCreateFromH264ParameterSets(
@@ -1786,9 +1797,13 @@ impl CMVideoFormatDescription {
                 parameter_set_pointers: NonNull<NonNull<u8>>,
                 parameter_set_sizes: NonNull<usize>,
                 nal_unit_header_length: c_int,
-                format_description_out: NonNull<*const CMFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMVideoFormatDescriptionCreateFromH264ParameterSets(
                 allocator,
@@ -1813,17 +1828,16 @@ impl CMVideoFormatDescription {
     /// - `parameter_set_sizes` must be a valid pointer.
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
-    /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMVideoFormatDescriptionCreateFromHEVCParameterSets")]
     #[inline]
-    pub unsafe fn create_from_hevc_parameter_sets(
+    pub unsafe fn from_hevc_parameter_sets(
         allocator: Option<&CFAllocator>,
         parameter_set_count: usize,
         parameter_set_pointers: NonNull<NonNull<u8>>,
         parameter_set_sizes: NonNull<usize>,
         nal_unit_header_length: c_int,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*const CMFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionCreateFromHEVCParameterSets(
@@ -1833,9 +1847,13 @@ impl CMVideoFormatDescription {
                 parameter_set_sizes: NonNull<usize>,
                 nal_unit_header_length: c_int,
                 extensions: Option<&CFDictionary>,
-                format_description_out: NonNull<*const CMFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMVideoFormatDescriptionCreateFromHEVCParameterSets(
                 allocator,
@@ -2068,22 +2086,24 @@ impl CMVideoFormatDescription {
     /// It also gives the eye mapping information for the pixel buffers of the decoded CMTaggedBufferGroups.
     ///
     /// Returns: Array of CMTagCollections. The result will be NULL if the CMVideoFormatDescription does not contain multi-image encoding parameters, or if there is some other error.
-    ///
-    /// # Safety
-    ///
-    /// `tag_collections_out` must be a valid pointer or null.
     #[doc(alias = "CMVideoFormatDescriptionCopyTagCollectionArray")]
     #[inline]
-    pub unsafe fn copy_tag_collection_array(
+    pub unsafe fn tag_collection_array(
         &self,
-        tag_collections_out: *mut *const CFArray,
+        tag_collections_out: Option<&mut Option<CFRetained<CFArray>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionCopyTagCollectionArray(
                 format_description: &CMVideoFormatDescription,
-                tag_collections_out: *mut *const CFArray,
+                tag_collections_out: Option<&mut Option<CFRetained<CFArray>>>,
             ) -> OSStatus;
         }
+        if let Some(tag_collections_out) = tag_collections_out.as_ref() {
+            assert!(
+                tag_collections_out.is_none(),
+                "parameter `tag_collections_out` must point to `None` on entry"
+            );
+        };
         unsafe { CMVideoFormatDescriptionCopyTagCollectionArray(self, tag_collections_out) }
     }
 }
@@ -2162,23 +2182,26 @@ impl CMMuxedFormatDescription {
     ///
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
-    /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMMuxedFormatDescriptionCreate")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         mux_type: CMMuxedStreamType,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*const CMMuxedFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMMuxedFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMuxedFormatDescriptionCreate(
                 allocator: Option<&CFAllocator>,
                 mux_type: CMMuxedStreamType,
                 extensions: Option<&CFDictionary>,
-                format_description_out: NonNull<*const CMMuxedFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMMuxedFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMMuxedFormatDescriptionCreate(allocator, mux_type, extensions, format_description_out)
         }
@@ -2517,24 +2540,32 @@ impl CMTextFormatDescription {
     /// Returns the font name for a local font ID.
     ///
     /// Some format descriptions carry a mapping from local font IDs to font names. The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry such a font mapping table.
-    ///
-    /// # Safety
-    ///
-    /// `font_name_out` must be a valid pointer.
     #[doc(alias = "CMTextFormatDescriptionGetFontName")]
     #[inline]
     pub unsafe fn font_name(
         desc: &CMFormatDescription,
         local_font_id: u16,
-        font_name_out: NonNull<*const CFString>,
+        font_name_out: &mut Option<CFRetained<CFString>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTextFormatDescriptionGetFontName(
                 desc: &CMFormatDescription,
                 local_font_id: u16,
-                font_name_out: NonNull<*const CFString>,
+                font_name_out: &mut Option<CFRetained<CFString>>,
             ) -> OSStatus;
         }
+        struct RetainFontNameOutOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+        impl Drop for RetainFontNameOutOnDrop<'_> {
+            #[inline]
+            fn drop(&mut self) {
+                let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+            }
+        }
+        assert!(
+            font_name_out.is_none(),
+            "parameter `font_name_out` must point to `None` on entry"
+        );
+        let font_name_out = &mut *RetainFontNameOutOnDrop(font_name_out).0;
         unsafe { CMTextFormatDescriptionGetFontName(desc, local_font_id, font_name_out) }
     }
 }
@@ -2600,18 +2631,17 @@ impl CMTimeCodeFormatDescription {
     ///
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
-    /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMTimeCodeFormatDescriptionCreate")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         time_code_format_type: CMTimeCodeFormatType,
         frame_duration: CMTime,
         frame_quanta: u32,
         flags: u32,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMTimeCodeFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTimeCodeFormatDescriptionCreate(
@@ -2621,9 +2651,13 @@ impl CMTimeCodeFormatDescription {
                 frame_quanta: u32,
                 flags: u32,
                 extensions: Option<&CFDictionary>,
-                format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMTimeCodeFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMTimeCodeFormatDescriptionCreate(
                 allocator,
@@ -2812,24 +2846,27 @@ extern "C" {
 impl CMMetadataFormatDescription {
     /// # Safety
     ///
-    /// - `keys` generic must be of the correct type.
-    /// - `format_description_out` must be a valid pointer.
+    /// `keys` generic must be of the correct type.
     #[doc(alias = "CMMetadataFormatDescriptionCreateWithKeys")]
     #[inline]
-    pub unsafe fn create_with_keys(
+    pub unsafe fn with_keys(
         allocator: Option<&CFAllocator>,
         metadata_type: CMMetadataFormatType,
         keys: Option<&CFArray>,
-        format_description_out: NonNull<*const CMMetadataFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionCreateWithKeys(
                 allocator: Option<&CFAllocator>,
                 metadata_type: CMMetadataFormatType,
                 keys: Option<&CFArray>,
-                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMMetadataFormatDescriptionCreateWithKeys(
                 allocator,
@@ -2842,24 +2879,27 @@ impl CMMetadataFormatDescription {
 
     /// # Safety
     ///
-    /// - `metadata_specifications` generic must be of the correct type.
-    /// - `format_description_out` must be a valid pointer.
+    /// `metadata_specifications` generic must be of the correct type.
     #[doc(alias = "CMMetadataFormatDescriptionCreateWithMetadataSpecifications")]
     #[inline]
-    pub unsafe fn create_with_metadata_specifications(
+    pub unsafe fn with_metadata_specifications(
         allocator: Option<&CFAllocator>,
         metadata_type: CMMetadataFormatType,
         metadata_specifications: &CFArray,
-        format_description_out: NonNull<*const CMMetadataFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionCreateWithMetadataSpecifications(
                 allocator: Option<&CFAllocator>,
                 metadata_type: CMMetadataFormatType,
                 metadata_specifications: &CFArray,
-                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMMetadataFormatDescriptionCreateWithMetadataSpecifications(
                 allocator,
@@ -2872,26 +2912,29 @@ impl CMMetadataFormatDescription {
 
     /// # Safety
     ///
-    /// - `metadata_specifications` generic must be of the correct type.
-    /// - `format_description_out` must be a valid pointer.
+    /// `metadata_specifications` generic must be of the correct type.
     #[doc(
         alias = "CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications"
     )]
     #[inline]
-    pub unsafe fn create_with_metadata_format_description_and_metadata_specifications(
+    pub unsafe fn with_metadata_format_description_and_metadata_specifications(
         &self,
         allocator: Option<&CFAllocator>,
         metadata_specifications: &CFArray,
-        format_description_out: NonNull<*const CMMetadataFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications(
                 allocator: Option<&CFAllocator>,
                 source_description: &CMMetadataFormatDescription,
                 metadata_specifications: &CFArray,
-                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications(
                 allocator,
@@ -2902,25 +2945,26 @@ impl CMMetadataFormatDescription {
         }
     }
 
-    /// # Safety
-    ///
-    /// `format_description_out` must be a valid pointer.
     #[doc(alias = "CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions")]
     #[inline]
-    pub unsafe fn create_by_merging_metadata_format_descriptions(
+    pub unsafe fn by_merging_metadata_format_descriptions(
         &self,
         allocator: Option<&CFAllocator>,
         other_source_description: &CMMetadataFormatDescription,
-        format_description_out: NonNull<*const CMMetadataFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions(
                 allocator: Option<&CFAllocator>,
                 source_description: &CMMetadataFormatDescription,
                 other_source_description: &CMMetadataFormatDescription,
-                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions(
                 allocator,

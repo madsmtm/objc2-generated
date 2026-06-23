@@ -347,22 +347,25 @@ impl SecKeychain {
     ///
     /// # Safety
     ///
-    /// - `path_name` must be a valid pointer.
-    /// - `keychain` must be a valid pointer.
+    /// `path_name` must be a valid pointer.
     #[doc(alias = "SecKeychainOpen")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn open(
         path_name: NonNull<c_char>,
-        keychain: NonNull<*mut SecKeychain>,
+        keychain: &mut Option<CFRetained<SecKeychain>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainOpen(
                 path_name: NonNull<c_char>,
-                keychain: NonNull<*mut SecKeychain>,
+                keychain: &mut Option<CFRetained<SecKeychain>>,
             ) -> OSStatus;
         }
+        assert!(
+            keychain.is_none(),
+            "parameter `keychain` must point to `None` on entry"
+        );
         unsafe { SecKeychainOpen(path_name, keychain) }
     }
 
@@ -386,18 +389,17 @@ impl SecKeychain {
     ///
     /// - `path_name` must be a valid pointer.
     /// - `password` must be a valid pointer or null.
-    /// - `keychain` must be a valid pointer.
     #[doc(alias = "SecKeychainCreate")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         path_name: NonNull<c_char>,
         password_length: u32,
         password: *const c_void,
         prompt_user: bool,
         initial_access: Option<&SecAccess>,
-        keychain: NonNull<*mut SecKeychain>,
+        keychain: &mut Option<CFRetained<SecKeychain>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainCreate(
@@ -406,10 +408,14 @@ impl SecKeychain {
                 password: *const c_void,
                 prompt_user: Boolean,
                 initial_access: Option<&SecAccess>,
-                keychain: NonNull<*mut SecKeychain>,
+                keychain: &mut Option<CFRetained<SecKeychain>>,
             ) -> OSStatus;
         }
         let prompt_user = prompt_user as _;
+        assert!(
+            keychain.is_none(),
+            "parameter `keychain` must point to `None` on entry"
+        );
         unsafe {
             SecKeychainCreate(
                 path_name,
@@ -567,18 +573,18 @@ impl SecKeychain {
     /// Parameter `keychain`: On return, a pointer to the default keychain reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `keychain` must be a valid pointer.
     #[doc(alias = "SecKeychainCopyDefault")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_default(keychain: NonNull<*mut SecKeychain>) -> OSStatus {
+    pub unsafe fn default(keychain: &mut Option<CFRetained<SecKeychain>>) -> OSStatus {
         extern "C-unwind" {
-            fn SecKeychainCopyDefault(keychain: NonNull<*mut SecKeychain>) -> OSStatus;
+            fn SecKeychainCopyDefault(keychain: &mut Option<CFRetained<SecKeychain>>) -> OSStatus;
         }
+        assert!(
+            keychain.is_none(),
+            "parameter `keychain` must point to `None` on entry"
+        );
         unsafe { SecKeychainCopyDefault(keychain) }
     }
 
@@ -603,17 +609,18 @@ impl SecKeychain {
     /// Parameter `searchList`: The returned list of keychains to search. When finished with the array, you must call CFRelease() to release the memory.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain list is not specified (NULL).
-    ///
-    /// # Safety
-    ///
-    /// `search_list` must be a valid pointer.
     #[doc(alias = "SecKeychainCopySearchList")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_search_list(search_list: NonNull<*const CFArray>) -> OSStatus {
+    pub unsafe fn search_list(search_list: &mut Option<CFRetained<CFArray>>) -> OSStatus {
         extern "C-unwind" {
-            fn SecKeychainCopySearchList(search_list: NonNull<*const CFArray>) -> OSStatus;
+            fn SecKeychainCopySearchList(search_list: &mut Option<CFRetained<CFArray>>)
+                -> OSStatus;
         }
+        assert!(
+            search_list.is_none(),
+            "parameter `search_list` must point to `None` on entry"
+        );
         unsafe { SecKeychainCopySearchList(search_list) }
     }
 
@@ -665,23 +672,24 @@ unsafe impl RefEncode for SecPreferencesDomain {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychain {
-    /// # Safety
-    ///
-    /// `keychain` must be a valid pointer.
     #[doc(alias = "SecKeychainCopyDomainDefault")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_domain_default(
+    pub unsafe fn domain_default(
         domain: SecPreferencesDomain,
-        keychain: NonNull<*mut SecKeychain>,
+        keychain: &mut Option<CFRetained<SecKeychain>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainCopyDomainDefault(
                 domain: SecPreferencesDomain,
-                keychain: NonNull<*mut SecKeychain>,
+                keychain: &mut Option<CFRetained<SecKeychain>>,
             ) -> OSStatus;
         }
+        assert!(
+            keychain.is_none(),
+            "parameter `keychain` must point to `None` on entry"
+        );
         unsafe { SecKeychainCopyDomainDefault(domain, keychain) }
     }
 
@@ -702,22 +710,23 @@ impl SecKeychain {
         unsafe { SecKeychainSetDomainDefault(domain, keychain) }
     }
 
-    /// # Safety
-    ///
-    /// `search_list` must be a valid pointer.
     #[doc(alias = "SecKeychainCopyDomainSearchList")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_domain_search_list(
+    pub unsafe fn domain_search_list(
         domain: SecPreferencesDomain,
-        search_list: NonNull<*const CFArray>,
+        search_list: &mut Option<CFRetained<CFArray>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainCopyDomainSearchList(
                 domain: SecPreferencesDomain,
-                search_list: NonNull<*const CFArray>,
+                search_list: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            search_list.is_none(),
+            "parameter `search_list` must point to `None` on entry"
+        );
         unsafe { SecKeychainCopyDomainSearchList(domain, search_list) }
     }
 
@@ -1006,7 +1015,6 @@ impl SecKeychain {
     /// - `account_name` must be a valid pointer or null.
     /// - `path` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer.
-    /// - `item_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeychainAddInternetPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1026,7 +1034,7 @@ impl SecKeychain {
         authentication_type: SecAuthenticationType,
         password_length: u32,
         password_data: NonNull<c_void>,
-        item_ref: *mut *mut SecKeychainItem,
+        item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainAddInternetPassword(
@@ -1044,9 +1052,15 @@ impl SecKeychain {
                 authentication_type: SecAuthenticationType,
                 password_length: u32,
                 password_data: NonNull<c_void>,
-                item_ref: *mut *mut SecKeychainItem,
+                item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
             ) -> OSStatus;
         }
+        if let Some(item_ref) = item_ref.as_ref() {
+            assert!(
+                item_ref.is_none(),
+                "parameter `item_ref` must point to `None` on entry"
+            );
+        };
         unsafe {
             SecKeychainAddInternetPassword(
                 keychain,
@@ -1113,7 +1127,6 @@ impl SecKeychain {
     /// - `path` must be a valid pointer or null.
     /// - `password_length` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer or null.
-    /// - `item_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeychainFindInternetPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1133,7 +1146,7 @@ impl SecKeychain {
         authentication_type: SecAuthenticationType,
         password_length: *mut u32,
         password_data: *mut *mut c_void,
-        item_ref: *mut *mut SecKeychainItem,
+        item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainFindInternetPassword(
@@ -1151,9 +1164,15 @@ impl SecKeychain {
                 authentication_type: SecAuthenticationType,
                 password_length: *mut u32,
                 password_data: *mut *mut c_void,
-                item_ref: *mut *mut SecKeychainItem,
+                item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
             ) -> OSStatus;
         }
+        if let Some(item_ref) = item_ref.as_ref() {
+            assert!(
+                item_ref.is_none(),
+                "parameter `item_ref` must point to `None` on entry"
+            );
+        };
         unsafe {
             SecKeychainFindInternetPassword(
                 keychain_or_array,
@@ -1202,7 +1221,6 @@ impl SecKeychain {
     /// - `service_name` must be a valid pointer or null.
     /// - `account_name` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer.
-    /// - `item_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeychainAddGenericPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1215,7 +1233,7 @@ impl SecKeychain {
         account_name: *const c_char,
         password_length: u32,
         password_data: NonNull<c_void>,
-        item_ref: *mut *mut SecKeychainItem,
+        item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainAddGenericPassword(
@@ -1226,9 +1244,15 @@ impl SecKeychain {
                 account_name: *const c_char,
                 password_length: u32,
                 password_data: NonNull<c_void>,
-                item_ref: *mut *mut SecKeychainItem,
+                item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
             ) -> OSStatus;
         }
+        if let Some(item_ref) = item_ref.as_ref() {
+            assert!(
+                item_ref.is_none(),
+                "parameter `item_ref` must point to `None` on entry"
+            );
+        };
         unsafe {
             SecKeychainAddGenericPassword(
                 keychain,
@@ -1272,7 +1296,6 @@ impl SecKeychain {
     /// - `account_name` must be a valid pointer or null.
     /// - `password_length` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer or null.
-    /// - `item_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeychainFindGenericPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1285,7 +1308,7 @@ impl SecKeychain {
         account_name: *const c_char,
         password_length: *mut u32,
         password_data: *mut *mut c_void,
-        item_ref: *mut *mut SecKeychainItem,
+        item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainFindGenericPassword(
@@ -1296,9 +1319,15 @@ impl SecKeychain {
                 account_name: *const c_char,
                 password_length: *mut u32,
                 password_data: *mut *mut c_void,
-                item_ref: *mut *mut SecKeychainItem,
+                item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
             ) -> OSStatus;
         }
+        if let Some(item_ref) = item_ref.as_ref() {
+            assert!(
+                item_ref.is_none(),
+                "parameter `item_ref` must point to `None` on entry"
+            );
+        };
         unsafe {
             SecKeychainFindGenericPassword(
                 keychain_or_array,
@@ -1415,24 +1444,24 @@ impl SecKeychain {
     /// Parameter `access`: On return, a pointer to the access reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `access` must be a valid pointer.
     #[doc(alias = "SecKeychainCopyAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_access(
+    pub unsafe fn access(
         keychain: Option<&SecKeychain>,
-        access: NonNull<*mut SecAccess>,
+        access: &mut Option<CFRetained<SecAccess>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainCopyAccess(
                 keychain: Option<&SecKeychain>,
-                access: NonNull<*mut SecAccess>,
+                access: &mut Option<CFRetained<SecAccess>>,
             ) -> OSStatus;
         }
+        assert!(
+            access.is_none(),
+            "parameter `access` must point to `None` on entry"
+        );
         unsafe { SecKeychainCopyAccess(keychain, access) }
     }
 

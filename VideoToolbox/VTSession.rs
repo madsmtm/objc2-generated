@@ -35,19 +35,22 @@ pub type VTSession = CFType;
 ///
 /// # Safety
 ///
-/// - `session` should be of the correct type.
-/// - `supported_property_dictionary_out` must be a valid pointer.
+/// `session` should be of the correct type.
 #[inline]
 pub unsafe fn VTSessionCopySupportedPropertyDictionary(
     session: &VTSession,
-    supported_property_dictionary_out: NonNull<*const CFDictionary>,
+    supported_property_dictionary_out: &mut Option<CFRetained<CFDictionary>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTSessionCopySupportedPropertyDictionary(
             session: &VTSession,
-            supported_property_dictionary_out: NonNull<*const CFDictionary>,
+            supported_property_dictionary_out: &mut Option<CFRetained<CFDictionary>>,
         ) -> OSStatus;
     }
+    assert!(
+        supported_property_dictionary_out.is_none(),
+        "parameter `supported_property_dictionary_out` must point to `None` on entry"
+    );
     unsafe { VTSessionCopySupportedPropertyDictionary(session, supported_property_dictionary_out) }
 }
 
@@ -208,20 +211,23 @@ pub unsafe fn VTSessionSetProperties(
 ///
 /// # Safety
 ///
-/// - `session` should be of the correct type.
-/// - `dictionary_out` must be a valid pointer.
+/// `session` should be of the correct type.
 #[inline]
 pub unsafe fn VTSessionCopySerializableProperties(
     session: &VTSession,
     allocator: Option<&CFAllocator>,
-    dictionary_out: NonNull<*const CFDictionary>,
+    dictionary_out: &mut Option<CFRetained<CFDictionary>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTSessionCopySerializableProperties(
             session: &VTSession,
             allocator: Option<&CFAllocator>,
-            dictionary_out: NonNull<*const CFDictionary>,
+            dictionary_out: &mut Option<CFRetained<CFDictionary>>,
         ) -> OSStatus;
     }
+    assert!(
+        dictionary_out.is_none(),
+        "parameter `dictionary_out` must point to `None` on entry"
+    );
     unsafe { VTSessionCopySerializableProperties(session, allocator, dictionary_out) }
 }

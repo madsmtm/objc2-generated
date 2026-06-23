@@ -1522,12 +1522,23 @@ extern "C" {
 ///
 /// - `query` generic must be of the correct type.
 /// - `query` generic must be of the correct type.
-/// - `result` must be a valid pointer or null.
 #[inline]
-pub unsafe fn SecItemCopyMatching(query: &CFDictionary, result: *mut *const CFType) -> OSStatus {
+pub unsafe fn SecItemCopyMatching(
+    query: &CFDictionary,
+    result: Option<&mut Option<CFRetained<CFType>>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn SecItemCopyMatching(query: &CFDictionary, result: *mut *const CFType) -> OSStatus;
+        fn SecItemCopyMatching(
+            query: &CFDictionary,
+            result: Option<&mut Option<CFRetained<CFType>>>,
+        ) -> OSStatus;
     }
+    if let Some(result) = result.as_ref() {
+        assert!(
+            result.is_none(),
+            "parameter `result` must point to `None` on entry"
+        );
+    };
     unsafe { SecItemCopyMatching(query, result) }
 }
 
@@ -1585,12 +1596,23 @@ pub unsafe fn SecItemCopyMatching(query: &CFDictionary, result: *mut *const CFTy
 ///
 /// - `attributes` generic must be of the correct type.
 /// - `attributes` generic must be of the correct type.
-/// - `result` must be a valid pointer or null.
 #[inline]
-pub unsafe fn SecItemAdd(attributes: &CFDictionary, result: *mut *const CFType) -> OSStatus {
+pub unsafe fn SecItemAdd(
+    attributes: &CFDictionary,
+    result: Option<&mut Option<CFRetained<CFType>>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn SecItemAdd(attributes: &CFDictionary, result: *mut *const CFType) -> OSStatus;
+        fn SecItemAdd(
+            attributes: &CFDictionary,
+            result: Option<&mut Option<CFRetained<CFType>>>,
+        ) -> OSStatus;
     }
+    if let Some(result) = result.as_ref() {
+        assert!(
+            result.is_none(),
+            "parameter `result` must point to `None` on entry"
+        );
+    };
     unsafe { SecItemAdd(attributes, result) }
 }
 

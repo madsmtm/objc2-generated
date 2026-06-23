@@ -154,7 +154,6 @@ impl VTDecompressionSession {
     /// - `destination_image_buffer_attributes` generic must be of the correct type.
     /// - `destination_image_buffer_attributes` generic must be of the correct type.
     /// - `output_callback` must be a valid pointer or null.
-    /// - `decompression_session_out` must be a valid pointer.
     #[doc(alias = "VTDecompressionSessionCreate")]
     #[cfg(all(
         feature = "VTErrors",
@@ -162,13 +161,13 @@ impl VTDecompressionSession {
         feature = "objc2-core-video"
     ))]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         video_format_description: &CMVideoFormatDescription,
         video_decoder_specification: Option<&CFDictionary>,
         destination_image_buffer_attributes: Option<&CFDictionary>,
         output_callback: *const VTDecompressionOutputCallbackRecord,
-        decompression_session_out: NonNull<*mut VTDecompressionSession>,
+        decompression_session_out: &mut Option<CFRetained<VTDecompressionSession>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTDecompressionSessionCreate(
@@ -177,9 +176,13 @@ impl VTDecompressionSession {
                 video_decoder_specification: Option<&CFDictionary>,
                 destination_image_buffer_attributes: Option<&CFDictionary>,
                 output_callback: *const VTDecompressionOutputCallbackRecord,
-                decompression_session_out: NonNull<*mut VTDecompressionSession>,
+                decompression_session_out: &mut Option<CFRetained<VTDecompressionSession>>,
             ) -> OSStatus;
         }
+        assert!(
+            decompression_session_out.is_none(),
+            "parameter `decompression_session_out` must point to `None` on entry"
+        );
         unsafe {
             VTDecompressionSessionCreate(
                 allocator,
@@ -448,23 +451,23 @@ impl VTDecompressionSession {
     /// Parameter `session`: The decompression session.
     ///
     /// Parameter `pixelBufferOut`: Points to a variable to receive the copied pixel buffer.
-    ///
-    /// # Safety
-    ///
-    /// `pixel_buffer_out` must be a valid pointer.
     #[doc(alias = "VTDecompressionSessionCopyBlackPixelBuffer")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
-    pub unsafe fn copy_black_pixel_buffer(
+    pub unsafe fn black_pixel_buffer(
         &self,
-        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+        pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTDecompressionSessionCopyBlackPixelBuffer(
                 session: &VTDecompressionSession,
-                pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+                pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            pixel_buffer_out.is_none(),
+            "parameter `pixel_buffer_out` must point to `None` on entry"
+        );
         unsafe { VTDecompressionSessionCopyBlackPixelBuffer(self, pixel_buffer_out) }
     }
 }

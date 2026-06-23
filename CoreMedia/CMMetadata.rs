@@ -250,23 +250,26 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// - `key` should be of the correct type.
-/// - `identifier_out` must be a valid pointer.
+/// `key` should be of the correct type.
 #[inline]
 pub unsafe fn CMMetadataCreateIdentifierForKeyAndKeySpace(
     allocator: Option<&CFAllocator>,
     key: &CFType,
     key_space: &CFString,
-    identifier_out: NonNull<*const CFString>,
+    identifier_out: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMMetadataCreateIdentifierForKeyAndKeySpace(
             allocator: Option<&CFAllocator>,
             key: &CFType,
             key_space: &CFString,
-            identifier_out: NonNull<*const CFString>,
+            identifier_out: &mut Option<CFRetained<CFString>>,
         ) -> OSStatus;
     }
+    assert!(
+        identifier_out.is_none(),
+        "parameter `identifier_out` must point to `None` on entry"
+    );
     unsafe {
         CMMetadataCreateIdentifierForKeyAndKeySpace(allocator, key, key_space, identifier_out)
     }
@@ -284,66 +287,66 @@ pub unsafe fn CMMetadataCreateIdentifierForKeyAndKeySpace(
 /// kCMMetadataKeySpace_Icy, the key will be returned as a CFString.
 ///
 /// All other keyspaces will have the function return the key as a CFData.
-///
-/// # Safety
-///
-/// `key_out` must be a valid pointer.
 #[inline]
 pub unsafe fn CMMetadataCreateKeyFromIdentifier(
     allocator: Option<&CFAllocator>,
     identifier: &CFString,
-    key_out: NonNull<*const CFType>,
+    key_out: &mut Option<CFRetained<CFType>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMMetadataCreateKeyFromIdentifier(
             allocator: Option<&CFAllocator>,
             identifier: &CFString,
-            key_out: NonNull<*const CFType>,
+            key_out: &mut Option<CFRetained<CFType>>,
         ) -> OSStatus;
     }
+    assert!(
+        key_out.is_none(),
+        "parameter `key_out` must point to `None` on entry"
+    );
     unsafe { CMMetadataCreateKeyFromIdentifier(allocator, identifier, key_out) }
 }
 
 /// Creates a copy of the key value that was encoded in the identifier as CFData.
 /// The bytes in the CFData correpsond to how they are serialized in the file.
-///
-/// # Safety
-///
-/// `key_out` must be a valid pointer.
 #[inline]
 pub unsafe fn CMMetadataCreateKeyFromIdentifierAsCFData(
     allocator: Option<&CFAllocator>,
     identifier: &CFString,
-    key_out: NonNull<*const CFData>,
+    key_out: &mut Option<CFRetained<CFData>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMMetadataCreateKeyFromIdentifierAsCFData(
             allocator: Option<&CFAllocator>,
             identifier: &CFString,
-            key_out: NonNull<*const CFData>,
+            key_out: &mut Option<CFRetained<CFData>>,
         ) -> OSStatus;
     }
+    assert!(
+        key_out.is_none(),
+        "parameter `key_out` must point to `None` on entry"
+    );
     unsafe { CMMetadataCreateKeyFromIdentifierAsCFData(allocator, identifier, key_out) }
 }
 
 /// Creates a copy of the key value that was encoded in the identifier as CFData.
-///
-/// # Safety
-///
-/// `key_space_out` must be a valid pointer.
 #[inline]
 pub unsafe fn CMMetadataCreateKeySpaceFromIdentifier(
     allocator: Option<&CFAllocator>,
     identifier: &CFString,
-    key_space_out: NonNull<*const CFString>,
+    key_space_out: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMMetadataCreateKeySpaceFromIdentifier(
             allocator: Option<&CFAllocator>,
             identifier: &CFString,
-            key_space_out: NonNull<*const CFString>,
+            key_space_out: &mut Option<CFRetained<CFString>>,
         ) -> OSStatus;
     }
+    assert!(
+        key_space_out.is_none(),
+        "parameter `key_space_out` must point to `None` on entry"
+    );
     unsafe { CMMetadataCreateKeySpaceFromIdentifier(allocator, identifier, key_space_out) }
 }
 

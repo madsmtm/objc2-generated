@@ -99,20 +99,23 @@ pub type MTLDeviceNotificationHandler = block2::DynBlock<
 ///
 /// # Safety
 ///
-/// - `observer` must be a valid pointer.
-/// - `handler` block must be sendable.
+/// `handler` block must be sendable.
 #[cfg(feature = "block2")]
 #[inline]
 pub unsafe fn MTLCopyAllDevicesWithObserver(
-    observer: NonNull<*mut ProtocolObject<dyn NSObjectProtocol>>,
+    observer: &mut Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>,
     handler: &MTLDeviceNotificationHandler,
 ) -> Retained<NSArray<ProtocolObject<dyn MTLDevice>>> {
     extern "C-unwind" {
         fn MTLCopyAllDevicesWithObserver(
-            observer: NonNull<*mut ProtocolObject<dyn NSObjectProtocol>>,
+            observer: &mut Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>,
             handler: &MTLDeviceNotificationHandler,
         ) -> *mut NSArray<ProtocolObject<dyn MTLDevice>>;
     }
+    assert!(
+        observer.is_none(),
+        "parameter `observer` must point to `None` on entry"
+    );
     let ret = unsafe { MTLCopyAllDevicesWithObserver(observer, handler) };
     unsafe { Retained::from_raw(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")

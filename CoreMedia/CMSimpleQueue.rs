@@ -61,24 +61,24 @@ impl CMSimpleQueue {
     ///
     /// Returns: Returns noErr if the call succeeds.  Returns kCMSimpleQueueError_ParameterOutOfRange if
     /// capacity is negative.
-    ///
-    /// # Safety
-    ///
-    /// `queue_out` must be a valid pointer.
     #[doc(alias = "CMSimpleQueueCreate")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         capacity: i32,
-        queue_out: NonNull<*mut CMSimpleQueue>,
+        queue_out: &mut Option<CFRetained<CMSimpleQueue>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSimpleQueueCreate(
                 allocator: Option<&CFAllocator>,
                 capacity: i32,
-                queue_out: NonNull<*mut CMSimpleQueue>,
+                queue_out: &mut Option<CFRetained<CMSimpleQueue>>,
             ) -> OSStatus;
         }
+        assert!(
+            queue_out.is_none(),
+            "parameter `queue_out` must point to `None` on entry"
+        );
         unsafe { CMSimpleQueueCreate(allocator, capacity, queue_out) }
     }
 

@@ -249,51 +249,53 @@ unsafe impl ConcreteType for CMTimebase {
 }
 
 impl CMTimebase {
-    /// # Safety
-    ///
-    /// `timebase_out` must be a valid pointer.
     #[doc(alias = "CMTimebaseCreateWithMasterClock")]
     #[deprecated]
     #[inline]
-    pub unsafe fn create_with_master_clock(
+    pub unsafe fn with_master_clock(
         allocator: Option<&CFAllocator>,
         master_clock: &CMClock,
-        timebase_out: NonNull<*mut CMTimebase>,
+        timebase_out: &mut Option<CFRetained<CMTimebase>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTimebaseCreateWithMasterClock(
                 allocator: Option<&CFAllocator>,
                 master_clock: &CMClock,
-                timebase_out: NonNull<*mut CMTimebase>,
+                timebase_out: &mut Option<CFRetained<CMTimebase>>,
             ) -> OSStatus;
         }
+        assert!(
+            timebase_out.is_none(),
+            "parameter `timebase_out` must point to `None` on entry"
+        );
         unsafe { CMTimebaseCreateWithMasterClock(allocator, master_clock, timebase_out) }
     }
 
-    // TODO: pub fn CMTimebaseCreateWithSourceClock(allocator: Option<&CFAllocator>,source_clock: &CMClock,timebase_out: NonNull<*mut CMTimebase>,) -> OSStatus;
+    // TODO: pub fn CMTimebaseCreateWithSourceClock(allocator: Option<&CFAllocator>,source_clock: &CMClock,timebase_out: &mut Option<CFRetained<CMTimebase>>,) -> OSStatus;
 
-    /// # Safety
-    ///
-    /// `timebase_out` must be a valid pointer.
     #[doc(alias = "CMTimebaseCreateWithMasterTimebase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn create_with_master_timebase(
+    pub unsafe fn with_master_timebase(
         &self,
         allocator: Option<&CFAllocator>,
-        timebase_out: NonNull<*mut CMTimebase>,
+        timebase_out: &mut Option<CFRetained<CMTimebase>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTimebaseCreateWithMasterTimebase(
                 allocator: Option<&CFAllocator>,
                 master_timebase: &CMTimebase,
-                timebase_out: NonNull<*mut CMTimebase>,
+                timebase_out: &mut Option<CFRetained<CMTimebase>>,
             ) -> OSStatus;
         }
+        assert!(
+            timebase_out.is_none(),
+            "parameter `timebase_out` must point to `None` on entry"
+        );
         unsafe { CMTimebaseCreateWithMasterTimebase(allocator, self, timebase_out) }
     }
 
-    // TODO: pub fn CMTimebaseCreateWithSourceTimebase(allocator: Option<&CFAllocator>,source_timebase: &CMTimebase,timebase_out: NonNull<*mut CMTimebase>,) -> OSStatus;
+    // TODO: pub fn CMTimebaseCreateWithSourceTimebase(allocator: Option<&CFAllocator>,source_timebase: &CMTimebase,timebase_out: &mut Option<CFRetained<CMTimebase>>,) -> OSStatus;
 
     #[doc(alias = "CMTimebaseCopyMasterTimebase")]
     #[deprecated]

@@ -90,18 +90,17 @@ impl CVOpenGLBuffer {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic should be of the correct type.
-    /// - `buffer_out` must be a valid pointer.
+    /// `attributes` generic should be of the correct type.
     #[doc(alias = "CVOpenGLBufferCreate")]
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         width: usize,
         height: usize,
         attributes: Option<&CFDictionary<CFString, CFType>>,
-        buffer_out: NonNull<*mut CVOpenGLBuffer>,
+        buffer_out: &mut Option<CFRetained<CVOpenGLBuffer>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVOpenGLBufferCreate(
@@ -109,9 +108,13 @@ impl CVOpenGLBuffer {
                 width: usize,
                 height: usize,
                 attributes: Option<&CFDictionary<CFString, CFType>>,
-                buffer_out: NonNull<*mut CVOpenGLBuffer>,
+                buffer_out: &mut Option<CFRetained<CVOpenGLBuffer>>,
             ) -> CVReturn;
         }
+        assert!(
+            buffer_out.is_none(),
+            "parameter `buffer_out` must point to `None` on entry"
+        );
         unsafe { CVOpenGLBufferCreate(allocator, width, height, attributes, buffer_out) }
     }
 

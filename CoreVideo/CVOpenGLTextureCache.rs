@@ -89,19 +89,18 @@ impl CVOpenGLTextureCache {
     /// - `cgl_context` must be a valid pointer.
     /// - `cgl_pixel_format` must be a valid pointer.
     /// - `texture_attributes` generic should be of the correct type.
-    /// - `cache_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
     #[cfg(target_os = "macos")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         cache_attributes: Option<&CFDictionary<CFString, CFType>>,
         cgl_context: CGLContextObj,
         cgl_pixel_format: CGLPixelFormatObj,
         texture_attributes: Option<&CFDictionary<CFString, CFType>>,
-        cache_out: NonNull<*mut CVOpenGLTextureCache>,
+        cache_out: &mut Option<CFRetained<CVOpenGLTextureCache>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVOpenGLTextureCacheCreate(
@@ -110,9 +109,13 @@ impl CVOpenGLTextureCache {
                 cgl_context: CGLContextObj,
                 cgl_pixel_format: CGLPixelFormatObj,
                 texture_attributes: Option<&CFDictionary<CFString, CFType>>,
-                cache_out: NonNull<*mut CVOpenGLTextureCache>,
+                cache_out: &mut Option<CFRetained<CVOpenGLTextureCache>>,
             ) -> CVReturn;
         }
+        assert!(
+            cache_out.is_none(),
+            "parameter `cache_out` must point to `None` on entry"
+        );
         unsafe {
             CVOpenGLTextureCacheCreate(
                 allocator,
@@ -141,8 +144,7 @@ impl CVOpenGLTextureCache {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic should be of the correct type.
-    /// - `texture_out` must be a valid pointer.
+    /// `attributes` generic should be of the correct type.
     #[doc(alias = "CVOpenGLTextureCacheCreateTextureFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -152,12 +154,12 @@ impl CVOpenGLTextureCache {
     ))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    pub unsafe fn create_texture_from_image(
+    pub unsafe fn texture_from_image(
         &self,
         allocator: Option<&CFAllocator>,
         source_image: &CVImageBuffer,
         attributes: Option<&CFDictionary<CFString, CFType>>,
-        texture_out: NonNull<*mut CVOpenGLTexture>,
+        texture_out: &mut Option<CFRetained<CVOpenGLTexture>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVOpenGLTextureCacheCreateTextureFromImage(
@@ -165,9 +167,13 @@ impl CVOpenGLTextureCache {
                 texture_cache: &CVOpenGLTextureCache,
                 source_image: &CVImageBuffer,
                 attributes: Option<&CFDictionary<CFString, CFType>>,
-                texture_out: NonNull<*mut CVOpenGLTexture>,
+                texture_out: &mut Option<CFRetained<CVOpenGLTexture>>,
             ) -> CVReturn;
         }
+        assert!(
+            texture_out.is_none(),
+            "parameter `texture_out` must point to `None` on entry"
+        );
         unsafe {
             CVOpenGLTextureCacheCreateTextureFromImage(
                 allocator,

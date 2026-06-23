@@ -80,17 +80,16 @@ impl CMVideoFormatDescription {
     ///
     /// - `image_description_data` must be a valid pointer.
     /// - `string_encoding` should be set correctly.
-    /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
-    pub unsafe fn create_from_big_endian_image_description_data(
+    pub unsafe fn from_big_endian_image_description_data(
         allocator: Option<&CFAllocator>,
         image_description_data: NonNull<u8>,
         size: usize,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
-        format_description_out: NonNull<*const CMVideoFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMVideoFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
@@ -99,9 +98,13 @@ impl CMVideoFormatDescription {
                 size: usize,
                 string_encoding: CFStringEncoding,
                 flavor: Option<&CMImageDescriptionFlavor>,
-                format_description_out: NonNull<*const CMVideoFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMVideoFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
                 allocator,
@@ -129,17 +132,16 @@ impl CMVideoFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `string_encoding` should be set correctly.
-    /// - `format_description_out` must be a valid pointer.
+    /// `string_encoding` should be set correctly.
     #[doc(alias = "CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn create_from_big_endian_image_description_block_buffer(
+    pub unsafe fn from_big_endian_image_description_block_buffer(
         allocator: Option<&CFAllocator>,
         image_description_block_buffer: &CMBlockBuffer,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
-        format_description_out: NonNull<*const CMVideoFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMVideoFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(
@@ -147,9 +149,13 @@ impl CMVideoFormatDescription {
                 image_description_block_buffer: &CMBlockBuffer,
                 string_encoding: CFStringEncoding,
                 flavor: Option<&CMImageDescriptionFlavor>,
-                format_description_out: NonNull<*const CMVideoFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMVideoFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(
                 allocator,
@@ -181,17 +187,16 @@ impl CMVideoFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `string_encoding` should be set correctly.
-    /// - `block_buffer_out` must be a valid pointer.
+    /// `string_encoding` should be set correctly.
     #[doc(alias = "CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn copy_as_big_endian_image_description_block_buffer(
+    pub unsafe fn as_big_endian_image_description_block_buffer(
         &self,
         allocator: Option<&CFAllocator>,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
-        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+        block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer(
@@ -199,9 +204,13 @@ impl CMVideoFormatDescription {
                 video_format_description: &CMVideoFormatDescription,
                 string_encoding: CFStringEncoding,
                 flavor: Option<&CMImageDescriptionFlavor>,
-                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+                block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            block_buffer_out.is_none(),
+            "parameter `block_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer(
                 allocator,
@@ -319,17 +328,16 @@ impl CMAudioFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `sound_description_data` must be a valid pointer.
-    /// - `format_description_out` must be a valid pointer.
+    /// `sound_description_data` must be a valid pointer.
     #[doc(alias = "CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
-    pub unsafe fn create_from_big_endian_sound_description_data(
+    pub unsafe fn from_big_endian_sound_description_data(
         allocator: Option<&CFAllocator>,
         sound_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMSoundDescriptionFlavor>,
-        format_description_out: NonNull<*const CMAudioFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(
@@ -337,9 +345,13 @@ impl CMAudioFormatDescription {
                 sound_description_data: NonNull<u8>,
                 size: usize,
                 flavor: Option<&CMSoundDescriptionFlavor>,
-                format_description_out: NonNull<*const CMAudioFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(
                 allocator,
@@ -361,27 +373,27 @@ impl CMAudioFormatDescription {
     /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMAudioFormatDescription.
-    ///
-    /// # Safety
-    ///
-    /// `format_description_out` must be a valid pointer.
     #[doc(alias = "CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn create_from_big_endian_sound_description_block_buffer(
+    pub unsafe fn from_big_endian_sound_description_block_buffer(
         allocator: Option<&CFAllocator>,
         sound_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMSoundDescriptionFlavor>,
-        format_description_out: NonNull<*const CMAudioFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer(
                 allocator: Option<&CFAllocator>,
                 sound_description_block_buffer: &CMBlockBuffer,
                 flavor: Option<&CMSoundDescriptionFlavor>,
-                format_description_out: NonNull<*const CMAudioFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer(
                 allocator,
@@ -407,27 +419,27 @@ impl CMAudioFormatDescription {
     /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
-    ///
-    /// # Safety
-    ///
-    /// `block_buffer_out` must be a valid pointer.
     #[doc(alias = "CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn copy_as_big_endian_sound_description_block_buffer(
+    pub unsafe fn as_big_endian_sound_description_block_buffer(
         &self,
         allocator: Option<&CFAllocator>,
         flavor: Option<&CMSoundDescriptionFlavor>,
-        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+        block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer(
                 allocator: Option<&CFAllocator>,
                 audio_format_description: &CMAudioFormatDescription,
                 flavor: Option<&CMSoundDescriptionFlavor>,
-                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+                block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            block_buffer_out.is_none(),
+            "parameter `block_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer(
                 allocator,
@@ -537,18 +549,17 @@ impl CMTextFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `text_description_data` must be a valid pointer.
-    /// - `format_description_out` must be a valid pointer.
+    /// `text_description_data` must be a valid pointer.
     #[doc(alias = "CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
-    pub unsafe fn create_from_big_endian_text_description_data(
+    pub unsafe fn from_big_endian_text_description_data(
         allocator: Option<&CFAllocator>,
         text_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMTextDescriptionFlavor>,
         media_type: CMMediaType,
-        format_description_out: NonNull<*const CMTextFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMTextFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(
@@ -557,9 +568,13 @@ impl CMTextFormatDescription {
                 size: usize,
                 flavor: Option<&CMTextDescriptionFlavor>,
                 media_type: CMMediaType,
-                format_description_out: NonNull<*const CMTextFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMTextFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(
                 allocator,
@@ -584,19 +599,15 @@ impl CMTextFormatDescription {
     /// Parameter `mediaType`: Pass kCMMediaType_Text or kCMMediaType_Subtitle.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMTextFormatDescription.
-    ///
-    /// # Safety
-    ///
-    /// `format_description_out` must be a valid pointer.
     #[doc(alias = "CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn create_from_big_endian_text_description_block_buffer(
+    pub unsafe fn from_big_endian_text_description_block_buffer(
         allocator: Option<&CFAllocator>,
         text_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMTextDescriptionFlavor>,
         media_type: CMMediaType,
-        format_description_out: NonNull<*const CMTextFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMTextFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer(
@@ -604,9 +615,13 @@ impl CMTextFormatDescription {
                 text_description_block_buffer: &CMBlockBuffer,
                 flavor: Option<&CMTextDescriptionFlavor>,
                 media_type: CMMediaType,
-                format_description_out: NonNull<*const CMTextFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMTextFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer(
                 allocator,
@@ -633,27 +648,27 @@ impl CMTextFormatDescription {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing TextDescription data structure in big-endian byte ordering.
-    ///
-    /// # Safety
-    ///
-    /// `block_buffer_out` must be a valid pointer.
     #[doc(alias = "CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn copy_as_big_endian_text_description_block_buffer(
+    pub unsafe fn as_big_endian_text_description_block_buffer(
         &self,
         allocator: Option<&CFAllocator>,
         flavor: Option<&CMTextDescriptionFlavor>,
-        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+        block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer(
                 allocator: Option<&CFAllocator>,
                 text_format_description: &CMTextFormatDescription,
                 flavor: Option<&CMTextDescriptionFlavor>,
-                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+                block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            block_buffer_out.is_none(),
+            "parameter `block_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer(
                 allocator,
@@ -734,19 +749,18 @@ impl CMClosedCaptionFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `closed_caption_description_data` must be a valid pointer.
-    /// - `format_description_out` must be a valid pointer.
+    /// `closed_caption_description_data` must be a valid pointer.
     #[doc(
         alias = "CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData"
     )]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
-    pub unsafe fn create_from_big_endian_closed_caption_description_data(
+    pub unsafe fn from_big_endian_closed_caption_description_data(
         allocator: Option<&CFAllocator>,
         closed_caption_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-        format_description_out: NonNull<*const CMClosedCaptionFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMClosedCaptionFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(
@@ -754,9 +768,13 @@ impl CMClosedCaptionFormatDescription {
                 closed_caption_description_data: NonNull<u8>,
                 size: usize,
                 flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-                format_description_out: NonNull<*const CMClosedCaptionFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMClosedCaptionFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(
                 allocator,
@@ -778,29 +796,29 @@ impl CMClosedCaptionFormatDescription {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMClosedCaptionFormatDescription.
-    ///
-    /// # Safety
-    ///
-    /// `format_description_out` must be a valid pointer.
     #[doc(
         alias = "CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer"
     )]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn create_from_big_endian_closed_caption_description_block_buffer(
+    pub unsafe fn from_big_endian_closed_caption_description_block_buffer(
         allocator: Option<&CFAllocator>,
         closed_caption_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-        format_description_out: NonNull<*const CMClosedCaptionFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMClosedCaptionFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer(
                 allocator: Option<&CFAllocator>,
                 closed_caption_description_block_buffer: &CMBlockBuffer,
                 flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-                format_description_out: NonNull<*const CMClosedCaptionFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMClosedCaptionFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer(
                 allocator,
@@ -826,29 +844,29 @@ impl CMClosedCaptionFormatDescription {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing ClosedCaptionDescription data structure in big-endian byte ordering.
-    ///
-    /// # Safety
-    ///
-    /// `block_buffer_out` must be a valid pointer.
     #[doc(
         alias = "CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer"
     )]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn copy_as_big_endian_closed_caption_description_block_buffer(
+    pub unsafe fn as_big_endian_closed_caption_description_block_buffer(
         &self,
         allocator: Option<&CFAllocator>,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+        block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer(
                 allocator: Option<&CFAllocator>,
                 closed_caption_format_description: &CMClosedCaptionFormatDescription,
                 flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+                block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            block_buffer_out.is_none(),
+            "parameter `block_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer(
                 allocator,
@@ -939,17 +957,16 @@ impl CMTimeCodeFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `time_code_description_data` must be a valid pointer.
-    /// - `format_description_out` must be a valid pointer.
+    /// `time_code_description_data` must be a valid pointer.
     #[doc(alias = "CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
-    pub unsafe fn create_from_big_endian_time_code_description_data(
+    pub unsafe fn from_big_endian_time_code_description_data(
         allocator: Option<&CFAllocator>,
         time_code_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
-        format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMTimeCodeFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(
@@ -957,9 +974,13 @@ impl CMTimeCodeFormatDescription {
                 time_code_description_data: NonNull<u8>,
                 size: usize,
                 flavor: Option<&CMTimeCodeDescriptionFlavor>,
-                format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMTimeCodeFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(
                 allocator,
@@ -981,27 +1002,27 @@ impl CMTimeCodeFormatDescription {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMTimeCodeFormatDescription.
-    ///
-    /// # Safety
-    ///
-    /// `format_description_out` must be a valid pointer.
     #[doc(alias = "CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn create_from_big_endian_time_code_description_block_buffer(
+    pub unsafe fn from_big_endian_time_code_description_block_buffer(
         allocator: Option<&CFAllocator>,
         time_code_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
-        format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMTimeCodeFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer(
                 allocator: Option<&CFAllocator>,
                 time_code_description_block_buffer: &CMBlockBuffer,
                 flavor: Option<&CMTimeCodeDescriptionFlavor>,
-                format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMTimeCodeFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer(
                 allocator,
@@ -1027,27 +1048,27 @@ impl CMTimeCodeFormatDescription {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing TimeCodeDescription data structure in big-endian byte ordering.
-    ///
-    /// # Safety
-    ///
-    /// `block_buffer_out` must be a valid pointer.
     #[doc(alias = "CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn copy_as_big_endian_time_code_description_block_buffer(
+    pub unsafe fn as_big_endian_time_code_description_block_buffer(
         &self,
         allocator: Option<&CFAllocator>,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
-        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+        block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer(
                 allocator: Option<&CFAllocator>,
                 time_code_format_description: &CMTimeCodeFormatDescription,
                 flavor: Option<&CMTimeCodeDescriptionFlavor>,
-                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+                block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            block_buffer_out.is_none(),
+            "parameter `block_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer(
                 allocator,
@@ -1138,17 +1159,16 @@ impl CMMetadataFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `metadata_description_data` must be a valid pointer.
-    /// - `format_description_out` must be a valid pointer.
+    /// `metadata_description_data` must be a valid pointer.
     #[doc(alias = "CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
-    pub unsafe fn create_from_big_endian_metadata_description_data(
+    pub unsafe fn from_big_endian_metadata_description_data(
         allocator: Option<&CFAllocator>,
         metadata_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMMetadataDescriptionFlavor>,
-        format_description_out: NonNull<*const CMMetadataFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(
@@ -1156,9 +1176,13 @@ impl CMMetadataFormatDescription {
                 metadata_description_data: NonNull<u8>,
                 size: usize,
                 flavor: Option<&CMMetadataDescriptionFlavor>,
-                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(
                 allocator,
@@ -1180,27 +1204,27 @@ impl CMMetadataFormatDescription {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMMetadataFormatDescriptionRef.
-    ///
-    /// # Safety
-    ///
-    /// `format_description_out` must be a valid pointer.
     #[doc(alias = "CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn create_from_big_endian_metadata_description_block_buffer(
+    pub unsafe fn from_big_endian_metadata_description_block_buffer(
         allocator: Option<&CFAllocator>,
         metadata_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMMetadataDescriptionFlavor>,
-        format_description_out: NonNull<*const CMMetadataFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer(
                 allocator: Option<&CFAllocator>,
                 metadata_description_block_buffer: &CMBlockBuffer,
                 flavor: Option<&CMMetadataDescriptionFlavor>,
-                format_description_out: NonNull<*const CMMetadataFormatDescription>,
+                format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer(
                 allocator,
@@ -1226,27 +1250,27 @@ impl CMMetadataFormatDescription {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing MetadataDescription data structure in big-endian byte ordering.
-    ///
-    /// # Safety
-    ///
-    /// `block_buffer_out` must be a valid pointer.
     #[doc(alias = "CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     #[inline]
-    pub unsafe fn copy_as_big_endian_metadata_description_block_buffer(
+    pub unsafe fn as_big_endian_metadata_description_block_buffer(
         &self,
         allocator: Option<&CFAllocator>,
         flavor: Option<&CMMetadataDescriptionFlavor>,
-        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+        block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer(
                 allocator: Option<&CFAllocator>,
                 metadata_format_description: &CMMetadataFormatDescription,
                 flavor: Option<&CMMetadataDescriptionFlavor>,
-                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+                block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            block_buffer_out.is_none(),
+            "parameter `block_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer(
                 allocator,

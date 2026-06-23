@@ -62,24 +62,27 @@ impl CVPixelBufferPool {
     ///
     /// - `pool_attributes` generic should be of the correct type.
     /// - `pixel_buffer_attributes` generic should be of the correct type.
-    /// - `pool_out` must be a valid pointer.
     #[doc(alias = "CVPixelBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         pool_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-        pool_out: NonNull<*mut CVPixelBufferPool>,
+        pool_out: &mut Option<CFRetained<CVPixelBufferPool>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVPixelBufferPoolCreate(
                 allocator: Option<&CFAllocator>,
                 pool_attributes: Option<&CFDictionary<CFString, CFType>>,
                 pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-                pool_out: NonNull<*mut CVPixelBufferPool>,
+                pool_out: &mut Option<CFRetained<CVPixelBufferPool>>,
             ) -> CVReturn;
         }
+        assert!(
+            pool_out.is_none(),
+            "parameter `pool_out` must point to `None` on entry"
+        );
         unsafe {
             CVPixelBufferPoolCreate(
                 allocator,
@@ -138,10 +141,6 @@ impl CVPixelBufferPool {
     /// Parameter `pixelBufferOut`: The newly created pixel buffer will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
-    ///
-    /// # Safety
-    ///
-    /// `pixel_buffer_out` must be a valid pointer.
     #[doc(alias = "CVPixelBufferPoolCreatePixelBuffer")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -150,25 +149,28 @@ impl CVPixelBufferPool {
         feature = "CVReturn"
     ))]
     #[inline]
-    pub unsafe fn create_pixel_buffer(
+    pub fn pixel_buffer(
         &self,
         allocator: Option<&CFAllocator>,
-        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+        pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVPixelBufferPoolCreatePixelBuffer(
                 allocator: Option<&CFAllocator>,
                 pixel_buffer_pool: &CVPixelBufferPool,
-                pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+                pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
             ) -> CVReturn;
         }
+        assert!(
+            pixel_buffer_out.is_none(),
+            "parameter `pixel_buffer_out` must point to `None` on entry"
+        );
         unsafe { CVPixelBufferPoolCreatePixelBuffer(allocator, self, pixel_buffer_out) }
     }
 
     /// # Safety
     ///
-    /// - `aux_attributes` generic should be of the correct type.
-    /// - `pixel_buffer_out` must be a valid pointer.
+    /// `aux_attributes` generic should be of the correct type.
     #[doc(alias = "CVPixelBufferPoolCreatePixelBufferWithAuxAttributes")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -177,20 +179,24 @@ impl CVPixelBufferPool {
         feature = "CVReturn"
     ))]
     #[inline]
-    pub unsafe fn create_pixel_buffer_with_aux_attributes(
+    pub unsafe fn pixel_buffer_with_aux_attributes(
         &self,
         allocator: Option<&CFAllocator>,
         aux_attributes: Option<&CFDictionary<CFString, CFType>>,
-        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+        pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
                 allocator: Option<&CFAllocator>,
                 pixel_buffer_pool: &CVPixelBufferPool,
                 aux_attributes: Option<&CFDictionary<CFString, CFType>>,
-                pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+                pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
             ) -> CVReturn;
         }
+        assert!(
+            pixel_buffer_out.is_none(),
+            "parameter `pixel_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
                 allocator,

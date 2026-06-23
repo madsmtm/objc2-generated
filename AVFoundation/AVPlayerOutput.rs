@@ -124,24 +124,24 @@ unsafe impl RefEncode for CMTagCollectionVideoOutputPreset {
 /// Parameter `newCollectionOut`: Address of a location to the newly created CMTagCollection.  The client is responsible for releasing the returned CMTagCollection.
 ///
 /// Returns: noErr if successful. Otherwise, an error describing why a tag collection could not be created.
-///
-/// # Safety
-///
-/// `new_collection_out` must be a valid pointer.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
 pub unsafe fn CMTagCollectionCreateWithVideoOutputPreset(
     allocator: Option<&CFAllocator>,
     preset: CMTagCollectionVideoOutputPreset,
-    new_collection_out: NonNull<*const CMTagCollection>,
+    new_collection_out: &mut Option<CFRetained<CMTagCollection>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMTagCollectionCreateWithVideoOutputPreset(
             allocator: Option<&CFAllocator>,
             preset: CMTagCollectionVideoOutputPreset,
-            new_collection_out: NonNull<*const CMTagCollection>,
+            new_collection_out: &mut Option<CFRetained<CMTagCollection>>,
         ) -> OSStatus;
     }
+    assert!(
+        new_collection_out.is_none(),
+        "parameter `new_collection_out` must point to `None` on entry"
+    );
     unsafe { CMTagCollectionCreateWithVideoOutputPreset(allocator, preset, new_collection_out) }
 }
 

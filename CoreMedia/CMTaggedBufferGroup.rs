@@ -84,23 +84,26 @@ impl CMTaggedBufferGroup {
     ///
     /// - `tag_collections` generic must be of the correct type.
     /// - `buffers` generic must be of the correct type.
-    /// - `group_out` must be a valid pointer.
     #[doc(alias = "CMTaggedBufferGroupCreate")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         tag_collections: &CFArray,
         buffers: &CFArray,
-        group_out: NonNull<*mut CMTaggedBufferGroup>,
+        group_out: &mut Option<CFRetained<CMTaggedBufferGroup>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTaggedBufferGroupCreate(
                 allocator: Option<&CFAllocator>,
                 tag_collections: &CFArray,
                 buffers: &CFArray,
-                group_out: NonNull<*mut CMTaggedBufferGroup>,
+                group_out: &mut Option<CFRetained<CMTaggedBufferGroup>>,
             ) -> OSStatus;
         }
+        assert!(
+            group_out.is_none(),
+            "parameter `group_out` must point to `None` on entry"
+        );
         unsafe { CMTaggedBufferGroupCreate(allocator, tag_collections, buffers, group_out) }
     }
 
@@ -116,22 +119,25 @@ impl CMTaggedBufferGroup {
     ///
     /// # Safety
     ///
-    /// - `tagged_buffer_groups` generic must be of the correct type.
-    /// - `group_out` must be a valid pointer.
+    /// `tagged_buffer_groups` generic must be of the correct type.
     #[doc(alias = "CMTaggedBufferGroupCreateCombined")]
     #[inline]
-    pub unsafe fn create_combined(
+    pub unsafe fn new_combined(
         allocator: Option<&CFAllocator>,
         tagged_buffer_groups: &CFArray,
-        group_out: NonNull<*mut CMTaggedBufferGroup>,
+        group_out: &mut Option<CFRetained<CMTaggedBufferGroup>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTaggedBufferGroupCreateCombined(
                 allocator: Option<&CFAllocator>,
                 tagged_buffer_groups: &CFArray,
-                group_out: NonNull<*mut CMTaggedBufferGroup>,
+                group_out: &mut Option<CFRetained<CMTaggedBufferGroup>>,
             ) -> OSStatus;
         }
+        assert!(
+            group_out.is_none(),
+            "parameter `group_out` must point to `None` on entry"
+        );
         unsafe { CMTaggedBufferGroupCreateCombined(allocator, tagged_buffer_groups, group_out) }
     }
 
@@ -393,25 +399,27 @@ impl CMTaggedBufferGroup {
     /// CMTaggedBufferGroups, it is more efficient to create the CMTaggedBufferGroupFormatDescription
     /// once and use it for all of the CMSampleBuffers.
     /// The caller owns the returned CMFormatDescription, and must release it when done with it.
-    ///
-    /// # Safety
-    ///
-    /// `format_description_out` must be a valid pointer.
     #[doc(alias = "CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
     pub unsafe fn format_description_create_for_tagged_buffer_group(
         &self,
         allocator: Option<&CFAllocator>,
-        format_description_out: NonNull<*const CMTaggedBufferGroupFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMTaggedBufferGroupFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup(
                 allocator: Option<&CFAllocator>,
                 tagged_buffer_group: &CMTaggedBufferGroup,
-                format_description_out: NonNull<*const CMTaggedBufferGroupFormatDescription>,
+                format_description_out: &mut Option<
+                    CFRetained<CMTaggedBufferGroupFormatDescription>,
+                >,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup(
                 allocator,
@@ -443,7 +451,6 @@ impl CMTaggedBufferGroup {
     ///
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
-    /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
@@ -451,16 +458,22 @@ impl CMTaggedBufferGroup {
         &self,
         allocator: Option<&CFAllocator>,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*const CMTaggedBufferGroupFormatDescription>,
+        format_description_out: &mut Option<CFRetained<CMTaggedBufferGroupFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions(
                 allocator: Option<&CFAllocator>,
                 tagged_buffer_group: &CMTaggedBufferGroup,
                 extensions: Option<&CFDictionary>,
-                format_description_out: NonNull<*const CMTaggedBufferGroupFormatDescription>,
+                format_description_out: &mut Option<
+                    CFRetained<CMTaggedBufferGroupFormatDescription>,
+                >,
             ) -> OSStatus;
         }
+        assert!(
+            format_description_out.is_none(),
+            "parameter `format_description_out` must point to `None` on entry"
+        );
         unsafe {
             CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions(
                 allocator,
@@ -520,10 +533,6 @@ impl CMTaggedBufferGroup {
 /// Parameter `sBufOut`: Returned newly created CMSampleBuffer.
 ///
 /// Returns: OSStatus with error or noErr if successful.
-///
-/// # Safety
-///
-/// `s_buf_out` must be a valid pointer.
 #[cfg(all(
     feature = "CMFormatDescription",
     feature = "CMSampleBuffer",
@@ -536,7 +545,7 @@ pub unsafe fn CMSampleBufferCreateForTaggedBufferGroup(
     sbuf_pts: CMTime,
     sbuf_duration: CMTime,
     format_description: &CMTaggedBufferGroupFormatDescription,
-    s_buf_out: NonNull<*mut CMSampleBuffer>,
+    s_buf_out: &mut Option<CFRetained<CMSampleBuffer>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMSampleBufferCreateForTaggedBufferGroup(
@@ -545,9 +554,13 @@ pub unsafe fn CMSampleBufferCreateForTaggedBufferGroup(
             sbuf_pts: CMTime,
             sbuf_duration: CMTime,
             format_description: &CMTaggedBufferGroupFormatDescription,
-            s_buf_out: NonNull<*mut CMSampleBuffer>,
+            s_buf_out: &mut Option<CFRetained<CMSampleBuffer>>,
         ) -> OSStatus;
     }
+    assert!(
+        s_buf_out.is_none(),
+        "parameter `s_buf_out` must point to `None` on entry"
+    );
     unsafe {
         CMSampleBufferCreateForTaggedBufferGroup(
             allocator,

@@ -42,25 +42,28 @@ impl SecKeychainSearch {
     ///
     /// - `keychain_or_array` should be of the correct type.
     /// - `attr_list` must be a valid pointer or null.
-    /// - `search_ref` must be a valid pointer.
     #[doc(alias = "SecKeychainSearchCreateFromAttributes")]
     #[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
     #[deprecated = "SecKeychainSearch is not supported"]
     #[inline]
-    pub unsafe fn create_from_attributes(
+    pub unsafe fn from_attributes(
         keychain_or_array: Option<&CFType>,
         item_class: SecItemClass,
         attr_list: *const SecKeychainAttributeList,
-        search_ref: NonNull<*mut SecKeychainSearch>,
+        search_ref: &mut Option<CFRetained<SecKeychainSearch>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainSearchCreateFromAttributes(
                 keychain_or_array: Option<&CFType>,
                 item_class: SecItemClass,
                 attr_list: *const SecKeychainAttributeList,
-                search_ref: NonNull<*mut SecKeychainSearch>,
+                search_ref: &mut Option<CFRetained<SecKeychainSearch>>,
             ) -> OSStatus;
         }
+        assert!(
+            search_ref.is_none(),
+            "parameter `search_ref` must point to `None` on entry"
+        );
         unsafe {
             SecKeychainSearchCreateFromAttributes(
                 keychain_or_array,
@@ -80,21 +83,21 @@ impl SecKeychainSearch {
     /// Returns: A result code.  When there are no more items that match the parameters specified to SecPolicySearchCreate, errSecItemNotFound is returned. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in Mac OS X 10.7 and later; to find keychain items which match specified attributes, please use the SecItemCopyMatching API (see SecItem.h).
-    ///
-    /// # Safety
-    ///
-    /// `item_ref` must be a valid pointer.
     #[doc(alias = "SecKeychainSearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychainSearch is not supported"]
     #[inline]
-    pub unsafe fn copy_next(&self, item_ref: NonNull<*mut SecKeychainItem>) -> OSStatus {
+    pub unsafe fn next(&self, item_ref: &mut Option<CFRetained<SecKeychainItem>>) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainSearchCopyNext(
                 search_ref: &SecKeychainSearch,
-                item_ref: NonNull<*mut SecKeychainItem>,
+                item_ref: &mut Option<CFRetained<SecKeychainItem>>,
             ) -> OSStatus;
         }
+        assert!(
+            item_ref.is_none(),
+            "parameter `item_ref` must point to `None` on entry"
+        );
         unsafe { SecKeychainSearchCopyNext(self, item_ref) }
     }
 }

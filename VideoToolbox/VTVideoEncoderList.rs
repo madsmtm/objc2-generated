@@ -15,18 +15,21 @@ use crate::*;
 ///
 /// - `options` generic must be of the correct type.
 /// - `options` generic must be of the correct type.
-/// - `list_of_video_encoders_out` must be a valid pointer.
 #[inline]
 pub unsafe fn VTCopyVideoEncoderList(
     options: Option<&CFDictionary>,
-    list_of_video_encoders_out: NonNull<*const CFArray>,
+    list_of_video_encoders_out: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTCopyVideoEncoderList(
             options: Option<&CFDictionary>,
-            list_of_video_encoders_out: NonNull<*const CFArray>,
+            list_of_video_encoders_out: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        list_of_video_encoders_out.is_none(),
+        "parameter `list_of_video_encoders_out` must point to `None` on entry"
+    );
     unsafe { VTCopyVideoEncoderList(options, list_of_video_encoders_out) }
 }
 
@@ -108,8 +111,6 @@ extern "C" {
 ///
 /// - `encoder_specification` generic must be of the correct type.
 /// - `encoder_specification` generic must be of the correct type.
-/// - `encoder_id_out` must be a valid pointer or null.
-/// - `supported_properties_out` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe fn VTCopySupportedPropertyDictionaryForEncoder(
@@ -117,8 +118,8 @@ pub unsafe fn VTCopySupportedPropertyDictionaryForEncoder(
     height: i32,
     codec_type: CMVideoCodecType,
     encoder_specification: Option<&CFDictionary>,
-    encoder_id_out: *mut *const CFString,
-    supported_properties_out: *mut *const CFDictionary,
+    encoder_id_out: Option<&mut Option<CFRetained<CFString>>>,
+    supported_properties_out: Option<&mut Option<CFRetained<CFDictionary>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTCopySupportedPropertyDictionaryForEncoder(
@@ -126,10 +127,22 @@ pub unsafe fn VTCopySupportedPropertyDictionaryForEncoder(
             height: i32,
             codec_type: CMVideoCodecType,
             encoder_specification: Option<&CFDictionary>,
-            encoder_id_out: *mut *const CFString,
-            supported_properties_out: *mut *const CFDictionary,
+            encoder_id_out: Option<&mut Option<CFRetained<CFString>>>,
+            supported_properties_out: Option<&mut Option<CFRetained<CFDictionary>>>,
         ) -> OSStatus;
     }
+    if let Some(encoder_id_out) = encoder_id_out.as_ref() {
+        assert!(
+            encoder_id_out.is_none(),
+            "parameter `encoder_id_out` must point to `None` on entry"
+        );
+    };
+    if let Some(supported_properties_out) = supported_properties_out.as_ref() {
+        assert!(
+            supported_properties_out.is_none(),
+            "parameter `supported_properties_out` must point to `None` on entry"
+        );
+    };
     unsafe {
         VTCopySupportedPropertyDictionaryForEncoder(
             width,

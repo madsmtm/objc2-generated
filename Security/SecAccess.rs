@@ -167,24 +167,27 @@ impl SecAccess {
     ///
     /// # Safety
     ///
-    /// - `trustedlist` generic must be of the correct type.
-    /// - `access_ref` must be a valid pointer.
+    /// `trustedlist` generic must be of the correct type.
     #[doc(alias = "SecAccessCreate")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         descriptor: &CFString,
         trustedlist: Option<&CFArray>,
-        access_ref: NonNull<*mut SecAccess>,
+        access_ref: &mut Option<CFRetained<SecAccess>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCreate(
                 descriptor: &CFString,
                 trustedlist: Option<&CFArray>,
-                access_ref: NonNull<*mut SecAccess>,
+                access_ref: &mut Option<CFRetained<SecAccess>>,
             ) -> OSStatus;
         }
+        assert!(
+            access_ref.is_none(),
+            "parameter `access_ref` must point to `None` on entry"
+        );
         unsafe { SecAccessCreate(descriptor, trustedlist, access_ref) }
     }
 
@@ -206,7 +209,6 @@ impl SecAccess {
     ///
     /// - `owner` must be a valid pointer.
     /// - `acls` must be a valid pointer.
-    /// - `access_ref` must be a valid pointer.
     #[doc(alias = "SecAccessCreateFromOwnerAndACL")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -216,20 +218,24 @@ impl SecAccess {
     ))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    pub unsafe fn create_from_owner_and_acl(
+    pub unsafe fn from_owner_and_acl(
         owner: NonNull<CSSM_ACL_OWNER_PROTOTYPE>,
         acl_count: uint32,
         acls: NonNull<CSSM_ACL_ENTRY_INFO>,
-        access_ref: NonNull<*mut SecAccess>,
+        access_ref: &mut Option<CFRetained<SecAccess>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCreateFromOwnerAndACL(
                 owner: NonNull<CSSM_ACL_OWNER_PROTOTYPE>,
                 acl_count: uint32,
                 acls: NonNull<CSSM_ACL_ENTRY_INFO>,
-                access_ref: NonNull<*mut SecAccess>,
+                access_ref: &mut Option<CFRetained<SecAccess>>,
             ) -> OSStatus;
         }
+        assert!(
+            access_ref.is_none(),
+            "parameter `access_ref` must point to `None` on entry"
+        );
         unsafe { SecAccessCreateFromOwnerAndACL(owner, acl_count, acls, access_ref) }
     }
 
@@ -340,17 +346,16 @@ impl SecAccess {
     /// - `user_id` must be a valid pointer or null.
     /// - `group_id` must be a valid pointer or null.
     /// - `owner_type` must be a valid pointer or null.
-    /// - `acl_list` must be a valid pointer or null.
     #[doc(alias = "SecAccessCopyOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_owner_and_acl(
+    pub unsafe fn owner_and_acl(
         &self,
         user_id: *mut libc::uid_t,
         group_id: *mut libc::gid_t,
         owner_type: *mut SecAccessOwnerType,
-        acl_list: *mut *const CFArray,
+        acl_list: Option<&mut Option<CFRetained<CFArray>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCopyOwnerAndACL(
@@ -358,9 +363,15 @@ impl SecAccess {
                 user_id: *mut libc::uid_t,
                 group_id: *mut libc::gid_t,
                 owner_type: *mut SecAccessOwnerType,
-                acl_list: *mut *const CFArray,
+                acl_list: Option<&mut Option<CFRetained<CFArray>>>,
             ) -> OSStatus;
         }
+        if let Some(acl_list) = acl_list.as_ref() {
+            assert!(
+                acl_list.is_none(),
+                "parameter `acl_list` must point to `None` on entry"
+            );
+        };
         unsafe { SecAccessCopyOwnerAndACL(self, user_id, group_id, owner_type, acl_list) }
     }
 
@@ -371,21 +382,21 @@ impl SecAccess {
     /// Parameter `aclList`: On return, a pointer to a new created CFArray of SecACL instances.  The caller is responsible for calling CFRelease on this array.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `acl_list` must be a valid pointer.
     #[doc(alias = "SecAccessCopyACLList")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_acl_list(&self, acl_list: NonNull<*const CFArray>) -> OSStatus {
+    pub unsafe fn acl_list(&self, acl_list: &mut Option<CFRetained<CFArray>>) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCopyACLList(
                 access_ref: &SecAccess,
-                acl_list: NonNull<*const CFArray>,
+                acl_list: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            acl_list.is_none(),
+            "parameter `acl_list` must point to `None` on entry"
+        );
         unsafe { SecAccessCopyACLList(self, acl_list) }
     }
 
@@ -400,26 +411,26 @@ impl SecAccess {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// For 10.7 and later please use the SecAccessCopyMatchingACLList API
-    ///
-    /// # Safety
-    ///
-    /// `acl_list` must be a valid pointer.
     #[doc(alias = "SecAccessCopySelectedACLList")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    pub unsafe fn copy_selected_acl_list(
+    pub unsafe fn selected_acl_list(
         &self,
         action: CSSM_ACL_AUTHORIZATION_TAG,
-        acl_list: NonNull<*const CFArray>,
+        acl_list: &mut Option<CFRetained<CFArray>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCopySelectedACLList(
                 access_ref: &SecAccess,
                 action: CSSM_ACL_AUTHORIZATION_TAG,
-                acl_list: NonNull<*const CFArray>,
+                acl_list: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            acl_list.is_none(),
+            "parameter `acl_list` must point to `None` on entry"
+        );
         unsafe { SecAccessCopySelectedACLList(self, action, acl_list) }
     }
 

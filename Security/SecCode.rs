@@ -33,17 +33,20 @@ impl SecCode {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
-    ///
-    /// # Safety
-    ///
-    /// `self` must be a valid pointer.
     #[doc(alias = "SecCodeCopySelf")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn copy_self(flags: SecCSFlags, self_: NonNull<*mut SecCode>) -> OSStatus {
+    pub unsafe fn self_(flags: SecCSFlags, self_: &mut Option<CFRetained<SecCode>>) -> OSStatus {
         extern "C-unwind" {
-            fn SecCodeCopySelf(flags: SecCSFlags, self_: NonNull<*mut SecCode>) -> OSStatus;
+            fn SecCodeCopySelf(
+                flags: SecCSFlags,
+                self_: &mut Option<CFRetained<SecCode>>,
+            ) -> OSStatus;
         }
+        assert!(
+            self_.is_none(),
+            "parameter `self_` must point to `None` on entry"
+        );
         unsafe { SecCodeCopySelf(flags, self_) }
     }
 }
@@ -53,24 +56,25 @@ pub const kSecCSUseAllArchitectures: u32 = 1;
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
-    /// # Safety
-    ///
-    /// `static_code` must be a valid pointer.
     #[doc(alias = "SecCodeCopyStaticCode")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn copy_static_code(
+    pub unsafe fn static_code(
         &self,
         flags: SecCSFlags,
-        static_code: NonNull<*const SecStaticCode>,
+        static_code: &mut Option<CFRetained<SecStaticCode>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeCopyStaticCode(
                 code: &SecCode,
                 flags: SecCSFlags,
-                static_code: NonNull<*const SecStaticCode>,
+                static_code: &mut Option<CFRetained<SecStaticCode>>,
             ) -> OSStatus;
         }
+        assert!(
+            static_code.is_none(),
+            "parameter `static_code` must point to `None` on entry"
+        );
         unsafe { SecCodeCopyStaticCode(self, flags, static_code) }
     }
 
@@ -90,21 +94,25 @@ impl SecCode {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
-    ///
-    /// # Safety
-    ///
-    /// `host` must be a valid pointer.
     #[doc(alias = "SecCodeCopyHost")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn copy_host(&self, flags: SecCSFlags, host: NonNull<*mut SecCode>) -> OSStatus {
+    pub unsafe fn host(
+        &self,
+        flags: SecCSFlags,
+        host: &mut Option<CFRetained<SecCode>>,
+    ) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeCopyHost(
                 guest: &SecCode,
                 flags: SecCSFlags,
-                host: NonNull<*mut SecCode>,
+                host: &mut Option<CFRetained<SecCode>>,
             ) -> OSStatus;
         }
+        assert!(
+            host.is_none(),
+            "parameter `host` must point to `None` on entry"
+        );
         unsafe { SecCodeCopyHost(self, flags, host) }
     }
 }
@@ -217,24 +225,27 @@ impl SecCode {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
-    /// - `guest` must be a valid pointer.
     #[doc(alias = "SecCodeCopyGuestWithAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn copy_guest_with_attributes(
+    pub unsafe fn guest_with_attributes(
         host: Option<&SecCode>,
         attributes: Option<&CFDictionary>,
         flags: SecCSFlags,
-        guest: NonNull<*mut SecCode>,
+        guest: &mut Option<CFRetained<SecCode>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeCopyGuestWithAttributes(
                 host: Option<&SecCode>,
                 attributes: Option<&CFDictionary>,
                 flags: SecCSFlags,
-                guest: NonNull<*mut SecCode>,
+                guest: &mut Option<CFRetained<SecCode>>,
             ) -> OSStatus;
         }
+        assert!(
+            guest.is_none(),
+            "parameter `guest` must point to `None` on entry"
+        );
         unsafe { SecCodeCopyGuestWithAttributes(host, attributes, flags, guest) }
     }
 
@@ -382,25 +393,25 @@ impl SecCode {
     ///
     /// Returns: On success, errSecSuccess. On error, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
-    ///
-    /// # Safety
-    ///
-    /// `path` must be a valid pointer.
     #[doc(alias = "SecCodeCopyPath")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn copy_path(
+    pub unsafe fn path(
         static_code: &SecStaticCode,
         flags: SecCSFlags,
-        path: NonNull<*const CFURL>,
+        path: &mut Option<CFRetained<CFURL>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeCopyPath(
                 static_code: &SecStaticCode,
                 flags: SecCSFlags,
-                path: NonNull<*const CFURL>,
+                path: &mut Option<CFRetained<CFURL>>,
             ) -> OSStatus;
         }
+        assert!(
+            path.is_none(),
+            "parameter `path` must point to `None` on entry"
+        );
         unsafe { SecCodeCopyPath(static_code, flags, path) }
     }
 
@@ -426,25 +437,25 @@ impl SecCode {
     ///
     /// Returns: On success, errSecSuccess. On error, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
-    ///
-    /// # Safety
-    ///
-    /// `requirement` must be a valid pointer.
     #[doc(alias = "SecCodeCopyDesignatedRequirement")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn copy_designated_requirement(
+    pub unsafe fn designated_requirement(
         code: &SecStaticCode,
         flags: SecCSFlags,
-        requirement: NonNull<*mut SecRequirement>,
+        requirement: &mut Option<CFRetained<SecRequirement>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeCopyDesignatedRequirement(
                 code: &SecStaticCode,
                 flags: SecCSFlags,
-                requirement: NonNull<*mut SecRequirement>,
+                requirement: &mut Option<CFRetained<SecRequirement>>,
             ) -> OSStatus;
         }
+        assert!(
+            requirement.is_none(),
+            "parameter `requirement` must point to `None` on entry"
+        );
         unsafe { SecCodeCopyDesignatedRequirement(code, flags, requirement) }
     }
 }
@@ -606,24 +617,25 @@ extern "C" {
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
-    /// # Safety
-    ///
-    /// `information` must be a valid pointer.
     #[doc(alias = "SecCodeCopySigningInformation")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn copy_signing_information(
+    pub unsafe fn signing_information(
         code: &SecStaticCode,
         flags: SecCSFlags,
-        information: NonNull<*const CFDictionary>,
+        information: &mut Option<CFRetained<CFDictionary>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeCopySigningInformation(
                 code: &SecStaticCode,
                 flags: SecCSFlags,
-                information: NonNull<*const CFDictionary>,
+                information: &mut Option<CFRetained<CFDictionary>>,
             ) -> OSStatus;
         }
+        assert!(
+            information.is_none(),
+            "parameter `information` must point to `None` on entry"
+        );
         unsafe { SecCodeCopySigningInformation(code, flags, information) }
     }
 

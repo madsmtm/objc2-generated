@@ -348,22 +348,35 @@ pub fn MTKModelIOVertexDescriptorFromMetal(
 /// Partially converts a Metal vertex descriptor to a Model I/O vertex descriptor
 ///
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Model I/O vertex descriptor.  It does not add any semantic information such at attributes names.  Names must be set in the returned Model I/O vertex descriptor before it can be applied to a a Model I/O mesh. If error is nonnull, and the conversion cannot be made, it will be set.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
-pub unsafe fn MTKModelIOVertexDescriptorFromMetalWithError(
+pub fn MTKModelIOVertexDescriptorFromMetalWithError(
     metal_descriptor: &MTLVertexDescriptor,
-    error: *mut *mut NSError,
+    error: Option<&mut Option<Retained<NSError>>>,
 ) -> Retained<MDLVertexDescriptor> {
     extern "C-unwind" {
         fn MTKModelIOVertexDescriptorFromMetalWithError(
             metal_descriptor: &MTLVertexDescriptor,
-            error: *mut *mut NSError,
+            error: Option<&mut Option<Retained<NSError>>>,
         ) -> *mut MDLVertexDescriptor;
     }
+    struct RetainErrorOnDrop<'a>(&'a mut Option<Retained<NSError>>);
+    impl Drop for RetainErrorOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    let mut error = if let Some(error) = error {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+        Some(RetainErrorOnDrop(error))
+    } else {
+        None
+    };
+    let error = error.as_mut().map(|arg| &mut *arg.0);
     let ret = unsafe { MTKModelIOVertexDescriptorFromMetalWithError(metal_descriptor, error) };
     unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
@@ -389,22 +402,35 @@ pub fn MTKMetalVertexDescriptorFromModelIO(
 /// Partially converts a Model I/O vertex descriptor to a Metal vertex descriptor
 ///
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Metal vertex descriptor. It simply copies attributes 1 for 1. Thus attributes in the given Model I/O vertex descriptor must be arranged in the correct order for the resulting descriptor to properly map mesh data to vertex shader inputs.  Layout stepFunction and stepRates for the resulting MTLVertexDescriptor must also be set by application.  If error is nonnull, and the conversion cannot be made, it will be set.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
-pub unsafe fn MTKMetalVertexDescriptorFromModelIOWithError(
+pub fn MTKMetalVertexDescriptorFromModelIOWithError(
     model_io_descriptor: &MDLVertexDescriptor,
-    error: *mut *mut NSError,
+    error: Option<&mut Option<Retained<NSError>>>,
 ) -> Option<Retained<MTLVertexDescriptor>> {
     extern "C-unwind" {
         fn MTKMetalVertexDescriptorFromModelIOWithError(
             model_io_descriptor: &MDLVertexDescriptor,
-            error: *mut *mut NSError,
+            error: Option<&mut Option<Retained<NSError>>>,
         ) -> *mut MTLVertexDescriptor;
     }
+    struct RetainErrorOnDrop<'a>(&'a mut Option<Retained<NSError>>);
+    impl Drop for RetainErrorOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    let mut error = if let Some(error) = error {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+        Some(RetainErrorOnDrop(error))
+    } else {
+        None
+    };
+    let error = error.as_mut().map(|arg| &mut *arg.0);
     let ret = unsafe { MTKMetalVertexDescriptorFromModelIOWithError(model_io_descriptor, error) };
     unsafe { Retained::retain_autoreleased(ret) }
 }

@@ -60,26 +60,29 @@ impl CVMetalBufferCache {
     ///
     /// # Safety
     ///
-    /// - `cache_attributes` generic should be of the correct type.
-    /// - `cache_out` must be a valid pointer.
+    /// `cache_attributes` generic should be of the correct type.
     #[doc(alias = "CVMetalBufferCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         cache_attributes: Option<&CFDictionary<CFString, CFType>>,
         metal_device: &ProtocolObject<dyn MTLDevice>,
-        cache_out: NonNull<*mut CVMetalBufferCache>,
+        cache_out: &mut Option<CFRetained<CVMetalBufferCache>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVMetalBufferCacheCreate(
                 allocator: Option<&CFAllocator>,
                 cache_attributes: Option<&CFDictionary<CFString, CFType>>,
                 metal_device: &ProtocolObject<dyn MTLDevice>,
-                cache_out: NonNull<*mut CVMetalBufferCache>,
+                cache_out: &mut Option<CFRetained<CVMetalBufferCache>>,
             ) -> CVReturn;
         }
+        assert!(
+            cache_out.is_none(),
+            "parameter `cache_out` must point to `None` on entry"
+        );
         unsafe { CVMetalBufferCacheCreate(allocator, cache_attributes, metal_device, cache_out) }
     }
 
@@ -100,10 +103,6 @@ impl CVMetalBufferCache {
     ///
     /// IMPORTANT NOTE: Clients should retain CVMetalBuffer objects until they are done using the images in them.
     /// Retaining a CVMetalBuffer is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
-    ///
-    /// # Safety
-    ///
-    /// `buffer_out` must be a valid pointer.
     #[doc(alias = "CVMetalBufferCacheCreateBufferFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -112,20 +111,24 @@ impl CVMetalBufferCache {
         feature = "CVReturn"
     ))]
     #[inline]
-    pub unsafe fn create_buffer_from_image(
+    pub fn buffer_from_image(
         &self,
         allocator: Option<&CFAllocator>,
         image_buffer: &CVImageBuffer,
-        buffer_out: NonNull<*mut CVMetalBuffer>,
+        buffer_out: &mut Option<CFRetained<CVMetalBuffer>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVMetalBufferCacheCreateBufferFromImage(
                 allocator: Option<&CFAllocator>,
                 buffer_cache: &CVMetalBufferCache,
                 image_buffer: &CVImageBuffer,
-                buffer_out: NonNull<*mut CVMetalBuffer>,
+                buffer_out: &mut Option<CFRetained<CVMetalBuffer>>,
             ) -> CVReturn;
         }
+        assert!(
+            buffer_out.is_none(),
+            "parameter `buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CVMetalBufferCacheCreateBufferFromImage(allocator, self, image_buffer, buffer_out)
         }

@@ -59,24 +59,29 @@ impl SecIdentitySearch {
     ///
     /// # Safety
     ///
-    /// - `keychain_or_array` should be of the correct type.
-    /// - `search_ref` must be a valid pointer or null.
+    /// `keychain_or_array` should be of the correct type.
     #[doc(alias = "SecIdentitySearchCreate")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         keychain_or_array: Option<&CFType>,
         key_usage: CSSM_KEYUSE,
-        search_ref: *mut *mut SecIdentitySearch,
+        search_ref: Option<&mut Option<CFRetained<SecIdentitySearch>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentitySearchCreate(
                 keychain_or_array: Option<&CFType>,
                 key_usage: CSSM_KEYUSE,
-                search_ref: *mut *mut SecIdentitySearch,
+                search_ref: Option<&mut Option<CFRetained<SecIdentitySearch>>>,
             ) -> OSStatus;
         }
+        if let Some(search_ref) = search_ref.as_ref() {
+            assert!(
+                search_ref.is_none(),
+                "parameter `search_ref` must point to `None` on entry"
+            );
+        };
         unsafe { SecIdentitySearchCreate(keychain_or_array, key_usage, search_ref) }
     }
 
@@ -89,21 +94,23 @@ impl SecIdentitySearch {
     /// Returns: A result code. When there are no more identities found that match the search criteria, errSecItemNotFound is returned. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in Mac OS X 10.7 and later; to find identities which match specified attributes, please use the SecItemCopyMatching API (see SecItem.h).
-    ///
-    /// # Safety
-    ///
-    /// `identity` must be a valid pointer or null.
     #[doc(alias = "SecIdentitySearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn copy_next(&self, identity: *mut *mut SecIdentity) -> OSStatus {
+    pub unsafe fn next(&self, identity: Option<&mut Option<CFRetained<SecIdentity>>>) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentitySearchCopyNext(
                 search_ref: &SecIdentitySearch,
-                identity: *mut *mut SecIdentity,
+                identity: Option<&mut Option<CFRetained<SecIdentity>>>,
             ) -> OSStatus;
         }
+        if let Some(identity) = identity.as_ref() {
+            assert!(
+                identity.is_none(),
+                "parameter `identity` must point to `None` on entry"
+            );
+        };
         unsafe { SecIdentitySearchCopyNext(self, identity) }
     }
 }

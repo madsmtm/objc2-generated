@@ -35,22 +35,25 @@ impl SecTrustedApplication {
     ///
     /// # Safety
     ///
-    /// - `path` must be a valid pointer or null.
-    /// - `app` must be a valid pointer.
+    /// `path` must be a valid pointer or null.
     #[doc(alias = "SecTrustedApplicationCreateFromPath")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn create_from_path(
+    pub unsafe fn from_path(
         path: *const c_char,
-        app: NonNull<*mut SecTrustedApplication>,
+        app: &mut Option<CFRetained<SecTrustedApplication>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustedApplicationCreateFromPath(
                 path: *const c_char,
-                app: NonNull<*mut SecTrustedApplication>,
+                app: &mut Option<CFRetained<SecTrustedApplication>>,
             ) -> OSStatus;
         }
+        assert!(
+            app.is_none(),
+            "parameter `app` must point to `None` on entry"
+        );
         unsafe { SecTrustedApplicationCreateFromPath(path, app) }
     }
 
@@ -61,21 +64,21 @@ impl SecTrustedApplication {
     /// Parameter `data`: On return, a pointer to a data reference of the trusted application.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `data` must be a valid pointer.
     #[doc(alias = "SecTrustedApplicationCopyData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_data(&self, data: NonNull<*const CFData>) -> OSStatus {
+    pub unsafe fn data(&self, data: &mut Option<CFRetained<CFData>>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustedApplicationCopyData(
                 app_ref: &SecTrustedApplication,
-                data: NonNull<*const CFData>,
+                data: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            data.is_none(),
+            "parameter `data` must point to `None` on entry"
+        );
         unsafe { SecTrustedApplicationCopyData(self, data) }
     }
 

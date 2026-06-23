@@ -263,7 +263,6 @@ impl CMSampleBuffer {
     /// - `make_data_ready_refcon` must be a valid pointer or null.
     /// - `sample_timing_array` must be a valid pointer or null.
     /// - `sample_size_array` must be a valid pointer or null.
-    /// - `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreate")]
     #[cfg(all(
         feature = "CMBase",
@@ -272,7 +271,7 @@ impl CMSampleBuffer {
         feature = "CMTime"
     ))]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         data_buffer: Option<&CMBlockBuffer>,
         data_ready: bool,
@@ -284,7 +283,7 @@ impl CMSampleBuffer {
         sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
         sample_size_array: *const usize,
-        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferCreate(
@@ -299,10 +298,14 @@ impl CMSampleBuffer {
                 sample_timing_array: *const CMSampleTimingInfo,
                 num_sample_size_entries: CMItemCount,
                 sample_size_array: *const usize,
-                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+                sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
             ) -> OSStatus;
         }
         let data_ready = data_ready as _;
+        assert!(
+            sample_buffer_out.is_none(),
+            "parameter `sample_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMSampleBufferCreate(
                 allocator,
@@ -329,7 +332,6 @@ impl CMSampleBuffer {
     ///
     /// - `sample_timing_array` must be a valid pointer or null.
     /// - `sample_size_array` must be a valid pointer or null.
-    /// - `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateWithMakeDataReadyHandler")]
     #[cfg(all(
         feature = "CMBase",
@@ -339,7 +341,7 @@ impl CMSampleBuffer {
         feature = "block2"
     ))]
     #[inline]
-    pub unsafe fn create_with_make_data_ready_handler(
+    pub unsafe fn with_make_data_ready_handler(
         allocator: Option<&CFAllocator>,
         data_buffer: Option<&CMBlockBuffer>,
         data_ready: bool,
@@ -349,7 +351,7 @@ impl CMSampleBuffer {
         sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
         sample_size_array: *const usize,
-        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
         make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -363,11 +365,15 @@ impl CMSampleBuffer {
                 sample_timing_array: *const CMSampleTimingInfo,
                 num_sample_size_entries: CMItemCount,
                 sample_size_array: *const usize,
-                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+                sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
                 make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
             ) -> OSStatus;
         }
         let data_ready = data_ready as _;
+        assert!(
+            sample_buffer_out.is_none(),
+            "parameter `sample_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMSampleBufferCreateWithMakeDataReadyHandler(
                 allocator,
@@ -515,7 +521,6 @@ impl CMSampleBuffer {
     ///
     /// - `sample_timing_array` must be a valid pointer or null.
     /// - `sample_size_array` must be a valid pointer or null.
-    /// - `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateReady")]
     #[cfg(all(
         feature = "CMBase",
@@ -524,7 +529,7 @@ impl CMSampleBuffer {
         feature = "CMTime"
     ))]
     #[inline]
-    pub unsafe fn create_ready(
+    pub unsafe fn new_ready(
         allocator: Option<&CFAllocator>,
         data_buffer: Option<&CMBlockBuffer>,
         format_description: Option<&CMFormatDescription>,
@@ -533,7 +538,7 @@ impl CMSampleBuffer {
         sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
         sample_size_array: *const usize,
-        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferCreateReady(
@@ -545,9 +550,13 @@ impl CMSampleBuffer {
                 sample_timing_array: *const CMSampleTimingInfo,
                 num_sample_size_entries: CMItemCount,
                 sample_size_array: *const usize,
-                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+                sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            sample_buffer_out.is_none(),
+            "parameter `sample_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMSampleBufferCreateReady(
                 allocator,
@@ -575,7 +584,6 @@ impl CMSampleBuffer {
 /// - `make_data_ready_callback` must be implemented correctly.
 /// - `make_data_ready_refcon` must be a valid pointer or null.
 /// - `packet_descriptions` must be a valid pointer or null.
-/// - `sample_buffer_out` must be a valid pointer.
 #[cfg(all(
     feature = "CMBase",
     feature = "CMBlockBuffer",
@@ -594,7 +602,7 @@ pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptions(
     num_samples: CMItemCount,
     presentation_time_stamp: CMTime,
     packet_descriptions: *const AudioStreamPacketDescription,
-    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMAudioSampleBufferCreateWithPacketDescriptions(
@@ -607,10 +615,14 @@ pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptions(
             num_samples: CMItemCount,
             presentation_time_stamp: CMTime,
             packet_descriptions: *const AudioStreamPacketDescription,
-            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
         ) -> OSStatus;
     }
     let data_ready = data_ready as _;
+    assert!(
+        sample_buffer_out.is_none(),
+        "parameter `sample_buffer_out` must point to `None` on entry"
+    );
     unsafe {
         CMAudioSampleBufferCreateWithPacketDescriptions(
             allocator,
@@ -633,8 +645,7 @@ pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptions(
 ///
 /// # Safety
 ///
-/// - `packet_descriptions` must be a valid pointer or null.
-/// - `sample_buffer_out` must be a valid pointer.
+/// `packet_descriptions` must be a valid pointer or null.
 #[cfg(all(
     feature = "CMBase",
     feature = "CMBlockBuffer",
@@ -652,7 +663,7 @@ pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHan
     num_samples: CMItemCount,
     presentation_time_stamp: CMTime,
     packet_descriptions: *const AudioStreamPacketDescription,
-    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
     make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -664,11 +675,15 @@ pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHan
             num_samples: CMItemCount,
             presentation_time_stamp: CMTime,
             packet_descriptions: *const AudioStreamPacketDescription,
-            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
             make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
         ) -> OSStatus;
     }
     let data_ready = data_ready as _;
+    assert!(
+        sample_buffer_out.is_none(),
+        "parameter `sample_buffer_out` must point to `None` on entry"
+    );
     unsafe {
         CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler(
             allocator,
@@ -694,8 +709,7 @@ pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHan
 ///
 /// # Safety
 ///
-/// - `packet_descriptions` must be a valid pointer or null.
-/// - `sample_buffer_out` must be a valid pointer.
+/// `packet_descriptions` must be a valid pointer or null.
 #[cfg(all(
     feature = "CMBase",
     feature = "CMBlockBuffer",
@@ -711,7 +725,7 @@ pub unsafe fn CMAudioSampleBufferCreateReadyWithPacketDescriptions(
     num_samples: CMItemCount,
     presentation_time_stamp: CMTime,
     packet_descriptions: *const AudioStreamPacketDescription,
-    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMAudioSampleBufferCreateReadyWithPacketDescriptions(
@@ -721,9 +735,13 @@ pub unsafe fn CMAudioSampleBufferCreateReadyWithPacketDescriptions(
             num_samples: CMItemCount,
             presentation_time_stamp: CMTime,
             packet_descriptions: *const AudioStreamPacketDescription,
-            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
         ) -> OSStatus;
     }
+    assert!(
+        sample_buffer_out.is_none(),
+        "parameter `sample_buffer_out` must point to `None` on entry"
+    );
     unsafe {
         CMAudioSampleBufferCreateReadyWithPacketDescriptions(
             allocator,
@@ -765,7 +783,6 @@ impl CMSampleBuffer {
     /// - `make_data_ready_callback` must be implemented correctly.
     /// - `make_data_ready_refcon` must be a valid pointer or null.
     /// - `sample_timing` must be a valid pointer.
-    /// - `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateForImageBuffer")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -773,7 +790,7 @@ impl CMSampleBuffer {
         feature = "objc2-core-video"
     ))]
     #[inline]
-    pub unsafe fn create_for_image_buffer(
+    pub unsafe fn new_for_image_buffer(
         allocator: Option<&CFAllocator>,
         image_buffer: &CVImageBuffer,
         data_ready: bool,
@@ -781,7 +798,7 @@ impl CMSampleBuffer {
         make_data_ready_refcon: *mut c_void,
         format_description: &CMVideoFormatDescription,
         sample_timing: NonNull<CMSampleTimingInfo>,
-        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferCreateForImageBuffer(
@@ -792,10 +809,14 @@ impl CMSampleBuffer {
                 make_data_ready_refcon: *mut c_void,
                 format_description: &CMVideoFormatDescription,
                 sample_timing: NonNull<CMSampleTimingInfo>,
-                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+                sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
             ) -> OSStatus;
         }
         let data_ready = data_ready as _;
+        assert!(
+            sample_buffer_out.is_none(),
+            "parameter `sample_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMSampleBufferCreateForImageBuffer(
                 allocator,
@@ -816,8 +837,7 @@ impl CMSampleBuffer {
     ///
     /// # Safety
     ///
-    /// - `sample_timing` must be a valid pointer.
-    /// - `sample_buffer_out` must be a valid pointer.
+    /// `sample_timing` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -826,13 +846,13 @@ impl CMSampleBuffer {
         feature = "objc2-core-video"
     ))]
     #[inline]
-    pub unsafe fn create_for_image_buffer_with_make_data_ready_handler(
+    pub unsafe fn new_for_image_buffer_with_make_data_ready_handler(
         allocator: Option<&CFAllocator>,
         image_buffer: &CVImageBuffer,
         data_ready: bool,
         format_description: &CMVideoFormatDescription,
         sample_timing: NonNull<CMSampleTimingInfo>,
-        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
         make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -842,11 +862,15 @@ impl CMSampleBuffer {
                 data_ready: Boolean,
                 format_description: &CMVideoFormatDescription,
                 sample_timing: NonNull<CMSampleTimingInfo>,
-                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+                sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
                 make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
             ) -> OSStatus;
         }
         let data_ready = data_ready as _;
+        assert!(
+            sample_buffer_out.is_none(),
+            "parameter `sample_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
                 allocator,
@@ -887,8 +911,7 @@ impl CMSampleBuffer {
     ///
     /// # Safety
     ///
-    /// - `sample_timing` must be a valid pointer.
-    /// - `sample_buffer_out` must be a valid pointer.
+    /// `sample_timing` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateReadyWithImageBuffer")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -896,12 +919,12 @@ impl CMSampleBuffer {
         feature = "objc2-core-video"
     ))]
     #[inline]
-    pub unsafe fn create_ready_with_image_buffer(
+    pub unsafe fn new_ready_with_image_buffer(
         allocator: Option<&CFAllocator>,
         image_buffer: &CVImageBuffer,
         format_description: &CMVideoFormatDescription,
         sample_timing: NonNull<CMSampleTimingInfo>,
-        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferCreateReadyWithImageBuffer(
@@ -909,9 +932,13 @@ impl CMSampleBuffer {
                 image_buffer: &CVImageBuffer,
                 format_description: &CMVideoFormatDescription,
                 sample_timing: NonNull<CMSampleTimingInfo>,
-                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+                sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            sample_buffer_out.is_none(),
+            "parameter `sample_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMSampleBufferCreateReadyWithImageBuffer(
                 allocator,
@@ -929,24 +956,24 @@ impl CMSampleBuffer {
     /// the data buffer and format description are retained, and
     /// the propogatable attachments are retained by the copy's dictionary.
     /// If sbuf's data is not ready, the copy will be set to track its readiness.
-    ///
-    /// # Safety
-    ///
-    /// `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateCopy")]
     #[inline]
-    pub unsafe fn create_copy(
+    pub unsafe fn copy(
         &self,
         allocator: Option<&CFAllocator>,
-        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferCreateCopy(
                 allocator: Option<&CFAllocator>,
                 sbuf: &CMSampleBuffer,
-                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+                sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            sample_buffer_out.is_none(),
+            "parameter `sample_buffer_out` must point to `None` on entry"
+        );
         unsafe { CMSampleBufferCreateCopy(allocator, self, sample_buffer_out) }
     }
 
@@ -961,17 +988,16 @@ impl CMSampleBuffer {
     ///
     /// # Safety
     ///
-    /// - `sample_timing_array` must be a valid pointer or null.
-    /// - `sample_buffer_out` must be a valid pointer.
+    /// `sample_timing_array` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferCreateCopyWithNewTiming")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
-    pub unsafe fn create_copy_with_new_timing(
+    pub unsafe fn copy_with_new_timing(
         &self,
         allocator: Option<&CFAllocator>,
         num_sample_timing_entries: CMItemCount,
         sample_timing_array: *const CMSampleTimingInfo,
-        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferCreateCopyWithNewTiming(
@@ -979,9 +1005,13 @@ impl CMSampleBuffer {
                 original_s_buf: &CMSampleBuffer,
                 num_sample_timing_entries: CMItemCount,
                 sample_timing_array: *const CMSampleTimingInfo,
-                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+                sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            sample_buffer_out.is_none(),
+            "parameter `sample_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMSampleBufferCreateCopyWithNewTiming(
                 allocator,
@@ -996,26 +1026,26 @@ impl CMSampleBuffer {
     /// Creates a CMSampleBuffer containing a range of samples from an existing CMSampleBuffer.
     ///
     /// Samples containing non-interleaved audio are currently not supported.
-    ///
-    /// # Safety
-    ///
-    /// `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCopySampleBufferForRange")]
     #[inline]
-    pub unsafe fn copy_sample_buffer_for_range(
+    pub unsafe fn sample_buffer_for_range(
         &self,
         allocator: Option<&CFAllocator>,
         sample_range: CFRange,
-        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferCopySampleBufferForRange(
                 allocator: Option<&CFAllocator>,
                 sbuf: &CMSampleBuffer,
                 sample_range: CFRange,
-                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+                sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            sample_buffer_out.is_none(),
+            "parameter `sample_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMSampleBufferCopySampleBufferForRange(allocator, self, sample_range, sample_buffer_out)
         }
@@ -1148,7 +1178,6 @@ impl CMSampleBuffer {
     ///
     /// - `buffer_list_size_needed_out` must be a valid pointer or null.
     /// - `buffer_list_out` must be a valid pointer or null.
-    /// - `block_buffer_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-audio-types"))]
     #[inline]
@@ -1160,7 +1189,7 @@ impl CMSampleBuffer {
         block_buffer_structure_allocator: Option<&CFAllocator>,
         block_buffer_block_allocator: Option<&CFAllocator>,
         flags: u32,
-        block_buffer_out: *mut *mut CMBlockBuffer,
+        block_buffer_out: Option<&mut Option<CFRetained<CMBlockBuffer>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
@@ -1171,9 +1200,15 @@ impl CMSampleBuffer {
                 block_buffer_structure_allocator: Option<&CFAllocator>,
                 block_buffer_block_allocator: Option<&CFAllocator>,
                 flags: u32,
-                block_buffer_out: *mut *mut CMBlockBuffer,
+                block_buffer_out: Option<&mut Option<CFRetained<CMBlockBuffer>>>,
             ) -> OSStatus;
         }
+        if let Some(block_buffer_out) = block_buffer_out.as_ref() {
+            assert!(
+                block_buffer_out.is_none(),
+                "parameter `block_buffer_out` must point to `None` on entry"
+            );
+        };
         unsafe {
             CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
                 self,

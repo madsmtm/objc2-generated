@@ -82,24 +82,27 @@ impl CVDisplayLink {
     ///
     /// # Safety
     ///
-    /// - `display_array` must be a valid pointer.
-    /// - `display_link_out` must be a valid pointer.
+    /// `display_array` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkCreateWithCGDisplays")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn create_with_cg_displays(
+    pub unsafe fn with_cg_displays(
         display_array: NonNull<CGDirectDisplayID>,
         count: CFIndex,
-        display_link_out: NonNull<*mut CVDisplayLink>,
+        display_link_out: &mut Option<CFRetained<CVDisplayLink>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkCreateWithCGDisplays(
                 display_array: NonNull<CGDirectDisplayID>,
                 count: CFIndex,
-                display_link_out: NonNull<*mut CVDisplayLink>,
+                display_link_out: &mut Option<CFRetained<CVDisplayLink>>,
             ) -> CVReturn;
         }
+        assert!(
+            display_link_out.is_none(),
+            "parameter `display_link_out` must point to `None` on entry"
+        );
         unsafe { CVDisplayLinkCreateWithCGDisplays(display_array, count, display_link_out) }
     }
 
@@ -112,24 +115,24 @@ impl CVDisplayLink {
     /// Parameter `displayLinkOut`: The new display link will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
-    ///
-    /// # Safety
-    ///
-    /// `display_link_out` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkCreateWithOpenGLDisplayMask")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn create_with_open_gl_display_mask(
+    pub fn with_open_gl_display_mask(
         mask: CGOpenGLDisplayMask,
-        display_link_out: NonNull<*mut CVDisplayLink>,
+        display_link_out: &mut Option<CFRetained<CVDisplayLink>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkCreateWithOpenGLDisplayMask(
                 mask: CGOpenGLDisplayMask,
-                display_link_out: NonNull<*mut CVDisplayLink>,
+                display_link_out: &mut Option<CFRetained<CVDisplayLink>>,
             ) -> CVReturn;
         }
+        assert!(
+            display_link_out.is_none(),
+            "parameter `display_link_out` must point to `None` on entry"
+        );
         unsafe { CVDisplayLinkCreateWithOpenGLDisplayMask(mask, display_link_out) }
     }
 
@@ -142,24 +145,24 @@ impl CVDisplayLink {
     /// Parameter `displayLinkOut`: The new display link will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
-    ///
-    /// # Safety
-    ///
-    /// `display_link_out` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkCreateWithCGDisplay")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn create_with_cg_display(
+    pub fn with_cg_display(
         display_id: CGDirectDisplayID,
-        display_link_out: NonNull<*mut CVDisplayLink>,
+        display_link_out: &mut Option<CFRetained<CVDisplayLink>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkCreateWithCGDisplay(
                 display_id: CGDirectDisplayID,
-                display_link_out: NonNull<*mut CVDisplayLink>,
+                display_link_out: &mut Option<CFRetained<CVDisplayLink>>,
             ) -> CVReturn;
         }
+        assert!(
+            display_link_out.is_none(),
+            "parameter `display_link_out` must point to `None` on entry"
+        );
         unsafe { CVDisplayLinkCreateWithCGDisplay(display_id, display_link_out) }
     }
 
@@ -168,22 +171,22 @@ impl CVDisplayLink {
     /// Parameter `displayLinkOut`: The newly created CVDisplayLink
     ///
     /// Returns: kCVReturnSuccess if the device was created, or failure
-    ///
-    /// # Safety
-    ///
-    /// `display_link_out` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkCreateWithActiveCGDisplays")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn create_with_active_cg_displays(
-        display_link_out: NonNull<*mut CVDisplayLink>,
+    pub fn with_active_cg_displays(
+        display_link_out: &mut Option<CFRetained<CVDisplayLink>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkCreateWithActiveCGDisplays(
-                display_link_out: NonNull<*mut CVDisplayLink>,
+                display_link_out: &mut Option<CFRetained<CVDisplayLink>>,
             ) -> CVReturn;
         }
+        assert!(
+            display_link_out.is_none(),
+            "parameter `display_link_out` must point to `None` on entry"
+        );
         unsafe { CVDisplayLinkCreateWithActiveCGDisplays(display_link_out) }
     }
 

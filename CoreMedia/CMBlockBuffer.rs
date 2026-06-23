@@ -132,26 +132,26 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `block_buffer_out` must be a valid pointer.
     #[doc(alias = "CMBlockBufferCreateEmpty")]
     #[inline]
-    pub unsafe fn create_empty(
+    pub unsafe fn new_empty(
         structure_allocator: Option<&CFAllocator>,
         sub_block_capacity: u32,
         flags: CMBlockBufferFlags,
-        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+        block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBlockBufferCreateEmpty(
                 structure_allocator: Option<&CFAllocator>,
                 sub_block_capacity: u32,
                 flags: CMBlockBufferFlags,
-                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+                block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            block_buffer_out.is_none(),
+            "parameter `block_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMBlockBufferCreateEmpty(
                 structure_allocator,
@@ -207,10 +207,9 @@ impl CMBlockBuffer {
     ///
     /// - `memory_block` must be a valid pointer or null.
     /// - `custom_block_source` must be a valid pointer or null.
-    /// - `block_buffer_out` must be a valid pointer.
     #[doc(alias = "CMBlockBufferCreateWithMemoryBlock")]
     #[inline]
-    pub unsafe fn create_with_memory_block(
+    pub unsafe fn with_memory_block(
         structure_allocator: Option<&CFAllocator>,
         memory_block: *mut c_void,
         block_length: usize,
@@ -219,7 +218,7 @@ impl CMBlockBuffer {
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
-        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+        block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBlockBufferCreateWithMemoryBlock(
@@ -231,9 +230,13 @@ impl CMBlockBuffer {
                 offset_to_data: usize,
                 data_length: usize,
                 flags: CMBlockBufferFlags,
-                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+                block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            block_buffer_out.is_none(),
+            "parameter `block_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMBlockBufferCreateWithMemoryBlock(
                 structure_allocator,
@@ -272,19 +275,15 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `block_buffer_out` must be a valid pointer.
     #[doc(alias = "CMBlockBufferCreateWithBufferReference")]
     #[inline]
-    pub unsafe fn create_with_buffer_reference(
+    pub unsafe fn with_buffer_reference(
         &self,
         structure_allocator: Option<&CFAllocator>,
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
-        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+        block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBlockBufferCreateWithBufferReference(
@@ -293,9 +292,13 @@ impl CMBlockBuffer {
                 offset_to_data: usize,
                 data_length: usize,
                 flags: CMBlockBufferFlags,
-                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+                block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            block_buffer_out.is_none(),
+            "parameter `block_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMBlockBufferCreateWithBufferReference(
                 structure_allocator,
@@ -344,11 +347,10 @@ impl CMBlockBuffer {
     ///
     /// # Safety
     ///
-    /// - `custom_block_source` must be a valid pointer or null.
-    /// - `block_buffer_out` must be a valid pointer.
+    /// `custom_block_source` must be a valid pointer or null.
     #[doc(alias = "CMBlockBufferCreateContiguous")]
     #[inline]
-    pub unsafe fn create_contiguous(
+    pub unsafe fn contiguous(
         &self,
         structure_allocator: Option<&CFAllocator>,
         block_allocator: Option<&CFAllocator>,
@@ -356,7 +358,7 @@ impl CMBlockBuffer {
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
-        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+        block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBlockBufferCreateContiguous(
@@ -367,9 +369,13 @@ impl CMBlockBuffer {
                 offset_to_data: usize,
                 data_length: usize,
                 flags: CMBlockBufferFlags,
-                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+                block_buffer_out: &mut Option<CFRetained<CMBlockBuffer>>,
             ) -> OSStatus;
         }
+        assert!(
+            block_buffer_out.is_none(),
+            "parameter `block_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CMBlockBufferCreateContiguous(
                 structure_allocator,

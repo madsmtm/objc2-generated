@@ -47,22 +47,22 @@ impl VTPixelTransferSession {
     /// Parameter `allocator`: An allocator for the session.  Pass NULL to use the default allocator.
     ///
     /// Parameter `pixelTransferSessionOut`: Points to a variable to receive the new pixel transfer session.
-    ///
-    /// # Safety
-    ///
-    /// `pixel_transfer_session_out` must be a valid pointer.
     #[doc(alias = "VTPixelTransferSessionCreate")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        pixel_transfer_session_out: NonNull<*mut VTPixelTransferSession>,
+        pixel_transfer_session_out: &mut Option<CFRetained<VTPixelTransferSession>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTPixelTransferSessionCreate(
                 allocator: Option<&CFAllocator>,
-                pixel_transfer_session_out: NonNull<*mut VTPixelTransferSession>,
+                pixel_transfer_session_out: &mut Option<CFRetained<VTPixelTransferSession>>,
             ) -> OSStatus;
         }
+        assert!(
+            pixel_transfer_session_out.is_none(),
+            "parameter `pixel_transfer_session_out` must point to `None` on entry"
+        );
         unsafe { VTPixelTransferSessionCreate(allocator, pixel_transfer_session_out) }
     }
 

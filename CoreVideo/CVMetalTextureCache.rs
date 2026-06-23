@@ -66,17 +66,16 @@ impl CVMetalTextureCache {
     ///
     /// - `cache_attributes` generic should be of the correct type.
     /// - `texture_attributes` generic should be of the correct type.
-    /// - `cache_out` must be a valid pointer.
     #[doc(alias = "CVMetalTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         cache_attributes: Option<&CFDictionary<CFString, CFType>>,
         metal_device: &ProtocolObject<dyn MTLDevice>,
         texture_attributes: Option<&CFDictionary<CFString, CFType>>,
-        cache_out: NonNull<*mut CVMetalTextureCache>,
+        cache_out: &mut Option<CFRetained<CVMetalTextureCache>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVMetalTextureCacheCreate(
@@ -84,9 +83,13 @@ impl CVMetalTextureCache {
                 cache_attributes: Option<&CFDictionary<CFString, CFType>>,
                 metal_device: &ProtocolObject<dyn MTLDevice>,
                 texture_attributes: Option<&CFDictionary<CFString, CFType>>,
-                cache_out: NonNull<*mut CVMetalTextureCache>,
+                cache_out: &mut Option<CFRetained<CVMetalTextureCache>>,
             ) -> CVReturn;
         }
+        assert!(
+            cache_out.is_none(),
+            "parameter `cache_out` must point to `None` on entry"
+        );
         unsafe {
             CVMetalTextureCacheCreate(
                 allocator,
@@ -156,8 +159,7 @@ impl CVMetalTextureCache {
     ///
     /// # Safety
     ///
-    /// - `texture_attributes` generic should be of the correct type.
-    /// - `texture_out` must be a valid pointer.
+    /// `texture_attributes` generic should be of the correct type.
     #[doc(alias = "CVMetalTextureCacheCreateTextureFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -168,7 +170,7 @@ impl CVMetalTextureCache {
     ))]
     #[cfg(not(target_os = "watchos"))]
     #[inline]
-    pub unsafe fn create_texture_from_image(
+    pub unsafe fn texture_from_image(
         &self,
         allocator: Option<&CFAllocator>,
         source_image: &CVImageBuffer,
@@ -177,7 +179,7 @@ impl CVMetalTextureCache {
         width: usize,
         height: usize,
         plane_index: usize,
-        texture_out: NonNull<*mut CVMetalTexture>,
+        texture_out: &mut Option<CFRetained<CVMetalTexture>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVMetalTextureCacheCreateTextureFromImage(
@@ -189,9 +191,13 @@ impl CVMetalTextureCache {
                 width: usize,
                 height: usize,
                 plane_index: usize,
-                texture_out: NonNull<*mut CVMetalTexture>,
+                texture_out: &mut Option<CFRetained<CVMetalTexture>>,
             ) -> CVReturn;
         }
+        assert!(
+            texture_out.is_none(),
+            "parameter `texture_out` must point to `None` on entry"
+        );
         unsafe {
             CVMetalTextureCacheCreateTextureFromImage(
                 allocator,

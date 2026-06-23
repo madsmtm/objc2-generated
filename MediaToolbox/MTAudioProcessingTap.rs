@@ -358,25 +358,28 @@ impl MTAudioProcessingTap {
     ///
     /// # Safety
     ///
-    /// - `callbacks` must be a valid pointer.
-    /// - `tap_out` must be a valid pointer.
+    /// `callbacks` must be a valid pointer.
     #[doc(alias = "MTAudioProcessingTapCreate")]
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         callbacks: NonNull<MTAudioProcessingTapCallbacks>,
         flags: MTAudioProcessingTapCreationFlags,
-        tap_out: NonNull<*const MTAudioProcessingTap>,
+        tap_out: &mut Option<CFRetained<MTAudioProcessingTap>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn MTAudioProcessingTapCreate(
                 allocator: Option<&CFAllocator>,
                 callbacks: NonNull<MTAudioProcessingTapCallbacks>,
                 flags: MTAudioProcessingTapCreationFlags,
-                tap_out: NonNull<*const MTAudioProcessingTap>,
+                tap_out: &mut Option<CFRetained<MTAudioProcessingTap>>,
             ) -> OSStatus;
         }
+        assert!(
+            tap_out.is_none(),
+            "parameter `tap_out` must point to `None` on entry"
+        );
         unsafe { MTAudioProcessingTapCreate(allocator, callbacks, flags, tap_out) }
     }
 

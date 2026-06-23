@@ -228,7 +228,6 @@ impl SecKeychainItem {
     ///
     /// - `keychain_item_or_array` should be of the correct type.
     /// - `key_params` must be a valid pointer or null.
-    /// - `exported_data` must be a valid pointer.
     #[doc(alias = "SecKeychainItemExport")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -238,7 +237,7 @@ impl SecKeychainItem {
         output_format: SecExternalFormat,
         flags: SecItemImportExportFlags,
         key_params: *const SecKeyImportExportParameters,
-        exported_data: NonNull<*const CFData>,
+        exported_data: &mut Option<CFRetained<CFData>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemExport(
@@ -246,9 +245,13 @@ impl SecKeychainItem {
                 output_format: SecExternalFormat,
                 flags: SecItemImportExportFlags,
                 key_params: *const SecKeyImportExportParameters,
-                exported_data: NonNull<*const CFData>,
+                exported_data: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            exported_data.is_none(),
+            "parameter `exported_data` must point to `None` on entry"
+        );
         unsafe {
             SecKeychainItemExport(
                 keychain_item_or_array,
@@ -265,7 +268,6 @@ impl SecKeychainItem {
 ///
 /// - `sec_item_or_array` should be of the correct type.
 /// - `key_params` must be a valid pointer or null.
-/// - `exported_data` must be a valid pointer.
 #[cfg(feature = "SecBase")]
 #[inline]
 pub unsafe fn SecItemExport(
@@ -273,7 +275,7 @@ pub unsafe fn SecItemExport(
     output_format: SecExternalFormat,
     flags: SecItemImportExportFlags,
     key_params: *const SecItemImportExportKeyParameters,
-    exported_data: NonNull<*const CFData>,
+    exported_data: &mut Option<CFRetained<CFData>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecItemExport(
@@ -281,9 +283,13 @@ pub unsafe fn SecItemExport(
             output_format: SecExternalFormat,
             flags: SecItemImportExportFlags,
             key_params: *const SecItemImportExportKeyParameters,
-            exported_data: NonNull<*const CFData>,
+            exported_data: &mut Option<CFRetained<CFData>>,
         ) -> OSStatus;
     }
+    assert!(
+        exported_data.is_none(),
+        "parameter `exported_data` must point to `None` on entry"
+    );
     unsafe {
         SecItemExport(
             sec_item_or_array,
@@ -302,7 +308,6 @@ impl SecKeychainItem {
     /// - `input_format` must be a valid pointer or null.
     /// - `item_type` must be a valid pointer or null.
     /// - `key_params` must be a valid pointer or null.
-    /// - `out_items` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemImport")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -315,7 +320,7 @@ impl SecKeychainItem {
         flags: SecItemImportExportFlags,
         key_params: *const SecKeyImportExportParameters,
         import_keychain: Option<&SecKeychain>,
-        out_items: *mut *const CFArray,
+        out_items: Option<&mut Option<CFRetained<CFArray>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemImport(
@@ -326,9 +331,15 @@ impl SecKeychainItem {
                 flags: SecItemImportExportFlags,
                 key_params: *const SecKeyImportExportParameters,
                 import_keychain: Option<&SecKeychain>,
-                out_items: *mut *const CFArray,
+                out_items: Option<&mut Option<CFRetained<CFArray>>>,
             ) -> OSStatus;
         }
+        if let Some(out_items) = out_items.as_ref() {
+            assert!(
+                out_items.is_none(),
+                "parameter `out_items` must point to `None` on entry"
+            );
+        };
         unsafe {
             SecKeychainItemImport(
                 imported_data,
@@ -349,7 +360,6 @@ impl SecKeychainItem {
 /// - `input_format` must be a valid pointer or null.
 /// - `item_type` must be a valid pointer or null.
 /// - `key_params` must be a valid pointer or null.
-/// - `out_items` must be a valid pointer or null.
 #[cfg(feature = "SecBase")]
 #[inline]
 pub unsafe fn SecItemImport(
@@ -360,7 +370,7 @@ pub unsafe fn SecItemImport(
     flags: SecItemImportExportFlags,
     key_params: *const SecItemImportExportKeyParameters,
     import_keychain: Option<&SecKeychain>,
-    out_items: *mut *const CFArray,
+    out_items: Option<&mut Option<CFRetained<CFArray>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecItemImport(
@@ -371,9 +381,15 @@ pub unsafe fn SecItemImport(
             flags: SecItemImportExportFlags,
             key_params: *const SecItemImportExportKeyParameters,
             import_keychain: Option<&SecKeychain>,
-            out_items: *mut *const CFArray,
+            out_items: Option<&mut Option<CFRetained<CFArray>>>,
         ) -> OSStatus;
     }
+    if let Some(out_items) = out_items.as_ref() {
+        assert!(
+            out_items.is_none(),
+            "parameter `out_items` must point to `None` on entry"
+        );
+    };
     unsafe {
         SecItemImport(
             imported_data,
@@ -480,19 +496,22 @@ extern "C" {
 ///
 /// - `options` generic must be of the correct type.
 /// - `options` generic must be of the correct type.
-/// - `items` must be a valid pointer.
 #[inline]
 pub unsafe fn SecPKCS12Import(
     pkcs12_data: &CFData,
     options: &CFDictionary,
-    items: NonNull<*const CFArray>,
+    items: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecPKCS12Import(
             pkcs12_data: &CFData,
             options: &CFDictionary,
-            items: NonNull<*const CFArray>,
+            items: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        items.is_none(),
+        "parameter `items` must point to `None` on entry"
+    );
     unsafe { SecPKCS12Import(pkcs12_data, options, items) }
 }

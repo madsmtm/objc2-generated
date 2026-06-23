@@ -140,25 +140,28 @@ impl CMTagCollection {
     ///
     /// # Safety
     ///
-    /// - `tags` must be a valid pointer or null.
-    /// - `new_collection_out` must be a valid pointer.
+    /// `tags` must be a valid pointer or null.
     #[doc(alias = "CMTagCollectionCreate")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         tags: *const CMTag,
         tag_count: CMItemCount,
-        new_collection_out: NonNull<*const CMTagCollection>,
+        new_collection_out: &mut Option<CFRetained<CMTagCollection>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionCreate(
                 allocator: Option<&CFAllocator>,
                 tags: *const CMTag,
                 tag_count: CMItemCount,
-                new_collection_out: NonNull<*const CMTagCollection>,
+                new_collection_out: &mut Option<CFRetained<CMTagCollection>>,
             ) -> OSStatus;
         }
+        assert!(
+            new_collection_out.is_none(),
+            "parameter `new_collection_out` must point to `None` on entry"
+        );
         unsafe { CMTagCollectionCreate(allocator, tags, tag_count, new_collection_out) }
     }
 
@@ -174,24 +177,24 @@ impl CMTagCollection {
     /// Parameter `newMutableCollectionOut`: Address of a location to return the newly created CMMutabbleTagCollectionRef.  The client is responsible for releasing the returned CMMutableTagCollection.
     ///
     /// Returns: OSStatus with error, or noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `new_mutable_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateMutable")]
     #[inline]
-    pub unsafe fn create_mutable(
+    pub unsafe fn new_mutable(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        new_mutable_collection_out: NonNull<*mut CMMutableTagCollection>,
+        new_mutable_collection_out: &mut Option<CFRetained<CMMutableTagCollection>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionCreateMutable(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                new_mutable_collection_out: NonNull<*mut CMMutableTagCollection>,
+                new_mutable_collection_out: &mut Option<CFRetained<CMMutableTagCollection>>,
             ) -> OSStatus;
         }
+        assert!(
+            new_mutable_collection_out.is_none(),
+            "parameter `new_mutable_collection_out` must point to `None` on entry"
+        );
         unsafe { CMTagCollectionCreateMutable(allocator, capacity, new_mutable_collection_out) }
     }
 
@@ -206,24 +209,24 @@ impl CMTagCollection {
     /// Parameter `newCollectionCopyOut`: Address of a location to return the newly created CMTagCollectionRef.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `new_collection_copy_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateCopy")]
     #[inline]
-    pub unsafe fn create_copy(
+    pub unsafe fn copy(
         &self,
         allocator: Option<&CFAllocator>,
-        new_collection_copy_out: NonNull<*const CMTagCollection>,
+        new_collection_copy_out: &mut Option<CFRetained<CMTagCollection>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionCreateCopy(
                 tag_collection: &CMTagCollection,
                 allocator: Option<&CFAllocator>,
-                new_collection_copy_out: NonNull<*const CMTagCollection>,
+                new_collection_copy_out: &mut Option<CFRetained<CMTagCollection>>,
             ) -> OSStatus;
         }
+        assert!(
+            new_collection_copy_out.is_none(),
+            "parameter `new_collection_copy_out` must point to `None` on entry"
+        );
         unsafe { CMTagCollectionCreateCopy(self, allocator, new_collection_copy_out) }
     }
 
@@ -238,24 +241,24 @@ impl CMTagCollection {
     /// Parameter `newMutableCollectionCopyOut`: Address of a location to return the newly created CMMutableTagCollectionRef.  The client is responsible for releasing the returned CMMutableTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `new_mutable_collection_copy_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateMutableCopy")]
     #[inline]
-    pub unsafe fn create_mutable_copy(
+    pub unsafe fn mutable_copy(
         &self,
         allocator: Option<&CFAllocator>,
-        new_mutable_collection_copy_out: NonNull<*mut CMMutableTagCollection>,
+        new_mutable_collection_copy_out: &mut Option<CFRetained<CMMutableTagCollection>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionCreateMutableCopy(
                 tag_collection: &CMTagCollection,
                 allocator: Option<&CFAllocator>,
-                new_mutable_collection_copy_out: NonNull<*mut CMMutableTagCollection>,
+                new_mutable_collection_copy_out: &mut Option<CFRetained<CMMutableTagCollection>>,
             ) -> OSStatus;
         }
+        assert!(
+            new_mutable_collection_copy_out.is_none(),
+            "parameter `new_mutable_collection_copy_out` must point to `None` on entry"
+        );
         unsafe {
             CMTagCollectionCreateMutableCopy(self, allocator, new_mutable_collection_copy_out)
         }
@@ -621,17 +624,16 @@ impl CMTagCollection {
     ///
     /// # Safety
     ///
-    /// - `categories` must be a valid pointer.
-    /// - `collection_with_tags_of_categories` must be a valid pointer.
+    /// `categories` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCopyTagsOfCategories")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    pub unsafe fn copy_tags_of_categories(
+    pub unsafe fn tags_of_categories(
         &self,
         allocator: Option<&CFAllocator>,
         categories: NonNull<CMTagCategory>,
         categories_count: CMItemCount,
-        collection_with_tags_of_categories: NonNull<*const CMTagCollection>,
+        collection_with_tags_of_categories: &mut Option<CFRetained<CMTagCollection>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionCopyTagsOfCategories(
@@ -639,9 +641,13 @@ impl CMTagCollection {
                 tag_collection: &CMTagCollection,
                 categories: NonNull<CMTagCategory>,
                 categories_count: CMItemCount,
-                collection_with_tags_of_categories: NonNull<*const CMTagCollection>,
+                collection_with_tags_of_categories: &mut Option<CFRetained<CMTagCollection>>,
             ) -> OSStatus;
         }
+        assert!(
+            collection_with_tags_of_categories.is_none(),
+            "parameter `collection_with_tags_of_categories` must point to `None` on entry"
+        );
         unsafe {
             CMTagCollectionCopyTagsOfCategories(
                 allocator,
@@ -743,24 +749,24 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains all tags that are common to 'tagCollection1' and 'tagCollection2'.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    ///
-    /// # Safety
-    ///
-    /// `tag_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateIntersection")]
     #[inline]
-    pub unsafe fn create_intersection(
+    pub unsafe fn new_intersection(
         tag_collection1: Option<&CMTagCollection>,
         tag_collection2: Option<&CMTagCollection>,
-        tag_collection_out: NonNull<*const CMTagCollection>,
+        tag_collection_out: &mut Option<CFRetained<CMTagCollection>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionCreateIntersection(
                 tag_collection1: Option<&CMTagCollection>,
                 tag_collection2: Option<&CMTagCollection>,
-                tag_collection_out: NonNull<*const CMTagCollection>,
+                tag_collection_out: &mut Option<CFRetained<CMTagCollection>>,
             ) -> OSStatus;
         }
+        assert!(
+            tag_collection_out.is_none(),
+            "parameter `tag_collection_out` must point to `None` on entry"
+        );
         unsafe {
             CMTagCollectionCreateIntersection(tag_collection1, tag_collection2, tag_collection_out)
         }
@@ -777,24 +783,24 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains all tags that are common to 'tagCollection1' and 'tagCollection2'.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    ///
-    /// # Safety
-    ///
-    /// `tag_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateUnion")]
     #[inline]
-    pub unsafe fn create_union(
+    pub unsafe fn new_union(
         tag_collection1: Option<&CMTagCollection>,
         tag_collection2: Option<&CMTagCollection>,
-        tag_collection_out: NonNull<*const CMTagCollection>,
+        tag_collection_out: &mut Option<CFRetained<CMTagCollection>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionCreateUnion(
                 tag_collection1: Option<&CMTagCollection>,
                 tag_collection2: Option<&CMTagCollection>,
-                tag_collection_out: NonNull<*const CMTagCollection>,
+                tag_collection_out: &mut Option<CFRetained<CMTagCollection>>,
             ) -> OSStatus;
         }
+        assert!(
+            tag_collection_out.is_none(),
+            "parameter `tag_collection_out` must point to `None` on entry"
+        );
         unsafe { CMTagCollectionCreateUnion(tag_collection1, tag_collection2, tag_collection_out) }
     }
 
@@ -809,24 +815,24 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains tags from a first tag collection without tags found in a second tag collection.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    ///
-    /// # Safety
-    ///
-    /// `tag_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateDifference")]
     #[inline]
-    pub unsafe fn create_difference(
+    pub unsafe fn new_difference(
         tag_collection_minuend: Option<&CMTagCollection>,
         tag_collection_subtrahend: Option<&CMTagCollection>,
-        tag_collection_out: NonNull<*const CMTagCollection>,
+        tag_collection_out: &mut Option<CFRetained<CMTagCollection>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionCreateDifference(
                 tag_collection_minuend: Option<&CMTagCollection>,
                 tag_collection_subtrahend: Option<&CMTagCollection>,
-                tag_collection_out: NonNull<*const CMTagCollection>,
+                tag_collection_out: &mut Option<CFRetained<CMTagCollection>>,
             ) -> OSStatus;
         }
+        assert!(
+            tag_collection_out.is_none(),
+            "parameter `tag_collection_out` must point to `None` on entry"
+        );
         unsafe {
             CMTagCollectionCreateDifference(
                 tag_collection_minuend,
@@ -847,24 +853,24 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains the xor of the tags from the two tag collections.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    ///
-    /// # Safety
-    ///
-    /// `tag_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateExclusiveOr")]
     #[inline]
-    pub unsafe fn create_exclusive_or(
+    pub unsafe fn new_exclusive_or(
         tag_collection1: Option<&CMTagCollection>,
         tag_collection2: Option<&CMTagCollection>,
-        tag_collection_out: NonNull<*const CMTagCollection>,
+        tag_collection_out: &mut Option<CFRetained<CMTagCollection>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionCreateExclusiveOr(
                 tag_collection1: Option<&CMTagCollection>,
                 tag_collection2: Option<&CMTagCollection>,
-                tag_collection_out: NonNull<*const CMTagCollection>,
+                tag_collection_out: &mut Option<CFRetained<CMTagCollection>>,
             ) -> OSStatus;
         }
+        assert!(
+            tag_collection_out.is_none(),
+            "parameter `tag_collection_out` must point to `None` on entry"
+        );
         unsafe {
             CMTagCollectionCreateExclusiveOr(tag_collection1, tag_collection2, tag_collection_out)
         }
@@ -1050,21 +1056,24 @@ impl CMTagCollection {
     ///
     /// - `dict` generic must be of the correct type.
     /// - `dict` generic must be of the correct type.
-    /// - `new_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateFromDictionary")]
     #[inline]
-    pub unsafe fn create_from_dictionary(
+    pub unsafe fn from_dictionary(
         dict: &CFDictionary,
         allocator: Option<&CFAllocator>,
-        new_collection_out: NonNull<*const CMTagCollection>,
+        new_collection_out: &mut Option<CFRetained<CMTagCollection>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionCreateFromDictionary(
                 dict: &CFDictionary,
                 allocator: Option<&CFAllocator>,
-                new_collection_out: NonNull<*const CMTagCollection>,
+                new_collection_out: &mut Option<CFRetained<CMTagCollection>>,
             ) -> OSStatus;
         }
+        assert!(
+            new_collection_out.is_none(),
+            "parameter `new_collection_out` must point to `None` on entry"
+        );
         unsafe { CMTagCollectionCreateFromDictionary(dict, allocator, new_collection_out) }
     }
 
@@ -1102,24 +1111,24 @@ impl CMTagCollection {
     /// Parameter `newCollectionOut`: Address of an CMTagCollectionRef to return the newly created tag collection.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    ///
-    /// # Safety
-    ///
-    /// `new_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateFromData")]
     #[inline]
-    pub unsafe fn create_from_data(
+    pub unsafe fn from_data(
         data: &CFData,
         allocator: Option<&CFAllocator>,
-        new_collection_out: NonNull<*const CMTagCollection>,
+        new_collection_out: &mut Option<CFRetained<CMTagCollection>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionCreateFromData(
                 data: &CFData,
                 allocator: Option<&CFAllocator>,
-                new_collection_out: NonNull<*const CMTagCollection>,
+                new_collection_out: &mut Option<CFRetained<CMTagCollection>>,
             ) -> OSStatus;
         }
+        assert!(
+            new_collection_out.is_none(),
+            "parameter `new_collection_out` must point to `None` on entry"
+        );
         unsafe { CMTagCollectionCreateFromData(data, allocator, new_collection_out) }
     }
 }

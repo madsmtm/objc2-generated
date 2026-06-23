@@ -86,15 +86,14 @@ impl VTHDRPerFrameMetadataGenerationSession {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    /// - `hdr_per_frame_metadata_generation_session_out` must be a valid pointer.
     #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionCreate")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         frames_per_second: c_float,
         options: Option<&CFDictionary>,
-        hdr_per_frame_metadata_generation_session_out: NonNull<
-            *mut VTHDRPerFrameMetadataGenerationSession,
+        hdr_per_frame_metadata_generation_session_out: &mut Option<
+            CFRetained<VTHDRPerFrameMetadataGenerationSession>,
         >,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -102,11 +101,12 @@ impl VTHDRPerFrameMetadataGenerationSession {
                 allocator: Option<&CFAllocator>,
                 frames_per_second: c_float,
                 options: Option<&CFDictionary>,
-                hdr_per_frame_metadata_generation_session_out: NonNull<
-                    *mut VTHDRPerFrameMetadataGenerationSession,
+                hdr_per_frame_metadata_generation_session_out: &mut Option<
+                    CFRetained<VTHDRPerFrameMetadataGenerationSession>,
                 >,
             ) -> OSStatus;
         }
+        assert!(hdr_per_frame_metadata_generation_session_out.is_none(), "parameter `hdr_per_frame_metadata_generation_session_out` must point to `None` on entry");
         unsafe {
             VTHDRPerFrameMetadataGenerationSessionCreate(
                 allocator,

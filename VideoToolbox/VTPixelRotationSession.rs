@@ -44,22 +44,22 @@ impl VTPixelRotationSession {
     /// Parameter `allocator`: An allocator for the session.  Pass NULL to use the default allocator.
     ///
     /// Parameter `pixelRotationSessionOut`: Points to a variable to receive the new pixel rotation session.
-    ///
-    /// # Safety
-    ///
-    /// `pixel_rotation_session_out` must be a valid pointer.
     #[doc(alias = "VTPixelRotationSessionCreate")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        pixel_rotation_session_out: NonNull<*mut VTPixelRotationSession>,
+        pixel_rotation_session_out: &mut Option<CFRetained<VTPixelRotationSession>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTPixelRotationSessionCreate(
                 allocator: Option<&CFAllocator>,
-                pixel_rotation_session_out: NonNull<*mut VTPixelRotationSession>,
+                pixel_rotation_session_out: &mut Option<CFRetained<VTPixelRotationSession>>,
             ) -> OSStatus;
         }
+        assert!(
+            pixel_rotation_session_out.is_none(),
+            "parameter `pixel_rotation_session_out` must point to `None` on entry"
+        );
         unsafe { VTPixelRotationSessionCreate(allocator, pixel_rotation_session_out) }
     }
 

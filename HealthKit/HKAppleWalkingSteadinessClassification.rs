@@ -43,23 +43,39 @@ impl HKAppleWalkingSteadinessClassification {
     ///
     /// # Safety
     ///
-    /// - `classification_out` must be a valid pointer.
-    /// - `error_out` must be a valid pointer or null.
+    /// `classification_out` must be a valid pointer.
     #[doc(alias = "HKAppleWalkingSteadinessClassificationForQuantity")]
     #[cfg(feature = "HKQuantity")]
     #[inline]
     pub unsafe fn for_quantity(
         value: &HKQuantity,
         classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
-        error_out: *mut *mut NSError,
+        error_out: Option<&mut Option<Retained<NSError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn HKAppleWalkingSteadinessClassificationForQuantity(
                 value: &HKQuantity,
                 classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
-                error_out: *mut *mut NSError,
+                error_out: Option<&mut Option<Retained<NSError>>>,
             ) -> Bool;
         }
+        struct RetainErrorOutOnDrop<'a>(&'a mut Option<Retained<NSError>>);
+        impl Drop for RetainErrorOutOnDrop<'_> {
+            #[inline]
+            fn drop(&mut self) {
+                let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+            }
+        }
+        let mut error_out = if let Some(error_out) = error_out {
+            assert!(
+                error_out.is_none(),
+                "parameter `error_out` must point to `None` on entry"
+            );
+            Some(RetainErrorOutOnDrop(error_out))
+        } else {
+            None
+        };
+        let error_out = error_out.as_mut().map(|arg| &mut *arg.0);
         unsafe {
             HKAppleWalkingSteadinessClassificationForQuantity(value, classification_out, error_out)
         }

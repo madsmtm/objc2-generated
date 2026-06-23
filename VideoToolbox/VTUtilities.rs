@@ -32,21 +32,24 @@ use crate::*;
 ///
 /// - `options` generic must be of the correct type.
 /// - `options` generic must be of the correct type.
-/// - `image_out` must be a valid pointer.
 #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-core-video"))]
 #[inline]
 pub unsafe fn VTCreateCGImageFromCVPixelBuffer(
     pixel_buffer: &CVPixelBuffer,
     options: Option<&CFDictionary>,
-    image_out: NonNull<*mut CGImage>,
+    image_out: &mut Option<CFRetained<CGImage>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTCreateCGImageFromCVPixelBuffer(
             pixel_buffer: &CVPixelBuffer,
             options: Option<&CFDictionary>,
-            image_out: NonNull<*mut CGImage>,
+            image_out: &mut Option<CFRetained<CGImage>>,
         ) -> OSStatus;
     }
+    assert!(
+        image_out.is_none(),
+        "parameter `image_out` must point to `None` on entry"
+    );
     unsafe { VTCreateCGImageFromCVPixelBuffer(pixel_buffer, options, image_out) }
 }
 
@@ -75,22 +78,22 @@ pub unsafe fn VTRegisterSupplementalVideoDecoderIfAvailable(codec_type: CMVideoC
 /// Parameter `mediaExtensionPropertiesOut`: If a Media Extension video decoder will be used to decode the specified format, this pointer will return a dictionary with a set of properties describing the extension video decoder. The dictionary keys are VTExtensionPropertiesKey values.
 ///
 /// Returns: If the function succeeds and a Media Extension video decoder will be used to decode this format, the return value will be noErr. If the function succeeds but a Media Extension video decoder will not be used to decode this format, the return value will be kVTCouldNotFindExtensionErr. If a Media Extension video decoder for the format was found but is disabled, the function will return kVTExtensionDisabledErr. Otherwise, the return value will be an error code describing the failure.
-///
-/// # Safety
-///
-/// `media_extension_properties_out` must be a valid pointer.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe fn VTCopyVideoDecoderExtensionProperties(
     format_desc: &CMFormatDescription,
-    media_extension_properties_out: NonNull<*const CFDictionary>,
+    media_extension_properties_out: &mut Option<CFRetained<CFDictionary>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTCopyVideoDecoderExtensionProperties(
             format_desc: &CMFormatDescription,
-            media_extension_properties_out: NonNull<*const CFDictionary>,
+            media_extension_properties_out: &mut Option<CFRetained<CFDictionary>>,
         ) -> OSStatus;
     }
+    assert!(
+        media_extension_properties_out.is_none(),
+        "parameter `media_extension_properties_out` must point to `None` on entry"
+    );
     unsafe { VTCopyVideoDecoderExtensionProperties(format_desc, media_extension_properties_out) }
 }
 
@@ -103,22 +106,22 @@ pub unsafe fn VTCopyVideoDecoderExtensionProperties(
 /// Parameter `mediaExtensionPropertiesOut`: If a Media Extension RAW processor  will be used to process the specified format, this pointer will return a dictionary with a set of properties describing the extension RAW processor. The dictionary keys VTExtensionPropertiesKey values.
 ///
 /// Returns: If the function succeeds and a Media Extension RAW processor will be used to process this format, the return value will be noErr. If the function succeeds but a Media Extension RAW processor will not be used to process this format, the return value will be kVTCouldNotFindExtensionErr. If a Media Extension RAW processor for the format was found but is disabled, the function will return kVTExtensionDisabledErr. Otherwise, the return value will be an error code describing the failure.
-///
-/// # Safety
-///
-/// `media_extension_properties_out` must be a valid pointer.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe fn VTCopyRAWProcessorExtensionProperties(
     format_desc: &CMFormatDescription,
-    media_extension_properties_out: NonNull<*const CFDictionary>,
+    media_extension_properties_out: &mut Option<CFRetained<CFDictionary>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTCopyRAWProcessorExtensionProperties(
             format_desc: &CMFormatDescription,
-            media_extension_properties_out: NonNull<*const CFDictionary>,
+            media_extension_properties_out: &mut Option<CFRetained<CFDictionary>>,
         ) -> OSStatus;
     }
+    assert!(
+        media_extension_properties_out.is_none(),
+        "parameter `media_extension_properties_out` must point to `None` on entry"
+    );
     unsafe { VTCopyRAWProcessorExtensionProperties(format_desc, media_extension_properties_out) }
 }
 

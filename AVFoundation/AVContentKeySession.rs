@@ -1091,23 +1091,36 @@ impl AVContentKey {
 /// - Parameter sbuf: The sample buffer to which the content key is to be attached.
 /// - Parameter contentKey: The content key to be attached.
 /// - Parameter outError: If the result is NO and errorOut is non-NULL, the location referenced by errorOut receives an instance of NSError that describes the reason for failure to attach the content key.
-///
-/// # Safety
-///
-/// `out_error` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe fn AVSampleBufferAttachContentKey(
     sbuf: &CMSampleBuffer,
     content_key: &AVContentKey,
-    out_error: *mut *mut NSError,
+    out_error: Option<&mut Option<Retained<NSError>>>,
 ) -> bool {
     extern "C-unwind" {
         fn AVSampleBufferAttachContentKey(
             sbuf: &CMSampleBuffer,
             content_key: &AVContentKey,
-            out_error: *mut *mut NSError,
+            out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Bool;
     }
+    struct RetainOutErrorOnDrop<'a>(&'a mut Option<Retained<NSError>>);
+    impl Drop for RetainOutErrorOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    let mut out_error = if let Some(out_error) = out_error {
+        assert!(
+            out_error.is_none(),
+            "parameter `out_error` must point to `None` on entry"
+        );
+        Some(RetainOutErrorOnDrop(out_error))
+    } else {
+        None
+    };
+    let out_error = out_error.as_mut().map(|arg| &mut *arg.0);
     unsafe { AVSampleBufferAttachContentKey(sbuf, content_key, out_error) }.as_bool()
 }

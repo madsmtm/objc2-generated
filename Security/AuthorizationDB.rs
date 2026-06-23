@@ -41,19 +41,24 @@ pub const kAuthorizationComment: &CStr =
 ///
 /// # Safety
 ///
-/// - `right_name` must be a valid pointer.
-/// - `right_definition` must be a valid pointer or null.
+/// `right_name` must be a valid pointer.
 #[inline]
 pub unsafe fn AuthorizationRightGet(
     right_name: NonNull<c_char>,
-    right_definition: *mut *const CFDictionary,
+    right_definition: Option<&mut Option<CFRetained<CFDictionary>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AuthorizationRightGet(
             right_name: NonNull<c_char>,
-            right_definition: *mut *const CFDictionary,
+            right_definition: Option<&mut Option<CFRetained<CFDictionary>>>,
         ) -> OSStatus;
     }
+    if let Some(right_definition) = right_definition.as_ref() {
+        assert!(
+            right_definition.is_none(),
+            "parameter `right_definition` must point to `None` on entry"
+        );
+    };
     unsafe { AuthorizationRightGet(right_name, right_definition) }
 }
 

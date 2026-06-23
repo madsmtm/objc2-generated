@@ -62,25 +62,28 @@ impl SecPolicySearch {
     ///
     /// - `policy_oid` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
-    /// - `search_ref` must be a valid pointer.
     #[doc(alias = "SecPolicySearchCreate")]
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         cert_type: CSSM_CERT_TYPE,
         policy_oid: NonNull<SecAsn1Oid>,
         value: *const SecAsn1Item,
-        search_ref: NonNull<*mut SecPolicySearch>,
+        search_ref: &mut Option<CFRetained<SecPolicySearch>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecPolicySearchCreate(
                 cert_type: CSSM_CERT_TYPE,
                 policy_oid: NonNull<SecAsn1Oid>,
                 value: *const SecAsn1Item,
-                search_ref: NonNull<*mut SecPolicySearch>,
+                search_ref: &mut Option<CFRetained<SecPolicySearch>>,
             ) -> OSStatus;
         }
+        assert!(
+            search_ref.is_none(),
+            "parameter `search_ref` must point to `None` on entry"
+        );
         unsafe { SecPolicySearchCreate(cert_type, policy_oid, value, search_ref) }
     }
 
@@ -93,21 +96,21 @@ impl SecPolicySearch {
     /// Returns: A result code.  When there are no more policies that match the parameters specified to SecPolicySearchCreate, errSecPolicyNotFound is returned. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in 10.7. To create a SecPolicyRef, use one of the SecPolicyCreate functions in SecPolicy.h.
-    ///
-    /// # Safety
-    ///
-    /// `policy_ref` must be a valid pointer.
     #[doc(alias = "SecPolicySearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn copy_next(&self, policy_ref: NonNull<*mut SecPolicy>) -> OSStatus {
+    pub unsafe fn next(&self, policy_ref: &mut Option<CFRetained<SecPolicy>>) -> OSStatus {
         extern "C-unwind" {
             fn SecPolicySearchCopyNext(
                 search_ref: &SecPolicySearch,
-                policy_ref: NonNull<*mut SecPolicy>,
+                policy_ref: &mut Option<CFRetained<SecPolicy>>,
             ) -> OSStatus;
         }
+        assert!(
+            policy_ref.is_none(),
+            "parameter `policy_ref` must point to `None` on entry"
+        );
         unsafe { SecPolicySearchCopyNext(self, policy_ref) }
     }
 }

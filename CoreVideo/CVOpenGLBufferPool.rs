@@ -67,25 +67,28 @@ impl CVOpenGLBufferPool {
     ///
     /// - `pool_attributes` generic should be of the correct type.
     /// - `open_gl_buffer_attributes` generic should be of the correct type.
-    /// - `pool_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         pool_attributes: Option<&CFDictionary<CFString, CFType>>,
         open_gl_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-        pool_out: NonNull<*mut CVOpenGLBufferPool>,
+        pool_out: &mut Option<CFRetained<CVOpenGLBufferPool>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVOpenGLBufferPoolCreate(
                 allocator: Option<&CFAllocator>,
                 pool_attributes: Option<&CFDictionary<CFString, CFType>>,
                 open_gl_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-                pool_out: NonNull<*mut CVOpenGLBufferPool>,
+                pool_out: &mut Option<CFRetained<CVOpenGLBufferPool>>,
             ) -> CVReturn;
         }
+        assert!(
+            pool_out.is_none(),
+            "parameter `pool_out` must point to `None` on entry"
+        );
         unsafe {
             CVOpenGLBufferPoolCreate(
                 allocator,
@@ -146,10 +149,6 @@ impl CVOpenGLBufferPool {
     /// Parameter `openGLBufferOut`: The newly created OpenGL buffer will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
-    ///
-    /// # Safety
-    ///
-    /// `open_gl_buffer_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLBufferPoolCreateOpenGLBuffer")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -159,18 +158,22 @@ impl CVOpenGLBufferPool {
     ))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    pub unsafe fn create_open_gl_buffer(
+    pub fn open_gl_buffer(
         &self,
         allocator: Option<&CFAllocator>,
-        open_gl_buffer_out: NonNull<*mut CVOpenGLBuffer>,
+        open_gl_buffer_out: &mut Option<CFRetained<CVOpenGLBuffer>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVOpenGLBufferPoolCreateOpenGLBuffer(
                 allocator: Option<&CFAllocator>,
                 open_gl_buffer_pool: &CVOpenGLBufferPool,
-                open_gl_buffer_out: NonNull<*mut CVOpenGLBuffer>,
+                open_gl_buffer_out: &mut Option<CFRetained<CVOpenGLBuffer>>,
             ) -> CVReturn;
         }
+        assert!(
+            open_gl_buffer_out.is_none(),
+            "parameter `open_gl_buffer_out` must point to `None` on entry"
+        );
         unsafe { CVOpenGLBufferPoolCreateOpenGLBuffer(allocator, self, open_gl_buffer_out) }
     }
 }

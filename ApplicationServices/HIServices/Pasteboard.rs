@@ -138,21 +138,22 @@ unsafe impl ConcreteType for Pasteboard {
 }
 
 impl Pasteboard {
-    /// # Safety
-    ///
-    /// `out_pasteboard` must be a valid pointer.
     #[doc(alias = "PasteboardCreate")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         in_name: Option<&CFString>,
-        out_pasteboard: NonNull<*mut Pasteboard>,
+        out_pasteboard: &mut Option<CFRetained<Pasteboard>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardCreate(
                 in_name: Option<&CFString>,
-                out_pasteboard: NonNull<*mut Pasteboard>,
+                out_pasteboard: &mut Option<CFRetained<Pasteboard>>,
             ) -> OSStatus;
         }
+        assert!(
+            out_pasteboard.is_none(),
+            "parameter `out_pasteboard` must point to `None` on entry"
+        );
         unsafe { PasteboardCreate(in_name, out_pasteboard) }
     }
 
@@ -174,18 +175,19 @@ impl Pasteboard {
         unsafe { PasteboardClear(self) }
     }
 
-    /// # Safety
-    ///
-    /// `out_name` must be a valid pointer.
     #[doc(alias = "PasteboardCopyName")]
     #[inline]
-    pub unsafe fn copy_name(&self, out_name: NonNull<*const CFString>) -> OSStatus {
+    pub unsafe fn name(&self, out_name: &mut Option<CFRetained<CFString>>) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardCopyName(
                 in_pasteboard: &Pasteboard,
-                out_name: NonNull<*const CFString>,
+                out_name: &mut Option<CFRetained<CFString>>,
             ) -> OSStatus;
         }
+        assert!(
+            out_name.is_none(),
+            "parameter `out_name` must point to `None` on entry"
+        );
         unsafe { PasteboardCopyName(self, out_name) }
     }
 
@@ -226,22 +228,25 @@ impl Pasteboard {
 
     /// # Safety
     ///
-    /// - `in_item` must be a valid pointer.
-    /// - `out_flavor_types` must be a valid pointer.
+    /// `in_item` must be a valid pointer.
     #[doc(alias = "PasteboardCopyItemFlavors")]
     #[inline]
-    pub unsafe fn copy_item_flavors(
+    pub unsafe fn item_flavors(
         &self,
         in_item: PasteboardItemID,
-        out_flavor_types: NonNull<*const CFArray>,
+        out_flavor_types: &mut Option<CFRetained<CFArray>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardCopyItemFlavors(
                 in_pasteboard: &Pasteboard,
                 in_item: PasteboardItemID,
-                out_flavor_types: NonNull<*const CFArray>,
+                out_flavor_types: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            out_flavor_types.is_none(),
+            "parameter `out_flavor_types` must point to `None` on entry"
+        );
         unsafe { PasteboardCopyItemFlavors(self, in_item, out_flavor_types) }
     }
 
@@ -270,24 +275,27 @@ impl Pasteboard {
 
     /// # Safety
     ///
-    /// - `in_item` must be a valid pointer.
-    /// - `out_data` must be a valid pointer.
+    /// `in_item` must be a valid pointer.
     #[doc(alias = "PasteboardCopyItemFlavorData")]
     #[inline]
-    pub unsafe fn copy_item_flavor_data(
+    pub unsafe fn item_flavor_data(
         &self,
         in_item: PasteboardItemID,
         in_flavor_type: &CFString,
-        out_data: NonNull<*const CFData>,
+        out_data: &mut Option<CFRetained<CFData>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardCopyItemFlavorData(
                 in_pasteboard: &Pasteboard,
                 in_item: PasteboardItemID,
                 in_flavor_type: &CFString,
-                out_data: NonNull<*const CFData>,
+                out_data: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            out_data.is_none(),
+            "parameter `out_data` must point to `None` on entry"
+        );
         unsafe { PasteboardCopyItemFlavorData(self, in_item, in_flavor_type, out_data) }
     }
 
@@ -315,21 +323,22 @@ impl Pasteboard {
         unsafe { PasteboardPutItemFlavor(self, in_item, in_flavor_type, in_data, in_flags) }
     }
 
-    /// # Safety
-    ///
-    /// `out_paste_location` must be a valid pointer.
     #[doc(alias = "PasteboardCopyPasteLocation")]
     #[inline]
-    pub unsafe fn copy_paste_location(
+    pub unsafe fn paste_location(
         &self,
-        out_paste_location: NonNull<*const CFURL>,
+        out_paste_location: &mut Option<CFRetained<CFURL>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardCopyPasteLocation(
                 in_pasteboard: &Pasteboard,
-                out_paste_location: NonNull<*const CFURL>,
+                out_paste_location: &mut Option<CFRetained<CFURL>>,
             ) -> OSStatus;
         }
+        assert!(
+            out_paste_location.is_none(),
+            "parameter `out_paste_location` must point to `None` on entry"
+        );
         unsafe { PasteboardCopyPasteLocation(self, out_paste_location) }
     }
 

@@ -35,25 +35,25 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
-    ///
-    /// # Safety
-    ///
-    /// `requirement` must be a valid pointer.
     #[doc(alias = "SecRequirementCreateWithData")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn create_with_data(
+    pub unsafe fn with_data(
         data: &CFData,
         flags: SecCSFlags,
-        requirement: NonNull<*mut SecRequirement>,
+        requirement: &mut Option<CFRetained<SecRequirement>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecRequirementCreateWithData(
                 data: &CFData,
                 flags: SecCSFlags,
-                requirement: NonNull<*mut SecRequirement>,
+                requirement: &mut Option<CFRetained<SecRequirement>>,
             ) -> OSStatus;
         }
+        assert!(
+            requirement.is_none(),
+            "parameter `requirement` must point to `None` on entry"
+        );
         unsafe { SecRequirementCreateWithData(data, flags, requirement) }
     }
 
@@ -70,49 +70,52 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
-    ///
-    /// # Safety
-    ///
-    /// `requirement` must be a valid pointer.
     #[doc(alias = "SecRequirementCreateWithString")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn create_with_string(
+    pub unsafe fn with_string(
         text: &CFString,
         flags: SecCSFlags,
-        requirement: NonNull<*mut SecRequirement>,
+        requirement: &mut Option<CFRetained<SecRequirement>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecRequirementCreateWithString(
                 text: &CFString,
                 flags: SecCSFlags,
-                requirement: NonNull<*mut SecRequirement>,
+                requirement: &mut Option<CFRetained<SecRequirement>>,
             ) -> OSStatus;
         }
+        assert!(
+            requirement.is_none(),
+            "parameter `requirement` must point to `None` on entry"
+        );
         unsafe { SecRequirementCreateWithString(text, flags, requirement) }
     }
 
     /// # Safety
     ///
-    /// - `errors` must be a valid pointer or null.
-    /// - `requirement` must be a valid pointer.
+    /// `errors` must be a valid pointer or null.
     #[doc(alias = "SecRequirementCreateWithStringAndErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn create_with_string_and_errors(
+    pub unsafe fn with_string_and_errors(
         text: &CFString,
         flags: SecCSFlags,
         errors: *mut *mut CFError,
-        requirement: NonNull<*mut SecRequirement>,
+        requirement: &mut Option<CFRetained<SecRequirement>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecRequirementCreateWithStringAndErrors(
                 text: &CFString,
                 flags: SecCSFlags,
                 errors: *mut *mut CFError,
-                requirement: NonNull<*mut SecRequirement>,
+                requirement: &mut Option<CFRetained<SecRequirement>>,
             ) -> OSStatus;
         }
+        assert!(
+            requirement.is_none(),
+            "parameter `requirement` must point to `None` on entry"
+        );
         unsafe { SecRequirementCreateWithStringAndErrors(text, flags, errors, requirement) }
     }
 
@@ -130,21 +133,25 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
-    ///
-    /// # Safety
-    ///
-    /// `data` must be a valid pointer.
     #[doc(alias = "SecRequirementCopyData")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn copy_data(&self, flags: SecCSFlags, data: NonNull<*const CFData>) -> OSStatus {
+    pub unsafe fn data(
+        &self,
+        flags: SecCSFlags,
+        data: &mut Option<CFRetained<CFData>>,
+    ) -> OSStatus {
         extern "C-unwind" {
             fn SecRequirementCopyData(
                 requirement: &SecRequirement,
                 flags: SecCSFlags,
-                data: NonNull<*const CFData>,
+                data: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            data.is_none(),
+            "parameter `data` must point to `None` on entry"
+        );
         unsafe { SecRequirementCopyData(self, flags, data) }
     }
 
@@ -167,25 +174,25 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
-    ///
-    /// # Safety
-    ///
-    /// `text` must be a valid pointer.
     #[doc(alias = "SecRequirementCopyString")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn copy_string(
+    pub unsafe fn string(
         &self,
         flags: SecCSFlags,
-        text: NonNull<*const CFString>,
+        text: &mut Option<CFRetained<CFString>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecRequirementCopyString(
                 requirement: &SecRequirement,
                 flags: SecCSFlags,
-                text: NonNull<*const CFString>,
+                text: &mut Option<CFRetained<CFString>>,
             ) -> OSStatus;
         }
+        assert!(
+            text.is_none(),
+            "parameter `text` must point to `None` on entry"
+        );
         unsafe { SecRequirementCopyString(self, flags, text) }
     }
 }

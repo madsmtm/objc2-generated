@@ -126,11 +126,10 @@ impl VTCompressionSession {
     /// - `source_image_buffer_attributes` generic must be of the correct type.
     /// - `output_callback` must be implemented correctly.
     /// - `output_callback_ref_con` must be a valid pointer or null.
-    /// - `compression_session_out` must be a valid pointer.
     #[doc(alias = "VTCompressionSessionCreate")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         width: i32,
         height: i32,
@@ -140,7 +139,7 @@ impl VTCompressionSession {
         compressed_data_allocator: Option<&CFAllocator>,
         output_callback: VTCompressionOutputCallback,
         output_callback_ref_con: *mut c_void,
-        compression_session_out: NonNull<*mut VTCompressionSession>,
+        compression_session_out: &mut Option<CFRetained<VTCompressionSession>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTCompressionSessionCreate(
@@ -153,9 +152,13 @@ impl VTCompressionSession {
                 compressed_data_allocator: Option<&CFAllocator>,
                 output_callback: VTCompressionOutputCallback,
                 output_callback_ref_con: *mut c_void,
-                compression_session_out: NonNull<*mut VTCompressionSession>,
+                compression_session_out: &mut Option<CFRetained<VTCompressionSession>>,
             ) -> OSStatus;
         }
+        assert!(
+            compression_session_out.is_none(),
+            "parameter `compression_session_out` must point to `None` on entry"
+        );
         unsafe {
             VTCompressionSessionCreate(
                 allocator,

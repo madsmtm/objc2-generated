@@ -28,24 +28,37 @@ use crate::*;
 ///
 ///
 /// Finds and returns (by reference) the password for the specified SSID and keychain domain.
-///
-/// # Safety
-///
-/// `password` must be a valid pointer or null.
 #[cfg(feature = "CoreWLANTypes")]
 #[inline]
 pub unsafe fn CWKeychainFindWiFiPassword(
     domain: CWKeychainDomain,
     ssid: &NSData,
-    password: *mut *mut NSString,
+    password: Option<&mut Option<Retained<NSString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CWKeychainFindWiFiPassword(
             domain: CWKeychainDomain,
             ssid: &NSData,
-            password: *mut *mut NSString,
+            password: Option<&mut Option<Retained<NSString>>>,
         ) -> OSStatus;
     }
+    struct RetainPasswordOnDrop<'a>(&'a mut Option<Retained<NSString>>);
+    impl Drop for RetainPasswordOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    let mut password = if let Some(password) = password {
+        assert!(
+            password.is_none(),
+            "parameter `password` must point to `None` on entry"
+        );
+        Some(RetainPasswordOnDrop(password))
+    } else {
+        None
+    };
+    let password = password.as_mut().map(|arg| &mut *arg.0);
     unsafe { CWKeychainFindWiFiPassword(domain, ssid, password) }
 }
 
@@ -128,27 +141,56 @@ pub unsafe fn CWKeychainDeleteWiFiPassword(domain: CWKeychainDomain, ssid: &NSDa
 ///
 ///
 /// Finds and returns the 802.1X username and password stored for the specified SSID and keychain domain.
-///
-/// # Safety
-///
-/// - `username` must be a valid pointer or null.
-/// - `password` must be a valid pointer or null.
 #[cfg(feature = "CoreWLANTypes")]
 #[inline]
 pub unsafe fn CWKeychainFindWiFiEAPUsernameAndPassword(
     domain: CWKeychainDomain,
     ssid: &NSData,
-    username: *mut *mut NSString,
-    password: *mut *mut NSString,
+    username: Option<&mut Option<Retained<NSString>>>,
+    password: Option<&mut Option<Retained<NSString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CWKeychainFindWiFiEAPUsernameAndPassword(
             domain: CWKeychainDomain,
             ssid: &NSData,
-            username: *mut *mut NSString,
-            password: *mut *mut NSString,
+            username: Option<&mut Option<Retained<NSString>>>,
+            password: Option<&mut Option<Retained<NSString>>>,
         ) -> OSStatus;
     }
+    struct RetainUsernameOnDrop<'a>(&'a mut Option<Retained<NSString>>);
+    impl Drop for RetainUsernameOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    let mut username = if let Some(username) = username {
+        assert!(
+            username.is_none(),
+            "parameter `username` must point to `None` on entry"
+        );
+        Some(RetainUsernameOnDrop(username))
+    } else {
+        None
+    };
+    let username = username.as_mut().map(|arg| &mut *arg.0);
+    struct RetainPasswordOnDrop<'a>(&'a mut Option<Retained<NSString>>);
+    impl Drop for RetainPasswordOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    let mut password = if let Some(password) = password {
+        assert!(
+            password.is_none(),
+            "parameter `password` must point to `None` on entry"
+        );
+        Some(RetainPasswordOnDrop(password))
+    } else {
+        None
+    };
+    let password = password.as_mut().map(|arg| &mut *arg.0);
     unsafe { CWKeychainFindWiFiEAPUsernameAndPassword(domain, ssid, username, password) }
 }
 

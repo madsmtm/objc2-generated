@@ -60,16 +60,15 @@ impl VTMultiPassStorage {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    /// - `multi_pass_storage_out` must be a valid pointer.
     #[doc(alias = "VTMultiPassStorageCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         file_url: Option<&CFURL>,
         time_range: CMTimeRange,
         options: Option<&CFDictionary>,
-        multi_pass_storage_out: NonNull<*mut VTMultiPassStorage>,
+        multi_pass_storage_out: &mut Option<CFRetained<VTMultiPassStorage>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTMultiPassStorageCreate(
@@ -77,9 +76,13 @@ impl VTMultiPassStorage {
                 file_url: Option<&CFURL>,
                 time_range: CMTimeRange,
                 options: Option<&CFDictionary>,
-                multi_pass_storage_out: NonNull<*mut VTMultiPassStorage>,
+                multi_pass_storage_out: &mut Option<CFRetained<VTMultiPassStorage>>,
             ) -> OSStatus;
         }
+        assert!(
+            multi_pass_storage_out.is_none(),
+            "parameter `multi_pass_storage_out` must point to `None` on entry"
+        );
         unsafe {
             VTMultiPassStorageCreate(
                 allocator,

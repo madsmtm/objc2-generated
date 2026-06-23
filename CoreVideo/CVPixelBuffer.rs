@@ -586,23 +586,26 @@ impl CVPixelBuffer {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic generic should be of the correct type.
-    /// - `resolved_dictionary_out` must be a valid pointer.
+    /// `attributes` generic generic should be of the correct type.
     #[doc(alias = "CVPixelBufferCreateResolvedAttributesDictionary")]
     #[cfg(feature = "CVReturn")]
     #[inline]
-    pub unsafe fn create_resolved_attributes_dictionary(
+    pub unsafe fn new_resolved_attributes_dictionary(
         allocator: Option<&CFAllocator>,
         attributes: Option<&CFArray<CFDictionary<CFString, CFType>>>,
-        resolved_dictionary_out: NonNull<*const CFDictionary<CFString, CFType>>,
+        resolved_dictionary_out: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVPixelBufferCreateResolvedAttributesDictionary(
                 allocator: Option<&CFAllocator>,
                 attributes: Option<&CFArray<CFDictionary<CFString, CFType>>>,
-                resolved_dictionary_out: NonNull<*const CFDictionary<CFString, CFType>>,
+                resolved_dictionary_out: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
             ) -> CVReturn;
         }
+        assert!(
+            resolved_dictionary_out.is_none(),
+            "parameter `resolved_dictionary_out` must point to `None` on entry"
+        );
         unsafe {
             CVPixelBufferCreateResolvedAttributesDictionary(
                 allocator,
@@ -630,18 +633,17 @@ impl CVPixelBuffer {
     ///
     /// # Safety
     ///
-    /// - `pixel_buffer_attributes` generic should be of the correct type.
-    /// - `pixel_buffer_out` must be a valid pointer.
+    /// `pixel_buffer_attributes` generic should be of the correct type.
     #[doc(alias = "CVPixelBufferCreate")]
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         width: usize,
         height: usize,
         pixel_format_type: OSType,
         pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+        pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVPixelBufferCreate(
@@ -650,9 +652,13 @@ impl CVPixelBuffer {
                 height: usize,
                 pixel_format_type: OSType,
                 pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-                pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+                pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
             ) -> CVReturn;
         }
+        assert!(
+            pixel_buffer_out.is_none(),
+            "parameter `pixel_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CVPixelBufferCreate(
                 allocator,
@@ -702,11 +708,10 @@ impl CVPixelBuffer {
     /// - `release_callback` must be implemented correctly.
     /// - `release_ref_con` must be a valid pointer or null.
     /// - `pixel_buffer_attributes` generic should be of the correct type.
-    /// - `pixel_buffer_out` must be a valid pointer.
     #[doc(alias = "CVPixelBufferCreateWithBytes")]
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     #[inline]
-    pub unsafe fn create_with_bytes(
+    pub unsafe fn with_bytes(
         allocator: Option<&CFAllocator>,
         width: usize,
         height: usize,
@@ -716,7 +721,7 @@ impl CVPixelBuffer {
         release_callback: CVPixelBufferReleaseBytesCallback,
         release_ref_con: *mut c_void,
         pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+        pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVPixelBufferCreateWithBytes(
@@ -729,9 +734,13 @@ impl CVPixelBuffer {
                 release_callback: CVPixelBufferReleaseBytesCallback,
                 release_ref_con: *mut c_void,
                 pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-                pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+                pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
             ) -> CVReturn;
         }
+        assert!(
+            pixel_buffer_out.is_none(),
+            "parameter `pixel_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CVPixelBufferCreateWithBytes(
                 allocator,
@@ -800,11 +809,10 @@ impl CVPixelBuffer {
     /// - `release_callback` must be implemented correctly.
     /// - `release_ref_con` must be a valid pointer or null.
     /// - `pixel_buffer_attributes` generic should be of the correct type.
-    /// - `pixel_buffer_out` must be a valid pointer.
     #[doc(alias = "CVPixelBufferCreateWithPlanarBytes")]
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     #[inline]
-    pub unsafe fn create_with_planar_bytes(
+    pub unsafe fn with_planar_bytes(
         allocator: Option<&CFAllocator>,
         width: usize,
         height: usize,
@@ -819,7 +827,7 @@ impl CVPixelBuffer {
         release_callback: CVPixelBufferReleasePlanarBytesCallback,
         release_ref_con: *mut c_void,
         pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+        pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVPixelBufferCreateWithPlanarBytes(
@@ -837,9 +845,13 @@ impl CVPixelBuffer {
                 release_callback: CVPixelBufferReleasePlanarBytesCallback,
                 release_ref_con: *mut c_void,
                 pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-                pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+                pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
             ) -> CVReturn;
         }
+        assert!(
+            pixel_buffer_out.is_none(),
+            "parameter `pixel_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CVPixelBufferCreateWithPlanarBytes(
                 allocator,

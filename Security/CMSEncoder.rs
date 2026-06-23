@@ -38,15 +38,16 @@ unsafe impl ConcreteType for CMSEncoder {
 }
 
 impl CMSEncoder {
-    /// # Safety
-    ///
-    /// `cms_encoder_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCreate")]
     #[inline]
-    pub unsafe fn create(cms_encoder_out: NonNull<*mut CMSEncoder>) -> OSStatus {
+    pub unsafe fn new(cms_encoder_out: &mut Option<CFRetained<CMSEncoder>>) -> OSStatus {
         extern "C-unwind" {
-            fn CMSEncoderCreate(cms_encoder_out: NonNull<*mut CMSEncoder>) -> OSStatus;
+            fn CMSEncoderCreate(cms_encoder_out: &mut Option<CFRetained<CMSEncoder>>) -> OSStatus;
         }
+        assert!(
+            cms_encoder_out.is_none(),
+            "parameter `cms_encoder_out` must point to `None` on entry"
+        );
         unsafe { CMSEncoderCreate(cms_encoder_out) }
     }
 }
@@ -87,18 +88,19 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddSigners(self, signer_or_array) }
     }
 
-    /// # Safety
-    ///
-    /// `signers_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopySigners")]
     #[inline]
-    pub unsafe fn copy_signers(&self, signers_out: NonNull<*const CFArray>) -> OSStatus {
+    pub unsafe fn signers(&self, signers_out: &mut Option<CFRetained<CFArray>>) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopySigners(
                 cms_encoder: &CMSEncoder,
-                signers_out: NonNull<*const CFArray>,
+                signers_out: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            signers_out.is_none(),
+            "parameter `signers_out` must point to `None` on entry"
+        );
         unsafe { CMSEncoderCopySigners(self, signers_out) }
     }
 
@@ -117,18 +119,19 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddRecipients(self, recipient_or_array) }
     }
 
-    /// # Safety
-    ///
-    /// `recipients_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopyRecipients")]
     #[inline]
-    pub unsafe fn copy_recipients(&self, recipients_out: NonNull<*const CFArray>) -> OSStatus {
+    pub unsafe fn recipients(&self, recipients_out: &mut Option<CFRetained<CFArray>>) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopyRecipients(
                 cms_encoder: &CMSEncoder,
-                recipients_out: NonNull<*const CFArray>,
+                recipients_out: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            recipients_out.is_none(),
+            "parameter `recipients_out` must point to `None` on entry"
+        );
         unsafe { CMSEncoderCopyRecipients(self, recipients_out) }
     }
 
@@ -198,21 +201,22 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetEncapsulatedContentTypeOID(self, e_content_type_oid) }
     }
 
-    /// # Safety
-    ///
-    /// `e_content_type_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopyEncapsulatedContentType")]
     #[inline]
-    pub unsafe fn copy_encapsulated_content_type(
+    pub unsafe fn encapsulated_content_type(
         &self,
-        e_content_type_out: NonNull<*const CFData>,
+        e_content_type_out: &mut Option<CFRetained<CFData>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopyEncapsulatedContentType(
                 cms_encoder: &CMSEncoder,
-                e_content_type_out: NonNull<*const CFData>,
+                e_content_type_out: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            e_content_type_out.is_none(),
+            "parameter `e_content_type_out` must point to `None` on entry"
+        );
         unsafe { CMSEncoderCopyEncapsulatedContentType(self, e_content_type_out) }
     }
 
@@ -231,18 +235,19 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddSupportingCerts(self, cert_or_array) }
     }
 
-    /// # Safety
-    ///
-    /// `certs_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopySupportingCerts")]
     #[inline]
-    pub unsafe fn copy_supporting_certs(&self, certs_out: NonNull<*const CFArray>) -> OSStatus {
+    pub unsafe fn supporting_certs(&self, certs_out: &mut Option<CFRetained<CFArray>>) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopySupportingCerts(
                 cms_encoder: &CMSEncoder,
-                certs_out: NonNull<*const CFArray>,
+                certs_out: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            certs_out.is_none(),
+            "parameter `certs_out` must point to `None` on entry"
+        );
         unsafe { CMSEncoderCopySupportingCerts(self, certs_out) }
     }
 }
@@ -376,21 +381,22 @@ impl CMSEncoder {
         unsafe { CMSEncoderUpdateContent(self, content, content_len) }
     }
 
-    /// # Safety
-    ///
-    /// `encoded_content_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopyEncodedContent")]
     #[inline]
-    pub unsafe fn copy_encoded_content(
+    pub unsafe fn encoded_content(
         &self,
-        encoded_content_out: NonNull<*const CFData>,
+        encoded_content_out: &mut Option<CFRetained<CFData>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopyEncodedContent(
                 cms_encoder: &CMSEncoder,
-                encoded_content_out: NonNull<*const CFData>,
+                encoded_content_out: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            encoded_content_out.is_none(),
+            "parameter `encoded_content_out` must point to `None` on entry"
+        );
         unsafe { CMSEncoderCopyEncodedContent(self, encoded_content_out) }
     }
 }
@@ -401,7 +407,6 @@ impl CMSEncoder {
 /// - `recipients` should be of the correct type.
 /// - `e_content_type` must be a valid pointer or null.
 /// - `content` must be a valid pointer.
-/// - `encoded_content_out` must be a valid pointer.
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[inline]
@@ -413,7 +418,7 @@ pub unsafe fn CMSEncode(
     signed_attributes: CMSSignedAttributes,
     content: NonNull<c_void>,
     content_len: usize,
-    encoded_content_out: NonNull<*const CFData>,
+    encoded_content_out: &mut Option<CFRetained<CFData>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMSEncode(
@@ -424,10 +429,14 @@ pub unsafe fn CMSEncode(
             signed_attributes: CMSSignedAttributes,
             content: NonNull<c_void>,
             content_len: usize,
-            encoded_content_out: NonNull<*const CFData>,
+            encoded_content_out: &mut Option<CFRetained<CFData>>,
         ) -> OSStatus;
     }
     let detached_content = detached_content as _;
+    assert!(
+        encoded_content_out.is_none(),
+        "parameter `encoded_content_out` must point to `None` on entry"
+    );
     unsafe {
         CMSEncode(
             signers,
@@ -448,7 +457,6 @@ pub unsafe fn CMSEncode(
 /// - `recipients` should be of the correct type.
 /// - `e_content_type_oid` should be of the correct type.
 /// - `content` must be a valid pointer.
-/// - `encoded_content_out` must be a valid pointer or null.
 #[inline]
 pub unsafe fn CMSEncodeContent(
     signers: Option<&CFType>,
@@ -458,7 +466,7 @@ pub unsafe fn CMSEncodeContent(
     signed_attributes: CMSSignedAttributes,
     content: NonNull<c_void>,
     content_len: usize,
-    encoded_content_out: *mut *const CFData,
+    encoded_content_out: Option<&mut Option<CFRetained<CFData>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMSEncodeContent(
@@ -469,10 +477,16 @@ pub unsafe fn CMSEncodeContent(
             signed_attributes: CMSSignedAttributes,
             content: NonNull<c_void>,
             content_len: usize,
-            encoded_content_out: *mut *const CFData,
+            encoded_content_out: Option<&mut Option<CFRetained<CFData>>>,
         ) -> OSStatus;
     }
     let detached_content = detached_content as _;
+    if let Some(encoded_content_out) = encoded_content_out.as_ref() {
+        assert!(
+            encoded_content_out.is_none(),
+            "parameter `encoded_content_out` must point to `None` on entry"
+        );
+    };
     unsafe {
         CMSEncodeContent(
             signers,

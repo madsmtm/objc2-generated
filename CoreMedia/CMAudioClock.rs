@@ -18,21 +18,21 @@ use crate::*;
 ///
 /// Parameter `clockOut`: Points to a CMClockRef to receive the newly created clock.
 /// The caller is responsible for calling CFRelease to release this clock.
-///
-/// # Safety
-///
-/// `clock_out` must be a valid pointer.
 #[cfg(feature = "CMSync")]
 #[inline]
 pub unsafe fn CMAudioClockCreate(
     allocator: Option<&CFAllocator>,
-    clock_out: NonNull<*mut CMClock>,
+    clock_out: &mut Option<CFRetained<CMClock>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMAudioClockCreate(
             allocator: Option<&CFAllocator>,
-            clock_out: NonNull<*mut CMClock>,
+            clock_out: &mut Option<CFRetained<CMClock>>,
         ) -> OSStatus;
     }
+    assert!(
+        clock_out.is_none(),
+        "parameter `clock_out` must point to `None` on entry"
+    );
     unsafe { CMAudioClockCreate(allocator, clock_out) }
 }

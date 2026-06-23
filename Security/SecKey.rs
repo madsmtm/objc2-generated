@@ -296,16 +296,11 @@ impl SecKey {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7. Please use the SecKeyGeneratePair API instead.
-    ///
-    /// # Safety
-    ///
-    /// - `public_key` must be a valid pointer or null.
-    /// - `private_key` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreatePair")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    pub unsafe fn create_pair(
+    pub unsafe fn new_pair(
         keychain_ref: Option<&SecKeychain>,
         algorithm: CSSM_ALGORITHMS,
         key_size_in_bits: uint32,
@@ -315,8 +310,8 @@ impl SecKey {
         private_key_usage: CSSM_KEYUSE,
         private_key_attr: uint32,
         initial_access: Option<&SecAccess>,
-        public_key: *mut *mut SecKey,
-        private_key: *mut *mut SecKey,
+        public_key: Option<&mut Option<CFRetained<SecKey>>>,
+        private_key: Option<&mut Option<CFRetained<SecKey>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeyCreatePair(
@@ -329,10 +324,22 @@ impl SecKey {
                 private_key_usage: CSSM_KEYUSE,
                 private_key_attr: uint32,
                 initial_access: Option<&SecAccess>,
-                public_key: *mut *mut SecKey,
-                private_key: *mut *mut SecKey,
+                public_key: Option<&mut Option<CFRetained<SecKey>>>,
+                private_key: Option<&mut Option<CFRetained<SecKey>>>,
             ) -> OSStatus;
         }
+        if let Some(public_key) = public_key.as_ref() {
+            assert!(
+                public_key.is_none(),
+                "parameter `public_key` must point to `None` on entry"
+            );
+        };
+        if let Some(private_key) = private_key.as_ref() {
+            assert!(
+                private_key.is_none(),
+                "parameter `private_key` must point to `None` on entry"
+            );
+        };
         unsafe {
             SecKeyCreatePair(
                 keychain_ref,
@@ -371,10 +378,6 @@ impl SecKey {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7.  Please use the SecKeyGenerateSymmetric API instead.
-    ///
-    /// # Safety
-    ///
-    /// `key_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeyGenerate")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -387,7 +390,7 @@ impl SecKey {
         key_usage: CSSM_KEYUSE,
         key_attr: uint32,
         initial_access: Option<&SecAccess>,
-        key_ref: *mut *mut SecKey,
+        key_ref: Option<&mut Option<CFRetained<SecKey>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeyGenerate(
@@ -398,9 +401,15 @@ impl SecKey {
                 key_usage: CSSM_KEYUSE,
                 key_attr: uint32,
                 initial_access: Option<&SecAccess>,
-                key_ref: *mut *mut SecKey,
+                key_ref: Option<&mut Option<CFRetained<SecKey>>>,
             ) -> OSStatus;
         }
+        if let Some(key_ref) = key_ref.as_ref() {
+            assert!(
+                key_ref.is_none(),
+                "parameter `key_ref` must point to `None` on entry"
+            );
+        };
         unsafe {
             SecKeyGenerate(
                 keychain_ref,
@@ -850,24 +859,34 @@ impl SecKey {
     ///
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
-    /// - `public_key` must be a valid pointer or null.
-    /// - `private_key` must be a valid pointer or null.
     #[doc(alias = "SecKeyGeneratePair")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "Use SecKeyCreateRandomKey"]
     #[inline]
     pub unsafe fn generate_pair(
         parameters: &CFDictionary,
-        public_key: *mut *mut SecKey,
-        private_key: *mut *mut SecKey,
+        public_key: Option<&mut Option<CFRetained<SecKey>>>,
+        private_key: Option<&mut Option<CFRetained<SecKey>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeyGeneratePair(
                 parameters: &CFDictionary,
-                public_key: *mut *mut SecKey,
-                private_key: *mut *mut SecKey,
+                public_key: Option<&mut Option<CFRetained<SecKey>>>,
+                private_key: Option<&mut Option<CFRetained<SecKey>>>,
             ) -> OSStatus;
         }
+        if let Some(public_key) = public_key.as_ref() {
+            assert!(
+                public_key.is_none(),
+                "parameter `public_key` must point to `None` on entry"
+            );
+        };
+        if let Some(private_key) = private_key.as_ref() {
+            assert!(
+                private_key.is_none(),
+                "parameter `private_key` must point to `None` on entry"
+            );
+        };
         unsafe { SecKeyGeneratePair(parameters, public_key, private_key) }
     }
 

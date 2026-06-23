@@ -299,16 +299,23 @@ pub unsafe fn SSLCreateContext(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// # Safety
-///
-/// `context_ptr` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
-pub unsafe fn SSLNewContext(is_server: bool, context_ptr: NonNull<*mut SSLContext>) -> OSStatus {
+pub unsafe fn SSLNewContext(
+    is_server: bool,
+    context_ptr: &mut Option<CFRetained<SSLContext>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn SSLNewContext(is_server: Boolean, context_ptr: NonNull<*mut SSLContext>) -> OSStatus;
+        fn SSLNewContext(
+            is_server: Boolean,
+            context_ptr: &mut Option<CFRetained<SSLContext>>,
+        ) -> OSStatus;
     }
     let is_server = is_server as _;
+    assert!(
+        context_ptr.is_none(),
+        "parameter `context_ptr` must point to `None` on entry"
+    );
     unsafe { SSLNewContext(is_server, context_ptr) }
 }
 
@@ -972,52 +979,61 @@ pub unsafe fn SSLSetTrustedRoots(
     unsafe { SSLSetTrustedRoots(context, trusted_roots, replace_existing) }
 }
 
-/// # Safety
-///
-/// `trusted_roots` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLCopyTrustedRoots(
     context: &SSLContext,
-    trusted_roots: NonNull<*const CFArray>,
+    trusted_roots: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLCopyTrustedRoots(
             context: &SSLContext,
-            trusted_roots: NonNull<*const CFArray>,
+            trusted_roots: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        trusted_roots.is_none(),
+        "parameter `trusted_roots` must point to `None` on entry"
+    );
     unsafe { SSLCopyTrustedRoots(context, trusted_roots) }
 }
 
-/// # Safety
-///
-/// `certs` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLCopyPeerCertificates(
     context: &SSLContext,
-    certs: NonNull<*const CFArray>,
+    certs: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLCopyPeerCertificates(
             context: &SSLContext,
-            certs: NonNull<*const CFArray>,
+            certs: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        certs.is_none(),
+        "parameter `certs` must point to `None` on entry"
+    );
     unsafe { SSLCopyPeerCertificates(context, certs) }
 }
 
-/// # Safety
-///
-/// `trust` must be a valid pointer.
 #[cfg(feature = "SecTrust")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
-pub unsafe fn SSLCopyPeerTrust(context: &SSLContext, trust: NonNull<*mut SecTrust>) -> OSStatus {
+pub unsafe fn SSLCopyPeerTrust(
+    context: &SSLContext,
+    trust: &mut Option<CFRetained<SecTrust>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn SSLCopyPeerTrust(context: &SSLContext, trust: NonNull<*mut SecTrust>) -> OSStatus;
+        fn SSLCopyPeerTrust(
+            context: &SSLContext,
+            trust: &mut Option<CFRetained<SecTrust>>,
+        ) -> OSStatus;
     }
+    assert!(
+        trust.is_none(),
+        "parameter `trust` must point to `None` on entry"
+    );
     unsafe { SSLCopyPeerTrust(context, trust) }
 }
 
@@ -1209,39 +1225,41 @@ pub unsafe fn SSLSetCertificateAuthorities(
     unsafe { SSLSetCertificateAuthorities(context, certificate_or_array, replace_existing) }
 }
 
-/// # Safety
-///
-/// `certificates` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLCopyCertificateAuthorities(
     context: &SSLContext,
-    certificates: NonNull<*const CFArray>,
+    certificates: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLCopyCertificateAuthorities(
             context: &SSLContext,
-            certificates: NonNull<*const CFArray>,
+            certificates: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        certificates.is_none(),
+        "parameter `certificates` must point to `None` on entry"
+    );
     unsafe { SSLCopyCertificateAuthorities(context, certificates) }
 }
 
-/// # Safety
-///
-/// `names` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLCopyDistinguishedNames(
     context: &SSLContext,
-    names: NonNull<*const CFArray>,
+    names: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLCopyDistinguishedNames(
             context: &SSLContext,
-            names: NonNull<*const CFArray>,
+            names: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        names.is_none(),
+        "parameter `names` must point to `None` on entry"
+    );
     unsafe { SSLCopyDistinguishedNames(context, names) }
 }
 

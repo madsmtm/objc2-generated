@@ -121,15 +121,14 @@ impl VTMotionEstimationSession {
     ///
     /// - `motion_vector_processor_selection_options` generic must be of the correct type.
     /// - `motion_vector_processor_selection_options` generic must be of the correct type.
-    /// - `motion_estimation_session_out` must be a valid pointer.
     #[doc(alias = "VTMotionEstimationSessionCreate")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         motion_vector_processor_selection_options: Option<&CFDictionary>,
         width: u32,
         height: u32,
-        motion_estimation_session_out: NonNull<*mut VTMotionEstimationSession>,
+        motion_estimation_session_out: &mut Option<CFRetained<VTMotionEstimationSession>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTMotionEstimationSessionCreate(
@@ -137,9 +136,13 @@ impl VTMotionEstimationSession {
                 motion_vector_processor_selection_options: Option<&CFDictionary>,
                 width: u32,
                 height: u32,
-                motion_estimation_session_out: NonNull<*mut VTMotionEstimationSession>,
+                motion_estimation_session_out: &mut Option<CFRetained<VTMotionEstimationSession>>,
             ) -> OSStatus;
         }
+        assert!(
+            motion_estimation_session_out.is_none(),
+            "parameter `motion_estimation_session_out` must point to `None` on entry"
+        );
         unsafe {
             VTMotionEstimationSessionCreate(
                 allocator,
@@ -161,22 +164,22 @@ impl VTMotionEstimationSession {
     /// - Parameters:
     /// - session: The motion-estimation session.
     /// - attributesOut: Points to a variable to receive the attributes dictionary.
-    ///
-    /// # Safety
-    ///
-    /// `attributes_out` must be a valid pointer.
     #[doc(alias = "VTMotionEstimationSessionCopySourcePixelBufferAttributes")]
     #[inline]
-    pub unsafe fn copy_source_pixel_buffer_attributes(
+    pub unsafe fn source_pixel_buffer_attributes(
         &self,
-        attributes_out: NonNull<*const CFDictionary>,
+        attributes_out: &mut Option<CFRetained<CFDictionary>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTMotionEstimationSessionCopySourcePixelBufferAttributes(
                 motion_estimation_session: &VTMotionEstimationSession,
-                attributes_out: NonNull<*const CFDictionary>,
+                attributes_out: &mut Option<CFRetained<CFDictionary>>,
             ) -> OSStatus;
         }
+        assert!(
+            attributes_out.is_none(),
+            "parameter `attributes_out` must point to `None` on entry"
+        );
         unsafe { VTMotionEstimationSessionCopySourcePixelBufferAttributes(self, attributes_out) }
     }
 

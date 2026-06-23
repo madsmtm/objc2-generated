@@ -44,25 +44,25 @@ impl SecStaticCode {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
-    ///
-    /// # Safety
-    ///
-    /// `static_code` must be a valid pointer.
     #[doc(alias = "SecStaticCodeCreateWithPath")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn create_with_path(
+    pub unsafe fn with_path(
         path: &CFURL,
         flags: SecCSFlags,
-        static_code: NonNull<*const SecStaticCode>,
+        static_code: &mut Option<CFRetained<SecStaticCode>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecStaticCodeCreateWithPath(
                 path: &CFURL,
                 flags: SecCSFlags,
-                static_code: NonNull<*const SecStaticCode>,
+                static_code: &mut Option<CFRetained<SecStaticCode>>,
             ) -> OSStatus;
         }
+        assert!(
+            static_code.is_none(),
+            "parameter `static_code` must point to `None` on entry"
+        );
         unsafe { SecStaticCodeCreateWithPath(path, flags, static_code) }
     }
 }
@@ -133,24 +133,27 @@ impl SecStaticCode {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
-    /// - `static_code` must be a valid pointer.
     #[doc(alias = "SecStaticCodeCreateWithPathAndAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn create_with_path_and_attributes(
+    pub unsafe fn with_path_and_attributes(
         path: &CFURL,
         flags: SecCSFlags,
         attributes: &CFDictionary,
-        static_code: NonNull<*const SecStaticCode>,
+        static_code: &mut Option<CFRetained<SecStaticCode>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecStaticCodeCreateWithPathAndAttributes(
                 path: &CFURL,
                 flags: SecCSFlags,
                 attributes: &CFDictionary,
-                static_code: NonNull<*const SecStaticCode>,
+                static_code: &mut Option<CFRetained<SecStaticCode>>,
             ) -> OSStatus;
         }
+        assert!(
+            static_code.is_none(),
+            "parameter `static_code` must point to `None` on entry"
+        );
         unsafe { SecStaticCodeCreateWithPathAndAttributes(path, flags, attributes, static_code) }
     }
 }

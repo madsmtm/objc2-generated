@@ -247,19 +247,18 @@ impl SecKeychainItem {
     ///
     /// - `attr_list` must be a valid pointer.
     /// - `data` must be a valid pointer or null.
-    /// - `item_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemCreateFromContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn create_from_content(
+    pub unsafe fn from_content(
         item_class: SecItemClass,
         attr_list: NonNull<SecKeychainAttributeList>,
         length: u32,
         data: *const c_void,
         keychain_ref: Option<&SecKeychain>,
         initial_access: Option<&SecAccess>,
-        item_ref: *mut *mut SecKeychainItem,
+        item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemCreateFromContent(
@@ -269,9 +268,15 @@ impl SecKeychainItem {
                 data: *const c_void,
                 keychain_ref: Option<&SecKeychain>,
                 initial_access: Option<&SecAccess>,
-                item_ref: *mut *mut SecKeychainItem,
+                item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
             ) -> OSStatus;
         }
+        if let Some(item_ref) = item_ref.as_ref() {
+            assert!(
+                item_ref.is_none(),
+                "parameter `item_ref` must point to `None` on entry"
+            );
+        };
         unsafe {
             SecKeychainItemCreateFromContent(
                 item_class,
@@ -498,21 +503,21 @@ impl SecKeychainItem {
     /// Parameter `keychainRef`: On return, the keychain reference for the specified item. Release this reference by calling the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `keychain_ref` must be a valid pointer.
     #[doc(alias = "SecKeychainItemCopyKeychain")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_keychain(&self, keychain_ref: NonNull<*mut SecKeychain>) -> OSStatus {
+    pub unsafe fn keychain(&self, keychain_ref: &mut Option<CFRetained<SecKeychain>>) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemCopyKeychain(
                 item_ref: &SecKeychainItem,
-                keychain_ref: NonNull<*mut SecKeychain>,
+                keychain_ref: &mut Option<CFRetained<SecKeychain>>,
             ) -> OSStatus;
         }
+        assert!(
+            keychain_ref.is_none(),
+            "parameter `keychain_ref` must point to `None` on entry"
+        );
         unsafe { SecKeychainItemCopyKeychain(self, keychain_ref) }
     }
 
@@ -527,28 +532,28 @@ impl SecKeychainItem {
     /// Parameter `itemCopy`: On return, a reference to the copied keychain item.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `item_copy` must be a valid pointer.
     #[doc(alias = "SecKeychainItemCreateCopy")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn create_copy(
+    pub unsafe fn copy(
         &self,
         dest_keychain_ref: Option<&SecKeychain>,
         initial_access: Option<&SecAccess>,
-        item_copy: NonNull<*mut SecKeychainItem>,
+        item_copy: &mut Option<CFRetained<SecKeychainItem>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemCreateCopy(
                 item_ref: &SecKeychainItem,
                 dest_keychain_ref: Option<&SecKeychain>,
                 initial_access: Option<&SecAccess>,
-                item_copy: NonNull<*mut SecKeychainItem>,
+                item_copy: &mut Option<CFRetained<SecKeychainItem>>,
             ) -> OSStatus;
         }
+        assert!(
+            item_copy.is_none(),
+            "parameter `item_copy` must point to `None` on entry"
+        );
         unsafe { SecKeychainItemCreateCopy(self, dest_keychain_ref, initial_access, item_copy) }
     }
 
@@ -559,24 +564,24 @@ impl SecKeychainItem {
     /// Parameter `persistentItemRef`: On return, a CFDataRef containing a persistent reference. You must release this data reference by calling the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `persistent_item_ref` must be a valid pointer.
     #[doc(alias = "SecKeychainItemCreatePersistentReference")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn create_persistent_reference(
+    pub unsafe fn persistent_reference(
         &self,
-        persistent_item_ref: NonNull<*const CFData>,
+        persistent_item_ref: &mut Option<CFRetained<CFData>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemCreatePersistentReference(
                 item_ref: &SecKeychainItem,
-                persistent_item_ref: NonNull<*const CFData>,
+                persistent_item_ref: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            persistent_item_ref.is_none(),
+            "parameter `persistent_item_ref` must point to `None` on entry"
+        );
         unsafe { SecKeychainItemCreatePersistentReference(self, persistent_item_ref) }
     }
 
@@ -587,24 +592,24 @@ impl SecKeychainItem {
     /// Parameter `itemRef`: On return, a SecKeychainItemRef for the keychain item described by the persistent reference. You must release this item reference by calling the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `item_ref` must be a valid pointer.
     #[doc(alias = "SecKeychainItemCopyFromPersistentReference")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_from_persistent_reference(
+    pub unsafe fn from_persistent_reference(
         persistent_item_ref: &CFData,
-        item_ref: NonNull<*mut SecKeychainItem>,
+        item_ref: &mut Option<CFRetained<SecKeychainItem>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemCopyFromPersistentReference(
                 persistent_item_ref: &CFData,
-                item_ref: NonNull<*mut SecKeychainItem>,
+                item_ref: &mut Option<CFRetained<SecKeychainItem>>,
             ) -> OSStatus;
         }
+        assert!(
+            item_ref.is_none(),
+            "parameter `item_ref` must point to `None` on entry"
+        );
         unsafe { SecKeychainItemCopyFromPersistentReference(persistent_item_ref, item_ref) }
     }
 
@@ -677,21 +682,21 @@ impl SecKeychainItem {
     /// Parameter `access`: On return, a reference to the keychain item's access.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `access` must be a valid pointer.
     #[doc(alias = "SecKeychainItemCopyAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_access(&self, access: NonNull<*mut SecAccess>) -> OSStatus {
+    pub unsafe fn access(&self, access: &mut Option<CFRetained<SecAccess>>) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemCopyAccess(
                 item_ref: &SecKeychainItem,
-                access: NonNull<*mut SecAccess>,
+                access: &mut Option<CFRetained<SecAccess>>,
             ) -> OSStatus;
         }
+        assert!(
+            access.is_none(),
+            "parameter `access` must point to `None` on entry"
+        );
         unsafe { SecKeychainItemCopyAccess(self, access) }
     }
 

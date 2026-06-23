@@ -303,25 +303,28 @@ impl CMBufferQueue {
     ///
     /// # Safety
     ///
-    /// - `callbacks` must be a valid pointer.
-    /// - `queue_out` must be a valid pointer.
+    /// `callbacks` must be a valid pointer.
     #[doc(alias = "CMBufferQueueCreate")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         capacity: CMItemCount,
         callbacks: NonNull<CMBufferCallbacks>,
-        queue_out: NonNull<*mut CMBufferQueue>,
+        queue_out: &mut Option<CFRetained<CMBufferQueue>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBufferQueueCreate(
                 allocator: Option<&CFAllocator>,
                 capacity: CMItemCount,
                 callbacks: NonNull<CMBufferCallbacks>,
-                queue_out: NonNull<*mut CMBufferQueue>,
+                queue_out: &mut Option<CFRetained<CMBufferQueue>>,
             ) -> OSStatus;
         }
+        assert!(
+            queue_out.is_none(),
+            "parameter `queue_out` must point to `None` on entry"
+        );
         unsafe { CMBufferQueueCreate(allocator, capacity, callbacks, queue_out) }
     }
 
@@ -331,25 +334,28 @@ impl CMBufferQueue {
     ///
     /// # Safety
     ///
-    /// - `handlers` must be a valid pointer.
-    /// - `queue_out` must be a valid pointer.
+    /// `handlers` must be a valid pointer.
     #[doc(alias = "CMBufferQueueCreateWithHandlers")]
     #[cfg(all(feature = "CMBase", feature = "CMTime", feature = "block2"))]
     #[inline]
-    pub unsafe fn create_with_handlers(
+    pub unsafe fn with_handlers(
         allocator: Option<&CFAllocator>,
         capacity: CMItemCount,
         handlers: NonNull<CMBufferHandlers>,
-        queue_out: NonNull<*mut CMBufferQueue>,
+        queue_out: &mut Option<CFRetained<CMBufferQueue>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBufferQueueCreateWithHandlers(
                 allocator: Option<&CFAllocator>,
                 capacity: CMItemCount,
                 handlers: NonNull<CMBufferHandlers>,
-                queue_out: NonNull<*mut CMBufferQueue>,
+                queue_out: &mut Option<CFRetained<CMBufferQueue>>,
             ) -> OSStatus;
         }
+        assert!(
+            queue_out.is_none(),
+            "parameter `queue_out` must point to `None` on entry"
+        );
         unsafe { CMBufferQueueCreateWithHandlers(allocator, capacity, handlers, queue_out) }
     }
 }

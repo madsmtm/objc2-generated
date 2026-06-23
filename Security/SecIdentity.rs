@@ -64,23 +64,26 @@ impl SecIdentity {
     ///
     /// # Safety
     ///
-    /// - `keychain_or_array` should be of the correct type.
-    /// - `identity_ref` must be a valid pointer.
+    /// `keychain_or_array` should be of the correct type.
     #[doc(alias = "SecIdentityCreateWithCertificate")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn create_with_certificate(
+    pub unsafe fn with_certificate(
         keychain_or_array: Option<&CFType>,
         certificate_ref: &SecCertificate,
-        identity_ref: NonNull<*mut SecIdentity>,
+        identity_ref: &mut Option<CFRetained<SecIdentity>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentityCreateWithCertificate(
                 keychain_or_array: Option<&CFType>,
                 certificate_ref: &SecCertificate,
-                identity_ref: NonNull<*mut SecIdentity>,
+                identity_ref: &mut Option<CFRetained<SecIdentity>>,
             ) -> OSStatus;
         }
+        assert!(
+            identity_ref.is_none(),
+            "parameter `identity_ref` must point to `None` on entry"
+        );
         unsafe {
             SecIdentityCreateWithCertificate(keychain_or_array, certificate_ref, identity_ref)
         }
@@ -96,23 +99,23 @@ impl SecIdentity {
     /// the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `certificate_ref` must be a valid pointer.
     #[doc(alias = "SecIdentityCopyCertificate")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn copy_certificate(
+    pub unsafe fn certificate(
         &self,
-        certificate_ref: NonNull<*mut SecCertificate>,
+        certificate_ref: &mut Option<CFRetained<SecCertificate>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentityCopyCertificate(
                 identity_ref: &SecIdentity,
-                certificate_ref: NonNull<*mut SecCertificate>,
+                certificate_ref: &mut Option<CFRetained<SecCertificate>>,
             ) -> OSStatus;
         }
+        assert!(
+            certificate_ref.is_none(),
+            "parameter `certificate_ref` must point to `None` on entry"
+        );
         unsafe { SecIdentityCopyCertificate(self, certificate_ref) }
     }
 
@@ -125,20 +128,20 @@ impl SecIdentity {
     /// You are responsible for releasing this reference by calling the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `private_key_ref` must be a valid pointer.
     #[doc(alias = "SecIdentityCopyPrivateKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn copy_private_key(&self, private_key_ref: NonNull<*mut SecKey>) -> OSStatus {
+    pub unsafe fn private_key(&self, private_key_ref: &mut Option<CFRetained<SecKey>>) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentityCopyPrivateKey(
                 identity_ref: &SecIdentity,
-                private_key_ref: NonNull<*mut SecKey>,
+                private_key_ref: &mut Option<CFRetained<SecKey>>,
             ) -> OSStatus;
         }
+        assert!(
+            private_key_ref.is_none(),
+            "parameter `private_key_ref` must point to `None` on entry"
+        );
         unsafe { SecIdentityCopyPrivateKey(self, private_key_ref) }
     }
 
@@ -158,26 +161,29 @@ impl SecIdentity {
     ///
     /// # Safety
     ///
-    /// - `valid_issuers` generic must be of the correct type.
-    /// - `identity` must be a valid pointer.
+    /// `valid_issuers` generic must be of the correct type.
     #[doc(alias = "SecIdentityCopyPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn copy_preference(
+    pub unsafe fn preference(
         name: &CFString,
         key_usage: CSSM_KEYUSE,
         valid_issuers: Option<&CFArray>,
-        identity: NonNull<*mut SecIdentity>,
+        identity: &mut Option<CFRetained<SecIdentity>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentityCopyPreference(
                 name: &CFString,
                 key_usage: CSSM_KEYUSE,
                 valid_issuers: Option<&CFArray>,
-                identity: NonNull<*mut SecIdentity>,
+                identity: &mut Option<CFRetained<SecIdentity>>,
             ) -> OSStatus;
         }
+        assert!(
+            identity.is_none(),
+            "parameter `identity` must point to `None` on entry"
+        );
         unsafe { SecIdentityCopyPreference(name, key_usage, valid_issuers, identity) }
     }
 
@@ -295,26 +301,31 @@ impl SecIdentity {
     /// domain, a domain-specific alternate may be returned
     /// instead, typically (but not exclusively) the
     /// kSecIdentityDomainDefault SecIdentityRef.
-    ///
-    /// # Safety
-    ///
-    /// - `id_ref` must be a valid pointer.
-    /// - `actual_domain` must be a valid pointer or null.
     #[doc(alias = "SecIdentityCopySystemIdentity")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn copy_system_identity(
+    pub unsafe fn system_identity(
         domain: &CFString,
-        id_ref: NonNull<*mut SecIdentity>,
-        actual_domain: *mut *const CFString,
+        id_ref: &mut Option<CFRetained<SecIdentity>>,
+        actual_domain: Option<&mut Option<CFRetained<CFString>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentityCopySystemIdentity(
                 domain: &CFString,
-                id_ref: NonNull<*mut SecIdentity>,
-                actual_domain: *mut *const CFString,
+                id_ref: &mut Option<CFRetained<SecIdentity>>,
+                actual_domain: Option<&mut Option<CFRetained<CFString>>>,
             ) -> OSStatus;
         }
+        assert!(
+            id_ref.is_none(),
+            "parameter `id_ref` must point to `None` on entry"
+        );
+        if let Some(actual_domain) = actual_domain.as_ref() {
+            assert!(
+                actual_domain.is_none(),
+                "parameter `actual_domain` must point to `None` on entry"
+            );
+        };
         unsafe { SecIdentityCopySystemIdentity(domain, id_ref, actual_domain) }
     }
 

@@ -224,20 +224,20 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// # Safety
-    ///
-    /// `names` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn copy_attribute_names(&self, names: NonNull<*const CFArray>) -> AXError {
+    pub unsafe fn attribute_names(&self, names: &mut Option<CFRetained<CFArray>>) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyAttributeNames(
                 element: &AXUIElement,
-                names: NonNull<*const CFArray>,
+                names: &mut Option<CFRetained<CFArray>>,
             ) -> AXError;
         }
+        assert!(
+            names.is_none(),
+            "parameter `names` must point to `None` on entry"
+        );
         unsafe { AXUIElementCopyAttributeNames(self, names) }
     }
 
@@ -306,25 +306,25 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// # Safety
-    ///
-    /// `value` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn copy_attribute_value(
+    pub unsafe fn attribute_value(
         &self,
         attribute: &CFString,
-        value: NonNull<*const CFType>,
+        value: &mut Option<CFRetained<CFType>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyAttributeValue(
                 element: &AXUIElement,
                 attribute: &CFString,
-                value: NonNull<*const CFType>,
+                value: &mut Option<CFRetained<CFType>>,
             ) -> AXError;
         }
+        assert!(
+            value.is_none(),
+            "parameter `value` must point to `None` on entry"
+        );
         unsafe { AXUIElementCopyAttributeValue(self, attribute, value) }
     }
 
@@ -490,19 +490,15 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// # Safety
-    ///
-    /// `values` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyAttributeValues")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn copy_attribute_values(
+    pub unsafe fn attribute_values(
         &self,
         attribute: &CFString,
         index: CFIndex,
         max_values: CFIndex,
-        values: NonNull<*const CFArray>,
+        values: &mut Option<CFRetained<CFArray>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyAttributeValues(
@@ -510,9 +506,13 @@ impl AXUIElement {
                 attribute: &CFString,
                 index: CFIndex,
                 max_values: CFIndex,
-                values: NonNull<*const CFArray>,
+                values: &mut Option<CFRetained<CFArray>>,
             ) -> AXError;
         }
+        assert!(
+            values.is_none(),
+            "parameter `values` must point to `None` on entry"
+        );
         unsafe { AXUIElementCopyAttributeValues(self, attribute, index, max_values, values) }
     }
 
@@ -778,25 +778,28 @@ impl AXUIElement {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `values` must be a valid pointer.
+    /// `attributes` generic must be of the correct type.
     #[doc(alias = "AXUIElementCopyMultipleAttributeValues")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn copy_multiple_attribute_values(
+    pub unsafe fn multiple_attribute_values(
         &self,
         attributes: &CFArray,
         options: AXCopyMultipleAttributeOptions,
-        values: NonNull<*const CFArray>,
+        values: &mut Option<CFRetained<CFArray>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyMultipleAttributeValues(
                 element: &AXUIElement,
                 attributes: &CFArray,
                 options: AXCopyMultipleAttributeOptions,
-                values: NonNull<*const CFArray>,
+                values: &mut Option<CFRetained<CFArray>>,
             ) -> AXError;
         }
+        assert!(
+            values.is_none(),
+            "parameter `values` must point to `None` on entry"
+        );
         unsafe { AXUIElementCopyMultipleAttributeValues(self, attributes, options, values) }
     }
 
@@ -867,23 +870,23 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// # Safety
-    ///
-    /// `names` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyParameterizedAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn copy_parameterized_attribute_names(
+    pub unsafe fn parameterized_attribute_names(
         &self,
-        names: NonNull<*const CFArray>,
+        names: &mut Option<CFRetained<CFArray>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyParameterizedAttributeNames(
                 element: &AXUIElement,
-                names: NonNull<*const CFArray>,
+                names: &mut Option<CFRetained<CFArray>>,
             ) -> AXError;
         }
+        assert!(
+            names.is_none(),
+            "parameter `names` must point to `None` on entry"
+        );
         unsafe { AXUIElementCopyParameterizedAttributeNames(self, names) }
     }
 
@@ -961,25 +964,28 @@ impl AXUIElement {
     ///
     /// # Safety
     ///
-    /// - `parameter` should be of the correct type.
-    /// - `result` must be a valid pointer.
+    /// `parameter` should be of the correct type.
     #[doc(alias = "AXUIElementCopyParameterizedAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn copy_parameterized_attribute_value(
+    pub unsafe fn parameterized_attribute_value(
         &self,
         parameterized_attribute: &CFString,
         parameter: &CFType,
-        result: NonNull<*const CFType>,
+        result: &mut Option<CFRetained<CFType>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyParameterizedAttributeValue(
                 element: &AXUIElement,
                 parameterized_attribute: &CFString,
                 parameter: &CFType,
-                result: NonNull<*const CFType>,
+                result: &mut Option<CFRetained<CFType>>,
             ) -> AXError;
         }
+        assert!(
+            result.is_none(),
+            "parameter `result` must point to `None` on entry"
+        );
         unsafe {
             AXUIElementCopyParameterizedAttributeValue(
                 self,
@@ -1044,20 +1050,20 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// # Safety
-    ///
-    /// `names` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyActionNames")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn copy_action_names(&self, names: NonNull<*const CFArray>) -> AXError {
+    pub unsafe fn action_names(&self, names: &mut Option<CFRetained<CFArray>>) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyActionNames(
                 element: &AXUIElement,
-                names: NonNull<*const CFArray>,
+                names: &mut Option<CFRetained<CFArray>>,
             ) -> AXError;
         }
+        assert!(
+            names.is_none(),
+            "parameter `names` must point to `None` on entry"
+        );
         unsafe { AXUIElementCopyActionNames(self, names) }
     }
 
@@ -1118,25 +1124,25 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// # Safety
-    ///
-    /// `description` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyActionDescription")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn copy_action_description(
+    pub unsafe fn action_description(
         &self,
         action: &CFString,
-        description: NonNull<*const CFString>,
+        description: &mut Option<CFRetained<CFString>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyActionDescription(
                 element: &AXUIElement,
                 action: &CFString,
-                description: NonNull<*const CFString>,
+                description: &mut Option<CFRetained<CFString>>,
             ) -> AXError;
         }
+        assert!(
+            description.is_none(),
+            "parameter `description` must point to `None` on entry"
+        );
         unsafe { AXUIElementCopyActionDescription(self, action, description) }
     }
 
@@ -1287,27 +1293,27 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// # Safety
-    ///
-    /// `element` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyElementAtPosition")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn copy_element_at_position(
+    pub unsafe fn element_at_position(
         &self,
         x: c_float,
         y: c_float,
-        element: NonNull<*const AXUIElement>,
+        element: &mut Option<CFRetained<AXUIElement>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyElementAtPosition(
                 application: &AXUIElement,
                 x: c_float,
                 y: c_float,
-                element: NonNull<*const AXUIElement>,
+                element: &mut Option<CFRetained<AXUIElement>>,
             ) -> AXError;
         }
+        assert!(
+            element.is_none(),
+            "parameter `element` must point to `None` on entry"
+        );
         unsafe { AXUIElementCopyElementAtPosition(self, x, y, element) }
     }
 
@@ -1958,23 +1964,26 @@ impl AXObserver {
     ///
     /// # Safety
     ///
-    /// - `callback` must be implemented correctly.
-    /// - `out_observer` must be a valid pointer.
+    /// `callback` must be implemented correctly.
     #[doc(alias = "AXObserverCreate")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         application: libc::pid_t,
         callback: AXObserverCallback,
-        out_observer: NonNull<*mut AXObserver>,
+        out_observer: &mut Option<CFRetained<AXObserver>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXObserverCreate(
                 application: libc::pid_t,
                 callback: AXObserverCallback,
-                out_observer: NonNull<*mut AXObserver>,
+                out_observer: &mut Option<CFRetained<AXObserver>>,
             ) -> AXError;
         }
+        assert!(
+            out_observer.is_none(),
+            "parameter `out_observer` must point to `None` on entry"
+        );
         unsafe { AXObserverCreate(application, callback, out_observer) }
     }
 
@@ -2022,23 +2031,26 @@ impl AXObserver {
     ///
     /// # Safety
     ///
-    /// - `callback` must be implemented correctly.
-    /// - `out_observer` must be a valid pointer.
+    /// `callback` must be implemented correctly.
     #[doc(alias = "AXObserverCreateWithInfoCallback")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
-    pub unsafe fn create_with_info_callback(
+    pub unsafe fn with_info_callback(
         application: libc::pid_t,
         callback: AXObserverCallbackWithInfo,
-        out_observer: NonNull<*mut AXObserver>,
+        out_observer: &mut Option<CFRetained<AXObserver>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXObserverCreateWithInfoCallback(
                 application: libc::pid_t,
                 callback: AXObserverCallbackWithInfo,
-                out_observer: NonNull<*mut AXObserver>,
+                out_observer: &mut Option<CFRetained<AXObserver>>,
             ) -> AXError;
         }
+        assert!(
+            out_observer.is_none(),
+            "parameter `out_observer` must point to `None` on entry"
+        );
         unsafe { AXObserverCreateWithInfoCallback(application, callback, out_observer) }
     }
 

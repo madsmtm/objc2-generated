@@ -272,21 +272,24 @@ impl SecTrust {
     ///
     /// - `certificates` should be of the correct type.
     /// - `policies` should be of the correct type.
-    /// - `trust` must be a valid pointer.
     #[doc(alias = "SecTrustCreateWithCertificates")]
     #[inline]
-    pub unsafe fn create_with_certificates(
+    pub unsafe fn with_certificates(
         certificates: &CFType,
         policies: Option<&CFType>,
-        trust: NonNull<*mut SecTrust>,
+        trust: &mut Option<CFRetained<SecTrust>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustCreateWithCertificates(
                 certificates: &CFType,
                 policies: Option<&CFType>,
-                trust: NonNull<*mut SecTrust>,
+                trust: &mut Option<CFRetained<SecTrust>>,
             ) -> OSStatus;
         }
+        assert!(
+            trust.is_none(),
+            "parameter `trust` must point to `None` on entry"
+        );
         unsafe { SecTrustCreateWithCertificates(certificates, policies, trust) }
     }
 
@@ -322,19 +325,19 @@ impl SecTrust {
     /// Call the CFRelease function to release this reference.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `policies` must be a valid pointer.
     #[doc(alias = "SecTrustCopyPolicies")]
     #[inline]
-    pub unsafe fn copy_policies(&self, policies: NonNull<*const CFArray>) -> OSStatus {
+    pub unsafe fn policies(&self, policies: &mut Option<CFRetained<CFArray>>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustCopyPolicies(
                 trust: &SecTrust,
-                policies: NonNull<*const CFArray>,
+                policies: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            policies.is_none(),
+            "parameter `policies` must point to `None` on entry"
+        );
         unsafe { SecTrustCopyPolicies(self, policies) }
     }
 
@@ -455,22 +458,22 @@ impl SecTrust {
     /// the CFRelease function to release this reference.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `anchors` must be a valid pointer.
     #[doc(alias = "SecTrustCopyCustomAnchorCertificates")]
     #[inline]
-    pub unsafe fn copy_custom_anchor_certificates(
+    pub unsafe fn custom_anchor_certificates(
         &self,
-        anchors: NonNull<*const CFArray>,
+        anchors: &mut Option<CFRetained<CFArray>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustCopyCustomAnchorCertificates(
                 trust: &SecTrust,
-                anchors: NonNull<*const CFArray>,
+                anchors: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            anchors.is_none(),
+            "parameter `anchors` must point to `None` on entry"
+        );
         unsafe { SecTrustCopyCustomAnchorCertificates(self, anchors) }
     }
 
@@ -566,17 +569,25 @@ impl SecTrust {
     /// serious problem and the type of error. The underlying error contains a localized
     /// description of each certificate in the chain that had an error and all errors found
     /// with that certificate.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecTrustEvaluateWithError")]
     #[must_use]
     #[inline]
-    pub unsafe fn evaluate_with_error(&self, error: *mut *mut CFError) -> bool {
+    pub unsafe fn evaluate_with_error(
+        &self,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> bool {
         extern "C-unwind" {
-            fn SecTrustEvaluateWithError(trust: &SecTrust, error: *mut *mut CFError) -> bool;
+            fn SecTrustEvaluateWithError(
+                trust: &SecTrust,
+                error: Option<&mut Option<CFRetained<CFError>>>,
+            ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { SecTrustEvaluateWithError(self, error) }
     }
 }
@@ -1068,7 +1079,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// - `result` must be a valid pointer or null.
-    /// - `cert_chain` must be a valid pointer or null.
     /// - `status_chain` must be a valid pointer or null.
     #[doc(alias = "SecTrustGetResult")]
     #[cfg(all(
@@ -1082,17 +1092,23 @@ impl SecTrust {
     pub unsafe fn get_trust(
         &self,
         result: *mut SecTrustResultType,
-        cert_chain: *mut *const CFArray,
+        cert_chain: Option<&mut Option<CFRetained<CFArray>>>,
         status_chain: *mut *mut CSSM_TP_APPLE_EVIDENCE_INFO,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetResult(
                 trust_ref: &SecTrust,
                 result: *mut SecTrustResultType,
-                cert_chain: *mut *const CFArray,
+                cert_chain: Option<&mut Option<CFRetained<CFArray>>>,
                 status_chain: *mut *mut CSSM_TP_APPLE_EVIDENCE_INFO,
             ) -> OSStatus;
         }
+        if let Some(cert_chain) = cert_chain.as_ref() {
+            assert!(
+                cert_chain.is_none(),
+                "parameter `cert_chain` must point to `None` on entry"
+            );
+        };
         unsafe { SecTrustGetResult(self, result, cert_chain, status_chain) }
     }
 
@@ -1199,16 +1215,18 @@ impl SecTrust {
     ///
     /// This function is not available on iOS, as certificate data
     /// for system-trusted roots is currently unavailable on that platform.
-    ///
-    /// # Safety
-    ///
-    /// `anchors` must be a valid pointer.
     #[doc(alias = "SecTrustCopyAnchorCertificates")]
     #[inline]
-    pub unsafe fn copy_anchor_certificates(anchors: NonNull<*const CFArray>) -> OSStatus {
+    pub unsafe fn anchor_certificates(anchors: &mut Option<CFRetained<CFArray>>) -> OSStatus {
         extern "C-unwind" {
-            fn SecTrustCopyAnchorCertificates(anchors: NonNull<*const CFArray>) -> OSStatus;
+            fn SecTrustCopyAnchorCertificates(
+                anchors: &mut Option<CFRetained<CFArray>>,
+            ) -> OSStatus;
         }
+        assert!(
+            anchors.is_none(),
+            "parameter `anchors` must point to `None` on entry"
+        );
         unsafe { SecTrustCopyAnchorCertificates(anchors) }
     }
 }

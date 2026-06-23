@@ -98,24 +98,25 @@ unsafe impl RefEncode for SecTrustSettingsDomain {
 
 #[cfg(feature = "SecTrust")]
 impl SecTrust {
-    /// # Safety
-    ///
-    /// `trust_settings` must be a valid pointer.
     #[doc(alias = "SecTrustSettingsCopyTrustSettings")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn settings_copy_trust_settings(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
-        trust_settings: NonNull<*const CFArray>,
+        trust_settings: &mut Option<CFRetained<CFArray>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSettingsCopyTrustSettings(
                 cert_ref: &SecCertificate,
                 domain: SecTrustSettingsDomain,
-                trust_settings: NonNull<*const CFArray>,
+                trust_settings: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            trust_settings.is_none(),
+            "parameter `trust_settings` must point to `None` on entry"
+        );
         unsafe { SecTrustSettingsCopyTrustSettings(cert_ref, domain, trust_settings) }
     }
 
@@ -156,60 +157,65 @@ impl SecTrust {
         unsafe { SecTrustSettingsRemoveTrustSettings(cert_ref, domain) }
     }
 
-    /// # Safety
-    ///
-    /// `cert_array` must be a valid pointer or null.
     #[doc(alias = "SecTrustSettingsCopyCertificates")]
     #[inline]
     pub unsafe fn settings_copy_certificates(
         domain: SecTrustSettingsDomain,
-        cert_array: *mut *const CFArray,
+        cert_array: Option<&mut Option<CFRetained<CFArray>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSettingsCopyCertificates(
                 domain: SecTrustSettingsDomain,
-                cert_array: *mut *const CFArray,
+                cert_array: Option<&mut Option<CFRetained<CFArray>>>,
             ) -> OSStatus;
         }
+        if let Some(cert_array) = cert_array.as_ref() {
+            assert!(
+                cert_array.is_none(),
+                "parameter `cert_array` must point to `None` on entry"
+            );
+        };
         unsafe { SecTrustSettingsCopyCertificates(domain, cert_array) }
     }
 
-    /// # Safety
-    ///
-    /// `modification_date` must be a valid pointer.
     #[doc(alias = "SecTrustSettingsCopyModificationDate")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn settings_copy_modification_date(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
-        modification_date: NonNull<*const CFDate>,
+        modification_date: &mut Option<CFRetained<CFDate>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSettingsCopyModificationDate(
                 cert_ref: &SecCertificate,
                 domain: SecTrustSettingsDomain,
-                modification_date: NonNull<*const CFDate>,
+                modification_date: &mut Option<CFRetained<CFDate>>,
             ) -> OSStatus;
         }
+        assert!(
+            modification_date.is_none(),
+            "parameter `modification_date` must point to `None` on entry"
+        );
         unsafe { SecTrustSettingsCopyModificationDate(cert_ref, domain, modification_date) }
     }
 
-    /// # Safety
-    ///
-    /// `trust_settings` must be a valid pointer.
     #[doc(alias = "SecTrustSettingsCreateExternalRepresentation")]
     #[inline]
     pub unsafe fn settings_create_external_representation(
         domain: SecTrustSettingsDomain,
-        trust_settings: NonNull<*const CFData>,
+        trust_settings: &mut Option<CFRetained<CFData>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSettingsCreateExternalRepresentation(
                 domain: SecTrustSettingsDomain,
-                trust_settings: NonNull<*const CFData>,
+                trust_settings: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            trust_settings.is_none(),
+            "parameter `trust_settings` must point to `None` on entry"
+        );
         unsafe { SecTrustSettingsCreateExternalRepresentation(domain, trust_settings) }
     }
 

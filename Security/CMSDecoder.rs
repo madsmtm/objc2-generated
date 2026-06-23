@@ -68,15 +68,16 @@ unsafe impl RefEncode for CMSSignerStatus {
 }
 
 impl CMSDecoder {
-    /// # Safety
-    ///
-    /// `cms_decoder_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCreate")]
     #[inline]
-    pub unsafe fn create(cms_decoder_out: NonNull<*mut CMSDecoder>) -> OSStatus {
+    pub unsafe fn new(cms_decoder_out: &mut Option<CFRetained<CMSDecoder>>) -> OSStatus {
         extern "C-unwind" {
-            fn CMSDecoderCreate(cms_decoder_out: NonNull<*mut CMSDecoder>) -> OSStatus;
+            fn CMSDecoderCreate(cms_decoder_out: &mut Option<CFRetained<CMSDecoder>>) -> OSStatus;
         }
+        assert!(
+            cms_decoder_out.is_none(),
+            "parameter `cms_decoder_out` must point to `None` on entry"
+        );
         unsafe { CMSDecoderCreate(cms_decoder_out) }
     }
 
@@ -121,21 +122,22 @@ impl CMSDecoder {
         unsafe { CMSDecoderSetDetachedContent(self, detached_content) }
     }
 
-    /// # Safety
-    ///
-    /// `detached_content_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopyDetachedContent")]
     #[inline]
-    pub unsafe fn copy_detached_content(
+    pub unsafe fn detached_content(
         &self,
-        detached_content_out: NonNull<*const CFData>,
+        detached_content_out: &mut Option<CFRetained<CFData>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopyDetachedContent(
                 cms_decoder: &CMSDecoder,
-                detached_content_out: NonNull<*const CFData>,
+                detached_content_out: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            detached_content_out.is_none(),
+            "parameter `detached_content_out` must point to `None` on entry"
+        );
         unsafe { CMSDecoderCopyDetachedContent(self, detached_content_out) }
     }
 
@@ -174,18 +176,17 @@ impl CMSDecoder {
     ///
     /// - `policy_or_array` should be of the correct type.
     /// - `signer_status_out` must be a valid pointer or null.
-    /// - `sec_trust_out` must be a valid pointer or null.
     /// - `cert_verify_result_code_out` must be a valid pointer or null.
     #[doc(alias = "CMSDecoderCopySignerStatus")]
     #[cfg(feature = "SecTrust")]
     #[inline]
-    pub unsafe fn copy_signer_status(
+    pub unsafe fn signer_status(
         &self,
         signer_index: usize,
         policy_or_array: &CFType,
         evaluate_sec_trust: bool,
         signer_status_out: *mut CMSSignerStatus,
-        sec_trust_out: *mut *mut SecTrust,
+        sec_trust_out: Option<&mut Option<CFRetained<SecTrust>>>,
         cert_verify_result_code_out: *mut OSStatus,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -195,11 +196,17 @@ impl CMSDecoder {
                 policy_or_array: &CFType,
                 evaluate_sec_trust: Boolean,
                 signer_status_out: *mut CMSSignerStatus,
-                sec_trust_out: *mut *mut SecTrust,
+                sec_trust_out: Option<&mut Option<CFRetained<SecTrust>>>,
                 cert_verify_result_code_out: *mut OSStatus,
             ) -> OSStatus;
         }
         let evaluate_sec_trust = evaluate_sec_trust as _;
+        if let Some(sec_trust_out) = sec_trust_out.as_ref() {
+            assert!(
+                sec_trust_out.is_none(),
+                "parameter `sec_trust_out` must point to `None` on entry"
+            );
+        };
         unsafe {
             CMSDecoderCopySignerStatus(
                 self,
@@ -213,44 +220,46 @@ impl CMSDecoder {
         }
     }
 
-    /// # Safety
-    ///
-    /// `signer_email_address_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerEmailAddress")]
     #[inline]
-    pub unsafe fn copy_signer_email_address(
+    pub unsafe fn signer_email_address(
         &self,
         signer_index: usize,
-        signer_email_address_out: NonNull<*const CFString>,
+        signer_email_address_out: &mut Option<CFRetained<CFString>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopySignerEmailAddress(
                 cms_decoder: &CMSDecoder,
                 signer_index: usize,
-                signer_email_address_out: NonNull<*const CFString>,
+                signer_email_address_out: &mut Option<CFRetained<CFString>>,
             ) -> OSStatus;
         }
+        assert!(
+            signer_email_address_out.is_none(),
+            "parameter `signer_email_address_out` must point to `None` on entry"
+        );
         unsafe { CMSDecoderCopySignerEmailAddress(self, signer_index, signer_email_address_out) }
     }
 
-    /// # Safety
-    ///
-    /// `signer_cert_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerCert")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn copy_signer_cert(
+    pub unsafe fn signer_cert(
         &self,
         signer_index: usize,
-        signer_cert_out: NonNull<*mut SecCertificate>,
+        signer_cert_out: &mut Option<CFRetained<SecCertificate>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopySignerCert(
                 cms_decoder: &CMSDecoder,
                 signer_index: usize,
-                signer_cert_out: NonNull<*mut SecCertificate>,
+                signer_cert_out: &mut Option<CFRetained<SecCertificate>>,
             ) -> OSStatus;
         }
+        assert!(
+            signer_cert_out.is_none(),
+            "parameter `signer_cert_out` must point to `None` on entry"
+        );
         unsafe { CMSDecoderCopySignerCert(self, signer_index, signer_cert_out) }
     }
 
@@ -269,51 +278,54 @@ impl CMSDecoder {
         unsafe { CMSDecoderIsContentEncrypted(self, is_encrypted_out) }
     }
 
-    /// # Safety
-    ///
-    /// `e_content_type_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopyEncapsulatedContentType")]
     #[inline]
-    pub unsafe fn copy_encapsulated_content_type(
+    pub unsafe fn encapsulated_content_type(
         &self,
-        e_content_type_out: NonNull<*const CFData>,
+        e_content_type_out: &mut Option<CFRetained<CFData>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopyEncapsulatedContentType(
                 cms_decoder: &CMSDecoder,
-                e_content_type_out: NonNull<*const CFData>,
+                e_content_type_out: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            e_content_type_out.is_none(),
+            "parameter `e_content_type_out` must point to `None` on entry"
+        );
         unsafe { CMSDecoderCopyEncapsulatedContentType(self, e_content_type_out) }
     }
 
-    /// # Safety
-    ///
-    /// `certs_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopyAllCerts")]
     #[inline]
-    pub unsafe fn copy_all_certs(&self, certs_out: NonNull<*const CFArray>) -> OSStatus {
+    pub unsafe fn all_certs(&self, certs_out: &mut Option<CFRetained<CFArray>>) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopyAllCerts(
                 cms_decoder: &CMSDecoder,
-                certs_out: NonNull<*const CFArray>,
+                certs_out: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            certs_out.is_none(),
+            "parameter `certs_out` must point to `None` on entry"
+        );
         unsafe { CMSDecoderCopyAllCerts(self, certs_out) }
     }
 
-    /// # Safety
-    ///
-    /// `content_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopyContent")]
     #[inline]
-    pub unsafe fn copy_content(&self, content_out: NonNull<*const CFData>) -> OSStatus {
+    pub unsafe fn content(&self, content_out: &mut Option<CFRetained<CFData>>) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopyContent(
                 cms_decoder: &CMSDecoder,
-                content_out: NonNull<*const CFData>,
+                content_out: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
+        assert!(
+            content_out.is_none(),
+            "parameter `content_out` must point to `None` on entry"
+        );
         unsafe { CMSDecoderCopyContent(self, content_out) }
     }
 
@@ -387,23 +399,24 @@ impl CMSDecoder {
         }
     }
 
-    /// # Safety
-    ///
-    /// `certificate_refs` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerTimestampCertificates")]
     #[inline]
-    pub unsafe fn copy_signer_timestamp_certificates(
+    pub unsafe fn signer_timestamp_certificates(
         &self,
         signer_index: usize,
-        certificate_refs: NonNull<*const CFArray>,
+        certificate_refs: &mut Option<CFRetained<CFArray>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopySignerTimestampCertificates(
                 cms_decoder: &CMSDecoder,
                 signer_index: usize,
-                certificate_refs: NonNull<*const CFArray>,
+                certificate_refs: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            certificate_refs.is_none(),
+            "parameter `certificate_refs` must point to `None` on entry"
+        );
         unsafe { CMSDecoderCopySignerTimestampCertificates(self, signer_index, certificate_refs) }
     }
 }

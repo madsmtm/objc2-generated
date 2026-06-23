@@ -70,16 +70,15 @@ impl VTRAWProcessingSession {
     /// - `output_pixel_buffer_attributes` generic must be of the correct type.
     /// - `processing_session_options` generic must be of the correct type.
     /// - `processing_session_options` generic must be of the correct type.
-    /// - `processing_session_out` must be a valid pointer.
     #[doc(alias = "VTRAWProcessingSessionCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         format_description: &CMVideoFormatDescription,
         output_pixel_buffer_attributes: Option<&CFDictionary>,
         processing_session_options: Option<&CFDictionary>,
-        processing_session_out: NonNull<*mut VTRAWProcessingSession>,
+        processing_session_out: &mut Option<CFRetained<VTRAWProcessingSession>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTRAWProcessingSessionCreate(
@@ -87,9 +86,13 @@ impl VTRAWProcessingSession {
                 format_description: &CMVideoFormatDescription,
                 output_pixel_buffer_attributes: Option<&CFDictionary>,
                 processing_session_options: Option<&CFDictionary>,
-                processing_session_out: NonNull<*mut VTRAWProcessingSession>,
+                processing_session_out: &mut Option<CFRetained<VTRAWProcessingSession>>,
             ) -> OSStatus;
         }
+        assert!(
+            processing_session_out.is_none(),
+            "parameter `processing_session_out` must point to `None` on entry"
+        );
         unsafe {
             VTRAWProcessingSessionCreate(
                 allocator,
@@ -266,22 +269,22 @@ impl VTRAWProcessingSession {
     /// Parameter `session`: The RAW processing session.
     ///
     /// Parameter `outParameterArray`: Pointer for receiving the RAW Processing parameter array..
-    ///
-    /// # Safety
-    ///
-    /// `out_parameter_array` must be a valid pointer.
     #[doc(alias = "VTRAWProcessingSessionCopyProcessingParameters")]
     #[inline]
-    pub unsafe fn copy_processing_parameters(
+    pub unsafe fn processing_parameters(
         &self,
-        out_parameter_array: NonNull<*const CFArray>,
+        out_parameter_array: &mut Option<CFRetained<CFArray>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTRAWProcessingSessionCopyProcessingParameters(
                 session: &VTRAWProcessingSession,
-                out_parameter_array: NonNull<*const CFArray>,
+                out_parameter_array: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            out_parameter_array.is_none(),
+            "parameter `out_parameter_array` must point to `None` on entry"
+        );
         unsafe { VTRAWProcessingSessionCopyProcessingParameters(self, out_parameter_array) }
     }
 

@@ -69,16 +69,15 @@ impl VTFrameSilo {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    /// - `frame_silo_out` must be a valid pointer.
     #[doc(alias = "VTFrameSiloCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         file_url: Option<&CFURL>,
         time_range: CMTimeRange,
         options: Option<&CFDictionary>,
-        frame_silo_out: NonNull<*mut VTFrameSilo>,
+        frame_silo_out: &mut Option<CFRetained<VTFrameSilo>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTFrameSiloCreate(
@@ -86,9 +85,13 @@ impl VTFrameSilo {
                 file_url: Option<&CFURL>,
                 time_range: CMTimeRange,
                 options: Option<&CFDictionary>,
-                frame_silo_out: NonNull<*mut VTFrameSilo>,
+                frame_silo_out: &mut Option<CFRetained<VTFrameSilo>>,
             ) -> OSStatus;
         }
+        assert!(
+            frame_silo_out.is_none(),
+            "parameter `frame_silo_out` must point to `None` on entry"
+        );
         unsafe { VTFrameSiloCreate(allocator, file_url, time_range, options, frame_silo_out) }
     }
 

@@ -104,20 +104,20 @@ impl SecCertificate {
     /// All the data in this string comes from the certificate itself, and thus it's in whatever language the certificate itself is in.
     /// Note that the certificate's common name field may not be present, or may be inadequate to describe the certificate; for display purposes,
     /// you should consider using SecCertificateCopySubjectSummary instead of this function.
-    ///
-    /// # Safety
-    ///
-    /// `common_name` must be a valid pointer.
     #[doc(alias = "SecCertificateCopyCommonName")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn copy_common_name(&self, common_name: NonNull<*const CFString>) -> OSStatus {
+    pub unsafe fn common_name(&self, common_name: &mut Option<CFRetained<CFString>>) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateCopyCommonName(
                 certificate: &SecCertificate,
-                common_name: NonNull<*const CFString>,
+                common_name: &mut Option<CFRetained<CFString>>,
             ) -> OSStatus;
         }
+        assert!(
+            common_name.is_none(),
+            "parameter `common_name` must point to `None` on entry"
+        );
         unsafe { SecCertificateCopyCommonName(self, common_name) }
     }
 
@@ -129,23 +129,23 @@ impl SecCertificate {
     /// Your code must release this array reference by calling the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `email_addresses` must be a valid pointer.
     #[doc(alias = "SecCertificateCopyEmailAddresses")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn copy_email_addresses(
+    pub unsafe fn email_addresses(
         &self,
-        email_addresses: NonNull<*const CFArray>,
+        email_addresses: &mut Option<CFRetained<CFArray>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateCopyEmailAddresses(
                 certificate: &SecCertificate,
-                email_addresses: NonNull<*const CFArray>,
+                email_addresses: &mut Option<CFRetained<CFArray>>,
             ) -> OSStatus;
         }
+        assert!(
+            email_addresses.is_none(),
+            "parameter `email_addresses` must point to `None` on entry"
+        );
         unsafe { SecCertificateCopyEmailAddresses(self, email_addresses) }
     }
 
@@ -212,15 +212,11 @@ impl SecCertificate {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// NOTE: Deprecated in macOS 10.14; use SecCertificateCopyKey instead for cross-platform availability.
-    ///
-    /// # Safety
-    ///
-    /// `key` must be a valid pointer.
     #[doc(alias = "SecCertificateCopyPublicKey")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn copy_public_key(&self, key: NonNull<*mut SecKey>) -> OSStatus {
+    pub unsafe fn public_key(&self, key: &mut Option<CFRetained<SecKey>>) -> OSStatus {
         extern "C-unwind" {
             #[cfg_attr(
                 target_os = "macos",
@@ -228,9 +224,13 @@ impl SecCertificate {
             )]
             fn SecCertificateCopyPublicKey(
                 certificate: &SecCertificate,
-                key: NonNull<*mut SecKey>,
+                key: &mut Option<CFRetained<SecKey>>,
             ) -> OSStatus;
         }
+        assert!(
+            key.is_none(),
+            "parameter `key` must point to `None` on entry"
+        );
         unsafe { SecCertificateCopyPublicKey(self, key) }
     }
 
@@ -364,8 +364,7 @@ impl SecCertificate {
     ///
     /// # Safety
     ///
-    /// - `data` must be a valid pointer.
-    /// - `certificate` must be a valid pointer.
+    /// `data` must be a valid pointer.
     #[doc(alias = "SecCertificateCreateFromData")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -375,20 +374,24 @@ impl SecCertificate {
     ))]
     #[deprecated]
     #[inline]
-    pub unsafe fn create_from_data(
+    pub unsafe fn from_data(
         data: NonNull<SecAsn1Item>,
         r#type: CSSM_CERT_TYPE,
         encoding: CSSM_CERT_ENCODING,
-        certificate: NonNull<*mut SecCertificate>,
+        certificate: &mut Option<CFRetained<SecCertificate>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateCreateFromData(
                 data: NonNull<SecAsn1Item>,
                 r#type: CSSM_CERT_TYPE,
                 encoding: CSSM_CERT_ENCODING,
-                certificate: NonNull<*mut SecCertificate>,
+                certificate: &mut Option<CFRetained<SecCertificate>>,
             ) -> OSStatus;
         }
+        assert!(
+            certificate.is_none(),
+            "parameter `certificate` must point to `None` on entry"
+        );
         unsafe { SecCertificateCreateFromData(data, r#type, encoding, certificate) }
     }
 
@@ -620,26 +623,26 @@ impl SecCertificate {
     ///
     /// This function will typically be used to obtain the preferred encryption certificate for an email recipient.
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyPreferred API instead.
-    ///
-    /// # Safety
-    ///
-    /// `certificate` must be a valid pointer.
     #[doc(alias = "SecCertificateCopyPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn copy_preference(
+    pub unsafe fn preference(
         name: &CFString,
         key_usage: uint32,
-        certificate: NonNull<*mut SecCertificate>,
+        certificate: &mut Option<CFRetained<SecCertificate>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateCopyPreference(
                 name: &CFString,
                 key_usage: uint32,
-                certificate: NonNull<*mut SecCertificate>,
+                certificate: &mut Option<CFRetained<SecCertificate>>,
             ) -> OSStatus;
         }
+        assert!(
+            certificate.is_none(),
+            "parameter `certificate` must point to `None` on entry"
+        );
         unsafe { SecCertificateCopyPreference(name, key_usage, certificate) }
     }
 

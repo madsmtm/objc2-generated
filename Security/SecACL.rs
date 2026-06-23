@@ -78,17 +78,16 @@ impl SecACL {
     ///
     /// - `application_list` generic must be of the correct type.
     /// - `prompt_selector` must be a valid pointer.
-    /// - `new_acl` must be a valid pointer.
     #[doc(alias = "SecACLCreateFromSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    pub unsafe fn create_from_simple_contents(
+    pub unsafe fn from_simple_contents(
         access: &SecAccess,
         application_list: Option<&CFArray>,
         description: &CFString,
         prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
-        new_acl: NonNull<*mut SecACL>,
+        new_acl: &mut Option<CFRetained<SecACL>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecACLCreateFromSimpleContents(
@@ -96,9 +95,13 @@ impl SecACL {
                 application_list: Option<&CFArray>,
                 description: &CFString,
                 prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
-                new_acl: NonNull<*mut SecACL>,
+                new_acl: &mut Option<CFRetained<SecACL>>,
             ) -> OSStatus;
         }
+        assert!(
+            new_acl.is_none(),
+            "parameter `new_acl` must point to `None` on entry"
+        );
         unsafe {
             SecACLCreateFromSimpleContents(
                 access,
@@ -126,18 +129,17 @@ impl SecACL {
     ///
     /// # Safety
     ///
-    /// - `application_list` generic must be of the correct type.
-    /// - `new_acl` must be a valid pointer.
+    /// `application_list` generic must be of the correct type.
     #[doc(alias = "SecACLCreateWithSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn create_with_simple_contents(
+    pub unsafe fn with_simple_contents(
         access: &SecAccess,
         application_list: Option<&CFArray>,
         description: &CFString,
         prompt_selector: SecKeychainPromptSelector,
-        new_acl: NonNull<*mut SecACL>,
+        new_acl: &mut Option<CFRetained<SecACL>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecACLCreateWithSimpleContents(
@@ -145,9 +147,13 @@ impl SecACL {
                 application_list: Option<&CFArray>,
                 description: &CFString,
                 prompt_selector: SecKeychainPromptSelector,
-                new_acl: NonNull<*mut SecACL>,
+                new_acl: &mut Option<CFRetained<SecACL>>,
             ) -> OSStatus;
         }
+        assert!(
+            new_acl.is_none(),
+            "parameter `new_acl` must point to `None` on entry"
+        );
         unsafe {
             SecACLCreateWithSimpleContents(
                 access,
@@ -192,27 +198,33 @@ impl SecACL {
     ///
     /// # Safety
     ///
-    /// - `application_list` must be a valid pointer.
-    /// - `description` must be a valid pointer.
-    /// - `prompt_selector` must be a valid pointer.
+    /// `prompt_selector` must be a valid pointer.
     #[doc(alias = "SecACLCopySimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    pub unsafe fn copy_simple_contents(
+    pub unsafe fn simple_contents(
         &self,
-        application_list: NonNull<*const CFArray>,
-        description: NonNull<*const CFString>,
+        application_list: &mut Option<CFRetained<CFArray>>,
+        description: &mut Option<CFRetained<CFString>>,
         prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecACLCopySimpleContents(
                 acl: &SecACL,
-                application_list: NonNull<*const CFArray>,
-                description: NonNull<*const CFString>,
+                application_list: &mut Option<CFRetained<CFArray>>,
+                description: &mut Option<CFRetained<CFString>>,
                 prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
             ) -> OSStatus;
         }
+        assert!(
+            application_list.is_none(),
+            "parameter `application_list` must point to `None` on entry"
+        );
+        assert!(
+            description.is_none(),
+            "parameter `description` must point to `None` on entry"
+        );
         unsafe { SecACLCopySimpleContents(self, application_list, description, prompt_selector) }
     }
 
@@ -230,27 +242,33 @@ impl SecACL {
     ///
     /// # Safety
     ///
-    /// - `application_list` must be a valid pointer.
-    /// - `description` must be a valid pointer.
-    /// - `prompt_selector` must be a valid pointer.
+    /// `prompt_selector` must be a valid pointer.
     #[doc(alias = "SecACLCopyContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_contents(
+    pub unsafe fn contents(
         &self,
-        application_list: NonNull<*const CFArray>,
-        description: NonNull<*const CFString>,
+        application_list: &mut Option<CFRetained<CFArray>>,
+        description: &mut Option<CFRetained<CFString>>,
         prompt_selector: NonNull<SecKeychainPromptSelector>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecACLCopyContents(
                 acl: &SecACL,
-                application_list: NonNull<*const CFArray>,
-                description: NonNull<*const CFString>,
+                application_list: &mut Option<CFRetained<CFArray>>,
+                description: &mut Option<CFRetained<CFString>>,
                 prompt_selector: NonNull<SecKeychainPromptSelector>,
             ) -> OSStatus;
         }
+        assert!(
+            application_list.is_none(),
+            "parameter `application_list` must point to `None` on entry"
+        );
+        assert!(
+            description.is_none(),
+            "parameter `description` must point to `None` on entry"
+        );
         unsafe { SecACLCopyContents(self, application_list, description, prompt_selector) }
     }
 
