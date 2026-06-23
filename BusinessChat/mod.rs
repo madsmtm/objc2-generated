@@ -9,6 +9,7 @@
 #![allow(missing_docs)]
 #![allow(clippy::too_many_arguments)]
 #![allow(clippy::type_complexity)]
+#![allow(clippy::new_ret_no_self)]
 #![allow(clippy::upper_case_acronyms)]
 #![allow(clippy::identity_op)]
 #![allow(clippy::missing_safety_doc)]
