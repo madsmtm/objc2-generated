@@ -124,6 +124,7 @@ pub use self::__CoreWLANUtil::CWKeychainCopyPassword;
 #[cfg(all(
     feature = "CoreWLANTypes",
     feature = "CoreWLANUtil",
+    feature = "objc2-core-foundation",
     feature = "objc2-security"
 ))]
 pub use self::__CoreWLANUtil::CWKeychainCopyWiFiEAPIdentity;

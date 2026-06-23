@@ -592,30 +592,42 @@ impl SCNetworkInterface {
     /// requested by a user/admin (e.g. hw-loopback).
     ///
     /// Returns: TRUE if requested information has been returned.
-    ///
-    /// # Safety
-    ///
-    /// - `current` must be a valid pointer or null.
-    /// - `active` must be a valid pointer or null.
-    /// - `available` must be a valid pointer or null.
     #[doc(alias = "SCNetworkInterfaceCopyMediaOptions")]
     #[inline]
-    pub unsafe fn copy_media_options(
+    pub fn media_options(
         &self,
-        current: Option<&mut *const CFDictionary<CFString, CFType>>,
-        active: Option<&mut *const CFDictionary<CFString, CFType>>,
-        available: Option<&mut *const CFArray<CFString>>,
+        current: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
+        active: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
+        available: Option<&mut Option<CFRetained<CFArray<CFString>>>>,
         filter: bool,
     ) -> bool {
         extern "C-unwind" {
             fn SCNetworkInterfaceCopyMediaOptions(
                 interface: &SCNetworkInterface,
-                current: Option<&mut *const CFDictionary<CFString, CFType>>,
-                active: Option<&mut *const CFDictionary<CFString, CFType>>,
-                available: Option<&mut *const CFArray<CFString>>,
+                current: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
+                active: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
+                available: Option<&mut Option<CFRetained<CFArray<CFString>>>>,
                 filter: Boolean,
             ) -> Boolean;
         }
+        if let Some(current) = current.as_ref() {
+            assert!(
+                current.is_none(),
+                "parameter `current` must point to `None` on entry"
+            );
+        };
+        if let Some(active) = active.as_ref() {
+            assert!(
+                active.is_none(),
+                "parameter `active` must point to `None` on entry"
+            );
+        };
+        if let Some(available) = available.as_ref() {
+            assert!(
+                available.is_none(),
+                "parameter `available` must point to `None` on entry"
+            );
+        };
         let filter = filter as _;
         let ret =
             unsafe { SCNetworkInterfaceCopyMediaOptions(self, current, active, available, filter) };

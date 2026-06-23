@@ -81,8 +81,7 @@ impl CVPixelBuffer {
     ///
     /// # Safety
     ///
-    /// - `pixel_buffer_attributes` generic should be of the correct type.
-    /// - `pixel_buffer_out` must be a valid pointer.
+    /// `pixel_buffer_attributes` generic should be of the correct type.
     #[doc(alias = "CVPixelBufferCreateWithIOSurface")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -93,20 +92,24 @@ impl CVPixelBuffer {
     ))]
     #[cfg(not(target_os = "watchos"))]
     #[inline]
-    pub unsafe fn create_with_io_surface(
+    pub unsafe fn with_io_surface(
         allocator: Option<&CFAllocator>,
         surface: &IOSurfaceRef,
         pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+        pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVPixelBufferCreateWithIOSurface(
                 allocator: Option<&CFAllocator>,
                 surface: &IOSurfaceRef,
                 pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-                pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+                pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
             ) -> CVReturn;
         }
+        assert!(
+            pixel_buffer_out.is_none(),
+            "parameter `pixel_buffer_out` must point to `None` on entry"
+        );
         unsafe {
             CVPixelBufferCreateWithIOSurface(
                 allocator,

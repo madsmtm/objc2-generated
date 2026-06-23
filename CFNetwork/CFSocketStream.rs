@@ -176,10 +176,6 @@ extern "C" {
     pub static kCFStreamPropertySocketExtendedBackgroundIdleMode: &'static CFString;
 }
 
-/// # Safety
-///
-/// - `read_stream` must be a valid pointer or null.
-/// - `write_stream` must be a valid pointer or null.
 #[cfg(feature = "CFHost")]
 #[deprecated = "Use Network framework instead"]
 #[inline]
@@ -187,42 +183,62 @@ pub unsafe fn CFStreamCreatePairWithSocketToCFHost(
     alloc: Option<&CFAllocator>,
     host: &CFHost,
     port: i32,
-    read_stream: *mut *mut CFReadStream,
-    write_stream: *mut *mut CFWriteStream,
+    read_stream: Option<&mut Option<CFRetained<CFReadStream>>>,
+    write_stream: Option<&mut Option<CFRetained<CFWriteStream>>>,
 ) {
     extern "C-unwind" {
         fn CFStreamCreatePairWithSocketToCFHost(
             alloc: Option<&CFAllocator>,
             host: &CFHost,
             port: i32,
-            read_stream: *mut *mut CFReadStream,
-            write_stream: *mut *mut CFWriteStream,
+            read_stream: Option<&mut Option<CFRetained<CFReadStream>>>,
+            write_stream: Option<&mut Option<CFRetained<CFWriteStream>>>,
         );
     }
+    if let Some(read_stream) = read_stream.as_ref() {
+        assert!(
+            read_stream.is_none(),
+            "parameter `read_stream` must point to `None` on entry"
+        );
+    };
+    if let Some(write_stream) = write_stream.as_ref() {
+        assert!(
+            write_stream.is_none(),
+            "parameter `write_stream` must point to `None` on entry"
+        );
+    };
     unsafe { CFStreamCreatePairWithSocketToCFHost(alloc, host, port, read_stream, write_stream) }
 }
 
-/// # Safety
-///
-/// - `read_stream` must be a valid pointer or null.
-/// - `write_stream` must be a valid pointer or null.
 #[cfg(feature = "CFNetServices")]
 #[deprecated = "Use Network framework instead"]
 #[inline]
 pub unsafe fn CFStreamCreatePairWithSocketToNetService(
     alloc: Option<&CFAllocator>,
     service: &CFNetService,
-    read_stream: *mut *mut CFReadStream,
-    write_stream: *mut *mut CFWriteStream,
+    read_stream: Option<&mut Option<CFRetained<CFReadStream>>>,
+    write_stream: Option<&mut Option<CFRetained<CFWriteStream>>>,
 ) {
     extern "C-unwind" {
         fn CFStreamCreatePairWithSocketToNetService(
             alloc: Option<&CFAllocator>,
             service: &CFNetService,
-            read_stream: *mut *mut CFReadStream,
-            write_stream: *mut *mut CFWriteStream,
+            read_stream: Option<&mut Option<CFRetained<CFReadStream>>>,
+            write_stream: Option<&mut Option<CFRetained<CFWriteStream>>>,
         );
     }
+    if let Some(read_stream) = read_stream.as_ref() {
+        assert!(
+            read_stream.is_none(),
+            "parameter `read_stream` must point to `None` on entry"
+        );
+    };
+    if let Some(write_stream) = write_stream.as_ref() {
+        assert!(
+            write_stream.is_none(),
+            "parameter `write_stream` must point to `None` on entry"
+        );
+    };
     unsafe { CFStreamCreatePairWithSocketToNetService(alloc, service, read_stream, write_stream) }
 }
 

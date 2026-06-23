@@ -173,19 +173,25 @@ pub unsafe fn SecureDownloadCreateWithTicket(
 /// # Safety
 ///
 /// - `download_ref` must be a valid pointer.
-/// - `urls` must be a valid pointer.
+/// - `urls` might not allow `None`.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
 pub unsafe fn SecureDownloadCopyURLs(
     download_ref: SecureDownloadRef,
-    urls: *mut *const CFArray,
+    urls: Option<&mut Option<CFRetained<CFArray>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecureDownloadCopyURLs(
             download_ref: SecureDownloadRef,
-            urls: *mut *const CFArray,
+            urls: Option<&mut Option<CFRetained<CFArray>>>,
         ) -> OSStatus;
     }
+    if let Some(urls) = urls.as_ref() {
+        assert!(
+            urls.is_none(),
+            "parameter `urls` must point to `None` on entry"
+        );
+    };
     unsafe { SecureDownloadCopyURLs(download_ref, urls) }
 }
 
@@ -200,19 +206,25 @@ pub unsafe fn SecureDownloadCopyURLs(
 /// # Safety
 ///
 /// - `download_ref` must be a valid pointer.
-/// - `name` must be a valid pointer.
+/// - `name` might not allow `None`.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
 pub unsafe fn SecureDownloadCopyName(
     download_ref: SecureDownloadRef,
-    name: *mut *const CFString,
+    name: Option<&mut Option<CFRetained<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecureDownloadCopyName(
             download_ref: SecureDownloadRef,
-            name: *mut *const CFString,
+            name: Option<&mut Option<CFRetained<CFString>>>,
         ) -> OSStatus;
     }
+    if let Some(name) = name.as_ref() {
+        assert!(
+            name.is_none(),
+            "parameter `name` must point to `None` on entry"
+        );
+    };
     unsafe { SecureDownloadCopyName(download_ref, name) }
 }
 
@@ -225,19 +237,25 @@ pub unsafe fn SecureDownloadCopyName(
 /// # Safety
 ///
 /// - `download_ref` must be a valid pointer.
-/// - `date` must be a valid pointer.
+/// - `date` might not allow `None`.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
 pub unsafe fn SecureDownloadCopyCreationDate(
     download_ref: SecureDownloadRef,
-    date: *mut *const CFDate,
+    date: Option<&mut Option<CFRetained<CFDate>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecureDownloadCopyCreationDate(
             download_ref: SecureDownloadRef,
-            date: *mut *const CFDate,
+            date: Option<&mut Option<CFRetained<CFDate>>>,
         ) -> OSStatus;
     }
+    if let Some(date) = date.as_ref() {
+        assert!(
+            date.is_none(),
+            "parameter `date` must point to `None` on entry"
+        );
+    };
     unsafe { SecureDownloadCopyCreationDate(download_ref, date) }
 }
 
@@ -341,18 +359,24 @@ pub unsafe fn SecureDownloadRelease(download_ref: SecureDownloadRef) -> OSStatus
 ///
 /// # Safety
 ///
-/// `ticket_location` must be a valid pointer.
+/// `ticket_location` might not allow `None`.
 #[deprecated = "SecureDownload is not supported"]
 #[inline]
 pub unsafe fn SecureDownloadCopyTicketLocation(
     url: &CFURL,
-    ticket_location: *mut *const CFURL,
+    ticket_location: Option<&mut Option<CFRetained<CFURL>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecureDownloadCopyTicketLocation(
             url: &CFURL,
-            ticket_location: *mut *const CFURL,
+            ticket_location: Option<&mut Option<CFRetained<CFURL>>>,
         ) -> OSStatus;
     }
+    if let Some(ticket_location) = ticket_location.as_ref() {
+        assert!(
+            ticket_location.is_none(),
+            "parameter `ticket_location` must point to `None` on entry"
+        );
+    };
     unsafe { SecureDownloadCopyTicketLocation(url, ticket_location) }
 }

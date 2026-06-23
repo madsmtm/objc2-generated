@@ -33,26 +33,29 @@ unsafe impl RefEncode for CFPropertyListMutabilityOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// # Safety
-///
-/// `error_string` must be a valid pointer.
 #[cfg(feature = "CFData")]
 #[deprecated = "Use CFPropertyListCreateWithData instead."]
 #[inline]
-pub unsafe fn CFPropertyListCreateFromXMLData(
+pub fn CFPropertyListCreateFromXMLData(
     allocator: Option<&CFAllocator>,
     xml_data: &CFData,
     mutability_option: CFOptionFlags,
-    error_string: Option<&mut *const CFString>,
+    error_string: Option<&mut Option<CFRetained<CFString>>>,
 ) -> Option<CFRetained<CFPropertyList>> {
     extern "C-unwind" {
         fn CFPropertyListCreateFromXMLData(
             allocator: Option<&CFAllocator>,
             xml_data: &CFData,
             mutability_option: CFOptionFlags,
-            error_string: Option<&mut *const CFString>,
+            error_string: Option<&mut Option<CFRetained<CFString>>>,
         ) -> Option<NonNull<CFPropertyList>>;
     }
+    if let Some(error_string) = error_string.as_ref() {
+        assert!(
+            error_string.is_none(),
+            "parameter `error_string` must point to `None` on entry"
+        );
+    };
     let ret = unsafe {
         CFPropertyListCreateFromXMLData(allocator, xml_data, mutability_option, error_string)
     };
@@ -159,19 +162,16 @@ pub unsafe fn CFPropertyListWriteToStream(
     unsafe { CFPropertyListWriteToStream(property_list, stream, format, error_string) }
 }
 
-/// # Safety
-///
-/// `error_string` must be a valid pointer.
 #[cfg(feature = "CFStream")]
 #[deprecated = "Use CFPropertyListCreateWithStream instead."]
 #[inline]
-pub unsafe fn CFPropertyListCreateFromStream(
+pub fn CFPropertyListCreateFromStream(
     allocator: Option<&CFAllocator>,
     stream: &CFReadStream,
     stream_length: CFIndex,
     mutability_option: CFOptionFlags,
     format: Option<&mut CFPropertyListFormat>,
-    error_string: Option<&mut *const CFString>,
+    error_string: Option<&mut Option<CFRetained<CFString>>>,
 ) -> Option<CFRetained<CFPropertyList>> {
     extern "C-unwind" {
         fn CFPropertyListCreateFromStream(
@@ -180,9 +180,15 @@ pub unsafe fn CFPropertyListCreateFromStream(
             stream_length: CFIndex,
             mutability_option: CFOptionFlags,
             format: Option<&mut CFPropertyListFormat>,
-            error_string: Option<&mut *const CFString>,
+            error_string: Option<&mut Option<CFRetained<CFString>>>,
         ) -> Option<NonNull<CFPropertyList>>;
     }
+    if let Some(error_string) = error_string.as_ref() {
+        assert!(
+            error_string.is_none(),
+            "parameter `error_string` must point to `None` on entry"
+        );
+    };
     let ret = unsafe {
         CFPropertyListCreateFromStream(
             allocator,

@@ -1909,23 +1909,25 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a CGFontRef for the given font reference. Additional attributes from the font will be passed back as a font descriptor via the attributes parameter. The result must be released by the caller.
-    ///
-    /// # Safety
-    ///
-    /// `attributes` must be a valid pointer or null.
     #[doc(alias = "CTFontCopyGraphicsFont")]
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
-    pub unsafe fn graphics_font(
+    pub fn graphics_font(
         &self,
-        attributes: Option<&mut *const CTFontDescriptor>,
+        attributes: Option<&mut Option<CFRetained<CTFontDescriptor>>>,
     ) -> CFRetained<CGFont> {
         extern "C-unwind" {
             fn CTFontCopyGraphicsFont(
                 font: &CTFont,
-                attributes: Option<&mut *const CTFontDescriptor>,
+                attributes: Option<&mut Option<CFRetained<CTFontDescriptor>>>,
             ) -> Option<NonNull<CGFont>>;
         }
+        if let Some(attributes) = attributes.as_ref() {
+            assert!(
+                attributes.is_none(),
+                "parameter `attributes` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CTFontCopyGraphicsFont(self, attributes) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");

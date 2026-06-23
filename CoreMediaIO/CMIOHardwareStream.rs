@@ -229,23 +229,33 @@ pub const kCMIOStreamPropertyPreferredFrameRate: c_uint = 0x70726672;
 ///
 /// - `queue_altered_proc` must be implemented correctly.
 /// - `queue_altered_ref_con` must be a valid pointer.
-/// - `queue` must be a valid pointer.
-#[cfg(all(feature = "CMIOHardwareObject", feature = "objc2-core-media"))]
+/// - `queue` might not allow `None`.
+#[cfg(all(
+    feature = "CMIOHardwareObject",
+    feature = "objc2-core-foundation",
+    feature = "objc2-core-media"
+))]
 #[inline]
 pub unsafe fn CMIOStreamCopyBufferQueue(
     stream_id: CMIOStreamID,
     queue_altered_proc: CMIODeviceStreamQueueAlteredProc,
     queue_altered_ref_con: *mut c_void,
-    queue: *mut *mut CMSimpleQueue,
+    queue: Option<&mut Option<CFRetained<CMSimpleQueue>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOStreamCopyBufferQueue(
             stream_id: CMIOStreamID,
             queue_altered_proc: CMIODeviceStreamQueueAlteredProc,
             queue_altered_ref_con: *mut c_void,
-            queue: *mut *mut CMSimpleQueue,
+            queue: Option<&mut Option<CFRetained<CMSimpleQueue>>>,
         ) -> OSStatus;
     }
+    if let Some(queue) = queue.as_ref() {
+        assert!(
+            queue.is_none(),
+            "parameter `queue` must point to `None` on entry"
+        );
+    };
     unsafe {
         CMIOStreamCopyBufferQueue(stream_id, queue_altered_proc, queue_altered_ref_con, queue)
     }
@@ -352,7 +362,7 @@ impl CMIOStreamDeck {
 ///
 /// - `clock_name` might not allow `None`.
 /// - `source_identifier` must be a valid pointer.
-/// - `clock` must be a valid pointer.
+/// - `clock` might not allow `None`.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
 pub unsafe fn CMIOStreamClockCreate(
@@ -362,7 +372,7 @@ pub unsafe fn CMIOStreamClockCreate(
     get_time_call_minimum_interval: CMTime,
     number_of_events_for_rate_smoothing: u32,
     number_of_averages_for_rate_smoothing: u32,
-    clock: *mut *const CFType,
+    clock: Option<&mut Option<CFRetained<CFType>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOStreamClockCreate(
@@ -372,9 +382,15 @@ pub unsafe fn CMIOStreamClockCreate(
             get_time_call_minimum_interval: CMTime,
             number_of_events_for_rate_smoothing: u32,
             number_of_averages_for_rate_smoothing: u32,
-            clock: *mut *const CFType,
+            clock: Option<&mut Option<CFRetained<CFType>>>,
         ) -> OSStatus;
     }
+    if let Some(clock) = clock.as_ref() {
+        assert!(
+            clock.is_none(),
+            "parameter `clock` must point to `None` on entry"
+        );
+    };
     unsafe {
         CMIOStreamClockCreate(
             allocator,

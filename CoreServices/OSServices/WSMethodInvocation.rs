@@ -288,20 +288,26 @@ impl WSMethodInvocation {
 
     /// # Safety
     ///
-    /// `parameter_order` must be a valid pointer.
+    /// `parameter_order` might not allow `None`.
     #[doc(alias = "WSMethodInvocationCopyParameters")]
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn parameters(
         &self,
-        parameter_order: *mut *const CFArray,
+        parameter_order: Option<&mut Option<CFRetained<CFArray>>>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn WSMethodInvocationCopyParameters(
                 invocation: &WSMethodInvocation,
-                parameter_order: *mut *const CFArray,
+                parameter_order: Option<&mut Option<CFRetained<CFArray>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(parameter_order) = parameter_order.as_ref() {
+            assert!(
+                parameter_order.is_none(),
+                "parameter `parameter_order` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { WSMethodInvocationCopyParameters(self, parameter_order) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

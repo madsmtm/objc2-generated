@@ -8,10 +8,6 @@ use crate::*;
 
 #[cfg(feature = "CFURL")]
 impl CFURL {
-    /// # Safety
-    ///
-    /// - `resource_data` must be a valid pointer.
-    /// - `properties` must be a valid pointer.
     #[doc(alias = "CFURLCreateDataAndPropertiesFromResource")]
     #[cfg(all(
         feature = "CFArray",
@@ -22,11 +18,11 @@ impl CFURL {
     ))]
     #[deprecated = "For resource data, use the CFReadStream API. For file resource properties, use CFURLCopyResourcePropertiesForKeys."]
     #[inline]
-    pub unsafe fn create_data_and_properties_from_resource(
+    pub fn data_and_properties_from_resource(
         &self,
         alloc: Option<&CFAllocator>,
-        resource_data: Option<&mut *const CFData>,
-        properties: Option<&mut *const CFDictionary<CFString, CFType>>,
+        resource_data: Option<&mut Option<CFRetained<CFData>>>,
+        properties: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
         desired_properties: Option<&CFArray<CFString>>,
         error_code: Option<&mut i32>,
     ) -> bool {
@@ -34,12 +30,24 @@ impl CFURL {
             fn CFURLCreateDataAndPropertiesFromResource(
                 alloc: Option<&CFAllocator>,
                 url: &CFURL,
-                resource_data: Option<&mut *const CFData>,
-                properties: Option<&mut *const CFDictionary<CFString, CFType>>,
+                resource_data: Option<&mut Option<CFRetained<CFData>>>,
+                properties: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
                 desired_properties: Option<&CFArray<CFString>>,
                 error_code: Option<&mut i32>,
             ) -> Boolean;
         }
+        if let Some(resource_data) = resource_data.as_ref() {
+            assert!(
+                resource_data.is_none(),
+                "parameter `resource_data` must point to `None` on entry"
+            );
+        };
+        if let Some(properties) = properties.as_ref() {
+            assert!(
+                properties.is_none(),
+                "parameter `properties` must point to `None` on entry"
+            );
+        };
         let ret = unsafe {
             CFURLCreateDataAndPropertiesFromResource(
                 alloc,

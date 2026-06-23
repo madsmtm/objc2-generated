@@ -11541,23 +11541,31 @@ pub unsafe fn IORegistryEntryGetRegistryEntryID(
 ///
 /// # Safety
 ///
-/// `properties` must be a valid pointer.
+/// - `properties` generic must be of the correct type.
+/// - `properties` generic must be of the correct type.
+/// - `properties` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegistryEntryCreateCFProperties(
     entry: io_registry_entry_t,
-    properties: *mut *mut CFMutableDictionary,
+    properties: Option<&mut Option<CFRetained<CFMutableDictionary>>>,
     allocator: Option<&CFAllocator>,
     options: IOOptionBits,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryCreateCFProperties(
             entry: io_registry_entry_t,
-            properties: *mut *mut CFMutableDictionary,
+            properties: Option<&mut Option<CFRetained<CFMutableDictionary>>>,
             allocator: Option<&CFAllocator>,
             options: IOOptionBits,
         ) -> libc::kern_return_t;
     }
+    if let Some(properties) = properties.as_ref() {
+        assert!(
+            properties.is_none(),
+            "parameter `properties` must point to `None` on entry"
+        );
+    };
     unsafe { IORegistryEntryCreateCFProperties(entry, properties, allocator, options) }
 }
 
@@ -12575,8 +12583,8 @@ pub unsafe fn IOURLCreatePropertyFromResource(
 /// # Safety
 ///
 /// - `url` might not allow `None`.
-/// - `resource_data` must be a valid pointer.
-/// - `properties` must be a valid pointer.
+/// - `resource_data` might not allow `None`.
+/// - `properties` might not allow `None`.
 /// - `desired_properties` generic must be of the correct type.
 /// - `desired_properties` might not allow `None`.
 /// - `error_code` must be a valid pointer.
@@ -12584,8 +12592,8 @@ pub unsafe fn IOURLCreatePropertyFromResource(
 pub unsafe fn IOURLCreateDataAndPropertiesFromResource(
     alloc: Option<&CFAllocator>,
     url: Option<&CFURL>,
-    resource_data: *mut *const CFData,
-    properties: *mut *const CFDictionary,
+    resource_data: Option<&mut Option<CFRetained<CFData>>>,
+    properties: Option<&mut Option<CFRetained<CFDictionary>>>,
     desired_properties: Option<&CFArray>,
     error_code: *mut i32,
 ) -> bool {
@@ -12593,12 +12601,24 @@ pub unsafe fn IOURLCreateDataAndPropertiesFromResource(
         fn IOURLCreateDataAndPropertiesFromResource(
             alloc: Option<&CFAllocator>,
             url: Option<&CFURL>,
-            resource_data: *mut *const CFData,
-            properties: *mut *const CFDictionary,
+            resource_data: Option<&mut Option<CFRetained<CFData>>>,
+            properties: Option<&mut Option<CFRetained<CFDictionary>>>,
             desired_properties: Option<&CFArray>,
             error_code: *mut i32,
         ) -> Boolean;
     }
+    if let Some(resource_data) = resource_data.as_ref() {
+        assert!(
+            resource_data.is_none(),
+            "parameter `resource_data` must point to `None` on entry"
+        );
+    };
+    if let Some(properties) = properties.as_ref() {
+        assert!(
+            properties.is_none(),
+            "parameter `properties` must point to `None` on entry"
+        );
+    };
     let ret = unsafe {
         IOURLCreateDataAndPropertiesFromResource(
             alloc,

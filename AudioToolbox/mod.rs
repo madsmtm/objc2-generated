@@ -7683,16 +7683,22 @@ pub unsafe fn CAClockParseMIDI(
 /// Parameter `outName`: A pointer to a CFStringRef to be created and returned by the function.
 ///
 /// Returns: returns noErr if successful.
-///
-/// # Safety
-///
-/// `out_name` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe fn CopyNameFromSoundBank(in_url: &CFURL, out_name: &mut *const CFString) -> OSStatus {
+pub unsafe fn CopyNameFromSoundBank(
+    in_url: &CFURL,
+    out_name: &mut Option<CFRetained<CFString>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn CopyNameFromSoundBank(in_url: &CFURL, out_name: &mut *const CFString) -> OSStatus;
+        fn CopyNameFromSoundBank(
+            in_url: &CFURL,
+            out_name: &mut Option<CFRetained<CFString>>,
+        ) -> OSStatus;
     }
+    assert!(
+        out_name.is_none(),
+        "parameter `out_name` must point to `None` on entry"
+    );
     unsafe { CopyNameFromSoundBank(in_url, out_name) }
 }
 
@@ -7716,21 +7722,21 @@ pub unsafe fn CopyNameFromSoundBank(in_url: &CFURL, out_name: &mut *const CFStri
 /// Parameter `outInstrumentInfo`: A pointer to a CFArrayRef to be created and returned by the function.
 ///
 /// Returns: returns noErr if successful.
-///
-/// # Safety
-///
-/// `out_instrument_info` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn CopyInstrumentInfoFromSoundBank(
     in_url: &CFURL,
-    out_instrument_info: &mut *const CFArray<CFDictionary<CFString, CFType>>,
+    out_instrument_info: &mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CopyInstrumentInfoFromSoundBank(
             in_url: &CFURL,
-            out_instrument_info: &mut *const CFArray<CFDictionary<CFString, CFType>>,
+            out_instrument_info: &mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>,
         ) -> OSStatus;
     }
+    assert!(
+        out_instrument_info.is_none(),
+        "parameter `out_instrument_info` must point to `None` on entry"
+    );
     unsafe { CopyInstrumentInfoFromSoundBank(in_url, out_instrument_info) }
 }

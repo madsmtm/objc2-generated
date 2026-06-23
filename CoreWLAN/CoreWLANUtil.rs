@@ -280,24 +280,30 @@ pub unsafe fn CWKeychainDeleteWiFiEAPUsernameAndPassword(
 ///
 ///
 /// Finds and returns the identity stored for the specified SSID and keychain domain.
-///
-/// # Safety
-///
-/// `identity` must be a valid pointer or null.
-#[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
+#[cfg(all(
+    feature = "CoreWLANTypes",
+    feature = "objc2-core-foundation",
+    feature = "objc2-security"
+))]
 #[inline]
 pub unsafe fn CWKeychainCopyWiFiEAPIdentity(
     domain: CWKeychainDomain,
     ssid: &NSData,
-    identity: *mut *mut SecIdentity,
+    identity: Option<&mut Option<CFRetained<SecIdentity>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CWKeychainCopyWiFiEAPIdentity(
             domain: CWKeychainDomain,
             ssid: &NSData,
-            identity: *mut *mut SecIdentity,
+            identity: Option<&mut Option<CFRetained<SecIdentity>>>,
         ) -> OSStatus;
     }
+    if let Some(identity) = identity.as_ref() {
+        assert!(
+            identity.is_none(),
+            "parameter `identity` must point to `None` on entry"
+        );
+    };
     unsafe { CWKeychainCopyWiFiEAPIdentity(domain, ssid, identity) }
 }
 
@@ -348,16 +354,22 @@ pub unsafe fn CWKeychainSetWiFiEAPIdentity(
 ///
 ///
 /// Finds and returns all available identities.
-///
-/// # Safety
-///
-/// `list` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe fn CWKeychainCopyEAPIdentityList(list: *mut *const CFArray) -> OSStatus {
+pub unsafe fn CWKeychainCopyEAPIdentityList(
+    list: Option<&mut Option<CFRetained<CFArray>>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn CWKeychainCopyEAPIdentityList(list: *mut *const CFArray) -> OSStatus;
+        fn CWKeychainCopyEAPIdentityList(
+            list: Option<&mut Option<CFRetained<CFArray>>>,
+        ) -> OSStatus;
     }
+    if let Some(list) = list.as_ref() {
+        assert!(
+            list.is_none(),
+            "parameter `list` must point to `None` on entry"
+        );
+    };
     unsafe { CWKeychainCopyEAPIdentityList(list) }
 }
 
@@ -381,26 +393,33 @@ pub unsafe fn CWKeychainCopyEAPIdentityList(list: *mut *const CFArray) -> OSStat
 ///
 /// Finds and returns the 802.1X username and password stored for the specified SSID.
 /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
-///
-/// # Safety
-///
-/// - `username` must be a valid pointer or null.
-/// - `password` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Use CWKeychainFindWiFiEAPUsernameAndPassword() instead"]
 #[inline]
 pub unsafe fn CWKeychainCopyEAPUsernameAndPassword(
     ssid_data: &CFData,
-    username: *mut *const CFString,
-    password: *mut *const CFString,
+    username: Option<&mut Option<CFRetained<CFString>>>,
+    password: Option<&mut Option<CFRetained<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CWKeychainCopyEAPUsernameAndPassword(
             ssid_data: &CFData,
-            username: *mut *const CFString,
-            password: *mut *const CFString,
+            username: Option<&mut Option<CFRetained<CFString>>>,
+            password: Option<&mut Option<CFRetained<CFString>>>,
         ) -> OSStatus;
     }
+    if let Some(username) = username.as_ref() {
+        assert!(
+            username.is_none(),
+            "parameter `username` must point to `None` on entry"
+        );
+    };
+    if let Some(password) = password.as_ref() {
+        assert!(
+            password.is_none(),
+            "parameter `password` must point to `None` on entry"
+        );
+    };
     unsafe { CWKeychainCopyEAPUsernameAndPassword(ssid_data, username, password) }
 }
 
@@ -478,23 +497,25 @@ pub unsafe fn CWKeychainDeleteEAPUsernameAndPassword(ssid_data: &CFData) -> OSSt
 ///
 /// Finds and returns the identity stored for the specified SSID and keychain domain.
 /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
-///
-/// # Safety
-///
-/// `identity` must be a valid pointer or null.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated = "Use CWKeychainCopyWiFiEAPIdentity() instead"]
 #[inline]
 pub unsafe fn CWKeychainCopyEAPIdentity(
     ssid_data: &CFData,
-    identity: *mut *mut SecIdentity,
+    identity: Option<&mut Option<CFRetained<SecIdentity>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CWKeychainCopyEAPIdentity(
             ssid_data: &CFData,
-            identity: *mut *mut SecIdentity,
+            identity: Option<&mut Option<CFRetained<SecIdentity>>>,
         ) -> OSStatus;
     }
+    if let Some(identity) = identity.as_ref() {
+        assert!(
+            identity.is_none(),
+            "parameter `identity` must point to `None` on entry"
+        );
+    };
     unsafe { CWKeychainCopyEAPIdentity(ssid_data, identity) }
 }
 
@@ -569,20 +590,25 @@ pub unsafe fn CWKeychainSetPassword(ssid_data: &CFData, password: &CFString) -> 
 ///
 /// Finds and returns (by reference) the password for the specified SSID.
 /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
-///
-/// # Safety
-///
-/// `password` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Use CWKeychainFindWiFiPassword() instead"]
 #[inline]
 pub unsafe fn CWKeychainCopyPassword(
     ssid_data: &CFData,
-    password: *mut *const CFString,
+    password: Option<&mut Option<CFRetained<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn CWKeychainCopyPassword(ssid_data: &CFData, password: *mut *const CFString) -> OSStatus;
+        fn CWKeychainCopyPassword(
+            ssid_data: &CFData,
+            password: Option<&mut Option<CFRetained<CFString>>>,
+        ) -> OSStatus;
     }
+    if let Some(password) = password.as_ref() {
+        assert!(
+            password.is_none(),
+            "parameter `password` must point to `None` on entry"
+        );
+    };
     unsafe { CWKeychainCopyPassword(ssid_data, password) }
 }
 

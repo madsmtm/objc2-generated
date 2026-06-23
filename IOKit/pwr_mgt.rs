@@ -1231,19 +1231,25 @@ pub fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn {
 ///
 /// # Safety
 ///
-/// `info` must be a valid pointer.
+/// `info` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMCopyBatteryInfo(
     master_port: libc::mach_port_t,
-    info: *mut *const CFArray,
+    info: Option<&mut Option<CFRetained<CFArray>>>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMCopyBatteryInfo(
             master_port: libc::mach_port_t,
-            info: *mut *const CFArray,
+            info: Option<&mut Option<CFRetained<CFArray>>>,
         ) -> IOReturn;
     }
+    if let Some(info) = info.as_ref() {
+        assert!(
+            info.is_none(),
+            "parameter `info` must point to `None` on entry"
+        );
+    };
     unsafe { IOPMCopyBatteryInfo(master_port, info) }
 }
 
@@ -2356,12 +2362,22 @@ pub unsafe fn IOPMAssertionSetProperty(
 ///
 /// # Safety
 ///
-/// `assertions_by_pid` must be a valid pointer.
+/// `assertions_by_pid` might not allow `None`.
 #[inline]
-pub unsafe fn IOPMCopyAssertionsByProcess(assertions_by_pid: *mut *const CFDictionary) -> IOReturn {
+pub unsafe fn IOPMCopyAssertionsByProcess(
+    assertions_by_pid: Option<&mut Option<CFRetained<CFDictionary>>>,
+) -> IOReturn {
     extern "C-unwind" {
-        fn IOPMCopyAssertionsByProcess(assertions_by_pid: *mut *const CFDictionary) -> IOReturn;
+        fn IOPMCopyAssertionsByProcess(
+            assertions_by_pid: Option<&mut Option<CFRetained<CFDictionary>>>,
+        ) -> IOReturn;
     }
+    if let Some(assertions_by_pid) = assertions_by_pid.as_ref() {
+        assert!(
+            assertions_by_pid.is_none(),
+            "parameter `assertions_by_pid` must point to `None` on entry"
+        );
+    };
     unsafe { IOPMCopyAssertionsByProcess(assertions_by_pid) }
 }
 
@@ -2380,12 +2396,22 @@ pub unsafe fn IOPMCopyAssertionsByProcess(assertions_by_pid: *mut *const CFDicti
 ///
 /// # Safety
 ///
-/// `assertions_status` must be a valid pointer.
+/// `assertions_status` might not allow `None`.
 #[inline]
-pub unsafe fn IOPMCopyAssertionsStatus(assertions_status: *mut *const CFDictionary) -> IOReturn {
+pub unsafe fn IOPMCopyAssertionsStatus(
+    assertions_status: Option<&mut Option<CFRetained<CFDictionary>>>,
+) -> IOReturn {
     extern "C-unwind" {
-        fn IOPMCopyAssertionsStatus(assertions_status: *mut *const CFDictionary) -> IOReturn;
+        fn IOPMCopyAssertionsStatus(
+            assertions_status: Option<&mut Option<CFRetained<CFDictionary>>>,
+        ) -> IOReturn;
     }
+    if let Some(assertions_status) = assertions_status.as_ref() {
+        assert!(
+            assertions_status.is_none(),
+            "parameter `assertions_status` must point to `None` on entry"
+        );
+    };
     unsafe { IOPMCopyAssertionsStatus(assertions_status) }
 }
 
@@ -2579,12 +2605,22 @@ pub fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained<CFDictionary>> {
 ///
 /// # Safety
 ///
-/// `cpu_power_status` must be a valid pointer.
+/// `cpu_power_status` might not allow `None`.
 #[inline]
-pub unsafe fn IOPMCopyCPUPowerStatus(cpu_power_status: *mut *const CFDictionary) -> IOReturn {
+pub unsafe fn IOPMCopyCPUPowerStatus(
+    cpu_power_status: Option<&mut Option<CFRetained<CFDictionary>>>,
+) -> IOReturn {
     extern "C-unwind" {
-        fn IOPMCopyCPUPowerStatus(cpu_power_status: *mut *const CFDictionary) -> IOReturn;
+        fn IOPMCopyCPUPowerStatus(
+            cpu_power_status: Option<&mut Option<CFRetained<CFDictionary>>>,
+        ) -> IOReturn;
     }
+    if let Some(cpu_power_status) = cpu_power_status.as_ref() {
+        assert!(
+            cpu_power_status.is_none(),
+            "parameter `cpu_power_status` must point to `None` on entry"
+        );
+    };
     unsafe { IOPMCopyCPUPowerStatus(cpu_power_status) }
 }
 

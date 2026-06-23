@@ -571,7 +571,7 @@ extern "C" {
 /// - `format_description` might not allow `None`.
 /// - `sample_timing_array` must be a valid pointer.
 /// - `sample_size_array` must be a valid pointer.
-/// - `s_buf_out` must be a valid pointer.
+/// - `s_buf_out` might not allow `None`.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
 pub unsafe fn CMIOSampleBufferCreate(
@@ -585,7 +585,7 @@ pub unsafe fn CMIOSampleBufferCreate(
     sample_size_array: *const usize,
     sequence_number: u64,
     discontinuity_flags: u32,
-    s_buf_out: *mut *mut CMSampleBuffer,
+    s_buf_out: Option<&mut Option<CFRetained<CMSampleBuffer>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOSampleBufferCreate(
@@ -599,9 +599,15 @@ pub unsafe fn CMIOSampleBufferCreate(
             sample_size_array: *const usize,
             sequence_number: u64,
             discontinuity_flags: u32,
-            s_buf_out: *mut *mut CMSampleBuffer,
+            s_buf_out: Option<&mut Option<CFRetained<CMSampleBuffer>>>,
         ) -> OSStatus;
     }
+    if let Some(s_buf_out) = s_buf_out.as_ref() {
+        assert!(
+            s_buf_out.is_none(),
+            "parameter `s_buf_out` must point to `None` on entry"
+        );
+    };
     unsafe {
         CMIOSampleBufferCreate(
             allocator,
@@ -650,7 +656,7 @@ pub unsafe fn CMIOSampleBufferCreate(
 /// - `image_buffer` might not allow `None`.
 /// - `format_description` might not allow `None`.
 /// - `sample_timing` must be a valid pointer.
-/// - `s_buf_out` must be a valid pointer.
+/// - `s_buf_out` might not allow `None`.
 #[cfg(all(
     feature = "objc2-core-foundation",
     feature = "objc2-core-media",
@@ -664,7 +670,7 @@ pub unsafe fn CMIOSampleBufferCreateForImageBuffer(
     sample_timing: *const CMSampleTimingInfo,
     sequence_number: u64,
     discontinuity_flags: u32,
-    s_buf_out: *mut *mut CMSampleBuffer,
+    s_buf_out: Option<&mut Option<CFRetained<CMSampleBuffer>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOSampleBufferCreateForImageBuffer(
@@ -674,9 +680,15 @@ pub unsafe fn CMIOSampleBufferCreateForImageBuffer(
             sample_timing: *const CMSampleTimingInfo,
             sequence_number: u64,
             discontinuity_flags: u32,
-            s_buf_out: *mut *mut CMSampleBuffer,
+            s_buf_out: Option<&mut Option<CFRetained<CMSampleBuffer>>>,
         ) -> OSStatus;
     }
+    if let Some(s_buf_out) = s_buf_out.as_ref() {
+        assert!(
+            s_buf_out.is_none(),
+            "parameter `s_buf_out` must point to `None` on entry"
+        );
+    };
     unsafe {
         CMIOSampleBufferCreateForImageBuffer(
             allocator,
@@ -705,7 +717,7 @@ pub unsafe fn CMIOSampleBufferCreateForImageBuffer(
 /// # Safety
 ///
 /// - `format_description` might not allow `None`.
-/// - `s_buf_out` must be a valid pointer.
+/// - `s_buf_out` might not allow `None`.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
 pub unsafe fn CMIOSampleBufferCreateNoDataMarker(
@@ -714,7 +726,7 @@ pub unsafe fn CMIOSampleBufferCreateNoDataMarker(
     format_description: Option<&CMFormatDescription>,
     sequence_number: u64,
     discontinuity_flags: u32,
-    s_buf_out: *mut *mut CMSampleBuffer,
+    s_buf_out: Option<&mut Option<CFRetained<CMSampleBuffer>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOSampleBufferCreateNoDataMarker(
@@ -723,9 +735,15 @@ pub unsafe fn CMIOSampleBufferCreateNoDataMarker(
             format_description: Option<&CMFormatDescription>,
             sequence_number: u64,
             discontinuity_flags: u32,
-            s_buf_out: *mut *mut CMSampleBuffer,
+            s_buf_out: Option<&mut Option<CFRetained<CMSampleBuffer>>>,
         ) -> OSStatus;
     }
+    if let Some(s_buf_out) = s_buf_out.as_ref() {
+        assert!(
+            s_buf_out.is_none(),
+            "parameter `s_buf_out` must point to `None` on entry"
+        );
+    };
     unsafe {
         CMIOSampleBufferCreateNoDataMarker(
             allocator,

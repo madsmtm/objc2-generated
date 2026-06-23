@@ -4202,41 +4202,53 @@ pub unsafe fn IODisplaySetIntegerParameter(
 
 /// # Safety
 ///
-/// `params` must be a valid pointer.
+/// `params` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IODisplayCopyParameters(
     service: io_service_t,
     options: IOOptionBits,
-    params: *mut *const CFDictionary,
+    params: Option<&mut Option<CFRetained<CFDictionary>>>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IODisplayCopyParameters(
             service: io_service_t,
             options: IOOptionBits,
-            params: *mut *const CFDictionary,
+            params: Option<&mut Option<CFRetained<CFDictionary>>>,
         ) -> IOReturn;
     }
+    if let Some(params) = params.as_ref() {
+        assert!(
+            params.is_none(),
+            "parameter `params` must point to `None` on entry"
+        );
+    };
     unsafe { IODisplayCopyParameters(service, options, params) }
 }
 
 /// # Safety
 ///
-/// `params` must be a valid pointer.
+/// `params` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IODisplayCopyFloatParameters(
     service: io_service_t,
     options: IOOptionBits,
-    params: *mut *const CFDictionary,
+    params: Option<&mut Option<CFRetained<CFDictionary>>>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IODisplayCopyFloatParameters(
             service: io_service_t,
             options: IOOptionBits,
-            params: *mut *const CFDictionary,
+            params: Option<&mut Option<CFRetained<CFDictionary>>>,
         ) -> IOReturn;
     }
+    if let Some(params) = params.as_ref() {
+        assert!(
+            params.is_none(),
+            "parameter `params` must point to `None` on entry"
+        );
+    };
     unsafe { IODisplayCopyFloatParameters(service, options, params) }
 }
 

@@ -1485,8 +1485,7 @@ pub unsafe fn MusicSequenceFileCreate(
 ///
 /// # Safety
 ///
-/// - `in_sequence` must be a valid pointer.
-/// - `out_data` must be a valid pointer or null.
+/// `in_sequence` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn MusicSequenceFileCreateData(
@@ -1494,7 +1493,7 @@ pub unsafe fn MusicSequenceFileCreateData(
     in_file_type: MusicSequenceFileTypeID,
     in_flags: MusicSequenceFileFlags,
     in_resolution: i16,
-    out_data: &mut *const CFData,
+    out_data: &mut Option<CFRetained<CFData>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MusicSequenceFileCreateData(
@@ -1502,9 +1501,13 @@ pub unsafe fn MusicSequenceFileCreateData(
             in_file_type: MusicSequenceFileTypeID,
             in_flags: MusicSequenceFileFlags,
             in_resolution: i16,
-            out_data: &mut *const CFData,
+            out_data: &mut Option<CFRetained<CFData>>,
         ) -> OSStatus;
     }
+    assert!(
+        out_data.is_none(),
+        "parameter `out_data` must point to `None` on entry"
+    );
     unsafe {
         MusicSequenceFileCreateData(in_sequence, in_file_type, in_flags, in_resolution, out_data)
     }

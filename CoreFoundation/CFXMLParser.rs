@@ -509,9 +509,6 @@ impl CFXMLTree {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `error_dict` must be a valid pointer.
     #[doc(alias = "CFXMLTreeCreateFromDataWithError")]
     #[cfg(all(
         feature = "CFData",
@@ -522,13 +519,13 @@ impl CFXMLTree {
     ))]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub unsafe fn from_data_with_error(
+    pub fn from_data_with_error(
         allocator: Option<&CFAllocator>,
         xml_data: &CFData,
         data_source: &CFURL,
         parse_options: CFOptionFlags,
         version_of_nodes: CFIndex,
-        error_dict: Option<&mut *const CFDictionary>,
+        error_dict: Option<&mut Option<CFRetained<CFDictionary>>>,
     ) -> Option<CFRetained<CFXMLTree>> {
         extern "C-unwind" {
             fn CFXMLTreeCreateFromDataWithError(
@@ -537,9 +534,15 @@ impl CFXMLTree {
                 data_source: &CFURL,
                 parse_options: CFOptionFlags,
                 version_of_nodes: CFIndex,
-                error_dict: Option<&mut *const CFDictionary>,
+                error_dict: Option<&mut Option<CFRetained<CFDictionary>>>,
             ) -> Option<NonNull<CFXMLTree>>;
         }
+        if let Some(error_dict) = error_dict.as_ref() {
+            assert!(
+                error_dict.is_none(),
+                "parameter `error_dict` must point to `None` on entry"
+            );
+        };
         let ret = unsafe {
             CFXMLTreeCreateFromDataWithError(
                 allocator,

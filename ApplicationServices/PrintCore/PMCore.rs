@@ -181,21 +181,24 @@ pub unsafe fn PMSessionGetDestinationType(
 ///
 /// - `print_session` must be a valid pointer.
 /// - `print_settings` must be a valid pointer.
-/// - `dest_format_p` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMSessionCopyDestinationFormat(
     print_session: PMPrintSession,
     print_settings: PMPrintSettings,
-    dest_format_p: NonNull<*const CFString>,
+    dest_format_p: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMSessionCopyDestinationFormat(
             print_session: PMPrintSession,
             print_settings: PMPrintSettings,
-            dest_format_p: NonNull<*const CFString>,
+            dest_format_p: &mut Option<CFRetained<CFString>>,
         ) -> OSStatus;
     }
+    assert!(
+        dest_format_p.is_none(),
+        "parameter `dest_format_p` must point to `None` on entry"
+    );
     unsafe { PMSessionCopyDestinationFormat(print_session, print_settings, dest_format_p) }
 }
 
@@ -203,21 +206,24 @@ pub unsafe fn PMSessionCopyDestinationFormat(
 ///
 /// - `print_session` must be a valid pointer.
 /// - `print_settings` must be a valid pointer.
-/// - `dest_location_p` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMSessionCopyDestinationLocation(
     print_session: PMPrintSession,
     print_settings: PMPrintSettings,
-    dest_location_p: NonNull<*const CFURL>,
+    dest_location_p: &mut Option<CFRetained<CFURL>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMSessionCopyDestinationLocation(
             print_session: PMPrintSession,
             print_settings: PMPrintSettings,
-            dest_location_p: NonNull<*const CFURL>,
+            dest_location_p: &mut Option<CFRetained<CFURL>>,
         ) -> OSStatus;
     }
+    assert!(
+        dest_location_p.is_none(),
+        "parameter `dest_location_p` must point to `None` on entry"
+    );
     unsafe { PMSessionCopyDestinationLocation(print_session, print_settings, dest_location_p) }
 }
 
@@ -256,22 +262,25 @@ pub unsafe fn PMSessionSetDestination(
 
 /// # Safety
 ///
-/// - `print_session` must be a valid pointer.
-/// - `document_format_p` must be a valid pointer.
+/// `print_session` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMSessionCopyOutputFormatList(
     print_session: PMPrintSession,
     dest_type: PMDestinationType,
-    document_format_p: NonNull<*const CFArray>,
+    document_format_p: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMSessionCopyOutputFormatList(
             print_session: PMPrintSession,
             dest_type: PMDestinationType,
-            document_format_p: NonNull<*const CFArray>,
+            document_format_p: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        document_format_p.is_none(),
+        "parameter `document_format_p` must point to `None` on entry"
+    );
     unsafe { PMSessionCopyOutputFormatList(print_session, dest_type, document_format_p) }
 }
 
@@ -279,46 +288,52 @@ pub unsafe fn PMSessionCopyOutputFormatList(
 ///
 /// - `print_session` must be a valid pointer.
 /// - `printer` must be a valid pointer or null.
-/// - `page_format_list` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMSessionCreatePageFormatList(
     print_session: PMPrintSession,
     printer: PMPrinter,
-    page_format_list: NonNull<*const CFArray>,
+    page_format_list: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMSessionCreatePageFormatList(
             print_session: PMPrintSession,
             printer: PMPrinter,
-            page_format_list: NonNull<*const CFArray>,
+            page_format_list: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        page_format_list.is_none(),
+        "parameter `page_format_list` must point to `None` on entry"
+    );
     unsafe { PMSessionCreatePageFormatList(print_session, printer, page_format_list) }
 }
 
 /// # Safety
 ///
 /// - `print_session` must be a valid pointer.
-/// - `printer_list` must be a valid pointer.
 /// - `current_index` must be a valid pointer or null.
 /// - `current_printer` must be a valid pointer or null.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMSessionCreatePrinterList(
     print_session: PMPrintSession,
-    printer_list: NonNull<*const CFArray>,
+    printer_list: &mut Option<CFRetained<CFArray>>,
     current_index: *mut CFIndex,
     current_printer: *mut PMPrinter,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMSessionCreatePrinterList(
             print_session: PMPrintSession,
-            printer_list: NonNull<*const CFArray>,
+            printer_list: &mut Option<CFRetained<CFArray>>,
             current_index: *mut CFIndex,
             current_printer: *mut PMPrinter,
         ) -> OSStatus;
     }
+    assert!(
+        printer_list.is_none(),
+        "parameter `printer_list` must point to `None` on entry"
+    );
     unsafe {
         PMSessionCreatePrinterList(print_session, printer_list, current_index, current_printer)
     }
@@ -488,22 +503,25 @@ pub unsafe fn PMCreatePageFormatWithPMPaper(
 
 /// # Safety
 ///
-/// - `page_format` must be a valid pointer.
-/// - `data` must be a valid pointer.
+/// `page_format` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPageFormatCreateDataRepresentation(
     page_format: PMPageFormat,
-    data: NonNull<*const CFData>,
+    data: &mut Option<CFRetained<CFData>>,
     format: PMDataFormat,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPageFormatCreateDataRepresentation(
             page_format: PMPageFormat,
-            data: NonNull<*const CFData>,
+            data: &mut Option<CFRetained<CFData>>,
             format: PMDataFormat,
         ) -> OSStatus;
     }
+    assert!(
+        data.is_none(),
+        "parameter `data` must point to `None` on entry"
+    );
     unsafe { PMPageFormatCreateDataRepresentation(page_format, data, format) }
 }
 
@@ -806,22 +824,25 @@ pub unsafe fn PMCopyPrintSettings(
 
 /// # Safety
 ///
-/// - `print_settings` must be a valid pointer.
-/// - `data` must be a valid pointer.
+/// `print_settings` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrintSettingsCreateDataRepresentation(
     print_settings: PMPrintSettings,
-    data: NonNull<*const CFData>,
+    data: &mut Option<CFRetained<CFData>>,
     format: PMDataFormat,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrintSettingsCreateDataRepresentation(
             print_settings: PMPrintSettings,
-            data: NonNull<*const CFData>,
+            data: &mut Option<CFRetained<CFData>>,
             format: PMDataFormat,
         ) -> OSStatus;
     }
+    assert!(
+        data.is_none(),
+        "parameter `data` must point to `None` on entry"
+    );
     unsafe { PMPrintSettingsCreateDataRepresentation(print_settings, data, format) }
 }
 
@@ -1104,39 +1125,45 @@ pub unsafe fn PMPrintSettingsSetValue(
 
 /// # Safety
 ///
-/// - `print_settings` must be a valid pointer.
-/// - `settings_dictionary` must be a valid pointer.
+/// `print_settings` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrintSettingsCopyAsDictionary(
     print_settings: PMPrintSettings,
-    settings_dictionary: NonNull<*const CFDictionary>,
+    settings_dictionary: &mut Option<CFRetained<CFDictionary>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrintSettingsCopyAsDictionary(
             print_settings: PMPrintSettings,
-            settings_dictionary: NonNull<*const CFDictionary>,
+            settings_dictionary: &mut Option<CFRetained<CFDictionary>>,
         ) -> OSStatus;
     }
+    assert!(
+        settings_dictionary.is_none(),
+        "parameter `settings_dictionary` must point to `None` on entry"
+    );
     unsafe { PMPrintSettingsCopyAsDictionary(print_settings, settings_dictionary) }
 }
 
 /// # Safety
 ///
-/// - `print_settings` must be a valid pointer.
-/// - `settings_keys` must be a valid pointer.
+/// `print_settings` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrintSettingsCopyKeys(
     print_settings: PMPrintSettings,
-    settings_keys: NonNull<*const CFArray>,
+    settings_keys: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrintSettingsCopyKeys(
             print_settings: PMPrintSettings,
-            settings_keys: NonNull<*const CFArray>,
+            settings_keys: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        settings_keys.is_none(),
+        "parameter `settings_keys` must point to `None` on entry"
+    );
     unsafe { PMPrintSettingsCopyKeys(print_settings, settings_keys) }
 }
 
@@ -1170,20 +1197,23 @@ pub unsafe fn PMCreateGenericPrinter(printer: NonNull<PMPrinter>) -> OSStatus {
 
 /// # Safety
 ///
-/// - `server` must be a valid pointer or null.
-/// - `printer_list` must be a valid pointer.
+/// `server` must be a valid pointer or null.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMServerCreatePrinterList(
     server: PMServer,
-    printer_list: NonNull<*const CFArray>,
+    printer_list: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMServerCreatePrinterList(
             server: PMServer,
-            printer_list: NonNull<*const CFArray>,
+            printer_list: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        printer_list.is_none(),
+        "parameter `printer_list` must point to `None` on entry"
+    );
     unsafe { PMServerCreatePrinterList(server, printer_list) }
 }
 
@@ -1218,79 +1248,91 @@ pub unsafe fn PMPrinterCreateFromPrinterID(printer_id: &CFString) -> PMPrinter {
 
 /// # Safety
 ///
-/// - `printer` must be a valid pointer.
-/// - `file_url` must be a valid pointer.
+/// `printer` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrinterCopyDescriptionURL(
     printer: PMPrinter,
     description_type: &CFString,
-    file_url: NonNull<*const CFURL>,
+    file_url: &mut Option<CFRetained<CFURL>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterCopyDescriptionURL(
             printer: PMPrinter,
             description_type: &CFString,
-            file_url: NonNull<*const CFURL>,
+            file_url: &mut Option<CFRetained<CFURL>>,
         ) -> OSStatus;
     }
+    assert!(
+        file_url.is_none(),
+        "parameter `file_url` must point to `None` on entry"
+    );
     unsafe { PMPrinterCopyDescriptionURL(printer, description_type, file_url) }
 }
 
 /// # Safety
 ///
-/// - `printer` must be a valid pointer.
-/// - `device_uri` must be a valid pointer.
+/// `printer` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrinterCopyDeviceURI(
     printer: PMPrinter,
-    device_uri: NonNull<*const CFURL>,
+    device_uri: &mut Option<CFRetained<CFURL>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterCopyDeviceURI(
             printer: PMPrinter,
-            device_uri: NonNull<*const CFURL>,
+            device_uri: &mut Option<CFRetained<CFURL>>,
         ) -> OSStatus;
     }
+    assert!(
+        device_uri.is_none(),
+        "parameter `device_uri` must point to `None` on entry"
+    );
     unsafe { PMPrinterCopyDeviceURI(printer, device_uri) }
 }
 
 /// # Safety
 ///
-/// - `printer` must be a valid pointer.
-/// - `host_name_p` must be a valid pointer.
+/// `printer` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrinterCopyHostName(
     printer: PMPrinter,
-    host_name_p: NonNull<*const CFString>,
+    host_name_p: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterCopyHostName(
             printer: PMPrinter,
-            host_name_p: NonNull<*const CFString>,
+            host_name_p: &mut Option<CFRetained<CFString>>,
         ) -> OSStatus;
     }
+    assert!(
+        host_name_p.is_none(),
+        "parameter `host_name_p` must point to `None` on entry"
+    );
     unsafe { PMPrinterCopyHostName(printer, host_name_p) }
 }
 
 /// # Safety
 ///
-/// - `printer` must be a valid pointer.
-/// - `preset_list` must be a valid pointer.
+/// `printer` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrinterCopyPresets(
     printer: PMPrinter,
-    preset_list: NonNull<*const CFArray>,
+    preset_list: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterCopyPresets(
             printer: PMPrinter,
-            preset_list: NonNull<*const CFArray>,
+            preset_list: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        preset_list.is_none(),
+        "parameter `preset_list` must point to `None` on entry"
+    );
     unsafe { PMPrinterCopyPresets(printer, preset_list) }
 }
 
@@ -1639,14 +1681,20 @@ pub unsafe fn PMPrinterSetDefault(printer: PMPrinter) -> OSStatus {
 
 /// # Safety
 ///
-/// - `preset` must be a valid pointer.
-/// - `name` must be a valid pointer.
+/// `preset` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
-pub unsafe fn PMPresetCopyName(preset: PMPreset, name: NonNull<*const CFString>) -> OSStatus {
+pub unsafe fn PMPresetCopyName(
+    preset: PMPreset,
+    name: &mut Option<CFRetained<CFString>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn PMPresetCopyName(preset: PMPreset, name: NonNull<*const CFString>) -> OSStatus;
+        fn PMPresetCopyName(preset: PMPreset, name: &mut Option<CFRetained<CFString>>) -> OSStatus;
     }
+    assert!(
+        name.is_none(),
+        "parameter `name` must point to `None` on entry"
+    );
     unsafe { PMPresetCopyName(preset, name) }
 }
 
@@ -1810,21 +1858,24 @@ pub unsafe fn PMPaperGetPPDPaperName(
 ///
 /// - `paper` must be a valid pointer.
 /// - `printer` must be a valid pointer.
-/// - `paper_name` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPaperCreateLocalizedName(
     paper: PMPaper,
     printer: PMPrinter,
-    paper_name: NonNull<*const CFString>,
+    paper_name: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPaperCreateLocalizedName(
             paper: PMPaper,
             printer: PMPrinter,
-            paper_name: NonNull<*const CFString>,
+            paper_name: &mut Option<CFRetained<CFString>>,
         ) -> OSStatus;
     }
+    assert!(
+        paper_name.is_none(),
+        "parameter `paper_name` must point to `None` on entry"
+    );
     unsafe { PMPaperCreateLocalizedName(paper, printer, paper_name) }
 }
 
@@ -1857,14 +1908,15 @@ pub unsafe fn PMPaperIsCustom(paper: PMPaper) -> bool {
     ret != 0
 }
 
-/// # Safety
-///
-/// `workflow_items` must be a valid pointer.
 #[inline]
-pub unsafe fn PMWorkflowCopyItems(workflow_items: NonNull<*const CFArray>) -> OSStatus {
+pub unsafe fn PMWorkflowCopyItems(workflow_items: &mut Option<CFRetained<CFArray>>) -> OSStatus {
     extern "C-unwind" {
-        fn PMWorkflowCopyItems(workflow_items: NonNull<*const CFArray>) -> OSStatus;
+        fn PMWorkflowCopyItems(workflow_items: &mut Option<CFRetained<CFArray>>) -> OSStatus;
     }
+    assert!(
+        workflow_items.is_none(),
+        "parameter `workflow_items` must point to `None` on entry"
+    );
     unsafe { PMWorkflowCopyItems(workflow_items) }
 }
 
@@ -2070,54 +2122,72 @@ pub unsafe fn PMPrinterSendCommand(
 
 /// # Safety
 ///
-/// - `printer` must be a valid pointer.
-/// - `state_dict` must be a valid pointer.
+/// `printer` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrinterCopyState(
     printer: PMPrinter,
-    state_dict: NonNull<*const CFDictionary>,
+    state_dict: &mut Option<CFRetained<CFDictionary>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterCopyState(
             printer: PMPrinter,
-            state_dict: NonNull<*const CFDictionary>,
+            state_dict: &mut Option<CFRetained<CFDictionary>>,
         ) -> OSStatus;
     }
+    assert!(
+        state_dict.is_none(),
+        "parameter `state_dict` must point to `None` on entry"
+    );
     unsafe { PMPrinterCopyState(printer, state_dict) }
 }
 
-/// # Safety
-///
-/// `ppds` must be a valid pointer.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
-pub unsafe fn PMCopyAvailablePPDs(domain: PMPPDDomain, ppds: NonNull<*const CFArray>) -> OSStatus {
+pub unsafe fn PMCopyAvailablePPDs(
+    domain: PMPPDDomain,
+    ppds: &mut Option<CFRetained<CFArray>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn PMCopyAvailablePPDs(domain: PMPPDDomain, ppds: NonNull<*const CFArray>) -> OSStatus;
+        fn PMCopyAvailablePPDs(
+            domain: PMPPDDomain,
+            ppds: &mut Option<CFRetained<CFArray>>,
+        ) -> OSStatus;
     }
+    assert!(
+        ppds.is_none(),
+        "parameter `ppds` must point to `None` on entry"
+    );
     unsafe { PMCopyAvailablePPDs(domain, ppds) }
 }
 
-/// # Safety
-///
-/// `localized_ppd` must be a valid pointer.
 #[inline]
-pub unsafe fn PMCopyLocalizedPPD(ppd: &CFURL, localized_ppd: NonNull<*const CFURL>) -> OSStatus {
+pub unsafe fn PMCopyLocalizedPPD(
+    ppd: &CFURL,
+    localized_ppd: &mut Option<CFRetained<CFURL>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn PMCopyLocalizedPPD(ppd: &CFURL, localized_ppd: NonNull<*const CFURL>) -> OSStatus;
+        fn PMCopyLocalizedPPD(
+            ppd: &CFURL,
+            localized_ppd: &mut Option<CFRetained<CFURL>>,
+        ) -> OSStatus;
     }
+    assert!(
+        localized_ppd.is_none(),
+        "parameter `localized_ppd` must point to `None` on entry"
+    );
     unsafe { PMCopyLocalizedPPD(ppd, localized_ppd) }
 }
 
-/// # Safety
-///
-/// `data` must be a valid pointer.
 #[inline]
-pub unsafe fn PMCopyPPDData(ppd: &CFURL, data: NonNull<*const CFData>) -> OSStatus {
+pub unsafe fn PMCopyPPDData(ppd: &CFURL, data: &mut Option<CFRetained<CFData>>) -> OSStatus {
     extern "C-unwind" {
-        fn PMCopyPPDData(ppd: &CFURL, data: NonNull<*const CFData>) -> OSStatus;
+        fn PMCopyPPDData(ppd: &CFURL, data: &mut Option<CFRetained<CFData>>) -> OSStatus;
     }
+    assert!(
+        data.is_none(),
+        "parameter `data` must point to `None` on entry"
+    );
     unsafe { PMCopyPPDData(ppd, data) }
 }
 

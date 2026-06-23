@@ -533,28 +533,36 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `name_server_signature` struct field `address` must be a valid pointer.
-    /// - `value` must be a valid pointer.
-    /// - `name_server_address` must be a valid pointer.
+    /// `name_server_signature` struct field `address` must be a valid pointer.
     #[doc(alias = "CFSocketCopyRegisteredValue")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
-    pub unsafe fn copy_registered_value(
+    pub unsafe fn registered_value(
         name_server_signature: Option<&CFSocketSignature>,
         timeout: CFTimeInterval,
         name: &CFString,
-        value: &mut *const CFPropertyList,
-        name_server_address: Option<&mut *const CFData>,
+        value: &mut Option<CFRetained<CFPropertyList>>,
+        name_server_address: Option<&mut Option<CFRetained<CFData>>>,
     ) -> CFSocketError {
         extern "C-unwind" {
             fn CFSocketCopyRegisteredValue(
                 name_server_signature: Option<&CFSocketSignature>,
                 timeout: CFTimeInterval,
                 name: &CFString,
-                value: &mut *const CFPropertyList,
-                name_server_address: Option<&mut *const CFData>,
+                value: &mut Option<CFRetained<CFPropertyList>>,
+                name_server_address: Option<&mut Option<CFRetained<CFData>>>,
             ) -> CFSocketError;
         }
+        assert!(
+            value.is_none(),
+            "parameter `value` must point to `None` on entry"
+        );
+        if let Some(name_server_address) = name_server_address.as_ref() {
+            assert!(
+                name_server_address.is_none(),
+                "parameter `name_server_address` must point to `None` on entry"
+            );
+        };
         unsafe {
             CFSocketCopyRegisteredValue(
                 name_server_signature,
@@ -594,16 +602,15 @@ impl CFSocket {
     ///
     /// - `name_server_signature` struct field `address` must be a valid pointer.
     /// - `signature` struct field `address` must be a valid pointer.
-    /// - `name_server_address` must be a valid pointer.
     #[doc(alias = "CFSocketCopyRegisteredSocketSignature")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
-    pub unsafe fn copy_registered_socket_signature(
+    pub unsafe fn registered_socket_signature(
         name_server_signature: Option<&CFSocketSignature>,
         timeout: CFTimeInterval,
         name: &CFString,
         signature: &mut CFSocketSignature,
-        name_server_address: Option<&mut *const CFData>,
+        name_server_address: Option<&mut Option<CFRetained<CFData>>>,
     ) -> CFSocketError {
         extern "C-unwind" {
             fn CFSocketCopyRegisteredSocketSignature(
@@ -611,9 +618,15 @@ impl CFSocket {
                 timeout: CFTimeInterval,
                 name: &CFString,
                 signature: &mut CFSocketSignature,
-                name_server_address: Option<&mut *const CFData>,
+                name_server_address: Option<&mut Option<CFRetained<CFData>>>,
             ) -> CFSocketError;
         }
+        if let Some(name_server_address) = name_server_address.as_ref() {
+            assert!(
+                name_server_address.is_none(),
+                "parameter `name_server_address` must point to `None` on entry"
+            );
+        };
         unsafe {
             CFSocketCopyRegisteredSocketSignature(
                 name_server_signature,

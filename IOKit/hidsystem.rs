@@ -1640,21 +1640,27 @@ pub unsafe fn IOHIDSetParameter(
 /// # Safety
 ///
 /// - `key` might not allow `None`.
-/// - `parameter` must be a valid pointer.
+/// - `parameter` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOHIDCopyCFTypeParameter(
     handle: io_connect_t,
     key: Option<&CFString>,
-    parameter: *mut *const CFType,
+    parameter: Option<&mut Option<CFRetained<CFType>>>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDCopyCFTypeParameter(
             handle: io_connect_t,
             key: Option<&CFString>,
-            parameter: *mut *const CFType,
+            parameter: Option<&mut Option<CFRetained<CFType>>>,
         ) -> libc::kern_return_t;
     }
+    if let Some(parameter) = parameter.as_ref() {
+        assert!(
+            parameter.is_none(),
+            "parameter `parameter` must point to `None` on entry"
+        );
+    };
     unsafe { IOHIDCopyCFTypeParameter(handle, key, parameter) }
 }
 

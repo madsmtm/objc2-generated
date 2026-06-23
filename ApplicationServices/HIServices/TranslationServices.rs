@@ -53,23 +53,29 @@ impl Translation {
     ///
     /// - `in_source_type` might not allow `None`.
     /// - `in_destination_type` might not allow `None`.
-    /// - `out_translation` must be a valid pointer.
+    /// - `out_translation` might not allow `None`.
     #[doc(alias = "TranslationCreate")]
     #[inline]
-    pub unsafe fn create(
+    pub unsafe fn new(
         in_source_type: Option<&CFString>,
         in_destination_type: Option<&CFString>,
         in_translation_flags: TranslationFlags,
-        out_translation: *mut *mut Translation,
+        out_translation: Option<&mut Option<CFRetained<Translation>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn TranslationCreate(
                 in_source_type: Option<&CFString>,
                 in_destination_type: Option<&CFString>,
                 in_translation_flags: TranslationFlags,
-                out_translation: *mut *mut Translation,
+                out_translation: Option<&mut Option<CFRetained<Translation>>>,
             ) -> OSStatus;
         }
+        if let Some(out_translation) = out_translation.as_ref() {
+            assert!(
+                out_translation.is_none(),
+                "parameter `out_translation` must point to `None` on entry"
+            );
+        };
         unsafe {
             TranslationCreate(
                 in_source_type,
@@ -84,24 +90,36 @@ impl Translation {
     ///
     /// - `in_source_types` generic must be of the correct type.
     /// - `in_source_types` might not allow `None`.
-    /// - `out_destination_types` must be a valid pointer.
-    /// - `out_translations` must be a valid pointer.
+    /// - `out_destination_types` might not allow `None`.
+    /// - `out_translations` might not allow `None`.
     #[doc(alias = "TranslationCreateWithSourceArray")]
     #[inline]
-    pub unsafe fn create_with_source_array(
+    pub unsafe fn with_source_array(
         in_source_types: Option<&CFArray>,
         in_translation_flags: TranslationFlags,
-        out_destination_types: *mut *const CFArray,
-        out_translations: *mut *const CFDictionary,
+        out_destination_types: Option<&mut Option<CFRetained<CFArray>>>,
+        out_translations: Option<&mut Option<CFRetained<CFDictionary>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn TranslationCreateWithSourceArray(
                 in_source_types: Option<&CFArray>,
                 in_translation_flags: TranslationFlags,
-                out_destination_types: *mut *const CFArray,
-                out_translations: *mut *const CFDictionary,
+                out_destination_types: Option<&mut Option<CFRetained<CFArray>>>,
+                out_translations: Option<&mut Option<CFRetained<CFDictionary>>>,
             ) -> OSStatus;
         }
+        if let Some(out_destination_types) = out_destination_types.as_ref() {
+            assert!(
+                out_destination_types.is_none(),
+                "parameter `out_destination_types` must point to `None` on entry"
+            );
+        };
+        if let Some(out_translations) = out_translations.as_ref() {
+            assert!(
+                out_translations.is_none(),
+                "parameter `out_translations` must point to `None` on entry"
+            );
+        };
         unsafe {
             TranslationCreateWithSourceArray(
                 in_source_types,
@@ -161,34 +179,49 @@ impl Translation {
 
     /// # Safety
     ///
-    /// `out_source_type` must be a valid pointer.
+    /// `out_source_type` might not allow `None`.
     #[doc(alias = "TranslationCopySourceType")]
     #[inline]
-    pub unsafe fn copy_source_type(&self, out_source_type: *mut *const CFString) -> OSStatus {
+    pub unsafe fn source_type(
+        &self,
+        out_source_type: Option<&mut Option<CFRetained<CFString>>>,
+    ) -> OSStatus {
         extern "C-unwind" {
             fn TranslationCopySourceType(
                 in_translation: &Translation,
-                out_source_type: *mut *const CFString,
+                out_source_type: Option<&mut Option<CFRetained<CFString>>>,
             ) -> OSStatus;
         }
+        if let Some(out_source_type) = out_source_type.as_ref() {
+            assert!(
+                out_source_type.is_none(),
+                "parameter `out_source_type` must point to `None` on entry"
+            );
+        };
         unsafe { TranslationCopySourceType(self, out_source_type) }
     }
 
     /// # Safety
     ///
-    /// `out_destination_type` must be a valid pointer.
+    /// `out_destination_type` might not allow `None`.
     #[doc(alias = "TranslationCopyDestinationType")]
     #[inline]
-    pub unsafe fn copy_destination_type(
+    pub unsafe fn destination_type(
         &self,
-        out_destination_type: *mut *const CFString,
+        out_destination_type: Option<&mut Option<CFRetained<CFString>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn TranslationCopyDestinationType(
                 in_translation: &Translation,
-                out_destination_type: *mut *const CFString,
+                out_destination_type: Option<&mut Option<CFRetained<CFString>>>,
             ) -> OSStatus;
         }
+        if let Some(out_destination_type) = out_destination_type.as_ref() {
+            assert!(
+                out_destination_type.is_none(),
+                "parameter `out_destination_type` must point to `None` on entry"
+            );
+        };
         unsafe { TranslationCopyDestinationType(self, out_destination_type) }
     }
 

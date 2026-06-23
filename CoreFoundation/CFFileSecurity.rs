@@ -63,19 +63,20 @@ impl CFFileSecurity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `owner_uuid` must be a valid pointer.
     #[doc(alias = "CFFileSecurityCopyOwnerUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub unsafe fn copy_owner_uuid(&self, owner_uuid: &mut *const CFUUID) -> bool {
+    pub fn owner_uuid(&self, owner_uuid: &mut Option<CFRetained<CFUUID>>) -> bool {
         extern "C-unwind" {
             fn CFFileSecurityCopyOwnerUUID(
                 file_sec: &CFFileSecurity,
-                owner_uuid: &mut *const CFUUID,
+                owner_uuid: &mut Option<CFRetained<CFUUID>>,
             ) -> Boolean;
         }
+        assert!(
+            owner_uuid.is_none(),
+            "parameter `owner_uuid` must point to `None` on entry"
+        );
         let ret = unsafe { CFFileSecurityCopyOwnerUUID(self, owner_uuid) };
         ret != 0
     }
@@ -94,19 +95,20 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `group_uuid` must be a valid pointer.
     #[doc(alias = "CFFileSecurityCopyGroupUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub unsafe fn copy_group_uuid(&self, group_uuid: &mut *const CFUUID) -> bool {
+    pub fn group_uuid(&self, group_uuid: &mut Option<CFRetained<CFUUID>>) -> bool {
         extern "C-unwind" {
             fn CFFileSecurityCopyGroupUUID(
                 file_sec: &CFFileSecurity,
-                group_uuid: &mut *const CFUUID,
+                group_uuid: &mut Option<CFRetained<CFUUID>>,
             ) -> Boolean;
         }
+        assert!(
+            group_uuid.is_none(),
+            "parameter `group_uuid` must point to `None` on entry"
+        );
         let ret = unsafe { CFFileSecurityCopyGroupUUID(self, group_uuid) };
         ret != 0
     }

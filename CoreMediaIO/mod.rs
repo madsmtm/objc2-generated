@@ -776,6 +776,7 @@ pub use self::__CMIOHardwareStream::CMIOStreamClockPostTimingEvent;
 #[cfg(all(
     feature = "CMIOHardwareObject",
     feature = "CMIOHardwareStream",
+    feature = "objc2-core-foundation",
     feature = "objc2-core-media"
 ))]
 pub use self::__CMIOHardwareStream::CMIOStreamCopyBufferQueue;

@@ -350,20 +350,23 @@ pub unsafe fn AudioComponentCount(in_desc: &AudioComponentDescription) -> u32 {
 ///
 /// # Safety
 ///
-/// - `in_component` must be a valid pointer.
-/// - `out_name` must be a valid pointer or null.
+/// `in_component` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn AudioComponentCopyName(
     in_component: AudioComponent,
-    out_name: &mut *const CFString,
+    out_name: &mut Option<CFRetained<CFString>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioComponentCopyName(
             in_component: AudioComponent,
-            out_name: &mut *const CFString,
+            out_name: &mut Option<CFRetained<CFString>>,
         ) -> OSStatus;
     }
+    assert!(
+        out_name.is_none(),
+        "parameter `out_name` must point to `None` on entry"
+    );
     unsafe { AudioComponentCopyName(in_component, out_name) }
 }
 
@@ -623,20 +626,23 @@ pub unsafe fn AudioComponentRegister(
 ///
 /// # Safety
 ///
-/// - `in_component` must be a valid pointer.
-/// - `out_configuration_info` must be a valid pointer or null.
+/// `in_component` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn AudioComponentCopyConfigurationInfo(
     in_component: AudioComponent,
-    out_configuration_info: &mut *const CFDictionary<CFString, CFType>,
+    out_configuration_info: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioComponentCopyConfigurationInfo(
             in_component: AudioComponent,
-            out_configuration_info: &mut *const CFDictionary<CFString, CFType>,
+            out_configuration_info: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
         ) -> OSStatus;
     }
+    assert!(
+        out_configuration_info.is_none(),
+        "parameter `out_configuration_info` must point to `None` on entry"
+    );
     unsafe { AudioComponentCopyConfigurationInfo(in_component, out_configuration_info) }
 }
 

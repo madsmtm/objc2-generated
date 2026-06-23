@@ -262,22 +262,28 @@ impl SCNetworkConnection {
     ///
     /// - `selection_options` generic must be of the correct type.
     /// - `selection_options` generic must be of the correct type.
-    /// - `service_id` must be a valid pointer or null.
-    /// - `user_options` must be a valid pointer or null.
     #[doc(alias = "SCNetworkConnectionCopyUserPreferences")]
     #[inline]
-    pub unsafe fn copy_user_preferences(
+    pub unsafe fn user_preferences(
         selection_options: Option<&CFDictionary>,
-        service_id: &mut *const CFString,
-        user_options: &mut *const CFDictionary<CFString, CFType>,
+        service_id: &mut Option<CFRetained<CFString>>,
+        user_options: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
     ) -> bool {
         extern "C-unwind" {
             fn SCNetworkConnectionCopyUserPreferences(
                 selection_options: Option<&CFDictionary>,
-                service_id: &mut *const CFString,
-                user_options: &mut *const CFDictionary<CFString, CFType>,
+                service_id: &mut Option<CFRetained<CFString>>,
+                user_options: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
             ) -> Boolean;
         }
+        assert!(
+            service_id.is_none(),
+            "parameter `service_id` must point to `None` on entry"
+        );
+        assert!(
+            user_options.is_none(),
+            "parameter `user_options` must point to `None` on entry"
+        );
         let ret = unsafe {
             SCNetworkConnectionCopyUserPreferences(selection_options, service_id, user_options)
         };

@@ -124,22 +124,25 @@ impl CFNetDiagnostic {
         unsafe { CFNetDiagnosticDiagnoseProblemInteractively(self) }
     }
 
-    /// # Safety
-    ///
-    /// `description` must be a valid pointer or null.
     #[doc(alias = "CFNetDiagnosticCopyNetworkStatusPassively")]
     #[deprecated]
     #[inline]
-    pub unsafe fn copy_network_status_passively(
+    pub unsafe fn network_status_passively(
         &self,
-        description: *mut *const CFString,
+        description: Option<&mut Option<CFRetained<CFString>>>,
     ) -> CFNetDiagnosticStatus {
         extern "C-unwind" {
             fn CFNetDiagnosticCopyNetworkStatusPassively(
                 details: &CFNetDiagnostic,
-                description: *mut *const CFString,
+                description: Option<&mut Option<CFRetained<CFString>>>,
             ) -> CFNetDiagnosticStatus;
         }
+        if let Some(description) = description.as_ref() {
+            assert!(
+                description.is_none(),
+                "parameter `description` must point to `None` on entry"
+            );
+        };
         unsafe { CFNetDiagnosticCopyNetworkStatusPassively(self, description) }
     }
 }

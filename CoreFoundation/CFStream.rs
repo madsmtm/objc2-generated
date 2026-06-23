@@ -305,25 +305,29 @@ impl CFWriteStream {
     }
 }
 
-/// # Safety
-///
-/// - `read_stream` must be a valid pointer.
-/// - `write_stream` must be a valid pointer.
 #[inline]
-pub unsafe fn CFStreamCreateBoundPair(
+pub fn CFStreamCreateBoundPair(
     alloc: Option<&CFAllocator>,
-    read_stream: &mut *mut CFReadStream,
-    write_stream: &mut *mut CFWriteStream,
+    read_stream: &mut Option<CFRetained<CFReadStream>>,
+    write_stream: &mut Option<CFRetained<CFWriteStream>>,
     transfer_buffer_size: CFIndex,
 ) {
     extern "C-unwind" {
         fn CFStreamCreateBoundPair(
             alloc: Option<&CFAllocator>,
-            read_stream: &mut *mut CFReadStream,
-            write_stream: &mut *mut CFWriteStream,
+            read_stream: &mut Option<CFRetained<CFReadStream>>,
+            write_stream: &mut Option<CFRetained<CFWriteStream>>,
             transfer_buffer_size: CFIndex,
         );
     }
+    assert!(
+        read_stream.is_none(),
+        "parameter `read_stream` must point to `None` on entry"
+    );
+    assert!(
+        write_stream.is_none(),
+        "parameter `write_stream` must point to `None` on entry"
+    );
     unsafe { CFStreamCreateBoundPair(alloc, read_stream, write_stream, transfer_buffer_size) }
 }
 
@@ -439,77 +443,103 @@ extern "C" {
     pub static kCFStreamPropertyShouldCloseNativeSocket: &'static CFString;
 }
 
-/// # Safety
-///
-/// - `read_stream` must be a valid pointer.
-/// - `write_stream` must be a valid pointer.
 #[cfg(feature = "CFSocket")]
 #[deprecated = "Use nw_connection_t in Network framework instead"]
 #[inline]
-pub unsafe fn CFStreamCreatePairWithSocket(
+pub fn CFStreamCreatePairWithSocket(
     alloc: Option<&CFAllocator>,
     sock: CFSocketNativeHandle,
-    read_stream: Option<&mut *mut CFReadStream>,
-    write_stream: Option<&mut *mut CFWriteStream>,
+    read_stream: Option<&mut Option<CFRetained<CFReadStream>>>,
+    write_stream: Option<&mut Option<CFRetained<CFWriteStream>>>,
 ) {
     extern "C-unwind" {
         fn CFStreamCreatePairWithSocket(
             alloc: Option<&CFAllocator>,
             sock: CFSocketNativeHandle,
-            read_stream: Option<&mut *mut CFReadStream>,
-            write_stream: Option<&mut *mut CFWriteStream>,
+            read_stream: Option<&mut Option<CFRetained<CFReadStream>>>,
+            write_stream: Option<&mut Option<CFRetained<CFWriteStream>>>,
         );
     }
+    if let Some(read_stream) = read_stream.as_ref() {
+        assert!(
+            read_stream.is_none(),
+            "parameter `read_stream` must point to `None` on entry"
+        );
+    };
+    if let Some(write_stream) = write_stream.as_ref() {
+        assert!(
+            write_stream.is_none(),
+            "parameter `write_stream` must point to `None` on entry"
+        );
+    };
     unsafe { CFStreamCreatePairWithSocket(alloc, sock, read_stream, write_stream) }
 }
 
-/// # Safety
-///
-/// - `read_stream` must be a valid pointer.
-/// - `write_stream` must be a valid pointer.
 #[deprecated = "Use nw_connection_t in Network framework instead"]
 #[inline]
-pub unsafe fn CFStreamCreatePairWithSocketToHost(
+pub fn CFStreamCreatePairWithSocketToHost(
     alloc: Option<&CFAllocator>,
     host: &CFString,
     port: u32,
-    read_stream: Option<&mut *mut CFReadStream>,
-    write_stream: Option<&mut *mut CFWriteStream>,
+    read_stream: Option<&mut Option<CFRetained<CFReadStream>>>,
+    write_stream: Option<&mut Option<CFRetained<CFWriteStream>>>,
 ) {
     extern "C-unwind" {
         fn CFStreamCreatePairWithSocketToHost(
             alloc: Option<&CFAllocator>,
             host: &CFString,
             port: u32,
-            read_stream: Option<&mut *mut CFReadStream>,
-            write_stream: Option<&mut *mut CFWriteStream>,
+            read_stream: Option<&mut Option<CFRetained<CFReadStream>>>,
+            write_stream: Option<&mut Option<CFRetained<CFWriteStream>>>,
         );
     }
+    if let Some(read_stream) = read_stream.as_ref() {
+        assert!(
+            read_stream.is_none(),
+            "parameter `read_stream` must point to `None` on entry"
+        );
+    };
+    if let Some(write_stream) = write_stream.as_ref() {
+        assert!(
+            write_stream.is_none(),
+            "parameter `write_stream` must point to `None` on entry"
+        );
+    };
     unsafe { CFStreamCreatePairWithSocketToHost(alloc, host, port, read_stream, write_stream) }
 }
 
 /// # Safety
 ///
-/// - `signature` struct field `address` must be a valid pointer.
-/// - `read_stream` must be a valid pointer.
-/// - `write_stream` must be a valid pointer.
+/// `signature` struct field `address` must be a valid pointer.
 #[cfg(all(feature = "CFData", feature = "CFSocket"))]
 #[deprecated = "Use nw_connection_t in Network framework instead"]
 #[inline]
 pub unsafe fn CFStreamCreatePairWithPeerSocketSignature(
     alloc: Option<&CFAllocator>,
     signature: &CFSocketSignature,
-    read_stream: Option<&mut *mut CFReadStream>,
-    write_stream: Option<&mut *mut CFWriteStream>,
+    read_stream: Option<&mut Option<CFRetained<CFReadStream>>>,
+    write_stream: Option<&mut Option<CFRetained<CFWriteStream>>>,
 ) {
     extern "C-unwind" {
         fn CFStreamCreatePairWithPeerSocketSignature(
             alloc: Option<&CFAllocator>,
             signature: &CFSocketSignature,
-            read_stream: Option<&mut *mut CFReadStream>,
-            write_stream: Option<&mut *mut CFWriteStream>,
+            read_stream: Option<&mut Option<CFRetained<CFReadStream>>>,
+            write_stream: Option<&mut Option<CFRetained<CFWriteStream>>>,
         );
     }
+    if let Some(read_stream) = read_stream.as_ref() {
+        assert!(
+            read_stream.is_none(),
+            "parameter `read_stream` must point to `None` on entry"
+        );
+    };
+    if let Some(write_stream) = write_stream.as_ref() {
+        assert!(
+            write_stream.is_none(),
+            "parameter `write_stream` must point to `None` on entry"
+        );
+    };
     unsafe {
         CFStreamCreatePairWithPeerSocketSignature(alloc, signature, read_stream, write_stream)
     }

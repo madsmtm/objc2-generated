@@ -399,17 +399,25 @@ pub unsafe fn KillProcess(in_process: *const ProcessSerialNumber) -> OSErr {
 /// # Safety
 ///
 /// - `psn` must be a valid pointer.
-/// - `name` must be a valid pointer.
+/// - `name` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn CopyProcessName(
     psn: *const ProcessSerialNumber,
-    name: *mut *const CFString,
+    name: Option<&mut Option<CFRetained<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn CopyProcessName(psn: *const ProcessSerialNumber, name: *mut *const CFString)
-            -> OSStatus;
+        fn CopyProcessName(
+            psn: *const ProcessSerialNumber,
+            name: Option<&mut Option<CFRetained<CFString>>>,
+        ) -> OSStatus;
     }
+    if let Some(name) = name.as_ref() {
+        assert!(
+            name.is_none(),
+            "parameter `name` must point to `None` on entry"
+        );
+    };
     unsafe { CopyProcessName(psn, name) }
 }
 

@@ -2422,22 +2422,27 @@ impl IOHIDDevice {
     ///
     /// # Safety
     ///
-    /// - `elements` generic must be of the correct type.
-    /// - `p_multiple` must be a valid pointer or null.
+    /// `elements` generic must be of the correct type.
     #[doc(alias = "IOHIDDeviceCopyValueMultiple")]
     #[inline]
-    pub unsafe fn copy_value_multiple(
+    pub unsafe fn value_multiple(
         &self,
         elements: &CFArray,
-        p_multiple: *mut *const CFDictionary,
+        p_multiple: Option<&mut Option<CFRetained<CFDictionary>>>,
     ) -> IOReturn {
         extern "C-unwind" {
             fn IOHIDDeviceCopyValueMultiple(
                 device: &IOHIDDevice,
                 elements: &CFArray,
-                p_multiple: *mut *const CFDictionary,
+                p_multiple: Option<&mut Option<CFRetained<CFDictionary>>>,
             ) -> IOReturn;
         }
+        if let Some(p_multiple) = p_multiple.as_ref() {
+            assert!(
+                p_multiple.is_none(),
+                "parameter `p_multiple` must point to `None` on entry"
+            );
+        };
         unsafe { IOHIDDeviceCopyValueMultiple(self, elements, p_multiple) }
     }
 
@@ -2519,15 +2524,14 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// - `elements` generic must be of the correct type.
-    /// - `p_multiple` must be a valid pointer or null.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceCopyValueMultipleWithCallback")]
     #[inline]
-    pub unsafe fn copy_value_multiple_with_callback(
+    pub unsafe fn value_multiple_with_callback(
         &self,
         elements: &CFArray,
-        p_multiple: *mut *const CFDictionary,
+        p_multiple: Option<&mut Option<CFRetained<CFDictionary>>>,
         timeout: CFTimeInterval,
         callback: IOHIDValueMultipleCallback,
         context: *mut c_void,
@@ -2536,12 +2540,18 @@ impl IOHIDDevice {
             fn IOHIDDeviceCopyValueMultipleWithCallback(
                 device: &IOHIDDevice,
                 elements: &CFArray,
-                p_multiple: *mut *const CFDictionary,
+                p_multiple: Option<&mut Option<CFRetained<CFDictionary>>>,
                 timeout: CFTimeInterval,
                 callback: IOHIDValueMultipleCallback,
                 context: *mut c_void,
             ) -> IOReturn;
         }
+        if let Some(p_multiple) = p_multiple.as_ref() {
+            assert!(
+                p_multiple.is_none(),
+                "parameter `p_multiple` must point to `None` on entry"
+            );
+        };
         unsafe {
             IOHIDDeviceCopyValueMultipleWithCallback(
                 self, elements, p_multiple, timeout, callback, context,

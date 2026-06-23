@@ -1109,21 +1109,22 @@ pub unsafe fn SSLSetALPNProtocols(context: &SSLContext, protocols: &CFArray) -> 
     unsafe { SSLSetALPNProtocols(context, protocols) }
 }
 
-/// # Safety
-///
-/// `protocols` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLCopyALPNProtocols(
     context: &SSLContext,
-    protocols: NonNull<*const CFArray>,
+    protocols: &mut Option<CFRetained<CFArray>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLCopyALPNProtocols(
             context: &SSLContext,
-            protocols: NonNull<*const CFArray>,
+            protocols: &mut Option<CFRetained<CFArray>>,
         ) -> OSStatus;
     }
+    assert!(
+        protocols.is_none(),
+        "parameter `protocols` must point to `None` on entry"
+    );
     unsafe { SSLCopyALPNProtocols(context, protocols) }
 }
 
