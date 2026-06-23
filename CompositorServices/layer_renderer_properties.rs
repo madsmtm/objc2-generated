@@ -165,10 +165,6 @@ pub type cp_layer_renderer_properties_t = CP_OBJECT_cp_layer_renderer_properties
 /// properties to configure other parts of your app before the layer becomes
 /// available. For example, you might use the information to configure portions
 /// of your app's render pipeline.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[cfg(all(
     feature = "layer_renderer_configuration",
     feature = "objc2-core-foundation"
@@ -176,14 +172,20 @@ pub type cp_layer_renderer_properties_t = CP_OBJECT_cp_layer_renderer_properties
 #[inline]
 pub unsafe fn cp_layer_renderer_properties_create_using_configuration(
     configuration: &cp_layer_renderer_configuration_t,
-    error: *mut *mut CFError,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> Option<Retained<cp_layer_renderer_properties_t>> {
     extern "C-unwind" {
         fn cp_layer_renderer_properties_create_using_configuration(
             configuration: &cp_layer_renderer_configuration_t,
-            error: *mut *mut CFError,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> *mut cp_layer_renderer_properties_t;
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     let ret =
         unsafe { cp_layer_renderer_properties_create_using_configuration(configuration, error) };
     unsafe { Retained::from_raw(ret) }

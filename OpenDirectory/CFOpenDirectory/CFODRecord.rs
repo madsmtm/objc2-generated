@@ -50,7 +50,7 @@ impl ODRecordRef {
     ///
     /// - `username` might not allow `None`.
     /// - `password` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordSetNodeCredentials")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -58,16 +58,22 @@ impl ODRecordRef {
         &self,
         username: Option<&CFString>,
         password: Option<&CFString>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordSetNodeCredentials(
                 record: &ODRecordRef,
                 username: Option<&CFString>,
                 password: Option<&CFString>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordSetNodeCredentials(self, username, password, error) }
     }
 
@@ -104,7 +110,7 @@ impl ODRecordRef {
     /// - `auth_items` might not allow `None`.
     /// - `out_auth_items` must be a valid pointer.
     /// - `out_context` must be a valid pointer.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordSetNodeCredentialsExtended")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -118,7 +124,7 @@ impl ODRecordRef {
         auth_items: Option<&CFArray>,
         out_auth_items: *mut *const CFArray,
         out_context: *mut *const ODContextRef,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordSetNodeCredentialsExtended(
@@ -128,9 +134,15 @@ impl ODRecordRef {
                 auth_items: Option<&CFArray>,
                 out_auth_items: *mut *const CFArray,
                 out_context: *mut *const ODContextRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe {
             ODRecordSetNodeCredentialsExtended(
                 self,
@@ -151,7 +163,7 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// - `cache_name` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordSetNodeCredentialsUsingKerberosCache")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -159,15 +171,21 @@ impl ODRecordRef {
     pub unsafe fn set_node_credentials_using_kerberos_cache(
         &self,
         cache_name: Option<&CFString>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordSetNodeCredentialsUsingKerberosCache(
                 record: &ODRecordRef,
                 cache_name: Option<&CFString>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordSetNodeCredentialsUsingKerberosCache(self, cache_name, error) }
     }
 
@@ -185,7 +203,7 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODRecordCopyPasswordPolicy")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordCopyEffectivePolicies"]
@@ -193,15 +211,21 @@ impl ODRecordRef {
     pub unsafe fn password_policy(
         &self,
         allocator: Option<&CFAllocator>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODRecordCopyPasswordPolicy(
                 allocator: Option<&CFAllocator>,
                 record: &ODRecordRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODRecordCopyPasswordPolicy(allocator, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -221,22 +245,28 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// - `password` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordVerifyPassword")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn verify_password(
         &self,
         password: Option<&CFString>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordVerifyPassword(
                 record: &ODRecordRef,
                 password: Option<&CFString>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordVerifyPassword(self, password, error) }
     }
 
@@ -269,7 +299,7 @@ impl ODRecordRef {
     /// - `auth_items` might not allow `None`.
     /// - `out_auth_items` must be a valid pointer.
     /// - `out_context` must be a valid pointer.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordVerifyPasswordExtended")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -282,7 +312,7 @@ impl ODRecordRef {
         auth_items: Option<&CFArray>,
         out_auth_items: *mut *const CFArray,
         out_context: *mut *const ODContextRef,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordVerifyPasswordExtended(
@@ -291,9 +321,15 @@ impl ODRecordRef {
                 auth_items: Option<&CFArray>,
                 out_auth_items: *mut *const CFArray,
                 out_context: *mut *const ODContextRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe {
             ODRecordVerifyPasswordExtended(
                 self,
@@ -325,7 +361,7 @@ impl ODRecordRef {
     ///
     /// - `old_password` might not allow `None`.
     /// - `new_password` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordChangePassword")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -333,16 +369,22 @@ impl ODRecordRef {
         &self,
         old_password: Option<&CFString>,
         new_password: Option<&CFString>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordChangePassword(
                 record: &ODRecordRef,
                 old_password: Option<&CFString>,
                 new_password: Option<&CFString>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordChangePassword(self, old_password, new_password, error) }
     }
 
@@ -401,7 +443,7 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// - `attribute` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordCopyValues")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -411,15 +453,21 @@ impl ODRecordRef {
     pub unsafe fn values(
         &self,
         attribute: Option<&ODAttributeType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn ODRecordCopyValues(
                 record: &ODRecordRef,
                 attribute: Option<&ODAttributeType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODRecordCopyValues(self, attribute, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -447,7 +495,7 @@ impl ODRecordRef {
     /// - `attribute` might not allow `None`.
     /// - `value_or_values` should be of the correct type.
     /// - `value_or_values` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordSetValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -458,16 +506,22 @@ impl ODRecordRef {
         &self,
         attribute: Option<&ODAttributeType>,
         value_or_values: Option<&CFType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordSetValue(
                 record: &ODRecordRef,
                 attribute: Option<&ODAttributeType>,
                 value_or_values: Option<&CFType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordSetValue(self, attribute, value_or_values, error) }
     }
 
@@ -490,7 +544,7 @@ impl ODRecordRef {
     /// - `attribute` might not allow `None`.
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordAddValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -501,16 +555,22 @@ impl ODRecordRef {
         &self,
         attribute: Option<&ODAttributeType>,
         value: Option<&CFType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordAddValue(
                 record: &ODRecordRef,
                 attribute: Option<&ODAttributeType>,
                 value: Option<&CFType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordAddValue(self, attribute, value, error) }
     }
 
@@ -534,7 +594,7 @@ impl ODRecordRef {
     /// - `attribute` might not allow `None`.
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordRemoveValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -545,16 +605,22 @@ impl ODRecordRef {
         &self,
         attribute: Option<&ODAttributeType>,
         value: Option<&CFType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordRemoveValue(
                 record: &ODRecordRef,
                 attribute: Option<&ODAttributeType>,
                 value: Option<&CFType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordRemoveValue(self, attribute, value, error) }
     }
 
@@ -579,22 +645,28 @@ impl ODRecordRef {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordCopyDetails")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn details(
         &self,
         attributes: Option<&CFArray>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODRecordCopyDetails(
                 record: &ODRecordRef,
                 attributes: Option<&CFArray>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODRecordCopyDetails(self, attributes, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -612,14 +684,23 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODRecordSynchronize")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn synchronize(&self, error: *mut *mut CFError) -> bool {
+    pub unsafe fn synchronize(&self, error: Option<&mut Option<CFRetained<CFError>>>) -> bool {
         extern "C-unwind" {
-            fn ODRecordSynchronize(record: &ODRecordRef, error: *mut *mut CFError) -> bool;
+            fn ODRecordSynchronize(
+                record: &ODRecordRef,
+                error: Option<&mut Option<CFRetained<CFError>>>,
+            ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordSynchronize(self, error) }
     }
 
@@ -636,14 +717,23 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODRecordDelete")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn delete(&self, error: *mut *mut CFError) -> bool {
+    pub unsafe fn delete(&self, error: Option<&mut Option<CFRetained<CFError>>>) -> bool {
         extern "C-unwind" {
-            fn ODRecordDelete(record: &ODRecordRef, error: *mut *mut CFError) -> bool;
+            fn ODRecordDelete(
+                record: &ODRecordRef,
+                error: Option<&mut Option<CFRetained<CFError>>>,
+            ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordDelete(self, error) }
     }
 
@@ -665,22 +755,28 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// - `member` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordAddMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn add_member(
         &self,
         member: Option<&ODRecordRef>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordAddMember(
                 group: &ODRecordRef,
                 member: Option<&ODRecordRef>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordAddMember(self, member, error) }
     }
 
@@ -700,22 +796,28 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// - `member` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordRemoveMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn remove_member(
         &self,
         member: Option<&ODRecordRef>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordRemoveMember(
                 group: &ODRecordRef,
                 member: Option<&ODRecordRef>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordRemoveMember(self, member, error) }
     }
 
@@ -736,22 +838,28 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// - `member` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordContainsMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn contains_member(
         &self,
         member: Option<&ODRecordRef>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordContainsMember(
                 group: &ODRecordRef,
                 member: Option<&ODRecordRef>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordContainsMember(self, member, error) }
     }
 
@@ -767,18 +875,27 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODRecordCopyPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordCopyAccountPolicies"]
     #[inline]
-    pub unsafe fn policies(&self, error: *mut *mut CFError) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn policies(
+        &self,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODRecordCopyPolicies(
                 record: &ODRecordRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODRecordCopyPolicies(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -795,21 +912,27 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODRecordCopyEffectivePolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordAuthenticationAllowed and similar functions"]
     #[inline]
     pub unsafe fn effective_policies(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODRecordCopyEffectivePolicies(
                 record: &ODRecordRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODRecordCopyEffectivePolicies(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -828,21 +951,27 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODRecordCopySupportedPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     #[inline]
     pub unsafe fn supported_policies(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODRecordCopySupportedPolicies(
                 record: &ODRecordRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODRecordCopySupportedPolicies(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -864,7 +993,7 @@ impl ODRecordRef {
     /// - `policies` generic must be of the correct type.
     /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordSetPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordSetAccountPolicies"]
@@ -872,15 +1001,21 @@ impl ODRecordRef {
     pub unsafe fn set_policies(
         &self,
         policies: Option<&CFDictionary>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordSetPolicies(
                 record: &ODRecordRef,
                 policies: Option<&CFDictionary>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordSetPolicies(self, policies, error) }
     }
 
@@ -903,7 +1038,7 @@ impl ODRecordRef {
     /// - `policy` might not allow `None`.
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordSetPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -915,16 +1050,22 @@ impl ODRecordRef {
         &self,
         policy: Option<&ODPolicyType>,
         value: Option<&CFType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordSetPolicy(
                 record: &ODRecordRef,
                 policy: Option<&ODPolicyType>,
                 value: Option<&CFType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordSetPolicy(self, policy, value, error) }
     }
 
@@ -943,7 +1084,7 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// - `policy` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordRemovePolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -954,15 +1095,21 @@ impl ODRecordRef {
     pub unsafe fn remove_policy(
         &self,
         policy: Option<&ODPolicyType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordRemovePolicy(
                 record: &ODRecordRef,
                 policy: Option<&ODPolicyType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordRemovePolicy(self, policy, error) }
     }
 
@@ -996,7 +1143,7 @@ impl ODRecordRef {
     /// - `policy` generic must be of the correct type.
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordAddAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -1007,16 +1154,22 @@ impl ODRecordRef {
         &self,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordAddAccountPolicy(
                 record: &ODRecordRef,
                 policy: Option<&CFDictionary>,
                 category: Option<&ODPolicyCategoryType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordAddAccountPolicy(self, policy, category, error) }
     }
 
@@ -1041,7 +1194,7 @@ impl ODRecordRef {
     /// - `policy` generic must be of the correct type.
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordRemoveAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -1052,16 +1205,22 @@ impl ODRecordRef {
         &self,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordRemoveAccountPolicy(
                 record: &ODRecordRef,
                 policy: Option<&CFDictionary>,
                 category: Option<&ODPolicyCategoryType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordRemoveAccountPolicy(self, policy, category, error) }
     }
 
@@ -1094,22 +1253,28 @@ impl ODRecordRef {
     /// - `policies` generic must be of the correct type.
     /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordSetAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn set_account_policies(
         &self,
         policies: Option<&CFDictionary>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordSetAccountPolicies(
                 record: &ODRecordRef,
                 policies: Option<&CFDictionary>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordSetAccountPolicies(self, policies, error) }
     }
 
@@ -1128,20 +1293,26 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODRecordCopyAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn account_policies(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODRecordCopyAccountPolicies(
                 record: &ODRecordRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODRecordCopyAccountPolicies(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -1173,17 +1344,26 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODRecordAuthenticationAllowed")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn authentication_allowed(&self, error: *mut *mut CFError) -> bool {
+    pub unsafe fn authentication_allowed(
+        &self,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> bool {
         extern "C-unwind" {
             fn ODRecordAuthenticationAllowed(
                 record: &ODRecordRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordAuthenticationAllowed(self, error) }
     }
 
@@ -1212,22 +1392,28 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// - `new_password` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordPasswordChangeAllowed")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn password_change_allowed(
         &self,
         new_password: Option<&CFString>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordPasswordChangeAllowed(
                 record: &ODRecordRef,
                 new_password: Option<&CFString>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODRecordPasswordChangeAllowed(self, new_password, error) }
     }
 

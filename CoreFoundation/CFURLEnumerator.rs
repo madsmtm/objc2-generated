@@ -146,23 +146,28 @@ unsafe impl RefEncode for CFURLEnumeratorResult {
 impl CFURLEnumerator {
     /// # Safety
     ///
-    /// - `url` must be a valid pointer.
-    /// - `error` must be a valid pointer.
+    /// `url` must be a valid pointer.
     #[doc(alias = "CFURLEnumeratorGetNextURL")]
     #[cfg(all(feature = "CFError", feature = "CFURL"))]
     #[inline]
     pub unsafe fn next_url(
         &self,
         url: &mut *const CFURL,
-        error: Option<&mut *mut CFError>,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> CFURLEnumeratorResult {
         extern "C-unwind" {
             fn CFURLEnumeratorGetNextURL(
                 enumerator: &CFURLEnumerator,
                 url: &mut *const CFURL,
-                error: Option<&mut *mut CFError>,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> CFURLEnumeratorResult;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { CFURLEnumeratorGetNextURL(self, url, error) }
     }
 

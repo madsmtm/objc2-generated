@@ -241,23 +241,25 @@ impl SecCertificate {
     /// Parameter `error`: An optional pointer to a CFErrorRef which will be set on return from the function if an error occurred. If not NULL, the caller is responsible for releasing the CFErrorRef.
     ///
     /// Return the content of a DER-encoded integer (without the tag and length fields) for this certificate's serial number. The caller must CFRelease the value returned.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopySerialNumberData")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn serial_number_data(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecCertificateCopySerialNumberData(
                 certificate: &SecCertificate,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecCertificateCopySerialNumberData(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -307,15 +309,14 @@ impl SecCertificate {
     /// Parameter `error`: An optional pointer to a CFErrorRef which will be set on return from the function if an error occurred. If not NULL, the caller is responsible for releasing the CFErrorRef.
     ///
     /// Return the content of a DER-encoded integer (without the tag and length fields) for this certificate's serial number. The caller must CFRelease the value returned. NOTE: Deprecated in macOS 10.13; use SecCertificateCopySerialNumberData instead for cross-platform availability.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopySerialNumber")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn serial_number(&self, error: *mut *mut CFError) -> Option<CFRetained<CFData>> {
+    pub unsafe fn serial_number(
+        &self,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             #[cfg_attr(
                 target_os = "macos",
@@ -323,9 +324,15 @@ impl SecCertificate {
             )]
             fn SecCertificateCopySerialNumber(
                 certificate: &SecCertificate,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecCertificateCopySerialNumber(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -896,23 +903,28 @@ impl SecCertificate {
     ///
     /// # Safety
     ///
-    /// - `keys` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
+    /// `keys` generic must be of the correct type.
     #[doc(alias = "SecCertificateCopyValues")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn values(
         &self,
         keys: Option<&CFArray>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SecCertificateCopyValues(
                 certificate: &SecCertificate,
                 keys: Option<&CFArray>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecCertificateCopyValues(self, keys, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -935,25 +947,27 @@ impl SecCertificate {
     /// parameter is supplied the error will be returned in the error parameter
     ///
     /// Note that the format of this string may change in the future
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopyLongDescription")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn long_description(
         &self,
         alloc: Option<&CFAllocator>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SecCertificateCopyLongDescription(
                 alloc: Option<&CFAllocator>,
                 certificate: &SecCertificate,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFString>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecCertificateCopyLongDescription(alloc, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -976,25 +990,27 @@ impl SecCertificate {
     /// parameter is supplied the error will be returned in the error parameter
     ///
     /// Note that the format of this string may change in the future
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopyShortDescription")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn short_description(
         &self,
         alloc: Option<&CFAllocator>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SecCertificateCopyShortDescription(
                 alloc: Option<&CFAllocator>,
                 certificate: &SecCertificate,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFString>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecCertificateCopyShortDescription(alloc, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -1012,24 +1028,26 @@ impl SecCertificate {
     /// X.509 distinguished name. For a display version of the issuer,
     /// call SecCertificateCopyValues. The caller must CFRelease
     /// the value returned.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopyNormalizedIssuerContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecCertificateCopyNormalizedIssuerContent is deprecated. Use SecCertificateCopyNormalizedIssuerSequence instead."]
     #[inline]
     pub unsafe fn normalized_issuer_content(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecCertificateCopyNormalizedIssuerContent(
                 certificate: &SecCertificate,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecCertificateCopyNormalizedIssuerContent(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -1047,24 +1065,26 @@ impl SecCertificate {
     /// X.509 distinguished name. For a display version of the subject,
     /// call SecCertificateCopyValues. The caller must CFRelease
     /// the value returned.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopyNormalizedSubjectContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecCertificateCopyNormalizedSubjectContent is deprecated. Use SecCertificateCopyNormalizedSubjectSequence instead."]
     #[inline]
     pub unsafe fn normalized_subject_content(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecCertificateCopyNormalizedSubjectContent(
                 certificate: &SecCertificate,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecCertificateCopyNormalizedSubjectContent(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

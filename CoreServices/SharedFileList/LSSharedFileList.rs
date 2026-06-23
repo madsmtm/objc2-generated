@@ -530,24 +530,27 @@ impl LSSharedFileListItem {
         unsafe { LSSharedFileListItemResolve(self, in_flags, out_url, out_ref) }
     }
 
-    /// # Safety
-    ///
-    /// `out_error` must be a valid pointer or null.
     #[doc(alias = "LSSharedFileListItemCopyResolvedURL")]
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn resolved_url(
         &self,
         in_flags: LSSharedFileListResolutionFlags,
-        out_error: *mut *mut CFError,
+        out_error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn LSSharedFileListItemCopyResolvedURL(
                 in_item: &LSSharedFileListItem,
                 in_flags: LSSharedFileListResolutionFlags,
-                out_error: *mut *mut CFError,
+                out_error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFURL>>;
         }
+        if let Some(out_error) = out_error.as_ref() {
+            assert!(
+                out_error.is_none(),
+                "parameter `out_error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { LSSharedFileListItemCopyResolvedURL(self, in_flags, out_error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

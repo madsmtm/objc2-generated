@@ -568,21 +568,26 @@ impl SecKey {
     ///
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyGenerateSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn generate_symmetric(
         parameters: &CFDictionary,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyGenerateSymmetric(
                 parameters: &CFDictionary,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecKeyGenerateSymmetric(parameters, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -615,7 +620,6 @@ impl SecKey {
     ///
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateFromData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -623,15 +627,21 @@ impl SecKey {
     pub unsafe fn from_data(
         parameters: &CFDictionary,
         key_data: &CFData,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyCreateFromData(
                 parameters: &CFDictionary,
                 key_data: &CFData,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecKeyCreateFromData(parameters, key_data, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -687,7 +697,6 @@ impl SecKey {
     ///
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyDeriveFromPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -695,15 +704,21 @@ impl SecKey {
     pub unsafe fn derive_from_password(
         password: &CFString,
         parameters: &CFDictionary,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyDeriveFromPassword(
                 password: &CFString,
                 parameters: &CFDictionary,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecKeyDeriveFromPassword(password, parameters, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -731,7 +746,6 @@ impl SecKey {
     ///
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyWrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -740,16 +754,22 @@ impl SecKey {
         &self,
         wrapping_key: &SecKey,
         parameters: &CFDictionary,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecKeyWrapSymmetric(
                 key_to_wrap: &SecKey,
                 wrapping_key: &SecKey,
                 parameters: &CFDictionary,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecKeyWrapSymmetric(self, wrapping_key, parameters, error) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
@@ -778,7 +798,6 @@ impl SecKey {
     /// - `key_to_unwrap` must be a valid pointer.
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyUnwrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -787,16 +806,22 @@ impl SecKey {
         key_to_unwrap: NonNull<*const CFData>,
         unwrapping_key: &SecKey,
         parameters: &CFDictionary,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyUnwrapSymmetric(
                 key_to_unwrap: NonNull<*const CFData>,
                 unwrapping_key: &SecKey,
                 parameters: &CFDictionary,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret =
             unsafe { SecKeyUnwrapSymmetric(key_to_unwrap, unwrapping_key, parameters, error) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -936,20 +961,25 @@ impl SecKey {
     ///
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateRandomKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn new_random_key(
         parameters: &CFDictionary,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyCreateRandomKey(
                 parameters: &CFDictionary,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecKeyCreateRandomKey(parameters, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -978,22 +1008,27 @@ impl SecKey {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateWithData")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn with_data(
         key_data: &CFData,
         attributes: &CFDictionary,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyCreateWithData(
                 key_data: &CFData,
                 attributes: &CFDictionary,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecKeyCreateWithData(key_data, attributes, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -1029,23 +1064,25 @@ impl SecKey {
     /// The format in which the key will be exported depends on the type of key:
     /// kSecAttrKeyTypeRSA               PKCS#1 format
     /// kSecAttrKeyTypeECSECPrimeRandom  ANSI X9.63 format (04 || X || Y [ || K])
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCopyExternalRepresentation")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn external_representation(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecKeyCopyExternalRepresentation(
                 key: &SecKey,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecKeyCopyExternalRepresentation(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -1993,10 +2030,6 @@ impl SecKey {
     ///
     /// Computes digital signature using specified key over input data.  The operation algorithm
     /// further defines the exact format of input data, operation to be performed and output signature.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateSignature")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2004,16 +2037,22 @@ impl SecKey {
         &self,
         algorithm: &SecKeyAlgorithm,
         data_to_sign: &CFData,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecKeyCreateSignature(
                 key: &SecKey,
                 algorithm: &SecKeyAlgorithm,
                 data_to_sign: &CFData,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecKeyCreateSignature(self, algorithm, data_to_sign, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -2035,10 +2074,6 @@ impl SecKey {
     ///
     /// Verifies digital signature operation using specified key and signed data.  The operation algorithm
     /// further defines the exact format of input data, signature and operation to be performed.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyVerifySignature")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2047,7 +2082,7 @@ impl SecKey {
         algorithm: &SecKeyAlgorithm,
         signed_data: &CFData,
         signature: &CFData,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn SecKeyVerifySignature(
@@ -2055,9 +2090,15 @@ impl SecKey {
                 algorithm: &SecKeyAlgorithm,
                 signed_data: &CFData,
                 signature: &CFData,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecKeyVerifySignature(self, algorithm, signed_data, signature, error) };
         ret != 0
     }
@@ -2078,10 +2119,6 @@ impl SecKey {
     ///
     /// Encrypts plaintext data using specified key.  The exact type of the operation including the format
     /// of input and output data is specified by encryption algorithm.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateEncryptedData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2089,16 +2126,22 @@ impl SecKey {
         &self,
         algorithm: &SecKeyAlgorithm,
         plaintext: &CFData,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecKeyCreateEncryptedData(
                 key: &SecKey,
                 algorithm: &SecKeyAlgorithm,
                 plaintext: &CFData,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecKeyCreateEncryptedData(self, algorithm, plaintext, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -2119,10 +2162,6 @@ impl SecKey {
     ///
     /// Decrypts ciphertext data using specified key.  The exact type of the operation including the format
     /// of input and output data is specified by decryption algorithm.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateDecryptedData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2130,16 +2169,22 @@ impl SecKey {
         &self,
         algorithm: &SecKeyAlgorithm,
         ciphertext: &CFData,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecKeyCreateDecryptedData(
                 key: &SecKey,
                 algorithm: &SecKeyAlgorithm,
                 ciphertext: &CFData,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecKeyCreateDecryptedData(self, algorithm, ciphertext, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -2181,7 +2226,6 @@ impl SecKey {
     ///
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCopyKeyExchangeResult")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2190,7 +2234,7 @@ impl SecKey {
         algorithm: &SecKeyAlgorithm,
         public_key: &SecKey,
         parameters: &CFDictionary,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecKeyCopyKeyExchangeResult(
@@ -2198,9 +2242,15 @@ impl SecKey {
                 algorithm: &SecKeyAlgorithm,
                 public_key: &SecKey,
                 parameters: &CFDictionary,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret =
             unsafe { SecKeyCopyKeyExchangeResult(self, algorithm, public_key, parameters, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

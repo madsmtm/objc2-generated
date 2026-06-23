@@ -316,10 +316,6 @@ impl SecCode {
     ///
     /// Returns: If validation passes, errSecSuccess. If validation fails, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
-    ///
-    /// # Safety
-    ///
-    /// `errors` must be a valid pointer or null.
     #[doc(alias = "SecCodeCheckValidityWithErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -327,16 +323,22 @@ impl SecCode {
         &self,
         flags: SecCSFlags,
         requirement: Option<&SecRequirement>,
-        errors: *mut *mut CFError,
+        errors: Option<&mut Option<CFRetained<CFError>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeCheckValidityWithErrors(
                 code: &SecCode,
                 flags: SecCSFlags,
                 requirement: Option<&SecRequirement>,
-                errors: *mut *mut CFError,
+                errors: Option<&mut Option<CFRetained<CFError>>>,
             ) -> OSStatus;
         }
+        if let Some(errors) = errors.as_ref() {
+            assert!(
+                errors.is_none(),
+                "parameter `errors` must point to `None` on entry"
+            );
+        };
         unsafe { SecCodeCheckValidityWithErrors(self, flags, requirement, errors) }
     }
 

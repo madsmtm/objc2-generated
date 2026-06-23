@@ -389,40 +389,46 @@ unsafe impl ConcreteType for ColorSyncProfile {
 }
 
 impl ColorSyncProfile {
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileCreate")]
     #[inline]
     pub unsafe fn new(
         data: &CFData,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ColorSyncProfile>> {
         extern "C-unwind" {
             fn ColorSyncProfileCreate(
                 data: &CFData,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ColorSyncProfile>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ColorSyncProfileCreate(data, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
         url: &CFURL,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ColorSyncProfile>> {
         extern "C-unwind" {
             fn ColorSyncProfileCreateWithURL(
                 url: &CFURL,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ColorSyncProfile>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ColorSyncProfileCreateWithURL(url, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -438,21 +444,26 @@ impl ColorSyncProfile {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileCreateWithURLAndOptions")]
     #[inline]
     pub unsafe fn with_url_and_options(
         url: &CFURL,
         options: Option<&CFDictionary>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ColorSyncProfile>> {
         extern "C-unwind" {
             fn ColorSyncProfileCreateWithURLAndOptions(
                 url: &CFURL,
                 options: Option<&CFDictionary>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ColorSyncProfile>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ColorSyncProfileCreateWithURLAndOptions(url, options, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -549,20 +560,32 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// - `errors` must be a valid pointer or null.
-    /// - `warnings` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileVerify")]
     #[inline]
-    pub unsafe fn verify(&self, errors: *mut *mut CFError, warnings: *mut *mut CFError) -> bool {
+    pub unsafe fn verify(
+        &self,
+        errors: Option<&mut Option<CFRetained<CFError>>>,
+        warnings: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> bool {
         extern "C-unwind" {
             fn ColorSyncProfileVerify(
                 prof: &ColorSyncProfile,
-                errors: *mut *mut CFError,
-                warnings: *mut *mut CFError,
+                errors: Option<&mut Option<CFRetained<CFError>>>,
+                warnings: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(errors) = errors.as_ref() {
+            assert!(
+                errors.is_none(),
+                "parameter `errors` must point to `None` on entry"
+            );
+        };
+        if let Some(warnings) = warnings.as_ref() {
+            assert!(
+                warnings.is_none(),
+                "parameter `warnings` must point to `None` on entry"
+            );
+        };
         unsafe { ColorSyncProfileVerify(self, errors, warnings) }
     }
 
@@ -602,21 +625,24 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsHLGBased(self) }
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileEstimateGammaWithDisplayID")]
     #[inline]
     pub unsafe fn estimate_gamma_with_display_id(
         display_id: i32,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> c_float {
         extern "C-unwind" {
             fn ColorSyncProfileEstimateGammaWithDisplayID(
                 display_id: i32,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> c_float;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ColorSyncProfileEstimateGammaWithDisplayID(display_id, error) }
     }
 
@@ -696,18 +722,24 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileEstimateGamma")]
     #[inline]
-    pub unsafe fn estimate_gamma(&self, error: *mut *mut CFError) -> c_float {
+    pub unsafe fn estimate_gamma(
+        &self,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> c_float {
         extern "C-unwind" {
             fn ColorSyncProfileEstimateGamma(
                 prof: &ColorSyncProfile,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> c_float;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ColorSyncProfileEstimateGamma(self, error) }
     }
 }
@@ -739,36 +771,45 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileGetMD5(self) }
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileCopyData")]
     #[inline]
-    pub unsafe fn data(&self, error: *mut *mut CFError) -> CFRetained<CFData> {
+    pub unsafe fn data(
+        &self,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> CFRetained<CFData> {
         extern "C-unwind" {
             fn ColorSyncProfileCopyData(
                 prof: &ColorSyncProfile,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ColorSyncProfileCopyData(self, error) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileGetURL")]
     #[inline]
-    pub unsafe fn url(&self, error: *mut *mut CFError) -> CFRetained<CFURL> {
+    pub unsafe fn url(&self, error: Option<&mut Option<CFRetained<CFError>>>) -> CFRetained<CFURL> {
         extern "C-unwind" {
             fn ColorSyncProfileGetURL(
                 prof: &ColorSyncProfile,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFURL>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ColorSyncProfileGetURL(self, error) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -885,22 +926,27 @@ extern "C" {
 /// - `call_back` must be implemented correctly.
 /// - `seed` must be a valid pointer or null.
 /// - `user_info` must be a valid pointer or null.
-/// - `error` must be a valid pointer or null.
 #[inline]
 pub unsafe fn ColorSyncIterateInstalledProfiles(
     call_back: ColorSyncProfileIterateCallback,
     seed: *mut u32,
     user_info: *mut c_void,
-    error: *mut *mut CFError,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) {
     extern "C-unwind" {
         fn ColorSyncIterateInstalledProfiles(
             call_back: ColorSyncProfileIterateCallback,
             seed: *mut u32,
             user_info: *mut c_void,
-            error: *mut *mut CFError,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         );
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     unsafe { ColorSyncIterateInstalledProfiles(call_back, seed, user_info, error) }
 }
 
@@ -916,14 +962,13 @@ extern "C" {
 /// - `user_info` must be a valid pointer or null.
 /// - `options` generic must be of the correct type.
 /// - `options` generic must be of the correct type.
-/// - `error` must be a valid pointer or null.
 #[inline]
 pub unsafe fn ColorSyncIterateInstalledProfilesWithOptions(
     call_back: ColorSyncProfileIterateCallback,
     seed: *mut u32,
     user_info: *mut c_void,
     options: Option<&CFDictionary>,
-    error: *mut *mut CFError,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) {
     extern "C-unwind" {
         fn ColorSyncIterateInstalledProfilesWithOptions(
@@ -931,49 +976,61 @@ pub unsafe fn ColorSyncIterateInstalledProfilesWithOptions(
             seed: *mut u32,
             user_info: *mut c_void,
             options: Option<&CFDictionary>,
-            error: *mut *mut CFError,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         );
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     unsafe {
         ColorSyncIterateInstalledProfilesWithOptions(call_back, seed, user_info, options, error)
     }
 }
 
 impl ColorSyncProfile {
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileInstall")]
     #[inline]
     pub unsafe fn install(
         &self,
         domain: &CFString,
         subpath: &CFString,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ColorSyncProfileInstall(
                 profile: &ColorSyncProfile,
                 domain: &CFString,
                 subpath: &CFString,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ColorSyncProfileInstall(self, domain, subpath, error) }
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileUninstall")]
     #[inline]
-    pub unsafe fn uninstall(&self, error: *mut *mut CFError) -> bool {
+    pub unsafe fn uninstall(&self, error: Option<&mut Option<CFRetained<CFError>>>) -> bool {
         extern "C-unwind" {
             fn ColorSyncProfileUninstall(
                 profile: &ColorSyncProfile,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ColorSyncProfileUninstall(self, error) }
     }
 }

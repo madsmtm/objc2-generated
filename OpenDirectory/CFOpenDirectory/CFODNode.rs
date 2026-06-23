@@ -42,7 +42,7 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// - `session` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeCreateWithNodeType")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -53,16 +53,22 @@ impl ODNodeRef {
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
         node_type: ODNodeType,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ODNodeRef>> {
         extern "C-unwind" {
             fn ODNodeCreateWithNodeType(
                 allocator: Option<&CFAllocator>,
                 session: Option<&ODSessionRef>,
                 node_type: ODNodeType,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODNodeRef>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCreateWithNodeType(allocator, session, node_type, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -86,7 +92,7 @@ impl ODNodeRef {
     ///
     /// - `session` might not allow `None`.
     /// - `node_name` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeCreateWithName")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -94,16 +100,22 @@ impl ODNodeRef {
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
         node_name: Option<&CFString>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ODNodeRef>> {
         extern "C-unwind" {
             fn ODNodeCreateWithName(
                 allocator: Option<&CFAllocator>,
                 session: Option<&ODSessionRef>,
                 node_name: Option<&CFString>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODNodeRef>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCreateWithName(allocator, session, node_name, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -123,22 +135,28 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODNodeCreateCopy")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn copy(
         &self,
         allocator: Option<&CFAllocator>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ODNodeRef>> {
         extern "C-unwind" {
             fn ODNodeCreateCopy(
                 allocator: Option<&CFAllocator>,
                 node: &ODNodeRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODNodeRef>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCreateCopy(allocator, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -156,17 +174,26 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODNodeCopySubnodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn subnode_names(&self, error: *mut *mut CFError) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn subnode_names(
+        &self,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn ODNodeCopySubnodeNames(
                 node: &ODNodeRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCopySubnodeNames(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -185,20 +212,26 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODNodeCopyUnreachableSubnodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn unreachable_subnode_names(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn ODNodeCopyUnreachableSubnodeNames(
                 node: &ODNodeRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCopyUnreachableSubnodeNames(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -238,22 +271,28 @@ impl ODNodeRef {
     ///
     /// - `keys` generic must be of the correct type.
     /// - `keys` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeCopyDetails")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn details(
         &self,
         keys: Option<&CFArray>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODNodeCopyDetails(
                 node: &ODNodeRef,
                 keys: Option<&CFArray>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCopyDetails(self, keys, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -271,20 +310,26 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODNodeCopySupportedRecordTypes")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn supported_record_types(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn ODNodeCopySupportedRecordTypes(
                 node: &ODNodeRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCopySupportedRecordTypes(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -306,7 +351,7 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// - `record_type` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeCopySupportedAttributes")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -316,15 +361,21 @@ impl ODNodeRef {
     pub unsafe fn supported_attributes(
         &self,
         record_type: Option<&ODRecordType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn ODNodeCopySupportedAttributes(
                 node: &ODNodeRef,
                 record_type: Option<&ODRecordType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCopySupportedAttributes(self, record_type, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -354,7 +405,7 @@ impl ODNodeRef {
     /// - `record_type` might not allow `None`.
     /// - `record_name` might not allow `None`.
     /// - `password` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeSetCredentials")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -366,7 +417,7 @@ impl ODNodeRef {
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         password: Option<&CFString>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODNodeSetCredentials(
@@ -374,9 +425,15 @@ impl ODNodeRef {
                 record_type: Option<&ODRecordType>,
                 record_name: Option<&CFString>,
                 password: Option<&CFString>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODNodeSetCredentials(self, record_type, record_name, password, error) }
     }
 
@@ -413,7 +470,7 @@ impl ODNodeRef {
     /// - `auth_items` might not allow `None`.
     /// - `out_auth_items` must be a valid pointer.
     /// - `out_context` must be a valid pointer.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeSetCredentialsExtended")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -427,7 +484,7 @@ impl ODNodeRef {
         auth_items: Option<&CFArray>,
         out_auth_items: *mut *const CFArray,
         out_context: *mut *const ODContextRef,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODNodeSetCredentialsExtended(
@@ -437,9 +494,15 @@ impl ODNodeRef {
                 auth_items: Option<&CFArray>,
                 out_auth_items: *mut *const CFArray,
                 out_context: *mut *const ODContextRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe {
             ODNodeSetCredentialsExtended(
                 self,
@@ -460,7 +523,7 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// - `cache_name` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeSetCredentialsUsingKerberosCache")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -468,15 +531,21 @@ impl ODNodeRef {
     pub unsafe fn set_credentials_using_kerberos_cache(
         &self,
         cache_name: Option<&CFString>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODNodeSetCredentialsUsingKerberosCache(
                 node: &ODNodeRef,
                 cache_name: Option<&CFString>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODNodeSetCredentialsUsingKerberosCache(self, cache_name, error) }
     }
 
@@ -509,7 +578,7 @@ impl ODNodeRef {
     /// - `attribute_dict` generic must be of the correct type.
     /// - `attribute_dict` generic must be of the correct type.
     /// - `attribute_dict` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeCreateRecord")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -521,7 +590,7 @@ impl ODNodeRef {
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         attribute_dict: Option<&CFDictionary>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ODRecordRef>> {
         extern "C-unwind" {
             fn ODNodeCreateRecord(
@@ -529,9 +598,15 @@ impl ODNodeRef {
                 record_type: Option<&ODRecordType>,
                 record_name: Option<&CFString>,
                 attribute_dict: Option<&CFDictionary>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODRecordRef>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret =
             unsafe { ODNodeCreateRecord(self, record_type, record_name, attribute_dict, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -563,7 +638,7 @@ impl ODNodeRef {
     /// - `record_name` might not allow `None`.
     /// - `attributes` should be of the correct type.
     /// - `attributes` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeCopyRecord")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -575,7 +650,7 @@ impl ODNodeRef {
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         attributes: Option<&CFType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ODRecordRef>> {
         extern "C-unwind" {
             fn ODNodeCopyRecord(
@@ -583,9 +658,15 @@ impl ODNodeRef {
                 record_type: Option<&ODRecordType>,
                 record_name: Option<&CFString>,
                 attributes: Option<&CFType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODRecordRef>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCopyRecord(self, record_type, record_name, attributes, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -607,7 +688,7 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// - `data` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeCustomCall")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -615,16 +696,22 @@ impl ODNodeRef {
         &self,
         custom_code: CFIndex,
         data: Option<&CFData>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn ODNodeCustomCall(
                 node: &ODNodeRef,
                 custom_code: CFIndex,
                 data: Option<&CFData>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCustomCall(self, custom_code, data, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -655,7 +742,7 @@ impl ODNodeRef {
     /// - `function` might not allow `None`.
     /// - `payload` should be of the correct type.
     /// - `payload` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeCustomFunction")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -663,16 +750,22 @@ impl ODNodeRef {
         &self,
         function: Option<&CFString>,
         payload: Option<&CFType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn ODNodeCustomFunction(
                 node: &ODNodeRef,
                 function: Option<&CFString>,
                 payload: Option<&CFType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFType>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCustomFunction(self, function, payload, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -689,18 +782,27 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODNodeCopyPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODNodeCopyAccountPolicies"]
     #[inline]
-    pub unsafe fn policies(&self, error: *mut *mut CFError) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn policies(
+        &self,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODNodeCopyPolicies(
                 node: &ODNodeRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCopyPolicies(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -719,21 +821,27 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODNodeCopySupportedPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     #[inline]
     pub unsafe fn supported_policies(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODNodeCopySupportedPolicies(
                 node: &ODNodeRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCopySupportedPolicies(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -755,7 +863,7 @@ impl ODNodeRef {
     /// - `policies` generic must be of the correct type.
     /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeSetPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODNodeSetAccountPolicies"]
@@ -763,15 +871,21 @@ impl ODNodeRef {
     pub unsafe fn set_policies(
         &self,
         policies: Option<&CFDictionary>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODNodeSetPolicies(
                 node: &ODNodeRef,
                 policies: Option<&CFDictionary>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODNodeSetPolicies(self, policies, error) }
     }
 
@@ -794,7 +908,7 @@ impl ODNodeRef {
     /// - `policy_type` might not allow `None`.
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeSetPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -806,16 +920,22 @@ impl ODNodeRef {
         &self,
         policy_type: Option<&ODPolicyType>,
         value: Option<&CFType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODNodeSetPolicy(
                 node: &ODNodeRef,
                 policy_type: Option<&ODPolicyType>,
                 value: Option<&CFType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODNodeSetPolicy(self, policy_type, value, error) }
     }
 
@@ -834,7 +954,7 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// - `policy_type` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeRemovePolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -845,15 +965,21 @@ impl ODNodeRef {
     pub unsafe fn remove_policy(
         &self,
         policy_type: Option<&ODPolicyType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODNodeRemovePolicy(
                 node: &ODNodeRef,
                 policy_type: Option<&ODPolicyType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODNodeRemovePolicy(self, policy_type, error) }
     }
 
@@ -887,7 +1013,7 @@ impl ODNodeRef {
     /// - `policy` generic must be of the correct type.
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeAddAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -898,16 +1024,22 @@ impl ODNodeRef {
         &self,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODNodeAddAccountPolicy(
                 node: &ODNodeRef,
                 policy: Option<&CFDictionary>,
                 category: Option<&ODPolicyCategoryType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODNodeAddAccountPolicy(self, policy, category, error) }
     }
 
@@ -932,7 +1064,7 @@ impl ODNodeRef {
     /// - `policy` generic must be of the correct type.
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeRemoveAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -943,16 +1075,22 @@ impl ODNodeRef {
         &self,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODNodeRemoveAccountPolicy(
                 node: &ODNodeRef,
                 policy: Option<&CFDictionary>,
                 category: Option<&ODPolicyCategoryType>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODNodeRemoveAccountPolicy(self, policy, category, error) }
     }
 
@@ -984,22 +1122,28 @@ impl ODNodeRef {
     /// - `policies` generic must be of the correct type.
     /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodeSetAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn set_account_policies(
         &self,
         policies: Option<&CFDictionary>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODNodeSetAccountPolicies(
                 node: &ODNodeRef,
                 policies: Option<&CFDictionary>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODNodeSetAccountPolicies(self, policies, error) }
     }
 
@@ -1017,20 +1161,26 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODNodeCopyAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn account_policies(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODNodeCopyAccountPolicies(
                 node: &ODNodeRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODNodeCopyAccountPolicies(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -1062,7 +1212,7 @@ impl ODNodeRef {
     ///
     /// - `password` might not allow `None`.
     /// - `record_name` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODNodePasswordContentCheck")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -1070,16 +1220,22 @@ impl ODNodeRef {
         &self,
         password: Option<&CFString>,
         record_name: Option<&CFString>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODNodePasswordContentCheck(
                 node: &ODNodeRef,
                 password: Option<&CFString>,
                 record_name: Option<&CFString>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         unsafe { ODNodePasswordContentCheck(self, password, record_name, error) }
     }
 }

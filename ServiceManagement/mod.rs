@@ -232,7 +232,7 @@ pub unsafe fn SMCopyAllJobDictionaries(domain: Option<&CFString>) -> Option<CFRe
 /// - `job` generic must be of the correct type.
 /// - `job` might not allow `None`.
 /// - `auth` must be a valid pointer.
-/// - `out_error` must be a valid pointer.
+/// - `out_error` might not allow `None`.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated]
 #[inline]
@@ -240,16 +240,22 @@ pub unsafe fn SMJobSubmit(
     domain: Option<&CFString>,
     job: Option<&CFDictionary>,
     auth: AuthorizationRef,
-    out_error: *mut *mut CFError,
+    out_error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> bool {
     extern "C-unwind" {
         fn SMJobSubmit(
             domain: Option<&CFString>,
             job: Option<&CFDictionary>,
             auth: AuthorizationRef,
-            out_error: *mut *mut CFError,
+            out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Boolean;
     }
+    if let Some(out_error) = out_error.as_ref() {
+        assert!(
+            out_error.is_none(),
+            "parameter `out_error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe { SMJobSubmit(domain, job, auth, out_error) };
     ret != 0
 }
@@ -295,7 +301,7 @@ pub unsafe fn SMJobSubmit(
 /// - `domain` might not allow `None`.
 /// - `job_label` might not allow `None`.
 /// - `auth` must be a valid pointer.
-/// - `out_error` must be a valid pointer.
+/// - `out_error` might not allow `None`.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated]
 #[inline]
@@ -304,7 +310,7 @@ pub unsafe fn SMJobRemove(
     job_label: Option<&CFString>,
     auth: AuthorizationRef,
     wait: bool,
-    out_error: *mut *mut CFError,
+    out_error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> bool {
     extern "C-unwind" {
         fn SMJobRemove(
@@ -312,10 +318,16 @@ pub unsafe fn SMJobRemove(
             job_label: Option<&CFString>,
             auth: AuthorizationRef,
             wait: Boolean,
-            out_error: *mut *mut CFError,
+            out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Boolean;
     }
     let wait = wait as _;
+    if let Some(out_error) = out_error.as_ref() {
+        assert!(
+            out_error.is_none(),
+            "parameter `out_error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe { SMJobRemove(domain, job_label, auth, wait, out_error) };
     ret != 0
 }
@@ -398,7 +410,7 @@ pub unsafe fn SMJobRemove(
 /// - `domain` might not allow `None`.
 /// - `executable_label` might not allow `None`.
 /// - `auth` must be a valid pointer.
-/// - `out_error` must be a valid pointer.
+/// - `out_error` might not allow `None`.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated = "Please use SMAppService instead"]
 #[inline]
@@ -406,16 +418,22 @@ pub unsafe fn SMJobBless(
     domain: Option<&CFString>,
     executable_label: Option<&CFString>,
     auth: AuthorizationRef,
-    out_error: *mut *mut CFError,
+    out_error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> bool {
     extern "C-unwind" {
         fn SMJobBless(
             domain: Option<&CFString>,
             executable_label: Option<&CFString>,
             auth: AuthorizationRef,
-            out_error: *mut *mut CFError,
+            out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Boolean;
     }
+    if let Some(out_error) = out_error.as_ref() {
+        assert!(
+            out_error.is_none(),
+            "parameter `out_error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe { SMJobBless(domain, executable_label, auth, out_error) };
     ret != 0
 }

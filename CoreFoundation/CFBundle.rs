@@ -702,31 +702,52 @@ impl CFBundle {
 
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "CFBundlePreflightExecutable")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub unsafe fn preflight_executable(&self, error: *mut *mut CFError) -> bool {
+    pub unsafe fn preflight_executable(
+        &self,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> bool {
         extern "C-unwind" {
-            fn CFBundlePreflightExecutable(bundle: &CFBundle, error: *mut *mut CFError) -> Boolean;
+            fn CFBundlePreflightExecutable(
+                bundle: &CFBundle,
+                error: Option<&mut Option<CFRetained<CFError>>>,
+            ) -> Boolean;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CFBundlePreflightExecutable(self, error) };
         ret != 0
     }
 
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "CFBundleLoadExecutableAndReturnError")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub unsafe fn load_executable_and_return_error(&self, error: *mut *mut CFError) -> bool {
+    pub unsafe fn load_executable_and_return_error(
+        &self,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> bool {
         extern "C-unwind" {
             fn CFBundleLoadExecutableAndReturnError(
                 bundle: &CFBundle,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CFBundleLoadExecutableAndReturnError(self, error) };
         ret != 0
     }

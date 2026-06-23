@@ -77,7 +77,7 @@ impl ODQueryRef {
     /// - `query_value_or_list` might not allow `None`.
     /// - `return_attribute_or_list` should be of the correct type.
     /// - `return_attribute_or_list` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODQueryCreateWithNode")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -93,7 +93,7 @@ impl ODQueryRef {
         query_value_or_list: Option<&CFType>,
         return_attribute_or_list: Option<&CFType>,
         max_results: CFIndex,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ODQueryRef>> {
         extern "C-unwind" {
             fn ODQueryCreateWithNode(
@@ -105,9 +105,15 @@ impl ODQueryRef {
                 query_value_or_list: Option<&CFType>,
                 return_attribute_or_list: Option<&CFType>,
                 max_results: CFIndex,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODQueryRef>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe {
             ODQueryCreateWithNode(
                 allocator,
@@ -161,7 +167,7 @@ impl ODQueryRef {
     /// - `query_value_or_list` might not allow `None`.
     /// - `return_attribute_or_list` should be of the correct type.
     /// - `return_attribute_or_list` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "ODQueryCreateWithNodeType")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -177,7 +183,7 @@ impl ODQueryRef {
         query_value_or_list: Option<&CFType>,
         return_attribute_or_list: Option<&CFType>,
         max_results: CFIndex,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ODQueryRef>> {
         extern "C-unwind" {
             fn ODQueryCreateWithNodeType(
@@ -189,9 +195,15 @@ impl ODQueryRef {
                 query_value_or_list: Option<&CFType>,
                 return_attribute_or_list: Option<&CFType>,
                 max_results: CFIndex,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODQueryRef>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe {
             ODQueryCreateWithNodeType(
                 allocator,
@@ -227,22 +239,28 @@ impl ODQueryRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "ODQueryCopyResults")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn results(
         &self,
         allow_partial_results: bool,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn ODQueryCopyResults(
                 query: &ODQueryRef,
                 allow_partial_results: bool,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { ODQueryCopyResults(self, allow_partial_results, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

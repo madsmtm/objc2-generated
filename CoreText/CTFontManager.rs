@@ -218,23 +218,25 @@ extern "C" {
 ///
 ///
 /// Returns: Returns true if registration of the fonts was successful.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[inline]
-pub unsafe fn CTFontManagerRegisterFontsForURL(
+pub fn CTFontManagerRegisterFontsForURL(
     font_url: &CFURL,
     scope: CTFontManagerScope,
-    error: Option<&mut *mut CFError>,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> bool {
     extern "C-unwind" {
         fn CTFontManagerRegisterFontsForURL(
             font_url: &CFURL,
             scope: CTFontManagerScope,
-            error: Option<&mut *mut CFError>,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> bool;
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     unsafe { CTFontManagerRegisterFontsForURL(font_url, scope, error) }
 }
 
@@ -252,23 +254,25 @@ pub unsafe fn CTFontManagerRegisterFontsForURL(
 ///
 ///
 /// Returns: Returns true if unregistration of the fonts was successful.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[inline]
-pub unsafe fn CTFontManagerUnregisterFontsForURL(
+pub fn CTFontManagerUnregisterFontsForURL(
     font_url: &CFURL,
     scope: CTFontManagerScope,
-    error: Option<&mut *mut CFError>,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> bool {
     extern "C-unwind" {
         fn CTFontManagerUnregisterFontsForURL(
             font_url: &CFURL,
             scope: CTFontManagerScope,
-            error: Option<&mut *mut CFError>,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> bool;
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     unsafe { CTFontManagerUnregisterFontsForURL(font_url, scope, error) }
 }
 
@@ -287,23 +291,25 @@ pub unsafe fn CTFontManagerUnregisterFontsForURL(
 ///
 ///
 /// Returns: Returns true if registration of the fonts was successful.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-graphics")]
 #[deprecated = "Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL"]
 #[inline]
-pub unsafe fn CTFontManagerRegisterGraphicsFont(
+pub fn CTFontManagerRegisterGraphicsFont(
     font: &CGFont,
-    error: Option<&mut *mut CFError>,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> bool {
     extern "C-unwind" {
         fn CTFontManagerRegisterGraphicsFont(
             font: &CGFont,
-            error: Option<&mut *mut CFError>,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> bool;
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     unsafe { CTFontManagerRegisterGraphicsFont(font, error) }
 }
 
@@ -317,23 +323,25 @@ pub unsafe fn CTFontManagerRegisterGraphicsFont(
 ///
 ///
 /// Returns: Returns true if unregistration of the font was successful.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-graphics")]
 #[deprecated = "Use the API corresponding to the one used to register the font"]
 #[inline]
-pub unsafe fn CTFontManagerUnregisterGraphicsFont(
+pub fn CTFontManagerUnregisterGraphicsFont(
     font: &CGFont,
-    error: Option<&mut *mut CFError>,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> bool {
     extern "C-unwind" {
         fn CTFontManagerUnregisterGraphicsFont(
             font: &CGFont,
-            error: Option<&mut *mut CFError>,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> bool;
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     unsafe { CTFontManagerUnregisterGraphicsFont(font, error) }
 }
 

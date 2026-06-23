@@ -229,20 +229,25 @@ impl SecTransform {
     ///
     /// - `dictionary` generic must be of the correct type.
     /// - `dictionary` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecTransformCreateFromExternalRepresentation")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
     pub unsafe fn from_external_representation(
         dictionary: &CFDictionary,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecTransform>> {
         extern "C-unwind" {
             fn SecTransformCreateFromExternalRepresentation(
                 dictionary: &CFDictionary,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecTransform>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecTransformCreateFromExternalRepresentation(dictionary, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -406,10 +411,6 @@ impl SecTransform {
     /// error and the named attribute will not be changed if
     /// SecTransformExecute had previously been called on the
     /// transform.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecTransformConnectTransforms")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
@@ -419,7 +420,7 @@ impl SecTransform {
         destination_transform_ref: &SecTransform,
         destination_attribute_name: &CFString,
         group: &SecGroupTransform,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecGroupTransform>> {
         extern "C-unwind" {
             fn SecTransformConnectTransforms(
@@ -428,9 +429,15 @@ impl SecTransform {
                 destination_transform_ref: &SecTransform,
                 destination_attribute_name: &CFString,
                 group: &SecGroupTransform,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecGroupTransform>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe {
             SecTransformConnectTransforms(
                 self,
@@ -477,8 +484,7 @@ impl SecTransform {
     ///
     /// # Safety
     ///
-    /// - `value` should be of the correct type.
-    /// - `error` must be a valid pointer or null.
+    /// `value` should be of the correct type.
     #[doc(alias = "SecTransformSetAttribute")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
@@ -486,16 +492,22 @@ impl SecTransform {
         &self,
         key: &CFString,
         value: &CFType,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn SecTransformSetAttribute(
                 transform_ref: &SecTransform,
                 key: &CFString,
                 value: &CFType,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecTransformSetAttribute(self, key, value, error) };
         ret != 0
     }
@@ -602,20 +614,25 @@ impl SecTransform {
     /// execution, then all processing will stop and NULL will be
     /// returned and the appropriate error will be placed in the
     /// error parameter if it is not NULL.
-    ///
-    /// # Safety
-    ///
-    /// `error_ref` must be a valid pointer or null.
     #[doc(alias = "SecTransformExecute")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
-    pub unsafe fn execute(&self, error_ref: *mut *mut CFError) -> Option<CFRetained<CFType>> {
+    pub unsafe fn execute(
+        &self,
+        error_ref: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn SecTransformExecute(
                 transform_ref: &SecTransform,
-                error_ref: *mut *mut CFError,
+                error_ref: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFType>>;
         }
+        if let Some(error_ref) = error_ref.as_ref() {
+            assert!(
+                error_ref.is_none(),
+                "parameter `error_ref` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecTransformExecute(self, error_ref) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

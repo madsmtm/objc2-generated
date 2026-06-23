@@ -488,18 +488,28 @@ impl CSIdentity {
     /// # Safety
     ///
     /// - `authorization` must be a valid pointer.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "CSIdentityCommit")]
     #[cfg(feature = "objc2-security")]
     #[inline]
-    pub unsafe fn commit(&self, authorization: AuthorizationRef, error: *mut *mut CFError) -> bool {
+    pub unsafe fn commit(
+        &self,
+        authorization: AuthorizationRef,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> bool {
         extern "C-unwind" {
             fn CSIdentityCommit(
                 identity: &CSIdentity,
                 authorization: AuthorizationRef,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CSIdentityCommit(self, authorization, error) };
         ret != 0
     }

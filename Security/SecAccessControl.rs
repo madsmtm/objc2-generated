@@ -133,8 +133,7 @@ impl SecAccessControl {
     ///
     /// # Safety
     ///
-    /// - `protection` should be of the correct type.
-    /// - `error` must be a valid pointer or null.
+    /// `protection` should be of the correct type.
     #[doc(alias = "SecAccessControlCreateWithFlags")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -142,16 +141,22 @@ impl SecAccessControl {
         allocator: Option<&CFAllocator>,
         protection: &CFType,
         flags: SecAccessControlCreateFlags,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecAccessControl>> {
         extern "C-unwind" {
             fn SecAccessControlCreateWithFlags(
                 allocator: Option<&CFAllocator>,
                 protection: &CFType,
                 flags: SecAccessControlCreateFlags,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecAccessControl>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecAccessControlCreateWithFlags(allocator, protection, flags, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

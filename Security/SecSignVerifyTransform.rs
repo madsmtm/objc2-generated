@@ -54,23 +54,25 @@ extern "C" {
 /// cryptographic signature.   The InputIS defaults to kSecInputIsPlainText,
 /// and the DigestType and DigestLength default to something appropriate for
 /// the type of key you have supplied.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe fn SecSignTransformCreate(
     key: &SecKey,
-    error: *mut *mut CFError,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> Option<CFRetained<SecTransform>> {
     extern "C-unwind" {
         fn SecSignTransformCreate(
             key: &SecKey,
-            error: *mut *mut CFError,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<SecTransform>>;
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe { SecSignTransformCreate(key, error) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
@@ -96,25 +98,27 @@ pub unsafe fn SecSignTransformCreate(
 /// cryptographic signature.  The InputIS defaults to kSecInputIsPlainText,
 /// and the DigestType and DigestLength default to something appropriate for
 /// the type of key you have supplied.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe fn SecVerifyTransformCreate(
     key: &SecKey,
     signature: Option<&CFData>,
-    error: *mut *mut CFError,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> Option<CFRetained<SecTransform>> {
     extern "C-unwind" {
         fn SecVerifyTransformCreate(
             key: &SecKey,
             signature: Option<&CFData>,
-            error: *mut *mut CFError,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<SecTransform>>;
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe { SecVerifyTransformCreate(key, signature, error) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

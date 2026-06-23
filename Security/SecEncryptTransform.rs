@@ -175,23 +175,25 @@ extern "C" {
 /// occurred.
 ///
 /// This function creates a transform which encrypts data.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe fn SecEncryptTransformCreate(
     key_ref: &SecKey,
-    error: *mut *mut CFError,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> Option<CFRetained<SecTransform>> {
     extern "C-unwind" {
         fn SecEncryptTransformCreate(
             key_ref: &SecKey,
-            error: *mut *mut CFError,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<SecTransform>>;
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe { SecEncryptTransformCreate(key_ref, error) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
@@ -210,23 +212,25 @@ pub unsafe fn SecEncryptTransformCreate(
 /// occurred.
 ///
 /// This function creates a transform which encrypts data.
-///
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe fn SecDecryptTransformCreate(
     key_ref: &SecKey,
-    error: *mut *mut CFError,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> Option<CFRetained<SecTransform>> {
     extern "C-unwind" {
         fn SecDecryptTransformCreate(
             key_ref: &SecKey,
-            error: *mut *mut CFError,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<SecTransform>>;
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe { SecDecryptTransformCreate(key_ref, error) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

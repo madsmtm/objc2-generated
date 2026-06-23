@@ -783,54 +783,59 @@ impl CFURL {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateFileReferenceURL")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub unsafe fn file_reference_url(
+    pub fn file_reference_url(
         &self,
         allocator: Option<&CFAllocator>,
-        error: Option<&mut *mut CFError>,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFURLCreateFileReferenceURL(
                 allocator: Option<&CFAllocator>,
                 url: &CFURL,
-                error: Option<&mut *mut CFError>,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFURL>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CFURLCreateFileReferenceURL(allocator, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateFilePathURL")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub unsafe fn file_path_url(
+    pub fn file_path_url(
         &self,
         allocator: Option<&CFAllocator>,
-        error: Option<&mut *mut CFError>,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFURLCreateFilePathURL(
                 allocator: Option<&CFAllocator>,
                 url: &CFURL,
-                error: Option<&mut *mut CFError>,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFURL>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CFURLCreateFilePathURL(allocator, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     /// # Safety
     ///
-    /// - `property_value_type_ref_ptr` must be a valid pointer.
-    /// - `error` must be a valid pointer.
+    /// `property_value_type_ref_ptr` must be a valid pointer.
     #[doc(alias = "CFURLCopyResourcePropertyForKey")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -838,25 +843,28 @@ impl CFURL {
         &self,
         key: &CFString,
         property_value_type_ref_ptr: *mut c_void,
-        error: Option<&mut *mut CFError>,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLCopyResourcePropertyForKey(
                 url: &CFURL,
                 key: &CFString,
                 property_value_type_ref_ptr: *mut c_void,
-                error: Option<&mut *mut CFError>,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe {
             CFURLCopyResourcePropertyForKey(self, key, property_value_type_ref_ptr, error)
         };
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCopyResourcePropertiesForKeys")]
     #[cfg(all(
         feature = "CFArray",
@@ -865,26 +873,31 @@ impl CFURL {
         feature = "CFString"
     ))]
     #[inline]
-    pub unsafe fn resource_properties_for_keys(
+    pub fn resource_properties_for_keys(
         &self,
         keys: &CFArray<CFString>,
-        error: Option<&mut *mut CFError>,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CFURLCopyResourcePropertiesForKeys(
                 url: &CFURL,
                 keys: &CFArray<CFString>,
-                error: Option<&mut *mut CFError>,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CFURLCopyResourcePropertiesForKeys(self, keys, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     /// # Safety
     ///
-    /// - `property_value` should be of the correct type.
-    /// - `error` must be a valid pointer.
+    /// `property_value` should be of the correct type.
     #[doc(alias = "CFURLSetResourcePropertyForKey")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -892,39 +905,50 @@ impl CFURL {
         &self,
         key: &CFString,
         property_value: &CFType,
-        error: Option<&mut *mut CFError>,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLSetResourcePropertyForKey(
                 url: &CFURL,
                 key: &CFString,
                 property_value: &CFType,
-                error: Option<&mut *mut CFError>,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CFURLSetResourcePropertyForKey(self, key, property_value, error) };
         ret != 0
     }
 
     /// # Safety
     ///
-    /// - `keyed_property_values` generic should be of the correct type.
-    /// - `error` must be a valid pointer.
+    /// `keyed_property_values` generic should be of the correct type.
     #[doc(alias = "CFURLSetResourcePropertiesForKeys")]
     #[cfg(all(feature = "CFDictionary", feature = "CFError", feature = "CFString"))]
     #[inline]
     pub unsafe fn set_resource_properties_for_keys(
         &self,
         keyed_property_values: &CFDictionary<CFString, CFType>,
-        error: Option<&mut *mut CFError>,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLSetResourcePropertiesForKeys(
                 url: &CFURL,
                 keyed_property_values: &CFDictionary<CFString, CFType>,
-                error: Option<&mut *mut CFError>,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CFURLSetResourcePropertiesForKeys(self, keyed_property_values, error) };
         ret != 0
     }
@@ -967,16 +991,22 @@ impl CFURL {
         unsafe { CFURLSetTemporaryResourcePropertyForKey(self, key, property_value) }
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLResourceIsReachable")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub unsafe fn resource_is_reachable(&self, error: Option<&mut *mut CFError>) -> bool {
+    pub fn resource_is_reachable(&self, error: Option<&mut Option<CFRetained<CFError>>>) -> bool {
         extern "C-unwind" {
-            fn CFURLResourceIsReachable(url: &CFURL, error: Option<&mut *mut CFError>) -> Boolean;
+            fn CFURLResourceIsReachable(
+                url: &CFURL,
+                error: Option<&mut Option<CFRetained<CFError>>>,
+            ) -> Boolean;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CFURLResourceIsReachable(self, error) };
         ret != 0
     }
@@ -1720,9 +1750,6 @@ unsafe impl RefEncode for CFURLBookmarkResolutionOptions {
 pub type CFURLBookmarkFileCreationOptions = CFOptionFlags;
 
 impl CFURL {
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateBookmarkData")]
     #[cfg(all(
         feature = "CFArray",
@@ -1731,13 +1758,13 @@ impl CFURL {
         feature = "CFString"
     ))]
     #[inline]
-    pub unsafe fn bookmark_data(
+    pub fn bookmark_data(
         &self,
         allocator: Option<&CFAllocator>,
         options: CFURLBookmarkCreationOptions,
         resource_properties_to_include: Option<&CFArray<CFString>>,
         relative_to_url: Option<&CFURL>,
-        error: Option<&mut *mut CFError>,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFURLCreateBookmarkData(
@@ -1746,9 +1773,15 @@ impl CFURL {
                 options: CFURLBookmarkCreationOptions,
                 resource_properties_to_include: Option<&CFArray<CFString>>,
                 relative_to_url: Option<&CFURL>,
-                error: Option<&mut *mut CFError>,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe {
             CFURLCreateBookmarkData(
                 allocator,
@@ -1762,9 +1795,6 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateByResolvingBookmarkData")]
     #[cfg(all(
         feature = "CFArray",
@@ -1773,14 +1803,14 @@ impl CFURL {
         feature = "CFString"
     ))]
     #[inline]
-    pub unsafe fn new_by_resolving_bookmark_data(
+    pub fn new_by_resolving_bookmark_data(
         allocator: Option<&CFAllocator>,
         bookmark: &CFData,
         options: CFURLBookmarkResolutionOptions,
         relative_to_url: Option<&CFURL>,
         resource_properties_to_include: Option<&CFArray<CFString>>,
         is_stale: Option<&mut Boolean>,
-        error: Option<&mut *mut CFError>,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFURLCreateByResolvingBookmarkData(
@@ -1790,9 +1820,15 @@ impl CFURL {
                 relative_to_url: Option<&CFURL>,
                 resource_properties_to_include: Option<&CFArray<CFString>>,
                 is_stale: Option<&mut Boolean>,
-                error: Option<&mut *mut CFError>,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFURL>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe {
             CFURLCreateByResolvingBookmarkData(
                 allocator,
@@ -1862,48 +1898,54 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `error_ref` must be a valid pointer.
     #[doc(alias = "CFURLCreateBookmarkDataFromFile")]
     #[cfg(all(feature = "CFData", feature = "CFError"))]
     #[inline]
-    pub unsafe fn bookmark_data_from_file(
+    pub fn bookmark_data_from_file(
         &self,
         allocator: Option<&CFAllocator>,
-        error_ref: Option<&mut *mut CFError>,
+        error_ref: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFURLCreateBookmarkDataFromFile(
                 allocator: Option<&CFAllocator>,
                 file_url: &CFURL,
-                error_ref: Option<&mut *mut CFError>,
+                error_ref: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
+        if let Some(error_ref) = error_ref.as_ref() {
+            assert!(
+                error_ref.is_none(),
+                "parameter `error_ref` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CFURLCreateBookmarkDataFromFile(allocator, self, error_ref) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `error_ref` must be a valid pointer.
     #[doc(alias = "CFURLWriteBookmarkDataToFile")]
     #[cfg(all(feature = "CFData", feature = "CFError"))]
     #[inline]
-    pub unsafe fn write_bookmark_data_to_file(
+    pub fn write_bookmark_data_to_file(
         bookmark_ref: &CFData,
         file_url: &CFURL,
         options: CFURLBookmarkFileCreationOptions,
-        error_ref: Option<&mut *mut CFError>,
+        error_ref: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLWriteBookmarkDataToFile(
                 bookmark_ref: &CFData,
                 file_url: &CFURL,
                 options: CFURLBookmarkFileCreationOptions,
-                error_ref: Option<&mut *mut CFError>,
+                error_ref: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
+        if let Some(error_ref) = error_ref.as_ref() {
+            assert!(
+                error_ref.is_none(),
+                "parameter `error_ref` must point to `None` on entry"
+            );
+        };
         let ret =
             unsafe { CFURLWriteBookmarkDataToFile(bookmark_ref, file_url, options, error_ref) };
         ret != 0

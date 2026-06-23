@@ -75,24 +75,26 @@ impl SecTask {
     /// A NULL return may indicate an error, or it may indicate that
     /// the entitlement is simply not present.  In the latter case, no CFError is
     /// returned.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecTaskCopyValueForEntitlement")]
     #[inline]
     pub unsafe fn value_for_entitlement(
         &self,
         entitlement: &CFString,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn SecTaskCopyValueForEntitlement(
                 task: &SecTask,
                 entitlement: &CFString,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFType>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecTaskCopyValueForEntitlement(self, entitlement, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -112,22 +114,27 @@ impl SecTask {
     ///
     /// # Safety
     ///
-    /// - `entitlements` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
+    /// `entitlements` generic must be of the correct type.
     #[doc(alias = "SecTaskCopyValuesForEntitlements")]
     #[inline]
     pub unsafe fn values_for_entitlements(
         &self,
         entitlements: &CFArray,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SecTaskCopyValuesForEntitlements(
                 task: &SecTask,
                 entitlements: &CFArray,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecTaskCopyValuesForEntitlements(self, entitlements, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -139,22 +146,24 @@ impl SecTask {
     /// Parameter `error`: On a NULL return, this will contain a CFError describing
     /// the problem.  This argument may be NULL if the caller is not interested in
     /// detailed errors. The caller must CFRelease the returned value
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecTaskCopySigningIdentifier")]
     #[inline]
     pub unsafe fn signing_identifier(
         &self,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SecTaskCopySigningIdentifier(
                 task: &SecTask,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFString>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecTaskCopySigningIdentifier(self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

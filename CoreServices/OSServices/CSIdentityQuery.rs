@@ -196,18 +196,28 @@ impl CSIdentityQuery {
 
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// `error` might not allow `None`.
     #[doc(alias = "CSIdentityQueryExecute")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    pub unsafe fn execute(&self, flags: CSIdentityQueryFlags, error: *mut *mut CFError) -> bool {
+    pub unsafe fn execute(
+        &self,
+        flags: CSIdentityQueryFlags,
+        error: Option<&mut Option<CFRetained<CFError>>>,
+    ) -> bool {
         extern "C-unwind" {
             fn CSIdentityQueryExecute(
                 query: &CSIdentityQuery,
                 flags: CSIdentityQueryFlags,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { CSIdentityQueryExecute(self, flags, error) };
         ret != 0
     }

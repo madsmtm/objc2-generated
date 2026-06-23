@@ -47,22 +47,25 @@ pub unsafe fn CFNetworkCopyProxiesForURL(
 pub type CFProxyAutoConfigurationResultCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<CFArray>, *mut CFError)>;
 
-/// # Safety
-///
-/// `error` must be a valid pointer or null.
 #[inline]
 pub unsafe fn CFNetworkCopyProxiesForAutoConfigurationScript(
     proxy_auto_configuration_script: &CFString,
     target_url: &CFURL,
-    error: *mut *mut CFError,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn CFNetworkCopyProxiesForAutoConfigurationScript(
             proxy_auto_configuration_script: &CFString,
             target_url: &CFURL,
-            error: *mut *mut CFError,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFArray>>;
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe {
         CFNetworkCopyProxiesForAutoConfigurationScript(
             proxy_auto_configuration_script,

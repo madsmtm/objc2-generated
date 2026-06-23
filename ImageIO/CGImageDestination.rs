@@ -330,7 +330,6 @@ impl CGImageDestination {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    /// - `err` must be a valid pointer or null.
     #[doc(alias = "CGImageDestinationCopyImageSource")]
     #[cfg(feature = "CGImageSource")]
     #[inline]
@@ -338,16 +337,22 @@ impl CGImageDestination {
         &self,
         isrc: &CGImageSource,
         options: Option<&CFDictionary>,
-        err: *mut *mut CFError,
+        err: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn CGImageDestinationCopyImageSource(
                 idst: &CGImageDestination,
                 isrc: &CGImageSource,
                 options: Option<&CFDictionary>,
-                err: *mut *mut CFError,
+                err: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(err) = err.as_ref() {
+            assert!(
+                err.is_none(),
+                "parameter `err` must point to `None` on entry"
+            );
+        };
         unsafe { CGImageDestinationCopyImageSource(self, isrc, options, err) }
     }
 

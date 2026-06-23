@@ -211,9 +211,6 @@ impl SecStaticCode {
         unsafe { SecStaticCodeCheckValidity(self, flags, requirement) }
     }
 
-    /// # Safety
-    ///
-    /// `errors` must be a valid pointer or null.
     #[doc(alias = "SecStaticCodeCheckValidityWithErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -221,16 +218,22 @@ impl SecStaticCode {
         &self,
         flags: SecCSFlags,
         requirement: Option<&SecRequirement>,
-        errors: *mut *mut CFError,
+        errors: Option<&mut Option<CFRetained<CFError>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecStaticCodeCheckValidityWithErrors(
                 static_code: &SecStaticCode,
                 flags: SecCSFlags,
                 requirement: Option<&SecRequirement>,
-                errors: *mut *mut CFError,
+                errors: Option<&mut Option<CFRetained<CFError>>>,
             ) -> OSStatus;
         }
+        if let Some(errors) = errors.as_ref() {
+            assert!(
+                errors.is_none(),
+                "parameter `errors` must point to `None` on entry"
+            );
+        };
         unsafe { SecStaticCodeCheckValidityWithErrors(self, flags, requirement, errors) }
     }
 }

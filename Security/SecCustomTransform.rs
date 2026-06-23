@@ -832,8 +832,7 @@ impl SecTransform {
     ///
     /// # Safety
     ///
-    /// - `create_transform_function` must be implemented correctly.
-    /// - `error` must be a valid pointer or null.
+    /// `create_transform_function` must be implemented correctly.
     #[doc(alias = "SecTransformRegister")]
     #[cfg(all(feature = "SecTransform", feature = "block2"))]
     #[deprecated = "SecTransform is no longer supported"]
@@ -841,15 +840,21 @@ impl SecTransform {
     pub unsafe fn register(
         unique_name: &CFString,
         create_transform_function: SecTransformCreateFP,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn SecTransformRegister(
                 unique_name: &CFString,
                 create_transform_function: SecTransformCreateFP,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecTransformRegister(unique_name, create_transform_function, error) };
         ret != 0
     }
@@ -870,24 +875,26 @@ impl SecTransform {
     /// Returns: A pointer to a SecTransformRef object.  This object must be
     /// released with CFRelease when you are done with it.  This
     /// function returns NULL if an error occurred.
-    ///
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecTransformCreate")]
     #[cfg(feature = "SecTransform")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
     pub unsafe fn new(
         name: &CFString,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecTransform>> {
         extern "C-unwind" {
             fn SecTransformCreate(
                 name: &CFString,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecTransform>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe { SecTransformCreate(name, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

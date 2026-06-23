@@ -92,26 +92,29 @@ impl SecRequirement {
         unsafe { SecRequirementCreateWithString(text, flags, requirement) }
     }
 
-    /// # Safety
-    ///
-    /// `errors` must be a valid pointer or null.
     #[doc(alias = "SecRequirementCreateWithStringAndErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]
     pub unsafe fn with_string_and_errors(
         text: &CFString,
         flags: SecCSFlags,
-        errors: *mut *mut CFError,
+        errors: Option<&mut Option<CFRetained<CFError>>>,
         requirement: &mut Option<CFRetained<SecRequirement>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecRequirementCreateWithStringAndErrors(
                 text: &CFString,
                 flags: SecCSFlags,
-                errors: *mut *mut CFError,
+                errors: Option<&mut Option<CFRetained<CFError>>>,
                 requirement: &mut Option<CFRetained<SecRequirement>>,
             ) -> OSStatus;
         }
+        if let Some(errors) = errors.as_ref() {
+            assert!(
+                errors.is_none(),
+                "parameter `errors` must point to `None` on entry"
+            );
+        };
         assert!(
             requirement.is_none(),
             "parameter `requirement` must point to `None` on entry"

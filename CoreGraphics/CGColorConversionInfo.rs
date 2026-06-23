@@ -106,7 +106,6 @@ impl CGColorConversionInfo {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
     #[doc(alias = "CGColorConversionInfoCreateForToneMapping")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGToneMapping"))]
     #[inline]
@@ -117,7 +116,7 @@ impl CGColorConversionInfo {
         target_headroom: c_float,
         method: CGToneMapping,
         options: Option<&CFDictionary>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CGColorConversionInfo>> {
         extern "C-unwind" {
             fn CGColorConversionInfoCreateForToneMapping(
@@ -127,9 +126,15 @@ impl CGColorConversionInfo {
                 target_headroom: c_float,
                 method: CGToneMapping,
                 options: Option<&CFDictionary>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CGColorConversionInfo>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret = unsafe {
             CGColorConversionInfoCreateForToneMapping(
                 from,

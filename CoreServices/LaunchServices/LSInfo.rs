@@ -60,25 +60,27 @@ unsafe impl RefEncode for LSAcceptanceFlags {
 /// be found, NULL is returned and outError (if not NULL) is populated.
 /// with kLSApplicationNotFoundErr.
 /// The caller is responsible for releasing this URL.
-///
-/// # Safety
-///
-/// `out_error` must be a valid pointer or null.
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenURL:] instead."]
 #[inline]
 pub unsafe fn LSCopyDefaultApplicationURLForURL(
     in_url: &CFURL,
     in_role_mask: LSRolesMask,
-    out_error: *mut *mut CFError,
+    out_error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
         fn LSCopyDefaultApplicationURLForURL(
             in_url: &CFURL,
             in_role_mask: LSRolesMask,
-            out_error: *mut *mut CFError,
+            out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFURL>>;
     }
+    if let Some(out_error) = out_error.as_ref() {
+        assert!(
+            out_error.is_none(),
+            "parameter `out_error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe { LSCopyDefaultApplicationURLForURL(in_url, in_role_mask, out_error) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
@@ -109,25 +111,27 @@ pub unsafe fn LSCopyDefaultApplicationURLForURL(
 /// If no application could be found, NULL is returned and
 /// outError (if not NULL) is populated with kLSApplicationNotFoundErr.
 /// The caller is responsible for releasing this URL.
-///
-/// # Safety
-///
-/// `out_error` must be a valid pointer or null.
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenContentType:] instead."]
 #[inline]
 pub unsafe fn LSCopyDefaultApplicationURLForContentType(
     in_content_type: &CFString,
     in_role_mask: LSRolesMask,
-    out_error: *mut *mut CFError,
+    out_error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
         fn LSCopyDefaultApplicationURLForContentType(
             in_content_type: &CFString,
             in_role_mask: LSRolesMask,
-            out_error: *mut *mut CFError,
+            out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFURL>>;
     }
+    if let Some(out_error) = out_error.as_ref() {
+        assert!(
+            out_error.is_none(),
+            "parameter `out_error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe {
         LSCopyDefaultApplicationURLForContentType(in_content_type, in_role_mask, out_error)
     };
@@ -156,22 +160,24 @@ pub unsafe fn LSCopyDefaultApplicationURLForContentType(
 /// In macOS 10.15 and later, the returned array is sorted with the first element containing the
 /// best available application with the specified bundle identifier. Prior to macOS 10.15, the
 /// order of elements in the array was undefined.
-///
-/// # Safety
-///
-/// `out_error` must be a valid pointer or null.
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsWithBundleIdentifier:] instead."]
 #[inline]
 pub unsafe fn LSCopyApplicationURLsForBundleIdentifier(
     in_bundle_identifier: &CFString,
-    out_error: *mut *mut CFError,
+    out_error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn LSCopyApplicationURLsForBundleIdentifier(
             in_bundle_identifier: &CFString,
-            out_error: *mut *mut CFError,
+            out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFArray>>;
     }
+    if let Some(out_error) = out_error.as_ref() {
+        assert!(
+            out_error.is_none(),
+            "parameter `out_error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe { LSCopyApplicationURLsForBundleIdentifier(in_bundle_identifier, out_error) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

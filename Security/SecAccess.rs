@@ -255,8 +255,7 @@ impl SecAccess {
     ///
     /// # Safety
     ///
-    /// - `acls` generic must be of the correct type.
-    /// - `error` must be a valid pointer or null.
+    /// `acls` generic must be of the correct type.
     #[doc(alias = "SecAccessCreateWithOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -266,7 +265,7 @@ impl SecAccess {
         group_id: libc::gid_t,
         owner_type: SecAccessOwnerType,
         acls: Option<&CFArray>,
-        error: *mut *mut CFError,
+        error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecAccess>> {
         extern "C-unwind" {
             fn SecAccessCreateWithOwnerAndACL(
@@ -274,9 +273,15 @@ impl SecAccess {
                 group_id: libc::gid_t,
                 owner_type: SecAccessOwnerType,
                 acls: Option<&CFArray>,
-                error: *mut *mut CFError,
+                error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecAccess>>;
         }
+        if let Some(error) = error.as_ref() {
+            assert!(
+                error.is_none(),
+                "parameter `error` must point to `None` on entry"
+            );
+        };
         let ret =
             unsafe { SecAccessCreateWithOwnerAndACL(user_id, group_id, owner_type, acls, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

@@ -33,21 +33,26 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// - `decode_type` should be of the correct type.
-/// - `error` must be a valid pointer or null.
+/// `decode_type` should be of the correct type.
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe fn SecDecodeTransformCreate(
     decode_type: &CFType,
-    error: *mut *mut CFError,
+    error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> Option<CFRetained<SecTransform>> {
     extern "C-unwind" {
         fn SecDecodeTransformCreate(
             decode_type: &CFType,
-            error: *mut *mut CFError,
+            error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<SecTransform>>;
     }
+    if let Some(error) = error.as_ref() {
+        assert!(
+            error.is_none(),
+            "parameter `error` must point to `None` on entry"
+        );
+    };
     let ret = unsafe { SecDecodeTransformCreate(decode_type, error) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

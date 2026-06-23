@@ -666,26 +666,28 @@ impl CGMutableImageMetadata {
     ///
     /// Returns: Returns true if successful. Returns false and sets 'err' if an error
     /// or conflict occurs.
-    ///
-    /// # Safety
-    ///
-    /// `err` must be a valid pointer or null.
     #[doc(alias = "CGImageMetadataRegisterNamespaceForPrefix")]
     #[inline]
     pub unsafe fn register_namespace_for_prefix(
         &self,
         xmlns: &CFString,
         prefix: &CFString,
-        err: *mut *mut CFError,
+        err: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn CGImageMetadataRegisterNamespaceForPrefix(
                 metadata: &CGMutableImageMetadata,
                 xmlns: &CFString,
                 prefix: &CFString,
-                err: *mut *mut CFError,
+                err: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
+        if let Some(err) = err.as_ref() {
+            assert!(
+                err.is_none(),
+                "parameter `err` must point to `None` on entry"
+            );
+        };
         unsafe { CGImageMetadataRegisterNamespaceForPrefix(self, xmlns, prefix, err) }
     }
 
