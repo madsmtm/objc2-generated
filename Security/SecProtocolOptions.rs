@@ -411,13 +411,12 @@ impl sec_protocol_options {
     ///
     /// # Safety
     ///
-    /// - `options` must be a valid pointer.
-    /// - `application_protocol` must be a valid pointer.
+    /// `options` must be a valid pointer.
     #[doc(alias = "sec_protocol_options_add_tls_application_protocol")]
     #[inline]
     pub unsafe fn add_tls_application_protocol(
         options: sec_protocol_options_t,
-        application_protocol: NonNull<c_char>,
+        application_protocol: &CStr,
     ) {
         extern "C-unwind" {
             fn sec_protocol_options_add_tls_application_protocol(
@@ -425,6 +424,7 @@ impl sec_protocol_options {
                 application_protocol: NonNull<c_char>,
             );
         }
+        let application_protocol = NonNull::new(application_protocol.as_ptr().cast_mut()).unwrap();
         unsafe { sec_protocol_options_add_tls_application_protocol(options, application_protocol) }
     }
 
@@ -439,20 +439,17 @@ impl sec_protocol_options {
     ///
     /// # Safety
     ///
-    /// - `options` must be a valid pointer.
-    /// - `server_name` must be a valid pointer.
+    /// `options` must be a valid pointer.
     #[doc(alias = "sec_protocol_options_set_tls_server_name")]
     #[inline]
-    pub unsafe fn set_tls_server_name(
-        options: sec_protocol_options_t,
-        server_name: NonNull<c_char>,
-    ) {
+    pub unsafe fn set_tls_server_name(options: sec_protocol_options_t, server_name: &CStr) {
         extern "C-unwind" {
             fn sec_protocol_options_set_tls_server_name(
                 options: sec_protocol_options_t,
                 server_name: NonNull<c_char>,
             );
         }
+        let server_name = NonNull::new(server_name.as_ptr().cast_mut()).unwrap();
         unsafe { sec_protocol_options_set_tls_server_name(options, server_name) }
     }
 

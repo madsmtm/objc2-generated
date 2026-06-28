@@ -38,13 +38,9 @@ pub const kAuthorizationComment: &CStr =
 /// Returns: errAuthorizationSuccess 0 No error.
 ///
 /// errAuthorizationDenied -60005 No definition found.
-///
-/// # Safety
-///
-/// `right_name` must be a valid pointer.
 #[inline]
 pub unsafe fn AuthorizationRightGet(
-    right_name: NonNull<c_char>,
+    right_name: &CStr,
     right_definition: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -53,6 +49,7 @@ pub unsafe fn AuthorizationRightGet(
             right_definition: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
         ) -> OSStatus;
     }
+    let right_name = NonNull::new(right_name.as_ptr().cast_mut()).unwrap();
     if let Some(right_definition) = right_definition.as_ref() {
         assert!(
             right_definition.is_none(),
@@ -89,13 +86,12 @@ pub unsafe fn AuthorizationRightGet(
 /// # Safety
 ///
 /// - `auth_ref` must be a valid pointer.
-/// - `right_name` must be a valid pointer.
 /// - `right_definition` should be of the correct type.
 #[cfg(feature = "Authorization")]
 #[inline]
 pub unsafe fn AuthorizationRightSet(
     auth_ref: AuthorizationRef,
-    right_name: NonNull<c_char>,
+    right_name: &CStr,
     right_definition: &CFType,
     description_key: Option<&CFString>,
     bundle: Option<&CFBundle>,
@@ -111,6 +107,7 @@ pub unsafe fn AuthorizationRightSet(
             locale_table_name: Option<&CFString>,
         ) -> OSStatus;
     }
+    let right_name = NonNull::new(right_name.as_ptr().cast_mut()).unwrap();
     unsafe {
         AuthorizationRightSet(
             auth_ref,
@@ -132,19 +129,16 @@ pub unsafe fn AuthorizationRightSet(
 ///
 /// # Safety
 ///
-/// - `auth_ref` must be a valid pointer.
-/// - `right_name` must be a valid pointer.
+/// `auth_ref` must be a valid pointer.
 #[cfg(feature = "Authorization")]
 #[inline]
-pub unsafe fn AuthorizationRightRemove(
-    auth_ref: AuthorizationRef,
-    right_name: NonNull<c_char>,
-) -> OSStatus {
+pub unsafe fn AuthorizationRightRemove(auth_ref: AuthorizationRef, right_name: &CStr) -> OSStatus {
     extern "C-unwind" {
         fn AuthorizationRightRemove(
             auth_ref: AuthorizationRef,
             right_name: NonNull<c_char>,
         ) -> OSStatus;
     }
+    let right_name = NonNull::new(right_name.as_ptr().cast_mut()).unwrap();
     unsafe { AuthorizationRightRemove(auth_ref, right_name) }
 }

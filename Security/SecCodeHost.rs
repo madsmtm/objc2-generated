@@ -12,8 +12,7 @@ pub const kSecCSGenerateGuestHash: u32 = 2;
 
 /// # Safety
 ///
-/// - `attributes` generic should be of the correct type.
-/// - `new_guest` must be a valid pointer.
+/// `attributes` generic should be of the correct type.
 #[cfg(feature = "CSCommon")]
 #[deprecated]
 #[inline]
@@ -23,7 +22,7 @@ pub unsafe fn SecHostCreateGuest(
     path: &CFURL,
     attributes: Option<&CFDictionary<CFString, CFType>>,
     flags: SecCSFlags,
-    new_guest: NonNull<SecGuestRef>,
+    new_guest: &mut SecGuestRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecHostCreateGuest(
@@ -32,7 +31,7 @@ pub unsafe fn SecHostCreateGuest(
             path: &CFURL,
             attributes: Option<&CFDictionary<CFString, CFType>>,
             flags: SecCSFlags,
-            new_guest: NonNull<SecGuestRef>,
+            new_guest: &mut SecGuestRef,
         ) -> OSStatus;
     }
     unsafe { SecHostCreateGuest(host, status, path, attributes, flags, new_guest) }
@@ -63,15 +62,12 @@ pub unsafe fn SecHostSelectGuest(guest_ref: SecGuestRef, flags: SecCSFlags) -> O
     unsafe { SecHostSelectGuest(guest_ref, flags) }
 }
 
-/// # Safety
-///
-/// `guest_ref` must be a valid pointer.
 #[cfg(feature = "CSCommon")]
 #[deprecated]
 #[inline]
-pub unsafe fn SecHostSelectedGuest(flags: SecCSFlags, guest_ref: NonNull<SecGuestRef>) -> OSStatus {
+pub unsafe fn SecHostSelectedGuest(flags: SecCSFlags, guest_ref: &mut SecGuestRef) -> OSStatus {
     extern "C-unwind" {
-        fn SecHostSelectedGuest(flags: SecCSFlags, guest_ref: NonNull<SecGuestRef>) -> OSStatus;
+        fn SecHostSelectedGuest(flags: SecCSFlags, guest_ref: &mut SecGuestRef) -> OSStatus;
     }
     unsafe { SecHostSelectedGuest(flags, guest_ref) }
 }

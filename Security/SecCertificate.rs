@@ -371,7 +371,7 @@ impl SecCertificate {
     ///
     /// # Safety
     ///
-    /// `data` must be a valid pointer.
+    /// `data` struct field `Data` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCreateFromData")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -382,14 +382,14 @@ impl SecCertificate {
     #[deprecated]
     #[inline]
     pub unsafe fn from_data(
-        data: NonNull<SecAsn1Item>,
+        data: &SecAsn1Item,
         r#type: CSSM_CERT_TYPE,
         encoding: CSSM_CERT_ENCODING,
         certificate: &mut Option<CFRetained<SecCertificate>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateCreateFromData(
-                data: NonNull<SecAsn1Item>,
+                data: &SecAsn1Item,
                 r#type: CSSM_CERT_TYPE,
                 encoding: CSSM_CERT_ENCODING,
                 certificate: &mut Option<CFRetained<SecCertificate>>,
@@ -459,19 +459,15 @@ impl SecCertificate {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyValues API instead.
-    ///
-    /// # Safety
-    ///
-    /// `certificate_type` must be a valid pointer.
     #[doc(alias = "SecCertificateGetType")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn r#type(&self, certificate_type: NonNull<CSSM_CERT_TYPE>) -> OSStatus {
+    pub unsafe fn r#type(&self, certificate_type: &mut CSSM_CERT_TYPE) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateGetType(
                 certificate: &SecCertificate,
-                certificate_type: NonNull<CSSM_CERT_TYPE>,
+                certificate_type: &mut CSSM_CERT_TYPE,
             ) -> OSStatus;
         }
         unsafe { SecCertificateGetType(self, certificate_type) }
@@ -501,7 +497,7 @@ impl SecCertificate {
     ///
     /// # Safety
     ///
-    /// `subject` must be a valid pointer.
+    /// `subject` must be a valid pointer or null.
     #[doc(alias = "SecCertificateGetSubject")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -511,11 +507,11 @@ impl SecCertificate {
     ))]
     #[deprecated]
     #[inline]
-    pub unsafe fn subject(&self, subject: NonNull<*const CSSM_X509_NAME>) -> OSStatus {
+    pub unsafe fn subject(&self, subject: &mut *const CSSM_X509_NAME) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateGetSubject(
                 certificate: &SecCertificate,
-                subject: NonNull<*const CSSM_X509_NAME>,
+                subject: &mut *const CSSM_X509_NAME,
             ) -> OSStatus;
         }
         unsafe { SecCertificateGetSubject(self, subject) }
@@ -545,7 +541,7 @@ impl SecCertificate {
     ///
     /// # Safety
     ///
-    /// `issuer` must be a valid pointer.
+    /// `issuer` must be a valid pointer or null.
     #[doc(alias = "SecCertificateGetIssuer")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -555,11 +551,11 @@ impl SecCertificate {
     ))]
     #[deprecated]
     #[inline]
-    pub unsafe fn issuer(&self, issuer: NonNull<*const CSSM_X509_NAME>) -> OSStatus {
+    pub unsafe fn issuer(&self, issuer: &mut *const CSSM_X509_NAME) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateGetIssuer(
                 certificate: &SecCertificate,
-                issuer: NonNull<*const CSSM_X509_NAME>,
+                issuer: &mut *const CSSM_X509_NAME,
             ) -> OSStatus;
         }
         unsafe { SecCertificateGetIssuer(self, issuer) }
@@ -574,19 +570,15 @@ impl SecCertificate {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyValues API instead.
-    ///
-    /// # Safety
-    ///
-    /// `cl_handle` must be a valid pointer.
     #[doc(alias = "SecCertificateGetCLHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn cl_handle(&self, cl_handle: NonNull<CSSM_CL_HANDLE>) -> OSStatus {
+    pub unsafe fn cl_handle(&self, cl_handle: &mut CSSM_CL_HANDLE) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateGetCLHandle(
                 certificate: &SecCertificate,
-                cl_handle: NonNull<CSSM_CL_HANDLE>,
+                cl_handle: &mut CSSM_CL_HANDLE,
             ) -> OSStatus;
         }
         unsafe { SecCertificateGetCLHandle(self, cl_handle) }
@@ -603,16 +595,16 @@ impl SecCertificate {
     ///
     /// # Safety
     ///
-    /// `algid` must be a valid pointer.
+    /// `algid` must be a valid pointer or null.
     #[doc(alias = "SecCertificateGetAlgorithmID")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn algorithm_id(&self, algid: NonNull<*const SecAsn1AlgId>) -> OSStatus {
+    pub unsafe fn algorithm_id(&self, algid: &mut *const SecAsn1AlgId) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateGetAlgorithmID(
                 certificate: &SecCertificate,
-                algid: NonNull<*const SecAsn1AlgId>,
+                algid: &mut *const SecAsn1AlgId,
             ) -> OSStatus;
         }
         unsafe { SecCertificateGetAlgorithmID(self, algid) }

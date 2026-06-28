@@ -203,7 +203,8 @@ impl SecAccess {
     ///
     /// # Safety
     ///
-    /// - `owner` must be a valid pointer.
+    /// - `owner` struct field `TypedSubject` struct field `Head` must be a valid pointer.
+    /// - `owner` struct field `TypedSubject` struct field `Tail` must be a valid pointer.
     /// - `acls` must be a valid pointer.
     #[doc(alias = "SecAccessCreateFromOwnerAndACL")]
     #[cfg(all(
@@ -215,14 +216,14 @@ impl SecAccess {
     #[deprecated = "CSSM is not supported"]
     #[inline]
     pub unsafe fn from_owner_and_acl(
-        owner: NonNull<CSSM_ACL_OWNER_PROTOTYPE>,
+        owner: &CSSM_ACL_OWNER_PROTOTYPE,
         acl_count: uint32,
         acls: NonNull<CSSM_ACL_ENTRY_INFO>,
         access_ref: &mut Option<CFRetained<SecAccess>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCreateFromOwnerAndACL(
-                owner: NonNull<CSSM_ACL_OWNER_PROTOTYPE>,
+                owner: &CSSM_ACL_OWNER_PROTOTYPE,
                 acl_count: uint32,
                 acls: NonNull<CSSM_ACL_ENTRY_INFO>,
                 access_ref: &mut Option<CFRetained<SecAccess>>,
@@ -295,8 +296,7 @@ impl SecAccess {
     ///
     /// # Safety
     ///
-    /// - `owner` must be a valid pointer.
-    /// - `acl_count` must be a valid pointer.
+    /// - `owner` must be a valid pointer or null.
     /// - `acls` must be a valid pointer.
     #[doc(alias = "SecAccessGetOwnerAndACL")]
     #[cfg(all(
@@ -309,15 +309,15 @@ impl SecAccess {
     #[inline]
     pub unsafe fn get_owner_and_acl(
         &self,
-        owner: NonNull<CSSM_ACL_OWNER_PROTOTYPE_PTR>,
-        acl_count: NonNull<uint32>,
+        owner: &mut CSSM_ACL_OWNER_PROTOTYPE_PTR,
+        acl_count: &mut uint32,
         acls: NonNull<CSSM_ACL_ENTRY_INFO_PTR>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessGetOwnerAndACL(
                 access_ref: &SecAccess,
-                owner: NonNull<CSSM_ACL_OWNER_PROTOTYPE_PTR>,
-                acl_count: NonNull<uint32>,
+                owner: &mut CSSM_ACL_OWNER_PROTOTYPE_PTR,
+                acl_count: &mut uint32,
                 acls: NonNull<CSSM_ACL_ENTRY_INFO_PTR>,
             ) -> OSStatus;
         }
@@ -337,29 +337,23 @@ impl SecAccess {
     /// Parameter `aclList`: On return, a pointer to a new created CFArray of SecACL instances.  The caller is responsible for calling CFRelease on this array.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// - `user_id` must be a valid pointer or null.
-    /// - `group_id` must be a valid pointer or null.
-    /// - `owner_type` must be a valid pointer or null.
     #[doc(alias = "SecAccessCopyOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn owner_and_acl(
         &self,
-        user_id: *mut libc::uid_t,
-        group_id: *mut libc::gid_t,
-        owner_type: *mut SecAccessOwnerType,
+        user_id: Option<&mut libc::uid_t>,
+        group_id: Option<&mut libc::gid_t>,
+        owner_type: Option<&mut SecAccessOwnerType>,
         acl_list: Option<&mut Option<CFRetained<CFArray<SecACL>>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCopyOwnerAndACL(
                 access_ref: &SecAccess,
-                user_id: *mut libc::uid_t,
-                group_id: *mut libc::gid_t,
-                owner_type: *mut SecAccessOwnerType,
+                user_id: Option<&mut libc::uid_t>,
+                group_id: Option<&mut libc::gid_t>,
+                owner_type: Option<&mut SecAccessOwnerType>,
                 acl_list: Option<&mut Option<CFRetained<CFArray<SecACL>>>>,
             ) -> OSStatus;
         }

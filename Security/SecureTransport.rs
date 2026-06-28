@@ -328,17 +328,11 @@ pub unsafe fn SSLDisposeContext(context: &SSLContext) -> OSStatus {
     unsafe { SSLDisposeContext(context) }
 }
 
-/// # Safety
-///
-/// `state` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
-pub unsafe fn SSLGetSessionState(
-    context: &SSLContext,
-    state: NonNull<SSLSessionState>,
-) -> OSStatus {
+pub unsafe fn SSLGetSessionState(context: &SSLContext, state: &mut SSLSessionState) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetSessionState(context: &SSLContext, state: NonNull<SSLSessionState>) -> OSStatus;
+        fn SSLGetSessionState(context: &SSLContext, state: &mut SSLSessionState) -> OSStatus;
     }
     unsafe { SSLGetSessionState(context, state) }
 }
@@ -361,21 +355,18 @@ pub unsafe fn SSLSetSessionOption(
     unsafe { SSLSetSessionOption(context, option, value) }
 }
 
-/// # Safety
-///
-/// `value` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetSessionOption(
     context: &SSLContext,
     option: SSLSessionOption,
-    value: NonNull<Boolean>,
+    value: &mut Boolean,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetSessionOption(
             context: &SSLContext,
             option: SSLSessionOption,
-            value: NonNull<Boolean>,
+            value: &mut Boolean,
         ) -> OSStatus;
     }
     unsafe { SSLGetSessionOption(context, option, value) }
@@ -421,20 +412,17 @@ pub unsafe fn SSLSetProtocolVersionMin(context: &SSLContext, min_version: SSLPro
     unsafe { SSLSetProtocolVersionMin(context, min_version) }
 }
 
-/// # Safety
-///
-/// `min_version` must be a valid pointer.
 #[cfg(feature = "SecProtocolTypes")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetProtocolVersionMin(
     context: &SSLContext,
-    min_version: NonNull<SSLProtocol>,
+    min_version: &mut SSLProtocol,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetProtocolVersionMin(
             context: &SSLContext,
-            min_version: NonNull<SSLProtocol>,
+            min_version: &mut SSLProtocol,
         ) -> OSStatus;
     }
     unsafe { SSLGetProtocolVersionMin(context, min_version) }
@@ -450,20 +438,17 @@ pub unsafe fn SSLSetProtocolVersionMax(context: &SSLContext, max_version: SSLPro
     unsafe { SSLSetProtocolVersionMax(context, max_version) }
 }
 
-/// # Safety
-///
-/// `max_version` must be a valid pointer.
 #[cfg(feature = "SecProtocolTypes")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetProtocolVersionMax(
     context: &SSLContext,
-    max_version: NonNull<SSLProtocol>,
+    max_version: &mut SSLProtocol,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetProtocolVersionMax(
             context: &SSLContext,
-            max_version: NonNull<SSLProtocol>,
+            max_version: &mut SSLProtocol,
         ) -> OSStatus;
     }
     unsafe { SSLGetProtocolVersionMax(context, max_version) }
@@ -488,22 +473,19 @@ pub unsafe fn SSLSetProtocolVersionEnabled(
     unsafe { SSLSetProtocolVersionEnabled(context, protocol, enable) }
 }
 
-/// # Safety
-///
-/// `enable` must be a valid pointer.
 #[cfg(feature = "SecProtocolTypes")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetProtocolVersionEnabled(
     context: &SSLContext,
     protocol: SSLProtocol,
-    enable: NonNull<Boolean>,
+    enable: &mut Boolean,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetProtocolVersionEnabled(
             context: &SSLContext,
             protocol: SSLProtocol,
-            enable: NonNull<Boolean>,
+            enable: &mut Boolean,
         ) -> OSStatus;
     }
     unsafe { SSLGetProtocolVersionEnabled(context, protocol, enable) }
@@ -519,18 +501,12 @@ pub unsafe fn SSLSetProtocolVersion(context: &SSLContext, version: SSLProtocol) 
     unsafe { SSLSetProtocolVersion(context, version) }
 }
 
-/// # Safety
-///
-/// `protocol` must be a valid pointer.
 #[cfg(feature = "SecProtocolTypes")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
-pub unsafe fn SSLGetProtocolVersion(
-    context: &SSLContext,
-    protocol: NonNull<SSLProtocol>,
-) -> OSStatus {
+pub unsafe fn SSLGetProtocolVersion(context: &SSLContext, protocol: &mut SSLProtocol) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetProtocolVersion(context: &SSLContext, protocol: NonNull<SSLProtocol>) -> OSStatus;
+        fn SSLGetProtocolVersion(context: &SSLContext, protocol: &mut SSLProtocol) -> OSStatus;
     }
     unsafe { SSLGetProtocolVersion(context, protocol) }
 }
@@ -565,18 +541,15 @@ pub unsafe fn SSLSetConnection(context: &SSLContext, connection: SSLConnectionRe
 
 /// # Safety
 ///
-/// `connection` must be a valid pointer.
+/// `connection` must be a valid pointer or null.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetConnection(
     context: &SSLContext,
-    connection: NonNull<SSLConnectionRef>,
+    connection: &mut SSLConnectionRef,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetConnection(
-            context: &SSLContext,
-            connection: NonNull<SSLConnectionRef>,
-        ) -> OSStatus;
+        fn SSLGetConnection(context: &SSLContext, connection: &mut SSLConnectionRef) -> OSStatus;
     }
     unsafe { SSLGetConnection(context, connection) }
 }
@@ -601,79 +574,65 @@ pub unsafe fn SSLSetPeerDomainName(
     unsafe { SSLSetPeerDomainName(context, peer_name, peer_name_len) }
 }
 
-/// # Safety
-///
-/// `peer_name_len` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetPeerDomainNameLength(
     context: &SSLContext,
-    peer_name_len: NonNull<usize>,
+    peer_name_len: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetPeerDomainNameLength(
-            context: &SSLContext,
-            peer_name_len: NonNull<usize>,
-        ) -> OSStatus;
+        fn SSLGetPeerDomainNameLength(context: &SSLContext, peer_name_len: &mut usize) -> OSStatus;
     }
     unsafe { SSLGetPeerDomainNameLength(context, peer_name_len) }
 }
 
 /// # Safety
 ///
-/// - `peer_name` must be a valid pointer.
-/// - `peer_name_len` must be a valid pointer.
+/// `peer_name` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetPeerDomainName(
     context: &SSLContext,
     peer_name: NonNull<c_char>,
-    peer_name_len: NonNull<usize>,
+    peer_name_len: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetPeerDomainName(
             context: &SSLContext,
             peer_name: NonNull<c_char>,
-            peer_name_len: NonNull<usize>,
+            peer_name_len: &mut usize,
         ) -> OSStatus;
     }
     unsafe { SSLGetPeerDomainName(context, peer_name, peer_name_len) }
 }
 
-/// # Safety
-///
-/// `peer_name_len` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLCopyRequestedPeerNameLength(
     ctx: &SSLContext,
-    peer_name_len: NonNull<usize>,
+    peer_name_len: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn SSLCopyRequestedPeerNameLength(
-            ctx: &SSLContext,
-            peer_name_len: NonNull<usize>,
-        ) -> OSStatus;
+        fn SSLCopyRequestedPeerNameLength(ctx: &SSLContext, peer_name_len: &mut usize) -> OSStatus;
     }
     unsafe { SSLCopyRequestedPeerNameLength(ctx, peer_name_len) }
 }
 
 /// # Safety
 ///
-/// - `peer_name` must be a valid pointer.
-/// - `peer_name_len` must be a valid pointer.
+/// `peer_name` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLCopyRequestedPeerName(
     context: &SSLContext,
     peer_name: NonNull<c_char>,
-    peer_name_len: NonNull<usize>,
+    peer_name_len: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLCopyRequestedPeerName(
             context: &SSLContext,
             peer_name: NonNull<c_char>,
-            peer_name_len: NonNull<usize>,
+            peer_name_len: &mut usize,
         ) -> OSStatus;
     }
     unsafe { SSLCopyRequestedPeerName(context, peer_name, peer_name_len) }
@@ -708,97 +667,76 @@ pub unsafe fn SSLSetMaxDatagramRecordSize(dtls_context: &SSLContext, max_size: u
     unsafe { SSLSetMaxDatagramRecordSize(dtls_context, max_size) }
 }
 
-/// # Safety
-///
-/// `max_size` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetMaxDatagramRecordSize(
     dtls_context: &SSLContext,
-    max_size: NonNull<usize>,
+    max_size: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetMaxDatagramRecordSize(
-            dtls_context: &SSLContext,
-            max_size: NonNull<usize>,
-        ) -> OSStatus;
+        fn SSLGetMaxDatagramRecordSize(dtls_context: &SSLContext, max_size: &mut usize)
+            -> OSStatus;
     }
     unsafe { SSLGetMaxDatagramRecordSize(dtls_context, max_size) }
 }
 
-/// # Safety
-///
-/// `protocol` must be a valid pointer.
 #[cfg(feature = "SecProtocolTypes")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetNegotiatedProtocolVersion(
     context: &SSLContext,
-    protocol: NonNull<SSLProtocol>,
+    protocol: &mut SSLProtocol,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetNegotiatedProtocolVersion(
             context: &SSLContext,
-            protocol: NonNull<SSLProtocol>,
+            protocol: &mut SSLProtocol,
         ) -> OSStatus;
     }
     unsafe { SSLGetNegotiatedProtocolVersion(context, protocol) }
 }
 
-/// # Safety
-///
-/// `num_ciphers` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetNumberSupportedCiphers(
     context: &SSLContext,
-    num_ciphers: NonNull<usize>,
+    num_ciphers: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetNumberSupportedCiphers(
-            context: &SSLContext,
-            num_ciphers: NonNull<usize>,
-        ) -> OSStatus;
+        fn SSLGetNumberSupportedCiphers(context: &SSLContext, num_ciphers: &mut usize) -> OSStatus;
     }
     unsafe { SSLGetNumberSupportedCiphers(context, num_ciphers) }
 }
 
 /// # Safety
 ///
-/// - `ciphers` must be a valid pointer.
-/// - `num_ciphers` must be a valid pointer.
+/// `ciphers` must be a valid pointer.
 #[cfg(feature = "CipherSuite")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetSupportedCiphers(
     context: &SSLContext,
     ciphers: NonNull<SSLCipherSuite>,
-    num_ciphers: NonNull<usize>,
+    num_ciphers: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetSupportedCiphers(
             context: &SSLContext,
             ciphers: NonNull<SSLCipherSuite>,
-            num_ciphers: NonNull<usize>,
+            num_ciphers: &mut usize,
         ) -> OSStatus;
     }
     unsafe { SSLGetSupportedCiphers(context, ciphers, num_ciphers) }
 }
 
-/// # Safety
-///
-/// `num_ciphers` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetNumberEnabledCiphers(
     context: &SSLContext,
-    num_ciphers: NonNull<usize>,
+    num_ciphers: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetNumberEnabledCiphers(
-            context: &SSLContext,
-            num_ciphers: NonNull<usize>,
-        ) -> OSStatus;
+        fn SSLGetNumberEnabledCiphers(context: &SSLContext, num_ciphers: &mut usize) -> OSStatus;
     }
     unsafe { SSLGetNumberEnabledCiphers(context, num_ciphers) }
 }
@@ -826,21 +764,20 @@ pub unsafe fn SSLSetEnabledCiphers(
 
 /// # Safety
 ///
-/// - `ciphers` must be a valid pointer.
-/// - `num_ciphers` must be a valid pointer.
+/// `ciphers` must be a valid pointer.
 #[cfg(feature = "CipherSuite")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetEnabledCiphers(
     context: &SSLContext,
     ciphers: NonNull<SSLCipherSuite>,
-    num_ciphers: NonNull<usize>,
+    num_ciphers: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetEnabledCiphers(
             context: &SSLContext,
             ciphers: NonNull<SSLCipherSuite>,
-            num_ciphers: NonNull<usize>,
+            num_ciphers: &mut usize,
         ) -> OSStatus;
     }
     unsafe { SSLGetEnabledCiphers(context, ciphers, num_ciphers) }
@@ -866,20 +803,14 @@ pub unsafe fn SSLSetEnableCertVerify(context: &SSLContext, enable_verify: bool) 
     unsafe { SSLSetEnableCertVerify(context, enable_verify) }
 }
 
-/// # Safety
-///
-/// `enable_verify` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetEnableCertVerify(
     context: &SSLContext,
-    enable_verify: NonNull<Boolean>,
+    enable_verify: &mut Boolean,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetEnableCertVerify(
-            context: &SSLContext,
-            enable_verify: NonNull<Boolean>,
-        ) -> OSStatus;
+        fn SSLGetEnableCertVerify(context: &SSLContext, enable_verify: &mut Boolean) -> OSStatus;
     }
     unsafe { SSLGetEnableCertVerify(context, enable_verify) }
 }
@@ -894,20 +825,15 @@ pub unsafe fn SSLSetAllowsExpiredCerts(context: &SSLContext, allows_expired: boo
     unsafe { SSLSetAllowsExpiredCerts(context, allows_expired) }
 }
 
-/// # Safety
-///
-/// `allows_expired` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetAllowsExpiredCerts(
     context: &SSLContext,
-    allows_expired: NonNull<Boolean>,
+    allows_expired: &mut Boolean,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetAllowsExpiredCerts(
-            context: &SSLContext,
-            allows_expired: NonNull<Boolean>,
-        ) -> OSStatus;
+        fn SSLGetAllowsExpiredCerts(context: &SSLContext, allows_expired: &mut Boolean)
+            -> OSStatus;
     }
     unsafe { SSLGetAllowsExpiredCerts(context, allows_expired) }
 }
@@ -922,20 +848,15 @@ pub unsafe fn SSLSetAllowsExpiredRoots(context: &SSLContext, allows_expired: boo
     unsafe { SSLSetAllowsExpiredRoots(context, allows_expired) }
 }
 
-/// # Safety
-///
-/// `allows_expired` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetAllowsExpiredRoots(
     context: &SSLContext,
-    allows_expired: NonNull<Boolean>,
+    allows_expired: &mut Boolean,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetAllowsExpiredRoots(
-            context: &SSLContext,
-            allows_expired: NonNull<Boolean>,
-        ) -> OSStatus;
+        fn SSLGetAllowsExpiredRoots(context: &SSLContext, allows_expired: &mut Boolean)
+            -> OSStatus;
     }
     unsafe { SSLGetAllowsExpiredRoots(context, allows_expired) }
 }
@@ -950,14 +871,11 @@ pub unsafe fn SSLSetAllowsAnyRoot(context: &SSLContext, any_root: bool) -> OSSta
     unsafe { SSLSetAllowsAnyRoot(context, any_root) }
 }
 
-/// # Safety
-///
-/// `any_root` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
-pub unsafe fn SSLGetAllowsAnyRoot(context: &SSLContext, any_root: NonNull<Boolean>) -> OSStatus {
+pub unsafe fn SSLGetAllowsAnyRoot(context: &SSLContext, any_root: &mut Boolean) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetAllowsAnyRoot(context: &SSLContext, any_root: NonNull<Boolean>) -> OSStatus;
+        fn SSLGetAllowsAnyRoot(context: &SSLContext, any_root: &mut Boolean) -> OSStatus;
     }
     unsafe { SSLGetAllowsAnyRoot(context, any_root) }
 }
@@ -1063,39 +981,35 @@ pub unsafe fn SSLSetPeerID(
 
 /// # Safety
 ///
-/// - `peer_id` must be a valid pointer.
-/// - `peer_id_len` must be a valid pointer.
+/// `peer_id` must be a valid pointer or null.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetPeerID(
     context: &SSLContext,
-    peer_id: NonNull<*const c_void>,
-    peer_id_len: NonNull<usize>,
+    peer_id: &mut *const c_void,
+    peer_id_len: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetPeerID(
             context: &SSLContext,
-            peer_id: NonNull<*const c_void>,
-            peer_id_len: NonNull<usize>,
+            peer_id: &mut *const c_void,
+            peer_id_len: &mut usize,
         ) -> OSStatus;
     }
     unsafe { SSLGetPeerID(context, peer_id, peer_id_len) }
 }
 
-/// # Safety
-///
-/// `cipher_suite` must be a valid pointer.
 #[cfg(feature = "CipherSuite")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetNegotiatedCipher(
     context: &SSLContext,
-    cipher_suite: NonNull<SSLCipherSuite>,
+    cipher_suite: &mut SSLCipherSuite,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetNegotiatedCipher(
             context: &SSLContext,
-            cipher_suite: NonNull<SSLCipherSuite>,
+            cipher_suite: &mut SSLCipherSuite,
         ) -> OSStatus;
     }
     unsafe { SSLGetNegotiatedCipher(context, cipher_suite) }
@@ -1270,19 +1184,16 @@ pub unsafe fn SSLCopyDistinguishedNames(
     unsafe { SSLCopyDistinguishedNames(context, names) }
 }
 
-/// # Safety
-///
-/// `client_state` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetClientCertificateState(
     context: &SSLContext,
-    client_state: NonNull<SSLClientCertificateState>,
+    client_state: &mut SSLClientCertificateState,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetClientCertificateState(
             context: &SSLContext,
-            client_state: NonNull<SSLClientCertificateState>,
+            client_state: &mut SSLClientCertificateState,
         ) -> OSStatus;
     }
     unsafe { SSLGetClientCertificateState(context, client_state) }
@@ -1310,20 +1221,19 @@ pub unsafe fn SSLSetDiffieHellmanParams(
 
 /// # Safety
 ///
-/// - `dh_params` must be a valid pointer.
-/// - `dh_params_len` must be a valid pointer.
+/// `dh_params` must be a valid pointer or null.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLGetDiffieHellmanParams(
     context: &SSLContext,
-    dh_params: NonNull<*const c_void>,
-    dh_params_len: NonNull<usize>,
+    dh_params: &mut *const c_void,
+    dh_params_len: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLGetDiffieHellmanParams(
             context: &SSLContext,
-            dh_params: NonNull<*const c_void>,
-            dh_params_len: NonNull<usize>,
+            dh_params: &mut *const c_void,
+            dh_params_len: &mut usize,
         ) -> OSStatus;
     }
     unsafe { SSLGetDiffieHellmanParams(context, dh_params, dh_params_len) }
@@ -1339,14 +1249,11 @@ pub unsafe fn SSLSetRsaBlinding(context: &SSLContext, blinding: bool) -> OSStatu
     unsafe { SSLSetRsaBlinding(context, blinding) }
 }
 
-/// # Safety
-///
-/// `blinding` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
-pub unsafe fn SSLGetRsaBlinding(context: &SSLContext, blinding: NonNull<Boolean>) -> OSStatus {
+pub unsafe fn SSLGetRsaBlinding(context: &SSLContext, blinding: &mut Boolean) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetRsaBlinding(context: &SSLContext, blinding: NonNull<Boolean>) -> OSStatus;
+        fn SSLGetRsaBlinding(context: &SSLContext, blinding: &mut Boolean) -> OSStatus;
     }
     unsafe { SSLGetRsaBlinding(context, blinding) }
 }
@@ -1371,22 +1278,21 @@ pub unsafe fn SSLReHandshake(context: &SSLContext) -> OSStatus {
 
 /// # Safety
 ///
-/// - `data` must be a valid pointer or null.
-/// - `processed` must be a valid pointer.
+/// `data` must be a valid pointer or null.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLWrite(
     context: &SSLContext,
     data: *const c_void,
     data_length: usize,
-    processed: NonNull<usize>,
+    processed: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLWrite(
             context: &SSLContext,
             data: *const c_void,
             data_length: usize,
-            processed: NonNull<usize>,
+            processed: &mut usize,
         ) -> OSStatus;
     }
     unsafe { SSLWrite(context, data, data_length, processed) }
@@ -1394,54 +1300,40 @@ pub unsafe fn SSLWrite(
 
 /// # Safety
 ///
-/// - `data` must be a valid pointer.
-/// - `processed` must be a valid pointer.
+/// `data` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLRead(
     context: &SSLContext,
     data: NonNull<c_void>,
     data_length: usize,
-    processed: NonNull<usize>,
+    processed: &mut usize,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLRead(
             context: &SSLContext,
             data: NonNull<c_void>,
             data_length: usize,
-            processed: NonNull<usize>,
+            processed: &mut usize,
         ) -> OSStatus;
     }
     unsafe { SSLRead(context, data, data_length, processed) }
 }
 
-/// # Safety
-///
-/// `buffer_size` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
-pub unsafe fn SSLGetBufferedReadSize(
-    context: &SSLContext,
-    buffer_size: NonNull<usize>,
-) -> OSStatus {
+pub unsafe fn SSLGetBufferedReadSize(context: &SSLContext, buffer_size: &mut usize) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetBufferedReadSize(context: &SSLContext, buffer_size: NonNull<usize>) -> OSStatus;
+        fn SSLGetBufferedReadSize(context: &SSLContext, buffer_size: &mut usize) -> OSStatus;
     }
     unsafe { SSLGetBufferedReadSize(context, buffer_size) }
 }
 
-/// # Safety
-///
-/// `buf_size` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
-pub unsafe fn SSLGetDatagramWriteSize(
-    dtls_context: &SSLContext,
-    buf_size: NonNull<usize>,
-) -> OSStatus {
+pub unsafe fn SSLGetDatagramWriteSize(dtls_context: &SSLContext, buf_size: &mut usize) -> OSStatus {
     extern "C-unwind" {
-        fn SSLGetDatagramWriteSize(dtls_context: &SSLContext, buf_size: NonNull<usize>)
-            -> OSStatus;
+        fn SSLGetDatagramWriteSize(dtls_context: &SSLContext, buf_size: &mut usize) -> OSStatus;
     }
     unsafe { SSLGetDatagramWriteSize(dtls_context, buf_size) }
 }

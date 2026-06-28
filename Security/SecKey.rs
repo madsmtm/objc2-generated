@@ -436,7 +436,7 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// `cssm_key` must be a valid pointer.
+    /// `cssm_key` must be a valid pointer or null.
     #[doc(alias = "SecKeyGetCSSMKey")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -446,9 +446,9 @@ impl SecKey {
     ))]
     #[deprecated]
     #[inline]
-    pub unsafe fn cssm_key(&self, cssm_key: NonNull<*const CSSM_KEY>) -> OSStatus {
+    pub unsafe fn cssm_key(&self, cssm_key: &mut *const CSSM_KEY) -> OSStatus {
         extern "C-unwind" {
-            fn SecKeyGetCSSMKey(key: &SecKey, cssm_key: NonNull<*const CSSM_KEY>) -> OSStatus;
+            fn SecKeyGetCSSMKey(key: &SecKey, cssm_key: &mut *const CSSM_KEY) -> OSStatus;
         }
         unsafe { SecKeyGetCSSMKey(self, cssm_key) }
     }
@@ -462,20 +462,13 @@ impl SecKey {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Its use should no longer be needed.
-    ///
-    /// # Safety
-    ///
-    /// `csp_handle` must be a valid pointer.
     #[doc(alias = "SecKeyGetCSPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn csp_handle(&self, csp_handle: NonNull<CSSM_CSP_HANDLE>) -> OSStatus {
+    pub unsafe fn csp_handle(&self, csp_handle: &mut CSSM_CSP_HANDLE) -> OSStatus {
         extern "C-unwind" {
-            fn SecKeyGetCSPHandle(
-                key_ref: &SecKey,
-                csp_handle: NonNull<CSSM_CSP_HANDLE>,
-            ) -> OSStatus;
+            fn SecKeyGetCSPHandle(key_ref: &SecKey, csp_handle: &mut CSSM_CSP_HANDLE) -> OSStatus;
         }
         unsafe { SecKeyGetCSPHandle(self, csp_handle) }
     }
@@ -494,7 +487,7 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// `out_credentials` must be a valid pointer.
+    /// `out_credentials` must be a valid pointer or null.
     #[doc(alias = "SecKeyGetCredentials")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -508,14 +501,14 @@ impl SecKey {
         &self,
         operation: CSSM_ACL_AUTHORIZATION_TAG,
         credential_type: SecCredentialType,
-        out_credentials: NonNull<*const CSSM_ACCESS_CREDENTIALS>,
+        out_credentials: &mut *const CSSM_ACCESS_CREDENTIALS,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeyGetCredentials(
                 key_ref: &SecKey,
                 operation: CSSM_ACL_AUTHORIZATION_TAG,
                 credential_type: SecCredentialType,
-                out_credentials: NonNull<*const CSSM_ACCESS_CREDENTIALS>,
+                out_credentials: &mut *const CSSM_ACCESS_CREDENTIALS,
             ) -> OSStatus;
         }
         unsafe { SecKeyGetCredentials(self, operation, credential_type, out_credentials) }

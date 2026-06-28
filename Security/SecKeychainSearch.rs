@@ -41,7 +41,7 @@ impl SecKeychainSearch {
     /// # Safety
     ///
     /// - `keychain_or_array` should be of the correct type.
-    /// - `attr_list` must be a valid pointer or null.
+    /// - `attr_list` struct field `attr` must be a valid pointer or null.
     #[doc(alias = "SecKeychainSearchCreateFromAttributes")]
     #[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
     #[deprecated = "SecKeychainSearch is not supported"]
@@ -49,14 +49,14 @@ impl SecKeychainSearch {
     pub unsafe fn from_attributes(
         keychain_or_array: Option<&CFType>,
         item_class: SecItemClass,
-        attr_list: *const SecKeychainAttributeList,
+        attr_list: Option<&SecKeychainAttributeList>,
         search_ref: &mut Option<CFRetained<SecKeychainSearch>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainSearchCreateFromAttributes(
                 keychain_or_array: Option<&CFType>,
                 item_class: SecItemClass,
-                attr_list: *const SecKeychainAttributeList,
+                attr_list: Option<&SecKeychainAttributeList>,
                 search_ref: &mut Option<CFRetained<SecKeychainSearch>>,
             ) -> OSStatus;
         }

@@ -471,14 +471,14 @@ impl SecPolicy {
     ///
     /// # Safety
     ///
-    /// `oid` must be a valid pointer.
+    /// `oid` struct field `Data` must be a valid pointer or null.
     #[doc(alias = "SecPolicyGetOID")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn oid(&self, oid: NonNull<SecAsn1Oid>) -> OSStatus {
+    pub unsafe fn oid(&self, oid: &mut SecAsn1Oid) -> OSStatus {
         extern "C-unwind" {
-            fn SecPolicyGetOID(policy_ref: &SecPolicy, oid: NonNull<SecAsn1Oid>) -> OSStatus;
+            fn SecPolicyGetOID(policy_ref: &SecPolicy, oid: &mut SecAsn1Oid) -> OSStatus;
         }
         unsafe { SecPolicyGetOID(self, oid) }
     }
@@ -496,14 +496,14 @@ impl SecPolicy {
     ///
     /// # Safety
     ///
-    /// `value` must be a valid pointer.
+    /// `value` struct field `Data` must be a valid pointer or null.
     #[doc(alias = "SecPolicyGetValue")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn value(&self, value: NonNull<SecAsn1Item>) -> OSStatus {
+    pub unsafe fn value(&self, value: &mut SecAsn1Item) -> OSStatus {
         extern "C-unwind" {
-            fn SecPolicyGetValue(policy_ref: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus;
+            fn SecPolicyGetValue(policy_ref: &SecPolicy, value: &mut SecAsn1Item) -> OSStatus;
         }
         unsafe { SecPolicyGetValue(self, value) }
     }
@@ -524,14 +524,14 @@ impl SecPolicy {
     ///
     /// # Safety
     ///
-    /// `value` must be a valid pointer.
+    /// `value` struct field `Data` must be a valid pointer or null.
     #[doc(alias = "SecPolicySetValue")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_value(&self, value: NonNull<SecAsn1Item>) -> OSStatus {
+    pub unsafe fn set_value(&self, value: &SecAsn1Item) -> OSStatus {
         extern "C-unwind" {
-            fn SecPolicySetValue(policy_ref: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus;
+            fn SecPolicySetValue(policy_ref: &SecPolicy, value: &SecAsn1Item) -> OSStatus;
         }
         unsafe { SecPolicySetValue(self, value) }
     }
@@ -578,19 +578,15 @@ impl SecPolicy {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in Mac OS X 10.7 and later.
-    ///
-    /// # Safety
-    ///
-    /// `tp_handle` must be a valid pointer.
     #[doc(alias = "SecPolicyGetTPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn tp_handle(&self, tp_handle: NonNull<CSSM_TP_HANDLE>) -> OSStatus {
+    pub unsafe fn tp_handle(&self, tp_handle: &mut CSSM_TP_HANDLE) -> OSStatus {
         extern "C-unwind" {
             fn SecPolicyGetTPHandle(
                 policy_ref: &SecPolicy,
-                tp_handle: NonNull<CSSM_TP_HANDLE>,
+                tp_handle: &mut CSSM_TP_HANDLE,
             ) -> OSStatus;
         }
         unsafe { SecPolicyGetTPHandle(self, tp_handle) }

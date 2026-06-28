@@ -76,7 +76,7 @@ impl SecACL {
     ///
     /// # Safety
     ///
-    /// `prompt_selector` must be a valid pointer.
+    /// `prompt_selector` struct field `version` must be set correctly.
     #[doc(alias = "SecACLCreateFromSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -85,7 +85,7 @@ impl SecACL {
         access: &SecAccess,
         application_list: Option<&CFArray<SecTrustedApplication>>,
         description: &CFString,
-        prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
+        prompt_selector: &CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR,
         new_acl: &mut Option<CFRetained<SecACL>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -93,7 +93,7 @@ impl SecACL {
                 access: &SecAccess,
                 application_list: Option<&CFArray<SecTrustedApplication>>,
                 description: &CFString,
-                prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
+                prompt_selector: &CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR,
                 new_acl: &mut Option<CFRetained<SecACL>>,
             ) -> OSStatus;
         }
@@ -193,7 +193,7 @@ impl SecACL {
     ///
     /// # Safety
     ///
-    /// `prompt_selector` must be a valid pointer.
+    /// `prompt_selector` struct field `version` must be set correctly.
     #[doc(alias = "SecACLCopySimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -202,14 +202,14 @@ impl SecACL {
         &self,
         application_list: &mut Option<CFRetained<CFArray<SecTrustedApplication>>>,
         description: &mut Option<CFRetained<CFString>>,
-        prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
+        prompt_selector: &mut CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecACLCopySimpleContents(
                 acl: &SecACL,
                 application_list: &mut Option<CFRetained<CFArray<SecTrustedApplication>>>,
                 description: &mut Option<CFRetained<CFString>>,
-                prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
+                prompt_selector: &mut CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR,
             ) -> OSStatus;
         }
         assert!(
@@ -234,10 +234,6 @@ impl SecACL {
     /// Parameter `promptSelector`: A pointer to a SecKeychainPromptSelector.  On return, this points to the SecKeychainPromptSelector for the given access control list entry.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `prompt_selector` must be a valid pointer.
     #[doc(alias = "SecACLCopyContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -246,14 +242,14 @@ impl SecACL {
         &self,
         application_list: &mut Option<CFRetained<CFArray<SecTrustedApplication>>>,
         description: &mut Option<CFRetained<CFString>>,
-        prompt_selector: NonNull<SecKeychainPromptSelector>,
+        prompt_selector: &mut SecKeychainPromptSelector,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecACLCopyContents(
                 acl: &SecACL,
                 application_list: &mut Option<CFRetained<CFArray<SecTrustedApplication>>>,
                 description: &mut Option<CFRetained<CFString>>,
-                prompt_selector: NonNull<SecKeychainPromptSelector>,
+                prompt_selector: &mut SecKeychainPromptSelector,
             ) -> OSStatus;
         }
         assert!(
@@ -284,7 +280,7 @@ impl SecACL {
     ///
     /// # Safety
     ///
-    /// `prompt_selector` must be a valid pointer.
+    /// `prompt_selector` struct field `version` must be set correctly.
     #[doc(alias = "SecACLSetSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -293,14 +289,14 @@ impl SecACL {
         &self,
         application_list: Option<&CFArray<SecTrustedApplication>>,
         description: &CFString,
-        prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
+        prompt_selector: &CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecACLSetSimpleContents(
                 acl: &SecACL,
                 application_list: Option<&CFArray<SecTrustedApplication>>,
                 description: &CFString,
-                prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
+                prompt_selector: &CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR,
             ) -> OSStatus;
         }
         unsafe { SecACLSetSimpleContents(self, application_list, description, prompt_selector) }
@@ -353,8 +349,7 @@ impl SecACL {
     ///
     /// # Safety
     ///
-    /// - `tags` must be a valid pointer.
-    /// - `tag_count` must be a valid pointer.
+    /// `tags` must be a valid pointer.
     #[doc(alias = "SecACLGetAuthorizations")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -362,13 +357,13 @@ impl SecACL {
     pub unsafe fn get_authorizations(
         &self,
         tags: NonNull<CSSM_ACL_AUTHORIZATION_TAG>,
-        tag_count: NonNull<uint32>,
+        tag_count: &mut uint32,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecACLGetAuthorizations(
                 acl: &SecACL,
                 tags: NonNull<CSSM_ACL_AUTHORIZATION_TAG>,
-                tag_count: NonNull<uint32>,
+                tag_count: &mut uint32,
             ) -> OSStatus;
         }
         unsafe { SecACLGetAuthorizations(self, tags, tag_count) }

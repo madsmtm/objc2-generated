@@ -156,16 +156,13 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetHasDetachedContent(self, detached_content) }
     }
 
-    /// # Safety
-    ///
-    /// `detached_content_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderGetHasDetachedContent")]
     #[inline]
-    pub unsafe fn has_detached_content(&self, detached_content_out: NonNull<Boolean>) -> OSStatus {
+    pub unsafe fn has_detached_content(&self, detached_content_out: &mut Boolean) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderGetHasDetachedContent(
                 cms_encoder: &CMSEncoder,
-                detached_content_out: NonNull<Boolean>,
+                detached_content_out: &mut Boolean,
             ) -> OSStatus;
         }
         unsafe { CMSEncoderGetHasDetachedContent(self, detached_content_out) }
@@ -173,19 +170,16 @@ impl CMSEncoder {
 
     /// # Safety
     ///
-    /// `e_content_type` must be a valid pointer.
+    /// `e_content_type` struct field `Data` must be a valid pointer or null.
     #[doc(alias = "CMSEncoderSetEncapsulatedContentType")]
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_encapsulated_content_type(
-        &self,
-        e_content_type: NonNull<SecAsn1Oid>,
-    ) -> OSStatus {
+    pub unsafe fn set_encapsulated_content_type(&self, e_content_type: &SecAsn1Oid) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderSetEncapsulatedContentType(
                 cms_encoder: &CMSEncoder,
-                e_content_type: NonNull<SecAsn1Oid>,
+                e_content_type: &SecAsn1Oid,
             ) -> OSStatus;
         }
         unsafe { CMSEncoderSetEncapsulatedContentType(self, e_content_type) }
@@ -359,19 +353,16 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetCertificateChainMode(self, chain_mode) }
     }
 
-    /// # Safety
-    ///
-    /// `chain_mode_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderGetCertificateChainMode")]
     #[inline]
     pub unsafe fn certificate_chain_mode(
         &self,
-        chain_mode_out: NonNull<CMSCertificateChainMode>,
+        chain_mode_out: &mut CMSCertificateChainMode,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderGetCertificateChainMode(
                 cms_encoder: &CMSEncoder,
-                chain_mode_out: NonNull<CMSCertificateChainMode>,
+                chain_mode_out: &mut CMSCertificateChainMode,
             ) -> OSStatus;
         }
         unsafe { CMSEncoderGetCertificateChainMode(self, chain_mode_out) }
@@ -417,7 +408,7 @@ impl CMSEncoder {
 ///
 /// - `signers` should be of the correct type.
 /// - `recipients` should be of the correct type.
-/// - `e_content_type` must be a valid pointer or null.
+/// - `e_content_type` struct field `Data` must be a valid pointer or null.
 /// - `content` must be a valid pointer.
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
@@ -425,7 +416,7 @@ impl CMSEncoder {
 pub unsafe fn CMSEncode(
     signers: Option<&CFType>,
     recipients: Option<&CFType>,
-    e_content_type: *const SecAsn1Oid,
+    e_content_type: Option<&SecAsn1Oid>,
     detached_content: bool,
     signed_attributes: CMSSignedAttributes,
     content: NonNull<c_void>,
@@ -436,7 +427,7 @@ pub unsafe fn CMSEncode(
         fn CMSEncode(
             signers: Option<&CFType>,
             recipients: Option<&CFType>,
-            e_content_type: *const SecAsn1Oid,
+            e_content_type: Option<&SecAsn1Oid>,
             detached_content: Boolean,
             signed_attributes: CMSSignedAttributes,
             content: NonNull<c_void>,
@@ -514,21 +505,18 @@ pub unsafe fn CMSEncodeContent(
 }
 
 impl CMSEncoder {
-    /// # Safety
-    ///
-    /// `timestamp` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopySignerTimestamp")]
     #[inline]
     pub unsafe fn copy_signer_timestamp(
         &self,
         signer_index: usize,
-        timestamp: NonNull<CFAbsoluteTime>,
+        timestamp: &mut CFAbsoluteTime,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopySignerTimestamp(
                 cms_encoder: &CMSEncoder,
                 signer_index: usize,
-                timestamp: NonNull<CFAbsoluteTime>,
+                timestamp: &mut CFAbsoluteTime,
             ) -> OSStatus;
         }
         unsafe { CMSEncoderCopySignerTimestamp(self, signer_index, timestamp) }
@@ -536,22 +524,21 @@ impl CMSEncoder {
 
     /// # Safety
     ///
-    /// - `time_stamp_policy` should be of the correct type.
-    /// - `timestamp` must be a valid pointer.
+    /// `time_stamp_policy` should be of the correct type.
     #[doc(alias = "CMSEncoderCopySignerTimestampWithPolicy")]
     #[inline]
     pub unsafe fn copy_signer_timestamp_with_policy(
         &self,
         time_stamp_policy: Option<&CFType>,
         signer_index: usize,
-        timestamp: NonNull<CFAbsoluteTime>,
+        timestamp: &mut CFAbsoluteTime,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopySignerTimestampWithPolicy(
                 cms_encoder: &CMSEncoder,
                 time_stamp_policy: Option<&CFType>,
                 signer_index: usize,
-                timestamp: NonNull<CFAbsoluteTime>,
+                timestamp: &mut CFAbsoluteTime,
             ) -> OSStatus;
         }
         unsafe {

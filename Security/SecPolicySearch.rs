@@ -60,23 +60,23 @@ impl SecPolicySearch {
     ///
     /// # Safety
     ///
-    /// - `policy_oid` must be a valid pointer.
-    /// - `value` must be a valid pointer or null.
+    /// - `policy_oid` struct field `Data` must be a valid pointer or null.
+    /// - `value` struct field `Data` must be a valid pointer or null.
     #[doc(alias = "SecPolicySearchCreate")]
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
     pub unsafe fn new(
         cert_type: CSSM_CERT_TYPE,
-        policy_oid: NonNull<SecAsn1Oid>,
-        value: *const SecAsn1Item,
+        policy_oid: &SecAsn1Oid,
+        value: Option<&SecAsn1Item>,
         search_ref: &mut Option<CFRetained<SecPolicySearch>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecPolicySearchCreate(
                 cert_type: CSSM_CERT_TYPE,
-                policy_oid: NonNull<SecAsn1Oid>,
-                value: *const SecAsn1Item,
+                policy_oid: &SecAsn1Oid,
+                value: Option<&SecAsn1Item>,
                 search_ref: &mut Option<CFRetained<SecPolicySearch>>,
             ) -> OSStatus;
         }

@@ -227,7 +227,11 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// - `keychain_item_or_array` should be of the correct type.
-    /// - `key_params` must be a valid pointer or null.
+    /// - `key_params` struct field `version` must be set correctly.
+    /// - `key_params` struct field `passphrase` must be a valid pointer or null.
+    /// - `key_params` struct field `alertTitle` must be a valid pointer.
+    /// - `key_params` struct field `alertPrompt` must be a valid pointer.
+    /// - `key_params` struct field `accessRef` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemExport")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -236,7 +240,7 @@ impl SecKeychainItem {
         keychain_item_or_array: &CFType,
         output_format: SecExternalFormat,
         flags: SecItemImportExportFlags,
-        key_params: *const SecKeyImportExportParameters,
+        key_params: Option<&SecKeyImportExportParameters>,
         exported_data: &mut Option<CFRetained<CFData>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -244,7 +248,7 @@ impl SecKeychainItem {
                 keychain_item_or_array: &CFType,
                 output_format: SecExternalFormat,
                 flags: SecItemImportExportFlags,
-                key_params: *const SecKeyImportExportParameters,
+                key_params: Option<&SecKeyImportExportParameters>,
                 exported_data: &mut Option<CFRetained<CFData>>,
             ) -> OSStatus;
         }
@@ -267,14 +271,20 @@ impl SecKeychainItem {
 /// # Safety
 ///
 /// - `sec_item_or_array` should be of the correct type.
-/// - `key_params` must be a valid pointer or null.
+/// - `key_params` struct field `version` must be set correctly.
+/// - `key_params` struct field `passphrase` must be a valid pointer or null.
+/// - `key_params` struct field `alertTitle` must be a valid pointer or null.
+/// - `key_params` struct field `alertPrompt` must be a valid pointer or null.
+/// - `key_params` struct field `accessRef` must be a valid pointer or null.
+/// - `key_params` struct field `keyUsage` must be a valid pointer or null.
+/// - `key_params` struct field `keyAttributes` must be a valid pointer or null.
 #[cfg(feature = "SecBase")]
 #[inline]
 pub unsafe fn SecItemExport(
     sec_item_or_array: &CFType,
     output_format: SecExternalFormat,
     flags: SecItemImportExportFlags,
-    key_params: *const SecItemImportExportKeyParameters,
+    key_params: Option<&SecItemImportExportKeyParameters>,
     exported_data: &mut Option<CFRetained<CFData>>,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -282,7 +292,7 @@ pub unsafe fn SecItemExport(
             sec_item_or_array: &CFType,
             output_format: SecExternalFormat,
             flags: SecItemImportExportFlags,
-            key_params: *const SecItemImportExportKeyParameters,
+            key_params: Option<&SecItemImportExportKeyParameters>,
             exported_data: &mut Option<CFRetained<CFData>>,
         ) -> OSStatus;
     }
@@ -305,9 +315,11 @@ pub unsafe fn SecItemExport(
 impl SecKeychainItem {
     /// # Safety
     ///
-    /// - `input_format` must be a valid pointer or null.
-    /// - `item_type` must be a valid pointer or null.
-    /// - `key_params` must be a valid pointer or null.
+    /// - `key_params` struct field `version` must be set correctly.
+    /// - `key_params` struct field `passphrase` must be a valid pointer or null.
+    /// - `key_params` struct field `alertTitle` must be a valid pointer.
+    /// - `key_params` struct field `alertPrompt` must be a valid pointer.
+    /// - `key_params` struct field `accessRef` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemImport")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -315,10 +327,10 @@ impl SecKeychainItem {
     pub unsafe fn import(
         imported_data: &CFData,
         file_name_or_extension: Option<&CFString>,
-        input_format: *mut SecExternalFormat,
-        item_type: *mut SecExternalItemType,
+        input_format: Option<&mut SecExternalFormat>,
+        item_type: Option<&mut SecExternalItemType>,
         flags: SecItemImportExportFlags,
-        key_params: *const SecKeyImportExportParameters,
+        key_params: Option<&SecKeyImportExportParameters>,
         import_keychain: Option<&SecKeychain>,
         out_items: Option<&mut Option<CFRetained<CFArray<CFType>>>>,
     ) -> OSStatus {
@@ -326,10 +338,10 @@ impl SecKeychainItem {
             fn SecKeychainItemImport(
                 imported_data: &CFData,
                 file_name_or_extension: Option<&CFString>,
-                input_format: *mut SecExternalFormat,
-                item_type: *mut SecExternalItemType,
+                input_format: Option<&mut SecExternalFormat>,
+                item_type: Option<&mut SecExternalItemType>,
                 flags: SecItemImportExportFlags,
-                key_params: *const SecKeyImportExportParameters,
+                key_params: Option<&SecKeyImportExportParameters>,
                 import_keychain: Option<&SecKeychain>,
                 out_items: Option<&mut Option<CFRetained<CFArray<CFType>>>>,
             ) -> OSStatus;
@@ -357,18 +369,22 @@ impl SecKeychainItem {
 
 /// # Safety
 ///
-/// - `input_format` must be a valid pointer or null.
-/// - `item_type` must be a valid pointer or null.
-/// - `key_params` must be a valid pointer or null.
+/// - `key_params` struct field `version` must be set correctly.
+/// - `key_params` struct field `passphrase` must be a valid pointer or null.
+/// - `key_params` struct field `alertTitle` must be a valid pointer or null.
+/// - `key_params` struct field `alertPrompt` must be a valid pointer or null.
+/// - `key_params` struct field `accessRef` must be a valid pointer or null.
+/// - `key_params` struct field `keyUsage` must be a valid pointer or null.
+/// - `key_params` struct field `keyAttributes` must be a valid pointer or null.
 #[cfg(feature = "SecBase")]
 #[inline]
 pub unsafe fn SecItemImport(
     imported_data: &CFData,
     file_name_or_extension: Option<&CFString>,
-    input_format: *mut SecExternalFormat,
-    item_type: *mut SecExternalItemType,
+    input_format: Option<&mut SecExternalFormat>,
+    item_type: Option<&mut SecExternalItemType>,
     flags: SecItemImportExportFlags,
-    key_params: *const SecItemImportExportKeyParameters,
+    key_params: Option<&SecItemImportExportKeyParameters>,
     import_keychain: Option<&SecKeychain>,
     out_items: Option<&mut Option<CFRetained<CFArray<CFType>>>>,
 ) -> OSStatus {
@@ -376,10 +392,10 @@ pub unsafe fn SecItemImport(
         fn SecItemImport(
             imported_data: &CFData,
             file_name_or_extension: Option<&CFString>,
-            input_format: *mut SecExternalFormat,
-            item_type: *mut SecExternalItemType,
+            input_format: Option<&mut SecExternalFormat>,
+            item_type: Option<&mut SecExternalItemType>,
             flags: SecItemImportExportFlags,
-            key_params: *const SecItemImportExportKeyParameters,
+            key_params: Option<&SecItemImportExportKeyParameters>,
             import_keychain: Option<&SecKeychain>,
             out_items: Option<&mut Option<CFRetained<CFArray<CFType>>>>,
         ) -> OSStatus;

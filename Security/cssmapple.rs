@@ -1334,25 +1334,27 @@ unsafe impl RefEncode for CSSM_APPLE_CL_CSR_REQUEST {
 
 /// # Safety
 ///
-/// `how` must be a valid pointer.
+/// `how` might not allow `None`.
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[inline]
-pub unsafe fn cssmPerror(how: *const c_char, error: CSSM_RETURN) {
+pub unsafe fn cssmPerror(how: Option<&CStr>, error: CSSM_RETURN) {
     extern "C-unwind" {
         fn cssmPerror(how: *const c_char, error: CSSM_RETURN);
     }
+    let how = how.map(|ptr| ptr.as_ptr()).unwrap_or_else(core::ptr::null);
     unsafe { cssmPerror(how, error) }
 }
 
 /// # Safety
 ///
-/// - `oid` must be a valid pointer.
-/// - `alg` must be a valid pointer.
+/// - `oid` struct field `Data` must be a valid pointer or null.
+/// - `oid` might not allow `None`.
+/// - `alg` might not allow `None`.
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[inline]
-pub unsafe fn cssmOidToAlg(oid: *const SecAsn1Oid, alg: *mut CSSM_ALGORITHMS) -> bool {
+pub unsafe fn cssmOidToAlg(oid: Option<&SecAsn1Oid>, alg: Option<&mut CSSM_ALGORITHMS>) -> bool {
     extern "C-unwind" {
-        fn cssmOidToAlg(oid: *const SecAsn1Oid, alg: *mut CSSM_ALGORITHMS) -> bool;
+        fn cssmOidToAlg(oid: Option<&SecAsn1Oid>, alg: Option<&mut CSSM_ALGORITHMS>) -> bool;
     }
     unsafe { cssmOidToAlg(oid, alg) }
 }

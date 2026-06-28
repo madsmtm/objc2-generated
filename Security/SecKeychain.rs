@@ -321,16 +321,12 @@ impl SecKeychain {
     /// Parameter `returnVers`: On return, a pointer to the version number of the Keychain Manager installed on the current system.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `return_vers` must be a valid pointer.
     #[doc(alias = "SecKeychainGetVersion")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn version(return_vers: NonNull<u32>) -> OSStatus {
+    pub unsafe fn version(return_vers: &mut u32) -> OSStatus {
         extern "C-unwind" {
-            fn SecKeychainGetVersion(return_vers: NonNull<u32>) -> OSStatus;
+            fn SecKeychainGetVersion(return_vers: &mut u32) -> OSStatus;
         }
         unsafe { SecKeychainGetVersion(return_vers) }
     }
@@ -344,16 +340,12 @@ impl SecKeychain {
     /// Parameter `keychain`: On return, a pointer to the keychain reference. The memory that keychain occupies must be released by calling CFRelease when finished with it.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain parameter is invalid (NULL).
-    ///
-    /// # Safety
-    ///
-    /// `path_name` must be a valid pointer.
     #[doc(alias = "SecKeychainOpen")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn open(
-        path_name: NonNull<c_char>,
+        path_name: &CStr,
         keychain: &mut Option<CFRetained<SecKeychain>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -362,6 +354,7 @@ impl SecKeychain {
                 keychain: &mut Option<CFRetained<SecKeychain>>,
             ) -> OSStatus;
         }
+        let path_name = NonNull::new(path_name.as_ptr().cast_mut()).unwrap();
         assert!(
             keychain.is_none(),
             "parameter `keychain` must point to `None` on entry"
@@ -387,14 +380,13 @@ impl SecKeychain {
     ///
     /// # Safety
     ///
-    /// - `path_name` must be a valid pointer.
-    /// - `password` must be a valid pointer or null.
+    /// `password` must be a valid pointer or null.
     #[doc(alias = "SecKeychainCreate")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn new(
-        path_name: NonNull<c_char>,
+        path_name: &CStr,
         password_length: u32,
         password: *const c_void,
         prompt_user: bool,
@@ -411,6 +403,7 @@ impl SecKeychain {
                 keychain: &mut Option<CFRetained<SecKeychain>>,
             ) -> OSStatus;
         }
+        let path_name = NonNull::new(path_name.as_ptr().cast_mut()).unwrap();
         let prompt_user = prompt_user as _;
         assert!(
             keychain.is_none(),
@@ -454,19 +447,19 @@ impl SecKeychain {
     ///
     /// # Safety
     ///
-    /// `new_settings` must be a valid pointer.
+    /// `new_settings` struct field `version` must be set correctly.
     #[doc(alias = "SecKeychainSetSettings")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn set_settings(
         keychain: Option<&SecKeychain>,
-        new_settings: NonNull<SecKeychainSettings>,
+        new_settings: &SecKeychainSettings,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainSetSettings(
                 keychain: Option<&SecKeychain>,
-                new_settings: NonNull<SecKeychainSettings>,
+                new_settings: &SecKeychainSettings,
             ) -> OSStatus;
         }
         unsafe { SecKeychainSetSettings(keychain, new_settings) }
@@ -482,19 +475,19 @@ impl SecKeychain {
     ///
     /// # Safety
     ///
-    /// `out_settings` must be a valid pointer.
+    /// `out_settings` struct field `version` must be set correctly.
     #[doc(alias = "SecKeychainCopySettings")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn copy_settings(
         keychain: Option<&SecKeychain>,
-        out_settings: NonNull<SecKeychainSettings>,
+        out_settings: &mut SecKeychainSettings,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainCopySettings(
                 keychain: Option<&SecKeychain>,
-                out_settings: NonNull<SecKeychainSettings>,
+                out_settings: &mut SecKeychainSettings,
             ) -> OSStatus;
         }
         unsafe { SecKeychainCopySettings(keychain, out_settings) }
@@ -759,15 +752,12 @@ impl SecKeychain {
         unsafe { SecKeychainSetPreferenceDomain(domain) }
     }
 
-    /// # Safety
-    ///
-    /// `domain` must be a valid pointer.
     #[doc(alias = "SecKeychainGetPreferenceDomain")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn preference_domain(domain: NonNull<SecPreferencesDomain>) -> OSStatus {
+    pub unsafe fn preference_domain(domain: &mut SecPreferencesDomain) -> OSStatus {
         extern "C-unwind" {
-            fn SecKeychainGetPreferenceDomain(domain: NonNull<SecPreferencesDomain>) -> OSStatus;
+            fn SecKeychainGetPreferenceDomain(domain: &mut SecPreferencesDomain) -> OSStatus;
         }
         unsafe { SecKeychainGetPreferenceDomain(domain) }
     }
@@ -779,22 +769,18 @@ impl SecKeychain {
     /// Parameter `keychainStatus`: On return, a pointer to the status of the specified keychain.  See KeychainStatus for valid status constants.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `keychain_status` must be a valid pointer.
     #[doc(alias = "SecKeychainGetStatus")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn status(
         keychain: Option<&SecKeychain>,
-        keychain_status: NonNull<SecKeychainStatus>,
+        keychain_status: &mut SecKeychainStatus,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainGetStatus(
                 keychain: Option<&SecKeychain>,
-                keychain_status: NonNull<SecKeychainStatus>,
+                keychain_status: &mut SecKeychainStatus,
             ) -> OSStatus;
         }
         unsafe { SecKeychainGetStatus(keychain, keychain_status) }
@@ -812,21 +798,20 @@ impl SecKeychain {
     ///
     /// # Safety
     ///
-    /// - `io_path_length` must be a valid pointer.
-    /// - `path_name` must be a valid pointer.
+    /// `path_name` must be a valid pointer.
     #[doc(alias = "SecKeychainGetPath")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn path(
         keychain: Option<&SecKeychain>,
-        io_path_length: NonNull<u32>,
+        io_path_length: &mut u32,
         path_name: NonNull<c_char>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainGetPath(
                 keychain: Option<&SecKeychain>,
-                io_path_length: NonNull<u32>,
+                io_path_length: &mut u32,
                 path_name: NonNull<c_char>,
             ) -> OSStatus;
         }
@@ -847,7 +832,7 @@ impl SecKeychain {
     ///
     /// # Safety
     ///
-    /// `info` must be a valid pointer.
+    /// `info` must be a valid pointer or null.
     #[doc(alias = "SecKeychainAttributeInfoForItemID")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -855,13 +840,13 @@ impl SecKeychain {
     pub unsafe fn attribute_info_for_item_id(
         keychain: Option<&SecKeychain>,
         item_id: u32,
-        info: NonNull<*mut SecKeychainAttributeInfo>,
+        info: &mut *mut SecKeychainAttributeInfo,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainAttributeInfoForItemID(
                 keychain: Option<&SecKeychain>,
                 item_id: u32,
-                info: NonNull<*mut SecKeychainAttributeInfo>,
+                info: &mut *mut SecKeychainAttributeInfo,
             ) -> OSStatus;
         }
         unsafe { SecKeychainAttributeInfoForItemID(keychain, item_id, info) }
@@ -875,14 +860,15 @@ impl SecKeychain {
     ///
     /// # Safety
     ///
-    /// `info` must be a valid pointer.
+    /// - `info` struct field `tag` must be a valid pointer.
+    /// - `info` struct field `format` must be a valid pointer or null.
     #[doc(alias = "SecKeychainFreeAttributeInfo")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn free_attribute_info(info: NonNull<SecKeychainAttributeInfo>) -> OSStatus {
+    pub unsafe fn free_attribute_info(info: &mut SecKeychainAttributeInfo) -> OSStatus {
         extern "C-unwind" {
-            fn SecKeychainFreeAttributeInfo(info: NonNull<SecKeychainAttributeInfo>) -> OSStatus;
+            fn SecKeychainFreeAttributeInfo(info: &mut SecKeychainAttributeInfo) -> OSStatus;
         }
         unsafe { SecKeychainFreeAttributeInfo(info) }
     }
@@ -1125,7 +1111,6 @@ impl SecKeychain {
     /// - `security_domain` must be a valid pointer or null.
     /// - `account_name` must be a valid pointer or null.
     /// - `path` must be a valid pointer or null.
-    /// - `password_length` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainFindInternetPassword")]
     #[cfg(feature = "SecBase")]
@@ -1144,8 +1129,8 @@ impl SecKeychain {
         port: u16,
         protocol: SecProtocolType,
         authentication_type: SecAuthenticationType,
-        password_length: *mut u32,
-        password_data: *mut *mut c_void,
+        password_length: Option<&mut u32>,
+        password_data: Option<&mut *mut c_void>,
         item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -1162,8 +1147,8 @@ impl SecKeychain {
                 port: u16,
                 protocol: SecProtocolType,
                 authentication_type: SecAuthenticationType,
-                password_length: *mut u32,
-                password_data: *mut *mut c_void,
+                password_length: Option<&mut u32>,
+                password_data: Option<&mut *mut c_void>,
                 item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
             ) -> OSStatus;
         }
@@ -1363,16 +1348,12 @@ impl SecKeychain {
     /// Parameter `state`: On return, a pointer to the current state of user interaction.  If this is TRUE then user interaction is allowed, if it is FALSE, then user interaction is not allowed.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `state` must be a valid pointer.
     #[doc(alias = "SecKeychainGetUserInteractionAllowed")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn user_interaction_allowed(state: NonNull<Boolean>) -> OSStatus {
+    pub unsafe fn user_interaction_allowed(state: &mut Boolean) -> OSStatus {
         extern "C-unwind" {
-            fn SecKeychainGetUserInteractionAllowed(state: NonNull<Boolean>) -> OSStatus;
+            fn SecKeychainGetUserInteractionAllowed(state: &mut Boolean) -> OSStatus;
         }
         unsafe { SecKeychainGetUserInteractionAllowed(state) }
     }
@@ -1386,22 +1367,18 @@ impl SecKeychain {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7. It should nho longer be needed.
-    ///
-    /// # Safety
-    ///
-    /// `csp_handle` must be a valid pointer.
     #[doc(alias = "SecKeychainGetCSPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
     pub unsafe fn csp_handle(
         keychain: Option<&SecKeychain>,
-        csp_handle: NonNull<CSSM_CSP_HANDLE>,
+        csp_handle: &mut CSSM_CSP_HANDLE,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainGetCSPHandle(
                 keychain: Option<&SecKeychain>,
-                csp_handle: NonNull<CSSM_CSP_HANDLE>,
+                csp_handle: &mut CSSM_CSP_HANDLE,
             ) -> OSStatus;
         }
         unsafe { SecKeychainGetCSPHandle(keychain, csp_handle) }
@@ -1416,22 +1393,18 @@ impl SecKeychain {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7. It should nho longer be needed.
-    ///
-    /// # Safety
-    ///
-    /// `dldb_handle` must be a valid pointer.
     #[doc(alias = "SecKeychainGetDLDBHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
     pub unsafe fn dldb_handle(
         keychain: Option<&SecKeychain>,
-        dldb_handle: NonNull<CSSM_DL_DB_HANDLE>,
+        dldb_handle: &mut CSSM_DL_DB_HANDLE,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainGetDLDBHandle(
                 keychain: Option<&SecKeychain>,
-                dldb_handle: NonNull<CSSM_DL_DB_HANDLE>,
+                dldb_handle: &mut CSSM_DL_DB_HANDLE,
             ) -> OSStatus;
         }
         unsafe { SecKeychainGetDLDBHandle(keychain, dldb_handle) }

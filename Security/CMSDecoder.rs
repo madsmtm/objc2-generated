@@ -157,16 +157,13 @@ impl CMSDecoder {
         unsafe { CMSDecoderSetSearchKeychain(self, keychain_or_array) }
     }
 
-    /// # Safety
-    ///
-    /// `num_signers_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderGetNumSigners")]
     #[inline]
-    pub unsafe fn num_signers(&self, num_signers_out: NonNull<usize>) -> OSStatus {
+    pub unsafe fn num_signers(&self, num_signers_out: &mut usize) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderGetNumSigners(
                 cms_decoder: &CMSDecoder,
-                num_signers_out: NonNull<usize>,
+                num_signers_out: &mut usize,
             ) -> OSStatus;
         }
         unsafe { CMSDecoderGetNumSigners(self, num_signers_out) }
@@ -174,9 +171,7 @@ impl CMSDecoder {
 
     /// # Safety
     ///
-    /// - `policy_or_array` should be of the correct type.
-    /// - `signer_status_out` must be a valid pointer or null.
-    /// - `cert_verify_result_code_out` must be a valid pointer or null.
+    /// `policy_or_array` should be of the correct type.
     #[doc(alias = "CMSDecoderCopySignerStatus")]
     #[cfg(feature = "SecTrust")]
     #[inline]
@@ -185,9 +180,9 @@ impl CMSDecoder {
         signer_index: usize,
         policy_or_array: &CFType,
         evaluate_sec_trust: bool,
-        signer_status_out: *mut CMSSignerStatus,
+        signer_status_out: Option<&mut CMSSignerStatus>,
         sec_trust_out: Option<&mut Option<CFRetained<SecTrust>>>,
-        cert_verify_result_code_out: *mut OSStatus,
+        cert_verify_result_code_out: Option<&mut OSStatus>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopySignerStatus(
@@ -195,9 +190,9 @@ impl CMSDecoder {
                 signer_index: usize,
                 policy_or_array: &CFType,
                 evaluate_sec_trust: Boolean,
-                signer_status_out: *mut CMSSignerStatus,
+                signer_status_out: Option<&mut CMSSignerStatus>,
                 sec_trust_out: Option<&mut Option<CFRetained<SecTrust>>>,
-                cert_verify_result_code_out: *mut OSStatus,
+                cert_verify_result_code_out: Option<&mut OSStatus>,
             ) -> OSStatus;
         }
         let evaluate_sec_trust = evaluate_sec_trust as _;
@@ -263,16 +258,13 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopySignerCert(self, signer_index, signer_cert_out) }
     }
 
-    /// # Safety
-    ///
-    /// `is_encrypted_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderIsContentEncrypted")]
     #[inline]
-    pub unsafe fn is_content_encrypted(&self, is_encrypted_out: NonNull<Boolean>) -> OSStatus {
+    pub unsafe fn is_content_encrypted(&self, is_encrypted_out: &mut Boolean) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderIsContentEncrypted(
                 cms_decoder: &CMSDecoder,
-                is_encrypted_out: NonNull<Boolean>,
+                is_encrypted_out: &mut Boolean,
             ) -> OSStatus;
         }
         unsafe { CMSDecoderIsContentEncrypted(self, is_encrypted_out) }
@@ -333,41 +325,35 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopyContent(self, content_out) }
     }
 
-    /// # Safety
-    ///
-    /// `signing_time` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerSigningTime")]
     #[inline]
     pub unsafe fn copy_signer_signing_time(
         &self,
         signer_index: usize,
-        signing_time: NonNull<CFAbsoluteTime>,
+        signing_time: &mut CFAbsoluteTime,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopySignerSigningTime(
                 cms_decoder: &CMSDecoder,
                 signer_index: usize,
-                signing_time: NonNull<CFAbsoluteTime>,
+                signing_time: &mut CFAbsoluteTime,
             ) -> OSStatus;
         }
         unsafe { CMSDecoderCopySignerSigningTime(self, signer_index, signing_time) }
     }
 
-    /// # Safety
-    ///
-    /// `timestamp` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerTimestamp")]
     #[inline]
     pub unsafe fn copy_signer_timestamp(
         &self,
         signer_index: usize,
-        timestamp: NonNull<CFAbsoluteTime>,
+        timestamp: &mut CFAbsoluteTime,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopySignerTimestamp(
                 cms_decoder: &CMSDecoder,
                 signer_index: usize,
-                timestamp: NonNull<CFAbsoluteTime>,
+                timestamp: &mut CFAbsoluteTime,
             ) -> OSStatus;
         }
         unsafe { CMSDecoderCopySignerTimestamp(self, signer_index, timestamp) }
@@ -375,22 +361,21 @@ impl CMSDecoder {
 
     /// # Safety
     ///
-    /// - `time_stamp_policy` should be of the correct type.
-    /// - `timestamp` must be a valid pointer.
+    /// `time_stamp_policy` should be of the correct type.
     #[doc(alias = "CMSDecoderCopySignerTimestampWithPolicy")]
     #[inline]
     pub unsafe fn copy_signer_timestamp_with_policy(
         &self,
         time_stamp_policy: Option<&CFType>,
         signer_index: usize,
-        timestamp: NonNull<CFAbsoluteTime>,
+        timestamp: &mut CFAbsoluteTime,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopySignerTimestampWithPolicy(
                 cms_decoder: &CMSDecoder,
                 time_stamp_policy: Option<&CFType>,
                 signer_index: usize,
-                timestamp: NonNull<CFAbsoluteTime>,
+                timestamp: &mut CFAbsoluteTime,
             ) -> OSStatus;
         }
         unsafe {

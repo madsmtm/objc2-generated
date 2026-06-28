@@ -345,21 +345,36 @@ unsafe impl RefEncode for AuthorizationPluginInterface {
 ///
 /// # Safety
 ///
-/// - `callbacks` must be a valid pointer.
-/// - `out_plugin` must be a valid pointer.
-/// - `out_plugin_interface` must be a valid pointer.
+/// - `callbacks` struct field `version` must be set correctly.
+/// - `callbacks` struct field `SetResult` must be implemented correctly.
+/// - `callbacks` struct field `RequestInterrupt` must be implemented correctly.
+/// - `callbacks` struct field `DidDeactivate` must be implemented correctly.
+/// - `callbacks` struct field `GetContextValue` must be implemented correctly.
+/// - `callbacks` struct field `SetContextValue` must be implemented correctly.
+/// - `callbacks` struct field `GetHintValue` must be implemented correctly.
+/// - `callbacks` struct field `SetHintValue` must be implemented correctly.
+/// - `callbacks` struct field `GetArguments` must be implemented correctly.
+/// - `callbacks` struct field `GetSessionId` must be implemented correctly.
+/// - `callbacks` struct field `GetImmutableHintValue` must be implemented correctly.
+/// - `callbacks` struct field `GetLAContext` must be implemented correctly.
+/// - `callbacks` struct field `GetTokenIdentities` must be implemented correctly.
+/// - `callbacks` struct field `GetTKTokenWatcher` must be implemented correctly.
+/// - `callbacks` struct field `RemoveHintValue` must be implemented correctly.
+/// - `callbacks` struct field `RemoveContextValue` must be implemented correctly.
+/// - `out_plugin` must be a valid pointer or null.
+/// - `out_plugin_interface` must be a valid pointer or null.
 #[cfg(feature = "Authorization")]
 #[inline]
 pub unsafe fn AuthorizationPluginCreate(
-    callbacks: NonNull<AuthorizationCallbacks>,
-    out_plugin: NonNull<AuthorizationPluginRef>,
-    out_plugin_interface: NonNull<*const AuthorizationPluginInterface>,
+    callbacks: &AuthorizationCallbacks,
+    out_plugin: &mut AuthorizationPluginRef,
+    out_plugin_interface: &mut *const AuthorizationPluginInterface,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AuthorizationPluginCreate(
-            callbacks: NonNull<AuthorizationCallbacks>,
-            out_plugin: NonNull<AuthorizationPluginRef>,
-            out_plugin_interface: NonNull<*const AuthorizationPluginInterface>,
+            callbacks: &AuthorizationCallbacks,
+            out_plugin: &mut AuthorizationPluginRef,
+            out_plugin_interface: &mut *const AuthorizationPluginInterface,
         ) -> OSStatus;
     }
     unsafe { AuthorizationPluginCreate(callbacks, out_plugin, out_plugin_interface) }

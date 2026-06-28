@@ -32,16 +32,12 @@ impl SecTrustedApplication {
     /// Parameter `app`: On return, a pointer to the trusted application reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `path` must be a valid pointer or null.
     #[doc(alias = "SecTrustedApplicationCreateFromPath")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn from_path(
-        path: *const c_char,
+        path: Option<&CStr>,
         app: &mut Option<CFRetained<SecTrustedApplication>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -50,6 +46,7 @@ impl SecTrustedApplication {
                 app: &mut Option<CFRetained<SecTrustedApplication>>,
             ) -> OSStatus;
         }
+        let path = path.map(|ptr| ptr.as_ptr()).unwrap_or_else(core::ptr::null);
         assert!(
             app.is_none(),
             "parameter `app` must point to `None` on entry"

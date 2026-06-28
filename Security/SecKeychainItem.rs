@@ -202,7 +202,7 @@ impl SecKeychainItem {
     ///
     /// # Safety
     ///
-    /// - `attr_list` must be a valid pointer or null.
+    /// - `attr_list` struct field `attr` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemModifyAttributesAndData")]
     #[cfg(feature = "SecBase")]
@@ -210,14 +210,14 @@ impl SecKeychainItem {
     #[inline]
     pub unsafe fn modify_attributes_and_data(
         &self,
-        attr_list: *const SecKeychainAttributeList,
+        attr_list: Option<&SecKeychainAttributeList>,
         length: u32,
         data: *const c_void,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemModifyAttributesAndData(
                 item_ref: &SecKeychainItem,
-                attr_list: *const SecKeychainAttributeList,
+                attr_list: Option<&SecKeychainAttributeList>,
                 length: u32,
                 data: *const c_void,
             ) -> OSStatus;
@@ -245,7 +245,7 @@ impl SecKeychainItem {
     ///
     /// # Safety
     ///
-    /// - `attr_list` must be a valid pointer.
+    /// - `attr_list` struct field `attr` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemCreateFromContent")]
     #[cfg(feature = "SecBase")]
@@ -253,7 +253,7 @@ impl SecKeychainItem {
     #[inline]
     pub unsafe fn from_content(
         item_class: SecItemClass,
-        attr_list: NonNull<SecKeychainAttributeList>,
+        attr_list: &mut SecKeychainAttributeList,
         length: u32,
         data: *const c_void,
         keychain_ref: Option<&SecKeychain>,
@@ -263,7 +263,7 @@ impl SecKeychainItem {
         extern "C-unwind" {
             fn SecKeychainItemCreateFromContent(
                 item_class: SecItemClass,
-                attr_list: NonNull<SecKeychainAttributeList>,
+                attr_list: &mut SecKeychainAttributeList,
                 length: u32,
                 data: *const c_void,
                 keychain_ref: Option<&SecKeychain>,
@@ -304,7 +304,7 @@ impl SecKeychainItem {
     ///
     /// # Safety
     ///
-    /// - `attr_list` must be a valid pointer or null.
+    /// - `attr_list` struct field `attr` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemModifyContent")]
     #[cfg(feature = "SecBase")]
@@ -312,14 +312,14 @@ impl SecKeychainItem {
     #[inline]
     pub unsafe fn modify_content(
         &self,
-        attr_list: *const SecKeychainAttributeList,
+        attr_list: Option<&SecKeychainAttributeList>,
         length: u32,
         data: *const c_void,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemModifyContent(
                 item_ref: &SecKeychainItem,
-                attr_list: *const SecKeychainAttributeList,
+                attr_list: Option<&SecKeychainAttributeList>,
                 length: u32,
                 data: *const c_void,
             ) -> OSStatus;
@@ -343,9 +343,7 @@ impl SecKeychainItem {
     ///
     /// # Safety
     ///
-    /// - `item_class` must be a valid pointer or null.
-    /// - `attr_list` must be a valid pointer or null.
-    /// - `length` must be a valid pointer or null.
+    /// - `attr_list` struct field `attr` must be a valid pointer or null.
     /// - `out_data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemCopyContent")]
     #[cfg(feature = "SecBase")]
@@ -353,18 +351,18 @@ impl SecKeychainItem {
     #[inline]
     pub unsafe fn copy_content(
         &self,
-        item_class: *mut SecItemClass,
-        attr_list: *mut SecKeychainAttributeList,
-        length: *mut u32,
-        out_data: *mut *mut c_void,
+        item_class: Option<&mut SecItemClass>,
+        attr_list: Option<&mut SecKeychainAttributeList>,
+        length: Option<&mut u32>,
+        out_data: Option<&mut *mut c_void>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemCopyContent(
                 item_ref: &SecKeychainItem,
-                item_class: *mut SecItemClass,
-                attr_list: *mut SecKeychainAttributeList,
-                length: *mut u32,
-                out_data: *mut *mut c_void,
+                item_class: Option<&mut SecItemClass>,
+                attr_list: Option<&mut SecKeychainAttributeList>,
+                length: Option<&mut u32>,
+                out_data: Option<&mut *mut c_void>,
             ) -> OSStatus;
         }
         unsafe { SecKeychainItemCopyContent(self, item_class, attr_list, length, out_data) }
@@ -378,19 +376,19 @@ impl SecKeychainItem {
     ///
     /// # Safety
     ///
-    /// - `attr_list` must be a valid pointer or null.
+    /// - `attr_list` struct field `attr` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemFreeContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn free_content(
-        attr_list: *mut SecKeychainAttributeList,
+        attr_list: Option<&mut SecKeychainAttributeList>,
         data: *mut c_void,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemFreeContent(
-                attr_list: *mut SecKeychainAttributeList,
+                attr_list: Option<&mut SecKeychainAttributeList>,
                 data: *mut c_void,
             ) -> OSStatus;
         }
@@ -415,10 +413,9 @@ impl SecKeychainItem {
     ///
     /// # Safety
     ///
-    /// - `info` must be a valid pointer or null.
-    /// - `item_class` must be a valid pointer or null.
+    /// - `info` struct field `tag` must be a valid pointer.
+    /// - `info` struct field `format` must be a valid pointer or null.
     /// - `attr_list` must be a valid pointer or null.
-    /// - `length` must be a valid pointer or null.
     /// - `out_data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemCopyAttributesAndData")]
     #[cfg(feature = "SecBase")]
@@ -426,20 +423,20 @@ impl SecKeychainItem {
     #[inline]
     pub unsafe fn copy_attributes_and_data(
         &self,
-        info: *mut SecKeychainAttributeInfo,
-        item_class: *mut SecItemClass,
-        attr_list: *mut *mut SecKeychainAttributeList,
-        length: *mut u32,
-        out_data: *mut *mut c_void,
+        info: Option<&mut SecKeychainAttributeInfo>,
+        item_class: Option<&mut SecItemClass>,
+        attr_list: Option<&mut *mut SecKeychainAttributeList>,
+        length: Option<&mut u32>,
+        out_data: Option<&mut *mut c_void>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemCopyAttributesAndData(
                 item_ref: &SecKeychainItem,
-                info: *mut SecKeychainAttributeInfo,
-                item_class: *mut SecItemClass,
-                attr_list: *mut *mut SecKeychainAttributeList,
-                length: *mut u32,
-                out_data: *mut *mut c_void,
+                info: Option<&mut SecKeychainAttributeInfo>,
+                item_class: Option<&mut SecItemClass>,
+                attr_list: Option<&mut *mut SecKeychainAttributeList>,
+                length: Option<&mut u32>,
+                out_data: Option<&mut *mut c_void>,
             ) -> OSStatus;
         }
         unsafe {
@@ -622,19 +619,15 @@ impl SecKeychainItem {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7. It should no longer be needed.
-    ///
-    /// # Safety
-    ///
-    /// `dldb_handle` must be a valid pointer.
     #[doc(alias = "SecKeychainItemGetDLDBHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    pub unsafe fn dldb_handle(&self, dldb_handle: NonNull<CSSM_DL_DB_HANDLE>) -> OSStatus {
+    pub unsafe fn dldb_handle(&self, dldb_handle: &mut CSSM_DL_DB_HANDLE) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemGetDLDBHandle(
                 key_item_ref: &SecKeychainItem,
-                dldb_handle: NonNull<CSSM_DL_DB_HANDLE>,
+                dldb_handle: &mut CSSM_DL_DB_HANDLE,
             ) -> OSStatus;
         }
         unsafe { SecKeychainItemGetDLDBHandle(self, dldb_handle) }
@@ -652,7 +645,7 @@ impl SecKeychainItem {
     ///
     /// # Safety
     ///
-    /// `unique_record_id` must be a valid pointer.
+    /// `unique_record_id` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemGetUniqueRecordID")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -664,12 +657,12 @@ impl SecKeychainItem {
     #[inline]
     pub unsafe fn unique_record_id(
         &self,
-        unique_record_id: NonNull<*const CSSM_DB_UNIQUE_RECORD>,
+        unique_record_id: &mut *const CSSM_DB_UNIQUE_RECORD,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemGetUniqueRecordID(
                 item_ref: &SecKeychainItem,
-                unique_record_id: NonNull<*const CSSM_DB_UNIQUE_RECORD>,
+                unique_record_id: &mut *const CSSM_DB_UNIQUE_RECORD,
             ) -> OSStatus;
         }
         unsafe { SecKeychainItemGetUniqueRecordID(self, unique_record_id) }

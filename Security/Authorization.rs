@@ -244,22 +244,22 @@ pub type AuthorizationEnvironment = AuthorizationItemSet;
 ///
 /// # Safety
 ///
-/// - `rights` must be a valid pointer or null.
-/// - `environment` must be a valid pointer or null.
+/// - `rights` struct field `items` must be a valid pointer or null.
+/// - `environment` struct field `items` must be a valid pointer or null.
 /// - `authorization` must be a valid pointer or null.
 #[inline]
 pub unsafe fn AuthorizationCreate(
-    rights: *const AuthorizationRights,
-    environment: *const AuthorizationEnvironment,
+    rights: Option<&AuthorizationRights>,
+    environment: Option<&AuthorizationEnvironment>,
     flags: AuthorizationFlags,
-    authorization: *mut AuthorizationRef,
+    authorization: Option<&mut AuthorizationRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AuthorizationCreate(
-            rights: *const AuthorizationRights,
-            environment: *const AuthorizationEnvironment,
+            rights: Option<&AuthorizationRights>,
+            environment: Option<&AuthorizationEnvironment>,
             flags: AuthorizationFlags,
-            authorization: *mut AuthorizationRef,
+            authorization: Option<&mut AuthorizationRef>,
         ) -> OSStatus;
     }
     unsafe { AuthorizationCreate(rights, environment, flags, authorization) }
@@ -337,24 +337,24 @@ pub unsafe fn AuthorizationFree(
 /// # Safety
 ///
 /// - `authorization` must be a valid pointer.
-/// - `rights` must be a valid pointer.
-/// - `environment` must be a valid pointer or null.
+/// - `rights` struct field `items` must be a valid pointer or null.
+/// - `environment` struct field `items` must be a valid pointer or null.
 /// - `authorized_rights` must be a valid pointer or null.
 #[inline]
 pub unsafe fn AuthorizationCopyRights(
     authorization: AuthorizationRef,
-    rights: NonNull<AuthorizationRights>,
-    environment: *const AuthorizationEnvironment,
+    rights: &AuthorizationRights,
+    environment: Option<&AuthorizationEnvironment>,
     flags: AuthorizationFlags,
-    authorized_rights: *mut *mut AuthorizationRights,
+    authorized_rights: Option<&mut *mut AuthorizationRights>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AuthorizationCopyRights(
             authorization: AuthorizationRef,
-            rights: NonNull<AuthorizationRights>,
-            environment: *const AuthorizationEnvironment,
+            rights: &AuthorizationRights,
+            environment: Option<&AuthorizationEnvironment>,
             flags: AuthorizationFlags,
-            authorized_rights: *mut *mut AuthorizationRights,
+            authorized_rights: Option<&mut *mut AuthorizationRights>,
         ) -> OSStatus;
     }
     unsafe { AuthorizationCopyRights(authorization, rights, environment, flags, authorized_rights) }
@@ -379,22 +379,22 @@ pub type AuthorizationAsyncCallback = block2::DynBlock<dyn Fn(OSStatus, *mut Aut
 /// # Safety
 ///
 /// - `authorization` must be a valid pointer.
-/// - `rights` must be a valid pointer.
-/// - `environment` must be a valid pointer or null.
+/// - `rights` struct field `items` must be a valid pointer or null.
+/// - `environment` struct field `items` must be a valid pointer or null.
 #[cfg(feature = "block2")]
 #[inline]
 pub unsafe fn AuthorizationCopyRightsAsync(
     authorization: AuthorizationRef,
-    rights: NonNull<AuthorizationRights>,
-    environment: *const AuthorizationEnvironment,
+    rights: &AuthorizationRights,
+    environment: Option<&AuthorizationEnvironment>,
     flags: AuthorizationFlags,
     callback_block: &AuthorizationAsyncCallback,
 ) {
     extern "C-unwind" {
         fn AuthorizationCopyRightsAsync(
             authorization: AuthorizationRef,
-            rights: NonNull<AuthorizationRights>,
-            environment: *const AuthorizationEnvironment,
+            rights: &AuthorizationRights,
+            environment: Option<&AuthorizationEnvironment>,
             flags: AuthorizationFlags,
             callback_block: &AuthorizationAsyncCallback,
         );
@@ -426,18 +426,18 @@ pub unsafe fn AuthorizationCopyRightsAsync(
 ///
 /// - `authorization` must be a valid pointer.
 /// - `tag` must be a valid pointer or null.
-/// - `info` must be a valid pointer.
+/// - `info` must be a valid pointer or null.
 #[inline]
 pub unsafe fn AuthorizationCopyInfo(
     authorization: AuthorizationRef,
     tag: AuthorizationString,
-    info: NonNull<*mut AuthorizationItemSet>,
+    info: &mut *mut AuthorizationItemSet,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AuthorizationCopyInfo(
             authorization: AuthorizationRef,
             tag: AuthorizationString,
-            info: NonNull<*mut AuthorizationItemSet>,
+            info: &mut *mut AuthorizationItemSet,
         ) -> OSStatus;
     }
     unsafe { AuthorizationCopyInfo(authorization, tag, info) }
@@ -463,17 +463,16 @@ pub unsafe fn AuthorizationCopyInfo(
 ///
 /// # Safety
 ///
-/// - `authorization` must be a valid pointer.
-/// - `ext_form` must be a valid pointer.
+/// `authorization` must be a valid pointer.
 #[inline]
 pub unsafe fn AuthorizationMakeExternalForm(
     authorization: AuthorizationRef,
-    ext_form: NonNull<AuthorizationExternalForm>,
+    ext_form: &mut AuthorizationExternalForm,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AuthorizationMakeExternalForm(
             authorization: AuthorizationRef,
-            ext_form: NonNull<AuthorizationExternalForm>,
+            ext_form: &mut AuthorizationExternalForm,
         ) -> OSStatus;
     }
     unsafe { AuthorizationMakeExternalForm(authorization, ext_form) }
@@ -491,17 +490,16 @@ pub unsafe fn AuthorizationMakeExternalForm(
 ///
 /// # Safety
 ///
-/// - `ext_form` must be a valid pointer.
-/// - `authorization` must be a valid pointer.
+/// `authorization` must be a valid pointer or null.
 #[inline]
 pub unsafe fn AuthorizationCreateFromExternalForm(
-    ext_form: NonNull<AuthorizationExternalForm>,
-    authorization: NonNull<AuthorizationRef>,
+    ext_form: &AuthorizationExternalForm,
+    authorization: &mut AuthorizationRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AuthorizationCreateFromExternalForm(
-            ext_form: NonNull<AuthorizationExternalForm>,
-            authorization: NonNull<AuthorizationRef>,
+            ext_form: &AuthorizationExternalForm,
+            authorization: &mut AuthorizationRef,
         ) -> OSStatus;
     }
     unsafe { AuthorizationCreateFromExternalForm(ext_form, authorization) }
@@ -542,16 +540,16 @@ pub unsafe fn AuthorizationFreeItemSet(set: NonNull<AuthorizationItemSet>) -> OS
 ///
 /// # Safety
 ///
-/// `authorization` must be a valid pointer.
+/// `authorization` must be a valid pointer or null.
 #[deprecated]
 #[inline]
 pub unsafe fn AuthorizationCopyPrivilegedReference(
-    authorization: NonNull<AuthorizationRef>,
+    authorization: &mut AuthorizationRef,
     flags: AuthorizationFlags,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AuthorizationCopyPrivilegedReference(
-            authorization: NonNull<AuthorizationRef>,
+            authorization: &mut AuthorizationRef,
             flags: AuthorizationFlags,
         ) -> OSStatus;
     }

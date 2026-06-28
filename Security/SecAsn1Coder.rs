@@ -29,13 +29,13 @@ pub type SecAsn1CoderRef = *mut SecAsn1Coder;
 impl SecAsn1Coder {
     /// # Safety
     ///
-    /// `coder` must be a valid pointer.
+    /// `coder` must be a valid pointer or null.
     #[doc(alias = "SecAsn1CoderCreate")]
     #[deprecated = "SecAsn1 is not supported"]
     #[inline]
-    pub unsafe fn create(coder: NonNull<SecAsn1CoderRef>) -> OSStatus {
+    pub unsafe fn create(coder: &mut SecAsn1CoderRef) -> OSStatus {
         extern "C-unwind" {
-            fn SecAsn1CoderCreate(coder: NonNull<SecAsn1CoderRef>) -> OSStatus;
+            fn SecAsn1CoderCreate(coder: &mut SecAsn1CoderRef) -> OSStatus;
         }
         unsafe { SecAsn1CoderCreate(coder) }
     }
@@ -85,7 +85,7 @@ pub unsafe fn SecAsn1Decode(
 /// # Safety
 ///
 /// - `coder` must be a valid pointer.
-/// - `src` must be a valid pointer.
+/// - `src` struct field `Data` must be a valid pointer or null.
 /// - `templ` must be a valid pointer.
 /// - `dest` must be a valid pointer.
 #[cfg(feature = "SecAsn1Types")]
@@ -93,14 +93,14 @@ pub unsafe fn SecAsn1Decode(
 #[inline]
 pub unsafe fn SecAsn1DecodeData(
     coder: SecAsn1CoderRef,
-    src: NonNull<SecAsn1Item>,
+    src: &SecAsn1Item,
     templ: NonNull<SecAsn1Template>,
     dest: NonNull<c_void>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecAsn1DecodeData(
             coder: SecAsn1CoderRef,
-            src: NonNull<SecAsn1Item>,
+            src: &SecAsn1Item,
             templ: NonNull<SecAsn1Template>,
             dest: NonNull<c_void>,
         ) -> OSStatus;
@@ -113,7 +113,7 @@ pub unsafe fn SecAsn1DecodeData(
 /// - `coder` must be a valid pointer.
 /// - `src` must be a valid pointer.
 /// - `templates` must be a valid pointer.
-/// - `dest` must be a valid pointer.
+/// - `dest` struct field `Data` must be a valid pointer or null.
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
@@ -121,14 +121,14 @@ pub unsafe fn SecAsn1EncodeItem(
     coder: SecAsn1CoderRef,
     src: NonNull<c_void>,
     templates: NonNull<SecAsn1Template>,
-    dest: NonNull<SecAsn1Item>,
+    dest: &mut SecAsn1Item,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecAsn1EncodeItem(
             coder: SecAsn1CoderRef,
             src: NonNull<c_void>,
             templates: NonNull<SecAsn1Template>,
-            dest: NonNull<SecAsn1Item>,
+            dest: &mut SecAsn1Item,
         ) -> OSStatus;
     }
     unsafe { SecAsn1EncodeItem(coder, src, templates, dest) }
@@ -150,21 +150,18 @@ pub unsafe fn SecAsn1Malloc(coder: SecAsn1CoderRef, len: usize) -> NonNull<c_voi
 /// # Safety
 ///
 /// - `coder` must be a valid pointer.
-/// - `item` must be a valid pointer.
+/// - `item` struct field `Data` must be a valid pointer or null.
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
 pub unsafe fn SecAsn1AllocItem(
     coder: SecAsn1CoderRef,
-    item: NonNull<SecAsn1Item>,
+    item: &mut SecAsn1Item,
     len: usize,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn SecAsn1AllocItem(
-            coder: SecAsn1CoderRef,
-            item: NonNull<SecAsn1Item>,
-            len: usize,
-        ) -> OSStatus;
+        fn SecAsn1AllocItem(coder: SecAsn1CoderRef, item: &mut SecAsn1Item, len: usize)
+            -> OSStatus;
     }
     unsafe { SecAsn1AllocItem(coder, item, len) }
 }
@@ -173,7 +170,7 @@ pub unsafe fn SecAsn1AllocItem(
 ///
 /// - `coder` must be a valid pointer.
 /// - `src` must be a valid pointer.
-/// - `dest` must be a valid pointer.
+/// - `dest` struct field `Data` must be a valid pointer or null.
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
@@ -181,14 +178,14 @@ pub unsafe fn SecAsn1AllocCopy(
     coder: SecAsn1CoderRef,
     src: NonNull<c_void>,
     len: usize,
-    dest: NonNull<SecAsn1Item>,
+    dest: &mut SecAsn1Item,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecAsn1AllocCopy(
             coder: SecAsn1CoderRef,
             src: NonNull<c_void>,
             len: usize,
-            dest: NonNull<SecAsn1Item>,
+            dest: &mut SecAsn1Item,
         ) -> OSStatus;
     }
     unsafe { SecAsn1AllocCopy(coder, src, len, dest) }
@@ -197,21 +194,21 @@ pub unsafe fn SecAsn1AllocCopy(
 /// # Safety
 ///
 /// - `coder` must be a valid pointer.
-/// - `src` must be a valid pointer.
-/// - `dest` must be a valid pointer.
+/// - `src` struct field `Data` must be a valid pointer or null.
+/// - `dest` struct field `Data` must be a valid pointer or null.
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
 pub unsafe fn SecAsn1AllocCopyItem(
     coder: SecAsn1CoderRef,
-    src: NonNull<SecAsn1Item>,
-    dest: NonNull<SecAsn1Item>,
+    src: &SecAsn1Item,
+    dest: &mut SecAsn1Item,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecAsn1AllocCopyItem(
             coder: SecAsn1CoderRef,
-            src: NonNull<SecAsn1Item>,
-            dest: NonNull<SecAsn1Item>,
+            src: &SecAsn1Item,
+            dest: &mut SecAsn1Item,
         ) -> OSStatus;
     }
     unsafe { SecAsn1AllocCopyItem(coder, src, dest) }
@@ -219,14 +216,14 @@ pub unsafe fn SecAsn1AllocCopyItem(
 
 /// # Safety
 ///
-/// - `oid1` must be a valid pointer.
-/// - `oid2` must be a valid pointer.
+/// - `oid1` struct field `Data` must be a valid pointer or null.
+/// - `oid2` struct field `Data` must be a valid pointer or null.
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated = "SecAsn1 is not supported"]
 #[inline]
-pub unsafe fn SecAsn1OidCompare(oid1: NonNull<SecAsn1Oid>, oid2: NonNull<SecAsn1Oid>) -> bool {
+pub unsafe fn SecAsn1OidCompare(oid1: &SecAsn1Oid, oid2: &SecAsn1Oid) -> bool {
     extern "C-unwind" {
-        fn SecAsn1OidCompare(oid1: NonNull<SecAsn1Oid>, oid2: NonNull<SecAsn1Oid>) -> bool;
+        fn SecAsn1OidCompare(oid1: &SecAsn1Oid, oid2: &SecAsn1Oid) -> bool;
     }
     unsafe { SecAsn1OidCompare(oid1, oid2) }
 }

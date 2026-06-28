@@ -106,22 +106,17 @@ pub const errSessionInvalidFlags: OSStatus = -60011;
 /// Returns: An OSStatus indicating success (errSecSuccess) or an error cause.
 ///
 /// errSessionInvalidId -60500 Invalid session id specified
-///
-/// # Safety
-///
-/// - `session_id` must be a valid pointer or null.
-/// - `attributes` must be a valid pointer or null.
 #[inline]
 pub unsafe fn SessionGetInfo(
     session: SecuritySessionId,
-    session_id: *mut SecuritySessionId,
-    attributes: *mut SessionAttributeBits,
+    session_id: Option<&mut SecuritySessionId>,
+    attributes: Option<&mut SessionAttributeBits>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SessionGetInfo(
             session: SecuritySessionId,
-            session_id: *mut SecuritySessionId,
-            attributes: *mut SessionAttributeBits,
+            session_id: Option<&mut SecuritySessionId>,
+            attributes: Option<&mut SessionAttributeBits>,
         ) -> OSStatus;
     }
     unsafe { SessionGetInfo(session, session_id, attributes) }

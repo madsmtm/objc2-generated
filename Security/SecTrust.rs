@@ -381,17 +381,13 @@ impl SecTrust {
     ///
     /// By default, network fetch of missing certificates is enabled if
     /// the trust evaluation includes the SSL policy, otherwise it is disabled.
-    ///
-    /// # Safety
-    ///
-    /// `allow_fetch` must be a valid pointer.
     #[doc(alias = "SecTrustGetNetworkFetchAllowed")]
     #[inline]
-    pub unsafe fn network_fetch_allowed(&self, allow_fetch: NonNull<Boolean>) -> OSStatus {
+    pub unsafe fn network_fetch_allowed(&self, allow_fetch: &mut Boolean) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetNetworkFetchAllowed(
                 trust: &SecTrust,
-                allow_fetch: NonNull<Boolean>,
+                allow_fetch: &mut Boolean,
             ) -> OSStatus;
         }
         unsafe { SecTrustGetNetworkFetchAllowed(self, allow_fetch) }
@@ -535,16 +531,12 @@ impl SecTrust {
     /// operations, you should call it from within a function that is placed on a
     /// dispatch queue, or in a separate thread from your application's main
     /// run loop. Alternatively, you can use the SecTrustEvaluateAsync function.
-    ///
-    /// # Safety
-    ///
-    /// `result` must be a valid pointer.
     #[doc(alias = "SecTrustEvaluate")]
     #[deprecated]
     #[inline]
-    pub unsafe fn evaluate(&self, result: NonNull<SecTrustResultType>) -> OSStatus {
+    pub unsafe fn evaluate(&self, result: &mut SecTrustResultType) -> OSStatus {
         extern "C-unwind" {
-            fn SecTrustEvaluate(trust: &SecTrust, result: NonNull<SecTrustResultType>) -> OSStatus;
+            fn SecTrustEvaluate(trust: &SecTrust, result: &mut SecTrustResultType) -> OSStatus;
         }
         unsafe { SecTrustEvaluate(self, result) }
     }
@@ -618,17 +610,13 @@ impl SecTrust {
     ///
     /// This function replaces SecTrustGetResult for the purpose of
     /// obtaining the current evaluation result of a given trust reference.
-    ///
-    /// # Safety
-    ///
-    /// `result` must be a valid pointer.
     #[doc(alias = "SecTrustGetTrustResult")]
     #[inline]
-    pub unsafe fn trust_result(&self, result: NonNull<SecTrustResultType>) -> OSStatus {
+    pub unsafe fn trust_result(&self, result: &mut SecTrustResultType) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetTrustResult(
                 trust: &SecTrust,
-                result: NonNull<SecTrustResultType>,
+                result: &mut SecTrustResultType,
             ) -> OSStatus;
         }
         unsafe { SecTrustGetTrustResult(self, result) }
@@ -1083,8 +1071,7 @@ impl SecTrust {
     ///
     /// # Safety
     ///
-    /// - `result` must be a valid pointer or null.
-    /// - `status_chain` must be a valid pointer or null.
+    /// `status_chain` must be a valid pointer or null.
     #[doc(alias = "SecTrustGetResult")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -1097,16 +1084,16 @@ impl SecTrust {
     #[inline]
     pub unsafe fn get_trust(
         &self,
-        result: *mut SecTrustResultType,
+        result: Option<&mut SecTrustResultType>,
         cert_chain: Option<&mut Option<CFRetained<CFArray<SecCertificate>>>>,
-        status_chain: *mut *mut CSSM_TP_APPLE_EVIDENCE_INFO,
+        status_chain: Option<&mut *mut CSSM_TP_APPLE_EVIDENCE_INFO>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetResult(
                 trust_ref: &SecTrust,
-                result: *mut SecTrustResultType,
+                result: Option<&mut SecTrustResultType>,
                 cert_chain: Option<&mut Option<CFRetained<CFArray<SecCertificate>>>>,
-                status_chain: *mut *mut CSSM_TP_APPLE_EVIDENCE_INFO,
+                status_chain: Option<&mut *mut CSSM_TP_APPLE_EVIDENCE_INFO>,
             ) -> OSStatus;
         }
         if let Some(cert_chain) = cert_chain.as_ref() {
@@ -1134,19 +1121,16 @@ impl SecTrust {
     ///
     /// # Safety
     ///
-    /// `result` must be a valid pointer.
+    /// `result` must be a valid pointer or null.
     #[doc(alias = "SecTrustGetCssmResult")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn cssm_result(
-        &self,
-        result: NonNull<CSSM_TP_VERIFY_CONTEXT_RESULT_PTR>,
-    ) -> OSStatus {
+    pub unsafe fn cssm_result(&self, result: &mut CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetCssmResult(
                 trust: &SecTrust,
-                result: NonNull<CSSM_TP_VERIFY_CONTEXT_RESULT_PTR>,
+                result: &mut CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
             ) -> OSStatus;
         }
         unsafe { SecTrustGetCssmResult(self, result) }
@@ -1170,19 +1154,12 @@ impl SecTrust {
     /// To get detailed status information for each certificate, use
     /// SecTrustCopyProperties. To get the overall trust result for the evaluation,
     /// use SecTrustGetTrustResult.
-    ///
-    /// # Safety
-    ///
-    /// `result_code` must be a valid pointer.
     #[doc(alias = "SecTrustGetCssmResultCode")]
     #[deprecated]
     #[inline]
-    pub unsafe fn cssm_result_code(&self, result_code: NonNull<OSStatus>) -> OSStatus {
+    pub unsafe fn cssm_result_code(&self, result_code: &mut OSStatus) -> OSStatus {
         extern "C-unwind" {
-            fn SecTrustGetCssmResultCode(
-                trust: &SecTrust,
-                result_code: NonNull<OSStatus>,
-            ) -> OSStatus;
+            fn SecTrustGetCssmResultCode(trust: &SecTrust, result_code: &mut OSStatus) -> OSStatus;
         }
         unsafe { SecTrustGetCssmResultCode(self, result_code) }
     }
@@ -1196,17 +1173,13 @@ impl SecTrust {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in OS X 10.7 and later.
-    ///
-    /// # Safety
-    ///
-    /// `handle` must be a valid pointer.
     #[doc(alias = "SecTrustGetTPHandle")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn tp_handle(&self, handle: NonNull<CSSM_TP_HANDLE>) -> OSStatus {
+    pub unsafe fn tp_handle(&self, handle: &mut CSSM_TP_HANDLE) -> OSStatus {
         extern "C-unwind" {
-            fn SecTrustGetTPHandle(trust: &SecTrust, handle: NonNull<CSSM_TP_HANDLE>) -> OSStatus;
+            fn SecTrustGetTPHandle(trust: &SecTrust, handle: &mut CSSM_TP_HANDLE) -> OSStatus;
         }
         unsafe { SecTrustGetTPHandle(self, handle) }
     }
