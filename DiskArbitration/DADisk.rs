@@ -341,9 +341,11 @@ impl DADisk {
     /// with CFRelease().
     #[doc(alias = "DADiskCopyDescription")]
     #[inline]
-    pub unsafe fn description(&self) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn description(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
-            fn DADiskCopyDescription(disk: &DADisk) -> Option<NonNull<CFDictionary>>;
+            fn DADiskCopyDescription(
+                disk: &DADisk,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { DADiskCopyDescription(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

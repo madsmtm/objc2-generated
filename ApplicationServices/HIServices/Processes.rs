@@ -286,12 +286,12 @@ pub unsafe fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
 pub unsafe fn ProcessInformationCopyDictionary(
     psn: *const ProcessSerialNumber,
     info_to_return: u32,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn ProcessInformationCopyDictionary(
             psn: *const ProcessSerialNumber,
             info_to_return: u32,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { ProcessInformationCopyDictionary(psn, info_to_return) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

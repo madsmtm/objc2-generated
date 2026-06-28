@@ -232,11 +232,11 @@ impl CFHTTPMessage {
 
     #[doc(alias = "CFHTTPMessageCopyAllHeaderFields")]
     #[inline]
-    pub unsafe fn all_header_fields(&self) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn all_header_fields(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CFHTTPMessageCopyAllHeaderFields(
                 message: &CFHTTPMessage,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CFHTTPMessageCopyAllHeaderFields(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

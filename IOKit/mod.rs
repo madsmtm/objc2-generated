@@ -10153,8 +10153,7 @@ pub fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
 /// # Safety
 ///
 /// - `notification_type` might not allow `None`.
-/// - `matching` generic must be of the correct type.
-/// - `matching` generic must be of the correct type.
+/// - `matching` generic should be of the correct type.
 /// - `matching` might not allow `None`.
 /// - `notification` must be a valid pointer.
 #[cfg(feature = "libc")]
@@ -10163,7 +10162,7 @@ pub fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
 pub unsafe fn IOServiceAddNotification(
     main_port: libc::mach_port_t,
     notification_type: Option<&CStr>,
-    matching: Option<&CFDictionary>,
+    matching: Option<&CFDictionary<CFString, CFType>>,
     wake_port: libc::mach_port_t,
     reference: usize,
     notification: *mut io_iterator_t,
@@ -10172,7 +10171,7 @@ pub unsafe fn IOServiceAddNotification(
         fn IOServiceAddNotification(
             main_port: libc::mach_port_t,
             notification_type: *const io_name_t,
-            matching: Option<&CFDictionary>,
+            matching: Option<&CFDictionary<CFString, CFType>>,
             wake_port: libc::mach_port_t,
             reference: usize,
             notification: *mut io_iterator_t,
@@ -10271,21 +10270,20 @@ pub unsafe fn IOServiceAddInterestNotification(
 ///
 /// # Safety
 ///
-/// - `matching` generic must be of the correct type.
-/// - `matching` generic must be of the correct type.
+/// - `matching` generic should be of the correct type.
 /// - `matching` might not allow `None`.
 /// - `matches` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOServiceMatchPropertyTable(
     service: io_service_t,
-    matching: Option<&CFDictionary>,
+    matching: Option<&CFDictionary<CFString, CFType>>,
     matches: *mut libc::boolean_t,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOServiceMatchPropertyTable(
             service: io_service_t,
-            matching: Option<&CFDictionary>,
+            matching: Option<&CFDictionary<CFString, CFType>>,
             matches: *mut libc::boolean_t,
         ) -> libc::kern_return_t;
     }
@@ -11579,21 +11577,20 @@ pub unsafe fn IORegistryEntryGetRegistryEntryID(
 ///
 /// # Safety
 ///
-/// - `properties` generic must be of the correct type.
-/// - `properties` generic must be of the correct type.
+/// - `properties` generic should be of the correct type.
 /// - `properties` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegistryEntryCreateCFProperties(
     entry: io_registry_entry_t,
-    properties: Option<&mut Option<CFRetained<CFMutableDictionary>>>,
+    properties: Option<&mut Option<CFRetained<CFMutableDictionary<CFString, CFType>>>>,
     allocator: Option<&CFAllocator>,
     options: IOOptionBits,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryCreateCFProperties(
             entry: io_registry_entry_t,
-            properties: Option<&mut Option<CFRetained<CFMutableDictionary>>>,
+            properties: Option<&mut Option<CFRetained<CFMutableDictionary<CFString, CFType>>>>,
             allocator: Option<&CFAllocator>,
             options: IOOptionBits,
         ) -> libc::kern_return_t;
@@ -11971,12 +11968,15 @@ pub unsafe fn IORegistryEntryInPlane(entry: io_registry_entry_t, plane: Option<&
 /// # Safety
 ///
 /// - `name` must be a valid pointer.
-/// - The returned generic must be of the correct type.
-/// - The returned generic must be of the correct type.
+/// - The returned generic should be of the correct type.
 #[inline]
-pub unsafe fn IOServiceMatching(name: *const c_char) -> Option<CFRetained<CFMutableDictionary>> {
+pub unsafe fn IOServiceMatching(
+    name: *const c_char,
+) -> Option<CFRetained<CFMutableDictionary<CFString, CFType>>> {
     extern "C-unwind" {
-        fn IOServiceMatching(name: *const c_char) -> Option<NonNull<CFMutableDictionary>>;
+        fn IOServiceMatching(
+            name: *const c_char,
+        ) -> Option<NonNull<CFMutableDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { IOServiceMatching(name) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -11993,14 +11993,15 @@ pub unsafe fn IOServiceMatching(name: *const c_char) -> Option<CFRetained<CFMuta
 /// # Safety
 ///
 /// - `name` must be a valid pointer.
-/// - The returned generic must be of the correct type.
-/// - The returned generic must be of the correct type.
+/// - The returned generic should be of the correct type.
 #[inline]
 pub unsafe fn IOServiceNameMatching(
     name: *const c_char,
-) -> Option<CFRetained<CFMutableDictionary>> {
+) -> Option<CFRetained<CFMutableDictionary<CFString, CFType>>> {
     extern "C-unwind" {
-        fn IOServiceNameMatching(name: *const c_char) -> Option<NonNull<CFMutableDictionary>>;
+        fn IOServiceNameMatching(
+            name: *const c_char,
+        ) -> Option<NonNull<CFMutableDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { IOServiceNameMatching(name) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -12021,21 +12022,20 @@ pub unsafe fn IOServiceNameMatching(
 /// # Safety
 ///
 /// - `bsd_name` must be a valid pointer.
-/// - The returned generic must be of the correct type.
-/// - The returned generic must be of the correct type.
+/// - The returned generic should be of the correct type.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOBSDNameMatching(
     main_port: libc::mach_port_t,
     options: u32,
     bsd_name: *const c_char,
-) -> Option<CFRetained<CFMutableDictionary>> {
+) -> Option<CFRetained<CFMutableDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn IOBSDNameMatching(
             main_port: libc::mach_port_t,
             options: u32,
             bsd_name: *const c_char,
-        ) -> Option<NonNull<CFMutableDictionary>>;
+        ) -> Option<NonNull<CFMutableDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { IOBSDNameMatching(main_port, options, bsd_name) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -12044,8 +12044,7 @@ pub unsafe fn IOBSDNameMatching(
 /// # Safety
 ///
 /// - `path` must be a valid pointer.
-/// - The returned generic must be of the correct type.
-/// - The returned generic must be of the correct type.
+/// - The returned generic should be of the correct type.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -12053,13 +12052,13 @@ pub unsafe fn IOOpenFirmwarePathMatching(
     main_port: libc::mach_port_t,
     options: u32,
     path: *const c_char,
-) -> Option<CFRetained<CFMutableDictionary>> {
+) -> Option<CFRetained<CFMutableDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn IOOpenFirmwarePathMatching(
             main_port: libc::mach_port_t,
             options: u32,
             path: *const c_char,
-        ) -> Option<NonNull<CFMutableDictionary>>;
+        ) -> Option<NonNull<CFMutableDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { IOOpenFirmwarePathMatching(main_port, options, path) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -12075,12 +12074,15 @@ pub unsafe fn IOOpenFirmwarePathMatching(
 ///
 /// # Safety
 ///
-/// - The returned generic must be of the correct type.
-/// - The returned generic must be of the correct type.
+/// The returned generic should be of the correct type.
 #[inline]
-pub unsafe fn IORegistryEntryIDMatching(entry_id: u64) -> Option<CFRetained<CFMutableDictionary>> {
+pub unsafe fn IORegistryEntryIDMatching(
+    entry_id: u64,
+) -> Option<CFRetained<CFMutableDictionary<CFString, CFType>>> {
     extern "C-unwind" {
-        fn IORegistryEntryIDMatching(entry_id: u64) -> Option<NonNull<CFMutableDictionary>>;
+        fn IORegistryEntryIDMatching(
+            entry_id: u64,
+        ) -> Option<NonNull<CFMutableDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { IORegistryEntryIDMatching(entry_id) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -12652,7 +12654,6 @@ pub unsafe fn IOURLCreatePropertyFromResource(
 /// - `url` might not allow `None`.
 /// - `resource_data` might not allow `None`.
 /// - `properties` might not allow `None`.
-/// - `desired_properties` generic must be of the correct type.
 /// - `desired_properties` might not allow `None`.
 /// - `error_code` must be a valid pointer.
 #[inline]
@@ -12660,8 +12661,8 @@ pub unsafe fn IOURLCreateDataAndPropertiesFromResource(
     alloc: Option<&CFAllocator>,
     url: Option<&CFURL>,
     resource_data: Option<&mut Option<CFRetained<CFData>>>,
-    properties: Option<&mut Option<CFRetained<CFDictionary>>>,
-    desired_properties: Option<&CFArray>,
+    properties: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
+    desired_properties: Option<&CFArray<CFString>>,
     error_code: *mut i32,
 ) -> bool {
     extern "C-unwind" {
@@ -12669,8 +12670,8 @@ pub unsafe fn IOURLCreateDataAndPropertiesFromResource(
             alloc: Option<&CFAllocator>,
             url: Option<&CFURL>,
             resource_data: Option<&mut Option<CFRetained<CFData>>>,
-            properties: Option<&mut Option<CFRetained<CFDictionary>>>,
-            desired_properties: Option<&CFArray>,
+            properties: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
+            desired_properties: Option<&CFArray<CFString>>,
             error_code: *mut i32,
         ) -> Boolean;
     }
@@ -12703,22 +12704,21 @@ pub unsafe fn IOURLCreateDataAndPropertiesFromResource(
 ///
 /// - `url` might not allow `None`.
 /// - `data_to_write` might not allow `None`.
-/// - `properties_to_write` generic must be of the correct type.
-/// - `properties_to_write` generic must be of the correct type.
+/// - `properties_to_write` generic should be of the correct type.
 /// - `properties_to_write` might not allow `None`.
 /// - `error_code` must be a valid pointer.
 #[inline]
 pub unsafe fn IOURLWriteDataAndPropertiesToResource(
     url: Option<&CFURL>,
     data_to_write: Option<&CFData>,
-    properties_to_write: Option<&CFDictionary>,
+    properties_to_write: Option<&CFDictionary<CFString, CFType>>,
     error_code: *mut i32,
 ) -> bool {
     extern "C-unwind" {
         fn IOURLWriteDataAndPropertiesToResource(
             url: Option<&CFURL>,
             data_to_write: Option<&CFData>,
-            properties_to_write: Option<&CFDictionary>,
+            properties_to_write: Option<&CFDictionary<CFString, CFType>>,
             error_code: *mut i32,
         ) -> Boolean;
     }

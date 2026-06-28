@@ -13,17 +13,18 @@ use crate::*;
 ///
 /// # Safety
 ///
-/// - `options` generic must be of the correct type.
-/// - `options` generic must be of the correct type.
+/// `options` generic should be of the correct type.
 #[inline]
 pub unsafe fn VTCopyVideoEncoderList(
-    options: Option<&CFDictionary>,
-    list_of_video_encoders_out: &mut Option<CFRetained<CFArray>>,
+    options: Option<&CFDictionary<CFString, CFType>>,
+    list_of_video_encoders_out: &mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTCopyVideoEncoderList(
-            options: Option<&CFDictionary>,
-            list_of_video_encoders_out: &mut Option<CFRetained<CFArray>>,
+            options: Option<&CFDictionary<CFString, CFType>>,
+            list_of_video_encoders_out: &mut Option<
+                CFRetained<CFArray<CFDictionary<CFString, CFType>>>,
+            >,
         ) -> OSStatus;
     }
     assert!(
@@ -109,26 +110,27 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// - `encoder_specification` generic must be of the correct type.
-/// - `encoder_specification` generic must be of the correct type.
+/// `encoder_specification` generic should be of the correct type.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe fn VTCopySupportedPropertyDictionaryForEncoder(
     width: i32,
     height: i32,
     codec_type: CMVideoCodecType,
-    encoder_specification: Option<&CFDictionary>,
+    encoder_specification: Option<&CFDictionary<CFString, CFType>>,
     encoder_id_out: Option<&mut Option<CFRetained<CFString>>>,
-    supported_properties_out: Option<&mut Option<CFRetained<CFDictionary>>>,
+    supported_properties_out: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTCopySupportedPropertyDictionaryForEncoder(
             width: i32,
             height: i32,
             codec_type: CMVideoCodecType,
-            encoder_specification: Option<&CFDictionary>,
+            encoder_specification: Option<&CFDictionary<CFString, CFType>>,
             encoder_id_out: Option<&mut Option<CFRetained<CFString>>>,
-            supported_properties_out: Option<&mut Option<CFRetained<CFDictionary>>>,
+            supported_properties_out: Option<
+                &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
+            >,
         ) -> OSStatus;
     }
     if let Some(encoder_id_out) = encoder_id_out.as_ref() {

@@ -2117,11 +2117,13 @@ pub unsafe fn UnregisterEventHotKey(in_hot_key: EventHotKeyRef) -> OSStatus {
 /// `out_hot_key_array` might not allow `None`.
 #[inline]
 pub unsafe fn CopySymbolicHotKeys(
-    out_hot_key_array: Option<&mut Option<CFRetained<CFArray>>>,
+    out_hot_key_array: Option<&mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CopySymbolicHotKeys(
-            out_hot_key_array: Option<&mut Option<CFRetained<CFArray>>>,
+            out_hot_key_array: Option<
+                &mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>,
+            >,
         ) -> OSStatus;
     }
     if let Some(out_hot_key_array) = out_hot_key_array.as_ref() {

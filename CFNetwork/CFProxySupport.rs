@@ -15,9 +15,10 @@ use crate::*;
 /// was encountered.
 /// The caller is responsible for releasing the returned dictionary.
 #[inline]
-pub unsafe fn CFNetworkCopySystemProxySettings() -> Option<CFRetained<CFDictionary>> {
+pub unsafe fn CFNetworkCopySystemProxySettings(
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
-        fn CFNetworkCopySystemProxySettings() -> Option<NonNull<CFDictionary>>;
+        fn CFNetworkCopySystemProxySettings() -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { CFNetworkCopySystemProxySettings() };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -25,18 +26,17 @@ pub unsafe fn CFNetworkCopySystemProxySettings() -> Option<CFRetained<CFDictiona
 
 /// # Safety
 ///
-/// - `proxy_settings` generic must be of the correct type.
-/// - `proxy_settings` generic must be of the correct type.
+/// `proxy_settings` generic should be of the correct type.
 #[inline]
 pub unsafe fn CFNetworkCopyProxiesForURL(
     url: &CFURL,
-    proxy_settings: &CFDictionary,
-) -> CFRetained<CFArray> {
+    proxy_settings: &CFDictionary<CFString, CFType>,
+) -> CFRetained<CFArray<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn CFNetworkCopyProxiesForURL(
             url: &CFURL,
-            proxy_settings: &CFDictionary,
-        ) -> Option<NonNull<CFArray>>;
+            proxy_settings: &CFDictionary<CFString, CFType>,
+        ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
     }
     let ret = unsafe { CFNetworkCopyProxiesForURL(url, proxy_settings) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -52,13 +52,13 @@ pub unsafe fn CFNetworkCopyProxiesForAutoConfigurationScript(
     proxy_auto_configuration_script: &CFString,
     target_url: &CFURL,
     error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
     extern "C-unwind" {
         fn CFNetworkCopyProxiesForAutoConfigurationScript(
             proxy_auto_configuration_script: &CFString,
             target_url: &CFURL,
             error: Option<&mut Option<CFRetained<CFError>>>,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
     }
     if let Some(error) = error.as_ref() {
         assert!(

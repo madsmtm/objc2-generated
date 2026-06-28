@@ -111,23 +111,19 @@ impl SecTask {
     /// detailed errors.  If a requested entitlement is not present for the
     /// returned dictionary, the entitlement is not set on the task.  The caller
     /// must CFRelease the returned value
-    ///
-    /// # Safety
-    ///
-    /// `entitlements` generic must be of the correct type.
     #[doc(alias = "SecTaskCopyValuesForEntitlements")]
     #[inline]
     pub unsafe fn values_for_entitlements(
         &self,
-        entitlements: &CFArray,
+        entitlements: &CFArray<CFString>,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn SecTaskCopyValuesForEntitlements(
                 task: &SecTask,
-                entitlements: &CFArray,
+                entitlements: &CFArray<CFString>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(

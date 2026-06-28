@@ -317,12 +317,15 @@ impl LSSharedFileList {
     #[doc(alias = "LSSharedFileListCopySnapshot")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn snapshot(&self, out_snapshot_seed: *mut u32) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn snapshot(
+        &self,
+        out_snapshot_seed: *mut u32,
+    ) -> Option<CFRetained<CFArray<LSSharedFileListItem>>> {
         extern "C-unwind" {
             fn LSSharedFileListCopySnapshot(
                 in_list: &LSSharedFileList,
                 out_snapshot_seed: *mut u32,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<LSSharedFileListItem>>>;
         }
         let ret = unsafe { LSSharedFileListCopySnapshot(self, out_snapshot_seed) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -331,9 +334,7 @@ impl LSSharedFileList {
     /// # Safety
     ///
     /// - `in_icon_ref` must be a valid pointer or null.
-    /// - `in_properties_to_set` generic must be of the correct type.
-    /// - `in_properties_to_set` generic must be of the correct type.
-    /// - `in_properties_to_clear` generic must be of the correct type.
+    /// - `in_properties_to_set` generic should be of the correct type.
     #[doc(alias = "LSSharedFileListInsertItemURL")]
     #[cfg(all(feature = "IconsCore", feature = "LaunchServices"))]
     #[deprecated = "No longer supported"]
@@ -344,8 +345,8 @@ impl LSSharedFileList {
         in_display_name: Option<&CFString>,
         in_icon_ref: IconRef,
         in_url: &CFURL,
-        in_properties_to_set: Option<&CFDictionary>,
-        in_properties_to_clear: Option<&CFArray>,
+        in_properties_to_set: Option<&CFDictionary<CFString, CFType>>,
+        in_properties_to_clear: Option<&CFArray<CFString>>,
     ) -> Option<CFRetained<LSSharedFileListItem>> {
         extern "C-unwind" {
             fn LSSharedFileListInsertItemURL(
@@ -354,8 +355,8 @@ impl LSSharedFileList {
                 in_display_name: Option<&CFString>,
                 in_icon_ref: IconRef,
                 in_url: &CFURL,
-                in_properties_to_set: Option<&CFDictionary>,
-                in_properties_to_clear: Option<&CFArray>,
+                in_properties_to_set: Option<&CFDictionary<CFString, CFType>>,
+                in_properties_to_clear: Option<&CFArray<CFString>>,
             ) -> Option<NonNull<LSSharedFileListItem>>;
         }
         let ret = unsafe {
@@ -376,9 +377,7 @@ impl LSSharedFileList {
     ///
     /// - `in_icon_ref` must be a valid pointer or null.
     /// - `in_fs_ref` must be a valid pointer.
-    /// - `in_properties_to_set` generic must be of the correct type.
-    /// - `in_properties_to_set` generic must be of the correct type.
-    /// - `in_properties_to_clear` generic must be of the correct type.
+    /// - `in_properties_to_set` generic should be of the correct type.
     #[doc(alias = "LSSharedFileListInsertItemFSRef")]
     #[cfg(all(
         feature = "CarbonCore",
@@ -394,8 +393,8 @@ impl LSSharedFileList {
         in_display_name: Option<&CFString>,
         in_icon_ref: IconRef,
         in_fs_ref: NonNull<FSRef>,
-        in_properties_to_set: Option<&CFDictionary>,
-        in_properties_to_clear: Option<&CFArray>,
+        in_properties_to_set: Option<&CFDictionary<CFString, CFType>>,
+        in_properties_to_clear: Option<&CFArray<CFString>>,
     ) -> Option<CFRetained<LSSharedFileListItem>> {
         extern "C-unwind" {
             fn LSSharedFileListInsertItemFSRef(
@@ -404,8 +403,8 @@ impl LSSharedFileList {
                 in_display_name: Option<&CFString>,
                 in_icon_ref: IconRef,
                 in_fs_ref: NonNull<FSRef>,
-                in_properties_to_set: Option<&CFDictionary>,
-                in_properties_to_clear: Option<&CFArray>,
+                in_properties_to_set: Option<&CFDictionary<CFString, CFType>>,
+                in_properties_to_clear: Option<&CFArray<CFString>>,
             ) -> Option<NonNull<LSSharedFileListItem>>;
         }
         let ret = unsafe {

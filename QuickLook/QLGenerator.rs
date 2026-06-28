@@ -71,11 +71,11 @@ impl QLThumbnailRequest {
     #[doc(alias = "QLThumbnailRequestCopyOptions")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    pub unsafe fn options(&self) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn options(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn QLThumbnailRequestCopyOptions(
                 thumbnail: &QLThumbnailRequest,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { QLThumbnailRequestCopyOptions(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -189,19 +189,22 @@ impl QLThumbnailRequest {
     /// # Safety
     ///
     /// - `image` might not allow `None`.
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImage")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types"]
     #[inline]
-    pub unsafe fn set_image(&self, image: Option<&CGImage>, properties: Option<&CFDictionary>) {
+    pub unsafe fn set_image(
+        &self,
+        image: Option<&CGImage>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
+    ) {
         extern "C-unwind" {
             fn QLThumbnailRequestSetImage(
                 thumbnail: &QLThumbnailRequest,
                 image: Option<&CGImage>,
-                properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
             );
         }
         unsafe { QLThumbnailRequestSetImage(self, image, properties) }
@@ -218,8 +221,7 @@ impl QLThumbnailRequest {
     /// # Safety
     ///
     /// - `data` might not allow `None`.
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImageWithData")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -227,13 +229,13 @@ impl QLThumbnailRequest {
     pub unsafe fn set_image_with_data(
         &self,
         data: Option<&CFData>,
-        properties: Option<&CFDictionary>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
     ) {
         extern "C-unwind" {
             fn QLThumbnailRequestSetImageWithData(
                 thumbnail: &QLThumbnailRequest,
                 data: Option<&CFData>,
-                properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
             );
         }
         unsafe { QLThumbnailRequestSetImageWithData(self, data, properties) }
@@ -255,8 +257,7 @@ impl QLThumbnailRequest {
     ///
     /// # Safety
     ///
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
@@ -266,14 +267,14 @@ impl QLThumbnailRequest {
         &self,
         size: CGSize,
         is_bitmap: bool,
-        properties: Option<&CFDictionary>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CGContext>> {
         extern "C-unwind" {
             fn QLThumbnailRequestCreateContext(
                 thumbnail: &QLThumbnailRequest,
                 size: CGSize,
                 is_bitmap: Boolean,
-                properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGContext>>;
         }
         let is_bitmap = is_bitmap as _;
@@ -315,18 +316,21 @@ impl QLThumbnailRequest {
     /// # Safety
     ///
     /// - `url` might not allow `None`.
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImageAtURL")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    pub unsafe fn set_image_at_url(&self, url: Option<&CFURL>, properties: Option<&CFDictionary>) {
+    pub unsafe fn set_image_at_url(
+        &self,
+        url: Option<&CFURL>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
+    ) {
         extern "C-unwind" {
             fn QLThumbnailRequestSetImageAtURL(
                 thumbnail: &QLThumbnailRequest,
                 url: Option<&CFURL>,
-                properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
             );
         }
         unsafe { QLThumbnailRequestSetImageAtURL(self, url, properties) }
@@ -350,11 +354,9 @@ impl QLThumbnailRequest {
     ///
     /// - `data` might not allow `None`.
     /// - `content_type_uti` might not allow `None`.
-    /// - `preview_properties` generic must be of the correct type.
-    /// - `preview_properties` generic must be of the correct type.
+    /// - `preview_properties` generic should be of the correct type.
     /// - `preview_properties` might not allow `None`.
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetThumbnailWithDataRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -363,16 +365,16 @@ impl QLThumbnailRequest {
         &self,
         data: Option<&CFData>,
         content_type_uti: Option<&CFString>,
-        preview_properties: Option<&CFDictionary>,
-        properties: Option<&CFDictionary>,
+        preview_properties: Option<&CFDictionary<CFString, CFType>>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
     ) {
         extern "C-unwind" {
             fn QLThumbnailRequestSetThumbnailWithDataRepresentation(
                 thumbnail: &QLThumbnailRequest,
                 data: Option<&CFData>,
                 content_type_uti: Option<&CFString>,
-                preview_properties: Option<&CFDictionary>,
-                properties: Option<&CFDictionary>,
+                preview_properties: Option<&CFDictionary<CFString, CFType>>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
             );
         }
         unsafe {
@@ -402,11 +404,9 @@ impl QLThumbnailRequest {
     ///
     /// - `url` might not allow `None`.
     /// - `content_type_uti` might not allow `None`.
-    /// - `preview_properties` generic must be of the correct type.
-    /// - `preview_properties` generic must be of the correct type.
+    /// - `preview_properties` generic should be of the correct type.
     /// - `preview_properties` might not allow `None`.
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetThumbnailWithURLRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -415,16 +415,16 @@ impl QLThumbnailRequest {
         &self,
         url: Option<&CFURL>,
         content_type_uti: Option<&CFString>,
-        preview_properties: Option<&CFDictionary>,
-        properties: Option<&CFDictionary>,
+        preview_properties: Option<&CFDictionary<CFString, CFType>>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
     ) {
         extern "C-unwind" {
             fn QLThumbnailRequestSetThumbnailWithURLRepresentation(
                 thumbnail: &QLThumbnailRequest,
                 url: Option<&CFURL>,
                 content_type_uti: Option<&CFString>,
-                preview_properties: Option<&CFDictionary>,
-                properties: Option<&CFDictionary>,
+                preview_properties: Option<&CFDictionary<CFString, CFType>>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
             );
         }
         unsafe {
@@ -630,11 +630,11 @@ impl QLPreviewRequest {
     #[doc(alias = "QLPreviewRequestCopyOptions")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    pub unsafe fn options(&self) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn options(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn QLPreviewRequestCopyOptions(
                 preview: &QLPreviewRequest,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { QLPreviewRequestCopyOptions(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -755,8 +755,7 @@ impl QLPreviewRequest {
     ///
     /// - `data` might not allow `None`.
     /// - `content_type_uti` might not allow `None`.
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestSetDataRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
@@ -765,14 +764,14 @@ impl QLPreviewRequest {
         &self,
         data: Option<&CFData>,
         content_type_uti: Option<&CFString>,
-        properties: Option<&CFDictionary>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
     ) {
         extern "C-unwind" {
             fn QLPreviewRequestSetDataRepresentation(
                 preview: &QLPreviewRequest,
                 data: Option<&CFData>,
                 content_type_uti: Option<&CFString>,
-                properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
             );
         }
         unsafe { QLPreviewRequestSetDataRepresentation(self, data, content_type_uti, properties) }
@@ -796,8 +795,7 @@ impl QLPreviewRequest {
     ///
     /// - `url` might not allow `None`.
     /// - `content_type_uti` might not allow `None`.
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestSetURLRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
@@ -806,14 +804,14 @@ impl QLPreviewRequest {
         &self,
         url: Option<&CFURL>,
         content_type_uti: Option<&CFString>,
-        properties: Option<&CFDictionary>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
     ) {
         extern "C-unwind" {
             fn QLPreviewRequestSetURLRepresentation(
                 preview: &QLPreviewRequest,
                 url: Option<&CFURL>,
                 content_type_uti: Option<&CFString>,
-                properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
             );
         }
         unsafe { QLPreviewRequestSetURLRepresentation(self, url, content_type_uti, properties) }
@@ -831,8 +829,7 @@ impl QLPreviewRequest {
     ///
     /// # Safety
     ///
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
@@ -842,14 +839,14 @@ impl QLPreviewRequest {
         &self,
         size: CGSize,
         is_bitmap: bool,
-        properties: Option<&CFDictionary>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CGContext>> {
         extern "C-unwind" {
             fn QLPreviewRequestCreateContext(
                 preview: &QLPreviewRequest,
                 size: CGSize,
                 is_bitmap: Boolean,
-                properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGContext>>;
         }
         let is_bitmap = is_bitmap as _;
@@ -870,11 +867,9 @@ impl QLPreviewRequest {
     /// # Safety
     ///
     /// - `media_box` must be a valid pointer.
-    /// - `auxiliary_info` generic must be of the correct type.
-    /// - `auxiliary_info` generic must be of the correct type.
+    /// - `auxiliary_info` generic should be of the correct type.
     /// - `auxiliary_info` might not allow `None`.
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestCreatePDFContext")]
     #[cfg(feature = "objc2-core-graphics")]
@@ -883,15 +878,15 @@ impl QLPreviewRequest {
     pub unsafe fn pdf_context(
         &self,
         media_box: *const CGRect,
-        auxiliary_info: Option<&CFDictionary>,
-        properties: Option<&CFDictionary>,
+        auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CGContext>> {
         extern "C-unwind" {
             fn QLPreviewRequestCreatePDFContext(
                 preview: &QLPreviewRequest,
                 media_box: *const CGRect,
-                auxiliary_info: Option<&CFDictionary>,
-                properties: Option<&CFDictionary>,
+                auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGContext>>;
         }
         let ret = unsafe {

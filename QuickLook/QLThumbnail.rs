@@ -45,8 +45,7 @@ impl QLThumbnail {
     /// # Safety
     ///
     /// - `url` might not allow `None`.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// - `options` generic should be of the correct type.
     /// - `options` might not allow `None`.
     #[doc(alias = "QLThumbnailCreate")]
     #[deprecated = "Use QLThumbnailGenerationRequest in QuickLookThumbnailing to generate thumbnails."]
@@ -55,14 +54,14 @@ impl QLThumbnail {
         allocator: Option<&CFAllocator>,
         url: Option<&CFURL>,
         max_thumbnail_size: CGSize,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<QLThumbnail>> {
         extern "C-unwind" {
             fn QLThumbnailCreate(
                 allocator: Option<&CFAllocator>,
                 url: Option<&CFURL>,
                 max_thumbnail_size: CGSize,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<QLThumbnail>>;
         }
         let ret = unsafe { QLThumbnailCreate(allocator, url, max_thumbnail_size, options) };
@@ -93,9 +92,11 @@ impl QLThumbnail {
     #[doc(alias = "QLThumbnailCopyOptions")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
-    pub unsafe fn options(&self) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn options(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
-            fn QLThumbnailCopyOptions(thumbnail: &QLThumbnail) -> Option<NonNull<CFDictionary>>;
+            fn QLThumbnailCopyOptions(
+                thumbnail: &QLThumbnail,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { QLThumbnailCopyOptions(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

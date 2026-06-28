@@ -49,9 +49,9 @@ impl MDItem {
     #[doc(alias = "MDItemCopyLabels")]
     #[cfg(feature = "MDItem")]
     #[inline]
-    pub unsafe fn labels(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn labels(&self) -> Option<CFRetained<CFArray<MDLabel>>> {
         extern "C-unwind" {
-            fn MDItemCopyLabels(item: &MDItem) -> Option<NonNull<CFArray>>;
+            fn MDItemCopyLabels(item: &MDItem) -> Option<NonNull<CFArray<MDLabel>>>;
         }
         let ret = unsafe { MDItemCopyLabels(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -226,14 +226,16 @@ impl MDLabel {
     ///
     /// # Safety
     ///
-    /// - `attrs` generic must be of the correct type.
-    /// - `attrs` generic must be of the correct type.
+    /// - `attrs` generic should be of the correct type.
     /// - `attrs` might not allow `None`.
     #[doc(alias = "MDLabelSetAttributes")]
     #[inline]
-    pub unsafe fn set_attributes(&self, attrs: Option<&CFDictionary>) -> bool {
+    pub unsafe fn set_attributes(&self, attrs: Option<&CFDictionary<CFString, CFType>>) -> bool {
         extern "C-unwind" {
-            fn MDLabelSetAttributes(label: &MDLabel, attrs: Option<&CFDictionary>) -> Boolean;
+            fn MDLabelSetAttributes(
+                label: &MDLabel,
+                attrs: Option<&CFDictionary<CFString, CFType>>,
+            ) -> Boolean;
         }
         let ret = unsafe { MDLabelSetAttributes(self, attrs) };
         ret != 0
@@ -244,9 +246,9 @@ impl MDLabel {
 ///
 /// Returns: A CFArrayRef containing all of the label kind strings, or NULL on failure.
 #[inline]
-pub unsafe fn MDCopyLabelKinds() -> Option<CFRetained<CFArray>> {
+pub unsafe fn MDCopyLabelKinds() -> Option<CFRetained<CFArray<CFString>>> {
     extern "C-unwind" {
-        fn MDCopyLabelKinds() -> Option<NonNull<CFArray>>;
+        fn MDCopyLabelKinds() -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { MDCopyLabelKinds() };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -264,11 +266,11 @@ pub unsafe fn MDCopyLabelKinds() -> Option<CFRetained<CFArray>> {
 #[inline]
 pub unsafe fn MDCopyLabelsMatchingExpression(
     simple_query_string: Option<&CFString>,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<MDLabel>>> {
     extern "C-unwind" {
         fn MDCopyLabelsMatchingExpression(
             simple_query_string: Option<&CFString>,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<MDLabel>>>;
     }
     let ret = unsafe { MDCopyLabelsMatchingExpression(simple_query_string) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -284,9 +286,11 @@ pub unsafe fn MDCopyLabelsMatchingExpression(
 ///
 /// `kind` might not allow `None`.
 #[inline]
-pub unsafe fn MDCopyLabelsWithKind(kind: Option<&CFString>) -> Option<CFRetained<CFArray>> {
+pub unsafe fn MDCopyLabelsWithKind(
+    kind: Option<&CFString>,
+) -> Option<CFRetained<CFArray<MDLabel>>> {
     extern "C-unwind" {
-        fn MDCopyLabelsWithKind(kind: Option<&CFString>) -> Option<NonNull<CFArray>>;
+        fn MDCopyLabelsWithKind(kind: Option<&CFString>) -> Option<NonNull<CFArray<MDLabel>>>;
     }
     let ret = unsafe { MDCopyLabelsWithKind(kind) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

@@ -537,12 +537,16 @@ pub unsafe fn SSLGetProtocolVersion(
 
 /// # Safety
 ///
-/// `cert_refs` generic must be of the correct type.
+/// `cert_refs` generic should be of the correct type.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
-pub unsafe fn SSLSetCertificate(context: &SSLContext, cert_refs: Option<&CFArray>) -> OSStatus {
+pub unsafe fn SSLSetCertificate(
+    context: &SSLContext,
+    cert_refs: Option<&CFArray<CFType>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn SSLSetCertificate(context: &SSLContext, cert_refs: Option<&CFArray>) -> OSStatus;
+        fn SSLSetCertificate(context: &SSLContext, cert_refs: Option<&CFArray<CFType>>)
+            -> OSStatus;
     }
     unsafe { SSLSetCertificate(context, cert_refs) }
 }
@@ -958,20 +962,18 @@ pub unsafe fn SSLGetAllowsAnyRoot(context: &SSLContext, any_root: NonNull<Boolea
     unsafe { SSLGetAllowsAnyRoot(context, any_root) }
 }
 
-/// # Safety
-///
-/// `trusted_roots` generic must be of the correct type.
+#[cfg(feature = "SecBase")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLSetTrustedRoots(
     context: &SSLContext,
-    trusted_roots: &CFArray,
+    trusted_roots: &CFArray<SecCertificate>,
     replace_existing: bool,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLSetTrustedRoots(
             context: &SSLContext,
-            trusted_roots: &CFArray,
+            trusted_roots: &CFArray<SecCertificate>,
             replace_existing: Boolean,
         ) -> OSStatus;
     }
@@ -979,16 +981,17 @@ pub unsafe fn SSLSetTrustedRoots(
     unsafe { SSLSetTrustedRoots(context, trusted_roots, replace_existing) }
 }
 
+#[cfg(feature = "SecBase")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLCopyTrustedRoots(
     context: &SSLContext,
-    trusted_roots: &mut Option<CFRetained<CFArray>>,
+    trusted_roots: &mut Option<CFRetained<CFArray<SecCertificate>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLCopyTrustedRoots(
             context: &SSLContext,
-            trusted_roots: &mut Option<CFRetained<CFArray>>,
+            trusted_roots: &mut Option<CFRetained<CFArray<SecCertificate>>>,
         ) -> OSStatus;
     }
     assert!(
@@ -998,16 +1001,17 @@ pub unsafe fn SSLCopyTrustedRoots(
     unsafe { SSLCopyTrustedRoots(context, trusted_roots) }
 }
 
+#[cfg(feature = "SecBase")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLCopyPeerCertificates(
     context: &SSLContext,
-    certs: &mut Option<CFRetained<CFArray>>,
+    certs: &mut Option<CFRetained<CFArray<SecCertificate>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLCopyPeerCertificates(
             context: &SSLContext,
-            certs: &mut Option<CFRetained<CFArray>>,
+            certs: &mut Option<CFRetained<CFArray<SecCertificate>>>,
         ) -> OSStatus;
     }
     assert!(
@@ -1097,14 +1101,11 @@ pub unsafe fn SSLGetNegotiatedCipher(
     unsafe { SSLGetNegotiatedCipher(context, cipher_suite) }
 }
 
-/// # Safety
-///
-/// `protocols` generic must be of the correct type.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
-pub unsafe fn SSLSetALPNProtocols(context: &SSLContext, protocols: &CFArray) -> OSStatus {
+pub unsafe fn SSLSetALPNProtocols(context: &SSLContext, protocols: &CFArray<CFString>) -> OSStatus {
     extern "C-unwind" {
-        fn SSLSetALPNProtocols(context: &SSLContext, protocols: &CFArray) -> OSStatus;
+        fn SSLSetALPNProtocols(context: &SSLContext, protocols: &CFArray<CFString>) -> OSStatus;
     }
     unsafe { SSLSetALPNProtocols(context, protocols) }
 }
@@ -1113,12 +1114,12 @@ pub unsafe fn SSLSetALPNProtocols(context: &SSLContext, protocols: &CFArray) -> 
 #[inline]
 pub unsafe fn SSLCopyALPNProtocols(
     context: &SSLContext,
-    protocols: &mut Option<CFRetained<CFArray>>,
+    protocols: &mut Option<CFRetained<CFArray<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLCopyALPNProtocols(
             context: &SSLContext,
-            protocols: &mut Option<CFRetained<CFArray>>,
+            protocols: &mut Option<CFRetained<CFArray<CFString>>>,
         ) -> OSStatus;
     }
     assert!(
@@ -1137,14 +1138,18 @@ pub unsafe fn SSLSetOCSPResponse(context: &SSLContext, response: &CFData) -> OSS
     unsafe { SSLSetOCSPResponse(context, response) }
 }
 
-/// # Safety
-///
-/// `cert_refs` generic must be of the correct type.
+#[cfg(feature = "SecBase")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
-pub unsafe fn SSLSetEncryptionCertificate(context: &SSLContext, cert_refs: &CFArray) -> OSStatus {
+pub unsafe fn SSLSetEncryptionCertificate(
+    context: &SSLContext,
+    cert_refs: &CFArray<SecCertificate>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn SSLSetEncryptionCertificate(context: &SSLContext, cert_refs: &CFArray) -> OSStatus;
+        fn SSLSetEncryptionCertificate(
+            context: &SSLContext,
+            cert_refs: &CFArray<SecCertificate>,
+        ) -> OSStatus;
     }
     unsafe { SSLSetEncryptionCertificate(context, cert_refs) }
 }
@@ -1226,16 +1231,17 @@ pub unsafe fn SSLSetCertificateAuthorities(
     unsafe { SSLSetCertificateAuthorities(context, certificate_or_array, replace_existing) }
 }
 
+#[cfg(feature = "SecBase")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe fn SSLCopyCertificateAuthorities(
     context: &SSLContext,
-    certificates: &mut Option<CFRetained<CFArray>>,
+    certificates: &mut Option<CFRetained<CFArray<SecCertificate>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLCopyCertificateAuthorities(
             context: &SSLContext,
-            certificates: &mut Option<CFRetained<CFArray>>,
+            certificates: &mut Option<CFRetained<CFArray<SecCertificate>>>,
         ) -> OSStatus;
     }
     assert!(
@@ -1249,12 +1255,12 @@ pub unsafe fn SSLCopyCertificateAuthorities(
 #[inline]
 pub unsafe fn SSLCopyDistinguishedNames(
     context: &SSLContext,
-    names: &mut Option<CFRetained<CFArray>>,
+    names: &mut Option<CFRetained<CFArray<CFData>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SSLCopyDistinguishedNames(
             context: &SSLContext,
-            names: &mut Option<CFRetained<CFArray>>,
+            names: &mut Option<CFRetained<CFArray<CFData>>>,
         ) -> OSStatus;
     }
     assert!(

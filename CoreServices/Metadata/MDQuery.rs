@@ -106,24 +106,22 @@ impl MDQuery {
     /// # Safety
     ///
     /// - `query_string` might not allow `None`.
-    /// - `value_list_attrs` generic must be of the correct type.
     /// - `value_list_attrs` might not allow `None`.
-    /// - `sorting_attrs` generic must be of the correct type.
     /// - `sorting_attrs` might not allow `None`.
     #[doc(alias = "MDQueryCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         query_string: Option<&CFString>,
-        value_list_attrs: Option<&CFArray>,
-        sorting_attrs: Option<&CFArray>,
+        value_list_attrs: Option<&CFArray<CFString>>,
+        sorting_attrs: Option<&CFArray<CFString>>,
     ) -> Option<CFRetained<MDQuery>> {
         extern "C-unwind" {
             fn MDQueryCreate(
                 allocator: Option<&CFAllocator>,
                 query_string: Option<&CFString>,
-                value_list_attrs: Option<&CFArray>,
-                sorting_attrs: Option<&CFArray>,
+                value_list_attrs: Option<&CFArray<CFString>>,
+                sorting_attrs: Option<&CFArray<CFString>>,
             ) -> Option<NonNull<MDQuery>>;
         }
         let ret =
@@ -176,9 +174,7 @@ impl MDQuery {
     /// # Safety
     ///
     /// - `query_string` might not allow `None`.
-    /// - `value_list_attrs` generic must be of the correct type.
     /// - `value_list_attrs` might not allow `None`.
-    /// - `sorting_attrs` generic must be of the correct type.
     /// - `sorting_attrs` might not allow `None`.
     #[doc(alias = "MDQueryCreateSubset")]
     #[inline]
@@ -186,16 +182,16 @@ impl MDQuery {
         &self,
         allocator: Option<&CFAllocator>,
         query_string: Option<&CFString>,
-        value_list_attrs: Option<&CFArray>,
-        sorting_attrs: Option<&CFArray>,
+        value_list_attrs: Option<&CFArray<CFString>>,
+        sorting_attrs: Option<&CFArray<CFString>>,
     ) -> Option<CFRetained<MDQuery>> {
         extern "C-unwind" {
             fn MDQueryCreateSubset(
                 allocator: Option<&CFAllocator>,
                 query: &MDQuery,
                 query_string: Option<&CFString>,
-                value_list_attrs: Option<&CFArray>,
-                sorting_attrs: Option<&CFArray>,
+                value_list_attrs: Option<&CFArray<CFString>>,
+                sorting_attrs: Option<&CFArray<CFString>>,
             ) -> Option<NonNull<MDQuery>>;
         }
         let ret = unsafe {
@@ -253,28 +249,26 @@ impl MDQuery {
     /// # Safety
     ///
     /// - `query_string` might not allow `None`.
-    /// - `value_list_attrs` generic must be of the correct type.
     /// - `value_list_attrs` might not allow `None`.
-    /// - `sorting_attrs` generic must be of the correct type.
     /// - `sorting_attrs` might not allow `None`.
-    /// - `items` generic must be of the correct type.
     /// - `items` might not allow `None`.
     #[doc(alias = "MDQueryCreateForItems")]
+    #[cfg(feature = "MDItem")]
     #[inline]
     pub unsafe fn new_for_items(
         allocator: Option<&CFAllocator>,
         query_string: Option<&CFString>,
-        value_list_attrs: Option<&CFArray>,
-        sorting_attrs: Option<&CFArray>,
-        items: Option<&CFArray>,
+        value_list_attrs: Option<&CFArray<CFString>>,
+        sorting_attrs: Option<&CFArray<CFString>>,
+        items: Option<&CFArray<MDItem>>,
     ) -> Option<CFRetained<MDQuery>> {
         extern "C-unwind" {
             fn MDQueryCreateForItems(
                 allocator: Option<&CFAllocator>,
                 query_string: Option<&CFString>,
-                value_list_attrs: Option<&CFArray>,
-                sorting_attrs: Option<&CFArray>,
-                items: Option<&CFArray>,
+                value_list_attrs: Option<&CFArray<CFString>>,
+                sorting_attrs: Option<&CFArray<CFString>>,
+                items: Option<&CFArray<MDItem>>,
             ) -> Option<NonNull<MDQuery>>;
         }
         let ret = unsafe {
@@ -312,9 +306,11 @@ impl MDQuery {
     /// Returns: The list of value list attribute names of the query.
     #[doc(alias = "MDQueryCopyValueListAttributes")]
     #[inline]
-    pub unsafe fn value_list_attributes(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn value_list_attributes(&self) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
-            fn MDQueryCopyValueListAttributes(query: &MDQuery) -> Option<NonNull<CFArray>>;
+            fn MDQueryCopyValueListAttributes(
+                query: &MDQuery,
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { MDQueryCopyValueListAttributes(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -328,9 +324,9 @@ impl MDQuery {
     /// Returns: The list of sorting attribute names of the query.
     #[doc(alias = "MDQueryCopySortingAttributes")]
     #[inline]
-    pub unsafe fn sorting_attributes(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn sorting_attributes(&self) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
-            fn MDQueryCopySortingAttributes(query: &MDQuery) -> Option<NonNull<CFArray>>;
+            fn MDQueryCopySortingAttributes(query: &MDQuery) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { MDQueryCopySortingAttributes(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -983,12 +979,12 @@ impl MDQuery {
     pub unsafe fn values_of_attribute(
         &self,
         name: Option<&CFString>,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFType>>> {
         extern "C-unwind" {
             fn MDQueryCopyValuesOfAttribute(
                 query: &MDQuery,
                 name: Option<&CFString>,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFType>>>;
         }
         let ret = unsafe { MDQueryCopyValuesOfAttribute(self, name) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1049,13 +1045,15 @@ impl MDQuery {
     ///
     /// # Safety
     ///
-    /// - `sorting_attrs` generic must be of the correct type.
-    /// - `sorting_attrs` might not allow `None`.
+    /// `sorting_attrs` might not allow `None`.
     #[doc(alias = "MDQuerySetSortOrder")]
     #[inline]
-    pub unsafe fn set_sort_order(&self, sorting_attrs: Option<&CFArray>) -> bool {
+    pub unsafe fn set_sort_order(&self, sorting_attrs: Option<&CFArray<CFString>>) -> bool {
         extern "C-unwind" {
-            fn MDQuerySetSortOrder(query: &MDQuery, sorting_attrs: Option<&CFArray>) -> Boolean;
+            fn MDQuerySetSortOrder(
+                query: &MDQuery,
+                sorting_attrs: Option<&CFArray<CFString>>,
+            ) -> Boolean;
         }
         let ret = unsafe { MDQuerySetSortOrder(self, sorting_attrs) };
         ret != 0
@@ -1402,19 +1400,19 @@ impl MDQuery {
     ///
     /// # Safety
     ///
-    /// - `scope_directories` generic must be of the correct type.
+    /// - `scope_directories` generic should be of the correct type.
     /// - `scope_directories` might not allow `None`.
     #[doc(alias = "MDQuerySetSearchScope")]
     #[inline]
     pub unsafe fn set_search_scope(
         &self,
-        scope_directories: Option<&CFArray>,
+        scope_directories: Option<&CFArray<CFType>>,
         scope_options: OptionBits,
     ) {
         extern "C-unwind" {
             fn MDQuerySetSearchScope(
                 query: &MDQuery,
-                scope_directories: Option<&CFArray>,
+                scope_directories: Option<&CFArray<CFType>>,
                 scope_options: OptionBits,
             );
         }

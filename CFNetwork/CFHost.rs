@@ -193,12 +193,12 @@ impl CFHost {
     pub unsafe fn addressing(
         &self,
         has_been_resolved: *mut Boolean,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFData>>> {
         extern "C-unwind" {
             fn CFHostGetAddressing(
                 the_host: &CFHost,
                 has_been_resolved: *mut Boolean,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFData>>>;
         }
         let ret = unsafe { CFHostGetAddressing(self, has_been_resolved) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -210,12 +210,15 @@ impl CFHost {
     #[doc(alias = "CFHostGetNames")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    pub unsafe fn names(&self, has_been_resolved: *mut Boolean) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn names(
+        &self,
+        has_been_resolved: *mut Boolean,
+    ) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn CFHostGetNames(
                 the_host: &CFHost,
                 has_been_resolved: *mut Boolean,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CFHostGetNames(self, has_been_resolved) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })

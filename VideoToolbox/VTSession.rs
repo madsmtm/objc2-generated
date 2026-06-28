@@ -39,12 +39,14 @@ pub type VTSession = CFType;
 #[inline]
 pub unsafe fn VTSessionCopySupportedPropertyDictionary(
     session: &VTSession,
-    supported_property_dictionary_out: &mut Option<CFRetained<CFDictionary>>,
+    supported_property_dictionary_out: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTSessionCopySupportedPropertyDictionary(
             session: &VTSession,
-            supported_property_dictionary_out: &mut Option<CFRetained<CFDictionary>>,
+            supported_property_dictionary_out: &mut Option<
+                CFRetained<CFDictionary<CFString, CFType>>,
+            >,
         ) -> OSStatus;
     }
     assert!(
@@ -188,17 +190,16 @@ pub unsafe fn VTSessionCopyProperty(
 /// # Safety
 ///
 /// - `session` should be of the correct type.
-/// - `property_dictionary` generic must be of the correct type.
-/// - `property_dictionary` generic must be of the correct type.
+/// - `property_dictionary` generic should be of the correct type.
 #[inline]
 pub unsafe fn VTSessionSetProperties(
     session: &VTSession,
-    property_dictionary: &CFDictionary,
+    property_dictionary: &CFDictionary<CFString, CFType>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTSessionSetProperties(
             session: &VTSession,
-            property_dictionary: &CFDictionary,
+            property_dictionary: &CFDictionary<CFString, CFType>,
         ) -> OSStatus;
     }
     unsafe { VTSessionSetProperties(session, property_dictionary) }
@@ -216,13 +217,13 @@ pub unsafe fn VTSessionSetProperties(
 pub unsafe fn VTSessionCopySerializableProperties(
     session: &VTSession,
     allocator: Option<&CFAllocator>,
-    dictionary_out: &mut Option<CFRetained<CFDictionary>>,
+    dictionary_out: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTSessionCopySerializableProperties(
             session: &VTSession,
             allocator: Option<&CFAllocator>,
-            dictionary_out: &mut Option<CFRetained<CFDictionary>>,
+            dictionary_out: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
         ) -> OSStatus;
     }
     assert!(

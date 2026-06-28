@@ -178,12 +178,12 @@ pub unsafe fn SecureDownloadCreateWithTicket(
 #[inline]
 pub unsafe fn SecureDownloadCopyURLs(
     download_ref: SecureDownloadRef,
-    urls: Option<&mut Option<CFRetained<CFArray>>>,
+    urls: Option<&mut Option<CFRetained<CFArray<CFURL>>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecureDownloadCopyURLs(
             download_ref: SecureDownloadRef,
-            urls: Option<&mut Option<CFRetained<CFArray>>>,
+            urls: Option<&mut Option<CFRetained<CFArray<CFURL>>>>,
         ) -> OSStatus;
     }
     if let Some(urls) = urls.as_ref() {

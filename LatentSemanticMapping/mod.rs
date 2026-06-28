@@ -170,13 +170,12 @@ impl LSMMap {
     ///
     /// # Safety
     ///
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// `properties` generic should be of the correct type.
     #[doc(alias = "LSMMapSetProperties")]
     #[inline]
-    pub unsafe fn set_properties(&self, properties: &CFDictionary) {
+    pub unsafe fn set_properties(&self, properties: &CFDictionary<CFString, CFType>) {
         extern "C-unwind" {
-            fn LSMMapSetProperties(mapref: &LSMMap, properties: &CFDictionary);
+            fn LSMMapSetProperties(mapref: &LSMMap, properties: &CFDictionary<CFString, CFType>);
         }
         unsafe { LSMMapSetProperties(self, properties) }
     }
@@ -185,9 +184,11 @@ impl LSMMap {
     /// this dictionary, do not release it.
     #[doc(alias = "LSMMapGetProperties")]
     #[inline]
-    pub unsafe fn properties(&self) -> CFRetained<CFDictionary> {
+    pub unsafe fn properties(&self) -> CFRetained<CFDictionary<CFString, CFType>> {
         extern "C-unwind" {
-            fn LSMMapGetProperties(mapref: &LSMMap) -> Option<NonNull<CFDictionary>>;
+            fn LSMMapGetProperties(
+                mapref: &LSMMap,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { LSMMapGetProperties(self) };
         let ret =

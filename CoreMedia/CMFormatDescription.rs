@@ -80,18 +80,13 @@ impl CMFormatDescription {
     /// creations routines such as CMVideoFormatDescriptionCreate, CMAudioFormatDescriptionCreate, etc.
     ///
     /// Returns: A new CMFormatDescription object.
-    ///
-    /// # Safety
-    ///
-    /// - `extensions` generic must be of the correct type.
-    /// - `extensions` generic must be of the correct type.
     #[doc(alias = "CMFormatDescriptionCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         media_type: CMMediaType,
         media_sub_type: FourCharCode,
-        extensions: Option<&CFDictionary>,
+        extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
         format_description_out: &mut Option<CFRetained<CMFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -99,7 +94,7 @@ impl CMFormatDescription {
                 allocator: Option<&CFAllocator>,
                 media_type: CMMediaType,
                 media_sub_type: FourCharCode,
-                extensions: Option<&CFDictionary>,
+                extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
                 format_description_out: &mut Option<CFRetained<CMFormatDescription>>,
             ) -> OSStatus;
         }
@@ -247,11 +242,11 @@ impl CMFormatDescription {
     /// Returns: An immutable dictionary containing all the extensions of the CMFormatDescription.  May be NULL.
     #[doc(alias = "CMFormatDescriptionGetExtensions")]
     #[inline]
-    pub unsafe fn extensions(&self) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn extensions(&self) -> Option<CFRetained<CFDictionary<CFString, CFPropertyList>>> {
         extern "C-unwind" {
             fn CMFormatDescriptionGetExtensions(
                 desc: &CMFormatDescription,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFPropertyList>>>;
         }
         let ret = unsafe { CMFormatDescriptionGetExtensions(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -388,8 +383,6 @@ impl CMAudioFormatDescription {
     /// - `asbd` must be a valid pointer.
     /// - `layout` must be a valid pointer or null.
     /// - `magic_cookie` must be a valid pointer or null.
-    /// - `extensions` generic must be of the correct type.
-    /// - `extensions` generic must be of the correct type.
     #[doc(alias = "CMAudioFormatDescriptionCreate")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
@@ -400,7 +393,7 @@ impl CMAudioFormatDescription {
         layout: *const AudioChannelLayout,
         magic_cookie_size: usize,
         magic_cookie: *const c_void,
-        extensions: Option<&CFDictionary>,
+        extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
         format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -411,7 +404,7 @@ impl CMAudioFormatDescription {
                 layout: *const AudioChannelLayout,
                 magic_cookie_size: usize,
                 magic_cookie: *const c_void,
-                extensions: Option<&CFDictionary>,
+                extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
                 format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
             ) -> OSStatus;
         }
@@ -572,22 +565,18 @@ impl CMAudioFormatDescription {
     /// The summary format description will be canonical LPCM and deep enough in
     /// sample rate, channel layout and channel count to sensibly contain the result of decoding
     /// and mixing the constituent format descriptions.
-    ///
-    /// # Safety
-    ///
-    /// `format_description_array` generic must be of the correct type.
     #[doc(alias = "CMAudioFormatDescriptionCreateSummary")]
     #[inline]
     pub unsafe fn new_summary(
         allocator: Option<&CFAllocator>,
-        format_description_array: &CFArray,
+        format_description_array: &CFArray<CMAudioFormatDescription>,
         flags: u32,
         format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMAudioFormatDescriptionCreateSummary(
                 allocator: Option<&CFAllocator>,
-                format_description_array: &CFArray,
+                format_description_array: &CFArray<CMAudioFormatDescription>,
                 flags: u32,
                 format_description_out: &mut Option<CFRetained<CMAudioFormatDescription>>,
             ) -> OSStatus;
@@ -1688,11 +1677,6 @@ impl CMVideoFormatDescription {
     ///
     /// The caller owns the returned CMFormatDescription, and must release it when done with it. All input parameters
     /// are copied (the extensions are deep-copied).  The caller can deallocate them or re-use them after making this call.
-    ///
-    /// # Safety
-    ///
-    /// - `extensions` generic must be of the correct type.
-    /// - `extensions` generic must be of the correct type.
     #[doc(alias = "CMVideoFormatDescriptionCreate")]
     #[inline]
     pub unsafe fn new(
@@ -1700,7 +1684,7 @@ impl CMVideoFormatDescription {
         codec_type: CMVideoCodecType,
         width: i32,
         height: i32,
-        extensions: Option<&CFDictionary>,
+        extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
         format_description_out: &mut Option<CFRetained<CMVideoFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -1709,7 +1693,7 @@ impl CMVideoFormatDescription {
                 codec_type: CMVideoCodecType,
                 width: i32,
                 height: i32,
-                extensions: Option<&CFDictionary>,
+                extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
                 format_description_out: &mut Option<CFRetained<CMVideoFormatDescription>>,
             ) -> OSStatus;
         }
@@ -1826,8 +1810,6 @@ impl CMVideoFormatDescription {
     ///
     /// - `parameter_set_pointers` must be a valid pointer.
     /// - `parameter_set_sizes` must be a valid pointer.
-    /// - `extensions` generic must be of the correct type.
-    /// - `extensions` generic must be of the correct type.
     #[doc(alias = "CMVideoFormatDescriptionCreateFromHEVCParameterSets")]
     #[inline]
     pub unsafe fn from_hevc_parameter_sets(
@@ -1836,7 +1818,7 @@ impl CMVideoFormatDescription {
         parameter_set_pointers: NonNull<NonNull<u8>>,
         parameter_set_sizes: NonNull<usize>,
         nal_unit_header_length: c_int,
-        extensions: Option<&CFDictionary>,
+        extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
         format_description_out: &mut Option<CFRetained<CMFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -1846,7 +1828,7 @@ impl CMVideoFormatDescription {
                 parameter_set_pointers: NonNull<NonNull<u8>>,
                 parameter_set_sizes: NonNull<usize>,
                 nal_unit_header_length: c_int,
-                extensions: Option<&CFDictionary>,
+                extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
                 format_description_out: &mut Option<CFRetained<CMFormatDescription>>,
             ) -> OSStatus;
         }
@@ -2043,10 +2025,10 @@ impl CMVideoFormatDescription {
     /// kCMFormatDescriptionExtension_ContentLightLevelInfo
     #[doc(alias = "CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers")]
     #[inline]
-    pub unsafe fn extension_keys_common_with_image_buffers() -> CFRetained<CFArray> {
+    pub unsafe fn extension_keys_common_with_image_buffers() -> CFRetained<CFArray<CFString>> {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers(
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() };
         let ret =
@@ -2087,15 +2069,16 @@ impl CMVideoFormatDescription {
     ///
     /// Returns: Array of CMTagCollections. The result will be NULL if the CMVideoFormatDescription does not contain multi-image encoding parameters, or if there is some other error.
     #[doc(alias = "CMVideoFormatDescriptionCopyTagCollectionArray")]
+    #[cfg(feature = "CMTagCollection")]
     #[inline]
     pub unsafe fn tag_collection_array(
         &self,
-        tag_collections_out: Option<&mut Option<CFRetained<CFArray>>>,
+        tag_collections_out: Option<&mut Option<CFRetained<CFArray<CMTagCollection>>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionCopyTagCollectionArray(
                 format_description: &CMVideoFormatDescription,
-                tag_collections_out: Option<&mut Option<CFRetained<CFArray>>>,
+                tag_collections_out: Option<&mut Option<CFRetained<CFArray<CMTagCollection>>>>,
             ) -> OSStatus;
         }
         if let Some(tag_collections_out) = tag_collections_out.as_ref() {
@@ -2177,24 +2160,19 @@ impl CMMuxedFormatDescription {
     /// its output streams. The caller owns the returned CMFormatDescription, and must release it when done
     /// with it. All input parameters are copied (the extensions are deep-copied).  The caller can deallocate
     /// them or re-use them after making this call.
-    ///
-    /// # Safety
-    ///
-    /// - `extensions` generic must be of the correct type.
-    /// - `extensions` generic must be of the correct type.
     #[doc(alias = "CMMuxedFormatDescriptionCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         mux_type: CMMuxedStreamType,
-        extensions: Option<&CFDictionary>,
+        extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
         format_description_out: &mut Option<CFRetained<CMMuxedFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMuxedFormatDescriptionCreate(
                 allocator: Option<&CFAllocator>,
                 mux_type: CMMuxedStreamType,
-                extensions: Option<&CFDictionary>,
+                extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
                 format_description_out: &mut Option<CFRetained<CMMuxedFormatDescription>>,
             ) -> OSStatus;
         }
@@ -2626,11 +2604,6 @@ impl CMTimeCodeFormatDescription {
     ///
     /// The caller owns the returned CMFormatDescription, and must release it when done with it. All input parameters
     /// are copied (the extensions are deep-copied).  The caller can deallocate them or re-use them after making this call.
-    ///
-    /// # Safety
-    ///
-    /// - `extensions` generic must be of the correct type.
-    /// - `extensions` generic must be of the correct type.
     #[doc(alias = "CMTimeCodeFormatDescriptionCreate")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -2640,7 +2613,7 @@ impl CMTimeCodeFormatDescription {
         frame_duration: CMTime,
         frame_quanta: u32,
         flags: u32,
-        extensions: Option<&CFDictionary>,
+        extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
         format_description_out: &mut Option<CFRetained<CMTimeCodeFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -2650,7 +2623,7 @@ impl CMTimeCodeFormatDescription {
                 frame_duration: CMTime,
                 frame_quanta: u32,
                 flags: u32,
-                extensions: Option<&CFDictionary>,
+                extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
                 format_description_out: &mut Option<CFRetained<CMTimeCodeFormatDescription>>,
             ) -> OSStatus;
         }
@@ -2846,20 +2819,20 @@ extern "C" {
 impl CMMetadataFormatDescription {
     /// # Safety
     ///
-    /// `keys` generic must be of the correct type.
+    /// `keys` generic generic should be of the correct type.
     #[doc(alias = "CMMetadataFormatDescriptionCreateWithKeys")]
     #[inline]
     pub unsafe fn with_keys(
         allocator: Option<&CFAllocator>,
         metadata_type: CMMetadataFormatType,
-        keys: Option<&CFArray>,
+        keys: Option<&CFArray<CFDictionary<CFString, CFType>>>,
         format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionCreateWithKeys(
                 allocator: Option<&CFAllocator>,
                 metadata_type: CMMetadataFormatType,
-                keys: Option<&CFArray>,
+                keys: Option<&CFArray<CFDictionary<CFString, CFType>>>,
                 format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
             ) -> OSStatus;
         }
@@ -2879,20 +2852,20 @@ impl CMMetadataFormatDescription {
 
     /// # Safety
     ///
-    /// `metadata_specifications` generic must be of the correct type.
+    /// `metadata_specifications` generic generic should be of the correct type.
     #[doc(alias = "CMMetadataFormatDescriptionCreateWithMetadataSpecifications")]
     #[inline]
     pub unsafe fn with_metadata_specifications(
         allocator: Option<&CFAllocator>,
         metadata_type: CMMetadataFormatType,
-        metadata_specifications: &CFArray,
+        metadata_specifications: &CFArray<CFDictionary<CFString, CFType>>,
         format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionCreateWithMetadataSpecifications(
                 allocator: Option<&CFAllocator>,
                 metadata_type: CMMetadataFormatType,
-                metadata_specifications: &CFArray,
+                metadata_specifications: &CFArray<CFDictionary<CFString, CFType>>,
                 format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
             ) -> OSStatus;
         }
@@ -2912,7 +2885,7 @@ impl CMMetadataFormatDescription {
 
     /// # Safety
     ///
-    /// `metadata_specifications` generic must be of the correct type.
+    /// `metadata_specifications` generic generic should be of the correct type.
     #[doc(
         alias = "CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications"
     )]
@@ -2920,14 +2893,14 @@ impl CMMetadataFormatDescription {
     pub unsafe fn with_metadata_format_description_and_metadata_specifications(
         &self,
         allocator: Option<&CFAllocator>,
-        metadata_specifications: &CFArray,
+        metadata_specifications: &CFArray<CFDictionary<CFString, CFType>>,
         format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications(
                 allocator: Option<&CFAllocator>,
                 source_description: &CMMetadataFormatDescription,
-                metadata_specifications: &CFArray,
+                metadata_specifications: &CFArray<CFDictionary<CFString, CFType>>,
                 format_description_out: &mut Option<CFRetained<CMMetadataFormatDescription>>,
             ) -> OSStatus;
         }
@@ -2980,12 +2953,12 @@ impl CMMetadataFormatDescription {
     pub unsafe fn key_with_local_id(
         &self,
         local_key_id: OSType,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionGetKeyWithLocalID(
                 desc: &CMMetadataFormatDescription,
                 local_key_id: OSType,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CMMetadataFormatDescriptionGetKeyWithLocalID(self, local_key_id) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -2993,11 +2966,11 @@ impl CMMetadataFormatDescription {
 
     #[doc(alias = "CMMetadataFormatDescriptionGetIdentifiers")]
     #[inline]
-    pub unsafe fn identifiers(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn identifiers(&self) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn CMMetadataFormatDescriptionGetIdentifiers(
                 desc: &CMMetadataFormatDescription,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CMMetadataFormatDescriptionGetIdentifiers(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })

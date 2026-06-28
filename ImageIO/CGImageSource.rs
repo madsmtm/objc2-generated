@@ -122,9 +122,9 @@ unsafe impl ConcreteType for CGImageSource {
 impl CGImageSource {
     #[doc(alias = "CGImageSourceCopyTypeIdentifiers")]
     #[inline]
-    pub unsafe fn type_identifiers() -> CFRetained<CFArray> {
+    pub unsafe fn type_identifiers() -> CFRetained<CFArray<CFString>> {
         extern "C-unwind" {
-            fn CGImageSourceCopyTypeIdentifiers() -> Option<NonNull<CFArray>>;
+            fn CGImageSourceCopyTypeIdentifiers() -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CGImageSourceCopyTypeIdentifiers() };
         let ret =
@@ -134,19 +134,18 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CGImageSourceCreateWithDataProvider")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     pub unsafe fn with_data_provider(
         provider: &CGDataProvider,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CGImageSource>> {
         extern "C-unwind" {
             fn CGImageSourceCreateWithDataProvider(
                 provider: &CGDataProvider,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGImageSource>>;
         }
         let ret = unsafe { CGImageSourceCreateWithDataProvider(provider, options) };
@@ -155,18 +154,17 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CGImageSourceCreateWithData")]
     #[inline]
     pub unsafe fn with_data(
         data: &CFData,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CGImageSource>> {
         extern "C-unwind" {
             fn CGImageSourceCreateWithData(
                 data: &CFData,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGImageSource>>;
         }
         let ret = unsafe { CGImageSourceCreateWithData(data, options) };
@@ -175,18 +173,17 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CGImageSourceCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
         url: &CFURL,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CGImageSource>> {
         extern "C-unwind" {
             fn CGImageSourceCreateWithURL(
                 url: &CFURL,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGImageSource>>;
         }
         let ret = unsafe { CGImageSourceCreateWithURL(url, options) };
@@ -214,19 +211,18 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CGImageSourceCopyProperties")]
     #[inline]
     pub unsafe fn properties(
         &self,
-        options: Option<&CFDictionary>,
-    ) -> Option<CFRetained<CFDictionary>> {
+        options: Option<&CFDictionary<CFString, CFType>>,
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CGImageSourceCopyProperties(
                 isrc: &CGImageSource,
-                options: Option<&CFDictionary>,
-            ) -> Option<NonNull<CFDictionary>>;
+                options: Option<&CFDictionary<CFString, CFType>>,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CGImageSourceCopyProperties(self, options) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -234,21 +230,20 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CGImageSourceCopyPropertiesAtIndex")]
     #[inline]
     pub unsafe fn properties_at_index(
         &self,
         index: usize,
-        options: Option<&CFDictionary>,
-    ) -> Option<CFRetained<CFDictionary>> {
+        options: Option<&CFDictionary<CFString, CFType>>,
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CGImageSourceCopyPropertiesAtIndex(
                 isrc: &CGImageSource,
                 index: usize,
-                options: Option<&CFDictionary>,
-            ) -> Option<NonNull<CFDictionary>>;
+                options: Option<&CFDictionary<CFString, CFType>>,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CGImageSourceCopyPropertiesAtIndex(self, index, options) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -256,21 +251,20 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CGImageSourceCopyMetadataAtIndex")]
     #[cfg(feature = "CGImageMetadata")]
     #[inline]
     pub unsafe fn metadata_at_index(
         &self,
         index: usize,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CGImageMetadata>> {
         extern "C-unwind" {
             fn CGImageSourceCopyMetadataAtIndex(
                 isrc: &CGImageSource,
                 index: usize,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGImageMetadata>>;
         }
         let ret = unsafe { CGImageSourceCopyMetadataAtIndex(self, index, options) };
@@ -279,21 +273,20 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CGImageSourceCreateImageAtIndex")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     pub unsafe fn image_at_index(
         &self,
         index: usize,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CGImage>> {
         extern "C-unwind" {
             fn CGImageSourceCreateImageAtIndex(
                 isrc: &CGImageSource,
                 index: usize,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGImage>>;
         }
         let ret = unsafe { CGImageSourceCreateImageAtIndex(self, index, options) };
@@ -311,21 +304,20 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CGImageSourceCreateThumbnailAtIndex")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     pub unsafe fn thumbnail_at_index(
         &self,
         index: usize,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CGImage>> {
         extern "C-unwind" {
             fn CGImageSourceCreateThumbnailAtIndex(
                 isrc: &CGImageSource,
                 index: usize,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGImage>>;
         }
         let ret = unsafe { CGImageSourceCreateThumbnailAtIndex(self, index, options) };
@@ -334,14 +326,15 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CGImageSourceCreateIncremental")]
     #[inline]
-    pub unsafe fn new_incremental(options: Option<&CFDictionary>) -> CFRetained<CGImageSource> {
+    pub unsafe fn new_incremental(
+        options: Option<&CFDictionary<CFString, CFType>>,
+    ) -> CFRetained<CGImageSource> {
         extern "C-unwind" {
             fn CGImageSourceCreateIncremental(
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGImageSource>>;
         }
         let ret = unsafe { CGImageSourceCreateIncremental(options) };
@@ -409,13 +402,13 @@ impl CGImageSource {
         &self,
         index: usize,
         auxiliary_image_data_type: &CFString,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CGImageSourceCopyAuxiliaryDataInfoAtIndex(
                 isrc: &CGImageSource,
                 index: usize,
                 auxiliary_image_data_type: &CFString,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe {
             CGImageSourceCopyAuxiliaryDataInfoAtIndex(self, index, auxiliary_image_data_type)
@@ -455,14 +448,11 @@ extern "C" {
 }
 
 impl CGImageSource {
-    /// # Safety
-    ///
-    /// `allowable_types` generic must be of the correct type.
     #[doc(alias = "CGImageSourceSetAllowableTypes")]
     #[inline]
-    pub unsafe fn set_allowable_types(allowable_types: &CFArray) -> OSStatus {
+    pub unsafe fn set_allowable_types(allowable_types: &CFArray<CFString>) -> OSStatus {
         extern "C-unwind" {
-            fn CGImageSourceSetAllowableTypes(allowable_types: &CFArray) -> OSStatus;
+            fn CGImageSourceSetAllowableTypes(allowable_types: &CFArray<CFString>) -> OSStatus;
         }
         unsafe { CGImageSourceSetAllowableTypes(allowable_types) }
     }

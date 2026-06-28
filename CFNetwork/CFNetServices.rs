@@ -429,9 +429,11 @@ impl CFNetService {
     #[doc(alias = "CFNetServiceGetAddressing")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
-    pub unsafe fn addressing(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn addressing(&self) -> Option<CFRetained<CFArray<CFData>>> {
         extern "C-unwind" {
-            fn CFNetServiceGetAddressing(the_service: &CFNetService) -> Option<NonNull<CFArray>>;
+            fn CFNetServiceGetAddressing(
+                the_service: &CFNetService,
+            ) -> Option<NonNull<CFArray<CFData>>>;
         }
         let ret = unsafe { CFNetServiceGetAddressing(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -465,32 +467,28 @@ impl CFNetService {
     pub unsafe fn new_dictionary_with_txt_data(
         alloc: Option<&CFAllocator>,
         txt_record: &CFData,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFData>>> {
         extern "C-unwind" {
             fn CFNetServiceCreateDictionaryWithTXTData(
                 alloc: Option<&CFAllocator>,
                 txt_record: &CFData,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFData>>>;
         }
         let ret = unsafe { CFNetServiceCreateDictionaryWithTXTData(alloc, txt_record) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// - `key_value_pairs` generic must be of the correct type.
-    /// - `key_value_pairs` generic must be of the correct type.
     #[doc(alias = "CFNetServiceCreateTXTDataWithDictionary")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
     pub unsafe fn new_txt_data_with_dictionary(
         alloc: Option<&CFAllocator>,
-        key_value_pairs: &CFDictionary,
+        key_value_pairs: &CFDictionary<CFString, CFData>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFNetServiceCreateTXTDataWithDictionary(
                 alloc: Option<&CFAllocator>,
-                key_value_pairs: &CFDictionary,
+                key_value_pairs: &CFDictionary<CFString, CFData>,
             ) -> Option<NonNull<CFData>>;
         }
         let ret = unsafe { CFNetServiceCreateTXTDataWithDictionary(alloc, key_value_pairs) };

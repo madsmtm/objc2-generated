@@ -566,19 +566,18 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generic must be of the correct type.
-    /// - `parameters` generic must be of the correct type.
+    /// `parameters` generic should be of the correct type.
     #[doc(alias = "SecKeyGenerateSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn generate_symmetric(
-        parameters: &CFDictionary,
+        parameters: &CFDictionary<CFString, CFType>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyGenerateSymmetric(
-                parameters: &CFDictionary,
+                parameters: &CFDictionary<CFString, CFType>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
@@ -618,20 +617,19 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generic must be of the correct type.
-    /// - `parameters` generic must be of the correct type.
+    /// `parameters` generic should be of the correct type.
     #[doc(alias = "SecKeyCreateFromData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn from_data(
-        parameters: &CFDictionary,
+        parameters: &CFDictionary<CFString, CFType>,
         key_data: &CFData,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyCreateFromData(
-                parameters: &CFDictionary,
+                parameters: &CFDictionary<CFString, CFType>,
                 key_data: &CFData,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
@@ -695,21 +693,20 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generic must be of the correct type.
-    /// - `parameters` generic must be of the correct type.
+    /// `parameters` generic should be of the correct type.
     #[doc(alias = "SecKeyDeriveFromPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn derive_from_password(
         password: &CFString,
-        parameters: &CFDictionary,
+        parameters: &CFDictionary<CFString, CFType>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyDeriveFromPassword(
                 password: &CFString,
-                parameters: &CFDictionary,
+                parameters: &CFDictionary<CFString, CFType>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
@@ -744,8 +741,7 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generic must be of the correct type.
-    /// - `parameters` generic must be of the correct type.
+    /// `parameters` generic should be of the correct type.
     #[doc(alias = "SecKeyWrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -753,14 +749,14 @@ impl SecKey {
     pub unsafe fn wrap_symmetric(
         &self,
         wrapping_key: &SecKey,
-        parameters: &CFDictionary,
+        parameters: &CFDictionary<CFString, CFType>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecKeyWrapSymmetric(
                 key_to_wrap: &SecKey,
                 wrapping_key: &SecKey,
-                parameters: &CFDictionary,
+                parameters: &CFDictionary<CFString, CFType>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
@@ -795,8 +791,7 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generic must be of the correct type.
-    /// - `parameters` generic must be of the correct type.
+    /// `parameters` generic should be of the correct type.
     #[doc(alias = "SecKeyUnwrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -804,14 +799,14 @@ impl SecKey {
     pub unsafe fn unwrap_symmetric(
         key_to_unwrap: &mut Option<CFRetained<CFData>>,
         unwrapping_key: &SecKey,
-        parameters: &CFDictionary,
+        parameters: &CFDictionary<CFString, CFType>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyUnwrapSymmetric(
                 key_to_unwrap: &mut Option<CFRetained<CFData>>,
                 unwrapping_key: &SecKey,
-                parameters: &CFDictionary,
+                parameters: &CFDictionary<CFString, CFType>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
@@ -885,20 +880,19 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generic must be of the correct type.
-    /// - `parameters` generic must be of the correct type.
+    /// `parameters` generic should be of the correct type.
     #[doc(alias = "SecKeyGeneratePair")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "Use SecKeyCreateRandomKey"]
     #[inline]
     pub unsafe fn generate_pair(
-        parameters: &CFDictionary,
+        parameters: &CFDictionary<CFString, CFType>,
         public_key: Option<&mut Option<CFRetained<SecKey>>>,
         private_key: Option<&mut Option<CFRetained<SecKey>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeyGeneratePair(
-                parameters: &CFDictionary,
+                parameters: &CFDictionary<CFString, CFType>,
                 public_key: Option<&mut Option<CFRetained<SecKey>>>,
                 private_key: Option<&mut Option<CFRetained<SecKey>>>,
             ) -> OSStatus;
@@ -962,18 +956,17 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generic must be of the correct type.
-    /// - `parameters` generic must be of the correct type.
+    /// `parameters` generic should be of the correct type.
     #[doc(alias = "SecKeyCreateRandomKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn new_random_key(
-        parameters: &CFDictionary,
+        parameters: &CFDictionary<CFString, CFType>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyCreateRandomKey(
-                parameters: &CFDictionary,
+                parameters: &CFDictionary<CFString, CFType>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
@@ -1009,20 +1002,19 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
+    /// `attributes` generic should be of the correct type.
     #[doc(alias = "SecKeyCreateWithData")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn with_data(
         key_data: &CFData,
-        attributes: &CFDictionary,
+        attributes: &CFDictionary<CFString, CFType>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyCreateWithData(
                 key_data: &CFData,
-                attributes: &CFDictionary,
+                attributes: &CFDictionary<CFString, CFType>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecKey>>;
         }
@@ -1112,9 +1104,11 @@ impl SecKey {
     #[doc(alias = "SecKeyCopyAttributes")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn attributes(&self) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn attributes(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
-            fn SecKeyCopyAttributes(key: &SecKey) -> Option<NonNull<CFDictionary>>;
+            fn SecKeyCopyAttributes(
+                key: &SecKey,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { SecKeyCopyAttributes(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -2227,8 +2221,7 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generic must be of the correct type.
-    /// - `parameters` generic must be of the correct type.
+    /// `parameters` generic should be of the correct type.
     #[doc(alias = "SecKeyCopyKeyExchangeResult")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2236,7 +2229,7 @@ impl SecKey {
         &self,
         algorithm: &SecKeyAlgorithm,
         public_key: &SecKey,
-        parameters: &CFDictionary,
+        parameters: &CFDictionary<CFString, CFType>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
@@ -2244,7 +2237,7 @@ impl SecKey {
                 private_key: &SecKey,
                 algorithm: &SecKeyAlgorithm,
                 public_key: &SecKey,
-                parameters: &CFDictionary,
+                parameters: &CFDictionary<CFString, CFType>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }

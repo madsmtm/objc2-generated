@@ -158,10 +158,6 @@ impl SecIdentity {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Please use the SecIdentityCopyPreferred API instead.
-    ///
-    /// # Safety
-    ///
-    /// `valid_issuers` generic must be of the correct type.
     #[doc(alias = "SecIdentityCopyPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -169,14 +165,14 @@ impl SecIdentity {
     pub unsafe fn preference(
         name: &CFString,
         key_usage: CSSM_KEYUSE,
-        valid_issuers: Option<&CFArray>,
+        valid_issuers: Option<&CFArray<CFData>>,
         identity: &mut Option<CFRetained<SecIdentity>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentityCopyPreference(
                 name: &CFString,
                 key_usage: CSSM_KEYUSE,
-                valid_issuers: Option<&CFArray>,
+                valid_issuers: Option<&CFArray<CFData>>,
                 identity: &mut Option<CFRetained<SecIdentity>>,
             ) -> OSStatus;
         }
@@ -198,24 +194,19 @@ impl SecIdentity {
     /// Returns: An identity or NULL, if the preferred identity has not been set. Your code should then typically perform a search for possible identities using the SecItem APIs.
     ///
     /// If a preferred identity has not been set for the supplied name, the returned identity reference will be NULL. Your code should then perform a search for possible identities, using the SecItemCopyMatching API. Note: in versions of macOS prior to 11.3, identity preferences are shared between processes running as the same user. Starting in 11.3, URI names are considered per-application preferences. An identity preference for a URI name may not be found if the calling application is different from the one which set the preference with SecIdentitySetPreferred.
-    ///
-    /// # Safety
-    ///
-    /// - `key_usage` generic must be of the correct type.
-    /// - `valid_issuers` generic must be of the correct type.
     #[doc(alias = "SecIdentityCopyPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn preferred(
         name: &CFString,
-        key_usage: Option<&CFArray>,
-        valid_issuers: Option<&CFArray>,
+        key_usage: Option<&CFArray<CFString>>,
+        valid_issuers: Option<&CFArray<CFData>>,
     ) -> Option<CFRetained<SecIdentity>> {
         extern "C-unwind" {
             fn SecIdentityCopyPreferred(
                 name: &CFString,
-                key_usage: Option<&CFArray>,
-                valid_issuers: Option<&CFArray>,
+                key_usage: Option<&CFArray<CFString>>,
+                valid_issuers: Option<&CFArray<CFData>>,
             ) -> Option<NonNull<SecIdentity>>;
         }
         let ret = unsafe { SecIdentityCopyPreferred(name, key_usage, valid_issuers) };
@@ -259,23 +250,19 @@ impl SecIdentity {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// Note: in versions of macOS prior to 11.3, identity preferences are shared between processes running as the same user. Starting in 11.3, URI names are considered per-application preferences. An identity preference for a URI name will be scoped to the application which created it, such that a subsequent call to SecIdentityCopyPreferred will only return it for that same application.
-    ///
-    /// # Safety
-    ///
-    /// `key_usage` generic must be of the correct type.
     #[doc(alias = "SecIdentitySetPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn set_preferred(
         identity: Option<&SecIdentity>,
         name: &CFString,
-        key_usage: Option<&CFArray>,
+        key_usage: Option<&CFArray<CFString>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentitySetPreferred(
                 identity: Option<&SecIdentity>,
                 name: &CFString,
-                key_usage: Option<&CFArray>,
+                key_usage: Option<&CFArray<CFString>>,
             ) -> OSStatus;
         }
         unsafe { SecIdentitySetPreferred(identity, name, key_usage) }

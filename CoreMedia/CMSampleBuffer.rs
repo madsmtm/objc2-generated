@@ -2005,12 +2005,12 @@ impl CMSampleBuffer {
     pub unsafe fn sample_attachments_array(
         &self,
         create_if_necessary: bool,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
         extern "C-unwind" {
             fn CMSampleBufferGetSampleAttachmentsArray(
                 sbuf: &CMSampleBuffer,
                 create_if_necessary: Boolean,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
         }
         let create_if_necessary = create_if_necessary as _;
         let ret = unsafe { CMSampleBufferGetSampleAttachmentsArray(self, create_if_necessary) };

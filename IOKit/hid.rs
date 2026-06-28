@@ -1730,21 +1730,20 @@ impl IOHIDDevice {
     ///
     /// # Safety
     ///
-    /// - `matching` generic must be of the correct type.
-    /// - `matching` generic must be of the correct type.
+    /// `matching` generic should be of the correct type.
     #[doc(alias = "IOHIDDeviceCopyMatchingElements")]
     #[inline]
     pub unsafe fn matching_elements(
         &self,
-        matching: Option<&CFDictionary>,
+        matching: Option<&CFDictionary<CFString, CFType>>,
         options: IOOptionBits,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<IOHIDElement>>> {
         extern "C-unwind" {
             fn IOHIDDeviceCopyMatchingElements(
                 device: &IOHIDDevice,
-                matching: Option<&CFDictionary>,
+                matching: Option<&CFDictionary<CFString, CFType>>,
                 options: IOOptionBits,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<IOHIDElement>>>;
         }
         let ret = unsafe { IOHIDDeviceCopyMatchingElements(self, matching, options) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -2104,15 +2103,17 @@ impl IOHIDDevice {
     ///
     /// # Safety
     ///
-    /// - `matching` generic must be of the correct type.
-    /// - `matching` generic must be of the correct type.
+    /// `matching` generic should be of the correct type.
     #[doc(alias = "IOHIDDeviceSetInputValueMatching")]
     #[inline]
-    pub unsafe fn set_input_value_matching(&self, matching: Option<&CFDictionary>) {
+    pub unsafe fn set_input_value_matching(
+        &self,
+        matching: Option<&CFDictionary<CFString, CFType>>,
+    ) {
         extern "C-unwind" {
             fn IOHIDDeviceSetInputValueMatching(
                 device: &IOHIDDevice,
-                matching: Option<&CFDictionary>,
+                matching: Option<&CFDictionary<CFString, CFType>>,
             );
         }
         unsafe { IOHIDDeviceSetInputValueMatching(self, matching) }
@@ -2134,14 +2135,17 @@ impl IOHIDDevice {
     ///
     /// # Safety
     ///
-    /// `multiple` generic must be of the correct type.
+    /// `multiple` generic generic should be of the correct type.
     #[doc(alias = "IOHIDDeviceSetInputValueMatchingMultiple")]
     #[inline]
-    pub unsafe fn set_input_value_matching_multiple(&self, multiple: Option<&CFArray>) {
+    pub unsafe fn set_input_value_matching_multiple(
+        &self,
+        multiple: Option<&CFArray<CFDictionary<CFString, CFType>>>,
+    ) {
         extern "C-unwind" {
             fn IOHIDDeviceSetInputValueMatchingMultiple(
                 device: &IOHIDDevice,
-                multiple: Option<&CFArray>,
+                multiple: Option<&CFArray<CFDictionary<CFString, CFType>>>,
             );
         }
         unsafe { IOHIDDeviceSetInputValueMatchingMultiple(self, multiple) }
@@ -2187,18 +2191,16 @@ impl IOHIDDevice {
     /// value is IOHIDValueRef.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    ///
-    /// # Safety
-    ///
-    /// - `multiple` generic must be of the correct type.
-    /// - `multiple` generic must be of the correct type.
     #[doc(alias = "IOHIDDeviceSetValueMultiple")]
     #[inline]
-    pub unsafe fn set_value_multiple(&self, multiple: &CFDictionary) -> IOReturn {
+    pub fn set_value_multiple(
+        &self,
+        multiple: &CFDictionary<IOHIDElement, IOHIDValue>,
+    ) -> IOReturn {
         extern "C-unwind" {
             fn IOHIDDeviceSetValueMultiple(
                 device: &IOHIDDevice,
-                multiple: &CFDictionary,
+                multiple: &CFDictionary<IOHIDElement, IOHIDValue>,
             ) -> IOReturn;
         }
         unsafe { IOHIDDeviceSetValueMultiple(self, multiple) }
@@ -2276,15 +2278,13 @@ impl IOHIDDevice {
     ///
     /// # Safety
     ///
-    /// - `multiple` generic must be of the correct type.
-    /// - `multiple` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceSetValueMultipleWithCallback")]
     #[inline]
     pub unsafe fn set_value_multiple_with_callback(
         &self,
-        multiple: &CFDictionary,
+        multiple: &CFDictionary<IOHIDElement, IOHIDValue>,
         timeout: CFTimeInterval,
         callback: IOHIDValueMultipleCallback,
         context: *mut c_void,
@@ -2292,7 +2292,7 @@ impl IOHIDDevice {
         extern "C-unwind" {
             fn IOHIDDeviceSetValueMultipleWithCallback(
                 device: &IOHIDDevice,
-                multiple: &CFDictionary,
+                multiple: &CFDictionary<IOHIDElement, IOHIDValue>,
                 timeout: CFTimeInterval,
                 callback: IOHIDValueMultipleCallback,
                 context: *mut c_void,
@@ -2419,22 +2419,18 @@ impl IOHIDDevice {
     /// provided elements and the values are the requested values.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    ///
-    /// # Safety
-    ///
-    /// `elements` generic must be of the correct type.
     #[doc(alias = "IOHIDDeviceCopyValueMultiple")]
     #[inline]
-    pub unsafe fn value_multiple(
+    pub fn value_multiple(
         &self,
-        elements: &CFArray,
-        p_multiple: Option<&mut Option<CFRetained<CFDictionary>>>,
+        elements: &CFArray<IOHIDElement>,
+        p_multiple: Option<&mut Option<CFRetained<CFDictionary<IOHIDElement, IOHIDValue>>>>,
     ) -> IOReturn {
         extern "C-unwind" {
             fn IOHIDDeviceCopyValueMultiple(
                 device: &IOHIDDevice,
-                elements: &CFArray,
-                p_multiple: Option<&mut Option<CFRetained<CFDictionary>>>,
+                elements: &CFArray<IOHIDElement>,
+                p_multiple: Option<&mut Option<CFRetained<CFDictionary<IOHIDElement, IOHIDValue>>>>,
             ) -> IOReturn;
         }
         if let Some(p_multiple) = p_multiple.as_ref() {
@@ -2523,15 +2519,14 @@ impl IOHIDDevice {
     ///
     /// # Safety
     ///
-    /// - `elements` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceCopyValueMultipleWithCallback")]
     #[inline]
     pub unsafe fn value_multiple_with_callback(
         &self,
-        elements: &CFArray,
-        p_multiple: Option<&mut Option<CFRetained<CFDictionary>>>,
+        elements: &CFArray<IOHIDElement>,
+        p_multiple: Option<&mut Option<CFRetained<CFDictionary<IOHIDElement, IOHIDValue>>>>,
         timeout: CFTimeInterval,
         callback: IOHIDValueMultipleCallback,
         context: *mut c_void,
@@ -2539,8 +2534,8 @@ impl IOHIDDevice {
         extern "C-unwind" {
             fn IOHIDDeviceCopyValueMultipleWithCallback(
                 device: &IOHIDDevice,
-                elements: &CFArray,
-                p_multiple: Option<&mut Option<CFRetained<CFDictionary>>>,
+                elements: &CFArray<IOHIDElement>,
+                p_multiple: Option<&mut Option<CFRetained<CFDictionary<IOHIDElement, IOHIDValue>>>>,
                 timeout: CFTimeInterval,
                 callback: IOHIDValueMultipleCallback,
                 context: *mut c_void,
@@ -2819,18 +2814,17 @@ impl IOHIDElement {
     ///
     /// # Safety
     ///
-    /// - `dictionary` generic must be of the correct type.
-    /// - `dictionary` generic must be of the correct type.
+    /// `dictionary` generic should be of the correct type.
     #[doc(alias = "IOHIDElementCreateWithDictionary")]
     #[inline]
     pub unsafe fn with_dictionary(
         allocator: Option<&CFAllocator>,
-        dictionary: &CFDictionary,
+        dictionary: &CFDictionary<CFString, CFType>,
     ) -> CFRetained<IOHIDElement> {
         extern "C-unwind" {
             fn IOHIDElementCreateWithDictionary(
                 allocator: Option<&CFAllocator>,
-                dictionary: &CFDictionary,
+                dictionary: &CFDictionary<CFString, CFType>,
             ) -> Option<NonNull<IOHIDElement>>;
         }
         let ret = unsafe { IOHIDElementCreateWithDictionary(allocator, dictionary) };
@@ -2882,9 +2876,11 @@ impl IOHIDElement {
     /// Returns: Returns an CFArrayRef containing element objects of type IOHIDElementRef.
     #[doc(alias = "IOHIDElementGetChildren")]
     #[inline]
-    pub fn children(&self) -> Option<CFRetained<CFArray>> {
+    pub fn children(&self) -> Option<CFRetained<CFArray<IOHIDElement>>> {
         extern "C-unwind" {
-            fn IOHIDElementGetChildren(element: &IOHIDElement) -> Option<NonNull<CFArray>>;
+            fn IOHIDElementGetChildren(
+                element: &IOHIDElement,
+            ) -> Option<NonNull<CFArray<IOHIDElement>>>;
         }
         let ret = unsafe { IOHIDElementGetChildren(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -2931,9 +2927,11 @@ impl IOHIDElement {
     /// Returns: Returns a copy of the current attached elements.
     #[doc(alias = "IOHIDElementCopyAttached")]
     #[inline]
-    pub fn attached(&self) -> Option<CFRetained<CFArray>> {
+    pub fn attached(&self) -> Option<CFRetained<CFArray<IOHIDElement>>> {
         extern "C-unwind" {
-            fn IOHIDElementCopyAttached(element: &IOHIDElement) -> Option<NonNull<CFArray>>;
+            fn IOHIDElementCopyAttached(
+                element: &IOHIDElement,
+            ) -> Option<NonNull<CFArray<IOHIDElement>>>;
         }
         let ret = unsafe { IOHIDElementCopyAttached(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -4466,15 +4464,14 @@ impl IOHIDManager {
     ///
     /// # Safety
     ///
-    /// - `matching` generic must be of the correct type.
-    /// - `matching` generic must be of the correct type.
+    /// `matching` generic should be of the correct type.
     #[doc(alias = "IOHIDManagerSetDeviceMatching")]
     #[inline]
-    pub unsafe fn set_device_matching(&self, matching: Option<&CFDictionary>) {
+    pub unsafe fn set_device_matching(&self, matching: Option<&CFDictionary<CFString, CFType>>) {
         extern "C-unwind" {
             fn IOHIDManagerSetDeviceMatching(
                 manager: &IOHIDManager,
-                matching: Option<&CFDictionary>,
+                matching: Option<&CFDictionary<CFString, CFType>>,
             );
         }
         unsafe { IOHIDManagerSetDeviceMatching(self, matching) }
@@ -4495,14 +4492,17 @@ impl IOHIDManager {
     ///
     /// # Safety
     ///
-    /// `multiple` generic must be of the correct type.
+    /// `multiple` generic generic should be of the correct type.
     #[doc(alias = "IOHIDManagerSetDeviceMatchingMultiple")]
     #[inline]
-    pub unsafe fn set_device_matching_multiple(&self, multiple: Option<&CFArray>) {
+    pub unsafe fn set_device_matching_multiple(
+        &self,
+        multiple: Option<&CFArray<CFDictionary<CFString, CFType>>>,
+    ) {
         extern "C-unwind" {
             fn IOHIDManagerSetDeviceMatchingMultiple(
                 manager: &IOHIDManager,
-                multiple: Option<&CFArray>,
+                multiple: Option<&CFArray<CFDictionary<CFString, CFType>>>,
             );
         }
         unsafe { IOHIDManagerSetDeviceMatchingMultiple(self, multiple) }
@@ -4515,9 +4515,11 @@ impl IOHIDManager {
     /// Returns: CFSetRef containing IOHIDDeviceRefs.
     #[doc(alias = "IOHIDManagerCopyDevices")]
     #[inline]
-    pub fn devices(&self) -> Option<CFRetained<CFSet>> {
+    pub fn devices(&self) -> Option<CFRetained<CFSet<IOHIDDevice>>> {
         extern "C-unwind" {
-            fn IOHIDManagerCopyDevices(manager: &IOHIDManager) -> Option<NonNull<CFSet>>;
+            fn IOHIDManagerCopyDevices(
+                manager: &IOHIDManager,
+            ) -> Option<NonNull<CFSet<IOHIDDevice>>>;
         }
         let ret = unsafe { IOHIDManagerCopyDevices(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -4714,15 +4716,17 @@ impl IOHIDManager {
     ///
     /// # Safety
     ///
-    /// - `matching` generic must be of the correct type.
-    /// - `matching` generic must be of the correct type.
+    /// `matching` generic should be of the correct type.
     #[doc(alias = "IOHIDManagerSetInputValueMatching")]
     #[inline]
-    pub unsafe fn set_input_value_matching(&self, matching: Option<&CFDictionary>) {
+    pub unsafe fn set_input_value_matching(
+        &self,
+        matching: Option<&CFDictionary<CFString, CFType>>,
+    ) {
         extern "C-unwind" {
             fn IOHIDManagerSetInputValueMatching(
                 manager: &IOHIDManager,
-                matching: Option<&CFDictionary>,
+                matching: Option<&CFDictionary<CFString, CFType>>,
             );
         }
         unsafe { IOHIDManagerSetInputValueMatching(self, matching) }
@@ -4744,14 +4748,17 @@ impl IOHIDManager {
     ///
     /// # Safety
     ///
-    /// `multiple` generic must be of the correct type.
+    /// `multiple` generic generic should be of the correct type.
     #[doc(alias = "IOHIDManagerSetInputValueMatchingMultiple")]
     #[inline]
-    pub unsafe fn set_input_value_matching_multiple(&self, multiple: Option<&CFArray>) {
+    pub unsafe fn set_input_value_matching_multiple(
+        &self,
+        multiple: Option<&CFArray<CFDictionary<CFString, CFType>>>,
+    ) {
         extern "C-unwind" {
             fn IOHIDManagerSetInputValueMatchingMultiple(
                 manager: &IOHIDManager,
-                multiple: Option<&CFArray>,
+                multiple: Option<&CFArray<CFDictionary<CFString, CFType>>>,
             );
         }
         unsafe { IOHIDManagerSetInputValueMatchingMultiple(self, multiple) }

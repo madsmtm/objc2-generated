@@ -82,21 +82,21 @@ impl CMTaggedBufferGroup {
     ///
     /// # Safety
     ///
-    /// - `tag_collections` generic must be of the correct type.
-    /// - `buffers` generic must be of the correct type.
+    /// `buffers` generic should be of the correct type.
     #[doc(alias = "CMTaggedBufferGroupCreate")]
+    #[cfg(feature = "CMTagCollection")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        tag_collections: &CFArray,
-        buffers: &CFArray,
+        tag_collections: &CFArray<CMTagCollection>,
+        buffers: &CFArray<CFType>,
         group_out: &mut Option<CFRetained<CMTaggedBufferGroup>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTaggedBufferGroupCreate(
                 allocator: Option<&CFAllocator>,
-                tag_collections: &CFArray,
-                buffers: &CFArray,
+                tag_collections: &CFArray<CMTagCollection>,
+                buffers: &CFArray<CFType>,
                 group_out: &mut Option<CFRetained<CMTaggedBufferGroup>>,
             ) -> OSStatus;
         }
@@ -116,21 +116,17 @@ impl CMTaggedBufferGroup {
     /// Parameter `groupOut`: The newly created group will be placed here.  The caller has a responsibility to call CFRelease on it.
     ///
     /// Returns: Returns noErr on success.
-    ///
-    /// # Safety
-    ///
-    /// `tagged_buffer_groups` generic must be of the correct type.
     #[doc(alias = "CMTaggedBufferGroupCreateCombined")]
     #[inline]
     pub unsafe fn new_combined(
         allocator: Option<&CFAllocator>,
-        tagged_buffer_groups: &CFArray,
+        tagged_buffer_groups: &CFArray<CMTaggedBufferGroup>,
         group_out: &mut Option<CFRetained<CMTaggedBufferGroup>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTaggedBufferGroupCreateCombined(
                 allocator: Option<&CFAllocator>,
-                tagged_buffer_groups: &CFArray,
+                tagged_buffer_groups: &CFArray<CMTaggedBufferGroup>,
                 group_out: &mut Option<CFRetained<CMTaggedBufferGroup>>,
             ) -> OSStatus;
         }
@@ -446,25 +442,20 @@ impl CMTaggedBufferGroup {
     /// once and use it for all of the CMSampleBuffers.
     /// The caller owns the returned CMFormatDescription, and must release it when done with it.
     /// All input parameters are copied (the extensions are deep-copied).  The caller can deallocate them or re-use them after making this call.
-    ///
-    /// # Safety
-    ///
-    /// - `extensions` generic must be of the correct type.
-    /// - `extensions` generic must be of the correct type.
     #[doc(alias = "CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
     pub unsafe fn format_description_create_for_tagged_buffer_group_with_extensions(
         &self,
         allocator: Option<&CFAllocator>,
-        extensions: Option<&CFDictionary>,
+        extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
         format_description_out: &mut Option<CFRetained<CMTaggedBufferGroupFormatDescription>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions(
                 allocator: Option<&CFAllocator>,
                 tagged_buffer_group: &CMTaggedBufferGroup,
-                extensions: Option<&CFDictionary>,
+                extensions: Option<&CFDictionary<CFString, CFPropertyList>>,
                 format_description_out: &mut Option<
                     CFRetained<CMTaggedBufferGroupFormatDescription>,
                 >,

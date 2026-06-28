@@ -238,11 +238,11 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// `strings` generic must be of the correct type.
+/// `strings` generic should be of the correct type.
 #[inline]
-pub unsafe fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray) {
+pub unsafe fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray<CFType>) {
     extern "C-unwind" {
-        fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray);
+        fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray<CFType>);
     }
     unsafe { MACaptionAppearanceDidDisplayCaptions(strings) }
 }
@@ -312,11 +312,11 @@ pub unsafe fn MACaptionAppearanceAddSelectedLanguage(
 #[inline]
 pub unsafe fn MACaptionAppearanceCopySelectedLanguages(
     domain: MACaptionAppearanceDomain,
-) -> CFRetained<CFArray> {
+) -> CFRetained<CFArray<CFString>> {
     extern "C-unwind" {
         fn MACaptionAppearanceCopySelectedLanguages(
             domain: MACaptionAppearanceDomain,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { MACaptionAppearanceCopySelectedLanguages(domain) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -397,11 +397,11 @@ pub unsafe fn MACaptionAppearanceSetDisplayType(
 #[inline]
 pub unsafe fn MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(
     domain: MACaptionAppearanceDomain,
-) -> CFRetained<CFArray> {
+) -> CFRetained<CFArray<CFString>> {
     extern "C-unwind" {
         fn MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(
             domain: MACaptionAppearanceDomain,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(domain) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -828,9 +828,9 @@ pub unsafe fn MACaptionAppearanceGetTextEdgeStyle(
 ///
 /// Returns: An array of strings where each string represents a unique caption profile ID.
 #[inline]
-pub unsafe fn MACaptionAppearanceCopyProfileIDs() -> CFRetained<CFArray> {
+pub unsafe fn MACaptionAppearanceCopyProfileIDs() -> CFRetained<CFArray<CFString>> {
     extern "C-unwind" {
-        fn MACaptionAppearanceCopyProfileIDs() -> Option<NonNull<CFArray>>;
+        fn MACaptionAppearanceCopyProfileIDs() -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { MACaptionAppearanceCopyProfileIDs() };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");

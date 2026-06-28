@@ -134,12 +134,12 @@ impl SecCertificate {
     #[inline]
     pub unsafe fn email_addresses(
         &self,
-        email_addresses: &mut Option<CFRetained<CFArray>>,
+        email_addresses: &mut Option<CFRetained<CFArray<CFString>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateCopyEmailAddresses(
                 certificate: &SecCertificate,
-                email_addresses: &mut Option<CFRetained<CFArray>>,
+                email_addresses: &mut Option<CFRetained<CFArray<CFString>>>,
             ) -> OSStatus;
         }
         assert!(
@@ -663,21 +663,17 @@ impl SecCertificate {
     ///
     /// This function will typically be used to obtain the preferred encryption certificate for an email recipient. If a preferred certificate has not been set
     /// for the supplied name, the returned reference will be NULL. Your code should then perform a search for possible certificates, using the SecItemCopyMatching API.
-    ///
-    /// # Safety
-    ///
-    /// `key_usage` generic must be of the correct type.
     #[doc(alias = "SecCertificateCopyPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn preferred(
         name: &CFString,
-        key_usage: Option<&CFArray>,
+        key_usage: Option<&CFArray<CFString>>,
     ) -> Option<CFRetained<SecCertificate>> {
         extern "C-unwind" {
             fn SecCertificateCopyPreferred(
                 name: &CFString,
-                key_usage: Option<&CFArray>,
+                key_usage: Option<&CFArray<CFString>>,
             ) -> Option<NonNull<SecCertificate>>;
         }
         let ret = unsafe { SecCertificateCopyPreferred(name, key_usage) };
@@ -731,23 +727,19 @@ impl SecCertificate {
     ///
     /// This function will typically be used to set the preferred encryption certificate for an email recipient, either manually (when encrypting email to a recipient)
     /// or automatically upon receipt of encrypted email.
-    ///
-    /// # Safety
-    ///
-    /// `key_usage` generic must be of the correct type.
     #[doc(alias = "SecCertificateSetPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn set_preferred(
         certificate: Option<&SecCertificate>,
         name: &CFString,
-        key_usage: Option<&CFArray>,
+        key_usage: Option<&CFArray<CFString>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateSetPreferred(
                 certificate: Option<&SecCertificate>,
                 name: &CFString,
-                key_usage: Option<&CFArray>,
+                key_usage: Option<&CFArray<CFString>>,
             ) -> OSStatus;
         }
         unsafe { SecCertificateSetPreferred(certificate, name, key_usage) }
@@ -900,24 +892,20 @@ impl SecCertificate {
     /// OID string. The kSecPropertyKeyType describes the type in the
     /// value entry. The value entry may be any CFType, although it
     /// is usually a CFStringRef, CFArrayRef or a CFDictionaryRef.
-    ///
-    /// # Safety
-    ///
-    /// `keys` generic must be of the correct type.
     #[doc(alias = "SecCertificateCopyValues")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn values(
         &self,
-        keys: Option<&CFArray>,
+        keys: Option<&CFArray<CFString>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn SecCertificateCopyValues(
                 certificate: &SecCertificate,
-                keys: Option<&CFArray>,
+                keys: Option<&CFArray<CFString>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(

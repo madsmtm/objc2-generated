@@ -156,13 +156,12 @@ pub type FSEventStreamCallback = Option<
 ///
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer or null.
-/// - `paths_to_watch` generic must be of the correct type.
 #[inline]
 pub unsafe fn FSEventStreamCreate(
     allocator: Option<&CFAllocator>,
     callback: FSEventStreamCallback,
     context: *mut FSEventStreamContext,
-    paths_to_watch: &CFArray,
+    paths_to_watch: &CFArray<CFString>,
     since_when: FSEventStreamEventId,
     latency: CFTimeInterval,
     flags: FSEventStreamCreateFlags,
@@ -172,7 +171,7 @@ pub unsafe fn FSEventStreamCreate(
             allocator: Option<&CFAllocator>,
             callback: FSEventStreamCallback,
             context: *mut FSEventStreamContext,
-            paths_to_watch: &CFArray,
+            paths_to_watch: &CFArray<CFString>,
             since_when: FSEventStreamEventId,
             latency: CFTimeInterval,
             flags: FSEventStreamCreateFlags,
@@ -195,7 +194,6 @@ pub unsafe fn FSEventStreamCreate(
 ///
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer or null.
-/// - `paths_to_watch_relative_to_device` generic must be of the correct type.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn FSEventStreamCreateRelativeToDevice(
@@ -203,7 +201,7 @@ pub unsafe fn FSEventStreamCreateRelativeToDevice(
     callback: FSEventStreamCallback,
     context: *mut FSEventStreamContext,
     device_to_watch: libc::dev_t,
-    paths_to_watch_relative_to_device: &CFArray,
+    paths_to_watch_relative_to_device: &CFArray<CFString>,
     since_when: FSEventStreamEventId,
     latency: CFTimeInterval,
     flags: FSEventStreamCreateFlags,
@@ -214,7 +212,7 @@ pub unsafe fn FSEventStreamCreateRelativeToDevice(
             callback: FSEventStreamCallback,
             context: *mut FSEventStreamContext,
             device_to_watch: libc::dev_t,
-            paths_to_watch_relative_to_device: &CFArray,
+            paths_to_watch_relative_to_device: &CFArray<CFString>,
             since_when: FSEventStreamEventId,
             latency: CFTimeInterval,
             flags: FSEventStreamCreateFlags,
@@ -266,11 +264,11 @@ pub unsafe fn FSEventStreamGetDeviceBeingWatched(stream_ref: ConstFSEventStreamR
 #[inline]
 pub unsafe fn FSEventStreamCopyPathsBeingWatched(
     stream_ref: ConstFSEventStreamRef,
-) -> CFRetained<CFArray> {
+) -> CFRetained<CFArray<CFString>> {
     extern "C-unwind" {
         fn FSEventStreamCopyPathsBeingWatched(
             stream_ref: ConstFSEventStreamRef,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { FSEventStreamCopyPathsBeingWatched(stream_ref) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -492,17 +490,16 @@ pub unsafe fn FSEventStreamCopyDescription(
 
 /// # Safety
 ///
-/// - `stream_ref` must be a valid pointer.
-/// - `paths_to_exclude` generic must be of the correct type.
+/// `stream_ref` must be a valid pointer.
 #[inline]
 pub unsafe fn FSEventStreamSetExclusionPaths(
     stream_ref: FSEventStreamRef,
-    paths_to_exclude: &CFArray,
+    paths_to_exclude: &CFArray<CFString>,
 ) -> bool {
     extern "C-unwind" {
         fn FSEventStreamSetExclusionPaths(
             stream_ref: FSEventStreamRef,
-            paths_to_exclude: &CFArray,
+            paths_to_exclude: &CFArray<CFString>,
         ) -> Boolean;
     }
     let ret = unsafe { FSEventStreamSetExclusionPaths(stream_ref, paths_to_exclude) };

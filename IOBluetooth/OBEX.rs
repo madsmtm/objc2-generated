@@ -2648,12 +2648,12 @@ extern "C" {
 pub unsafe fn OBEXGetHeaders(
     in_data: *const c_void,
     in_data_size: usize,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn OBEXGetHeaders(
             in_data: *const c_void,
             in_data_size: usize,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { OBEXGetHeaders(in_data, in_data_size) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -2698,17 +2698,16 @@ pub unsafe fn OBEXGetHeaders(
 ///
 /// # Safety
 ///
-/// - `dictionary_of_headers` generic must be of the correct type.
-/// - `dictionary_of_headers` generic must be of the correct type.
+/// - `dictionary_of_headers` generic should be of the correct type.
 /// - `dictionary_of_headers` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXHeadersToBytes(
-    dictionary_of_headers: Option<&CFDictionary>,
+    dictionary_of_headers: Option<&CFDictionary<CFString, CFType>>,
 ) -> Option<CFRetained<CFMutableData>> {
     extern "C-unwind" {
         fn OBEXHeadersToBytes(
-            dictionary_of_headers: Option<&CFDictionary>,
+            dictionary_of_headers: Option<&CFDictionary<CFString, CFType>>,
         ) -> Option<NonNull<CFMutableData>>;
     }
     let ret = unsafe { OBEXHeadersToBytes(dictionary_of_headers) };
@@ -2728,19 +2727,18 @@ pub unsafe fn OBEXHeadersToBytes(
 /// # Safety
 ///
 /// - `name` might not allow `None`.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddNameHeader(
     name: Option<&CFString>,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddNameHeader(
             name: Option<&CFString>,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddNameHeader(name, dict_ref) }
@@ -2759,19 +2757,18 @@ pub unsafe fn OBEXAddNameHeader(
 /// # Safety
 ///
 /// - `description` might not allow `None`.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddDescriptionHeader(
     description: Option<&CFString>,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddDescriptionHeader(
             description: Option<&CFString>,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddDescriptionHeader(description, dict_ref) }
@@ -2789,14 +2786,19 @@ pub unsafe fn OBEXAddDescriptionHeader(
 ///
 /// # Safety
 ///
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
-pub unsafe fn OBEXAddCountHeader(count: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError {
+pub unsafe fn OBEXAddCountHeader(
+    count: u32,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
+) -> OBEXError {
     extern "C-unwind" {
-        fn OBEXAddCountHeader(count: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
+        fn OBEXAddCountHeader(
+            count: u32,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
+        ) -> OBEXError;
     }
     unsafe { OBEXAddCountHeader(count, dict_ref) }
 }
@@ -2813,19 +2815,18 @@ pub unsafe fn OBEXAddCountHeader(count: u32, dict_ref: Option<&CFMutableDictiona
 ///
 /// # Safety
 ///
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddTime4ByteHeader(
     time4_byte: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddTime4ByteHeader(
             time4_byte: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddTime4ByteHeader(time4_byte, dict_ref) }
@@ -2843,17 +2844,19 @@ pub unsafe fn OBEXAddTime4ByteHeader(
 ///
 /// # Safety
 ///
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddLengthHeader(
     length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
-        fn OBEXAddLengthHeader(length: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
+        fn OBEXAddLengthHeader(
+            length: u32,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
+        ) -> OBEXError;
     }
     unsafe { OBEXAddLengthHeader(length, dict_ref) }
 }
@@ -2871,19 +2874,18 @@ pub unsafe fn OBEXAddLengthHeader(
 /// # Safety
 ///
 /// - `type` might not allow `None`.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddTypeHeader(
     r#type: Option<&CFString>,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddTypeHeader(
             r#type: Option<&CFString>,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddTypeHeader(r#type, dict_ref) }
@@ -2902,21 +2904,20 @@ pub unsafe fn OBEXAddTypeHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddTimeISOHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddTimeISOHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddTimeISOHeader(in_header_data, in_header_data_length, dict_ref) }
@@ -2937,21 +2938,20 @@ pub unsafe fn OBEXAddTimeISOHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddTargetHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddTargetHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddTargetHeader(in_header_data, in_header_data_length, dict_ref) }
@@ -2972,21 +2972,20 @@ pub unsafe fn OBEXAddTargetHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddHTTPHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddHTTPHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddHTTPHeader(in_header_data, in_header_data_length, dict_ref) }
@@ -3009,8 +3008,7 @@ pub unsafe fn OBEXAddHTTPHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
@@ -3018,14 +3016,14 @@ pub unsafe fn OBEXAddBodyHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
     is_end_of_body: bool,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddBodyHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
             is_end_of_body: Boolean,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     let is_end_of_body = is_end_of_body as _;
@@ -3054,21 +3052,20 @@ pub unsafe fn OBEXAddBodyHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddWhoHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddWhoHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddWhoHeader(in_header_data, in_header_data_length, dict_ref) }
@@ -3093,21 +3090,20 @@ pub unsafe fn OBEXAddWhoHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddConnectionIDHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddConnectionIDHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddConnectionIDHeader(in_header_data, in_header_data_length, dict_ref) }
@@ -3128,21 +3124,20 @@ pub unsafe fn OBEXAddConnectionIDHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddApplicationParameterHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddApplicationParameterHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddApplicationParameterHeader(in_header_data, in_header_data_length, dict_ref) }
@@ -3179,21 +3174,20 @@ pub unsafe fn OBEXAddApplicationParameterHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddByteSequenceHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddByteSequenceHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddByteSequenceHeader(in_header_data, in_header_data_length, dict_ref) }
@@ -3214,21 +3208,20 @@ pub unsafe fn OBEXAddByteSequenceHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddObjectClassHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddObjectClassHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddObjectClassHeader(in_header_data, in_header_data_length, dict_ref) }
@@ -3249,21 +3242,20 @@ pub unsafe fn OBEXAddObjectClassHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddAuthorizationChallengeHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddAuthorizationChallengeHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddAuthorizationChallengeHeader(in_header_data, in_header_data_length, dict_ref) }
@@ -3284,21 +3276,20 @@ pub unsafe fn OBEXAddAuthorizationChallengeHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddAuthorizationResponseHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddAuthorizationResponseHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddAuthorizationResponseHeader(in_header_data, in_header_data_length, dict_ref) }
@@ -3319,21 +3310,20 @@ pub unsafe fn OBEXAddAuthorizationResponseHeader(
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generic must be of the correct type.
-/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic should be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn OBEXAddUserDefinedHeader(
     in_header_data: *const c_void,
     in_header_data_length: u32,
-    dict_ref: Option<&CFMutableDictionary>,
+    dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXAddUserDefinedHeader(
             in_header_data: *const c_void,
             in_header_data_length: u32,
-            dict_ref: Option<&CFMutableDictionary>,
+            dict_ref: Option<&CFMutableDictionary<CFString, CFType>>,
         ) -> OBEXError;
     }
     unsafe { OBEXAddUserDefinedHeader(in_header_data, in_header_data_length, dict_ref) }

@@ -27,8 +27,7 @@ impl QLThumbnail {
     /// # Safety
     ///
     /// - `url` might not allow `None`.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// - `options` generic should be of the correct type.
     /// - `options` might not allow `None`.
     #[doc(alias = "QLThumbnailImageCreate")]
     #[cfg(feature = "objc2-core-graphics")]
@@ -38,14 +37,14 @@ impl QLThumbnail {
         allocator: Option<&CFAllocator>,
         url: Option<&CFURL>,
         max_thumbnail_size: CGSize,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CGImage>> {
         extern "C-unwind" {
             fn QLThumbnailImageCreate(
                 allocator: Option<&CFAllocator>,
                 url: Option<&CFURL>,
                 max_thumbnail_size: CGSize,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGImage>>;
         }
         let ret = unsafe { QLThumbnailImageCreate(allocator, url, max_thumbnail_size, options) };

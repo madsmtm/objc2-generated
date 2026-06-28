@@ -142,12 +142,12 @@ extern "C" {
 pub unsafe fn SMJobCopyDictionary(
     domain: Option<&CFString>,
     job_label: Option<&CFString>,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn SMJobCopyDictionary(
             domain: Option<&CFString>,
             job_label: Option<&CFString>,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { SMJobCopyDictionary(domain, job_label) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -186,9 +186,13 @@ pub unsafe fn SMJobCopyDictionary(
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
-pub unsafe fn SMCopyAllJobDictionaries(domain: Option<&CFString>) -> Option<CFRetained<CFArray>> {
+pub unsafe fn SMCopyAllJobDictionaries(
+    domain: Option<&CFString>,
+) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
     extern "C-unwind" {
-        fn SMCopyAllJobDictionaries(domain: Option<&CFString>) -> Option<NonNull<CFArray>>;
+        fn SMCopyAllJobDictionaries(
+            domain: Option<&CFString>,
+        ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
     }
     let ret = unsafe { SMCopyAllJobDictionaries(domain) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -228,8 +232,7 @@ pub unsafe fn SMCopyAllJobDictionaries(domain: Option<&CFString>) -> Option<CFRe
 /// # Safety
 ///
 /// - `domain` might not allow `None`.
-/// - `job` generic must be of the correct type.
-/// - `job` generic must be of the correct type.
+/// - `job` generic should be of the correct type.
 /// - `job` might not allow `None`.
 /// - `auth` must be a valid pointer.
 /// - `out_error` might not allow `None`.
@@ -238,14 +241,14 @@ pub unsafe fn SMCopyAllJobDictionaries(domain: Option<&CFString>) -> Option<CFRe
 #[inline]
 pub unsafe fn SMJobSubmit(
     domain: Option<&CFString>,
-    job: Option<&CFDictionary>,
+    job: Option<&CFDictionary<CFString, CFType>>,
     auth: AuthorizationRef,
     out_error: Option<&mut Option<CFRetained<CFError>>>,
 ) -> bool {
     extern "C-unwind" {
         fn SMJobSubmit(
             domain: Option<&CFString>,
-            job: Option<&CFDictionary>,
+            job: Option<&CFDictionary<CFString, CFType>>,
             auth: AuthorizationRef,
             out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Boolean;

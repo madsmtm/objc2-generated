@@ -418,12 +418,12 @@ impl AERemoteProcessResolver {
     pub unsafe fn processes(
         r#ref: AERemoteProcessResolverRef,
         out_error: *mut CFStreamError,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
         extern "C-unwind" {
             fn AERemoteProcessResolverGetProcesses(
                 r#ref: AERemoteProcessResolverRef,
                 out_error: *mut CFStreamError,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
         }
         let ret = unsafe { AERemoteProcessResolverGetProcesses(r#ref, out_error) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })

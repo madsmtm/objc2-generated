@@ -30,19 +30,18 @@ use crate::*;
 ///
 /// # Safety
 ///
-/// - `options` generic must be of the correct type.
-/// - `options` generic must be of the correct type.
+/// `options` generic should be of the correct type.
 #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-core-video"))]
 #[inline]
 pub unsafe fn VTCreateCGImageFromCVPixelBuffer(
     pixel_buffer: &CVPixelBuffer,
-    options: Option<&CFDictionary>,
+    options: Option<&CFDictionary<CFString, CFType>>,
     image_out: &mut Option<CFRetained<CGImage>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTCreateCGImageFromCVPixelBuffer(
             pixel_buffer: &CVPixelBuffer,
-            options: Option<&CFDictionary>,
+            options: Option<&CFDictionary<CFString, CFType>>,
             image_out: &mut Option<CFRetained<CGImage>>,
         ) -> OSStatus;
     }
@@ -82,12 +81,16 @@ pub unsafe fn VTRegisterSupplementalVideoDecoderIfAvailable(codec_type: CMVideoC
 #[inline]
 pub unsafe fn VTCopyVideoDecoderExtensionProperties(
     format_desc: &CMFormatDescription,
-    media_extension_properties_out: &mut Option<CFRetained<CFDictionary>>,
+    media_extension_properties_out: &mut Option<
+        CFRetained<CFDictionary<VTExtensionPropertiesKey, CFType>>,
+    >,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTCopyVideoDecoderExtensionProperties(
             format_desc: &CMFormatDescription,
-            media_extension_properties_out: &mut Option<CFRetained<CFDictionary>>,
+            media_extension_properties_out: &mut Option<
+                CFRetained<CFDictionary<VTExtensionPropertiesKey, CFType>>,
+            >,
         ) -> OSStatus;
     }
     assert!(
@@ -110,12 +113,16 @@ pub unsafe fn VTCopyVideoDecoderExtensionProperties(
 #[inline]
 pub unsafe fn VTCopyRAWProcessorExtensionProperties(
     format_desc: &CMFormatDescription,
-    media_extension_properties_out: &mut Option<CFRetained<CFDictionary>>,
+    media_extension_properties_out: &mut Option<
+        CFRetained<CFDictionary<VTExtensionPropertiesKey, CFType>>,
+    >,
 ) -> OSStatus {
     extern "C-unwind" {
         fn VTCopyRAWProcessorExtensionProperties(
             format_desc: &CMFormatDescription,
-            media_extension_properties_out: &mut Option<CFRetained<CFDictionary>>,
+            media_extension_properties_out: &mut Option<
+                CFRetained<CFDictionary<VTExtensionPropertiesKey, CFType>>,
+            >,
         ) -> OSStatus;
     }
     assert!(

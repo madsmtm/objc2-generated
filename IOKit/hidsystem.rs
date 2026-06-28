@@ -2301,11 +2301,11 @@ impl IOHIDEventSystemClient {
     /// available to the client. Caller is responsible for releasing the array.
     #[doc(alias = "IOHIDEventSystemClientCopyServices")]
     #[inline]
-    pub fn services(&self) -> Option<CFRetained<CFArray>> {
+    pub fn services(&self) -> Option<CFRetained<CFArray<IOHIDServiceClient>>> {
         extern "C-unwind" {
             fn IOHIDEventSystemClientCopyServices(
                 client: &IOHIDEventSystemClient,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<IOHIDServiceClient>>>;
         }
         let ret = unsafe { IOHIDEventSystemClientCopyServices(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -2593,19 +2593,18 @@ impl IOHIDUserDevice {
     ///
     /// # Safety
     ///
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// `properties` generic should be of the correct type.
     #[doc(alias = "IOHIDUserDeviceCreateWithProperties")]
     #[inline]
     pub unsafe fn with_properties(
         allocator: Option<&CFAllocator>,
-        properties: &CFDictionary,
+        properties: &CFDictionary<CFString, CFType>,
         options: IOOptionBits,
     ) -> Option<CFRetained<IOHIDUserDevice>> {
         extern "C-unwind" {
             fn IOHIDUserDeviceCreateWithProperties(
                 allocator: Option<&CFAllocator>,
-                properties: &CFDictionary,
+                properties: &CFDictionary<CFString, CFType>,
                 options: IOOptionBits,
             ) -> Option<NonNull<IOHIDUserDevice>>;
         }

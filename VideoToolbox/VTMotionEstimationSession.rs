@@ -119,13 +119,12 @@ impl VTMotionEstimationSession {
     ///
     /// # Safety
     ///
-    /// - `motion_vector_processor_selection_options` generic must be of the correct type.
-    /// - `motion_vector_processor_selection_options` generic must be of the correct type.
+    /// `motion_vector_processor_selection_options` generic should be of the correct type.
     #[doc(alias = "VTMotionEstimationSessionCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        motion_vector_processor_selection_options: Option<&CFDictionary>,
+        motion_vector_processor_selection_options: Option<&CFDictionary<CFString, CFType>>,
         width: u32,
         height: u32,
         motion_estimation_session_out: &mut Option<CFRetained<VTMotionEstimationSession>>,
@@ -133,7 +132,7 @@ impl VTMotionEstimationSession {
         extern "C-unwind" {
             fn VTMotionEstimationSessionCreate(
                 allocator: Option<&CFAllocator>,
-                motion_vector_processor_selection_options: Option<&CFDictionary>,
+                motion_vector_processor_selection_options: Option<&CFDictionary<CFString, CFType>>,
                 width: u32,
                 height: u32,
                 motion_estimation_session_out: &mut Option<CFRetained<VTMotionEstimationSession>>,
@@ -168,12 +167,12 @@ impl VTMotionEstimationSession {
     #[inline]
     pub unsafe fn source_pixel_buffer_attributes(
         &self,
-        attributes_out: &mut Option<CFRetained<CFDictionary>>,
+        attributes_out: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTMotionEstimationSessionCopySourcePixelBufferAttributes(
                 motion_estimation_session: &VTMotionEstimationSession,
-                attributes_out: &mut Option<CFRetained<CFDictionary>>,
+                attributes_out: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
             ) -> OSStatus;
         }
         assert!(
@@ -239,8 +238,7 @@ impl VTMotionEstimationSession {
     ///
     /// # Safety
     ///
-    /// - `additional_frame_options` generic must be of the correct type.
-    /// - `additional_frame_options` generic must be of the correct type.
+    /// `additional_frame_options` generic should be of the correct type.
     #[doc(alias = "VTMotionEstimationSessionEstimateMotionVectors")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
     #[inline]
@@ -249,7 +247,7 @@ impl VTMotionEstimationSession {
         reference_image: &CVPixelBuffer,
         current_image: &CVPixelBuffer,
         motion_estimation_frame_flags: VTMotionEstimationFrameFlags,
-        additional_frame_options: Option<&CFDictionary>,
+        additional_frame_options: Option<&CFDictionary<CFString, CFType>>,
         output_handler: &VTMotionEstimationOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -258,7 +256,7 @@ impl VTMotionEstimationSession {
                 reference_image: &CVPixelBuffer,
                 current_image: &CVPixelBuffer,
                 motion_estimation_frame_flags: VTMotionEstimationFrameFlags,
-                additional_frame_options: Option<&CFDictionary>,
+                additional_frame_options: Option<&CFDictionary<CFString, CFType>>,
                 output_handler: &VTMotionEstimationOutputHandler,
             ) -> OSStatus;
         }

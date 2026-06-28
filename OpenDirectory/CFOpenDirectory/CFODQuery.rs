@@ -241,19 +241,19 @@ impl ODQueryRef {
     ///
     /// `error` might not allow `None`.
     #[doc(alias = "ODQueryCopyResults")]
-    #[cfg(feature = "objc2-core-foundation")]
+    #[cfg(all(feature = "ODRecord", feature = "objc2-core-foundation"))]
     #[inline]
     pub unsafe fn results(
         &self,
         allow_partial_results: bool,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<ODRecord>>> {
         extern "C-unwind" {
             fn ODQueryCopyResults(
                 query: &ODQueryRef,
                 allow_partial_results: bool,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<ODRecord>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(

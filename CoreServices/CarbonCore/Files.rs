@@ -5591,7 +5591,7 @@ impl FSFileOperation {
         current_item: *mut FSRef,
         stage: *mut FSFileOperationStage,
         error: *mut OSStatus,
-        status_dictionary: Option<&mut Option<CFRetained<CFDictionary>>>,
+        status_dictionary: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
         info: *mut *mut c_void,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -5600,7 +5600,7 @@ impl FSFileOperation {
                 current_item: *mut FSRef,
                 stage: *mut FSFileOperationStage,
                 error: *mut OSStatus,
-                status_dictionary: Option<&mut Option<CFRetained<CFDictionary>>>,
+                status_dictionary: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
                 info: *mut *mut c_void,
             ) -> OSStatus;
         }
@@ -5633,7 +5633,7 @@ impl FSRef {
         current_item: *mut *mut c_char,
         stage: *mut FSFileOperationStage,
         error: *mut OSStatus,
-        status_dictionary: Option<&mut Option<CFRetained<CFDictionary>>>,
+        status_dictionary: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
         info: *mut *mut c_void,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -5642,7 +5642,7 @@ impl FSRef {
                 current_item: *mut *mut c_char,
                 stage: *mut FSFileOperationStage,
                 error: *mut OSStatus,
-                status_dictionary: Option<&mut Option<CFRetained<CFDictionary>>>,
+                status_dictionary: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
                 info: *mut *mut c_void,
             ) -> OSStatus;
         }

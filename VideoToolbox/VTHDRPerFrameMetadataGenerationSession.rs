@@ -84,14 +84,13 @@ impl VTHDRPerFrameMetadataGenerationSession {
     ///
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         frames_per_second: c_float,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
         hdr_per_frame_metadata_generation_session_out: &mut Option<
             CFRetained<VTHDRPerFrameMetadataGenerationSession>,
         >,
@@ -100,7 +99,7 @@ impl VTHDRPerFrameMetadataGenerationSession {
             fn VTHDRPerFrameMetadataGenerationSessionCreate(
                 allocator: Option<&CFAllocator>,
                 frames_per_second: c_float,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
                 hdr_per_frame_metadata_generation_session_out: &mut Option<
                     CFRetained<VTHDRPerFrameMetadataGenerationSession>,
                 >,

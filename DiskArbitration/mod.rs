@@ -267,22 +267,21 @@ pub type DADiskAppearedCallback = Option<unsafe extern "C-unwind" fn(NonNull<DAD
 ///
 /// # Safety
 ///
-/// - `match` generic must be of the correct type.
-/// - `match` generic must be of the correct type.
+/// - `match` generic should be of the correct type.
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DASession"))]
 #[inline]
 pub unsafe fn DARegisterDiskAppearedCallback(
     session: &DASession,
-    r#match: Option<&CFDictionary>,
+    r#match: Option<&CFDictionary<CFString, CFType>>,
     callback: DADiskAppearedCallback,
     context: *mut c_void,
 ) {
     extern "C-unwind" {
         fn DARegisterDiskAppearedCallback(
             session: &DASession,
-            r#match: Option<&CFDictionary>,
+            r#match: Option<&CFDictionary<CFString, CFType>>,
             callback: DADiskAppearedCallback,
             context: *mut c_void,
         );
@@ -317,25 +316,23 @@ pub type DADiskDescriptionChangedCallback =
 ///
 /// # Safety
 ///
-/// - `match` generic must be of the correct type.
-/// - `match` generic must be of the correct type.
-/// - `watch` generic must be of the correct type.
+/// - `match` generic should be of the correct type.
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DASession"))]
 #[inline]
 pub unsafe fn DARegisterDiskDescriptionChangedCallback(
     session: &DASession,
-    r#match: Option<&CFDictionary>,
-    watch: Option<&CFArray>,
+    r#match: Option<&CFDictionary<CFString, CFType>>,
+    watch: Option<&CFArray<CFString>>,
     callback: DADiskDescriptionChangedCallback,
     context: *mut c_void,
 ) {
     extern "C-unwind" {
         fn DARegisterDiskDescriptionChangedCallback(
             session: &DASession,
-            r#match: Option<&CFDictionary>,
-            watch: Option<&CFArray>,
+            r#match: Option<&CFDictionary<CFString, CFType>>,
+            watch: Option<&CFArray<CFString>>,
             callback: DADiskDescriptionChangedCallback,
             context: *mut c_void,
         );
@@ -366,22 +363,21 @@ pub type DADiskDisappearedCallback =
 ///
 /// # Safety
 ///
-/// - `match` generic must be of the correct type.
-/// - `match` generic must be of the correct type.
+/// - `match` generic should be of the correct type.
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DASession"))]
 #[inline]
 pub unsafe fn DARegisterDiskDisappearedCallback(
     session: &DASession,
-    r#match: Option<&CFDictionary>,
+    r#match: Option<&CFDictionary<CFString, CFType>>,
     callback: DADiskDisappearedCallback,
     context: *mut c_void,
 ) {
     extern "C-unwind" {
         fn DARegisterDiskDisappearedCallback(
             session: &DASession,
-            r#match: Option<&CFDictionary>,
+            r#match: Option<&CFDictionary<CFString, CFType>>,
             callback: DADiskDisappearedCallback,
             context: *mut c_void,
         );
@@ -517,22 +513,21 @@ pub type DADiskMountApprovalCallback =
 ///
 /// # Safety
 ///
-/// - `match` generic must be of the correct type.
-/// - `match` generic must be of the correct type.
+/// - `match` generic should be of the correct type.
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
 #[inline]
 pub unsafe fn DARegisterDiskMountApprovalCallback(
     session: &DASession,
-    r#match: Option<&CFDictionary>,
+    r#match: Option<&CFDictionary<CFString, CFType>>,
     callback: DADiskMountApprovalCallback,
     context: *mut c_void,
 ) {
     extern "C-unwind" {
         fn DARegisterDiskMountApprovalCallback(
             session: &DASession,
-            r#match: Option<&CFDictionary>,
+            r#match: Option<&CFDictionary<CFString, CFType>>,
             callback: DADiskMountApprovalCallback,
             context: *mut c_void,
         );
@@ -671,22 +666,21 @@ pub type DADiskUnmountApprovalCallback =
 ///
 /// # Safety
 ///
-/// - `match` generic must be of the correct type.
-/// - `match` generic must be of the correct type.
+/// - `match` generic should be of the correct type.
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
 #[inline]
 pub unsafe fn DARegisterDiskUnmountApprovalCallback(
     session: &DASession,
-    r#match: Option<&CFDictionary>,
+    r#match: Option<&CFDictionary<CFString, CFType>>,
     callback: DADiskUnmountApprovalCallback,
     context: *mut c_void,
 ) {
     extern "C-unwind" {
         fn DARegisterDiskUnmountApprovalCallback(
             session: &DASession,
-            r#match: Option<&CFDictionary>,
+            r#match: Option<&CFDictionary<CFString, CFType>>,
             callback: DADiskUnmountApprovalCallback,
             context: *mut c_void,
         );
@@ -773,22 +767,21 @@ pub type DADiskEjectApprovalCallback =
 ///
 /// # Safety
 ///
-/// - `match` generic must be of the correct type.
-/// - `match` generic must be of the correct type.
+/// - `match` generic should be of the correct type.
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
 #[inline]
 pub unsafe fn DARegisterDiskEjectApprovalCallback(
     session: &DASession,
-    r#match: Option<&CFDictionary>,
+    r#match: Option<&CFDictionary<CFString, CFType>>,
     callback: DADiskEjectApprovalCallback,
     context: *mut c_void,
 ) {
     extern "C-unwind" {
         fn DARegisterDiskEjectApprovalCallback(
             session: &DASession,
-            r#match: Option<&CFDictionary>,
+            r#match: Option<&CFDictionary<CFString, CFType>>,
             callback: DADiskEjectApprovalCallback,
             context: *mut c_void,
         );
@@ -939,15 +932,14 @@ pub type DADiskPeekCallback = Option<unsafe extern "C-unwind" fn(NonNull<DADisk>
 ///
 /// # Safety
 ///
-/// - `match` generic must be of the correct type.
-/// - `match` generic must be of the correct type.
+/// - `match` generic should be of the correct type.
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer or null.
 #[cfg(all(feature = "DADisk", feature = "DASession"))]
 #[inline]
 pub unsafe fn DARegisterDiskPeekCallback(
     session: &DASession,
-    r#match: Option<&CFDictionary>,
+    r#match: Option<&CFDictionary<CFString, CFType>>,
     order: CFIndex,
     callback: DADiskPeekCallback,
     context: *mut c_void,
@@ -955,7 +947,7 @@ pub unsafe fn DARegisterDiskPeekCallback(
     extern "C-unwind" {
         fn DARegisterDiskPeekCallback(
             session: &DASession,
-            r#match: Option<&CFDictionary>,
+            r#match: Option<&CFDictionary<CFString, CFType>>,
             order: CFIndex,
             callback: DADiskPeekCallback,
             context: *mut c_void,

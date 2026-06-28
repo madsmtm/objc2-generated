@@ -59,8 +59,7 @@ impl IOUSBHostDevice {
         /// # Safety
         ///
         /// - `product_id_array` generic should be of the correct type.
-        /// - The returned generic must be of the correct type.
-        /// - The returned generic must be of the correct type.
+        /// - The returned generic should be of the correct type.
         #[unsafe(method(createMatchingDictionaryWithVendorID:productID:bcdDevice:deviceClass:deviceSubclass:deviceProtocol:speed:productIDArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createMatchingDictionaryWithVendorID_productID_bcdDevice_deviceClass_deviceSubclass_deviceProtocol_speed_productIDArray(
@@ -72,7 +71,7 @@ impl IOUSBHostDevice {
             device_protocol: Option<&NSNumber>,
             speed: Option<&NSNumber>,
             product_id_array: Option<&NSArray>,
-        ) -> Retained<CFMutableDictionary>;
+        ) -> Retained<CFMutableDictionary<CFString, CFType>>;
 
         /// Select a new configuration for the device
         ///

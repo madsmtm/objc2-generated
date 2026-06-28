@@ -348,21 +348,17 @@ impl sec_identity {
     ///
     ///
     /// Returns: a `sec_identity_t` instance.
-    ///
-    /// # Safety
-    ///
-    /// `certificates` generic must be of the correct type.
     #[doc(alias = "sec_identity_create_with_certificates")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn create_with_certificates(
         identity: &SecIdentity,
-        certificates: &CFArray,
+        certificates: &CFArray<SecCertificate>,
     ) -> sec_identity_t {
         extern "C-unwind" {
             fn sec_identity_create_with_certificates(
                 identity: &SecIdentity,
-                certificates: &CFArray,
+                certificates: &CFArray<SecCertificate>,
             ) -> sec_identity_t;
         }
         unsafe { sec_identity_create_with_certificates(identity, certificates) }
@@ -432,12 +428,15 @@ impl sec_identity {
     ///
     /// `identity` must be a valid pointer.
     #[doc(alias = "sec_identity_copy_certificates_ref")]
+    #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn certificates_ref(identity: sec_identity_t) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn certificates_ref(
+        identity: sec_identity_t,
+    ) -> Option<CFRetained<CFArray<SecCertificate>>> {
         extern "C-unwind" {
             fn sec_identity_copy_certificates_ref(
                 identity: sec_identity_t,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<SecCertificate>>>;
         }
         let ret = unsafe { sec_identity_copy_certificates_ref(identity) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

@@ -19,11 +19,11 @@ use crate::*;
 #[inline]
 pub unsafe fn MDSchemaCopyAttributesForContentType(
     content_type_uti: Option<&CFString>,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn MDSchemaCopyAttributesForContentType(
             content_type_uti: Option<&CFString>,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { MDSchemaCopyAttributesForContentType(content_type_uti) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -41,11 +41,11 @@ pub unsafe fn MDSchemaCopyAttributesForContentType(
 #[inline]
 pub unsafe fn MDSchemaCopyMetaAttributesForAttribute(
     name: Option<&CFString>,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn MDSchemaCopyMetaAttributesForAttribute(
             name: Option<&CFString>,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { MDSchemaCopyMetaAttributesForAttribute(name) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -55,9 +55,9 @@ pub unsafe fn MDSchemaCopyMetaAttributesForAttribute(
 ///
 /// Returns: A CFArray of the attribute names.
 #[inline]
-pub unsafe fn MDSchemaCopyAllAttributes() -> Option<CFRetained<CFArray>> {
+pub unsafe fn MDSchemaCopyAllAttributes() -> Option<CFRetained<CFArray<CFString>>> {
     extern "C-unwind" {
-        fn MDSchemaCopyAllAttributes() -> Option<NonNull<CFArray>>;
+        fn MDSchemaCopyAllAttributes() -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { MDSchemaCopyAllAttributes() };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

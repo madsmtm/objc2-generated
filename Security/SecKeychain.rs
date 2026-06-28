@@ -610,12 +610,16 @@ impl SecKeychain {
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain list is not specified (NULL).
     #[doc(alias = "SecKeychainCopySearchList")]
+    #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn search_list(search_list: &mut Option<CFRetained<CFArray>>) -> OSStatus {
+    pub unsafe fn search_list(
+        search_list: &mut Option<CFRetained<CFArray<SecKeychain>>>,
+    ) -> OSStatus {
         extern "C-unwind" {
-            fn SecKeychainCopySearchList(search_list: &mut Option<CFRetained<CFArray>>)
-                -> OSStatus;
+            fn SecKeychainCopySearchList(
+                search_list: &mut Option<CFRetained<CFArray<SecKeychain>>>,
+            ) -> OSStatus;
         }
         assert!(
             search_list.is_none(),
@@ -629,16 +633,13 @@ impl SecKeychain {
     /// Parameter `searchList`: The list of keychains to use in a search list when the SecKeychainCopySearchList function is called. An empty array clears the search list.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain list is not specified (NULL).
-    ///
-    /// # Safety
-    ///
-    /// `search_list` generic must be of the correct type.
     #[doc(alias = "SecKeychainSetSearchList")]
+    #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn set_search_list(search_list: &CFArray) -> OSStatus {
+    pub unsafe fn set_search_list(search_list: &CFArray<SecKeychain>) -> OSStatus {
         extern "C-unwind" {
-            fn SecKeychainSetSearchList(search_list: &CFArray) -> OSStatus;
+            fn SecKeychainSetSearchList(search_list: &CFArray<SecKeychain>) -> OSStatus;
         }
         unsafe { SecKeychainSetSearchList(search_list) }
     }
@@ -711,16 +712,17 @@ impl SecKeychain {
     }
 
     #[doc(alias = "SecKeychainCopyDomainSearchList")]
+    #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn domain_search_list(
         domain: SecPreferencesDomain,
-        search_list: &mut Option<CFRetained<CFArray>>,
+        search_list: &mut Option<CFRetained<CFArray<SecKeychain>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainCopyDomainSearchList(
                 domain: SecPreferencesDomain,
-                search_list: &mut Option<CFRetained<CFArray>>,
+                search_list: &mut Option<CFRetained<CFArray<SecKeychain>>>,
             ) -> OSStatus;
         }
         assert!(
@@ -730,20 +732,18 @@ impl SecKeychain {
         unsafe { SecKeychainCopyDomainSearchList(domain, search_list) }
     }
 
-    /// # Safety
-    ///
-    /// `search_list` generic must be of the correct type.
     #[doc(alias = "SecKeychainSetDomainSearchList")]
+    #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn set_domain_search_list(
         domain: SecPreferencesDomain,
-        search_list: &CFArray,
+        search_list: &CFArray<SecKeychain>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainSetDomainSearchList(
                 domain: SecPreferencesDomain,
-                search_list: &CFArray,
+                search_list: &CFArray<SecKeychain>,
             ) -> OSStatus;
         }
         unsafe { SecKeychainSetDomainSearchList(domain, search_list) }

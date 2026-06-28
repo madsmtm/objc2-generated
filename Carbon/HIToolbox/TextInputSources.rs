@@ -182,19 +182,18 @@ pub unsafe fn TISGetInputSourceProperty(
 
 /// # Safety
 ///
-/// - `properties` generic must be of the correct type.
-/// - `properties` generic must be of the correct type.
+/// - `properties` generic should be of the correct type.
 /// - `properties` might not allow `None`.
 #[inline]
 pub unsafe fn TISCreateInputSourceList(
-    properties: Option<&CFDictionary>,
+    properties: Option<&CFDictionary<CFString, CFType>>,
     include_all_installed: bool,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<TISInputSource>>> {
     extern "C-unwind" {
         fn TISCreateInputSourceList(
-            properties: Option<&CFDictionary>,
+            properties: Option<&CFDictionary<CFString, CFType>>,
             include_all_installed: Boolean,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<TISInputSource>>>;
     }
     let include_all_installed = include_all_installed as _;
     let ret = unsafe { TISCreateInputSourceList(properties, include_all_installed) };
@@ -256,9 +255,10 @@ pub unsafe fn TISCopyInputSourceForLanguage(
 }
 
 #[inline]
-pub unsafe fn TISCreateASCIICapableInputSourceList() -> Option<CFRetained<CFArray>> {
+pub unsafe fn TISCreateASCIICapableInputSourceList() -> Option<CFRetained<CFArray<TISInputSource>>>
+{
     extern "C-unwind" {
-        fn TISCreateASCIICapableInputSourceList() -> Option<NonNull<CFArray>>;
+        fn TISCreateASCIICapableInputSourceList() -> Option<NonNull<CFArray<TISInputSource>>>;
     }
     let ret = unsafe { TISCreateASCIICapableInputSourceList() };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

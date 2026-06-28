@@ -88,24 +88,25 @@ impl Translation {
 
     /// # Safety
     ///
-    /// - `in_source_types` generic must be of the correct type.
     /// - `in_source_types` might not allow `None`.
     /// - `out_destination_types` might not allow `None`.
     /// - `out_translations` might not allow `None`.
     #[doc(alias = "TranslationCreateWithSourceArray")]
     #[inline]
     pub unsafe fn with_source_array(
-        in_source_types: Option<&CFArray>,
+        in_source_types: Option<&CFArray<CFString>>,
         in_translation_flags: TranslationFlags,
-        out_destination_types: Option<&mut Option<CFRetained<CFArray>>>,
-        out_translations: Option<&mut Option<CFRetained<CFDictionary>>>,
+        out_destination_types: Option<&mut Option<CFRetained<CFArray<CFString>>>>,
+        out_translations: Option<&mut Option<CFRetained<CFDictionary<CFString, Translation>>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn TranslationCreateWithSourceArray(
-                in_source_types: Option<&CFArray>,
+                in_source_types: Option<&CFArray<CFString>>,
                 in_translation_flags: TranslationFlags,
-                out_destination_types: Option<&mut Option<CFRetained<CFArray>>>,
-                out_translations: Option<&mut Option<CFRetained<CFDictionary>>>,
+                out_destination_types: Option<&mut Option<CFRetained<CFArray<CFString>>>>,
+                out_translations: Option<
+                    &mut Option<CFRetained<CFDictionary<CFString, Translation>>>,
+                >,
             ) -> OSStatus;
         }
         if let Some(out_destination_types) = out_destination_types.as_ref() {

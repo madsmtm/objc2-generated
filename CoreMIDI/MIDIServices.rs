@@ -2698,16 +2698,16 @@ pub unsafe fn MIDIObjectSetDataProperty(
 pub unsafe fn MIDIObjectGetDictionaryProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
-    out_dict: &mut Option<CFRetained<CFDictionary>>,
+    out_dict: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIObjectGetDictionaryProperty(
             obj: MIDIObjectRef,
             property_id: &CFString,
-            out_dict: &mut Option<CFRetained<CFDictionary>>,
+            out_dict: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
         ) -> OSStatus;
     }
-    struct RetainOutDictOnDrop<'a>(&'a mut Option<CFRetained<CFDictionary>>);
+    struct RetainOutDictOnDrop<'a>(&'a mut Option<CFRetained<CFDictionary<CFString, CFType>>>);
     impl Drop for RetainOutDictOnDrop<'_> {
         #[inline]
         fn drop(&mut self) {
@@ -2738,20 +2738,19 @@ pub unsafe fn MIDIObjectGetDictionaryProperty(
 ///
 /// # Safety
 ///
-/// - `dict` generic must be of the correct type.
-/// - `dict` generic must be of the correct type.
+/// `dict` generic should be of the correct type.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn MIDIObjectSetDictionaryProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
-    dict: &CFDictionary,
+    dict: &CFDictionary<CFString, CFType>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIObjectSetDictionaryProperty(
             obj: MIDIObjectRef,
             property_id: &CFString,
-            dict: &CFDictionary,
+            dict: &CFDictionary<CFString, CFType>,
         ) -> OSStatus;
     }
     unsafe { MIDIObjectSetDictionaryProperty(obj, property_id, dict) }

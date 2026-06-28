@@ -40,19 +40,18 @@ unsafe impl ConcreteType for ColorSyncTransform {
 impl ColorSyncTransform {
     /// # Safety
     ///
-    /// - `profile_sequence` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// - `profile_sequence` generic generic should be of the correct type.
+    /// - `options` generic should be of the correct type.
     #[doc(alias = "ColorSyncTransformCreate")]
     #[inline]
     pub unsafe fn new(
-        profile_sequence: Option<&CFArray>,
-        options: Option<&CFDictionary>,
+        profile_sequence: Option<&CFArray<CFDictionary<CFString, CFType>>>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<ColorSyncTransform>> {
         extern "C-unwind" {
             fn ColorSyncTransformCreate(
-                profile_sequence: Option<&CFArray>,
-                options: Option<&CFDictionary>,
+                profile_sequence: Option<&CFArray<CFDictionary<CFString, CFType>>>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<ColorSyncTransform>>;
         }
         let ret = unsafe { ColorSyncTransformCreate(profile_sequence, options) };
@@ -62,20 +61,19 @@ impl ColorSyncTransform {
     /// # Safety
     ///
     /// - `key` should be of the correct type.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// - `options` generic should be of the correct type.
     #[doc(alias = "ColorSyncTransformCopyProperty")]
     #[inline]
     pub unsafe fn property(
         &self,
         key: &CFType,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn ColorSyncTransformCopyProperty(
                 transform: &ColorSyncTransform,
                 key: &CFType,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe { ColorSyncTransformCopyProperty(self, key, options) };
@@ -101,11 +99,13 @@ impl ColorSyncTransform {
 
     #[doc(alias = "ColorSyncTransformGetProfileSequence")]
     #[inline]
-    pub unsafe fn profile_sequence(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn profile_sequence(
+        &self,
+    ) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
         extern "C-unwind" {
             fn ColorSyncTransformGetProfileSequence(
                 transform: &ColorSyncTransform,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
         }
         let ret = unsafe { ColorSyncTransformGetProfileSequence(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -199,8 +199,7 @@ impl ColorSyncTransform {
     ///
     /// - `dst` must be a valid pointer.
     /// - `src` must be a valid pointer.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// - `options` generic should be of the correct type.
     #[doc(alias = "ColorSyncTransformConvert")]
     #[inline]
     pub unsafe fn convert(
@@ -215,7 +214,7 @@ impl ColorSyncTransform {
         src_depth: ColorSyncDataDepth,
         src_layout: ColorSyncDataLayout,
         src_bytes_per_row: usize,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> bool {
         extern "C-unwind" {
             fn ColorSyncTransformConvert(
@@ -230,7 +229,7 @@ impl ColorSyncTransform {
                 src_depth: ColorSyncDataDepth,
                 src_layout: ColorSyncDataLayout,
                 src_bytes_per_row: usize,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> bool;
         }
         unsafe {
@@ -504,18 +503,17 @@ extern "C" {
 
 /// # Safety
 ///
-/// - `profile_sequence` generic must be of the correct type.
-/// - `options` generic must be of the correct type.
-/// - `options` generic must be of the correct type.
+/// - `profile_sequence` generic generic should be of the correct type.
+/// - `options` generic should be of the correct type.
 #[inline]
 pub unsafe fn ColorSyncCreateCodeFragment(
-    profile_sequence: &CFArray,
-    options: &CFDictionary,
+    profile_sequence: &CFArray<CFDictionary<CFString, CFType>>,
+    options: &CFDictionary<CFString, CFType>,
 ) -> CFRetained<CFType> {
     extern "C-unwind" {
         fn ColorSyncCreateCodeFragment(
-            profile_sequence: &CFArray,
-            options: &CFDictionary,
+            profile_sequence: &CFArray<CFDictionary<CFString, CFType>>,
+            options: &CFDictionary<CFString, CFType>,
         ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { ColorSyncCreateCodeFragment(profile_sequence, options) };

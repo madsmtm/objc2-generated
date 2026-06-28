@@ -442,19 +442,18 @@ extern "C" {
 impl ColorSyncProfile {
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "ColorSyncProfileCreateWithURLAndOptions")]
     #[inline]
     pub unsafe fn with_url_and_options(
         url: &CFURL,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ColorSyncProfile>> {
         extern "C-unwind" {
             fn ColorSyncProfileCreateWithURLAndOptions(
                 url: &CFURL,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ColorSyncProfile>>;
         }
@@ -541,19 +540,18 @@ impl ColorSyncMutableProfile {
 impl ColorSyncProfile {
     /// # Safety
     ///
-    /// - `profile_info` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// - `profile_info` generic generic should be of the correct type.
+    /// - `options` generic should be of the correct type.
     #[doc(alias = "ColorSyncProfileCreateLink")]
     #[inline]
     pub unsafe fn new_link(
-        profile_info: &CFArray,
-        options: Option<&CFDictionary>,
+        profile_info: &CFArray<CFDictionary<CFString, CFType>>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<ColorSyncProfile>> {
         extern "C-unwind" {
             fn ColorSyncProfileCreateLink(
-                profile_info: &CFArray,
-                options: Option<&CFDictionary>,
+                profile_info: &CFArray<CFDictionary<CFString, CFType>>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<ColorSyncProfile>>;
         }
         let ret = unsafe { ColorSyncProfileCreateLink(profile_info, options) };
@@ -855,11 +853,11 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileCopyTagSignatures")]
     #[inline]
-    pub unsafe fn tag_signatures(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn tag_signatures(&self) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn ColorSyncProfileCopyTagSignatures(
                 prof: &ColorSyncProfile,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { ColorSyncProfileCopyTagSignatures(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -960,14 +958,13 @@ extern "C" {
 /// - `call_back` must be implemented correctly.
 /// - `seed` must be a valid pointer or null.
 /// - `user_info` must be a valid pointer or null.
-/// - `options` generic must be of the correct type.
-/// - `options` generic must be of the correct type.
+/// - `options` generic should be of the correct type.
 #[inline]
 pub unsafe fn ColorSyncIterateInstalledProfilesWithOptions(
     call_back: ColorSyncProfileIterateCallback,
     seed: *mut u32,
     user_info: *mut c_void,
-    options: Option<&CFDictionary>,
+    options: Option<&CFDictionary<CFString, CFType>>,
     error: Option<&mut Option<CFRetained<CFError>>>,
 ) {
     extern "C-unwind" {
@@ -975,7 +972,7 @@ pub unsafe fn ColorSyncIterateInstalledProfilesWithOptions(
             call_back: ColorSyncProfileIterateCallback,
             seed: *mut u32,
             user_info: *mut c_void,
-            options: Option<&CFDictionary>,
+            options: Option<&CFDictionary<CFString, CFType>>,
             error: Option<&mut Option<CFRetained<CFError>>>,
         );
     }

@@ -309,17 +309,17 @@ pub type SKSearchResultsFilterCallBack =
 impl SKSearchGroup {
     /// # Safety
     ///
-    /// - `in_array_of_in_indexes` generic must be of the correct type.
-    /// - `in_array_of_in_indexes` might not allow `None`.
+    /// `in_array_of_in_indexes` might not allow `None`.
     #[doc(alias = "SKSearchGroupCreate")]
+    #[cfg(feature = "SKIndex")]
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn new(
-        in_array_of_in_indexes: Option<&CFArray>,
+        in_array_of_in_indexes: Option<&CFArray<SKIndex>>,
     ) -> Option<CFRetained<SKSearchGroup>> {
         extern "C-unwind" {
             fn SKSearchGroupCreate(
-                in_array_of_in_indexes: Option<&CFArray>,
+                in_array_of_in_indexes: Option<&CFArray<SKIndex>>,
             ) -> Option<NonNull<SKSearchGroup>>;
         }
         let ret = unsafe { SKSearchGroupCreate(in_array_of_in_indexes) };
@@ -327,13 +327,14 @@ impl SKSearchGroup {
     }
 
     #[doc(alias = "SKSearchGroupCopyIndexes")]
+    #[cfg(feature = "SKIndex")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn indexes(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn indexes(&self) -> Option<CFRetained<CFArray<SKIndex>>> {
         extern "C-unwind" {
             fn SKSearchGroupCopyIndexes(
                 in_search_group: &SKSearchGroup,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<SKIndex>>>;
         }
         let ret = unsafe { SKSearchGroupCopyIndexes(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -385,7 +386,6 @@ impl SKSearchResults {
     /// # Safety
     ///
     /// - `in_search_group` might not allow `None`.
-    /// - `in_example_documents` generic must be of the correct type.
     /// - `in_example_documents` might not allow `None`.
     /// - `in_context` must be a valid pointer.
     /// - `in_filter_call_back` must be implemented correctly.
@@ -395,7 +395,7 @@ impl SKSearchResults {
     #[inline]
     pub unsafe fn with_documents(
         in_search_group: Option<&SKSearchGroup>,
-        in_example_documents: Option<&CFArray>,
+        in_example_documents: Option<&CFArray<SKDocument>>,
         in_max_found_documents: CFIndex,
         in_context: *mut c_void,
         in_filter_call_back: SKSearchResultsFilterCallBack,
@@ -403,7 +403,7 @@ impl SKSearchResults {
         extern "C-unwind" {
             fn SKSearchResultsCreateWithDocuments(
                 in_search_group: Option<&SKSearchGroup>,
-                in_example_documents: Option<&CFArray>,
+                in_example_documents: Option<&CFArray<SKDocument>>,
                 in_max_found_documents: CFIndex,
                 in_context: *mut c_void,
                 in_filter_call_back: SKSearchResultsFilterCallBack,

@@ -89,13 +89,16 @@ impl CMMemoryPool {
     ///
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CMMemoryPoolCreate")]
     #[inline]
-    pub unsafe fn new(options: Option<&CFDictionary>) -> CFRetained<CMMemoryPool> {
+    pub unsafe fn new(
+        options: Option<&CFDictionary<CFString, CFType>>,
+    ) -> CFRetained<CMMemoryPool> {
         extern "C-unwind" {
-            fn CMMemoryPoolCreate(options: Option<&CFDictionary>) -> Option<NonNull<CMMemoryPool>>;
+            fn CMMemoryPoolCreate(
+                options: Option<&CFDictionary<CFString, CFType>>,
+            ) -> Option<NonNull<CMMemoryPool>>;
         }
         let ret = unsafe { CMMemoryPoolCreate(options) };
         let ret =

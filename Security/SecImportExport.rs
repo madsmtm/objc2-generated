@@ -320,7 +320,7 @@ impl SecKeychainItem {
         flags: SecItemImportExportFlags,
         key_params: *const SecKeyImportExportParameters,
         import_keychain: Option<&SecKeychain>,
-        out_items: Option<&mut Option<CFRetained<CFArray>>>,
+        out_items: Option<&mut Option<CFRetained<CFArray<CFType>>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemImport(
@@ -331,7 +331,7 @@ impl SecKeychainItem {
                 flags: SecItemImportExportFlags,
                 key_params: *const SecKeyImportExportParameters,
                 import_keychain: Option<&SecKeychain>,
-                out_items: Option<&mut Option<CFRetained<CFArray>>>,
+                out_items: Option<&mut Option<CFRetained<CFArray<CFType>>>>,
             ) -> OSStatus;
         }
         if let Some(out_items) = out_items.as_ref() {
@@ -370,7 +370,7 @@ pub unsafe fn SecItemImport(
     flags: SecItemImportExportFlags,
     key_params: *const SecItemImportExportKeyParameters,
     import_keychain: Option<&SecKeychain>,
-    out_items: Option<&mut Option<CFRetained<CFArray>>>,
+    out_items: Option<&mut Option<CFRetained<CFArray<CFType>>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecItemImport(
@@ -381,7 +381,7 @@ pub unsafe fn SecItemImport(
             flags: SecItemImportExportFlags,
             key_params: *const SecItemImportExportKeyParameters,
             import_keychain: Option<&SecKeychain>,
-            out_items: Option<&mut Option<CFRetained<CFArray>>>,
+            out_items: Option<&mut Option<CFRetained<CFArray<CFType>>>>,
         ) -> OSStatus;
     }
     if let Some(out_items) = out_items.as_ref() {
@@ -494,19 +494,18 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// - `options` generic must be of the correct type.
-/// - `options` generic must be of the correct type.
+/// `options` generic should be of the correct type.
 #[inline]
 pub unsafe fn SecPKCS12Import(
     pkcs12_data: &CFData,
-    options: &CFDictionary,
-    items: &mut Option<CFRetained<CFArray>>,
+    options: &CFDictionary<CFString, CFType>,
+    items: &mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecPKCS12Import(
             pkcs12_data: &CFData,
-            options: &CFDictionary,
-            items: &mut Option<CFRetained<CFArray>>,
+            options: &CFDictionary<CFString, CFType>,
+            items: &mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>,
         ) -> OSStatus;
     }
     assert!(

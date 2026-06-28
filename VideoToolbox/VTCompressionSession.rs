@@ -120,10 +120,8 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `encoder_specification` generic must be of the correct type.
-    /// - `encoder_specification` generic must be of the correct type.
-    /// - `source_image_buffer_attributes` generic must be of the correct type.
-    /// - `source_image_buffer_attributes` generic must be of the correct type.
+    /// - `encoder_specification` generic should be of the correct type.
+    /// - `source_image_buffer_attributes` generic should be of the correct type.
     /// - `output_callback` must be implemented correctly.
     /// - `output_callback_ref_con` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionCreate")]
@@ -134,8 +132,8 @@ impl VTCompressionSession {
         width: i32,
         height: i32,
         codec_type: CMVideoCodecType,
-        encoder_specification: Option<&CFDictionary>,
-        source_image_buffer_attributes: Option<&CFDictionary>,
+        encoder_specification: Option<&CFDictionary<CFString, CFType>>,
+        source_image_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         compressed_data_allocator: Option<&CFAllocator>,
         output_callback: VTCompressionOutputCallback,
         output_callback_ref_con: *mut c_void,
@@ -147,8 +145,8 @@ impl VTCompressionSession {
                 width: i32,
                 height: i32,
                 codec_type: CMVideoCodecType,
-                encoder_specification: Option<&CFDictionary>,
-                source_image_buffer_attributes: Option<&CFDictionary>,
+                encoder_specification: Option<&CFDictionary<CFString, CFType>>,
+                source_image_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
                 compressed_data_allocator: Option<&CFAllocator>,
                 output_callback: VTCompressionOutputCallback,
                 output_callback_ref_con: *mut c_void,
@@ -285,8 +283,7 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_properties` generic must be of the correct type.
-    /// - `frame_properties` generic must be of the correct type.
+    /// - `frame_properties` generic should be of the correct type.
     /// - `source_frame_refcon` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEncodeFrame")]
@@ -301,7 +298,7 @@ impl VTCompressionSession {
         image_buffer: &CVImageBuffer,
         presentation_time_stamp: CMTime,
         duration: CMTime,
-        frame_properties: Option<&CFDictionary>,
+        frame_properties: Option<&CFDictionary<CFString, CFType>>,
         source_frame_refcon: *mut c_void,
         info_flags_out: *mut VTEncodeInfoFlags,
     ) -> OSStatus {
@@ -311,7 +308,7 @@ impl VTCompressionSession {
                 image_buffer: &CVImageBuffer,
                 presentation_time_stamp: CMTime,
                 duration: CMTime,
-                frame_properties: Option<&CFDictionary>,
+                frame_properties: Option<&CFDictionary<CFString, CFType>>,
                 source_frame_refcon: *mut c_void,
                 info_flags_out: *mut VTEncodeInfoFlags,
             ) -> OSStatus;
@@ -384,8 +381,7 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_properties` generic must be of the correct type.
-    /// - `frame_properties` generic must be of the correct type.
+    /// - `frame_properties` generic should be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEncodeFrameWithOutputHandler")]
     #[cfg(all(
@@ -400,7 +396,7 @@ impl VTCompressionSession {
         image_buffer: &CVImageBuffer,
         presentation_time_stamp: CMTime,
         duration: CMTime,
-        frame_properties: Option<&CFDictionary>,
+        frame_properties: Option<&CFDictionary<CFString, CFType>>,
         info_flags_out: *mut VTEncodeInfoFlags,
         output_handler: &VTCompressionOutputHandler,
     ) -> OSStatus {
@@ -410,7 +406,7 @@ impl VTCompressionSession {
                 image_buffer: &CVImageBuffer,
                 presentation_time_stamp: CMTime,
                 duration: CMTime,
-                frame_properties: Option<&CFDictionary>,
+                frame_properties: Option<&CFDictionary<CFString, CFType>>,
                 info_flags_out: *mut VTEncodeInfoFlags,
                 output_handler: &VTCompressionOutputHandler,
             ) -> OSStatus;
@@ -494,8 +490,7 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_properties` generic must be of the correct type.
-    /// - `frame_properties` generic must be of the correct type.
+    /// - `frame_properties` generic should be of the correct type.
     /// - `source_frame_refcon` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrame")]
@@ -506,7 +501,7 @@ impl VTCompressionSession {
         tagged_buffer_group: &CMTaggedBufferGroup,
         presentation_time_stamp: CMTime,
         duration: CMTime,
-        frame_properties: Option<&CFDictionary>,
+        frame_properties: Option<&CFDictionary<CFString, CFType>>,
         source_frame_refcon: *mut c_void,
         info_flags_out: *mut VTEncodeInfoFlags,
     ) -> OSStatus {
@@ -516,7 +511,7 @@ impl VTCompressionSession {
                 tagged_buffer_group: &CMTaggedBufferGroup,
                 presentation_time_stamp: CMTime,
                 duration: CMTime,
-                frame_properties: Option<&CFDictionary>,
+                frame_properties: Option<&CFDictionary<CFString, CFType>>,
                 source_frame_refcon: *mut c_void,
                 info_flags_out: *mut VTEncodeInfoFlags,
             ) -> OSStatus;
@@ -566,8 +561,7 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_properties` generic must be of the correct type.
-    /// - `frame_properties` generic must be of the correct type.
+    /// - `frame_properties` generic should be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler")]
     #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
@@ -577,7 +571,7 @@ impl VTCompressionSession {
         tagged_buffer_group: &CMTaggedBufferGroup,
         presentation_time_stamp: CMTime,
         duration: CMTime,
-        frame_properties: Option<&CFDictionary>,
+        frame_properties: Option<&CFDictionary<CFString, CFType>>,
         info_flags_out: *mut VTEncodeInfoFlags,
         output_handler: &VTCompressionOutputHandler,
     ) -> OSStatus {
@@ -587,7 +581,7 @@ impl VTCompressionSession {
                 tagged_buffer_group: &CMTaggedBufferGroup,
                 presentation_time_stamp: CMTime,
                 duration: CMTime,
-                frame_properties: Option<&CFDictionary>,
+                frame_properties: Option<&CFDictionary<CFString, CFType>>,
                 info_flags_out: *mut VTEncodeInfoFlags,
                 output_handler: &VTCompressionOutputHandler,
             ) -> OSStatus;

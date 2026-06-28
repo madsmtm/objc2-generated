@@ -89,12 +89,16 @@ impl CMSEncoder {
     }
 
     #[doc(alias = "CMSEncoderCopySigners")]
+    #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn signers(&self, signers_out: &mut Option<CFRetained<CFArray>>) -> OSStatus {
+    pub unsafe fn signers(
+        &self,
+        signers_out: &mut Option<CFRetained<CFArray<SecIdentity>>>,
+    ) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopySigners(
                 cms_encoder: &CMSEncoder,
-                signers_out: &mut Option<CFRetained<CFArray>>,
+                signers_out: &mut Option<CFRetained<CFArray<SecIdentity>>>,
             ) -> OSStatus;
         }
         assert!(
@@ -120,12 +124,16 @@ impl CMSEncoder {
     }
 
     #[doc(alias = "CMSEncoderCopyRecipients")]
+    #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn recipients(&self, recipients_out: &mut Option<CFRetained<CFArray>>) -> OSStatus {
+    pub unsafe fn recipients(
+        &self,
+        recipients_out: &mut Option<CFRetained<CFArray<SecCertificate>>>,
+    ) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopyRecipients(
                 cms_encoder: &CMSEncoder,
-                recipients_out: &mut Option<CFRetained<CFArray>>,
+                recipients_out: &mut Option<CFRetained<CFArray<SecCertificate>>>,
             ) -> OSStatus;
         }
         assert!(
@@ -236,12 +244,16 @@ impl CMSEncoder {
     }
 
     #[doc(alias = "CMSEncoderCopySupportingCerts")]
+    #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn supporting_certs(&self, certs_out: &mut Option<CFRetained<CFArray>>) -> OSStatus {
+    pub unsafe fn supporting_certs(
+        &self,
+        certs_out: &mut Option<CFRetained<CFArray<SecCertificate>>>,
+    ) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopySupportingCerts(
                 cms_encoder: &CMSEncoder,
-                certs_out: &mut Option<CFRetained<CFArray>>,
+                certs_out: &mut Option<CFRetained<CFArray<SecCertificate>>>,
             ) -> OSStatus;
         }
         assert!(

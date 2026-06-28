@@ -234,13 +234,13 @@ impl Pasteboard {
     pub unsafe fn item_flavors(
         &self,
         in_item: PasteboardItemID,
-        out_flavor_types: &mut Option<CFRetained<CFArray>>,
+        out_flavor_types: &mut Option<CFRetained<CFArray<CFString>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardCopyItemFlavors(
                 in_pasteboard: &Pasteboard,
                 in_item: PasteboardItemID,
-                out_flavor_types: &mut Option<CFRetained<CFArray>>,
+                out_flavor_types: &mut Option<CFRetained<CFArray<CFString>>>,
             ) -> OSStatus;
         }
         assert!(

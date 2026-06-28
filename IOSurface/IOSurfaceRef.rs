@@ -337,14 +337,17 @@ unsafe impl ConcreteType for IOSurfaceRef {
 impl IOSurfaceRef {
     /// # Safety
     ///
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// `properties` generic should be of the correct type.
     #[doc(alias = "IOSurfaceCreate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn new(properties: &CFDictionary) -> Option<CFRetained<IOSurfaceRef>> {
+    pub unsafe fn new(
+        properties: &CFDictionary<CFString, CFType>,
+    ) -> Option<CFRetained<IOSurfaceRef>> {
         extern "C-unwind" {
-            fn IOSurfaceCreate(properties: &CFDictionary) -> Option<NonNull<IOSurfaceRef>>;
+            fn IOSurfaceCreate(
+                properties: &CFDictionary<CFString, CFType>,
+            ) -> Option<NonNull<IOSurfaceRef>>;
         }
         let ret = unsafe { IOSurfaceCreate(properties) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -747,14 +750,16 @@ impl IOSurfaceRef {
 
     /// # Safety
     ///
-    /// - `keys_and_values` generic must be of the correct type.
-    /// - `keys_and_values` generic must be of the correct type.
+    /// `keys_and_values` generic should be of the correct type.
     #[doc(alias = "IOSurfaceSetValues")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn set_values(&self, keys_and_values: &CFDictionary) {
+    pub unsafe fn set_values(&self, keys_and_values: &CFDictionary<CFString, CFType>) {
         extern "C-unwind" {
-            fn IOSurfaceSetValues(buffer: &IOSurfaceRef, keys_and_values: &CFDictionary);
+            fn IOSurfaceSetValues(
+                buffer: &IOSurfaceRef,
+                keys_and_values: &CFDictionary<CFString, CFType>,
+            );
         }
         unsafe { IOSurfaceSetValues(self, keys_and_values) }
     }
@@ -762,9 +767,11 @@ impl IOSurfaceRef {
     #[doc(alias = "IOSurfaceCopyAllValues")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub fn all_values(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn all_values(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
-            fn IOSurfaceCopyAllValues(buffer: &IOSurfaceRef) -> Option<NonNull<CFDictionary>>;
+            fn IOSurfaceCopyAllValues(
+                buffer: &IOSurfaceRef,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { IOSurfaceCopyAllValues(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

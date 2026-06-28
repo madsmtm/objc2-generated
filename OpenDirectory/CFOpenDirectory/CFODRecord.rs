@@ -106,7 +106,7 @@ impl ODRecordRef {
     ///
     /// - `record_type` might not allow `None`.
     /// - `auth_type` might not allow `None`.
-    /// - `auth_items` generic must be of the correct type.
+    /// - `auth_items` generic should be of the correct type.
     /// - `auth_items` might not allow `None`.
     /// - `out_auth_items` might not allow `None`.
     /// - `out_context` might not allow `None`.
@@ -121,8 +121,8 @@ impl ODRecordRef {
         &self,
         record_type: Option<&ODRecordType>,
         auth_type: Option<&ODAuthenticationType>,
-        auth_items: Option<&CFArray>,
-        out_auth_items: Option<&mut Option<CFRetained<CFArray>>>,
+        auth_items: Option<&CFArray<CFType>>,
+        out_auth_items: Option<&mut Option<CFRetained<CFArray<CFData>>>>,
         out_context: Option<&mut Option<CFRetained<ODContextRef>>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
@@ -131,8 +131,8 @@ impl ODRecordRef {
                 record: &ODRecordRef,
                 record_type: Option<&ODRecordType>,
                 auth_type: Option<&ODAuthenticationType>,
-                auth_items: Option<&CFArray>,
-                out_auth_items: Option<&mut Option<CFRetained<CFArray>>>,
+                auth_items: Option<&CFArray<CFType>>,
+                out_auth_items: Option<&mut Option<CFRetained<CFArray<CFData>>>>,
                 out_context: Option<&mut Option<CFRetained<ODContextRef>>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
@@ -224,13 +224,13 @@ impl ODRecordRef {
         &self,
         allocator: Option<&CFAllocator>,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn ODRecordCopyPasswordPolicy(
                 allocator: Option<&CFAllocator>,
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(
@@ -307,7 +307,7 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// - `auth_type` might not allow `None`.
-    /// - `auth_items` generic must be of the correct type.
+    /// - `auth_items` generic should be of the correct type.
     /// - `auth_items` might not allow `None`.
     /// - `out_auth_items` might not allow `None`.
     /// - `out_context` might not allow `None`.
@@ -321,8 +321,8 @@ impl ODRecordRef {
     pub unsafe fn verify_password_extended(
         &self,
         auth_type: Option<&ODAuthenticationType>,
-        auth_items: Option<&CFArray>,
-        out_auth_items: Option<&mut Option<CFRetained<CFArray>>>,
+        auth_items: Option<&CFArray<CFType>>,
+        out_auth_items: Option<&mut Option<CFRetained<CFArray<CFData>>>>,
         out_context: Option<&mut Option<CFRetained<ODContextRef>>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
@@ -330,8 +330,8 @@ impl ODRecordRef {
             fn ODRecordVerifyPasswordExtended(
                 record: &ODRecordRef,
                 auth_type: Option<&ODAuthenticationType>,
-                auth_items: Option<&CFArray>,
-                out_auth_items: Option<&mut Option<CFRetained<CFArray>>>,
+                auth_items: Option<&CFArray<CFType>>,
+                out_auth_items: Option<&mut Option<CFRetained<CFArray<CFData>>>>,
                 out_context: Option<&mut Option<CFRetained<ODContextRef>>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
@@ -478,13 +478,13 @@ impl ODRecordRef {
         &self,
         attribute: Option<&ODAttributeType>,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFType>>> {
         extern "C-unwind" {
             fn ODRecordCopyValues(
                 record: &ODRecordRef,
                 attribute: Option<&ODAttributeType>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFType>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(
@@ -667,23 +667,25 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic must be of the correct type.
     /// - `attributes` might not allow `None`.
     /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordCopyDetails")]
-    #[cfg(feature = "objc2-core-foundation")]
+    #[cfg(all(
+        feature = "CFOpenDirectoryConstants",
+        feature = "objc2-core-foundation"
+    ))]
     #[inline]
     pub unsafe fn details(
         &self,
-        attributes: Option<&CFArray>,
+        attributes: Option<&CFArray<ODAttributeType>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn ODRecordCopyDetails(
                 record: &ODRecordRef,
-                attributes: Option<&CFArray>,
+                attributes: Option<&CFArray<ODAttributeType>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(
@@ -907,12 +909,12 @@ impl ODRecordRef {
     pub unsafe fn policies(
         &self,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn ODRecordCopyPolicies(
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(
@@ -944,12 +946,12 @@ impl ODRecordRef {
     pub unsafe fn effective_policies(
         &self,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn ODRecordCopyEffectivePolicies(
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(
@@ -983,12 +985,12 @@ impl ODRecordRef {
     pub unsafe fn supported_policies(
         &self,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn ODRecordCopySupportedPolicies(
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(
@@ -1014,8 +1016,7 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// - `policies` generic must be of the correct type.
-    /// - `policies` generic must be of the correct type.
+    /// - `policies` generic should be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordSetPolicies")]
@@ -1024,13 +1025,13 @@ impl ODRecordRef {
     #[inline]
     pub unsafe fn set_policies(
         &self,
-        policies: Option<&CFDictionary>,
+        policies: Option<&CFDictionary<CFString, CFType>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordSetPolicies(
                 record: &ODRecordRef,
-                policies: Option<&CFDictionary>,
+                policies: Option<&CFDictionary<CFString, CFType>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
@@ -1163,8 +1164,7 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// - `policy` generic must be of the correct type.
-    /// - `policy` generic must be of the correct type.
+    /// - `policy` generic should be of the correct type.
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` might not allow `None`.
@@ -1176,14 +1176,14 @@ impl ODRecordRef {
     #[inline]
     pub unsafe fn add_account_policy(
         &self,
-        policy: Option<&CFDictionary>,
+        policy: Option<&CFDictionary<CFString, CFType>>,
         category: Option<&ODPolicyCategoryType>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordAddAccountPolicy(
                 record: &ODRecordRef,
-                policy: Option<&CFDictionary>,
+                policy: Option<&CFDictionary<CFString, CFType>>,
                 category: Option<&ODPolicyCategoryType>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
@@ -1214,8 +1214,7 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// - `policy` generic must be of the correct type.
-    /// - `policy` generic must be of the correct type.
+    /// - `policy` generic should be of the correct type.
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` might not allow `None`.
@@ -1227,14 +1226,14 @@ impl ODRecordRef {
     #[inline]
     pub unsafe fn remove_account_policy(
         &self,
-        policy: Option<&CFDictionary>,
+        policy: Option<&CFDictionary<CFString, CFType>>,
         category: Option<&ODPolicyCategoryType>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordRemoveAccountPolicy(
                 record: &ODRecordRef,
-                policy: Option<&CFDictionary>,
+                policy: Option<&CFDictionary<CFString, CFType>>,
                 category: Option<&ODPolicyCategoryType>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
@@ -1274,8 +1273,7 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// - `policies` generic must be of the correct type.
-    /// - `policies` generic must be of the correct type.
+    /// - `policies` generic should be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` might not allow `None`.
     #[doc(alias = "ODRecordSetAccountPolicies")]
@@ -1283,13 +1281,13 @@ impl ODRecordRef {
     #[inline]
     pub unsafe fn set_account_policies(
         &self,
-        policies: Option<&CFDictionary>,
+        policies: Option<&CFDictionary<CFString, CFType>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn ODRecordSetAccountPolicies(
                 record: &ODRecordRef,
-                policies: Option<&CFDictionary>,
+                policies: Option<&CFDictionary<CFString, CFType>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
@@ -1324,12 +1322,12 @@ impl ODRecordRef {
     pub unsafe fn account_policies(
         &self,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn ODRecordCopyAccountPolicies(
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(

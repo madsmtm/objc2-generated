@@ -64,8 +64,7 @@ impl IOUSBHostInterface {
         /// # Safety
         ///
         /// - `product_id_array` generic should be of the correct type.
-        /// - The returned generic must be of the correct type.
-        /// - The returned generic must be of the correct type.
+        /// - The returned generic should be of the correct type.
         #[unsafe(method(createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createMatchingDictionaryWithVendorID_productID_bcdDevice_interfaceNumber_configurationValue_interfaceClass_interfaceSubclass_interfaceProtocol_speed_productIDArray(
@@ -79,7 +78,7 @@ impl IOUSBHostInterface {
             interface_protocol: Option<&NSNumber>,
             speed: Option<&NSNumber>,
             product_id_array: Option<&NSArray>,
-        ) -> Retained<CFMutableDictionary>;
+        ) -> Retained<CFMutableDictionary<CFString, CFType>>;
 
         #[cfg(all(
             feature = "IOUSBHostDefinitions",

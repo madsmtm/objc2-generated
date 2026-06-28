@@ -104,13 +104,13 @@ impl SecTrust {
     pub unsafe fn settings_copy_trust_settings(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
-        trust_settings: &mut Option<CFRetained<CFArray>>,
+        trust_settings: &mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSettingsCopyTrustSettings(
                 cert_ref: &SecCertificate,
                 domain: SecTrustSettingsDomain,
-                trust_settings: &mut Option<CFRetained<CFArray>>,
+                trust_settings: &mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>,
             ) -> OSStatus;
         }
         assert!(
@@ -158,15 +158,16 @@ impl SecTrust {
     }
 
     #[doc(alias = "SecTrustSettingsCopyCertificates")]
+    #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn settings_copy_certificates(
         domain: SecTrustSettingsDomain,
-        cert_array: Option<&mut Option<CFRetained<CFArray>>>,
+        cert_array: Option<&mut Option<CFRetained<CFArray<SecCertificate>>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSettingsCopyCertificates(
                 domain: SecTrustSettingsDomain,
-                cert_array: Option<&mut Option<CFRetained<CFArray>>>,
+                cert_array: Option<&mut Option<CFRetained<CFArray<SecCertificate>>>>,
             ) -> OSStatus;
         }
         if let Some(cert_array) = cert_array.as_ref() {

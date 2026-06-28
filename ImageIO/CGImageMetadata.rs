@@ -471,11 +471,11 @@ impl CGImageMetadataTag {
     /// The copy is shallow, the qualifiers are not deep copied.
     #[doc(alias = "CGImageMetadataTagCopyQualifiers")]
     #[inline]
-    pub unsafe fn qualifiers(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn qualifiers(&self) -> Option<CFRetained<CFArray<CGImageMetadataTag>>> {
         extern "C-unwind" {
             fn CGImageMetadataTagCopyQualifiers(
                 tag: &CGImageMetadataTag,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CGImageMetadataTag>>>;
         }
         let ret = unsafe { CGImageMetadataTagCopyQualifiers(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -493,9 +493,11 @@ impl CGImageMetadata {
     /// CGImageMetadataTagRefs in a CGImageMetadataRef.
     #[doc(alias = "CGImageMetadataCopyTags")]
     #[inline]
-    pub unsafe fn tags(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn tags(&self) -> Option<CFRetained<CFArray<CGImageMetadataTag>>> {
         extern "C-unwind" {
-            fn CGImageMetadataCopyTags(metadata: &CGImageMetadata) -> Option<NonNull<CFArray>>;
+            fn CGImageMetadataCopyTags(
+                metadata: &CGImageMetadata,
+            ) -> Option<NonNull<CFArray<CGImageMetadataTag>>>;
         }
         let ret = unsafe { CGImageMetadataCopyTags(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -947,22 +949,21 @@ impl CGImageMetadata {
     ///
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CGImageMetadataEnumerateTagsUsingBlock")]
     #[cfg(feature = "block2")]
     #[inline]
     pub unsafe fn enumerate_tags_using_block(
         &self,
         root_path: Option<&CFString>,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
         block: &CGImageMetadataTagBlock,
     ) {
         extern "C-unwind" {
             fn CGImageMetadataEnumerateTagsUsingBlock(
                 metadata: &CGImageMetadata,
                 root_path: Option<&CFString>,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
                 block: &CGImageMetadataTagBlock,
             );
         }
@@ -1112,15 +1113,17 @@ impl CGImageMetadata {
     ///
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CGImageMetadataCreateXMPData")]
     #[inline]
-    pub unsafe fn xmp_data(&self, options: Option<&CFDictionary>) -> Option<CFRetained<CFData>> {
+    pub unsafe fn xmp_data(
+        &self,
+        options: Option<&CFDictionary<CFString, CFType>>,
+    ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CGImageMetadataCreateXMPData(
                 metadata: &CGImageMetadata,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CFData>>;
         }
         let ret = unsafe { CGImageMetadataCreateXMPData(self, options) };

@@ -148,19 +148,18 @@ extern "C" {
 
 /// # Safety
 ///
-/// - `device_info` generic must be of the correct type.
-/// - `device_info` generic must be of the correct type.
+/// `device_info` generic should be of the correct type.
 #[inline]
 pub unsafe fn ColorSyncRegisterDevice(
     device_class: &CFString,
     device_id: &CFUUID,
-    device_info: &CFDictionary,
+    device_info: &CFDictionary<CFString, CFType>,
 ) -> bool {
     extern "C-unwind" {
         fn ColorSyncRegisterDevice(
             device_class: &CFString,
             device_id: &CFUUID,
-            device_info: &CFDictionary,
+            device_info: &CFDictionary<CFString, CFType>,
         ) -> bool;
     }
     unsafe { ColorSyncRegisterDevice(device_class, device_id, device_info) }
@@ -176,19 +175,18 @@ pub unsafe fn ColorSyncUnregisterDevice(device_class: &CFString, device_id: &CFU
 
 /// # Safety
 ///
-/// - `profile_info` generic must be of the correct type.
-/// - `profile_info` generic must be of the correct type.
+/// `profile_info` generic should be of the correct type.
 #[inline]
 pub unsafe fn ColorSyncDeviceSetCustomProfiles(
     device_class: &CFString,
     device_id: &CFUUID,
-    profile_info: &CFDictionary,
+    profile_info: &CFDictionary<CFString, CFType>,
 ) -> bool {
     extern "C-unwind" {
         fn ColorSyncDeviceSetCustomProfiles(
             device_class: &CFString,
             device_id: &CFUUID,
-            profile_info: &CFDictionary,
+            profile_info: &CFDictionary<CFString, CFType>,
         ) -> bool;
     }
     unsafe { ColorSyncDeviceSetCustomProfiles(device_class, device_id, profile_info) }
@@ -198,12 +196,12 @@ pub unsafe fn ColorSyncDeviceSetCustomProfiles(
 pub unsafe fn ColorSyncDeviceCopyDeviceInfo(
     device_class: &CFString,
     dev_id: &CFUUID,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn ColorSyncDeviceCopyDeviceInfo(
             device_class: &CFString,
             dev_id: &CFUUID,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { ColorSyncDeviceCopyDeviceInfo(device_class, dev_id) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

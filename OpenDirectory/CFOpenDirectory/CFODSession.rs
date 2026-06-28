@@ -56,8 +56,7 @@ impl ODSessionRef {
     ///
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// - `options` generic should be of the correct type.
     /// - `options` might not allow `None`.
     /// - `error` might not allow `None`.
     #[doc(alias = "ODSessionCreate")]
@@ -65,13 +64,13 @@ impl ODSessionRef {
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<ODSessionRef>> {
         extern "C-unwind" {
             fn ODSessionCreate(
                 allocator: Option<&CFAllocator>,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODSessionRef>>;
         }
@@ -107,13 +106,13 @@ impl ODSessionRef {
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn ODSessionCopyNodeNames(
                 allocator: Option<&CFAllocator>,
                 session: Option<&ODSessionRef>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(

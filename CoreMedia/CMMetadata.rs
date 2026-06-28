@@ -583,21 +583,17 @@ extern "C" {
 /// been registered, then it is not considered an error to re-register it
 /// as long as the list of conforming data type identifiers has the same
 /// entries as the original;  otherwise an error will be returned.
-///
-/// # Safety
-///
-/// `conforming_data_types` generic must be of the correct type.
 #[inline]
 pub unsafe fn CMMetadataDataTypeRegistryRegisterDataType(
     data_type: &CFString,
     description: &CFString,
-    conforming_data_types: &CFArray,
+    conforming_data_types: &CFArray<CFString>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMMetadataDataTypeRegistryRegisterDataType(
             data_type: &CFString,
             description: &CFString,
-            conforming_data_types: &CFArray,
+            conforming_data_types: &CFArray<CFString>,
         ) -> OSStatus;
     }
     unsafe {
@@ -638,11 +634,11 @@ pub unsafe fn CMMetadataDataTypeRegistryGetDataTypeDescription(
 #[inline]
 pub unsafe fn CMMetadataDataTypeRegistryGetConformingDataTypes(
     data_type: &CFString,
-) -> CFRetained<CFArray> {
+) -> CFRetained<CFArray<CFString>> {
     extern "C-unwind" {
         fn CMMetadataDataTypeRegistryGetConformingDataTypes(
             data_type: &CFString,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { CMMetadataDataTypeRegistryGetConformingDataTypes(data_type) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -687,9 +683,10 @@ pub unsafe fn CMMetadataDataTypeRegistryDataTypeConformsToDataType(
 /// registry.  All valid data types will have their conformance search
 /// end with a base data type.
 #[inline]
-pub unsafe fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> Option<CFRetained<CFArray>> {
+pub unsafe fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> Option<CFRetained<CFArray<CFString>>>
+{
     extern "C-unwind" {
-        fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> Option<NonNull<CFArray>>;
+        fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { CMMetadataDataTypeRegistryGetBaseDataTypes() };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })

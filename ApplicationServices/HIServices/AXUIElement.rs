@@ -37,12 +37,15 @@ pub unsafe fn AXAPIEnabled() -> bool {
 ///
 /// # Safety
 ///
-/// - `options` generic must be of the correct type.
-/// - `options` generic must be of the correct type.
+/// `options` generic should be of the correct type.
 #[inline]
-pub unsafe fn AXIsProcessTrustedWithOptions(options: Option<&CFDictionary>) -> bool {
+pub unsafe fn AXIsProcessTrustedWithOptions(
+    options: Option<&CFDictionary<CFString, CFType>>,
+) -> bool {
     extern "C-unwind" {
-        fn AXIsProcessTrustedWithOptions(options: Option<&CFDictionary>) -> Boolean;
+        fn AXIsProcessTrustedWithOptions(
+            options: Option<&CFDictionary<CFString, CFType>>,
+        ) -> Boolean;
     }
     let ret = unsafe { AXIsProcessTrustedWithOptions(options) };
     ret != 0
@@ -227,11 +230,14 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementCopyAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn attribute_names(&self, names: &mut Option<CFRetained<CFArray>>) -> AXError {
+    pub unsafe fn attribute_names(
+        &self,
+        names: &mut Option<CFRetained<CFArray<CFString>>>,
+    ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyAttributeNames(
                 element: &AXUIElement,
-                names: &mut Option<CFRetained<CFArray>>,
+                names: &mut Option<CFRetained<CFArray<CFString>>>,
             ) -> AXError;
         }
         assert!(
@@ -498,7 +504,7 @@ impl AXUIElement {
         attribute: &CFString,
         index: CFIndex,
         max_values: CFIndex,
-        values: &mut Option<CFRetained<CFArray>>,
+        values: &mut Option<CFRetained<CFArray<CFType>>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyAttributeValues(
@@ -506,7 +512,7 @@ impl AXUIElement {
                 attribute: &CFString,
                 index: CFIndex,
                 max_values: CFIndex,
-                values: &mut Option<CFRetained<CFArray>>,
+                values: &mut Option<CFRetained<CFArray<CFType>>>,
             ) -> AXError;
         }
         assert!(
@@ -775,25 +781,21 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// # Safety
-    ///
-    /// `attributes` generic must be of the correct type.
     #[doc(alias = "AXUIElementCopyMultipleAttributeValues")]
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn multiple_attribute_values(
         &self,
-        attributes: &CFArray,
+        attributes: &CFArray<CFString>,
         options: AXCopyMultipleAttributeOptions,
-        values: &mut Option<CFRetained<CFArray>>,
+        values: &mut Option<CFRetained<CFArray<CFType>>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyMultipleAttributeValues(
                 element: &AXUIElement,
-                attributes: &CFArray,
+                attributes: &CFArray<CFString>,
                 options: AXCopyMultipleAttributeOptions,
-                values: &mut Option<CFRetained<CFArray>>,
+                values: &mut Option<CFRetained<CFArray<CFType>>>,
             ) -> AXError;
         }
         assert!(
@@ -875,12 +877,12 @@ impl AXUIElement {
     #[inline]
     pub unsafe fn parameterized_attribute_names(
         &self,
-        names: &mut Option<CFRetained<CFArray>>,
+        names: &mut Option<CFRetained<CFArray<CFString>>>,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyParameterizedAttributeNames(
                 element: &AXUIElement,
-                names: &mut Option<CFRetained<CFArray>>,
+                names: &mut Option<CFRetained<CFArray<CFString>>>,
             ) -> AXError;
         }
         assert!(
@@ -1053,11 +1055,14 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementCopyActionNames")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn action_names(&self, names: &mut Option<CFRetained<CFArray>>) -> AXError {
+    pub unsafe fn action_names(
+        &self,
+        names: &mut Option<CFRetained<CFArray<CFString>>>,
+    ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyActionNames(
                 element: &AXUIElement,
-                names: &mut Option<CFRetained<CFArray>>,
+                names: &mut Option<CFRetained<CFArray<CFString>>>,
             ) -> AXError;
         }
         assert!(

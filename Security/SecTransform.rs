@@ -224,21 +224,16 @@ impl SecTransform {
     /// with it. A NULL will be returned if an error occurred during
     /// initialization, and if the error parameter
     /// is non-null, it contains the specific error data.
-    ///
-    /// # Safety
-    ///
-    /// - `dictionary` generic must be of the correct type.
-    /// - `dictionary` generic must be of the correct type.
     #[doc(alias = "SecTransformCreateFromExternalRepresentation")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
     pub unsafe fn from_external_representation(
-        dictionary: &CFDictionary,
+        dictionary: &CFDictionary<CFString, CFPropertyList>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecTransform>> {
         extern "C-unwind" {
             fn SecTransformCreateFromExternalRepresentation(
-                dictionary: &CFDictionary,
+                dictionary: &CFDictionary<CFString, CFPropertyList>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecTransform>>;
         }
@@ -271,11 +266,13 @@ impl SecTransform {
     #[doc(alias = "SecTransformCopyExternalRepresentation")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
-    pub unsafe fn external_representation(&self) -> CFRetained<CFDictionary> {
+    pub unsafe fn external_representation(
+        &self,
+    ) -> CFRetained<CFDictionary<CFString, CFPropertyList>> {
         extern "C-unwind" {
             fn SecTransformCopyExternalRepresentation(
                 transform_ref: &SecTransform,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFPropertyList>>>;
         }
         let ret = unsafe { SecTransformCopyExternalRepresentation(self) };
         let ret =

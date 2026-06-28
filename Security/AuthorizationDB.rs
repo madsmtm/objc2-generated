@@ -45,12 +45,12 @@ pub const kAuthorizationComment: &CStr =
 #[inline]
 pub unsafe fn AuthorizationRightGet(
     right_name: NonNull<c_char>,
-    right_definition: Option<&mut Option<CFRetained<CFDictionary>>>,
+    right_definition: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AuthorizationRightGet(
             right_name: NonNull<c_char>,
-            right_definition: Option<&mut Option<CFRetained<CFDictionary>>>,
+            right_definition: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
         ) -> OSStatus;
     }
     if let Some(right_definition) = right_definition.as_ref() {

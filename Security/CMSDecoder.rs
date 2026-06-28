@@ -298,12 +298,16 @@ impl CMSDecoder {
     }
 
     #[doc(alias = "CMSDecoderCopyAllCerts")]
+    #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn all_certs(&self, certs_out: &mut Option<CFRetained<CFArray>>) -> OSStatus {
+    pub unsafe fn all_certs(
+        &self,
+        certs_out: &mut Option<CFRetained<CFArray<SecCertificate>>>,
+    ) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopyAllCerts(
                 cms_decoder: &CMSDecoder,
-                certs_out: &mut Option<CFRetained<CFArray>>,
+                certs_out: &mut Option<CFRetained<CFArray<SecCertificate>>>,
             ) -> OSStatus;
         }
         assert!(
@@ -400,17 +404,18 @@ impl CMSDecoder {
     }
 
     #[doc(alias = "CMSDecoderCopySignerTimestampCertificates")]
+    #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn signer_timestamp_certificates(
         &self,
         signer_index: usize,
-        certificate_refs: &mut Option<CFRetained<CFArray>>,
+        certificate_refs: &mut Option<CFRetained<CFArray<SecCertificate>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSDecoderCopySignerTimestampCertificates(
                 cms_decoder: &CMSDecoder,
                 signer_index: usize,
-                certificate_refs: &mut Option<CFRetained<CFArray>>,
+                certificate_refs: &mut Option<CFRetained<CFArray<SecCertificate>>>,
             ) -> OSStatus;
         }
         assert!(

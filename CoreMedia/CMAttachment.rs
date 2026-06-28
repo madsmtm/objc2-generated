@@ -143,13 +143,13 @@ pub unsafe fn CMCopyDictionaryOfAttachments(
     allocator: Option<&CFAllocator>,
     target: &CMAttachmentBearer,
     attachment_mode: CMAttachmentMode,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn CMCopyDictionaryOfAttachments(
             allocator: Option<&CFAllocator>,
             target: &CMAttachmentBearer,
             attachment_mode: CMAttachmentMode,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { CMCopyDictionaryOfAttachments(allocator, target, attachment_mode) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -163,18 +163,17 @@ pub unsafe fn CMCopyDictionaryOfAttachments(
 ///
 /// # Safety
 ///
-/// - `the_attachments` generic must be of the correct type.
-/// - `the_attachments` generic must be of the correct type.
+/// `the_attachments` generic should be of the correct type.
 #[inline]
 pub unsafe fn CMSetAttachments(
     target: &CMAttachmentBearer,
-    the_attachments: &CFDictionary,
+    the_attachments: &CFDictionary<CFString, CFType>,
     attachment_mode: CMAttachmentMode,
 ) {
     extern "C-unwind" {
         fn CMSetAttachments(
             target: &CMAttachmentBearer,
-            the_attachments: &CFDictionary,
+            the_attachments: &CFDictionary<CFString, CFType>,
             attachment_mode: CMAttachmentMode,
         );
     }

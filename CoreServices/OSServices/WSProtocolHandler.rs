@@ -67,12 +67,12 @@ impl WSProtocolHandler {
     pub unsafe fn request_dictionary(
         &self,
         data: Option<&CFData>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn WSProtocolHandlerCopyRequestDictionary(
                 r#ref: &WSProtocolHandler,
                 data: Option<&CFData>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { WSProtocolHandlerCopyRequestDictionary(self, data) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -89,13 +89,13 @@ impl WSProtocolHandler {
         &self,
         method_name: Option<&CFString>,
         data: Option<&CFData>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn WSProtocolHandlerCopyReplyDictionary(
                 r#ref: &WSProtocolHandler,
                 method_name: Option<&CFString>,
                 data: Option<&CFData>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { WSProtocolHandlerCopyReplyDictionary(self, method_name, data) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -103,8 +103,7 @@ impl WSProtocolHandler {
 
     /// # Safety
     ///
-    /// - `method_context` generic must be of the correct type.
-    /// - `method_context` generic must be of the correct type.
+    /// - `method_context` generic should be of the correct type.
     /// - `method_context` might not allow `None`.
     /// - `result_value` should be of the correct type.
     /// - `result_value` might not allow `None`.
@@ -113,13 +112,13 @@ impl WSProtocolHandler {
     #[inline]
     pub unsafe fn reply_document(
         &self,
-        method_context: Option<&CFDictionary>,
+        method_context: Option<&CFDictionary<CFString, CFType>>,
         result_value: Option<&CFType>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn WSProtocolHandlerCopyReplyDocument(
                 r#ref: &WSProtocolHandler,
-                method_context: Option<&CFDictionary>,
+                method_context: Option<&CFDictionary<CFString, CFType>>,
                 result_value: Option<&CFType>,
             ) -> Option<NonNull<CFData>>;
         }
@@ -129,25 +128,23 @@ impl WSProtocolHandler {
 
     /// # Safety
     ///
-    /// - `method_context` generic must be of the correct type.
-    /// - `method_context` generic must be of the correct type.
+    /// - `method_context` generic should be of the correct type.
     /// - `method_context` might not allow `None`.
-    /// - `fault_dict` generic must be of the correct type.
-    /// - `fault_dict` generic must be of the correct type.
+    /// - `fault_dict` generic should be of the correct type.
     /// - `fault_dict` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCopyFaultDocument")]
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn fault_document(
         &self,
-        method_context: Option<&CFDictionary>,
-        fault_dict: Option<&CFDictionary>,
+        method_context: Option<&CFDictionary<CFString, CFType>>,
+        fault_dict: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn WSProtocolHandlerCopyFaultDocument(
                 r#ref: &WSProtocolHandler,
-                method_context: Option<&CFDictionary>,
-                fault_dict: Option<&CFDictionary>,
+                method_context: Option<&CFDictionary<CFString, CFType>>,
+                fault_dict: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CFData>>;
         }
         let ret = unsafe { WSProtocolHandlerCopyFaultDocument(self, method_context, fault_dict) };
@@ -157,13 +154,10 @@ impl WSProtocolHandler {
     /// # Safety
     ///
     /// - `method_name` might not allow `None`.
-    /// - `method_params` generic must be of the correct type.
-    /// - `method_params` generic must be of the correct type.
+    /// - `method_params` generic should be of the correct type.
     /// - `method_params` might not allow `None`.
-    /// - `method_param_order` generic must be of the correct type.
     /// - `method_param_order` might not allow `None`.
-    /// - `method_extras` generic must be of the correct type.
-    /// - `method_extras` generic must be of the correct type.
+    /// - `method_extras` generic should be of the correct type.
     /// - `method_extras` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCopyRequestDocument")]
     #[deprecated = "No longer supported"]
@@ -171,17 +165,17 @@ impl WSProtocolHandler {
     pub unsafe fn request_document(
         &self,
         method_name: Option<&CFString>,
-        method_params: Option<&CFDictionary>,
-        method_param_order: Option<&CFArray>,
-        method_extras: Option<&CFDictionary>,
+        method_params: Option<&CFDictionary<CFString, CFType>>,
+        method_param_order: Option<&CFArray<CFString>>,
+        method_extras: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn WSProtocolHandlerCopyRequestDocument(
                 r#ref: &WSProtocolHandler,
                 method_name: Option<&CFString>,
-                method_params: Option<&CFDictionary>,
-                method_param_order: Option<&CFArray>,
-                method_extras: Option<&CFDictionary>,
+                method_params: Option<&CFDictionary<CFString, CFType>>,
+                method_param_order: Option<&CFArray<CFString>>,
+                method_extras: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CFData>>;
         }
         let ret = unsafe {

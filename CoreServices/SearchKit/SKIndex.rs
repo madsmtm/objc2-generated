@@ -119,8 +119,7 @@ impl SKIndex {
     ///
     /// - `in_url` might not allow `None`.
     /// - `in_index_name` might not allow `None`.
-    /// - `in_analysis_properties` generic must be of the correct type.
-    /// - `in_analysis_properties` generic must be of the correct type.
+    /// - `in_analysis_properties` generic should be of the correct type.
     /// - `in_analysis_properties` might not allow `None`.
     #[doc(alias = "SKIndexCreateWithURL")]
     #[inline]
@@ -128,14 +127,14 @@ impl SKIndex {
         in_url: Option<&CFURL>,
         in_index_name: Option<&CFString>,
         in_index_type: SKIndexType,
-        in_analysis_properties: Option<&CFDictionary>,
+        in_analysis_properties: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<SKIndex>> {
         extern "C-unwind" {
             fn SKIndexCreateWithURL(
                 in_url: Option<&CFURL>,
                 in_index_name: Option<&CFString>,
                 in_index_type: SKIndexType,
-                in_analysis_properties: Option<&CFDictionary>,
+                in_analysis_properties: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<SKIndex>>;
         }
         let ret = unsafe {
@@ -171,8 +170,7 @@ impl SKIndex {
     ///
     /// - `in_data` might not allow `None`.
     /// - `in_index_name` might not allow `None`.
-    /// - `in_analysis_properties` generic must be of the correct type.
-    /// - `in_analysis_properties` generic must be of the correct type.
+    /// - `in_analysis_properties` generic should be of the correct type.
     /// - `in_analysis_properties` might not allow `None`.
     #[doc(alias = "SKIndexCreateWithMutableData")]
     #[inline]
@@ -180,14 +178,14 @@ impl SKIndex {
         in_data: Option<&CFMutableData>,
         in_index_name: Option<&CFString>,
         in_index_type: SKIndexType,
-        in_analysis_properties: Option<&CFDictionary>,
+        in_analysis_properties: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<SKIndex>> {
         extern "C-unwind" {
             fn SKIndexCreateWithMutableData(
                 in_data: Option<&CFMutableData>,
                 in_index_name: Option<&CFString>,
                 in_index_type: SKIndexType,
-                in_analysis_properties: Option<&CFDictionary>,
+                in_analysis_properties: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<SKIndex>>;
         }
         let ret = unsafe {
@@ -290,9 +288,11 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexGetAnalysisProperties")]
     #[inline]
-    pub unsafe fn analysis_properties(&self) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn analysis_properties(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
-            fn SKIndexGetAnalysisProperties(in_index: &SKIndex) -> Option<NonNull<CFDictionary>>;
+            fn SKIndexGetAnalysisProperties(
+                in_index: &SKIndex,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { SKIndexGetAnalysisProperties(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -595,12 +595,12 @@ impl SKIndex {
     pub unsafe fn term_id_array_for_document_id(
         &self,
         in_document_id: SKDocumentID,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFNumber>>> {
         extern "C-unwind" {
             fn SKIndexCopyTermIDArrayForDocumentID(
                 in_index: &SKIndex,
                 in_document_id: SKDocumentID,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFNumber>>>;
         }
         let ret = unsafe { SKIndexCopyTermIDArrayForDocumentID(self, in_document_id) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -646,12 +646,12 @@ impl SKIndex {
     pub unsafe fn document_id_array_for_term_id(
         &self,
         in_term_id: CFIndex,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFNumber>>> {
         extern "C-unwind" {
             fn SKIndexCopyDocumentIDArrayForTermID(
                 in_index: &SKIndex,
                 in_term_id: CFIndex,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFNumber>>>;
         }
         let ret = unsafe { SKIndexCopyDocumentIDArrayForTermID(self, in_term_id) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

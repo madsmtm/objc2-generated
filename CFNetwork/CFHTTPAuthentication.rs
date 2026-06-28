@@ -167,8 +167,7 @@ impl CFHTTPMessage {
 
     /// # Safety
     ///
-    /// - `dict` generic must be of the correct type.
-    /// - `dict` generic must be of the correct type.
+    /// - `dict` generic should be of the correct type.
     /// - `error` must be a valid pointer or null.
     #[doc(alias = "CFHTTPMessageApplyCredentialDictionary")]
     #[cfg(feature = "CFHTTPMessage")]
@@ -176,14 +175,14 @@ impl CFHTTPMessage {
     pub unsafe fn apply_credential_dictionary(
         &self,
         auth: &CFHTTPAuthentication,
-        dict: &CFDictionary,
+        dict: &CFDictionary<CFString, CFType>,
         error: *mut CFStreamError,
     ) -> bool {
         extern "C-unwind" {
             fn CFHTTPMessageApplyCredentialDictionary(
                 request: &CFHTTPMessage,
                 auth: &CFHTTPAuthentication,
-                dict: &CFDictionary,
+                dict: &CFDictionary<CFString, CFType>,
                 error: *mut CFStreamError,
             ) -> Boolean;
         }
@@ -209,11 +208,11 @@ impl CFHTTPAuthentication {
 
     #[doc(alias = "CFHTTPAuthenticationCopyDomains")]
     #[inline]
-    pub unsafe fn domains(&self) -> CFRetained<CFArray> {
+    pub unsafe fn domains(&self) -> CFRetained<CFArray<CFURL>> {
         extern "C-unwind" {
             fn CFHTTPAuthenticationCopyDomains(
                 auth: &CFHTTPAuthentication,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFURL>>>;
         }
         let ret = unsafe { CFHTTPAuthenticationCopyDomains(self) };
         let ret =

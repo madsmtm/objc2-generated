@@ -1236,12 +1236,12 @@ pub fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn {
 #[inline]
 pub unsafe fn IOPMCopyBatteryInfo(
     master_port: libc::mach_port_t,
-    info: Option<&mut Option<CFRetained<CFArray>>>,
+    info: Option<&mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMCopyBatteryInfo(
             master_port: libc::mach_port_t,
-            info: Option<&mut Option<CFRetained<CFArray>>>,
+            info: Option<&mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>>,
         ) -> IOReturn;
     }
     if let Some(info) = info.as_ref() {
@@ -1615,9 +1615,10 @@ pub unsafe fn IOPMCancelScheduledPowerEvent(
 ///
 /// Returns: A CFArray of CFDictionaries of power events. The CFArray must be released by the caller. NULL if there are no scheduled events.
 #[inline]
-pub fn IOPMCopyScheduledPowerEvents() -> Option<CFRetained<CFArray>> {
+pub fn IOPMCopyScheduledPowerEvents() -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>
+{
     extern "C-unwind" {
-        fn IOPMCopyScheduledPowerEvents() -> Option<NonNull<CFArray>>;
+        fn IOPMCopyScheduledPowerEvents() -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
     }
     let ret = unsafe { IOPMCopyScheduledPowerEvents() };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1961,18 +1962,17 @@ pub unsafe fn IOPMAssertionCreateWithDescription(
 ///
 /// # Safety
 ///
-/// - `assertion_properties` generic must be of the correct type.
-/// - `assertion_properties` generic must be of the correct type.
+/// - `assertion_properties` generic should be of the correct type.
 /// - `assertion_properties` might not allow `None`.
 /// - `assertion_id` must be a valid pointer.
 #[inline]
 pub unsafe fn IOPMAssertionCreateWithProperties(
-    assertion_properties: Option<&CFDictionary>,
+    assertion_properties: Option<&CFDictionary<CFString, CFType>>,
     assertion_id: *mut IOPMAssertionID,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMAssertionCreateWithProperties(
-            assertion_properties: Option<&CFDictionary>,
+            assertion_properties: Option<&CFDictionary<CFString, CFType>>,
             assertion_id: *mut IOPMAssertionID,
         ) -> IOReturn;
     }
@@ -2248,11 +2248,11 @@ pub fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> IOReturn {
 #[inline]
 pub fn IOPMAssertionCopyProperties(
     the_assertion: IOPMAssertionID,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn IOPMAssertionCopyProperties(
             the_assertion: IOPMAssertionID,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { IOPMAssertionCopyProperties(the_assertion) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -2365,11 +2365,17 @@ pub unsafe fn IOPMAssertionSetProperty(
 /// `assertions_by_pid` might not allow `None`.
 #[inline]
 pub unsafe fn IOPMCopyAssertionsByProcess(
-    assertions_by_pid: Option<&mut Option<CFRetained<CFDictionary>>>,
+    assertions_by_pid: Option<
+        &mut Option<CFRetained<CFDictionary<CFNumber, CFArray<CFDictionary<CFString, CFType>>>>>,
+    >,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMCopyAssertionsByProcess(
-            assertions_by_pid: Option<&mut Option<CFRetained<CFDictionary>>>,
+            assertions_by_pid: Option<
+                &mut Option<
+                    CFRetained<CFDictionary<CFNumber, CFArray<CFDictionary<CFString, CFType>>>>,
+                >,
+            >,
         ) -> IOReturn;
     }
     if let Some(assertions_by_pid) = assertions_by_pid.as_ref() {
@@ -2399,11 +2405,11 @@ pub unsafe fn IOPMCopyAssertionsByProcess(
 /// `assertions_status` might not allow `None`.
 #[inline]
 pub unsafe fn IOPMCopyAssertionsStatus(
-    assertions_status: Option<&mut Option<CFRetained<CFDictionary>>>,
+    assertions_status: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMCopyAssertionsStatus(
-            assertions_status: Option<&mut Option<CFRetained<CFDictionary>>>,
+            assertions_status: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
         ) -> IOReturn;
     }
     if let Some(assertions_status) = assertions_status.as_ref() {
@@ -2575,9 +2581,9 @@ pub fn IOGetSystemLoadAdvisory() -> IOSystemLoadAdvisoryLevel {
 /// Returns: Returns a CFDictionaryRef, or NULL on error. Caller must release the
 /// returned dictionary.
 #[inline]
-pub fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained<CFDictionary>> {
+pub fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
-        fn IOCopySystemLoadAdvisoryDetailed() -> Option<NonNull<CFDictionary>>;
+        fn IOCopySystemLoadAdvisoryDetailed() -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { IOCopySystemLoadAdvisoryDetailed() };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -2608,11 +2614,11 @@ pub fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained<CFDictionary>> {
 /// `cpu_power_status` might not allow `None`.
 #[inline]
 pub unsafe fn IOPMCopyCPUPowerStatus(
-    cpu_power_status: Option<&mut Option<CFRetained<CFDictionary>>>,
+    cpu_power_status: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMCopyCPUPowerStatus(
-            cpu_power_status: Option<&mut Option<CFRetained<CFDictionary>>>,
+            cpu_power_status: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
         ) -> IOReturn;
     }
     if let Some(cpu_power_status) = cpu_power_status.as_ref() {

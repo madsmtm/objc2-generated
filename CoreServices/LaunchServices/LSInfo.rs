@@ -165,12 +165,12 @@ pub unsafe fn LSCopyDefaultApplicationURLForContentType(
 pub unsafe fn LSCopyApplicationURLsForBundleIdentifier(
     in_bundle_identifier: &CFString,
     out_error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFURL>>> {
     extern "C-unwind" {
         fn LSCopyApplicationURLsForBundleIdentifier(
             in_bundle_identifier: &CFString,
             out_error: Option<&mut Option<CFRetained<CFError>>>,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFURL>>>;
     }
     if let Some(out_error) = out_error.as_ref() {
         assert!(
@@ -212,12 +212,12 @@ pub unsafe fn LSCopyApplicationURLsForBundleIdentifier(
 pub unsafe fn LSCopyApplicationURLsForURL(
     in_url: &CFURL,
     in_role_mask: LSRolesMask,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFURL>>> {
     extern "C-unwind" {
         fn LSCopyApplicationURLsForURL(
             in_url: &CFURL,
             in_role_mask: LSRolesMask,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFURL>>>;
     }
     let ret = unsafe { LSCopyApplicationURLsForURL(in_url, in_role_mask) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -355,12 +355,12 @@ pub unsafe fn LSCopyDefaultRoleHandlerForContentType(
 pub unsafe fn LSCopyAllRoleHandlersForContentType(
     in_content_type: &CFString,
     in_role: LSRolesMask,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFString>>> {
     extern "C-unwind" {
         fn LSCopyAllRoleHandlersForContentType(
             in_content_type: &CFString,
             in_role: LSRolesMask,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { LSCopyAllRoleHandlersForContentType(in_content_type, in_role) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -434,9 +434,11 @@ pub unsafe fn LSCopyDefaultHandlerForURLScheme(
 #[inline]
 pub unsafe fn LSCopyAllHandlersForURLScheme(
     in_url_scheme: &CFString,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFString>>> {
     extern "C-unwind" {
-        fn LSCopyAllHandlersForURLScheme(in_url_scheme: &CFString) -> Option<NonNull<CFArray>>;
+        fn LSCopyAllHandlersForURLScheme(
+            in_url_scheme: &CFString,
+        ) -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { LSCopyAllHandlersForURLScheme(in_url_scheme) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

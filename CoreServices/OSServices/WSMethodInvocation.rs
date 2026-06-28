@@ -263,24 +263,22 @@ impl WSMethodInvocation {
 
     /// # Safety
     ///
-    /// - `parameters` generic must be of the correct type.
-    /// - `parameters` generic must be of the correct type.
+    /// - `parameters` generic should be of the correct type.
     /// - `parameters` might not allow `None`.
-    /// - `parameter_order` generic must be of the correct type.
     /// - `parameter_order` might not allow `None`.
     #[doc(alias = "WSMethodInvocationSetParameters")]
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn set_parameters(
         &self,
-        parameters: Option<&CFDictionary>,
-        parameter_order: Option<&CFArray>,
+        parameters: Option<&CFDictionary<CFString, CFType>>,
+        parameter_order: Option<&CFArray<CFString>>,
     ) {
         extern "C-unwind" {
             fn WSMethodInvocationSetParameters(
                 invocation: &WSMethodInvocation,
-                parameters: Option<&CFDictionary>,
-                parameter_order: Option<&CFArray>,
+                parameters: Option<&CFDictionary<CFString, CFType>>,
+                parameter_order: Option<&CFArray<CFString>>,
             );
         }
         unsafe { WSMethodInvocationSetParameters(self, parameters, parameter_order) }
@@ -294,13 +292,13 @@ impl WSMethodInvocation {
     #[inline]
     pub unsafe fn parameters(
         &self,
-        parameter_order: Option<&mut Option<CFRetained<CFArray>>>,
-    ) -> Option<CFRetained<CFDictionary>> {
+        parameter_order: Option<&mut Option<CFRetained<CFArray<CFString>>>>,
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn WSMethodInvocationCopyParameters(
                 invocation: &WSMethodInvocation,
-                parameter_order: Option<&mut Option<CFRetained<CFArray>>>,
-            ) -> Option<NonNull<CFDictionary>>;
+                parameter_order: Option<&mut Option<CFRetained<CFArray<CFString>>>>,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         if let Some(parameter_order) = parameter_order.as_ref() {
             assert!(
@@ -355,11 +353,11 @@ impl WSMethodInvocation {
     #[doc(alias = "WSMethodInvocationInvoke")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn invoke(&self) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn invoke(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn WSMethodInvocationInvoke(
                 invocation: &WSMethodInvocation,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { WSMethodInvocationInvoke(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -444,14 +442,16 @@ impl WSMethodInvocation {
 
 /// # Safety
 ///
-/// - `method_result` generic must be of the correct type.
-/// - `method_result` generic must be of the correct type.
+/// - `method_result` generic should be of the correct type.
 /// - `method_result` might not allow `None`.
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe fn WSMethodResultIsFault(method_result: Option<&CFDictionary>) -> bool {
+pub unsafe fn WSMethodResultIsFault(
+    method_result: Option<&CFDictionary<CFString, CFType>>,
+) -> bool {
     extern "C-unwind" {
-        fn WSMethodResultIsFault(method_result: Option<&CFDictionary>) -> Boolean;
+        fn WSMethodResultIsFault(method_result: Option<&CFDictionary<CFString, CFType>>)
+            -> Boolean;
     }
     let ret = unsafe { WSMethodResultIsFault(method_result) };
     ret != 0

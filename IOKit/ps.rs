@@ -441,9 +441,11 @@ pub fn IOPSCopyPowerSourcesInfo() -> Option<CFRetained<CFType>> {
 /// - `blob` should be of the correct type.
 /// - `blob` might not allow `None`.
 #[inline]
-pub unsafe fn IOPSCopyPowerSourcesList(blob: Option<&CFType>) -> Option<CFRetained<CFArray>> {
+pub unsafe fn IOPSCopyPowerSourcesList(
+    blob: Option<&CFType>,
+) -> Option<CFRetained<CFArray<CFType>>> {
     extern "C-unwind" {
-        fn IOPSCopyPowerSourcesList(blob: Option<&CFType>) -> Option<NonNull<CFArray>>;
+        fn IOPSCopyPowerSourcesList(blob: Option<&CFType>) -> Option<NonNull<CFArray<CFType>>>;
     }
     let ret = unsafe { IOPSCopyPowerSourcesList(blob) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -477,12 +479,12 @@ pub unsafe fn IOPSCopyPowerSourcesList(blob: Option<&CFType>) -> Option<CFRetain
 pub unsafe fn IOPSGetPowerSourceDescription(
     blob: Option<&CFType>,
     ps: Option<&CFType>,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn IOPSGetPowerSourceDescription(
             blob: Option<&CFType>,
             ps: Option<&CFType>,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { IOPSGetPowerSourceDescription(blob, ps) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -636,9 +638,9 @@ pub unsafe fn IOPSCreateLimitedPowerNotification(
 /// Returns: Returns a CFDictionary on success. Caller must release the returned
 /// dictionary. If no adapter is attached, or if there's an error,  returns NULL.
 #[inline]
-pub fn IOPSCopyExternalPowerAdapterDetails() -> Option<CFRetained<CFDictionary>> {
+pub fn IOPSCopyExternalPowerAdapterDetails() -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
-        fn IOPSCopyExternalPowerAdapterDetails() -> Option<NonNull<CFDictionary>>;
+        fn IOPSCopyExternalPowerAdapterDetails() -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { IOPSCopyExternalPowerAdapterDetails() };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

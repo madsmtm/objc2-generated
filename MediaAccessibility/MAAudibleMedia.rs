@@ -23,9 +23,9 @@ extern "C" {
 ///
 /// Returns: An array containing the preferred order of media characteristics for audible media.
 #[inline]
-pub unsafe fn MAAudibleMediaCopyPreferredCharacteristics() -> CFRetained<CFArray> {
+pub unsafe fn MAAudibleMediaCopyPreferredCharacteristics() -> CFRetained<CFArray<CFString>> {
     extern "C-unwind" {
-        fn MAAudibleMediaCopyPreferredCharacteristics() -> Option<NonNull<CFArray>>;
+        fn MAAudibleMediaCopyPreferredCharacteristics() -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { MAAudibleMediaCopyPreferredCharacteristics() };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");

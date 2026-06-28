@@ -131,22 +131,21 @@ impl SecStaticCode {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
+    /// `attributes` generic should be of the correct type.
     #[doc(alias = "SecStaticCodeCreateWithPathAndAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
     pub unsafe fn with_path_and_attributes(
         path: &CFURL,
         flags: SecCSFlags,
-        attributes: &CFDictionary,
+        attributes: &CFDictionary<CFString, CFType>,
         static_code: &mut Option<CFRetained<SecStaticCode>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecStaticCodeCreateWithPathAndAttributes(
                 path: &CFURL,
                 flags: SecCSFlags,
-                attributes: &CFDictionary,
+                attributes: &CFDictionary<CFString, CFType>,
                 static_code: &mut Option<CFRetained<SecStaticCode>>,
             ) -> OSStatus;
         }

@@ -354,14 +354,14 @@ pub unsafe fn CWKeychainSetWiFiEAPIdentity(
 ///
 ///
 /// Finds and returns all available identities.
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[inline]
 pub unsafe fn CWKeychainCopyEAPIdentityList(
-    list: Option<&mut Option<CFRetained<CFArray>>>,
+    list: Option<&mut Option<CFRetained<CFArray<SecIdentity>>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CWKeychainCopyEAPIdentityList(
-            list: Option<&mut Option<CFRetained<CFArray>>>,
+            list: Option<&mut Option<CFRetained<CFArray<SecIdentity>>>>,
         ) -> OSStatus;
     }
     if let Some(list) = list.as_ref() {

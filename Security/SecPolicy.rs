@@ -200,9 +200,11 @@ impl SecPolicy {
     #[doc(alias = "SecPolicyCopyProperties")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn properties(&self) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn properties(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
-            fn SecPolicyCopyProperties(policy_ref: &SecPolicy) -> Option<NonNull<CFDictionary>>;
+            fn SecPolicyCopyProperties(
+                policy_ref: &SecPolicy,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { SecPolicyCopyProperties(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -309,19 +311,18 @@ impl SecPolicy {
     /// # Safety
     ///
     /// - `policy_identifier` should be of the correct type.
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     #[doc(alias = "SecPolicyCreateWithProperties")]
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn with_properties(
         policy_identifier: &CFType,
-        properties: Option<&CFDictionary>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<SecPolicy>> {
         extern "C-unwind" {
             fn SecPolicyCreateWithProperties(
                 policy_identifier: &CFType,
-                properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<SecPolicy>>;
         }
         let ret = unsafe { SecPolicyCreateWithProperties(policy_identifier, properties) };
@@ -553,17 +554,16 @@ impl SecPolicy {
     ///
     /// # Safety
     ///
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// `properties` generic should be of the correct type.
     #[doc(alias = "SecPolicySetProperties")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_properties(&self, properties: &CFDictionary) -> OSStatus {
+    pub unsafe fn set_properties(&self, properties: &CFDictionary<CFString, CFType>) -> OSStatus {
         extern "C-unwind" {
             fn SecPolicySetProperties(
                 policy_ref: &SecPolicy,
-                properties: &CFDictionary,
+                properties: &CFDictionary<CFString, CFType>,
             ) -> OSStatus;
         }
         unsafe { SecPolicySetProperties(self, properties) }

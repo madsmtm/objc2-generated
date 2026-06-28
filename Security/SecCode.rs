@@ -223,21 +223,20 @@ impl SecCode {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
+    /// `attributes` generic should be of the correct type.
     #[doc(alias = "SecCodeCopyGuestWithAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
     pub unsafe fn guest_with_attributes(
         host: Option<&SecCode>,
-        attributes: Option<&CFDictionary>,
+        attributes: Option<&CFDictionary<CFString, CFType>>,
         flags: SecCSFlags,
         guest: &mut Option<CFRetained<SecCode>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeCopyGuestWithAttributes(
                 host: Option<&SecCode>,
-                attributes: Option<&CFDictionary>,
+                attributes: Option<&CFDictionary<CFString, CFType>>,
                 flags: SecCSFlags,
                 guest: &mut Option<CFRetained<SecCode>>,
             ) -> OSStatus;
@@ -625,13 +624,13 @@ impl SecCode {
     pub unsafe fn signing_information(
         code: &SecStaticCode,
         flags: SecCSFlags,
-        information: &mut Option<CFRetained<CFDictionary>>,
+        information: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeCopySigningInformation(
                 code: &SecStaticCode,
                 flags: SecCSFlags,
-                information: &mut Option<CFRetained<CFDictionary>>,
+                information: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
             ) -> OSStatus;
         }
         assert!(

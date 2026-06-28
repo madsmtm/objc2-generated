@@ -100,13 +100,13 @@ pub unsafe fn UTTypeCreateAllIdentifiersForTag(
     in_tag_class: &CFString,
     in_tag: &CFString,
     in_conforming_to_uti: Option<&CFString>,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFString>>> {
     extern "C-unwind" {
         fn UTTypeCreateAllIdentifiersForTag(
             in_tag_class: &CFString,
             in_tag: &CFString,
             in_conforming_to_uti: Option<&CFString>,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret =
         unsafe { UTTypeCreateAllIdentifiersForTag(in_tag_class, in_tag, in_conforming_to_uti) };
@@ -134,12 +134,12 @@ pub unsafe fn UTTypeCopyPreferredTagWithClass(
 pub unsafe fn UTTypeCopyAllTagsWithClass(
     in_uti: &CFString,
     in_tag_class: &CFString,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFString>>> {
     extern "C-unwind" {
         fn UTTypeCopyAllTagsWithClass(
             in_uti: &CFString,
             in_tag_class: &CFString,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { UTTypeCopyAllTagsWithClass(in_uti, in_tag_class) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -197,9 +197,13 @@ pub unsafe fn UTTypeIsDynamic(in_uti: &CFString) -> bool {
 
 #[deprecated = "Use the UTType class instead."]
 #[inline]
-pub unsafe fn UTTypeCopyDeclaration(in_uti: &CFString) -> Option<CFRetained<CFDictionary>> {
+pub unsafe fn UTTypeCopyDeclaration(
+    in_uti: &CFString,
+) -> Option<CFRetained<CFDictionary<CFString, CFPropertyList>>> {
     extern "C-unwind" {
-        fn UTTypeCopyDeclaration(in_uti: &CFString) -> Option<NonNull<CFDictionary>>;
+        fn UTTypeCopyDeclaration(
+            in_uti: &CFString,
+        ) -> Option<NonNull<CFDictionary<CFString, CFPropertyList>>>;
     }
     let ret = unsafe { UTTypeCopyDeclaration(in_uti) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

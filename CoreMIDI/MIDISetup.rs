@@ -548,11 +548,12 @@ pub unsafe fn MIDISetSerialPortOwner(port_name: &CFString, driver_name: &CFStrin
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe fn MIDIGetSerialPortDrivers(
-    out_driver_names: &mut Option<CFRetained<CFArray>>,
+    out_driver_names: &mut Option<CFRetained<CFArray<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn MIDIGetSerialPortDrivers(out_driver_names: &mut Option<CFRetained<CFArray>>)
-            -> OSStatus;
+        fn MIDIGetSerialPortDrivers(
+            out_driver_names: &mut Option<CFRetained<CFArray<CFString>>>,
+        ) -> OSStatus;
     }
     assert!(
         out_driver_names.is_none(),

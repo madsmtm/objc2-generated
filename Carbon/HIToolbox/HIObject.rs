@@ -456,12 +456,14 @@ impl HIObject {
     #[inline]
     pub unsafe fn delegates(
         &self,
-        out_delegates: Option<&mut Option<CFRetained<CFDictionary>>>,
+        out_delegates: Option<&mut Option<CFRetained<CFDictionary<CFString, CFArray<HIObject>>>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn HIObjectCopyDelegates(
                 in_object: &HIObject,
-                out_delegates: Option<&mut Option<CFRetained<CFDictionary>>>,
+                out_delegates: Option<
+                    &mut Option<CFRetained<CFDictionary<CFString, CFArray<HIObject>>>>,
+                >,
             ) -> OSStatus;
         }
         if let Some(out_delegates) = out_delegates.as_ref() {

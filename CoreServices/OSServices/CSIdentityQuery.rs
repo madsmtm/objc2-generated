@@ -186,9 +186,11 @@ impl CSIdentityQuery {
     #[doc(alias = "CSIdentityQueryCopyResults")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    pub unsafe fn results(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn results(&self) -> Option<CFRetained<CFArray<CSIdentity>>> {
         extern "C-unwind" {
-            fn CSIdentityQueryCopyResults(query: &CSIdentityQuery) -> Option<NonNull<CFArray>>;
+            fn CSIdentityQueryCopyResults(
+                query: &CSIdentityQuery,
+            ) -> Option<NonNull<CFArray<CSIdentity>>>;
         }
         let ret = unsafe { CSIdentityQueryCopyResults(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

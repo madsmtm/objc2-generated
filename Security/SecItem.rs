@@ -1520,16 +1520,15 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// - `query` generic must be of the correct type.
-/// - `query` generic must be of the correct type.
+/// `query` generic should be of the correct type.
 #[inline]
 pub unsafe fn SecItemCopyMatching(
-    query: &CFDictionary,
+    query: &CFDictionary<CFString, CFType>,
     result: Option<&mut Option<CFRetained<CFType>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecItemCopyMatching(
-            query: &CFDictionary,
+            query: &CFDictionary<CFString, CFType>,
             result: Option<&mut Option<CFRetained<CFType>>>,
         ) -> OSStatus;
     }
@@ -1594,16 +1593,15 @@ pub unsafe fn SecItemCopyMatching(
 ///
 /// # Safety
 ///
-/// - `attributes` generic must be of the correct type.
-/// - `attributes` generic must be of the correct type.
+/// `attributes` generic should be of the correct type.
 #[inline]
 pub unsafe fn SecItemAdd(
-    attributes: &CFDictionary,
+    attributes: &CFDictionary<CFString, CFType>,
     result: Option<&mut Option<CFRetained<CFType>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SecItemAdd(
-            attributes: &CFDictionary,
+            attributes: &CFDictionary<CFString, CFType>,
             result: Option<&mut Option<CFRetained<CFType>>>,
         ) -> OSStatus;
     }
@@ -1636,14 +1634,18 @@ pub unsafe fn SecItemAdd(
 ///
 /// # Safety
 ///
-/// - `query` generic must be of the correct type.
-/// - `query` generic must be of the correct type.
-/// - `attributes_to_update` generic must be of the correct type.
-/// - `attributes_to_update` generic must be of the correct type.
+/// - `query` generic should be of the correct type.
+/// - `attributes_to_update` generic should be of the correct type.
 #[inline]
-pub unsafe fn SecItemUpdate(query: &CFDictionary, attributes_to_update: &CFDictionary) -> OSStatus {
+pub unsafe fn SecItemUpdate(
+    query: &CFDictionary<CFString, CFType>,
+    attributes_to_update: &CFDictionary<CFString, CFType>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn SecItemUpdate(query: &CFDictionary, attributes_to_update: &CFDictionary) -> OSStatus;
+        fn SecItemUpdate(
+            query: &CFDictionary<CFString, CFType>,
+            attributes_to_update: &CFDictionary<CFString, CFType>,
+        ) -> OSStatus;
     }
     unsafe { SecItemUpdate(query, attributes_to_update) }
 }
@@ -1679,12 +1681,11 @@ pub unsafe fn SecItemUpdate(query: &CFDictionary, attributes_to_update: &CFDicti
 ///
 /// # Safety
 ///
-/// - `query` generic must be of the correct type.
-/// - `query` generic must be of the correct type.
+/// `query` generic should be of the correct type.
 #[inline]
-pub unsafe fn SecItemDelete(query: &CFDictionary) -> OSStatus {
+pub unsafe fn SecItemDelete(query: &CFDictionary<CFString, CFType>) -> OSStatus {
     extern "C-unwind" {
-        fn SecItemDelete(query: &CFDictionary) -> OSStatus;
+        fn SecItemDelete(query: &CFDictionary<CFString, CFType>) -> OSStatus;
     }
     unsafe { SecItemDelete(query) }
 }

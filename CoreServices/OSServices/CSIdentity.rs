@@ -233,9 +233,9 @@ impl CSIdentity {
 
     #[doc(alias = "CSIdentityGetAliases")]
     #[inline]
-    pub unsafe fn aliases(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn aliases(&self) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
-            fn CSIdentityGetAliases(identity: &CSIdentity) -> Option<NonNull<CFArray>>;
+            fn CSIdentityGetAliases(identity: &CSIdentity) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CSIdentityGetAliases(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })

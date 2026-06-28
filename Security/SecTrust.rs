@@ -326,12 +326,16 @@ impl SecTrust {
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[doc(alias = "SecTrustCopyPolicies")]
+    #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn policies(&self, policies: &mut Option<CFRetained<CFArray>>) -> OSStatus {
+    pub unsafe fn policies(
+        &self,
+        policies: &mut Option<CFRetained<CFArray<SecPolicy>>>,
+    ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustCopyPolicies(
                 trust: &SecTrust,
-                policies: &mut Option<CFRetained<CFArray>>,
+                policies: &mut Option<CFRetained<CFArray<SecPolicy>>>,
             ) -> OSStatus;
         }
         assert!(
@@ -405,20 +409,17 @@ impl SecTrust {
     /// Calling this function without also calling
     /// SecTrustSetAnchorCertificatesOnly() will disable trusting any
     /// anchors other than the ones in anchorCertificates.
-    ///
-    /// # Safety
-    ///
-    /// `anchor_certificates` generic must be of the correct type.
     #[doc(alias = "SecTrustSetAnchorCertificates")]
+    #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn set_anchor_certificates(
         &self,
-        anchor_certificates: Option<&CFArray>,
+        anchor_certificates: Option<&CFArray<SecCertificate>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetAnchorCertificates(
                 trust: &SecTrust,
-                anchor_certificates: Option<&CFArray>,
+                anchor_certificates: Option<&CFArray<SecCertificate>>,
             ) -> OSStatus;
         }
         unsafe { SecTrustSetAnchorCertificates(self, anchor_certificates) }
@@ -459,15 +460,16 @@ impl SecTrust {
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[doc(alias = "SecTrustCopyCustomAnchorCertificates")]
+    #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn custom_anchor_certificates(
         &self,
-        anchors: &mut Option<CFRetained<CFArray>>,
+        anchors: &mut Option<CFRetained<CFArray<SecCertificate>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustCopyCustomAnchorCertificates(
                 trust: &SecTrust,
-                anchors: &mut Option<CFRetained<CFArray>>,
+                anchors: &mut Option<CFRetained<CFArray<SecCertificate>>>,
             ) -> OSStatus;
         }
         assert!(
@@ -804,9 +806,11 @@ impl SecTrust {
     #[doc(alias = "SecTrustCopyProperties")]
     #[deprecated]
     #[inline]
-    pub unsafe fn properties(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn properties(&self) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
         extern "C-unwind" {
-            fn SecTrustCopyProperties(trust: &SecTrust) -> Option<NonNull<CFArray>>;
+            fn SecTrustCopyProperties(
+                trust: &SecTrust,
+            ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
         }
         let ret = unsafe { SecTrustCopyProperties(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -826,9 +830,11 @@ impl SecTrust {
     /// "Trust Result Constants" section for a list of currently defined keys.
     #[doc(alias = "SecTrustCopyResult")]
     #[inline]
-    pub unsafe fn result(&self) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn result(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
-            fn SecTrustCopyResult(trust: &SecTrust) -> Option<NonNull<CFDictionary>>;
+            fn SecTrustCopyResult(
+                trust: &SecTrust,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { SecTrustCopyResult(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -874,20 +880,16 @@ impl SecTrust {
     /// Allows the caller to provide SCT data (which may be
     /// obtained during a TLS/SSL handshake, per RFC 6962) as input to a trust
     /// evaluation.
-    ///
-    /// # Safety
-    ///
-    /// `sct_array` generic must be of the correct type.
     #[doc(alias = "SecTrustSetSignedCertificateTimestamps")]
     #[inline]
     pub unsafe fn set_signed_certificate_timestamps(
         &self,
-        sct_array: Option<&CFArray>,
+        sct_array: Option<&CFArray<CFData>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetSignedCertificateTimestamps(
                 trust: &SecTrust,
-                sct_array: Option<&CFArray>,
+                sct_array: Option<&CFArray<CFData>>,
             ) -> OSStatus;
         }
         unsafe { SecTrustSetSignedCertificateTimestamps(self, sct_array) }
@@ -899,10 +901,13 @@ impl SecTrust {
     ///
     /// Returns: A CFArray of the SecCertificateRefs for the resulting certificate chain
     #[doc(alias = "SecTrustCopyCertificateChain")]
+    #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn certificate_chain(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn certificate_chain(&self) -> Option<CFRetained<CFArray<SecCertificate>>> {
         extern "C-unwind" {
-            fn SecTrustCopyCertificateChain(trust: &SecTrust) -> Option<NonNull<CFArray>>;
+            fn SecTrustCopyCertificateChain(
+                trust: &SecTrust,
+            ) -> Option<NonNull<CFArray<SecCertificate>>>;
         }
         let ret = unsafe { SecTrustCopyCertificateChain(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1083,6 +1088,7 @@ impl SecTrust {
     #[doc(alias = "SecTrustGetResult")]
     #[cfg(all(
         feature = "SecAsn1Types",
+        feature = "SecBase",
         feature = "cssmapple",
         feature = "cssmconfig",
         feature = "cssmtype"
@@ -1092,14 +1098,14 @@ impl SecTrust {
     pub unsafe fn get_trust(
         &self,
         result: *mut SecTrustResultType,
-        cert_chain: Option<&mut Option<CFRetained<CFArray>>>,
+        cert_chain: Option<&mut Option<CFRetained<CFArray<SecCertificate>>>>,
         status_chain: *mut *mut CSSM_TP_APPLE_EVIDENCE_INFO,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetResult(
                 trust_ref: &SecTrust,
                 result: *mut SecTrustResultType,
-                cert_chain: Option<&mut Option<CFRetained<CFArray>>>,
+                cert_chain: Option<&mut Option<CFRetained<CFArray<SecCertificate>>>>,
                 status_chain: *mut *mut CSSM_TP_APPLE_EVIDENCE_INFO,
             ) -> OSStatus;
         }
@@ -1216,11 +1222,14 @@ impl SecTrust {
     /// This function is not available on iOS, as certificate data
     /// for system-trusted roots is currently unavailable on that platform.
     #[doc(alias = "SecTrustCopyAnchorCertificates")]
+    #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn anchor_certificates(anchors: &mut Option<CFRetained<CFArray>>) -> OSStatus {
+    pub unsafe fn anchor_certificates(
+        anchors: &mut Option<CFRetained<CFArray<SecCertificate>>>,
+    ) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustCopyAnchorCertificates(
-                anchors: &mut Option<CFRetained<CFArray>>,
+                anchors: &mut Option<CFRetained<CFArray<SecCertificate>>>,
             ) -> OSStatus;
         }
         assert!(

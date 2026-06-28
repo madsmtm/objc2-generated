@@ -67,8 +67,7 @@ impl VTFrameSilo {
     ///
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "VTFrameSiloCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -76,7 +75,7 @@ impl VTFrameSilo {
         allocator: Option<&CFAllocator>,
         file_url: Option<&CFURL>,
         time_range: CMTimeRange,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
         frame_silo_out: &mut Option<CFRetained<VTFrameSilo>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -84,7 +83,7 @@ impl VTFrameSilo {
                 allocator: Option<&CFAllocator>,
                 file_url: Option<&CFURL>,
                 time_range: CMTimeRange,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
                 frame_silo_out: &mut Option<CFRetained<VTFrameSilo>>,
             ) -> OSStatus;
         }

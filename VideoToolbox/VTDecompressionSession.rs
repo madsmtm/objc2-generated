@@ -149,10 +149,8 @@ impl VTDecompressionSession {
     ///
     /// # Safety
     ///
-    /// - `video_decoder_specification` generic must be of the correct type.
-    /// - `video_decoder_specification` generic must be of the correct type.
-    /// - `destination_image_buffer_attributes` generic must be of the correct type.
-    /// - `destination_image_buffer_attributes` generic must be of the correct type.
+    /// - `video_decoder_specification` generic should be of the correct type.
+    /// - `destination_image_buffer_attributes` generic should be of the correct type.
     /// - `output_callback` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionCreate")]
     #[cfg(all(
@@ -164,8 +162,8 @@ impl VTDecompressionSession {
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         video_format_description: &CMVideoFormatDescription,
-        video_decoder_specification: Option<&CFDictionary>,
-        destination_image_buffer_attributes: Option<&CFDictionary>,
+        video_decoder_specification: Option<&CFDictionary<CFString, CFType>>,
+        destination_image_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         output_callback: *const VTDecompressionOutputCallbackRecord,
         decompression_session_out: &mut Option<CFRetained<VTDecompressionSession>>,
     ) -> OSStatus {
@@ -173,8 +171,8 @@ impl VTDecompressionSession {
             fn VTDecompressionSessionCreate(
                 allocator: Option<&CFAllocator>,
                 video_format_description: &CMVideoFormatDescription,
-                video_decoder_specification: Option<&CFDictionary>,
-                destination_image_buffer_attributes: Option<&CFDictionary>,
+                video_decoder_specification: Option<&CFDictionary<CFString, CFType>>,
+                destination_image_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
                 output_callback: *const VTDecompressionOutputCallbackRecord,
                 decompression_session_out: &mut Option<CFRetained<VTDecompressionSession>>,
             ) -> OSStatus;
@@ -730,8 +728,7 @@ impl VTDecompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_options` generic must be of the correct type.
-    /// - `frame_options` generic must be of the correct type.
+    /// - `frame_options` generic should be of the correct type.
     /// - `source_frame_ref_con` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptions")]
@@ -741,7 +738,7 @@ impl VTDecompressionSession {
         &self,
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
-        frame_options: Option<&CFDictionary>,
+        frame_options: Option<&CFDictionary<CFString, CFType>>,
         source_frame_ref_con: *mut c_void,
         info_flags_out: *mut VTDecodeInfoFlags,
     ) -> OSStatus {
@@ -750,7 +747,7 @@ impl VTDecompressionSession {
                 session: &VTDecompressionSession,
                 sample_buffer: &CMSampleBuffer,
                 decode_flags: VTDecodeFrameFlags,
-                frame_options: Option<&CFDictionary>,
+                frame_options: Option<&CFDictionary<CFString, CFType>>,
                 source_frame_ref_con: *mut c_void,
                 info_flags_out: *mut VTDecodeInfoFlags,
             ) -> OSStatus;
@@ -801,8 +798,7 @@ impl VTDecompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_options` generic must be of the correct type.
-    /// - `frame_options` generic must be of the correct type.
+    /// - `frame_options` generic should be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler")]
     #[cfg(all(
@@ -816,7 +812,7 @@ impl VTDecompressionSession {
         &self,
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
-        frame_options: Option<&CFDictionary>,
+        frame_options: Option<&CFDictionary<CFString, CFType>>,
         info_flags_out: *mut VTDecodeInfoFlags,
         output_handler: &VTDecompressionOutputHandler,
     ) -> OSStatus {
@@ -825,7 +821,7 @@ impl VTDecompressionSession {
                 session: &VTDecompressionSession,
                 sample_buffer: &CMSampleBuffer,
                 decode_flags: VTDecodeFrameFlags,
-                frame_options: Option<&CFDictionary>,
+                frame_options: Option<&CFDictionary<CFString, CFType>>,
                 info_flags_out: *mut VTDecodeInfoFlags,
                 output_handler: &VTDecompressionOutputHandler,
             ) -> OSStatus;

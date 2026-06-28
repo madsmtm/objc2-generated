@@ -118,18 +118,17 @@ impl MDItem {
 ///
 /// # Safety
 ///
-/// - `urls` generic must be of the correct type.
-/// - `urls` might not allow `None`.
+/// `urls` might not allow `None`.
 #[inline]
 pub unsafe fn MDItemsCreateWithURLs(
     allocator: Option<&CFAllocator>,
-    urls: Option<&CFArray>,
-) -> Option<CFRetained<CFArray>> {
+    urls: Option<&CFArray<CFURL>>,
+) -> Option<CFRetained<CFArray<MDItem>>> {
     extern "C-unwind" {
         fn MDItemsCreateWithURLs(
             allocator: Option<&CFAllocator>,
-            urls: Option<&CFArray>,
-        ) -> Option<NonNull<CFArray>>;
+            urls: Option<&CFArray<CFURL>>,
+        ) -> Option<NonNull<CFArray<MDItem>>>;
     }
     let ret = unsafe { MDItemsCreateWithURLs(allocator, urls) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -175,16 +174,18 @@ impl MDItem {
     ///
     /// # Safety
     ///
-    /// - `names` generic must be of the correct type.
-    /// - `names` might not allow `None`.
+    /// `names` might not allow `None`.
     #[doc(alias = "MDItemCopyAttributes")]
     #[inline]
-    pub unsafe fn attributes(&self, names: Option<&CFArray>) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn attributes(
+        &self,
+        names: Option<&CFArray<CFString>>,
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn MDItemCopyAttributes(
                 item: &MDItem,
-                names: Option<&CFArray>,
-            ) -> Option<NonNull<CFDictionary>>;
+                names: Option<&CFArray<CFString>>,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { MDItemCopyAttributes(self, names) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -198,9 +199,9 @@ impl MDItem {
     /// failure.
     #[doc(alias = "MDItemCopyAttributeNames")]
     #[inline]
-    pub unsafe fn attribute_names(&self) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn attribute_names(&self) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
-            fn MDItemCopyAttributeNames(item: &MDItem) -> Option<NonNull<CFArray>>;
+            fn MDItemCopyAttributeNames(item: &MDItem) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { MDItemCopyAttributeNames(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -220,20 +221,18 @@ impl MDItem {
 ///
 /// # Safety
 ///
-/// - `items` generic must be of the correct type.
 /// - `items` might not allow `None`.
-/// - `names` generic must be of the correct type.
 /// - `names` might not allow `None`.
 #[inline]
 pub unsafe fn MDItemsCopyAttributes(
-    items: Option<&CFArray>,
-    names: Option<&CFArray>,
-) -> Option<CFRetained<CFArray>> {
+    items: Option<&CFArray<MDItem>>,
+    names: Option<&CFArray<CFString>>,
+) -> Option<CFRetained<CFArray<CFType>>> {
     extern "C-unwind" {
         fn MDItemsCopyAttributes(
-            items: Option<&CFArray>,
-            names: Option<&CFArray>,
-        ) -> Option<NonNull<CFArray>>;
+            items: Option<&CFArray<MDItem>>,
+            names: Option<&CFArray<CFString>>,
+        ) -> Option<NonNull<CFArray<CFType>>>;
     }
     let ret = unsafe { MDItemsCopyAttributes(items, names) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -242,19 +241,18 @@ pub unsafe fn MDItemsCopyAttributes(
 impl MDItem {
     /// # Safety
     ///
-    /// - `items` generic must be of the correct type.
     /// - `items` might not allow `None`.
     /// - `completion_handler` might not allow `None`.
     #[doc(alias = "MDItemGetCacheFileDescriptors")]
     #[cfg(feature = "block2")]
     #[inline]
     pub unsafe fn cache_file_descriptors(
-        items: Option<&CFArray>,
+        items: Option<&CFArray<MDItem>>,
         completion_handler: Option<&block2::DynBlock<dyn Fn(*const CFArray)>>,
     ) {
         extern "C-unwind" {
             fn MDItemGetCacheFileDescriptors(
-                items: Option<&CFArray>,
+                items: Option<&CFArray<MDItem>>,
                 completion_handler: Option<&block2::DynBlock<dyn Fn(*const CFArray)>>,
             );
         }

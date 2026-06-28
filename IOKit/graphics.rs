@@ -4075,12 +4075,12 @@ pub const kIODisplayNoProductName: c_uint = 0x00000400;
 pub fn IODisplayCreateInfoDictionary(
     framebuffer: io_service_t,
     options: IOOptionBits,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn IODisplayCreateInfoDictionary(
             framebuffer: io_service_t,
             options: IOOptionBits,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { IODisplayCreateInfoDictionary(framebuffer, options) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -4100,22 +4100,20 @@ pub fn IODisplayCreateInfoDictionary(
 ///
 /// # Safety
 ///
-/// - `matching1` generic must be of the correct type.
-/// - `matching1` generic must be of the correct type.
+/// - `matching1` generic should be of the correct type.
 /// - `matching1` might not allow `None`.
-/// - `matching2` generic must be of the correct type.
-/// - `matching2` generic must be of the correct type.
+/// - `matching2` generic should be of the correct type.
 /// - `matching2` might not allow `None`.
 #[inline]
 pub unsafe fn IODisplayMatchDictionaries(
-    matching1: Option<&CFDictionary>,
-    matching2: Option<&CFDictionary>,
+    matching1: Option<&CFDictionary<CFString, CFType>>,
+    matching2: Option<&CFDictionary<CFString, CFType>>,
     options: IOOptionBits,
 ) -> i32 {
     extern "C-unwind" {
         fn IODisplayMatchDictionaries(
-            matching1: Option<&CFDictionary>,
-            matching2: Option<&CFDictionary>,
+            matching1: Option<&CFDictionary<CFString, CFType>>,
+            matching2: Option<&CFDictionary<CFString, CFType>>,
             options: IOOptionBits,
         ) -> i32;
     }
@@ -4136,21 +4134,20 @@ pub fn IODisplayForFramebuffer(framebuffer: io_service_t, options: IOOptionBits)
 
 /// # Safety
 ///
-/// - `params` generic must be of the correct type.
-/// - `params` generic must be of the correct type.
+/// - `params` generic should be of the correct type.
 /// - `params` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IODisplaySetParameters(
     service: io_service_t,
     options: IOOptionBits,
-    params: Option<&CFDictionary>,
+    params: Option<&CFDictionary<CFString, CFType>>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IODisplaySetParameters(
             service: io_service_t,
             options: IOOptionBits,
-            params: Option<&CFDictionary>,
+            params: Option<&CFDictionary<CFString, CFType>>,
         ) -> IOReturn;
     }
     unsafe { IODisplaySetParameters(service, options, params) }
@@ -4208,13 +4205,13 @@ pub unsafe fn IODisplaySetIntegerParameter(
 pub unsafe fn IODisplayCopyParameters(
     service: io_service_t,
     options: IOOptionBits,
-    params: Option<&mut Option<CFRetained<CFDictionary>>>,
+    params: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IODisplayCopyParameters(
             service: io_service_t,
             options: IOOptionBits,
-            params: Option<&mut Option<CFRetained<CFDictionary>>>,
+            params: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
         ) -> IOReturn;
     }
     if let Some(params) = params.as_ref() {
@@ -4234,13 +4231,13 @@ pub unsafe fn IODisplayCopyParameters(
 pub unsafe fn IODisplayCopyFloatParameters(
     service: io_service_t,
     options: IOOptionBits,
-    params: Option<&mut Option<CFRetained<CFDictionary>>>,
+    params: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IODisplayCopyFloatParameters(
             service: io_service_t,
             options: IOOptionBits,
-            params: Option<&mut Option<CFRetained<CFDictionary>>>,
+            params: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
         ) -> IOReturn;
     }
     if let Some(params) = params.as_ref() {

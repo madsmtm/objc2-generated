@@ -417,20 +417,19 @@ impl IOBluetoothL2CAPChannelRef {
 /// # Safety
 ///
 /// - `device` might not allow `None`.
-/// - `config_dict` generic must be of the correct type.
-/// - `config_dict` generic must be of the correct type.
+/// - `config_dict` generic should be of the correct type.
 /// - `config_dict` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOBluetoothAddSCOAudioDevice(
     device: Option<&IOBluetoothDeviceRef>,
-    config_dict: Option<&CFDictionary>,
+    config_dict: Option<&CFDictionary<CFString, CFType>>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOBluetoothAddSCOAudioDevice(
             device: Option<&IOBluetoothDeviceRef>,
-            config_dict: Option<&CFDictionary>,
+            config_dict: Option<&CFDictionary<CFString, CFType>>,
         ) -> IOReturn;
     }
     unsafe { IOBluetoothAddSCOAudioDevice(device, config_dict) }

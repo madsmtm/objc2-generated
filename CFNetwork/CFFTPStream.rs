@@ -156,14 +156,14 @@ pub unsafe fn CFFTPCreateParsedResourceListing(
     alloc: Option<&CFAllocator>,
     buffer: NonNull<u8>,
     buffer_length: CFIndex,
-    parsed: Option<&mut Option<CFRetained<CFDictionary>>>,
+    parsed: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
 ) -> CFIndex {
     extern "C-unwind" {
         fn CFFTPCreateParsedResourceListing(
             alloc: Option<&CFAllocator>,
             buffer: NonNull<u8>,
             buffer_length: CFIndex,
-            parsed: Option<&mut Option<CFRetained<CFDictionary>>>,
+            parsed: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
         ) -> CFIndex;
     }
     if let Some(parsed) = parsed.as_ref() {

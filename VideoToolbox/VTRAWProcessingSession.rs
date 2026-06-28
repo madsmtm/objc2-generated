@@ -66,26 +66,24 @@ impl VTRAWProcessingSession {
     ///
     /// # Safety
     ///
-    /// - `output_pixel_buffer_attributes` generic must be of the correct type.
-    /// - `output_pixel_buffer_attributes` generic must be of the correct type.
-    /// - `processing_session_options` generic must be of the correct type.
-    /// - `processing_session_options` generic must be of the correct type.
+    /// - `output_pixel_buffer_attributes` generic should be of the correct type.
+    /// - `processing_session_options` generic should be of the correct type.
     #[doc(alias = "VTRAWProcessingSessionCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         format_description: &CMVideoFormatDescription,
-        output_pixel_buffer_attributes: Option<&CFDictionary>,
-        processing_session_options: Option<&CFDictionary>,
+        output_pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
+        processing_session_options: Option<&CFDictionary<CFString, CFType>>,
         processing_session_out: &mut Option<CFRetained<VTRAWProcessingSession>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTRAWProcessingSessionCreate(
                 allocator: Option<&CFAllocator>,
                 format_description: &CMVideoFormatDescription,
-                output_pixel_buffer_attributes: Option<&CFDictionary>,
-                processing_session_options: Option<&CFDictionary>,
+                output_pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
+                processing_session_options: Option<&CFDictionary<CFString, CFType>>,
                 processing_session_out: &mut Option<CFRetained<VTRAWProcessingSession>>,
             ) -> OSStatus;
         }
@@ -213,22 +211,21 @@ impl VTRAWProcessingSession {
     ///
     /// # Safety
     ///
-    /// - `frame_options` generic must be of the correct type.
-    /// - `frame_options` generic must be of the correct type.
+    /// `frame_options` generic should be of the correct type.
     #[doc(alias = "VTRAWProcessingSessionProcessFrame")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
     #[inline]
     pub unsafe fn process_frame(
         &self,
         input_pixel_buffer: &CVPixelBuffer,
-        frame_options: Option<&CFDictionary>,
+        frame_options: Option<&CFDictionary<CFString, CFType>>,
         output_handler: &VTRAWProcessingOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTRAWProcessingSessionProcessFrame(
                 session: &VTRAWProcessingSession,
                 input_pixel_buffer: &CVPixelBuffer,
-                frame_options: Option<&CFDictionary>,
+                frame_options: Option<&CFDictionary<CFString, CFType>>,
                 output_handler: &VTRAWProcessingOutputHandler,
             ) -> OSStatus;
         }
@@ -273,12 +270,14 @@ impl VTRAWProcessingSession {
     #[inline]
     pub unsafe fn processing_parameters(
         &self,
-        out_parameter_array: &mut Option<CFRetained<CFArray>>,
+        out_parameter_array: &mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTRAWProcessingSessionCopyProcessingParameters(
                 session: &VTRAWProcessingSession,
-                out_parameter_array: &mut Option<CFRetained<CFArray>>,
+                out_parameter_array: &mut Option<
+                    CFRetained<CFArray<CFDictionary<CFString, CFType>>>,
+                >,
             ) -> OSStatus;
         }
         assert!(
@@ -310,18 +309,17 @@ impl VTRAWProcessingSession {
     ///
     /// # Safety
     ///
-    /// - `processing_parameters` generic must be of the correct type.
-    /// - `processing_parameters` generic must be of the correct type.
+    /// `processing_parameters` generic should be of the correct type.
     #[doc(alias = "VTRAWProcessingSessionSetProcessingParameters")]
     #[inline]
     pub unsafe fn set_processing_parameters(
         &self,
-        processing_parameters: &CFDictionary,
+        processing_parameters: &CFDictionary<CFString, CFType>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTRAWProcessingSessionSetProcessingParameters(
                 session: &VTRAWProcessingSession,
-                processing_parameters: &CFDictionary,
+                processing_parameters: &CFDictionary<CFString, CFType>,
             ) -> OSStatus;
         }
         unsafe { VTRAWProcessingSessionSetProcessingParameters(self, processing_parameters) }

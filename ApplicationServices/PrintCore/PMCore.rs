@@ -279,13 +279,13 @@ pub unsafe fn PMSessionSetDestination(
 pub unsafe fn PMSessionCopyOutputFormatList(
     print_session: PMPrintSession,
     dest_type: PMDestinationType,
-    document_format_p: &mut Option<CFRetained<CFArray>>,
+    document_format_p: &mut Option<CFRetained<CFArray<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMSessionCopyOutputFormatList(
             print_session: PMPrintSession,
             dest_type: PMDestinationType,
-            document_format_p: &mut Option<CFRetained<CFArray>>,
+            document_format_p: &mut Option<CFRetained<CFArray<CFString>>>,
         ) -> OSStatus;
     }
     assert!(
@@ -304,13 +304,13 @@ pub unsafe fn PMSessionCopyOutputFormatList(
 pub unsafe fn PMSessionCreatePageFormatList(
     print_session: PMPrintSession,
     printer: PMPrinter,
-    page_format_list: &mut Option<CFRetained<CFArray>>,
+    page_format_list: &mut Option<CFRetained<CFArray<OpaquePMPageFormat>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMSessionCreatePageFormatList(
             print_session: PMPrintSession,
             printer: PMPrinter,
-            page_format_list: &mut Option<CFRetained<CFArray>>,
+            page_format_list: &mut Option<CFRetained<CFArray<OpaquePMPageFormat>>>,
         ) -> OSStatus;
     }
     assert!(
@@ -329,14 +329,14 @@ pub unsafe fn PMSessionCreatePageFormatList(
 #[inline]
 pub unsafe fn PMSessionCreatePrinterList(
     print_session: PMPrintSession,
-    printer_list: &mut Option<CFRetained<CFArray>>,
+    printer_list: &mut Option<CFRetained<CFArray<OpaquePMPrinter>>>,
     current_index: *mut CFIndex,
     current_printer: *mut PMPrinter,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMSessionCreatePrinterList(
             print_session: PMPrintSession,
-            printer_list: &mut Option<CFRetained<CFArray>>,
+            printer_list: &mut Option<CFRetained<CFArray<OpaquePMPrinter>>>,
             current_index: *mut CFIndex,
             current_printer: *mut PMPrinter,
         ) -> OSStatus;
@@ -1185,12 +1185,12 @@ pub unsafe fn PMPrintSettingsSetValue(
 #[inline]
 pub unsafe fn PMPrintSettingsCopyAsDictionary(
     print_settings: PMPrintSettings,
-    settings_dictionary: &mut Option<CFRetained<CFDictionary>>,
+    settings_dictionary: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrintSettingsCopyAsDictionary(
             print_settings: PMPrintSettings,
-            settings_dictionary: &mut Option<CFRetained<CFDictionary>>,
+            settings_dictionary: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
         ) -> OSStatus;
     }
     assert!(
@@ -1207,12 +1207,12 @@ pub unsafe fn PMPrintSettingsCopyAsDictionary(
 #[inline]
 pub unsafe fn PMPrintSettingsCopyKeys(
     print_settings: PMPrintSettings,
-    settings_keys: &mut Option<CFRetained<CFArray>>,
+    settings_keys: &mut Option<CFRetained<CFArray<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrintSettingsCopyKeys(
             print_settings: PMPrintSettings,
-            settings_keys: &mut Option<CFRetained<CFArray>>,
+            settings_keys: &mut Option<CFRetained<CFArray<CFString>>>,
         ) -> OSStatus;
     }
     assert!(
@@ -1257,12 +1257,12 @@ pub unsafe fn PMCreateGenericPrinter(printer: NonNull<PMPrinter>) -> OSStatus {
 #[inline]
 pub unsafe fn PMServerCreatePrinterList(
     server: PMServer,
-    printer_list: &mut Option<CFRetained<CFArray>>,
+    printer_list: &mut Option<CFRetained<CFArray<OpaquePMPrinter>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMServerCreatePrinterList(
             server: PMServer,
-            printer_list: &mut Option<CFRetained<CFArray>>,
+            printer_list: &mut Option<CFRetained<CFArray<OpaquePMPrinter>>>,
         ) -> OSStatus;
     }
     assert!(
@@ -1275,18 +1275,17 @@ pub unsafe fn PMServerCreatePrinterList(
 /// # Safety
 ///
 /// - `server` must be a valid pointer or null.
-/// - `options` generic must be of the correct type.
-/// - `options` generic must be of the correct type.
+/// - `options` generic should be of the correct type.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMServerLaunchPrinterBrowser(
     server: PMServer,
-    options: Option<&CFDictionary>,
+    options: Option<&CFDictionary<CFString, CFType>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMServerLaunchPrinterBrowser(
             server: PMServer,
-            options: Option<&CFDictionary>,
+            options: Option<&CFDictionary<CFString, CFType>>,
         ) -> OSStatus;
     }
     unsafe { PMServerLaunchPrinterBrowser(server, options) }
@@ -1376,12 +1375,12 @@ pub unsafe fn PMPrinterCopyHostName(
 #[inline]
 pub unsafe fn PMPrinterCopyPresets(
     printer: PMPrinter,
-    preset_list: &mut Option<CFRetained<CFArray>>,
+    preset_list: &mut Option<CFRetained<CFArray<OpaquePMPreset>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterCopyPresets(
             printer: PMPrinter,
-            preset_list: &mut Option<CFRetained<CFArray>>,
+            preset_list: &mut Option<CFRetained<CFArray<OpaquePMPreset>>>,
         ) -> OSStatus;
     }
     assert!(
@@ -1591,16 +1590,16 @@ pub unsafe fn PMPrinterGetMakeAndModelName(
 pub unsafe fn PMPrinterGetMimeTypes(
     printer: PMPrinter,
     settings: PMPrintSettings,
-    mime_types: &mut Option<CFRetained<CFArray>>,
+    mime_types: &mut Option<CFRetained<CFArray<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterGetMimeTypes(
             printer: PMPrinter,
             settings: PMPrintSettings,
-            mime_types: &mut Option<CFRetained<CFArray>>,
+            mime_types: &mut Option<CFRetained<CFArray<CFString>>>,
         ) -> OSStatus;
     }
-    struct RetainMimeTypesOnDrop<'a>(&'a mut Option<CFRetained<CFArray>>);
+    struct RetainMimeTypesOnDrop<'a>(&'a mut Option<CFRetained<CFArray<CFString>>>);
     impl Drop for RetainMimeTypesOnDrop<'_> {
         #[inline]
         fn drop(&mut self) {
@@ -1635,15 +1634,15 @@ pub unsafe fn PMPrinterGetName(printer: PMPrinter) -> Option<CFRetained<CFString
 #[inline]
 pub unsafe fn PMPrinterGetPaperList(
     printer: PMPrinter,
-    paper_list: &mut Option<CFRetained<CFArray>>,
+    paper_list: &mut Option<CFRetained<CFArray<OpaquePMPaper>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterGetPaperList(
             printer: PMPrinter,
-            paper_list: &mut Option<CFRetained<CFArray>>,
+            paper_list: &mut Option<CFRetained<CFArray<OpaquePMPaper>>>,
         ) -> OSStatus;
     }
-    struct RetainPaperListOnDrop<'a>(&'a mut Option<CFRetained<CFArray>>);
+    struct RetainPaperListOnDrop<'a>(&'a mut Option<CFRetained<CFArray<OpaquePMPaper>>>);
     impl Drop for RetainPaperListOnDrop<'_> {
         #[inline]
         fn drop(&mut self) {
@@ -1815,15 +1814,15 @@ pub unsafe fn PMPresetCreatePrintSettings(
 #[inline]
 pub unsafe fn PMPresetGetAttributes(
     preset: PMPreset,
-    attributes: &mut Option<CFRetained<CFDictionary>>,
+    attributes: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPresetGetAttributes(
             preset: PMPreset,
-            attributes: &mut Option<CFRetained<CFDictionary>>,
+            attributes: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
         ) -> OSStatus;
     }
-    struct RetainAttributesOnDrop<'a>(&'a mut Option<CFRetained<CFDictionary>>);
+    struct RetainAttributesOnDrop<'a>(&'a mut Option<CFRetained<CFDictionary<CFString, CFType>>>);
     impl Drop for RetainAttributesOnDrop<'_> {
         #[inline]
         fn drop(&mut self) {
@@ -2049,9 +2048,13 @@ pub unsafe fn PMPaperIsCustom(paper: PMPaper) -> bool {
 }
 
 #[inline]
-pub unsafe fn PMWorkflowCopyItems(workflow_items: &mut Option<CFRetained<CFArray>>) -> OSStatus {
+pub unsafe fn PMWorkflowCopyItems(
+    workflow_items: &mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn PMWorkflowCopyItems(workflow_items: &mut Option<CFRetained<CFArray>>) -> OSStatus;
+        fn PMWorkflowCopyItems(
+            workflow_items: &mut Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>>,
+        ) -> OSStatus;
     }
     assert!(
         workflow_items.is_none(),
@@ -2239,22 +2242,21 @@ pub unsafe fn PMPrintSettingsToOptionsWithPrinterAndPageFormat(
 /// # Safety
 ///
 /// - `printer` must be a valid pointer.
-/// - `options` generic must be of the correct type.
-/// - `options` generic must be of the correct type.
+/// - `options` generic should be of the correct type.
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe fn PMPrinterSendCommand(
     printer: PMPrinter,
     command_string: &CFString,
     job_title: Option<&CFString>,
-    options: Option<&CFDictionary>,
+    options: Option<&CFDictionary<CFString, CFType>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterSendCommand(
             printer: PMPrinter,
             command_string: &CFString,
             job_title: Option<&CFString>,
-            options: Option<&CFDictionary>,
+            options: Option<&CFDictionary<CFString, CFType>>,
         ) -> OSStatus;
     }
     unsafe { PMPrinterSendCommand(printer, command_string, job_title, options) }
@@ -2267,12 +2269,12 @@ pub unsafe fn PMPrinterSendCommand(
 #[inline]
 pub unsafe fn PMPrinterCopyState(
     printer: PMPrinter,
-    state_dict: &mut Option<CFRetained<CFDictionary>>,
+    state_dict: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMPrinterCopyState(
             printer: PMPrinter,
-            state_dict: &mut Option<CFRetained<CFDictionary>>,
+            state_dict: &mut Option<CFRetained<CFDictionary<CFString, CFType>>>,
         ) -> OSStatus;
     }
     assert!(
@@ -2286,12 +2288,12 @@ pub unsafe fn PMPrinterCopyState(
 #[inline]
 pub unsafe fn PMCopyAvailablePPDs(
     domain: PMPPDDomain,
-    ppds: &mut Option<CFRetained<CFArray>>,
+    ppds: &mut Option<CFRetained<CFArray<CFURL>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PMCopyAvailablePPDs(
             domain: PMPPDDomain,
-            ppds: &mut Option<CFRetained<CFArray>>,
+            ppds: &mut Option<CFRetained<CFArray<CFURL>>>,
         ) -> OSStatus;
     }
     assert!(

@@ -3806,11 +3806,11 @@ pub use self::__SecureTransport::SSLConnectionType;
 pub use self::__SecureTransport::SSLContext;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLCopyALPNProtocols;
-#[cfg(feature = "SecureTransport")]
+#[cfg(all(feature = "SecBase", feature = "SecureTransport"))]
 pub use self::__SecureTransport::SSLCopyCertificateAuthorities;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLCopyDistinguishedNames;
-#[cfg(feature = "SecureTransport")]
+#[cfg(all(feature = "SecBase", feature = "SecureTransport"))]
 pub use self::__SecureTransport::SSLCopyPeerCertificates;
 #[cfg(all(feature = "SecTrust", feature = "SecureTransport"))]
 pub use self::__SecureTransport::SSLCopyPeerTrust;
@@ -3818,7 +3818,7 @@ pub use self::__SecureTransport::SSLCopyPeerTrust;
 pub use self::__SecureTransport::SSLCopyRequestedPeerName;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLCopyRequestedPeerNameLength;
-#[cfg(feature = "SecureTransport")]
+#[cfg(all(feature = "SecBase", feature = "SecureTransport"))]
 pub use self::__SecureTransport::SSLCopyTrustedRoots;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLCreateContext;
@@ -3916,7 +3916,7 @@ pub use self::__SecureTransport::SSLSetDiffieHellmanParams;
 pub use self::__SecureTransport::SSLSetEnableCertVerify;
 #[cfg(all(feature = "CipherSuite", feature = "SecureTransport"))]
 pub use self::__SecureTransport::SSLSetEnabledCiphers;
-#[cfg(feature = "SecureTransport")]
+#[cfg(all(feature = "SecBase", feature = "SecureTransport"))]
 pub use self::__SecureTransport::SSLSetEncryptionCertificate;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLSetError;
@@ -3946,7 +3946,7 @@ pub use self::__SecureTransport::SSLSetSessionConfig;
 pub use self::__SecureTransport::SSLSetSessionOption;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLSetSessionTicketsEnabled;
-#[cfg(feature = "SecureTransport")]
+#[cfg(all(feature = "SecBase", feature = "SecureTransport"))]
 pub use self::__SecureTransport::SSLSetTrustedRoots;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLWrite;

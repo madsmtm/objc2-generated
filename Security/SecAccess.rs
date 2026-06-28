@@ -164,23 +164,19 @@ impl SecAccess {
     /// Parameter `accessRef`: On return, a pointer to the new access reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// # Safety
-    ///
-    /// `trustedlist` generic must be of the correct type.
     #[doc(alias = "SecAccessCreate")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn new(
         descriptor: &CFString,
-        trustedlist: Option<&CFArray>,
+        trustedlist: Option<&CFArray<SecTrustedApplication>>,
         access_ref: &mut Option<CFRetained<SecAccess>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCreate(
                 descriptor: &CFString,
-                trustedlist: Option<&CFArray>,
+                trustedlist: Option<&CFArray<SecTrustedApplication>>,
                 access_ref: &mut Option<CFRetained<SecAccess>>,
             ) -> OSStatus;
         }
@@ -252,10 +248,6 @@ impl SecAccess {
     /// Parameter `error`: Optionally a pointer to a CFErrorRef to return any errors with may have occured
     ///
     /// Returns: A pointer to the new access reference.
-    ///
-    /// # Safety
-    ///
-    /// `acls` generic must be of the correct type.
     #[doc(alias = "SecAccessCreateWithOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -264,7 +256,7 @@ impl SecAccess {
         user_id: libc::uid_t,
         group_id: libc::gid_t,
         owner_type: SecAccessOwnerType,
-        acls: Option<&CFArray>,
+        acls: Option<&CFArray<SecACL>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> Option<CFRetained<SecAccess>> {
         extern "C-unwind" {
@@ -272,7 +264,7 @@ impl SecAccess {
                 user_id: libc::uid_t,
                 group_id: libc::gid_t,
                 owner_type: SecAccessOwnerType,
-                acls: Option<&CFArray>,
+                acls: Option<&CFArray<SecACL>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecAccess>>;
         }
@@ -360,7 +352,7 @@ impl SecAccess {
         user_id: *mut libc::uid_t,
         group_id: *mut libc::gid_t,
         owner_type: *mut SecAccessOwnerType,
-        acl_list: Option<&mut Option<CFRetained<CFArray>>>,
+        acl_list: Option<&mut Option<CFRetained<CFArray<SecACL>>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCopyOwnerAndACL(
@@ -368,7 +360,7 @@ impl SecAccess {
                 user_id: *mut libc::uid_t,
                 group_id: *mut libc::gid_t,
                 owner_type: *mut SecAccessOwnerType,
-                acl_list: Option<&mut Option<CFRetained<CFArray>>>,
+                acl_list: Option<&mut Option<CFRetained<CFArray<SecACL>>>>,
             ) -> OSStatus;
         }
         if let Some(acl_list) = acl_list.as_ref() {
@@ -391,11 +383,11 @@ impl SecAccess {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn acl_list(&self, acl_list: &mut Option<CFRetained<CFArray>>) -> OSStatus {
+    pub unsafe fn acl_list(&self, acl_list: &mut Option<CFRetained<CFArray<SecACL>>>) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCopyACLList(
                 access_ref: &SecAccess,
-                acl_list: &mut Option<CFRetained<CFArray>>,
+                acl_list: &mut Option<CFRetained<CFArray<SecACL>>>,
             ) -> OSStatus;
         }
         assert!(
@@ -423,13 +415,13 @@ impl SecAccess {
     pub unsafe fn selected_acl_list(
         &self,
         action: CSSM_ACL_AUTHORIZATION_TAG,
-        acl_list: &mut Option<CFRetained<CFArray>>,
+        acl_list: &mut Option<CFRetained<CFArray<SecACL>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCopySelectedACLList(
                 access_ref: &SecAccess,
                 action: CSSM_ACL_AUTHORIZATION_TAG,
-                acl_list: &mut Option<CFRetained<CFArray>>,
+                acl_list: &mut Option<CFRetained<CFArray<SecACL>>>,
             ) -> OSStatus;
         }
         assert!(
@@ -457,12 +449,12 @@ impl SecAccess {
     pub unsafe fn matching_acl_list(
         &self,
         authorization_tag: &CFType,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<SecACL>>> {
         extern "C-unwind" {
             fn SecAccessCopyMatchingACLList(
                 access_ref: &SecAccess,
                 authorization_tag: &CFType,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<SecACL>>>;
         }
         let ret = unsafe { SecAccessCopyMatchingACLList(self, authorization_tag) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
