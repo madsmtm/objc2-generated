@@ -20,3 +20,10 @@
 
 #[link(name = "Carbon", kind = "framework")]
 extern "C" {}
+
+#[cfg(feature = "HIToolbox")]
+#[path = "HIToolbox/mod.rs"]
+mod __HIToolbox;
+
+#[cfg(feature = "HIToolbox")]
+pub use self::__HIToolbox::*;
