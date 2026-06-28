@@ -1129,7 +1129,7 @@ pub unsafe fn HIThemeDrawButton(
 ///
 /// - `in_bounds` must be a valid pointer.
 /// - `in_draw_info` must be a valid pointer.
-/// - `out_shape` must be a valid pointer.
+/// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -1139,15 +1139,21 @@ pub unsafe fn HIThemeDrawButton(
 pub unsafe fn HIThemeGetButtonShape(
     in_bounds: *const HIRect,
     in_draw_info: *const HIThemeButtonDrawInfo,
-    out_shape: *mut *const HIShape,
+    out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetButtonShape(
             in_bounds: *const HIRect,
             in_draw_info: *const HIThemeButtonDrawInfo,
-            out_shape: *mut *const HIShape,
+            out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
+    if let Some(out_shape) = out_shape.as_ref() {
+        assert!(
+            out_shape.is_none(),
+            "parameter `out_shape` must point to `None` on entry"
+        );
+    };
     unsafe { HIThemeGetButtonShape(in_bounds, in_draw_info, out_shape) }
 }
 
@@ -1438,7 +1444,7 @@ pub unsafe fn HIThemeDrawMenuSeparator(
 ///
 /// - `in_menu_rect` must be a valid pointer.
 /// - `in_menu_draw_info` must be a valid pointer.
-/// - `out_shape` must be a valid pointer.
+/// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -1448,15 +1454,21 @@ pub unsafe fn HIThemeDrawMenuSeparator(
 pub unsafe fn HIThemeGetMenuBackgroundShape(
     in_menu_rect: *const HIRect,
     in_menu_draw_info: *const HIThemeMenuDrawInfo,
-    out_shape: *mut *const HIShape,
+    out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetMenuBackgroundShape(
             in_menu_rect: *const HIRect,
             in_menu_draw_info: *const HIThemeMenuDrawInfo,
-            out_shape: *mut *const HIShape,
+            out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
+    if let Some(out_shape) = out_shape.as_ref() {
+        assert!(
+            out_shape.is_none(),
+            "parameter `out_shape` must point to `None` on entry"
+        );
+    };
     unsafe { HIThemeGetMenuBackgroundShape(in_menu_rect, in_menu_draw_info, out_shape) }
 }
 
@@ -1641,7 +1653,7 @@ pub unsafe fn HIThemeDrawTab(
 /// # Safety
 ///
 /// - `in_rect` must be a valid pointer.
-/// - `out_shape` must be a valid pointer.
+/// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -1652,23 +1664,29 @@ pub unsafe fn HIThemeGetTabPaneDrawShape(
     in_rect: *const HIRect,
     in_direction: ThemeTabDirection,
     in_tab_size: HIThemeTabSize,
-    out_shape: *mut *const HIShape,
+    out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTabPaneDrawShape(
             in_rect: *const HIRect,
             in_direction: ThemeTabDirection,
             in_tab_size: HIThemeTabSize,
-            out_shape: *mut *const HIShape,
+            out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
+    if let Some(out_shape) = out_shape.as_ref() {
+        assert!(
+            out_shape.is_none(),
+            "parameter `out_shape` must point to `None` on entry"
+        );
+    };
     unsafe { HIThemeGetTabPaneDrawShape(in_rect, in_direction, in_tab_size, out_shape) }
 }
 
 /// # Safety
 ///
 /// - `in_rect` must be a valid pointer.
-/// - `out_shape` must be a valid pointer.
+/// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -1679,16 +1697,22 @@ pub unsafe fn HIThemeGetTabPaneContentShape(
     in_rect: *const HIRect,
     in_direction: ThemeTabDirection,
     in_tab_size: HIThemeTabSize,
-    out_shape: *mut *const HIShape,
+    out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTabPaneContentShape(
             in_rect: *const HIRect,
             in_direction: ThemeTabDirection,
             in_tab_size: HIThemeTabSize,
-            out_shape: *mut *const HIShape,
+            out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
+    if let Some(out_shape) = out_shape.as_ref() {
+        assert!(
+            out_shape.is_none(),
+            "parameter `out_shape` must point to `None` on entry"
+        );
+    };
     unsafe { HIThemeGetTabPaneContentShape(in_rect, in_direction, in_tab_size, out_shape) }
 }
 
@@ -1696,7 +1720,7 @@ pub unsafe fn HIThemeGetTabPaneContentShape(
 ///
 /// - `in_rect` must be a valid pointer.
 /// - `in_draw_info` must be a valid pointer.
-/// - `out_shape` must be a valid pointer.
+/// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -1706,15 +1730,21 @@ pub unsafe fn HIThemeGetTabPaneContentShape(
 pub unsafe fn HIThemeGetTabDrawShape(
     in_rect: *const HIRect,
     in_draw_info: *const HIThemeTabDrawInfo,
-    out_shape: *mut *const HIShape,
+    out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTabDrawShape(
             in_rect: *const HIRect,
             in_draw_info: *const HIThemeTabDrawInfo,
-            out_shape: *mut *const HIShape,
+            out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
+    if let Some(out_shape) = out_shape.as_ref() {
+        assert!(
+            out_shape.is_none(),
+            "parameter `out_shape` must point to `None` on entry"
+        );
+    };
     unsafe { HIThemeGetTabDrawShape(in_rect, in_draw_info, out_shape) }
 }
 
@@ -1722,7 +1752,7 @@ pub unsafe fn HIThemeGetTabDrawShape(
 ///
 /// - `in_rect` must be a valid pointer.
 /// - `in_draw_info` must be a valid pointer.
-/// - `out_shape` must be a valid pointer.
+/// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -1732,15 +1762,21 @@ pub unsafe fn HIThemeGetTabDrawShape(
 pub unsafe fn HIThemeGetTabShape(
     in_rect: *const HIRect,
     in_draw_info: *const HIThemeTabDrawInfo,
-    out_shape: *mut *const HIShape,
+    out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTabShape(
             in_rect: *const HIRect,
             in_draw_info: *const HIThemeTabDrawInfo,
-            out_shape: *mut *const HIShape,
+            out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
+    if let Some(out_shape) = out_shape.as_ref() {
+        assert!(
+            out_shape.is_none(),
+            "parameter `out_shape` must point to `None` on entry"
+        );
+    };
     unsafe { HIThemeGetTabShape(in_rect, in_draw_info, out_shape) }
 }
 
@@ -2016,7 +2052,7 @@ pub unsafe fn HIThemeDrawTickMark(
 /// # Safety
 ///
 /// - `in_draw_info` must be a valid pointer.
-/// - `out_thumb_shape` must be a valid pointer.
+/// - `out_thumb_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -2025,14 +2061,20 @@ pub unsafe fn HIThemeDrawTickMark(
 #[inline]
 pub unsafe fn HIThemeGetTrackThumbShape(
     in_draw_info: *const HIThemeTrackDrawInfo,
-    out_thumb_shape: *mut *const HIShape,
+    out_thumb_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTrackThumbShape(
             in_draw_info: *const HIThemeTrackDrawInfo,
-            out_thumb_shape: *mut *const HIShape,
+            out_thumb_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
+    if let Some(out_thumb_shape) = out_thumb_shape.as_ref() {
+        assert!(
+            out_thumb_shape.is_none(),
+            "parameter `out_thumb_shape` must point to `None` on entry"
+        );
+    };
     unsafe { HIThemeGetTrackThumbShape(in_draw_info, out_thumb_shape) }
 }
 
@@ -2435,7 +2477,7 @@ pub unsafe fn HIThemeGetGrowBoxBounds(
 ///
 /// - `in_cont_rect` must be a valid pointer.
 /// - `in_draw_info` must be a valid pointer.
-/// - `out_shape` must be a valid pointer.
+/// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -2447,16 +2489,22 @@ pub unsafe fn HIThemeGetWindowShape(
     in_cont_rect: *const HIRect,
     in_draw_info: *const HIThemeWindowDrawInfo,
     in_win_region: WindowRegionCode,
-    out_shape: *mut *const HIShape,
+    out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetWindowShape(
             in_cont_rect: *const HIRect,
             in_draw_info: *const HIThemeWindowDrawInfo,
             in_win_region: WindowRegionCode,
-            out_shape: *mut *const HIShape,
+            out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
+    if let Some(out_shape) = out_shape.as_ref() {
+        assert!(
+            out_shape.is_none(),
+            "parameter `out_shape` must point to `None` on entry"
+        );
+    };
     unsafe { HIThemeGetWindowShape(in_cont_rect, in_draw_info, in_win_region, out_shape) }
 }
 

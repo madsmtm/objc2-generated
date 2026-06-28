@@ -631,22 +631,39 @@ pub unsafe fn ATSFontFamilyGetGeneration(i_family: ATSFontFamilyRef) -> ATSGener
 
 /// # Safety
 ///
-/// `o_name` must be a valid pointer.
+/// `o_name` might not allow `None`.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSFontFamilyGetName(
     i_family: ATSFontFamilyRef,
     i_options: ATSOptionFlags,
-    o_name: *mut *const CFString,
+    o_name: Option<&mut Option<CFRetained<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontFamilyGetName(
             i_family: ATSFontFamilyRef,
             i_options: ATSOptionFlags,
-            o_name: *mut *const CFString,
+            o_name: Option<&mut Option<CFRetained<CFString>>>,
         ) -> OSStatus;
     }
+    struct RetainONameOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainONameOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    let mut o_name = if let Some(o_name) = o_name {
+        assert!(
+            o_name.is_none(),
+            "parameter `o_name` must point to `None` on entry"
+        );
+        Some(RetainONameOnDrop(o_name))
+    } else {
+        None
+    };
+    let o_name = o_name.as_mut().map(|arg| &mut *arg.0);
     unsafe { ATSFontFamilyGetName(i_family, i_options, o_name) }
 }
 
@@ -842,43 +859,77 @@ pub unsafe fn ATSFontGetGeneration(i_font: ATSFontRef) -> ATSGeneration {
 
 /// # Safety
 ///
-/// `o_name` must be a valid pointer.
+/// `o_name` might not allow `None`.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSFontGetName(
     i_font: ATSFontRef,
     i_options: ATSOptionFlags,
-    o_name: *mut *const CFString,
+    o_name: Option<&mut Option<CFRetained<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontGetName(
             i_font: ATSFontRef,
             i_options: ATSOptionFlags,
-            o_name: *mut *const CFString,
+            o_name: Option<&mut Option<CFRetained<CFString>>>,
         ) -> OSStatus;
     }
+    struct RetainONameOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainONameOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    let mut o_name = if let Some(o_name) = o_name {
+        assert!(
+            o_name.is_none(),
+            "parameter `o_name` must point to `None` on entry"
+        );
+        Some(RetainONameOnDrop(o_name))
+    } else {
+        None
+    };
+    let o_name = o_name.as_mut().map(|arg| &mut *arg.0);
     unsafe { ATSFontGetName(i_font, i_options, o_name) }
 }
 
 /// # Safety
 ///
-/// `o_name` must be a valid pointer.
+/// `o_name` might not allow `None`.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSFontGetPostScriptName(
     i_font: ATSFontRef,
     i_options: ATSOptionFlags,
-    o_name: *mut *const CFString,
+    o_name: Option<&mut Option<CFRetained<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontGetPostScriptName(
             i_font: ATSFontRef,
             i_options: ATSOptionFlags,
-            o_name: *mut *const CFString,
+            o_name: Option<&mut Option<CFRetained<CFString>>>,
         ) -> OSStatus;
     }
+    struct RetainONameOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainONameOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    let mut o_name = if let Some(o_name) = o_name {
+        assert!(
+            o_name.is_none(),
+            "parameter `o_name` must point to `None` on entry"
+        );
+        Some(RetainONameOnDrop(o_name))
+    } else {
+        None
+    };
+    let o_name = o_name.as_mut().map(|arg| &mut *arg.0);
     unsafe { ATSFontGetPostScriptName(i_font, i_options, o_name) }
 }
 

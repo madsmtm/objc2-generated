@@ -20,7 +20,7 @@ pub type CSDiskSpaceRecoveryCallback = block2::DynBlock<dyn Fn(Boolean, u64, *mu
 /// # Safety
 ///
 /// - `volume_url` might not allow `None`.
-/// - `out_operation_uuid` must be a valid pointer.
+/// - `out_operation_uuid` might not allow `None`.
 /// - `callback_queue` possibly has additional threading requirements.
 /// - `callback_queue` might not allow `None`.
 /// - `callback` might not allow `None`.
@@ -30,7 +30,7 @@ pub unsafe fn CSDiskSpaceStartRecovery(
     volume_url: Option<&CFURL>,
     bytes_needed: u64,
     options: CSDiskSpaceRecoveryOptions,
-    out_operation_uuid: *mut *const CFUUID,
+    out_operation_uuid: Option<&mut Option<CFRetained<CFUUID>>>,
     callback_queue: Option<&DispatchQueue>,
     callback: Option<&CSDiskSpaceRecoveryCallback>,
 ) {
@@ -39,11 +39,17 @@ pub unsafe fn CSDiskSpaceStartRecovery(
             volume_url: Option<&CFURL>,
             bytes_needed: u64,
             options: CSDiskSpaceRecoveryOptions,
-            out_operation_uuid: *mut *const CFUUID,
+            out_operation_uuid: Option<&mut Option<CFRetained<CFUUID>>>,
             callback_queue: Option<&DispatchQueue>,
             callback: Option<&CSDiskSpaceRecoveryCallback>,
         );
     }
+    if let Some(out_operation_uuid) = out_operation_uuid.as_ref() {
+        assert!(
+            out_operation_uuid.is_none(),
+            "parameter `out_operation_uuid` must point to `None` on entry"
+        );
+    };
     unsafe {
         CSDiskSpaceStartRecovery(
             volume_url,

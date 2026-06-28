@@ -156,7 +156,7 @@ impl HIObject {
     /// - `in_construct_proc` must be implemented correctly.
     /// - `in_event_list` must be a valid pointer.
     /// - `in_construct_data` must be a valid pointer.
-    /// - `out_class_ref` must be a valid pointer.
+    /// - `out_class_ref` might not allow `None`.
     #[doc(alias = "HIObjectRegisterSubclass")]
     #[cfg(feature = "CarbonEventsCore")]
     #[inline]
@@ -168,7 +168,7 @@ impl HIObject {
         in_num_events: ItemCount,
         in_event_list: *const EventTypeSpec,
         in_construct_data: *mut c_void,
-        out_class_ref: *mut *mut HIObjectClass,
+        out_class_ref: Option<&mut Option<CFRetained<HIObjectClass>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn HIObjectRegisterSubclass(
@@ -179,9 +179,15 @@ impl HIObject {
                 in_num_events: ItemCount,
                 in_event_list: *const EventTypeSpec,
                 in_construct_data: *mut c_void,
-                out_class_ref: *mut *mut HIObjectClass,
+                out_class_ref: Option<&mut Option<CFRetained<HIObjectClass>>>,
             ) -> OSStatus;
         }
+        if let Some(out_class_ref) = out_class_ref.as_ref() {
+            assert!(
+                out_class_ref.is_none(),
+                "parameter `out_class_ref` must point to `None` on entry"
+            );
+        };
         unsafe {
             HIObjectRegisterSubclass(
                 in_class_id,

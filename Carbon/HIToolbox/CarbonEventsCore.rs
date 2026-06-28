@@ -917,7 +917,7 @@ pub unsafe fn InvokeEventLoopIdleTimerUPP(
 /// - `in_event_loop` must be a valid pointer.
 /// - `in_timer_proc` must be implemented correctly.
 /// - `in_timer_data` must be a valid pointer.
-/// - `out_timer` must be a valid pointer.
+/// - `out_timer` might not allow `None`.
 #[inline]
 pub unsafe fn InstallEventLoopTimer(
     in_event_loop: EventLoopRef,
@@ -925,7 +925,7 @@ pub unsafe fn InstallEventLoopTimer(
     in_interval: EventTimerInterval,
     in_timer_proc: EventLoopTimerUPP,
     in_timer_data: *mut c_void,
-    out_timer: *mut *mut EventLoopTimer,
+    out_timer: Option<&mut Option<CFRetained<EventLoopTimer>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InstallEventLoopTimer(
@@ -934,9 +934,15 @@ pub unsafe fn InstallEventLoopTimer(
             in_interval: EventTimerInterval,
             in_timer_proc: EventLoopTimerUPP,
             in_timer_data: *mut c_void,
-            out_timer: *mut *mut EventLoopTimer,
+            out_timer: Option<&mut Option<CFRetained<EventLoopTimer>>>,
         ) -> OSStatus;
     }
+    if let Some(out_timer) = out_timer.as_ref() {
+        assert!(
+            out_timer.is_none(),
+            "parameter `out_timer` must point to `None` on entry"
+        );
+    };
     unsafe {
         InstallEventLoopTimer(
             in_event_loop,

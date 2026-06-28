@@ -1127,9 +1127,9 @@ pub unsafe fn InvokeDataBrowserPostProcessDragUPP(
 /// # Safety
 ///
 /// - `browser` might not allow `None`.
-/// - `menu` must be a valid pointer.
+/// - `menu` might not allow `None`.
 /// - `help_type` must be a valid pointer.
-/// - `help_item_string` must be a valid pointer.
+/// - `help_item_string` might not allow `None`.
 /// - `selection` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(
@@ -1140,22 +1140,56 @@ pub unsafe fn InvokeDataBrowserPostProcessDragUPP(
 #[inline]
 pub unsafe fn InvokeDataBrowserGetContextualMenuUPP(
     browser: Option<&Control>,
-    menu: *mut *mut Menu,
+    menu: Option<&mut Option<CFRetained<Menu>>>,
     help_type: *mut u32,
-    help_item_string: *mut *const CFString,
+    help_item_string: Option<&mut Option<CFRetained<CFString>>>,
     selection: *mut AEDesc,
     user_upp: DataBrowserGetContextualMenuUPP,
 ) {
     extern "C-unwind" {
         fn InvokeDataBrowserGetContextualMenuUPP(
             browser: Option<&Control>,
-            menu: *mut *mut Menu,
+            menu: Option<&mut Option<CFRetained<Menu>>>,
             help_type: *mut u32,
-            help_item_string: *mut *const CFString,
+            help_item_string: Option<&mut Option<CFRetained<CFString>>>,
             selection: *mut AEDesc,
             user_upp: DataBrowserGetContextualMenuUPP,
         );
     }
+    struct RetainMenuOnDrop<'a>(&'a mut Option<CFRetained<Menu>>);
+    impl Drop for RetainMenuOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    let mut menu = if let Some(menu) = menu {
+        assert!(
+            menu.is_none(),
+            "parameter `menu` must point to `None` on entry"
+        );
+        Some(RetainMenuOnDrop(menu))
+    } else {
+        None
+    };
+    let menu = menu.as_mut().map(|arg| &mut *arg.0);
+    struct RetainHelpItemStringOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);
+    impl Drop for RetainHelpItemStringOnDrop<'_> {
+        #[inline]
+        fn drop(&mut self) {
+            let _ = core::mem::ManuallyDrop::<Option<_>>::new(self.0.clone());
+        }
+    }
+    let mut help_item_string = if let Some(help_item_string) = help_item_string {
+        assert!(
+            help_item_string.is_none(),
+            "parameter `help_item_string` must point to `None` on entry"
+        );
+        Some(RetainHelpItemStringOnDrop(help_item_string))
+    } else {
+        None
+    };
+    let help_item_string = help_item_string.as_mut().map(|arg| &mut *arg.0);
     unsafe {
         InvokeDataBrowserGetContextualMenuUPP(
             browser,

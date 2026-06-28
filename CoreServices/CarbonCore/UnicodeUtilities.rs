@@ -485,7 +485,7 @@ pub unsafe fn DisposeIndexToUCStringUPP(user_upp: IndexToUCStringUPP) {
 ///
 /// - `list_data_ptr` must be a valid pointer.
 /// - `refcon` must be a valid pointer.
-/// - `out_string` must be a valid pointer.
+/// - `out_string` might not allow `None`.
 /// - `ts_options` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[inline]
@@ -493,7 +493,7 @@ pub unsafe fn InvokeIndexToUCStringUPP(
     index: u32,
     list_data_ptr: *mut c_void,
     refcon: *mut c_void,
-    out_string: *mut *const CFString,
+    out_string: Option<&mut Option<CFRetained<CFString>>>,
     ts_options: *mut UCTypeSelectOptions,
     user_upp: IndexToUCStringUPP,
 ) -> bool {
@@ -502,11 +502,17 @@ pub unsafe fn InvokeIndexToUCStringUPP(
             index: u32,
             list_data_ptr: *mut c_void,
             refcon: *mut c_void,
-            out_string: *mut *const CFString,
+            out_string: Option<&mut Option<CFRetained<CFString>>>,
             ts_options: *mut UCTypeSelectOptions,
             user_upp: IndexToUCStringUPP,
         ) -> Boolean;
     }
+    if let Some(out_string) = out_string.as_ref() {
+        assert!(
+            out_string.is_none(),
+            "parameter `out_string` must point to `None` on entry"
+        );
+    };
     let ret = unsafe {
         InvokeIndexToUCStringUPP(
             index,
