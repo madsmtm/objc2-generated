@@ -849,18 +849,22 @@ pub unsafe fn IONetworkGetDataHandle(
 #[inline]
 pub unsafe fn IONetworkSetPacketFiltersMask(
     connect: io_connect_t,
-    filter_group: Option<&io_name_t>,
+    filter_group: Option<&CStr>,
     filters_mask: u32,
     options: IOOptionBits,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IONetworkSetPacketFiltersMask(
             connect: io_connect_t,
-            filter_group: Option<&io_name_t>,
+            filter_group: *const io_name_t,
             filters_mask: u32,
             options: IOOptionBits,
         ) -> IOReturn;
     }
+    let filter_group = filter_group
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IONetworkSetPacketFiltersMask(connect, filter_group, filters_mask, options) }
 }
 
@@ -896,17 +900,21 @@ pub const kIONetworkSupportedPacketFilters: c_uint = 0x0001;
 #[inline]
 pub unsafe fn IONetworkGetPacketFiltersMask(
     connect: io_connect_t,
-    filter_group: Option<&io_name_t>,
+    filter_group: Option<&CStr>,
     filters_mask: *mut u32,
     options: IOOptionBits,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IONetworkGetPacketFiltersMask(
             connect: io_connect_t,
-            filter_group: Option<&io_name_t>,
+            filter_group: *const io_name_t,
             filters_mask: *mut u32,
             options: IOOptionBits,
         ) -> IOReturn;
     }
+    let filter_group = filter_group
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IONetworkGetPacketFiltersMask(connect, filter_group, filters_mask, options) }
 }

@@ -10023,13 +10023,15 @@ pub unsafe fn IOObjectCopyBundleIdentifierForClass(
 /// `class_name` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe fn IOObjectConformsTo(object: io_object_t, class_name: Option<&io_name_t>) -> bool {
+pub unsafe fn IOObjectConformsTo(object: io_object_t, class_name: Option<&CStr>) -> bool {
     extern "C-unwind" {
-        fn IOObjectConformsTo(
-            object: io_object_t,
-            class_name: Option<&io_name_t>,
-        ) -> libc::boolean_t;
+        fn IOObjectConformsTo(object: io_object_t, class_name: *const io_name_t)
+            -> libc::boolean_t;
     }
+    let class_name = class_name
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     let ret = unsafe { IOObjectConformsTo(object, class_name) };
     ret != 0
 }
@@ -10160,7 +10162,7 @@ pub fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
 #[inline]
 pub unsafe fn IOServiceAddNotification(
     main_port: libc::mach_port_t,
-    notification_type: Option<&io_name_t>,
+    notification_type: Option<&CStr>,
     matching: Option<&CFDictionary>,
     wake_port: libc::mach_port_t,
     reference: usize,
@@ -10169,13 +10171,17 @@ pub unsafe fn IOServiceAddNotification(
     extern "C-unwind" {
         fn IOServiceAddNotification(
             main_port: libc::mach_port_t,
-            notification_type: Option<&io_name_t>,
+            notification_type: *const io_name_t,
             matching: Option<&CFDictionary>,
             wake_port: libc::mach_port_t,
             reference: usize,
             notification: *mut io_iterator_t,
         ) -> libc::kern_return_t;
     }
+    let notification_type = notification_type
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe {
         IOServiceAddNotification(
             main_port,
@@ -10220,7 +10226,7 @@ pub unsafe fn IOServiceAddNotification(
 pub unsafe fn IOServiceAddInterestNotification(
     notify_port: IONotificationPortRef,
     service: io_service_t,
-    interest_type: Option<&io_name_t>,
+    interest_type: Option<&CStr>,
     callback: IOServiceInterestCallback,
     ref_con: *mut c_void,
     notification: *mut io_object_t,
@@ -10229,12 +10235,16 @@ pub unsafe fn IOServiceAddInterestNotification(
         fn IOServiceAddInterestNotification(
             notify_port: IONotificationPortRef,
             service: io_service_t,
-            interest_type: Option<&io_name_t>,
+            interest_type: *const io_name_t,
             callback: IOServiceInterestCallback,
             ref_con: *mut c_void,
             notification: *mut io_object_t,
         ) -> libc::kern_return_t;
     }
+    let interest_type = interest_type
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe {
         IOServiceAddInterestNotification(
             notify_port,
@@ -11193,14 +11203,18 @@ pub fn IORegistryGetRootEntry(main_port: libc::mach_port_t) -> io_registry_entry
 #[inline]
 pub unsafe fn IORegistryEntryFromPath(
     main_port: libc::mach_port_t,
-    path: Option<&io_string_t>,
+    path: Option<&CStr>,
 ) -> io_registry_entry_t {
     extern "C-unwind" {
         fn IORegistryEntryFromPath(
             main_port: libc::mach_port_t,
-            path: Option<&io_string_t>,
+            path: *const io_string_t,
         ) -> io_registry_entry_t;
     }
+    let path = path
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IORegistryEntryFromPath(main_port, path) }
 }
 
@@ -11261,18 +11275,22 @@ pub const kIORegistryIterateParents: c_uint = 0x00000002;
 #[inline]
 pub unsafe fn IORegistryCreateIterator(
     main_port: libc::mach_port_t,
-    plane: Option<&io_name_t>,
+    plane: Option<&CStr>,
     options: IOOptionBits,
     iterator: *mut io_iterator_t,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryCreateIterator(
             main_port: libc::mach_port_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
             options: IOOptionBits,
             iterator: *mut io_iterator_t,
         ) -> libc::kern_return_t;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IORegistryCreateIterator(main_port, plane, options, iterator) }
 }
 
@@ -11298,18 +11316,22 @@ pub unsafe fn IORegistryCreateIterator(
 #[inline]
 pub unsafe fn IORegistryEntryCreateIterator(
     entry: io_registry_entry_t,
-    plane: Option<&io_name_t>,
+    plane: Option<&CStr>,
     options: IOOptionBits,
     iterator: *mut io_iterator_t,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryCreateIterator(
             entry: io_registry_entry_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
             options: IOOptionBits,
             iterator: *mut io_iterator_t,
         ) -> libc::kern_return_t;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IORegistryEntryCreateIterator(entry, plane, options, iterator) }
 }
 
@@ -11389,16 +11411,20 @@ pub unsafe fn IORegistryEntryGetName(
 #[inline]
 pub unsafe fn IORegistryEntryGetNameInPlane(
     entry: io_registry_entry_t,
-    plane: Option<&io_name_t>,
+    plane: Option<&CStr>,
     name: Option<&mut io_name_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetNameInPlane(
             entry: io_registry_entry_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
             name: Option<&mut io_name_t>,
         ) -> libc::kern_return_t;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IORegistryEntryGetNameInPlane(entry, plane, name) }
 }
 
@@ -11422,16 +11448,20 @@ pub unsafe fn IORegistryEntryGetNameInPlane(
 #[inline]
 pub unsafe fn IORegistryEntryGetLocationInPlane(
     entry: io_registry_entry_t,
-    plane: Option<&io_name_t>,
+    plane: Option<&CStr>,
     location: Option<&mut io_name_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetLocationInPlane(
             entry: io_registry_entry_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
             location: Option<&mut io_name_t>,
         ) -> libc::kern_return_t;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IORegistryEntryGetLocationInPlane(entry, plane, location) }
 }
 
@@ -11455,16 +11485,20 @@ pub unsafe fn IORegistryEntryGetLocationInPlane(
 #[inline]
 pub unsafe fn IORegistryEntryGetPath(
     entry: io_registry_entry_t,
-    plane: Option<&io_name_t>,
+    plane: Option<&CStr>,
     path: Option<&mut io_string_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetPath(
             entry: io_registry_entry_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
             path: Option<&mut io_string_t>,
         ) -> libc::kern_return_t;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IORegistryEntryGetPath(entry, plane, path) }
 }
 
@@ -11485,14 +11519,18 @@ pub unsafe fn IORegistryEntryGetPath(
 #[inline]
 pub unsafe fn IORegistryEntryCopyPath(
     entry: io_registry_entry_t,
-    plane: Option<&io_name_t>,
+    plane: Option<&CStr>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn IORegistryEntryCopyPath(
             entry: io_registry_entry_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
         ) -> Option<NonNull<CFString>>;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     let ret = unsafe { IORegistryEntryCopyPath(entry, plane) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
@@ -11631,7 +11669,7 @@ pub unsafe fn IORegistryEntryCreateCFProperty(
 #[inline]
 pub unsafe fn IORegistryEntrySearchCFProperty(
     entry: io_registry_entry_t,
-    plane: Option<&io_name_t>,
+    plane: Option<&CStr>,
     key: Option<&CFString>,
     allocator: Option<&CFAllocator>,
     options: IOOptionBits,
@@ -11639,12 +11677,16 @@ pub unsafe fn IORegistryEntrySearchCFProperty(
     extern "C-unwind" {
         fn IORegistryEntrySearchCFProperty(
             entry: io_registry_entry_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
             key: Option<&CFString>,
             allocator: Option<&CFAllocator>,
             options: IOOptionBits,
         ) -> Option<NonNull<CFType>>;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     let ret = unsafe { IORegistryEntrySearchCFProperty(entry, plane, key, allocator, options) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
@@ -11658,18 +11700,22 @@ pub unsafe fn IORegistryEntrySearchCFProperty(
 #[inline]
 pub unsafe fn IORegistryEntryGetProperty(
     entry: io_registry_entry_t,
-    property_name: Option<&io_name_t>,
+    property_name: Option<&CStr>,
     buffer: Option<&mut io_struct_inband_t>,
     size: *mut u32,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetProperty(
             entry: io_registry_entry_t,
-            property_name: Option<&io_name_t>,
+            property_name: *const io_name_t,
             buffer: Option<&mut io_struct_inband_t>,
             size: *mut u32,
         ) -> libc::kern_return_t;
     }
+    let property_name = property_name
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IORegistryEntryGetProperty(entry, property_name, buffer, size) }
 }
 
@@ -11756,16 +11802,20 @@ pub unsafe fn IORegistryEntrySetCFProperty(
 #[inline]
 pub unsafe fn IORegistryEntryGetChildIterator(
     entry: io_registry_entry_t,
-    plane: Option<&io_name_t>,
+    plane: Option<&CStr>,
     iterator: *mut io_iterator_t,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetChildIterator(
             entry: io_registry_entry_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
             iterator: *mut io_iterator_t,
         ) -> libc::kern_return_t;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IORegistryEntryGetChildIterator(entry, plane, iterator) }
 }
 
@@ -11789,16 +11839,20 @@ pub unsafe fn IORegistryEntryGetChildIterator(
 #[inline]
 pub unsafe fn IORegistryEntryGetChildEntry(
     entry: io_registry_entry_t,
-    plane: Option<&io_name_t>,
+    plane: Option<&CStr>,
     child: *mut io_registry_entry_t,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetChildEntry(
             entry: io_registry_entry_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
             child: *mut io_registry_entry_t,
         ) -> libc::kern_return_t;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IORegistryEntryGetChildEntry(entry, plane, child) }
 }
 
@@ -11822,16 +11876,20 @@ pub unsafe fn IORegistryEntryGetChildEntry(
 #[inline]
 pub unsafe fn IORegistryEntryGetParentIterator(
     entry: io_registry_entry_t,
-    plane: Option<&io_name_t>,
+    plane: Option<&CStr>,
     iterator: *mut io_iterator_t,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetParentIterator(
             entry: io_registry_entry_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
             iterator: *mut io_iterator_t,
         ) -> libc::kern_return_t;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IORegistryEntryGetParentIterator(entry, plane, iterator) }
 }
 
@@ -11855,16 +11913,20 @@ pub unsafe fn IORegistryEntryGetParentIterator(
 #[inline]
 pub unsafe fn IORegistryEntryGetParentEntry(
     entry: io_registry_entry_t,
-    plane: Option<&io_name_t>,
+    plane: Option<&CStr>,
     parent: *mut io_registry_entry_t,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetParentEntry(
             entry: io_registry_entry_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
             parent: *mut io_registry_entry_t,
         ) -> libc::kern_return_t;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IORegistryEntryGetParentEntry(entry, plane, parent) }
 }
 
@@ -11883,16 +11945,17 @@ pub unsafe fn IORegistryEntryGetParentEntry(
 /// `plane` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe fn IORegistryEntryInPlane(
-    entry: io_registry_entry_t,
-    plane: Option<&io_name_t>,
-) -> bool {
+pub unsafe fn IORegistryEntryInPlane(entry: io_registry_entry_t, plane: Option<&CStr>) -> bool {
     extern "C-unwind" {
         fn IORegistryEntryInPlane(
             entry: io_registry_entry_t,
-            plane: Option<&io_name_t>,
+            plane: *const io_name_t,
         ) -> libc::boolean_t;
     }
+    let plane = plane
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     let ret = unsafe { IORegistryEntryInPlane(entry, plane) };
     ret != 0
 }
@@ -12032,16 +12095,20 @@ pub unsafe fn IORegistryEntryIDMatching(entry_id: u64) -> Option<CFRetained<CFMu
 #[inline]
 pub unsafe fn IOServiceOFPathToBSDName(
     main_port: libc::mach_port_t,
-    open_firmware_path: Option<&io_name_t>,
+    open_firmware_path: Option<&CStr>,
     bsd_name: Option<&mut io_name_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOServiceOFPathToBSDName(
             main_port: libc::mach_port_t,
-            open_firmware_path: Option<&io_name_t>,
+            open_firmware_path: *const io_name_t,
             bsd_name: Option<&mut io_name_t>,
         ) -> libc::kern_return_t;
     }
+    let open_firmware_path = open_firmware_path
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { IOServiceOFPathToBSDName(main_port, open_firmware_path, bsd_name) }
 }
 
