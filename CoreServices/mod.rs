@@ -24,6 +24,9 @@ extern "C" {}
 #[cfg(feature = "AE")]
 #[path = "AE/mod.rs"]
 mod __AE;
+#[cfg(feature = "CarbonCore")]
+#[path = "CarbonCore/mod.rs"]
+mod __CarbonCore;
 #[cfg(feature = "DictionaryServices")]
 #[path = "DictionaryServices.rs"]
 mod __DictionaryServices;
@@ -46,6 +49,8 @@ mod __SearchKit;
 #[path = "SharedFileList/mod.rs"]
 mod __SharedFileList;
 
+#[cfg(feature = "CarbonCore")]
+pub use self::__CarbonCore::*;
 #[cfg(feature = "DictionaryServices")]
 pub use self::__DictionaryServices::DCSCopyTextDefinition;
 #[cfg(feature = "DictionaryServices")]
