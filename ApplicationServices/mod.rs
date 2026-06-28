@@ -21,14 +21,29 @@
 #[link(name = "ApplicationServices", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "ATS")]
+#[path = "ATS/mod.rs"]
+mod __ATS;
+#[cfg(feature = "ATSUI")]
+#[path = "ATSUI/mod.rs"]
+mod __ATSUI;
 #[cfg(feature = "HIServices")]
 #[path = "HIServices/mod.rs"]
 mod __HIServices;
 #[cfg(feature = "PrintCore")]
 #[path = "PrintCore/mod.rs"]
 mod __PrintCore;
+#[cfg(feature = "QD")]
+#[path = "QD/mod.rs"]
+mod __QD;
 
 #[cfg(feature = "HIServices")]
 pub use self::__HIServices::*;
 #[cfg(feature = "PrintCore")]
 pub use self::__PrintCore::*;
+#[cfg(feature = "ATS")]
+pub use self::__ATS::*;
+#[cfg(feature = "ATSUI")]
+pub use self::__ATSUI::*;
+#[cfg(feature = "QD")]
+pub use self::__QD::*;
