@@ -127,7 +127,7 @@ impl NSOpenPanel {
     extern_methods!(
         #[unsafe(method(openPanel))]
         #[unsafe(method_family = none)]
-        pub fn openPanel(mtm: MainThreadMarker) -> Retained<NSOpenPanel>;
+        pub fn openPanel(mtm: MainThreadMarker) -> Option<Retained<NSOpenPanel>>;
 
         #[unsafe(method(URLs))]
         #[unsafe(method_family = none)]
@@ -251,7 +251,7 @@ impl NSOpenPanel {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
     );
 }
 
@@ -266,7 +266,7 @@ impl NSOpenPanel {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Option<Retained<Self>>;
     );
 }
 

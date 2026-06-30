@@ -104,7 +104,7 @@ impl NSSavePanel {
         /// Creates a new instance of the NSSavePanel. This class is not a singleton.
         #[unsafe(method(savePanel))]
         #[unsafe(method_family = none)]
-        pub fn savePanel(mtm: MainThreadMarker) -> Retained<NSSavePanel>;
+        pub fn savePanel(mtm: MainThreadMarker) -> Option<Retained<NSSavePanel>>;
 
         /// `NSSavePanel`: Returns the URL to save the file at. A file may already exist at `url` if the user choose to overwrite it.
         /// `NSOpenPanel`: Returns the single filename selected by the user. Note: if -allowsMultipleSelection is set, you should use the -URLs on NSOpenPanel instead.
@@ -478,7 +478,7 @@ impl NSSavePanel {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
     );
 }
 
@@ -488,7 +488,7 @@ impl NSSavePanel {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Option<Retained<Self>>;
     );
 }
 
