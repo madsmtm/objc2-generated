@@ -108,7 +108,7 @@ impl NSAppleScript {
         pub unsafe fn executeAndReturnError(
             &self,
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
-        ) -> Retained<NSAppleEventDescriptor>;
+        ) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[cfg(all(
             feature = "NSAppleEventDescriptor",
@@ -124,7 +124,7 @@ impl NSAppleScript {
             &self,
             event: &NSAppleEventDescriptor,
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
-        ) -> Retained<NSAppleEventDescriptor>;
+        ) -> Option<Retained<NSAppleEventDescriptor>>;
     );
 }
 
