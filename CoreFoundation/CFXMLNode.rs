@@ -427,12 +427,14 @@ impl CFXMLNode {
     #[doc(alias = "CFXMLNodeGetString")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub fn string(&self) -> Option<CFRetained<CFString>> {
+    pub fn string(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CFXMLNodeGetString(node: &CFXMLNode) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFXMLNodeGetString(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFXMLNodeGetInfoPtr")]
@@ -480,11 +482,13 @@ impl CFXMLTree {
     #[cfg(feature = "CFTree")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub fn node(&self) -> Option<CFRetained<CFXMLNode>> {
+    pub fn node(&self) -> CFRetained<CFXMLNode> {
         extern "C-unwind" {
             fn CFXMLTreeGetNode(xml_tree: &CFXMLTree) -> Option<NonNull<CFXMLNode>>;
         }
         let ret = unsafe { CFXMLTreeGetNode(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 }

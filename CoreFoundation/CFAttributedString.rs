@@ -118,13 +118,15 @@ impl CFAttributedString {
     /// Returns the string for the attributed string. For performance reasons, this will often point at the backing store of the attributed string, and it might change if the attributed string is edited.  However, this is an implementation detail, and definitely not something that should be counted on.
     #[doc(alias = "CFAttributedStringGetString")]
     #[inline]
-    pub fn string(&self) -> Option<CFRetained<CFString>> {
+    pub fn string(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CFAttributedStringGetString(a_str: &CFAttributedString)
                 -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFAttributedStringGetString(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     /// Returns the length of the attributed string in characters; same as CFStringGetLength(CFAttributedStringGetString(aStr))
@@ -147,7 +149,7 @@ impl CFAttributedString {
         &self,
         loc: CFIndex,
         effective_range: Option<&mut CFRange>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> CFRetained<CFDictionary<CFString, CFType>> {
         extern "C-unwind" {
             fn CFAttributedStringGetAttributes(
                 a_str: &CFAttributedString,
@@ -156,7 +158,9 @@ impl CFAttributedString {
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CFAttributedStringGetAttributes(self, loc, effective_range) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     /// Returns the value of a single attribute at the specified location. If the specified attribute doesn't exist at the location, returns NULL. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same attribute value applies. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributeAndLongestEffectiveRange(). It's a programming error for loc to specify a location outside the bounds of the attributed string.
@@ -189,7 +193,7 @@ impl CFAttributedString {
         loc: CFIndex,
         in_range: CFRange,
         longest_effective_range: Option<&mut CFRange>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> CFRetained<CFDictionary<CFString, CFType>> {
         extern "C-unwind" {
             fn CFAttributedStringGetAttributesAndLongestEffectiveRange(
                 a_str: &CFAttributedString,
@@ -206,7 +210,9 @@ impl CFAttributedString {
                 longest_effective_range,
             )
         };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     /// Returns the value of a single attribute at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same attribute value applies. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.

@@ -6,10 +6,11 @@ use crate::*;
 
 #[cfg(feature = "CFURL")]
 #[inline]
-pub fn CFCopyHomeDirectoryURL() -> Option<CFRetained<CFURL>> {
+pub fn CFCopyHomeDirectoryURL() -> CFRetained<CFURL> {
     extern "C-unwind" {
         fn CFCopyHomeDirectoryURL() -> Option<NonNull<CFURL>>;
     }
     let ret = unsafe { CFCopyHomeDirectoryURL() };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
 }

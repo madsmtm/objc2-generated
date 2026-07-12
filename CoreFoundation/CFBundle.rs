@@ -79,12 +79,14 @@ extern "C" {
 impl CFBundle {
     #[doc(alias = "CFBundleGetMainBundle")]
     #[inline]
-    pub fn main_bundle() -> Option<CFRetained<CFBundle>> {
+    pub fn main_bundle() -> CFRetained<CFBundle> {
         extern "C-unwind" {
             fn CFBundleGetMainBundle() -> Option<NonNull<CFBundle>>;
         }
         let ret = unsafe { CFBundleGetMainBundle() };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFBundleGetBundleWithIdentifier")]
@@ -100,12 +102,14 @@ impl CFBundle {
     #[doc(alias = "CFBundleGetAllBundles")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    pub unsafe fn all_bundles() -> Option<CFRetained<CFArray<CFBundle>>> {
+    pub unsafe fn all_bundles() -> CFRetained<CFArray<CFBundle>> {
         extern "C-unwind" {
             fn CFBundleGetAllBundles() -> Option<NonNull<CFArray<CFBundle>>>;
         }
         let ret = unsafe { CFBundleGetAllBundles() };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 }
 
@@ -161,12 +165,14 @@ impl CFBundle {
     #[doc(alias = "CFBundleCopyBundleURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
-    pub fn bundle_url(&self) -> Option<CFRetained<CFURL>> {
+    pub fn bundle_url(&self) -> CFRetained<CFURL> {
         extern "C-unwind" {
             fn CFBundleCopyBundleURL(bundle: &CFBundle) -> Option<NonNull<CFURL>>;
         }
         let ret = unsafe { CFBundleCopyBundleURL(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleGetValueForInfoDictionaryKey")]
@@ -192,14 +198,16 @@ impl CFBundle {
         feature = "CFString"
     ))]
     #[inline]
-    pub fn info_dictionary(&self) -> Option<CFRetained<CFDictionary<CFString, CFPropertyList>>> {
+    pub fn info_dictionary(&self) -> CFRetained<CFDictionary<CFString, CFPropertyList>> {
         extern "C-unwind" {
             fn CFBundleGetInfoDictionary(
                 bundle: &CFBundle,
             ) -> Option<NonNull<CFDictionary<CFString, CFPropertyList>>>;
         }
         let ret = unsafe { CFBundleGetInfoDictionary(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFBundleGetLocalInfoDictionary")]
@@ -266,67 +274,79 @@ impl CFBundle {
     #[doc(alias = "CFBundleCopySupportFilesDirectoryURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
-    pub fn support_files_directory_url(&self) -> Option<CFRetained<CFURL>> {
+    pub fn support_files_directory_url(&self) -> CFRetained<CFURL> {
         extern "C-unwind" {
             fn CFBundleCopySupportFilesDirectoryURL(bundle: &CFBundle) -> Option<NonNull<CFURL>>;
         }
         let ret = unsafe { CFBundleCopySupportFilesDirectoryURL(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleCopyResourcesDirectoryURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
-    pub fn resources_directory_url(&self) -> Option<CFRetained<CFURL>> {
+    pub fn resources_directory_url(&self) -> CFRetained<CFURL> {
         extern "C-unwind" {
             fn CFBundleCopyResourcesDirectoryURL(bundle: &CFBundle) -> Option<NonNull<CFURL>>;
         }
         let ret = unsafe { CFBundleCopyResourcesDirectoryURL(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleCopyPrivateFrameworksURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
-    pub fn private_frameworks_url(&self) -> Option<CFRetained<CFURL>> {
+    pub fn private_frameworks_url(&self) -> CFRetained<CFURL> {
         extern "C-unwind" {
             fn CFBundleCopyPrivateFrameworksURL(bundle: &CFBundle) -> Option<NonNull<CFURL>>;
         }
         let ret = unsafe { CFBundleCopyPrivateFrameworksURL(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleCopySharedFrameworksURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
-    pub fn shared_frameworks_url(&self) -> Option<CFRetained<CFURL>> {
+    pub fn shared_frameworks_url(&self) -> CFRetained<CFURL> {
         extern "C-unwind" {
             fn CFBundleCopySharedFrameworksURL(bundle: &CFBundle) -> Option<NonNull<CFURL>>;
         }
         let ret = unsafe { CFBundleCopySharedFrameworksURL(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleCopySharedSupportURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
-    pub fn shared_support_url(&self) -> Option<CFRetained<CFURL>> {
+    pub fn shared_support_url(&self) -> CFRetained<CFURL> {
         extern "C-unwind" {
             fn CFBundleCopySharedSupportURL(bundle: &CFBundle) -> Option<NonNull<CFURL>>;
         }
         let ret = unsafe { CFBundleCopySharedSupportURL(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleCopyBuiltInPlugInsURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
-    pub fn built_in_plug_ins_url(&self) -> Option<CFRetained<CFURL>> {
+    pub fn built_in_plug_ins_url(&self) -> CFRetained<CFURL> {
         extern "C-unwind" {
             fn CFBundleCopyBuiltInPlugInsURL(bundle: &CFBundle) -> Option<NonNull<CFURL>>;
         }
         let ret = unsafe { CFBundleCopyBuiltInPlugInsURL(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleCopyInfoDictionaryInDirectory")]
@@ -399,7 +419,7 @@ impl CFBundle {
         &self,
         resource_type: Option<&CFString>,
         sub_dir_name: Option<&CFString>,
-    ) -> Option<CFRetained<CFArray<CFURL>>> {
+    ) -> CFRetained<CFArray<CFURL>> {
         extern "C-unwind" {
             fn CFBundleCopyResourceURLsOfType(
                 bundle: &CFBundle,
@@ -408,7 +428,9 @@ impl CFBundle {
             ) -> Option<NonNull<CFArray<CFURL>>>;
         }
         let ret = unsafe { CFBundleCopyResourceURLsOfType(self, resource_type, sub_dir_name) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleCopyLocalizedString")]
@@ -418,7 +440,7 @@ impl CFBundle {
         key: &CFString,
         value: Option<&CFString>,
         table_name: &CFString,
-    ) -> Option<CFRetained<CFString>> {
+    ) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CFBundleCopyLocalizedString(
                 bundle: &CFBundle,
@@ -428,7 +450,9 @@ impl CFBundle {
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFBundleCopyLocalizedString(self, key, value, table_name) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     /// Returns a localized string given a list of possible localizations. The one most suitable to use with the given ``bundle`` is returned.
@@ -448,7 +472,7 @@ impl CFBundle {
         value: Option<&CFString>,
         table_name: &CFString,
         localizations: &CFArray<CFString>,
-    ) -> Option<CFRetained<CFString>> {
+    ) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CFBundleCopyLocalizedStringForLocalizations(
                 bundle: &CFBundle,
@@ -461,7 +485,9 @@ impl CFBundle {
         let ret = unsafe {
             CFBundleCopyLocalizedStringForLocalizations(self, key, value, table_name, localizations)
         };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleCopyResourceURLInDirectory")]
@@ -516,14 +542,16 @@ impl CFBundle {
     #[doc(alias = "CFBundleCopyBundleLocalizations")]
     #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
-    pub fn bundle_localizations(&self) -> Option<CFRetained<CFArray<CFString>>> {
+    pub fn bundle_localizations(&self) -> CFRetained<CFArray<CFString>> {
         extern "C-unwind" {
             fn CFBundleCopyBundleLocalizations(
                 bundle: &CFBundle,
             ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CFBundleCopyBundleLocalizations(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleCopyPreferredLocalizationsFromArray")]
@@ -531,14 +559,16 @@ impl CFBundle {
     #[inline]
     pub unsafe fn preferred_localizations_from_array(
         loc_array: &CFArray<CFString>,
-    ) -> Option<CFRetained<CFArray<CFString>>> {
+    ) -> CFRetained<CFArray<CFString>> {
         extern "C-unwind" {
             fn CFBundleCopyPreferredLocalizationsFromArray(
                 loc_array: &CFArray<CFString>,
             ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CFBundleCopyPreferredLocalizationsFromArray(loc_array) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleCopyLocalizationsForPreferences")]
@@ -599,7 +629,7 @@ impl CFBundle {
         resource_type: Option<&CFString>,
         sub_dir_name: Option<&CFString>,
         localization_name: Option<&CFString>,
-    ) -> Option<CFRetained<CFArray<CFURL>>> {
+    ) -> CFRetained<CFArray<CFURL>> {
         extern "C-unwind" {
             fn CFBundleCopyResourceURLsOfTypeForLocalization(
                 bundle: &CFBundle,
@@ -616,7 +646,9 @@ impl CFBundle {
                 localization_name,
             )
         };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFBundleCopyInfoDictionaryForURL")]
@@ -898,12 +930,14 @@ impl CFBundle {
 
     #[doc(alias = "CFBundleGetPlugIn")]
     #[inline]
-    pub fn plug_in(&self) -> Option<CFRetained<CFPlugIn>> {
+    pub fn plug_in(&self) -> CFRetained<CFPlugIn> {
         extern "C-unwind" {
             fn CFBundleGetPlugIn(bundle: &CFBundle) -> Option<NonNull<CFPlugIn>>;
         }
         let ret = unsafe { CFBundleGetPlugIn(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFBundleOpenBundleResourceMap")]

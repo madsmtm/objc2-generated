@@ -2199,12 +2199,13 @@ impl CFType {
 }
 
 #[inline]
-pub fn CFCopyTypeIDDescription(type_id: CFTypeID) -> Option<CFRetained<CFString>> {
+pub fn CFCopyTypeIDDescription(type_id: CFTypeID) -> CFRetained<CFString> {
     extern "C-unwind" {
         fn CFCopyTypeIDDescription(type_id: CFTypeID) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFCopyTypeIDDescription(type_id) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 impl CFType {

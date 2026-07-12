@@ -81,32 +81,38 @@ unsafe impl ConcreteType for CFNotificationCenter {
 impl CFNotificationCenter {
     #[doc(alias = "CFNotificationCenterGetLocalCenter")]
     #[inline]
-    pub fn local_center() -> Option<CFRetained<CFNotificationCenter>> {
+    pub fn local_center() -> CFRetained<CFNotificationCenter> {
         extern "C-unwind" {
             fn CFNotificationCenterGetLocalCenter() -> Option<NonNull<CFNotificationCenter>>;
         }
         let ret = unsafe { CFNotificationCenterGetLocalCenter() };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFNotificationCenterGetDistributedCenter")]
     #[inline]
-    pub fn distributed_center() -> Option<CFRetained<CFNotificationCenter>> {
+    pub fn distributed_center() -> CFRetained<CFNotificationCenter> {
         extern "C-unwind" {
             fn CFNotificationCenterGetDistributedCenter() -> Option<NonNull<CFNotificationCenter>>;
         }
         let ret = unsafe { CFNotificationCenterGetDistributedCenter() };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFNotificationCenterGetDarwinNotifyCenter")]
     #[inline]
-    pub fn darwin_notify_center() -> Option<CFRetained<CFNotificationCenter>> {
+    pub fn darwin_notify_center() -> CFRetained<CFNotificationCenter> {
         extern "C-unwind" {
             fn CFNotificationCenterGetDarwinNotifyCenter() -> Option<NonNull<CFNotificationCenter>>;
         }
         let ret = unsafe { CFNotificationCenterGetDarwinNotifyCenter() };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     /// # Safety

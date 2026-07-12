@@ -349,12 +349,14 @@ impl CFTree {
     /// Returns: A reference to the root of the tree.
     #[doc(alias = "CFTreeFindRoot")]
     #[inline]
-    pub fn find_root(&self) -> Option<CFRetained<CFTree>> {
+    pub fn find_root(&self) -> CFRetained<CFTree> {
         extern "C-unwind" {
             fn CFTreeFindRoot(tree: &CFTree) -> Option<NonNull<CFTree>>;
         }
         let ret = unsafe { CFTreeFindRoot(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     /// Replaces the context of a tree.  The tree releases its retain on the

@@ -164,32 +164,38 @@ unsafe impl ConcreteType for CFRunLoop {
 impl CFRunLoop {
     #[doc(alias = "CFRunLoopGetCurrent")]
     #[inline]
-    pub fn current() -> Option<CFRetained<CFRunLoop>> {
+    pub fn current() -> CFRetained<CFRunLoop> {
         extern "C-unwind" {
             fn CFRunLoopGetCurrent() -> Option<NonNull<CFRunLoop>>;
         }
         let ret = unsafe { CFRunLoopGetCurrent() };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFRunLoopGetMain")]
     #[inline]
-    pub fn main() -> Option<CFRetained<CFRunLoop>> {
+    pub fn main() -> CFRetained<CFRunLoop> {
         extern "C-unwind" {
             fn CFRunLoopGetMain() -> Option<NonNull<CFRunLoop>>;
         }
         let ret = unsafe { CFRunLoopGetMain() };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFRunLoopCopyCurrentMode")]
     #[inline]
-    pub fn current_mode(&self) -> Option<CFRetained<CFRunLoopMode>> {
+    pub fn current_mode(&self) -> CFRetained<CFRunLoopMode> {
         extern "C-unwind" {
             fn CFRunLoopCopyCurrentMode(rl: &CFRunLoop) -> Option<NonNull<CFRunLoopMode>>;
         }
         let ret = unsafe { CFRunLoopCopyCurrentMode(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFRunLoopCopyAllModes")]

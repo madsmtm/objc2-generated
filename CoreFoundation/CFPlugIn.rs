@@ -81,12 +81,14 @@ impl CFPlugIn {
     #[doc(alias = "CFPlugInGetBundle")]
     #[cfg(feature = "CFBundle")]
     #[inline]
-    pub fn bundle(&self) -> Option<CFRetained<CFBundle>> {
+    pub fn bundle(&self) -> CFRetained<CFBundle> {
         extern "C-unwind" {
             fn CFPlugInGetBundle(plug_in: &CFPlugIn) -> Option<NonNull<CFBundle>>;
         }
         let ret = unsafe { CFPlugInGetBundle(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFPlugInSetLoadOnDemand")]

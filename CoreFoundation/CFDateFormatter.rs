@@ -183,12 +183,14 @@ impl CFDateFormatter {
     #[doc(alias = "CFDateFormatterGetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub fn locale(&self) -> Option<CFRetained<CFLocale>> {
+    pub fn locale(&self) -> CFRetained<CFLocale> {
         extern "C-unwind" {
             fn CFDateFormatterGetLocale(formatter: &CFDateFormatter) -> Option<NonNull<CFLocale>>;
         }
         let ret = unsafe { CFDateFormatterGetLocale(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFDateFormatterGetDateStyle")]
@@ -211,12 +213,14 @@ impl CFDateFormatter {
 
     #[doc(alias = "CFDateFormatterGetFormat")]
     #[inline]
-    pub fn format(&self) -> Option<CFRetained<CFString>> {
+    pub fn format(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CFDateFormatterGetFormat(formatter: &CFDateFormatter) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFDateFormatterGetFormat(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFDateFormatterSetFormat")]

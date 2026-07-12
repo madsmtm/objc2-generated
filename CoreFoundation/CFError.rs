@@ -205,12 +205,14 @@ impl CFError {
     /// Returns: The error domain of the CFError. Since this is a "Get" function, the caller shouldn't CFRelease the return value.
     #[doc(alias = "CFErrorGetDomain")]
     #[inline]
-    pub fn domain(&self) -> Option<CFRetained<CFErrorDomain>> {
+    pub fn domain(&self) -> CFRetained<CFErrorDomain> {
         extern "C-unwind" {
             fn CFErrorGetDomain(err: &CFError) -> Option<NonNull<CFErrorDomain>>;
         }
         let ret = unsafe { CFErrorGetDomain(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     /// Returns the error code the CFError was created with.
@@ -237,14 +239,16 @@ impl CFError {
     #[doc(alias = "CFErrorCopyUserInfo")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
-    pub fn user_info(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    pub fn user_info(&self) -> CFRetained<CFDictionary<CFString, CFType>> {
         extern "C-unwind" {
             fn CFErrorCopyUserInfo(
                 err: &CFError,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CFErrorCopyUserInfo(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     /// Returns a human-presentable description for the error. CFError creators should strive to make sure the return value is human-presentable and localized by providing a value for kCFErrorLocalizedDescriptionKey at the time of CFError creation.
@@ -261,12 +265,14 @@ impl CFError {
     /// Returns: A CFString with human-presentable description of the CFError. Never NULL.
     #[doc(alias = "CFErrorCopyDescription")]
     #[inline]
-    pub fn description(&self) -> Option<CFRetained<CFString>> {
+    pub fn description(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CFErrorCopyDescription(err: &CFError) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFErrorCopyDescription(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     /// Returns a human-presentable failure reason for the error.  May return NULL.  CFError creators should strive to make sure the return value is human-presentable and localized by providing a value for kCFErrorLocalizedFailureReasonKey at the time of CFError creation.

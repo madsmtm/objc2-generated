@@ -48,55 +48,65 @@ unsafe impl ConcreteType for CFLocale {
 impl CFLocale {
     #[doc(alias = "CFLocaleGetSystem")]
     #[inline]
-    pub fn system() -> Option<CFRetained<CFLocale>> {
+    pub fn system() -> CFRetained<CFLocale> {
         extern "C-unwind" {
             fn CFLocaleGetSystem() -> Option<NonNull<CFLocale>>;
         }
         let ret = unsafe { CFLocaleGetSystem() };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFLocaleCopyCurrent")]
     #[inline]
-    pub fn current() -> Option<CFRetained<CFLocale>> {
+    pub fn current() -> CFRetained<CFLocale> {
         extern "C-unwind" {
             fn CFLocaleCopyCurrent() -> Option<NonNull<CFLocale>>;
         }
         let ret = unsafe { CFLocaleCopyCurrent() };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFLocaleCopyAvailableLocaleIdentifiers")]
     #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
-    pub fn available_locale_identifiers() -> Option<CFRetained<CFArray<CFString>>> {
+    pub fn available_locale_identifiers() -> CFRetained<CFArray<CFString>> {
         extern "C-unwind" {
             fn CFLocaleCopyAvailableLocaleIdentifiers() -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CFLocaleCopyAvailableLocaleIdentifiers() };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFLocaleCopyISOLanguageCodes")]
     #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
-    pub fn iso_language_codes() -> Option<CFRetained<CFArray<CFString>>> {
+    pub fn iso_language_codes() -> CFRetained<CFArray<CFString>> {
         extern "C-unwind" {
             fn CFLocaleCopyISOLanguageCodes() -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CFLocaleCopyISOLanguageCodes() };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFLocaleCopyISOCountryCodes")]
     #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
-    pub fn iso_country_codes() -> Option<CFRetained<CFArray<CFString>>> {
+    pub fn iso_country_codes() -> CFRetained<CFArray<CFString>> {
         extern "C-unwind" {
             fn CFLocaleCopyISOCountryCodes() -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CFLocaleCopyISOCountryCodes() };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFLocaleCopyISOCurrencyCodes")]
@@ -124,12 +134,14 @@ impl CFLocale {
     #[doc(alias = "CFLocaleCopyPreferredLanguages")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    pub fn preferred_languages() -> Option<CFRetained<CFArray<CFLocaleIdentifier>>> {
+    pub fn preferred_languages() -> CFRetained<CFArray<CFLocaleIdentifier>> {
         extern "C-unwind" {
             fn CFLocaleCopyPreferredLanguages() -> Option<NonNull<CFArray<CFLocaleIdentifier>>>;
         }
         let ret = unsafe { CFLocaleCopyPreferredLanguages() };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFLocaleCreateCanonicalLanguageIdentifierFromString")]
@@ -334,12 +346,14 @@ impl CFLocale {
 
     #[doc(alias = "CFLocaleGetIdentifier")]
     #[inline]
-    pub fn identifier(&self) -> Option<CFRetained<CFLocaleIdentifier>> {
+    pub fn identifier(&self) -> CFRetained<CFLocaleIdentifier> {
         extern "C-unwind" {
             fn CFLocaleGetIdentifier(locale: &CFLocale) -> Option<NonNull<CFLocaleIdentifier>>;
         }
         let ret = unsafe { CFLocaleGetIdentifier(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFLocaleGetValue")]

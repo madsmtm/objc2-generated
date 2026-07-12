@@ -24,12 +24,14 @@ impl CFTimeZone {
     #[doc(alias = "CFTimeZoneCopySystem")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub fn system() -> Option<CFRetained<CFTimeZone>> {
+    pub fn system() -> CFRetained<CFTimeZone> {
         extern "C-unwind" {
             fn CFTimeZoneCopySystem() -> Option<NonNull<CFTimeZone>>;
         }
         let ret = unsafe { CFTimeZoneCopySystem() };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFTimeZoneResetSystem")]
@@ -44,45 +46,51 @@ impl CFTimeZone {
     #[doc(alias = "CFTimeZoneCopyDefault")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub fn default() -> Option<CFRetained<CFTimeZone>> {
+    pub fn default() -> CFRetained<CFTimeZone> {
         extern "C-unwind" {
             fn CFTimeZoneCopyDefault() -> Option<NonNull<CFTimeZone>>;
         }
         let ret = unsafe { CFTimeZoneCopyDefault() };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFTimeZoneSetDefault")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub fn set_default(&self) {
+    pub fn set_default(tz: Option<&CFTimeZone>) {
         extern "C-unwind" {
-            fn CFTimeZoneSetDefault(tz: &CFTimeZone);
+            fn CFTimeZoneSetDefault(tz: Option<&CFTimeZone>);
         }
-        unsafe { CFTimeZoneSetDefault(self) }
+        unsafe { CFTimeZoneSetDefault(tz) }
     }
 
     #[doc(alias = "CFTimeZoneCopyKnownNames")]
     #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
-    pub fn known_names() -> Option<CFRetained<CFArray<CFString>>> {
+    pub fn known_names() -> CFRetained<CFArray<CFString>> {
         extern "C-unwind" {
             fn CFTimeZoneCopyKnownNames() -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CFTimeZoneCopyKnownNames() };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFTimeZoneCopyAbbreviationDictionary")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
-    pub fn abbreviation_dictionary() -> Option<CFRetained<CFDictionary<CFString, CFString>>> {
+    pub fn abbreviation_dictionary() -> CFRetained<CFDictionary<CFString, CFString>> {
         extern "C-unwind" {
             fn CFTimeZoneCopyAbbreviationDictionary(
             ) -> Option<NonNull<CFDictionary<CFString, CFString>>>;
         }
         let ret = unsafe { CFTimeZoneCopyAbbreviationDictionary() };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFTimeZoneSetAbbreviationDictionary")]
@@ -154,12 +162,14 @@ impl CFTimeZone {
     #[doc(alias = "CFTimeZoneGetName")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub fn name(&self) -> Option<CFRetained<CFString>> {
+    pub fn name(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFTimeZoneGetName(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFTimeZoneGetData")]
@@ -186,7 +196,7 @@ impl CFTimeZone {
     #[doc(alias = "CFTimeZoneCopyAbbreviation")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub fn abbreviation(&self, at: CFAbsoluteTime) -> Option<CFRetained<CFString>> {
+    pub fn abbreviation(&self, at: CFAbsoluteTime) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CFTimeZoneCopyAbbreviation(
                 tz: &CFTimeZone,
@@ -194,7 +204,9 @@ impl CFTimeZone {
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFTimeZoneCopyAbbreviation(self, at) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFTimeZoneIsDaylightSavingTime")]

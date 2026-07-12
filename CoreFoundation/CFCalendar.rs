@@ -71,25 +71,29 @@ impl CFCalendar {
     #[doc(alias = "CFCalendarGetIdentifier")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub fn identifier(&self) -> Option<CFRetained<CFCalendarIdentifier>> {
+    pub fn identifier(&self) -> CFRetained<CFCalendarIdentifier> {
         extern "C-unwind" {
             fn CFCalendarGetIdentifier(
                 calendar: &CFCalendar,
             ) -> Option<NonNull<CFCalendarIdentifier>>;
         }
         let ret = unsafe { CFCalendarGetIdentifier(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFCalendarCopyLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub fn locale(&self) -> Option<CFRetained<CFLocale>> {
+    pub fn locale(&self) -> CFRetained<CFLocale> {
         extern "C-unwind" {
             fn CFCalendarCopyLocale(calendar: &CFCalendar) -> Option<NonNull<CFLocale>>;
         }
         let ret = unsafe { CFCalendarCopyLocale(self) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
 
     #[doc(alias = "CFCalendarSetLocale")]

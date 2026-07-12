@@ -101,14 +101,16 @@ impl CFNumberFormatter {
     #[doc(alias = "CFNumberFormatterGetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub fn locale(&self) -> Option<CFRetained<CFLocale>> {
+    pub fn locale(&self) -> CFRetained<CFLocale> {
         extern "C-unwind" {
             fn CFNumberFormatterGetLocale(
                 formatter: &CFNumberFormatter,
             ) -> Option<NonNull<CFLocale>>;
         }
         let ret = unsafe { CFNumberFormatterGetLocale(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFNumberFormatterGetStyle")]
@@ -122,14 +124,16 @@ impl CFNumberFormatter {
 
     #[doc(alias = "CFNumberFormatterGetFormat")]
     #[inline]
-    pub fn format(&self) -> Option<CFRetained<CFString>> {
+    pub fn format(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CFNumberFormatterGetFormat(
                 formatter: &CFNumberFormatter,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFNumberFormatterGetFormat(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
 
     #[doc(alias = "CFNumberFormatterSetFormat")]
