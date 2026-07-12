@@ -368,6 +368,6 @@ extern "C" {
     pub static IOSurfacePropertyAllocSizeKey: &'static IOSurfacePropertyKey;
 }
 
-// TODO: pub fn _IOSurfaceRefToObj(r#ref: &IOSurfaceRef,)-> *mut IOSurface;
+// TODO: pub fn _IOSurfaceRefToObj(r#ref: &IOSurfaceRef,) -> *mut IOSurface;
 
-// TODO: pub fn _IOSurfaceObjToRef(obj: &IOSurface,)-> Option<NonNull<IOSurfaceRef>>;
+// TODO: pub fn _IOSurfaceObjToRef(obj: &IOSurface,) -> Option<NonNull<IOSurfaceRef>>;

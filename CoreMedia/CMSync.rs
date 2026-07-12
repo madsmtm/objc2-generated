@@ -308,7 +308,7 @@ impl CMTimebase {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    // TODO: pub fn CMTimebaseCopySourceTimebase(timebase: &CMTimebase,)-> Option<NonNull<CMTimebase>>;
+    // TODO: pub fn CMTimebaseCopySourceTimebase(timebase: &CMTimebase,) -> Option<NonNull<CMTimebase>>;
 
     #[doc(alias = "CMTimebaseCopyMasterClock")]
     #[deprecated]
@@ -321,7 +321,7 @@ impl CMTimebase {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    // TODO: pub fn CMTimebaseCopySourceClock(timebase: &CMTimebase,)-> Option<NonNull<CMClock>>;
+    // TODO: pub fn CMTimebaseCopySourceClock(timebase: &CMTimebase,) -> Option<NonNull<CMClock>>;
 
     #[doc(alias = "CMTimebaseCopyMaster")]
     #[deprecated]
@@ -336,7 +336,7 @@ impl CMTimebase {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    // TODO: pub fn CMTimebaseCopySource(timebase: &CMTimebase,)-> Option<NonNull<CMClockOrTimebase>>;
+    // TODO: pub fn CMTimebaseCopySource(timebase: &CMTimebase,) -> Option<NonNull<CMClockOrTimebase>>;
 
     #[doc(alias = "CMTimebaseCopyUltimateMasterClock")]
     #[deprecated]
@@ -352,7 +352,7 @@ impl CMTimebase {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    // TODO: pub fn CMTimebaseCopyUltimateSourceClock(timebase: &CMTimebase,)-> Option<NonNull<CMClock>>;
+    // TODO: pub fn CMTimebaseCopyUltimateSourceClock(timebase: &CMTimebase,) -> Option<NonNull<CMClock>>;
 
     /// Returns the immediate source timebase of a timebase.
     ///

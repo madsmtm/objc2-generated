@@ -252,11 +252,11 @@ impl MKMapRect {
     // TODO: pub fn MKMapRectIsEmpty(rect: MKMapRect,) -> Bool;
 }
 
-// TODO: pub fn MKStringFromMapPoint(point: MKMapPoint,)-> *mut NSString;
+// TODO: pub fn MKStringFromMapPoint(point: MKMapPoint,) -> *mut NSString;
 
-// TODO: pub fn MKStringFromMapSize(size: MKMapSize,)-> *mut NSString;
+// TODO: pub fn MKStringFromMapSize(size: MKMapSize,) -> *mut NSString;
 
-// TODO: pub fn MKStringFromMapRect(rect: MKMapRect,)-> *mut NSString;
+// TODO: pub fn MKStringFromMapRect(rect: MKMapRect,) -> *mut NSString;
 
 impl MKMapRect {
     #[doc(alias = "MKMapRectUnion")]

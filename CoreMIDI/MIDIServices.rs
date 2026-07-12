@@ -3134,7 +3134,7 @@ pub unsafe fn MIDIRestart() -> OSStatus {
 }
 
 impl MIDIEventPacket {
-    // TODO: pub fn MIDIEventPacketNext(pkt: NonNull<MIDIEventPacket>,)-> Option<NonNull<MIDIEventPacket>>;
+    // TODO: pub fn MIDIEventPacketNext(pkt: NonNull<MIDIEventPacket>,) -> Option<NonNull<MIDIEventPacket>>;
 }
 
 impl MIDIEventList {
@@ -3229,7 +3229,7 @@ impl MIDIEventList {
 }
 
 impl MIDIPacket {
-    // TODO: pub fn MIDIPacketNext(pkt: NonNull<MIDIPacket>,)-> Option<NonNull<MIDIPacket>>;
+    // TODO: pub fn MIDIPacketNext(pkt: NonNull<MIDIPacket>,) -> Option<NonNull<MIDIPacket>>;
 }
 
 impl MIDIPacketList {
