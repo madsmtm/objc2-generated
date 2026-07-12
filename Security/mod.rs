@@ -3791,13 +3791,9 @@ pub use self::__SecureTransport::kSSLSessionConfig_legacy_DHE;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::kSSLSessionConfig_standard;
 #[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLAddDistinguishedName;
-#[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLAuthenticate;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLClientCertificateState;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLClose;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLConnectionRef;
 #[cfg(feature = "SecureTransport")]
@@ -3805,151 +3801,13 @@ pub use self::__SecureTransport::SSLConnectionType;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLContext;
 #[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLCopyALPNProtocols;
-#[cfg(all(feature = "SecBase", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLCopyCertificateAuthorities;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLCopyDistinguishedNames;
-#[cfg(all(feature = "SecBase", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLCopyPeerCertificates;
-#[cfg(all(feature = "SecTrust", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLCopyPeerTrust;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLCopyRequestedPeerName;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLCopyRequestedPeerNameLength;
-#[cfg(all(feature = "SecBase", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLCopyTrustedRoots;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLCreateContext;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLDisposeContext;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetAllowsAnyRoot;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetAllowsExpiredCerts;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetAllowsExpiredRoots;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetBufferedReadSize;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetClientCertificateState;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetConnection;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetDatagramWriteSize;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetDiffieHellmanParams;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetEnableCertVerify;
-#[cfg(all(feature = "CipherSuite", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLGetEnabledCiphers;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetMaxDatagramRecordSize;
-#[cfg(all(feature = "CipherSuite", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLGetNegotiatedCipher;
-#[cfg(all(feature = "SecProtocolTypes", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLGetNegotiatedProtocolVersion;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetNumberEnabledCiphers;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetNumberSupportedCiphers;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetPeerDomainName;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetPeerDomainNameLength;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetPeerID;
-#[cfg(all(feature = "SecProtocolTypes", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLGetProtocolVersion;
-#[cfg(all(feature = "SecProtocolTypes", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLGetProtocolVersionEnabled;
-#[cfg(all(feature = "SecProtocolTypes", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLGetProtocolVersionMax;
-#[cfg(all(feature = "SecProtocolTypes", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLGetProtocolVersionMin;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetRsaBlinding;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetSessionOption;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLGetSessionState;
-#[cfg(all(feature = "CipherSuite", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLGetSupportedCiphers;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLHandshake;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLNewContext;
-#[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLProtocolSide;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLReHandshake;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLRead;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLReadFunc;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLSessionOption;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLSessionState;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetALPNProtocols;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetAllowsAnyRoot;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetAllowsExpiredCerts;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetAllowsExpiredRoots;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetCertificate;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetCertificateAuthorities;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetClientSideAuthenticate;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetConnection;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetDatagramHelloCookie;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetDiffieHellmanParams;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetEnableCertVerify;
-#[cfg(all(feature = "CipherSuite", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLSetEnabledCiphers;
-#[cfg(all(feature = "SecBase", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLSetEncryptionCertificate;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetError;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetIOFuncs;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetMaxDatagramRecordSize;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetOCSPResponse;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetPeerDomainName;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetPeerID;
-#[cfg(all(feature = "SecProtocolTypes", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLSetProtocolVersion;
-#[cfg(all(feature = "SecProtocolTypes", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLSetProtocolVersionEnabled;
-#[cfg(all(feature = "SecProtocolTypes", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLSetProtocolVersionMax;
-#[cfg(all(feature = "SecProtocolTypes", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLSetProtocolVersionMin;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetRsaBlinding;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetSessionConfig;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetSessionOption;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLSetSessionTicketsEnabled;
-#[cfg(all(feature = "SecBase", feature = "SecureTransport"))]
-pub use self::__SecureTransport::SSLSetTrustedRoots;
-#[cfg(feature = "SecureTransport")]
-pub use self::__SecureTransport::SSLWrite;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::SSLWriteFunc;
 #[cfg(all(
