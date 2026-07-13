@@ -58,22 +58,26 @@ unsafe impl RefEncode for HKGAD7AssessmentAnswer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Returns the lower bound of the score range for the given GAD-7 risk classification.
-#[inline]
-pub unsafe fn HKMinimumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger {
-    extern "C-unwind" {
-        fn HKMinimumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger;
+impl HKGAD7AssessmentRisk {
+    /// Returns the lower bound of the score range for the given GAD-7 risk classification.
+    #[doc(alias = "HKMinimumScoreForGAD7AssessmentRisk")]
+    #[inline]
+    pub unsafe fn minimum(self) -> NSInteger {
+        extern "C-unwind" {
+            fn HKMinimumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger;
+        }
+        unsafe { HKMinimumScoreForGAD7AssessmentRisk(self) }
     }
-    unsafe { HKMinimumScoreForGAD7AssessmentRisk(risk) }
-}
 
-/// Returns the upper bound of the score range for the given GAD-7 risk classification.
-#[inline]
-pub unsafe fn HKMaximumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger {
-    extern "C-unwind" {
-        fn HKMaximumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger;
+    /// Returns the upper bound of the score range for the given GAD-7 risk classification.
+    #[doc(alias = "HKMaximumScoreForGAD7AssessmentRisk")]
+    #[inline]
+    pub unsafe fn maximum(self) -> NSInteger {
+        extern "C-unwind" {
+            fn HKMaximumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger;
+        }
+        unsafe { HKMaximumScoreForGAD7AssessmentRisk(self) }
     }
-    unsafe { HKMaximumScoreForGAD7AssessmentRisk(risk) }
 }
 
 extern_class!(

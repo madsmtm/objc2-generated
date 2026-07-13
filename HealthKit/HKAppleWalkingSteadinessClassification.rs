@@ -40,22 +40,18 @@ impl HKAppleWalkingSteadinessClassification {
     /// Parameter `errorOut`: A pointer to an error describing why an unknown classification was returned.
     ///
     /// Returns: YES if the classification was successful. NO otherwise, meaning the provided value could not be classified.
-    ///
-    /// # Safety
-    ///
-    /// `classification_out` must be a valid pointer.
     #[doc(alias = "HKAppleWalkingSteadinessClassificationForQuantity")]
     #[cfg(feature = "HKQuantity")]
     #[inline]
     pub unsafe fn for_quantity(
         value: &HKQuantity,
-        classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
+        classification_out: &mut HKAppleWalkingSteadinessClassification,
         error_out: Option<&mut Option<Retained<NSError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn HKAppleWalkingSteadinessClassificationForQuantity(
                 value: &HKQuantity,
-                classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
+                classification_out: &mut HKAppleWalkingSteadinessClassification,
                 error_out: Option<&mut Option<Retained<NSError>>>,
             ) -> Bool;
         }
@@ -81,40 +77,38 @@ impl HKAppleWalkingSteadinessClassification {
         }
         .as_bool()
     }
-}
 
-/// Retrieves the minimum quantity in percent unit for an Apple Walking Steadiness classification.
-///
-/// Parameter `classification`: Apple Walking Steadiness classification for desired minimum value.
-#[cfg(feature = "HKQuantity")]
-#[inline]
-pub unsafe fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
-    classification: HKAppleWalkingSteadinessClassification,
-) -> Retained<HKQuantity> {
-    extern "C-unwind" {
-        fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
-            classification: HKAppleWalkingSteadinessClassification,
-        ) -> *mut HKQuantity;
+    /// Retrieves the minimum quantity in percent unit for an Apple Walking Steadiness classification.
+    ///
+    /// Parameter `classification`: Apple Walking Steadiness classification for desired minimum value.
+    #[doc(alias = "HKAppleWalkingSteadinessMinimumQuantityForClassification")]
+    #[cfg(feature = "HKQuantity")]
+    #[inline]
+    pub unsafe fn minimum(self) -> Retained<HKQuantity> {
+        extern "C-unwind" {
+            fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
+                classification: HKAppleWalkingSteadinessClassification,
+            ) -> *mut HKQuantity;
+        }
+        let ret = unsafe { HKAppleWalkingSteadinessMinimumQuantityForClassification(self) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { HKAppleWalkingSteadinessMinimumQuantityForClassification(classification) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-/// Retrieves the maximum quantity in percent unit for an Apple Walking Steadiness classification.
-///
-/// Parameter `classification`: Apple Walking Steadiness classification for desired maximum value.
-#[cfg(feature = "HKQuantity")]
-#[inline]
-pub unsafe fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
-    classification: HKAppleWalkingSteadinessClassification,
-) -> Retained<HKQuantity> {
-    extern "C-unwind" {
-        fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
-            classification: HKAppleWalkingSteadinessClassification,
-        ) -> *mut HKQuantity;
+    /// Retrieves the maximum quantity in percent unit for an Apple Walking Steadiness classification.
+    ///
+    /// Parameter `classification`: Apple Walking Steadiness classification for desired maximum value.
+    #[doc(alias = "HKAppleWalkingSteadinessMaximumQuantityForClassification")]
+    #[cfg(feature = "HKQuantity")]
+    #[inline]
+    pub unsafe fn maximum(self) -> Retained<HKQuantity> {
+        extern "C-unwind" {
+            fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
+                classification: HKAppleWalkingSteadinessClassification,
+            ) -> *mut HKQuantity;
+        }
+        let ret = unsafe { HKAppleWalkingSteadinessMaximumQuantityForClassification(self) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { HKAppleWalkingSteadinessMaximumQuantityForClassification(classification) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }

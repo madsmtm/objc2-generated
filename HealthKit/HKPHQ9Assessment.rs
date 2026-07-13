@@ -62,22 +62,26 @@ unsafe impl RefEncode for HKPHQ9AssessmentAnswer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Returns the lower bound of the score range for the given PHQ-9 risk classification.
-#[inline]
-pub unsafe fn HKMinimumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger {
-    extern "C-unwind" {
-        fn HKMinimumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger;
+impl HKPHQ9AssessmentRisk {
+    /// Returns the lower bound of the score range for the given PHQ-9 risk classification.
+    #[doc(alias = "HKMinimumScoreForPHQ9AssessmentRisk")]
+    #[inline]
+    pub unsafe fn minimum(self) -> NSInteger {
+        extern "C-unwind" {
+            fn HKMinimumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger;
+        }
+        unsafe { HKMinimumScoreForPHQ9AssessmentRisk(self) }
     }
-    unsafe { HKMinimumScoreForPHQ9AssessmentRisk(risk) }
-}
 
-/// Returns the upper bound of the score range for the given PHQ-9 risk classification.
-#[inline]
-pub unsafe fn HKMaximumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger {
-    extern "C-unwind" {
-        fn HKMaximumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger;
+    /// Returns the upper bound of the score range for the given PHQ-9 risk classification.
+    #[doc(alias = "HKMaximumScoreForPHQ9AssessmentRisk")]
+    #[inline]
+    pub unsafe fn maximum(self) -> NSInteger {
+        extern "C-unwind" {
+            fn HKMaximumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger;
+        }
+        unsafe { HKMaximumScoreForPHQ9AssessmentRisk(self) }
     }
-    unsafe { HKMaximumScoreForPHQ9AssessmentRisk(risk) }
 }
 
 extern_class!(

@@ -311,23 +311,8 @@ pub use self::__HKActivitySummaryQuery::HKActivitySummaryQuery;
 pub use self::__HKAnchoredObjectQuery::HKAnchoredObjectQuery;
 #[cfg(feature = "HKAppleSleepingBreathingDisturbancesClassification")]
 pub use self::__HKAppleSleepingBreathingDisturbancesClassification::HKAppleSleepingBreathingDisturbancesClassification;
-#[cfg(all(
-    feature = "HKAppleSleepingBreathingDisturbancesClassification",
-    feature = "HKQuantity"
-))]
-pub use self::__HKAppleSleepingBreathingDisturbancesClassification::HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification;
 #[cfg(feature = "HKAppleWalkingSteadinessClassification")]
 pub use self::__HKAppleWalkingSteadinessClassification::HKAppleWalkingSteadinessClassification;
-#[cfg(all(
-    feature = "HKAppleWalkingSteadinessClassification",
-    feature = "HKQuantity"
-))]
-pub use self::__HKAppleWalkingSteadinessClassification::HKAppleWalkingSteadinessMaximumQuantityForClassification;
-#[cfg(all(
-    feature = "HKAppleWalkingSteadinessClassification",
-    feature = "HKQuantity"
-))]
-pub use self::__HKAppleWalkingSteadinessClassification::HKAppleWalkingSteadinessMinimumQuantityForClassification;
 #[cfg(feature = "HKAttachment")]
 pub use self::__HKAttachment::HKAttachment;
 #[cfg(feature = "HKAttachmentStore")]
@@ -503,8 +488,6 @@ pub use self::__HKDefines::HKAuthorizationRequestStatus;
 #[cfg(feature = "HKDefines")]
 pub use self::__HKDefines::HKAuthorizationStatus;
 #[cfg(feature = "HKDefines")]
-pub use self::__HKDefines::HKCategoryValueSleepAnalysisAsleepValues;
-#[cfg(feature = "HKDefines")]
 pub use self::__HKDefines::HKErrorCode;
 #[cfg(feature = "HKDefines")]
 pub use self::__HKDefines::HKErrorDomain;
@@ -630,10 +613,6 @@ pub use self::__HKGAD7Assessment::HKGAD7Assessment;
 pub use self::__HKGAD7Assessment::HKGAD7AssessmentAnswer;
 #[cfg(feature = "HKGAD7Assessment")]
 pub use self::__HKGAD7Assessment::HKGAD7AssessmentRisk;
-#[cfg(feature = "HKGAD7Assessment")]
-pub use self::__HKGAD7Assessment::HKMaximumScoreForGAD7AssessmentRisk;
-#[cfg(feature = "HKGAD7Assessment")]
-pub use self::__HKGAD7Assessment::HKMinimumScoreForGAD7AssessmentRisk;
 #[cfg(all(
     feature = "HKGlassesLensSpecification",
     feature = "HKLensSpecification"
@@ -963,10 +942,6 @@ pub use self::__HKObjectType::HKWorkoutType;
 pub use self::__HKObserverQuery::HKObserverQuery;
 #[cfg(all(feature = "HKObserverQuery", feature = "block2"))]
 pub use self::__HKObserverQuery::HKObserverQueryCompletionHandler;
-#[cfg(feature = "HKPHQ9Assessment")]
-pub use self::__HKPHQ9Assessment::HKMaximumScoreForPHQ9AssessmentRisk;
-#[cfg(feature = "HKPHQ9Assessment")]
-pub use self::__HKPHQ9Assessment::HKMinimumScoreForPHQ9AssessmentRisk;
 #[cfg(all(
     feature = "HKObject",
     feature = "HKPHQ9Assessment",

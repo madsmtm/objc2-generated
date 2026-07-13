@@ -151,13 +151,17 @@ unsafe impl RefEncode for HKAuthorizationRequestStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Returns the set of `HKCategoryValueSleepAnalysis` values that are considered to be asleep.
-#[inline]
-pub unsafe fn HKCategoryValueSleepAnalysisAsleepValues() -> Retained<NSSet<NSNumber>> {
-    extern "C-unwind" {
-        fn HKCategoryValueSleepAnalysisAsleepValues() -> *mut NSSet<NSNumber>;
+#[cfg(feature = "HKCategoryValues")]
+impl HKCategoryValueSleepAnalysis {
+    /// Returns the set of `HKCategoryValueSleepAnalysis` values that are considered to be asleep.
+    #[doc(alias = "HKCategoryValueSleepAnalysisAsleepValues")]
+    #[inline]
+    pub unsafe fn allAsleepValues() -> Retained<NSSet<NSNumber>> {
+        extern "C-unwind" {
+            fn HKCategoryValueSleepAnalysisAsleepValues() -> *mut NSSet<NSNumber>;
+        }
+        let ret = unsafe { HKCategoryValueSleepAnalysisAsleepValues() };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { HKCategoryValueSleepAnalysisAsleepValues() };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }

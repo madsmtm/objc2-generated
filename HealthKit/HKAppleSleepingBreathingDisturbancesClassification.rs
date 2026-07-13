@@ -46,24 +46,22 @@ impl HKAppleSleepingBreathingDisturbancesClassification {
         let ret = unsafe { HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value) };
         unsafe { Retained::retain_autoreleased(ret) }
     }
-}
 
-/// Retrieves the minimum quantity for a Breathing Disturbances classification.
-///
-/// Parameter `classification`: Breathing Disturbances classification for desired minimum value.
-#[cfg(feature = "HKQuantity")]
-#[inline]
-pub unsafe fn HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(
-    classification: HKAppleSleepingBreathingDisturbancesClassification,
-) -> Retained<HKQuantity> {
-    extern "C-unwind" {
-        fn HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(
-            classification: HKAppleSleepingBreathingDisturbancesClassification,
-        ) -> *mut HKQuantity;
+    /// Retrieves the minimum quantity for a Breathing Disturbances classification.
+    ///
+    /// Parameter `classification`: Breathing Disturbances classification for desired minimum value.
+    #[doc(alias = "HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification")]
+    #[cfg(feature = "HKQuantity")]
+    #[inline]
+    pub unsafe fn minimum(self) -> Retained<HKQuantity> {
+        extern "C-unwind" {
+            fn HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(
+                classification: HKAppleSleepingBreathingDisturbancesClassification,
+            ) -> *mut HKQuantity;
+        }
+        let ret =
+            unsafe { HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(self) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe {
-        HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(classification)
-    };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }
