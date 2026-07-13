@@ -2515,6 +2515,52 @@ impl CMTextFormatDescription {
         }
     }
 
+    /// Returns the default style.
+    ///
+    /// The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry default style information.
+    ///
+    /// # Safety
+    ///
+    /// - `local_font_id_out` must be a valid pointer or null.
+    /// - `bold_out` must be a valid pointer or null.
+    /// - `italic_out` must be a valid pointer or null.
+    /// - `underline_out` must be a valid pointer or null.
+    /// - `font_size_out` must be a valid pointer or null.
+    #[doc(alias = "CMTextFormatDescriptionGetDefaultStyle")]
+    #[inline]
+    pub unsafe fn default_style(
+        desc: &CMFormatDescription,
+        local_font_id_out: *mut u16,
+        bold_out: *mut Boolean,
+        italic_out: *mut Boolean,
+        underline_out: *mut Boolean,
+        font_size_out: *mut CGFloat,
+        color_components_out: Option<&mut [CGFloat; 4]>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTextFormatDescriptionGetDefaultStyle(
+                desc: &CMFormatDescription,
+                local_font_id_out: *mut u16,
+                bold_out: *mut Boolean,
+                italic_out: *mut Boolean,
+                underline_out: *mut Boolean,
+                font_size_out: *mut CGFloat,
+                color_components_out: Option<&mut [CGFloat; 4]>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTextFormatDescriptionGetDefaultStyle(
+                desc,
+                local_font_id_out,
+                bold_out,
+                italic_out,
+                underline_out,
+                font_size_out,
+                color_components_out,
+            )
+        }
+    }
+
     /// Returns the font name for a local font ID.
     ///
     /// Some format descriptions carry a mapping from local font IDs to font names. The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry such a font mapping table.

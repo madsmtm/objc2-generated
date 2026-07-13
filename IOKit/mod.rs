@@ -9510,6 +9510,34 @@ pub const kIOInterestCalloutServiceIndex: c_uint = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiointerestcalloutcount?language=objc)
 pub const kIOInterestCalloutCount: c_uint = 4;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/osasyncreference64?language=objc)
+pub type OSAsyncReference64 = [io_user_reference_t; 8];
+
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioserviceinterestcontent64?language=objc)
+#[cfg(feature = "libc")]
+#[repr(C, packed(4))]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct IOServiceInterestContent64 {
+    pub messageType: libc::natural_t,
+    pub messageArgument: [io_user_reference_t; 1],
+}
+
+#[cfg(all(feature = "libc", feature = "objc2"))]
+unsafe impl Encode for IOServiceInterestContent64 {
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOServiceInterestContent64",
+        &[
+            <libc::natural_t>::ENCODING,
+            <[io_user_reference_t; 1]>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(all(feature = "libc", feature = "objc2"))]
+unsafe impl RefEncode for IOServiceInterestContent64 {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kosasyncrefcount?language=objc)
 pub const kOSAsyncRefCount: c_uint = 8;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kosasyncrefsize?language=objc)
