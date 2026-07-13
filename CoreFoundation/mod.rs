@@ -2199,7 +2199,7 @@ impl CFType {
 }
 
 #[inline]
-pub fn CFCopyTypeIDDescription(type_id: CFTypeID) -> CFRetained<CFString> {
+pub unsafe fn CFCopyTypeIDDescription(type_id: CFTypeID) -> CFRetained<CFString> {
     extern "C-unwind" {
         fn CFCopyTypeIDDescription(type_id: CFTypeID) -> Option<NonNull<CFString>>;
     }
