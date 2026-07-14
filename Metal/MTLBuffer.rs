@@ -29,7 +29,7 @@ extern_protocol!(
         /// Returns the data pointer of this buffer's shared copy.
         #[unsafe(method(contents))]
         #[unsafe(method_family = none)]
-        fn contents(&self) -> NonNull<c_void>;
+        fn contents(&self) -> *mut c_void;
 
         /// Inform the device of the range of a buffer that the CPU has modified, allowing the implementation to invalidate
         /// its caches of the buffer's content.
