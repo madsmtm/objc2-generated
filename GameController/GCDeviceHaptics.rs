@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-haptics")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
 use objc2_core_haptics::*;
 use objc2_foundation::*;
 
@@ -96,7 +95,6 @@ impl GCDeviceHaptics {
         // -init (unavailable)
 
         #[cfg(feature = "objc2-core-haptics")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
         /// Creates and returns a new instance of CHHapticEngine with a given GCHapticsLocality. Any patterns you send to this engine will play on
         /// all specified actuators.
         ///
