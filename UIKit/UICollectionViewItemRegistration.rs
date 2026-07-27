@@ -14,8 +14,9 @@ use crate::*;
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UICollectionViewCellRegistrationConfigurationHandler = block2::DynBlock<
-    dyn Fn(NonNull<UICollectionViewCell>, NonNull<NSIndexPath>, NonNull<AnyObject>),
+pub type UICollectionViewCellRegistrationConfigurationHandler = block2::Block<
+    'static,
+    fn(NonNull<UICollectionViewCell>, NonNull<NSIndexPath>, NonNull<AnyObject>),
 >;
 
 extern_class!(
@@ -112,8 +113,9 @@ impl UICollectionViewCellRegistration {
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UICollectionViewSupplementaryRegistrationConfigurationHandler = block2::DynBlock<
-    dyn Fn(NonNull<UICollectionReusableView>, NonNull<NSString>, NonNull<NSIndexPath>),
+pub type UICollectionViewSupplementaryRegistrationConfigurationHandler = block2::Block<
+    'static,
+    fn(NonNull<UICollectionReusableView>, NonNull<NSString>, NonNull<NSIndexPath>),
 >;
 
 extern_class!(

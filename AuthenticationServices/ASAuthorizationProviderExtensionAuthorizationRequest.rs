@@ -122,7 +122,7 @@ impl ASAuthorizationProviderExtensionAuthorizationRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn presentAuthorizationViewControllerWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         /// Request URL with all components.

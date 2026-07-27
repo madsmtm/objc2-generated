@@ -298,7 +298,7 @@ impl FSBlockDeviceResource {
             buffer: NonNull<c_void>,
             offset: libc::off_t,
             length: usize,
-            completion_handler: &block2::DynBlock<dyn Fn(usize, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(usize, *mut NSError)>,
         );
 
         #[cfg(feature = "libc")]
@@ -352,7 +352,7 @@ impl FSBlockDeviceResource {
             buffer: NonNull<c_void>,
             offset: libc::off_t,
             length: usize,
-            completion_handler: &block2::DynBlock<dyn Fn(usize, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(usize, *mut NSError)>,
         );
 
         #[cfg(feature = "libc")]

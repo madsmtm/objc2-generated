@@ -19,8 +19,9 @@ use crate::*;
     feature = "UIViewConfigurationState",
     feature = "block2"
 ))]
-pub type UITableViewHeaderFooterViewConfigurationUpdateHandler = block2::DynBlock<
-    dyn Fn(NonNull<UITableViewHeaderFooterView>, NonNull<UIViewConfigurationState>),
+pub type UITableViewHeaderFooterViewConfigurationUpdateHandler = block2::Block<
+    'static,
+    fn(NonNull<UITableViewHeaderFooterView>, NonNull<UIViewConfigurationState>),
 >;
 
 extern_class!(

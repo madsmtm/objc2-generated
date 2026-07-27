@@ -276,9 +276,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[unsafe(method_family = none)]
         pub fn enumerateKeysAndObjectsUsingBlock(
             &self,
-            block: &block2::DynBlock<
-                dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) + '_,
-            >,
+            block: &block2::Block<'_, fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>)>,
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
@@ -287,9 +285,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         pub fn enumerateKeysAndObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &block2::DynBlock<
-                dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) + '_,
-            >,
+            block: &block2::Block<'_, fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>)>,
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
@@ -314,8 +310,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[unsafe(method_family = none)]
         pub fn keysOfEntriesPassingTest(
             &self,
-            predicate: &block2::DynBlock<
-                dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_,
+            predicate: &block2::Block<
+                '_,
+                fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool,
             >,
         ) -> Retained<NSSet<KeyType>>;
 
@@ -325,8 +322,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         pub fn keysOfEntriesWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &block2::DynBlock<
-                dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_,
+            predicate: &block2::Block<
+                '_,
+                fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool,
             >,
         ) -> Retained<NSSet<KeyType>>;
     );

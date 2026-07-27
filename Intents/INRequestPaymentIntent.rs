@@ -116,7 +116,7 @@ extern_protocol!(
         unsafe fn handleRequestPayment_completion(
             &self,
             intent: &INRequestPaymentIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRequestPaymentIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRequestPaymentIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -146,7 +146,7 @@ extern_protocol!(
         unsafe fn confirmRequestPayment_completion(
             &self,
             intent: &INRequestPaymentIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRequestPaymentIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRequestPaymentIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -177,7 +177,7 @@ extern_protocol!(
         unsafe fn resolvePayerForRequestPayment_withCompletion(
             &self,
             intent: &INRequestPaymentIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPersonResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPersonResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -196,7 +196,7 @@ extern_protocol!(
         unsafe fn resolvePayerForRequestPayment_completion(
             &self,
             intent: &INRequestPaymentIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRequestPaymentPayerResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRequestPaymentPayerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -215,7 +215,7 @@ extern_protocol!(
         unsafe fn resolveCurrencyAmountForRequestPayment_withCompletion(
             &self,
             intent: &INRequestPaymentIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCurrencyAmountResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCurrencyAmountResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -234,8 +234,9 @@ extern_protocol!(
         unsafe fn resolveCurrencyAmountForRequestPayment_completion(
             &self,
             intent: &INRequestPaymentIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INRequestPaymentCurrencyAmountResolutionResult>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INRequestPaymentCurrencyAmountResolutionResult>),
             >,
         );
 
@@ -254,7 +255,7 @@ extern_protocol!(
         unsafe fn resolveNoteForRequestPayment_withCompletion(
             &self,
             intent: &INRequestPaymentIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
         );
     }
 );

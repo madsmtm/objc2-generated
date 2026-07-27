@@ -69,7 +69,7 @@ impl NSWorkspace {
             url: &NSURL,
             configuration: &NSWorkspaceOpenConfiguration,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSRunningApplication, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSRunningApplication, *mut NSError)>,
             >,
         );
 
@@ -85,7 +85,7 @@ impl NSWorkspace {
             application_url: &NSURL,
             configuration: &NSWorkspaceOpenConfiguration,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSRunningApplication, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSRunningApplication, *mut NSError)>,
             >,
         );
 
@@ -100,7 +100,7 @@ impl NSWorkspace {
             application_url: &NSURL,
             configuration: &NSWorkspaceOpenConfiguration,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSRunningApplication, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSRunningApplication, *mut NSError)>,
             >,
         );
 
@@ -173,7 +173,7 @@ impl NSWorkspace {
             &self,
             ur_ls: &NSArray<NSURL>,
             handler: Option<
-                &block2::DynBlock<dyn Fn(NonNull<NSDictionary<NSURL, NSURL>>, *mut NSError)>,
+                &block2::Block<'static, fn(NonNull<NSDictionary<NSURL, NSURL>>, *mut NSError)>,
             >,
         );
 
@@ -187,7 +187,7 @@ impl NSWorkspace {
             &self,
             ur_ls: &NSArray<NSURL>,
             handler: Option<
-                &block2::DynBlock<dyn Fn(NonNull<NSDictionary<NSURL, NSURL>>, *mut NSError)>,
+                &block2::Block<'static, fn(NonNull<NSDictionary<NSURL, NSURL>>, *mut NSError)>,
             >,
         );
 
@@ -254,7 +254,7 @@ impl NSWorkspace {
             &self,
             application_url: &NSURL,
             url: &NSURL,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -267,7 +267,7 @@ impl NSWorkspace {
             &self,
             application_url: &NSURL,
             url_scheme: &NSString,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -280,7 +280,7 @@ impl NSWorkspace {
             &self,
             application_url: &NSURL,
             url: &NSURL,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
@@ -312,7 +312,7 @@ impl NSWorkspace {
             &self,
             application_url: &NSURL,
             content_type: &UTType,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "NSRunningApplication")]
@@ -626,8 +626,9 @@ impl NSWorkspace {
         pub unsafe fn requestAuthorizationOfType_completionHandler(
             &self,
             r#type: NSWorkspaceAuthorizationType,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSWorkspaceAuthorization, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSWorkspaceAuthorization, *mut NSError),
             >,
         );
     );

@@ -191,8 +191,9 @@ extern_protocol!(
         unsafe fn handleBookRestaurantReservation_completion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INBookRestaurantReservationIntentResponse>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INBookRestaurantReservationIntentResponse>),
             >,
         );
 
@@ -223,8 +224,9 @@ extern_protocol!(
         unsafe fn confirmBookRestaurantReservation_completion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INBookRestaurantReservationIntentResponse>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INBookRestaurantReservationIntentResponse>),
             >,
         );
 
@@ -255,7 +257,7 @@ extern_protocol!(
         unsafe fn resolveRestaurantForBookRestaurantReservation_withCompletion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRestaurantResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRestaurantResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -273,7 +275,7 @@ extern_protocol!(
         unsafe fn resolveBookingDateComponentsForBookRestaurantReservation_withCompletion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDateComponentsResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -291,7 +293,7 @@ extern_protocol!(
         unsafe fn resolvePartySizeForBookRestaurantReservation_withCompletion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -309,7 +311,7 @@ extern_protocol!(
         unsafe fn resolveGuestForBookRestaurantReservation_withCompletion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRestaurantGuestResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRestaurantGuestResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -327,7 +329,7 @@ extern_protocol!(
         unsafe fn resolveGuestProvidedSpecialRequestTextForBookRestaurantReservation_withCompletion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
         );
     }
 );

@@ -479,7 +479,7 @@ impl NSMenu {
         pub fn paletteMenuWithColors_titles_selectionHandler(
             colors: &NSArray<NSColor>,
             item_titles: &NSArray<NSString>,
-            on_selection_change: Option<&block2::DynBlock<dyn Fn(NonNull<NSMenu>)>>,
+            on_selection_change: Option<&block2::Block<'static, fn(NonNull<NSMenu>)>>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
@@ -504,7 +504,7 @@ impl NSMenu {
             colors: &NSArray<NSColor>,
             item_titles: &NSArray<NSString>,
             image: &NSImage,
-            on_selection_change: Option<&block2::DynBlock<dyn Fn(NonNull<NSMenu>)>>,
+            on_selection_change: Option<&block2::Block<'static, fn(NonNull<NSMenu>)>>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 

@@ -92,7 +92,7 @@ impl NSURLSession {
         #[unsafe(method_family = none)]
         pub unsafe fn resetWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -103,7 +103,7 @@ impl NSURLSession {
         #[unsafe(method_family = none)]
         pub unsafe fn flushWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(all(feature = "NSArray", feature = "block2"))]
@@ -114,8 +114,9 @@ impl NSURLSession {
         #[unsafe(method_family = none)]
         pub unsafe fn getTasksWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(
+            completion_handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<NSArray<NSURLSessionDataTask>>,
                     NonNull<NSArray<NSURLSessionUploadTask>>,
                     NonNull<NSArray<NSURLSessionDownloadTask>>,
@@ -131,7 +132,7 @@ impl NSURLSession {
         #[unsafe(method_family = none)]
         pub unsafe fn getAllTasksWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSURLSessionTask>>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSURLSessionTask>>)>,
         );
 
         #[cfg(feature = "NSURLRequest")]
@@ -278,8 +279,9 @@ impl NSURLSession {
         pub unsafe fn dataTaskWithRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
         ) -> Retained<NSURLSessionDataTask>;
 
@@ -298,8 +300,9 @@ impl NSURLSession {
         pub unsafe fn dataTaskWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
         ) -> Retained<NSURLSessionDataTask>;
 
@@ -320,8 +323,9 @@ impl NSURLSession {
             &self,
             request: &NSURLRequest,
             file_url: &NSURL,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
         ) -> Retained<NSURLSessionUploadTask>;
 
@@ -341,8 +345,9 @@ impl NSURLSession {
             &self,
             request: &NSURLRequest,
             body_data: Option<&NSData>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
         ) -> Retained<NSURLSessionUploadTask>;
 
@@ -367,8 +372,9 @@ impl NSURLSession {
         pub unsafe fn uploadTaskWithResumeData_completionHandler(
             &self,
             resume_data: &NSData,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
         ) -> Retained<NSURLSessionUploadTask>;
 
@@ -387,8 +393,9 @@ impl NSURLSession {
         pub unsafe fn downloadTaskWithRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
             >,
         ) -> Retained<NSURLSessionDownloadTask>;
 
@@ -406,8 +413,9 @@ impl NSURLSession {
         pub unsafe fn downloadTaskWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
             >,
         ) -> Retained<NSURLSessionDownloadTask>;
 
@@ -426,8 +434,9 @@ impl NSURLSession {
         pub unsafe fn downloadTaskWithResumeData_completionHandler(
             &self,
             resume_data: &NSData,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
             >,
         ) -> Retained<NSURLSessionDownloadTask>;
     );
@@ -755,7 +764,7 @@ impl NSURLSessionUploadTask {
         #[unsafe(method_family = none)]
         pub unsafe fn cancelByProducingResumeData(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData)>,
         );
     );
 }
@@ -800,7 +809,7 @@ impl NSURLSessionDownloadTask {
         #[unsafe(method_family = none)]
         pub unsafe fn cancelByProducingResumeData(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData)>,
         );
 
         #[deprecated = "Please use -[NSURLSession downloadTaskWithRequest:] or other NSURLSession methods to create instances"]
@@ -863,7 +872,7 @@ impl NSURLSessionStreamTask {
             min_bytes: NSUInteger,
             max_bytes: NSUInteger,
             timeout: NSTimeInterval,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, Bool, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData, Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -881,7 +890,7 @@ impl NSURLSessionStreamTask {
             &self,
             data: &NSData,
             timeout: NSTimeInterval,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[unsafe(method(captureStreams))]
@@ -1063,7 +1072,7 @@ impl NSURLSessionWebSocketTask {
         pub unsafe fn sendMessage_completionHandler(
             &self,
             message: &NSURLSessionWebSocketMessage,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
@@ -1074,8 +1083,9 @@ impl NSURLSessionWebSocketTask {
         #[unsafe(method_family = none)]
         pub unsafe fn receiveMessageWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSURLSessionWebSocketMessage, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSURLSessionWebSocketMessage, *mut NSError),
             >,
         );
 
@@ -1087,7 +1097,7 @@ impl NSURLSessionWebSocketTask {
         #[unsafe(method_family = none)]
         pub unsafe fn sendPingWithPongReceiveHandler(
             &self,
-            pong_receive_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            pong_receive_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "NSData")]
@@ -1637,8 +1647,9 @@ extern_protocol!(
             &self,
             session: &NSURLSession,
             challenge: &NSURLAuthenticationChallenge,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 
@@ -1669,8 +1680,9 @@ extern_protocol!(
             session: &NSURLSession,
             task: &NSURLSessionTask,
             request: &NSURLRequest,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NSURLSessionDelayedRequestDisposition, *mut NSURLRequest),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NSURLSessionDelayedRequestDisposition, *mut NSURLRequest),
             >,
         );
 
@@ -1700,7 +1712,7 @@ extern_protocol!(
             task: &NSURLSessionTask,
             response: &NSHTTPURLResponse,
             request: &NSURLRequest,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSURLRequest)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSURLRequest)>,
         );
 
         #[cfg(all(
@@ -1719,8 +1731,9 @@ extern_protocol!(
             session: &NSURLSession,
             task: &NSURLSessionTask,
             challenge: &NSURLAuthenticationChallenge,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 
@@ -1735,7 +1748,7 @@ extern_protocol!(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSInputStream)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSInputStream)>,
         );
 
         #[cfg(all(feature = "NSStream", feature = "block2"))]
@@ -1758,7 +1771,7 @@ extern_protocol!(
             session: &NSURLSession,
             task: &NSURLSessionTask,
             offset: i64,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSInputStream)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSInputStream)>,
         );
 
         #[optional]
@@ -1822,7 +1835,7 @@ extern_protocol!(
             session: &NSURLSession,
             data_task: &NSURLSessionDataTask,
             response: &NSURLResponse,
-            completion_handler: &block2::DynBlock<dyn Fn(NSURLSessionResponseDisposition)>,
+            completion_handler: &block2::Block<'static, fn(NSURLSessionResponseDisposition)>,
         );
 
         #[optional]
@@ -1868,7 +1881,7 @@ extern_protocol!(
             session: &NSURLSession,
             data_task: &NSURLSessionDataTask,
             proposed_response: &NSCachedURLResponse,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSCachedURLResponse)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSCachedURLResponse)>,
         );
     }
 );

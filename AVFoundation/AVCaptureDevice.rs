@@ -1470,7 +1470,7 @@ impl AVCaptureDevice {
         pub unsafe fn setFocusModeLockedWithLensPosition_completionHandler(
             &self,
             lens_position: c_float,
-            handler: Option<&block2::DynBlock<dyn Fn(CMTime)>>,
+            handler: Option<&block2::Block<'static, fn(CMTime)>>,
         );
 
         /// A property indicating the minimum focus distance.
@@ -1782,7 +1782,7 @@ impl AVCaptureDevice {
             &self,
             duration: CMTime,
             iso: c_float,
-            handler: Option<&block2::DynBlock<dyn Fn(CMTime)>>,
+            handler: Option<&block2::Block<'static, fn(CMTime)>>,
         );
 
         /// Indicates the metered exposure level's offset from the target exposure value, in EV units.
@@ -1836,7 +1836,7 @@ impl AVCaptureDevice {
         pub unsafe fn setExposureTargetBias_completionHandler(
             &self,
             bias: c_float,
-            handler: Option<&block2::DynBlock<dyn Fn(CMTime)>>,
+            handler: Option<&block2::Block<'static, fn(CMTime)>>,
         );
     );
 }
@@ -2101,7 +2101,7 @@ impl AVCaptureDevice {
         pub unsafe fn setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues_completionHandler(
             &self,
             white_balance_temperature_and_tint_values: AVCaptureWhiteBalanceTemperatureAndTintValues,
-            handler: Option<&block2::DynBlock<dyn Fn(CMTime)>>,
+            handler: Option<&block2::Block<'static, fn(CMTime)>>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -2123,7 +2123,7 @@ impl AVCaptureDevice {
         pub unsafe fn setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains_completionHandler(
             &self,
             white_balance_gains: AVCaptureWhiteBalanceGains,
-            handler: Option<&block2::DynBlock<dyn Fn(CMTime)>>,
+            handler: Option<&block2::Block<'static, fn(CMTime)>>,
         );
 
         /// Converts device-specific white balance RGB gain values to device-independent chromaticity values.
@@ -2409,7 +2409,7 @@ impl AVCaptureDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn requestAccessForMediaType_completionHandler(
             media_type: &AVMediaType,
-            handler: &block2::DynBlock<dyn Fn(Bool)>,
+            handler: &block2::Block<'static, fn(Bool)>,
         );
     );
 }
@@ -3224,7 +3224,7 @@ impl AVCaptureDevice {
         pub unsafe fn setDynamicAspectRatio_completionHandler(
             &self,
             dynamic_aspect_ratio: &AVCaptureAspectRatio,
-            handler: Option<&block2::DynBlock<dyn Fn(CMTime, *mut NSError)>>,
+            handler: Option<&block2::Block<'static, fn(CMTime, *mut NSError)>>,
         );
     );
 }

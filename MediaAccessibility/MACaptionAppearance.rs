@@ -885,12 +885,12 @@ pub unsafe fn MACaptionAppearanceCopyProfileName(profile_id: &CFString) -> CFRet
 #[inline]
 pub unsafe fn MACaptionAppearanceExecuteBlockForProfileID(
     profile_id: &CFString,
-    a_block: &block2::DynBlock<dyn Fn()>,
+    a_block: &block2::Block<'static, fn()>,
 ) {
     extern "C-unwind" {
         fn MACaptionAppearanceExecuteBlockForProfileID(
             profile_id: &CFString,
-            a_block: &block2::DynBlock<dyn Fn()>,
+            a_block: &block2::Block<'static, fn()>,
         );
     }
     unsafe { MACaptionAppearanceExecuteBlockForProfileID(profile_id, a_block) }

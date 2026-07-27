@@ -23,7 +23,7 @@ use crate::*;
     feature = "block2"
 ))]
 pub type MPSGraphExecutableCompletionHandler =
-    block2::DynBlock<dyn Fn(NonNull<NSArray<MPSGraphTensorData>>, *mut NSError)>;
+    block2::Block<'static, fn(NonNull<NSArray<MPSGraphTensorData>>, *mut NSError)>;
 
 /// A notification when graph executable execution schedules.
 ///
@@ -38,7 +38,7 @@ pub type MPSGraphExecutableCompletionHandler =
     feature = "block2"
 ))]
 pub type MPSGraphExecutableScheduledHandler =
-    block2::DynBlock<dyn Fn(NonNull<NSArray<MPSGraphTensorData>>, *mut NSError)>;
+    block2::Block<'static, fn(NonNull<NSArray<MPSGraphTensorData>>, *mut NSError)>;
 
 extern_class!(
     /// A class that consists of all the levers  to synchronize and schedule executable execution.

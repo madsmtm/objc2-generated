@@ -254,7 +254,7 @@ impl SMAppService {
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterWithCompletionHandler(
             &self,
-            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// Returns the status for the service

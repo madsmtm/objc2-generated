@@ -37,7 +37,10 @@ pub unsafe trait NSExtensionContextRPBroadcastExtension:
         #[unsafe(method_family = none)]
         unsafe fn loadBroadcastingApplicationInfoWithCompletion(
             &self,
-            handler: &block2::DynBlock<dyn Fn(NonNull<NSString>, NonNull<NSString>, *mut NSImage)>,
+            handler: &block2::Block<
+                'static,
+                fn(NonNull<NSString>, NonNull<NSString>, *mut NSImage),
+            >,
         );
 
         /// # Safety

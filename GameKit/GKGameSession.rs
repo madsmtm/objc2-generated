@@ -116,7 +116,7 @@ impl GKGameSession {
             container_name: Option<&NSString>,
             title: &NSString,
             max_players: NSInteger,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut GKGameSession, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut GKGameSession, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -128,8 +128,9 @@ impl GKGameSession {
         #[unsafe(method_family = none)]
         pub unsafe fn loadSessionsInContainer_completionHandler(
             container_name: Option<&NSString>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<GKGameSession>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<GKGameSession>, *mut NSError),
             >,
         );
 
@@ -142,7 +143,7 @@ impl GKGameSession {
         #[unsafe(method_family = none)]
         pub unsafe fn loadSessionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut GKGameSession, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut GKGameSession, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -154,7 +155,7 @@ impl GKGameSession {
         #[unsafe(method_family = none)]
         pub unsafe fn removeSessionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -166,7 +167,7 @@ impl GKGameSession {
         #[unsafe(method_family = none)]
         pub unsafe fn getShareURLWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSURL, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSURL, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -178,7 +179,7 @@ impl GKGameSession {
         #[unsafe(method_family = none)]
         pub unsafe fn loadDataWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -188,7 +189,7 @@ impl GKGameSession {
         pub unsafe fn saveData_completionHandler(
             &self,
             data: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -201,7 +202,7 @@ impl GKGameSession {
         pub unsafe fn setConnectionState_completionHandler(
             &self,
             state: GKConnectionState,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
@@ -224,7 +225,7 @@ impl GKGameSession {
             &self,
             data: &NSData,
             transport: GKTransportType,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -245,7 +246,7 @@ impl GKGameSession {
             data: Option<&NSData>,
             players: &NSArray<GKCloudPlayer>,
             badge_players: bool,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -262,7 +263,7 @@ impl GKGameSession {
         pub unsafe fn clearBadgeForPlayers_completionHandler(
             &self,
             players: &NSArray<GKCloudPlayer>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }

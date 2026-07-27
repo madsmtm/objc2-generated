@@ -44,7 +44,7 @@ cf_objc2_type!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingparameterchangehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type VTRAWProcessingParameterChangeHandler = block2::DynBlock<dyn Fn(*const CFArray)>;
+pub type VTRAWProcessingParameterChangeHandler = block2::Block<'static, fn(*const CFArray)>;
 
 impl VTRAWProcessingSession {
     /// Creates a RAW video frame processing session.
@@ -187,7 +187,7 @@ impl VTRAWProcessingSession {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingoutputhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
-pub type VTRAWProcessingOutputHandler = block2::DynBlock<dyn Fn(OSStatus, *mut CVPixelBuffer)>;
+pub type VTRAWProcessingOutputHandler = block2::Block<'static, fn(OSStatus, *mut CVPixelBuffer)>;
 
 impl VTRAWProcessingSession {
     /// Call this function to submit RAW frames for format-specific processing using sequence and frame level parameters.

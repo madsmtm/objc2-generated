@@ -104,7 +104,7 @@ impl AVPlayerItem {
         pub unsafe fn requestContentAuthorizationAsynchronouslyWithTimeoutInterval_completionHandler(
             &self,
             timeout_interval: NSTimeInterval,
-            handler: &block2::DynBlock<dyn Fn()>,
+            handler: &block2::Block<'static, fn()>,
         );
 
         /// Causes the currently outstanding content authorization request to be cancelled.

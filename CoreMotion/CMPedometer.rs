@@ -161,11 +161,11 @@ impl CMPedometerEvent {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometerhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMPedometerHandler = block2::DynBlock<dyn Fn(*mut CMPedometerData, *mut NSError)>;
+pub type CMPedometerHandler = block2::Block<'static, fn(*mut CMPedometerData, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometereventhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMPedometerEventHandler = block2::DynBlock<dyn Fn(*mut CMPedometerEvent, *mut NSError)>;
+pub type CMPedometerEventHandler = block2::Block<'static, fn(*mut CMPedometerEvent, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometer?language=objc)

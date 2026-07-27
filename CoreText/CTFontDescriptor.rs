@@ -834,7 +834,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CTFontDescriptorProgressHandler =
-    block2::DynBlock<dyn Fn(CTFontDescriptorMatchingState, NonNull<CFDictionary>) -> bool>;
+    block2::Block<'static, fn(CTFontDescriptorMatchingState, NonNull<CFDictionary>) -> bool>;
 
 impl CTFontDescriptor {
     #[doc(alias = "CTFontDescriptorMatchFontDescriptorsWithProgressHandler")]

@@ -227,13 +227,13 @@ impl VTFrameSilo {
     pub unsafe fn call_block_for_each_sample_buffer(
         &self,
         time_range: CMTimeRange,
-        handler: &block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus + '_>,
+        handler: &block2::Block<'_, fn(NonNull<CMSampleBuffer>) -> OSStatus>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTFrameSiloCallBlockForEachSampleBuffer(
                 silo: &VTFrameSilo,
                 time_range: CMTimeRange,
-                handler: &block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus + '_>,
+                handler: &block2::Block<'_, fn(NonNull<CMSampleBuffer>) -> OSStatus>,
             ) -> OSStatus;
         }
         unsafe { VTFrameSiloCallBlockForEachSampleBuffer(self, time_range, handler) }

@@ -123,7 +123,7 @@ impl CLServiceSession {
         pub unsafe fn sessionRequiringAuthorization_queue_handler(
             authorization_requirement: CLServiceSessionAuthorizationRequirement,
             queue: &DispatchQueue,
-            handler: &block2::DynBlock<dyn Fn(NonNull<CLServiceSessionDiagnostic>)>,
+            handler: &block2::Block<'static, fn(NonNull<CLServiceSessionDiagnostic>)>,
         ) -> Retained<CLServiceSession>;
 
         #[unsafe(method(sessionRequiringAuthorization:fullAccuracyPurposeKey:))]
@@ -143,7 +143,7 @@ impl CLServiceSession {
             authorization_requirement: CLServiceSessionAuthorizationRequirement,
             purpose_key: &NSString,
             queue: &DispatchQueue,
-            handler: &block2::DynBlock<dyn Fn(NonNull<CLServiceSessionDiagnostic>)>,
+            handler: &block2::Block<'static, fn(NonNull<CLServiceSessionDiagnostic>)>,
         ) -> Retained<CLServiceSession>;
 
         #[unsafe(method(invalidate))]

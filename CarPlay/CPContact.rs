@@ -165,7 +165,7 @@ impl CPContactCallButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPButton>)>>,
+            handler: Option<&block2::Block<'static, fn(NonNull<CPButton>)>>,
         ) -> Retained<Self>;
     );
 }
@@ -248,7 +248,7 @@ impl CPContactMessageButton {
         pub unsafe fn initWithImage_handler(
             this: Allocated<Self>,
             image: &UIImage,
-            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPButton>)>>,
+            handler: Option<&block2::Block<'static, fn(NonNull<CPButton>)>>,
         ) -> Retained<Self>;
     );
 }
@@ -278,7 +278,7 @@ impl CPContactDirectionsButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPButton>)>>,
+            handler: Option<&block2::Block<'static, fn(NonNull<CPButton>)>>,
         ) -> Retained<Self>;
     );
 }

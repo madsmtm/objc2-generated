@@ -198,7 +198,7 @@ impl GCController {
         #[unsafe(method_family = none)]
         pub unsafe fn controllerPausedHandler(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<GCController>)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<GCController>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`controllerPausedHandler`][Self::controllerPausedHandler].
@@ -209,7 +209,7 @@ impl GCController {
         #[unsafe(method_family = none)]
         pub unsafe fn setControllerPausedHandler(
             &self,
-            controller_paused_handler: Option<&block2::DynBlock<dyn Fn(NonNull<GCController>)>>,
+            controller_paused_handler: Option<&block2::Block<'static, fn(NonNull<GCController>)>>,
         );
 
         /// Whether the current application should monitor and respond to game controller events when it is not the frontmost application.
@@ -459,7 +459,7 @@ impl GCController {
         #[unsafe(method(startWirelessControllerDiscoveryWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWirelessControllerDiscoveryWithCompletionHandler(
-            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
+            completion_handler: Option<&block2::Block<'static, fn()>>,
         );
 
         /// If no more controllers are needed, depending on game state or number of controllers supported by a game, the discovery

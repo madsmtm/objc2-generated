@@ -105,7 +105,7 @@ extern_protocol!(
         unsafe fn handleResumeWorkout_completion(
             &self,
             intent: &INResumeWorkoutIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INResumeWorkoutIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INResumeWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -135,7 +135,7 @@ extern_protocol!(
         unsafe fn confirmResumeWorkout_completion(
             &self,
             intent: &INResumeWorkoutIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INResumeWorkoutIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INResumeWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -165,7 +165,7 @@ extern_protocol!(
         unsafe fn resolveWorkoutNameForResumeWorkout_withCompletion(
             &self,
             intent: &INResumeWorkoutIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
     }
 );

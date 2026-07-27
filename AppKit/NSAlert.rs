@@ -283,7 +283,7 @@ impl NSAlert {
         pub fn beginSheetModalForWindow_completionHandler(
             &self,
             sheet_window: &NSWindow,
-            handler: Option<&block2::DynBlock<dyn Fn(NSModalResponse)>>,
+            handler: Option<&block2::Block<'static, fn(NSModalResponse)>>,
         );
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]

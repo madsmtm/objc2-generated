@@ -184,7 +184,10 @@ impl UITableViewRowAction {
         pub fn rowActionWithStyle_title_handler(
             style: UITableViewRowActionStyle,
             title: Option<&NSString>,
-            handler: &block2::DynBlock<dyn Fn(NonNull<UITableViewRowAction>, NonNull<NSIndexPath>)>,
+            handler: &block2::Block<
+                'static,
+                fn(NonNull<UITableViewRowAction>, NonNull<NSIndexPath>),
+            >,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
@@ -1548,8 +1551,8 @@ impl UITableView {
         #[unsafe(method_family = none)]
         pub fn performBatchUpdates_completion(
             &self,
-            updates: Option<&block2::DynBlock<dyn Fn() + '_>>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            updates: Option<&block2::Block<'_, fn()>>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[unsafe(method(beginUpdates))]
@@ -2579,7 +2582,7 @@ impl UITableViewPlaceholder {
         #[unsafe(method_family = none)]
         pub unsafe fn cellUpdateHandler(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<UITableViewCell>)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<UITableViewCell>)>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -2594,7 +2597,7 @@ impl UITableViewPlaceholder {
         #[unsafe(method_family = none)]
         pub fn setCellUpdateHandler(
             &self,
-            cell_update_handler: Option<&block2::DynBlock<dyn Fn(NonNull<UITableViewCell>)>>,
+            cell_update_handler: Option<&block2::Block<'static, fn(NonNull<UITableViewCell>)>>,
         );
     );
 }
@@ -2628,7 +2631,7 @@ impl UITableViewDropPlaceholder {
         #[unsafe(method_family = none)]
         pub unsafe fn previewParametersProvider(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<UITableViewCell>) -> *mut UIDragPreviewParameters>;
+        ) -> *mut block2::Block<'static, fn(NonNull<UITableViewCell>) -> *mut UIDragPreviewParameters>;
 
         #[cfg(all(
             feature = "UIDragPreviewParameters",
@@ -2650,7 +2653,10 @@ impl UITableViewDropPlaceholder {
         pub unsafe fn setPreviewParametersProvider(
             &self,
             preview_parameters_provider: Option<
-                &block2::DynBlock<dyn Fn(NonNull<UITableViewCell>) -> *mut UIDragPreviewParameters>,
+                &block2::Block<
+                    'static,
+                    fn(NonNull<UITableViewCell>) -> *mut UIDragPreviewParameters,
+                >,
             >,
         );
     );
@@ -2706,7 +2712,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn commitInsertionWithDataSourceUpdates(
             &self,
-            data_source_updates: &block2::DynBlock<dyn Fn(NonNull<NSIndexPath>) + '_>,
+            data_source_updates: &block2::Block<'_, fn(NonNull<NSIndexPath>)>,
         ) -> bool;
 
         #[unsafe(method(deletePlaceholder))]

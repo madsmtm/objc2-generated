@@ -162,7 +162,7 @@ impl HMTimerTrigger {
         pub unsafe fn updateFireDate_completionHandler(
             &self,
             fire_date: &NSDate,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -175,7 +175,7 @@ impl HMTimerTrigger {
         pub unsafe fn updateTimeZone_completionHandler(
             &self,
             time_zone: Option<&NSTimeZone>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -205,7 +205,7 @@ impl HMTimerTrigger {
         pub unsafe fn updateRecurrence_completionHandler(
             &self,
             recurrence: Option<&NSDateComponents>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }

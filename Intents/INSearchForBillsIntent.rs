@@ -143,7 +143,7 @@ extern_protocol!(
         unsafe fn handleSearchForBills_completion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForBillsIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSearchForBillsIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -174,7 +174,7 @@ extern_protocol!(
         unsafe fn confirmSearchForBills_completion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForBillsIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSearchForBillsIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -205,7 +205,7 @@ extern_protocol!(
         unsafe fn resolveBillPayeeForSearchForBills_withCompletion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INBillPayeeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INBillPayeeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -224,7 +224,7 @@ extern_protocol!(
         unsafe fn resolvePaymentDateRangeForSearchForBills_withCompletion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -243,7 +243,7 @@ extern_protocol!(
         unsafe fn resolveBillTypeForSearchForBills_withCompletion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INBillTypeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INBillTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -262,7 +262,7 @@ extern_protocol!(
         unsafe fn resolveStatusForSearchForBills_withCompletion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPaymentStatusResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPaymentStatusResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -281,7 +281,7 @@ extern_protocol!(
         unsafe fn resolveDueDateRangeForSearchForBills_withCompletion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
     }
 );

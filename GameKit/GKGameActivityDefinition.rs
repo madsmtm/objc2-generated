@@ -174,8 +174,9 @@ impl GKGameActivityDefinition {
         #[unsafe(method_family = none)]
         pub unsafe fn loadAchievementDescriptionsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<GKAchievementDescription>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<GKAchievementDescription>, *mut NSError),
             >,
         );
 
@@ -189,8 +190,9 @@ impl GKGameActivityDefinition {
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<GKLeaderboard>, *mut NSError),
             >,
         );
 
@@ -205,7 +207,7 @@ impl GKGameActivityDefinition {
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSImage, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSImage, *mut NSError)>,
         );
     );
 }
@@ -230,8 +232,9 @@ impl GKGameActivityDefinition {
         #[unsafe(method(loadGameActivityDefinitionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadGameActivityDefinitionsWithCompletionHandler(
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<GKGameActivityDefinition>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<GKGameActivityDefinition>, *mut NSError),
             >,
         );
 
@@ -245,8 +248,9 @@ impl GKGameActivityDefinition {
         #[unsafe(method_family = none)]
         pub unsafe fn loadGameActivityDefinitionsWithIDs_completionHandler(
             activity_definition_i_ds: Option<&NSArray<NSString>>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<GKGameActivityDefinition>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<GKGameActivityDefinition>, *mut NSError),
             >,
         );
     );

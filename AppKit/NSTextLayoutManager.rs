@@ -239,7 +239,7 @@ impl NSTextLayoutManager {
             &self,
             location: Option<&ProtocolObject<dyn NSTextLocation>>,
             options: NSTextLayoutFragmentEnumerationOptions,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSTextLayoutFragment>) -> Bool + '_>,
+            block: &block2::Block<'_, fn(NonNull<NSTextLayoutFragment>) -> Bool>,
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(feature = "NSTextSelection")]
@@ -274,13 +274,13 @@ impl NSTextLayoutManager {
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
             reverse: bool,
-            block: &block2::DynBlock<
-                dyn Fn(
-                        NonNull<NSTextLayoutManager>,
-                        NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
-                        NonNull<NSTextRange>,
-                    ) -> Bool
-                    + '_,
+            block: &block2::Block<
+                '_,
+                fn(
+                    NonNull<NSTextLayoutManager>,
+                    NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
+                    NonNull<NSTextRange>,
+                ) -> Bool,
             >,
         );
 
@@ -332,8 +332,9 @@ impl NSTextLayoutManager {
         #[unsafe(method_family = none)]
         pub unsafe fn renderingAttributesValidator(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(NonNull<NSTextLayoutManager>, NonNull<NSTextLayoutFragment>),
+        ) -> *mut block2::Block<
+            'static,
+            fn(NonNull<NSTextLayoutManager>, NonNull<NSTextLayoutFragment>),
         >;
 
         #[cfg(all(feature = "NSTextLayoutFragment", feature = "block2"))]
@@ -345,8 +346,9 @@ impl NSTextLayoutManager {
         pub fn setRenderingAttributesValidator(
             &self,
             rendering_attributes_validator: Option<
-                &block2::DynBlock<
-                    dyn Fn(NonNull<NSTextLayoutManager>, NonNull<NSTextLayoutFragment>),
+                &block2::Block<
+                    'static,
+                    fn(NonNull<NSTextLayoutManager>, NonNull<NSTextLayoutFragment>),
                 >,
             >,
         );
@@ -380,8 +382,9 @@ impl NSTextLayoutManager {
             text_range: &NSTextRange,
             r#type: NSTextLayoutManagerSegmentType,
             options: NSTextLayoutManagerSegmentOptions,
-            block: &block2::DynBlock<
-                dyn Fn(*mut NSTextRange, CGRect, CGFloat, NonNull<NSTextContainer>) -> Bool + '_,
+            block: &block2::Block<
+                '_,
+                fn(*mut NSTextRange, CGRect, CGFloat, NonNull<NSTextContainer>) -> Bool,
             >,
         );
 

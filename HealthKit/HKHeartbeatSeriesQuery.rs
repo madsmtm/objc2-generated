@@ -56,8 +56,9 @@ impl HKHeartbeatSeriesQuery {
         pub unsafe fn initWithHeartbeatSeries_dataHandler(
             this: Allocated<Self>,
             heartbeat_series: &HKHeartbeatSeriesSample,
-            data_handler: &block2::DynBlock<
-                dyn Fn(NonNull<HKHeartbeatSeriesQuery>, NSTimeInterval, Bool, Bool, *mut NSError),
+            data_handler: &block2::Block<
+                'static,
+                fn(NonNull<HKHeartbeatSeriesQuery>, NSTimeInterval, Bool, Bool, *mut NSError),
             >,
         ) -> Retained<Self>;
     );

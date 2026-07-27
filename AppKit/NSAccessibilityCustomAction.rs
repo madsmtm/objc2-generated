@@ -26,7 +26,7 @@ impl NSAccessibilityCustomAction {
         pub fn initWithName_handler(
             this: Allocated<Self>,
             name: &NSString,
-            handler: Option<&block2::DynBlock<dyn Fn() -> Bool>>,
+            handler: Option<&block2::Block<'static, fn() -> Bool>>,
         ) -> Retained<Self>;
 
         /// # Safety
@@ -56,7 +56,7 @@ impl NSAccessibilityCustomAction {
         #[cfg(feature = "block2")]
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
-        pub fn handler(&self) -> *mut block2::DynBlock<dyn Fn() -> Bool>;
+        pub fn handler(&self) -> *mut block2::Block<'static, fn() -> Bool>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`handler`][Self::handler].
@@ -64,7 +64,7 @@ impl NSAccessibilityCustomAction {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setHandler(&self, handler: Option<&block2::DynBlock<dyn Fn() -> Bool>>);
+        pub fn setHandler(&self, handler: Option<&block2::Block<'static, fn() -> Bool>>);
 
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]

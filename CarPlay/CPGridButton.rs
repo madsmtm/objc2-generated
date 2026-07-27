@@ -116,7 +116,7 @@ impl CPGridButton {
             this: Allocated<Self>,
             title_variants: &NSArray<NSString>,
             image: &UIImage,
-            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPGridButton>)>>,
+            handler: Option<&block2::Block<'static, fn(NonNull<CPGridButton>)>>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-ui-kit"))]
@@ -128,7 +128,7 @@ impl CPGridButton {
             title_variants: &NSArray<NSString>,
             image: &UIImage,
             message_configuration: Option<&CPMessageGridItemConfiguration>,
-            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPGridButton>)>>,
+            handler: Option<&block2::Block<'static, fn(NonNull<CPGridButton>)>>,
         ) -> Retained<Self>;
 
         /// A Boolean value indicating whether the button is enabled.

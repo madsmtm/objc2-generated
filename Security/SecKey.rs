@@ -649,7 +649,7 @@ impl SecKey {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygeneratepairblock?language=objc)
 #[cfg(all(feature = "SecBase", feature = "block2"))]
 pub type SecKeyGeneratePairBlock =
-    block2::DynBlock<dyn Fn(NonNull<SecKey>, NonNull<SecKey>, NonNull<CFError>)>;
+    block2::Block<'static, fn(NonNull<SecKey>, NonNull<SecKey>, NonNull<CFError>)>;
 
 #[cfg(feature = "SecBase")]
 impl SecKey {

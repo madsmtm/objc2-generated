@@ -32,8 +32,9 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/nsattributedstringcompletionhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-pub type NSAttributedStringCompletionHandler = block2::DynBlock<
-    dyn Fn(
+pub type NSAttributedStringCompletionHandler = block2::Block<
+    'static,
+    fn(
         *mut NSAttributedString,
         *mut NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         *mut NSError,

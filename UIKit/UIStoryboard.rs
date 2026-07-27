@@ -13,7 +13,7 @@ use crate::*;
     feature = "block2"
 ))]
 pub type UIStoryboardViewControllerCreator =
-    block2::DynBlock<dyn Fn(NonNull<NSCoder>) -> *mut UIViewController>;
+    block2::Block<'static, fn(NonNull<NSCoder>) -> *mut UIViewController>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistoryboard?language=objc)

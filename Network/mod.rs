@@ -210,7 +210,7 @@ impl NWTxtRecord {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_txt_record_access_key_t?language=objc)
 pub type nw_txt_record_access_key_t =
-    block2::DynBlock<dyn Fn(NonNull<c_char>, nw_txt_record_find_key_t, *const u8, usize) -> bool>;
+    block2::Block<'static, fn(NonNull<c_char>, nw_txt_record_find_key_t, *const u8, usize) -> bool>;
 
 impl NWTxtRecord {
     /// Access a value in the TXT record object with its key. Attempts to access
@@ -337,7 +337,7 @@ impl NWTxtRecord {
 /// boolean indicating if the operation succeeds.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_txt_record_access_bytes_t?language=objc)
-pub type nw_txt_record_access_bytes_t = block2::DynBlock<dyn Fn(NonNull<u8>, usize) -> bool>;
+pub type nw_txt_record_access_bytes_t = block2::Block<'static, fn(NonNull<u8>, usize) -> bool>;
 
 impl NWTxtRecord {
     /// Access the raw TXT record inside the TXT record object.
@@ -389,8 +389,10 @@ impl NWTxtRecord {
 /// Returns: A boolean indicating whether iteration should continue.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_txt_record_applier_t?language=objc)
-pub type nw_txt_record_applier_t =
-    block2::DynBlock<dyn Fn(NonNull<c_char>, nw_txt_record_find_key_t, NonNull<u8>, usize) -> bool>;
+pub type nw_txt_record_applier_t = block2::Block<
+    'static,
+    fn(NonNull<c_char>, nw_txt_record_find_key_t, NonNull<u8>, usize) -> bool,
+>;
 
 impl NWTxtRecord {
     /// Apply the block to every key-value pair in the TXT record object.
@@ -1790,7 +1792,7 @@ impl NWProxyConfig {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_proxy_domain_enumerator_t?language=objc)
-pub type nw_proxy_domain_enumerator_t = block2::DynBlock<dyn Fn(NonNull<c_char>)>;
+pub type nw_proxy_domain_enumerator_t = block2::Block<'static, fn(NonNull<c_char>)>;
 
 impl NWProxyConfig {
     /// Enumerate all match domains set on the proxy configuration.
@@ -2010,7 +2012,7 @@ nw_object!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_parameters_configure_protocol_block_t?language=objc)
 pub type nw_parameters_configure_protocol_block_t =
-    block2::DynBlock<dyn Fn(NonNull<NWProtocolOptions>)>;
+    block2::Block<'static, fn(NonNull<NWProtocolOptions>)>;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/network/_nw_parameters_configure_protocol_default_configuration?language=objc)
@@ -2400,7 +2402,7 @@ impl NWParameters {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_parameters_iterate_interfaces_block_t?language=objc)
 pub type nw_parameters_iterate_interfaces_block_t =
-    block2::DynBlock<dyn Fn(NonNull<NWInterface>) -> bool>;
+    block2::Block<'static, fn(NonNull<NWInterface>) -> bool>;
 
 impl NWParameters {
     /// List all prohibited network interfaces.
@@ -2502,7 +2504,7 @@ impl NWParameters {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_parameters_iterate_interface_types_block_t?language=objc)
 pub type nw_parameters_iterate_interface_types_block_t =
-    block2::DynBlock<dyn Fn(nw_interface_type_t) -> bool>;
+    block2::Block<'static, fn(nw_interface_type_t) -> bool>;
 
 impl NWParameters {
     /// List all prohibited network interface types.
@@ -3015,7 +3017,7 @@ impl NWProtocolStack {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_protocol_stack_iterate_protocols_block_t?language=objc)
 pub type nw_protocol_stack_iterate_protocols_block_t =
-    block2::DynBlock<dyn Fn(NonNull<NWProtocolOptions>)>;
+    block2::Block<'static, fn(NonNull<NWProtocolOptions>)>;
 
 impl NWProtocolStack {
     /// List all application protocols attached to a protocol stack.
@@ -3617,7 +3619,7 @@ impl NWBrowseResult {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_enumerate_interface_t?language=objc)
 pub type nw_browse_result_enumerate_interface_t =
-    block2::DynBlock<dyn Fn(NonNull<NWInterface>) -> bool>;
+    block2::Block<'static, fn(NonNull<NWInterface>) -> bool>;
 
 impl NWBrowseResult {
     /// Enumerates the list of interfaces on this browse result.
@@ -3897,7 +3899,7 @@ impl NWBrowser {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browser_browse_results_changed_handler_t?language=objc)
 pub type nw_browser_browse_results_changed_handler_t =
-    block2::DynBlock<dyn Fn(NonNull<NWBrowseResult>, NonNull<NWBrowseResult>, bool)>;
+    block2::Block<'static, fn(NonNull<NWBrowseResult>, NonNull<NWBrowseResult>, bool)>;
 
 impl NWBrowser {
     /// Sets a callback handler to be invoked when the browser gets an update
@@ -3938,7 +3940,7 @@ impl NWBrowser {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browser_state_changed_handler_t?language=objc)
 pub type nw_browser_state_changed_handler_t =
-    block2::DynBlock<dyn Fn(nw_browser_state_t, *mut NWError)>;
+    block2::Block<'static, fn(nw_browser_state_t, *mut NWError)>;
 
 impl NWBrowser {
     /// Sets the state changed handler. For clients that need to perform cleanup
@@ -4151,7 +4153,7 @@ impl NWPath {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_path_enumerate_interfaces_block_t?language=objc)
 pub type nw_path_enumerate_interfaces_block_t =
-    block2::DynBlock<dyn Fn(NonNull<NWInterface>) -> bool>;
+    block2::Block<'static, fn(NonNull<NWInterface>) -> bool>;
 
 impl NWPath {
     /// List all interfaces associated with the path.
@@ -4363,7 +4365,8 @@ impl NWPath {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_path_enumerate_gateways_block_t?language=objc)
-pub type nw_path_enumerate_gateways_block_t = block2::DynBlock<dyn Fn(NonNull<NWEndpoint>) -> bool>;
+pub type nw_path_enumerate_gateways_block_t =
+    block2::Block<'static, fn(NonNull<NWEndpoint>) -> bool>;
 
 impl NWPath {
     /// List the IP addresses of the routers acting as the gateways for the path.
@@ -4690,15 +4693,17 @@ impl NWContentContext {
     #[inline]
     pub fn foreach_protocol_metadata(
         &self,
-        foreach_block: &block2::DynBlock<
-            dyn Fn(NonNull<NWProtocolDefinition>, NonNull<NWProtocolMetadata>),
+        foreach_block: &block2::Block<
+            'static,
+            fn(NonNull<NWProtocolDefinition>, NonNull<NWProtocolMetadata>),
         >,
     ) {
         extern "C-unwind" {
             fn nw_content_context_foreach_protocol_metadata(
                 context: &NWContentContext,
-                foreach_block: &block2::DynBlock<
-                    dyn Fn(NonNull<NWProtocolDefinition>, NonNull<NWProtocolMetadata>),
+                foreach_block: &block2::Block<
+                    'static,
+                    fn(NonNull<NWProtocolDefinition>, NonNull<NWProtocolMetadata>),
                 >,
             );
         }
@@ -4831,7 +4836,7 @@ impl NWConnection {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_state_changed_handler_t?language=objc)
 pub type nw_connection_state_changed_handler_t =
-    block2::DynBlock<dyn Fn(nw_connection_state_t, *mut NWError)>;
+    block2::Block<'static, fn(nw_connection_state_t, *mut NWError)>;
 
 impl NWConnection {
     /// Sets the state change handler. For clients that need to perform cleanup when the
@@ -4861,7 +4866,7 @@ impl NWConnection {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_boolean_event_handler_t?language=objc)
-pub type nw_connection_boolean_event_handler_t = block2::DynBlock<dyn Fn(bool)>;
+pub type nw_connection_boolean_event_handler_t = block2::Block<'static, fn(bool)>;
 
 impl NWConnection {
     /// Define a callback to be fired when the viability of the connection changes.
@@ -4918,7 +4923,7 @@ impl NWConnection {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_path_event_handler_t?language=objc)
-pub type nw_connection_path_event_handler_t = block2::DynBlock<dyn Fn(NonNull<NWPath>)>;
+pub type nw_connection_path_event_handler_t = block2::Block<'static, fn(NonNull<NWPath>)>;
 
 impl NWConnection {
     /// Define a callback to be fired when the connection's path changes.
@@ -5099,7 +5104,7 @@ impl NWConnection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_receive_completion_t?language=objc)
 #[cfg(feature = "dispatch2")]
 pub type nw_connection_receive_completion_t =
-    block2::DynBlock<dyn Fn(*mut DispatchData, *mut NWContentContext, bool, *mut NWError)>;
+    block2::Block<'static, fn(*mut DispatchData, *mut NWContentContext, bool, *mut NWError)>;
 
 impl NWConnection {
     /// Receive data from a connection. This may be called before the connection
@@ -5183,7 +5188,7 @@ impl NWConnection {
 /// is cancelled.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_send_completion_t?language=objc)
-pub type nw_connection_send_completion_t = block2::DynBlock<dyn Fn(*mut NWError)>;
+pub type nw_connection_send_completion_t = block2::Block<'static, fn(*mut NWError)>;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/network/_nw_connection_send_idempotent_content?language=objc)
@@ -5514,7 +5519,7 @@ impl NWGroupDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_group_descriptor_enumerate_endpoints_block_t?language=objc)
 pub type nw_group_descriptor_enumerate_endpoints_block_t =
-    block2::DynBlock<dyn Fn(NonNull<NWEndpoint>) -> bool>;
+    block2::Block<'static, fn(NonNull<NWEndpoint>) -> bool>;
 
 impl NWGroupDescriptor {
     /// List all endpoints associated with the group descriptor.
@@ -5761,7 +5766,7 @@ impl NWConnectionGroup {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_group_state_changed_handler_t?language=objc)
 pub type nw_connection_group_state_changed_handler_t =
-    block2::DynBlock<dyn Fn(nw_connection_group_state_t, *mut NWError)>;
+    block2::Block<'static, fn(nw_connection_group_state_t, *mut NWError)>;
 
 impl NWConnectionGroup {
     /// Sets the state changed handler. For clients that need to perform cleanup
@@ -5814,7 +5819,7 @@ impl NWConnectionGroup {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_group_receive_handler_t?language=objc)
 #[cfg(feature = "dispatch2")]
 pub type nw_connection_group_receive_handler_t =
-    block2::DynBlock<dyn Fn(*mut DispatchData, NonNull<NWContentContext>, bool)>;
+    block2::Block<'static, fn(*mut DispatchData, NonNull<NWContentContext>, bool)>;
 
 impl NWConnectionGroup {
     /// Sets the handler to be invoked whenever a new inbound message
@@ -6161,7 +6166,7 @@ impl NWConnectionGroup {
 /// is cancelled.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_group_send_completion_t?language=objc)
-pub type nw_connection_group_send_completion_t = block2::DynBlock<dyn Fn(*mut NWError)>;
+pub type nw_connection_group_send_completion_t = block2::Block<'static, fn(*mut NWError)>;
 
 impl NWConnectionGroup {
     /// Send data that is not in response to an inbound message. This outgoing
@@ -6240,7 +6245,7 @@ impl NWConnectionGroup {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_group_new_connection_handler_t?language=objc)
 pub type nw_connection_group_new_connection_handler_t =
-    block2::DynBlock<dyn Fn(NonNull<NWConnection>)>;
+    block2::Block<'static, fn(NonNull<NWConnection>)>;
 
 impl NWConnectionGroup {
     /// Sets the new connection handler to be invoked whenever a new inbound connection
@@ -6310,7 +6315,7 @@ nw_object!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_establishment_report_access_block_t?language=objc)
 pub type nw_establishment_report_access_block_t =
-    block2::DynBlock<dyn Fn(*mut NWEstablishmentReport)>;
+    block2::Block<'static, fn(*mut NWEstablishmentReport)>;
 
 impl NWConnection {
     /// Access the establishment report for a connection. The report will be
@@ -6659,14 +6664,9 @@ impl NWResolutionReport {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_report_resolution_enumerator_t?language=objc)
-pub type nw_report_resolution_enumerator_t = block2::DynBlock<
-    dyn Fn(
-        nw_report_resolution_source_t,
-        u64,
-        u32,
-        NonNull<NWEndpoint>,
-        NonNull<NWEndpoint>,
-    ) -> bool,
+pub type nw_report_resolution_enumerator_t = block2::Block<
+    'static,
+    fn(nw_report_resolution_source_t, u64, u32, NonNull<NWEndpoint>, NonNull<NWEndpoint>) -> bool,
 >;
 
 impl NWEstablishmentReport {
@@ -6705,7 +6705,7 @@ impl NWEstablishmentReport {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_report_resolution_report_enumerator_t?language=objc)
 pub type nw_report_resolution_report_enumerator_t =
-    block2::DynBlock<dyn Fn(NonNull<NWResolutionReport>) -> bool>;
+    block2::Block<'static, fn(NonNull<NWResolutionReport>) -> bool>;
 
 impl NWEstablishmentReport {
     /// Enumerate the steps of connection establishment that involved endpoint
@@ -6742,7 +6742,7 @@ impl NWEstablishmentReport {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_report_protocol_enumerator_t?language=objc)
 pub type nw_report_protocol_enumerator_t =
-    block2::DynBlock<dyn Fn(NonNull<NWProtocolDefinition>, u64, u64) -> bool>;
+    block2::Block<'static, fn(NonNull<NWProtocolDefinition>, u64, u64) -> bool>;
 
 impl NWEstablishmentReport {
     /// Enumerate the protocols used in the established connection.
@@ -6866,7 +6866,7 @@ impl NWDataTransferReport {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_data_transfer_report_collect_block_t?language=objc)
 pub type nw_data_transfer_report_collect_block_t =
-    block2::DynBlock<dyn Fn(NonNull<NWDataTransferReport>)>;
+    block2::Block<'static, fn(NonNull<NWDataTransferReport>)>;
 
 impl NWDataTransferReport {
     /// Mark a data transfer report as complete, and request collection of
@@ -7487,7 +7487,7 @@ impl NWEthernetChannel {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ethernet_channel_state_changed_handler_t?language=objc)
 pub type nw_ethernet_channel_state_changed_handler_t =
-    block2::DynBlock<dyn Fn(nw_ethernet_channel_state_t, *mut NWError)>;
+    block2::Block<'static, fn(nw_ethernet_channel_state_t, *mut NWError)>;
 
 impl NWEthernetChannel {
     /// Sets the state change handler. For clients that need to perform cleanup when the
@@ -7621,8 +7621,9 @@ pub type NWEthernetAddress = [c_uchar; 6];
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ethernet_channel_receive_handler_t?language=objc)
 #[cfg(feature = "dispatch2")]
-pub type nw_ethernet_channel_receive_handler_t = block2::DynBlock<
-    dyn Fn(NonNull<DispatchData>, u16, NonNull<NWEthernetAddress>, NonNull<NWEthernetAddress>),
+pub type nw_ethernet_channel_receive_handler_t = block2::Block<
+    'static,
+    fn(NonNull<DispatchData>, u16, NonNull<NWEthernetAddress>, NonNull<NWEthernetAddress>),
 >;
 
 impl NWEthernetChannel {
@@ -7659,7 +7660,7 @@ impl NWEthernetChannel {
 /// is cancelled.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ethernet_channel_send_completion_t?language=objc)
-pub type nw_ethernet_channel_send_completion_t = block2::DynBlock<dyn Fn(*mut NWError)>;
+pub type nw_ethernet_channel_send_completion_t = block2::Block<'static, fn(*mut NWError)>;
 
 impl NWEthernetChannel {
     /// Send an Ethernet frame on a channel.  This must be called after the channel
@@ -7809,7 +7810,7 @@ impl NWFramer {
 /// Parameter `value`: A pointer to the stored message value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_message_dispose_value_t?language=objc)
-pub type nw_framer_message_dispose_value_t = block2::DynBlock<dyn Fn(NonNull<c_void>)>;
+pub type nw_framer_message_dispose_value_t = block2::Block<'static, fn(NonNull<c_void>)>;
 
 impl NWFramerMessage {
     /// Set a key-value pair on a framer message, with a custom
@@ -7870,13 +7871,13 @@ impl NWFramerMessage {
     pub fn framer_access_value(
         message: &NWFramerMessage,
         key: &CStr,
-        access_value: &block2::DynBlock<dyn Fn(*const c_void) -> bool + '_>,
+        access_value: &block2::Block<'_, fn(*const c_void) -> bool>,
     ) -> bool {
         extern "C-unwind" {
             fn nw_framer_message_access_value(
                 message: &NWFramerMessage,
                 key: NonNull<c_char>,
-                access_value: &block2::DynBlock<dyn Fn(*const c_void) -> bool + '_>,
+                access_value: &block2::Block<'_, fn(*const c_void) -> bool>,
             ) -> bool;
         }
         let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
@@ -7985,7 +7986,7 @@ unsafe impl RefEncode for nw_framer_start_result_t {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_start_handler_t?language=objc)
 pub type nw_framer_start_handler_t =
-    block2::DynBlock<dyn Fn(NonNull<NWFramer>) -> nw_framer_start_result_t>;
+    block2::Block<'static, fn(NonNull<NWFramer>) -> nw_framer_start_result_t>;
 
 impl NWProtocolDefinition {
     /// Create a protocol definition for a custom framer protocol.
@@ -8129,7 +8130,7 @@ impl NWProtocolOptions {
 /// that the handler should be invoked once any data is available.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_input_handler_t?language=objc)
-pub type nw_framer_input_handler_t = block2::DynBlock<dyn Fn(NonNull<NWFramer>) -> usize>;
+pub type nw_framer_input_handler_t = block2::Block<'static, fn(NonNull<NWFramer>) -> usize>;
 
 impl NWFramer {
     /// Set a handler block to be invoked whenever new input
@@ -8193,7 +8194,7 @@ impl NWFramer {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_output_handler_t?language=objc)
 pub type nw_framer_output_handler_t =
-    block2::DynBlock<dyn Fn(NonNull<NWFramer>, NonNull<NWFramerMessage>, usize, bool)>;
+    block2::Block<'static, fn(NonNull<NWFramer>, NonNull<NWFramerMessage>, usize, bool)>;
 
 impl NWFramer {
     /// Set a handler block to be invoked whenever an output
@@ -8232,7 +8233,7 @@ impl NWFramer {
 /// Parameter `framer`: The instance of the framer protocol.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_wakeup_handler_t?language=objc)
-pub type nw_framer_wakeup_handler_t = block2::DynBlock<dyn Fn(NonNull<NWFramer>)>;
+pub type nw_framer_wakeup_handler_t = block2::Block<'static, fn(NonNull<NWFramer>)>;
 
 impl NWFramer {
     /// Set a handler block to be invoked whenever the wakeup timer
@@ -8276,7 +8277,7 @@ impl NWFramer {
 /// call nw_framer_mark_failed_with_error().
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_stop_handler_t?language=objc)
-pub type nw_framer_stop_handler_t = block2::DynBlock<dyn Fn(NonNull<NWFramer>) -> bool>;
+pub type nw_framer_stop_handler_t = block2::Block<'static, fn(NonNull<NWFramer>) -> bool>;
 
 impl NWFramer {
     /// Set a handler block to be invoked when the connection
@@ -8314,7 +8315,7 @@ impl NWFramer {
 /// Parameter `framer`: The instance of the framer protocol.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_cleanup_handler_t?language=objc)
-pub type nw_framer_cleanup_handler_t = block2::DynBlock<dyn Fn(NonNull<NWFramer>)>;
+pub type nw_framer_cleanup_handler_t = block2::Block<'static, fn(NonNull<NWFramer>)>;
 
 impl NWFramer {
     /// Set a handler block to be invoked when the protocol stack
@@ -8459,7 +8460,7 @@ impl NWFramer {
 /// need to parse more.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_parse_completion_t?language=objc)
-pub type nw_framer_parse_completion_t = block2::DynBlock<dyn Fn(*mut u8, usize, bool) -> usize>;
+pub type nw_framer_parse_completion_t = block2::Block<'static, fn(*mut u8, usize, bool) -> usize>;
 
 impl NWFramer {
     /// Parse currently available input from the location of the input
@@ -8875,7 +8876,7 @@ impl NWFramer {
 /// A block to perform actions on a framer's scheduling context.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_block_t?language=objc)
-pub type nw_framer_block_t = block2::DynBlock<dyn Fn()>;
+pub type nw_framer_block_t = block2::Block<'static, fn()>;
 
 impl NWFramer {
     /// Schedule a block asynchronously on the framer instance. This
@@ -9562,7 +9563,7 @@ impl NWListener {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_listener_state_changed_handler_t?language=objc)
 pub type nw_listener_state_changed_handler_t =
-    block2::DynBlock<dyn Fn(nw_listener_state_t, *mut NWError)>;
+    block2::Block<'static, fn(nw_listener_state_t, *mut NWError)>;
 
 impl NWListener {
     /// Sets the state change handler. For clients that need to perform cleanup when the
@@ -9595,7 +9596,7 @@ impl NWListener {
 /// event handler and other settings on the connection before calling start.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_listener_new_connection_handler_t?language=objc)
-pub type nw_listener_new_connection_handler_t = block2::DynBlock<dyn Fn(NonNull<NWConnection>)>;
+pub type nw_listener_new_connection_handler_t = block2::Block<'static, fn(NonNull<NWConnection>)>;
 
 impl NWListener {
     /// Sets the client new connection handler. Must be called before
@@ -9631,7 +9632,7 @@ impl NWListener {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_listener_new_connection_group_handler_t?language=objc)
 pub type nw_listener_new_connection_group_handler_t =
-    block2::DynBlock<dyn Fn(NonNull<NWConnectionGroup>)>;
+    block2::Block<'static, fn(NonNull<NWConnectionGroup>)>;
 
 impl NWListener {
     /// Sets a new connection group handler to be called upon receiving an incoming
@@ -9747,7 +9748,7 @@ impl NWListener {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_listener_advertised_endpoint_changed_handler_t?language=objc)
 pub type nw_listener_advertised_endpoint_changed_handler_t =
-    block2::DynBlock<dyn Fn(NonNull<NWEndpoint>, bool)>;
+    block2::Block<'static, fn(NonNull<NWEndpoint>, bool)>;
 
 impl NWListener {
     /// Sets the client advertised endpoint changed handler. The handler will be
@@ -9927,7 +9928,7 @@ impl NWPathMonitor {
 /// association with the path monitor.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_path_monitor_cancel_handler_t?language=objc)
-pub type nw_path_monitor_cancel_handler_t = block2::DynBlock<dyn Fn()>;
+pub type nw_path_monitor_cancel_handler_t = block2::Block<'static, fn()>;
 
 impl NWPathMonitor {
     /// Set a handler to be called on the queue provided to nw_path_monitor_set_queue
@@ -9956,7 +9957,7 @@ impl NWPathMonitor {
 /// This will be called one or more times after calling nw_path_monitor_start.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_path_monitor_update_handler_t?language=objc)
-pub type nw_path_monitor_update_handler_t = block2::DynBlock<dyn Fn(NonNull<NWPath>)>;
+pub type nw_path_monitor_update_handler_t = block2::Block<'static, fn(NonNull<NWPath>)>;
 
 impl NWPathMonitor {
     /// Sets the client update handler. This block will be called with the
@@ -11911,7 +11912,7 @@ impl NWProtocolMetadata {
 /// pong reply is received.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ws_pong_handler_t?language=objc)
-pub type nw_ws_pong_handler_t = block2::DynBlock<dyn Fn(*mut NWError)>;
+pub type nw_ws_pong_handler_t = block2::Block<'static, fn(*mut NWError)>;
 
 impl NWProtocolMetadata {
     /// Set a callback that will notify the client when a pong message has been
@@ -11971,7 +11972,7 @@ nw_object!(
 /// Returns: A boolean value that indicating if enumeration should continue.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ws_subprotocol_enumerator_t?language=objc)
-pub type nw_ws_subprotocol_enumerator_t = block2::DynBlock<dyn Fn(NonNull<c_char>) -> bool>;
+pub type nw_ws_subprotocol_enumerator_t = block2::Block<'static, fn(NonNull<c_char>) -> bool>;
 
 impl NWWsRequest {
     /// Enumerates the list of subprotocols on the client's request.
@@ -12008,7 +12009,7 @@ impl NWWsRequest {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ws_additional_header_enumerator_t?language=objc)
 pub type nw_ws_additional_header_enumerator_t =
-    block2::DynBlock<dyn Fn(NonNull<c_char>, NonNull<c_char>) -> bool>;
+    block2::Block<'static, fn(NonNull<c_char>, NonNull<c_char>) -> bool>;
 
 impl NWWsRequest {
     /// Enumerates the list of additional headers on the client's request.
@@ -12242,7 +12243,7 @@ impl NWWsResponse {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ws_client_request_handler_t?language=objc)
 pub type nw_ws_client_request_handler_t =
-    block2::DynBlock<dyn Fn(NonNull<NWWsRequest>) -> NonNull<NWWsResponse>>;
+    block2::Block<'static, fn(NonNull<NWWsRequest>) -> NonNull<NWWsResponse>>;
 
 impl NWProtocolOptions {
     /// Set callback handler to be invoked when a WebSocket server receives a

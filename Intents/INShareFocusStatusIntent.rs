@@ -105,7 +105,7 @@ extern_protocol!(
         unsafe fn handleShareFocusStatus_completion(
             &self,
             intent: &INShareFocusStatusIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INShareFocusStatusIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INShareFocusStatusIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -135,7 +135,7 @@ extern_protocol!(
         unsafe fn confirmShareFocusStatus_completion(
             &self,
             intent: &INShareFocusStatusIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INShareFocusStatusIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INShareFocusStatusIntentResponse>)>,
         );
     }
 );

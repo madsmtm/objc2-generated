@@ -597,12 +597,12 @@ impl CTLine {
     #[inline]
     pub fn enumerate_caret_offsets(
         &self,
-        block: &block2::DynBlock<dyn Fn(c_double, CFIndex, bool, NonNull<bool>)>,
+        block: &block2::Block<'static, fn(c_double, CFIndex, bool, NonNull<bool>)>,
     ) {
         extern "C-unwind" {
             fn CTLineEnumerateCaretOffsets(
                 line: &CTLine,
-                block: &block2::DynBlock<dyn Fn(c_double, CFIndex, bool, NonNull<bool>)>,
+                block: &block2::Block<'static, fn(c_double, CFIndex, bool, NonNull<bool>)>,
             );
         }
         unsafe { CTLineEnumerateCaretOffsets(self, block) }

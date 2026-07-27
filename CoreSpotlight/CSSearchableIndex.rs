@@ -104,7 +104,7 @@ impl CSSearchableIndex {
         pub unsafe fn indexSearchableItems_completionHandler(
             &self,
             items: &NSArray<CSSearchableItem>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -116,7 +116,7 @@ impl CSSearchableIndex {
         pub unsafe fn deleteSearchableItemsWithIdentifiers_completionHandler(
             &self,
             identifiers: &NSArray<NSString>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -128,7 +128,7 @@ impl CSSearchableIndex {
         pub unsafe fn deleteSearchableItemsWithDomainIdentifiers_completionHandler(
             &self,
             domain_identifiers: &NSArray<NSString>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -139,7 +139,7 @@ impl CSSearchableIndex {
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAllSearchableItemsWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -174,7 +174,7 @@ impl CSSearchableIndex {
             &self,
             expected_client_state: Option<&NSData>,
             new_client_state: &NSData,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -186,7 +186,7 @@ impl CSSearchableIndex {
         pub unsafe fn endIndexBatchWithClientState_completionHandler(
             &self,
             client_state: &NSData,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -197,7 +197,7 @@ impl CSSearchableIndex {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchLastClientStateWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
     );
 }
@@ -216,7 +216,7 @@ impl CSSearchableIndex {
             bundle_identifier: &NSString,
             item_identifier: &NSString,
             content_type: &UTType,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
     );
 }
@@ -233,7 +233,7 @@ extern_protocol!(
         unsafe fn searchableIndex_reindexAllSearchableItemsWithAcknowledgementHandler(
             &self,
             searchable_index: &CSSearchableIndex,
-            acknowledgement_handler: &block2::DynBlock<dyn Fn()>,
+            acknowledgement_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -243,7 +243,7 @@ extern_protocol!(
             &self,
             searchable_index: &CSSearchableIndex,
             identifiers: &NSArray<NSString>,
-            acknowledgement_handler: &block2::DynBlock<dyn Fn()>,
+            acknowledgement_handler: &block2::Block<'static, fn()>,
         );
 
         #[optional]
@@ -284,7 +284,10 @@ extern_protocol!(
         unsafe fn searchableItemsForIdentifiers_searchableItemsHandler(
             &self,
             identifiers: &NSArray<NSString>,
-            searchable_items_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<CSSearchableItem>>)>,
+            searchable_items_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<CSSearchableItem>>),
+            >,
         );
 
         #[cfg(feature = "CSSearchableItem")]

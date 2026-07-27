@@ -244,7 +244,7 @@ impl NSHTTPCookieStorage {
         pub unsafe fn getCookiesForTask_completionHandler(
             &self,
             task: &NSURLSessionTask,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<NSHTTPCookie>)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSArray<NSHTTPCookie>)>,
         );
     );
 }

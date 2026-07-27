@@ -81,7 +81,10 @@ impl SCSensitivityAnalyzer {
         pub unsafe fn analyzeImageFile_completionHandler(
             &self,
             file_url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut SCSensitivityAnalysis, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -103,7 +106,10 @@ impl SCSensitivityAnalyzer {
         pub unsafe fn analyzeCGImage_completionHandler(
             &self,
             image: &CGImage,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut SCSensitivityAnalysis, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "SCSensitivityAnalysis", feature = "block2"))]
@@ -119,7 +125,10 @@ impl SCSensitivityAnalyzer {
         pub unsafe fn analyzeVideoFile_completionHandler(
             &self,
             file_url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut SCSensitivityAnalysis, *mut NSError),
+            >,
         ) -> Retained<NSProgress>;
     );
 }

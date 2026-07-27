@@ -21,7 +21,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestcompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type VNRequestCompletionHandler = block2::DynBlock<dyn Fn(NonNull<VNRequest>, *mut NSError)>;
+pub type VNRequestCompletionHandler = block2::Block<'static, fn(NonNull<VNRequest>, *mut NSError)>;
 
 extern_class!(
     /// VNRequest objects describe the operation to be performed as well as act as the recipient of the operation's resultant observations.
@@ -295,7 +295,7 @@ impl VNImageBasedRequest {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type VNRequestProgressHandler =
-    block2::DynBlock<dyn Fn(NonNull<VNRequest>, c_double, *mut NSError)>;
+    block2::Block<'static, fn(NonNull<VNRequest>, c_double, *mut NSError)>;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestprogressproviding?language=objc)

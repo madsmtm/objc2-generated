@@ -316,7 +316,7 @@ impl NSViewController {
             from_view_controller: &NSViewController,
             to_view_controller: &NSViewController,
             options: NSViewControllerTransitionOptions,
-            completion: Option<&block2::DynBlock<dyn Fn()>>,
+            completion: Option<&block2::Block<'static, fn()>>,
         );
     );
 }

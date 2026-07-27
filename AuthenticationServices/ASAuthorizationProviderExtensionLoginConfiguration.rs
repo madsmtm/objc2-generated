@@ -302,8 +302,9 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
             open_id_configuration_url: &NSURL,
             client_id: &NSString,
             issuer: Option<&NSString>,
-            completion: &block2::DynBlock<
-                dyn Fn(*mut ASAuthorizationProviderExtensionLoginConfiguration, *mut NSError),
+            completion: &block2::Block<
+                'static,
+                fn(*mut ASAuthorizationProviderExtensionLoginConfiguration, *mut NSError),
             >,
         );
 

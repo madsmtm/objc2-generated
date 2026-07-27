@@ -115,7 +115,7 @@ extern_protocol!(
         unsafe fn handleStartAudioCall_completion(
             &self,
             intent: &INStartAudioCallIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INStartAudioCallIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INStartAudioCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -146,7 +146,7 @@ extern_protocol!(
         unsafe fn confirmStartAudioCall_completion(
             &self,
             intent: &INStartAudioCallIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INStartAudioCallIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INStartAudioCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -176,7 +176,7 @@ extern_protocol!(
         unsafe fn resolveDestinationTypeForStartAudioCall_withCompletion(
             &self,
             intent: &INStartAudioCallIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCallDestinationTypeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCallDestinationTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -195,7 +195,7 @@ extern_protocol!(
         unsafe fn resolveContactsForStartAudioCall_withCompletion(
             &self,
             intent: &INStartAudioCallIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::Block<'static, fn(NonNull<NSArray<INPersonResolutionResult>>)>,
         );
     }
 );

@@ -841,7 +841,7 @@ extern_protocol!(
         unsafe fn processFrameFromImageBuffer_completionHandler(
             &self,
             input_frame: &CVPixelBuffer,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CVPixelBuffer, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CVPixelBuffer, *mut NSError)>,
         );
     }
 );

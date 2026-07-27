@@ -88,7 +88,7 @@ extern_protocol!(
             &self,
             web_view: &WKWebView,
             navigation_action: &WKNavigationAction,
-            decision_handler: &block2::DynBlock<dyn Fn(WKNavigationActionPolicy)>,
+            decision_handler: &block2::Block<'static, fn(WKNavigationActionPolicy)>,
         );
 
         #[cfg(all(
@@ -123,8 +123,9 @@ extern_protocol!(
             web_view: &WKWebView,
             navigation_action: &WKNavigationAction,
             preferences: &WKWebpagePreferences,
-            decision_handler: &block2::DynBlock<
-                dyn Fn(WKNavigationActionPolicy, NonNull<WKWebpagePreferences>),
+            decision_handler: &block2::Block<
+                'static,
+                fn(WKNavigationActionPolicy, NonNull<WKWebpagePreferences>),
             >,
         );
 
@@ -154,7 +155,7 @@ extern_protocol!(
             &self,
             web_view: &WKWebView,
             navigation_response: &WKNavigationResponse,
-            decision_handler: &block2::DynBlock<dyn Fn(WKNavigationResponsePolicy)>,
+            decision_handler: &block2::Block<'static, fn(WKNavigationResponsePolicy)>,
         );
 
         #[cfg(all(
@@ -332,8 +333,9 @@ extern_protocol!(
             &self,
             web_view: &WKWebView,
             challenge: &NSURLAuthenticationChallenge,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 
@@ -363,7 +365,7 @@ extern_protocol!(
             &self,
             web_view: &WKWebView,
             challenge: &NSURLAuthenticationChallenge,
-            decision_handler: &block2::DynBlock<dyn Fn(Bool)>,
+            decision_handler: &block2::Block<'static, fn(Bool)>,
         );
 
         #[cfg(all(
@@ -415,7 +417,7 @@ extern_protocol!(
             web_view: &WKWebView,
             back_forward_list_item: &WKBackForwardListItem,
             will_use_instant_back: bool,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
+            completion_handler: &block2::Block<'static, fn(Bool)>,
         );
     }
 );

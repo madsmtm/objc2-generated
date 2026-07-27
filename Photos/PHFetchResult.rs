@@ -104,7 +104,7 @@ impl<ObjectType: Message> PHFetchResult<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateObjectsUsingBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
+            block: &block2::Block<'static, fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -113,7 +113,7 @@ impl<ObjectType: Message> PHFetchResult<ObjectType> {
         pub unsafe fn enumerateObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
+            block: &block2::Block<'static, fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -123,7 +123,7 @@ impl<ObjectType: Message> PHFetchResult<ObjectType> {
             &self,
             s: &NSIndexSet,
             opts: NSEnumerationOptions,
-            block: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
+            block: &block2::Block<'static, fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "PhotosTypes")]

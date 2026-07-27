@@ -153,7 +153,7 @@ impl AVCaptionConversionValidator {
         #[unsafe(method_family = none)]
         pub unsafe fn validateCaptionConversionWithWarningHandler(
             &self,
-            handler: &block2::DynBlock<dyn Fn(*mut AVCaptionConversionWarning)>,
+            handler: &block2::Block<'static, fn(*mut AVCaptionConversionWarning)>,
         );
 
         /// Stops validation and changes the value of status to AVCaptionConversionValidatorStatusStopped.

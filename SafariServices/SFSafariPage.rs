@@ -71,7 +71,7 @@ impl SFSafariPage {
         #[unsafe(method_family = none)]
         pub unsafe fn getPagePropertiesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut SFSafariPageProperties)>,
+            completion_handler: &block2::Block<'static, fn(*mut SFSafariPageProperties)>,
         );
 
         #[cfg(all(feature = "SFSafariTab", feature = "block2"))]
@@ -84,7 +84,7 @@ impl SFSafariPage {
         #[unsafe(method_family = none)]
         pub unsafe fn getContainingTabWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<SFSafariTab>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<SFSafariTab>)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
@@ -98,7 +98,7 @@ impl SFSafariPage {
         #[unsafe(method_family = none)]
         pub unsafe fn getScreenshotOfVisibleAreaWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSImage)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSImage)>,
         );
     );
 }

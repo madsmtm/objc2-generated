@@ -100,7 +100,7 @@ extern_protocol!(
         unsafe fn handleCancelRide_completion(
             &self,
             intent: &INCancelRideIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCancelRideIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCancelRideIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -130,7 +130,7 @@ extern_protocol!(
         unsafe fn confirmCancelRide_completion(
             &self,
             intent: &INCancelRideIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCancelRideIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCancelRideIntentResponse>)>,
         );
     }
 );

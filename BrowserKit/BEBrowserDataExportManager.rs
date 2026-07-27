@@ -229,7 +229,7 @@ impl BEBrowserDataExportManager {
             &self,
             metadata: &BEExportMetadata,
             token: Option<&NSUUID>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut BEExportOptions, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut BEExportOptions, *mut NSError)>,
         );
 
         #[cfg(all(feature = "BEBrowserData", feature = "block2"))]
@@ -241,7 +241,7 @@ impl BEBrowserDataExportManager {
         pub unsafe fn exportBrowserData_completionHandler(
             &self,
             browser_data: &BEBrowserData,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -252,7 +252,7 @@ impl BEBrowserDataExportManager {
         #[unsafe(method_family = none)]
         pub unsafe fn exportFinishedWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }

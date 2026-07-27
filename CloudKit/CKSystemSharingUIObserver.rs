@@ -67,7 +67,7 @@ impl CKSystemSharingUIObserver {
         #[unsafe(method_family = none)]
         pub unsafe fn systemSharingUIDidSaveShareBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordID>, *mut CKShare, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecordID>, *mut CKShare, *mut NSError)>;
 
         #[cfg(all(
             feature = "CKRecord",
@@ -83,7 +83,7 @@ impl CKSystemSharingUIObserver {
         pub unsafe fn setSystemSharingUIDidSaveShareBlock(
             &self,
             system_sharing_ui_did_save_share_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecordID>, *mut CKShare, *mut NSError)>,
+                &block2::Block<'static, fn(NonNull<CKRecordID>, *mut CKShare, *mut NSError)>,
             >,
         );
 
@@ -102,7 +102,7 @@ impl CKSystemSharingUIObserver {
         #[unsafe(method_family = none)]
         pub unsafe fn systemSharingUIDidStopSharingBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordID>, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecordID>, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`systemSharingUIDidStopSharingBlock`][Self::systemSharingUIDidStopSharingBlock].
@@ -113,7 +113,7 @@ impl CKSystemSharingUIObserver {
         pub unsafe fn setSystemSharingUIDidStopSharingBlock(
             &self,
             system_sharing_ui_did_stop_sharing_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecordID>, *mut NSError)>,
+                &block2::Block<'static, fn(NonNull<CKRecordID>, *mut NSError)>,
             >,
         );
     );

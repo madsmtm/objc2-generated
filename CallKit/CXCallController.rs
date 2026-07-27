@@ -59,7 +59,7 @@ impl CXCallController {
         pub unsafe fn requestTransaction_completion(
             &self,
             transaction: &CXTransaction,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "CXAction", feature = "block2"))]
@@ -78,7 +78,7 @@ impl CXCallController {
         pub unsafe fn requestTransactionWithActions_completion(
             &self,
             actions: &NSArray<CXAction>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "CXAction", feature = "block2"))]
@@ -97,7 +97,7 @@ impl CXCallController {
         pub unsafe fn requestTransactionWithAction_completion(
             &self,
             action: &CXAction,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }

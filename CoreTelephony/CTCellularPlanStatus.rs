@@ -27,7 +27,7 @@ impl CTCellularPlanStatus {
         #[unsafe(method(getTokenWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTokenWithCompletion(
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -38,7 +38,7 @@ impl CTCellularPlanStatus {
         #[unsafe(method_family = none)]
         pub unsafe fn checkValidityOfToken_completionHandler(
             token: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
     );
 }

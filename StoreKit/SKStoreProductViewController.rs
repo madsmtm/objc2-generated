@@ -78,7 +78,7 @@ impl SKStoreProductViewController {
         pub unsafe fn loadProductWithParameters_completionBlock(
             &self,
             parameters: &NSDictionary<NSString, AnyObject>,
-            block: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
+            block: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
@@ -91,7 +91,7 @@ impl SKStoreProductViewController {
             &self,
             parameters: &NSDictionary<NSString, AnyObject>,
             impression: &SKAdImpression,
-            block: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
+            block: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
     );
 }

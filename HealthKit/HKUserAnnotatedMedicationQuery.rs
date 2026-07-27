@@ -43,8 +43,9 @@ impl HKUserAnnotatedMedicationQuery {
             this: Allocated<Self>,
             predicate: Option<&NSPredicate>,
             limit: NSUInteger,
-            results_handler: &block2::DynBlock<
-                dyn Fn(
+            results_handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<HKUserAnnotatedMedicationQuery>,
                     *mut HKUserAnnotatedMedication,
                     Bool,

@@ -369,7 +369,7 @@ impl GKTurnBasedMatch {
         #[unsafe(method_family = none)]
         pub unsafe fn findMatchForRequest_withCompletionHandler(
             request: &GKMatchRequest,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut GKTurnBasedMatch, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -380,7 +380,7 @@ impl GKTurnBasedMatch {
         #[unsafe(method_family = none)]
         pub unsafe fn loadMatchesWithCompletionHandler(
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSArray<GKTurnBasedMatch>, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSArray<GKTurnBasedMatch>, *mut NSError)>,
             >,
         );
 
@@ -393,7 +393,7 @@ impl GKTurnBasedMatch {
         pub unsafe fn loadMatchWithID_withCompletionHandler(
             match_id: &NSString,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>,
+                &block2::Block<'static, fn(*mut GKTurnBasedMatch, *mut NSError)>,
             >,
         );
 
@@ -406,7 +406,7 @@ impl GKTurnBasedMatch {
         pub unsafe fn rematchWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>,
+                &block2::Block<'static, fn(*mut GKTurnBasedMatch, *mut NSError)>,
             >,
         );
 
@@ -419,7 +419,7 @@ impl GKTurnBasedMatch {
         pub unsafe fn acceptInviteWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>,
+                &block2::Block<'static, fn(*mut GKTurnBasedMatch, *mut NSError)>,
             >,
         );
 
@@ -431,7 +431,7 @@ impl GKTurnBasedMatch {
         #[unsafe(method_family = none)]
         pub unsafe fn declineInviteWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -442,7 +442,7 @@ impl GKTurnBasedMatch {
         #[unsafe(method_family = none)]
         pub unsafe fn removeWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -453,7 +453,7 @@ impl GKTurnBasedMatch {
         #[unsafe(method_family = none)]
         pub unsafe fn loadMatchDataWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSData, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -467,7 +467,7 @@ impl GKTurnBasedMatch {
             next_participants: &NSArray<GKTurnBasedParticipant>,
             timeout: NSTimeInterval,
             match_data: &NSData,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -482,7 +482,7 @@ impl GKTurnBasedMatch {
             next_participants: &NSArray<GKTurnBasedParticipant>,
             timeout: NSTimeInterval,
             match_data: &NSData,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -494,7 +494,7 @@ impl GKTurnBasedMatch {
         pub unsafe fn participantQuitOutOfTurnWithOutcome_withCompletionHandler(
             &self,
             match_outcome: GKTurnBasedMatchOutcome,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -506,7 +506,7 @@ impl GKTurnBasedMatch {
         pub unsafe fn endMatchInTurnWithMatchData_completionHandler(
             &self,
             match_data: &NSData,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "GKAchievement", feature = "GKScore", feature = "block2"))]
@@ -521,7 +521,7 @@ impl GKTurnBasedMatch {
             match_data: &NSData,
             scores: Option<&NSArray<GKScore>>,
             achievements: Option<&NSArray<GKAchievement>>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "GKLeaderboardScore", feature = "block2"))]
@@ -536,7 +536,7 @@ impl GKTurnBasedMatch {
             match_data: &NSData,
             scores: &NSArray<GKLeaderboardScore>,
             achievements: &NSArray,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -548,7 +548,7 @@ impl GKTurnBasedMatch {
         pub unsafe fn saveCurrentTurnWithMatchData_completionHandler(
             &self,
             match_data: &NSData,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -561,7 +561,7 @@ impl GKTurnBasedMatch {
             &self,
             match_data: &NSData,
             exchanges: &NSArray<GKTurnBasedExchange>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -578,7 +578,7 @@ impl GKTurnBasedMatch {
             arguments: &NSArray<NSString>,
             timeout: NSTimeInterval,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut GKTurnBasedExchange, *mut NSError)>,
+                &block2::Block<'static, fn(*mut GKTurnBasedExchange, *mut NSError)>,
             >,
         );
 
@@ -593,7 +593,7 @@ impl GKTurnBasedMatch {
             participants: &NSArray<GKTurnBasedParticipant>,
             key: &NSString,
             arguments: &NSArray<NSString>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -607,7 +607,7 @@ impl GKTurnBasedMatch {
             &self,
             next_participant: &GKTurnBasedParticipant,
             match_data: &NSData,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -622,7 +622,7 @@ impl GKTurnBasedMatch {
             match_outcome: GKTurnBasedMatchOutcome,
             next_participant: &GKTurnBasedParticipant,
             match_data: &NSData,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -739,7 +739,7 @@ impl GKTurnBasedExchange {
             &self,
             key: &NSString,
             arguments: &NSArray<NSString>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -753,7 +753,7 @@ impl GKTurnBasedExchange {
             key: &NSString,
             arguments: &NSArray<NSString>,
             data: &NSData,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }

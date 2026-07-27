@@ -181,7 +181,7 @@ impl CSUserQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn foundSuggestionsHandler(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSArray<CSSuggestion>>)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<NSArray<CSSuggestion>>)>;
 
         #[cfg(all(feature = "CSSuggestion", feature = "block2"))]
         /// Setter for [`foundSuggestionsHandler`][Self::foundSuggestionsHandler].
@@ -192,7 +192,7 @@ impl CSUserQuery {
         pub unsafe fn setFoundSuggestionsHandler(
             &self,
             found_suggestions_handler: Option<
-                &block2::DynBlock<dyn Fn(NonNull<NSArray<CSSuggestion>>)>,
+                &block2::Block<'static, fn(NonNull<NSArray<CSSuggestion>>)>,
             >,
         );
 

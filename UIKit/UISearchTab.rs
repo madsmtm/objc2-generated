@@ -52,7 +52,7 @@ impl UISearchTab {
         pub unsafe fn initWithViewControllerProvider(
             this: Allocated<Self>,
             view_controller_provider: Option<
-                &block2::DynBlock<dyn Fn(NonNull<UITab>) -> NonNull<UIViewController>>,
+                &block2::Block<'static, fn(NonNull<UITab>) -> NonNull<UIViewController>>,
             >,
         ) -> Retained<Self>;
     );
@@ -83,7 +83,7 @@ impl UISearchTab {
             image: Option<&UIImage>,
             identifier: &NSString,
             view_controller_provider: Option<
-                &block2::DynBlock<dyn Fn(NonNull<UITab>) -> NonNull<UIViewController>>,
+                &block2::Block<'static, fn(NonNull<UITab>) -> NonNull<UIViewController>>,
             >,
         ) -> Retained<Self>;
     );

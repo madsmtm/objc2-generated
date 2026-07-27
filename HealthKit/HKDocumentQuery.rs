@@ -95,13 +95,9 @@ impl HKDocumentQuery {
             limit: NSUInteger,
             sort_descriptors: Option<&NSArray<NSSortDescriptor>>,
             include_document_data: bool,
-            results_handler: &block2::DynBlock<
-                dyn Fn(
-                    NonNull<HKDocumentQuery>,
-                    *mut NSArray<HKDocumentSample>,
-                    Bool,
-                    *mut NSError,
-                ),
+            results_handler: &block2::Block<
+                'static,
+                fn(NonNull<HKDocumentQuery>, *mut NSArray<HKDocumentSample>, Bool, *mut NSError),
             >,
         ) -> Retained<Self>;
     );

@@ -51,7 +51,7 @@ impl BGTask {
         /// - Warning: Not setting an expiration handler results in the system marking your task as complete and unsuccessful instead of sending a warning.
         #[unsafe(method(expirationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expirationHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub unsafe fn expirationHandler(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`expirationHandler`][Self::expirationHandler].
@@ -59,7 +59,7 @@ impl BGTask {
         #[unsafe(method_family = none)]
         pub unsafe fn setExpirationHandler(
             &self,
-            expiration_handler: Option<&block2::DynBlock<dyn Fn()>>,
+            expiration_handler: Option<&block2::Block<'static, fn()>>,
         );
 
         // -init (unavailable)

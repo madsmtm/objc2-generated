@@ -529,8 +529,9 @@ impl NSPasteboard {
         pub unsafe fn detectPatternsForPatterns_completionHandler(
             &self,
             patterns: &NSSet<NSPasteboardDetectionPattern>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSSet<NSPasteboardDetectionPattern>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSSet<NSPasteboardDetectionPattern>, *mut NSError),
             >,
         );
 
@@ -599,8 +600,9 @@ impl NSPasteboard {
         pub unsafe fn detectValuesForPatterns_completionHandler(
             &self,
             patterns: &NSSet<NSPasteboardDetectionPattern>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSDictionary<NSPasteboardDetectionPattern, AnyObject>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSDictionary<NSPasteboardDetectionPattern, AnyObject>, *mut NSError),
             >,
         );
 
@@ -656,8 +658,9 @@ impl NSPasteboard {
         pub unsafe fn detectMetadataForTypes_completionHandler(
             &self,
             types: &NSSet<NSPasteboardMetadataType>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSDictionary<NSPasteboardMetadataType, AnyObject>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSDictionary<NSPasteboardMetadataType, AnyObject>, *mut NSError),
             >,
         );
     );

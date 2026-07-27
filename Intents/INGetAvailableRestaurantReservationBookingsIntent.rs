@@ -181,8 +181,9 @@ extern_protocol!(
         unsafe fn handleGetAvailableRestaurantReservationBookings_completion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingsIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INGetAvailableRestaurantReservationBookingsIntentResponse>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INGetAvailableRestaurantReservationBookingsIntentResponse>),
             >,
         );
 
@@ -213,8 +214,9 @@ extern_protocol!(
         unsafe fn confirmGetAvailableRestaurantReservationBookings_completion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingsIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INGetAvailableRestaurantReservationBookingsIntentResponse>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INGetAvailableRestaurantReservationBookingsIntentResponse>),
             >,
         );
 
@@ -245,7 +247,7 @@ extern_protocol!(
         unsafe fn resolveRestaurantForGetAvailableRestaurantReservationBookings_withCompletion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRestaurantResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRestaurantResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -263,7 +265,7 @@ extern_protocol!(
         unsafe fn resolvePartySizeForGetAvailableRestaurantReservationBookings_withCompletion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -281,7 +283,7 @@ extern_protocol!(
         unsafe fn resolvePreferredBookingDateComponentsForGetAvailableRestaurantReservationBookings_withCompletion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDateComponentsResolutionResult>)>,
         );
     }
 );

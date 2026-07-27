@@ -595,7 +595,7 @@ impl TVPlayer {
             &self,
             event: &TVPlaybackEvent,
             user_info: Option<&ProtocolObject<dyn TVPlaybackEventMarshaling>>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[deprecated = "Please use SwiftUI or UIKit"]

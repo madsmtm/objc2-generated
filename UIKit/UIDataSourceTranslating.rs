@@ -41,9 +41,6 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         #[unsafe(method(performUsingPresentationValues:))]
         #[unsafe(method_family = none)]
-        fn performUsingPresentationValues(
-            &self,
-            actions_to_translate: &block2::DynBlock<dyn Fn() + '_>,
-        );
+        fn performUsingPresentationValues(&self, actions_to_translate: &block2::Block<'_, fn()>);
     }
 );

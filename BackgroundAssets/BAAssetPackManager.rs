@@ -66,7 +66,7 @@ impl BAAssetPackManager {
         #[unsafe(method_family = none)]
         pub unsafe fn getAllAssetPacksWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSSet<BAAssetPack>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSSet<BAAssetPack>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
@@ -85,7 +85,7 @@ impl BAAssetPackManager {
         pub unsafe fn getAssetPackWithIdentifier_completionHandler(
             &self,
             asset_pack_identifier: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut BAAssetPack, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut BAAssetPack, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -117,7 +117,7 @@ impl BAAssetPackManager {
         pub unsafe fn getStatusRelativeToAssetPack_completionHandler(
             &self,
             asset_pack: &BAAssetPack,
-            completion_handler: &block2::DynBlock<dyn Fn(BAAssetPackStatus, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(BAAssetPackStatus, *mut NSError)>,
         );
 
         #[cfg(all(feature = "BAAssetPackStatus", feature = "block2"))]
@@ -141,7 +141,7 @@ impl BAAssetPackManager {
         pub unsafe fn getLocalStatusOfAssetPackWithIdentifier_completionHandler(
             &self,
             asset_pack_identifier: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(BAAssetPackStatus)>,
+            completion_handler: &block2::Block<'static, fn(BAAssetPackStatus)>,
         );
 
         /// Checks whether the asset pack with the specified identifier is available locally.
@@ -170,7 +170,7 @@ impl BAAssetPackManager {
         pub unsafe fn ensureLocalAvailabilityOfAssetPack_completionHandler(
             &self,
             asset_pack: &BAAssetPack,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
@@ -191,7 +191,7 @@ impl BAAssetPackManager {
             &self,
             asset_pack: &BAAssetPack,
             should_update: bool,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -206,7 +206,10 @@ impl BAAssetPackManager {
         pub unsafe fn checkForUpdatesWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSSet<NSString>, *mut NSSet<NSString>, *mut NSError)>,
+                &block2::Block<
+                    'static,
+                    fn(*mut NSSet<NSString>, *mut NSSet<NSString>, *mut NSError),
+                >,
             >,
         );
 
@@ -258,7 +261,7 @@ impl BAAssetPackManager {
         pub unsafe fn removeAssetPackWithIdentifier_completionHandler(
             &self,
             asset_pack_identifier: &NSString,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "BAAssetPackStatus", feature = "block2"))]
@@ -278,7 +281,7 @@ impl BAAssetPackManager {
         pub unsafe fn getStatusOfAssetPackWithIdentifier_completionHandler(
             &self,
             asset_pack_identifier: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(BAAssetPackStatus, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(BAAssetPackStatus, *mut NSError)>,
         );
     );
 }

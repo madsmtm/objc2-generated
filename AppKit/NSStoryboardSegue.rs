@@ -34,7 +34,7 @@ impl NSStoryboardSegue {
             identifier: &NSStoryboardSegueIdentifier,
             source_controller: &AnyObject,
             destination_controller: &AnyObject,
-            perform_handler: &block2::DynBlock<dyn Fn()>,
+            perform_handler: &block2::Block<'static, fn()>,
         ) -> Retained<Self>;
 
         /// # Safety

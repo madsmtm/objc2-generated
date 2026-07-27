@@ -144,7 +144,7 @@ impl<TriggerValueType: Message + NSCopying> HMCharacteristicEvent<TriggerValueTy
         pub unsafe fn updateTriggerValue_completionHandler(
             &self,
             trigger_value: Option<&TriggerValueType>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }

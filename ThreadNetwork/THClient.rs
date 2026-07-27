@@ -78,7 +78,7 @@ impl THClient {
         #[unsafe(method_family = none)]
         pub unsafe fn retrieveAllCredentials(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSSet<THCredentials>, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSSet<THCredentials>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "THCredentials", feature = "block2"))]
@@ -113,7 +113,7 @@ impl THClient {
         #[unsafe(method_family = none)]
         pub unsafe fn retrieveAllActiveCredentials(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSSet<THCredentials>, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSSet<THCredentials>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -148,7 +148,7 @@ impl THClient {
         pub unsafe fn deleteCredentialsForBorderAgent_completion(
             &self,
             border_agent_id: &NSData,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "THCredentials", feature = "block2"))]
@@ -182,7 +182,7 @@ impl THClient {
         pub unsafe fn retrieveCredentialsForBorderAgent_completion(
             &self,
             border_agent_id: &NSData,
-            completion: &block2::DynBlock<dyn Fn(*mut THCredentials, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut THCredentials, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -225,7 +225,7 @@ impl THClient {
             &self,
             border_agent_id: &NSData,
             active_operational_data_set: &NSData,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "THCredentials", feature = "block2"))]
@@ -257,7 +257,7 @@ impl THClient {
         #[unsafe(method_family = none)]
         pub unsafe fn retrievePreferredCredentials(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut THCredentials, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut THCredentials, *mut NSError)>,
         );
 
         #[cfg(all(feature = "THCredentials", feature = "block2"))]
@@ -291,7 +291,7 @@ impl THClient {
         pub unsafe fn retrieveCredentialsForExtendedPANID_completion(
             &self,
             extended_panid: &NSData,
-            completion: &block2::DynBlock<dyn Fn(*mut THCredentials, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut THCredentials, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -324,7 +324,7 @@ impl THClient {
         pub unsafe fn checkPreferredNetworkForActiveOperationalDataset_completion(
             &self,
             active_operational_data_set: &NSData,
-            completion: &block2::DynBlock<dyn Fn(Bool)>,
+            completion: &block2::Block<'static, fn(Bool)>,
         );
 
         #[cfg(feature = "block2")]
@@ -353,7 +353,7 @@ impl THClient {
         #[unsafe(method_family = none)]
         pub unsafe fn isPreferredNetworkAvailableWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(Bool)>,
+            completion: &block2::Block<'static, fn(Bool)>,
         );
     );
 }

@@ -70,7 +70,7 @@ impl NSWritingToolsCoordinatorAnimationParameters {
         /// the course of the animations, providing an updated completion value each time.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
-        pub fn progressHandler(&self) -> *mut block2::DynBlock<dyn Fn(c_float)>;
+        pub fn progressHandler(&self) -> *mut block2::Block<'static, fn(c_float)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
@@ -80,7 +80,7 @@ impl NSWritingToolsCoordinatorAnimationParameters {
         #[unsafe(method_family = none)]
         pub fn setProgressHandler(
             &self,
-            progress_handler: Option<&block2::DynBlock<dyn Fn(c_float)>>,
+            progress_handler: Option<&block2::Block<'static, fn(c_float)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -92,7 +92,7 @@ impl NSWritingToolsCoordinatorAnimationParameters {
         /// animation finish.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
-        pub fn completionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub fn completionHandler(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
@@ -100,7 +100,10 @@ impl NSWritingToolsCoordinatorAnimationParameters {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setCompletionHandler(&self, completion_handler: Option<&block2::DynBlock<dyn Fn()>>);
+        pub fn setCompletionHandler(
+            &self,
+            completion_handler: Option<&block2::Block<'static, fn()>>,
+        );
     );
 }
 

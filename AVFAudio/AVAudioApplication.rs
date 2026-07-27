@@ -162,7 +162,7 @@ impl AVAudioApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn setInputMuteStateChangeHandler_error(
             &self,
-            input_mute_handler: Option<&block2::DynBlock<dyn Fn(Bool) -> Bool>>,
+            input_mute_handler: Option<&block2::Block<'static, fn(Bool) -> Bool>>,
         ) -> Result<(), Retained<NSError>>;
 
         /// Returns an enum indicating whether the user has granted or denied permission to record, or has
@@ -185,7 +185,7 @@ impl AVAudioApplication {
         #[unsafe(method(requestRecordPermissionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestRecordPermissionWithCompletionHandler(
-            response: &block2::DynBlock<dyn Fn(Bool)>,
+            response: &block2::Block<'static, fn(Bool)>,
         );
 
         /// Returns an enum indicating whether the user has granted or denied permission to inject audio into input,
@@ -211,7 +211,7 @@ impl AVAudioApplication {
         #[unsafe(method(requestMicrophoneInjectionPermissionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestMicrophoneInjectionPermissionWithCompletionHandler(
-            response: &block2::DynBlock<dyn Fn(AVAudioApplicationMicrophoneInjectionPermission)>,
+            response: &block2::Block<'static, fn(AVAudioApplicationMicrophoneInjectionPermission)>,
         );
     );
 }

@@ -68,7 +68,7 @@ impl UIScene {
             &self,
             url: &NSURL,
             options: Option<&UISceneOpenExternalURLOptions>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[unsafe(method(title))]

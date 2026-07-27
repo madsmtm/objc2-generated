@@ -168,7 +168,7 @@ impl MKMapItem {
         pub unsafe fn openInMapsWithLaunchOptions_completionHandler(
             &self,
             launch_options: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -181,7 +181,7 @@ impl MKMapItem {
         pub unsafe fn openMapsWithItems_launchOptions_completionHandler(
             map_items: &NSArray<MKMapItem>,
             launch_options: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
         );
     );
 }

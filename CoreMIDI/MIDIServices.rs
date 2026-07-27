@@ -234,7 +234,7 @@ pub type MIDINotifyProc =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotifyblock?language=objc)
 #[cfg(feature = "block2")]
-pub type MIDINotifyBlock = block2::DynBlock<dyn Fn(NonNull<MIDINotification>)>;
+pub type MIDINotifyBlock = block2::Block<'static, fn(NonNull<MIDINotification>)>;
 
 /// A block receiving MIDI input.
 ///
@@ -253,7 +253,7 @@ pub type MIDINotifyBlock = block2::DynBlock<dyn Fn(NonNull<MIDINotification>)>;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireceiveblock?language=objc)
 #[cfg(feature = "block2")]
-pub type MIDIReceiveBlock = block2::DynBlock<dyn Fn(NonNull<MIDIEventList>, *mut c_void)>;
+pub type MIDIReceiveBlock = block2::Block<'static, fn(NonNull<MIDIEventList>, *mut c_void)>;
 
 /// A function receiving MIDI input.
 ///
@@ -296,7 +296,7 @@ pub type MIDIReadProc =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireadblock?language=objc)
 #[deprecated = "use MIDIReceiveBlock and MIDIEventLists"]
 #[cfg(feature = "block2")]
-pub type MIDIReadBlock = block2::DynBlock<dyn Fn(NonNull<MIDIPacketList>, *mut c_void)>;
+pub type MIDIReadBlock = block2::Block<'static, fn(NonNull<MIDIPacketList>, *mut c_void)>;
 
 /// A function called when a system-exclusive event has been completely sent.
 ///

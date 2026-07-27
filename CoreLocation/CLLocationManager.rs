@@ -356,7 +356,7 @@ impl CLLocationManager {
         pub unsafe fn requestTemporaryFullAccuracyAuthorizationWithPurposeKey_completion(
             &self,
             purpose_key: &NSString,
-            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[unsafe(method(requestTemporaryFullAccuracyAuthorizationWithPurposeKey:))]
@@ -408,7 +408,7 @@ impl CLLocationManager {
         #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringLocationPushesWithCompletion(
             &self,
-            completion: Option<&block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(*mut NSData, *mut NSError)>>,
         );
 
         #[unsafe(method(stopMonitoringLocationPushes))]
@@ -509,7 +509,7 @@ impl CLLocationManager {
             &self,
             purpose_key: &NSString,
             sample_count: NSInteger,
-            handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<CLLocation>>, *mut NSError)>,
+            handler: &block2::Block<'static, fn(NonNull<NSArray<CLLocation>>, *mut NSError)>,
         );
     );
 }

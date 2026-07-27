@@ -197,8 +197,9 @@ impl NSCollectionViewCompositionalLayoutConfiguration {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewcompositionallayoutsectionprovider?language=objc)
 #[cfg(feature = "block2")]
-pub type NSCollectionViewCompositionalLayoutSectionProvider = block2::DynBlock<
-    dyn Fn(
+pub type NSCollectionViewCompositionalLayoutSectionProvider = block2::Block<
+    'static,
+    fn(
         NSInteger,
         NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,
     ) -> *mut NSCollectionLayoutSection,
@@ -315,8 +316,9 @@ unsafe impl RefEncode for NSCollectionLayoutSectionOrthogonalScrollingBehavior {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionvisibleitemsinvalidationhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = block2::DynBlock<
-    dyn Fn(
+pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = block2::Block<
+    'static,
+    fn(
         NonNull<NSArray<ProtocolObject<dyn NSCollectionLayoutVisibleItem>>>,
         NSPoint,
         NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,
@@ -576,8 +578,9 @@ impl NSCollectionLayoutGroupCustomItem {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutgroupcustomitemprovider?language=objc)
 #[cfg(feature = "block2")]
-pub type NSCollectionLayoutGroupCustomItemProvider = block2::DynBlock<
-    dyn Fn(
+pub type NSCollectionLayoutGroupCustomItemProvider = block2::Block<
+    'static,
+    fn(
         NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,
     ) -> NonNull<NSArray<NSCollectionLayoutGroupCustomItem>>,
 >;

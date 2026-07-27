@@ -31,21 +31,21 @@ unsafe impl RefEncode for ACAccountCredentialRenewResult {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoresavecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ACAccountStoreSaveCompletionHandler = block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
+pub type ACAccountStoreSaveCompletionHandler = block2::Block<'static, fn(Bool, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoreremovecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ACAccountStoreRemoveCompletionHandler = block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
+pub type ACAccountStoreRemoveCompletionHandler = block2::Block<'static, fn(Bool, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstorerequestaccesscompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ACAccountStoreRequestAccessCompletionHandler =
-    block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
+    block2::Block<'static, fn(Bool, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstorecredentialrenewalhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ACAccountStoreCredentialRenewalHandler =
-    block2::DynBlock<dyn Fn(ACAccountCredentialRenewResult, *mut NSError)>;
+    block2::Block<'static, fn(ACAccountCredentialRenewResult, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstore?language=objc)

@@ -278,7 +278,7 @@ impl CKContainer {
         #[unsafe(method_family = none)]
         pub unsafe fn accountStatusWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(CKAccountStatus, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(CKAccountStatus, *mut NSError)>,
         );
     );
 }
@@ -354,7 +354,7 @@ unsafe impl RefEncode for CKApplicationPermissionStatus {
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
 #[cfg(feature = "block2")]
 pub type CKApplicationPermissionBlock =
-    block2::DynBlock<dyn Fn(CKApplicationPermissionStatus, *mut NSError)>;
+    block2::Block<'static, fn(CKApplicationPermissionStatus, *mut NSError)>;
 
 /// ApplicationPermission.
 impl CKContainer {
@@ -434,7 +434,7 @@ impl CKContainer {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchUserRecordIDWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKRecordID, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKRecordID, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
@@ -458,8 +458,9 @@ impl CKContainer {
         #[unsafe(method_family = none)]
         pub unsafe fn discoverAllIdentitiesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<CKUserIdentity>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<CKUserIdentity>, *mut NSError),
             >,
         );
 
@@ -490,7 +491,7 @@ impl CKContainer {
         pub unsafe fn discoverUserIdentityWithEmailAddress_completionHandler(
             &self,
             email: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKUserIdentity, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKUserIdentity, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
@@ -520,7 +521,7 @@ impl CKContainer {
         pub unsafe fn discoverUserIdentityWithPhoneNumber_completionHandler(
             &self,
             phone_number: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKUserIdentity, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKUserIdentity, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKRecordID", feature = "CKUserIdentity", feature = "block2"))]
@@ -550,7 +551,7 @@ impl CKContainer {
         pub unsafe fn discoverUserIdentityWithUserRecordID_completionHandler(
             &self,
             user_record_id: &CKRecordID,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKUserIdentity, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKUserIdentity, *mut NSError)>,
         );
     );
 }
@@ -581,7 +582,7 @@ impl CKContainer {
         pub unsafe fn fetchShareParticipantWithEmailAddress_completionHandler(
             &self,
             email_address: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKShareParticipant, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKShareParticipant, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
@@ -607,7 +608,7 @@ impl CKContainer {
         pub unsafe fn fetchShareParticipantWithPhoneNumber_completionHandler(
             &self,
             phone_number: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKShareParticipant, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKShareParticipant, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -635,7 +636,7 @@ impl CKContainer {
         pub unsafe fn fetchShareParticipantWithUserRecordID_completionHandler(
             &self,
             user_record_id: &CKRecordID,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKShareParticipant, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKShareParticipant, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKShareMetadata", feature = "block2"))]
@@ -657,7 +658,7 @@ impl CKContainer {
         pub unsafe fn fetchShareMetadataWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKShareMetadata, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKShareMetadata, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -685,7 +686,7 @@ impl CKContainer {
         pub unsafe fn acceptShareMetadata_completionHandler(
             &self,
             metadata: &CKShareMetadata,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKShare, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKShare, *mut NSError)>,
         );
     );
 }
@@ -713,8 +714,9 @@ impl CKContainer {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllLongLivedOperationIDsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<CKOperationID>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<CKOperationID>, *mut NSError),
             >,
         );
 
@@ -738,7 +740,7 @@ impl CKContainer {
         pub unsafe fn fetchLongLivedOperationWithID_completionHandler(
             &self,
             operation_id: &CKOperationID,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKOperation, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKOperation, *mut NSError)>,
         );
     );
 }

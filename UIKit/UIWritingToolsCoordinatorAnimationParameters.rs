@@ -88,7 +88,7 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         /// This might not be thread-safe.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progressHandler(&self) -> *mut block2::DynBlock<dyn Fn(c_float)>;
+        pub unsafe fn progressHandler(&self) -> *mut block2::Block<'static, fn(c_float)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
@@ -102,7 +102,7 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(
             &self,
-            progress_handler: Option<&block2::DynBlock<dyn Fn(c_float)>>,
+            progress_handler: Option<&block2::Block<'static, fn(c_float)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -120,7 +120,7 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         /// This might not be thread-safe.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub unsafe fn completionHandler(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
@@ -134,7 +134,7 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
+            completion_handler: Option<&block2::Block<'static, fn()>>,
         );
     );
 }

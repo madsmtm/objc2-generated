@@ -212,7 +212,7 @@ extern_protocol!(
         unsafe fn didReceiveNotificationResponse_completionHandler(
             &self,
             response: &UNNotificationResponse,
-            completion: &block2::DynBlock<dyn Fn(UNNotificationContentExtensionResponseOption)>,
+            completion: &block2::Block<'static, fn(UNNotificationContentExtensionResponseOption)>,
         );
 
         /// The type of media button type to display.

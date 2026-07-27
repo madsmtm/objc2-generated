@@ -31,7 +31,7 @@ unsafe impl RefEncode for CTCellularDataRestrictedState {
 /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/cellulardatarestrictiondidupdatenotifier?language=objc)
 #[cfg(feature = "block2")]
 pub type CellularDataRestrictionDidUpdateNotifier =
-    block2::DynBlock<dyn Fn(CTCellularDataRestrictedState)>;
+    block2::Block<'static, fn(CTCellularDataRestrictedState)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellulardata?language=objc)

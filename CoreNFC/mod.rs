@@ -746,7 +746,7 @@ impl NFCTagReaderSession {
         pub unsafe fn connectToTag_completionHandler(
             &self,
             tag: &ProtocolObject<dyn NFCTag>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -966,7 +966,7 @@ impl NFCNDEFReaderSession {
         pub unsafe fn connectToTag_completionHandler(
             &self,
             tag: &ProtocolObject<dyn NFCNDEFTag>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -1324,7 +1324,7 @@ extern_protocol!(
         unsafe fn sendCustomCommandWithConfiguration_completionHandler(
             &self,
             command_configuration: &NFCISO15693CustomCommandConfiguration,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSData>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSData>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1348,7 +1348,7 @@ extern_protocol!(
         unsafe fn readMultipleBlocksWithConfiguration_completionHandler(
             &self,
             read_configuration: &NFCISO15693ReadMultipleBlocksConfiguration,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSData>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSData>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1372,7 +1372,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn stayQuietWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1405,7 +1405,7 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             block_number: u8,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSData>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSData>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1439,7 +1439,7 @@ extern_protocol!(
             flags: NFCISO15693RequestFlag,
             block_number: u8,
             data_block: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1470,7 +1470,7 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             block_number: u8,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1504,7 +1504,7 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             block_range: NSRange,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSData>>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSData>>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1539,7 +1539,7 @@ extern_protocol!(
             flags: NFCISO15693RequestFlag,
             block_range: NSRange,
             data_blocks: &NSArray<NSData>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1567,7 +1567,7 @@ extern_protocol!(
         unsafe fn selectWithRequestFlags_completionHandler(
             &self,
             flags: NFCISO15693RequestFlag,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1595,7 +1595,7 @@ extern_protocol!(
         unsafe fn resetToReadyWithRequestFlags_completionHandler(
             &self,
             flags: NFCISO15693RequestFlag,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1626,7 +1626,7 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             afi: u8,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1654,7 +1654,7 @@ extern_protocol!(
         unsafe fn lockAFIWithRequestFlag_completionHandler(
             &self,
             flags: NFCISO15693RequestFlag,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1685,7 +1685,7 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             dsfid: u8,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1709,7 +1709,7 @@ extern_protocol!(
         unsafe fn lockDFSIDWithRequestFlag_completionHandler(
             &self,
             flags: NFCISO15693RequestFlag,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1737,7 +1737,7 @@ extern_protocol!(
         unsafe fn lockDSFIDWithRequestFlag_completionHandler(
             &self,
             flags: NFCISO15693RequestFlag,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1764,8 +1764,9 @@ extern_protocol!(
         unsafe fn getSystemInfoWithRequestFlag_completionHandler(
             &self,
             flags: NFCISO15693RequestFlag,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, *mut NSError),
             >,
         );
 
@@ -1796,8 +1797,9 @@ extern_protocol!(
         unsafe fn getSystemInfoAndUIDWithRequestFlag_completionHandler(
             &self,
             flags: NFCISO15693RequestFlag,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(
+            completion_handler: &block2::Block<
+                'static,
+                fn(
                     *mut NSData,
                     NSInteger,
                     NSInteger,
@@ -1838,7 +1840,10 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             block_range: NSRange,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSNumber>>, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<NSNumber>>, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -1860,7 +1865,7 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             block_range: NSRange,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSData>>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSData>>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1895,7 +1900,7 @@ extern_protocol!(
             flags: NFCISO15693RequestFlag,
             custom_command_code: NSInteger,
             custom_request_parameters: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSData>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSData>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1927,7 +1932,7 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             block_number: NSInteger,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSData>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSData>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1961,7 +1966,7 @@ extern_protocol!(
             flags: NFCISO15693RequestFlag,
             block_number: NSInteger,
             data_block: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1992,7 +1997,7 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             block_number: NSInteger,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2025,7 +2030,7 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             block_range: NSRange,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSData>>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSData>>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2060,7 +2065,7 @@ extern_protocol!(
             flags: NFCISO15693RequestFlag,
             block_range: NSRange,
             data_blocks: &NSArray<NSData>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2094,8 +2099,9 @@ extern_protocol!(
             flags: NFCISO15693RequestFlag,
             crypto_suite_identifier: NSInteger,
             message: &NSData,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NFCISO15693ResponseFlag, NonNull<NSData>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NFCISO15693ResponseFlag, NonNull<NSData>, *mut NSError),
             >,
         );
 
@@ -2130,8 +2136,9 @@ extern_protocol!(
             flags: NFCISO15693RequestFlag,
             key_identifier: NSInteger,
             message: &NSData,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NFCISO15693ResponseFlag, NonNull<NSData>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NFCISO15693ResponseFlag, NonNull<NSData>, *mut NSError),
             >,
         );
 
@@ -2165,7 +2172,7 @@ extern_protocol!(
             flags: NFCISO15693RequestFlag,
             crypto_suite_identifier: NSInteger,
             message: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2193,8 +2200,9 @@ extern_protocol!(
         unsafe fn readBufferWithRequestFlags_completionHandler(
             &self,
             flags: NFCISO15693RequestFlag,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NFCISO15693ResponseFlag, NonNull<NSData>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NFCISO15693ResponseFlag, NonNull<NSData>, *mut NSError),
             >,
         );
 
@@ -2227,7 +2235,10 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             block_range: NSRange,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSNumber>>, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<NSNumber>>, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -2247,7 +2258,7 @@ extern_protocol!(
             &self,
             flags: NFCISO15693RequestFlag,
             block_range: NSRange,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSData>>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSData>>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2273,8 +2284,9 @@ extern_protocol!(
             flags: NSInteger,
             command_code: NSInteger,
             data: Option<&NSData>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NFCISO15693ResponseFlag, *mut NSData, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NFCISO15693ResponseFlag, *mut NSData, *mut NSError),
             >,
         );
     }
@@ -2415,7 +2427,10 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn queryNDEFStatusWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NFCNDEFStatus, NSUInteger, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(NFCNDEFStatus, NSUInteger, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -2432,7 +2447,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn readNDEFWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NFCNDEFMessage, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NFCNDEFMessage, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2449,7 +2464,7 @@ extern_protocol!(
         unsafe fn writeNDEF_completionHandler(
             &self,
             ndef_message: &NFCNDEFMessage,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2472,7 +2487,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn writeLockWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     }
 );
@@ -2653,8 +2668,9 @@ extern_protocol!(
             system_code: &NSData,
             request_code: NFCFeliCaPollingRequestCode,
             time_slot: NFCFeliCaPollingTimeSlot,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NonNull<NSData>, NonNull<NSData>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSData>, NonNull<NSData>, *mut NSError),
             >,
         );
 
@@ -2677,7 +2693,7 @@ extern_protocol!(
         unsafe fn requestServiceWithNodeCodeList_completionHandler(
             &self,
             node_code_list: &NSArray<NSData>,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSData>>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSData>>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2694,7 +2710,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn requestResponseWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NSInteger, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NSInteger, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2719,8 +2735,9 @@ extern_protocol!(
             &self,
             service_code_list: &NSArray<NSData>,
             block_list: &NSArray<NSData>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NSInteger, NSInteger, NonNull<NSArray<NSData>>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NSInteger, NSInteger, NonNull<NSArray<NSData>>, *mut NSError),
             >,
         );
 
@@ -2750,7 +2767,7 @@ extern_protocol!(
             service_code_list: &NSArray<NSData>,
             block_list: &NSArray<NSData>,
             block_data: &NSArray<NSData>,
-            completion_handler: &block2::DynBlock<dyn Fn(NSInteger, NSInteger, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NSInteger, NSInteger, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2767,7 +2784,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn requestSystemCodeWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSData>>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSData>>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2790,8 +2807,9 @@ extern_protocol!(
         unsafe fn requestServiceV2WithNodeCodeList_completionHandler(
             &self,
             node_code_list: &NSArray<NSData>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(
+            completion_handler: &block2::Block<
+                'static,
+                fn(
                     NSInteger,
                     NSInteger,
                     NFCFeliCaEncryptionId,
@@ -2818,8 +2836,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn requestSpecificationVersionWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NSInteger, NSInteger, NonNull<NSData>, NonNull<NSData>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NSInteger, NSInteger, NonNull<NSData>, NonNull<NSData>, *mut NSError),
             >,
         );
 
@@ -2837,7 +2856,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn resetModeWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NSInteger, NSInteger, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NSInteger, NSInteger, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2864,7 +2883,7 @@ extern_protocol!(
         unsafe fn sendFeliCaCommandPacket_completionHandler(
             &self,
             command_packet: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSData>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSData>, *mut NSError)>,
         );
     }
 );
@@ -3059,7 +3078,7 @@ extern_protocol!(
         unsafe fn sendCommandAPDU_completionHandler(
             &self,
             apdu: &NFCISO7816APDU,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSData>, u8, u8, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSData>, u8, u8, *mut NSError)>,
         );
     }
 );
@@ -3142,7 +3161,7 @@ extern_protocol!(
         unsafe fn sendMiFareCommand_completionHandler(
             &self,
             command: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSData>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSData>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -3168,7 +3187,7 @@ extern_protocol!(
         unsafe fn sendMiFareISO7816Command_completionHandler(
             &self,
             apdu: &NFCISO7816APDU,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSData>, u8, u8, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSData>, u8, u8, *mut NSError)>,
         );
     }
 );

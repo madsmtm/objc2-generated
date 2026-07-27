@@ -49,8 +49,9 @@ impl HKSourceQuery {
             this: Allocated<Self>,
             sample_type: &HKSampleType,
             object_predicate: Option<&NSPredicate>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NonNull<HKSourceQuery>, *mut NSSet<HKSource>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<HKSourceQuery>, *mut NSSet<HKSource>, *mut NSError),
             >,
         ) -> Retained<Self>;
     );

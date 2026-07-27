@@ -236,7 +236,7 @@ extern_protocol!(
             view: Option<&NSView>,
             class_array: &NSArray<AnyClass>,
             search_options: &NSDictionary<NSPasteboardReadingOptionKey, AnyObject>,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>)>,
+            block: &block2::Block<'static, fn(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>)>,
         );
 
         #[unsafe(method(springLoadingHighlight))]

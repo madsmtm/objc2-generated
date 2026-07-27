@@ -33,7 +33,7 @@ extern_protocol!(
         unsafe fn decideActionForMessage_completionHandler(
             &self,
             message: &MEMessage,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut MEMessageActionDecision)>,
+            completion_handler: &block2::Block<'static, fn(*mut MEMessageActionDecision)>,
         );
 
         /// Provide additional headers that the extension requires to perform an action. Mail will fetch these additional headers before invoking

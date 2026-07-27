@@ -795,8 +795,9 @@ impl NSLayoutManager {
         pub fn enumerateLineFragmentsForGlyphRange_usingBlock(
             &self,
             glyph_range: NSRange,
-            block: &block2::DynBlock<
-                dyn Fn(NSRect, NSRect, NonNull<NSTextContainer>, NSRange, NonNull<Bool>),
+            block: &block2::Block<
+                'static,
+                fn(NSRect, NSRect, NonNull<NSTextContainer>, NSRange, NonNull<Bool>),
             >,
         );
 
@@ -808,7 +809,7 @@ impl NSLayoutManager {
             glyph_range: NSRange,
             selected_range: NSRange,
             text_container: &NSTextContainer,
-            block: &block2::DynBlock<dyn Fn(NSRect, NonNull<Bool>)>,
+            block: &block2::Block<'static, fn(NSRect, NonNull<Bool>)>,
         );
 
         /// ********************** Drawing support ***********************

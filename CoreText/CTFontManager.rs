@@ -440,14 +440,16 @@ pub fn CTFontManagerRegisterFontURLs(
     font_ur_ls: &CFArray<CFURL>,
     scope: CTFontManagerScope,
     enabled: bool,
-    registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+    registration_handler: Option<&block2::Block<'static, fn(NonNull<CFArray>, bool) -> bool>>,
 ) {
     extern "C-unwind" {
         fn CTFontManagerRegisterFontURLs(
             font_ur_ls: &CFArray<CFURL>,
             scope: CTFontManagerScope,
             enabled: bool,
-            registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+            registration_handler: Option<
+                &block2::Block<'static, fn(NonNull<CFArray>, bool) -> bool>,
+            >,
         );
     }
     unsafe { CTFontManagerRegisterFontURLs(font_ur_ls, scope, enabled, registration_handler) }
@@ -469,13 +471,15 @@ pub fn CTFontManagerRegisterFontURLs(
 pub fn CTFontManagerUnregisterFontURLs(
     font_ur_ls: &CFArray<CFURL>,
     scope: CTFontManagerScope,
-    registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+    registration_handler: Option<&block2::Block<'static, fn(NonNull<CFArray>, bool) -> bool>>,
 ) {
     extern "C-unwind" {
         fn CTFontManagerUnregisterFontURLs(
             font_ur_ls: &CFArray<CFURL>,
             scope: CTFontManagerScope,
-            registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+            registration_handler: Option<
+                &block2::Block<'static, fn(NonNull<CFArray>, bool) -> bool>,
+            >,
         );
     }
     unsafe { CTFontManagerUnregisterFontURLs(font_ur_ls, scope, registration_handler) }
@@ -503,14 +507,16 @@ pub fn CTFontManagerRegisterFontDescriptors(
     font_descriptors: &CFArray<CTFontDescriptor>,
     scope: CTFontManagerScope,
     enabled: bool,
-    registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+    registration_handler: Option<&block2::Block<'static, fn(NonNull<CFArray>, bool) -> bool>>,
 ) {
     extern "C-unwind" {
         fn CTFontManagerRegisterFontDescriptors(
             font_descriptors: &CFArray<CTFontDescriptor>,
             scope: CTFontManagerScope,
             enabled: bool,
-            registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+            registration_handler: Option<
+                &block2::Block<'static, fn(NonNull<CFArray>, bool) -> bool>,
+            >,
         );
     }
     unsafe {
@@ -533,13 +539,15 @@ pub fn CTFontManagerRegisterFontDescriptors(
 pub fn CTFontManagerUnregisterFontDescriptors(
     font_descriptors: &CFArray<CTFontDescriptor>,
     scope: CTFontManagerScope,
-    registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+    registration_handler: Option<&block2::Block<'static, fn(NonNull<CFArray>, bool) -> bool>>,
 ) {
     extern "C-unwind" {
         fn CTFontManagerUnregisterFontDescriptors(
             font_descriptors: &CFArray<CTFontDescriptor>,
             scope: CTFontManagerScope,
-            registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+            registration_handler: Option<
+                &block2::Block<'static, fn(NonNull<CFArray>, bool) -> bool>,
+            >,
         );
     }
     unsafe { CTFontManagerUnregisterFontDescriptors(font_descriptors, scope, registration_handler) }
@@ -572,7 +580,7 @@ pub fn CTFontManagerRegisterFontsWithAssetNames(
     bundle: Option<&CFBundle>,
     scope: CTFontManagerScope,
     enabled: bool,
-    registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+    registration_handler: Option<&block2::Block<'static, fn(NonNull<CFArray>, bool) -> bool>>,
 ) {
     extern "C-unwind" {
         fn CTFontManagerRegisterFontsWithAssetNames(
@@ -580,7 +588,9 @@ pub fn CTFontManagerRegisterFontsWithAssetNames(
             bundle: Option<&CFBundle>,
             scope: CTFontManagerScope,
             enabled: bool,
-            registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+            registration_handler: Option<
+                &block2::Block<'static, fn(NonNull<CFArray>, bool) -> bool>,
+            >,
         );
     }
     unsafe {
@@ -672,12 +682,12 @@ pub fn CTFontManagerCopyRegisteredFontDescriptors(
 #[inline]
 pub fn CTFontManagerRequestFonts(
     font_descriptors: &CFArray<CTFontDescriptor>,
-    completion_handler: &block2::DynBlock<dyn Fn(NonNull<CFArray>)>,
+    completion_handler: &block2::Block<'static, fn(NonNull<CFArray>)>,
 ) {
     extern "C-unwind" {
         fn CTFontManagerRequestFonts(
             font_descriptors: &CFArray<CTFontDescriptor>,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<CFArray>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<CFArray>)>,
         );
     }
     unsafe { CTFontManagerRequestFonts(font_descriptors, completion_handler) }
@@ -717,15 +727,17 @@ pub fn CTFontManagerIsSupportedFont(font_url: &CFURL) -> bool {
 #[inline]
 pub unsafe fn CTFontManagerCreateFontRequestRunLoopSource(
     source_order: CFIndex,
-    create_matches_callback: &block2::DynBlock<
-        dyn Fn(NonNull<CFDictionary>, libc::pid_t) -> NonNull<CFArray>,
+    create_matches_callback: &block2::Block<
+        'static,
+        fn(NonNull<CFDictionary>, libc::pid_t) -> NonNull<CFArray>,
     >,
 ) -> Option<CFRetained<CFRunLoopSource>> {
     extern "C-unwind" {
         fn CTFontManagerCreateFontRequestRunLoopSource(
             source_order: CFIndex,
-            create_matches_callback: &block2::DynBlock<
-                dyn Fn(NonNull<CFDictionary>, libc::pid_t) -> NonNull<CFArray>,
+            create_matches_callback: &block2::Block<
+                'static,
+                fn(NonNull<CFDictionary>, libc::pid_t) -> NonNull<CFArray>,
             >,
         ) -> Option<NonNull<CFRunLoopSource>>;
     }

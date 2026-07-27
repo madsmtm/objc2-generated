@@ -59,7 +59,7 @@ impl UIWindowScene {
         pub fn requestGeometryUpdateWithPreferences_errorHandler(
             &self,
             geometry_preferences: &UIWindowSceneGeometryPreferences,
-            error_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSError>)>>,
+            error_handler: Option<&block2::Block<'static, fn(NonNull<NSError>)>>,
         );
 
         #[cfg(feature = "UIWindowSceneGeometry")]
@@ -232,7 +232,7 @@ extern_protocol!(
             &self,
             window_scene: &UIWindowScene,
             shortcut_item: &UIApplicationShortcutItem,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
+            completion_handler: &block2::Block<'static, fn(Bool)>,
         );
 
         #[cfg(all(feature = "UIResponder", feature = "objc2-cloud-kit"))]

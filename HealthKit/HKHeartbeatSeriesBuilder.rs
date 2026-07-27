@@ -89,7 +89,7 @@ impl HKHeartbeatSeriesBuilder {
             &self,
             time_interval_since_start: NSTimeInterval,
             preceded_by_gap: bool,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -116,7 +116,7 @@ impl HKHeartbeatSeriesBuilder {
         pub unsafe fn addMetadata_completion(
             &self,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -147,7 +147,7 @@ impl HKHeartbeatSeriesBuilder {
         #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut HKHeartbeatSeriesSample, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut HKHeartbeatSeriesSample, *mut NSError)>,
         );
     );
 }

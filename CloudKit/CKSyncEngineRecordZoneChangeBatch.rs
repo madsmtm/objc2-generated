@@ -52,7 +52,7 @@ impl CKSyncEngineRecordZoneChangeBatch {
         pub unsafe fn initWithPendingChanges_recordProvider(
             this: Allocated<Self>,
             pending_changes: &NSArray<CKSyncEnginePendingRecordZoneChange>,
-            record_provider: &block2::DynBlock<dyn Fn(NonNull<CKRecordID>) -> *mut CKRecord + '_>,
+            record_provider: &block2::Block<'_, fn(NonNull<CKRecordID>) -> *mut CKRecord>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID"))]

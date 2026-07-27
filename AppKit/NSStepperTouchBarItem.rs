@@ -49,7 +49,7 @@ impl NSStepperTouchBarItem {
         #[unsafe(method_family = none)]
         pub fn stepperTouchBarItemWithIdentifier_drawingHandler(
             identifier: &NSTouchBarItemIdentifier,
-            drawing_handler: &block2::DynBlock<dyn Fn(NSRect, c_double)>,
+            drawing_handler: &block2::Block<'static, fn(NSRect, c_double)>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 

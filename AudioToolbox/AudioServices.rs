@@ -116,12 +116,12 @@ pub unsafe fn AudioServicesDisposeSystemSoundID(in_system_sound_id: SystemSoundI
 #[inline]
 pub unsafe fn AudioServicesPlayAlertSoundWithCompletion(
     in_system_sound_id: SystemSoundID,
-    in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+    in_completion_block: Option<&block2::Block<'static, fn()>>,
 ) {
     extern "C-unwind" {
         fn AudioServicesPlayAlertSoundWithCompletion(
             in_system_sound_id: SystemSoundID,
-            in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+            in_completion_block: Option<&block2::Block<'static, fn()>>,
         );
     }
     unsafe { AudioServicesPlayAlertSoundWithCompletion(in_system_sound_id, in_completion_block) }
@@ -140,12 +140,12 @@ pub unsafe fn AudioServicesPlayAlertSoundWithCompletion(
 #[inline]
 pub unsafe fn AudioServicesPlaySystemSoundWithCompletion(
     in_system_sound_id: SystemSoundID,
-    in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+    in_completion_block: Option<&block2::Block<'static, fn()>>,
 ) {
     extern "C-unwind" {
         fn AudioServicesPlaySystemSoundWithCompletion(
             in_system_sound_id: SystemSoundID,
-            in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+            in_completion_block: Option<&block2::Block<'static, fn()>>,
         );
     }
     unsafe { AudioServicesPlaySystemSoundWithCompletion(in_system_sound_id, in_completion_block) }
@@ -441,13 +441,13 @@ extern "C" {
 pub unsafe fn AudioServicesPlaySystemSoundWithDetails(
     in_system_sound_id: SystemSoundID,
     in_details: Option<&CFDictionary<CFString, CFType>>,
-    in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+    in_completion_block: Option<&block2::Block<'static, fn()>>,
 ) {
     extern "C-unwind" {
         fn AudioServicesPlaySystemSoundWithDetails(
             in_system_sound_id: SystemSoundID,
             in_details: Option<&CFDictionary<CFString, CFType>>,
-            in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+            in_completion_block: Option<&block2::Block<'static, fn()>>,
         );
     }
     unsafe {
@@ -473,13 +473,13 @@ pub unsafe fn AudioServicesPlaySystemSoundWithDetails(
 pub unsafe fn AudioServicesPlayAlertSoundWithDetails(
     in_system_sound_id: SystemSoundID,
     in_details: Option<&CFDictionary<CFString, CFType>>,
-    in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+    in_completion_block: Option<&block2::Block<'static, fn()>>,
 ) {
     extern "C-unwind" {
         fn AudioServicesPlayAlertSoundWithDetails(
             in_system_sound_id: SystemSoundID,
             in_details: Option<&CFDictionary<CFString, CFType>>,
-            in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+            in_completion_block: Option<&block2::Block<'static, fn()>>,
         );
     }
     unsafe {

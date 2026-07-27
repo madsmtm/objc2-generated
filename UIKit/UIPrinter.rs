@@ -148,7 +148,7 @@ impl UIPrinter {
         /// The operation can take up to 30 seconds.
         #[unsafe(method(contactPrinter:))]
         #[unsafe(method_family = none)]
-        pub fn contactPrinter(&self, completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>);
+        pub fn contactPrinter(&self, completion_handler: Option<&block2::Block<'static, fn(Bool)>>);
     );
 }
 

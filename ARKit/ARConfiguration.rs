@@ -1340,7 +1340,7 @@ impl ARGeoTrackingConfiguration {
         #[unsafe(method(checkAvailabilityWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkAvailabilityWithCompletionHandler(
-            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -1359,7 +1359,7 @@ impl ARGeoTrackingConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn checkAvailabilityAtCoordinate_completionHandler(
             coordinate: CLLocationCoordinate2D,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[unsafe(method(init))]

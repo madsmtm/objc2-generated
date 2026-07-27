@@ -23,12 +23,12 @@ pub type NSProgressFileOperationKind = NSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressunpublishinghandler?language=objc)
 #[cfg(feature = "block2")]
-pub type NSProgressUnpublishingHandler = block2::DynBlock<dyn Fn()>;
+pub type NSProgressUnpublishingHandler = block2::Block<'static, fn()>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogresspublishinghandler?language=objc)
 #[cfg(feature = "block2")]
 pub type NSProgressPublishingHandler =
-    block2::DynBlock<dyn Fn(NonNull<NSProgress>) -> *mut NSProgressUnpublishingHandler>;
+    block2::Block<'static, fn(NonNull<NSProgress>) -> *mut NSProgressUnpublishingHandler>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogress?language=objc)
@@ -89,7 +89,7 @@ impl NSProgress {
         pub fn performAsCurrentWithPendingUnitCount_usingBlock(
             &self,
             unit_count: i64,
-            work: &block2::DynBlock<dyn Fn() + '_>,
+            work: &block2::Block<'_, fn()>,
         );
 
         #[unsafe(method(resignCurrent))]
@@ -179,7 +179,7 @@ impl NSProgress {
         /// The returned block must be sendable.
         #[unsafe(method(cancellationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancellationHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub unsafe fn cancellationHandler(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`cancellationHandler`][Self::cancellationHandler].
@@ -193,7 +193,7 @@ impl NSProgress {
         #[unsafe(method_family = none)]
         pub unsafe fn setCancellationHandler(
             &self,
-            cancellation_handler: Option<&block2::DynBlock<dyn Fn()>>,
+            cancellation_handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -202,7 +202,7 @@ impl NSProgress {
         /// The returned block must be sendable.
         #[unsafe(method(pausingHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pausingHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub unsafe fn pausingHandler(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`pausingHandler`][Self::pausingHandler].
@@ -216,7 +216,7 @@ impl NSProgress {
         #[unsafe(method_family = none)]
         pub unsafe fn setPausingHandler(
             &self,
-            pausing_handler: Option<&block2::DynBlock<dyn Fn()>>,
+            pausing_handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -225,7 +225,7 @@ impl NSProgress {
         /// The returned block must be sendable.
         #[unsafe(method(resumingHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resumingHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub unsafe fn resumingHandler(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`resumingHandler`][Self::resumingHandler].
@@ -239,7 +239,7 @@ impl NSProgress {
         #[unsafe(method_family = none)]
         pub unsafe fn setResumingHandler(
             &self,
-            resuming_handler: Option<&block2::DynBlock<dyn Fn()>>,
+            resuming_handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "NSString")]

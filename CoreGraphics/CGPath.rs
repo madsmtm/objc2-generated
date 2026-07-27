@@ -701,7 +701,7 @@ impl CGPath {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathapplyblock?language=objc)
 #[cfg(feature = "block2")]
-pub type CGPathApplyBlock = block2::DynBlock<dyn Fn(NonNull<CGPathElement>)>;
+pub type CGPathApplyBlock = block2::Block<'static, fn(NonNull<CGPathElement>)>;
 
 impl CGPath {
     #[doc(alias = "CGPathApplyWithBlock")]

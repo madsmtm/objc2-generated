@@ -97,7 +97,7 @@ pub type AUEventListenerRef = AUParameterListenerRef;
     feature = "block2"
 ))]
 pub type AUParameterListenerBlock =
-    block2::DynBlock<dyn Fn(*mut c_void, NonNull<AudioUnitParameter>, AudioUnitParameterValue)>;
+    block2::Block<'static, fn(*mut c_void, NonNull<AudioUnitParameter>, AudioUnitParameterValue)>;
 
 /// A function called when a parameter value changes.
 ///

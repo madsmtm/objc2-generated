@@ -34,7 +34,7 @@ impl HMHomeManager {
         pub unsafe fn findVendorAccessoryWithHAPPublicKey_completionHandler(
             &self,
             hap_public_key: &NSData,
-            completion: &block2::DynBlock<dyn Fn(*mut HMAccessory, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut HMAccessory, *mut NSError)>,
         );
     );
 }

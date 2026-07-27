@@ -165,8 +165,9 @@ extern_protocol!(
             &self,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
             options: ASAuthorizationProviderExtensionRequestOptions,
-            completion: &block2::DynBlock<
-                dyn Fn(ASAuthorizationProviderExtensionRegistrationResult),
+            completion: &block2::Block<
+                'static,
+                fn(ASAuthorizationProviderExtensionRegistrationResult),
             >,
         );
 
@@ -197,8 +198,9 @@ extern_protocol!(
             user_name: Option<&NSString>,
             authentication_method: ASAuthorizationProviderExtensionAuthenticationMethod,
             options: ASAuthorizationProviderExtensionRequestOptions,
-            completion: &block2::DynBlock<
-                dyn Fn(ASAuthorizationProviderExtensionRegistrationResult),
+            completion: &block2::Block<
+                'static,
+                fn(ASAuthorizationProviderExtensionRegistrationResult),
             >,
         );
 
@@ -274,7 +276,7 @@ extern_protocol!(
             key_type: ASAuthorizationProviderExtensionKeyType,
             new_key: &SecKey,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
-            completion: &block2::DynBlock<dyn Fn(Bool)>,
+            completion: &block2::Block<'static, fn(Bool)>,
         );
 
         #[cfg(all(
@@ -293,7 +295,7 @@ extern_protocol!(
             &self,
             groups: &NSArray<NSString>,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
-            completion: &block2::DynBlock<dyn Fn(NonNull<NSDictionary<NSString, NSString>>)>,
+            completion: &block2::Block<'static, fn(NonNull<NSDictionary<NSString, NSString>>)>,
         );
 
         #[cfg(all(
@@ -311,7 +313,7 @@ extern_protocol!(
         unsafe fn profilePictureForUserUsingLoginManager_completion(
             &self,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
-            completion: &block2::DynBlock<dyn Fn(NonNull<NSData>)>,
+            completion: &block2::Block<'static, fn(NonNull<NSData>)>,
         );
     }
 );

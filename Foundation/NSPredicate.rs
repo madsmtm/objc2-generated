@@ -65,8 +65,9 @@ impl NSPredicate {
         #[unsafe(method(predicateWithBlock:))]
         #[unsafe(method_family = none)]
         pub fn predicateWithBlock(
-            block: &block2::DynBlock<
-                dyn Fn(*mut AnyObject, *mut NSDictionary<NSString, AnyObject>) -> Bool,
+            block: &block2::Block<
+                'static,
+                fn(*mut AnyObject, *mut NSDictionary<NSString, AnyObject>) -> Bool,
             >,
         ) -> Retained<NSPredicate>;
 

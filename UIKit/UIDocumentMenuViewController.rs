@@ -146,7 +146,7 @@ impl UIDocumentMenuViewController {
             title: &NSString,
             image: Option<&UIImage>,
             order: UIDocumentMenuOrder,
-            handler: &block2::DynBlock<dyn Fn()>,
+            handler: &block2::Block<'static, fn()>,
         );
 
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]

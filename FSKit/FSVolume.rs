@@ -994,7 +994,7 @@ extern_protocol!(
         unsafe fn mountWithOptions_replyHandler(
             &self,
             options: &FSTaskOptions,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1010,7 +1010,7 @@ extern_protocol!(
         /// `reply` block must be sendable.
         #[unsafe(method(unmountWithReplyHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn unmountWithReplyHandler(&self, reply: &block2::DynBlock<dyn Fn()>);
+        unsafe fn unmountWithReplyHandler(&self, reply: &block2::Block<'static, fn()>);
 
         #[cfg(feature = "block2")]
         /// Synchronizes the volume with its underlying resource.
@@ -1029,7 +1029,7 @@ extern_protocol!(
         unsafe fn synchronizeWithFlags_replyHandler(
             &self,
             flags: FSSyncFlags,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "FSItem", feature = "block2"))]
@@ -1053,7 +1053,7 @@ extern_protocol!(
             &self,
             desired_attributes: &FSItemGetAttributesRequest,
             item: &FSItem,
-            reply: &block2::DynBlock<dyn Fn(*mut FSItemAttributes, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSItemAttributes, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSItem", feature = "block2"))]
@@ -1086,7 +1086,7 @@ extern_protocol!(
             &self,
             new_attributes: &FSItemSetAttributesRequest,
             item: &FSItem,
-            reply: &block2::DynBlock<dyn Fn(*mut FSItemAttributes, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSItemAttributes, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -1112,7 +1112,7 @@ extern_protocol!(
             &self,
             name: &FSFileName,
             directory: &FSItem,
-            reply: &block2::DynBlock<dyn Fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSItem", feature = "block2"))]
@@ -1134,7 +1134,7 @@ extern_protocol!(
         unsafe fn reclaimItem_replyHandler(
             &self,
             item: &FSItem,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -1152,7 +1152,7 @@ extern_protocol!(
         unsafe fn readSymbolicLink_replyHandler(
             &self,
             item: &FSItem,
-            reply: &block2::DynBlock<dyn Fn(*mut FSFileName, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSFileName, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -1180,7 +1180,7 @@ extern_protocol!(
             r#type: FSItemType,
             directory: &FSItem,
             new_attributes: &FSItemSetAttributesRequest,
-            reply: &block2::DynBlock<dyn Fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -1208,7 +1208,7 @@ extern_protocol!(
             directory: &FSItem,
             new_attributes: &FSItemSetAttributesRequest,
             contents: &FSFileName,
-            reply: &block2::DynBlock<dyn Fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -1238,7 +1238,7 @@ extern_protocol!(
             item: &FSItem,
             name: &FSFileName,
             directory: &FSItem,
-            reply: &block2::DynBlock<dyn Fn(*mut FSFileName, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSFileName, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -1263,7 +1263,7 @@ extern_protocol!(
             item: &FSItem,
             name: &FSFileName,
             directory: &FSItem,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -1319,7 +1319,7 @@ extern_protocol!(
             destination_name: &FSFileName,
             destination_directory: &FSItem,
             over_item: Option<&FSItem>,
-            reply: &block2::DynBlock<dyn Fn(*mut FSFileName, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSFileName, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSItem", feature = "block2"))]
@@ -1359,7 +1359,7 @@ extern_protocol!(
             verifier: FSDirectoryVerifier,
             attributes: Option<&FSItemGetAttributesRequest>,
             packer: &FSDirectoryEntryPacker,
-            reply: &block2::DynBlock<dyn Fn(FSDirectoryVerifier, *mut NSError)>,
+            reply: &block2::Block<'static, fn(FSDirectoryVerifier, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSItem", feature = "FSTaskOptions", feature = "block2"))]
@@ -1383,7 +1383,7 @@ extern_protocol!(
         unsafe fn activateWithOptions_replyHandler(
             &self,
             options: &FSTaskOptions,
-            reply: &block2::DynBlock<dyn Fn(*mut FSItem, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSItem, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1410,7 +1410,7 @@ extern_protocol!(
         unsafe fn deactivateWithOptions_replyHandler(
             &self,
             options: FSDeactivateOptions,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
     }
 );
@@ -1499,7 +1499,7 @@ extern_protocol!(
             &self,
             name: &FSFileName,
             item: &FSItem,
-            reply: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -1523,7 +1523,7 @@ extern_protocol!(
             value: Option<&NSData>,
             item: &FSItem,
             policy: FSSetXattrPolicy,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -1541,7 +1541,7 @@ extern_protocol!(
         unsafe fn listXattrsOfItem_replyHandler(
             &self,
             item: &FSItem,
-            reply: &block2::DynBlock<dyn Fn(*mut NSArray<FSFileName>, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSArray<FSFileName>, *mut NSError)>,
         );
     }
 );
@@ -1621,7 +1621,7 @@ extern_protocol!(
             &self,
             item: &FSItem,
             modes: FSVolumeOpenModes,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "FSItem", feature = "block2"))]
@@ -1641,7 +1641,7 @@ extern_protocol!(
             &self,
             item: &FSItem,
             modes: FSVolumeOpenModes,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
     }
 );
@@ -1685,7 +1685,7 @@ extern_protocol!(
             offset: libc::off_t,
             length: usize,
             buffer: &FSMutableFileDataBuffer,
-            reply: &block2::DynBlock<dyn Fn(usize, *mut NSError)>,
+            reply: &block2::Block<'static, fn(usize, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSItem", feature = "block2", feature = "libc"))]
@@ -1713,7 +1713,7 @@ extern_protocol!(
             contents: &NSData,
             item: &FSItem,
             offset: libc::off_t,
-            reply: &block2::DynBlock<dyn Fn(usize, *mut NSError)>,
+            reply: &block2::Block<'static, fn(usize, *mut NSError)>,
         );
     }
 );
@@ -1827,7 +1827,7 @@ extern_protocol!(
             &self,
             the_item: &FSItem,
             access: FSAccessMask,
-            reply: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            reply: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
     }
 );
@@ -1867,7 +1867,7 @@ extern_protocol!(
         unsafe fn setVolumeName_replyHandler(
             &self,
             name: &FSFileName,
-            reply: &block2::DynBlock<dyn Fn(*mut FSFileName, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSFileName, *mut NSError)>,
         );
     }
 );
@@ -1958,7 +1958,7 @@ extern_protocol!(
             offset: libc::off_t,
             length: usize,
             flags: FSPreallocateFlags,
-            reply: &block2::DynBlock<dyn Fn(usize, *mut NSError)>,
+            reply: &block2::Block<'static, fn(usize, *mut NSError)>,
         );
     }
 );
@@ -2043,7 +2043,7 @@ extern_protocol!(
         unsafe fn deactivateItem_replyHandler(
             &self,
             item: &FSItem,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
     }
 );

@@ -269,13 +269,14 @@ impl MPSImage {
     #[inline]
     pub unsafe fn batch_iterate(
         batch: &MPSImageBatch,
-        iterator_block: &block2::DynBlock<dyn Fn(NonNull<MPSImage>, NSUInteger) -> NSInteger>,
+        iterator_block: &block2::Block<'static, fn(NonNull<MPSImage>, NSUInteger) -> NSInteger>,
     ) -> NSInteger {
         extern "C-unwind" {
             fn MPSImageBatchIterate(
                 batch: &MPSImageBatch,
-                iterator_block: &block2::DynBlock<
-                    dyn Fn(NonNull<MPSImage>, NSUInteger) -> NSInteger,
+                iterator_block: &block2::Block<
+                    'static,
+                    fn(NonNull<MPSImage>, NSUInteger) -> NSInteger,
                 >,
             ) -> NSInteger;
         }

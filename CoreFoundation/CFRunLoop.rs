@@ -296,12 +296,12 @@ impl CFRunLoop {
     #[doc(alias = "CFRunLoopPerformBlock")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn perform_block(&self, mode: &CFType, block: &block2::DynBlock<dyn Fn()>) {
+    pub unsafe fn perform_block(&self, mode: &CFType, block: &block2::Block<'static, fn()>) {
         extern "C-unwind" {
             fn CFRunLoopPerformBlock(
                 rl: &CFRunLoop,
                 mode: &CFType,
-                block: &block2::DynBlock<dyn Fn()>,
+                block: &block2::Block<'static, fn()>,
             );
         }
         unsafe { CFRunLoopPerformBlock(self, mode, block) }
@@ -694,7 +694,7 @@ impl CFRunLoopObserver {
         activities: CFOptionFlags,
         repeats: bool,
         order: CFIndex,
-        block: Option<&block2::DynBlock<dyn Fn(*mut CFRunLoopObserver, CFRunLoopActivity)>>,
+        block: Option<&block2::Block<'static, fn(*mut CFRunLoopObserver, CFRunLoopActivity)>>,
     ) -> Option<CFRetained<CFRunLoopObserver>> {
         extern "C-unwind" {
             fn CFRunLoopObserverCreateWithHandler(
@@ -702,7 +702,9 @@ impl CFRunLoopObserver {
                 activities: CFOptionFlags,
                 repeats: Boolean,
                 order: CFIndex,
-                block: Option<&block2::DynBlock<dyn Fn(*mut CFRunLoopObserver, CFRunLoopActivity)>>,
+                block: Option<
+                    &block2::Block<'static, fn(*mut CFRunLoopObserver, CFRunLoopActivity)>,
+                >,
             ) -> Option<NonNull<CFRunLoopObserver>>;
         }
         let repeats = repeats as _;
@@ -874,7 +876,7 @@ impl CFRunLoopTimer {
         interval: CFTimeInterval,
         flags: CFOptionFlags,
         order: CFIndex,
-        block: Option<&block2::DynBlock<dyn Fn(*mut CFRunLoopTimer)>>,
+        block: Option<&block2::Block<'static, fn(*mut CFRunLoopTimer)>>,
     ) -> Option<CFRetained<CFRunLoopTimer>> {
         extern "C-unwind" {
             fn CFRunLoopTimerCreateWithHandler(
@@ -883,7 +885,7 @@ impl CFRunLoopTimer {
                 interval: CFTimeInterval,
                 flags: CFOptionFlags,
                 order: CFIndex,
-                block: Option<&block2::DynBlock<dyn Fn(*mut CFRunLoopTimer)>>,
+                block: Option<&block2::Block<'static, fn(*mut CFRunLoopTimer)>>,
             ) -> Option<NonNull<CFRunLoopTimer>>;
         }
         let ret = unsafe {

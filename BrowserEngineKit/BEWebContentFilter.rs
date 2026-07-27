@@ -49,7 +49,7 @@ impl BEWebContentFilter {
         pub unsafe fn evaluateURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSData)>,
+            completion_handler: &block2::Block<'static, fn(Bool, *mut NSData)>,
         );
 
         #[cfg(feature = "block2")]
@@ -69,7 +69,7 @@ impl BEWebContentFilter {
         pub unsafe fn allowURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
     );
 }

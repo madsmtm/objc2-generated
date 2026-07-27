@@ -177,7 +177,7 @@ pub type MPSGraphTensorShapedTypeDictionary = NSDictionary<MPSGraphTensor, MPSGr
     feature = "block2"
 ))]
 pub type MPSGraphCompletionHandler =
-    block2::DynBlock<dyn Fn(NonNull<MPSGraphTensorDataDictionary>, *mut NSError)>;
+    block2::Block<'static, fn(NonNull<MPSGraphTensorDataDictionary>, *mut NSError)>;
 
 /// A notification that appears when graph execution schedules.
 ///
@@ -193,7 +193,7 @@ pub type MPSGraphCompletionHandler =
     feature = "block2"
 ))]
 pub type MPSGraphScheduledHandler =
-    block2::DynBlock<dyn Fn(NonNull<MPSGraphTensorDataDictionary>, *mut NSError)>;
+    block2::Block<'static, fn(NonNull<MPSGraphTensorDataDictionary>, *mut NSError)>;
 
 /// A notification that appears when compilation finishes.
 ///
@@ -208,7 +208,7 @@ pub type MPSGraphScheduledHandler =
     feature = "block2"
 ))]
 pub type MPSGraphCompilationCompletionHandler =
-    block2::DynBlock<dyn Fn(NonNull<MPSGraphExecutable>, *mut NSError)>;
+    block2::Block<'static, fn(NonNull<MPSGraphExecutable>, *mut NSError)>;
 
 /// A dictionary of symbol names and the corresponding executables for them.
 ///

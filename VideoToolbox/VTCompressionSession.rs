@@ -345,7 +345,7 @@ impl VTCompressionSession {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionoutputhandler?language=objc)
 #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
 pub type VTCompressionOutputHandler =
-    block2::DynBlock<dyn Fn(OSStatus, VTEncodeInfoFlags, *mut CMSampleBuffer)>;
+    block2::Block<'static, fn(OSStatus, VTEncodeInfoFlags, *mut CMSampleBuffer)>;
 
 impl VTCompressionSession {
     /// Call this function to present frames to the compression session.

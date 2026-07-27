@@ -32,7 +32,7 @@ use crate::*;
     feature = "block2"
 ))]
 pub type IOUSBHostControllerInterfaceCommandHandler =
-    block2::DynBlock<dyn Fn(NonNull<IOUSBHostControllerInterface>, IOUSBHostCIMessage)>;
+    block2::Block<'static, fn(NonNull<IOUSBHostControllerInterface>, IOUSBHostCIMessage)>;
 
 /// Client-supplied block to handle IOUSBHostCIDoorbell messages
 ///
@@ -44,8 +44,9 @@ pub type IOUSBHostControllerInterfaceCommandHandler =
     feature = "IOUSBHostControllerInterfaceDefinitions",
     feature = "block2"
 ))]
-pub type IOUSBHostControllerInterfaceDoorbellHandler = block2::DynBlock<
-    dyn Fn(NonNull<IOUSBHostControllerInterface>, NonNull<IOUSBHostCIDoorbell>, u32),
+pub type IOUSBHostControllerInterfaceDoorbellHandler = block2::Block<
+    'static,
+    fn(NonNull<IOUSBHostControllerInterface>, NonNull<IOUSBHostCIDoorbell>, u32),
 >;
 
 extern_class!(

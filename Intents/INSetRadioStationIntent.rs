@@ -134,7 +134,7 @@ extern_protocol!(
         unsafe fn handleSetRadioStation_completion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSetRadioStationIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSetRadioStationIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -165,7 +165,7 @@ extern_protocol!(
         unsafe fn confirmSetRadioStation_completion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSetRadioStationIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSetRadioStationIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -196,7 +196,7 @@ extern_protocol!(
         unsafe fn resolveRadioTypeForSetRadioStation_withCompletion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRadioTypeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRadioTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -215,7 +215,7 @@ extern_protocol!(
         unsafe fn resolveFrequencyForSetRadioStation_withCompletion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDoubleResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDoubleResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -234,7 +234,7 @@ extern_protocol!(
         unsafe fn resolveStationNameForSetRadioStation_withCompletion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -253,7 +253,7 @@ extern_protocol!(
         unsafe fn resolveChannelForSetRadioStation_withCompletion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -272,7 +272,7 @@ extern_protocol!(
         unsafe fn resolvePresetNumberForSetRadioStation_withCompletion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INIntegerResolutionResult>)>,
         );
     }
 );

@@ -72,9 +72,10 @@ pub unsafe trait NSItemProviderUTType:
             &self,
             content_type: &UTType,
             visibility: NSItemProviderRepresentationVisibility,
-            load_handler: &block2::DynBlock<
-                dyn Fn(
-                    NonNull<block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>>,
+            load_handler: &block2::Block<
+                'static,
+                fn(
+                    NonNull<block2::Block<'static, fn(*mut NSData, *mut NSError)>>,
                 ) -> *mut NSProgress,
             >,
         );
@@ -115,9 +116,10 @@ pub unsafe trait NSItemProviderUTType:
             content_type: &UTType,
             visibility: NSItemProviderRepresentationVisibility,
             open_in_place: bool,
-            load_handler: &block2::DynBlock<
-                dyn Fn(
-                    NonNull<block2::DynBlock<dyn Fn(*mut NSURL, Bool, *mut NSError)>>,
+            load_handler: &block2::Block<
+                'static,
+                fn(
+                    NonNull<block2::Block<'static, fn(*mut NSURL, Bool, *mut NSError)>>,
                 ) -> *mut NSProgress,
             >,
         );
@@ -177,7 +179,7 @@ pub unsafe trait NSItemProviderUTType:
         unsafe fn loadDataRepresentationForContentType_completionHandler(
             &self,
             content_type: &UTType,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "UTType", feature = "block2"))]
@@ -223,7 +225,7 @@ pub unsafe trait NSItemProviderUTType:
             &self,
             content_type: &UTType,
             open_in_place: bool,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSURL, Bool, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSURL, Bool, *mut NSError)>,
         ) -> Retained<NSProgress>;
     );
 }

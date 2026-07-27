@@ -116,8 +116,9 @@ extern_protocol!(
         unsafe fn loadObjectsOfClass_completion(
             &self,
             a_class: &AnyClass,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<ProtocolObject<dyn NSItemProviderReading>>>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<ProtocolObject<dyn NSItemProviderReading>>>),
             >,
         ) -> Retained<NSProgress>;
     }

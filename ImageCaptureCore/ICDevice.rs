@@ -413,7 +413,7 @@ impl ICDevice {
         pub unsafe fn requestOpenSessionWithOptions_completion(
             &self,
             options: Option<&NSDictionary<ICSessionOptions, AnyObject>>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -432,7 +432,7 @@ impl ICDevice {
         pub unsafe fn requestCloseSessionWithOptions_completion(
             &self,
             options: Option<&NSDictionary<ICSessionOptions, AnyObject>>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -449,7 +449,7 @@ impl ICDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn requestEjectWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// ￼Filesystem path of an application that is to be automatically launched when this device is added.

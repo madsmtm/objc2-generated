@@ -159,7 +159,7 @@ impl PHContentEditingInputRequestOptions {
         #[unsafe(method_family = none)]
         pub unsafe fn canHandleAdjustmentData(
             &self,
-        ) -> NonNull<block2::DynBlock<dyn Fn(NonNull<PHAdjustmentData>) -> Bool>>;
+        ) -> NonNull<block2::Block<'static, fn(NonNull<PHAdjustmentData>) -> Bool>>;
 
         #[cfg(all(feature = "PHAdjustmentData", feature = "block2"))]
         /// Setter for [`canHandleAdjustmentData`][Self::canHandleAdjustmentData].
@@ -169,8 +169,9 @@ impl PHContentEditingInputRequestOptions {
         #[unsafe(method_family = none)]
         pub unsafe fn setCanHandleAdjustmentData(
             &self,
-            can_handle_adjustment_data: &block2::DynBlock<
-                dyn Fn(NonNull<PHAdjustmentData>) -> Bool,
+            can_handle_adjustment_data: &block2::Block<
+                'static,
+                fn(NonNull<PHAdjustmentData>) -> Bool,
             >,
         );
 
@@ -191,7 +192,7 @@ impl PHContentEditingInputRequestOptions {
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(c_double, NonNull<Bool>)>;
+        ) -> *mut block2::Block<'static, fn(c_double, NonNull<Bool>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
@@ -201,7 +202,7 @@ impl PHContentEditingInputRequestOptions {
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(
             &self,
-            progress_handler: Option<&block2::DynBlock<dyn Fn(c_double, NonNull<Bool>)>>,
+            progress_handler: Option<&block2::Block<'static, fn(c_double, NonNull<Bool>)>>,
         );
     );
 }
@@ -229,8 +230,9 @@ impl PHAsset {
         pub unsafe fn requestContentEditingInputWithOptions_completionHandler(
             &self,
             options: Option<&PHContentEditingInputRequestOptions>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut PHContentEditingInput, NonNull<NSDictionary>),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut PHContentEditingInput, NonNull<NSDictionary>),
             >,
         ) -> PHContentEditingInputRequestID;
 

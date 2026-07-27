@@ -94,7 +94,7 @@ impl NSFileProviderExtension {
             &self,
             file_url: &NSURL,
             parent_item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -124,7 +124,7 @@ impl NSFileProviderExtension {
             &self,
             directory_name: &NSString,
             parent_item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -150,7 +150,7 @@ impl NSFileProviderExtension {
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
             item_name: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -175,7 +175,7 @@ impl NSFileProviderExtension {
             item_identifier: &NSFileProviderItemIdentifier,
             parent_item_identifier: &NSFileProviderItemIdentifier,
             new_name: Option<&NSString>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -206,7 +206,7 @@ impl NSFileProviderExtension {
         pub unsafe fn trashItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -232,7 +232,7 @@ impl NSFileProviderExtension {
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
             parent_item_identifier: Option<&NSFileProviderItemIdentifier>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -253,7 +253,7 @@ impl NSFileProviderExtension {
         pub unsafe fn deleteItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -279,7 +279,7 @@ impl NSFileProviderExtension {
             &self,
             last_used_date: Option<&NSDate>,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -307,7 +307,7 @@ impl NSFileProviderExtension {
             &self,
             tag_data: Option<&NSData>,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -334,7 +334,7 @@ impl NSFileProviderExtension {
             &self,
             favorite_rank: Option<&NSNumber>,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
         );
     );
 }

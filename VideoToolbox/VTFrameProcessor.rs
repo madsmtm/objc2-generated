@@ -108,8 +108,9 @@ impl VTFrameProcessor {
         pub unsafe fn processWithParameters_completionHandler(
             &self,
             parameters: &ProtocolObject<dyn VTFrameProcessorParameters>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NonNull<ProtocolObject<dyn VTFrameProcessorParameters>>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<ProtocolObject<dyn VTFrameProcessorParameters>>, *mut NSError),
             >,
         );
 
@@ -143,8 +144,9 @@ impl VTFrameProcessor {
         pub unsafe fn processWithParameters_frameOutputHandler(
             &self,
             parameters: &ProtocolObject<dyn VTFrameProcessorParameters>,
-            frame_output_handler: &block2::DynBlock<
-                dyn Fn(
+            frame_output_handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<ProtocolObject<dyn VTFrameProcessorParameters>>,
                     CMTime,
                     Bool,

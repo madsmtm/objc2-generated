@@ -99,7 +99,7 @@ impl AXCustomContent {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontentreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXCustomContentReturnBlock = block2::DynBlock<dyn Fn() -> *mut NSArray<AXCustomContent>>;
+pub type AXCustomContentReturnBlock = block2::Block<'static, fn() -> *mut NSArray<AXCustomContent>>;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontentprovider?language=objc)

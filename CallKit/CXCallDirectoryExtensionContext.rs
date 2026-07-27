@@ -132,7 +132,7 @@ impl CXCallDirectoryExtensionContext {
         #[unsafe(method_family = none)]
         pub unsafe fn completeRequestWithCompletionHandler(
             &self,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
         );
     );
 }

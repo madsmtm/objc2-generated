@@ -127,7 +127,7 @@ impl GKAccessPoint {
         /// this lets the developer trigger the access point as if the user had touched it.  This is useful for games that use controllers or the remote on AppleTV.  the argument lets you specify a specific state (default, profile, achievements, leaderboards) for GameCenterViewController
         #[unsafe(method(triggerAccessPointWithHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn triggerAccessPointWithHandler(&self, handler: &block2::DynBlock<dyn Fn()>);
+        pub unsafe fn triggerAccessPointWithHandler(&self, handler: &block2::Block<'static, fn()>);
 
         #[cfg(all(feature = "GKGameCenterViewController", feature = "block2"))]
         #[unsafe(method(triggerAccessPointWithState:handler:))]
@@ -135,7 +135,7 @@ impl GKAccessPoint {
         pub unsafe fn triggerAccessPointWithState_handler(
             &self,
             state: GKGameCenterViewControllerState,
-            handler: &block2::DynBlock<dyn Fn()>,
+            handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -144,7 +144,7 @@ impl GKAccessPoint {
         pub unsafe fn triggerAccessPointWithAchievementID_handler(
             &self,
             achievement_id: &NSString,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -153,7 +153,7 @@ impl GKAccessPoint {
         pub unsafe fn triggerAccessPointWithLeaderboardSetID_handler(
             &self,
             leaderboard_set_id: &NSString,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(all(feature = "GKLeaderboard", feature = "block2"))]
@@ -164,7 +164,7 @@ impl GKAccessPoint {
             leaderboard_id: &NSString,
             player_scope: GKLeaderboardPlayerScope,
             time_scope: GKLeaderboardTimeScope,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
@@ -173,7 +173,7 @@ impl GKAccessPoint {
         pub unsafe fn triggerAccessPointWithPlayer_handler(
             &self,
             player: &GKPlayer,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -186,7 +186,7 @@ impl GKAccessPoint {
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointForPlayTogetherWithHandler(
             &self,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -199,7 +199,7 @@ impl GKAccessPoint {
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointForChallengesWithHandler(
             &self,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -213,7 +213,7 @@ impl GKAccessPoint {
         pub unsafe fn triggerAccessPointWithChallengeDefinitionID_handler(
             &self,
             challenge_definition_id: &NSString,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -227,7 +227,7 @@ impl GKAccessPoint {
         pub unsafe fn triggerAccessPointWithGameActivityDefinitionID_handler(
             &self,
             game_activity_definition_id: &NSString,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(all(feature = "GKGameActivity", feature = "block2"))]
@@ -241,7 +241,7 @@ impl GKAccessPoint {
         pub unsafe fn triggerAccessPointWithGameActivity_handler(
             &self,
             game_activity: &GKGameActivity,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -254,7 +254,7 @@ impl GKAccessPoint {
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointForFriendingWithHandler(
             &self,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -267,7 +267,7 @@ impl GKAccessPoint {
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointForArcadeWithHandler(
             &self,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
     );
 }

@@ -222,7 +222,7 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub fn enumerateObjectsUsingBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<ObjectType>, NonNull<Bool>)>,
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
@@ -231,7 +231,7 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         pub fn enumerateObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<ObjectType>, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -239,7 +239,7 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub fn objectsPassingTest(
             &self,
-            predicate: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_>,
+            predicate: &block2::Block<'_, fn(NonNull<ObjectType>, NonNull<Bool>) -> Bool>,
         ) -> Retained<NSSet<ObjectType>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
@@ -248,7 +248,7 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         pub fn objectsWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_>,
+            predicate: &block2::Block<'_, fn(NonNull<ObjectType>, NonNull<Bool>) -> Bool>,
         ) -> Retained<NSSet<ObjectType>>;
     );
 }

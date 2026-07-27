@@ -23,7 +23,7 @@ extern_protocol!(
             &self,
             scroll_view: &BEScrollView,
             scroll_update: &BEScrollViewScrollUpdate,
-            completion: &block2::DynBlock<dyn Fn(Bool)>,
+            completion: &block2::Block<'static, fn(Bool)>,
         );
 
         #[optional]

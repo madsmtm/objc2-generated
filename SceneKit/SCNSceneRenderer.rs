@@ -317,7 +317,7 @@ extern_protocol!(
         unsafe fn prepareObject_shouldAbortBlock(
             &self,
             object: &AnyObject,
-            block: Option<&block2::DynBlock<dyn Fn() -> Bool + '_>>,
+            block: Option<&block2::Block<'_, fn() -> Bool>>,
         ) -> bool;
 
         #[cfg(feature = "block2")]
@@ -338,7 +338,7 @@ extern_protocol!(
         unsafe fn prepareObjects_withCompletionHandler(
             &self,
             objects: &NSArray,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         /// Determines whether the receiver should display statistics info like FPS. Defaults to NO.

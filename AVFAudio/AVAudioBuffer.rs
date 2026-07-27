@@ -165,7 +165,7 @@ impl AVAudioPCMBuffer {
             this: Allocated<Self>,
             format: &AVAudioFormat,
             buffer_list: NonNull<AudioBufferList>,
-            deallocator: Option<&block2::DynBlock<dyn Fn(NonNull<AudioBufferList>)>>,
+            deallocator: Option<&block2::Block<'static, fn(NonNull<AudioBufferList>)>>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "AVAudioTypes")]

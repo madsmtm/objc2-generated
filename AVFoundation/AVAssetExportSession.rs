@@ -391,7 +391,7 @@ impl AVAssetExportSession {
         #[unsafe(method_family = none)]
         pub unsafe fn exportAsynchronouslyWithCompletionHandler(
             &self,
-            handler: &block2::DynBlock<dyn Fn()>,
+            handler: &block2::Block<'static, fn()>,
         );
 
         #[unsafe(method(progress))]
@@ -468,7 +468,7 @@ impl AVAssetExportSession {
             preset_name: &NSString,
             asset: &AVAsset,
             output_file_type: Option<&AVFileType>,
-            handler: &block2::DynBlock<dyn Fn(Bool)>,
+            handler: &block2::Block<'static, fn(Bool)>,
         );
     );
 }
@@ -495,7 +495,7 @@ impl AVAssetExportSession {
         #[unsafe(method_family = none)]
         pub unsafe fn determineCompatibleFileTypesWithCompletionHandler(
             &self,
-            handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<AVFileType>>)>,
+            handler: &block2::Block<'static, fn(NonNull<NSArray<AVFileType>>)>,
         );
     );
 }
@@ -548,7 +548,7 @@ impl AVAssetExportSession {
         #[unsafe(method_family = none)]
         pub unsafe fn estimateMaximumDurationWithCompletionHandler(
             &self,
-            handler: &block2::DynBlock<dyn Fn(CMTime, *mut NSError)>,
+            handler: &block2::Block<'static, fn(CMTime, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -565,7 +565,7 @@ impl AVAssetExportSession {
         #[unsafe(method_family = none)]
         pub unsafe fn estimateOutputFileLengthWithCompletionHandler(
             &self,
-            handler: &block2::DynBlock<dyn Fn(i64, *mut NSError)>,
+            handler: &block2::Block<'static, fn(i64, *mut NSError)>,
         );
     );
 }

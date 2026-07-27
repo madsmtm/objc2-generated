@@ -57,7 +57,7 @@ impl VZMacOSRestoreImage {
         #[unsafe(method_family = none)]
         pub unsafe fn loadFileURL_completionHandler(
             file_url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut VZMacOSRestoreImage, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut VZMacOSRestoreImage, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -80,7 +80,7 @@ impl VZMacOSRestoreImage {
         #[unsafe(method(fetchLatestSupportedWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchLatestSupportedWithCompletionHandler(
-            completion_handler: &block2::DynBlock<dyn Fn(*mut VZMacOSRestoreImage, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut VZMacOSRestoreImage, *mut NSError)>,
         );
 
         /// Whether this restore image is supported on the current host.

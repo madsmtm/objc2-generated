@@ -214,8 +214,9 @@ impl VTMotionEstimationSession {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationoutputhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
-pub type VTMotionEstimationOutputHandler = block2::DynBlock<
-    dyn Fn(OSStatus, VTMotionEstimationInfoFlags, *const CFDictionary, *mut CVPixelBuffer),
+pub type VTMotionEstimationOutputHandler = block2::Block<
+    'static,
+    fn(OSStatus, VTMotionEstimationInfoFlags, *const CFDictionary, *mut CVPixelBuffer),
 >;
 
 impl VTMotionEstimationSession {

@@ -121,8 +121,9 @@ impl PKPassLibrary {
         #[unsafe(method(requestAutomaticPassPresentationSuppressionWithResponseHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAutomaticPassPresentationSuppressionWithResponseHandler(
-            response_handler: &block2::DynBlock<
-                dyn Fn(PKAutomaticPassPresentationSuppressionResult),
+            response_handler: &block2::Block<
+                'static,
+                fn(PKAutomaticPassPresentationSuppressionResult),
             >,
         ) -> PKSuppressionRequestToken;
 
@@ -225,7 +226,7 @@ impl PKPassLibrary {
         pub unsafe fn addPasses_withCompletionHandler(
             &self,
             passes: &NSArray<PKPass>,
-            completion: Option<&block2::DynBlock<dyn Fn(PKPassLibraryAddPassesStatus)>>,
+            completion: Option<&block2::Block<'static, fn(PKPassLibraryAddPassesStatus)>>,
         );
 
         #[unsafe(method(openPaymentSetup))]
@@ -289,7 +290,7 @@ impl PKPassLibrary {
             &self,
             payment_pass: &PKPaymentPass,
             activation_data: &NSData,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool, NonNull<NSError>)>>,
+            completion: Option<&block2::Block<'static, fn(Bool, NonNull<NSError>)>>,
         );
 
         #[cfg(all(
@@ -306,7 +307,7 @@ impl PKPassLibrary {
             &self,
             payment_pass: &PKPaymentPass,
             activation_code: &NSString,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool, NonNull<NSError>)>>,
+            completion: Option<&block2::Block<'static, fn(Bool, NonNull<NSError>)>>,
         );
 
         #[cfg(all(
@@ -324,7 +325,7 @@ impl PKPassLibrary {
             &self,
             secure_element_pass: &PKSecureElementPass,
             activation_data: &NSData,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -342,7 +343,7 @@ impl PKPassLibrary {
             &self,
             sign_data: &NSData,
             secure_element_pass: &PKSecureElementPass,
-            completion: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSData, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSData, *mut NSData, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -359,7 +360,7 @@ impl PKPassLibrary {
         pub unsafe fn encryptedServiceProviderDataForSecureElementPass_completion(
             &self,
             secure_element_pass: &PKSecureElementPass,
-            completion: &block2::DynBlock<dyn Fn(*mut NSDictionary, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSDictionary, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -376,7 +377,7 @@ impl PKPassLibrary {
         pub unsafe fn serviceProviderDataForSecureElementPass_completion(
             &self,
             secure_element_pass: &PKSecureElementPass,
-            completion: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[unsafe(method(authorizationStatusForCapability:))]
@@ -395,7 +396,7 @@ impl PKPassLibrary {
         pub unsafe fn requestAuthorizationForCapability_completion(
             &self,
             capability: PKPassLibraryCapability,
-            completion: &block2::DynBlock<dyn Fn(PKPassLibraryAuthorizationStatus)>,
+            completion: &block2::Block<'static, fn(PKPassLibraryAuthorizationStatus)>,
         );
     );
 }

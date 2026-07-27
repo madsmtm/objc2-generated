@@ -50,8 +50,9 @@ extern_protocol!(
             &self,
             download: &BADownload,
             challenge: &NSURLAuthenticationChallenge,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 
@@ -150,8 +151,9 @@ impl BADownloadManager {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchCurrentDownloadsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<BADownload>>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<BADownload>>, *mut NSError),
             >,
         );
 
@@ -191,7 +193,7 @@ impl BADownloadManager {
         #[unsafe(method_family = none)]
         pub unsafe fn performWithExclusiveControl(
             &self,
-            perform_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            perform_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -213,7 +215,7 @@ impl BADownloadManager {
         pub unsafe fn performWithExclusiveControlBeforeDate_performHandler(
             &self,
             date: &NSDate,
-            perform_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            perform_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "BADownload")]

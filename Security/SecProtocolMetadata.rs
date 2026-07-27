@@ -220,12 +220,12 @@ impl sec_protocol_metadata {
     #[inline]
     pub unsafe fn access_peer_certificate_chain(
         metadata: sec_protocol_metadata_t,
-        handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
+        handler: &block2::Block<'static, fn(sec_certificate_t)>,
     ) -> bool {
         extern "C-unwind" {
             fn sec_protocol_metadata_access_peer_certificate_chain(
                 metadata: sec_protocol_metadata_t,
-                handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
+                handler: &block2::Block<'static, fn(sec_certificate_t)>,
             ) -> bool;
         }
         unsafe { sec_protocol_metadata_access_peer_certificate_chain(metadata, handler) }
@@ -251,12 +251,12 @@ impl sec_protocol_metadata {
     #[inline]
     pub unsafe fn access_supported_signature_algorithms(
         metadata: sec_protocol_metadata_t,
-        handler: &block2::DynBlock<dyn Fn(u16)>,
+        handler: &block2::Block<'static, fn(u16)>,
     ) -> bool {
         extern "C-unwind" {
             fn sec_protocol_metadata_access_supported_signature_algorithms(
                 metadata: sec_protocol_metadata_t,
-                handler: &block2::DynBlock<dyn Fn(u16)>,
+                handler: &block2::Block<'static, fn(u16)>,
             ) -> bool;
         }
         unsafe { sec_protocol_metadata_access_supported_signature_algorithms(metadata, handler) }

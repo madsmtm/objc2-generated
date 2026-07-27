@@ -394,7 +394,7 @@ impl VTSuperResolutionScalerConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn downloadConfigurationModelWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// Returns a floating point value between 0.0 and 1.0 indicating the percentage of required model assets that have been downloaded.

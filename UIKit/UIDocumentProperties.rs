@@ -42,8 +42,9 @@ impl UIDocumentProperties {
         #[unsafe(method_family = none)]
         pub unsafe fn dragItemsProvider(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(NonNull<ProtocolObject<dyn UIDragSession>>) -> NonNull<NSArray<UIDragItem>>,
+        ) -> *mut block2::Block<
+            'static,
+            fn(NonNull<ProtocolObject<dyn UIDragSession>>) -> NonNull<NSArray<UIDragItem>>,
         >;
 
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession", feature = "block2"))]
@@ -59,10 +60,9 @@ impl UIDocumentProperties {
         pub unsafe fn setDragItemsProvider(
             &self,
             drag_items_provider: Option<
-                &block2::DynBlock<
-                    dyn Fn(
-                        NonNull<ProtocolObject<dyn UIDragSession>>,
-                    ) -> NonNull<NSArray<UIDragItem>>,
+                &block2::Block<
+                    'static,
+                    fn(NonNull<ProtocolObject<dyn UIDragSession>>) -> NonNull<NSArray<UIDragItem>>,
                 >,
             >,
         );
@@ -78,7 +78,7 @@ impl UIDocumentProperties {
         #[unsafe(method_family = none)]
         pub fn activityViewControllerProvider(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn() -> NonNull<UIActivityViewController>>;
+        ) -> *mut block2::Block<'static, fn() -> NonNull<UIActivityViewController>>;
 
         #[cfg(all(
             feature = "UIActivityViewController",
@@ -98,7 +98,7 @@ impl UIDocumentProperties {
         pub unsafe fn setActivityViewControllerProvider(
             &self,
             activity_view_controller_provider: Option<
-                &block2::DynBlock<dyn Fn() -> NonNull<UIActivityViewController>>,
+                &block2::Block<'static, fn() -> NonNull<UIActivityViewController>>,
             >,
         );
 

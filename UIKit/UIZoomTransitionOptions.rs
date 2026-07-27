@@ -41,7 +41,7 @@ impl UIZoomTransitionOptions {
         #[unsafe(method_family = none)]
         pub unsafe fn interactiveDismissShouldBegin(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<UIZoomTransitionInteractionContext>) -> Bool>;
+        ) -> *mut block2::Block<'static, fn(NonNull<UIZoomTransitionInteractionContext>) -> Bool>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`interactiveDismissShouldBegin`][Self::interactiveDismissShouldBegin].
@@ -52,7 +52,7 @@ impl UIZoomTransitionOptions {
         pub fn setInteractiveDismissShouldBegin(
             &self,
             interactive_dismiss_should_begin: Option<
-                &block2::DynBlock<dyn Fn(NonNull<UIZoomTransitionInteractionContext>) -> Bool>,
+                &block2::Block<'static, fn(NonNull<UIZoomTransitionInteractionContext>) -> Bool>,
             >,
         );
 
@@ -67,7 +67,7 @@ impl UIZoomTransitionOptions {
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentRectProvider(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<UIZoomTransitionAlignmentRectContext>) -> CGRect>;
+        ) -> *mut block2::Block<'static, fn(NonNull<UIZoomTransitionAlignmentRectContext>) -> CGRect>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`alignmentRectProvider`][Self::alignmentRectProvider].
@@ -78,7 +78,10 @@ impl UIZoomTransitionOptions {
         pub fn setAlignmentRectProvider(
             &self,
             alignment_rect_provider: Option<
-                &block2::DynBlock<dyn Fn(NonNull<UIZoomTransitionAlignmentRectContext>) -> CGRect>,
+                &block2::Block<
+                    'static,
+                    fn(NonNull<UIZoomTransitionAlignmentRectContext>) -> CGRect,
+                >,
             >,
         );
 

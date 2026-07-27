@@ -124,7 +124,7 @@ extern_protocol!(
         unsafe fn handleSendRideFeedback_completion(
             &self,
             send_ride_feedbackintent: &INSendRideFeedbackIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSendRideFeedbackIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSendRideFeedbackIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -154,7 +154,7 @@ extern_protocol!(
         unsafe fn confirmSendRideFeedback_completion(
             &self,
             send_ride_feedback_intent: &INSendRideFeedbackIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSendRideFeedbackIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSendRideFeedbackIntentResponse>)>,
         );
     }
 );

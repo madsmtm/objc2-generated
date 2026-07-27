@@ -204,7 +204,7 @@ impl NSPrintPanel {
             &self,
             print_info: &NSPrintInfo,
             parent_window: &NSWindow,
-            handler: Option<&block2::DynBlock<dyn Fn(NSPrintPanelResult)>>,
+            handler: Option<&block2::Block<'static, fn(NSPrintPanelResult)>>,
         );
 
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSWindow"))]

@@ -447,9 +447,9 @@ impl UIControl {
         #[unsafe(method_family = none)]
         pub fn enumerateEventHandlers(
             &self,
-            iterator: &block2::DynBlock<
-                dyn Fn(*mut UIAction, *mut AnyObject, Option<Sel>, UIControlEvents, NonNull<Bool>)
-                    + '_,
+            iterator: &block2::Block<
+                '_,
+                fn(*mut UIAction, *mut AnyObject, Option<Sel>, UIControlEvents, NonNull<Bool>),
             >,
         );
 

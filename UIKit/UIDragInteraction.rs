@@ -15,12 +15,12 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         #[unsafe(method(addAnimations:))]
         #[unsafe(method_family = none)]
-        fn addAnimations(&self, animations: &block2::DynBlock<dyn Fn()>);
+        fn addAnimations(&self, animations: &block2::Block<'static, fn()>);
 
         #[cfg(all(feature = "UIViewAnimating", feature = "block2"))]
         #[unsafe(method(addCompletion:))]
         #[unsafe(method_family = none)]
-        fn addCompletion(&self, completion: &block2::DynBlock<dyn Fn(UIViewAnimatingPosition)>);
+        fn addCompletion(&self, completion: &block2::Block<'static, fn(UIViewAnimatingPosition)>);
     }
 );
 

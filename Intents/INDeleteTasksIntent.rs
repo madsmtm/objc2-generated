@@ -123,7 +123,7 @@ extern_protocol!(
         unsafe fn handleDeleteTasks_completion(
             &self,
             intent: &INDeleteTasksIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDeleteTasksIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDeleteTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -154,7 +154,7 @@ extern_protocol!(
         unsafe fn confirmDeleteTasks_completion(
             &self,
             intent: &INDeleteTasksIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDeleteTasksIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDeleteTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -186,7 +186,7 @@ extern_protocol!(
         unsafe fn resolveTaskListForDeleteTasks_withCompletion(
             &self,
             intent: &INDeleteTasksIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDeleteTasksTaskListResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDeleteTasksTaskListResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -206,8 +206,9 @@ extern_protocol!(
         unsafe fn resolveTasksForDeleteTasks_withCompletion(
             &self,
             intent: &INDeleteTasksIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<INDeleteTasksTaskResolutionResult>>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<INDeleteTasksTaskResolutionResult>>),
             >,
         );
     }

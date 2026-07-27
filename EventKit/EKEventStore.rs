@@ -40,11 +40,12 @@ unsafe impl RefEncode for EKSpan {
     feature = "EKObject",
     feature = "block2"
 ))]
-pub type EKEventSearchCallback = block2::DynBlock<dyn Fn(NonNull<EKEvent>, NonNull<Bool>)>;
+pub type EKEventSearchCallback = block2::Block<'static, fn(NonNull<EKEvent>, NonNull<Bool>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstorerequestaccesscompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type EKEventStoreRequestAccessCompletionHandler = block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
+pub type EKEventStoreRequestAccessCompletionHandler =
+    block2::Block<'static, fn(Bool, *mut NSError)>;
 
 extern_class!(
     /// The EKEventStore class provides an interface for accessing and manipulating calendar events and reminders.
@@ -550,7 +551,7 @@ impl EKEventStore {
         pub unsafe fn fetchRemindersMatchingPredicate_completion(
             &self,
             predicate: &NSPredicate,
-            completion: &block2::DynBlock<dyn Fn(*mut NSArray<EKReminder>)>,
+            completion: &block2::Block<'static, fn(*mut NSArray<EKReminder>)>,
         ) -> Retained<AnyObject>;
 
         /// Given a value returned from fetchRemindersMatchingPredicate, this method can be used to

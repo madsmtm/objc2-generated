@@ -135,7 +135,7 @@ extern_protocol!(
         unsafe fn handleAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INAddTasksIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INAddTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -165,7 +165,7 @@ extern_protocol!(
         unsafe fn confirmAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INAddTasksIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INAddTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -196,7 +196,7 @@ extern_protocol!(
         unsafe fn resolveTargetTaskListForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INTaskListResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INTaskListResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -215,8 +215,9 @@ extern_protocol!(
         unsafe fn resolveTargetTaskListForAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INAddTasksTargetTaskListResolutionResult>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INAddTasksTargetTaskListResolutionResult>),
             >,
         );
 
@@ -235,8 +236,9 @@ extern_protocol!(
         unsafe fn resolveTaskTitlesForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<INSpeakableStringResolutionResult>>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<INSpeakableStringResolutionResult>>),
             >,
         );
 
@@ -255,7 +257,7 @@ extern_protocol!(
         unsafe fn resolveSpatialEventTriggerForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSpatialEventTriggerResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSpatialEventTriggerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -274,7 +276,10 @@ extern_protocol!(
         unsafe fn resolveTemporalEventTriggerForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INTemporalEventTriggerResolutionResult>)>,
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INTemporalEventTriggerResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -293,8 +298,9 @@ extern_protocol!(
         unsafe fn resolveTemporalEventTriggerForAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INAddTasksTemporalEventTriggerResolutionResult>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INAddTasksTemporalEventTriggerResolutionResult>),
             >,
         );
 
@@ -313,7 +319,7 @@ extern_protocol!(
         unsafe fn resolvePriorityForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INTaskPriorityResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INTaskPriorityResolutionResult>)>,
         );
     }
 );

@@ -250,8 +250,9 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message> DefaultRetaine
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = block2::DynBlock<
-    dyn Fn(NonNull<NSCollectionView>, NonNull<NSString>, NonNull<NSIndexPath>) -> *mut NSView,
+pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = block2::Block<
+    'static,
+    fn(NonNull<NSCollectionView>, NonNull<NSString>, NonNull<NSIndexPath>) -> *mut NSView,
 >;
 
 extern_class!(

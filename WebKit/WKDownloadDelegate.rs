@@ -58,7 +58,7 @@ extern_protocol!(
             download: &WKDownload,
             response: &NSURLResponse,
             suggested_filename: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSURL)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSURL)>,
         );
 
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
@@ -70,7 +70,7 @@ extern_protocol!(
             download: &WKDownload,
             response: &NSHTTPURLResponse,
             request: &NSURLRequest,
-            decision_handler: &block2::DynBlock<dyn Fn(WKDownloadRedirectPolicy)>,
+            decision_handler: &block2::Block<'static, fn(WKDownloadRedirectPolicy)>,
         );
 
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
@@ -81,8 +81,9 @@ extern_protocol!(
             &self,
             download: &WKDownload,
             challenge: &NSURLAuthenticationChallenge,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 
@@ -110,7 +111,10 @@ extern_protocol!(
         unsafe fn download_decidePlaceholderPolicy(
             &self,
             download: &WKDownload,
-            completion_handler: &block2::DynBlock<dyn Fn(WKDownloadPlaceholderPolicy, *mut NSURL)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(WKDownloadPlaceholderPolicy, *mut NSURL),
+            >,
         );
 
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
@@ -121,7 +125,7 @@ extern_protocol!(
             &self,
             download: &WKDownload,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "WKDownload")]

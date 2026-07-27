@@ -66,8 +66,9 @@ impl CNRenderingSessionAttributes {
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromAsset_completionHandler(
             asset: &AVAsset,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut CNRenderingSessionAttributes, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut CNRenderingSessionAttributes, *mut NSError),
             >,
         );
 

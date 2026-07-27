@@ -346,7 +346,7 @@ impl SCScreenshotManager {
             content_filter: &SCContentFilter,
             config: &SCStreamConfiguration,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut CMSampleBuffer, *mut NSError)>,
+                &block2::Block<'static, fn(*mut CMSampleBuffer, *mut NSError)>,
             >,
         );
 
@@ -373,7 +373,7 @@ impl SCScreenshotManager {
         pub unsafe fn captureImageWithFilter_configuration_completionHandler(
             content_filter: &SCContentFilter,
             config: &SCStreamConfiguration,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut CGImage, *mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut CGImage, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -396,7 +396,7 @@ impl SCScreenshotManager {
         #[unsafe(method_family = none)]
         pub unsafe fn captureImageInRect_completionHandler(
             rect: CGRect,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut CGImage, *mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut CGImage, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "SCStream", feature = "block2"))]
@@ -419,7 +419,7 @@ impl SCScreenshotManager {
             content_filter: &SCContentFilter,
             config: &SCScreenshotConfiguration,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut SCScreenshotOutput, *mut NSError)>,
+                &block2::Block<'static, fn(*mut SCScreenshotOutput, *mut NSError)>,
             >,
         );
 
@@ -443,7 +443,7 @@ impl SCScreenshotManager {
             rect: CGRect,
             config: &SCScreenshotConfiguration,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut SCScreenshotOutput, *mut NSError)>,
+                &block2::Block<'static, fn(*mut SCScreenshotOutput, *mut NSError)>,
             >,
         );
     );

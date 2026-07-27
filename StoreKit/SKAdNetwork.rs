@@ -47,7 +47,7 @@ impl SKAdNetwork {
         #[unsafe(method_family = none)]
         pub unsafe fn startImpression_completionHandler(
             impression: &SKAdImpression,
-            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
@@ -58,7 +58,7 @@ impl SKAdNetwork {
         #[unsafe(method_family = none)]
         pub unsafe fn endImpression_completionHandler(
             impression: &SKAdImpression,
-            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[deprecated = "Use updatePostbackConversionValue:completionHandler: instead."]
@@ -79,7 +79,7 @@ impl SKAdNetwork {
         #[unsafe(method_family = none)]
         pub unsafe fn updatePostbackConversionValue_completionHandler(
             conversion_value: NSInteger,
-            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -91,7 +91,7 @@ impl SKAdNetwork {
         pub unsafe fn updatePostbackConversionValue_coarseValue_completionHandler(
             fine_value: NSInteger,
             coarse_value: &SKAdNetworkCoarseConversionValue,
-            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -104,7 +104,7 @@ impl SKAdNetwork {
             fine_value: NSInteger,
             coarse_value: &SKAdNetworkCoarseConversionValue,
             lock_window: bool,
-            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }

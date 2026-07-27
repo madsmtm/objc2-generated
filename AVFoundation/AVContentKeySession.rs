@@ -234,7 +234,7 @@ impl AVContentKeySession {
         pub unsafe fn makeSecureTokenForExpirationDateOfPersistableContentKey_completionHandler(
             &self,
             persistable_content_key_data: &NSData,
-            handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -258,7 +258,7 @@ impl AVContentKeySession {
             options: Option<
                 &NSDictionary<AVContentKeySessionServerPlaybackContextOption, AnyObject>,
             >,
-            handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -282,7 +282,7 @@ impl AVContentKeySession {
             options: Option<
                 &NSDictionary<AVContentKeySessionServerPlaybackContextOption, AnyObject>,
             >,
-            handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
     );
 }
@@ -646,7 +646,7 @@ impl AVContentKeyRequest {
             app_identifier: &NSData,
             content_identifier: Option<&NSData>,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         /// Informs the receiver to process the specified content key response.

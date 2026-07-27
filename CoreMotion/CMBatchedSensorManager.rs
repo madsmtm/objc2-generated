@@ -51,7 +51,7 @@ impl CMBatchedSensorManager {
         #[unsafe(method_family = none)]
         pub unsafe fn startAccelerometerUpdatesWithHandler(
             &self,
-            handler: &block2::DynBlock<dyn Fn(*mut NSArray<CMAccelerometerData>, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut NSArray<CMAccelerometerData>, *mut NSError)>,
         );
 
         #[unsafe(method(stopAccelerometerUpdates))]
@@ -84,7 +84,7 @@ impl CMBatchedSensorManager {
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdatesWithHandler(
             &self,
-            handler: &block2::DynBlock<dyn Fn(*mut NSArray<CMDeviceMotion>, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut NSArray<CMDeviceMotion>, *mut NSError)>,
         );
 
         #[unsafe(method(stopDeviceMotionUpdates))]

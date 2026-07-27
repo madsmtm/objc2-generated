@@ -169,7 +169,7 @@ extern_protocol!(
         unsafe fn handleSearchForPhotos_completion(
             &self,
             intent: &INSearchForPhotosIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForPhotosIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSearchForPhotosIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -200,7 +200,7 @@ extern_protocol!(
         unsafe fn confirmSearchForPhotos_completion(
             &self,
             intent: &INSearchForPhotosIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForPhotosIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSearchForPhotosIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -231,7 +231,7 @@ extern_protocol!(
         unsafe fn resolveDateCreatedForSearchForPhotos_withCompletion(
             &self,
             intent: &INSearchForPhotosIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -250,7 +250,7 @@ extern_protocol!(
         unsafe fn resolveLocationCreatedForSearchForPhotos_withCompletion(
             &self,
             intent: &INSearchForPhotosIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -269,7 +269,7 @@ extern_protocol!(
         unsafe fn resolveAlbumNameForSearchForPhotos_withCompletion(
             &self,
             intent: &INSearchForPhotosIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -288,7 +288,7 @@ extern_protocol!(
         unsafe fn resolveSearchTermsForSearchForPhotos_withCompletion(
             &self,
             intent: &INSearchForPhotosIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<INStringResolutionResult>>)>,
+            completion: &block2::Block<'static, fn(NonNull<NSArray<INStringResolutionResult>>)>,
         );
 
         #[cfg(all(
@@ -307,7 +307,7 @@ extern_protocol!(
         unsafe fn resolvePeopleInPhotoForSearchForPhotos_withCompletion(
             &self,
             intent: &INSearchForPhotosIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::Block<'static, fn(NonNull<NSArray<INPersonResolutionResult>>)>,
         );
     }
 );

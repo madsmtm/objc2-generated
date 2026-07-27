@@ -61,7 +61,7 @@ extern_protocol!(
         unsafe fn loadValuesAsynchronouslyForKeys_completionHandler(
             &self,
             keys: &NSArray<NSString>,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
     }
 );

@@ -55,7 +55,7 @@ extern_protocol!(
         unsafe fn validateToolbarItemInWindow_validationHandler(
             &self,
             window: &SFSafariWindow,
-            validation_handler: &block2::DynBlock<dyn Fn(Bool, NonNull<NSString>)>,
+            validation_handler: &block2::Block<'static, fn(Bool, NonNull<NSString>)>,
         );
 
         #[cfg(feature = "SFSafariPage")]
@@ -88,7 +88,7 @@ extern_protocol!(
             command: &NSString,
             page: &SFSafariPage,
             user_info: Option<&NSDictionary<NSString, AnyObject>>,
-            validation_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSString)>,
+            validation_handler: &block2::Block<'static, fn(Bool, *mut NSString)>,
         );
 
         #[cfg(feature = "SFSafariWindow")]
@@ -128,7 +128,7 @@ extern_protocol!(
         unsafe fn additionalRequestHeadersForURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSDictionary<NSString, NSString>)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSDictionary<NSString, NSString>)>,
         );
 
         #[cfg(feature = "SFSafariPage")]

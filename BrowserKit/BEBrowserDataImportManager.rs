@@ -149,7 +149,7 @@ impl BEBrowserDataImportManager {
         pub unsafe fn importBrowserDataWithToken_importBlock(
             &self,
             token: &NSUUID,
-            import_block: &block2::DynBlock<dyn Fn(*mut BEBrowserData, Bool, *mut NSError)>,
+            import_block: &block2::Block<'static, fn(*mut BEBrowserData, Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -161,7 +161,7 @@ impl BEBrowserDataImportManager {
         pub unsafe fn requestImportForMetadata_completionHandler(
             &self,
             metadata: &BEImportMetadata,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut BEImportOptions, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut BEImportOptions, *mut NSError)>,
         );
     );
 }

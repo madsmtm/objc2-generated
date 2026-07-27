@@ -133,7 +133,7 @@ impl MPMediaPlaylist {
         pub unsafe fn addItemWithProductID_completionHandler(
             &self,
             product_id: &NSString,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "MPMediaItem", feature = "block2"))]
@@ -145,7 +145,7 @@ impl MPMediaPlaylist {
         pub unsafe fn addMediaItems_completionHandler(
             &self,
             media_items: &NSArray<MPMediaItem>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }

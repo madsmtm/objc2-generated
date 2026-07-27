@@ -127,8 +127,9 @@ impl HKQuantitySeriesSampleQuery {
             this: Allocated<Self>,
             quantity_type: &HKQuantityType,
             predicate: Option<&NSPredicate>,
-            quantity_handler: &block2::DynBlock<
-                dyn Fn(
+            quantity_handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<HKQuantitySeriesSampleQuery>,
                     *mut HKQuantity,
                     *mut NSDateInterval,
@@ -155,8 +156,9 @@ impl HKQuantitySeriesSampleQuery {
         pub unsafe fn initWithSample_quantityHandler(
             this: Allocated<Self>,
             quantity_sample: &HKQuantitySample,
-            quantity_handler: &block2::DynBlock<
-                dyn Fn(
+            quantity_handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<HKQuantitySeriesSampleQuery>,
                     *mut HKQuantity,
                     *mut NSDate,

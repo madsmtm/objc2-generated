@@ -72,8 +72,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn handler(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<dispatch_block_t>),
+        ) -> *mut block2::Block<
+            'static,
+            fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<dispatch_block_t>),
         >;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -89,8 +90,9 @@ extern_protocol!(
         unsafe fn setHandler(
             &self,
             handler: Option<
-                &block2::DynBlock<
-                    dyn Fn(
+                &block2::Block<
+                    'static,
+                    fn(
                         NonNull<ProtocolObject<dyn CPSelectableListItem>>,
                         NonNull<dispatch_block_t>,
                     ),

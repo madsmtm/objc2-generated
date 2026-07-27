@@ -43,8 +43,9 @@ impl NSCustomMigrationStage {
         #[unsafe(method_family = none)]
         pub unsafe fn willMigrateHandler(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(
+        ) -> *mut block2::Block<
+            'static,
+            fn(
                 NonNull<NSStagedMigrationManager>,
                 NonNull<NSCustomMigrationStage>,
                 *mut *mut NSError,
@@ -60,8 +61,9 @@ impl NSCustomMigrationStage {
         pub unsafe fn setWillMigrateHandler(
             &self,
             will_migrate_handler: Option<
-                &block2::DynBlock<
-                    dyn Fn(
+                &block2::Block<
+                    'static,
+                    fn(
                         NonNull<NSStagedMigrationManager>,
                         NonNull<NSCustomMigrationStage>,
                         *mut *mut NSError,
@@ -80,8 +82,9 @@ impl NSCustomMigrationStage {
         #[unsafe(method_family = none)]
         pub unsafe fn didMigrateHandler(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(
+        ) -> *mut block2::Block<
+            'static,
+            fn(
                 NonNull<NSStagedMigrationManager>,
                 NonNull<NSCustomMigrationStage>,
                 *mut *mut NSError,
@@ -97,8 +100,9 @@ impl NSCustomMigrationStage {
         pub unsafe fn setDidMigrateHandler(
             &self,
             did_migrate_handler: Option<
-                &block2::DynBlock<
-                    dyn Fn(
+                &block2::Block<
+                    'static,
+                    fn(
                         NonNull<NSStagedMigrationManager>,
                         NonNull<NSCustomMigrationStage>,
                         *mut *mut NSError,

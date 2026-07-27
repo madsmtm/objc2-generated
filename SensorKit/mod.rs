@@ -974,7 +974,7 @@ impl SRSensorReader {
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationForSensors_completion(
             sensors: &NSSet<SRSensor>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }

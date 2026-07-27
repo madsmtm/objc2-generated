@@ -481,7 +481,7 @@ impl MPMediaItemArtwork {
         pub unsafe fn initWithBoundsSize_requestHandler(
             this: Allocated<Self>,
             bounds_size: CGSize,
-            request_handler: &block2::DynBlock<dyn Fn(CGSize) -> NonNull<NSImage>>,
+            request_handler: &block2::Block<'static, fn(CGSize) -> NonNull<NSImage>>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
@@ -579,11 +579,13 @@ impl MPMediaItemAnimatedArtwork {
         pub unsafe fn initWithArtworkID_previewImageRequestHandler_videoAssetFileURLRequestHandler(
             this: Allocated<Self>,
             artwork_id: &NSString,
-            preview_image_request_handler: &block2::DynBlock<
-                dyn Fn(CGSize, NonNull<block2::DynBlock<dyn Fn(*mut NSImage)>>),
+            preview_image_request_handler: &block2::Block<
+                'static,
+                fn(CGSize, NonNull<block2::Block<'static, fn(*mut NSImage)>>),
             >,
-            video_asset_file_url_request_handler: &block2::DynBlock<
-                dyn Fn(CGSize, NonNull<block2::DynBlock<dyn Fn(*mut NSURL)>>),
+            video_asset_file_url_request_handler: &block2::Block<
+                'static,
+                fn(CGSize, NonNull<block2::Block<'static, fn(*mut NSURL)>>),
             >,
         ) -> Retained<Self>;
     );

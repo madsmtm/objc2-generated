@@ -15,7 +15,7 @@ pub type CSDiskSpaceRecoveryOptions = c_int;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csdiskspacerecoverycallback?language=objc)
 #[cfg(feature = "block2")]
-pub type CSDiskSpaceRecoveryCallback = block2::DynBlock<dyn Fn(Boolean, u64, *mut CFError)>;
+pub type CSDiskSpaceRecoveryCallback = block2::Block<'static, fn(Boolean, u64, *mut CFError)>;
 
 /// # Safety
 ///

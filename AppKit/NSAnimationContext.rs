@@ -30,16 +30,14 @@ impl NSAnimationContext {
         #[unsafe(method(runAnimationGroup:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runAnimationGroup_completionHandler(
-            changes: &block2::DynBlock<dyn Fn(NonNull<NSAnimationContext>) + '_>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
+            changes: &block2::Block<'_, fn(NonNull<NSAnimationContext>)>,
+            completion_handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(runAnimationGroup:))]
         #[unsafe(method_family = none)]
-        pub fn runAnimationGroup(
-            changes: &block2::DynBlock<dyn Fn(NonNull<NSAnimationContext>) + '_>,
-        );
+        pub fn runAnimationGroup(changes: &block2::Block<'_, fn(NonNull<NSAnimationContext>)>);
 
         #[unsafe(method(beginGrouping))]
         #[unsafe(method_family = none)]
@@ -78,7 +76,7 @@ impl NSAnimationContext {
         #[cfg(feature = "block2")]
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
-        pub fn completionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub fn completionHandler(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
@@ -86,7 +84,10 @@ impl NSAnimationContext {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setCompletionHandler(&self, completion_handler: Option<&block2::DynBlock<dyn Fn()>>);
+        pub fn setCompletionHandler(
+            &self,
+            completion_handler: Option<&block2::Block<'static, fn()>>,
+        );
 
         #[unsafe(method(allowsImplicitAnimation))]
         #[unsafe(method_family = none)]

@@ -73,7 +73,7 @@ impl WKWebsiteDataStore {
         pub unsafe fn fetchDataRecordsOfTypes_completionHandler(
             &self,
             data_types: &NSSet<NSString>,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<WKWebsiteDataRecord>>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<WKWebsiteDataRecord>>)>,
         );
 
         #[cfg(all(feature = "WKWebsiteDataRecord", feature = "block2"))]
@@ -90,7 +90,7 @@ impl WKWebsiteDataStore {
             &self,
             data_types: &NSSet<NSString>,
             data_records: &NSArray<WKWebsiteDataRecord>,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -107,7 +107,7 @@ impl WKWebsiteDataStore {
             &self,
             data_types: &NSSet<NSString>,
             date: &NSDate,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "WKHTTPCookieStore")]
@@ -129,7 +129,7 @@ impl WKWebsiteDataStore {
         pub unsafe fn fetchDataOfTypes_completionHandler(
             &self,
             data_types: &NSSet<NSString>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -138,7 +138,7 @@ impl WKWebsiteDataStore {
         pub unsafe fn restoreData_completionHandler(
             &self,
             data: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// Get a persistent data store.
@@ -171,7 +171,7 @@ impl WKWebsiteDataStore {
         #[unsafe(method_family = none)]
         pub unsafe fn removeDataStoreForIdentifier_completionHandler(
             identifier: &NSUUID,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
             mtm: MainThreadMarker,
         );
 
@@ -188,7 +188,7 @@ impl WKWebsiteDataStore {
         #[unsafe(method(fetchAllDataStoreIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllDataStoreIdentifiers(
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSUUID>>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSUUID>>)>,
             mtm: MainThreadMarker,
         );
 

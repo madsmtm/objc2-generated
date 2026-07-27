@@ -228,7 +228,7 @@ extern_protocol!(
         fn performEditingTransactionForTextStorage_usingBlock(
             &self,
             text_storage: &NSTextStorage,
-            transaction: &block2::DynBlock<dyn Fn() + '_>,
+            transaction: &block2::Block<'_, fn()>,
         );
     }
 );

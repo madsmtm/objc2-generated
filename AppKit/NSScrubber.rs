@@ -465,7 +465,7 @@ impl NSScrubber {
         /// `updateBlock`finishes executing.
         #[unsafe(method(performSequentialBatchUpdates:))]
         #[unsafe(method_family = none)]
-        pub fn performSequentialBatchUpdates(&self, update_block: &block2::DynBlock<dyn Fn() + '_>);
+        pub fn performSequentialBatchUpdates(&self, update_block: &block2::Block<'_, fn()>);
 
         /// Inserts new items at the specified indexes. NSScrubber will request views for each new index from the
         /// `dataSource.`This method uses the same semantics as

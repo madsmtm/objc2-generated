@@ -214,7 +214,7 @@ extern_protocol!(
             flags: FSBlockmapFlags,
             operation_id: FSOperationID,
             packer: &FSExtentPacker,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "FSItem", feature = "block2", feature = "libc"))]
@@ -247,7 +247,7 @@ extern_protocol!(
             status: &NSError,
             flags: FSCompleteIOFlags,
             operation_id: FSOperationID,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -279,7 +279,7 @@ extern_protocol!(
             directory: &FSItem,
             attributes: &FSItemSetAttributesRequest,
             packer: &FSExtentPacker,
-            reply: &block2::DynBlock<dyn Fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -305,7 +305,7 @@ extern_protocol!(
             name: &FSFileName,
             directory: &FSItem,
             packer: &FSExtentPacker,
-            reply: &block2::DynBlock<dyn Fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -341,7 +341,7 @@ extern_protocol!(
             length: usize,
             flags: FSPreallocateFlags,
             packer: &FSExtentPacker,
-            reply: &block2::DynBlock<dyn Fn(usize, *mut NSError)>,
+            reply: &block2::Block<'static, fn(usize, *mut NSError)>,
         );
     }
 );

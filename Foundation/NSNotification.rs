@@ -203,7 +203,7 @@ impl NSNotificationCenter {
             name: Option<&NSNotificationName>,
             obj: Option<&AnyObject>,
             queue: Option<&NSOperationQueue>,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSNotification>)>,
+            block: &block2::Block<'static, fn(NonNull<NSNotification>)>,
         ) -> Retained<ProtocolObject<dyn NSObjectProtocol>>;
     );
 }

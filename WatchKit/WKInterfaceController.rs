@@ -461,7 +461,7 @@ impl WKInterfaceController {
             &self,
             suggestions: Option<&NSArray<NSString>>,
             input_mode: WKTextInputMode,
-            completion: &block2::DynBlock<dyn Fn(*mut NSArray)>,
+            completion: &block2::Block<'static, fn(*mut NSArray)>,
         );
 
         #[cfg(feature = "block2")]
@@ -473,10 +473,10 @@ impl WKInterfaceController {
         pub unsafe fn presentTextInputControllerWithSuggestionsForLanguage_allowedInputMode_completion(
             &self,
             suggestions_handler: Option<
-                &block2::DynBlock<dyn Fn(NonNull<NSString>) -> *mut NSArray>,
+                &block2::Block<'static, fn(NonNull<NSString>) -> *mut NSArray>,
             >,
             input_mode: WKTextInputMode,
-            completion: &block2::DynBlock<dyn Fn(*mut NSArray)>,
+            completion: &block2::Block<'static, fn(*mut NSArray)>,
         );
 
         #[unsafe(method(dismissTextInputController))]
@@ -493,7 +493,7 @@ impl WKInterfaceController {
             &self,
             url: &NSURL,
             options: Option<&NSDictionary>,
-            completion: &block2::DynBlock<dyn Fn(Bool, NSTimeInterval, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, NSTimeInterval, *mut NSError)>,
         );
 
         #[unsafe(method(dismissMediaPlayerController))]
@@ -511,7 +511,7 @@ impl WKInterfaceController {
             url: &NSURL,
             preset: WKAudioRecorderPreset,
             options: Option<&NSDictionary>,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[unsafe(method(dismissAudioRecorderController))]
@@ -558,7 +558,7 @@ impl WKInterfaceController {
         pub unsafe fn animateWithDuration_animations(
             &self,
             duration: NSTimeInterval,
-            animations: &block2::DynBlock<dyn Fn()>,
+            animations: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "WKAlertAction")]
@@ -754,7 +754,7 @@ impl WKUserNotificationInterfaceController {
         pub unsafe fn didReceiveNotification_withCompletion(
             &self,
             notification: &UNNotification,
-            completion_handler: &block2::DynBlock<dyn Fn(WKUserNotificationInterfaceType)>,
+            completion_handler: &block2::Block<'static, fn(WKUserNotificationInterfaceType)>,
         );
     );
 }

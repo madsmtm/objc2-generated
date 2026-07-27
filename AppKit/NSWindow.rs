@@ -1590,7 +1590,7 @@ impl NSWindow {
         pub fn beginSheet_completionHandler(
             &self,
             sheet_window: &NSWindow,
-            handler: Option<&block2::DynBlock<dyn Fn(NSModalResponse)>>,
+            handler: Option<&block2::Block<'static, fn(NSModalResponse)>>,
         );
 
         #[cfg(all(feature = "NSApplication", feature = "block2"))]
@@ -1599,7 +1599,7 @@ impl NSWindow {
         pub fn beginCriticalSheet_completionHandler(
             &self,
             sheet_window: &NSWindow,
-            handler: Option<&block2::DynBlock<dyn Fn(NSModalResponse)>>,
+            handler: Option<&block2::Block<'static, fn(NSModalResponse)>>,
         );
 
         #[unsafe(method(endSheet:))]
@@ -1999,7 +1999,7 @@ impl NSWindow {
         pub fn transferWindowSharingToWindow_completionHandler(
             &self,
             window: &NSWindow,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// Indicates whether the receiver is the subject of an active SharePlay sharing session.
@@ -2019,7 +2019,7 @@ impl NSWindow {
         pub fn requestSharingOfWindow_completionHandler(
             &self,
             window: &NSWindow,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSImage", feature = "block2"))]
@@ -2037,7 +2037,7 @@ impl NSWindow {
             &self,
             image: &NSImage,
             title: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "NSUserInterfaceLayout")]
@@ -2083,7 +2083,7 @@ impl NSWindow {
             mask: NSEventMask,
             timeout: NSTimeInterval,
             mode: &NSRunLoopMode,
-            tracking_handler: &block2::DynBlock<dyn Fn(*mut NSEvent, NonNull<Bool>) + '_>,
+            tracking_handler: &block2::Block<'_, fn(*mut NSEvent, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "NSEvent")]

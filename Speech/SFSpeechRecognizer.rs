@@ -125,7 +125,7 @@ impl SFSpeechRecognizer {
         #[unsafe(method(requestAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorization(
-            handler: &block2::DynBlock<dyn Fn(SFSpeechRecognizerAuthorizationStatus)>,
+            handler: &block2::Block<'static, fn(SFSpeechRecognizerAuthorizationStatus)>,
         );
 
         /// Creates a speech recognizer associated with the user's default language settings.
@@ -238,7 +238,10 @@ impl SFSpeechRecognizer {
         pub unsafe fn recognitionTaskWithRequest_resultHandler(
             &self,
             request: &SFSpeechRecognitionRequest,
-            result_handler: &block2::DynBlock<dyn Fn(*mut SFSpeechRecognitionResult, *mut NSError)>,
+            result_handler: &block2::Block<
+                'static,
+                fn(*mut SFSpeechRecognitionResult, *mut NSError),
+            >,
         ) -> Retained<SFSpeechRecognitionTask>;
 
         #[cfg(all(

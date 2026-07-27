@@ -96,7 +96,7 @@ impl ASCredentialIdentityStore {
         #[unsafe(method_family = none)]
         pub unsafe fn getCredentialIdentityStoreStateWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(NonNull<ASCredentialIdentityStoreState>)>,
+            completion: &block2::Block<'static, fn(NonNull<ASCredentialIdentityStoreState>)>,
         );
 
         #[cfg(all(
@@ -123,8 +123,9 @@ impl ASCredentialIdentityStore {
             &self,
             service_identifier: Option<&ASCredentialServiceIdentifier>,
             credential_identity_types: ASCredentialIdentityTypes,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<ProtocolObject<dyn ASCredentialIdentity>>>),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<ProtocolObject<dyn ASCredentialIdentity>>>),
             >,
         );
 
@@ -152,7 +153,7 @@ impl ASCredentialIdentityStore {
         pub unsafe fn saveCredentialIdentities_completion(
             &self,
             credential_identities: &NSArray<ASPasswordCredentialIdentity>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
@@ -178,7 +179,7 @@ impl ASCredentialIdentityStore {
         pub unsafe fn saveCredentialIdentityEntries_completion(
             &self,
             credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "ASPasswordCredentialIdentity", feature = "block2"))]
@@ -202,7 +203,7 @@ impl ASCredentialIdentityStore {
         pub unsafe fn removeCredentialIdentities_completion(
             &self,
             credential_identities: &NSArray<ASPasswordCredentialIdentity>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
@@ -225,7 +226,7 @@ impl ASCredentialIdentityStore {
         pub unsafe fn removeCredentialIdentityEntries_completion(
             &self,
             credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -242,7 +243,7 @@ impl ASCredentialIdentityStore {
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllCredentialIdentitiesWithCompletion(
             &self,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "ASPasswordCredentialIdentity", feature = "block2"))]
@@ -266,7 +267,7 @@ impl ASCredentialIdentityStore {
         pub unsafe fn replaceCredentialIdentitiesWithIdentities_completion(
             &self,
             new_credential_identities: &NSArray<ASPasswordCredentialIdentity>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
@@ -289,7 +290,7 @@ impl ASCredentialIdentityStore {
         pub unsafe fn replaceCredentialIdentityEntries_completion(
             &self,
             new_credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
     );
 }

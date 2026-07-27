@@ -110,7 +110,7 @@ impl PKVehicleConnectionSession {
         pub unsafe fn sessionForPass_delegate_completion(
             pass: &PKSecureElementPass,
             delegate: &ProtocolObject<dyn PKVehicleConnectionDelegate>,
-            completion: &block2::DynBlock<dyn Fn(*mut PKVehicleConnectionSession, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut PKVehicleConnectionSession, *mut NSError)>,
         );
 
         #[unsafe(method(sendData:error:_))]

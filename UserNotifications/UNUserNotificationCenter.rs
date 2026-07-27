@@ -97,7 +97,7 @@ impl UNUserNotificationCenter {
         pub unsafe fn requestAuthorizationWithOptions_completionHandler(
             &self,
             options: UNAuthorizationOptions,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "UNNotificationCategory")]
@@ -113,7 +113,7 @@ impl UNUserNotificationCenter {
         #[unsafe(method_family = none)]
         pub unsafe fn getNotificationCategoriesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSSet<UNNotificationCategory>>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSSet<UNNotificationCategory>>)>,
         );
 
         #[cfg(all(feature = "UNNotificationSettings", feature = "block2"))]
@@ -124,7 +124,7 @@ impl UNUserNotificationCenter {
         #[unsafe(method_family = none)]
         pub unsafe fn getNotificationSettingsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<UNNotificationSettings>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<UNNotificationSettings>)>,
         );
 
         #[cfg(all(feature = "UNNotificationRequest", feature = "block2"))]
@@ -136,7 +136,7 @@ impl UNUserNotificationCenter {
         pub unsafe fn addNotificationRequest_withCompletionHandler(
             &self,
             request: &UNNotificationRequest,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "UNNotificationRequest", feature = "block2"))]
@@ -147,7 +147,10 @@ impl UNUserNotificationCenter {
         #[unsafe(method_family = none)]
         pub unsafe fn getPendingNotificationRequestsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<UNNotificationRequest>>)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<UNNotificationRequest>>),
+            >,
         );
 
         #[unsafe(method(removePendingNotificationRequestsWithIdentifiers:))]
@@ -169,7 +172,7 @@ impl UNUserNotificationCenter {
         #[unsafe(method_family = none)]
         pub unsafe fn getDeliveredNotificationsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<UNNotification>>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<UNNotification>>)>,
         );
 
         #[unsafe(method(removeDeliveredNotificationsWithIdentifiers:))]
@@ -189,7 +192,7 @@ impl UNUserNotificationCenter {
         pub unsafe fn setBadgeCount_withCompletionHandler(
             &self,
             new_badge_count: NSInteger,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -250,7 +253,7 @@ extern_protocol!(
             &self,
             center: &UNUserNotificationCenter,
             notification: &UNNotification,
-            completion_handler: &block2::DynBlock<dyn Fn(UNNotificationPresentationOptions)>,
+            completion_handler: &block2::Block<'static, fn(UNNotificationPresentationOptions)>,
         );
 
         #[cfg(all(feature = "UNNotificationResponse", feature = "block2"))]
@@ -264,7 +267,7 @@ extern_protocol!(
             &self,
             center: &UNUserNotificationCenter,
             response: &UNNotificationResponse,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "UNNotification")]

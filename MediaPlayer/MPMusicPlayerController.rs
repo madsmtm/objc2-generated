@@ -219,7 +219,7 @@ impl MPMusicPlayerController {
         #[unsafe(method_family = none)]
         pub unsafe fn prepareToPlayWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[unsafe(method(skipToNextItem))]

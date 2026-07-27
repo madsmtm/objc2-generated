@@ -14,7 +14,7 @@ use crate::*;
 #[deprecated]
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "block2"))]
 pub type MPSAccelerationStructureCompletionHandler =
-    block2::DynBlock<dyn Fn(*mut MPSAccelerationStructure)>;
+    block2::Block<'static, fn(*mut MPSAccelerationStructure)>;
 
 /// Options describing how an acceleration structure will be used
 ///

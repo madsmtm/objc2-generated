@@ -64,7 +64,9 @@ impl INFocusStatusCenter {
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(INFocusStatusAuthorizationStatus)>>,
+            completion_handler: Option<
+                &block2::Block<'static, fn(INFocusStatusAuthorizationStatus)>,
+            >,
         );
     );
 }

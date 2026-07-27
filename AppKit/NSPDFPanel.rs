@@ -93,7 +93,7 @@ impl NSPDFPanel {
             &self,
             pdf_info: &NSPDFInfo,
             doc_window: Option<&NSWindow>,
-            completion_handler: &block2::DynBlock<dyn Fn(NSInteger)>,
+            completion_handler: &block2::Block<'static, fn(NSInteger)>,
         );
     );
 }

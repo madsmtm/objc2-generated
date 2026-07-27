@@ -375,7 +375,7 @@ impl GKGameActivity {
         #[unsafe(method_family = none)]
         pub unsafe fn findMatchWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut GKMatch, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut GKMatch, *mut NSError)>,
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
@@ -393,7 +393,7 @@ impl GKGameActivity {
         #[unsafe(method_family = none)]
         pub unsafe fn findPlayersForHostedMatchWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
         );
     );
 }
@@ -413,7 +413,7 @@ impl GKGameActivity {
         #[unsafe(method(checkPendingGameActivityExistenceWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkPendingGameActivityExistenceWithCompletionHandler(
-            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
+            completion_handler: &block2::Block<'static, fn(Bool)>,
         );
     );
 }

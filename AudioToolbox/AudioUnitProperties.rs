@@ -1304,7 +1304,7 @@ unsafe impl RefEncode for AudioUnitRemoteControlEvent {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontroleventlistener?language=objc)
 #[cfg(feature = "block2")]
 pub type AudioUnitRemoteControlEventListener =
-    block2::DynBlock<dyn Fn(AudioUnitRemoteControlEvent)>;
+    block2::Block<'static, fn(AudioUnitRemoteControlEvent)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_allparametermidimappings?language=objc)
 #[cfg(feature = "AUComponent")]
@@ -1801,7 +1801,7 @@ unsafe impl RefEncode for AUVoiceIOSpeechActivityEvent {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiomutedspeechactivityeventlistener?language=objc)
 #[cfg(feature = "block2")]
 pub type AUVoiceIOMutedSpeechActivityEventListener =
-    block2::DynBlock<dyn Fn(AUVoiceIOSpeechActivityEvent)>;
+    block2::Block<'static, fn(AUVoiceIOSpeechActivityEvent)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauvoiceioproperty_mutedspeechactivityeventlistener?language=objc)
 #[cfg(feature = "AUComponent")]

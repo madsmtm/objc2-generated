@@ -37,7 +37,7 @@ impl MLUpdateTask {
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
             configuration: Option<&MLModelConfiguration>,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<MLUpdateContext>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<MLUpdateContext>)>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(
@@ -50,7 +50,7 @@ impl MLUpdateTask {
         pub unsafe fn updateTaskForModelAtURL_trainingData_completionHandler_error(
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<MLUpdateContext>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<MLUpdateContext>)>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(

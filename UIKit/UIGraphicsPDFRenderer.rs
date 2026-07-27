@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfdrawingactions?language=objc)
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsPDFDrawingActions =
-    block2::DynBlock<dyn Fn(NonNull<UIGraphicsPDFRendererContext>)>;
+    block2::Block<'static, fn(NonNull<UIGraphicsPDFRendererContext>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfrendererformat?language=objc)

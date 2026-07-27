@@ -68,7 +68,7 @@ impl PHProjectExtensionContext {
         pub unsafe fn updatedProjectInfoFromProjectInfo_completion(
             &self,
             existing_project_info: Option<&PHProjectInfo>,
-            completion: &block2::DynBlock<dyn Fn(*mut PHProjectInfo)>,
+            completion: &block2::Block<'static, fn(*mut PHProjectInfo)>,
         ) -> Retained<NSProgress>;
     );
 }

@@ -98,7 +98,7 @@ impl NLEmbedding {
             string: &NSString,
             max_count: NSUInteger,
             distance_type: NLDistanceType,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSString>, NLDistance, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<NSString>, NLDistance, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -110,7 +110,7 @@ impl NLEmbedding {
             max_count: NSUInteger,
             max_distance: NLDistance,
             distance_type: NLDistanceType,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSString>, NLDistance, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<NSString>, NLDistance, NonNull<Bool>)>,
         );
 
         #[unsafe(method(neighborsForString:maximumCount:distanceType:))]
@@ -158,7 +158,7 @@ impl NLEmbedding {
             vector: &NSArray<NSNumber>,
             max_count: NSUInteger,
             distance_type: NLDistanceType,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSString>, NLDistance, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<NSString>, NLDistance, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -170,7 +170,7 @@ impl NLEmbedding {
             max_count: NSUInteger,
             max_distance: NLDistance,
             distance_type: NLDistanceType,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSString>, NLDistance, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<NSString>, NLDistance, NonNull<Bool>)>,
         );
 
         #[unsafe(method(neighborsForVector:maximumCount:distanceType:))]

@@ -49,8 +49,9 @@ impl EKVirtualConferenceProvider {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAvailableRoomTypesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<EKVirtualConferenceRoomTypeDescriptor>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<EKVirtualConferenceRoomTypeDescriptor>, *mut NSError),
             >,
         );
 
@@ -82,8 +83,9 @@ impl EKVirtualConferenceProvider {
         pub unsafe fn fetchVirtualConferenceForIdentifier_completionHandler(
             &self,
             identifier: &EKVirtualConferenceRoomTypeIdentifier,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut EKVirtualConferenceDescriptor, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut EKVirtualConferenceDescriptor, *mut NSError),
             >,
         );
     );

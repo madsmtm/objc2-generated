@@ -147,7 +147,7 @@ impl AXNumericDataAxisDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn valueDescriptionProvider(
             &self,
-        ) -> NonNull<block2::DynBlock<dyn Fn(c_double) -> NonNull<NSString>>>;
+        ) -> NonNull<block2::Block<'static, fn(c_double) -> NonNull<NSString>>>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`valueDescriptionProvider`][Self::valueDescriptionProvider].
@@ -161,7 +161,7 @@ impl AXNumericDataAxisDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setValueDescriptionProvider(
             &self,
-            value_description_provider: &block2::DynBlock<dyn Fn(c_double) -> NonNull<NSString>>,
+            value_description_provider: &block2::Block<'static, fn(c_double) -> NonNull<NSString>>,
         );
 
         /// The positions of any gridlines along this axis.
@@ -188,7 +188,7 @@ impl AXNumericDataAxisDescriptor {
             lowerbound: c_double,
             upper_bound: c_double,
             gridline_positions: Option<&NSArray<NSNumber>>,
-            value_description_provider: &block2::DynBlock<dyn Fn(c_double) -> NonNull<NSString>>,
+            value_description_provider: &block2::Block<'static, fn(c_double) -> NonNull<NSString>>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -203,7 +203,7 @@ impl AXNumericDataAxisDescriptor {
             lowerbound: c_double,
             upper_bound: c_double,
             gridline_positions: Option<&NSArray<NSNumber>>,
-            value_description_provider: &block2::DynBlock<dyn Fn(c_double) -> NonNull<NSString>>,
+            value_description_provider: &block2::Block<'static, fn(c_double) -> NonNull<NSString>>,
         ) -> Retained<Self>;
     );
 }

@@ -473,8 +473,9 @@ impl UIColor {
         #[unsafe(method(colorWithDynamicProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorWithDynamicProvider(
-            dynamic_provider: &block2::DynBlock<
-                dyn Fn(NonNull<UITraitCollection>) -> NonNull<UIColor>,
+            dynamic_provider: &block2::Block<
+                'static,
+                fn(NonNull<UITraitCollection>) -> NonNull<UIColor>,
             >,
         ) -> Retained<UIColor>;
 
@@ -486,8 +487,9 @@ impl UIColor {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDynamicProvider(
             this: Allocated<Self>,
-            dynamic_provider: &block2::DynBlock<
-                dyn Fn(NonNull<UITraitCollection>) -> NonNull<UIColor>,
+            dynamic_provider: &block2::Block<
+                'static,
+                fn(NonNull<UITraitCollection>) -> NonNull<UIColor>,
             >,
         ) -> Retained<UIColor>;
 

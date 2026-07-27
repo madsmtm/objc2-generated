@@ -149,7 +149,7 @@ extern_protocol!(
         unsafe fn handlePlayMedia_completion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPlayMediaIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPlayMediaIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -179,7 +179,7 @@ extern_protocol!(
         unsafe fn confirmPlayMedia_completion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPlayMediaIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPlayMediaIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -210,8 +210,9 @@ extern_protocol!(
         unsafe fn resolveMediaItemsForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<INPlayMediaMediaItemResolutionResult>>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<INPlayMediaMediaItemResolutionResult>>),
             >,
         );
 
@@ -230,7 +231,7 @@ extern_protocol!(
         unsafe fn resolvePlayShuffledForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -248,7 +249,7 @@ extern_protocol!(
         unsafe fn resolvePlaybackRepeatModeForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPlaybackRepeatModeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPlaybackRepeatModeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -266,7 +267,7 @@ extern_protocol!(
         unsafe fn resolveResumePlaybackForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -284,7 +285,10 @@ extern_protocol!(
         unsafe fn resolvePlaybackQueueLocationForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPlaybackQueueLocationResolutionResult>)>,
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INPlaybackQueueLocationResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -303,8 +307,9 @@ extern_protocol!(
         unsafe fn resolvePlaybackSpeedForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INPlayMediaPlaybackSpeedResolutionResult>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INPlayMediaPlaybackSpeedResolutionResult>),
             >,
         );
     }

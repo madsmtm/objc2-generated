@@ -134,7 +134,7 @@ impl SKPhysicsWorld {
         pub unsafe fn enumerateBodiesAtPoint_usingBlock(
             &self,
             point: CGPoint,
-            block: &block2::DynBlock<dyn Fn(NonNull<SKPhysicsBody>, NonNull<Bool>)>,
+            block: &block2::Block<'static, fn(NonNull<SKPhysicsBody>, NonNull<Bool>)>,
         );
 
         #[cfg(all(
@@ -147,7 +147,7 @@ impl SKPhysicsWorld {
         pub unsafe fn enumerateBodiesInRect_usingBlock(
             &self,
             rect: CGRect,
-            block: &block2::DynBlock<dyn Fn(NonNull<SKPhysicsBody>, NonNull<Bool>)>,
+            block: &block2::Block<'static, fn(NonNull<SKPhysicsBody>, NonNull<Bool>)>,
         );
 
         #[cfg(all(
@@ -161,8 +161,9 @@ impl SKPhysicsWorld {
             &self,
             start: CGPoint,
             end: CGPoint,
-            block: &block2::DynBlock<
-                dyn Fn(NonNull<SKPhysicsBody>, CGPoint, CGVector, NonNull<Bool>),
+            block: &block2::Block<
+                'static,
+                fn(NonNull<SKPhysicsBody>, CGPoint, CGVector, NonNull<Bool>),
             >,
         );
     );

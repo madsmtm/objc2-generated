@@ -130,7 +130,7 @@ impl DispatchTime {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_t?language=objc)
 #[cfg(feature = "block2")]
-pub type dispatch_block_t = block2::DynBlock<dyn Fn()>;
+pub type dispatch_block_t = block2::Block<'static, fn()>;
 
 /// Increment the reference count of a dispatch object.
 ///
@@ -564,13 +564,13 @@ impl DispatchQueue {
     pub fn apply_with_block(
         iterations: usize,
         queue: Option<&DispatchQueue>,
-        block: &block2::DynBlock<dyn Fn(usize) + '_>,
+        block: &block2::Block<'_, fn(usize)>,
     ) {
         extern "C" {
             fn dispatch_apply(
                 iterations: usize,
                 queue: Option<&DispatchQueue>,
-                block: &block2::DynBlock<dyn Fn(usize) + '_>,
+                block: &block2::Block<'_, fn(usize)>,
             );
         }
         unsafe { dispatch_apply(iterations, queue, block) }
@@ -3662,7 +3662,7 @@ impl DispatchData {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_applier_t?language=objc)
 #[cfg(feature = "block2")]
 pub type dispatch_data_applier_t =
-    block2::DynBlock<dyn Fn(NonNull<DispatchData>, usize, NonNull<c_void>, usize) -> bool>;
+    block2::Block<'static, fn(NonNull<DispatchData>, usize, NonNull<c_void>, usize) -> bool>;
 
 impl DispatchData {
     /// Traverse the memory regions represented by the specified dispatch data object
@@ -3786,14 +3786,14 @@ pub unsafe fn dispatch_read(
     fd: dispatch_fd_t,
     length: usize,
     queue: &DispatchQueue,
-    handler: &block2::DynBlock<dyn Fn(NonNull<DispatchData>, c_int)>,
+    handler: &block2::Block<'static, fn(NonNull<DispatchData>, c_int)>,
 ) {
     extern "C" {
         fn dispatch_read(
             fd: dispatch_fd_t,
             length: usize,
             queue: &DispatchQueue,
-            handler: &block2::DynBlock<dyn Fn(NonNull<DispatchData>, c_int)>,
+            handler: &block2::Block<'static, fn(NonNull<DispatchData>, c_int)>,
         );
     }
     unsafe { dispatch_read(fd, length, queue, handler) }
@@ -3840,14 +3840,14 @@ pub unsafe fn dispatch_write(
     fd: dispatch_fd_t,
     data: &DispatchData,
     queue: &DispatchQueue,
-    handler: &block2::DynBlock<dyn Fn(*mut DispatchData, c_int)>,
+    handler: &block2::Block<'static, fn(*mut DispatchData, c_int)>,
 ) {
     extern "C" {
         fn dispatch_write(
             fd: dispatch_fd_t,
             data: &DispatchData,
             queue: &DispatchQueue,
-            handler: &block2::DynBlock<dyn Fn(*mut DispatchData, c_int)>,
+            handler: &block2::Block<'static, fn(*mut DispatchData, c_int)>,
         );
     }
     unsafe { dispatch_write(fd, data, queue, handler) }
@@ -3913,14 +3913,14 @@ impl DispatchIO {
         r#type: DispatchIOStreamType,
         fd: dispatch_fd_t,
         queue: &DispatchQueue,
-        cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+        cleanup_handler: &block2::Block<'static, fn(c_int)>,
     ) -> DispatchRetained<DispatchIO> {
         extern "C" {
             fn dispatch_io_create(
                 r#type: DispatchIOStreamType,
                 fd: dispatch_fd_t,
                 queue: &DispatchQueue,
-                cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+                cleanup_handler: &block2::Block<'static, fn(c_int)>,
             ) -> Option<NonNull<DispatchIO>>;
         }
         let ret = unsafe { dispatch_io_create(r#type, fd, queue, cleanup_handler) };
@@ -3974,7 +3974,7 @@ impl DispatchIO {
         oflag: c_int,
         mode: libc::mode_t,
         queue: &DispatchQueue,
-        cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+        cleanup_handler: &block2::Block<'static, fn(c_int)>,
     ) -> DispatchRetained<DispatchIO> {
         extern "C" {
             fn dispatch_io_create_with_path(
@@ -3983,7 +3983,7 @@ impl DispatchIO {
                 oflag: c_int,
                 mode: libc::mode_t,
                 queue: &DispatchQueue,
-                cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+                cleanup_handler: &block2::Block<'static, fn(c_int)>,
             ) -> Option<NonNull<DispatchIO>>;
         }
         let path = NonNull::new(path.as_ptr().cast_mut()).unwrap();
@@ -4040,14 +4040,14 @@ impl DispatchIO {
         r#type: DispatchIOStreamType,
         io: &DispatchIO,
         queue: &DispatchQueue,
-        cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+        cleanup_handler: &block2::Block<'static, fn(c_int)>,
     ) -> DispatchRetained<DispatchIO> {
         extern "C" {
             fn dispatch_io_create_with_io(
                 r#type: DispatchIOStreamType,
                 io: &DispatchIO,
                 queue: &DispatchQueue,
-                cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+                cleanup_handler: &block2::Block<'static, fn(c_int)>,
             ) -> Option<NonNull<DispatchIO>>;
         }
         let ret = unsafe { dispatch_io_create_with_io(r#type, io, queue, cleanup_handler) };
@@ -4068,7 +4068,7 @@ impl DispatchIO {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_handler_t?language=objc)
 #[cfg(feature = "block2")]
-pub type dispatch_io_handler_t = block2::DynBlock<dyn Fn(bool, *mut DispatchData, c_int)>;
+pub type dispatch_io_handler_t = block2::Block<'static, fn(bool, *mut DispatchData, c_int)>;
 
 impl DispatchIO {
     /// Schedule a read operation for asynchronous execution on the specified I/O

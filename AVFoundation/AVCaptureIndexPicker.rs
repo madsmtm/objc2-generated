@@ -81,9 +81,7 @@ impl AVCaptureIndexPicker {
             localized_title: &NSString,
             symbol_name: &NSString,
             number_of_indexes: NSInteger,
-            localized_title_transform: &block2::DynBlock<
-                dyn Fn(NSInteger) -> NonNull<NSString> + '_,
-            >,
+            localized_title_transform: &block2::Block<'_, fn(NSInteger) -> NonNull<NSString>>,
         ) -> Retained<Self>;
 
         /// Initializes an `AVCaptureIndexPicker` to pick between `localizedIndexTitles.count` values.
@@ -179,7 +177,7 @@ impl AVCaptureIndexPicker {
         pub unsafe fn setActionQueue_action(
             &self,
             action_queue: &DispatchQueue,
-            action: &block2::DynBlock<dyn Fn(NSInteger)>,
+            action: &block2::Block<'static, fn(NSInteger)>,
         );
     );
 }

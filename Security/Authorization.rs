@@ -369,7 +369,8 @@ pub unsafe fn AuthorizationCopyRights(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationasynccallback?language=objc)
 #[cfg(feature = "block2")]
-pub type AuthorizationAsyncCallback = block2::DynBlock<dyn Fn(OSStatus, *mut AuthorizationRights)>;
+pub type AuthorizationAsyncCallback =
+    block2::Block<'static, fn(OSStatus, *mut AuthorizationRights)>;
 
 /// An asynchronous version of AuthorizationCopyRights.
 ///

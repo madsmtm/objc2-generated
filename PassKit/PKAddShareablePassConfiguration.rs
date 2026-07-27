@@ -292,8 +292,9 @@ impl PKAddShareablePassConfiguration {
             pass_metadata: &NSArray<PKShareablePassMetadata>,
             provisioning_policy_identifier: &NSString,
             action: PKAddShareablePassConfigurationPrimaryAction,
-            completion: &block2::DynBlock<
-                dyn Fn(*mut PKAddShareablePassConfiguration, *mut NSError),
+            completion: &block2::Block<
+                'static,
+                fn(*mut PKAddShareablePassConfiguration, *mut NSError),
             >,
         );
 
@@ -306,8 +307,9 @@ impl PKAddShareablePassConfiguration {
         pub unsafe fn configurationForPassMetadata_primaryAction_completion(
             pass_metadata: &NSArray<PKShareablePassMetadata>,
             action: PKAddShareablePassConfigurationPrimaryAction,
-            completion: &block2::DynBlock<
-                dyn Fn(*mut PKAddShareablePassConfiguration, *mut NSError),
+            completion: &block2::Block<
+                'static,
+                fn(*mut PKAddShareablePassConfiguration, *mut NSError),
             >,
         );
 

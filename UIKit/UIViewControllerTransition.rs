@@ -50,8 +50,9 @@ impl UIViewControllerTransition {
         #[unsafe(method_family = none)]
         pub unsafe fn zoomWithOptions_sourceViewProvider(
             options: Option<&UIZoomTransitionOptions>,
-            source_view_provider: &block2::DynBlock<
-                dyn Fn(NonNull<UIZoomTransitionSourceViewProviderContext>) -> *mut UIView,
+            source_view_provider: &block2::Block<
+                'static,
+                fn(NonNull<UIZoomTransitionSourceViewProviderContext>) -> *mut UIView,
             >,
         ) -> Retained<Self>;
 
@@ -70,8 +71,9 @@ impl UIViewControllerTransition {
         #[unsafe(method_family = none)]
         pub unsafe fn zoomWithOptions_sourceBarButtonItemProvider(
             options: Option<&UIZoomTransitionOptions>,
-            source_bar_button_item_provider: &block2::DynBlock<
-                dyn Fn(NonNull<UIZoomTransitionSourceViewProviderContext>) -> *mut UIBarButtonItem,
+            source_bar_button_item_provider: &block2::Block<
+                'static,
+                fn(NonNull<UIZoomTransitionSourceViewProviderContext>) -> *mut UIBarButtonItem,
             >,
         ) -> Retained<Self>;
 

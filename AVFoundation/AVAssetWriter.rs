@@ -416,7 +416,7 @@ impl AVAssetWriter {
         #[unsafe(method_family = none)]
         pub unsafe fn finishWritingWithCompletionHandler(
             &self,
-            handler: &block2::DynBlock<dyn Fn()>,
+            handler: &block2::Block<'static, fn()>,
         );
     );
 }

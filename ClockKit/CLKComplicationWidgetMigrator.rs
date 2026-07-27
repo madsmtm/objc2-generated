@@ -23,8 +23,9 @@ extern_protocol!(
         unsafe fn getWidgetConfigurationFrom_completionHandler(
             &self,
             complication_descriptor: &CLKComplicationDescriptor,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut CLKComplicationWidgetMigrationConfiguration),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut CLKComplicationWidgetMigrationConfiguration),
             >,
         );
     }

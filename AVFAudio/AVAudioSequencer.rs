@@ -203,7 +203,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerusercallback?language=objc)
 #[cfg(all(feature = "AVAudioTypes", feature = "block2"))]
 pub type AVAudioSequencerUserCallback =
-    block2::DynBlock<dyn Fn(NonNull<AVMusicTrack>, NonNull<NSData>, AVMusicTimeStamp)>;
+    block2::Block<'static, fn(NonNull<AVMusicTrack>, NonNull<NSData>, AVMusicTimeStamp)>;
 
 extern_class!(
     /// A collection of MIDI events organized into AVMusicTracks, plus a player to play back the events.
@@ -690,7 +690,7 @@ impl AVMusicTrack {
     feature = "block2"
 ))]
 pub type AVMusicEventEnumerationBlock =
-    block2::DynBlock<dyn Fn(NonNull<AVMusicEvent>, NonNull<AVMusicTimeStamp>, NonNull<Bool>)>;
+    block2::Block<'static, fn(NonNull<AVMusicEvent>, NonNull<AVMusicTimeStamp>, NonNull<Bool>)>;
 
 /// AVMusicTrackEditor.
 impl AVMusicTrack {

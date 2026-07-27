@@ -55,7 +55,7 @@ impl HMAccessorySetupManager {
         pub unsafe fn performAccessorySetupUsingRequest_completionHandler(
             &self,
             request: &HMAccessorySetupRequest,
-            completion: &block2::DynBlock<dyn Fn(*mut HMAccessorySetupResult, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut HMAccessorySetupResult, *mut NSError)>,
         );
     );
 }

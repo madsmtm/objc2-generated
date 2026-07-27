@@ -111,7 +111,7 @@ extern_protocol!(
         unsafe fn handleActivateCarSignal_completion(
             &self,
             intent: &INActivateCarSignalIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INActivateCarSignalIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INActivateCarSignalIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -141,7 +141,7 @@ extern_protocol!(
         unsafe fn confirmActivateCarSignal_completion(
             &self,
             intent: &INActivateCarSignalIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INActivateCarSignalIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INActivateCarSignalIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -171,7 +171,7 @@ extern_protocol!(
         unsafe fn resolveCarNameForActivateCarSignal_withCompletion(
             &self,
             intent: &INActivateCarSignalIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -189,7 +189,7 @@ extern_protocol!(
         unsafe fn resolveSignalsForActivateCarSignal_withCompletion(
             &self,
             intent: &INActivateCarSignalIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCarSignalOptionsResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCarSignalOptionsResolutionResult>)>,
         );
     }
 );

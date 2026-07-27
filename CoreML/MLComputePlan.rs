@@ -81,7 +81,7 @@ impl MLComputePlan {
         pub unsafe fn loadContentsOfURL_configuration_completionHandler(
             url: &NSURL,
             configuration: &MLModelConfiguration,
-            handler: &block2::DynBlock<dyn Fn(*mut MLComputePlan, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut MLComputePlan, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -106,7 +106,7 @@ impl MLComputePlan {
         pub unsafe fn loadModelAsset_configuration_completionHandler(
             asset: &MLModelAsset,
             configuration: &MLModelConfiguration,
-            handler: &block2::DynBlock<dyn Fn(*mut MLComputePlan, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut MLComputePlan, *mut NSError)>,
         );
 
         #[cfg(all(

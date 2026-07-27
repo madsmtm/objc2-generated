@@ -95,7 +95,7 @@ impl WKWebExtension {
         #[unsafe(method_family = none)]
         pub unsafe fn extensionWithAppExtensionBundle_completionHandler(
             app_extension_bundle: &NSBundle,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut WKWebExtension, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut WKWebExtension, *mut NSError)>,
             mtm: MainThreadMarker,
         );
 
@@ -117,7 +117,7 @@ impl WKWebExtension {
         #[unsafe(method_family = none)]
         pub unsafe fn extensionWithResourceBaseURL_completionHandler(
             resource_base_url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut WKWebExtension, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut WKWebExtension, *mut NSError)>,
             mtm: MainThreadMarker,
         );
 

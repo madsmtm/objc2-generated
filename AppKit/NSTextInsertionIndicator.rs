@@ -168,7 +168,9 @@ impl NSTextInsertionIndicator {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(effectsViewInserter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effectsViewInserter(&self) -> *mut block2::DynBlock<dyn Fn(NonNull<NSView>)>;
+        pub unsafe fn effectsViewInserter(
+            &self,
+        ) -> *mut block2::Block<'static, fn(NonNull<NSView>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`effectsViewInserter`][Self::effectsViewInserter].
@@ -178,7 +180,7 @@ impl NSTextInsertionIndicator {
         #[unsafe(method_family = none)]
         pub fn setEffectsViewInserter(
             &self,
-            effects_view_inserter: Option<&block2::DynBlock<dyn Fn(NonNull<NSView>)>>,
+            effects_view_inserter: Option<&block2::Block<'static, fn(NonNull<NSView>)>>,
         );
     );
 }

@@ -79,12 +79,9 @@ unsafe impl RefEncode for UIButtonRole {
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UIButtonPointerStyleProvider = block2::DynBlock<
-    dyn Fn(
-        NonNull<UIButton>,
-        NonNull<UIPointerEffect>,
-        NonNull<UIPointerShape>,
-    ) -> *mut UIPointerStyle,
+pub type UIButtonPointerStyleProvider = block2::Block<
+    'static,
+    fn(NonNull<UIButton>, NonNull<UIPointerEffect>, NonNull<UIPointerShape>) -> *mut UIPointerStyle,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationupdatehandler?language=objc)
@@ -94,7 +91,7 @@ pub type UIButtonPointerStyleProvider = block2::DynBlock<
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UIButtonConfigurationUpdateHandler = block2::DynBlock<dyn Fn(NonNull<UIButton>)>;
+pub type UIButtonConfigurationUpdateHandler = block2::Block<'static, fn(NonNull<UIButton>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton?language=objc)

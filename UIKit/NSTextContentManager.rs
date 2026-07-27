@@ -45,7 +45,7 @@ extern_protocol!(
             &self,
             text_location: Option<&ProtocolObject<dyn NSTextLocation>>,
             options: NSTextContentManagerEnumerationOptions,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSTextElement>) -> Bool + '_>,
+            block: &block2::Block<'_, fn(NonNull<NSTextElement>) -> Bool>,
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
@@ -65,7 +65,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn synchronizeToBackingStore(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "NSTextRange")]
@@ -182,7 +182,7 @@ impl NSTextContentManager {
         #[unsafe(method_family = none)]
         pub unsafe fn synchronizeTextLayoutManagers(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
@@ -198,10 +198,7 @@ impl NSTextContentManager {
         #[cfg(feature = "block2")]
         #[unsafe(method(performEditingTransactionUsingBlock:))]
         #[unsafe(method_family = none)]
-        pub fn performEditingTransactionUsingBlock(
-            &self,
-            transaction: &block2::DynBlock<dyn Fn() + '_>,
-        );
+        pub fn performEditingTransactionUsingBlock(&self, transaction: &block2::Block<'_, fn()>);
 
         #[cfg(feature = "NSTextRange")]
         #[unsafe(method(recordEditActionInRange:newTextRange:))]

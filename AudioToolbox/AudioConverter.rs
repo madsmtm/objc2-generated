@@ -286,13 +286,13 @@ pub const kAudioConverterErr_OutputSampleRateOutOfRange: OSStatus = 0x216f7372;
 pub unsafe fn AudioConverterPrepare(
     in_flags: u32,
     io_reserved: *mut c_void,
-    in_completion_block: Option<&block2::DynBlock<dyn Fn(OSStatus)>>,
+    in_completion_block: Option<&block2::Block<'static, fn(OSStatus)>>,
 ) {
     extern "C-unwind" {
         fn AudioConverterPrepare(
             in_flags: u32,
             io_reserved: *mut c_void,
-            in_completion_block: Option<&block2::DynBlock<dyn Fn(OSStatus)>>,
+            in_completion_block: Option<&block2::Block<'static, fn(OSStatus)>>,
         );
     }
     unsafe { AudioConverterPrepare(in_flags, io_reserved, in_completion_block) }

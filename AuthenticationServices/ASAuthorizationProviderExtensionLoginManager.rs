@@ -234,7 +234,7 @@ impl ASAuthorizationProviderExtensionLoginManager {
         #[unsafe(method_family = none)]
         pub unsafe fn userNeedsReauthenticationWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// Requests that the device registration be run again to repair it.
@@ -287,7 +287,7 @@ impl ASAuthorizationProviderExtensionLoginManager {
             &self,
             key_type: ASAuthorizationProviderExtensionKeyType,
             client_data_hash: &NSData,
-            completion: &block2::DynBlock<dyn Fn(*mut NSArray, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSArray, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -310,7 +310,7 @@ impl ASAuthorizationProviderExtensionLoginManager {
             &self,
             key_type: ASAuthorizationProviderExtensionKeyType,
             client_data_hash: &NSData,
-            completion: &block2::DynBlock<dyn Fn(*mut NSArray, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSArray, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -323,7 +323,7 @@ impl ASAuthorizationProviderExtensionLoginManager {
         #[unsafe(method_family = none)]
         pub unsafe fn presentRegistrationViewControllerWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }

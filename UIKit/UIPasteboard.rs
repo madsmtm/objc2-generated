@@ -575,8 +575,9 @@ impl UIPasteboard {
         pub unsafe fn detectPatternsForPatterns_completionHandler(
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSSet<UIPasteboardDetectionPattern>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSSet<UIPasteboardDetectionPattern>, *mut NSError),
             >,
         );
     );
@@ -602,8 +603,9 @@ impl UIPasteboard {
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
             item_set: Option<&NSIndexSet>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<NSSet<UIPasteboardDetectionPattern>>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<NSSet<UIPasteboardDetectionPattern>>, *mut NSError),
             >,
         );
 
@@ -623,8 +625,9 @@ impl UIPasteboard {
         pub unsafe fn detectValuesForPatterns_completionHandler(
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSDictionary<UIPasteboardDetectionPattern, AnyObject>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSDictionary<UIPasteboardDetectionPattern, AnyObject>, *mut NSError),
             >,
         );
 
@@ -648,8 +651,9 @@ impl UIPasteboard {
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
             item_set: Option<&NSIndexSet>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(
+            completion_handler: &block2::Block<
+                'static,
+                fn(
                     *mut NSArray<NSDictionary<UIPasteboardDetectionPattern, AnyObject>>,
                     *mut NSError,
                 ),

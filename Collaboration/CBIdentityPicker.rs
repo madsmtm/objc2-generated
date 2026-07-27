@@ -133,7 +133,7 @@ impl CBIdentityPicker {
         pub unsafe fn runModalForWindow_completionHandler(
             &self,
             window: &NSWindow,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(NSModalResponse)>>,
+            completion_handler: Option<&block2::Block<'static, fn(NSModalResponse)>>,
         );
 
         #[cfg(feature = "CBIdentity")]

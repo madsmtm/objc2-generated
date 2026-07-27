@@ -64,7 +64,7 @@ impl MKReverseGeocodingRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn getMapItemsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<MKMapItem>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSArray<MKMapItem>, *mut NSError)>,
         );
 
         #[unsafe(method(cancel))]

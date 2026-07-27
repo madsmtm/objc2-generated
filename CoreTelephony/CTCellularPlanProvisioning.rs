@@ -37,7 +37,10 @@ impl CTCellularPlanProvisioning {
         pub unsafe fn addPlanWith_completionHandler(
             &self,
             request: &CTCellularPlanProvisioningRequest,
-            completion_handler: &block2::DynBlock<dyn Fn(CTCellularPlanProvisioningAddPlanResult)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(CTCellularPlanProvisioningAddPlanResult),
+            >,
         );
 
         #[cfg(all(
@@ -54,7 +57,10 @@ impl CTCellularPlanProvisioning {
             &self,
             request: &CTCellularPlanProvisioningRequest,
             properties: Option<&CTCellularPlanProperties>,
-            completion_handler: &block2::DynBlock<dyn Fn(CTCellularPlanProvisioningAddPlanResult)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(CTCellularPlanProvisioningAddPlanResult),
+            >,
         );
 
         #[cfg(all(feature = "CTCellularPlanProperties", feature = "block2"))]
@@ -66,7 +72,7 @@ impl CTCellularPlanProvisioning {
         pub unsafe fn updateCellularPlanProperties_completionHandler(
             &self,
             properties: &CTCellularPlanProperties,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }

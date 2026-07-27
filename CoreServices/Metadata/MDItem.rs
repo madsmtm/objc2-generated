@@ -248,12 +248,12 @@ impl MDItem {
     #[inline]
     pub unsafe fn cache_file_descriptors(
         items: Option<&CFArray<MDItem>>,
-        completion_handler: Option<&block2::DynBlock<dyn Fn(*const CFArray)>>,
+        completion_handler: Option<&block2::Block<'static, fn(*const CFArray)>>,
     ) {
         extern "C-unwind" {
             fn MDItemGetCacheFileDescriptors(
                 items: Option<&CFArray<MDItem>>,
-                completion_handler: Option<&block2::DynBlock<dyn Fn(*const CFArray)>>,
+                completion_handler: Option<&block2::Block<'static, fn(*const CFArray)>>,
             );
         }
         unsafe { MDItemGetCacheFileDescriptors(items, completion_handler) }

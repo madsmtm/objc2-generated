@@ -1050,7 +1050,7 @@ impl UIView {
         #[unsafe(method(performWithoutAnimation:))]
         #[unsafe(method_family = none)]
         pub fn performWithoutAnimation(
-            actions_without_animation: &block2::DynBlock<dyn Fn() + '_>,
+            actions_without_animation: &block2::Block<'_, fn()>,
             mtm: MainThreadMarker,
         );
 
@@ -1071,8 +1071,8 @@ impl UIView {
             duration: NSTimeInterval,
             delay: NSTimeInterval,
             options: UIViewAnimationOptions,
-            animations: &block2::DynBlock<dyn Fn()>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            animations: &block2::Block<'static, fn()>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
             mtm: MainThreadMarker,
         );
 
@@ -1081,8 +1081,8 @@ impl UIView {
         #[unsafe(method_family = none)]
         pub fn animateWithDuration_animations_completion(
             duration: NSTimeInterval,
-            animations: &block2::DynBlock<dyn Fn()>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            animations: &block2::Block<'static, fn()>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
             mtm: MainThreadMarker,
         );
 
@@ -1091,7 +1091,7 @@ impl UIView {
         #[unsafe(method_family = none)]
         pub fn animateWithDuration_animations(
             duration: NSTimeInterval,
-            animations: &block2::DynBlock<dyn Fn()>,
+            animations: &block2::Block<'static, fn()>,
             mtm: MainThreadMarker,
         );
 
@@ -1104,8 +1104,8 @@ impl UIView {
             velocity: CGFloat,
             delay: NSTimeInterval,
             options: UIViewAnimationOptions,
-            animations: &block2::DynBlock<dyn Fn() + '_>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            animations: &block2::Block<'_, fn()>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
             mtm: MainThreadMarker,
         );
 
@@ -1118,8 +1118,8 @@ impl UIView {
             damping_ratio: CGFloat,
             velocity: CGFloat,
             options: UIViewAnimationOptions,
-            animations: &block2::DynBlock<dyn Fn()>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            animations: &block2::Block<'static, fn()>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
             mtm: MainThreadMarker,
         );
 
@@ -1130,8 +1130,8 @@ impl UIView {
             view: &UIView,
             duration: NSTimeInterval,
             options: UIViewAnimationOptions,
-            animations: Option<&block2::DynBlock<dyn Fn()>>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            animations: Option<&block2::Block<'static, fn()>>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -1142,7 +1142,7 @@ impl UIView {
             to_view: &UIView,
             duration: NSTimeInterval,
             options: UIViewAnimationOptions,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -1152,8 +1152,8 @@ impl UIView {
             animation: UISystemAnimation,
             views: &NSArray<UIView>,
             options: UIViewAnimationOptions,
-            parallel_animations: Option<&block2::DynBlock<dyn Fn()>>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            parallel_animations: Option<&block2::Block<'static, fn()>>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
             mtm: MainThreadMarker,
         );
 
@@ -1163,7 +1163,7 @@ impl UIView {
         pub fn modifyAnimationsWithRepeatCount_autoreverses_animations(
             count: CGFloat,
             autoreverses: bool,
-            animations: &block2::DynBlock<dyn Fn() + '_>,
+            animations: &block2::Block<'_, fn()>,
             mtm: MainThreadMarker,
         );
     );
@@ -1183,8 +1183,8 @@ impl UIView {
             duration: NSTimeInterval,
             delay: NSTimeInterval,
             options: UIViewKeyframeAnimationOptions,
-            animations: &block2::DynBlock<dyn Fn()>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            animations: &block2::Block<'static, fn()>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
             mtm: MainThreadMarker,
         );
 
@@ -1194,7 +1194,7 @@ impl UIView {
         pub fn addKeyframeWithRelativeStartTime_relativeDuration_animations(
             frame_start_time: c_double,
             frame_duration: c_double,
-            animations: &block2::DynBlock<dyn Fn()>,
+            animations: &block2::Block<'static, fn()>,
             mtm: MainThreadMarker,
         );
     );

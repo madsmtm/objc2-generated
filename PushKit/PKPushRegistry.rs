@@ -351,7 +351,7 @@ extern_protocol!(
             registry: &PKPushRegistry,
             payload: &PKPushPayload,
             r#type: &PKPushType,
-            completion: &block2::DynBlock<dyn Fn()>,
+            completion: &block2::Block<'static, fn()>,
         );
 
         #[cfg(all(
@@ -425,7 +425,7 @@ extern_protocol!(
             registry: &PKPushRegistry,
             payload: &PKPushPayload,
             metadata: &PKVoIPPushMetadata,
-            completion: &block2::DynBlock<dyn Fn()>,
+            completion: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "PKDefines")]

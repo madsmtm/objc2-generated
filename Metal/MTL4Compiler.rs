@@ -163,7 +163,7 @@ impl DefaultRetained for MTL4CompilerTaskOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4newbinaryfunctioncompletionhandler?language=objc)
 #[cfg(all(feature = "MTL4BinaryFunction", feature = "block2"))]
 pub type MTL4NewBinaryFunctionCompletionHandler =
-    block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTL4BinaryFunction>, *mut NSError)>;
+    block2::Block<'static, fn(*mut ProtocolObject<dyn MTL4BinaryFunction>, *mut NSError)>;
 
 /// Provides a signature for a callback block that Metal calls when the compiler finishes a build task for a machine learning pipeline state.
 ///
@@ -173,8 +173,9 @@ pub type MTL4NewBinaryFunctionCompletionHandler =
     feature = "MTLAllocation",
     feature = "block2"
 ))]
-pub type MTL4NewMachineLearningPipelineStateCompletionHandler = block2::DynBlock<
-    dyn Fn(*mut ProtocolObject<dyn MTL4MachineLearningPipelineState>, *mut NSError),
+pub type MTL4NewMachineLearningPipelineStateCompletionHandler = block2::Block<
+    'static,
+    fn(*mut ProtocolObject<dyn MTL4MachineLearningPipelineState>, *mut NSError),
 >;
 
 extern_protocol!(

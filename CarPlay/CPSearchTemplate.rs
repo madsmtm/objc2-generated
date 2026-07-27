@@ -84,7 +84,7 @@ extern_protocol!(
             &self,
             search_template: &CPSearchTemplate,
             search_text: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<CPListItem>>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<CPListItem>>)>,
         );
 
         #[cfg(all(feature = "CPListItem", feature = "CPTemplate", feature = "block2"))]
@@ -102,7 +102,7 @@ extern_protocol!(
             &self,
             search_template: &CPSearchTemplate,
             item: &CPListItem,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "CPTemplate")]

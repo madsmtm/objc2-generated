@@ -164,10 +164,13 @@ impl UICloudSharingController {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPreparationHandler(
             this: Allocated<Self>,
-            preparation_handler: &block2::DynBlock<
-                dyn Fn(
+            preparation_handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<UICloudSharingController>,
-                    NonNull<block2::DynBlock<dyn Fn(*mut CKShare, *mut CKContainer, *mut NSError)>>,
+                    NonNull<
+                        block2::Block<'static, fn(*mut CKShare, *mut CKContainer, *mut NSError)>,
+                    >,
                 ),
             >,
         ) -> Retained<Self>;

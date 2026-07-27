@@ -130,7 +130,7 @@ impl UIContextMenuInteraction {
         #[unsafe(method_family = none)]
         pub unsafe fn updateVisibleMenuWithBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn(NonNull<UIMenu>) -> NonNull<UIMenu> + '_>,
+            block: &block2::Block<'_, fn(NonNull<UIMenu>) -> NonNull<UIMenu>>,
         );
 
         /// Dismisses the currently presented menu (if there is one).
@@ -154,12 +154,12 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         #[unsafe(method(addAnimations:))]
         #[unsafe(method_family = none)]
-        fn addAnimations(&self, animations: &block2::DynBlock<dyn Fn()>);
+        fn addAnimations(&self, animations: &block2::Block<'static, fn()>);
 
         #[cfg(feature = "block2")]
         #[unsafe(method(addCompletion:))]
         #[unsafe(method_family = none)]
-        fn addCompletion(&self, completion: &block2::DynBlock<dyn Fn()>);
+        fn addCompletion(&self, completion: &block2::Block<'static, fn()>);
     }
 );
 

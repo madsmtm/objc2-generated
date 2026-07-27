@@ -680,7 +680,7 @@ impl NSApplication {
         pub fn enumerateWindowsWithOptions_usingBlock(
             &self,
             options: NSWindowListOptions,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSWindow>, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<NSWindow>, NonNull<Bool>)>,
         );
 
         #[unsafe(method(preventWindowOrdering))]
@@ -1338,8 +1338,9 @@ extern_protocol!(
             &self,
             application: &NSApplication,
             user_activity: &NSUserActivity,
-            restoration_handler: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<ProtocolObject<dyn NSUserActivityRestoring>>>),
+            restoration_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<ProtocolObject<dyn NSUserActivityRestoring>>>),
             >,
         ) -> bool;
 

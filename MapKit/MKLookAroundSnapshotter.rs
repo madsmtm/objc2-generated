@@ -41,7 +41,10 @@ impl MKLookAroundSnapshotter {
         #[unsafe(method_family = none)]
         pub unsafe fn getSnapshotWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut MKLookAroundSnapshot, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut MKLookAroundSnapshot, *mut NSError),
+            >,
         );
 
         #[unsafe(method(cancel))]

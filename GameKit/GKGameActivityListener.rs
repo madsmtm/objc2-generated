@@ -28,7 +28,7 @@ extern_protocol!(
             &self,
             player: &GKPlayer,
             activity: &GKGameActivity,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
+            completion_handler: &block2::Block<'static, fn(Bool)>,
         );
     }
 );

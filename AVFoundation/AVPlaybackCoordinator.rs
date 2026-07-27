@@ -658,7 +658,7 @@ extern_protocol!(
             &self,
             coordinator: &AVDelegatingPlaybackCoordinator,
             play_command: &AVDelegatingPlaybackCoordinatorPlayCommand,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -677,7 +677,7 @@ extern_protocol!(
             &self,
             coordinator: &AVDelegatingPlaybackCoordinator,
             pause_command: &AVDelegatingPlaybackCoordinatorPauseCommand,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -698,7 +698,7 @@ extern_protocol!(
             &self,
             coordinator: &AVDelegatingPlaybackCoordinator,
             seek_command: &AVDelegatingPlaybackCoordinatorSeekCommand,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -721,7 +721,7 @@ extern_protocol!(
             &self,
             coordinator: &AVDelegatingPlaybackCoordinator,
             buffering_command: &AVDelegatingPlaybackCoordinatorBufferingCommand,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
     }
 );

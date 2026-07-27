@@ -207,8 +207,9 @@ impl NSRegularExpression {
             string: &NSString,
             options: NSMatchingOptions,
             range: NSRange,
-            block: &block2::DynBlock<
-                dyn Fn(*mut NSTextCheckingResult, NSMatchingFlags, NonNull<Bool>) + '_,
+            block: &block2::Block<
+                '_,
+                fn(*mut NSTextCheckingResult, NSMatchingFlags, NonNull<Bool>),
             >,
         );
 

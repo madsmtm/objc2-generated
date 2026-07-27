@@ -365,7 +365,7 @@ impl CPMapTemplate {
         pub unsafe fn dismissNavigationAlertAnimated_completion(
             &self,
             animated: bool,
-            completion: &block2::DynBlock<dyn Fn(Bool)>,
+            completion: &block2::Block<'static, fn(Bool)>,
         );
     );
 }
@@ -425,7 +425,7 @@ extern_protocol!(
             map_template: &CPMapTemplate,
             waypoint: &CPNavigationWaypoint,
             segment: &CPRouteSegment,
-            completion: &block2::DynBlock<dyn Fn(NonNull<CPTravelEstimates>)>,
+            completion: &block2::Block<'static, fn(NonNull<CPTravelEstimates>)>,
         );
 
         #[cfg(all(

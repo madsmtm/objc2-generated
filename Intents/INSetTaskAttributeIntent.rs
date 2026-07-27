@@ -142,7 +142,7 @@ extern_protocol!(
         unsafe fn handleSetTaskAttribute_completion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSetTaskAttributeIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSetTaskAttributeIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -172,7 +172,7 @@ extern_protocol!(
         unsafe fn confirmSetTaskAttribute_completion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSetTaskAttributeIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSetTaskAttributeIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -202,7 +202,7 @@ extern_protocol!(
         unsafe fn resolveTargetTaskForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INTaskResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INTaskResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -220,7 +220,7 @@ extern_protocol!(
         unsafe fn resolveTaskTitleForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -238,7 +238,7 @@ extern_protocol!(
         unsafe fn resolveStatusForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INTaskStatusResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INTaskStatusResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -256,7 +256,7 @@ extern_protocol!(
         unsafe fn resolvePriorityForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INTaskPriorityResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INTaskPriorityResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -274,7 +274,7 @@ extern_protocol!(
         unsafe fn resolveSpatialEventTriggerForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSpatialEventTriggerResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSpatialEventTriggerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -293,7 +293,10 @@ extern_protocol!(
         unsafe fn resolveTemporalEventTriggerForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INTemporalEventTriggerResolutionResult>)>,
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INTemporalEventTriggerResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -312,8 +315,9 @@ extern_protocol!(
         unsafe fn resolveTemporalEventTriggerForSetTaskAttribute_completion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INSetTaskAttributeTemporalEventTriggerResolutionResult>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INSetTaskAttributeTemporalEventTriggerResolutionResult>),
             >,
         );
     }

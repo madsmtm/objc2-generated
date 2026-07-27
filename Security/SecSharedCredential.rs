@@ -37,14 +37,14 @@ pub unsafe fn SecAddSharedWebCredential(
     fqdn: &CFString,
     account: &CFString,
     password: Option<&CFString>,
-    completion_handler: &block2::DynBlock<dyn Fn(*mut CFError)>,
+    completion_handler: &block2::Block<'static, fn(*mut CFError)>,
 ) {
     extern "C-unwind" {
         fn SecAddSharedWebCredential(
             fqdn: &CFString,
             account: &CFString,
             password: Option<&CFString>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CFError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CFError)>,
         );
     }
     unsafe { SecAddSharedWebCredential(fqdn, account, password, completion_handler) }
@@ -75,13 +75,13 @@ pub unsafe fn SecAddSharedWebCredential(
 pub unsafe fn SecRequestSharedWebCredential(
     fqdn: Option<&CFString>,
     account: Option<&CFString>,
-    completion_handler: &block2::DynBlock<dyn Fn(*const CFArray, *mut CFError)>,
+    completion_handler: &block2::Block<'static, fn(*const CFArray, *mut CFError)>,
 ) {
     extern "C-unwind" {
         fn SecRequestSharedWebCredential(
             fqdn: Option<&CFString>,
             account: Option<&CFString>,
-            completion_handler: &block2::DynBlock<dyn Fn(*const CFArray, *mut CFError)>,
+            completion_handler: &block2::Block<'static, fn(*const CFArray, *mut CFError)>,
         );
     }
     unsafe { SecRequestSharedWebCredential(fqdn, account, completion_handler) }

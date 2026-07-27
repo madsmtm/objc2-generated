@@ -46,8 +46,9 @@ pub type CVDisplayLinkOutputCallback = Option<
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkoutputhandler?language=objc)
 #[cfg(all(feature = "CVBase", feature = "CVReturn", feature = "block2"))]
-pub type CVDisplayLinkOutputHandler = block2::DynBlock<
-    dyn Fn(
+pub type CVDisplayLinkOutputHandler = block2::Block<
+    'static,
+    fn(
         NonNull<CVDisplayLink>,
         NonNull<CVTimeStamp>,
         NonNull<CVTimeStamp>,

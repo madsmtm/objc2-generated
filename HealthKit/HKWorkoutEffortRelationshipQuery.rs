@@ -161,8 +161,9 @@ impl HKWorkoutEffortRelationshipQuery {
             predicate: Option<&NSPredicate>,
             anchor: Option<&HKQueryAnchor>,
             options: HKWorkoutEffortRelationshipQueryOptions,
-            results_handler: &block2::DynBlock<
-                dyn Fn(
+            results_handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<HKWorkoutEffortRelationshipQuery>,
                     *mut NSArray<HKWorkoutEffortRelationship>,
                     *mut HKQueryAnchor,

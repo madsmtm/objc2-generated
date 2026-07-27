@@ -110,7 +110,7 @@ extern_protocol!(
         unsafe fn handleGetVisualCode_completion(
             &self,
             intent: &INGetVisualCodeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INGetVisualCodeIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INGetVisualCodeIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -141,7 +141,7 @@ extern_protocol!(
         unsafe fn confirmGetVisualCode_completion(
             &self,
             intent: &INGetVisualCodeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INGetVisualCodeIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INGetVisualCodeIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -172,7 +172,7 @@ extern_protocol!(
         unsafe fn resolveVisualCodeTypeForGetVisualCode_withCompletion(
             &self,
             intent: &INGetVisualCodeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INVisualCodeTypeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INVisualCodeTypeResolutionResult>)>,
         );
     }
 );

@@ -454,7 +454,7 @@ unsafe impl RefEncode for AudioQueueChannelAssignment {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueoutputcallbackblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-audio-types"))]
 pub type AudioQueueOutputCallbackBlock =
-    block2::DynBlock<dyn Fn(AudioQueueRef, AudioQueueBufferRef)>;
+    block2::Block<'static, fn(AudioQueueRef, AudioQueueBufferRef)>;
 
 /// Defines a pointer to a block that is called when a recording audio
 /// queue has finished filling a buffer.
@@ -480,8 +480,9 @@ pub type AudioQueueOutputCallbackBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueinputcallbackblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-audio-types"))]
-pub type AudioQueueInputCallbackBlock = block2::DynBlock<
-    dyn Fn(
+pub type AudioQueueInputCallbackBlock = block2::Block<
+    'static,
+    fn(
         AudioQueueRef,
         AudioQueueBufferRef,
         NonNull<AudioTimeStamp>,

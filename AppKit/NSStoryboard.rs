@@ -15,7 +15,7 @@ pub type NSStoryboardSceneIdentifier = NSString;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardcontrollercreator?language=objc)
 #[cfg(feature = "block2")]
 pub type NSStoryboardControllerCreator =
-    block2::DynBlock<dyn Fn(NonNull<NSCoder>) -> *mut AnyObject>;
+    block2::Block<'static, fn(NonNull<NSCoder>) -> *mut AnyObject>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboard?language=objc)

@@ -317,7 +317,7 @@ impl VTDecompressionSession {
     feature = "objc2-core-video"
 ))]
 pub type VTDecompressionOutputHandler =
-    block2::DynBlock<dyn Fn(OSStatus, VTDecodeInfoFlags, *mut CVImageBuffer, CMTime, CMTime)>;
+    block2::Block<'static, fn(OSStatus, VTDecodeInfoFlags, *mut CVImageBuffer, CMTime, CMTime)>;
 
 impl VTDecompressionSession {
     /// Decompresses a video frame.
@@ -616,15 +616,9 @@ impl VTDecompressionSession {
     feature = "objc2-core-media",
     feature = "objc2-core-video"
 ))]
-pub type VTDecompressionMultiImageCapableOutputHandler = block2::DynBlock<
-    dyn Fn(
-        OSStatus,
-        VTDecodeInfoFlags,
-        *mut CVImageBuffer,
-        *mut CMTaggedBufferGroup,
-        CMTime,
-        CMTime,
-    ),
+pub type VTDecompressionMultiImageCapableOutputHandler = block2::Block<
+    'static,
+    fn(OSStatus, VTDecodeInfoFlags, *mut CVImageBuffer, *mut CMTaggedBufferGroup, CMTime, CMTime),
 >;
 
 impl VTDecompressionSession {

@@ -263,7 +263,7 @@ impl NSSharingService {
             title: &NSString,
             image: &NSImage,
             alternate_image: Option<&NSImage>,
-            block: &block2::DynBlock<dyn Fn()>,
+            block: &block2::Block<'static, fn()>,
         ) -> Retained<Self>;
 
         // -init (unavailable)
@@ -540,9 +540,12 @@ pub unsafe trait NSItemProviderNSCloudKitSharing:
         #[unsafe(method_family = none)]
         unsafe fn registerCloudKitShareWithPreparationHandler(
             &self,
-            preparation_handler: &block2::DynBlock<
-                dyn Fn(
-                    NonNull<block2::DynBlock<dyn Fn(*mut CKShare, *mut CKContainer, *mut NSError)>>,
+            preparation_handler: &block2::Block<
+                'static,
+                fn(
+                    NonNull<
+                        block2::Block<'static, fn(*mut CKShare, *mut CKContainer, *mut NSError)>,
+                    >,
                 ),
             >,
         );

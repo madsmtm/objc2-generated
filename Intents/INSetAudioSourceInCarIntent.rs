@@ -117,7 +117,7 @@ extern_protocol!(
         unsafe fn handleSetAudioSourceInCar_completion(
             &self,
             intent: &INSetAudioSourceInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSetAudioSourceInCarIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSetAudioSourceInCarIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -148,7 +148,7 @@ extern_protocol!(
         unsafe fn confirmSetAudioSourceInCar_completion(
             &self,
             intent: &INSetAudioSourceInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSetAudioSourceInCarIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSetAudioSourceInCarIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -179,7 +179,7 @@ extern_protocol!(
         unsafe fn resolveAudioSourceForSetAudioSourceInCar_withCompletion(
             &self,
             intent: &INSetAudioSourceInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCarAudioSourceResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCarAudioSourceResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -198,7 +198,7 @@ extern_protocol!(
         unsafe fn resolveRelativeAudioSourceReferenceForSetAudioSourceInCar_withCompletion(
             &self,
             intent: &INSetAudioSourceInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRelativeReferenceResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRelativeReferenceResolutionResult>)>,
         );
     }
 );

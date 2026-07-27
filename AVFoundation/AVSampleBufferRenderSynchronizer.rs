@@ -215,7 +215,7 @@ impl AVSampleBufferRenderSynchronizer {
             &self,
             renderer: &ProtocolObject<dyn AVQueuedSampleBufferRendering>,
             time: CMTime,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
     );
 }
@@ -252,7 +252,7 @@ impl AVSampleBufferRenderSynchronizer {
             &self,
             interval: CMTime,
             queue: Option<&DispatchQueue>,
-            block: &block2::DynBlock<dyn Fn(CMTime)>,
+            block: &block2::Block<'static, fn(CMTime)>,
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -276,7 +276,7 @@ impl AVSampleBufferRenderSynchronizer {
             &self,
             times: &NSArray<NSValue>,
             queue: Option<&DispatchQueue>,
-            block: &block2::DynBlock<dyn Fn()>,
+            block: &block2::Block<'static, fn()>,
         ) -> Retained<AnyObject>;
 
         /// Cancels a previously registered time observer.

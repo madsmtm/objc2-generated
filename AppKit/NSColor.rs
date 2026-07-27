@@ -219,7 +219,10 @@ impl NSColor {
         #[unsafe(method_family = none)]
         pub unsafe fn colorWithName_dynamicProvider(
             color_name: Option<&NSColorName>,
-            dynamic_provider: &block2::DynBlock<dyn Fn(NonNull<NSAppearance>) -> NonNull<NSColor>>,
+            dynamic_provider: &block2::Block<
+                'static,
+                fn(NonNull<NSAppearance>) -> NonNull<NSColor>,
+            >,
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]

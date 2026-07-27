@@ -358,15 +358,16 @@ impl MIDICIProfileState {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilechangedblock?language=objc)
 #[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "MIDIMessages", feature = "block2", feature = "objc2"))]
-pub type MIDICIProfileChangedBlock = block2::DynBlock<
-    dyn Fn(NonNull<MIDICISession>, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool),
+pub type MIDICIProfileChangedBlock = block2::Block<
+    'static,
+    fn(NonNull<MIDICISession>, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool),
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicisessiondisconnectblock?language=objc)
 #[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "block2", feature = "objc2", feature = "objc2-foundation"))]
 pub type MIDICISessionDisconnectBlock =
-    block2::DynBlock<dyn Fn(NonNull<MIDICISession>, NonNull<NSError>)>;
+    block2::Block<'static, fn(NonNull<MIDICISession>, NonNull<NSError>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilespecificdatablock?language=objc)
 #[deprecated = "No longer supported for CoreMIDI"]
@@ -376,15 +377,16 @@ pub type MIDICISessionDisconnectBlock =
     feature = "objc2",
     feature = "objc2-foundation"
 ))]
-pub type MIDICIProfileSpecificDataBlock = block2::DynBlock<
-    dyn Fn(NonNull<MIDICISession>, MIDIChannelNumber, NonNull<MIDICIProfile>, NonNull<NSData>),
+pub type MIDICIProfileSpecificDataBlock = block2::Block<
+    'static,
+    fn(NonNull<MIDICISession>, MIDIChannelNumber, NonNull<MIDICIProfile>, NonNull<NSData>),
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidiscoveryresponseblock?language=objc)
 #[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "block2", feature = "objc2", feature = "objc2-foundation"))]
 pub type MIDICIDiscoveryResponseBlock =
-    block2::DynBlock<dyn Fn(NonNull<NSArray<MIDICIDiscoveredNode>>)>;
+    block2::Block<'static, fn(NonNull<NSArray<MIDICIDiscoveredNode>>)>;
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -413,7 +415,7 @@ impl MIDICISession {
         pub unsafe fn initWithDiscoveredNode_dataReadyHandler_disconnectHandler(
             this: Allocated<Self>,
             discovered_node: &MIDICIDiscoveredNode,
-            handler: &block2::DynBlock<dyn Fn()>,
+            handler: &block2::Block<'static, fn()>,
             disconnect_handler: &MIDICISessionDisconnectBlock,
         ) -> Retained<Self>;
 

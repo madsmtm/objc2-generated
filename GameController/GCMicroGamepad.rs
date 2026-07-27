@@ -76,7 +76,7 @@ extern "C" {
     feature = "block2"
 ))]
 pub type GCMicroGamepadValueChangedHandler =
-    block2::DynBlock<dyn Fn(NonNull<GCMicroGamepad>, NonNull<GCControllerElement>)>;
+    block2::Block<'static, fn(NonNull<GCMicroGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad?language=objc)

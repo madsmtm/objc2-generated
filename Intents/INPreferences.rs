@@ -29,7 +29,7 @@ impl INPreferences {
         #[unsafe(method(requestSiriAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestSiriAuthorization(
-            handler: &block2::DynBlock<dyn Fn(INSiriAuthorizationStatus)>,
+            handler: &block2::Block<'static, fn(INSiriAuthorizationStatus)>,
         );
 
         #[unsafe(method(siriLanguageCode))]

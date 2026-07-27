@@ -89,7 +89,7 @@ impl UIBandSelectionInteraction {
         #[unsafe(method_family = none)]
         pub unsafe fn shouldBeginHandler(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<UIBandSelectionInteraction>, CGPoint) -> Bool>;
+        ) -> *mut block2::Block<'static, fn(NonNull<UIBandSelectionInteraction>, CGPoint) -> Bool>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`shouldBeginHandler`][Self::shouldBeginHandler].
@@ -100,7 +100,7 @@ impl UIBandSelectionInteraction {
         pub fn setShouldBeginHandler(
             &self,
             should_begin_handler: Option<
-                &block2::DynBlock<dyn Fn(NonNull<UIBandSelectionInteraction>, CGPoint) -> Bool>,
+                &block2::Block<'static, fn(NonNull<UIBandSelectionInteraction>, CGPoint) -> Bool>,
             >,
         );
 
@@ -113,7 +113,7 @@ impl UIBandSelectionInteraction {
         #[unsafe(method_family = init)]
         pub fn initWithSelectionHandler(
             this: Allocated<Self>,
-            selection_handler: &block2::DynBlock<dyn Fn(NonNull<UIBandSelectionInteraction>)>,
+            selection_handler: &block2::Block<'static, fn(NonNull<UIBandSelectionInteraction>)>,
         ) -> Retained<Self>;
     );
 }

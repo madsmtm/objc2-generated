@@ -252,7 +252,7 @@ impl AVAssetTrack {
         pub unsafe fn loadSegmentForTrackTime_completionHandler(
             &self,
             track_time: CMTime,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut AVAssetTrackSegment, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut AVAssetTrackSegment, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-core-media")]
@@ -280,7 +280,7 @@ impl AVAssetTrack {
         pub unsafe fn loadSamplePresentationTimeForTrackTime_completionHandler(
             &self,
             track_time: CMTime,
-            completion_handler: &block2::DynBlock<dyn Fn(CMTime, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(CMTime, *mut NSError)>,
         );
     );
 }
@@ -342,8 +342,9 @@ impl AVAssetTrack {
         pub unsafe fn loadMetadataForFormat_completionHandler(
             &self,
             format: &AVMetadataFormat,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<AVMetadataItem>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<AVMetadataItem>, *mut NSError),
             >,
         );
     );
@@ -462,7 +463,10 @@ impl AVAssetTrack {
         pub unsafe fn loadAssociatedTracksOfType_completionHandler(
             &self,
             track_association_type: &AVTrackAssociationType,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<AVAssetTrack>, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<AVAssetTrack>, *mut NSError),
+            >,
         );
     );
 }

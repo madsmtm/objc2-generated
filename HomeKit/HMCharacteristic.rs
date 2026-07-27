@@ -153,7 +153,7 @@ impl HMCharacteristic {
         pub unsafe fn writeValue_completionHandler(
             &self,
             value: Option<&AnyObject>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -171,7 +171,7 @@ impl HMCharacteristic {
         #[unsafe(method_family = none)]
         pub unsafe fn readValueWithCompletionHandler(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -194,7 +194,7 @@ impl HMCharacteristic {
         pub unsafe fn enableNotification_completionHandler(
             &self,
             enable: bool,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -216,7 +216,7 @@ impl HMCharacteristic {
         pub unsafe fn updateAuthorizationData_completionHandler(
             &self,
             data: Option<&NSData>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[deprecated = "HMCharacteristic objects are created by their parent container objects. Directly creating them is not supported."]

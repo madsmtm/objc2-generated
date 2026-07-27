@@ -22,7 +22,7 @@ use crate::*;
     feature = "block2"
 ))]
 pub type GCGamepadValueChangedHandler =
-    block2::DynBlock<dyn Fn(NonNull<GCGamepad>, NonNull<GCControllerElement>)>;
+    block2::Block<'static, fn(NonNull<GCGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcgamepad?language=objc)

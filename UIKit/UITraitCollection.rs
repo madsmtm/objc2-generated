@@ -763,7 +763,8 @@ extern_protocol!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitmutations?language=objc)
 #[cfg(feature = "block2")]
-pub type UITraitMutations = block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn UIMutableTraits>>)>;
+pub type UITraitMutations =
+    block2::Block<'static, fn(NonNull<ProtocolObject<dyn UIMutableTraits>>)>;
 
 impl UITraitCollection {
     extern_methods!(
@@ -909,8 +910,9 @@ extern_protocol!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type UITraitChangeHandler = block2::DynBlock<
-    dyn Fn(NonNull<ProtocolObject<dyn UITraitEnvironment>>, NonNull<UITraitCollection>),
+pub type UITraitChangeHandler = block2::Block<
+    'static,
+    fn(NonNull<ProtocolObject<dyn UITraitEnvironment>>, NonNull<UITraitCollection>),
 >;
 
 extern_protocol!(
@@ -970,7 +972,7 @@ impl UITraitCollection {
         #[cfg(feature = "block2")]
         #[unsafe(method(performAsCurrentTraitCollection:))]
         #[unsafe(method_family = none)]
-        pub fn performAsCurrentTraitCollection(&self, actions: &block2::DynBlock<dyn Fn() + '_>);
+        pub fn performAsCurrentTraitCollection(&self, actions: &block2::Block<'_, fn()>);
     );
 }
 

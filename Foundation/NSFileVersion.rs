@@ -91,8 +91,9 @@ impl NSFileVersion {
         #[unsafe(method_family = none)]
         pub unsafe fn getNonlocalVersionsOfItemAtURL_completionHandler(
             url: &NSURL,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<NSFileVersion>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<NSFileVersion>, *mut NSError),
             >,
         );
 

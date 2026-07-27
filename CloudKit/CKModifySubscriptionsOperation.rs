@@ -136,8 +136,9 @@ impl CKModifySubscriptionsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perSubscriptionSaveBlock(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError),
+        ) -> *mut block2::Block<
+            'static,
+            fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError),
         >;
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
@@ -153,8 +154,9 @@ impl CKModifySubscriptionsOperation {
         pub unsafe fn setPerSubscriptionSaveBlock(
             &self,
             per_subscription_save_block: Option<
-                &block2::DynBlock<
-                    dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError),
+                &block2::Block<
+                    'static,
+                    fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError),
                 >,
             >,
         );
@@ -182,7 +184,7 @@ impl CKModifySubscriptionsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perSubscriptionDeleteBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKSubscriptionID>, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKSubscriptionID>, *mut NSError)>;
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`perSubscriptionDeleteBlock`][Self::perSubscriptionDeleteBlock].
@@ -197,7 +199,7 @@ impl CKModifySubscriptionsOperation {
         pub unsafe fn setPerSubscriptionDeleteBlock(
             &self,
             per_subscription_delete_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKSubscriptionID>, *mut NSError)>,
+                &block2::Block<'static, fn(NonNull<CKSubscriptionID>, *mut NSError)>,
             >,
         );
 
@@ -230,8 +232,9 @@ impl CKModifySubscriptionsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn modifySubscriptionsCompletionBlock(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(*mut NSArray<CKSubscription>, *mut NSArray<CKSubscriptionID>, *mut NSError),
+        ) -> *mut block2::Block<
+            'static,
+            fn(*mut NSArray<CKSubscription>, *mut NSArray<CKSubscriptionID>, *mut NSError),
         >;
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
@@ -247,12 +250,9 @@ impl CKModifySubscriptionsOperation {
         pub unsafe fn setModifySubscriptionsCompletionBlock(
             &self,
             modify_subscriptions_completion_block: Option<
-                &block2::DynBlock<
-                    dyn Fn(
-                        *mut NSArray<CKSubscription>,
-                        *mut NSArray<CKSubscriptionID>,
-                        *mut NSError,
-                    ),
+                &block2::Block<
+                    'static,
+                    fn(*mut NSArray<CKSubscription>, *mut NSArray<CKSubscriptionID>, *mut NSError),
                 >,
             >,
         );

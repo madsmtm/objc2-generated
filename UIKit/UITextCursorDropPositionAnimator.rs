@@ -96,8 +96,8 @@ impl UITextCursorDropPositionAnimator {
         #[unsafe(method_family = none)]
         pub fn animateAlongsideChanges_completion(
             &self,
-            animation: Option<&block2::DynBlock<dyn Fn()>>,
-            completion: Option<&block2::DynBlock<dyn Fn()>>,
+            animation: Option<&block2::Block<'static, fn()>>,
+            completion: Option<&block2::Block<'static, fn()>>,
         );
     );
 }

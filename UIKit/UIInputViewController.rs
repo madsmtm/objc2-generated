@@ -175,7 +175,7 @@ impl UIInputViewController {
         #[unsafe(method_family = none)]
         pub fn requestSupplementaryLexiconWithCompletion(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<UILexicon>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<UILexicon>)>,
         );
     );
 }

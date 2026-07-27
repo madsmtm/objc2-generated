@@ -43,7 +43,7 @@ impl UIMainMenuSystem {
             &self,
             configuration: &UIMainMenuSystemConfiguration,
             build_handler: Option<
-                &block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn UIMenuBuilder>>)>,
+                &block2::Block<'static, fn(NonNull<ProtocolObject<dyn UIMenuBuilder>>)>,
             >,
         );
     );

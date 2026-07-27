@@ -128,12 +128,12 @@ unsafe impl RefEncode for AXSettingsFeature {
 #[inline]
 pub unsafe fn AXOpenSettingsFeature(
     feature: AXSettingsFeature,
-    completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+    completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
 ) {
     extern "C-unwind" {
         fn AXOpenSettingsFeature(
             feature: AXSettingsFeature,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     }
     unsafe { AXOpenSettingsFeature(feature, completion_handler) }

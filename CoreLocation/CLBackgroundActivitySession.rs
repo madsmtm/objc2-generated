@@ -93,7 +93,7 @@ impl CLBackgroundActivitySession {
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundActivitySessionWithQueue_handler(
             queue: &DispatchQueue,
-            handler: &block2::DynBlock<dyn Fn(NonNull<CLBackgroundActivitySessionDiagnostic>)>,
+            handler: &block2::Block<'static, fn(NonNull<CLBackgroundActivitySessionDiagnostic>)>,
         ) -> Retained<Self>;
     );
 }

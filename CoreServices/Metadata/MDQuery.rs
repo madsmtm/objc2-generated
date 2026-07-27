@@ -1238,15 +1238,19 @@ impl MDQuery {
     pub unsafe fn set_sort_comparator_block(
         &self,
         comparator: Option<
-            &block2::DynBlock<dyn Fn(*mut *const CFType, *mut *const CFType) -> CFComparisonResult>,
+            &block2::Block<
+                'static,
+                fn(*mut *const CFType, *mut *const CFType) -> CFComparisonResult,
+            >,
         >,
     ) {
         extern "C-unwind" {
             fn MDQuerySetSortComparatorBlock(
                 query: &MDQuery,
                 comparator: Option<
-                    &block2::DynBlock<
-                        dyn Fn(*mut *const CFType, *mut *const CFType) -> CFComparisonResult,
+                    &block2::Block<
+                        'static,
+                        fn(*mut *const CFType, *mut *const CFType) -> CFComparisonResult,
                     >,
                 >,
             );

@@ -9,12 +9,13 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharepreparationcompletionhandler?language=objc)
 #[cfg(all(feature = "CKRecord", feature = "CKShare", feature = "block2"))]
-pub type CKSharePreparationCompletionHandler = block2::DynBlock<dyn Fn(*mut CKShare, *mut NSError)>;
+pub type CKSharePreparationCompletionHandler =
+    block2::Block<'static, fn(*mut CKShare, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharepreparationhandler?language=objc)
 #[cfg(all(feature = "CKRecord", feature = "CKShare", feature = "block2"))]
 pub type CKSharePreparationHandler =
-    block2::DynBlock<dyn Fn(NonNull<CKSharePreparationCompletionHandler>)>;
+    block2::Block<'static, fn(NonNull<CKSharePreparationCompletionHandler>)>;
 
 mod private_NSItemProviderCKSharingSupport {
     pub trait Sealed {}

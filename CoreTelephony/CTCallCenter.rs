@@ -31,7 +31,7 @@ impl CTCallCenter {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(callEventHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn callEventHandler(&self) -> *mut block2::DynBlock<dyn Fn(NonNull<CTCall>)>;
+        pub unsafe fn callEventHandler(&self) -> *mut block2::Block<'static, fn(NonNull<CTCall>)>;
 
         #[cfg(all(feature = "CTCall", feature = "block2"))]
         /// Setter for [`callEventHandler`][Self::callEventHandler].
@@ -41,7 +41,7 @@ impl CTCallCenter {
         #[unsafe(method_family = none)]
         pub unsafe fn setCallEventHandler(
             &self,
-            call_event_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CTCall>)>>,
+            call_event_handler: Option<&block2::Block<'static, fn(NonNull<CTCall>)>>,
         );
     );
 }

@@ -69,8 +69,9 @@ impl UIDeferredMenuElement {
         #[unsafe(method(elementWithProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementWithProvider(
-            element_provider: &block2::DynBlock<
-                dyn Fn(NonNull<block2::DynBlock<dyn Fn(NonNull<NSArray<UIMenuElement>>)>>),
+            element_provider: &block2::Block<
+                'static,
+                fn(NonNull<block2::Block<'static, fn(NonNull<NSArray<UIMenuElement>>)>>),
             >,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
@@ -92,8 +93,9 @@ impl UIDeferredMenuElement {
         #[unsafe(method(elementWithUncachedProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementWithUncachedProvider(
-            element_provider: &block2::DynBlock<
-                dyn Fn(NonNull<block2::DynBlock<dyn Fn(NonNull<NSArray<UIMenuElement>>)>>),
+            element_provider: &block2::Block<
+                'static,
+                fn(NonNull<block2::Block<'static, fn(NonNull<NSArray<UIMenuElement>>)>>),
             >,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
@@ -163,8 +165,9 @@ impl UIDeferredMenuElementProvider {
         #[unsafe(method(providerWithElementProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerWithElementProvider(
-            element_provider: &block2::DynBlock<
-                dyn Fn(NonNull<block2::DynBlock<dyn Fn(NonNull<NSArray<UIMenuElement>>)>>),
+            element_provider: &block2::Block<
+                'static,
+                fn(NonNull<block2::Block<'static, fn(NonNull<NSArray<UIMenuElement>>)>>),
             >,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;

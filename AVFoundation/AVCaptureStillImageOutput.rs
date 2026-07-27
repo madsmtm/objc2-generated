@@ -190,7 +190,7 @@ impl AVCaptureStillImageOutput {
         pub unsafe fn captureStillImageAsynchronouslyFromConnection_completionHandler(
             &self,
             connection: &AVCaptureConnection,
-            handler: &block2::DynBlock<dyn Fn(*mut CMSampleBuffer, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut CMSampleBuffer, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-core-media")]
@@ -406,7 +406,7 @@ impl AVCaptureStillImageOutput {
             &self,
             connection: &AVCaptureConnection,
             settings: &NSArray<AVCaptureBracketedStillImageSettings>,
-            handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -432,12 +432,9 @@ impl AVCaptureStillImageOutput {
             &self,
             connection: &AVCaptureConnection,
             settings: &NSArray<AVCaptureBracketedStillImageSettings>,
-            handler: &block2::DynBlock<
-                dyn Fn(
-                    *mut CMSampleBuffer,
-                    *mut AVCaptureBracketedStillImageSettings,
-                    *mut NSError,
-                ),
+            handler: &block2::Block<
+                'static,
+                fn(*mut CMSampleBuffer, *mut AVCaptureBracketedStillImageSettings, *mut NSError),
             >,
         );
     );

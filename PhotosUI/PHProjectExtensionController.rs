@@ -67,7 +67,7 @@ extern_protocol!(
             &self,
             extension_context: &PHProjectExtensionContext,
             project_info: &PHProjectInfo,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "PHProjectExtensionContext", feature = "block2"))]
@@ -81,7 +81,7 @@ extern_protocol!(
         unsafe fn resumeProjectWithExtensionContext_completion(
             &self,
             extension_context: &PHProjectExtensionContext,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -95,7 +95,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn finishProjectWithCompletionHandler(
             &self,
-            completion: &block2::DynBlock<dyn Fn()>,
+            completion: &block2::Block<'static, fn()>,
         );
     }
 );

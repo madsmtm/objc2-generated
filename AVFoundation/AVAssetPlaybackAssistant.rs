@@ -110,8 +110,9 @@ impl AVAssetPlaybackAssistant {
         #[unsafe(method_family = none)]
         pub unsafe fn loadPlaybackConfigurationOptionsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<AVAssetPlaybackConfigurationOption>>),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<AVAssetPlaybackConfigurationOption>>),
             >,
         );
     );

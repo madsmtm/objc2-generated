@@ -201,7 +201,7 @@ impl<ObjectType: Message + AsRef<PHObject>> PHFetchResultChangeDetails<ObjectTyp
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateMovesWithBlock(
             &self,
-            handler: &block2::DynBlock<dyn Fn(NSUInteger, NSUInteger)>,
+            handler: &block2::Block<'static, fn(NSUInteger, NSUInteger)>,
         );
 
         #[unsafe(method(hasMoves))]

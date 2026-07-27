@@ -46,7 +46,7 @@ impl SFSafariApplication {
         #[unsafe(method(getActiveWindowWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getActiveWindowWithCompletionHandler(
-            completion_handler: &block2::DynBlock<dyn Fn(*mut SFSafariWindow)>,
+            completion_handler: &block2::Block<'static, fn(*mut SFSafariWindow)>,
         );
 
         #[cfg(all(feature = "SFSafariWindow", feature = "block2"))]
@@ -58,7 +58,7 @@ impl SFSafariApplication {
         #[unsafe(method(getAllWindowsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAllWindowsWithCompletionHandler(
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<SFSafariWindow>>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<SFSafariWindow>>)>,
         );
 
         #[cfg(all(feature = "SFSafariWindow", feature = "block2"))]
@@ -71,7 +71,7 @@ impl SFSafariApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn openWindowWithURL_completionHandler(
             url: &NSURL,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut SFSafariWindow)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut SFSafariWindow)>>,
         );
 
         /// This will cause -validateToolbarItemInWindow:completionHandler: to be called on all windows, to let the extension update enabled states or badges of its toolbar items.
@@ -89,7 +89,7 @@ impl SFSafariApplication {
         #[unsafe(method(getHostApplicationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getHostApplicationWithCompletionHandler(
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSRunningApplication>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSRunningApplication>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -102,7 +102,7 @@ impl SFSafariApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn showPreferencesForExtensionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -116,7 +116,7 @@ impl SFSafariApplication {
             message_name: &NSString,
             identifier: &NSString,
             user_info: Option<&NSDictionary<NSString, AnyObject>>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }

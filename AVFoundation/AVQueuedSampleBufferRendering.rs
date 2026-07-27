@@ -115,7 +115,7 @@ extern_protocol!(
         unsafe fn requestMediaDataWhenReadyOnQueue_usingBlock(
             &self,
             queue: &DispatchQueue,
-            block: &block2::DynBlock<dyn Fn()>,
+            block: &block2::Block<'static, fn()>,
         );
 
         /// Cancels any current requestMediaDataWhenReadyOnQueue:usingBlock: call.

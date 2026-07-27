@@ -151,8 +151,9 @@ impl FSTask {
         /// The returned block must be sendable.
         #[unsafe(method(cancellationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancellationHandler(&self)
-            -> *mut block2::DynBlock<dyn Fn() -> *mut NSError>;
+        pub unsafe fn cancellationHandler(
+            &self,
+        ) -> *mut block2::Block<'static, fn() -> *mut NSError>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`cancellationHandler`][Self::cancellationHandler].
@@ -166,7 +167,7 @@ impl FSTask {
         #[unsafe(method_family = none)]
         pub unsafe fn setCancellationHandler(
             &self,
-            cancellation_handler: Option<&block2::DynBlock<dyn Fn() -> *mut NSError>>,
+            cancellation_handler: Option<&block2::Block<'static, fn() -> *mut NSError>>,
         );
     );
 }

@@ -131,7 +131,7 @@ impl NSDocumentController {
         #[unsafe(method_family = none)]
         pub fn beginOpenPanelWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<NSURL>)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSArray<NSURL>)>,
         );
 
         #[cfg(all(
@@ -148,7 +148,7 @@ impl NSDocumentController {
             &self,
             open_panel: &NSOpenPanel,
             in_types: Option<&NSArray<NSString>>,
-            completion_handler: &block2::DynBlock<dyn Fn(NSInteger)>,
+            completion_handler: &block2::Block<'static, fn(NSInteger)>,
         );
 
         #[cfg(all(feature = "NSDocument", feature = "block2"))]
@@ -158,7 +158,7 @@ impl NSDocumentController {
             &self,
             url: &NSURL,
             display_document: bool,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSDocument, Bool, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSDocument, Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "NSDocument")]
@@ -178,7 +178,7 @@ impl NSDocumentController {
             url_or_nil: Option<&NSURL>,
             contents_url: &NSURL,
             display_document: bool,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSDocument, Bool, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSDocument, Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "NSDocument")]

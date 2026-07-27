@@ -89,7 +89,7 @@ impl SKMutableTexture {
         #[unsafe(method_family = none)]
         pub unsafe fn modifyPixelDataWithBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn(*mut c_void, usize)>,
+            block: &block2::Block<'static, fn(*mut c_void, usize)>,
         );
     );
 }

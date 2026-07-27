@@ -115,7 +115,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn addAnimations_delayFactor(
             &self,
-            animation: &block2::DynBlock<dyn Fn()>,
+            animation: &block2::Block<'static, fn()>,
             delay_factor: CGFloat,
         );
 
@@ -123,13 +123,13 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(addAnimations:))]
         #[unsafe(method_family = none)]
-        fn addAnimations(&self, animation: &block2::DynBlock<dyn Fn()>);
+        fn addAnimations(&self, animation: &block2::Block<'static, fn()>);
 
         #[cfg(feature = "block2")]
         #[optional]
         #[unsafe(method(addCompletion:))]
         #[unsafe(method_family = none)]
-        fn addCompletion(&self, completion: &block2::DynBlock<dyn Fn(UIViewAnimatingPosition)>);
+        fn addCompletion(&self, completion: &block2::Block<'static, fn(UIViewAnimatingPosition)>);
 
         #[cfg(all(feature = "UITimingCurveProvider", feature = "objc2-core-foundation"))]
         #[optional]

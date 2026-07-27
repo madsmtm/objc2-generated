@@ -75,7 +75,7 @@ impl HMCameraStream {
         pub unsafe fn updateAudioStreamSetting_completionHandler(
             &self,
             audio_stream_setting: HMCameraAudioStreamSetting,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[deprecated = "HMCameraStream objects are created by their parent container objects. Directly creating them is not supported."]

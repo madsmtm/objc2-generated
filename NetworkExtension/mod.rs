@@ -114,7 +114,7 @@ impl NEAppProxyFlow {
         pub unsafe fn openWithLocalFlowEndpoint_completionHandler(
             &self,
             local_endpoint: Option<&NWEndpoint>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -133,7 +133,7 @@ impl NEAppProxyFlow {
         pub unsafe fn openWithLocalEndpoint_completionHandler(
             &self,
             local_endpoint: Option<&NEHostEndpoint>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// This function is used by an NEProvider implementation to indicate that it does not want to receive any more data from the flow.
@@ -290,7 +290,7 @@ impl NEProvider {
         #[unsafe(method_family = none)]
         pub unsafe fn sleepWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         /// This function is called by the framework immediately after the system wakes up from sleep. Subclass developers can override this method to implement custom behavior such as re-establishing connections or resuming some network activity.
@@ -356,7 +356,7 @@ impl NEProvider {
         pub unsafe fn displayMessage_completionHandler(
             &self,
             message: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
+            completion_handler: &block2::Block<'static, fn(Bool)>,
         );
 
         /// Start the Network Extension machinery in a system extension (.system bundle). This class method will cause the calling system extension to start handling
@@ -514,7 +514,7 @@ impl NETunnelProvider {
         pub unsafe fn handleAppMessage_completionHandler(
             &self,
             message_data: &NSData,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSData)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSData)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -532,7 +532,7 @@ impl NETunnelProvider {
         pub unsafe fn setTunnelNetworkSettings_completionHandler(
             &self,
             tunnel_network_settings: Option<&NETunnelNetworkSettings>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         /// An NEVPNProtocol object containing the provider's current configuration. The value of this property may change during the lifetime of the tunnel provided by this NETunnelProvider, KVO can be used to detect when changes occur.  For different protocol types, this property will contain the corresponding subclass.   For NEVPNProtocolTypePlugin protocol type, this property will contain the NETunnelProviderProtocol subclass.  For NEVPNProtocolTypeIKEv2 protocol type, this property will contain the NEVPNProtocolIKEv2 subclass.
@@ -608,7 +608,7 @@ impl NEAppProxyProvider {
         pub unsafe fn startProxyWithOptions_completionHandler(
             &self,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -626,7 +626,7 @@ impl NEAppProxyProvider {
         pub unsafe fn stopProxyWithReason_completionHandler(
             &self,
             reason: NEProviderStopReason,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         /// This function is called by proxy provider implementations to stop the proxy when a network error is encountered that renders the proxy no longer viable. Subclasses should not override this method.
@@ -778,7 +778,7 @@ impl NEVPNManager {
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -793,7 +793,7 @@ impl NEVPNManager {
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -809,7 +809,7 @@ impl NEVPNManager {
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "objc2-security")]
@@ -941,8 +941,9 @@ impl NETunnelProviderManager {
         #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<NETunnelProviderManager>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<NETunnelProviderManager>, *mut NSError),
             >,
         );
 
@@ -1090,8 +1091,9 @@ impl NEAppProxyProviderManager {
         #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<NEAppProxyProviderManager>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<NEAppProxyProviderManager>, *mut NSError),
             >,
         );
     );
@@ -1147,7 +1149,7 @@ impl NEAppProxyTCPFlow {
         #[unsafe(method_family = none)]
         pub unsafe fn readDataWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1165,7 +1167,7 @@ impl NEAppProxyTCPFlow {
         pub unsafe fn writeData_withCompletionHandler(
             &self,
             data: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "objc2-network")]
@@ -1226,8 +1228,9 @@ impl NEAppProxyUDPFlow {
         #[unsafe(method_family = none)]
         pub unsafe fn readDatagramsAndFlowEndpointsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<NSData>, *mut NWEndpointArray, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<NSData>, *mut NWEndpointArray, *mut NSError),
             >,
         );
 
@@ -1240,8 +1243,9 @@ impl NEAppProxyUDPFlow {
         #[unsafe(method_family = none)]
         pub unsafe fn readDatagramsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<NSData>, *mut NSArray<NEEndpoint>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<NSData>, *mut NSArray<NEEndpoint>, *mut NSError),
             >,
         );
 
@@ -1263,7 +1267,7 @@ impl NEAppProxyUDPFlow {
             &self,
             datagrams: &NSArray<NSData>,
             remote_endpoints: &NWEndpointArray,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1285,7 +1289,7 @@ impl NEAppProxyUDPFlow {
             &self,
             datagrams: &NSArray<NSData>,
             remote_endpoints: &NSArray<NEEndpoint>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "objc2-network")]
@@ -1513,7 +1517,7 @@ impl NEDNSProxyManager {
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1528,7 +1532,7 @@ impl NEDNSProxyManager {
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1543,7 +1547,7 @@ impl NEDNSProxyManager {
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// A string containing a description of the DNS proxy.
@@ -1629,7 +1633,7 @@ impl NEDNSProxyProvider {
         pub unsafe fn startProxyWithOptions_completionHandler(
             &self,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1647,7 +1651,7 @@ impl NEDNSProxyProvider {
         pub unsafe fn stopProxyWithReason_completionHandler(
             &self,
             reason: NEProviderStopReason,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         /// This function is called by proxy provider implementations to stop the proxy when a network error is encountered that renders the proxy no longer viable. Subclasses should not override this method.
@@ -2701,7 +2705,7 @@ impl NEDNSSettingsManager {
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2716,7 +2720,7 @@ impl NEDNSSettingsManager {
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -2731,7 +2735,7 @@ impl NEDNSSettingsManager {
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// A string containing a description of the DNS settings.
@@ -3394,7 +3398,7 @@ impl NEFilterProvider {
         #[unsafe(method_family = none)]
         pub unsafe fn startFilterWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -3413,7 +3417,7 @@ impl NEFilterProvider {
         pub unsafe fn stopFilterWithReason_completionHandler(
             &self,
             reason: NEProviderStopReason,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         /// An NEContentFilterConfiguration object containing the current filter configuration. The value of this
@@ -3978,7 +3982,7 @@ impl NEFilterControlProvider {
         pub unsafe fn handleRemediationForFlow_completionHandler(
             &self,
             flow: &NEFilterFlow,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NEFilterControlVerdict>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NEFilterControlVerdict>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -3996,7 +4000,7 @@ impl NEFilterControlProvider {
         pub unsafe fn handleNewFlow_completionHandler(
             &self,
             flow: &NEFilterFlow,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NEFilterControlVerdict>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NEFilterControlVerdict>)>,
         );
 
         /// This function is called by filter control implementations to notify the data provider "out of band" that the rules changed.
@@ -4157,7 +4161,7 @@ impl NEFilterDataProvider {
         pub unsafe fn applySettings_completionHandler(
             &self,
             settings: Option<&NEFilterSettings>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// This function is called by the provider to resume a flow that was previously paused by the provider returning a pause verdict.
@@ -4490,7 +4494,7 @@ impl NEFilterManager {
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -4505,7 +4509,7 @@ impl NEFilterManager {
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -4520,7 +4524,7 @@ impl NEFilterManager {
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// A string containing a description of the filter.
@@ -4665,8 +4669,9 @@ unsafe impl RefEncode for NEFilterPacketProviderVerdict {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpackethandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-network"))]
-pub type NEFilterPacketHandler = block2::DynBlock<
-    dyn Fn(
+pub type NEFilterPacketHandler = block2::Block<
+    'static,
+    fn(
         NonNull<NEFilterPacketContext>,
         NonNull<NWInterface>,
         NETrafficDirection,
@@ -5244,7 +5249,7 @@ impl NEHotspotNetwork {
         #[unsafe(method(fetchCurrentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchCurrentWithCompletionHandler(
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NEHotspotNetwork)>,
+            completion_handler: &block2::Block<'static, fn(*mut NEHotspotNetwork)>,
         );
     );
 }
@@ -5612,7 +5617,7 @@ impl NEHotspotHelperResponse {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type NEHotspotHelperHandler = block2::DynBlock<dyn Fn(NonNull<NEHotspotHelperCommand>)>;
+pub type NEHotspotHelperHandler = block2::Block<'static, fn(NonNull<NEHotspotHelperCommand>)>;
 
 extern "C" {
     /// The string displayed in Wi-Fi Settings for a network handled by
@@ -6459,7 +6464,7 @@ impl NEHotspotConfigurationManager {
         pub unsafe fn applyConfiguration_completionHandler(
             &self,
             configuration: &NEHotspotConfiguration,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         /// This function removes Wi-Fi configuration.
@@ -6489,7 +6494,7 @@ impl NEHotspotConfigurationManager {
         #[unsafe(method_family = none)]
         pub unsafe fn getConfiguredSSIDsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSString>>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSString>>)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-accessory-setup-kit"))]
@@ -6518,7 +6523,7 @@ impl NEHotspotConfigurationManager {
             &self,
             accessory: &ASAccessory,
             passphrase: &NSString,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-accessory-setup-kit"))]
@@ -6543,7 +6548,7 @@ impl NEHotspotConfigurationManager {
         pub unsafe fn joinAccessoryHotspotWithoutSecurity_completionHandler(
             &self,
             accessory: &ASAccessory,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -7285,7 +7290,7 @@ impl NEPacketTunnelProvider {
         pub unsafe fn startTunnelWithOptions_completionHandler(
             &self,
             options: Option<&NSDictionary<NSString, NSObject>>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -7303,7 +7308,7 @@ impl NEPacketTunnelProvider {
         pub unsafe fn stopTunnelWithReason_completionHandler(
             &self,
             reason: NEProviderStopReason,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         /// This function is called by tunnel provider implementations to initiate tunnel destruction when a network error is encountered that renders the tunnel no longer viable. Subclasses should not override this method.
@@ -8029,8 +8034,9 @@ impl NEPacketTunnelFlow {
         #[unsafe(method_family = none)]
         pub unsafe fn readPacketsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<NSData>>, NonNull<NSArray<NSNumber>>),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<NSData>>, NonNull<NSArray<NSNumber>>),
             >,
         );
 
@@ -8059,7 +8065,7 @@ impl NEPacketTunnelFlow {
         #[unsafe(method_family = none)]
         pub unsafe fn readPacketObjectsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NEPacket>>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NEPacket>>)>,
         );
 
         /// Write multiple IP packets to the flow.
@@ -8371,7 +8377,7 @@ impl NERelayManager {
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -8386,7 +8392,7 @@ impl NERelayManager {
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -8401,7 +8407,7 @@ impl NERelayManager {
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -8419,7 +8425,7 @@ impl NERelayManager {
         pub unsafe fn getLastClientErrors_completionHandler(
             &self,
             seconds: NSTimeInterval,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<NSError>)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSArray<NSError>)>,
         );
 
         /// A string containing a description of the relay.
@@ -8545,8 +8551,9 @@ impl NERelayManager {
         #[unsafe(method(loadAllManagersFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllManagersFromPreferencesWithCompletionHandler(
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<NERelayManager>>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<NERelayManager>>, *mut NSError),
             >,
         );
     );
@@ -8593,8 +8600,9 @@ impl NETransparentProxyManager {
         #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<NETransparentProxyManager>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<NETransparentProxyManager>, *mut NSError),
             >,
         );
     );
@@ -8931,7 +8939,7 @@ impl NEVPNConnection {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchLastDisconnectErrorWithCompletionHandler(
             &self,
-            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// The current status of the VPN.
@@ -9024,7 +9032,7 @@ impl NETunnelProviderSession {
             &self,
             message_data: &NSData,
             error: Option<&mut Option<Retained<NSError>>>,
-            response_handler: Option<&block2::DynBlock<dyn Fn(*mut NSData)>>,
+            response_handler: Option<&block2::Block<'static, fn(*mut NSData)>>,
         ) -> bool;
     );
 }
@@ -10151,8 +10159,9 @@ impl NEAppPushManager {
         #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<NEAppPushManager>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<NEAppPushManager>, *mut NSError),
             >,
         );
 
@@ -10168,7 +10177,7 @@ impl NEAppPushManager {
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -10183,7 +10192,7 @@ impl NEAppPushManager {
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -10198,7 +10207,7 @@ impl NEAppPushManager {
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// A string containing a description of the app push manager.
@@ -10300,7 +10309,7 @@ impl NEAppPushProvider {
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// This method is called by the framework when the provider is started. Subclasses must override this method to create a connection with its server.
@@ -10323,7 +10332,7 @@ impl NEAppPushProvider {
         pub unsafe fn stopWithReason_completionHandler(
             &self,
             reason: NEProviderStopReason,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         /// This function is called by the provider when it determines incoming call on the conection.
@@ -10850,7 +10859,7 @@ impl NETCPConnection {
         pub unsafe fn readLength_completionHandler(
             &self,
             length: NSUInteger,
-            completion: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -10885,7 +10894,7 @@ impl NETCPConnection {
             &self,
             minimum: NSUInteger,
             maximum: NSUInteger,
-            completion: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -10902,7 +10911,7 @@ impl NETCPConnection {
         pub unsafe fn write_completionHandler(
             &self,
             data: &NSData,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// Close this connection's write side such that further write requests won't succeed.
@@ -10971,8 +10980,9 @@ extern_protocol!(
         unsafe fn provideIdentityForConnection_completionHandler(
             &self,
             connection: &NETCPConnection,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<SecIdentity>, NonNull<NSArray<AnyObject>>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<SecIdentity>, NonNull<NSArray<AnyObject>>),
             >,
         );
 
@@ -11017,7 +11027,7 @@ extern_protocol!(
             &self,
             connection: &NETCPConnection,
             peer_certificate_chain: &NSArray<AnyObject>,
-            completion: &block2::DynBlock<dyn Fn(NonNull<SecTrust>)>,
+            completion: &block2::Block<'static, fn(NonNull<SecTrust>)>,
         );
     }
 );
@@ -11174,7 +11184,7 @@ impl NEUDPSession {
         #[unsafe(method_family = none)]
         pub unsafe fn setReadHandler_maxDatagrams(
             &self,
-            handler: &block2::DynBlock<dyn Fn(*mut NSArray<NSData>, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut NSArray<NSData>, *mut NSError)>,
             max_datagrams: NSUInteger,
         );
 
@@ -11191,7 +11201,7 @@ impl NEUDPSession {
         pub unsafe fn writeMultipleDatagrams_completionHandler(
             &self,
             datagram_array: &NSArray<NSData>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -11207,7 +11217,7 @@ impl NEUDPSession {
         pub unsafe fn writeDatagram_completionHandler(
             &self,
             datagram: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// Move into the NWUDPSessionStateCancelled state. The connection will be terminated,
@@ -11384,7 +11394,7 @@ impl NEURLFilter {
         #[unsafe(method_family = none)]
         pub unsafe fn verdictForURL_completionHandler(
             url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(NEURLFilterVerdict)>,
+            completion_handler: &block2::Block<'static, fn(NEURLFilterVerdict)>,
         );
     );
 }

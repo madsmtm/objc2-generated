@@ -31,7 +31,7 @@ impl PHPersistentChangeFetchResult {
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateChangesWithBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn(NonNull<PHPersistentChange>, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<PHPersistentChange>, NonNull<Bool>)>,
         );
     );
 }

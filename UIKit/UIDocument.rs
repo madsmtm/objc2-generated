@@ -173,7 +173,7 @@ impl UIDocument {
         #[unsafe(method_family = none)]
         pub fn openWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -181,7 +181,7 @@ impl UIDocument {
         #[unsafe(method_family = none)]
         pub fn closeWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         /// # Safety
@@ -256,7 +256,7 @@ impl UIDocument {
             &self,
             url: &NSURL,
             save_operation: UIDocumentSaveOperation,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -264,7 +264,7 @@ impl UIDocument {
         #[unsafe(method_family = none)]
         pub fn autosaveWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[unsafe(method(savingFileType))]
@@ -321,7 +321,7 @@ impl UIDocument {
         #[cfg(feature = "block2")]
         #[unsafe(method(performAsynchronousFileAccessUsingBlock:))]
         #[unsafe(method_family = none)]
-        pub fn performAsynchronousFileAccessUsingBlock(&self, block: &block2::DynBlock<dyn Fn()>);
+        pub fn performAsynchronousFileAccessUsingBlock(&self, block: &block2::Block<'static, fn()>);
 
         #[unsafe(method(handleError:userInteractionPermitted:))]
         #[unsafe(method_family = none)]
@@ -345,7 +345,7 @@ impl UIDocument {
         pub fn revertToContentsOfURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
     );
 }

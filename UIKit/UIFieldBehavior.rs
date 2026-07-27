@@ -289,8 +289,9 @@ impl UIFieldBehavior {
         #[unsafe(method(fieldWithEvaluationBlock:))]
         #[unsafe(method_family = none)]
         pub fn fieldWithEvaluationBlock(
-            block: &block2::DynBlock<
-                dyn Fn(
+            block: &block2::Block<
+                'static,
+                fn(
                     NonNull<UIFieldBehavior>,
                     CGPoint,
                     CGVector,

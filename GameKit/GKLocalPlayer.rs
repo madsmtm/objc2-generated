@@ -81,7 +81,7 @@ impl GKLocalPlayer {
         pub unsafe fn loadRecentPlayersWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
             >,
         );
 
@@ -99,7 +99,7 @@ impl GKLocalPlayer {
         pub unsafe fn loadChallengableFriendsWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
             >,
         );
 
@@ -117,7 +117,10 @@ impl GKLocalPlayer {
         pub unsafe fn fetchItemsForIdentityVerificationSignature(
             &self,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError)>,
+                &block2::Block<
+                    'static,
+                    fn(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError),
+                >,
             >,
         );
     );
@@ -225,7 +228,7 @@ impl GKLocalPlayer {
         pub unsafe fn setDefaultLeaderboardCategoryID_completionHandler(
             &self,
             category_id: Option<&NSString>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -237,7 +240,7 @@ impl GKLocalPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn loadDefaultLeaderboardCategoryIDWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSString, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -249,7 +252,7 @@ impl GKLocalPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn authenticateWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -262,7 +265,7 @@ impl GKLocalPlayer {
         pub unsafe fn loadFriendPlayersWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
             >,
         );
 
@@ -281,7 +284,10 @@ impl GKLocalPlayer {
         pub unsafe fn generateIdentityVerificationSignatureWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError)>,
+                &block2::Block<
+                    'static,
+                    fn(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError),
+                >,
             >,
         );
 
@@ -300,7 +306,7 @@ impl GKLocalPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn loadDefaultLeaderboardIdentifierWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSString, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -319,7 +325,7 @@ impl GKLocalPlayer {
         pub unsafe fn setDefaultLeaderboardIdentifier_completionHandler(
             &self,
             leaderboard_identifier: &NSString,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -340,7 +346,7 @@ impl GKLocalPlayer {
         pub unsafe fn loadFriendsWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSArray<NSString>, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSArray<NSString>, *mut NSError)>,
             >,
         );
 
@@ -388,8 +394,9 @@ impl GKLocalPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn loadFriendsAuthorizationStatus(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(GKFriendsAuthorizationStatus, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(GKFriendsAuthorizationStatus, *mut NSError),
             >,
         );
 
@@ -401,7 +408,7 @@ impl GKLocalPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn loadFriends(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -413,7 +420,7 @@ impl GKLocalPlayer {
         pub unsafe fn loadFriendsWithIdentifiers_completionHandler(
             &self,
             identifiers: &NSArray<NSString>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
         );
     );
 }
@@ -433,7 +440,7 @@ impl GKLocalPlayer {
         pub unsafe fn authenticateHandler(
             &self,
             mtm: MainThreadMarker,
-        ) -> *mut block2::DynBlock<dyn Fn(*mut NSViewController, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(*mut NSViewController, *mut NSError)>;
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -445,7 +452,7 @@ impl GKLocalPlayer {
         pub unsafe fn setAuthenticateHandler(
             &self,
             authenticate_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSViewController, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSViewController, *mut NSError)>,
             >,
         );
 

@@ -296,19 +296,21 @@ pub unsafe fn CGBitmapContextCreateAdaptive(
     height: usize,
     auxiliary_info: Option<&CFDictionary>,
     on_resolve: Option<
-        &block2::DynBlock<dyn Fn(NonNull<CGContentInfo>, NonNull<CGBitmapParameters>) -> bool>,
+        &block2::Block<'static, fn(NonNull<CGContentInfo>, NonNull<CGBitmapParameters>) -> bool>,
     >,
     on_allocate: Option<
-        &block2::DynBlock<
-            dyn Fn(
+        &block2::Block<
+            'static,
+            fn(
                 NonNull<CGContentInfo>,
                 NonNull<CGBitmapParameters>,
             ) -> *mut CGRenderingBufferProvider,
         >,
     >,
     on_free: Option<
-        &block2::DynBlock<
-            dyn Fn(
+        &block2::Block<
+            'static,
+            fn(
                 NonNull<CGRenderingBufferProvider>,
                 NonNull<CGContentInfo>,
                 NonNull<CGBitmapParameters>,
@@ -316,8 +318,9 @@ pub unsafe fn CGBitmapContextCreateAdaptive(
         >,
     >,
     on_error: Option<
-        &block2::DynBlock<
-            dyn Fn(NonNull<CFError>, NonNull<CGContentInfo>, NonNull<CGBitmapParameters>),
+        &block2::Block<
+            'static,
+            fn(NonNull<CFError>, NonNull<CGContentInfo>, NonNull<CGBitmapParameters>),
         >,
     >,
 ) -> Option<CFRetained<CGContext>> {
@@ -327,21 +330,24 @@ pub unsafe fn CGBitmapContextCreateAdaptive(
             height: usize,
             auxiliary_info: Option<&CFDictionary>,
             on_resolve: Option<
-                &block2::DynBlock<
-                    dyn Fn(NonNull<CGContentInfo>, NonNull<CGBitmapParameters>) -> bool,
+                &block2::Block<
+                    'static,
+                    fn(NonNull<CGContentInfo>, NonNull<CGBitmapParameters>) -> bool,
                 >,
             >,
             on_allocate: Option<
-                &block2::DynBlock<
-                    dyn Fn(
+                &block2::Block<
+                    'static,
+                    fn(
                         NonNull<CGContentInfo>,
                         NonNull<CGBitmapParameters>,
                     ) -> *mut CGRenderingBufferProvider,
                 >,
             >,
             on_free: Option<
-                &block2::DynBlock<
-                    dyn Fn(
+                &block2::Block<
+                    'static,
+                    fn(
                         NonNull<CGRenderingBufferProvider>,
                         NonNull<CGContentInfo>,
                         NonNull<CGBitmapParameters>,
@@ -349,8 +355,9 @@ pub unsafe fn CGBitmapContextCreateAdaptive(
                 >,
             >,
             on_error: Option<
-                &block2::DynBlock<
-                    dyn Fn(NonNull<CFError>, NonNull<CGContentInfo>, NonNull<CGBitmapParameters>),
+                &block2::Block<
+                    'static,
+                    fn(NonNull<CFError>, NonNull<CGContentInfo>, NonNull<CGBitmapParameters>),
                 >,
             >,
         ) -> Option<NonNull<CGContext>>;

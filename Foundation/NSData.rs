@@ -320,7 +320,7 @@ impl NSData {
         #[unsafe(method_family = none)]
         pub fn enumerateByteRangesUsingBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn(NonNull<c_void>, NSRange, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<c_void>, NSRange, NonNull<Bool>)>,
         );
     );
 }
@@ -433,7 +433,7 @@ impl NSData {
             this: Allocated<Self>,
             bytes: NonNull<c_void>,
             length: NSUInteger,
-            deallocator: Option<&block2::DynBlock<dyn Fn(NonNull<c_void>, NSUInteger)>>,
+            deallocator: Option<&block2::Block<'static, fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
@@ -587,7 +587,7 @@ impl NSMutableData {
             this: Allocated<Self>,
             bytes: NonNull<c_void>,
             length: NSUInteger,
-            deallocator: Option<&block2::DynBlock<dyn Fn(NonNull<c_void>, NSUInteger)>>,
+            deallocator: Option<&block2::Block<'static, fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]

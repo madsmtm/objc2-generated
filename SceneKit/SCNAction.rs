@@ -17,7 +17,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingfunction?language=objc)
 #[cfg(feature = "block2")]
-pub type SCNActionTimingFunction = block2::DynBlock<dyn Fn(c_float) -> c_float>;
+pub type SCNActionTimingFunction = block2::Block<'static, fn(c_float) -> c_float>;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactionable?language=objc)
@@ -38,7 +38,7 @@ extern_protocol!(
         unsafe fn runAction_completionHandler(
             &self,
             action: &SCNAction,
-            block: Option<&block2::DynBlock<dyn Fn()>>,
+            block: Option<&block2::Block<'static, fn()>>,
         );
 
         /// Adds an identifiable action to the list of actions executed by the node.
@@ -58,7 +58,7 @@ extern_protocol!(
             &self,
             action: &SCNAction,
             key: Option<&NSString>,
-            block: Option<&block2::DynBlock<dyn Fn()>>,
+            block: Option<&block2::Block<'static, fn()>>,
         );
 
         /// Returns a Boolean value that indicates whether the node is executing actions.
@@ -328,7 +328,7 @@ impl SCNAction {
         #[unsafe(method(runBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock(
-            block: &block2::DynBlock<dyn Fn(NonNull<SCNNode>)>,
+            block: &block2::Block<'static, fn(NonNull<SCNNode>)>,
         ) -> Retained<SCNAction>;
 
         #[cfg(all(feature = "SCNNode", feature = "block2", feature = "dispatch2"))]
@@ -339,7 +339,7 @@ impl SCNAction {
         #[unsafe(method(runBlock:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock_queue(
-            block: &block2::DynBlock<dyn Fn(NonNull<SCNNode>)>,
+            block: &block2::Block<'static, fn(NonNull<SCNNode>)>,
             queue: &DispatchQueue,
         ) -> Retained<SCNAction>;
 
@@ -362,7 +362,7 @@ impl SCNAction {
         #[unsafe(method_family = none)]
         pub unsafe fn customActionWithDuration_actionBlock(
             seconds: NSTimeInterval,
-            block: &block2::DynBlock<dyn Fn(NonNull<SCNNode>, CGFloat)>,
+            block: &block2::Block<'static, fn(NonNull<SCNNode>, CGFloat)>,
         ) -> Retained<SCNAction>;
 
         #[cfg(feature = "SCNAudioSource")]

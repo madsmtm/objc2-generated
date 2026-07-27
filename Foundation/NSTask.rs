@@ -194,7 +194,8 @@ impl NSTask {
         /// The returned block must be sendable.
         #[unsafe(method(terminationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn terminationHandler(&self) -> *mut block2::DynBlock<dyn Fn(NonNull<NSTask>)>;
+        pub unsafe fn terminationHandler(&self)
+            -> *mut block2::Block<'static, fn(NonNull<NSTask>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`terminationHandler`][Self::terminationHandler].
@@ -208,7 +209,7 @@ impl NSTask {
         #[unsafe(method_family = none)]
         pub unsafe fn setTerminationHandler(
             &self,
-            termination_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSTask>)>>,
+            termination_handler: Option<&block2::Block<'static, fn(NonNull<NSTask>)>>,
         );
 
         #[cfg(feature = "NSObjCRuntime")]
@@ -259,7 +260,7 @@ impl NSTask {
             url: &NSURL,
             arguments: &NSArray<NSString>,
             error: Option<&mut Option<Retained<NSError>>>,
-            termination_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSTask>)>>,
+            termination_handler: Option<&block2::Block<'static, fn(NonNull<NSTask>)>>,
         ) -> Option<Retained<NSTask>>;
 
         #[unsafe(method(waitUntilExit))]

@@ -133,7 +133,7 @@ impl NSDraggingItem {
         #[unsafe(method_family = none)]
         pub fn imageComponentsProvider(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn() -> NonNull<NSArray<NSDraggingImageComponent>>>;
+        ) -> *mut block2::Block<'static, fn() -> NonNull<NSArray<NSDraggingImageComponent>>>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`imageComponentsProvider`][Self::imageComponentsProvider].
@@ -148,7 +148,7 @@ impl NSDraggingItem {
         pub unsafe fn setImageComponentsProvider(
             &self,
             image_components_provider: Option<
-                &block2::DynBlock<dyn Fn() -> NonNull<NSArray<NSDraggingImageComponent>>>,
+                &block2::Block<'static, fn() -> NonNull<NSArray<NSDraggingImageComponent>>>,
             >,
         );
 

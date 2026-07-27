@@ -246,7 +246,7 @@ impl AVAsset {
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut AVAssetTrack, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut AVAssetTrack, *mut NSError)>,
         );
 
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMediaFormat"))]
@@ -285,7 +285,10 @@ impl AVAsset {
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<AVAssetTrack>, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<AVAssetTrack>, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMediaFormat"))]
@@ -324,7 +327,10 @@ impl AVAsset {
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<AVAssetTrack>, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<AVAssetTrack>, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "AVAssetTrackGroup")]
@@ -405,8 +411,9 @@ impl AVAsset {
         pub unsafe fn loadMetadataForFormat_completionHandler(
             &self,
             format: &AVMetadataFormat,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<AVMetadataItem>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<AVMetadataItem>, *mut NSError),
             >,
         );
     );
@@ -468,8 +475,9 @@ impl AVAsset {
             &self,
             locale: &NSLocale,
             common_keys: &NSArray<AVMetadataKey>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<AVTimedMetadataGroup>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<AVTimedMetadataGroup>, *mut NSError),
             >,
         );
 
@@ -515,8 +523,9 @@ impl AVAsset {
         pub unsafe fn loadChapterMetadataGroupsBestMatchingPreferredLanguages_completionHandler(
             &self,
             preferred_languages: &NSArray<NSString>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<AVTimedMetadataGroup>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<AVTimedMetadataGroup>, *mut NSError),
             >,
         );
     );
@@ -583,7 +592,10 @@ impl AVAsset {
         pub unsafe fn loadMediaSelectionGroupForMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut AVMediaSelectionGroup, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut AVMediaSelectionGroup, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "AVMediaSelection")]
@@ -1048,7 +1060,7 @@ impl AVURLAsset {
         pub unsafe fn findCompatibleTrackForCompositionTrack_completionHandler(
             &self,
             composition_track: &AVCompositionTrack,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut AVAssetTrack, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut AVAssetTrack, *mut NSError)>,
         );
     );
 }
@@ -1451,8 +1463,9 @@ impl AVFragmentedAsset {
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut AVFragmentedAssetTrack, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut AVFragmentedAssetTrack, *mut NSError),
             >,
         );
 
@@ -1492,8 +1505,9 @@ impl AVFragmentedAsset {
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<AVFragmentedAssetTrack>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<AVFragmentedAssetTrack>, *mut NSError),
             >,
         );
 
@@ -1533,8 +1547,9 @@ impl AVFragmentedAsset {
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<AVFragmentedAssetTrack>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<AVFragmentedAssetTrack>, *mut NSError),
             >,
         );
     );

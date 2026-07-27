@@ -121,8 +121,9 @@ extern_protocol!(
         unsafe fn handleSetDefrosterSettingsInCar_completion(
             &self,
             intent: &INSetDefrosterSettingsInCarIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INSetDefrosterSettingsInCarIntentResponse>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INSetDefrosterSettingsInCarIntentResponse>),
             >,
         );
 
@@ -154,8 +155,9 @@ extern_protocol!(
         unsafe fn confirmSetDefrosterSettingsInCar_completion(
             &self,
             intent: &INSetDefrosterSettingsInCarIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INSetDefrosterSettingsInCarIntentResponse>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INSetDefrosterSettingsInCarIntentResponse>),
             >,
         );
 
@@ -187,7 +189,7 @@ extern_protocol!(
         unsafe fn resolveEnableForSetDefrosterSettingsInCar_withCompletion(
             &self,
             intent: &INSetDefrosterSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -206,7 +208,7 @@ extern_protocol!(
         unsafe fn resolveDefrosterForSetDefrosterSettingsInCar_withCompletion(
             &self,
             intent: &INSetDefrosterSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCarDefrosterResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCarDefrosterResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -224,7 +226,7 @@ extern_protocol!(
         unsafe fn resolveCarNameForSetDefrosterSettingsInCar_withCompletion(
             &self,
             intent: &INSetDefrosterSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
     }
 );

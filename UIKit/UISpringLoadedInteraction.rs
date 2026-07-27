@@ -80,8 +80,9 @@ impl UISpringLoadedInteraction {
             this: Allocated<Self>,
             interaction_behavior: Option<&ProtocolObject<dyn UISpringLoadedInteractionBehavior>>,
             interaction_effect: Option<&ProtocolObject<dyn UISpringLoadedInteractionEffect>>,
-            handler: &block2::DynBlock<
-                dyn Fn(
+            handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<UISpringLoadedInteraction>,
                     NonNull<ProtocolObject<dyn UISpringLoadedInteractionContext>>,
                 ),
@@ -99,8 +100,9 @@ impl UISpringLoadedInteraction {
         #[unsafe(method_family = init)]
         pub fn initWithActivationHandler(
             this: Allocated<Self>,
-            handler: &block2::DynBlock<
-                dyn Fn(
+            handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<UISpringLoadedInteraction>,
                     NonNull<ProtocolObject<dyn UISpringLoadedInteractionContext>>,
                 ),

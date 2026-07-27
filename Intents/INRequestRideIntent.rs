@@ -141,7 +141,7 @@ extern_protocol!(
         unsafe fn handleRequestRide_completion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRequestRideIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRequestRideIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -171,7 +171,7 @@ extern_protocol!(
         unsafe fn confirmRequestRide_completion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRequestRideIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRequestRideIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -201,7 +201,7 @@ extern_protocol!(
         unsafe fn resolvePickupLocationForRequestRide_withCompletion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -219,7 +219,7 @@ extern_protocol!(
         unsafe fn resolveDropOffLocationForRequestRide_withCompletion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -237,7 +237,7 @@ extern_protocol!(
         unsafe fn resolveRideOptionNameForRequestRide_withCompletion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -255,7 +255,7 @@ extern_protocol!(
         unsafe fn resolvePartySizeForRequestRide_withCompletion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -273,7 +273,7 @@ extern_protocol!(
         unsafe fn resolveScheduledPickupTimeForRequestRide_withCompletion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
     }
 );

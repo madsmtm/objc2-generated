@@ -33,7 +33,7 @@ impl SFSafariExtension {
         #[unsafe(method(getBaseURIWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getBaseURIWithCompletionHandler(
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSURL)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSURL)>,
         );
     );
 }

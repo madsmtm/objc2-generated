@@ -106,17 +106,15 @@ extern_protocol!(
         fn animateAlongsideTransition_completion(
             &self,
             animation: Option<
-                &block2::DynBlock<
-                    dyn Fn(
-                        NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>,
-                    ),
+                &block2::Block<
+                    'static,
+                    fn(NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>),
                 >,
             >,
             completion: Option<
-                &block2::DynBlock<
-                    dyn Fn(
-                        NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>,
-                    ),
+                &block2::Block<
+                    'static,
+                    fn(NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>),
                 >,
             >,
         ) -> bool;
@@ -128,17 +126,15 @@ extern_protocol!(
             &self,
             view: Option<&UIView>,
             animation: Option<
-                &block2::DynBlock<
-                    dyn Fn(
-                        NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>,
-                    ),
+                &block2::Block<
+                    'static,
+                    fn(NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>),
                 >,
             >,
             completion: Option<
-                &block2::DynBlock<
-                    dyn Fn(
-                        NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>,
-                    ),
+                &block2::Block<
+                    'static,
+                    fn(NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>),
                 >,
             >,
         ) -> bool;
@@ -149,8 +145,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn notifyWhenInteractionEndsUsingBlock(
             &self,
-            handler: &block2::DynBlock<
-                dyn Fn(NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>),
+            handler: &block2::Block<
+                'static,
+                fn(NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>),
             >,
         );
 
@@ -159,8 +156,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn notifyWhenInteractionChangesUsingBlock(
             &self,
-            handler: &block2::DynBlock<
-                dyn Fn(NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>),
+            handler: &block2::Block<
+                'static,
+                fn(NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>),
             >,
         );
     }

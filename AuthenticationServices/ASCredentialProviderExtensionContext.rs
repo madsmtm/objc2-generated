@@ -35,7 +35,7 @@ impl ASCredentialProviderExtensionContext {
         pub unsafe fn completeRequestWithSelectedCredential_completionHandler(
             &self,
             credential: &ASPasswordCredential,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(all(feature = "ASPasskeyAssertionCredential", feature = "block2"))]
@@ -57,7 +57,7 @@ impl ASCredentialProviderExtensionContext {
         pub unsafe fn completeAssertionRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
             credential: &ASPasskeyAssertionCredential,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(all(feature = "ASPasskeyRegistrationCredential", feature = "block2"))]
@@ -79,7 +79,7 @@ impl ASCredentialProviderExtensionContext {
         pub unsafe fn completeRegistrationRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
             credential: &ASPasskeyRegistrationCredential,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(all(feature = "ASOneTimeCodeCredential", feature = "block2"))]
@@ -101,7 +101,7 @@ impl ASCredentialProviderExtensionContext {
         pub unsafe fn completeOneTimeCodeRequestWithSelectedCredential_completionHandler(
             &self,
             credential: &ASOneTimeCodeCredential,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -117,7 +117,7 @@ impl ASCredentialProviderExtensionContext {
         #[unsafe(method_family = none)]
         pub unsafe fn completeSavePasswordRequestWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(all(feature = "ASGeneratedPassword", feature = "block2"))]
@@ -135,7 +135,7 @@ impl ASCredentialProviderExtensionContext {
         pub unsafe fn completeGeneratePasswordRequestWithResults_completionHandler(
             &self,
             results: &NSArray<ASGeneratedPassword>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         /// Complete the request to configure the extension.

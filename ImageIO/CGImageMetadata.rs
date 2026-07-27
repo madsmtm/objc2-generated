@@ -923,7 +923,7 @@ impl CGMutableImageMetadata {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatagblock?language=objc)
 #[cfg(feature = "block2")]
 pub type CGImageMetadataTagBlock =
-    block2::DynBlock<dyn Fn(NonNull<CFString>, NonNull<CGImageMetadataTag>) -> bool>;
+    block2::Block<'static, fn(NonNull<CFString>, NonNull<CGImageMetadataTag>) -> bool>;
 
 impl CGImageMetadata {
     /// Executes a given block using each tag in the metadata

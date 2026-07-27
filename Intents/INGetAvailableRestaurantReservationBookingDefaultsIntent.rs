@@ -111,8 +111,9 @@ extern_protocol!(
         unsafe fn handleGetAvailableRestaurantReservationBookingDefaults_completion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingDefaultsIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INGetAvailableRestaurantReservationBookingDefaultsIntentResponse>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INGetAvailableRestaurantReservationBookingDefaultsIntentResponse>),
             >,
         );
 
@@ -143,8 +144,9 @@ extern_protocol!(
         unsafe fn confirmGetAvailableRestaurantReservationBookingDefaults_completion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingDefaultsIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INGetAvailableRestaurantReservationBookingDefaultsIntentResponse>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INGetAvailableRestaurantReservationBookingDefaultsIntentResponse>),
             >,
         );
 
@@ -175,7 +177,7 @@ extern_protocol!(
         unsafe fn resolveRestaurantForGetAvailableRestaurantReservationBookingDefaults_withCompletion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingDefaultsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRestaurantResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRestaurantResolutionResult>)>,
         );
     }
 );

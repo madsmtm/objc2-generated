@@ -130,7 +130,7 @@ pub type CMSampleBufferMakeDataReadyCallback =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffermakedatareadyhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMSampleBufferMakeDataReadyHandler =
-    block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus>;
+    block2::Block<'static, fn(NonNull<CMSampleBuffer>) -> OSStatus>;
 
 impl CMSampleBuffer {
     /// Creates a CMSampleBuffer.
@@ -1488,7 +1488,7 @@ impl CMSampleBuffer {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferinvalidatehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMSampleBufferInvalidateHandler = block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>)>;
+pub type CMSampleBufferInvalidateHandler = block2::Block<'static, fn(NonNull<CMSampleBuffer>)>;
 
 impl CMSampleBuffer {
     /// Sets the sample buffer's invalidation handler block, which is called during CMSampleBufferInvalidate.
@@ -2525,14 +2525,12 @@ impl CMSampleBuffer {
     #[inline]
     pub unsafe fn call_block_for_each_sample(
         &self,
-        handler: &block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus + '_>,
+        handler: &block2::Block<'_, fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferCallBlockForEachSample(
                 sbuf: &CMSampleBuffer,
-                handler: &block2::DynBlock<
-                    dyn Fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus + '_,
-                >,
+                handler: &block2::Block<'_, fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus>,
             ) -> OSStatus;
         }
         unsafe { CMSampleBufferCallBlockForEachSample(self, handler) }

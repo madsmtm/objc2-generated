@@ -85,9 +85,7 @@ impl NSDraggingSession {
             view: Option<&NSView>,
             class_array: &NSArray<AnyClass>,
             search_options: &NSDictionary<NSPasteboardReadingOptionKey, AnyObject>,
-            block: &block2::DynBlock<
-                dyn Fn(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>) + '_,
-            >,
+            block: &block2::Block<'_, fn(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>)>,
         );
     );
 }

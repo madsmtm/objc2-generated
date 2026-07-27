@@ -308,7 +308,7 @@ extern_protocol!(
         unsafe fn pictureInPictureController_restoreUserInterfaceForPictureInPictureStopWithCompletionHandler(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
+            completion_handler: &block2::Block<'static, fn(Bool)>,
         );
     }
 );

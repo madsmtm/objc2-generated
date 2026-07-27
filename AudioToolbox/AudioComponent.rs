@@ -481,13 +481,13 @@ pub unsafe fn AudioComponentInstanceNew(
 pub unsafe fn AudioComponentInstantiate(
     in_component: AudioComponent,
     in_options: AudioComponentInstantiationOptions,
-    in_completion_handler: &block2::DynBlock<dyn Fn(AudioComponentInstance, OSStatus)>,
+    in_completion_handler: &block2::Block<'static, fn(AudioComponentInstance, OSStatus)>,
 ) {
     extern "C-unwind" {
         fn AudioComponentInstantiate(
             in_component: AudioComponent,
             in_options: AudioComponentInstantiationOptions,
-            in_completion_handler: &block2::DynBlock<dyn Fn(AudioComponentInstance, OSStatus)>,
+            in_completion_handler: &block2::Block<'static, fn(AudioComponentInstance, OSStatus)>,
         );
     }
     unsafe { AudioComponentInstantiate(in_component, in_options, in_completion_handler) }
@@ -760,16 +760,18 @@ pub unsafe fn AudioComponentValidate(
 pub unsafe fn AudioComponentValidateWithResults(
     in_component: AudioComponent,
     in_validation_parameters: Option<&CFDictionary<CFString, CFType>>,
-    in_completion_handler: &block2::DynBlock<
-        dyn Fn(AudioComponentValidationResult, NonNull<CFDictionary>),
+    in_completion_handler: &block2::Block<
+        'static,
+        fn(AudioComponentValidationResult, NonNull<CFDictionary>),
     >,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioComponentValidateWithResults(
             in_component: AudioComponent,
             in_validation_parameters: Option<&CFDictionary<CFString, CFType>>,
-            in_completion_handler: &block2::DynBlock<
-                dyn Fn(AudioComponentValidationResult, NonNull<CFDictionary>),
+            in_completion_handler: &block2::Block<
+                'static,
+                fn(AudioComponentValidationResult, NonNull<CFDictionary>),
             >,
         ) -> OSStatus;
     }

@@ -15,8 +15,9 @@ use crate::*;
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSTableViewDiffableDataSourceCellProvider = block2::DynBlock<
-    dyn Fn(
+pub type NSTableViewDiffableDataSourceCellProvider = block2::Block<
+    'static,
+    fn(
         NonNull<NSTableView>,
         NonNull<NSTableColumn>,
         NSInteger,
@@ -33,8 +34,9 @@ pub type NSTableViewDiffableDataSourceCellProvider = block2::DynBlock<
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSTableViewDiffableDataSourceRowProvider = block2::DynBlock<
-    dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSTableRowView>,
+pub type NSTableViewDiffableDataSourceRowProvider = block2::Block<
+    'static,
+    fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSTableRowView>,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcesectionheaderviewprovider?language=objc)
@@ -45,8 +47,9 @@ pub type NSTableViewDiffableDataSourceRowProvider = block2::DynBlock<
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider = block2::DynBlock<
-    dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSView>,
+pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider = block2::Block<
+    'static,
+    fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSView>,
 >;
 
 extern_class!(
@@ -146,7 +149,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
             animating_differences: bool,
-            completion: Option<&block2::DynBlock<dyn Fn()>>,
+            completion: Option<&block2::Block<'static, fn()>>,
         );
 
         #[unsafe(method(itemIdentifierForRow:))]

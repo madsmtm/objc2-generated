@@ -13,7 +13,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisymboleffectcompletion?language=objc)
 #[cfg(feature = "block2")]
 pub type UISymbolEffectCompletion =
-    block2::DynBlock<dyn Fn(NonNull<UISymbolEffectCompletionContext>)>;
+    block2::Block<'static, fn(NonNull<UISymbolEffectCompletionContext>)>;
 
 extern_class!(
     /// Represents information about a symbol effect's completion.

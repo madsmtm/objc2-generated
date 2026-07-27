@@ -88,7 +88,7 @@ impl CKShareRequestAccessOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perShareAccessRequestCompletionBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSURL>, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<NSURL>, *mut NSError)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`perShareAccessRequestCompletionBlock`][Self::perShareAccessRequestCompletionBlock].
@@ -103,7 +103,7 @@ impl CKShareRequestAccessOperation {
         pub unsafe fn setPerShareAccessRequestCompletionBlock(
             &self,
             per_share_access_request_completion_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<NSURL>, *mut NSError)>,
+                &block2::Block<'static, fn(NonNull<NSURL>, *mut NSError)>,
             >,
         );
 
@@ -132,7 +132,7 @@ impl CKShareRequestAccessOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn shareRequestAccessCompletionBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(*mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`shareRequestAccessCompletionBlock`][Self::shareRequestAccessCompletionBlock].
@@ -146,7 +146,9 @@ impl CKShareRequestAccessOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setShareRequestAccessCompletionBlock(
             &self,
-            share_request_access_completion_block: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            share_request_access_completion_block: Option<
+                &block2::Block<'static, fn(*mut NSError)>,
+            >,
         );
     );
 }

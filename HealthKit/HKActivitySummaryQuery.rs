@@ -45,8 +45,9 @@ impl HKActivitySummaryQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(NonNull<HKActivitySummaryQuery>, *mut NSArray<HKActivitySummary>, *mut NSError),
+        ) -> *mut block2::Block<
+            'static,
+            fn(NonNull<HKActivitySummaryQuery>, *mut NSArray<HKActivitySummary>, *mut NSError),
         >;
 
         #[cfg(all(feature = "HKActivitySummary", feature = "block2"))]
@@ -63,8 +64,9 @@ impl HKActivitySummaryQuery {
         pub unsafe fn setUpdateHandler(
             &self,
             update_handler: Option<
-                &block2::DynBlock<
-                    dyn Fn(
+                &block2::Block<
+                    'static,
+                    fn(
                         NonNull<HKActivitySummaryQuery>,
                         *mut NSArray<HKActivitySummary>,
                         *mut NSError,
@@ -92,12 +94,9 @@ impl HKActivitySummaryQuery {
         pub unsafe fn initWithPredicate_resultsHandler(
             this: Allocated<Self>,
             predicate: Option<&NSPredicate>,
-            handler: &block2::DynBlock<
-                dyn Fn(
-                    NonNull<HKActivitySummaryQuery>,
-                    *mut NSArray<HKActivitySummary>,
-                    *mut NSError,
-                ),
+            handler: &block2::Block<
+                'static,
+                fn(NonNull<HKActivitySummaryQuery>, *mut NSArray<HKActivitySummary>, *mut NSError),
             >,
         ) -> Retained<Self>;
     );

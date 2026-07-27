@@ -274,7 +274,7 @@ impl CGPDFDictionary {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierblock?language=objc)
 #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
 pub type CGPDFDictionaryApplierBlock =
-    block2::DynBlock<dyn Fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
+    block2::Block<'static, fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
 
 impl CGPDFDictionary {
     /// # Safety

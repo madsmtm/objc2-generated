@@ -79,7 +79,7 @@ impl MPMediaLibrary {
         #[unsafe(method(requestAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorization(
-            completion_handler: &block2::DynBlock<dyn Fn(MPMediaLibraryAuthorizationStatus)>,
+            completion_handler: &block2::Block<'static, fn(MPMediaLibraryAuthorizationStatus)>,
         );
 
         #[cfg(all(feature = "MPMediaEntity", feature = "block2"))]
@@ -92,7 +92,7 @@ impl MPMediaLibrary {
             &self,
             product_id: &NSString,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(NonNull<NSArray<MPMediaEntity>>, *mut NSError)>,
+                &block2::Block<'static, fn(NonNull<NSArray<MPMediaEntity>>, *mut NSError)>,
             >,
         );
 
@@ -118,7 +118,7 @@ impl MPMediaLibrary {
             &self,
             uuid: &NSUUID,
             creation_metadata: Option<&MPMediaPlaylistCreationMetadata>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut MPMediaPlaylist, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut MPMediaPlaylist, *mut NSError)>,
         );
     );
 }

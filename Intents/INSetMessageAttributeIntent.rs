@@ -110,7 +110,7 @@ extern_protocol!(
         unsafe fn handleSetMessageAttribute_completion(
             &self,
             intent: &INSetMessageAttributeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSetMessageAttributeIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSetMessageAttributeIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -140,7 +140,7 @@ extern_protocol!(
         unsafe fn confirmSetMessageAttribute_completion(
             &self,
             intent: &INSetMessageAttributeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSetMessageAttributeIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSetMessageAttributeIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -170,7 +170,7 @@ extern_protocol!(
         unsafe fn resolveAttributeForSetMessageAttribute_withCompletion(
             &self,
             intent: &INSetMessageAttributeIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INMessageAttributeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INMessageAttributeResolutionResult>)>,
         );
     }
 );

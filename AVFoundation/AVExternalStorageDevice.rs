@@ -139,7 +139,9 @@ impl AVExternalStorageDevice {
         /// `handler` block must be sendable.
         #[unsafe(method(requestAccessWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestAccessWithCompletionHandler(handler: &block2::DynBlock<dyn Fn(Bool)>);
+        pub unsafe fn requestAccessWithCompletionHandler(
+            handler: &block2::Block<'static, fn(Bool)>,
+        );
     );
 }
 

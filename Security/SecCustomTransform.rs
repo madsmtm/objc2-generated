@@ -222,7 +222,7 @@ pub type SecTransformStringOrAttribute = CFType;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformactionblock?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[cfg(feature = "block2")]
-pub type SecTransformActionBlock = block2::DynBlock<dyn Fn() -> *const CFType>;
+pub type SecTransformActionBlock = block2::Block<'static, fn() -> *const CFType>;
 
 /// A block used to override the default attribute handling
 /// for when an attribute is set.
@@ -248,7 +248,7 @@ pub type SecTransformActionBlock = block2::DynBlock<dyn Fn() -> *const CFType>;
 #[deprecated = "SecTransform is no longer supported"]
 #[cfg(feature = "block2")]
 pub type SecTransformAttributeActionBlock =
-    block2::DynBlock<dyn Fn(NonNull<SecTransformAttribute>, NonNull<CFType>) -> *const CFType>;
+    block2::Block<'static, fn(NonNull<SecTransformAttribute>, NonNull<CFType>) -> *const CFType>;
 
 /// A block used to override the default data handling
 /// for a transform.
@@ -278,7 +278,7 @@ pub type SecTransformAttributeActionBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformdatablock?language=objc)
 #[cfg(feature = "block2")]
-pub type SecTransformDataBlock = block2::DynBlock<dyn Fn(NonNull<CFType>) -> *const CFType>;
+pub type SecTransformDataBlock = block2::Block<'static, fn(NonNull<CFType>) -> *const CFType>;
 
 /// This is the block that is returned from an
 /// implementation of a CreateTransform function.
@@ -294,7 +294,7 @@ pub type SecTransformDataBlock = block2::DynBlock<dyn Fn(NonNull<CFType>) -> *co
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransforminstanceblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SecTransformInstanceBlock = block2::DynBlock<dyn Fn() -> *mut CFError>;
+pub type SecTransformInstanceBlock = block2::Block<'static, fn() -> *mut CFError>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/opaquesectransformimplementation?language=objc)
 #[repr(C)]

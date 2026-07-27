@@ -145,7 +145,7 @@ impl CKModifyRecordZonesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordZoneSaveBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>;
 
         #[cfg(all(
             feature = "CKRecordZone",
@@ -164,7 +164,10 @@ impl CKModifyRecordZonesOperation {
         pub unsafe fn setPerRecordZoneSaveBlock(
             &self,
             per_record_zone_save_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>,
+                &block2::Block<
+                    'static,
+                    fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError),
+                >,
             >,
         );
 
@@ -191,7 +194,7 @@ impl CKModifyRecordZonesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordZoneDeleteBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecordZoneID>, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`perRecordZoneDeleteBlock`][Self::perRecordZoneDeleteBlock].
@@ -206,7 +209,7 @@ impl CKModifyRecordZonesOperation {
         pub unsafe fn setPerRecordZoneDeleteBlock(
             &self,
             per_record_zone_delete_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>, *mut NSError)>,
+                &block2::Block<'static, fn(NonNull<CKRecordZoneID>, *mut NSError)>,
             >,
         );
 
@@ -243,8 +246,9 @@ impl CKModifyRecordZonesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn modifyRecordZonesCompletionBlock(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(*mut NSArray<CKRecordZone>, *mut NSArray<CKRecordZoneID>, *mut NSError),
+        ) -> *mut block2::Block<
+            'static,
+            fn(*mut NSArray<CKRecordZone>, *mut NSArray<CKRecordZoneID>, *mut NSError),
         >;
 
         #[cfg(all(
@@ -264,8 +268,9 @@ impl CKModifyRecordZonesOperation {
         pub unsafe fn setModifyRecordZonesCompletionBlock(
             &self,
             modify_record_zones_completion_block: Option<
-                &block2::DynBlock<
-                    dyn Fn(*mut NSArray<CKRecordZone>, *mut NSArray<CKRecordZoneID>, *mut NSError),
+                &block2::Block<
+                    'static,
+                    fn(*mut NSArray<CKRecordZone>, *mut NSArray<CKRecordZoneID>, *mut NSError),
                 >,
             >,
         );

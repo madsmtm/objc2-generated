@@ -20,8 +20,9 @@ use crate::*;
     feature = "UIWindowSceneActivationConfiguration",
     feature = "block2"
 ))]
-pub type UIWindowSceneActivationActionConfigurationProvider = block2::DynBlock<
-    dyn Fn(NonNull<UIWindowSceneActivationAction>) -> *mut UIWindowSceneActivationConfiguration,
+pub type UIWindowSceneActivationActionConfigurationProvider = block2::Block<
+    'static,
+    fn(NonNull<UIWindowSceneActivationAction>) -> *mut UIWindowSceneActivationConfiguration,
 >;
 
 extern_class!(

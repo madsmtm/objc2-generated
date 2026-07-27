@@ -431,7 +431,7 @@ impl UINavigationItem {
         #[unsafe(method_family = none)]
         pub unsafe fn titleMenuProvider(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>;
+        ) -> *mut block2::Block<'static, fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
         /// Setter for [`titleMenuProvider`][Self::titleMenuProvider].
@@ -446,7 +446,7 @@ impl UINavigationItem {
         pub unsafe fn setTitleMenuProvider(
             &self,
             title_menu_provider: Option<
-                &block2::DynBlock<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>,
+                &block2::Block<'static, fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>,
             >,
         );
 

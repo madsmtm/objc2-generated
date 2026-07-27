@@ -151,7 +151,7 @@ impl UIDynamicBehavior {
         #[cfg(feature = "block2")]
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
-        pub fn action(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub fn action(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`action`][Self::action].
@@ -159,7 +159,7 @@ impl UIDynamicBehavior {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
-        pub fn setAction(&self, action: Option<&block2::DynBlock<dyn Fn()>>);
+        pub fn setAction(&self, action: Option<&block2::Block<'static, fn()>>);
 
         #[cfg(feature = "UIDynamicAnimator")]
         #[unsafe(method(willMoveToAnimator:))]

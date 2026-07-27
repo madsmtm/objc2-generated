@@ -98,7 +98,7 @@ impl SKCloudServiceSetupViewController {
         pub unsafe fn loadWithOptions_completionHandler(
             &self,
             options: &NSDictionary<SKCloudServiceSetupOptionsKey, AnyObject>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
     );
 }

@@ -46,7 +46,10 @@ impl MPMediaEntity {
         pub unsafe fn enumerateValuesForProperties_usingBlock(
             &self,
             properties: &NSSet<NSString>,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>)>,
+            block: &block2::Block<
+                'static,
+                fn(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>),
+            >,
         );
 
         /// # Safety

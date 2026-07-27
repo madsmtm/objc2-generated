@@ -247,7 +247,7 @@ impl CGPDFArray {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarrayapplierblock?language=objc)
 #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
 pub type CGPDFArrayApplierBlock =
-    block2::DynBlock<dyn Fn(usize, CGPDFObjectRef, *mut c_void) -> bool>;
+    block2::Block<'static, fn(usize, CGPDFObjectRef, *mut c_void) -> bool>;
 
 impl CGPDFArray {
     /// # Safety

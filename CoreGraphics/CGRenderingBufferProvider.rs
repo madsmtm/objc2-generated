@@ -37,17 +37,17 @@ impl CGRenderingBufferProvider {
     pub unsafe fn new(
         info: *mut c_void,
         size: usize,
-        lock_pointer: &block2::DynBlock<dyn Fn(*mut c_void) -> *mut c_void>,
-        unlock_pointer: Option<&block2::DynBlock<dyn Fn(*mut c_void, NonNull<c_void>)>>,
-        release_info: Option<&block2::DynBlock<dyn Fn(*mut c_void)>>,
+        lock_pointer: &block2::Block<'static, fn(*mut c_void) -> *mut c_void>,
+        unlock_pointer: Option<&block2::Block<'static, fn(*mut c_void, NonNull<c_void>)>>,
+        release_info: Option<&block2::Block<'static, fn(*mut c_void)>>,
     ) -> Option<CFRetained<CGRenderingBufferProvider>> {
         extern "C-unwind" {
             fn CGRenderingBufferProviderCreate(
                 info: *mut c_void,
                 size: usize,
-                lock_pointer: &block2::DynBlock<dyn Fn(*mut c_void) -> *mut c_void>,
-                unlock_pointer: Option<&block2::DynBlock<dyn Fn(*mut c_void, NonNull<c_void>)>>,
-                release_info: Option<&block2::DynBlock<dyn Fn(*mut c_void)>>,
+                lock_pointer: &block2::Block<'static, fn(*mut c_void) -> *mut c_void>,
+                unlock_pointer: Option<&block2::Block<'static, fn(*mut c_void, NonNull<c_void>)>>,
+                release_info: Option<&block2::Block<'static, fn(*mut c_void)>>,
             ) -> Option<NonNull<CGRenderingBufferProvider>>;
         }
         let ret = unsafe {

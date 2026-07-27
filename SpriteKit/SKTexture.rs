@@ -261,7 +261,7 @@ impl SKTexture {
         #[unsafe(method_family = none)]
         pub unsafe fn preloadTextures_withCompletionHandler(
             textures: &NSArray<SKTexture>,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -274,7 +274,7 @@ impl SKTexture {
         #[unsafe(method_family = none)]
         pub unsafe fn preloadWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
     );
 }

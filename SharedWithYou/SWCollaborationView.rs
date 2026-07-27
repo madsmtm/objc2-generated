@@ -218,7 +218,7 @@ impl SWCollaborationView {
         /// Parameter `completion`: Called when the popover dismissal finishes.
         #[unsafe(method(dismissPopover:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dismissPopover(&self, completion: Option<&block2::DynBlock<dyn Fn()>>);
+        pub unsafe fn dismissPopover(&self, completion: Option<&block2::Block<'static, fn()>>);
 
         /// sets the title of the manage participants button in the collaboration popover to the given string, defaults to "Manage Share"
         #[unsafe(method(manageButtonTitle))]

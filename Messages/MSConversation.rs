@@ -73,7 +73,7 @@ impl MSConversation {
         pub unsafe fn insertMessage_completionHandler(
             &self,
             message: &MSMessage,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "MSSticker", feature = "block2"))]
@@ -91,7 +91,7 @@ impl MSConversation {
         pub unsafe fn insertSticker_completionHandler(
             &self,
             sticker: &MSSticker,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -111,7 +111,7 @@ impl MSConversation {
         pub unsafe fn insertText_completionHandler(
             &self,
             text: &NSString,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -135,7 +135,7 @@ impl MSConversation {
             &self,
             url: &NSURL,
             filename: Option<&NSString>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "MSMessage", feature = "block2"))]
@@ -156,7 +156,7 @@ impl MSConversation {
         pub unsafe fn sendMessage_completionHandler(
             &self,
             message: &MSMessage,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "MSSticker", feature = "block2"))]
@@ -176,7 +176,7 @@ impl MSConversation {
         pub unsafe fn sendSticker_completionHandler(
             &self,
             sticker: &MSSticker,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -197,7 +197,7 @@ impl MSConversation {
         pub unsafe fn sendText_completionHandler(
             &self,
             text: &NSString,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -221,7 +221,7 @@ impl MSConversation {
             &self,
             url: &NSURL,
             filename: Option<&NSString>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }

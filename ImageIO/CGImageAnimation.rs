@@ -56,7 +56,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourceanimationblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
 pub type CGImageSourceAnimationBlock =
-    block2::DynBlock<dyn Fn(usize, NonNull<CGImage>, NonNull<bool>)>;
+    block2::Block<'static, fn(usize, NonNull<CGImage>, NonNull<bool>)>;
 
 /// Animate the sequence of images contained in the file at `url`. Currently supported image
 /// formats are GIF and APNG. The `options` dictionary may be used to request additional playback

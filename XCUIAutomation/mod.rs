@@ -1163,7 +1163,7 @@ impl XCUIElement {
         #[unsafe(method_family = none)]
         pub fn performWithKeyModifiers_block(
             flags: XCUIKeyModifierFlags,
-            block: &block2::DynBlock<dyn Fn() + '_>,
+            block: &block2::Block<'_, fn()>,
             mtm: MainThreadMarker,
         );
 
@@ -1716,9 +1716,7 @@ impl XCUIApplication {
         pub fn performAccessibilityAuditWithAuditTypes_issueHandler_error(
             &self,
             audit_types: XCUIAccessibilityAuditType,
-            block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<XCUIAccessibilityAuditIssue>) -> Bool + '_>,
-            >,
+            block: Option<&block2::Block<'_, fn(NonNull<XCUIAccessibilityAuditIssue>) -> Bool>>,
         ) -> Result<(), Retained<NSError>>;
     );
 }

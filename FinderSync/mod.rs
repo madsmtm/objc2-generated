@@ -177,7 +177,7 @@ impl FIFinderSyncController {
             &self,
             last_used_date: &NSDate,
             item_url: &NSURL,
-            completion: &block2::DynBlock<dyn Fn(NonNull<NSError>)>,
+            completion: &block2::Block<'static, fn(NonNull<NSError>)>,
         );
 
         #[unsafe(method(tagDataForItemWithURL:))]
@@ -194,7 +194,7 @@ impl FIFinderSyncController {
             &self,
             tag_data: Option<&NSData>,
             item_url: &NSURL,
-            completion: &block2::DynBlock<dyn Fn(NonNull<NSError>)>,
+            completion: &block2::Block<'static, fn(NonNull<NSError>)>,
         );
 
         #[unsafe(method(isExtensionEnabled))]
@@ -402,8 +402,9 @@ extern_protocol!(
             &self,
             attributes: &NSArray<NSURLResourceKey>,
             item_url: &NSURL,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<NSDictionary<NSURLResourceKey, AnyObject>>, *mut NSError),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<NSDictionary<NSURLResourceKey, AnyObject>>, *mut NSError),
             >,
         );
     }

@@ -72,7 +72,7 @@ impl GKChallenge {
         #[unsafe(method_family = none)]
         pub unsafe fn loadReceivedChallengesWithCompletionHandler(
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSArray<GKChallenge>, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSArray<GKChallenge>, *mut NSError)>,
             >,
         );
 
@@ -262,7 +262,7 @@ impl GKScore {
         pub unsafe fn reportScores_withEligibleChallenges_withCompletionHandler(
             scores: &NSArray<GKScore>,
             challenges: &NSArray<GKChallenge>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "GKLeaderboardScore", feature = "block2"))]
@@ -275,7 +275,7 @@ impl GKScore {
         pub unsafe fn reportLeaderboardScores_withEligibleChallenges_withCompletionHandler(
             scores: &NSArray<GKLeaderboardScore>,
             challenges: &NSArray<GKChallenge>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -297,7 +297,7 @@ impl GKAchievement {
             &self,
             players: &NSArray<GKPlayer>,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
             >,
         );
 
@@ -313,7 +313,7 @@ impl GKAchievement {
         pub unsafe fn reportAchievements_withEligibleChallenges_withCompletionHandler(
             achievements: &NSArray<GKAchievement>,
             challenges: &NSArray<GKChallenge>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -361,7 +361,7 @@ impl GKAchievement {
             &self,
             player_i_ds: Option<&NSArray<NSString>>,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSArray<NSString>, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSArray<NSString>, *mut NSError)>,
             >,
         );
     );
@@ -372,7 +372,7 @@ impl GKAchievement {
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub type GKChallengeComposeCompletionBlock =
-    block2::DynBlock<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<NSString>)>;
+    block2::Block<'static, fn(NonNull<NSViewController>, Bool, *mut NSArray<NSString>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengecomposehandler?language=objc)
 #[deprecated]
@@ -384,7 +384,7 @@ pub type GKChallengeComposeCompletionBlock =
 ))]
 #[cfg(target_os = "macos")]
 pub type GKChallengeComposeHandler =
-    block2::DynBlock<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<GKPlayer>)>;
+    block2::Block<'static, fn(NonNull<NSViewController>, Bool, *mut NSArray<GKPlayer>)>;
 
 /// GKChallengeUI.
 #[cfg(feature = "GKScore")]

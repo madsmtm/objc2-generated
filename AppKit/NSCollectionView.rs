@@ -795,8 +795,8 @@ impl NSCollectionView {
         #[unsafe(method_family = none)]
         pub fn performBatchUpdates_completionHandler(
             &self,
-            updates: Option<&block2::DynBlock<dyn Fn() + '_>>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            updates: Option<&block2::Block<'_, fn()>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         /// # Safety
@@ -1376,7 +1376,7 @@ pub unsafe trait NSSetNSCollectionViewAdditions:
         fn enumerateIndexPathsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSIndexPath>, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<NSIndexPath>, NonNull<Bool>)>,
         );
     );
 }

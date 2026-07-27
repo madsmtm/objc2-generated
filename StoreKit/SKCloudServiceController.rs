@@ -95,7 +95,7 @@ impl SKCloudServiceController {
         #[unsafe(method(requestAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorization(
-            completion_handler: &block2::DynBlock<dyn Fn(SKCloudServiceAuthorizationStatus)>,
+            completion_handler: &block2::Block<'static, fn(SKCloudServiceAuthorizationStatus)>,
         );
 
         #[cfg(feature = "block2")]
@@ -107,7 +107,7 @@ impl SKCloudServiceController {
         #[unsafe(method_family = none)]
         pub unsafe fn requestCapabilitiesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(SKCloudServiceCapability, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(SKCloudServiceCapability, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -119,7 +119,7 @@ impl SKCloudServiceController {
         #[unsafe(method_family = none)]
         pub unsafe fn requestStorefrontCountryCodeWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -131,7 +131,7 @@ impl SKCloudServiceController {
         #[unsafe(method_family = none)]
         pub unsafe fn requestStorefrontIdentifierWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -144,7 +144,7 @@ impl SKCloudServiceController {
         pub unsafe fn requestUserTokenForDeveloperToken_completionHandler(
             &self,
             developer_token: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -157,7 +157,7 @@ impl SKCloudServiceController {
         pub unsafe fn requestPersonalizationTokenForClientToken_withCompletionHandler(
             &self,
             client_token: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
         );
     );
 }

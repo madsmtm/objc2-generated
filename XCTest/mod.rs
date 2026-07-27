@@ -126,7 +126,7 @@ impl XCTest {
         #[unsafe(method_family = none)]
         pub unsafe fn setUpWithCompletionHandler(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// This method is called before invoking `setUp` and the test method.
@@ -167,7 +167,7 @@ impl XCTest {
         #[unsafe(method_family = none)]
         pub unsafe fn tearDownWithCompletionHandler(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -558,7 +558,7 @@ impl XCTestCase {
         /// Parameter `block`: A block to enqueue for future execution.
         #[unsafe(method(addTeardownBlock:))]
         #[unsafe(method_family = none)]
-        pub fn addTeardownBlock(&self, block: &block2::DynBlock<dyn Fn()>);
+        pub fn addTeardownBlock(&self, block: &block2::Block<'static, fn()>);
 
         #[cfg(feature = "block2")]
         /// Registers an async block to be run at the end of a test.
@@ -583,7 +583,7 @@ impl XCTestCase {
         #[unsafe(method_family = none)]
         pub unsafe fn addAsyncTeardownBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn(NonNull<block2::DynBlock<dyn Fn(*mut NSError)>>)>,
+            block: &block2::Block<'static, fn(NonNull<block2::Block<'static, fn(*mut NSError)>>)>,
         );
 
         /// If test timeouts are enabled, this property represents the amount of time the test would like to be given to run.
@@ -708,7 +708,7 @@ impl XCTestCase {
         /// Parameter `block`: A block whose performance to measure.
         #[unsafe(method(measureBlock:))]
         #[unsafe(method_family = none)]
-        pub fn measureBlock(&self, block: &block2::DynBlock<dyn Fn() + '_>);
+        pub fn measureBlock(&self, block: &block2::Block<'_, fn()>);
 
         #[cfg(feature = "block2")]
         /// Call from a test method to measure resources (XCTPerformanceMetrics) used by the
@@ -756,7 +756,7 @@ impl XCTestCase {
             &self,
             metrics: &NSArray<XCTPerformanceMetric>,
             automatically_start_measuring: bool,
-            block: &block2::DynBlock<dyn Fn() + '_>,
+            block: &block2::Block<'_, fn()>,
         );
 
         /// Call this from within a measure block to set the beginning of the critical section.
@@ -793,7 +793,7 @@ impl XCTestCase {
         pub fn measureWithMetrics_block(
             &self,
             metrics: &NSArray<ProtocolObject<dyn XCTMetric>>,
-            block: &block2::DynBlock<dyn Fn() + '_>,
+            block: &block2::Block<'_, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -811,7 +811,7 @@ impl XCTestCase {
         pub fn measureWithOptions_block(
             &self,
             options: &XCTMeasureOptions,
-            block: &block2::DynBlock<dyn Fn() + '_>,
+            block: &block2::Block<'_, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -829,7 +829,7 @@ impl XCTestCase {
             &self,
             metrics: &NSArray<ProtocolObject<dyn XCTMetric>>,
             options: &XCTMeasureOptions,
-            block: &block2::DynBlock<dyn Fn() + '_>,
+            block: &block2::Block<'_, fn()>,
         );
     );
 }
@@ -2146,7 +2146,7 @@ impl XCTContext {
         #[unsafe(method_family = none)]
         pub fn runActivityNamed_block(
             name: &NSString,
-            block: &block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn XCTActivity>>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<ProtocolObject<dyn XCTActivity>>)>,
         );
     );
 }
@@ -2213,12 +2213,12 @@ pub fn XCTExpectFailureWithOptions(
 #[inline]
 pub fn XCTExpectFailureInBlock(
     failure_reason: Option<&NSString>,
-    failing_block: &block2::DynBlock<dyn Fn() + '_>,
+    failing_block: &block2::Block<'_, fn()>,
 ) {
     extern "C-unwind" {
         fn XCTExpectFailureInBlock(
             failure_reason: Option<&NSString>,
-            failing_block: &block2::DynBlock<dyn Fn() + '_>,
+            failing_block: &block2::Block<'_, fn()>,
         );
     }
     unsafe { XCTExpectFailureInBlock(failure_reason, failing_block) }
@@ -2231,13 +2231,13 @@ pub fn XCTExpectFailureInBlock(
 pub fn XCTExpectFailureWithOptionsInBlock(
     failure_reason: Option<&NSString>,
     options: &XCTExpectedFailureOptions,
-    failing_block: &block2::DynBlock<dyn Fn() + '_>,
+    failing_block: &block2::Block<'_, fn()>,
 ) {
     extern "C-unwind" {
         fn XCTExpectFailureWithOptionsInBlock(
             failure_reason: Option<&NSString>,
             options: &XCTExpectedFailureOptions,
-            failing_block: &block2::DynBlock<dyn Fn() + '_>,
+            failing_block: &block2::Block<'_, fn()>,
         );
     }
     unsafe { XCTExpectFailureWithOptionsInBlock(failure_reason, options, failing_block) }
@@ -2288,7 +2288,7 @@ impl XCTExpectedFailureOptions {
         #[unsafe(method_family = none)]
         pub unsafe fn issueMatcher(
             &self,
-        ) -> NonNull<block2::DynBlock<dyn Fn(NonNull<XCTIssue>) -> Bool>>;
+        ) -> NonNull<block2::Block<'static, fn(NonNull<XCTIssue>) -> Bool>>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`issueMatcher`][Self::issueMatcher].
@@ -2298,7 +2298,7 @@ impl XCTExpectedFailureOptions {
         #[unsafe(method_family = none)]
         pub fn setIssueMatcher(
             &self,
-            issue_matcher: &block2::DynBlock<dyn Fn(NonNull<XCTIssue>) -> Bool>,
+            issue_matcher: &block2::Block<'static, fn(NonNull<XCTIssue>) -> Bool>,
         );
 
         /// For expected failures that only occur under certain circumstances, this flag can be used to
@@ -4369,7 +4369,7 @@ impl DefaultRetained for XCTestExpectation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xckeyvalueobservingexpectationhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type XCKeyValueObservingExpectationHandler =
-    block2::DynBlock<dyn Fn(NonNull<AnyObject>, NonNull<NSDictionary>) -> Bool>;
+    block2::Block<'static, fn(NonNull<AnyObject>, NonNull<NSDictionary>) -> Bool>;
 
 extern_class!(
     /// Expectation subclass for waiting on a condition defined Key Value Observation of a key path for an object.
@@ -4504,7 +4504,7 @@ impl XCTKVOExpectation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xcnotificationexpectationhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type XCNotificationExpectationHandler =
-    block2::DynBlock<dyn Fn(NonNull<NSNotification>) -> Bool>;
+    block2::Block<'static, fn(NonNull<NSNotification>) -> Bool>;
 
 extern_class!(
     /// Expectation subclass for waiting on a condition defined by an NSNotification.
@@ -4612,7 +4612,7 @@ impl XCTNSNotificationExpectation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xcpredicateexpectationhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type XCPredicateExpectationHandler = block2::DynBlock<dyn Fn() -> Bool>;
+pub type XCPredicateExpectationHandler = block2::Block<'static, fn() -> Bool>;
 
 extern_class!(
     /// Expectation subclass for waiting on a condition defined by an NSPredicate and an object.
@@ -4700,7 +4700,7 @@ impl XCTNSPredicateExpectation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xcwaitcompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type XCWaitCompletionHandler = block2::DynBlock<dyn Fn(*mut NSError)>;
+pub type XCWaitCompletionHandler = block2::Block<'static, fn(*mut NSError)>;
 
 /// AsynchronousTesting.
 ///
@@ -5014,7 +5014,7 @@ extern_conformance!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctdarwinnotificationexpectationhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type XCTDarwinNotificationExpectationHandler = block2::DynBlock<dyn Fn() -> Bool>;
+pub type XCTDarwinNotificationExpectationHandler = block2::Block<'static, fn() -> Bool>;
 
 extern_class!(
     /// Expectation subclass for waiting on a condition defined by a Darwin notification. The notification
@@ -5188,7 +5188,7 @@ impl XCTestCase {
         pub fn addUIInterruptionMonitorWithDescription_handler(
             &self,
             handler_description: &NSString,
-            handler: &block2::DynBlock<dyn Fn(NonNull<XCUIElement>) -> Bool>,
+            handler: &block2::Block<'static, fn(NonNull<XCUIElement>) -> Bool>,
         ) -> Retained<ProtocolObject<dyn NSObjectProtocol>>;
 
         /// Removes a monitor using the token provided when it was added.

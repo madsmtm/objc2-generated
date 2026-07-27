@@ -142,7 +142,7 @@ impl GKScore {
         #[unsafe(method_family = none)]
         pub unsafe fn reportScores_withCompletionHandler(
             scores: &NSArray<GKScore>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -173,7 +173,7 @@ impl GKScore {
         #[unsafe(method_family = none)]
         pub unsafe fn reportScoreWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[deprecated]

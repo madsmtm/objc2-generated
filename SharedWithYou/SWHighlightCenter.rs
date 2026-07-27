@@ -91,7 +91,7 @@ impl SWHighlightCenter {
         pub unsafe fn getHighlightForURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut SWHighlight, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut SWHighlight, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -125,8 +125,9 @@ impl SWHighlightCenter {
         pub unsafe fn getCollaborationHighlightForURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut SWCollaborationHighlight, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut SWCollaborationHighlight, *mut NSError),
             >,
         );
 
@@ -172,8 +173,9 @@ impl SWHighlightCenter {
             &self,
             collaboration_highlight: &SWCollaborationHighlight,
             data: &NSData,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut SWSignedPersonIdentityProof, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut SWSignedPersonIdentityProof, *mut NSError),
             >,
         );
     );

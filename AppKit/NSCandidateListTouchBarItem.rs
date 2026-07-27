@@ -133,8 +133,9 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringForCandidate(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(NonNull<CandidateType>, NSInteger) -> NonNull<NSAttributedString>,
+        ) -> *mut block2::Block<
+            'static,
+            fn(NonNull<CandidateType>, NSInteger) -> NonNull<NSAttributedString>,
         >;
 
         #[cfg(feature = "block2")]
@@ -150,8 +151,9 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
         pub unsafe fn setAttributedStringForCandidate(
             &self,
             attributed_string_for_candidate: Option<
-                &block2::DynBlock<
-                    dyn Fn(NonNull<CandidateType>, NSInteger) -> NonNull<NSAttributedString>,
+                &block2::Block<
+                    'static,
+                    fn(NonNull<CandidateType>, NSInteger) -> NonNull<NSAttributedString>,
                 >,
             >,
         );

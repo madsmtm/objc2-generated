@@ -1006,7 +1006,7 @@ impl NSTableView {
         #[unsafe(method_family = none)]
         pub fn enumerateAvailableRowViewsUsingBlock(
             &self,
-            handler: &block2::DynBlock<dyn Fn(NonNull<NSTableRowView>, NSInteger) + '_>,
+            handler: &block2::Block<'_, fn(NonNull<NSTableRowView>, NSInteger)>,
         );
 
         #[unsafe(method(floatsGroupRows))]

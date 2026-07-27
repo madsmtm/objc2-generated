@@ -16,7 +16,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrolleraxisvaluechangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerAxisValueChangedHandler =
-    block2::DynBlock<dyn Fn(NonNull<GCControllerAxisInput>, c_float)>;
+    block2::Block<'static, fn(NonNull<GCControllerAxisInput>, c_float)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrolleraxisinput?language=objc)

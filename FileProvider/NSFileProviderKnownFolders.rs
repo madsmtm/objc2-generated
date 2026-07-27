@@ -196,7 +196,7 @@ impl NSFileProviderManager {
             &self,
             known_folders: &NSFileProviderKnownFolderLocations,
             localized_reason: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
@@ -214,7 +214,7 @@ impl NSFileProviderManager {
             &self,
             known_folders: NSFileProviderKnownFolders,
             localized_reason: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -237,8 +237,9 @@ extern_protocol!(
         unsafe fn getKnownFolderLocations_completionHandler(
             &self,
             known_folders: NSFileProviderKnownFolders,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSFileProviderKnownFolderLocations, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSFileProviderKnownFolderLocations, *mut NSError),
             >,
         );
     }

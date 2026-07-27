@@ -55,7 +55,7 @@ impl MAMusicHapticsManager {
         pub unsafe fn checkHapticTrackAvailabilityForMediaMatchingCode_completionHandler(
             &self,
             international_standard_recording_code: &NSString,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
@@ -64,7 +64,7 @@ impl MAMusicHapticsManager {
         #[unsafe(method_family = none)]
         pub unsafe fn addStatusObserver(
             &self,
-            status_handler: &block2::DynBlock<dyn Fn(NonNull<NSString>, Bool)>,
+            status_handler: &block2::Block<'static, fn(NonNull<NSString>, Bool)>,
         ) -> Option<Retained<ProtocolObject<dyn NSCopying>>>;
 
         #[cfg(feature = "objc2-foundation")]

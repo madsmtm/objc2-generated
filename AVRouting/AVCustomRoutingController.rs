@@ -184,7 +184,7 @@ extern_protocol!(
             &self,
             controller: &AVCustomRoutingController,
             event: &AVCustomRoutingEvent,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
+            completion_handler: &block2::Block<'static, fn(Bool)>,
         );
 
         #[cfg(feature = "AVCustomRoutingEvent")]

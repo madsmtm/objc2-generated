@@ -224,7 +224,7 @@ impl UICellAccessoryDetail {
         /// An optional handler to call when the detail accessory is tapped. If nil, taps on the accessory are ignored.
         #[unsafe(method(actionHandler))]
         #[unsafe(method_family = none)]
-        pub fn actionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub fn actionHandler(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`actionHandler`][Self::actionHandler].
@@ -232,7 +232,7 @@ impl UICellAccessoryDetail {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setActionHandler(&self, action_handler: Option<&block2::DynBlock<dyn Fn()>>);
+        pub fn setActionHandler(&self, action_handler: Option<&block2::Block<'static, fn()>>);
     );
 }
 
@@ -352,7 +352,7 @@ impl UICellAccessoryDelete {
         /// An optional handler to call when the delete accessory is tapped. If nil, a tap will reveal any trailing swipe actions for the cell.
         #[unsafe(method(actionHandler))]
         #[unsafe(method_family = none)]
-        pub fn actionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub fn actionHandler(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`actionHandler`][Self::actionHandler].
@@ -360,7 +360,7 @@ impl UICellAccessoryDelete {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setActionHandler(&self, action_handler: Option<&block2::DynBlock<dyn Fn()>>);
+        pub fn setActionHandler(&self, action_handler: Option<&block2::Block<'static, fn()>>);
     );
 }
 
@@ -430,7 +430,7 @@ impl UICellAccessoryInsert {
         /// An optional handler to call when the insert accessory is tapped. If nil, taps on the accessory are ignored.
         #[unsafe(method(actionHandler))]
         #[unsafe(method_family = none)]
-        pub fn actionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub fn actionHandler(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`actionHandler`][Self::actionHandler].
@@ -438,7 +438,7 @@ impl UICellAccessoryInsert {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setActionHandler(&self, action_handler: Option<&block2::DynBlock<dyn Fn()>>);
+        pub fn setActionHandler(&self, action_handler: Option<&block2::Block<'static, fn()>>);
     );
 }
 
@@ -662,7 +662,7 @@ impl UICellAccessoryOutlineDisclosure {
         /// a NSDiffableDataSourceSectionSnapshot is to toggle the expand/collapse state of the item in the section snapshot.
         #[unsafe(method(actionHandler))]
         #[unsafe(method_family = none)]
-        pub fn actionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub fn actionHandler(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`actionHandler`][Self::actionHandler].
@@ -670,7 +670,7 @@ impl UICellAccessoryOutlineDisclosure {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn setActionHandler(&self, action_handler: Option<&block2::DynBlock<dyn Fn()>>);
+        pub fn setActionHandler(&self, action_handler: Option<&block2::Block<'static, fn()>>);
     );
 }
 
@@ -745,7 +745,7 @@ impl UICellAccessoryPopUpMenu {
         #[unsafe(method_family = none)]
         pub unsafe fn selectedElementDidChangeHandler(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<UIMenu>)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<UIMenu>)>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
         /// Setter for [`selectedElementDidChangeHandler`][Self::selectedElementDidChangeHandler].
@@ -755,7 +755,9 @@ impl UICellAccessoryPopUpMenu {
         #[unsafe(method_family = none)]
         pub fn setSelectedElementDidChangeHandler(
             &self,
-            selected_element_did_change_handler: Option<&block2::DynBlock<dyn Fn(NonNull<UIMenu>)>>,
+            selected_element_did_change_handler: Option<
+                &block2::Block<'static, fn(NonNull<UIMenu>)>,
+            >,
         );
     );
 }
@@ -855,7 +857,7 @@ unsafe impl RefEncode for UICellAccessoryPlacement {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryposition?language=objc)
 #[cfg(feature = "block2")]
 pub type UICellAccessoryPosition =
-    block2::DynBlock<dyn Fn(NonNull<NSArray<UICellAccessory>>) -> NSUInteger>;
+    block2::Block<'static, fn(NonNull<NSArray<UICellAccessory>>) -> NSUInteger>;
 
 impl UICellAccessory {
     /// Positions the accessory before the accessory matching the class specified, or at the beginning if not found.

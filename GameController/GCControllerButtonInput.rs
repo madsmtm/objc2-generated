@@ -22,7 +22,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttonvaluechangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerButtonValueChangedHandler =
-    block2::DynBlock<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool)>;
+    block2::Block<'static, fn(NonNull<GCControllerButtonInput>, c_float, Bool)>;
 
 /// Set this block if you want to be notified when the touched state on this button changes.
 ///
@@ -42,7 +42,7 @@ pub type GCControllerButtonValueChangedHandler =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttontouchedchangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerButtonTouchedChangedHandler =
-    block2::DynBlock<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool, Bool)>;
+    block2::Block<'static, fn(NonNull<GCControllerButtonInput>, c_float, Bool, Bool)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput?language=objc)

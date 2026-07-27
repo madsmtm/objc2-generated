@@ -24,7 +24,7 @@ extern_protocol!(
         unsafe fn restoreWindowWithIdentifier_state_completionHandler(
             identifier: &NSUserInterfaceItemIdentifier,
             state: &NSCoder,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSWindow, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSWindow, *mut NSError)>,
             mtm: MainThreadMarker,
         );
     }
@@ -57,7 +57,7 @@ impl NSApplication {
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
             state: &NSCoder,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSWindow, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSWindow, *mut NSError)>,
         ) -> bool;
     );
 }
@@ -188,7 +188,7 @@ impl NSDocument {
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
             state: &NSCoder,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSWindow, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSWindow, *mut NSError)>,
         );
 
         /// # Safety

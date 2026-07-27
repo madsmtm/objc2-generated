@@ -67,7 +67,7 @@ impl NSFileProviderExtension {
         pub unsafe fn providePlaceholderAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -82,7 +82,7 @@ impl NSFileProviderExtension {
         pub unsafe fn startProvidingItemAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// Called after the last claim to the file has been released. At this point, it is
@@ -277,7 +277,7 @@ impl NSFileProviderManager {
         pub unsafe fn signalEnumeratorForContainerItemIdentifier_completionHandler(
             &self,
             container_item_identifier: &NSFileProviderItemIdentifier,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -314,7 +314,7 @@ impl NSFileProviderManager {
         pub unsafe fn getUserVisibleURLForItemIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSURL, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSURL, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -336,8 +336,9 @@ impl NSFileProviderManager {
         #[unsafe(method_family = none)]
         pub unsafe fn getIdentifierForUserVisibleFileAtURL_completionHandler(
             url: &NSURL,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(
+            completion_handler: &block2::Block<
+                'static,
+                fn(
                     *mut NSFileProviderItemIdentifier,
                     *mut NSFileProviderDomainIdentifier,
                     *mut NSError,
@@ -360,7 +361,7 @@ impl NSFileProviderManager {
             &self,
             task: &NSURLSessionTask,
             identifier: &NSFileProviderItemIdentifier,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// The purpose identifier of your file provider extension. A coordination using a
@@ -452,7 +453,7 @@ impl NSFileProviderManager {
         #[unsafe(method_family = none)]
         pub unsafe fn addDomain_completionHandler(
             domain: &NSFileProviderDomain,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
@@ -465,7 +466,7 @@ impl NSFileProviderManager {
         #[unsafe(method_family = none)]
         pub unsafe fn removeDomain_completionHandler(
             domain: &NSFileProviderDomain,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
@@ -479,7 +480,7 @@ impl NSFileProviderManager {
         pub unsafe fn removeDomain_mode_completionHandler(
             domain: &NSFileProviderDomain,
             mode: NSFileProviderDomainRemovalMode,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSURL, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSURL, *mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
@@ -491,8 +492,9 @@ impl NSFileProviderManager {
         #[unsafe(method(getDomainsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDomainsWithCompletionHandler(
-            completion_handler: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<NSFileProviderDomain>>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<NSFileProviderDomain>>, *mut NSError),
             >,
         );
 
@@ -505,7 +507,7 @@ impl NSFileProviderManager {
         #[unsafe(method(removeAllDomainsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllDomainsWithCompletionHandler(
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -526,7 +528,7 @@ impl NSFileProviderManager {
         pub unsafe fn signalErrorResolved_completionHandler(
             &self,
             error: &NSError,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// Returns the global progress for the specified kind of operations
@@ -701,7 +703,7 @@ impl NSFileProviderManager {
         pub unsafe fn importDomain_fromDirectoryAtURL_completionHandler(
             domain: &NSFileProviderDomain,
             url: &NSURL,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -749,7 +751,7 @@ impl NSFileProviderManager {
         pub unsafe fn reimportItemsBelowItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -774,7 +776,7 @@ impl NSFileProviderManager {
             fields: NSFileProviderItemFields,
             item_identifier: &NSFileProviderItemIdentifier,
             options: NSFileProviderModifyItemOptions,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -812,7 +814,7 @@ impl NSFileProviderManager {
         pub unsafe fn evictItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -846,7 +848,7 @@ impl NSFileProviderManager {
         pub unsafe fn waitForChangesOnItemsBelowItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -871,7 +873,7 @@ impl NSFileProviderManager {
         #[unsafe(method_family = none)]
         pub unsafe fn waitForStabilizationWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -910,7 +912,7 @@ impl NSFileProviderManager {
             &self,
             localized_reason: &NSString,
             options: NSFileProviderManagerDisconnectionOptions,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -921,7 +923,7 @@ impl NSFileProviderManager {
         #[unsafe(method_family = none)]
         pub unsafe fn reconnectWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -958,7 +960,7 @@ impl NSFileProviderManager {
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
             range_to_materialize: NSRange,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -1089,7 +1091,7 @@ impl NSFileProviderManager {
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
             error_reason: &NSError,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }

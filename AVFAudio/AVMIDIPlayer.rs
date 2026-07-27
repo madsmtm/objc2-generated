@@ -11,7 +11,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiplayercompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type AVMIDIPlayerCompletionHandler = block2::DynBlock<dyn Fn()>;
+pub type AVMIDIPlayerCompletionHandler = block2::Block<'static, fn()>;
 
 extern_class!(
     /// A player for music file formats (MIDI, iMelody).

@@ -38,7 +38,7 @@ impl CNAssetInfo {
         #[unsafe(method_family = none)]
         pub unsafe fn checkIfCinematic_completionHandler(
             asset: &AVAsset,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
+            completion_handler: &block2::Block<'static, fn(Bool)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
@@ -51,7 +51,7 @@ impl CNAssetInfo {
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromAsset_completionHandler(
             asset: &AVAsset,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CNAssetInfo, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CNAssetInfo, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-av-foundation")]

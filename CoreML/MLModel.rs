@@ -70,7 +70,7 @@ impl MLModel {
         pub unsafe fn loadContentsOfURL_configuration_completionHandler(
             url: &NSURL,
             configuration: &MLModelConfiguration,
-            handler: &block2::DynBlock<dyn Fn(*mut MLModel, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut MLModel, *mut NSError)>,
         );
 
         #[cfg(feature = "MLFeatureProvider")]
@@ -118,8 +118,9 @@ impl MLModel {
         pub unsafe fn predictionFromFeatures_completionHandler(
             &self,
             input: &ProtocolObject<dyn MLFeatureProvider>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut ProtocolObject<dyn MLFeatureProvider>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut ProtocolObject<dyn MLFeatureProvider>, *mut NSError),
             >,
         );
 
@@ -140,8 +141,9 @@ impl MLModel {
             &self,
             input: &ProtocolObject<dyn MLFeatureProvider>,
             options: &MLPredictionOptions,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut ProtocolObject<dyn MLFeatureProvider>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut ProtocolObject<dyn MLFeatureProvider>, *mut NSError),
             >,
         );
 
@@ -195,7 +197,7 @@ impl MLModel {
         pub unsafe fn loadModelAsset_configuration_completionHandler(
             asset: &MLModelAsset,
             configuration: &MLModelConfiguration,
-            handler: &block2::DynBlock<dyn Fn(*mut MLModel, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut MLModel, *mut NSError)>,
         );
     );
 }

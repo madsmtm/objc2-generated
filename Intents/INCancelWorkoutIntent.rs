@@ -105,7 +105,7 @@ extern_protocol!(
         unsafe fn handleCancelWorkout_completion(
             &self,
             intent: &INCancelWorkoutIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCancelWorkoutIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCancelWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -135,7 +135,7 @@ extern_protocol!(
         unsafe fn confirmCancelWorkout_completion(
             &self,
             intent: &INCancelWorkoutIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCancelWorkoutIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCancelWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -165,7 +165,7 @@ extern_protocol!(
         unsafe fn resolveWorkoutNameForCancelWorkout_withCompletion(
             &self,
             intent: &INCancelWorkoutIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
     }
 );

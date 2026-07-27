@@ -51,8 +51,9 @@ impl HKAnchoredObjectQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(
+        ) -> *mut block2::Block<
+            'static,
+            fn(
                 NonNull<HKAnchoredObjectQuery>,
                 *mut NSArray<HKSample>,
                 *mut NSArray<HKDeletedObject>,
@@ -81,8 +82,9 @@ impl HKAnchoredObjectQuery {
         pub unsafe fn setUpdateHandler(
             &self,
             update_handler: Option<
-                &block2::DynBlock<
-                    dyn Fn(
+                &block2::Block<
+                    'static,
+                    fn(
                         NonNull<HKAnchoredObjectQuery>,
                         *mut NSArray<HKSample>,
                         *mut NSArray<HKDeletedObject>,
@@ -132,8 +134,9 @@ impl HKAnchoredObjectQuery {
             predicate: Option<&NSPredicate>,
             anchor: Option<&HKQueryAnchor>,
             limit: NSUInteger,
-            handler: &block2::DynBlock<
-                dyn Fn(
+            handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<HKAnchoredObjectQuery>,
                     *mut NSArray<HKSample>,
                     *mut NSArray<HKDeletedObject>,
@@ -161,8 +164,9 @@ impl HKAnchoredObjectQuery {
             predicate: Option<&NSPredicate>,
             anchor: NSUInteger,
             limit: NSUInteger,
-            handler: &block2::DynBlock<
-                dyn Fn(
+            handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<HKAnchoredObjectQuery>,
                     *mut NSArray<HKSample>,
                     NSUInteger,
@@ -208,8 +212,9 @@ impl HKAnchoredObjectQuery {
             query_descriptors: &NSArray<HKQueryDescriptor>,
             anchor: Option<&HKQueryAnchor>,
             limit: NSInteger,
-            handler: &block2::DynBlock<
-                dyn Fn(
+            handler: &block2::Block<
+                'static,
+                fn(
                     NonNull<HKAnchoredObjectQuery>,
                     *mut NSArray<HKSample>,
                     *mut NSArray<HKDeletedObject>,

@@ -668,7 +668,7 @@ impl NSURLConnection {
         pub unsafe fn sendAsynchronousRequest_queue_completionHandler(
             request: &NSURLRequest,
             queue: &NSOperationQueue,
-            handler: &block2::DynBlock<dyn Fn(*mut NSURLResponse, *mut NSData, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut NSURLResponse, *mut NSData, *mut NSError)>,
         );
     );
 }

@@ -25,8 +25,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn pressedDidChangeHandler(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(
+        ) -> *mut block2::Block<
+            'static,
+            fn(
                 NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
                 NonNull<ProtocolObject<dyn GCPressedStateInput>>,
                 Bool,
@@ -42,8 +43,9 @@ extern_protocol!(
         unsafe fn setPressedDidChangeHandler(
             &self,
             pressed_did_change_handler: Option<
-                &block2::DynBlock<
-                    dyn Fn(
+                &block2::Block<
+                    'static,
+                    fn(
                         NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
                         NonNull<ProtocolObject<dyn GCPressedStateInput>>,
                         Bool,

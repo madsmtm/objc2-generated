@@ -73,12 +73,12 @@ impl CATransaction {
         #[cfg(feature = "block2")]
         #[unsafe(method(completionBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionBlock() -> *mut block2::DynBlock<dyn Fn()>;
+        pub unsafe fn completionBlock() -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(setCompletionBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCompletionBlock(block: Option<&block2::DynBlock<dyn Fn()>>);
+        pub unsafe fn setCompletionBlock(block: Option<&block2::Block<'static, fn()>>);
 
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]

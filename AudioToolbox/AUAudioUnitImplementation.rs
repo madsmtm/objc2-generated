@@ -255,13 +255,13 @@ impl AUParameterTree {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueobserver?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2", feature = "objc2"))]
-pub type AUImplementorValueObserver = block2::DynBlock<dyn Fn(NonNull<AUParameter>, AUValue)>;
+pub type AUImplementorValueObserver = block2::Block<'static, fn(NonNull<AUParameter>, AUValue)>;
 
 /// A block called to fetch an AUParameter's current value from the AUAudioUnit implementation.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueprovider?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2", feature = "objc2"))]
-pub type AUImplementorValueProvider = block2::DynBlock<dyn Fn(NonNull<AUParameter>) -> AUValue>;
+pub type AUImplementorValueProvider = block2::Block<'static, fn(NonNull<AUParameter>) -> AUValue>;
 
 /// A block called to convert an AUParameter's value to a string.
 ///
@@ -273,7 +273,7 @@ pub type AUImplementorValueProvider = block2::DynBlock<dyn Fn(NonNull<AUParamete
     feature = "objc2-foundation"
 ))]
 pub type AUImplementorStringFromValueCallback =
-    block2::DynBlock<dyn Fn(NonNull<AUParameter>, *const AUValue) -> NonNull<NSString>>;
+    block2::Block<'static, fn(NonNull<AUParameter>, *const AUValue) -> NonNull<NSString>>;
 
 /// A block called to convert a string to an AUParameter's value.
 ///
@@ -285,7 +285,7 @@ pub type AUImplementorStringFromValueCallback =
     feature = "objc2-foundation"
 ))]
 pub type AUImplementorValueFromStringCallback =
-    block2::DynBlock<dyn Fn(NonNull<AUParameter>, NonNull<NSString>) -> AUValue>;
+    block2::Block<'static, fn(NonNull<AUParameter>, NonNull<NSString>) -> AUValue>;
 
 /// A block called to return a group or parameter's localized display name, abbreviated to the requested length.
 ///
@@ -297,7 +297,7 @@ pub type AUImplementorValueFromStringCallback =
     feature = "objc2-foundation"
 ))]
 pub type AUImplementorDisplayNameWithLengthCallback =
-    block2::DynBlock<dyn Fn(NonNull<AUParameterNode>, NSInteger) -> NonNull<NSString>>;
+    block2::Block<'static, fn(NonNull<AUParameterNode>, NSInteger) -> NonNull<NSString>>;
 
 /// AUParameterNodeImplementation.
 ///

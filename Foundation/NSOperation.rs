@@ -113,7 +113,7 @@ impl NSOperation {
         /// The returned block must be sendable.
         #[unsafe(method(completionBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionBlock(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub unsafe fn completionBlock(&self) -> *mut block2::Block<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionBlock`][Self::completionBlock].
@@ -127,7 +127,7 @@ impl NSOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionBlock(
             &self,
-            completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+            completion_block: Option<&block2::Block<'static, fn()>>,
         );
 
         #[unsafe(method(waitUntilFinished))]
@@ -214,8 +214,9 @@ impl NSBlockOperation {
         /// `block` block must be sendable.
         #[unsafe(method(blockOperationWithBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn blockOperationWithBlock(block: &block2::DynBlock<dyn Fn()>)
-            -> Retained<Self>;
+        pub unsafe fn blockOperationWithBlock(
+            block: &block2::Block<'static, fn()>,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -223,7 +224,7 @@ impl NSBlockOperation {
         /// `block` block must be sendable.
         #[unsafe(method(addExecutionBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addExecutionBlock(&self, block: &block2::DynBlock<dyn Fn()>);
+        pub unsafe fn addExecutionBlock(&self, block: &block2::Block<'static, fn()>);
     );
 }
 
@@ -385,7 +386,7 @@ impl NSOperationQueue {
         /// `block` block must be sendable.
         #[unsafe(method(addOperationWithBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addOperationWithBlock(&self, block: &block2::DynBlock<dyn Fn()>);
+        pub unsafe fn addOperationWithBlock(&self, block: &block2::Block<'static, fn()>);
 
         #[cfg(feature = "block2")]
         /// Parameter `barrier`: A block to execute
@@ -399,7 +400,7 @@ impl NSOperationQueue {
         /// `barrier` block must be sendable.
         #[unsafe(method(addBarrierBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addBarrierBlock(&self, barrier: &block2::DynBlock<dyn Fn()>);
+        pub unsafe fn addBarrierBlock(&self, barrier: &block2::Block<'static, fn()>);
 
         #[unsafe(method(maxConcurrentOperationCount))]
         #[unsafe(method_family = none)]

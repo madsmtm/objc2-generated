@@ -41,7 +41,7 @@ impl INRelevantShortcutStore {
         pub unsafe fn setRelevantShortcuts_completionHandler(
             &self,
             shortcuts: &NSArray<INRelevantShortcut>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }

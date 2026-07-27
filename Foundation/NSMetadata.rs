@@ -196,7 +196,7 @@ impl NSMetadataQuery {
         #[unsafe(method_family = none)]
         pub fn enumerateResultsUsingBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>)>,
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
@@ -205,7 +205,7 @@ impl NSMetadataQuery {
         pub fn enumerateResultsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &block2::DynBlock<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "NSArray")]

@@ -627,7 +627,7 @@ impl NSString {
             &self,
             range: NSRange,
             opts: NSStringEnumerationOptions,
-            block: &block2::DynBlock<dyn Fn(*mut NSString, NSRange, NSRange, NonNull<Bool>)>,
+            block: &block2::Block<'static, fn(*mut NSString, NSRange, NSRange, NonNull<Bool>)>,
         );
     );
 
@@ -637,7 +637,7 @@ impl NSString {
         #[unsafe(method_family = none)]
         pub fn enumerateLinesUsingBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn(NonNull<NSString>, NonNull<Bool>)>,
+            block: &block2::Block<'static, fn(NonNull<NSString>, NonNull<Bool>)>,
         );
 
         #[unsafe(method(UTF8String))]
@@ -865,7 +865,7 @@ impl NSString {
             this: Allocated<Self>,
             chars: NonNull<unichar>,
             len: NSUInteger,
-            deallocator: Option<&block2::DynBlock<dyn Fn(NonNull<unichar>, NSUInteger)>>,
+            deallocator: Option<&block2::Block<'static, fn(NonNull<unichar>, NSUInteger)>>,
         ) -> Retained<Self>;
 
         /// # Safety
@@ -935,7 +935,7 @@ impl NSString {
             bytes: NonNull<c_void>,
             len: NSUInteger,
             encoding: NSStringEncoding,
-            deallocator: Option<&block2::DynBlock<dyn Fn(NonNull<c_void>, NSUInteger)>>,
+            deallocator: Option<&block2::Block<'static, fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Retained<Self>>;
 
         #[unsafe(method(string))]
@@ -1074,7 +1074,7 @@ impl NSMutableString {
             this: Allocated<Self>,
             chars: NonNull<unichar>,
             len: NSUInteger,
-            deallocator: Option<&block2::DynBlock<dyn Fn(NonNull<unichar>, NSUInteger)>>,
+            deallocator: Option<&block2::Block<'static, fn(NonNull<unichar>, NSUInteger)>>,
         ) -> Retained<Self>;
 
         /// # Safety
@@ -1144,7 +1144,7 @@ impl NSMutableString {
             bytes: NonNull<c_void>,
             len: NSUInteger,
             encoding: NSStringEncoding,
-            deallocator: Option<&block2::DynBlock<dyn Fn(NonNull<c_void>, NSUInteger)>>,
+            deallocator: Option<&block2::Block<'static, fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Retained<Self>>;
 
         #[unsafe(method(string))]

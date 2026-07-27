@@ -15,7 +15,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawablepresentedhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLDrawablePresentedHandler =
-    block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTLDrawable>>)>;
+    block2::Block<'static, fn(NonNull<ProtocolObject<dyn MTLDrawable>>)>;
 
 extern_protocol!(
     /// All "drawable" objects (such as those coming from CAMetalLayer) are expected to conform to this protocol

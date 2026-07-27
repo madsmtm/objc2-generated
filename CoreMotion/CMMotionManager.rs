@@ -9,19 +9,20 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmaccelerometerhandler?language=objc)
 #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem", feature = "block2"))]
-pub type CMAccelerometerHandler = block2::DynBlock<dyn Fn(*mut CMAccelerometerData, *mut NSError)>;
+pub type CMAccelerometerHandler =
+    block2::Block<'static, fn(*mut CMAccelerometerData, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmgyrohandler?language=objc)
 #[cfg(all(feature = "CMGyro", feature = "CMLogItem", feature = "block2"))]
-pub type CMGyroHandler = block2::DynBlock<dyn Fn(*mut CMGyroData, *mut NSError)>;
+pub type CMGyroHandler = block2::Block<'static, fn(*mut CMGyroData, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotionhandler?language=objc)
 #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
-pub type CMDeviceMotionHandler = block2::DynBlock<dyn Fn(*mut CMDeviceMotion, *mut NSError)>;
+pub type CMDeviceMotionHandler = block2::Block<'static, fn(*mut CMDeviceMotion, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagnetometerhandler?language=objc)
 #[cfg(all(feature = "CMLogItem", feature = "CMMagnetometer", feature = "block2"))]
-pub type CMMagnetometerHandler = block2::DynBlock<dyn Fn(*mut CMMagnetometerData, *mut NSError)>;
+pub type CMMagnetometerHandler = block2::Block<'static, fn(*mut CMMagnetometerData, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionmanager?language=objc)

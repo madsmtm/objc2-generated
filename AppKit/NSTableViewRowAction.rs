@@ -54,7 +54,7 @@ impl NSTableViewRowAction {
         pub fn rowActionWithStyle_title_handler(
             style: NSTableViewRowActionStyle,
             title: &NSString,
-            handler: &block2::DynBlock<dyn Fn(NonNull<NSTableViewRowAction>, NSInteger)>,
+            handler: &block2::Block<'static, fn(NonNull<NSTableViewRowAction>, NSInteger)>,
         ) -> Retained<Self>;
 
         #[unsafe(method(style))]

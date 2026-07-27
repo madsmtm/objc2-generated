@@ -79,7 +79,7 @@ impl SACrashDetectionManager {
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationWithCompletionHandler(
             &self,
-            handler: &block2::DynBlock<dyn Fn(SAAuthorizationStatus, *mut NSError)>,
+            handler: &block2::Block<'static, fn(SAAuthorizationStatus, *mut NSError)>,
         );
     );
 }

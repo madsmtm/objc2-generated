@@ -48,8 +48,9 @@ impl FSClient {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchInstalledExtensionsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<FSModuleIdentity>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<FSModuleIdentity>, *mut NSError),
             >,
         );
     );

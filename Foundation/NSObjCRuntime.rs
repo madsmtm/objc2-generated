@@ -287,7 +287,7 @@ pub unsafe fn NSGetSizeAndAlignment(
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparator?language=objc)
 #[cfg(feature = "block2")]
 pub type NSComparator =
-    block2::DynBlock<dyn Fn(NonNull<AnyObject>, NonNull<AnyObject>) -> NSComparisonResult>;
+    block2::Block<'static, fn(NonNull<AnyObject>, NonNull<AnyObject>) -> NSComparisonResult>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerationoptions?language=objc)
 // NS_OPTIONS

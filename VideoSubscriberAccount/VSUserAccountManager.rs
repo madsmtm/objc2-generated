@@ -56,7 +56,7 @@ impl VSUserAccountManager {
         pub unsafe fn updateUserAccount_completion(
             &self,
             account: &VSUserAccount,
-            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "VSUserAccount", feature = "block2"))]
@@ -68,7 +68,7 @@ impl VSUserAccountManager {
         pub unsafe fn queryUserAccountsWithOptions_completion(
             &self,
             options: VSUserAccountQueryOptions,
-            completion: &block2::DynBlock<dyn Fn(*mut NSArray<VSUserAccount>, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSArray<VSUserAccount>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "VSAutoSignInToken", feature = "block2"))]
@@ -81,7 +81,7 @@ impl VSUserAccountManager {
         #[unsafe(method_family = none)]
         pub unsafe fn queryAutoSignInTokenWithCompletionHandler(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut VSAutoSignInToken, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut VSAutoSignInToken, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -94,7 +94,7 @@ impl VSUserAccountManager {
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAutoSignInTokenWithCompletionHandler(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }

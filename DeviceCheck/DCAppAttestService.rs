@@ -145,7 +145,7 @@ impl DCAppAttestService {
         #[unsafe(method_family = none)]
         pub unsafe fn generateKeyWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -222,7 +222,7 @@ impl DCAppAttestService {
             &self,
             key_id: &NSString,
             client_data_hash: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -279,7 +279,7 @@ impl DCAppAttestService {
             &self,
             key_id: &NSString,
             client_data_hash: &NSData,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
     );
 }

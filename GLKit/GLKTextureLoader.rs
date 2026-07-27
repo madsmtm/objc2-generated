@@ -279,7 +279,7 @@ impl GLKTextureInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadercallback?language=objc)
 #[cfg(feature = "block2")]
-pub type GLKTextureLoaderCallback = block2::DynBlock<dyn Fn(*mut GLKTextureInfo, *mut NSError)>;
+pub type GLKTextureLoaderCallback = block2::Block<'static, fn(*mut GLKTextureInfo, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloader?language=objc)

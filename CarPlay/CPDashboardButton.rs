@@ -53,7 +53,7 @@ impl CPDashboardButton {
             title_variants: &NSArray<NSString>,
             subtitle_variants: &NSArray<NSString>,
             image: &UIImage,
-            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPDashboardButton>)>>,
+            handler: Option<&block2::Block<'static, fn(NonNull<CPDashboardButton>)>>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-ui-kit")]

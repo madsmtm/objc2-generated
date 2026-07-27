@@ -278,7 +278,7 @@ impl UIDocumentBrowserViewController {
             &self,
             url: &NSURL,
             import_if_needed: bool,
-            completion: Option<&block2::DynBlock<dyn Fn(*mut NSURL, *mut NSError)>>,
+            completion: Option<&block2::Block<'static, fn(*mut NSURL, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -290,7 +290,7 @@ impl UIDocumentBrowserViewController {
             document_url: &NSURL,
             neighbour_url: &NSURL,
             import_mode: UIDocumentBrowserImportMode,
-            completion: &block2::DynBlock<dyn Fn(*mut NSURL, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSURL, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -303,7 +303,7 @@ impl UIDocumentBrowserViewController {
             &self,
             document_url: &NSURL,
             proposed_name: &NSString,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSURL, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSURL, *mut NSError)>,
         );
 
         /// A UIDocumentBrowserTransitionController object is used to display a loading indicator, while the application is spending time on time-consuming operations (e.g., loading, parsing, …) after having finished the file download, and before presenting it. To be used together with the UIViewControllerTransitioningDelegate protocol for custom view controller transitions.
@@ -440,7 +440,7 @@ extern_protocol!(
         fn documentBrowser_didRequestDocumentCreationWithHandler(
             &self,
             controller: &UIDocumentBrowserViewController,
-            import_handler: &block2::DynBlock<dyn Fn(*mut NSURL, UIDocumentBrowserImportMode)>,
+            import_handler: &block2::Block<'static, fn(*mut NSURL, UIDocumentBrowserImportMode)>,
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]

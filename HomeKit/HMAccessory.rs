@@ -314,7 +314,7 @@ impl HMAccessory {
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -332,7 +332,7 @@ impl HMAccessory {
         #[unsafe(method_family = none)]
         pub unsafe fn identifyWithCompletionHandler(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[deprecated = "HMAccessory objects are created by their parent container objects. Directly creating them is not supported."]

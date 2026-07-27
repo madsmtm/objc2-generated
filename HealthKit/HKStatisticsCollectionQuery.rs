@@ -45,7 +45,7 @@ impl HKStatisticsCollection {
             &self,
             start_date: &NSDate,
             end_date: &NSDate,
-            block: &block2::DynBlock<dyn Fn(NonNull<HKStatistics>, NonNull<Bool>)>,
+            block: &block2::Block<'static, fn(NonNull<HKStatistics>, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "HKStatistics")]
@@ -121,8 +121,9 @@ impl HKStatisticsCollectionQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn initialResultsHandler(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(NonNull<HKStatisticsCollectionQuery>, *mut HKStatisticsCollection, *mut NSError),
+        ) -> *mut block2::Block<
+            'static,
+            fn(NonNull<HKStatisticsCollectionQuery>, *mut HKStatisticsCollection, *mut NSError),
         >;
 
         #[cfg(feature = "block2")]
@@ -139,8 +140,9 @@ impl HKStatisticsCollectionQuery {
         pub unsafe fn setInitialResultsHandler(
             &self,
             initial_results_handler: Option<
-                &block2::DynBlock<
-                    dyn Fn(
+                &block2::Block<
+                    'static,
+                    fn(
                         NonNull<HKStatisticsCollectionQuery>,
                         *mut HKStatisticsCollection,
                         *mut NSError,
@@ -160,8 +162,9 @@ impl HKStatisticsCollectionQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn statisticsUpdateHandler(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(
+        ) -> *mut block2::Block<
+            'static,
+            fn(
                 NonNull<HKStatisticsCollectionQuery>,
                 *mut HKStatistics,
                 *mut HKStatisticsCollection,
@@ -183,8 +186,9 @@ impl HKStatisticsCollectionQuery {
         pub unsafe fn setStatisticsUpdateHandler(
             &self,
             statistics_update_handler: Option<
-                &block2::DynBlock<
-                    dyn Fn(
+                &block2::Block<
+                    'static,
+                    fn(
                         NonNull<HKStatisticsCollectionQuery>,
                         *mut HKStatistics,
                         *mut HKStatisticsCollection,

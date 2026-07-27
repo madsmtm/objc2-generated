@@ -150,7 +150,7 @@ impl NSSliderAccessoryBehavior {
         #[unsafe(method(behaviorWithHandler:))]
         #[unsafe(method_family = none)]
         pub fn behaviorWithHandler(
-            handler: &block2::DynBlock<dyn Fn(NonNull<NSSliderAccessory>)>,
+            handler: &block2::Block<'static, fn(NonNull<NSSliderAccessory>)>,
             mtm: MainThreadMarker,
         ) -> Retained<NSSliderAccessoryBehavior>;
 

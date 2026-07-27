@@ -266,7 +266,7 @@ impl CKModifyRecordsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordProgressBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecord>, c_double)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecord>, c_double)>;
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`perRecordProgressBlock`][Self::perRecordProgressBlock].
@@ -281,7 +281,7 @@ impl CKModifyRecordsOperation {
         pub unsafe fn setPerRecordProgressBlock(
             &self,
             per_record_progress_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecord>, c_double)>,
+                &block2::Block<'static, fn(NonNull<CKRecord>, c_double)>,
             >,
         );
 
@@ -309,7 +309,7 @@ impl CKModifyRecordsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordCompletionBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecord>, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecord>, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`perRecordCompletionBlock`][Self::perRecordCompletionBlock].
@@ -325,7 +325,7 @@ impl CKModifyRecordsOperation {
         pub unsafe fn setPerRecordCompletionBlock(
             &self,
             per_record_completion_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecord>, *mut NSError)>,
+                &block2::Block<'static, fn(NonNull<CKRecord>, *mut NSError)>,
             >,
         );
 
@@ -354,7 +354,7 @@ impl CKModifyRecordsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordSaveBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordSaveBlock`][Self::perRecordSaveBlock].
@@ -369,7 +369,7 @@ impl CKModifyRecordsOperation {
         pub unsafe fn setPerRecordSaveBlock(
             &self,
             per_record_save_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>,
+                &block2::Block<'static, fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>,
             >,
         );
 
@@ -396,7 +396,7 @@ impl CKModifyRecordsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordDeleteBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordID>, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecordID>, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordDeleteBlock`][Self::perRecordDeleteBlock].
@@ -411,7 +411,7 @@ impl CKModifyRecordsOperation {
         pub unsafe fn setPerRecordDeleteBlock(
             &self,
             per_record_delete_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecordID>, *mut NSError)>,
+                &block2::Block<'static, fn(NonNull<CKRecordID>, *mut NSError)>,
             >,
         );
 
@@ -446,8 +446,9 @@ impl CKModifyRecordsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn modifyRecordsCompletionBlock(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(*mut NSArray<CKRecord>, *mut NSArray<CKRecordID>, *mut NSError),
+        ) -> *mut block2::Block<
+            'static,
+            fn(*mut NSArray<CKRecord>, *mut NSArray<CKRecordID>, *mut NSError),
         >;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
@@ -463,8 +464,9 @@ impl CKModifyRecordsOperation {
         pub unsafe fn setModifyRecordsCompletionBlock(
             &self,
             modify_records_completion_block: Option<
-                &block2::DynBlock<
-                    dyn Fn(*mut NSArray<CKRecord>, *mut NSArray<CKRecordID>, *mut NSError),
+                &block2::Block<
+                    'static,
+                    fn(*mut NSArray<CKRecord>, *mut NSArray<CKRecordID>, *mut NSError),
                 >,
             >,
         );

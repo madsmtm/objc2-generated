@@ -96,8 +96,9 @@ extern_protocol!(
         unsafe fn replaceChildrenOfMenuForIdentifier_fromChildrenBlock(
             &self,
             parent_identifier: &UIMenuIdentifier,
-            children_block: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<UIMenuElement>>) -> NonNull<NSArray<UIMenuElement>> + '_,
+            children_block: &block2::Block<
+                '_,
+                fn(NonNull<NSArray<UIMenuElement>>) -> NonNull<NSArray<UIMenuElement>>,
             >,
         );
 

@@ -58,7 +58,7 @@ impl NSAppearance {
         #[cfg(feature = "block2")]
         #[unsafe(method(performAsCurrentDrawingAppearance:))]
         #[unsafe(method_family = none)]
-        pub fn performAsCurrentDrawingAppearance(&self, block: &block2::DynBlock<dyn Fn() + '_>);
+        pub fn performAsCurrentDrawingAppearance(&self, block: &block2::Block<'_, fn()>);
 
         #[unsafe(method(appearanceNamed:))]
         #[unsafe(method_family = none)]

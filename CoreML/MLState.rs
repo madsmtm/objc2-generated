@@ -65,7 +65,7 @@ impl MLState {
         pub unsafe fn getMultiArrayForStateNamed_handler(
             &self,
             state_name: &NSString,
-            handler: &block2::DynBlock<dyn Fn(NonNull<MLMultiArray>) + '_>,
+            handler: &block2::Block<'_, fn(NonNull<MLMultiArray>)>,
         );
     );
 }

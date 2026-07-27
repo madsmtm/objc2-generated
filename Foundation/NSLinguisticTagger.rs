@@ -446,7 +446,7 @@ impl NSLinguisticTagger {
             unit: NSLinguisticTaggerUnit,
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
-            block: &block2::DynBlock<dyn Fn(*mut NSLinguisticTag, NSRange, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(*mut NSLinguisticTag, NSRange, NonNull<Bool>)>,
         );
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
@@ -491,9 +491,7 @@ impl NSLinguisticTagger {
             range: NSRange,
             tag_scheme: &NSLinguisticTagScheme,
             opts: NSLinguisticTaggerOptions,
-            block: &block2::DynBlock<
-                dyn Fn(*mut NSLinguisticTag, NSRange, NSRange, NonNull<Bool>) + '_,
-            >,
+            block: &block2::Block<'_, fn(*mut NSLinguisticTag, NSRange, NSRange, NonNull<Bool>)>,
         );
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
@@ -593,7 +591,7 @@ impl NSLinguisticTagger {
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
             orthography: Option<&NSOrthography>,
-            block: &block2::DynBlock<dyn Fn(*mut NSLinguisticTag, NSRange, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(*mut NSLinguisticTag, NSRange, NonNull<Bool>)>,
         );
 
         #[cfg(all(
@@ -672,9 +670,7 @@ impl NSString {
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
             orthography: Option<&NSOrthography>,
-            block: &block2::DynBlock<
-                dyn Fn(*mut NSLinguisticTag, NSRange, NSRange, NonNull<Bool>) + '_,
-            >,
+            block: &block2::Block<'_, fn(*mut NSLinguisticTag, NSRange, NSRange, NonNull<Bool>)>,
         );
     );
 }

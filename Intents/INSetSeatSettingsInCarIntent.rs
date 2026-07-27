@@ -150,7 +150,7 @@ extern_protocol!(
         unsafe fn handleSetSeatSettingsInCar_completion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSetSeatSettingsInCarIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSetSeatSettingsInCarIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -181,7 +181,7 @@ extern_protocol!(
         unsafe fn confirmSetSeatSettingsInCar_completion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSetSeatSettingsInCarIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSetSeatSettingsInCarIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -212,7 +212,7 @@ extern_protocol!(
         unsafe fn resolveEnableHeatingForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -231,7 +231,7 @@ extern_protocol!(
         unsafe fn resolveEnableCoolingForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -250,7 +250,7 @@ extern_protocol!(
         unsafe fn resolveEnableMassageForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -269,7 +269,7 @@ extern_protocol!(
         unsafe fn resolveSeatForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCarSeatResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCarSeatResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -288,7 +288,7 @@ extern_protocol!(
         unsafe fn resolveLevelForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -307,7 +307,7 @@ extern_protocol!(
         unsafe fn resolveRelativeLevelSettingForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INRelativeSettingResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INRelativeSettingResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -325,7 +325,7 @@ extern_protocol!(
         unsafe fn resolveCarNameForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
     }
 );

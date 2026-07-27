@@ -177,7 +177,7 @@ impl AVAudioSession {
         #[deprecated = "Please use AVAudioApplication requestRecordPermissionWithCompletionHandler"]
         #[unsafe(method(requestRecordPermission:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestRecordPermission(&self, response: &block2::DynBlock<dyn Fn(Bool)>);
+        pub unsafe fn requestRecordPermission(&self, response: &block2::Block<'static, fn(Bool)>);
 
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Use this method to temporarily override the output to built-in speaker.
@@ -389,7 +389,7 @@ impl AVAudioSession {
         pub unsafe fn activateWithOptions_completionHandler(
             &self,
             options: AVAudioSessionActivationOptions,
-            handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
     );
 }

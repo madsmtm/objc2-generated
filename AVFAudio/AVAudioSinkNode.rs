@@ -29,8 +29,9 @@ use crate::*;
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AVAudioSinkNodeReceiverBlock = block2::DynBlock<
-    dyn Fn(NonNull<AudioTimeStamp>, AVAudioFrameCount, NonNull<AudioBufferList>) -> OSStatus,
+pub type AVAudioSinkNodeReceiverBlock = block2::Block<
+    'static,
+    fn(NonNull<AudioTimeStamp>, AVAudioFrameCount, NonNull<AudioBufferList>) -> OSStatus,
 >;
 
 extern_class!(

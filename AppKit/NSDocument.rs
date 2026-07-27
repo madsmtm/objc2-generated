@@ -184,36 +184,33 @@ impl NSDocument {
         pub fn performActivityWithSynchronousWaiting_usingBlock(
             &self,
             wait_synchronously: bool,
-            block: &block2::DynBlock<dyn Fn(NonNull<block2::DynBlock<dyn Fn()>>)>,
+            block: &block2::Block<'static, fn(NonNull<block2::Block<'static, fn()>>)>,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(continueActivityUsingBlock:))]
         #[unsafe(method_family = none)]
-        pub fn continueActivityUsingBlock(&self, block: &block2::DynBlock<dyn Fn() + '_>);
+        pub fn continueActivityUsingBlock(&self, block: &block2::Block<'_, fn()>);
 
         #[cfg(feature = "block2")]
         #[unsafe(method(continueAsynchronousWorkOnMainThreadUsingBlock:))]
         #[unsafe(method_family = none)]
         pub fn continueAsynchronousWorkOnMainThreadUsingBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn()>,
+            block: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(performSynchronousFileAccessUsingBlock:))]
         #[unsafe(method_family = none)]
-        pub fn performSynchronousFileAccessUsingBlock(
-            &self,
-            block: &block2::DynBlock<dyn Fn() + '_>,
-        );
+        pub fn performSynchronousFileAccessUsingBlock(&self, block: &block2::Block<'_, fn()>);
 
         #[cfg(feature = "block2")]
         #[unsafe(method(performAsynchronousFileAccessUsingBlock:))]
         #[unsafe(method_family = none)]
         pub fn performAsynchronousFileAccessUsingBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn(NonNull<block2::DynBlock<dyn Fn()>>)>,
+            block: &block2::Block<'static, fn(NonNull<block2::Block<'static, fn()>>)>,
         );
 
         /// # Safety
@@ -423,7 +420,7 @@ impl NSDocument {
             url: &NSURL,
             type_name: &NSString,
             save_operation: NSSaveOperationType,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[unsafe(method(canAsynchronouslyWriteToURL:ofType:forSaveOperation:))]
@@ -469,7 +466,7 @@ impl NSDocument {
         pub fn autosaveWithImplicitCancellability_completionHandler(
             &self,
             autosaving_is_implicitly_cancellable: bool,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[unsafe(method(autosavesInPlace))]
@@ -496,7 +493,7 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub fn stopBrowsingVersionsWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
+            completion_handler: Option<&block2::Block<'static, fn()>>,
         );
 
         #[unsafe(method(autosavesDrafts))]
@@ -587,7 +584,7 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub fn moveDocumentWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -596,7 +593,7 @@ impl NSDocument {
         pub fn moveToURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         /// # Safety
@@ -618,7 +615,7 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub fn lockDocumentWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -626,7 +623,7 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub fn lockWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -634,7 +631,7 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub fn unlockDocumentWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -642,7 +639,7 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub fn unlockWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[unsafe(method(isLocked))]
@@ -769,7 +766,7 @@ impl NSDocument {
         pub fn shareDocumentWithSharingService_completionHandler(
             &self,
             sharing_service: &NSSharingService,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "NSSharingService")]
@@ -1003,7 +1000,7 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn relinquishPresentedItemToReader(
             &self,
-            reader: &block2::DynBlock<dyn Fn(*mut block2::DynBlock<dyn Fn()>)>,
+            reader: &block2::Block<'static, fn(*mut block2::Block<'static, fn()>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1014,7 +1011,7 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn relinquishPresentedItemToWriter(
             &self,
-            writer: &block2::DynBlock<dyn Fn(*mut block2::DynBlock<dyn Fn()>)>,
+            writer: &block2::Block<'static, fn(*mut block2::Block<'static, fn()>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1025,7 +1022,7 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn savePresentedItemChangesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1036,7 +1033,7 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         #[unsafe(method(presentedItemDidMoveToURL:))]

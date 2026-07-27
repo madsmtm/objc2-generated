@@ -42,7 +42,7 @@ impl QLThumbnailProvider {
         pub unsafe fn provideThumbnailForFileRequest_completionHandler(
             &self,
             request: &QLFileThumbnailRequest,
-            handler: &block2::DynBlock<dyn Fn(*mut QLThumbnailReply, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut QLThumbnailReply, *mut NSError)>,
         );
     );
 }

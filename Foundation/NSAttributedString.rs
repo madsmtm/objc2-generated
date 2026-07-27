@@ -237,12 +237,9 @@ impl NSAttributedString {
             &self,
             enumeration_range: NSRange,
             opts: NSAttributedStringEnumerationOptions,
-            block: &block2::DynBlock<
-                dyn Fn(
-                        NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
-                        NSRange,
-                        NonNull<Bool>,
-                    ) + '_,
+            block: &block2::Block<
+                '_,
+                fn(NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>, NSRange, NonNull<Bool>),
             >,
         );
 
@@ -254,7 +251,7 @@ impl NSAttributedString {
             attr_name: &NSAttributedStringKey,
             enumeration_range: NSRange,
             opts: NSAttributedStringEnumerationOptions,
-            block: &block2::DynBlock<dyn Fn(*mut AnyObject, NSRange, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(*mut AnyObject, NSRange, NonNull<Bool>)>,
         );
     );
 }

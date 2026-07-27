@@ -19,7 +19,7 @@ pub const CHHapticTimeImmediate: NSTimeInterval = 0.0;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticcompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CHHapticCompletionHandler = block2::DynBlock<dyn Fn(*mut NSError)>;
+pub type CHHapticCompletionHandler = block2::Block<'static, fn(*mut NSError)>;
 
 /// Constants indicating what the engine should do in response to the finished handler being called.
 ///
@@ -59,7 +59,7 @@ unsafe impl RefEncode for CHHapticEngineFinishedAction {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticenginefinishedhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CHHapticEngineFinishedHandler =
-    block2::DynBlock<dyn Fn(*mut NSError) -> CHHapticEngineFinishedAction>;
+    block2::Block<'static, fn(*mut NSError) -> CHHapticEngineFinishedAction>;
 
 /// Constants indicating the reason why the CHHapticEngine has stopped.
 ///
@@ -124,7 +124,7 @@ unsafe impl RefEncode for CHHapticEngineStoppedReason {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticenginestoppedhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CHHapticEngineStoppedHandler = block2::DynBlock<dyn Fn(CHHapticEngineStoppedReason)>;
+pub type CHHapticEngineStoppedHandler = block2::Block<'static, fn(CHHapticEngineStoppedReason)>;
 
 /// A block which is called asynchronously if the haptic engine has reset itself due a server failure.
 ///
@@ -134,7 +134,7 @@ pub type CHHapticEngineStoppedHandler = block2::DynBlock<dyn Fn(CHHapticEngineSt
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengineresethandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CHHapticEngineResetHandler = block2::DynBlock<dyn Fn()>;
+pub type CHHapticEngineResetHandler = block2::Block<'static, fn()>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticaudioresourcekey?language=objc)
 pub type CHHapticAudioResourceKey = NSString;

@@ -681,7 +681,7 @@ pub type AudioObjectPropertyListenerProc = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectpropertylistenerblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AudioObjectPropertyListenerBlock =
-    block2::DynBlock<dyn Fn(u32, NonNull<AudioObjectPropertyAddress>)>;
+    block2::Block<'static, fn(u32, NonNull<AudioObjectPropertyAddress>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertycreator?language=objc)
 pub const kAudioObjectPropertyCreator: AudioObjectPropertySelector = 0x6f706c67;
@@ -1343,8 +1343,9 @@ pub type AudioDeviceIOProc = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceioblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-audio-types"))]
-pub type AudioDeviceIOBlock = block2::DynBlock<
-    dyn Fn(
+pub type AudioDeviceIOBlock = block2::Block<
+    'static,
+    fn(
         NonNull<AudioTimeStamp>,
         NonNull<AudioBufferList>,
         NonNull<AudioTimeStamp>,

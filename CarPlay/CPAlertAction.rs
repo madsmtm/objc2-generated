@@ -33,7 +33,7 @@ unsafe impl RefEncode for CPAlertActionStyle {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertactionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CPAlertActionHandler = block2::DynBlock<dyn Fn(NonNull<CPAlertAction>)>;
+pub type CPAlertActionHandler = block2::Block<'static, fn(NonNull<CPAlertAction>)>;
 
 extern_class!(
     /// `CPAlertAction`represents a single action that appears inside of a

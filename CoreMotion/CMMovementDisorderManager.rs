@@ -170,14 +170,14 @@ impl CMTremorResult {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdyskineticsymptomresulthandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMDyskineticSymptomResultHandler =
-    block2::DynBlock<dyn Fn(NonNull<NSArray<CMDyskineticSymptomResult>>, *mut NSError)>;
+    block2::Block<'static, fn(NonNull<NSArray<CMDyskineticSymptomResult>>, *mut NSError)>;
 
 /// Completion handler for CMTremorResult values.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmtremorresulthandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMTremorResultHandler =
-    block2::DynBlock<dyn Fn(NonNull<NSArray<CMTremorResult>>, *mut NSError)>;
+    block2::Block<'static, fn(NonNull<NSArray<CMTremorResult>>, *mut NSError)>;
 
 extern_class!(
     /// A CMMovementDisorderManager object with methods for persistence and query of movement disorder results.

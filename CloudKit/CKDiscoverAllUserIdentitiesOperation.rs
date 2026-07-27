@@ -118,7 +118,7 @@ impl CKDiscoverAllUserIdentitiesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn userIdentityDiscoveredBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKUserIdentity>)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKUserIdentity>)>;
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
         /// Setter for [`userIdentityDiscoveredBlock`][Self::userIdentityDiscoveredBlock].
@@ -134,7 +134,7 @@ impl CKDiscoverAllUserIdentitiesOperation {
         pub unsafe fn setUserIdentityDiscoveredBlock(
             &self,
             user_identity_discovered_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKUserIdentity>)>,
+                &block2::Block<'static, fn(NonNull<CKUserIdentity>)>,
             >,
         );
 
@@ -158,7 +158,7 @@ impl CKDiscoverAllUserIdentitiesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn discoverAllUserIdentitiesCompletionBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(*mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`discoverAllUserIdentitiesCompletionBlock`][Self::discoverAllUserIdentitiesCompletionBlock].
@@ -174,7 +174,7 @@ impl CKDiscoverAllUserIdentitiesOperation {
         pub unsafe fn setDiscoverAllUserIdentitiesCompletionBlock(
             &self,
             discover_all_user_identities_completion_block: Option<
-                &block2::DynBlock<dyn Fn(*mut NSError)>,
+                &block2::Block<'static, fn(*mut NSError)>,
             >,
         );
     );

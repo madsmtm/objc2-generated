@@ -170,8 +170,9 @@ impl WKExtendedRuntimeSession {
         #[unsafe(method(requestAutoLaunchAuthorizationStatusWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAutoLaunchAuthorizationStatusWithCompletion(
-            completion: &block2::DynBlock<
-                dyn Fn(WKExtendedRuntimeSessionAutoLaunchAuthorizationStatus, *mut NSError),
+            completion: &block2::Block<
+                'static,
+                fn(WKExtendedRuntimeSessionAutoLaunchAuthorizationStatus, *mut NSError),
             >,
         );
 
@@ -243,7 +244,7 @@ impl WKExtendedRuntimeSession {
             &self,
             r#type: WKHapticType,
             repeat_handler: Option<
-                &block2::DynBlock<dyn Fn(NonNull<WKHapticType>) -> NSTimeInterval>,
+                &block2::Block<'static, fn(NonNull<WKHapticType>) -> NSTimeInterval>,
             >,
         );
     );

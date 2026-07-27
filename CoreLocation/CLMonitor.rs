@@ -32,7 +32,7 @@ impl CLMonitor {
         #[unsafe(method_family = none)]
         pub unsafe fn requestMonitorWithConfiguration_completion(
             config: &CLMonitorConfiguration,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<CLMonitor>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<CLMonitor>)>,
         );
 
         /// This property is not atomic.

@@ -595,7 +595,7 @@ impl UIScrollView {
         #[unsafe(method_family = none)]
         pub fn withScrollIndicatorsShownForContentOffsetChanges(
             &self,
-            changes: &block2::DynBlock<dyn Fn() + '_>,
+            changes: &block2::Block<'_, fn()>,
         );
 
         /// The effect for the top edge of the scroll view.

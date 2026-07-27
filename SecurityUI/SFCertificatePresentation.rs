@@ -42,7 +42,7 @@ impl SFCertificatePresentation {
         pub unsafe fn presentSheetInWindow_dismissHandler(
             &self,
             window: &NSWindow,
-            dismiss_handler: Option<&block2::DynBlock<dyn Fn()>>,
+            dismiss_handler: Option<&block2::Block<'static, fn()>>,
         );
 
         /// Dismisses the certificate sheet.

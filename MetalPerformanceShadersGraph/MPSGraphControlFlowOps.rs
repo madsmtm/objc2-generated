@@ -17,7 +17,7 @@ use crate::*;
     feature = "block2"
 ))]
 pub type MPSGraphControlFlowDependencyBlock =
-    block2::DynBlock<dyn Fn() -> NonNull<NSArray<MPSGraphTensor>>>;
+    block2::Block<'static, fn() -> NonNull<NSArray<MPSGraphTensor>>>;
 
 /// A block of operations executed under either the if or else condition.
 ///
@@ -30,7 +30,7 @@ pub type MPSGraphControlFlowDependencyBlock =
     feature = "MPSGraphTensor",
     feature = "block2"
 ))]
-pub type MPSGraphIfThenElseBlock = block2::DynBlock<dyn Fn() -> NonNull<NSArray<MPSGraphTensor>>>;
+pub type MPSGraphIfThenElseBlock = block2::Block<'static, fn() -> NonNull<NSArray<MPSGraphTensor>>>;
 
 /// The block that executes before the condition evaluates for each iteration.
 ///
@@ -45,8 +45,9 @@ pub type MPSGraphIfThenElseBlock = block2::DynBlock<dyn Fn() -> NonNull<NSArray<
     feature = "MPSGraphTensor",
     feature = "block2"
 ))]
-pub type MPSGraphWhileBeforeBlock = block2::DynBlock<
-    dyn Fn(
+pub type MPSGraphWhileBeforeBlock = block2::Block<
+    'static,
+    fn(
         NonNull<NSArray<MPSGraphTensor>>,
         NonNull<NSMutableArray<MPSGraphTensor>>,
     ) -> NonNull<MPSGraphTensor>,
@@ -64,8 +65,10 @@ pub type MPSGraphWhileBeforeBlock = block2::DynBlock<
     feature = "MPSGraphTensor",
     feature = "block2"
 ))]
-pub type MPSGraphWhileAfterBlock =
-    block2::DynBlock<dyn Fn(NonNull<NSArray<MPSGraphTensor>>) -> NonNull<NSArray<MPSGraphTensor>>>;
+pub type MPSGraphWhileAfterBlock = block2::Block<
+    'static,
+    fn(NonNull<NSArray<MPSGraphTensor>>) -> NonNull<NSArray<MPSGraphTensor>>,
+>;
 
 /// A block for the body in the for loop.
 ///
@@ -80,8 +83,9 @@ pub type MPSGraphWhileAfterBlock =
     feature = "MPSGraphTensor",
     feature = "block2"
 ))]
-pub type MPSGraphForLoopBodyBlock = block2::DynBlock<
-    dyn Fn(
+pub type MPSGraphForLoopBodyBlock = block2::Block<
+    'static,
+    fn(
         NonNull<MPSGraphTensor>,
         NonNull<NSArray<MPSGraphTensor>>,
     ) -> NonNull<NSArray<MPSGraphTensor>>,

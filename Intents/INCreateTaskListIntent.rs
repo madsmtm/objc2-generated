@@ -124,7 +124,7 @@ extern_protocol!(
         unsafe fn handleCreateTaskList_completion(
             &self,
             intent: &INCreateTaskListIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCreateTaskListIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCreateTaskListIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -155,7 +155,7 @@ extern_protocol!(
         unsafe fn confirmCreateTaskList_completion(
             &self,
             intent: &INCreateTaskListIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCreateTaskListIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCreateTaskListIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -186,7 +186,7 @@ extern_protocol!(
         unsafe fn resolveTitleForCreateTaskList_withCompletion(
             &self,
             intent: &INCreateTaskListIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -205,8 +205,9 @@ extern_protocol!(
         unsafe fn resolveTaskTitlesForCreateTaskList_withCompletion(
             &self,
             intent: &INCreateTaskListIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<INSpeakableStringResolutionResult>>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<INSpeakableStringResolutionResult>>),
             >,
         );
 
@@ -226,7 +227,7 @@ extern_protocol!(
         unsafe fn resolveGroupNameForCreateTaskList_withCompletion(
             &self,
             intent: &INCreateTaskListIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
     }
 );

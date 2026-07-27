@@ -58,8 +58,9 @@ impl HKWorkoutRouteQuery {
         pub unsafe fn initWithRoute_dataHandler(
             this: Allocated<Self>,
             workout_route: &HKWorkoutRoute,
-            data_handler: &block2::DynBlock<
-                dyn Fn(NonNull<HKWorkoutRouteQuery>, *mut NSArray<CLLocation>, Bool, *mut NSError),
+            data_handler: &block2::Block<
+                'static,
+                fn(NonNull<HKWorkoutRouteQuery>, *mut NSArray<CLLocation>, Bool, *mut NSError),
             >,
         ) -> Retained<Self>;
 
@@ -96,8 +97,9 @@ impl HKWorkoutRouteQuery {
             this: Allocated<Self>,
             workout_route: &HKWorkoutRoute,
             date_interval: &NSDateInterval,
-            data_handler: &block2::DynBlock<
-                dyn Fn(NonNull<HKWorkoutRouteQuery>, *mut NSArray<CLLocation>, Bool, *mut NSError),
+            data_handler: &block2::Block<
+                'static,
+                fn(NonNull<HKWorkoutRouteQuery>, *mut NSArray<CLLocation>, Bool, *mut NSError),
             >,
         ) -> Retained<Self>;
     );

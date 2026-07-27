@@ -429,7 +429,7 @@ impl CLSContext {
         pub unsafe fn descendantMatchingIdentifierPath_completion(
             &self,
             identifier_path: &NSArray<NSString>,
-            completion: &block2::DynBlock<dyn Fn(*mut CLSContext, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut CLSContext, *mut NSError)>,
         );
 
         /// Child contexts that can be navigated to from this context.

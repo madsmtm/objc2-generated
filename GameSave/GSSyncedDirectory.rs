@@ -227,7 +227,7 @@ impl GSSyncedDirectory {
         #[unsafe(method_family = none)]
         pub unsafe fn triggerPendingUploadWithCompletionHandler(
             &self,
-            completion: &block2::DynBlock<dyn Fn(Bool)>,
+            completion: &block2::Block<'static, fn(Bool)>,
         );
 
         /// Indicates that you resolved a conflict.
@@ -256,7 +256,7 @@ impl GSSyncedDirectory {
         #[unsafe(method_family = none)]
         pub unsafe fn finishSyncingWithCompletionHandler(
             &self,
-            completion: &block2::DynBlock<dyn Fn()>,
+            completion: &block2::Block<'static, fn()>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
@@ -276,7 +276,7 @@ impl GSSyncedDirectory {
         pub unsafe fn finishSyncing_completionHandler(
             &self,
             status_display: &NSWindow,
-            completion: &block2::DynBlock<dyn Fn()>,
+            completion: &block2::Block<'static, fn()>,
         );
 
         /// The state of the directory.

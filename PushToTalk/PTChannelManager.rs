@@ -89,7 +89,7 @@ impl PTChannelManager {
         pub unsafe fn channelManagerWithDelegate_restorationDelegate_completionHandler(
             delegate: &ProtocolObject<dyn PTChannelManagerDelegate>,
             restoration_delegate: &ProtocolObject<dyn PTChannelRestorationDelegate>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut PTChannelManager, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut PTChannelManager, *mut NSError)>,
         );
 
         // +new (unavailable)
@@ -146,7 +146,7 @@ impl PTChannelManager {
             &self,
             channel_descriptor: &PTChannelDescriptor,
             channel_uuid: &NSUUID,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "PTParticipant", feature = "block2"))]
@@ -161,7 +161,7 @@ impl PTChannelManager {
             &self,
             participant: Option<&PTParticipant>,
             channel_uuid: &NSUUID,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -176,7 +176,7 @@ impl PTChannelManager {
             &self,
             status: PTServiceStatus,
             channel_uuid: &NSUUID,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -191,7 +191,7 @@ impl PTChannelManager {
             &self,
             transmission_mode: PTTransmissionMode,
             channel_uuid: &NSUUID,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -206,7 +206,7 @@ impl PTChannelManager {
             &self,
             enabled: bool,
             channel_uuid: &NSUUID,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
     );
 }

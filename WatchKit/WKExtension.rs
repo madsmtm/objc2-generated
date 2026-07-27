@@ -261,7 +261,7 @@ extern_protocol!(
         unsafe fn handleIntent_completionHandler(
             &self,
             intent: &INIntent,
-            completion_handler: &block2::DynBlock<dyn Fn(NonNull<INIntentResponse>)>,
+            completion_handler: &block2::Block<'static, fn(NonNull<INIntentResponse>)>,
         );
 
         #[cfg(feature = "WKBackgroundTask")]
@@ -299,7 +299,7 @@ extern_protocol!(
         unsafe fn didReceiveRemoteNotification_fetchCompletionHandler(
             &self,
             user_info: &NSDictionary,
-            completion_handler: &block2::DynBlock<dyn Fn(WKBackgroundFetchResult)>,
+            completion_handler: &block2::Block<'static, fn(WKBackgroundFetchResult)>,
         );
 
         #[cfg(feature = "objc2-cloud-kit")]

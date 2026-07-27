@@ -194,7 +194,7 @@ impl CKFetchDatabaseChangesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDChangedBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDChangedBlock`][Self::recordZoneWithIDChangedBlock].
@@ -209,7 +209,7 @@ impl CKFetchDatabaseChangesOperation {
         pub unsafe fn setRecordZoneWithIDChangedBlock(
             &self,
             record_zone_with_id_changed_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>)>,
+                &block2::Block<'static, fn(NonNull<CKRecordZoneID>)>,
             >,
         );
 
@@ -230,7 +230,7 @@ impl CKFetchDatabaseChangesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasDeletedBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasDeletedBlock`][Self::recordZoneWithIDWasDeletedBlock].
@@ -245,7 +245,7 @@ impl CKFetchDatabaseChangesOperation {
         pub unsafe fn setRecordZoneWithIDWasDeletedBlock(
             &self,
             record_zone_with_id_was_deleted_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>)>,
+                &block2::Block<'static, fn(NonNull<CKRecordZoneID>)>,
             >,
         );
 
@@ -266,7 +266,7 @@ impl CKFetchDatabaseChangesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasPurgedBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasPurgedBlock`][Self::recordZoneWithIDWasPurgedBlock].
@@ -281,7 +281,7 @@ impl CKFetchDatabaseChangesOperation {
         pub unsafe fn setRecordZoneWithIDWasPurgedBlock(
             &self,
             record_zone_with_id_was_purged_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>)>,
+                &block2::Block<'static, fn(NonNull<CKRecordZoneID>)>,
             >,
         );
 
@@ -302,7 +302,7 @@ impl CKFetchDatabaseChangesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock`][Self::recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock].
@@ -317,7 +317,7 @@ impl CKFetchDatabaseChangesOperation {
         pub unsafe fn setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
             record_zone_with_id_was_deleted_due_to_user_encrypted_data_reset_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>)>,
+                &block2::Block<'static, fn(NonNull<CKRecordZoneID>)>,
             >,
         );
 
@@ -336,7 +336,7 @@ impl CKFetchDatabaseChangesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn changeTokenUpdatedBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKServerChangeToken>)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKServerChangeToken>)>;
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         /// Setter for [`changeTokenUpdatedBlock`][Self::changeTokenUpdatedBlock].
@@ -351,7 +351,7 @@ impl CKFetchDatabaseChangesOperation {
         pub unsafe fn setChangeTokenUpdatedBlock(
             &self,
             change_token_updated_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKServerChangeToken>)>,
+                &block2::Block<'static, fn(NonNull<CKServerChangeToken>)>,
             >,
         );
 
@@ -381,7 +381,7 @@ impl CKFetchDatabaseChangesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchDatabaseChangesCompletionBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(*mut CKServerChangeToken, Bool, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(*mut CKServerChangeToken, Bool, *mut NSError)>;
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         /// Setter for [`fetchDatabaseChangesCompletionBlock`][Self::fetchDatabaseChangesCompletionBlock].
@@ -396,7 +396,7 @@ impl CKFetchDatabaseChangesOperation {
         pub unsafe fn setFetchDatabaseChangesCompletionBlock(
             &self,
             fetch_database_changes_completion_block: Option<
-                &block2::DynBlock<dyn Fn(*mut CKServerChangeToken, Bool, *mut NSError)>,
+                &block2::Block<'static, fn(*mut CKServerChangeToken, Bool, *mut NSError)>,
             >,
         );
     );

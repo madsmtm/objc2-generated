@@ -62,7 +62,7 @@ extern_protocol!(
         unsafe fn wipeResource_completionHandler(
             &self,
             resource: &FSBlockDeviceResource,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
     }
 );

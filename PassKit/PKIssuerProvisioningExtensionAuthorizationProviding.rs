@@ -35,7 +35,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn completionHandler(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(PKIssuerProvisioningExtensionAuthorizationResult)>;
+        ) -> *mut block2::Block<'static, fn(PKIssuerProvisioningExtensionAuthorizationResult)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
@@ -46,7 +46,7 @@ extern_protocol!(
         unsafe fn setCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(PKIssuerProvisioningExtensionAuthorizationResult)>,
+                &block2::Block<'static, fn(PKIssuerProvisioningExtensionAuthorizationResult)>,
             >,
         );
     }

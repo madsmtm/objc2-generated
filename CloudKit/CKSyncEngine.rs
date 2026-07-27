@@ -168,7 +168,7 @@ impl CKSyncEngine {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchChangesWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -194,7 +194,7 @@ impl CKSyncEngine {
         pub unsafe fn fetchChangesWithOptions_completionHandler(
             &self,
             options: &CKSyncEngineFetchChangesOptions,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -218,7 +218,7 @@ impl CKSyncEngine {
         #[unsafe(method_family = none)]
         pub unsafe fn sendChangesWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -244,7 +244,7 @@ impl CKSyncEngine {
         pub unsafe fn sendChangesWithOptions_completionHandler(
             &self,
             options: &CKSyncEngineSendChangesOptions,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -259,7 +259,7 @@ impl CKSyncEngine {
         #[unsafe(method_family = none)]
         pub unsafe fn cancelOperationsWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
+            completion_handler: Option<&block2::Block<'static, fn()>>,
         );
     );
 }

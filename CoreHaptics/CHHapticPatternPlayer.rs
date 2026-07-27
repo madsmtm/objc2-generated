@@ -79,7 +79,7 @@ extern_protocol!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticadvancedpatternplayercompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CHHapticAdvancedPatternPlayerCompletionHandler = block2::DynBlock<dyn Fn(*mut NSError)>;
+pub type CHHapticAdvancedPatternPlayerCompletionHandler = block2::Block<'static, fn(*mut NSError)>;
 
 extern_protocol!(
     /// A protocol which defines operations for pausing, resuming, seeking, and sending parameters to a pattern player.

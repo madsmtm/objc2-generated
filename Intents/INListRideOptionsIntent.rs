@@ -113,7 +113,7 @@ extern_protocol!(
         unsafe fn handleListRideOptions_completion(
             &self,
             intent: &INListRideOptionsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INListRideOptionsIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INListRideOptionsIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -143,7 +143,7 @@ extern_protocol!(
         unsafe fn confirmListRideOptions_completion(
             &self,
             intent: &INListRideOptionsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INListRideOptionsIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INListRideOptionsIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -173,7 +173,7 @@ extern_protocol!(
         unsafe fn resolvePickupLocationForListRideOptions_withCompletion(
             &self,
             intent: &INListRideOptionsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -191,7 +191,7 @@ extern_protocol!(
         unsafe fn resolveDropOffLocationForListRideOptions_withCompletion(
             &self,
             intent: &INListRideOptionsIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
         );
     }
 );

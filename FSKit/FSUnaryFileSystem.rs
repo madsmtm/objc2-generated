@@ -70,7 +70,7 @@ extern_protocol!(
         unsafe fn probeResource_replyHandler(
             &self,
             resource: &FSResource,
-            reply: &block2::DynBlock<dyn Fn(*mut FSProbeResult, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSProbeResult, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -99,7 +99,7 @@ extern_protocol!(
             &self,
             resource: &FSResource,
             options: &FSTaskOptions,
-            reply: &block2::DynBlock<dyn Fn(*mut FSVolume, *mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut FSVolume, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSResource", feature = "FSTaskOptions", feature = "block2"))]
@@ -119,7 +119,7 @@ extern_protocol!(
             &self,
             resource: &FSResource,
             options: &FSTaskOptions,
-            reply: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            reply: &block2::Block<'static, fn(*mut NSError)>,
         );
 
         /// Notifies you that the system finished loading your file system extension.

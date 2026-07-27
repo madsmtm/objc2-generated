@@ -36,8 +36,9 @@ use crate::*;
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AVAudioSourceNodeRenderBlock = block2::DynBlock<
-    dyn Fn(
+pub type AVAudioSourceNodeRenderBlock = block2::Block<
+    'static,
+    fn(
         NonNull<Bool>,
         NonNull<AudioTimeStamp>,
         AVAudioFrameCount,

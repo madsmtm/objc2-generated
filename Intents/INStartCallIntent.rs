@@ -142,7 +142,7 @@ extern_protocol!(
         unsafe fn handleStartCall_completion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INStartCallIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INStartCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -172,7 +172,7 @@ extern_protocol!(
         unsafe fn confirmStartCall_completion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INStartCallIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INStartCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -202,7 +202,7 @@ extern_protocol!(
         unsafe fn resolveCallRecordToCallBackForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCallRecordResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCallRecordResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -220,7 +220,7 @@ extern_protocol!(
         unsafe fn resolveDestinationTypeForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INCallDestinationTypeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INCallDestinationTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -239,8 +239,9 @@ extern_protocol!(
         unsafe fn resolveContactsForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<NSArray<INStartCallContactResolutionResult>>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<NSArray<INStartCallContactResolutionResult>>),
             >,
         );
 
@@ -260,8 +261,9 @@ extern_protocol!(
         unsafe fn resolveCallCapabilityForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<INStartCallCallCapabilityResolutionResult>),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<INStartCallCallCapabilityResolutionResult>),
             >,
         );
     }

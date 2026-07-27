@@ -88,7 +88,7 @@ impl AVSampleBufferVideoRenderer {
         pub unsafe fn flushWithRemovalOfDisplayedImage_completionHandler(
             &self,
             remove_displayed_image: bool,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
+            handler: Option<&block2::Block<'static, fn()>>,
         );
     );
 }
@@ -187,7 +187,7 @@ impl AVSampleBufferVideoRenderer {
         #[unsafe(method_family = none)]
         pub unsafe fn loadVideoPerformanceMetricsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut AVVideoPerformanceMetrics)>,
+            completion_handler: &block2::Block<'static, fn(*mut AVVideoPerformanceMetrics)>,
         );
     );
 }

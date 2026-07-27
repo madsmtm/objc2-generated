@@ -118,7 +118,7 @@ impl CKFetchRecordZonesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordZoneCompletionBlock(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>;
 
         #[cfg(all(
             feature = "CKRecordZone",
@@ -137,7 +137,10 @@ impl CKFetchRecordZonesOperation {
         pub unsafe fn setPerRecordZoneCompletionBlock(
             &self,
             per_record_zone_completion_block: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>,
+                &block2::Block<
+                    'static,
+                    fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError),
+                >,
             >,
         );
 
@@ -172,8 +175,9 @@ impl CKFetchRecordZonesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordZonesCompletionBlock(
             &self,
-        ) -> *mut block2::DynBlock<
-            dyn Fn(*mut NSDictionary<CKRecordZoneID, CKRecordZone>, *mut NSError),
+        ) -> *mut block2::Block<
+            'static,
+            fn(*mut NSDictionary<CKRecordZoneID, CKRecordZone>, *mut NSError),
         >;
 
         #[cfg(all(
@@ -193,8 +197,9 @@ impl CKFetchRecordZonesOperation {
         pub unsafe fn setFetchRecordZonesCompletionBlock(
             &self,
             fetch_record_zones_completion_block: Option<
-                &block2::DynBlock<
-                    dyn Fn(*mut NSDictionary<CKRecordZoneID, CKRecordZone>, *mut NSError),
+                &block2::Block<
+                    'static,
+                    fn(*mut NSDictionary<CKRecordZoneID, CKRecordZone>, *mut NSError),
                 >,
             >,
         );

@@ -546,7 +546,7 @@ impl UIViewController {
             &self,
             view_controller_to_present: &UIViewController,
             flag: bool,
-            completion: Option<&block2::DynBlock<dyn Fn()>>,
+            completion: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -555,7 +555,7 @@ impl UIViewController {
         pub fn dismissViewControllerAnimated_completion(
             &self,
             flag: bool,
-            completion: Option<&block2::DynBlock<dyn Fn()>>,
+            completion: Option<&block2::Block<'static, fn()>>,
         );
 
         #[deprecated]
@@ -980,8 +980,8 @@ impl UIViewController {
             to_view_controller: &UIViewController,
             duration: NSTimeInterval,
             options: UIViewAnimationOptions,
-            animations: Option<&block2::DynBlock<dyn Fn()>>,
-            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+            animations: Option<&block2::Block<'static, fn()>>,
+            completion: Option<&block2::Block<'static, fn(Bool)>>,
         );
 
         #[unsafe(method(beginAppearanceTransition:animated:))]
@@ -1693,8 +1693,9 @@ impl UIPreviewAction {
         pub unsafe fn handler(
             &self,
         ) -> NonNull<
-            block2::DynBlock<
-                dyn Fn(NonNull<ProtocolObject<dyn UIPreviewActionItem>>, NonNull<UIViewController>),
+            block2::Block<
+                'static,
+                fn(NonNull<ProtocolObject<dyn UIPreviewActionItem>>, NonNull<UIViewController>),
             >,
         >;
 
@@ -1704,7 +1705,10 @@ impl UIPreviewAction {
         pub fn actionWithTitle_style_handler(
             title: &NSString,
             style: UIPreviewActionStyle,
-            handler: &block2::DynBlock<dyn Fn(NonNull<UIPreviewAction>, NonNull<UIViewController>)>,
+            handler: &block2::Block<
+                'static,
+                fn(NonNull<UIPreviewAction>, NonNull<UIViewController>),
+            >,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
     );

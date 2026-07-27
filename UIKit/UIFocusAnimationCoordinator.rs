@@ -46,8 +46,8 @@ impl UIFocusAnimationCoordinator {
         #[unsafe(method_family = none)]
         pub fn addCoordinatedAnimations_completion(
             &self,
-            animations: Option<&block2::DynBlock<dyn Fn()>>,
-            completion: Option<&block2::DynBlock<dyn Fn()>>,
+            animations: Option<&block2::Block<'static, fn()>>,
+            completion: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -63,9 +63,9 @@ impl UIFocusAnimationCoordinator {
         pub fn addCoordinatedFocusingAnimations_completion(
             &self,
             animations: Option<
-                &block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn UIFocusAnimationContext>>)>,
+                &block2::Block<'static, fn(NonNull<ProtocolObject<dyn UIFocusAnimationContext>>)>,
             >,
-            completion: Option<&block2::DynBlock<dyn Fn()>>,
+            completion: Option<&block2::Block<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -81,9 +81,9 @@ impl UIFocusAnimationCoordinator {
         pub fn addCoordinatedUnfocusingAnimations_completion(
             &self,
             animations: Option<
-                &block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn UIFocusAnimationContext>>)>,
+                &block2::Block<'static, fn(NonNull<ProtocolObject<dyn UIFocusAnimationContext>>)>,
             >,
-            completion: Option<&block2::DynBlock<dyn Fn()>>,
+            completion: Option<&block2::Block<'static, fn()>>,
         );
     );
 }

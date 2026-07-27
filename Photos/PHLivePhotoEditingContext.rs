@@ -19,8 +19,9 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframeprocessingblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
-pub type PHLivePhotoFrameProcessingBlock = block2::DynBlock<
-    dyn Fn(NonNull<ProtocolObject<dyn PHLivePhotoFrame>>, NonNull<*mut NSError>) -> *mut CIImage,
+pub type PHLivePhotoFrameProcessingBlock = block2::Block<
+    'static,
+    fn(NonNull<ProtocolObject<dyn PHLivePhotoFrame>>, NonNull<*mut NSError>) -> *mut CIImage,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingoption?language=objc)
@@ -132,7 +133,7 @@ impl PHLivePhotoEditingContext {
             &self,
             target_size: CGSize,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            handler: &block2::DynBlock<dyn Fn(*mut PHLivePhoto, *mut NSError)>,
+            handler: &block2::Block<'static, fn(*mut PHLivePhoto, *mut NSError)>,
         );
 
         #[cfg(all(feature = "PHContentEditingOutput", feature = "block2"))]
@@ -149,7 +150,7 @@ impl PHLivePhotoEditingContext {
             &self,
             output: &PHContentEditingOutput,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         /// Cancel the current asynchronous operation

@@ -25,8 +25,9 @@ use crate::*;
     feature = "block2",
     feature = "objc2-core-foundation"
 ))]
-pub type GCKeyboardValueChangedHandler = block2::DynBlock<
-    dyn Fn(NonNull<GCKeyboardInput>, NonNull<GCControllerButtonInput>, GCKeyCode, Bool),
+pub type GCKeyboardValueChangedHandler = block2::Block<
+    'static,
+    fn(NonNull<GCKeyboardInput>, NonNull<GCControllerButtonInput>, GCKeyCode, Bool),
 >;
 
 extern_class!(

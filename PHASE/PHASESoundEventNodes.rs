@@ -968,8 +968,9 @@ impl PHASEPushStreamNode {
             &self,
             buffer: &AVAudioPCMBuffer,
             completion_callback_type: PHASEPushStreamCompletionCallbackCondition,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(PHASEPushStreamCompletionCallbackCondition),
+            completion_handler: &block2::Block<
+                'static,
+                fn(PHASEPushStreamCompletionCallbackCondition),
             >,
         );
 
@@ -1019,8 +1020,9 @@ impl PHASEPushStreamNode {
             when: Option<&AVAudioTime>,
             options: PHASEPushStreamBufferOptions,
             completion_callback_type: PHASEPushStreamCompletionCallbackCondition,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(PHASEPushStreamCompletionCallbackCondition),
+            completion_handler: &block2::Block<
+                'static,
+                fn(PHASEPushStreamCompletionCallbackCondition),
             >,
         );
     );
@@ -1055,8 +1057,9 @@ impl PHASEPushStreamNode {
     feature = "objc2-avf-audio",
     feature = "objc2-core-audio-types"
 ))]
-pub type PHASEPullStreamRenderBlock = block2::DynBlock<
-    dyn Fn(
+pub type PHASEPullStreamRenderBlock = block2::Block<
+    'static,
+    fn(
         NonNull<Bool>,
         NonNull<AudioTimeStamp>,
         AVAudioFrameCount,

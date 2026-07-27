@@ -206,8 +206,9 @@ impl NSUserActivity {
         #[unsafe(method_family = none)]
         pub unsafe fn getContinuationStreamsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSInputStream, *mut NSOutputStream, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSInputStream, *mut NSOutputStream, *mut NSError),
             >,
         );
 
@@ -271,7 +272,7 @@ impl NSUserActivity {
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSavedUserActivitiesWithPersistentIdentifiers_completionHandler(
             persistent_identifiers: &NSArray<NSUserActivityPersistentIdentifier>,
-            handler: &block2::DynBlock<dyn Fn()>,
+            handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -281,7 +282,7 @@ impl NSUserActivity {
         #[unsafe(method(deleteAllSavedUserActivitiesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAllSavedUserActivitiesWithCompletionHandler(
-            handler: &block2::DynBlock<dyn Fn()>,
+            handler: &block2::Block<'static, fn()>,
         );
     );
 }

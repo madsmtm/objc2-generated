@@ -87,8 +87,9 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type MTLDeviceNotificationHandler = block2::DynBlock<
-    dyn Fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>),
+pub type MTLDeviceNotificationHandler = block2::Block<
+    'static,
+    fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>),
 >;
 
 /// Returns an NSArray of the current set of available Metal devices and installs a notification handler
@@ -988,7 +989,7 @@ extern_protocol!(
             pointer: NonNull<c_void>,
             length: NSUInteger,
             options: MTLResourceOptions,
-            deallocator: Option<&block2::DynBlock<dyn Fn(NonNull<c_void>, NSUInteger)>>,
+            deallocator: Option<&block2::Block<'static, fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(feature = "MTLDepthStencil")]

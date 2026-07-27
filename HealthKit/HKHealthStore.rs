@@ -80,7 +80,7 @@ impl HKHealthStore {
             &self,
             types_to_share: Option<&NSSet<HKSampleType>>,
             types_to_read: Option<&NSSet<HKObjectType>>,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
@@ -106,7 +106,7 @@ impl HKHealthStore {
             &self,
             object_type: &HKObjectType,
             predicate: Option<&NSPredicate>,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKDefines", feature = "HKObjectType", feature = "block2"))]
@@ -126,7 +126,7 @@ impl HKHealthStore {
             &self,
             types_to_share: &NSSet<HKSampleType>,
             types_to_read: &NSSet<HKObjectType>,
-            completion: &block2::DynBlock<dyn Fn(HKAuthorizationRequestStatus, *mut NSError)>,
+            completion: &block2::Block<'static, fn(HKAuthorizationRequestStatus, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -148,7 +148,7 @@ impl HKHealthStore {
         #[unsafe(method_family = none)]
         pub unsafe fn handleAuthorizationForExtensionWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         /// Samples prior to the earliestPermittedSampleDate cannot be saved or queried.
@@ -183,7 +183,7 @@ impl HKHealthStore {
         pub unsafe fn saveObject_withCompletion(
             &self,
             object: &HKObject,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
@@ -199,7 +199,7 @@ impl HKHealthStore {
         pub unsafe fn saveObjects_withCompletion(
             &self,
             objects: &NSArray<HKObject>,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
@@ -215,7 +215,7 @@ impl HKHealthStore {
         pub unsafe fn deleteObject_withCompletion(
             &self,
             object: &HKObject,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
@@ -232,7 +232,7 @@ impl HKHealthStore {
         pub unsafe fn deleteObjects_withCompletion(
             &self,
             objects: &NSArray<HKObject>,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
@@ -250,7 +250,7 @@ impl HKHealthStore {
             &self,
             object_type: &HKObjectType,
             predicate: &NSPredicate,
-            completion: &block2::DynBlock<dyn Fn(Bool, NSUInteger, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, NSUInteger, *mut NSError)>,
         );
 
         #[cfg(feature = "HKQuery")]
@@ -298,8 +298,9 @@ impl HKHealthStore {
             total_energy: &HKQuantity,
             start_date: &NSDate,
             end_date: &NSDate,
-            results_handler: &block2::DynBlock<
-                dyn Fn(*mut HKQuantity, *mut HKQuantity, *mut NSError),
+            results_handler: &block2::Block<
+                'static,
+                fn(*mut HKQuantity, *mut HKQuantity, *mut NSError),
             >,
         );
 
@@ -407,7 +408,7 @@ impl HKHealthStore {
         #[unsafe(method_family = none)]
         pub unsafe fn workoutSessionMirroringStartHandler(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<HKWorkoutSession>)>;
+        ) -> *mut block2::Block<'static, fn(NonNull<HKWorkoutSession>)>;
 
         #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
         /// Setter for [`workoutSessionMirroringStartHandler`][Self::workoutSessionMirroringStartHandler].
@@ -422,7 +423,7 @@ impl HKHealthStore {
         pub unsafe fn setWorkoutSessionMirroringStartHandler(
             &self,
             workout_session_mirroring_start_handler: Option<
-                &block2::DynBlock<dyn Fn(NonNull<HKWorkoutSession>)>,
+                &block2::Block<'static, fn(NonNull<HKWorkoutSession>)>,
             >,
         );
 
@@ -450,7 +451,7 @@ impl HKHealthStore {
             &self,
             samples: &NSArray<HKSample>,
             workout: &HKWorkout,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "HKWorkoutSession")]
@@ -512,7 +513,7 @@ impl HKHealthStore {
         pub unsafe fn startWatchAppWithWorkoutConfiguration_completion(
             &self,
             workout_configuration: &HKWorkoutConfiguration,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
@@ -526,7 +527,7 @@ impl HKHealthStore {
         #[unsafe(method_family = none)]
         pub unsafe fn recoverActiveWorkoutSessionWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut HKWorkoutSession, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut HKWorkoutSession, *mut NSError)>,
         );
     );
 }
@@ -552,7 +553,7 @@ impl HKHealthStore {
             &self,
             r#type: &HKObjectType,
             frequency: HKUpdateFrequency,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
@@ -564,7 +565,7 @@ impl HKHealthStore {
         pub unsafe fn disableBackgroundDeliveryForType_withCompletion(
             &self,
             r#type: &HKObjectType,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -575,7 +576,7 @@ impl HKHealthStore {
         #[unsafe(method_family = none)]
         pub unsafe fn disableAllBackgroundDeliveryWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
     );
 }
@@ -617,8 +618,9 @@ impl HKHealthStore {
         pub unsafe fn preferredUnitsForQuantityTypes_completion(
             &self,
             quantity_types: &NSSet<HKQuantityType>,
-            completion: &block2::DynBlock<
-                dyn Fn(NonNull<NSDictionary<HKQuantityType, HKUnit>>, *mut NSError),
+            completion: &block2::Block<
+                'static,
+                fn(NonNull<NSDictionary<HKQuantityType, HKUnit>>, *mut NSError),
             >,
         );
     );
@@ -642,7 +644,7 @@ impl HKHealthStore {
             &self,
             sample_type: &HKSampleType,
             date: &NSDate,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
     );
 }
@@ -678,7 +680,7 @@ impl HKHealthStore {
             sample: &HKSample,
             workout: &HKWorkout,
             activity: Option<&HKWorkoutActivity>,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -709,7 +711,7 @@ impl HKHealthStore {
             sample: &HKSample,
             workout: &HKWorkout,
             activity: Option<&HKWorkoutActivity>,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
     );
 }

@@ -133,13 +133,13 @@ unsafe impl RefEncode for UIGuidedAccessAccessibilityFeature {
 pub fn UIGuidedAccessConfigureAccessibilityFeatures(
     features: UIGuidedAccessAccessibilityFeature,
     enabled: bool,
-    completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+    completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
 ) {
     extern "C-unwind" {
         fn UIGuidedAccessConfigureAccessibilityFeatures(
             features: UIGuidedAccessAccessibilityFeature,
             enabled: Bool,
-            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
     }
     let enabled = Bool::new(enabled);

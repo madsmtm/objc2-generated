@@ -131,7 +131,7 @@ impl GKChallengeDefinition {
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSImage, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSImage, *mut NSError)>,
         );
     );
 }
@@ -162,8 +162,9 @@ impl GKChallengeDefinition {
         #[unsafe(method(loadChallengeDefinitionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadChallengeDefinitionsWithCompletionHandler(
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<GKChallengeDefinition>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<GKChallengeDefinition>, *mut NSError),
             >,
         );
 
@@ -177,7 +178,7 @@ impl GKChallengeDefinition {
         #[unsafe(method_family = none)]
         pub unsafe fn hasActiveChallengesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
     );
 }

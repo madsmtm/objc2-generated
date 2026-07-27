@@ -383,12 +383,12 @@ impl sec_identity {
     #[inline]
     pub unsafe fn access_certificates(
         identity: sec_identity_t,
-        handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
+        handler: &block2::Block<'static, fn(sec_certificate_t)>,
     ) -> bool {
         extern "C-unwind" {
             fn sec_identity_access_certificates(
                 identity: sec_identity_t,
-                handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
+                handler: &block2::Block<'static, fn(sec_certificate_t)>,
             ) -> bool;
         }
         unsafe { sec_identity_access_certificates(identity, handler) }

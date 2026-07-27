@@ -168,7 +168,7 @@ impl CKDatabase {
         pub unsafe fn fetchRecordWithID_completionHandler(
             &self,
             record_id: &CKRecordID,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKRecord, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKRecord, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
@@ -195,7 +195,7 @@ impl CKDatabase {
         pub unsafe fn saveRecord_completionHandler(
             &self,
             record: &CKRecord,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKRecord, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKRecord, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
@@ -222,7 +222,7 @@ impl CKDatabase {
         pub unsafe fn deleteRecordWithID_completionHandler(
             &self,
             record_id: &CKRecordID,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKRecordID, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKRecordID, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -254,7 +254,7 @@ impl CKDatabase {
             &self,
             query: &CKQuery,
             zone_id: Option<&CKRecordZoneID>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<CKRecord>, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSArray<CKRecord>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKRecordZone", feature = "block2"))]
@@ -275,7 +275,10 @@ impl CKDatabase {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllRecordZonesWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<CKRecordZone>, *mut NSError)>,
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<CKRecordZone>, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -304,7 +307,7 @@ impl CKDatabase {
         pub unsafe fn fetchRecordZoneWithID_completionHandler(
             &self,
             zone_id: &CKRecordZoneID,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKRecordZone, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKRecordZone, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKRecordZone", feature = "block2"))]
@@ -329,7 +332,7 @@ impl CKDatabase {
         pub unsafe fn saveRecordZone_completionHandler(
             &self,
             zone: &CKRecordZone,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKRecordZone, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKRecordZone, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
@@ -356,7 +359,7 @@ impl CKDatabase {
         pub unsafe fn deleteRecordZoneWithID_completionHandler(
             &self,
             zone_id: &CKRecordZoneID,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKRecordZoneID, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKRecordZoneID, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
@@ -381,7 +384,7 @@ impl CKDatabase {
         pub unsafe fn fetchSubscriptionWithID_completionHandler(
             &self,
             subscription_id: &CKSubscriptionID,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKSubscription, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKSubscription, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
@@ -404,8 +407,9 @@ impl CKDatabase {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllSubscriptionsWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<CKSubscription>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<CKSubscription>, *mut NSError),
             >,
         );
 
@@ -431,7 +435,7 @@ impl CKDatabase {
         pub unsafe fn saveSubscription_completionHandler(
             &self,
             subscription: &CKSubscription,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKSubscription, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKSubscription, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
@@ -456,7 +460,7 @@ impl CKDatabase {
         pub unsafe fn deleteSubscriptionWithID_completionHandler(
             &self,
             subscription_id: &CKSubscriptionID,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut CKSubscriptionID, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut CKSubscriptionID, *mut NSError)>,
         );
     );
 }

@@ -365,7 +365,7 @@ extern_protocol!(
             &self,
             identifier: &NSFileProviderItemIdentifier,
             request: &NSFileProviderRequest,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(
@@ -476,8 +476,9 @@ extern_protocol!(
             item_identifier: &NSFileProviderItemIdentifier,
             requested_version: Option<&NSFileProviderItemVersion>,
             request: &NSFileProviderRequest,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSURL, *mut NSFileProviderItem, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSURL, *mut NSFileProviderItem, *mut NSError),
             >,
         ) -> Retained<NSProgress>;
 
@@ -655,8 +656,9 @@ extern_protocol!(
             url: Option<&NSURL>,
             options: NSFileProviderCreateItemOptions,
             request: &NSFileProviderRequest,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSFileProviderItem, NSFileProviderItemFields, Bool, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSFileProviderItem, NSFileProviderItemFields, Bool, *mut NSError),
             >,
         ) -> Retained<NSProgress>;
 
@@ -845,8 +847,9 @@ extern_protocol!(
             new_contents: Option<&NSURL>,
             options: NSFileProviderModifyItemOptions,
             request: &NSFileProviderRequest,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSFileProviderItem, NSFileProviderItemFields, Bool, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSFileProviderItem, NSFileProviderItemFields, Bool, *mut NSError),
             >,
         ) -> Retained<NSProgress>;
 
@@ -943,7 +946,7 @@ extern_protocol!(
             version: &NSFileProviderItemVersion,
             options: NSFileProviderDeleteItemOptions,
             request: &NSFileProviderRequest,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(feature = "block2")]
@@ -983,7 +986,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn importDidFinishWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -1050,7 +1053,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn materializedItemsDidChangeWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -1108,7 +1111,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn pendingItemsDidChangeWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn()>,
+            completion_handler: &block2::Block<'static, fn()>,
         );
     }
 );
@@ -1139,8 +1142,9 @@ extern_protocol!(
             existing_contents: &NSURL,
             existing_version: &NSFileProviderItemVersion,
             request: &NSFileProviderRequest,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSURL, *mut NSFileProviderItem, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSURL, *mut NSFileProviderItem, *mut NSError),
             >,
         ) -> Retained<NSProgress>;
     }
@@ -1178,8 +1182,9 @@ extern_protocol!(
         unsafe fn supportedServiceSourcesForItemIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<ProtocolObject<dyn NSFileProviderServiceSource>>, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut NSArray<ProtocolObject<dyn NSFileProviderServiceSource>>, *mut NSError),
             >,
         ) -> Retained<NSProgress>;
     }
@@ -1249,10 +1254,11 @@ extern_protocol!(
             &self,
             item_identifiers: &NSArray<NSFileProviderItemIdentifier>,
             size: CGSize,
-            per_thumbnail_completion_handler: &block2::DynBlock<
-                dyn Fn(NonNull<NSFileProviderItemIdentifier>, *mut NSData, *mut NSError),
+            per_thumbnail_completion_handler: &block2::Block<
+                'static,
+                fn(NonNull<NSFileProviderItemIdentifier>, *mut NSData, *mut NSError),
             >,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         ) -> Retained<NSProgress>;
     }
 );
@@ -1283,7 +1289,7 @@ extern_protocol!(
             &self,
             action_identifier: &NSFileProviderExtensionActionIdentifier,
             item_identifiers: &NSArray<NSFileProviderItemIdentifier>,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         ) -> Retained<NSProgress>;
     }
 );
@@ -1499,8 +1505,9 @@ extern_protocol!(
             requested_range: NSRange,
             alignment: NSUInteger,
             options: NSFileProviderFetchContentsOptions,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(
+            completion_handler: &block2::Block<
+                'static,
+                fn(
                     *mut NSURL,
                     *mut NSFileProviderItem,
                     NSRange,
@@ -1545,7 +1552,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn shouldConnectExternalDomainWithCompletionHandler(
             &self,
-            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
         );
     }
 );

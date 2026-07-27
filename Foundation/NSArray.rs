@@ -366,7 +366,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         #[unsafe(method_family = none)]
         pub fn enumerateObjectsUsingBlock(
             &self,
-            block: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
@@ -375,7 +375,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         pub fn enumerateObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
@@ -385,7 +385,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
             &self,
             s: &NSIndexSet,
             opts: NSEnumerationOptions,
-            block: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) + '_>,
+            block: &block2::Block<'_, fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -393,8 +393,9 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         #[unsafe(method_family = none)]
         pub fn indexOfObjectPassingTest(
             &self,
-            predicate: &block2::DynBlock<
-                dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_,
+            predicate: &block2::Block<
+                '_,
+                fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool,
             >,
         ) -> NSUInteger;
 
@@ -404,8 +405,9 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         pub fn indexOfObjectWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &block2::DynBlock<
-                dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_,
+            predicate: &block2::Block<
+                '_,
+                fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool,
             >,
         ) -> NSUInteger;
 
@@ -416,8 +418,9 @@ impl<ObjectType: Message> NSArray<ObjectType> {
             &self,
             s: &NSIndexSet,
             opts: NSEnumerationOptions,
-            predicate: &block2::DynBlock<
-                dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_,
+            predicate: &block2::Block<
+                '_,
+                fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool,
             >,
         ) -> NSUInteger;
 
@@ -426,8 +429,9 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         #[unsafe(method_family = none)]
         pub fn indexesOfObjectsPassingTest(
             &self,
-            predicate: &block2::DynBlock<
-                dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_,
+            predicate: &block2::Block<
+                '_,
+                fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool,
             >,
         ) -> Retained<NSIndexSet>;
 
@@ -437,8 +441,9 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         pub fn indexesOfObjectsWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &block2::DynBlock<
-                dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_,
+            predicate: &block2::Block<
+                '_,
+                fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool,
             >,
         ) -> Retained<NSIndexSet>;
 
@@ -449,8 +454,9 @@ impl<ObjectType: Message> NSArray<ObjectType> {
             &self,
             s: &NSIndexSet,
             opts: NSEnumerationOptions,
-            predicate: &block2::DynBlock<
-                dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_,
+            predicate: &block2::Block<
+                '_,
+                fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool,
             >,
         ) -> Retained<NSIndexSet>;
 
@@ -589,7 +595,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
             &self,
             other: &NSArray<ObjectType>,
             options: NSOrderedCollectionDifferenceCalculationOptions,
-            block: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NonNull<ObjectType>) -> Bool + '_>,
+            block: &block2::Block<'_, fn(NonNull<ObjectType>, NonNull<ObjectType>) -> Bool>,
         ) -> Retained<NSOrderedCollectionDifference<ObjectType>>;
 
         #[cfg(feature = "NSOrderedCollectionDifference")]

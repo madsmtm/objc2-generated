@@ -43,7 +43,7 @@ impl GKAchievementDescription {
         #[unsafe(method_family = none)]
         pub unsafe fn loadAchievementDescriptionsWithCompletionHandler(
             completion_handler: Option<
-                &block2::DynBlock<dyn Fn(*mut NSArray<GKAchievementDescription>, *mut NSError)>,
+                &block2::Block<'static, fn(*mut NSArray<GKAchievementDescription>, *mut NSError)>,
             >,
         );
 
@@ -141,7 +141,7 @@ impl GKAchievementDescription {
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSImage, *mut NSError)>>,
+            completion_handler: Option<&block2::Block<'static, fn(*mut NSImage, *mut NSError)>>,
         );
 
         #[cfg(feature = "objc2-app-kit")]

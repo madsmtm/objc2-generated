@@ -190,7 +190,7 @@ impl ICCameraFile {
         pub unsafe fn requestThumbnailDataWithOptions_completion(
             &self,
             options: Option<&NSDictionary<ICCameraItemThumbnailOption, AnyObject>>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -211,7 +211,7 @@ impl ICCameraFile {
         pub unsafe fn requestMetadataDictionaryWithOptions_completion(
             &self,
             options: Option<&NSDictionary<ICCameraItemMetadataOption, AnyObject>>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSDictionary, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSDictionary, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -238,7 +238,7 @@ impl ICCameraFile {
         pub unsafe fn requestDownloadWithOptions_completion(
             &self,
             options: Option<&NSDictionary<ICDownloadOption, AnyObject>>,
-            completion: &block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
         ) -> Option<Retained<NSProgress>>;
 
         #[cfg(all(feature = "block2", feature = "libc"))]
@@ -261,7 +261,7 @@ impl ICCameraFile {
             &self,
             offset: libc::off_t,
             length: libc::off_t,
-            completion: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -279,7 +279,7 @@ impl ICCameraFile {
         #[unsafe(method_family = none)]
         pub unsafe fn requestSecurityScopedURLWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSURL, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSURL, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -296,7 +296,7 @@ impl ICCameraFile {
         #[unsafe(method_family = none)]
         pub unsafe fn requestFingerprintWithCompletion(
             &self,
-            completion: &block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
         );
     );
 }

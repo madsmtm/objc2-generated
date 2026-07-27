@@ -28,8 +28,9 @@ impl SFSafariExtensionManager {
         #[unsafe(method_family = none)]
         pub unsafe fn getStateOfSafariExtensionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut SFSafariExtensionState, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut SFSafariExtensionState, *mut NSError),
             >,
         );
     );

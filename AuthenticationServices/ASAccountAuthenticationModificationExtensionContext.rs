@@ -40,8 +40,9 @@ impl ASAccountAuthenticationModificationExtensionContext {
             &self,
             state: Option<&NSString>,
             nonce: Option<&NSString>,
-            completion_handler: &block2::DynBlock<
-                dyn Fn(*mut ASAuthorizationAppleIDCredential, *mut NSError),
+            completion_handler: &block2::Block<
+                'static,
+                fn(*mut ASAuthorizationAppleIDCredential, *mut NSError),
             >,
         );
 

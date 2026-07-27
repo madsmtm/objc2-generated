@@ -76,8 +76,9 @@ impl DDDevicePickerViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn setDevicePickerCompletionHandler(
             &self,
-            device_picker_completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NWEndpoint, *mut NWError),
+            device_picker_completion_handler: &block2::Block<
+                'static,
+                fn(*mut NWEndpoint, *mut NWError),
             >,
         );
     );

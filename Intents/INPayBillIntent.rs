@@ -157,7 +157,7 @@ extern_protocol!(
         unsafe fn handlePayBill_completion(
             &self,
             intent: &INPayBillIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPayBillIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPayBillIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -188,7 +188,7 @@ extern_protocol!(
         unsafe fn confirmPayBill_completion(
             &self,
             intent: &INPayBillIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPayBillIntentResponse>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPayBillIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -219,7 +219,7 @@ extern_protocol!(
         unsafe fn resolveBillPayeeForPayBill_withCompletion(
             &self,
             intent: &INPayBillIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INBillPayeeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INBillPayeeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -238,7 +238,7 @@ extern_protocol!(
         unsafe fn resolveFromAccountForPayBill_withCompletion(
             &self,
             intent: &INPayBillIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPaymentAccountResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPaymentAccountResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -257,7 +257,7 @@ extern_protocol!(
         unsafe fn resolveTransactionAmountForPayBill_withCompletion(
             &self,
             intent: &INPayBillIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INPaymentAmountResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INPaymentAmountResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -276,7 +276,7 @@ extern_protocol!(
         unsafe fn resolveTransactionScheduledDateForPayBill_withCompletion(
             &self,
             intent: &INPayBillIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -295,7 +295,7 @@ extern_protocol!(
         unsafe fn resolveTransactionNoteForPayBill_withCompletion(
             &self,
             intent: &INPayBillIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -314,7 +314,7 @@ extern_protocol!(
         unsafe fn resolveBillTypeForPayBill_withCompletion(
             &self,
             intent: &INPayBillIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INBillTypeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INBillTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -333,7 +333,7 @@ extern_protocol!(
         unsafe fn resolveDueDateForPayBill_withCompletion(
             &self,
             intent: &INPayBillIntent,
-            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
     }
 );

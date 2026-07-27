@@ -69,7 +69,7 @@ unsafe impl RefEncode for SCVideoStreamAnalyzerStreamDirection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalysischangehandler?language=objc)
 #[cfg(all(feature = "SCSensitivityAnalysis", feature = "block2"))]
 pub type SCVideoStreamAnalysisChangeHandler =
-    block2::DynBlock<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>;
+    block2::Block<'static, fn(*mut SCSensitivityAnalysis, *mut NSError)>;
 
 extern_class!(
     /// Monitors a stream of video by analyzing frames for sensitive content.

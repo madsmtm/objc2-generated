@@ -52,7 +52,7 @@ impl GKSavedGame {
         #[unsafe(method_family = none)]
         pub unsafe fn loadDataWithCompletionHandler(
             &self,
-            handler: Option<&block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>>,
+            handler: Option<&block2::Block<'static, fn(*mut NSData, *mut NSError)>>,
         );
     );
 }
@@ -89,7 +89,7 @@ impl GKLocalPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchSavedGamesWithCompletionHandler(
             &self,
-            handler: Option<&block2::DynBlock<dyn Fn(*mut NSArray<GKSavedGame>, *mut NSError)>>,
+            handler: Option<&block2::Block<'static, fn(*mut NSArray<GKSavedGame>, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -105,7 +105,7 @@ impl GKLocalPlayer {
             &self,
             data: &NSData,
             name: &NSString,
-            handler: Option<&block2::DynBlock<dyn Fn(*mut GKSavedGame, *mut NSError)>>,
+            handler: Option<&block2::Block<'static, fn(*mut GKSavedGame, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -119,7 +119,7 @@ impl GKLocalPlayer {
         pub unsafe fn deleteSavedGamesWithName_completionHandler(
             &self,
             name: &NSString,
-            handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+            handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -134,7 +134,7 @@ impl GKLocalPlayer {
             &self,
             conflicting_saved_games: &NSArray<GKSavedGame>,
             data: &NSData,
-            handler: Option<&block2::DynBlock<dyn Fn(*mut NSArray<GKSavedGame>, *mut NSError)>>,
+            handler: Option<&block2::Block<'static, fn(*mut NSArray<GKSavedGame>, *mut NSError)>>,
         );
     );
 }

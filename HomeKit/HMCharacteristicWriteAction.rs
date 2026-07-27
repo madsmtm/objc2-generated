@@ -109,7 +109,7 @@ impl<TargetValueType: Message + NSCopying> HMCharacteristicWriteAction<TargetVal
         pub unsafe fn updateTargetValue_completionHandler(
             &self,
             target_value: &TargetValueType,
-            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+            completion: &block2::Block<'static, fn(*mut NSError)>,
         );
     );
 }

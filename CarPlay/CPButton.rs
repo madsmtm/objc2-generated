@@ -57,7 +57,7 @@ impl CPButton {
         pub unsafe fn initWithImage_handler(
             this: Allocated<Self>,
             image: &UIImage,
-            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPButton>)>>,
+            handler: Option<&block2::Block<'static, fn(NonNull<CPButton>)>>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-ui-kit")]
