@@ -2692,8 +2692,7 @@ impl IOHIDDevice {
     ///
     /// # Safety
     ///
-    /// - `report` must be a valid pointer.
-    /// - `p_report_length` must be a valid pointer.
+    /// `report` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceGetReport")]
     #[inline]
     pub unsafe fn report(
@@ -2701,7 +2700,7 @@ impl IOHIDDevice {
         report_type: IOHIDReportType,
         report_id: CFIndex,
         report: NonNull<u8>,
-        p_report_length: NonNull<CFIndex>,
+        p_report_length: &mut CFIndex,
     ) -> IOReturn {
         extern "C-unwind" {
             fn IOHIDDeviceGetReport(
@@ -2709,7 +2708,7 @@ impl IOHIDDevice {
                 report_type: IOHIDReportType,
                 report_id: CFIndex,
                 report: NonNull<u8>,
-                p_report_length: NonNull<CFIndex>,
+                p_report_length: &mut CFIndex,
             ) -> IOReturn;
         }
         unsafe { IOHIDDeviceGetReport(self, report_type, report_id, report, p_report_length) }
@@ -2747,7 +2746,6 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// - `report` must be a valid pointer.
-    /// - `p_report_length` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceGetReportWithCallback")]
@@ -2757,7 +2755,7 @@ impl IOHIDDevice {
         report_type: IOHIDReportType,
         report_id: CFIndex,
         report: NonNull<u8>,
-        p_report_length: NonNull<CFIndex>,
+        p_report_length: &mut CFIndex,
         timeout: CFTimeInterval,
         callback: IOHIDReportCallback,
         context: NonNull<c_void>,
@@ -2768,7 +2766,7 @@ impl IOHIDDevice {
                 report_type: IOHIDReportType,
                 report_id: CFIndex,
                 report: NonNull<u8>,
-                p_report_length: NonNull<CFIndex>,
+                p_report_length: &mut CFIndex,
                 timeout: CFTimeInterval,
                 callback: IOHIDReportCallback,
                 context: NonNull<c_void>,

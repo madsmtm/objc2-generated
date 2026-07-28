@@ -1428,20 +1428,20 @@ pub fn IOHIDSetMouseLocation(connect: io_connect_t, x: c_int, y: c_int) -> libc:
 
 /// # Safety
 ///
-/// `event_num` must be a valid pointer.
+/// `event_num` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOHIDGetButtonEventNum(
     connect: io_connect_t,
     button: NXMouseButton,
-    event_num: *mut c_int,
+    event_num: Option<&mut c_int>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDGetButtonEventNum(
             connect: io_connect_t,
             button: NXMouseButton,
-            event_num: *mut c_int,
+            event_num: Option<&mut c_int>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOHIDGetButtonEventNum(connect, button, event_num) }
@@ -1449,18 +1449,18 @@ pub unsafe fn IOHIDGetButtonEventNum(
 
 /// # Safety
 ///
-/// `acceleration` must be a valid pointer.
+/// `acceleration` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOHIDGetScrollAcceleration(
     handle: io_connect_t,
-    acceleration: *mut c_double,
+    acceleration: Option<&mut c_double>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDGetScrollAcceleration(
             handle: io_connect_t,
-            acceleration: *mut c_double,
+            acceleration: Option<&mut c_double>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOHIDGetScrollAcceleration(handle, acceleration) }
@@ -1484,18 +1484,18 @@ pub fn IOHIDSetScrollAcceleration(
 
 /// # Safety
 ///
-/// `acceleration` must be a valid pointer.
+/// `acceleration` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOHIDGetMouseAcceleration(
     handle: io_connect_t,
-    acceleration: *mut c_double,
+    acceleration: Option<&mut c_double>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDGetMouseAcceleration(
             handle: io_connect_t,
-            acceleration: *mut c_double,
+            acceleration: Option<&mut c_double>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOHIDGetMouseAcceleration(handle, acceleration) }
@@ -1519,16 +1519,19 @@ pub fn IOHIDSetMouseAcceleration(
 
 /// # Safety
 ///
-/// `mode` must be a valid pointer.
+/// `mode` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOHIDGetMouseButtonMode(
     handle: io_connect_t,
-    mode: *mut c_int,
+    mode: Option<&mut c_int>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
-        fn IOHIDGetMouseButtonMode(handle: io_connect_t, mode: *mut c_int) -> libc::kern_return_t;
+        fn IOHIDGetMouseButtonMode(
+            handle: io_connect_t,
+            mode: Option<&mut c_int>,
+        ) -> libc::kern_return_t;
     }
     unsafe { IOHIDGetMouseButtonMode(handle, mode) }
 }
@@ -1546,20 +1549,20 @@ pub fn IOHIDSetMouseButtonMode(handle: io_connect_t, mode: c_int) -> libc::kern_
 /// # Safety
 ///
 /// - `key` might not allow `None`.
-/// - `acceleration` must be a valid pointer.
+/// - `acceleration` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOHIDGetAccelerationWithKey(
     handle: io_connect_t,
     key: Option<&CFString>,
-    acceleration: *mut c_double,
+    acceleration: Option<&mut c_double>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDGetAccelerationWithKey(
             handle: io_connect_t,
             key: Option<&CFString>,
-            acceleration: *mut c_double,
+            acceleration: Option<&mut c_double>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOHIDGetAccelerationWithKey(handle, key, acceleration) }
@@ -1590,7 +1593,7 @@ pub unsafe fn IOHIDSetAccelerationWithKey(
 ///
 /// - `key` might not allow `None`.
 /// - `bytes` must be a valid pointer.
-/// - `actual_size` must be a valid pointer.
+/// - `actual_size` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1599,7 +1602,7 @@ pub unsafe fn IOHIDGetParameter(
     key: Option<&CFString>,
     max_size: IOByteCount,
     bytes: *mut c_void,
-    actual_size: *mut IOByteCount,
+    actual_size: Option<&mut IOByteCount>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDGetParameter(
@@ -1607,7 +1610,7 @@ pub unsafe fn IOHIDGetParameter(
             key: Option<&CFString>,
             max_size: IOByteCount,
             bytes: *mut c_void,
-            actual_size: *mut IOByteCount,
+            actual_size: Option<&mut IOByteCount>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOHIDGetParameter(handle, key, max_size, bytes, actual_size) }
@@ -1688,19 +1691,19 @@ pub unsafe fn IOHIDSetCFTypeParameter(
 
 /// # Safety
 ///
-/// `state` must be a valid pointer.
+/// `state` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOHIDGetStateForSelector(
     handle: io_connect_t,
     selector: c_int,
-    state: *mut u32,
+    state: Option<&mut u32>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDGetStateForSelector(
             handle: io_connect_t,
             selector: c_int,
-            state: *mut u32,
+            state: Option<&mut u32>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOHIDGetStateForSelector(handle, selector, state) }
@@ -1725,19 +1728,19 @@ pub fn IOHIDSetStateForSelector(
 
 /// # Safety
 ///
-/// `state` must be a valid pointer.
+/// `state` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOHIDGetModifierLockState(
     handle: io_connect_t,
     selector: c_int,
-    state: *mut bool,
+    state: Option<&mut bool>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDGetModifierLockState(
             handle: io_connect_t,
             selector: c_int,
-            state: *mut bool,
+            state: Option<&mut bool>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOHIDGetModifierLockState(handle, selector, state) }
@@ -1762,18 +1765,18 @@ pub fn IOHIDSetModifierLockState(
 
 /// # Safety
 ///
-/// `display_token` must be a valid pointer.
+/// `display_token` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOHIDRegisterVirtualDisplay(
     handle: io_connect_t,
-    display_token: *mut u32,
+    display_token: Option<&mut u32>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDRegisterVirtualDisplay(
             handle: io_connect_t,
-            display_token: *mut u32,
+            display_token: Option<&mut u32>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOHIDRegisterVirtualDisplay(handle, display_token) }
@@ -1797,20 +1800,20 @@ pub fn IOHIDUnregisterVirtualDisplay(
 
 /// # Safety
 ///
-/// `bounds` must be a valid pointer.
+/// `bounds` might not allow `None`.
 #[cfg(all(feature = "graphics", feature = "libc"))]
 #[deprecated]
 #[inline]
 pub unsafe fn IOHIDSetVirtualDisplayBounds(
     handle: io_connect_t,
     display_token: u32,
-    bounds: *const IOGBounds,
+    bounds: Option<&IOGBounds>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDSetVirtualDisplayBounds(
             handle: io_connect_t,
             display_token: u32,
-            bounds: *const IOGBounds,
+            bounds: Option<&IOGBounds>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOHIDSetVirtualDisplayBounds(handle, display_token, bounds) }
@@ -1818,18 +1821,18 @@ pub unsafe fn IOHIDSetVirtualDisplayBounds(
 
 /// # Safety
 ///
-/// `hid_activity_idle` must be a valid pointer.
+/// `hid_activity_idle` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOHIDGetActivityState(
     handle: io_connect_t,
-    hid_activity_idle: *mut bool,
+    hid_activity_idle: Option<&mut bool>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOHIDGetActivityState(
             handle: io_connect_t,
-            hid_activity_idle: *mut bool,
+            hid_activity_idle: Option<&mut bool>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOHIDGetActivityState(handle, hid_activity_idle) }
@@ -1942,26 +1945,29 @@ pub fn NXCloseEventStatus(handle: NXEventHandle) {
 
 /// # Safety
 ///
-/// - `flavor` must be a valid pointer.
+/// - `flavor` might not allow `None`.
 /// - `evs_info` must be a valid pointer.
-/// - `evs_info_cnt` must be a valid pointer.
+/// - `evs_info_cnt` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
 pub unsafe fn NXEventSystemInfo(
     handle: NXEventHandle,
-    flavor: *mut c_char,
+    flavor: Option<&CStr>,
     evs_info: *mut c_int,
-    evs_info_cnt: *mut c_uint,
+    evs_info_cnt: Option<&mut c_uint>,
 ) -> NXEventSystemInfoType {
     extern "C-unwind" {
         fn NXEventSystemInfo(
             handle: NXEventHandle,
-            flavor: *mut c_char,
+            flavor: *const c_char,
             evs_info: *mut c_int,
-            evs_info_cnt: *mut c_uint,
+            evs_info_cnt: Option<&mut c_uint>,
         ) -> NXEventSystemInfoType;
     }
+    let flavor = flavor
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
     unsafe { NXEventSystemInfo(handle, flavor, evs_info, evs_info_cnt) }
 }
 
@@ -2037,26 +2043,26 @@ pub fn NXClickTime(handle: NXEventHandle) -> c_double {
 
 /// # Safety
 ///
-/// `area` must be a valid pointer.
+/// `area` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe fn NXSetClickSpace(handle: NXEventHandle, area: *mut NXSize) {
+pub unsafe fn NXSetClickSpace(handle: NXEventHandle, area: Option<&NXSize>) {
     extern "C-unwind" {
-        fn NXSetClickSpace(handle: NXEventHandle, area: *mut NXSize);
+        fn NXSetClickSpace(handle: NXEventHandle, area: Option<&NXSize>);
     }
     unsafe { NXSetClickSpace(handle, area) }
 }
 
 /// # Safety
 ///
-/// `area` must be a valid pointer.
+/// `area` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe fn NXGetClickSpace(handle: NXEventHandle, area: *mut NXSize) {
+pub unsafe fn NXGetClickSpace(handle: NXEventHandle, area: Option<&mut NXSize>) {
     extern "C-unwind" {
-        fn NXGetClickSpace(handle: NXEventHandle, area: *mut NXSize);
+        fn NXGetClickSpace(handle: NXEventHandle, area: Option<&mut NXSize>);
     }
     unsafe { NXGetClickSpace(handle, area) }
 }

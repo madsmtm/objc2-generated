@@ -1632,20 +1632,20 @@ pub type IOGraphicsAcceleratorInterface = IOGraphicsAcceleratorInterfaceStruct;
 
 /// # Safety
 ///
-/// - `p_accelerator` must be a valid pointer.
-/// - `p_framebuffer_index` must be a valid pointer.
+/// - `p_accelerator` might not allow `None`.
+/// - `p_framebuffer_index` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOAccelFindAccelerator(
     framebuffer: io_service_t,
-    p_accelerator: *mut io_service_t,
-    p_framebuffer_index: *mut u32,
+    p_accelerator: Option<&mut io_service_t>,
+    p_framebuffer_index: Option<&mut u32>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOAccelFindAccelerator(
             framebuffer: io_service_t,
-            p_accelerator: *mut io_service_t,
-            p_framebuffer_index: *mut u32,
+            p_accelerator: Option<&mut io_service_t>,
+            p_framebuffer_index: Option<&mut u32>,
         ) -> IOReturn;
     }
     unsafe { IOAccelFindAccelerator(framebuffer, p_accelerator, p_framebuffer_index) }
@@ -4034,21 +4034,21 @@ pub const kIOFBCursorMemory: c_uint = 100;
 ///
 /// # Safety
 ///
-/// `connect` must be a valid pointer.
+/// `connect` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOFramebufferOpen(
     service: io_service_t,
     owning_task: task_port_t,
     r#type: c_uint,
-    connect: *mut io_connect_t,
+    connect: Option<&mut io_connect_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOFramebufferOpen(
             service: io_service_t,
             owning_task: task_port_t,
             r#type: c_uint,
-            connect: *mut io_connect_t,
+            connect: Option<&mut io_connect_t>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOFramebufferOpen(service, owning_task, r#type, connect) }
@@ -4252,21 +4252,21 @@ pub unsafe fn IODisplayCopyFloatParameters(
 /// # Safety
 ///
 /// - `parameter_name` might not allow `None`.
-/// - `value` must be a valid pointer.
+/// - `value` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IODisplayGetFloatParameter(
     service: io_service_t,
     options: IOOptionBits,
     parameter_name: Option<&CFString>,
-    value: *mut c_float,
+    value: Option<&mut c_float>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IODisplayGetFloatParameter(
             service: io_service_t,
             options: IOOptionBits,
             parameter_name: Option<&CFString>,
-            value: *mut c_float,
+            value: Option<&mut c_float>,
         ) -> IOReturn;
     }
     unsafe { IODisplayGetFloatParameter(service, options, parameter_name, value) }
@@ -4275,27 +4275,27 @@ pub unsafe fn IODisplayGetFloatParameter(
 /// # Safety
 ///
 /// - `parameter_name` might not allow `None`.
-/// - `value` must be a valid pointer.
-/// - `min` must be a valid pointer.
-/// - `max` must be a valid pointer.
+/// - `value` might not allow `None`.
+/// - `min` might not allow `None`.
+/// - `max` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IODisplayGetIntegerRangeParameter(
     service: io_service_t,
     options: IOOptionBits,
     parameter_name: Option<&CFString>,
-    value: *mut i32,
-    min: *mut i32,
-    max: *mut i32,
+    value: Option<&mut i32>,
+    min: Option<&mut i32>,
+    max: Option<&mut i32>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IODisplayGetIntegerRangeParameter(
             service: io_service_t,
             options: IOOptionBits,
             parameter_name: Option<&CFString>,
-            value: *mut i32,
-            min: *mut i32,
-            max: *mut i32,
+            value: Option<&mut i32>,
+            min: Option<&mut i32>,
+            max: Option<&mut i32>,
         ) -> IOReturn;
     }
     unsafe { IODisplayGetIntegerRangeParameter(service, options, parameter_name, value, min, max) }

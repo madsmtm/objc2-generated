@@ -655,12 +655,12 @@ pub type IONDHandle = u32;
 ///
 /// # Safety
 ///
-/// `con` must be a valid pointer.
+/// `con` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe fn IONetworkOpen(obj: io_object_t, con: *mut io_connect_t) -> IOReturn {
+pub unsafe fn IONetworkOpen(obj: io_object_t, con: Option<&mut io_connect_t>) -> IOReturn {
     extern "C-unwind" {
-        fn IONetworkOpen(obj: io_object_t, con: *mut io_connect_t) -> IOReturn;
+        fn IONetworkOpen(obj: io_object_t, con: Option<&mut io_connect_t>) -> IOReturn;
     }
     unsafe { IONetworkOpen(obj, con) }
 }
@@ -726,21 +726,21 @@ pub unsafe fn IONetworkWriteData(
 /// # Safety
 ///
 /// - `dest_buf` must be a valid pointer.
-/// - `in_out_size_p` must be a valid pointer.
+/// - `in_out_size_p` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IONetworkReadData(
     con_obj: io_connect_t,
     data_handle: IONDHandle,
     dest_buf: *mut u8,
-    in_out_size_p: *mut u32,
+    in_out_size_p: Option<&mut u32>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IONetworkReadData(
             con_obj: io_connect_t,
             data_handle: IONDHandle,
             dest_buf: *mut u8,
-            in_out_size_p: *mut u32,
+            in_out_size_p: Option<&mut u32>,
         ) -> IOReturn;
     }
     unsafe { IONetworkReadData(con_obj, data_handle, dest_buf, in_out_size_p) }
@@ -774,19 +774,19 @@ pub fn IONetworkResetData(con_object: io_connect_t, data_handle: IONDHandle) -> 
 ///
 /// # Safety
 ///
-/// `capacity_p` must be a valid pointer.
+/// `capacity_p` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IONetworkGetDataCapacity(
     con_object: io_connect_t,
     data_handle: IONDHandle,
-    capacity_p: *mut u32,
+    capacity_p: Option<&mut u32>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IONetworkGetDataCapacity(
             con_object: io_connect_t,
             data_handle: IONDHandle,
-            capacity_p: *mut u32,
+            capacity_p: Option<&mut u32>,
         ) -> IOReturn;
     }
     unsafe { IONetworkGetDataCapacity(con_object, data_handle, capacity_p) }
@@ -804,22 +804,25 @@ pub unsafe fn IONetworkGetDataCapacity(
 ///
 /// # Safety
 ///
-/// - `data_name` must be a valid pointer.
-/// - `data_handle_p` must be a valid pointer.
+/// - `data_name` might not allow `None`.
+/// - `data_handle_p` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IONetworkGetDataHandle(
     con_object: io_connect_t,
-    data_name: *const c_char,
-    data_handle_p: *mut IONDHandle,
+    data_name: Option<&CStr>,
+    data_handle_p: Option<&mut IONDHandle>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IONetworkGetDataHandle(
             con_object: io_connect_t,
             data_name: *const c_char,
-            data_handle_p: *mut IONDHandle,
+            data_handle_p: Option<&mut IONDHandle>,
         ) -> IOReturn;
     }
+    let data_name = data_name
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
     unsafe { IONetworkGetDataHandle(con_object, data_name, data_handle_p) }
 }
 
@@ -895,20 +898,20 @@ pub const kIONetworkSupportedPacketFilters: c_uint = 0x0001;
 /// # Safety
 ///
 /// - `filter_group` might not allow `None`.
-/// - `filters_mask` must be a valid pointer.
+/// - `filters_mask` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IONetworkGetPacketFiltersMask(
     connect: io_connect_t,
     filter_group: Option<&CStr>,
-    filters_mask: *mut u32,
+    filters_mask: Option<&mut u32>,
     options: IOOptionBits,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IONetworkGetPacketFiltersMask(
             connect: io_connect_t,
             filter_group: *const io_name_t,
-            filters_mask: *mut u32,
+            filters_mask: Option<&mut u32>,
             options: IOOptionBits,
         ) -> IOReturn;
     }

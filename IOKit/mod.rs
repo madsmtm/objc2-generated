@@ -9658,17 +9658,17 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// `main_port` must be a valid pointer.
+/// `main_port` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOMainPort(
     bootstrap_port: libc::mach_port_t,
-    main_port: *mut libc::mach_port_t,
+    main_port: Option<&mut libc::mach_port_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOMainPort(
             bootstrap_port: libc::mach_port_t,
-            main_port: *mut libc::mach_port_t,
+            main_port: Option<&mut libc::mach_port_t>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOMainPort(bootstrap_port, main_port) }
@@ -9687,18 +9687,18 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// `main_port` must be a valid pointer.
+/// `main_port` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOMasterPort(
     bootstrap_port: libc::mach_port_t,
-    main_port: *mut libc::mach_port_t,
+    main_port: Option<&mut libc::mach_port_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOMasterPort(
             bootstrap_port: libc::mach_port_t,
-            main_port: *mut libc::mach_port_t,
+            main_port: Option<&mut libc::mach_port_t>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOMasterPort(bootstrap_port, main_port) }
@@ -9895,17 +9895,17 @@ impl IONotificationPort {
 ///
 /// # Safety
 ///
-/// `recv_port` must be a valid pointer.
+/// `recv_port` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOCreateReceivePort(
     msg_type: u32,
-    recv_port: *mut libc::mach_port_t,
+    recv_port: Option<&mut libc::mach_port_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOCreateReceivePort(
             msg_type: u32,
-            recv_port: *mut libc::mach_port_t,
+            recv_port: Option<&mut libc::mach_port_t>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOCreateReceivePort(msg_type, recv_port) }
@@ -10183,7 +10183,7 @@ pub fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
 /// - `notification_type` might not allow `None`.
 /// - `matching` generic should be of the correct type.
 /// - `matching` might not allow `None`.
-/// - `notification` must be a valid pointer.
+/// - `notification` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -10193,7 +10193,7 @@ pub unsafe fn IOServiceAddNotification(
     matching: Option<&CFDictionary<CFString, CFType>>,
     wake_port: libc::mach_port_t,
     reference: usize,
-    notification: *mut io_iterator_t,
+    notification: Option<&mut io_iterator_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOServiceAddNotification(
@@ -10202,7 +10202,7 @@ pub unsafe fn IOServiceAddNotification(
             matching: Option<&CFDictionary<CFString, CFType>>,
             wake_port: libc::mach_port_t,
             reference: usize,
-            notification: *mut io_iterator_t,
+            notification: Option<&mut io_iterator_t>,
         ) -> libc::kern_return_t;
     }
     let notification_type = notification_type
@@ -10247,7 +10247,7 @@ pub unsafe fn IOServiceAddNotification(
 /// - `interest_type` might not allow `None`.
 /// - `callback` must be implemented correctly.
 /// - `ref_con` must be a valid pointer.
-/// - `notification` must be a valid pointer.
+/// - `notification` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOServiceAddInterestNotification(
@@ -10256,7 +10256,7 @@ pub unsafe fn IOServiceAddInterestNotification(
     interest_type: Option<&CStr>,
     callback: IOServiceInterestCallback,
     ref_con: *mut c_void,
-    notification: *mut io_object_t,
+    notification: Option<&mut io_object_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOServiceAddInterestNotification(
@@ -10265,7 +10265,7 @@ pub unsafe fn IOServiceAddInterestNotification(
             interest_type: *const io_name_t,
             callback: IOServiceInterestCallback,
             ref_con: *mut c_void,
-            notification: *mut io_object_t,
+            notification: Option<&mut io_object_t>,
         ) -> libc::kern_return_t;
     }
     let interest_type = interest_type
@@ -10300,19 +10300,19 @@ pub unsafe fn IOServiceAddInterestNotification(
 ///
 /// - `matching` generic should be of the correct type.
 /// - `matching` might not allow `None`.
-/// - `matches` must be a valid pointer.
+/// - `matches` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOServiceMatchPropertyTable(
     service: io_service_t,
     matching: Option<&CFDictionary<CFString, CFType>>,
-    matches: *mut libc::boolean_t,
+    matches: Option<&mut libc::boolean_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOServiceMatchPropertyTable(
             service: io_service_t,
             matching: Option<&CFDictionary<CFString, CFType>>,
-            matches: *mut libc::boolean_t,
+            matches: Option<&mut libc::boolean_t>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOServiceMatchPropertyTable(service, matching, matches) }
@@ -10330,17 +10330,17 @@ pub unsafe fn IOServiceMatchPropertyTable(
 ///
 /// # Safety
 ///
-/// `busy_state` must be a valid pointer.
+/// `busy_state` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOServiceGetBusyState(
     service: io_service_t,
-    busy_state: *mut u32,
+    busy_state: Option<&mut u32>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOServiceGetBusyState(
             service: io_service_t,
-            busy_state: *mut u32,
+            busy_state: Option<&mut u32>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOServiceGetBusyState(service, busy_state) }
@@ -10358,17 +10358,17 @@ pub unsafe fn IOServiceGetBusyState(
 ///
 /// # Safety
 ///
-/// `busy_state` must be a valid pointer.
+/// `busy_state` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOKitGetBusyState(
     main_port: libc::mach_port_t,
-    busy_state: *mut u32,
+    busy_state: Option<&mut u32>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOKitGetBusyState(
             main_port: libc::mach_port_t,
-            busy_state: *mut u32,
+            busy_state: Option<&mut u32>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOKitGetBusyState(main_port, busy_state) }
@@ -10392,21 +10392,21 @@ pub unsafe fn IOKitGetBusyState(
 ///
 /// # Safety
 ///
-/// `connect` must be a valid pointer.
+/// `connect` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOServiceOpen(
     service: io_service_t,
     owning_task: task_port_t,
     r#type: u32,
-    connect: *mut io_connect_t,
+    connect: Option<&mut io_connect_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOServiceOpen(
             service: io_service_t,
             owning_task: task_port_t,
             r#type: u32,
-            connect: *mut io_connect_t,
+            connect: Option<&mut io_connect_t>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOServiceOpen(service, owning_task, r#type, connect) }
@@ -10520,17 +10520,17 @@ pub fn IOConnectRelease(connect: io_connect_t) -> libc::kern_return_t {
 ///
 /// # Safety
 ///
-/// `service` must be a valid pointer.
+/// `service` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOConnectGetService(
     connect: io_connect_t,
-    service: *mut io_service_t,
+    service: Option<&mut io_service_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectGetService(
             connect: io_connect_t,
-            service: *mut io_service_t,
+            service: Option<&mut io_service_t>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOConnectGetService(connect, service) }
@@ -10570,16 +10570,16 @@ pub fn IOConnectSetNotificationPort(
 
 /// # Safety
 ///
-/// - `at_address` must be a valid pointer.
-/// - `of_size` must be a valid pointer.
+/// - `at_address` might not allow `None`.
+/// - `of_size` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOConnectMapMemory(
     connect: io_connect_t,
     memory_type: u32,
     into_task: task_port_t,
-    at_address: *mut libc::mach_vm_address_t,
-    of_size: *mut libc::mach_vm_size_t,
+    at_address: Option<&mut libc::mach_vm_address_t>,
+    of_size: Option<&mut libc::mach_vm_size_t>,
     options: IOOptionBits,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
@@ -10587,8 +10587,8 @@ pub unsafe fn IOConnectMapMemory(
             connect: io_connect_t,
             memory_type: u32,
             into_task: task_port_t,
-            at_address: *mut libc::mach_vm_address_t,
-            of_size: *mut libc::mach_vm_size_t,
+            at_address: Option<&mut libc::mach_vm_address_t>,
+            of_size: Option<&mut libc::mach_vm_size_t>,
             options: IOOptionBits,
         ) -> libc::kern_return_t;
     }
@@ -10622,16 +10622,16 @@ pub unsafe fn IOConnectMapMemory(
 ///
 /// # Safety
 ///
-/// - `at_address` must be a valid pointer.
-/// - `of_size` must be a valid pointer.
+/// - `at_address` might not allow `None`.
+/// - `of_size` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOConnectMapMemory64(
     connect: io_connect_t,
     memory_type: u32,
     into_task: task_port_t,
-    at_address: *mut libc::mach_vm_address_t,
-    of_size: *mut libc::mach_vm_size_t,
+    at_address: Option<&mut libc::mach_vm_address_t>,
+    of_size: Option<&mut libc::mach_vm_size_t>,
     options: IOOptionBits,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
@@ -10639,8 +10639,8 @@ pub unsafe fn IOConnectMapMemory64(
             connect: io_connect_t,
             memory_type: u32,
             into_task: task_port_t,
-            at_address: *mut libc::mach_vm_address_t,
-            of_size: *mut libc::mach_vm_size_t,
+            at_address: Option<&mut libc::mach_vm_address_t>,
+            of_size: Option<&mut libc::mach_vm_size_t>,
             options: IOOptionBits,
         ) -> libc::kern_return_t;
     }
@@ -10775,9 +10775,9 @@ pub unsafe fn IOConnectSetCFProperty(
 /// - `input` must be a valid pointer.
 /// - `input_struct` must be a valid pointer.
 /// - `output` must be a valid pointer.
-/// - `output_cnt` must be a valid pointer.
+/// - `output_cnt` might not allow `None`.
 /// - `output_struct` must be a valid pointer.
-/// - `output_struct_cnt` must be a valid pointer.
+/// - `output_struct_cnt` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOConnectCallMethod(
@@ -10788,9 +10788,9 @@ pub unsafe fn IOConnectCallMethod(
     input_struct: *const c_void,
     input_struct_cnt: usize,
     output: *mut u64,
-    output_cnt: *mut u32,
+    output_cnt: Option<&mut u32>,
     output_struct: *mut c_void,
-    output_struct_cnt: *mut usize,
+    output_struct_cnt: Option<&mut usize>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectCallMethod(
@@ -10801,9 +10801,9 @@ pub unsafe fn IOConnectCallMethod(
             input_struct: *const c_void,
             input_struct_cnt: usize,
             output: *mut u64,
-            output_cnt: *mut u32,
+            output_cnt: Option<&mut u32>,
             output_struct: *mut c_void,
-            output_struct_cnt: *mut usize,
+            output_struct_cnt: Option<&mut usize>,
         ) -> libc::kern_return_t;
     }
     unsafe {
@@ -10828,9 +10828,9 @@ pub unsafe fn IOConnectCallMethod(
 /// - `input` must be a valid pointer.
 /// - `input_struct` must be a valid pointer.
 /// - `output` must be a valid pointer.
-/// - `output_cnt` must be a valid pointer.
+/// - `output_cnt` might not allow `None`.
 /// - `output_struct` must be a valid pointer.
-/// - `output_struct_cnt` must be a valid pointer.
+/// - `output_struct_cnt` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOConnectCallAsyncMethod(
@@ -10844,9 +10844,9 @@ pub unsafe fn IOConnectCallAsyncMethod(
     input_struct: *const c_void,
     input_struct_cnt: usize,
     output: *mut u64,
-    output_cnt: *mut u32,
+    output_cnt: Option<&mut u32>,
     output_struct: *mut c_void,
-    output_struct_cnt: *mut usize,
+    output_struct_cnt: Option<&mut usize>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectCallAsyncMethod(
@@ -10860,9 +10860,9 @@ pub unsafe fn IOConnectCallAsyncMethod(
             input_struct: *const c_void,
             input_struct_cnt: usize,
             output: *mut u64,
-            output_cnt: *mut u32,
+            output_cnt: Option<&mut u32>,
             output_struct: *mut c_void,
-            output_struct_cnt: *mut usize,
+            output_struct_cnt: Option<&mut usize>,
         ) -> libc::kern_return_t;
     }
     unsafe {
@@ -10888,7 +10888,7 @@ pub unsafe fn IOConnectCallAsyncMethod(
 ///
 /// - `input_struct` must be a valid pointer.
 /// - `output_struct` must be a valid pointer.
-/// - `output_struct_cnt` must be a valid pointer.
+/// - `output_struct_cnt` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOConnectCallStructMethod(
@@ -10897,7 +10897,7 @@ pub unsafe fn IOConnectCallStructMethod(
     input_struct: *const c_void,
     input_struct_cnt: usize,
     output_struct: *mut c_void,
-    output_struct_cnt: *mut usize,
+    output_struct_cnt: Option<&mut usize>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectCallStructMethod(
@@ -10906,7 +10906,7 @@ pub unsafe fn IOConnectCallStructMethod(
             input_struct: *const c_void,
             input_struct_cnt: usize,
             output_struct: *mut c_void,
-            output_struct_cnt: *mut usize,
+            output_struct_cnt: Option<&mut usize>,
         ) -> libc::kern_return_t;
     }
     unsafe {
@@ -10926,7 +10926,7 @@ pub unsafe fn IOConnectCallStructMethod(
 /// - `reference` must be a valid pointer.
 /// - `input_struct` must be a valid pointer.
 /// - `output_struct` must be a valid pointer.
-/// - `output_struct_cnt` must be a valid pointer.
+/// - `output_struct_cnt` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOConnectCallAsyncStructMethod(
@@ -10938,7 +10938,7 @@ pub unsafe fn IOConnectCallAsyncStructMethod(
     input_struct: *const c_void,
     input_struct_cnt: usize,
     output_struct: *mut c_void,
-    output_struct_cnt: *mut usize,
+    output_struct_cnt: Option<&mut usize>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectCallAsyncStructMethod(
@@ -10950,7 +10950,7 @@ pub unsafe fn IOConnectCallAsyncStructMethod(
             input_struct: *const c_void,
             input_struct_cnt: usize,
             output_struct: *mut c_void,
-            output_struct_cnt: *mut usize,
+            output_struct_cnt: Option<&mut usize>,
         ) -> libc::kern_return_t;
     }
     unsafe {
@@ -10972,7 +10972,7 @@ pub unsafe fn IOConnectCallAsyncStructMethod(
 ///
 /// - `input` must be a valid pointer.
 /// - `output` must be a valid pointer.
-/// - `output_cnt` must be a valid pointer.
+/// - `output_cnt` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOConnectCallScalarMethod(
@@ -10981,7 +10981,7 @@ pub unsafe fn IOConnectCallScalarMethod(
     input: *const u64,
     input_cnt: u32,
     output: *mut u64,
-    output_cnt: *mut u32,
+    output_cnt: Option<&mut u32>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectCallScalarMethod(
@@ -10990,7 +10990,7 @@ pub unsafe fn IOConnectCallScalarMethod(
             input: *const u64,
             input_cnt: u32,
             output: *mut u64,
-            output_cnt: *mut u32,
+            output_cnt: Option<&mut u32>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOConnectCallScalarMethod(connection, selector, input, input_cnt, output, output_cnt) }
@@ -11001,7 +11001,7 @@ pub unsafe fn IOConnectCallScalarMethod(
 /// - `reference` must be a valid pointer.
 /// - `input` must be a valid pointer.
 /// - `output` must be a valid pointer.
-/// - `output_cnt` must be a valid pointer.
+/// - `output_cnt` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOConnectCallAsyncScalarMethod(
@@ -11013,7 +11013,7 @@ pub unsafe fn IOConnectCallAsyncScalarMethod(
     input: *const u64,
     input_cnt: u32,
     output: *mut u64,
-    output_cnt: *mut u32,
+    output_cnt: Option<&mut u32>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOConnectCallAsyncScalarMethod(
@@ -11025,7 +11025,7 @@ pub unsafe fn IOConnectCallAsyncScalarMethod(
             input: *const u64,
             input_cnt: u32,
             output: *mut u64,
-            output_cnt: *mut u32,
+            output_cnt: Option<&mut u32>,
         ) -> libc::kern_return_t;
     }
     unsafe {
@@ -11296,21 +11296,21 @@ pub const kIORegistryIterateParents: c_uint = 0x00000002;
 /// # Safety
 ///
 /// - `plane` might not allow `None`.
-/// - `iterator` must be a valid pointer.
+/// - `iterator` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegistryCreateIterator(
     main_port: libc::mach_port_t,
     plane: Option<&CStr>,
     options: IOOptionBits,
-    iterator: *mut io_iterator_t,
+    iterator: Option<&mut io_iterator_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryCreateIterator(
             main_port: libc::mach_port_t,
             plane: *const io_name_t,
             options: IOOptionBits,
-            iterator: *mut io_iterator_t,
+            iterator: Option<&mut io_iterator_t>,
         ) -> libc::kern_return_t;
     }
     let plane = plane
@@ -11337,21 +11337,21 @@ pub unsafe fn IORegistryCreateIterator(
 /// # Safety
 ///
 /// - `plane` might not allow `None`.
-/// - `iterator` must be a valid pointer.
+/// - `iterator` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegistryEntryCreateIterator(
     entry: io_registry_entry_t,
     plane: Option<&CStr>,
     options: IOOptionBits,
-    iterator: *mut io_iterator_t,
+    iterator: Option<&mut io_iterator_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryCreateIterator(
             entry: io_registry_entry_t,
             plane: *const io_name_t,
             options: IOOptionBits,
-            iterator: *mut io_iterator_t,
+            iterator: Option<&mut io_iterator_t>,
         ) -> libc::kern_return_t;
     }
     let plane = plane
@@ -11573,17 +11573,17 @@ pub unsafe fn IORegistryEntryCopyPath(
 ///
 /// # Safety
 ///
-/// `entry_id` must be a valid pointer.
+/// `entry_id` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegistryEntryGetRegistryEntryID(
     entry: io_registry_entry_t,
-    entry_id: *mut u64,
+    entry_id: Option<&mut u64>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetRegistryEntryID(
             entry: io_registry_entry_t,
-            entry_id: *mut u64,
+            entry_id: Option<&mut u64>,
         ) -> libc::kern_return_t;
     }
     unsafe { IORegistryEntryGetRegistryEntryID(entry, entry_id) }
@@ -11720,21 +11720,21 @@ pub unsafe fn IORegistryEntrySearchCFProperty(
 ///
 /// - `property_name` might not allow `None`.
 /// - `buffer` might not allow `None`.
-/// - `size` must be a valid pointer.
+/// - `size` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegistryEntryGetProperty(
     entry: io_registry_entry_t,
     property_name: Option<&CStr>,
     buffer: Option<&mut io_struct_inband_t>,
-    size: *mut u32,
+    size: Option<&mut u32>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetProperty(
             entry: io_registry_entry_t,
             property_name: *const io_name_t,
             buffer: Option<&mut io_struct_inband_t>,
-            size: *mut u32,
+            size: Option<&mut u32>,
         ) -> libc::kern_return_t;
     }
     let property_name = property_name
@@ -11822,19 +11822,19 @@ pub unsafe fn IORegistryEntrySetCFProperty(
 /// # Safety
 ///
 /// - `plane` might not allow `None`.
-/// - `iterator` must be a valid pointer.
+/// - `iterator` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegistryEntryGetChildIterator(
     entry: io_registry_entry_t,
     plane: Option<&CStr>,
-    iterator: *mut io_iterator_t,
+    iterator: Option<&mut io_iterator_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetChildIterator(
             entry: io_registry_entry_t,
             plane: *const io_name_t,
-            iterator: *mut io_iterator_t,
+            iterator: Option<&mut io_iterator_t>,
         ) -> libc::kern_return_t;
     }
     let plane = plane
@@ -11859,19 +11859,19 @@ pub unsafe fn IORegistryEntryGetChildIterator(
 /// # Safety
 ///
 /// - `plane` might not allow `None`.
-/// - `child` must be a valid pointer.
+/// - `child` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegistryEntryGetChildEntry(
     entry: io_registry_entry_t,
     plane: Option<&CStr>,
-    child: *mut io_registry_entry_t,
+    child: Option<&mut io_registry_entry_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetChildEntry(
             entry: io_registry_entry_t,
             plane: *const io_name_t,
-            child: *mut io_registry_entry_t,
+            child: Option<&mut io_registry_entry_t>,
         ) -> libc::kern_return_t;
     }
     let plane = plane
@@ -11896,19 +11896,19 @@ pub unsafe fn IORegistryEntryGetChildEntry(
 /// # Safety
 ///
 /// - `plane` might not allow `None`.
-/// - `iterator` must be a valid pointer.
+/// - `iterator` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegistryEntryGetParentIterator(
     entry: io_registry_entry_t,
     plane: Option<&CStr>,
-    iterator: *mut io_iterator_t,
+    iterator: Option<&mut io_iterator_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetParentIterator(
             entry: io_registry_entry_t,
             plane: *const io_name_t,
-            iterator: *mut io_iterator_t,
+            iterator: Option<&mut io_iterator_t>,
         ) -> libc::kern_return_t;
     }
     let plane = plane
@@ -11933,19 +11933,19 @@ pub unsafe fn IORegistryEntryGetParentIterator(
 /// # Safety
 ///
 /// - `plane` might not allow `None`.
-/// - `parent` must be a valid pointer.
+/// - `parent` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegistryEntryGetParentEntry(
     entry: io_registry_entry_t,
     plane: Option<&CStr>,
-    parent: *mut io_registry_entry_t,
+    parent: Option<&mut io_registry_entry_t>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IORegistryEntryGetParentEntry(
             entry: io_registry_entry_t,
             plane: *const io_name_t,
-            parent: *mut io_registry_entry_t,
+            parent: Option<&mut io_registry_entry_t>,
         ) -> libc::kern_return_t;
     }
     let plane = plane
@@ -11995,17 +11995,18 @@ pub unsafe fn IORegistryEntryInPlane(entry: io_registry_entry_t, plane: Option<&
 ///
 /// # Safety
 ///
-/// - `name` must be a valid pointer.
+/// - `name` might not allow `None`.
 /// - The returned generic should be of the correct type.
 #[inline]
 pub unsafe fn IOServiceMatching(
-    name: *const c_char,
+    name: Option<&CStr>,
 ) -> Option<CFRetained<CFMutableDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn IOServiceMatching(
             name: *const c_char,
         ) -> Option<NonNull<CFMutableDictionary<CFString, CFType>>>;
     }
+    let name = name.map(|ptr| ptr.as_ptr()).unwrap_or_else(core::ptr::null);
     let ret = unsafe { IOServiceMatching(name) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
@@ -12020,17 +12021,18 @@ pub unsafe fn IOServiceMatching(
 ///
 /// # Safety
 ///
-/// - `name` must be a valid pointer.
+/// - `name` might not allow `None`.
 /// - The returned generic should be of the correct type.
 #[inline]
 pub unsafe fn IOServiceNameMatching(
-    name: *const c_char,
+    name: Option<&CStr>,
 ) -> Option<CFRetained<CFMutableDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn IOServiceNameMatching(
             name: *const c_char,
         ) -> Option<NonNull<CFMutableDictionary<CFString, CFType>>>;
     }
+    let name = name.map(|ptr| ptr.as_ptr()).unwrap_or_else(core::ptr::null);
     let ret = unsafe { IOServiceNameMatching(name) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
@@ -12049,14 +12051,14 @@ pub unsafe fn IOServiceNameMatching(
 ///
 /// # Safety
 ///
-/// - `bsd_name` must be a valid pointer.
+/// - `bsd_name` might not allow `None`.
 /// - The returned generic should be of the correct type.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOBSDNameMatching(
     main_port: libc::mach_port_t,
     options: u32,
-    bsd_name: *const c_char,
+    bsd_name: Option<&CStr>,
 ) -> Option<CFRetained<CFMutableDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn IOBSDNameMatching(
@@ -12065,13 +12067,16 @@ pub unsafe fn IOBSDNameMatching(
             bsd_name: *const c_char,
         ) -> Option<NonNull<CFMutableDictionary<CFString, CFType>>>;
     }
+    let bsd_name = bsd_name
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
     let ret = unsafe { IOBSDNameMatching(main_port, options, bsd_name) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// # Safety
 ///
-/// - `path` must be a valid pointer.
+/// - `path` might not allow `None`.
 /// - The returned generic should be of the correct type.
 #[cfg(feature = "libc")]
 #[deprecated]
@@ -12079,7 +12084,7 @@ pub unsafe fn IOBSDNameMatching(
 pub unsafe fn IOOpenFirmwarePathMatching(
     main_port: libc::mach_port_t,
     options: u32,
-    path: *const c_char,
+    path: Option<&CStr>,
 ) -> Option<CFRetained<CFMutableDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn IOOpenFirmwarePathMatching(
@@ -12088,6 +12093,7 @@ pub unsafe fn IOOpenFirmwarePathMatching(
             path: *const c_char,
         ) -> Option<NonNull<CFMutableDictionary<CFString, CFType>>>;
     }
+    let path = path.map(|ptr| ptr.as_ptr()).unwrap_or_else(core::ptr::null);
     let ret = unsafe { IOOpenFirmwarePathMatching(main_port, options, path) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
@@ -12240,21 +12246,21 @@ pub unsafe fn IOCatalogueTerminate(
 /// # Safety
 ///
 /// - `buffer` must be a valid pointer.
-/// - `size` must be a valid pointer.
+/// - `size` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOCatalogueGetData(
     main_port: libc::mach_port_t,
     flag: u32,
     buffer: *mut *mut c_char,
-    size: *mut u32,
+    size: Option<&mut u32>,
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOCatalogueGetData(
             main_port: libc::mach_port_t,
             flag: u32,
             buffer: *mut *mut c_char,
-            size: *mut u32,
+            size: Option<&mut u32>,
         ) -> libc::kern_return_t;
     }
     unsafe { IOCatalogueGetData(main_port, flag, buffer, size) }
@@ -12401,18 +12407,18 @@ pub unsafe fn IODataQueuePeek(data_queue: *mut IODataQueueMemory) -> *mut IOData
 ///
 /// - `data_queue` must be a valid pointer.
 /// - `data` must be a valid pointer.
-/// - `data_size` must be a valid pointer.
+/// - `data_size` might not allow `None`.
 #[inline]
 pub unsafe fn IODataQueueDequeue(
     data_queue: *mut IODataQueueMemory,
     data: *mut c_void,
-    data_size: *mut u32,
+    data_size: Option<&mut u32>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IODataQueueDequeue(
             data_queue: *mut IODataQueueMemory,
             data: *mut c_void,
-            data_size: *mut u32,
+            data_size: Option<&mut u32>,
         ) -> IOReturn;
     }
     unsafe { IODataQueueDequeue(data_queue, data, data_size) }
@@ -12657,20 +12663,20 @@ pub unsafe fn IOCFSerialize(
 ///
 /// - `url` might not allow `None`.
 /// - `property` might not allow `None`.
-/// - `error_code` must be a valid pointer.
+/// - `error_code` might not allow `None`.
 #[inline]
 pub unsafe fn IOURLCreatePropertyFromResource(
     alloc: Option<&CFAllocator>,
     url: Option<&CFURL>,
     property: Option<&CFString>,
-    error_code: *mut i32,
+    error_code: Option<&mut i32>,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn IOURLCreatePropertyFromResource(
             alloc: Option<&CFAllocator>,
             url: Option<&CFURL>,
             property: Option<&CFString>,
-            error_code: *mut i32,
+            error_code: Option<&mut i32>,
         ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { IOURLCreatePropertyFromResource(alloc, url, property, error_code) };
@@ -12683,7 +12689,7 @@ pub unsafe fn IOURLCreatePropertyFromResource(
 /// - `resource_data` might not allow `None`.
 /// - `properties` might not allow `None`.
 /// - `desired_properties` might not allow `None`.
-/// - `error_code` must be a valid pointer.
+/// - `error_code` might not allow `None`.
 #[inline]
 pub unsafe fn IOURLCreateDataAndPropertiesFromResource(
     alloc: Option<&CFAllocator>,
@@ -12691,7 +12697,7 @@ pub unsafe fn IOURLCreateDataAndPropertiesFromResource(
     resource_data: Option<&mut Option<CFRetained<CFData>>>,
     properties: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
     desired_properties: Option<&CFArray<CFString>>,
-    error_code: *mut i32,
+    error_code: Option<&mut i32>,
 ) -> bool {
     extern "C-unwind" {
         fn IOURLCreateDataAndPropertiesFromResource(
@@ -12700,7 +12706,7 @@ pub unsafe fn IOURLCreateDataAndPropertiesFromResource(
             resource_data: Option<&mut Option<CFRetained<CFData>>>,
             properties: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
             desired_properties: Option<&CFArray<CFString>>,
-            error_code: *mut i32,
+            error_code: Option<&mut i32>,
         ) -> Boolean;
     }
     if let Some(resource_data) = resource_data.as_ref() {
@@ -12734,20 +12740,20 @@ pub unsafe fn IOURLCreateDataAndPropertiesFromResource(
 /// - `data_to_write` might not allow `None`.
 /// - `properties_to_write` generic should be of the correct type.
 /// - `properties_to_write` might not allow `None`.
-/// - `error_code` must be a valid pointer.
+/// - `error_code` might not allow `None`.
 #[inline]
 pub unsafe fn IOURLWriteDataAndPropertiesToResource(
     url: Option<&CFURL>,
     data_to_write: Option<&CFData>,
     properties_to_write: Option<&CFDictionary<CFString, CFType>>,
-    error_code: *mut i32,
+    error_code: Option<&mut i32>,
 ) -> bool {
     extern "C-unwind" {
         fn IOURLWriteDataAndPropertiesToResource(
             url: Option<&CFURL>,
             data_to_write: Option<&CFData>,
             properties_to_write: Option<&CFDictionary<CFString, CFType>>,
-            error_code: *mut i32,
+            error_code: Option<&mut i32>,
         ) -> Boolean;
     }
     let ret = unsafe {
@@ -12833,11 +12839,11 @@ pub const kIOCatalogServiceTerminate: c_uint = 3;
 
 /// # Safety
 ///
-/// - `buffer` must be a valid pointer.
+/// - `buffer` might not allow `None`.
 /// - `error_string` might not allow `None`.
 #[inline]
 pub unsafe fn IOCFUnserialize(
-    buffer: *const c_char,
+    buffer: Option<&CStr>,
     allocator: Option<&CFAllocator>,
     options: CFOptionFlags,
     error_string: Option<&mut Option<CFRetained<CFString>>>,
@@ -12850,6 +12856,9 @@ pub unsafe fn IOCFUnserialize(
             error_string: Option<&mut Option<CFRetained<CFString>>>,
         ) -> Option<NonNull<CFType>>;
     }
+    let buffer = buffer
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
     if let Some(error_string) = error_string.as_ref() {
         assert!(
             error_string.is_none(),

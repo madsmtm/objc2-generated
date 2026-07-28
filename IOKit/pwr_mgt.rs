@@ -1118,19 +1118,19 @@ pub fn IOPMSetAggressiveness(
 ///
 /// # Safety
 ///
-/// `aggressiveness` must be a valid pointer.
+/// `aggressiveness` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMGetAggressiveness(
     fb: io_connect_t,
     r#type: c_ulong,
-    aggressiveness: *mut c_ulong,
+    aggressiveness: Option<&mut c_ulong>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMGetAggressiveness(
             fb: io_connect_t,
             r#type: c_ulong,
-            aggressiveness: *mut c_ulong,
+            aggressiveness: Option<&mut c_ulong>,
         ) -> IOReturn;
     }
     unsafe { IOPMGetAggressiveness(fb, r#type, aggressiveness) }
@@ -1262,25 +1262,26 @@ pub unsafe fn IOPMCopyBatteryInfo(
 ///
 /// - `refcon` must be a valid pointer.
 /// - `the_port_ref` must be a valid pointer.
+/// - `the_port_ref` might not allow `None`.
 /// - `callback` must be implemented correctly.
-/// - `notifier` must be a valid pointer.
+/// - `notifier` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
 pub unsafe fn IORegisterApp(
     refcon: *mut c_void,
     the_driver: io_service_t,
-    the_port_ref: *mut IONotificationPortRef,
+    the_port_ref: Option<&mut IONotificationPortRef>,
     callback: IOServiceInterestCallback,
-    notifier: *mut io_object_t,
+    notifier: Option<&mut io_object_t>,
 ) -> io_connect_t {
     extern "C-unwind" {
         fn IORegisterApp(
             refcon: *mut c_void,
             the_driver: io_service_t,
-            the_port_ref: *mut IONotificationPortRef,
+            the_port_ref: Option<&mut IONotificationPortRef>,
             callback: IOServiceInterestCallback,
-            notifier: *mut io_object_t,
+            notifier: Option<&mut io_object_t>,
         ) -> io_connect_t;
     }
     unsafe { IORegisterApp(refcon, the_driver, the_port_ref, callback, notifier) }
@@ -1405,22 +1406,23 @@ pub unsafe fn IORegisterApp(
 ///
 /// - `refcon` must be a valid pointer.
 /// - `the_port_ref` must be a valid pointer.
+/// - `the_port_ref` might not allow `None`.
 /// - `callback` must be implemented correctly.
-/// - `notifier` must be a valid pointer.
+/// - `notifier` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegisterForSystemPower(
     refcon: *mut c_void,
-    the_port_ref: *mut IONotificationPortRef,
+    the_port_ref: Option<&mut IONotificationPortRef>,
     callback: IOServiceInterestCallback,
-    notifier: *mut io_object_t,
+    notifier: Option<&mut io_object_t>,
 ) -> io_connect_t {
     extern "C-unwind" {
         fn IORegisterForSystemPower(
             refcon: *mut c_void,
-            the_port_ref: *mut IONotificationPortRef,
+            the_port_ref: Option<&mut IONotificationPortRef>,
             callback: IOServiceInterestCallback,
-            notifier: *mut io_object_t,
+            notifier: Option<&mut io_object_t>,
         ) -> io_connect_t;
     }
     unsafe { IORegisterForSystemPower(refcon, the_port_ref, callback, notifier) }
@@ -1434,12 +1436,12 @@ pub unsafe fn IORegisterForSystemPower(
 ///
 /// # Safety
 ///
-/// `notifier` must be a valid pointer.
+/// `notifier` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe fn IODeregisterApp(notifier: *mut io_object_t) -> IOReturn {
+pub unsafe fn IODeregisterApp(notifier: Option<&mut io_object_t>) -> IOReturn {
     extern "C-unwind" {
-        fn IODeregisterApp(notifier: *mut io_object_t) -> IOReturn;
+        fn IODeregisterApp(notifier: Option<&mut io_object_t>) -> IOReturn;
     }
     unsafe { IODeregisterApp(notifier) }
 }
@@ -1452,12 +1454,12 @@ pub unsafe fn IODeregisterApp(notifier: *mut io_object_t) -> IOReturn {
 ///
 /// # Safety
 ///
-/// `notifier` must be a valid pointer.
+/// `notifier` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe fn IODeregisterForSystemPower(notifier: *mut io_object_t) -> IOReturn {
+pub unsafe fn IODeregisterForSystemPower(notifier: Option<&mut io_object_t>) -> IOReturn {
     extern "C-unwind" {
-        fn IODeregisterForSystemPower(notifier: *mut io_object_t) -> IOReturn;
+        fn IODeregisterForSystemPower(notifier: Option<&mut io_object_t>) -> IOReturn;
     }
     unsafe { IODeregisterForSystemPower(notifier) }
 }
@@ -1813,7 +1815,7 @@ unsafe impl RefEncode for IOPMUserActiveType {
 /// - `human_readable_reason` might not allow `None`.
 /// - `localization_bundle_path` might not allow `None`.
 /// - `timeout_action` might not allow `None`.
-/// - `assertion_id` must be a valid pointer.
+/// - `assertion_id` might not allow `None`.
 #[inline]
 pub unsafe fn IOPMAssertionCreateWithDescription(
     assertion_type: Option<&CFString>,
@@ -1823,7 +1825,7 @@ pub unsafe fn IOPMAssertionCreateWithDescription(
     localization_bundle_path: Option<&CFString>,
     timeout: CFTimeInterval,
     timeout_action: Option<&CFString>,
-    assertion_id: *mut IOPMAssertionID,
+    assertion_id: Option<&mut IOPMAssertionID>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMAssertionCreateWithDescription(
@@ -1834,7 +1836,7 @@ pub unsafe fn IOPMAssertionCreateWithDescription(
             localization_bundle_path: Option<&CFString>,
             timeout: CFTimeInterval,
             timeout_action: Option<&CFString>,
-            assertion_id: *mut IOPMAssertionID,
+            assertion_id: Option<&mut IOPMAssertionID>,
         ) -> IOReturn;
     }
     unsafe {
@@ -1964,16 +1966,16 @@ pub unsafe fn IOPMAssertionCreateWithDescription(
 ///
 /// - `assertion_properties` generic should be of the correct type.
 /// - `assertion_properties` might not allow `None`.
-/// - `assertion_id` must be a valid pointer.
+/// - `assertion_id` might not allow `None`.
 #[inline]
 pub unsafe fn IOPMAssertionCreateWithProperties(
     assertion_properties: Option<&CFDictionary<CFString, CFType>>,
-    assertion_id: *mut IOPMAssertionID,
+    assertion_id: Option<&mut IOPMAssertionID>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMAssertionCreateWithProperties(
             assertion_properties: Option<&CFDictionary<CFString, CFType>>,
-            assertion_id: *mut IOPMAssertionID,
+            assertion_id: Option<&mut IOPMAssertionID>,
         ) -> IOReturn;
     }
     unsafe { IOPMAssertionCreateWithProperties(assertion_properties, assertion_id) }
@@ -2033,18 +2035,18 @@ pub unsafe fn IOPMAssertionCreateWithProperties(
 /// # Safety
 ///
 /// - `assertion_name` might not allow `None`.
-/// - `assertion_id` must be a valid pointer.
+/// - `assertion_id` might not allow `None`.
 #[inline]
 pub unsafe fn IOPMAssertionDeclareUserActivity(
     assertion_name: Option<&CFString>,
     user_type: IOPMUserActiveType,
-    assertion_id: *mut IOPMAssertionID,
+    assertion_id: Option<&mut IOPMAssertionID>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMAssertionDeclareUserActivity(
             assertion_name: Option<&CFString>,
             user_type: IOPMUserActiveType,
-            assertion_id: *mut IOPMAssertionID,
+            assertion_id: Option<&mut IOPMAssertionID>,
         ) -> IOReturn;
     }
     unsafe { IOPMAssertionDeclareUserActivity(assertion_name, user_type, assertion_id) }
@@ -2150,16 +2152,16 @@ pub unsafe fn IOPMAssertionDeclareUserActivity(
 /// # Safety
 ///
 /// - `assertion_name` might not allow `None`.
-/// - `assertion_id` must be a valid pointer.
+/// - `assertion_id` might not allow `None`.
 #[inline]
 pub unsafe fn IOPMDeclareNetworkClientActivity(
     assertion_name: Option<&CFString>,
-    assertion_id: *mut IOPMAssertionID,
+    assertion_id: Option<&mut IOPMAssertionID>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMDeclareNetworkClientActivity(
             assertion_name: Option<&CFString>,
-            assertion_id: *mut IOPMAssertionID,
+            assertion_id: Option<&mut IOPMAssertionID>,
         ) -> IOReturn;
     }
     unsafe { IOPMDeclareNetworkClientActivity(assertion_name, assertion_id) }
@@ -2450,19 +2452,19 @@ pub unsafe fn IOPMCopyAssertionsStatus(
 /// # Safety
 ///
 /// - `assertion_type` might not allow `None`.
-/// - `assertion_id` must be a valid pointer.
+/// - `assertion_id` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn IOPMAssertionCreate(
     assertion_type: Option<&CFString>,
     assertion_level: IOPMAssertionLevel,
-    assertion_id: *mut IOPMAssertionID,
+    assertion_id: Option<&mut IOPMAssertionID>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMAssertionCreate(
             assertion_type: Option<&CFString>,
             assertion_level: IOPMAssertionLevel,
-            assertion_id: *mut IOPMAssertionID,
+            assertion_id: Option<&mut IOPMAssertionID>,
         ) -> IOReturn;
     }
     unsafe { IOPMAssertionCreate(assertion_type, assertion_level, assertion_id) }
@@ -2495,20 +2497,20 @@ pub unsafe fn IOPMAssertionCreate(
 ///
 /// - `assertion_type` might not allow `None`.
 /// - `assertion_name` might not allow `None`.
-/// - `assertion_id` must be a valid pointer.
+/// - `assertion_id` might not allow `None`.
 #[inline]
 pub unsafe fn IOPMAssertionCreateWithName(
     assertion_type: Option<&CFString>,
     assertion_level: IOPMAssertionLevel,
     assertion_name: Option<&CFString>,
-    assertion_id: *mut IOPMAssertionID,
+    assertion_id: Option<&mut IOPMAssertionID>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOPMAssertionCreateWithName(
             assertion_type: Option<&CFString>,
             assertion_level: IOPMAssertionLevel,
             assertion_name: Option<&CFString>,
-            assertion_id: *mut IOPMAssertionID,
+            assertion_id: Option<&mut IOPMAssertionID>,
         ) -> IOReturn;
     }
     unsafe {
@@ -2650,11 +2652,11 @@ pub unsafe fn IOPMCopyCPUPowerStatus(
 ///
 /// # Safety
 ///
-/// `thermal_level` must be a valid pointer.
+/// `thermal_level` might not allow `None`.
 #[inline]
-pub unsafe fn IOPMGetThermalWarningLevel(thermal_level: *mut u32) -> IOReturn {
+pub unsafe fn IOPMGetThermalWarningLevel(thermal_level: Option<&mut u32>) -> IOReturn {
     extern "C-unwind" {
-        fn IOPMGetThermalWarningLevel(thermal_level: *mut u32) -> IOReturn;
+        fn IOPMGetThermalWarningLevel(thermal_level: Option<&mut u32>) -> IOReturn;
     }
     unsafe { IOPMGetThermalWarningLevel(thermal_level) }
 }
