@@ -250,10 +250,11 @@ unsafe impl RefEncode for MIDIChannelMessage {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midirawdata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MIDIRawData {
     pub length: u32,
     pub data: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -271,7 +272,7 @@ unsafe impl RefEncode for MIDIRawData {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midimetaevent?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MIDIMetaEvent {
     pub metaEventType: u8,
     pub unused1: u8,
@@ -279,6 +280,7 @@ pub struct MIDIMetaEvent {
     pub unused3: u8,
     pub dataLength: u32,
     pub data: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -309,10 +311,11 @@ unsafe impl RefEncode for MIDIMetaEvent {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventuserdata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MusicEventUserData {
     pub length: u32,
     pub data: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -333,12 +336,13 @@ unsafe impl RefEncode for MusicEventUserData {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extendednoteonevent?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ExtendedNoteOnEvent {
     pub instrumentID: MusicDeviceInstrumentID,
     pub groupID: MusicDeviceGroupID,
     pub duration: f32,
     pub extendedParams: MusicDeviceNoteParams,
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "AUComponent", feature = "MusicDevice", feature = "objc2"))]
@@ -2211,18 +2215,19 @@ pub unsafe fn MusicTrackNewMIDIChannelEvent(
 ///
 /// # Safety
 ///
-/// `in_track` must be a valid pointer.
+/// - `in_track` must be a valid pointer.
+/// - `in_raw_data` must be a valid pointer.
 #[inline]
 pub unsafe fn MusicTrackNewMIDIRawDataEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
-    in_raw_data: &MIDIRawData,
+    in_raw_data: NonNull<MIDIRawData>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MusicTrackNewMIDIRawDataEvent(
             in_track: MusicTrack,
             in_time_stamp: MusicTimeStamp,
-            in_raw_data: &MIDIRawData,
+            in_raw_data: NonNull<MIDIRawData>,
         ) -> OSStatus;
     }
     unsafe { MusicTrackNewMIDIRawDataEvent(in_track, in_time_stamp, in_raw_data) }
@@ -2240,19 +2245,20 @@ pub unsafe fn MusicTrackNewMIDIRawDataEvent(
 ///
 /// # Safety
 ///
-/// `in_track` must be a valid pointer.
+/// - `in_track` must be a valid pointer.
+/// - `in_info` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
 #[inline]
 pub unsafe fn MusicTrackNewExtendedNoteEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
-    in_info: &ExtendedNoteOnEvent,
+    in_info: NonNull<ExtendedNoteOnEvent>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MusicTrackNewExtendedNoteEvent(
             in_track: MusicTrack,
             in_time_stamp: MusicTimeStamp,
-            in_info: &ExtendedNoteOnEvent,
+            in_info: NonNull<ExtendedNoteOnEvent>,
         ) -> OSStatus;
     }
     unsafe { MusicTrackNewExtendedNoteEvent(in_track, in_time_stamp, in_info) }
@@ -2329,18 +2335,19 @@ pub unsafe fn MusicTrackNewExtendedTempoEvent(
 ///
 /// # Safety
 ///
-/// `in_track` must be a valid pointer.
+/// - `in_track` must be a valid pointer.
+/// - `in_meta_event` must be a valid pointer.
 #[inline]
 pub unsafe fn MusicTrackNewMetaEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
-    in_meta_event: &MIDIMetaEvent,
+    in_meta_event: NonNull<MIDIMetaEvent>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MusicTrackNewMetaEvent(
             in_track: MusicTrack,
             in_time_stamp: MusicTimeStamp,
-            in_meta_event: &MIDIMetaEvent,
+            in_meta_event: NonNull<MIDIMetaEvent>,
         ) -> OSStatus;
     }
     unsafe { MusicTrackNewMetaEvent(in_track, in_time_stamp, in_meta_event) }
@@ -2358,18 +2365,19 @@ pub unsafe fn MusicTrackNewMetaEvent(
 ///
 /// # Safety
 ///
-/// `in_track` must be a valid pointer.
+/// - `in_track` must be a valid pointer.
+/// - `in_user_data` must be a valid pointer.
 #[inline]
 pub unsafe fn MusicTrackNewUserEvent(
     in_track: MusicTrack,
     in_time_stamp: MusicTimeStamp,
-    in_user_data: &MusicEventUserData,
+    in_user_data: NonNull<MusicEventUserData>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MusicTrackNewUserEvent(
             in_track: MusicTrack,
             in_time_stamp: MusicTimeStamp,
-            in_user_data: &MusicEventUserData,
+            in_user_data: NonNull<MusicEventUserData>,
         ) -> OSStatus;
     }
     unsafe { MusicTrackNewUserEvent(in_track, in_time_stamp, in_user_data) }

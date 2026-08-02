@@ -27,16 +27,17 @@ pub type CMIODevicePropertyID = CMIOObjectPropertySelector;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicestreamconfiguration?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMIODeviceStreamConfiguration {
     pub mNumberStreams: u32,
-    pub mNumberChannels: *mut u32,
+    pub mNumberChannels: [u32; 0],
+    _this_is_unsized: (),
 }
 
 unsafe impl Encode for CMIODeviceStreamConfiguration {
     const ENCODING: Encoding = Encoding::Struct(
         "CMIODeviceStreamConfiguration",
-        &[<u32>::ENCODING, <*mut u32>::ENCODING],
+        &[<u32>::ENCODING, <[u32; 0]>::ENCODING],
     );
 }
 

@@ -120,12 +120,13 @@ pub type CSpecArray = [ColorSpec; 1];
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/colortable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ColorTable {
     pub ctSeed: i32,
     pub ctFlags: c_short,
     pub ctSize: c_short,
     pub ctTable: CSpecArray,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -532,11 +533,12 @@ pub type VDGamRecPtr = *mut VDGammaRecord;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/macpolygon?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MacPolygon {
     pub polySize: c_short,
     pub polyBBox: Rect,
     pub polyPoints: [Point; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

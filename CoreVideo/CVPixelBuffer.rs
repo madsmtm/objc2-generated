@@ -264,9 +264,10 @@ unsafe impl RefEncode for CVPlanarComponentInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvplanarpixelbufferinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CVPlanarPixelBufferInfo {
     pub componentInfo: [CVPlanarComponentInfo; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

@@ -39,8 +39,7 @@ pub type ListClickLoopUPP = ListClickLoopProcPtr;
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/listrec?language=objc)
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
 #[repr(C, packed(2))]
-#[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ListRec {
     pub rView: Rect,
     pub port: GrafPtr,
@@ -65,6 +64,7 @@ pub struct ListRec {
     pub cells: DataHandle,
     pub maxIndex: c_short,
     pub cellArray: [c_short; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(

@@ -435,10 +435,11 @@ pub type ICAppSpecHandle = *mut ICAppSpecPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icappspeclist?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ICAppSpecList {
     pub numberOfItems: i16,
     pub appSpecs: [ICAppSpec; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -600,10 +601,11 @@ pub const kICServicesUDPMask: c_uint = 0x00000002;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icservices?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ICServices {
     pub count: i16,
     pub services: [ICServiceEntry; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

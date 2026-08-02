@@ -392,13 +392,12 @@ pub const kAEHandleArray: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aearraydata?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
 pub union AEArrayData {
-    pub kAEDataArray: [i16; 1],
-    pub kAEPackedArray: [c_char; 1],
-    pub kAEHandleArray: [Handle; 1],
-    pub kAEDescArray: [AEDesc; 1],
-    pub kAEKeyDescArray: [AEKeyDesc; 1],
+    pub kAEDataArray: core::mem::ManuallyDrop<[i16; 1]>,
+    pub kAEPackedArray: core::mem::ManuallyDrop<[c_char; 1]>,
+    pub kAEHandleArray: core::mem::ManuallyDrop<[Handle; 1]>,
+    pub kAEDescArray: core::mem::ManuallyDrop<[AEDesc; 1]>,
+    pub kAEKeyDescArray: core::mem::ManuallyDrop<[AEKeyDesc; 1]>,
 }
 
 #[cfg(feature = "objc2")]

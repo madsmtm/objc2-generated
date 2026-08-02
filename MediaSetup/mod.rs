@@ -51,5 +51,5 @@ extern "C" {
     /// The version of the Media Setup framework.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/mediasetup/mediasetupversionstring?language=objc)
-    pub static MediaSetupVersionString: *mut c_uchar;
+    pub static MediaSetupVersionString: [c_uchar; 0];
 }

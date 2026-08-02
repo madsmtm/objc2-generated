@@ -774,13 +774,13 @@ pub unsafe fn AudioCodecProduceOutputPackets(
 /// # Safety
 ///
 /// - `in_codec` must be a valid pointer.
-/// - `in_buffer_list` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `in_buffer_list` must be a valid pointer.
 /// - `in_packet_description` must be a valid pointer or null.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
 pub unsafe fn AudioCodecAppendInputBufferList(
     in_codec: AudioCodec,
-    in_buffer_list: &AudioBufferList,
+    in_buffer_list: NonNull<AudioBufferList>,
     io_number_packets: &mut u32,
     in_packet_description: *const AudioStreamPacketDescription,
     out_bytes_consumed: &mut u32,
@@ -788,7 +788,7 @@ pub unsafe fn AudioCodecAppendInputBufferList(
     extern "C-unwind" {
         fn AudioCodecAppendInputBufferList(
             in_codec: AudioCodec,
-            in_buffer_list: &AudioBufferList,
+            in_buffer_list: NonNull<AudioBufferList>,
             io_number_packets: &mut u32,
             in_packet_description: *const AudioStreamPacketDescription,
             out_bytes_consumed: &mut u32,
@@ -808,13 +808,13 @@ pub unsafe fn AudioCodecAppendInputBufferList(
 /// # Safety
 ///
 /// - `in_codec` must be a valid pointer.
-/// - `io_buffer_list` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `io_buffer_list` must be a valid pointer.
 /// - `out_packet_description` must be a valid pointer or null.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
 pub unsafe fn AudioCodecProduceOutputBufferList(
     in_codec: AudioCodec,
-    io_buffer_list: &mut AudioBufferList,
+    io_buffer_list: NonNull<AudioBufferList>,
     io_number_packets: &mut u32,
     out_packet_description: *mut AudioStreamPacketDescription,
     out_status: &mut u32,
@@ -822,7 +822,7 @@ pub unsafe fn AudioCodecProduceOutputBufferList(
     extern "C-unwind" {
         fn AudioCodecProduceOutputBufferList(
             in_codec: AudioCodec,
-            io_buffer_list: &mut AudioBufferList,
+            io_buffer_list: NonNull<AudioBufferList>,
             io_number_packets: &mut u32,
             out_packet_description: *mut AudioStreamPacketDescription,
             out_status: &mut u32,

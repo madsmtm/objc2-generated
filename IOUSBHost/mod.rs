@@ -721,5 +721,5 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostversionstring?language=objc)
-    pub static IOUSBHostVersionString: *mut c_uchar;
+    pub static IOUSBHostVersionString: [c_uchar; 0];
 }

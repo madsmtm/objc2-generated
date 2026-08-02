@@ -414,11 +414,12 @@ unsafe impl RefEncode for MIDIEventPacket {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventlist?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MIDIEventList {
     pub protocol: MIDIProtocolID,
     pub numPackets: u32,
     pub packet: [MIDIEventPacket; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -535,10 +536,11 @@ unsafe impl RefEncode for MIDIPacket {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midipacketlist?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MIDIPacketList {
     pub numPackets: u32,
     pub packet: [MIDIPacket; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

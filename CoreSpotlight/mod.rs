@@ -163,5 +163,5 @@ extern "C" {
     /// Project version string for CoreSpotlight.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corespotlight/corespotlightversionstring?language=objc)
-    pub static CoreSpotlightVersionString: *mut c_uchar;
+    pub static CoreSpotlightVersionString: [c_uchar; 0];
 }

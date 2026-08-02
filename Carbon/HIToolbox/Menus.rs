@@ -1007,10 +1007,11 @@ pub type MCTableHandle = *mut MCTablePtr;
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/menucrsrc?language=objc)
 #[cfg(feature = "objc2-application-services")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MenuCRsrc {
     pub numEntries: c_short,
     pub mcEntryRecs: MCTable,
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-application-services"))]

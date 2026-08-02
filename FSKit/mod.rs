@@ -230,5 +230,5 @@ extern "C" {
     /// Project version string for FSKit.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fskitversionstring?language=objc)
-    pub static FSKitVersionString: *mut c_uchar;
+    pub static FSKitVersionString: [c_uchar; 0];
 }

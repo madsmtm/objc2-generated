@@ -26,13 +26,14 @@ pub const kUCKeyOutputGetIndexMask: c_uint = 0x3FFF;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uckeystaterecord?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct UCKeyStateRecord {
     pub stateZeroCharData: UCKeyCharSeq,
     pub stateZeroNextState: u16,
     pub stateEntryCount: u16,
     pub stateEntryFormat: u16,
     pub stateEntryData: [u32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -146,13 +147,14 @@ unsafe impl RefEncode for UCKeyboardTypeHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uckeyboardlayout?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct UCKeyboardLayout {
     pub keyLayoutHeaderFormat: u16,
     pub keyLayoutDataVersion: u16,
     pub keyLayoutFeatureInfoOffset: u32,
     pub keyboardTypeCount: u32,
     pub keyboardTypeList: [UCKeyboardTypeHeader; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -198,12 +200,13 @@ unsafe impl RefEncode for UCKeyLayoutFeatureInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uckeymodifierstotablenum?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct UCKeyModifiersToTableNum {
     pub keyModifiersToTableNumFormat: u16,
     pub defaultTableNum: u16,
     pub modifiersCount: u32,
     pub tableNum: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -226,12 +229,13 @@ unsafe impl RefEncode for UCKeyModifiersToTableNum {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uckeytochartableindex?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct UCKeyToCharTableIndex {
     pub keyToCharTableIndexFormat: u16,
     pub keyToCharTableSize: u16,
     pub keyToCharTableCount: u32,
     pub keyToCharTableOffsets: [u32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -254,11 +258,12 @@ unsafe impl RefEncode for UCKeyToCharTableIndex {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uckeystaterecordsindex?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct UCKeyStateRecordsIndex {
     pub keyStateRecordsIndexFormat: u16,
     pub keyStateRecordCount: u16,
     pub keyStateRecordOffsets: [u32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -276,11 +281,12 @@ unsafe impl RefEncode for UCKeyStateRecordsIndex {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uckeystateterminators?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct UCKeyStateTerminators {
     pub keyStateTerminatorsFormat: u16,
     pub keyStateTerminatorCount: u16,
     pub keyStateTerminators: [UCKeyCharSeq; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -302,11 +308,12 @@ unsafe impl RefEncode for UCKeyStateTerminators {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uckeysequencedataindex?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct UCKeySequenceDataIndex {
     pub keySequenceDataIndexFormat: u16,
     pub charSequenceCount: u16,
     pub charSequenceOffsets: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

@@ -2977,5 +2977,5 @@ extern "C" {
     /// Project version string for Intents.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/intentsversionstring?language=objc)
-    pub static IntentsVersionString: *mut c_uchar;
+    pub static IntentsVersionString: [c_uchar; 0];
 }

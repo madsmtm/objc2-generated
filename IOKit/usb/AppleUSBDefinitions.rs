@@ -667,11 +667,12 @@ unsafe impl RefEncode for tIOUSBLanguageID {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbstringdescriptor?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IOUSBStringDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
     pub bString: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -910,7 +911,7 @@ pub const kIOUSBSuperSpeedDeviceCapabilityU2DevExitLatMax: c_uint = 0x7ff;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicecapabilitysuperspeedplususb?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IOUSBDeviceCapabilitySuperSpeedPlusUSB {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -919,7 +920,8 @@ pub struct IOUSBDeviceCapabilitySuperSpeedPlusUSB {
     pub bmAttributes: u32,
     pub wFunctionalitySupport: u16,
     pub wReserved: u16,
-    pub bmSublinkSpeedAttr: *mut u32,
+    pub bmSublinkSpeedAttr: [u32; 0],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -934,7 +936,7 @@ unsafe impl Encode for IOUSBDeviceCapabilitySuperSpeedPlusUSB {
             <u32>::ENCODING,
             <u16>::ENCODING,
             <u16>::ENCODING,
-            <*mut u32>::ENCODING,
+            <[u32; 0]>::ENCODING,
         ],
     );
 }
@@ -1157,7 +1159,7 @@ unsafe impl RefEncode for IOUSBDeviceCapabilityBillboardAltConfig {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicecapabilitybillboard?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IOUSBDeviceCapabilityBillboard {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1170,7 +1172,8 @@ pub struct IOUSBDeviceCapabilityBillboard {
     pub bcdVersion: u16,
     pub bAdditionalFailureInfo: u8,
     pub bReserved: u8,
-    pub pAltConfigurations: *mut IOUSBDeviceCapabilityBillboardAltConfig,
+    pub pAltConfigurations: [IOUSBDeviceCapabilityBillboardAltConfig; 0],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1189,7 +1192,7 @@ unsafe impl Encode for IOUSBDeviceCapabilityBillboard {
             <u16>::ENCODING,
             <u8>::ENCODING,
             <u8>::ENCODING,
-            <*mut IOUSBDeviceCapabilityBillboardAltConfig>::ENCODING,
+            <[IOUSBDeviceCapabilityBillboardAltConfig; 0]>::ENCODING,
         ],
     );
 }

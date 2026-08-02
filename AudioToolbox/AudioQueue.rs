@@ -1931,19 +1931,20 @@ pub unsafe fn AudioQueueDeviceGetNearestStartTime(
 ///
 /// # Safety
 ///
-/// `in_aq` must be a valid pointer.
+/// - `in_aq` must be a valid pointer.
+/// - `in_layout` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe fn AudioQueueSetOfflineRenderFormat(
     in_aq: AudioQueueRef,
     in_format: Option<&AudioStreamBasicDescription>,
-    in_layout: Option<&AudioChannelLayout>,
+    in_layout: *const AudioChannelLayout,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioQueueSetOfflineRenderFormat(
             in_aq: AudioQueueRef,
             in_format: Option<&AudioStreamBasicDescription>,
-            in_layout: Option<&AudioChannelLayout>,
+            in_layout: *const AudioChannelLayout,
         ) -> OSStatus;
     }
     unsafe { AudioQueueSetOfflineRenderFormat(in_aq, in_format, in_layout) }
@@ -2133,7 +2134,7 @@ pub unsafe fn AudioQueueProcessingTapDispose(in_aq_tap: AudioQueueProcessingTapR
 /// # Safety
 ///
 /// - `in_aq_tap` must be a valid pointer.
-/// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `io_data` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe fn AudioQueueProcessingTapGetSourceAudio(
@@ -2142,7 +2143,7 @@ pub unsafe fn AudioQueueProcessingTapGetSourceAudio(
     io_time_stamp: &mut AudioTimeStamp,
     out_flags: &mut AudioQueueProcessingTapFlags,
     out_number_frames: &mut u32,
-    io_data: &mut AudioBufferList,
+    io_data: NonNull<AudioBufferList>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioQueueProcessingTapGetSourceAudio(
@@ -2151,7 +2152,7 @@ pub unsafe fn AudioQueueProcessingTapGetSourceAudio(
             io_time_stamp: &mut AudioTimeStamp,
             out_flags: &mut AudioQueueProcessingTapFlags,
             out_number_frames: &mut u32,
-            io_data: &mut AudioBufferList,
+            io_data: NonNull<AudioBufferList>,
         ) -> OSStatus;
     }
     unsafe {

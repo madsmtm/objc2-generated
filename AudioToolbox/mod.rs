@@ -7658,17 +7658,18 @@ pub unsafe fn CAClockBarBeatTimeToBeats(
 ///
 /// # Safety
 ///
-/// `in_ca_clock` must be a valid pointer.
+/// - `in_ca_clock` must be a valid pointer.
+/// - `in_midi_packet_list` must be a valid pointer.
 #[cfg(feature = "objc2-core-midi")]
 #[inline]
 pub unsafe fn CAClockParseMIDI(
     in_ca_clock: CAClockRef,
-    in_midi_packet_list: &MIDIPacketList,
+    in_midi_packet_list: NonNull<MIDIPacketList>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CAClockParseMIDI(
             in_ca_clock: CAClockRef,
-            in_midi_packet_list: &MIDIPacketList,
+            in_midi_packet_list: NonNull<MIDIPacketList>,
         ) -> OSStatus;
     }
     unsafe { CAClockParseMIDI(in_ca_clock, in_midi_packet_list) }

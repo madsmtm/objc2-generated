@@ -128,10 +128,11 @@ unsafe impl RefEncode for AudioBuffer {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AudioBufferList {
     pub mNumberBuffers: u32,
     pub mBuffers: [AudioBuffer; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2094,12 +2095,13 @@ unsafe impl RefEncode for AudioChannelDescription {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannellayout?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AudioChannelLayout {
     pub mChannelLayoutTag: AudioChannelLayoutTag,
     pub mChannelBitmap: AudioChannelBitmap,
     pub mNumberChannelDescriptions: u32,
     pub mChannelDescriptions: [AudioChannelDescription; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

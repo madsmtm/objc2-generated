@@ -115,12 +115,13 @@ unsafe impl RefEncode for NoteParamsControlValue {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicenoteparams?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MusicDeviceNoteParams {
     pub argCount: u32,
     pub mPitch: f32,
     pub mVelocity: f32,
     pub mControls: [NoteParamsControlValue; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "AUComponent", feature = "objc2"))]
@@ -296,19 +297,20 @@ pub unsafe fn MusicDeviceSysEx(
 ///
 /// # Safety
 ///
-/// `in_unit` must be a valid pointer.
+/// - `in_unit` must be a valid pointer.
+/// - `evt_list` must be a valid pointer.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-midi"))]
 #[inline]
 pub unsafe fn MusicDeviceMIDIEventList(
     in_unit: MusicDeviceComponent,
     in_offset_sample_frame: u32,
-    evt_list: &MIDIEventList,
+    evt_list: NonNull<MIDIEventList>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MusicDeviceMIDIEventList(
             in_unit: MusicDeviceComponent,
             in_offset_sample_frame: u32,
-            evt_list: &MIDIEventList,
+            evt_list: NonNull<MIDIEventList>,
         ) -> OSStatus;
     }
     unsafe { MusicDeviceMIDIEventList(in_unit, in_offset_sample_frame, evt_list) }
@@ -355,7 +357,8 @@ pub unsafe fn MusicDeviceMIDIEventList(
 ///
 /// # Safety
 ///
-/// `in_unit` must be a valid pointer.
+/// - `in_unit` must be a valid pointer.
+/// - `in_params` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
 pub unsafe fn MusicDeviceStartNote(
@@ -364,7 +367,7 @@ pub unsafe fn MusicDeviceStartNote(
     in_group_id: MusicDeviceGroupID,
     out_note_instance_id: &mut NoteInstanceID,
     in_offset_sample_frame: u32,
-    in_params: &MusicDeviceNoteParams,
+    in_params: NonNull<MusicDeviceNoteParams>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MusicDeviceStartNote(
@@ -373,7 +376,7 @@ pub unsafe fn MusicDeviceStartNote(
             in_group_id: MusicDeviceGroupID,
             out_note_instance_id: &mut NoteInstanceID,
             in_offset_sample_frame: u32,
-            in_params: &MusicDeviceNoteParams,
+            in_params: NonNull<MusicDeviceNoteParams>,
         ) -> OSStatus;
     }
     unsafe {

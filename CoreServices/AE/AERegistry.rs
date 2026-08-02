@@ -1326,10 +1326,11 @@ pub type TextRangeHandle = *mut TextRangePtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/textrangearray?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct TextRangeArray {
     pub fNumOfRanges: i16,
     pub fRange: [TextRange; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1353,10 +1354,11 @@ pub type TextRangeArrayHandle = *mut TextRangeArrayPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/offsetarray?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct OffsetArray {
     pub fNumOfOffsets: i16,
     pub fOffset: [i32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1399,11 +1401,12 @@ unsafe impl RefEncode for WritingCode {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/intltext?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IntlText {
     pub theScriptCode: ScriptCode,
     pub theLangCode: LangCode,
     pub theText: [c_char; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

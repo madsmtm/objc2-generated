@@ -9516,10 +9516,11 @@ pub type OSAsyncReference64 = [io_user_reference_t; 8];
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioserviceinterestcontent64?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C, packed(4))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IOServiceInterestContent64 {
     pub messageType: libc::natural_t,
     pub messageArgument: [io_user_reference_t; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -9546,10 +9547,11 @@ pub const kOSAsyncRefSize: c_uint = 32;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioserviceinterestcontent?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C, packed(4))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IOServiceInterestContent {
     pub messageType: libc::natural_t,
     pub messageArgument: [*mut c_void; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -9567,17 +9569,18 @@ unsafe impl RefEncode for IOServiceInterestContent {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccompletioncontent?language=objc)
 #[repr(C, packed(4))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IOAsyncCompletionContent {
     pub result: IOReturn,
-    pub args: *mut *mut c_void,
+    pub args: [*mut c_void; 0],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for IOAsyncCompletionContent {
     const ENCODING: Encoding = Encoding::Struct(
         "IOAsyncCompletionContent",
-        &[<IOReturn>::ENCODING, <*mut *mut c_void>::ENCODING],
+        &[<IOReturn>::ENCODING, <[*mut c_void; 0]>::ENCODING],
     );
 }
 
@@ -12328,12 +12331,13 @@ unsafe impl RefEncode for IODataQueueEntry {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodataqueuememory?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IODataQueueMemory {
     pub queueSize: u32,
     pub head: u32,
     pub tail: u32,
     pub queue: [IODataQueueEntry; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -12967,12 +12971,13 @@ pub const kIORPCMessageSimpleReply: c_uint = 0x00000080;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iorpcmessage?language=objc)
 #[repr(C, packed(4))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IORPCMessage {
     pub msgid: u64,
     pub flags: u64,
     pub objectRefs: u64,
     pub objects: [OSObjectRef; 0],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -12996,11 +13001,12 @@ unsafe impl RefEncode for IORPCMessage {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iorpcmessageerrorreturncontent?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IORPCMessageErrorReturnContent {
     pub hdr: IORPCMessage,
     pub result: libc::kern_return_t,
     pub pad: u32,
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -13025,7 +13031,7 @@ pub const kOSClassCanRemote: c_uint = 0x00000001;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/osclassdescription?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct OSClassDescription {
     pub descriptionSize: u32,
     pub name: [c_char; 96],
@@ -13047,6 +13053,7 @@ pub struct OSClassDescription {
     pub dispatchNames: [c_char; 0],
     pub methodNames: [c_char; 0],
     pub metaMethodNames: [c_char; 0],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

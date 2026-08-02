@@ -165,7 +165,7 @@ pub type CommonChunkPtr = *mut CommonChunk;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/extcommonchunk?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ExtCommonChunk {
     pub ckID: u32,
     pub ckSize: i32,
@@ -175,6 +175,7 @@ pub struct ExtCommonChunk {
     pub sampleRate: extended80,
     pub compressionType: u32,
     pub compressionName: [c_char; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -261,12 +262,13 @@ unsafe impl RefEncode for Marker {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/markerchunk?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MarkerChunk {
     pub ckID: u32,
     pub ckSize: i32,
     pub numMarkers: u16,
     pub Markers: [Marker; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -363,11 +365,12 @@ pub type InstrumentChunkPtr = *mut InstrumentChunk;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mididatachunk?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MIDIDataChunk {
     pub ckID: u32,
     pub ckSize: i32,
     pub MIDIdata: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -413,12 +416,13 @@ pub type AudioRecordingChunkPtr = *mut AudioRecordingChunk;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/applicationspecificchunk?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ApplicationSpecificChunk {
     pub ckID: u32,
     pub ckSize: i32,
     pub applicationSignature: OSType,
     pub data: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -444,12 +448,13 @@ pub type ApplicationSpecificChunkPtr = *mut ApplicationSpecificChunk;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/comment?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct Comment {
     pub timeStamp: u32,
     pub marker: MarkerIdType,
     pub count: u16,
     pub text: [c_char; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -472,12 +477,13 @@ unsafe impl RefEncode for Comment {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/commentschunk?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CommentsChunk {
     pub ckID: u32,
     pub ckSize: i32,
     pub numComments: u16,
     pub comments: [Comment; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -503,11 +509,12 @@ pub type CommentsChunkPtr = *mut CommentsChunk;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/textchunk?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct TextChunk {
     pub ckID: u32,
     pub ckSize: i32,
     pub text: [c_char; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

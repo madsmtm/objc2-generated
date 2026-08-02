@@ -191,7 +191,8 @@ pub unsafe fn ExtAudioFileWrapAudioFileID(
 ///
 /// # Safety
 ///
-/// `out_ext_audio_file` must be a valid pointer or null.
+/// - `in_channel_layout` must be a valid pointer or null.
+/// - `out_ext_audio_file` must be a valid pointer or null.
 #[cfg(all(
     feature = "AudioFile",
     feature = "objc2-core-audio-types",
@@ -202,7 +203,7 @@ pub unsafe fn ExtAudioFileCreateWithURL(
     in_url: &CFURL,
     in_file_type: AudioFileTypeID,
     in_stream_desc: &AudioStreamBasicDescription,
-    in_channel_layout: Option<&AudioChannelLayout>,
+    in_channel_layout: *const AudioChannelLayout,
     in_flags: u32,
     out_ext_audio_file: &mut ExtAudioFileRef,
 ) -> OSStatus {
@@ -211,7 +212,7 @@ pub unsafe fn ExtAudioFileCreateWithURL(
             in_url: &CFURL,
             in_file_type: AudioFileTypeID,
             in_stream_desc: &AudioStreamBasicDescription,
-            in_channel_layout: Option<&AudioChannelLayout>,
+            in_channel_layout: *const AudioChannelLayout,
             in_flags: u32,
             out_ext_audio_file: &mut ExtAudioFileRef,
         ) -> OSStatus;
@@ -275,19 +276,19 @@ pub unsafe fn ExtAudioFileDispose(in_ext_audio_file: ExtAudioFileRef) -> OSStatu
 /// # Safety
 ///
 /// - `in_ext_audio_file` must be a valid pointer.
-/// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `io_data` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe fn ExtAudioFileRead(
     in_ext_audio_file: ExtAudioFileRef,
     io_number_frames: &mut u32,
-    io_data: &mut AudioBufferList,
+    io_data: NonNull<AudioBufferList>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ExtAudioFileRead(
             in_ext_audio_file: ExtAudioFileRef,
             io_number_frames: &mut u32,
-            io_data: &mut AudioBufferList,
+            io_data: NonNull<AudioBufferList>,
         ) -> OSStatus;
     }
     unsafe { ExtAudioFileRead(in_ext_audio_file, io_number_frames, io_data) }
@@ -312,19 +313,19 @@ pub unsafe fn ExtAudioFileRead(
 /// # Safety
 ///
 /// - `in_ext_audio_file` must be a valid pointer.
-/// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `io_data` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe fn ExtAudioFileWrite(
     in_ext_audio_file: ExtAudioFileRef,
     in_number_frames: u32,
-    io_data: &AudioBufferList,
+    io_data: NonNull<AudioBufferList>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ExtAudioFileWrite(
             in_ext_audio_file: ExtAudioFileRef,
             in_number_frames: u32,
-            io_data: &AudioBufferList,
+            io_data: NonNull<AudioBufferList>,
         ) -> OSStatus;
     }
     unsafe { ExtAudioFileWrite(in_ext_audio_file, in_number_frames, io_data) }
@@ -360,19 +361,19 @@ pub unsafe fn ExtAudioFileWrite(
 /// # Safety
 ///
 /// - `in_ext_audio_file` must be a valid pointer.
-/// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `io_data` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe fn ExtAudioFileWriteAsync(
     in_ext_audio_file: ExtAudioFileRef,
     in_number_frames: u32,
-    io_data: Option<&AudioBufferList>,
+    io_data: *const AudioBufferList,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ExtAudioFileWriteAsync(
             in_ext_audio_file: ExtAudioFileRef,
             in_number_frames: u32,
-            io_data: Option<&AudioBufferList>,
+            io_data: *const AudioBufferList,
         ) -> OSStatus;
     }
     unsafe { ExtAudioFileWriteAsync(in_ext_audio_file, in_number_frames, io_data) }

@@ -365,11 +365,12 @@ pub const kATSDeletedGlyphcode: c_uint = 0xFFFF;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsucurvepath?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ATSUCurvePath {
     pub vectors: u32,
     pub controlBits: [u32; 1],
     pub vector: [ATSPoint; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -391,10 +392,11 @@ unsafe impl RefEncode for ATSUCurvePath {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsucurvepaths?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ATSUCurvePaths {
     pub contours: u32,
     pub contour: [ATSUCurvePath; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

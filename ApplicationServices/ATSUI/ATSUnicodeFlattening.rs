@@ -114,10 +114,11 @@ unsafe impl RefEncode for ATSFlatDataTextLayoutDataHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsflatdatatextlayoutheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ATSFlatDataTextLayoutHeader {
     pub numFlattenedTextLayouts: u32,
     pub flattenedTextLayouts: [ATSFlatDataTextLayoutDataHeader; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -139,10 +140,11 @@ unsafe impl RefEncode for ATSFlatDataTextLayoutHeader {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsflatdatalayoutcontrolsdataheader?language=objc)
 #[cfg(feature = "ATSUnicodeTypes")]
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ATSFlatDataLayoutControlsDataHeader {
     pub numberOfLayoutControls: u32,
     pub controlArray: [ATSUAttributeInfo; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "ATSUnicodeTypes", feature = "objc2"))]
@@ -181,10 +183,11 @@ unsafe impl RefEncode for ATSFlatDataLineInfoData {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsflatdatalineinfoheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ATSFlatDataLineInfoHeader {
     pub numberOfLines: u32,
     pub lineInfoArray: [ATSFlatDataLineInfoData; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -202,10 +205,11 @@ unsafe impl RefEncode for ATSFlatDataLineInfoHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsflatdatastylerundataheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ATSFlatDataStyleRunDataHeader {
     pub numberOfStyleRuns: u32,
     pub styleRunArray: [ATSUStyleRunInfo; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -251,10 +255,11 @@ unsafe impl RefEncode for ATSFlatDataStyleListStyleDataHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsflatdatastylelistheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ATSFlatDataStyleListHeader {
     pub numberOfStyles: u32,
     pub styleDataArray: [ATSFlatDataStyleListStyleDataHeader; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -384,10 +389,11 @@ unsafe impl RefEncode for ATSFlatDataFontSpecRawNameData {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsflatdatafontspecrawnamedataheader?language=objc)
 #[cfg(feature = "objc2-core-text")]
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ATSFlatDataFontSpecRawNameDataHeader {
     pub numberOfFlattenedNames: u32,
     pub nameDataArray: [ATSFlatDataFontSpecRawNameData; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-core-text"))]

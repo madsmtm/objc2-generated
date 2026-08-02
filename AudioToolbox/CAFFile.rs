@@ -193,13 +193,14 @@ unsafe impl RefEncode for CAFAudioFormatListItem {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafpackettableheader?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CAFPacketTableHeader {
     pub mNumberPackets: i64,
     pub mNumberValidFrames: i64,
     pub mPrimingFrames: i32,
     pub mRemainderFrames: i32,
     pub mPacketDescriptions: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -223,10 +224,11 @@ unsafe impl RefEncode for CAFPacketTableHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafdatachunk?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CAFDataChunk {
     pub mEditCount: u32,
     pub mData: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -376,11 +378,12 @@ unsafe impl RefEncode for CAFMarker {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafmarkerchunk?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CAFMarkerChunk {
     pub mSMPTE_TimeType: u32,
     pub mNumberMarkers: u32,
     pub mMarkers: [CAFMarker; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -425,12 +428,13 @@ unsafe impl RefEncode for CAFRegionFlags {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregion?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CAFRegion {
     pub mRegionID: u32,
     pub mFlags: CAFRegionFlags,
     pub mNumberMarkers: u32,
     pub mMarkers: [CAFMarker; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -453,11 +457,12 @@ unsafe impl RefEncode for CAFRegion {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregionchunk?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CAFRegionChunk {
     pub mSMPTE_TimeType: u32,
     pub mNumberRegions: u32,
     pub mRegions: [CAFRegion; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -533,10 +538,11 @@ unsafe impl RefEncode for CAFStringID {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafstrings?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CAFStrings {
     pub mNumEntries: u32,
     pub mStringsIDs: [CAFStringID; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -590,10 +596,11 @@ unsafe impl RefEncode for CAFPositionPeak {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafpeakchunk?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CAFPeakChunk {
     pub mEditCount: u32,
     pub mPeaks: [CAFPositionPeak; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -630,11 +637,12 @@ unsafe impl RefEncode for CAFOverviewSample {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafoverviewchunk?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CAFOverviewChunk {
     pub mEditCount: u32,
     pub mNumFramesPerOVWSample: u32,
     pub mData: [CAFOverviewSample; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

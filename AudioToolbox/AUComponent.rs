@@ -1173,7 +1173,7 @@ pub unsafe fn AudioUnitSetParameter(
 /// # Safety
 ///
 /// - `in_unit` must be a valid pointer.
-/// - `io_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// - `io_data` must be a valid pointer.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
 pub unsafe fn AudioUnitRender(
@@ -1182,7 +1182,7 @@ pub unsafe fn AudioUnitRender(
     in_time_stamp: &AudioTimeStamp,
     in_output_bus_number: u32,
     in_number_frames: u32,
-    io_data: &mut AudioBufferList,
+    io_data: NonNull<AudioBufferList>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioUnitRender(
@@ -1191,7 +1191,7 @@ pub unsafe fn AudioUnitRender(
             in_time_stamp: &AudioTimeStamp,
             in_output_bus_number: u32,
             in_number_frames: u32,
-            io_data: &mut AudioBufferList,
+            io_data: NonNull<AudioBufferList>,
         ) -> OSStatus;
     }
     unsafe {

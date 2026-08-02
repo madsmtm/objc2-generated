@@ -1377,11 +1377,12 @@ pub type AudioDeviceIOProcID = AudioDeviceIOProc;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareioprocstreamusage?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AudioHardwareIOProcStreamUsage {
     pub mIOProc: NonNull<c_void>,
     pub mNumberStreams: u32,
     pub mStreamIsOn: [u32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

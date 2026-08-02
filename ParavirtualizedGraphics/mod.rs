@@ -91,5 +91,5 @@ extern "C" {
     /// Project version string for ParavirtualizedGraphics.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/paravirtualizedgraphicsversionstring?language=objc)
-    pub static ParavirtualizedGraphicsVersionString: *mut c_uchar;
+    pub static ParavirtualizedGraphicsVersionString: [c_uchar; 0];
 }

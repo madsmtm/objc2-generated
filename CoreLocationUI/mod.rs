@@ -46,5 +46,5 @@ extern "C" {
     /// The project version string for CoreLocationUI.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/corelocationuiversionstring?language=objc)
-    pub static CoreLocationUIVersionString: *mut c_uchar;
+    pub static CoreLocationUIVersionString: [c_uchar; 0];
 }

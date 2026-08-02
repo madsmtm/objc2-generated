@@ -9,516 +9,516 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1anytemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1AnyTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1AnyTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1bitstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1BitStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1BitStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1bmpstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1BMPStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1BMPStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1booleantemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1BooleanTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1BooleanTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1enumeratedtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1EnumeratedTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1EnumeratedTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1generalizedtimetemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1GeneralizedTimeTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1GeneralizedTimeTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1ia5stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1IA5StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1IA5StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1integertemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1IntegerTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1IntegerTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1unsignedintegertemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1UnsignedIntegerTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1UnsignedIntegerTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1nulltemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1NullTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1NullTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1objectidtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1ObjectIDTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1ObjectIDTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1octetstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1OctetStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1OctetStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1printablestringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PrintableStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PrintableStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1t61stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1T61StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1T61StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1universalstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1UniversalStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1UniversalStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1utctimetemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1UTCTimeTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1UTCTimeTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1utf8stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1UTF8StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1UTF8StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1visiblestringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1VisibleStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1VisibleStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1teletexstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1TeletexStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1TeletexStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertoanytemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToAnyTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToAnyTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertobitstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToBitStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToBitStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertobmpstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToBMPStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToBMPStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertobooleantemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToBooleanTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToBooleanTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertoenumeratedtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToEnumeratedTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToEnumeratedTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertogeneralizedtimetemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToGeneralizedTimeTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToGeneralizedTimeTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertoia5stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToIA5StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToIA5StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertointegertemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToIntegerTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToIntegerTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertonulltemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToNullTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToNullTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertoobjectidtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToObjectIDTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToObjectIDTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertooctetstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToOctetStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToOctetStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertoprintablestringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToPrintableStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToPrintableStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertot61stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToT61StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToT61StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertouniversalstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToUniversalStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToUniversalStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertoutctimetemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToUTCTimeTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToUTCTimeTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertoutf8stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToUTF8StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToUTF8StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertovisiblestringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToVisibleStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToVisibleStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1pointertoteletexstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1PointerToTeletexStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1PointerToTeletexStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofanytemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfAnyTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfAnyTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofbitstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfBitStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfBitStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofbmpstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfBMPStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfBMPStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofbooleantemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfBooleanTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfBooleanTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofenumeratedtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfEnumeratedTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfEnumeratedTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofgeneralizedtimetemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfGeneralizedTimeTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfGeneralizedTimeTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofia5stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfIA5StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfIA5StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofintegertemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfIntegerTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfIntegerTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofnulltemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfNullTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfNullTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofobjectidtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfObjectIDTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfObjectIDTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofoctetstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfOctetStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfOctetStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofprintablestringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfPrintableStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfPrintableStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceoft61stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfT61StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfT61StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofuniversalstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfUniversalStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfUniversalStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofutctimetemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfUTCTimeTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfUTCTimeTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofutf8stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfUTF8StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfUTF8StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofvisiblestringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfVisibleStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfVisibleStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1sequenceofteletexstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SequenceOfTeletexStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SequenceOfTeletexStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofanytemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfAnyTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfAnyTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofbitstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfBitStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfBitStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofbmpstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfBMPStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfBMPStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofbooleantemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfBooleanTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfBooleanTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofenumeratedtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfEnumeratedTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfEnumeratedTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofgeneralizedtimetemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfGeneralizedTimeTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfGeneralizedTimeTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofia5stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfIA5StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfIA5StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofintegertemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfIntegerTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfIntegerTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofnulltemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfNullTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfNullTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofobjectidtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfObjectIDTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfObjectIDTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofoctetstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfOctetStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfOctetStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofprintablestringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfPrintableStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfPrintableStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setoft61stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfT61StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfT61StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofuniversalstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfUniversalStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfUniversalStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofutctimetemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfUTCTimeTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfUTCTimeTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofutf8stringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfUTF8StringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfUTF8StringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofvisiblestringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfVisibleStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfVisibleStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1setofteletexstringtemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SetOfTeletexStringTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SetOfTeletexStringTemplate: [SecAsn1Template; 0];
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecasn1skiptemplate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
-    pub static kSecAsn1SkipTemplate: *mut SecAsn1Template;
+    pub static kSecAsn1SkipTemplate: [SecAsn1Template; 0];
 }

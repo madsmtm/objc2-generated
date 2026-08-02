@@ -621,11 +621,12 @@ pub const kIOAccelPrivateID: c_uint = 0x00000001;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioacceldeviceregion?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IOAccelDeviceRegion {
     pub num_rects: u32,
     pub bounds: IOAccelBounds,
     pub rect: [IOAccelBounds; 0],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1037,11 +1038,12 @@ pub type IOBlitRectangle = IOBlitRectangleStruct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitrectanglesstruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IOBlitRectanglesStruct {
     pub operation: IOBlitOperation,
     pub count: IOItemCount,
     pub rects: [IOBlitRectangle; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1101,11 +1103,12 @@ pub type IOBlitCopyRectangle = IOBlitCopyRectangleStruct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcopyrectanglesstruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IOBlitCopyRectanglesStruct {
     pub operation: IOBlitOperation,
     pub count: IOItemCount,
     pub rects: [IOBlitCopyRectangle; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2623,7 +2626,7 @@ unsafe impl RefEncode for IOFBDisplayModeDescription {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodisplaytimingrangev1?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IODisplayTimingRangeV1 {
     pub(crate) __reservedA: [u32; 2],
     pub version: u32,
@@ -2690,6 +2693,7 @@ pub struct IODisplayTimingRangeV1 {
     pub supportedColorimetryModes: u16,
     pub supportedDynamicRangeModes: u16,
     pub(crate) __reservedF: [u32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2791,7 +2795,7 @@ unsafe impl RefEncode for IODisplayTimingRangeV1 {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodisplaytimingrangev2?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IODisplayTimingRangeV2 {
     pub(crate) __reservedA: [u32; 2],
     pub version: u32,
@@ -2872,6 +2876,7 @@ pub struct IODisplayTimingRangeV2 {
     pub dscVBR: u8,
     pub dscBlockPredEnable: u8,
     pub(crate) __reservedC: [u32; 6],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3121,7 +3126,7 @@ pub const kIOSyncPositivePolarity: c_uint = 0x00000001;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodisplayscalerinformation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IODisplayScalerInformation {
     pub(crate) __reservedA: [u32; 1],
     pub version: u32,
@@ -3130,6 +3135,7 @@ pub struct IODisplayScalerInformation {
     pub maxHorizontalPixels: u32,
     pub maxVerticalPixels: u32,
     pub(crate) __reservedC: [u32; 5],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3732,7 +3738,7 @@ pub const kIOFBAVSignalTypeDP: c_uint = 0x00000010;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iofbdplinkconfig?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IOFBDPLinkConfig {
     pub version: u16,
     pub bitRate: u8,
@@ -3750,6 +3756,7 @@ pub struct IOFBDPLinkConfig {
     pub maxLaneCount: u8,
     pub maxDownspread: u8,
     pub(crate) __reservedB: [u8; 9],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

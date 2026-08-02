@@ -88,11 +88,12 @@ pub const kIconFamilyType: c_uint = 0x69636e73;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconfamilyelement?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IconFamilyElement {
     pub elementType: OSType,
     pub elementSize: i32,
     pub elementData: [c_uchar; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -114,11 +115,12 @@ unsafe impl RefEncode for IconFamilyElement {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconfamilyresource?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct IconFamilyResource {
     pub resourceType: OSType,
     pub resourceSize: i32,
     pub elements: [IconFamilyElement; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

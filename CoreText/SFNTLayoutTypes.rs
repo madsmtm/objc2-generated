@@ -682,9 +682,10 @@ unsafe impl RefEncode for SFNTLookupBinarySearchHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuparrayheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct SFNTLookupArrayHeader {
     pub lookupValues: [SFNTLookupValue; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -700,11 +701,12 @@ unsafe impl RefEncode for SFNTLookupArrayHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuptrimmedarrayheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct SFNTLookupTrimmedArrayHeader {
     pub firstGlyph: u16,
     pub count: u16,
     pub valueArray: [SFNTLookupValue; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -726,12 +728,13 @@ unsafe impl RefEncode for SFNTLookupTrimmedArrayHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupvectorheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct SFNTLookupVectorHeader {
     pub valueSize: u16,
     pub firstGlyph: u16,
     pub count: u16,
     pub values: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -754,11 +757,12 @@ unsafe impl RefEncode for SFNTLookupVectorHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsegment?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct SFNTLookupSegment {
     pub lastGlyph: u16,
     pub firstGlyph: u16,
     pub value: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -776,10 +780,11 @@ unsafe impl RefEncode for SFNTLookupSegment {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsegmentheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct SFNTLookupSegmentHeader {
     pub binSearch: SFNTLookupBinarySearchHeader,
     pub segments: [SFNTLookupSegment; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -800,10 +805,11 @@ unsafe impl RefEncode for SFNTLookupSegmentHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsingle?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct SFNTLookupSingle {
     pub glyph: u16,
     pub value: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -819,10 +825,11 @@ unsafe impl RefEncode for SFNTLookupSingle {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsingleheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct SFNTLookupSingleHeader {
     pub binSearch: SFNTLookupBinarySearchHeader,
     pub entries: [SFNTLookupSingle; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -843,13 +850,12 @@ unsafe impl RefEncode for SFNTLookupSingleHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupformatspecificheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
 pub union SFNTLookupFormatSpecificHeader {
-    pub theArray: SFNTLookupArrayHeader,
-    pub segment: SFNTLookupSegmentHeader,
-    pub single: SFNTLookupSingleHeader,
-    pub trimmedArray: SFNTLookupTrimmedArrayHeader,
-    pub vector: SFNTLookupVectorHeader,
+    pub theArray: core::mem::ManuallyDrop<SFNTLookupArrayHeader>,
+    pub segment: core::mem::ManuallyDrop<SFNTLookupSegmentHeader>,
+    pub single: core::mem::ManuallyDrop<SFNTLookupSingleHeader>,
+    pub trimmedArray: core::mem::ManuallyDrop<SFNTLookupTrimmedArrayHeader>,
+    pub vector: core::mem::ManuallyDrop<SFNTLookupVectorHeader>,
 }
 
 #[cfg(feature = "objc2")]
@@ -873,10 +879,11 @@ unsafe impl RefEncode for SFNTLookupFormatSpecificHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuptable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct SFNTLookupTable {
     pub format: SFNTLookupTableFormat,
     pub fsHeader: SFNTLookupFormatSpecificHeader,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -958,11 +965,12 @@ unsafe impl RefEncode for STHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/stclasstable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct STClassTable {
     pub firstGlyph: u16,
     pub nGlyphs: u16,
     pub classes: [STClass; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1174,10 +1182,11 @@ pub const kLCARCtlPointFormat: c_uint = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/lcarcaretclassentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct LcarCaretClassEntry {
     pub count: u16,
     pub partials: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1195,11 +1204,12 @@ unsafe impl RefEncode for LcarCaretClassEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/lcarcarettable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct LcarCaretTable {
     pub version: Fixed,
     pub format: u16,
     pub lookup: SFNTLookupTable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1273,13 +1283,14 @@ pub type JustificationFlags = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcdecompositionaction?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct JustPCDecompositionAction {
     pub lowerLimit: Fixed,
     pub upperLimit: Fixed,
     pub order: u16,
     pub count: u16,
     pub glyphs: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1405,10 +1416,11 @@ unsafe impl RefEncode for JustPCActionSubrecord {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcaction?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct JustPCAction {
     pub actionCount: u32,
     pub actions: [JustPCActionSubrecord; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1460,10 +1472,11 @@ unsafe impl RefEncode for JustWidthDeltaEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justwidthdeltagroup?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct JustWidthDeltaGroup {
     pub count: u32,
     pub entries: [JustWidthDeltaEntry; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1481,9 +1494,10 @@ unsafe impl RefEncode for JustWidthDeltaGroup {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpostcomptable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct JustPostcompTable {
     pub lookupTable: SFNTLookupTable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1499,12 +1513,13 @@ unsafe impl RefEncode for JustPostcompTable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justdirectiontable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct JustDirectionTable {
     pub justClass: u16,
     pub widthDeltaClusters: u16,
     pub postcomp: u16,
     pub lookup: SFNTLookupTable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1595,11 +1610,12 @@ unsafe impl RefEncode for OpbdSideValues {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/opbdtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct OpbdTable {
     pub version: Fixed,
     pub format: OpbdTableFormat,
     pub lookupTable: SFNTLookupTable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1787,9 +1803,10 @@ unsafe impl RefEncode for MortLigatureSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortswashsubtable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MortSwashSubtable {
     pub lookup: SFNTLookupTable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1822,12 +1839,11 @@ unsafe impl RefEncode for MortInsertionSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortspecificsubtable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
 pub union MortSpecificSubtable {
     pub rearrangement: MortRearrangementSubtable,
     pub contextual: MortContextualSubtable,
     pub ligature: MortLigatureSubtable,
-    pub swash: MortSwashSubtable,
+    pub swash: core::mem::ManuallyDrop<MortSwashSubtable>,
     pub insertion: MortInsertionSubtable,
 }
 
@@ -1852,12 +1868,13 @@ unsafe impl RefEncode for MortSpecificSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortsubtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MortSubtable {
     pub length: u16,
     pub coverage: u16,
     pub flags: MortSubtableMaskFlags,
     pub u: MortSpecificSubtable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1908,13 +1925,14 @@ unsafe impl RefEncode for MortFeatureEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortchain?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MortChain {
     pub defaultFlags: MortSubtableMaskFlags,
     pub length: u32,
     pub nFeatures: u16,
     pub nSubtables: u16,
     pub featureEntries: [MortFeatureEntry; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1938,11 +1956,12 @@ unsafe impl RefEncode for MortChain {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morttable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MortTable {
     pub version: Fixed,
     pub nChains: u32,
     pub chains: [MortChain; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2067,12 +2086,11 @@ unsafe impl RefEncode for MorxInsertionSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxspecificsubtable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
 pub union MorxSpecificSubtable {
     pub rearrangement: MorxRearrangementSubtable,
     pub contextual: MorxContextualSubtable,
     pub ligature: MorxLigatureSubtable,
-    pub swash: MortSwashSubtable,
+    pub swash: core::mem::ManuallyDrop<MortSwashSubtable>,
     pub insertion: MorxInsertionSubtable,
 }
 
@@ -2097,12 +2115,13 @@ unsafe impl RefEncode for MorxSpecificSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxsubtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MorxSubtable {
     pub length: u32,
     pub coverage: u32,
     pub flags: MortSubtableMaskFlags,
     pub u: MorxSpecificSubtable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2125,13 +2144,14 @@ unsafe impl RefEncode for MorxSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxchain?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MorxChain {
     pub defaultFlags: MortSubtableMaskFlags,
     pub length: u32,
     pub nFeatures: u32,
     pub nSubtables: u32,
     pub featureEntries: [MortFeatureEntry; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2155,11 +2175,12 @@ unsafe impl RefEncode for MorxChain {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct MorxTable {
     pub version: Fixed,
     pub nChains: u32,
     pub chains: [MorxChain; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2252,12 +2273,13 @@ pub type PropCharProperties = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/proptable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct PropTable {
     pub version: Fixed,
     pub format: u16,
     pub defaultProps: PropCharProperties,
     pub lookup: SFNTLookupTable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2355,12 +2377,13 @@ unsafe impl RefEncode for TrakTableEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/traktabledata?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct TrakTableData {
     pub nTracks: u16,
     pub nSizes: u16,
     pub sizeTableOffset: u32,
     pub trakTable: [TrakTableEntry; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2464,11 +2487,12 @@ pub type KernArrayOffset = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernversion0header?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KernVersion0Header {
     pub version: u16,
     pub nTables: u16,
     pub firstSubtable: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2486,11 +2510,12 @@ unsafe impl RefEncode for KernVersion0Header {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerntableheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KernTableHeader {
     pub version: Fixed,
     pub nTables: i32,
     pub firstSubtable: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2557,13 +2582,14 @@ pub type KernOrderedListEntryPtr = *mut KernOrderedListEntry;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernorderedlistheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KernOrderedListHeader {
     pub nPairs: u16,
     pub searchRange: u16,
     pub entrySelector: u16,
     pub rangeShift: u16,
     pub table: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2587,11 +2613,12 @@ unsafe impl RefEncode for KernOrderedListHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernstateheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KernStateHeader {
     pub header: STHeader,
     pub valueTable: u16,
     pub firstTable: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2628,11 +2655,12 @@ unsafe impl RefEncode for KernStateEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernoffsettable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KernOffsetTable {
     pub firstGlyph: u16,
     pub nGlyphs: u16,
     pub offsetTable: [KernArrayOffset; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2657,13 +2685,14 @@ pub type KernOffsetTablePtr = *mut KernOffsetTable;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernsimplearrayheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KernSimpleArrayHeader {
     pub rowWidth: u16,
     pub leftOffsetTable: u16,
     pub rightOffsetTable: u16,
     pub theArray: KernArrayOffset,
     pub firstTable: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2687,7 +2716,7 @@ unsafe impl RefEncode for KernSimpleArrayHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernindexarrayheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KernIndexArrayHeader {
     pub glyphCount: u16,
     pub kernValueCount: u8,
@@ -2698,6 +2727,7 @@ pub struct KernIndexArrayHeader {
     pub leftClass: [u8; 1],
     pub rightClass: [u8; 1],
     pub kernIndex: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2725,12 +2755,11 @@ unsafe impl RefEncode for KernIndexArrayHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernformatspecificheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
 pub union KernFormatSpecificHeader {
-    pub orderedList: KernOrderedListHeader,
-    pub stateTable: KernStateHeader,
-    pub simpleArray: KernSimpleArrayHeader,
-    pub indexArray: KernIndexArrayHeader,
+    pub orderedList: core::mem::ManuallyDrop<KernOrderedListHeader>,
+    pub stateTable: core::mem::ManuallyDrop<KernStateHeader>,
+    pub simpleArray: core::mem::ManuallyDrop<KernSimpleArrayHeader>,
+    pub indexArray: core::mem::ManuallyDrop<KernIndexArrayHeader>,
 }
 
 #[cfg(feature = "objc2")]
@@ -2753,12 +2782,13 @@ unsafe impl RefEncode for KernFormatSpecificHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernversion0subtableheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KernVersion0SubtableHeader {
     pub version: u16,
     pub length: u16,
     pub stInfo: KernSubtableInfo,
     pub fsHeader: KernFormatSpecificHeader,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2781,12 +2811,13 @@ unsafe impl RefEncode for KernVersion0SubtableHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernsubtableheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KernSubtableHeader {
     pub length: i32,
     pub stInfo: KernSubtableInfo,
     pub tupleIndex: i16,
     pub fsHeader: KernFormatSpecificHeader,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2879,11 +2910,12 @@ pub type KerxArrayOffset = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxtableheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KerxTableHeader {
     pub version: Fixed,
     pub nTables: u32,
     pub firstSubtable: [u32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2950,13 +2982,14 @@ pub type KerxOrderedListEntryPtr = *mut KerxOrderedListEntry;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxorderedlistheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KerxOrderedListHeader {
     pub nPairs: u32,
     pub searchRange: u32,
     pub entrySelector: u32,
     pub rangeShift: u32,
     pub table: [u32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2980,11 +3013,12 @@ unsafe impl RefEncode for KerxOrderedListHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxstateheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KerxStateHeader {
     pub header: STXHeader,
     pub valueTable: u32,
     pub firstTable: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3024,11 +3058,12 @@ unsafe impl RefEncode for KerxStateEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxcontrolpointheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KerxControlPointHeader {
     pub header: STXHeader,
     pub flags: u32,
     pub firstTable: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3136,13 +3171,14 @@ unsafe impl RefEncode for KerxCoordinateAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxsimplearrayheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KerxSimpleArrayHeader {
     pub rowWidth: u32,
     pub leftOffsetTable: u32,
     pub rightOffsetTable: u32,
     pub theArray: KerxArrayOffset,
     pub firstTable: [u32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3200,13 +3236,12 @@ unsafe impl RefEncode for KerxIndexArrayHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxformatspecificheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
 pub union KerxFormatSpecificHeader {
-    pub orderedList: KerxOrderedListHeader,
-    pub stateTable: KerxStateHeader,
-    pub simpleArray: KerxSimpleArrayHeader,
+    pub orderedList: core::mem::ManuallyDrop<KerxOrderedListHeader>,
+    pub stateTable: core::mem::ManuallyDrop<KerxStateHeader>,
+    pub simpleArray: core::mem::ManuallyDrop<KerxSimpleArrayHeader>,
     pub indexArray: KerxIndexArrayHeader,
-    pub controlPoint: KerxControlPointHeader,
+    pub controlPoint: core::mem::ManuallyDrop<KerxControlPointHeader>,
 }
 
 #[cfg(feature = "objc2")]
@@ -3230,12 +3265,13 @@ unsafe impl RefEncode for KerxFormatSpecificHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxsubtableheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct KerxSubtableHeader {
     pub length: u32,
     pub stInfo: KerxSubtableCoverage,
     pub tupleCount: u32,
     pub fsHeader: KerxFormatSpecificHeader,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3318,10 +3354,11 @@ unsafe impl RefEncode for BslnFormat0Part {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformat1part?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct BslnFormat1Part {
     pub deltas: [i16; 32],
     pub mappingData: SFNTLookupTable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3358,11 +3395,12 @@ unsafe impl RefEncode for BslnFormat2Part {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformat3part?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct BslnFormat3Part {
     pub stdGlyph: u16,
     pub ctlPoints: [i16; 32],
     pub mappingData: SFNTLookupTable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3384,12 +3422,11 @@ unsafe impl RefEncode for BslnFormat3Part {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformatunion?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
 pub union BslnFormatUnion {
     pub fmt0Part: BslnFormat0Part,
-    pub fmt1Part: BslnFormat1Part,
+    pub fmt1Part: core::mem::ManuallyDrop<BslnFormat1Part>,
     pub fmt2Part: BslnFormat2Part,
-    pub fmt3Part: BslnFormat3Part,
+    pub fmt3Part: core::mem::ManuallyDrop<BslnFormat3Part>,
 }
 
 #[cfg(feature = "objc2")]
@@ -3415,12 +3452,13 @@ pub type BslnTableFormat = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslntable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct BslnTable {
     pub version: Fixed,
     pub format: BslnTableFormat,
     pub defaultBaseline: u16,
     pub parts: BslnFormatUnion,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3446,7 +3484,7 @@ pub type BslnTablePtr = *mut BslnTable;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/almxheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ALMXHeader {
     pub Version: Fixed,
     pub Flags: u16,
@@ -3454,6 +3492,7 @@ pub struct ALMXHeader {
     pub FirstGlyph: u16,
     pub LastGlyph: u16,
     pub lookup: SFNTLookupTable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3508,7 +3547,7 @@ unsafe impl RefEncode for ALMXGlyphEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/rotaheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ROTAHeader {
     pub Version: Fixed,
     pub Flags: u16,
@@ -3516,6 +3555,7 @@ pub struct ROTAHeader {
     pub FirstGlyph: u16,
     pub LastGlyph: u16,
     pub lookup: SFNTLookupTable,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3583,10 +3623,11 @@ unsafe impl RefEncode for AnchorPoint {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/anchorpointtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AnchorPointTable {
     pub nPoints: u32,
     pub points: [AnchorPoint; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3654,12 +3695,13 @@ unsafe impl RefEncode for LtagStringRange {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ltagtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct LtagTable {
     pub version: u32,
     pub flags: u32,
     pub numTags: u32,
     pub tagRange: [LtagStringRange; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

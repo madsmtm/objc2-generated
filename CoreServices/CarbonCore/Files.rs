@@ -1571,11 +1571,12 @@ pub const kAFPTagLengthDDP: c_uint = 0x06;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/afptagdata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AFPTagData {
     pub fLength: u8,
     pub fType: u8,
     pub fData: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1593,11 +1594,12 @@ unsafe impl RefEncode for AFPTagData {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/afpalternateaddress?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AFPAlternateAddress {
     pub fVersion: u8,
     pub fAddressCount: u8,
     pub fAddressList: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

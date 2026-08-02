@@ -218,7 +218,7 @@ pub type Intl0Hndl = *mut Intl0Ptr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/intl1rec?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct Intl1Rec {
     pub days: [Str15; 7],
     pub months: [Str15; 12],
@@ -233,6 +233,7 @@ pub struct Intl1Rec {
     pub st4: [c_char; 4],
     pub intl1Vers: c_short,
     pub localRtn: [c_short; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -270,7 +271,7 @@ pub type Intl1Hndl = *mut Intl1Ptr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/itl1extrec?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct Itl1ExtRec {
     pub base: Intl1Rec,
     pub version: c_short,
@@ -287,6 +288,7 @@ pub struct Itl1ExtRec {
     pub extraSepsTableOffset: i32,
     pub extraSepsTableLength: i32,
     pub tables: [c_short; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -568,12 +570,13 @@ unsafe impl RefEncode for TableDirectoryRecord {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/itl5record?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct Itl5Record {
     pub versionNumber: Fixed,
     pub numberOfTables: c_ushort,
     pub reserved: [c_ushort; 3],
     pub tableDirectory: [TableDirectoryRecord; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

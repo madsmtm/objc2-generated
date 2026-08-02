@@ -624,20 +624,20 @@ pub unsafe fn AudioDeviceRemoveIOProc(
 ///
 /// # Safety
 ///
-/// `out_data` struct field `mBuffers` array element struct field `mData` must be a valid pointer or null.
+/// `out_data` must be a valid pointer.
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 #[deprecated]
 #[inline]
 pub unsafe fn AudioDeviceRead(
     in_device: AudioDeviceID,
     in_start_time: &AudioTimeStamp,
-    out_data: &mut AudioBufferList,
+    out_data: NonNull<AudioBufferList>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioDeviceRead(
             in_device: AudioDeviceID,
             in_start_time: &AudioTimeStamp,
-            out_data: &mut AudioBufferList,
+            out_data: NonNull<AudioBufferList>,
         ) -> OSStatus;
     }
     unsafe { AudioDeviceRead(in_device, in_start_time, out_data) }

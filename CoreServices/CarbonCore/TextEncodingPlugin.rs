@@ -275,12 +275,13 @@ pub type TECLocaleToEncodingsListHandle = *mut TECLocaleToEncodingsListPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecinternetnamerec?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct TECInternetNameRec {
     pub offset: u32,
     pub searchEncoding: TextEncodingRec,
     pub encodingNameLength: u8,
     pub encodingName: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -303,10 +304,11 @@ unsafe impl RefEncode for TECInternetNameRec {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecinternetnamesrec?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct TECInternetNamesRec {
     pub count: u32,
     pub InternetNames: TECInternetNameRec,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

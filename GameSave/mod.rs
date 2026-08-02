@@ -48,5 +48,5 @@ extern "C" {
     /// Project version string for GameSave.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/gamesave/gamesaveversionstring?language=objc)
-    pub static GameSaveVersionString: *mut c_uchar;
+    pub static GameSaveVersionString: [c_uchar; 0];
 }

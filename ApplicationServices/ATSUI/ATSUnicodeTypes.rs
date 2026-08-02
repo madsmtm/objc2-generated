@@ -503,11 +503,12 @@ unsafe impl RefEncode for ATSUGlyphInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsuglyphinfoarray?language=objc)
 #[cfg(all(feature = "ATS", feature = "ATSTypes", feature = "objc2-core-services"))]
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ATSUGlyphInfoArray {
     pub layout: ATSUTextLayout,
     pub numGlyphs: ItemCount,
     pub glyphs: [ATSUGlyphInfo; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(

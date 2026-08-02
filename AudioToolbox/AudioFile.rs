@@ -337,11 +337,12 @@ unsafe impl RefEncode for AudioFileMarker {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilemarkerlist?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AudioFileMarkerList {
     pub mSMPTE_TimeType: u32,
     pub mNumberMarkers: u32,
     pub mMarkers: [AudioFileMarker; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
@@ -422,13 +423,14 @@ unsafe impl RefEncode for AudioFileRegionFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregion?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AudioFileRegion {
     pub mRegionID: u32,
     pub mName: NonNull<CFString>,
     pub mFlags: AudioFileRegionFlags,
     pub mNumberMarkers: u32,
     pub mMarkers: [AudioFileMarker; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
@@ -464,11 +466,12 @@ unsafe impl RefEncode for AudioFileRegion {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionlist?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AudioFileRegionList {
     pub mSMPTE_TimeType: u32,
     pub mNumberRegions: u32,
     pub mRegions: [AudioFileRegion; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]

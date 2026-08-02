@@ -119,5 +119,5 @@ extern "C" {
     /// Project version string for SharedWithYouCore.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/sharedwithyoucoreversionstring?language=objc)
-    pub static SharedWithYouCoreVersionString: *mut c_uchar;
+    pub static SharedWithYouCoreVersionString: [c_uchar; 0];
 }

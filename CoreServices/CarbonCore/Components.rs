@@ -251,10 +251,11 @@ unsafe impl RefEncode for ComponentResourceExtension {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/componentplatforminfoarray?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ComponentPlatformInfoArray {
     pub count: i32,
     pub platformArray: [ComponentPlatformInfo; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -272,7 +273,7 @@ unsafe impl RefEncode for ComponentPlatformInfoArray {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/extcomponentresource?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ExtComponentResource {
     pub cd: ComponentDescription,
     pub component: ResourceSpec,
@@ -284,6 +285,7 @@ pub struct ExtComponentResource {
     pub componentIconFamily: i16,
     pub count: i32,
     pub platformArray: [ComponentPlatformInfo; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -342,13 +344,14 @@ unsafe impl RefEncode for ComponentAliasResource {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/componentparameters?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ComponentParameters {
     pub flags: u8,
     pub paramSize: u8,
     pub what: i16,
     pub padding: u32,
     pub params: [c_long; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -372,9 +375,10 @@ unsafe impl RefEncode for ComponentParameters {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/componentrecord?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ComponentRecord {
     pub data: [c_long; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -392,9 +396,10 @@ pub type Component = *mut ComponentRecord;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/componentinstancerecord?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ComponentInstanceRecord {
     pub data: [c_long; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -413,9 +418,10 @@ pub type ComponentInstance = *mut ComponentInstanceRecord;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/registeredcomponentrecord?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct RegisteredComponentRecord {
     pub data: [c_long; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -434,9 +440,10 @@ pub type RegisteredComponentRecordPtr = *mut RegisteredComponentRecord;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/registeredcomponentinstancerecord?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct RegisteredComponentInstanceRecord {
     pub data: [c_long; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

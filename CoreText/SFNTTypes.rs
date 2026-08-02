@@ -36,7 +36,7 @@ unsafe impl RefEncode for sfntDirectoryEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntdirectory?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct sfntDirectory {
     pub format: FourCharCode,
     pub numOffsets: u16,
@@ -44,6 +44,7 @@ pub struct sfntDirectory {
     pub entrySelector: u16,
     pub rangeShift: u16,
     pub table: [sfntDirectoryEntry; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -504,11 +505,12 @@ pub const sizeof_sfntCMapEncoding: c_uint = 8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntcmapheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct sfntCMapHeader {
     pub version: u16,
     pub numTables: u16,
     pub encoding: [sfntCMapEncoding; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -617,12 +619,13 @@ pub const sizeof_sfntNameRecord: c_uint = 12;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntnameheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct sfntNameHeader {
     pub format: u16,
     pub count: u16,
     pub stringOffset: u16,
     pub rec: [sfntNameRecord; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -686,11 +689,12 @@ pub const sizeof_sfntVariationAxis: c_uint = 20;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntinstance?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct sfntInstance {
     pub nameID: i16,
     pub flags: i16,
     pub coord: [Fixed; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -711,7 +715,7 @@ pub const sizeof_sfntInstance: c_uint = 4;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntvariationheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct sfntVariationHeader {
     pub version: Fixed,
     pub offsetToData: u16,
@@ -722,6 +726,7 @@ pub struct sfntVariationHeader {
     pub instanceSize: u16,
     pub axis: [sfntVariationAxis; 1],
     pub instance: [sfntInstance; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -776,11 +781,12 @@ unsafe impl RefEncode for sfntFontDescriptor {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntdescriptorheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct sfntDescriptorHeader {
     pub version: Fixed,
     pub descriptorCount: i32,
     pub descriptor: [sfntFontDescriptor; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -878,7 +884,7 @@ unsafe impl RefEncode for sfntFontRunFeature {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntfeatureheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct sfntFeatureHeader {
     pub version: i32,
     pub featureNameCount: u16,
@@ -887,6 +893,7 @@ pub struct sfntFeatureHeader {
     pub names: [sfntFeatureName; 1],
     pub settings: [sfntFontFeatureSetting; 1],
     pub runs: [sfntFontRunFeature; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

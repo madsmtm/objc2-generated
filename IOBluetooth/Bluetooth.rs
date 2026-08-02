@@ -5305,10 +5305,11 @@ unsafe impl RefEncode for BluetoothHCIEventReturnLinkKeysResults_linkKeys {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreturnlinkkeysresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct BluetoothHCIEventReturnLinkKeysResults {
     pub numLinkKeys: u8,
     pub linkKeys: [BluetoothHCIEventReturnLinkKeysResults_linkKeys; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

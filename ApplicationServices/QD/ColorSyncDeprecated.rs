@@ -709,10 +709,11 @@ unsafe impl RefEncode for CMTagRecord {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmtagelemtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMTagElemTable {
     pub count: u32,
     pub tagList: [CMTagRecord; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -730,11 +731,12 @@ unsafe impl RefEncode for CMTagElemTable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cm2profile?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CM2Profile {
     pub header: CM2Header,
     pub tagTable: CMTagElemTable,
     pub elemData: [c_char; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -785,12 +787,13 @@ unsafe impl RefEncode for CMAdaptationMatrixType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmcurvetype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMCurveType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub countValue: u32,
     pub data: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -813,12 +816,13 @@ unsafe impl RefEncode for CMCurveType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmdatatype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMDataType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub dataFlag: u32,
     pub data: [c_char; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -863,7 +867,7 @@ unsafe impl RefEncode for CMDateTimeType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmlut16type?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMLut16Type {
     pub typeDescriptor: OSType,
     pub reserved: u32,
@@ -875,6 +879,7 @@ pub struct CMLut16Type {
     pub inputTableEntries: u16,
     pub outputTableEntries: u16,
     pub inputTable: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -903,7 +908,7 @@ unsafe impl RefEncode for CMLut16Type {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmlut8type?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMLut8Type {
     pub typeDescriptor: OSType,
     pub reserved: u32,
@@ -913,6 +918,7 @@ pub struct CMLut8Type {
     pub reserved2: u8,
     pub matrix: [[Fixed; 3]; 3],
     pub inputTable: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -939,7 +945,7 @@ unsafe impl RefEncode for CMLut8Type {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmmultifunctluttype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMMultiFunctLutType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
@@ -952,6 +958,7 @@ pub struct CMMultiFunctLutType {
     pub offsetCLUT: u32,
     pub offsetAcurves: u32,
     pub data: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1050,13 +1057,14 @@ unsafe impl RefEncode for CMMeasurementType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmnamedcolortype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMNamedColorType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub vendorFlag: u32,
     pub count: u32,
     pub prefixName: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1080,11 +1088,12 @@ unsafe impl RefEncode for CMNamedColorType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmnamedcolor2entrytype?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMNamedColor2EntryType {
     pub rootName: [u8; 32],
     pub PCSColorCoords: [u16; 3],
     pub DeviceColorCoords: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1106,7 +1115,7 @@ unsafe impl RefEncode for CMNamedColor2EntryType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmnamedcolor2type?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMNamedColor2Type {
     pub typeDescriptor: OSType,
     pub reserved: u32,
@@ -1116,6 +1125,7 @@ pub struct CMNamedColor2Type {
     pub prefixName: [u8; 32],
     pub suffixName: [u8; 32],
     pub data: [c_char; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1142,7 +1152,7 @@ unsafe impl RefEncode for CMNamedColor2Type {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmnativedisplayinfo?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMNativeDisplayInfo {
     pub dataSize: u32,
     pub redPhosphor: CMFixedXYColor,
@@ -1156,6 +1166,7 @@ pub struct CMNativeDisplayInfo {
     pub gammaEntryCount: u16,
     pub gammaEntrySize: u16,
     pub gammaData: [c_char; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1186,11 +1197,12 @@ unsafe impl RefEncode for CMNativeDisplayInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmnativedisplayinfotype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMNativeDisplayInfoType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub nativeDisplayInfo: CMNativeDisplayInfo,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1212,13 +1224,14 @@ unsafe impl RefEncode for CMNativeDisplayInfoType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmparametriccurvetype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMParametricCurveType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub functionType: u16,
     pub reserved2: u16,
     pub value: [Fixed; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1270,11 +1283,12 @@ unsafe impl RefEncode for CMTextDescriptionType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmtexttype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMTextType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub text: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1292,11 +1306,12 @@ unsafe impl RefEncode for CMTextType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmunicodetexttype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMUnicodeTextType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub text: [UniChar; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1340,13 +1355,14 @@ unsafe impl RefEncode for CMScreeningChannelRec {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmscreeningtype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMScreeningType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub screeningFlag: u32,
     pub channelCount: u32,
     pub channelInfo: [CMScreeningChannelRec; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1392,11 +1408,12 @@ unsafe impl RefEncode for CMSignatureType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cms15fixed16arraytype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMS15Fixed16ArrayType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub value: [Fixed; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1414,11 +1431,12 @@ unsafe impl RefEncode for CMS15Fixed16ArrayType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmu16fixed16arraytype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMU16Fixed16ArrayType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub value: [u32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1436,11 +1454,12 @@ unsafe impl RefEncode for CMU16Fixed16ArrayType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmuint8arraytype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMUInt8ArrayType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub value: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1458,11 +1477,12 @@ unsafe impl RefEncode for CMUInt8ArrayType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmuint16arraytype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMUInt16ArrayType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub value: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1480,11 +1500,12 @@ unsafe impl RefEncode for CMUInt16ArrayType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmuint32arraytype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMUInt32ArrayType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub value: [u32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1502,11 +1523,12 @@ unsafe impl RefEncode for CMUInt32ArrayType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmuint64arraytype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMUInt64ArrayType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub value: [u32; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1554,11 +1576,12 @@ unsafe impl RefEncode for CMViewingConditionsType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmxyztype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMXYZType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub XYZ: [CMFixedXYZColor; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1580,12 +1603,13 @@ unsafe impl RefEncode for CMXYZType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmprofilesequencedesctype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMProfileSequenceDescType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub count: u32,
     pub data: [c_char; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1608,12 +1632,13 @@ unsafe impl RefEncode for CMProfileSequenceDescType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmucrbgtype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMUcrBgType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub ucrCount: u32,
     pub ucrValues: [u16; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1655,12 +1680,13 @@ unsafe impl RefEncode for CMIntentCRDVMSize {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmps2crdvmsizetype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMPS2CRDVMSizeType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub count: u32,
     pub intentCRD: [CMIntentCRDVMSize; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1688,12 +1714,13 @@ pub const cmVideoCardGammaFormulaType: c_uint = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmvideocardgammatable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMVideoCardGammaTable {
     pub channels: u16,
     pub entryCount: u16,
     pub entrySize: u16,
     pub data: [c_char; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1754,9 +1781,8 @@ unsafe impl RefEncode for CMVideoCardGammaFormula {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmvideocardgamma_u?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
 pub union CMVideoCardGamma_u {
-    pub table: CMVideoCardGammaTable,
+    pub table: core::mem::ManuallyDrop<CMVideoCardGammaTable>,
     pub formula: CMVideoCardGammaFormula,
 }
 
@@ -1778,10 +1804,11 @@ unsafe impl RefEncode for CMVideoCardGamma_u {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmvideocardgamma?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMVideoCardGamma {
     pub tagType: u32,
     pub u: CMVideoCardGamma_u,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1799,11 +1826,12 @@ unsafe impl RefEncode for CMVideoCardGamma {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmvideocardgammatype?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMVideoCardGammaType {
     pub typeDescriptor: OSType,
     pub reserved: u32,
     pub gamma: CMVideoCardGamma,
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2085,11 +2113,12 @@ unsafe impl RefEncode for CMAppleProfileHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmconcatprofileset?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMConcatProfileSet {
     pub keyIndex: u16,
     pub count: u16,
     pub profileSet: [CMProfileRef; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -2133,13 +2162,14 @@ unsafe impl RefEncode for NCMConcatProfileSpec {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/ncmconcatprofileset?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct NCMConcatProfileSet {
     pub cmm: OSType,
     pub flags: u32,
     pub flagsMask: u32,
     pub profileCount: u32,
     pub profileSpecs: [NCMConcatProfileSpec; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -3336,10 +3366,11 @@ unsafe impl RefEncode for NCMDeviceProfileInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmdeviceprofilearray?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct CMDeviceProfileArray {
     pub profileCount: u32,
     pub profiles: [CMDeviceProfileInfo; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

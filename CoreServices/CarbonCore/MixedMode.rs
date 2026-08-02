@@ -251,7 +251,7 @@ pub const kSelectorsAreIndexable: c_uint = 0x01;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/routinedescriptor?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct RoutineDescriptor {
     pub goMixedModeTrap: u16,
     pub version: i8,
@@ -261,6 +261,7 @@ pub struct RoutineDescriptor {
     pub selectorInfo: u8,
     pub routineCount: u16,
     pub routineRecords: [RoutineRecord; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]

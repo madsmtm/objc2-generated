@@ -263,10 +263,11 @@ pub type TextServiceInfoPtr = *mut TextServiceInfo;
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/textservicelist?language=objc)
 #[cfg(feature = "objc2-core-services")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct TextServiceList {
     pub fTextServiceCount: c_short,
     pub fServices: [TextServiceInfo; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-core-services"))]
@@ -313,10 +314,11 @@ unsafe impl RefEncode for ScriptLanguageRecord {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/scriptlanguagesupport?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct ScriptLanguageSupport {
     pub fScriptLanguageCount: i16,
     pub fScriptLanguageArray: [ScriptLanguageRecord; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -370,10 +372,11 @@ unsafe impl RefEncode for TSMGlyphInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/tsmglyphinfoarray?language=objc)
 #[cfg(feature = "objc2-application-services")]
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct TSMGlyphInfoArray {
     pub numGlyphInfo: ItemCount,
     pub glyphInfo: [TSMGlyphInfo; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-application-services"))]

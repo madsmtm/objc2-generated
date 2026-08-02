@@ -185,5 +185,5 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/apptrackingtransparencyversionstring?language=objc)
-    pub static AppTrackingTransparencyVersionString: *mut c_uchar;
+    pub static AppTrackingTransparencyVersionString: [c_uchar; 0];
 }

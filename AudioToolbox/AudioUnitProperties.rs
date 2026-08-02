@@ -669,10 +669,11 @@ unsafe impl RefEncode for AUDependentParameter {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitcocoaviewinfo?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AudioUnitCocoaViewInfo {
     pub mCocoaAUViewBundleLocation: NonNull<CFURL>,
     pub mCocoaAUViewClass: [NonNull<CFString>; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
@@ -1592,12 +1593,13 @@ unsafe impl RefEncode for AudioUnitParameterValueTranslation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitpresetmas_settingdata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AudioUnitPresetMAS_SettingData {
     pub isStockSetting: u32,
     pub settingID: u32,
     pub dataLen: u32,
     pub data: [u8; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
@@ -1622,7 +1624,7 @@ unsafe impl RefEncode for AudioUnitPresetMAS_SettingData {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitpresetmas_settings?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[allow(clippy::manual_non_exhaustive)]
 pub struct AudioUnitPresetMAS_Settings {
     pub manufacturerID: u32,
     pub effectID: u32,
@@ -1630,6 +1632,7 @@ pub struct AudioUnitPresetMAS_Settings {
     pub settingsVersion: u32,
     pub numberOfSettings: u32,
     pub settings: [AudioUnitPresetMAS_SettingData; 1],
+    _this_is_unsized: (),
 }
 
 #[cfg(feature = "objc2")]
