@@ -1728,13 +1728,13 @@ pub unsafe fn DisposeThemeIteratorUPP(user_upp: ThemeIteratorUPP) {
 
 /// # Safety
 ///
-/// - `bounds` must be a valid pointer.
+/// - `bounds` might not allow `None`.
 /// - `user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeThemeTabTitleDrawUPP(
-    bounds: *const Rect,
+    bounds: Option<&Rect>,
     style: ThemeTabStyle,
     direction: ThemeTabDirection,
     depth: i16,
@@ -1744,7 +1744,7 @@ pub unsafe fn InvokeThemeTabTitleDrawUPP(
 ) {
     extern "C-unwind" {
         fn InvokeThemeTabTitleDrawUPP(
-            bounds: *const Rect,
+            bounds: Option<&Rect>,
             style: ThemeTabStyle,
             direction: ThemeTabDirection,
             depth: i16,
@@ -1769,13 +1769,13 @@ pub unsafe fn InvokeThemeTabTitleDrawUPP(
 
 /// # Safety
 ///
-/// - `bounds` must be a valid pointer.
+/// - `bounds` might not allow `None`.
 /// - `erase_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeThemeEraseUPP(
-    bounds: *const Rect,
+    bounds: Option<&Rect>,
     erase_data: URefCon,
     depth: i16,
     is_color_dev: bool,
@@ -1783,7 +1783,7 @@ pub unsafe fn InvokeThemeEraseUPP(
 ) {
     extern "C-unwind" {
         fn InvokeThemeEraseUPP(
-            bounds: *const Rect,
+            bounds: Option<&Rect>,
             erase_data: URefCon,
             depth: i16,
             is_color_dev: Boolean,
@@ -1796,16 +1796,16 @@ pub unsafe fn InvokeThemeEraseUPP(
 
 /// # Safety
 ///
-/// - `bounds` must be a valid pointer.
-/// - `info` must be a valid pointer.
+/// - `bounds` might not allow `None`.
+/// - `info` might not allow `None`.
 /// - `user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeThemeButtonDrawUPP(
-    bounds: *const Rect,
+    bounds: Option<&Rect>,
     kind: ThemeButtonKind,
-    info: *const ThemeButtonDrawInfo,
+    info: Option<&ThemeButtonDrawInfo>,
     user_data: URefCon,
     depth: i16,
     is_color_dev: bool,
@@ -1813,9 +1813,9 @@ pub unsafe fn InvokeThemeButtonDrawUPP(
 ) {
     extern "C-unwind" {
         fn InvokeThemeButtonDrawUPP(
-            bounds: *const Rect,
+            bounds: Option<&Rect>,
             kind: ThemeButtonKind,
-            info: *const ThemeButtonDrawInfo,
+            info: Option<&ThemeButtonDrawInfo>,
             user_data: URefCon,
             depth: i16,
             is_color_dev: Boolean,
@@ -1830,13 +1830,13 @@ pub unsafe fn InvokeThemeButtonDrawUPP(
 
 /// # Safety
 ///
-/// - `bounds` must be a valid pointer.
+/// - `bounds` might not allow `None`.
 /// - `user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeWindowTitleDrawingUPP(
-    bounds: *const Rect,
+    bounds: Option<&Rect>,
     depth: i16,
     color_device: bool,
     user_data: URefCon,
@@ -1844,7 +1844,7 @@ pub unsafe fn InvokeWindowTitleDrawingUPP(
 ) {
     extern "C-unwind" {
         fn InvokeWindowTitleDrawingUPP(
-            bounds: *const Rect,
+            bounds: Option<&Rect>,
             depth: i16,
             color_device: Boolean,
             user_data: URefCon,
@@ -1956,13 +1956,13 @@ pub unsafe fn DisposeMenuItemDrawingUPP(user_upp: MenuItemDrawingUPP) {
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
 /// - `in_user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeMenuTitleDrawingUPP(
-    in_bounds: *const Rect,
+    in_bounds: Option<&Rect>,
     in_depth: i16,
     in_is_color_device: bool,
     in_user_data: SRefCon,
@@ -1970,7 +1970,7 @@ pub unsafe fn InvokeMenuTitleDrawingUPP(
 ) {
     extern "C-unwind" {
         fn InvokeMenuTitleDrawingUPP(
-            in_bounds: *const Rect,
+            in_bounds: Option<&Rect>,
             in_depth: i16,
             in_is_color_device: Boolean,
             in_user_data: SRefCon,
@@ -1991,13 +1991,13 @@ pub unsafe fn InvokeMenuTitleDrawingUPP(
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
 /// - `in_user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeMenuItemDrawingUPP(
-    in_bounds: *const Rect,
+    in_bounds: Option<&Rect>,
     in_depth: i16,
     in_is_color_device: bool,
     in_user_data: SRefCon,
@@ -2005,7 +2005,7 @@ pub unsafe fn InvokeMenuItemDrawingUPP(
 ) {
     extern "C-unwind" {
         fn InvokeMenuItemDrawingUPP(
-            in_bounds: *const Rect,
+            in_bounds: Option<&Rect>,
             in_depth: i16,
             in_is_color_device: Boolean,
             in_user_data: SRefCon,

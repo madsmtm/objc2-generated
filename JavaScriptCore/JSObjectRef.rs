@@ -503,12 +503,28 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// `definition` must be a valid pointer.
+/// - `definition` struct field `version` must be set correctly.
+/// - `definition` struct field `className` must be a valid pointer.
+/// - `definition` struct field `parentClass` must be a valid pointer.
+/// - `definition` struct field `staticValues` must be a valid pointer.
+/// - `definition` struct field `staticFunctions` must be a valid pointer.
+/// - `definition` struct field `initialize` must be implemented correctly.
+/// - `definition` struct field `finalize` must be implemented correctly.
+/// - `definition` struct field `hasProperty` must be implemented correctly.
+/// - `definition` struct field `getProperty` must be implemented correctly.
+/// - `definition` struct field `setProperty` must be implemented correctly.
+/// - `definition` struct field `deleteProperty` must be implemented correctly.
+/// - `definition` struct field `getPropertyNames` must be implemented correctly.
+/// - `definition` struct field `callAsFunction` must be implemented correctly.
+/// - `definition` struct field `callAsConstructor` must be implemented correctly.
+/// - `definition` struct field `hasInstance` must be implemented correctly.
+/// - `definition` struct field `convertToType` must be implemented correctly.
+/// - `definition` might not allow `None`.
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[inline]
-pub unsafe fn JSClassCreate(definition: *const JSClassDefinition) -> JSClassRef {
+pub unsafe fn JSClassCreate(definition: Option<&JSClassDefinition>) -> JSClassRef {
     extern "C-unwind" {
-        fn JSClassCreate(definition: *const JSClassDefinition) -> JSClassRef;
+        fn JSClassCreate(definition: Option<&JSClassDefinition>) -> JSClassRef;
     }
     unsafe { JSClassCreate(definition) }
 }
@@ -665,20 +681,21 @@ pub unsafe fn JSObjectMakeConstructor(
 /// - `ctx` must be a valid pointer.
 /// - `arguments` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectMakeArray(
     ctx: JSContextRef,
     argument_count: usize,
     arguments: *mut JSValueRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeArray(
             ctx: JSContextRef,
             argument_count: usize,
             arguments: *mut JSValueRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe { JSObjectMakeArray(ctx, argument_count, arguments, exception) }
@@ -701,20 +718,21 @@ pub unsafe fn JSObjectMakeArray(
 /// - `ctx` must be a valid pointer.
 /// - `arguments` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectMakeDate(
     ctx: JSContextRef,
     argument_count: usize,
     arguments: *mut JSValueRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeDate(
             ctx: JSContextRef,
             argument_count: usize,
             arguments: *mut JSValueRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe { JSObjectMakeDate(ctx, argument_count, arguments, exception) }
@@ -737,20 +755,21 @@ pub unsafe fn JSObjectMakeDate(
 /// - `ctx` must be a valid pointer.
 /// - `arguments` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectMakeError(
     ctx: JSContextRef,
     argument_count: usize,
     arguments: *mut JSValueRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeError(
             ctx: JSContextRef,
             argument_count: usize,
             arguments: *mut JSValueRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe { JSObjectMakeError(ctx, argument_count, arguments, exception) }
@@ -773,20 +792,21 @@ pub unsafe fn JSObjectMakeError(
 /// - `ctx` must be a valid pointer.
 /// - `arguments` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectMakeRegExp(
     ctx: JSContextRef,
     argument_count: usize,
     arguments: *mut JSValueRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeRegExp(
             ctx: JSContextRef,
             argument_count: usize,
             arguments: *mut JSValueRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe { JSObjectMakeRegExp(ctx, argument_count, arguments, exception) }
@@ -808,22 +828,25 @@ pub unsafe fn JSObjectMakeRegExp(
 ///
 /// - `ctx` must be a valid pointer.
 /// - `resolve` must be a valid pointer.
+/// - `resolve` might not allow `None`.
 /// - `reject` must be a valid pointer.
+/// - `reject` might not allow `None`.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectMakeDeferredPromise(
     ctx: JSContextRef,
-    resolve: *mut JSObjectRef,
-    reject: *mut JSObjectRef,
-    exception: *mut JSValueRef,
+    resolve: Option<&mut JSObjectRef>,
+    reject: Option<&mut JSObjectRef>,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeDeferredPromise(
             ctx: JSContextRef,
-            resolve: *mut JSObjectRef,
-            reject: *mut JSObjectRef,
-            exception: *mut JSValueRef,
+            resolve: Option<&mut JSObjectRef>,
+            reject: Option<&mut JSObjectRef>,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe { JSObjectMakeDeferredPromise(ctx, resolve, reject, exception) }
@@ -859,6 +882,7 @@ pub unsafe fn JSObjectMakeDeferredPromise(
 /// - `body` must be a valid pointer.
 /// - `source_url` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectMakeFunction(
@@ -869,7 +893,7 @@ pub unsafe fn JSObjectMakeFunction(
     body: JSStringRef,
     source_url: JSStringRef,
     starting_line_number: c_int,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeFunction(
@@ -880,7 +904,7 @@ pub unsafe fn JSObjectMakeFunction(
             body: JSStringRef,
             source_url: JSStringRef,
             starting_line_number: c_int,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe {
@@ -988,20 +1012,21 @@ pub unsafe fn JSObjectHasProperty(
 /// - `object` must be a valid pointer.
 /// - `property_name` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectGetProperty(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_name: JSStringRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSValueRef {
     extern "C-unwind" {
         fn JSObjectGetProperty(
             ctx: JSContextRef,
             object: JSObjectRef,
             property_name: JSStringRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSValueRef;
     }
     unsafe { JSObjectGetProperty(ctx, object, property_name, exception) }
@@ -1028,6 +1053,7 @@ pub unsafe fn JSObjectGetProperty(
 /// - `property_name` must be a valid pointer.
 /// - `value` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectSetProperty(
@@ -1036,7 +1062,7 @@ pub unsafe fn JSObjectSetProperty(
     property_name: JSStringRef,
     value: JSValueRef,
     attributes: JSPropertyAttributes,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) {
     extern "C-unwind" {
         fn JSObjectSetProperty(
@@ -1045,7 +1071,7 @@ pub unsafe fn JSObjectSetProperty(
             property_name: JSStringRef,
             value: JSValueRef,
             attributes: JSPropertyAttributes,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         );
     }
     unsafe { JSObjectSetProperty(ctx, object, property_name, value, attributes, exception) }
@@ -1069,20 +1095,21 @@ pub unsafe fn JSObjectSetProperty(
 /// - `object` must be a valid pointer.
 /// - `property_name` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectDeleteProperty(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_name: JSStringRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> bool {
     extern "C-unwind" {
         fn JSObjectDeleteProperty(
             ctx: JSContextRef,
             object: JSObjectRef,
             property_name: JSStringRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> bool;
     }
     unsafe { JSObjectDeleteProperty(ctx, object, property_name, exception) }
@@ -1106,20 +1133,21 @@ pub unsafe fn JSObjectDeleteProperty(
 /// - `object` must be a valid pointer.
 /// - `property_key` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectHasPropertyForKey(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_key: JSValueRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> bool {
     extern "C-unwind" {
         fn JSObjectHasPropertyForKey(
             ctx: JSContextRef,
             object: JSObjectRef,
             property_key: JSValueRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> bool;
     }
     unsafe { JSObjectHasPropertyForKey(ctx, object, property_key, exception) }
@@ -1145,20 +1173,21 @@ pub unsafe fn JSObjectHasPropertyForKey(
 /// - `object` must be a valid pointer.
 /// - `property_key` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectGetPropertyForKey(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_key: JSValueRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSValueRef {
     extern "C-unwind" {
         fn JSObjectGetPropertyForKey(
             ctx: JSContextRef,
             object: JSObjectRef,
             property_key: JSValueRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSValueRef;
     }
     unsafe { JSObjectGetPropertyForKey(ctx, object, property_key, exception) }
@@ -1187,6 +1216,7 @@ pub unsafe fn JSObjectGetPropertyForKey(
 /// - `property_key` must be a valid pointer.
 /// - `value` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectSetPropertyForKey(
@@ -1195,7 +1225,7 @@ pub unsafe fn JSObjectSetPropertyForKey(
     property_key: JSValueRef,
     value: JSValueRef,
     attributes: JSPropertyAttributes,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) {
     extern "C-unwind" {
         fn JSObjectSetPropertyForKey(
@@ -1204,7 +1234,7 @@ pub unsafe fn JSObjectSetPropertyForKey(
             property_key: JSValueRef,
             value: JSValueRef,
             attributes: JSPropertyAttributes,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         );
     }
     unsafe { JSObjectSetPropertyForKey(ctx, object, property_key, value, attributes, exception) }
@@ -1230,20 +1260,21 @@ pub unsafe fn JSObjectSetPropertyForKey(
 /// - `object` must be a valid pointer.
 /// - `property_key` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectDeletePropertyForKey(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_key: JSValueRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> bool {
     extern "C-unwind" {
         fn JSObjectDeletePropertyForKey(
             ctx: JSContextRef,
             object: JSObjectRef,
             property_key: JSValueRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> bool;
     }
     unsafe { JSObjectDeletePropertyForKey(ctx, object, property_key, exception) }
@@ -1268,20 +1299,21 @@ pub unsafe fn JSObjectDeletePropertyForKey(
 /// - `ctx` must be a valid pointer.
 /// - `object` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectGetPropertyAtIndex(
     ctx: JSContextRef,
     object: JSObjectRef,
     property_index: c_uint,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSValueRef {
     extern "C-unwind" {
         fn JSObjectGetPropertyAtIndex(
             ctx: JSContextRef,
             object: JSObjectRef,
             property_index: c_uint,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSValueRef;
     }
     unsafe { JSObjectGetPropertyAtIndex(ctx, object, property_index, exception) }
@@ -1307,6 +1339,7 @@ pub unsafe fn JSObjectGetPropertyAtIndex(
 /// - `object` must be a valid pointer.
 /// - `value` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectSetPropertyAtIndex(
@@ -1314,7 +1347,7 @@ pub unsafe fn JSObjectSetPropertyAtIndex(
     object: JSObjectRef,
     property_index: c_uint,
     value: JSValueRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) {
     extern "C-unwind" {
         fn JSObjectSetPropertyAtIndex(
@@ -1322,7 +1355,7 @@ pub unsafe fn JSObjectSetPropertyAtIndex(
             object: JSObjectRef,
             property_index: c_uint,
             value: JSValueRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         );
     }
     unsafe { JSObjectSetPropertyAtIndex(ctx, object, property_index, value, exception) }
@@ -1413,6 +1446,7 @@ pub unsafe fn JSObjectIsFunction(ctx: JSContextRef, object: JSObjectRef) -> bool
 /// - `this_object` must be a valid pointer.
 /// - `arguments` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectCallAsFunction(
@@ -1421,7 +1455,7 @@ pub unsafe fn JSObjectCallAsFunction(
     this_object: JSObjectRef,
     argument_count: usize,
     arguments: *mut JSValueRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSValueRef {
     extern "C-unwind" {
         fn JSObjectCallAsFunction(
@@ -1430,7 +1464,7 @@ pub unsafe fn JSObjectCallAsFunction(
             this_object: JSObjectRef,
             argument_count: usize,
             arguments: *mut JSValueRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSValueRef;
     }
     unsafe {
@@ -1486,6 +1520,7 @@ pub unsafe fn JSObjectIsConstructor(ctx: JSContextRef, object: JSObjectRef) -> b
 /// - `object` must be a valid pointer.
 /// - `arguments` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectCallAsConstructor(
@@ -1493,7 +1528,7 @@ pub unsafe fn JSObjectCallAsConstructor(
     object: JSObjectRef,
     argument_count: usize,
     arguments: *mut JSValueRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectCallAsConstructor(
@@ -1501,7 +1536,7 @@ pub unsafe fn JSObjectCallAsConstructor(
             object: JSObjectRef,
             argument_count: usize,
             arguments: *mut JSValueRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe { JSObjectCallAsConstructor(ctx, object, argument_count, arguments, exception) }

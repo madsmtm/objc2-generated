@@ -6,37 +6,45 @@ use crate::*;
 
 /// # Safety
 ///
-/// `the_descriptor` must be a valid pointer.
+/// - `the_descriptor` struct field `dataHandle` must be a valid pointer.
+/// - `the_descriptor` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn CreateOffsetDescriptor(the_offset: c_long, the_descriptor: *mut AEDesc) -> OSErr {
+pub unsafe fn CreateOffsetDescriptor(
+    the_offset: c_long,
+    the_descriptor: Option<&mut AEDesc>,
+) -> OSErr {
     extern "C-unwind" {
-        fn CreateOffsetDescriptor(the_offset: c_long, the_descriptor: *mut AEDesc) -> OSErr;
+        fn CreateOffsetDescriptor(the_offset: c_long, the_descriptor: Option<&mut AEDesc>)
+            -> OSErr;
     }
     unsafe { CreateOffsetDescriptor(the_offset, the_descriptor) }
 }
 
 /// # Safety
 ///
-/// - `operand1` must be a valid pointer.
-/// - `operand2` must be a valid pointer.
-/// - `the_descriptor` must be a valid pointer.
+/// - `operand1` struct field `dataHandle` must be a valid pointer.
+/// - `operand1` might not allow `None`.
+/// - `operand2` struct field `dataHandle` must be a valid pointer.
+/// - `operand2` might not allow `None`.
+/// - `the_descriptor` struct field `dataHandle` must be a valid pointer.
+/// - `the_descriptor` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn CreateCompDescriptor(
     comparison_operator: DescType,
-    operand1: *mut AEDesc,
-    operand2: *mut AEDesc,
+    operand1: Option<&mut AEDesc>,
+    operand2: Option<&mut AEDesc>,
     dispose_inputs: bool,
-    the_descriptor: *mut AEDesc,
+    the_descriptor: Option<&mut AEDesc>,
 ) -> OSErr {
     extern "C-unwind" {
         fn CreateCompDescriptor(
             comparison_operator: DescType,
-            operand1: *mut AEDesc,
-            operand2: *mut AEDesc,
+            operand1: Option<&mut AEDesc>,
+            operand2: Option<&mut AEDesc>,
             dispose_inputs: Boolean,
-            the_descriptor: *mut AEDesc,
+            the_descriptor: Option<&mut AEDesc>,
         ) -> OSErr;
     }
     let dispose_inputs = dispose_inputs as _;
@@ -53,22 +61,24 @@ pub unsafe fn CreateCompDescriptor(
 
 /// # Safety
 ///
-/// - `the_logical_terms` must be a valid pointer.
-/// - `the_descriptor` must be a valid pointer.
+/// - `the_logical_terms` struct field `dataHandle` must be a valid pointer.
+/// - `the_logical_terms` might not allow `None`.
+/// - `the_descriptor` struct field `dataHandle` must be a valid pointer.
+/// - `the_descriptor` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn CreateLogicalDescriptor(
-    the_logical_terms: *mut AEDescList,
+    the_logical_terms: Option<&mut AEDescList>,
     the_logic_operator: DescType,
     dispose_inputs: bool,
-    the_descriptor: *mut AEDesc,
+    the_descriptor: Option<&mut AEDesc>,
 ) -> OSErr {
     extern "C-unwind" {
         fn CreateLogicalDescriptor(
-            the_logical_terms: *mut AEDescList,
+            the_logical_terms: Option<&mut AEDescList>,
             the_logic_operator: DescType,
             dispose_inputs: Boolean,
-            the_descriptor: *mut AEDesc,
+            the_descriptor: Option<&mut AEDesc>,
         ) -> OSErr;
     }
     let dispose_inputs = dispose_inputs as _;
@@ -84,27 +94,30 @@ pub unsafe fn CreateLogicalDescriptor(
 
 /// # Safety
 ///
-/// - `the_container` must be a valid pointer.
-/// - `key_data` must be a valid pointer.
-/// - `obj_specifier` must be a valid pointer.
+/// - `the_container` struct field `dataHandle` must be a valid pointer.
+/// - `the_container` might not allow `None`.
+/// - `key_data` struct field `dataHandle` must be a valid pointer.
+/// - `key_data` might not allow `None`.
+/// - `obj_specifier` struct field `dataHandle` must be a valid pointer.
+/// - `obj_specifier` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn CreateObjSpecifier(
     desired_class: DescType,
-    the_container: *mut AEDesc,
+    the_container: Option<&mut AEDesc>,
     key_form: DescType,
-    key_data: *mut AEDesc,
+    key_data: Option<&mut AEDesc>,
     dispose_inputs: bool,
-    obj_specifier: *mut AEDesc,
+    obj_specifier: Option<&mut AEDesc>,
 ) -> OSErr {
     extern "C-unwind" {
         fn CreateObjSpecifier(
             desired_class: DescType,
-            the_container: *mut AEDesc,
+            the_container: Option<&mut AEDesc>,
             key_form: DescType,
-            key_data: *mut AEDesc,
+            key_data: Option<&mut AEDesc>,
             dispose_inputs: Boolean,
-            obj_specifier: *mut AEDesc,
+            obj_specifier: Option<&mut AEDesc>,
         ) -> OSErr;
     }
     let dispose_inputs = dispose_inputs as _;
@@ -122,23 +135,26 @@ pub unsafe fn CreateObjSpecifier(
 
 /// # Safety
 ///
-/// - `range_start` must be a valid pointer.
-/// - `range_stop` must be a valid pointer.
-/// - `the_descriptor` must be a valid pointer.
+/// - `range_start` struct field `dataHandle` must be a valid pointer.
+/// - `range_start` might not allow `None`.
+/// - `range_stop` struct field `dataHandle` must be a valid pointer.
+/// - `range_stop` might not allow `None`.
+/// - `the_descriptor` struct field `dataHandle` must be a valid pointer.
+/// - `the_descriptor` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn CreateRangeDescriptor(
-    range_start: *mut AEDesc,
-    range_stop: *mut AEDesc,
+    range_start: Option<&mut AEDesc>,
+    range_stop: Option<&mut AEDesc>,
     dispose_inputs: bool,
-    the_descriptor: *mut AEDesc,
+    the_descriptor: Option<&mut AEDesc>,
 ) -> OSErr {
     extern "C-unwind" {
         fn CreateRangeDescriptor(
-            range_start: *mut AEDesc,
-            range_stop: *mut AEDesc,
+            range_start: Option<&mut AEDesc>,
+            range_stop: Option<&mut AEDesc>,
             dispose_inputs: Boolean,
-            the_descriptor: *mut AEDesc,
+            the_descriptor: Option<&mut AEDesc>,
         ) -> OSErr;
     }
     let dispose_inputs = dispose_inputs as _;

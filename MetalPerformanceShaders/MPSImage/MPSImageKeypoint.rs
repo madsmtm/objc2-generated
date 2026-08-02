@@ -83,16 +83,12 @@ impl MPSImageFindKeypoints {
         /// Parameter `info`: Pointer to the MPSImageKeypointRangeInfo struct
         ///
         /// Returns: A valid MPSImageFindKeypoints object or nil, if failure.
-        ///
-        /// # Safety
-        ///
-        /// `info` must be a valid pointer.
         #[unsafe(method(initWithDevice:info:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_info(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
-            info: NonNull<MPSImageKeypointRangeInfo>,
+            info: &MPSImageKeypointRangeInfo,
         ) -> Retained<Self>;
 
         // -initWithDevice: (unavailable)

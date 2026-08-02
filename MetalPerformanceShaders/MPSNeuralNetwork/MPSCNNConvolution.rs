@@ -1681,16 +1681,12 @@ extern_protocol!(
         /// when convolution itself is coplied, for example when copying training graph for running
         /// on second GPU so that weights update on two different GPUs dont end up stomping same
         /// data source.
-        ///
-        /// # Safety
-        ///
-        /// `zone` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         unsafe fn copyWithZone_device(
             &self,
-            zone: *mut NSZone,
+            zone: Option<&NSZone>,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 

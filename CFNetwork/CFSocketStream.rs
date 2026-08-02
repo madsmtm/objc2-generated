@@ -122,9 +122,9 @@ extern "C" {
     pub static kCFStreamErrorDomainWinSock: CFIndex;
 }
 
-// TODO: pub fn CFSocketStreamSOCKSGetErrorSubdomain(error: NonNull<CFStreamError>,) -> i32;
+// TODO: pub fn CFSocketStreamSOCKSGetErrorSubdomain(error: &CFStreamError,) -> i32;
 
-// TODO: pub fn CFSocketStreamSOCKSGetError(error: NonNull<CFStreamError>,) -> i32;
+// TODO: pub fn CFSocketStreamSOCKSGetError(error: &CFStreamError,) -> i32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsockssubdomainnone?language=objc)
 pub const kCFStreamErrorSOCKSSubDomainNone: c_uint = 0;

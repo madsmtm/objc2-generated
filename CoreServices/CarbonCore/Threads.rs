@@ -481,7 +481,8 @@ pub type DebuggerThreadSchedulerTPP = DebuggerThreadSchedulerUPP;
 /// - `thread_entry` must be implemented correctly.
 /// - `thread_param` must be a valid pointer.
 /// - `thread_result` must be a valid pointer.
-/// - `thread_made` must be a valid pointer.
+/// - `thread_result` might not allow `None`.
+/// - `thread_made` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewThread(
@@ -490,8 +491,8 @@ pub unsafe fn NewThread(
     thread_param: *mut c_void,
     stack_size: Size,
     options: ThreadOptions,
-    thread_result: *mut *mut c_void,
-    thread_made: *mut ThreadID,
+    thread_result: Option<&mut *mut c_void>,
+    thread_made: Option<&mut ThreadID>,
 ) -> OSErr {
     extern "C-unwind" {
         fn NewThread(
@@ -500,8 +501,8 @@ pub unsafe fn NewThread(
             thread_param: *mut c_void,
             stack_size: Size,
             options: ThreadOptions,
-            thread_result: *mut *mut c_void,
-            thread_made: *mut ThreadID,
+            thread_result: Option<&mut *mut c_void>,
+            thread_made: Option<&mut ThreadID>,
         ) -> OSErr;
     }
     unsafe {
@@ -621,24 +622,33 @@ pub unsafe fn CreateThreadPool(
 
 /// # Safety
 ///
-/// `stack_size` must be a valid pointer.
+/// `stack_size` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn GetDefaultThreadStackSize(thread_style: ThreadStyle, stack_size: *mut Size) -> OSErr {
+pub unsafe fn GetDefaultThreadStackSize(
+    thread_style: ThreadStyle,
+    stack_size: Option<&mut Size>,
+) -> OSErr {
     extern "C-unwind" {
-        fn GetDefaultThreadStackSize(thread_style: ThreadStyle, stack_size: *mut Size) -> OSErr;
+        fn GetDefaultThreadStackSize(
+            thread_style: ThreadStyle,
+            stack_size: Option<&mut Size>,
+        ) -> OSErr;
     }
     unsafe { GetDefaultThreadStackSize(thread_style, stack_size) }
 }
 
 /// # Safety
 ///
-/// `free_stack` must be a valid pointer.
+/// `free_stack` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn ThreadCurrentStackSpace(thread: ThreadID, free_stack: *mut ByteCount) -> OSErr {
+pub unsafe fn ThreadCurrentStackSpace(
+    thread: ThreadID,
+    free_stack: Option<&mut ByteCount>,
+) -> OSErr {
     extern "C-unwind" {
-        fn ThreadCurrentStackSpace(thread: ThreadID, free_stack: *mut ByteCount) -> OSErr;
+        fn ThreadCurrentStackSpace(thread: ThreadID, free_stack: Option<&mut ByteCount>) -> OSErr;
     }
     unsafe { ThreadCurrentStackSpace(thread, free_stack) }
 }
@@ -684,24 +694,28 @@ pub unsafe fn YieldToAnyThread() -> OSErr {
 
 /// # Safety
 ///
-/// `current_thread_id` must be a valid pointer.
+/// `current_thread_id` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn GetCurrentThread(current_thread_id: *mut ThreadID) -> OSErr {
+pub unsafe fn GetCurrentThread(current_thread_id: Option<&mut ThreadID>) -> OSErr {
     extern "C-unwind" {
-        fn GetCurrentThread(current_thread_id: *mut ThreadID) -> OSErr;
+        fn GetCurrentThread(current_thread_id: Option<&mut ThreadID>) -> OSErr;
     }
     unsafe { GetCurrentThread(current_thread_id) }
 }
 
 /// # Safety
 ///
-/// `thread_state` must be a valid pointer.
+/// `thread_state` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn GetThreadState(thread_to_get: ThreadID, thread_state: *mut ThreadState) -> OSErr {
+pub unsafe fn GetThreadState(
+    thread_to_get: ThreadID,
+    thread_state: Option<&mut ThreadState>,
+) -> OSErr {
     extern "C-unwind" {
-        fn GetThreadState(thread_to_get: ThreadID, thread_state: *mut ThreadState) -> OSErr;
+        fn GetThreadState(thread_to_get: ThreadID, thread_state: Option<&mut ThreadState>)
+            -> OSErr;
     }
     unsafe { GetThreadState(thread_to_get, thread_state) }
 }
@@ -760,12 +774,13 @@ pub unsafe fn ThreadEndCritical() -> OSErr {
 
 /// # Safety
 ///
-/// `thread_t_ref` must be a valid pointer.
+/// - `thread_t_ref` must be a valid pointer.
+/// - `thread_t_ref` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn GetThreadCurrentTaskRef(thread_t_ref: *mut ThreadTaskRef) -> OSErr {
+pub unsafe fn GetThreadCurrentTaskRef(thread_t_ref: Option<&mut ThreadTaskRef>) -> OSErr {
     extern "C-unwind" {
-        fn GetThreadCurrentTaskRef(thread_t_ref: *mut ThreadTaskRef) -> OSErr;
+        fn GetThreadCurrentTaskRef(thread_t_ref: Option<&mut ThreadTaskRef>) -> OSErr;
     }
     unsafe { GetThreadCurrentTaskRef(thread_t_ref) }
 }
@@ -773,19 +788,19 @@ pub unsafe fn GetThreadCurrentTaskRef(thread_t_ref: *mut ThreadTaskRef) -> OSErr
 /// # Safety
 ///
 /// - `thread_t_ref` must be a valid pointer.
-/// - `thread_state` must be a valid pointer.
+/// - `thread_state` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn GetThreadStateGivenTaskRef(
     thread_t_ref: ThreadTaskRef,
     thread_to_get: ThreadID,
-    thread_state: *mut ThreadState,
+    thread_state: Option<&mut ThreadState>,
 ) -> OSErr {
     extern "C-unwind" {
         fn GetThreadStateGivenTaskRef(
             thread_t_ref: ThreadTaskRef,
             thread_to_get: ThreadID,
-            thread_state: *mut ThreadState,
+            thread_state: Option<&mut ThreadState>,
         ) -> OSErr;
     }
     unsafe { GetThreadStateGivenTaskRef(thread_t_ref, thread_to_get, thread_state) }

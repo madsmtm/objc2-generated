@@ -39,13 +39,16 @@ pub unsafe fn JSStringCreateWithCharacters(chars: *const JSChar, num_chars: usiz
 ///
 /// # Safety
 ///
-/// `string` must be a valid pointer.
+/// `string` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe fn JSStringCreateWithUTF8CString(string: *const c_char) -> JSStringRef {
+pub unsafe fn JSStringCreateWithUTF8CString(string: Option<&CStr>) -> JSStringRef {
     extern "C-unwind" {
         fn JSStringCreateWithUTF8CString(string: *const c_char) -> JSStringRef;
     }
+    let string = string
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
     unsafe { JSStringCreateWithUTF8CString(string) }
 }
 
@@ -211,12 +214,13 @@ pub unsafe fn JSStringIsEqual(a: JSStringRef, b: JSStringRef) -> bool {
 /// # Safety
 ///
 /// - `a` must be a valid pointer.
-/// - `b` must be a valid pointer.
+/// - `b` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
-pub unsafe fn JSStringIsEqualToUTF8CString(a: JSStringRef, b: *const c_char) -> bool {
+pub unsafe fn JSStringIsEqualToUTF8CString(a: JSStringRef, b: Option<&CStr>) -> bool {
     extern "C-unwind" {
         fn JSStringIsEqualToUTF8CString(a: JSStringRef, b: *const c_char) -> bool;
     }
+    let b = b.map(|ptr| ptr.as_ptr()).unwrap_or_else(core::ptr::null);
     unsafe { JSStringIsEqualToUTF8CString(a, b) }
 }

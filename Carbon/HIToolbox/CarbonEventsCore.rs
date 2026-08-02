@@ -189,13 +189,14 @@ pub unsafe fn GetCFRunLoopFromEventLoop(in_event_loop: EventLoopRef) -> Option<C
 ///
 /// - `in_list` must be a valid pointer.
 /// - `out_event` must be a valid pointer.
+/// - `out_event` might not allow `None`.
 #[inline]
 pub unsafe fn ReceiveNextEvent(
     in_num_types: ItemCount,
     in_list: *const EventTypeSpec,
     in_timeout: EventTimeout,
     in_pull_event: bool,
-    out_event: *mut EventRef,
+    out_event: Option<&mut EventRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ReceiveNextEvent(
@@ -203,7 +204,7 @@ pub unsafe fn ReceiveNextEvent(
             in_list: *const EventTypeSpec,
             in_timeout: EventTimeout,
             in_pull_event: Boolean,
-            out_event: *mut EventRef,
+            out_event: Option<&mut EventRef>,
         ) -> OSStatus;
     }
     let in_pull_event = in_pull_event as _;
@@ -222,7 +223,8 @@ pub const kEventAttributeMonitored: c_uint = 1 << 3;
 
 /// # Safety
 ///
-/// `out_event` must be a valid pointer.
+/// - `out_event` must be a valid pointer.
+/// - `out_event` might not allow `None`.
 #[inline]
 pub unsafe fn CreateEvent(
     in_allocator: Option<&CFAllocator>,
@@ -230,7 +232,7 @@ pub unsafe fn CreateEvent(
     in_kind: u32,
     in_when: EventTime,
     in_attributes: EventAttributes,
-    out_event: *mut EventRef,
+    out_event: Option<&mut EventRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CreateEvent(
@@ -239,7 +241,7 @@ pub unsafe fn CreateEvent(
             in_kind: u32,
             in_when: EventTime,
             in_attributes: EventAttributes,
-            out_event: *mut EventRef,
+            out_event: Option<&mut EventRef>,
         ) -> OSStatus;
     }
     unsafe {
@@ -346,17 +348,17 @@ pub unsafe fn SetEventParameter(
 /// # Safety
 ///
 /// - `in_event` must be a valid pointer.
-/// - `out_actual_type` must be a valid pointer.
-/// - `out_actual_size` must be a valid pointer.
+/// - `out_actual_type` might not allow `None`.
+/// - `out_actual_size` might not allow `None`.
 /// - `out_data` must be a valid pointer.
 #[inline]
 pub unsafe fn GetEventParameter(
     in_event: EventRef,
     in_name: EventParamName,
     in_desired_type: EventParamType,
-    out_actual_type: *mut EventParamType,
+    out_actual_type: Option<&mut EventParamType>,
     in_buffer_size: ByteCount,
-    out_actual_size: *mut ByteCount,
+    out_actual_size: Option<&mut ByteCount>,
     out_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -364,9 +366,9 @@ pub unsafe fn GetEventParameter(
             in_event: EventRef,
             in_name: EventParamName,
             in_desired_type: EventParamType,
-            out_actual_type: *mut EventParamType,
+            out_actual_type: Option<&mut EventParamType>,
             in_buffer_size: ByteCount,
-            out_actual_size: *mut ByteCount,
+            out_actual_size: Option<&mut ByteCount>,
             out_data: *mut c_void,
         ) -> OSStatus;
     }
@@ -442,20 +444,21 @@ pub unsafe fn SetEventTime(in_event: EventRef, in_time: EventTime) -> OSStatus {
 ///
 /// - `in_event` might not allow `None`.
 /// - `out_event` must be a valid pointer.
+/// - `out_event` might not allow `None`.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe fn CreateEventWithCGEvent(
     in_allocator: Option<&CFAllocator>,
     in_event: Option<&CGEvent>,
     in_attributes: EventAttributes,
-    out_event: *mut EventRef,
+    out_event: Option<&mut EventRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CreateEventWithCGEvent(
             in_allocator: Option<&CFAllocator>,
             in_event: Option<&CGEvent>,
             in_attributes: EventAttributes,
-            out_event: *mut EventRef,
+            out_event: Option<&mut EventRef>,
         ) -> OSStatus;
     }
     unsafe { CreateEventWithCGEvent(in_allocator, in_event, in_attributes, out_event) }
@@ -738,19 +741,19 @@ pub unsafe fn GetCurrentEventKeyModifiers() -> u32 {
 /// # Safety
 ///
 /// - `in_object` must be a valid pointer.
-/// - `out_point` must be a valid pointer.
+/// - `out_point` might not allow `None`.
 #[cfg(feature = "HIGeometry")]
 #[inline]
 pub unsafe fn HIGetMousePosition(
     in_space: HICoordinateSpace,
     in_object: *mut c_void,
-    out_point: *mut HIPoint,
+    out_point: Option<&mut HIPoint>,
 ) -> *mut HIPoint {
     extern "C-unwind" {
         fn HIGetMousePosition(
             in_space: HICoordinateSpace,
             in_object: *mut c_void,
-            out_point: *mut HIPoint,
+            out_point: Option<&mut HIPoint>,
         ) -> *mut HIPoint;
     }
     unsafe { HIGetMousePosition(in_space, in_object, out_point) }
@@ -1088,6 +1091,7 @@ pub type EventTargetRef = *mut OpaqueEventTargetRef;
 /// - `in_list` must be a valid pointer.
 /// - `in_user_data` must be a valid pointer.
 /// - `out_ref` must be a valid pointer.
+/// - `out_ref` might not allow `None`.
 #[inline]
 pub unsafe fn InstallEventHandler(
     in_target: EventTargetRef,
@@ -1095,7 +1099,7 @@ pub unsafe fn InstallEventHandler(
     in_num_types: ItemCount,
     in_list: *const EventTypeSpec,
     in_user_data: *mut c_void,
-    out_ref: *mut EventHandlerRef,
+    out_ref: Option<&mut EventHandlerRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InstallEventHandler(
@@ -1104,7 +1108,7 @@ pub unsafe fn InstallEventHandler(
             in_num_types: ItemCount,
             in_list: *const EventTypeSpec,
             in_user_data: *mut c_void,
-            out_ref: *mut EventHandlerRef,
+            out_ref: Option<&mut EventHandlerRef>,
         ) -> OSStatus;
     }
     unsafe {

@@ -35,8 +35,7 @@ pub unsafe fn GLKMathProject(
 
 /// # Safety
 ///
-/// - `viewport` must be a valid pointer.
-/// - `success` must be a valid pointer or null.
+/// `viewport` must be a valid pointer.
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
 pub unsafe fn GLKMathUnproject(
@@ -44,7 +43,7 @@ pub unsafe fn GLKMathUnproject(
     model: GLKMatrix4,
     projection: GLKMatrix4,
     viewport: NonNull<c_int>,
-    success: *mut bool,
+    success: Option<&mut bool>,
 ) -> GLKVector3 {
     extern "C-unwind" {
         fn GLKMathUnproject(
@@ -52,7 +51,7 @@ pub unsafe fn GLKMathUnproject(
             model: GLKMatrix4,
             projection: GLKMatrix4,
             viewport: NonNull<c_int>,
-            success: *mut bool,
+            success: Option<&mut bool>,
         ) -> GLKVector3;
     }
     unsafe { GLKMathUnproject(window, model, projection, viewport, success) }

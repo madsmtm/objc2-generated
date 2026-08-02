@@ -1560,21 +1560,20 @@ extern "C" {
 ///
 /// - `notify_proc` must be implemented correctly.
 /// - `notify_ref_con` must be a valid pointer or null.
-/// - `out_client` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn MIDIClientCreate(
     name: &CFString,
     notify_proc: MIDINotifyProc,
     notify_ref_con: *mut c_void,
-    out_client: NonNull<MIDIClientRef>,
+    out_client: &mut MIDIClientRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIClientCreate(
             name: &CFString,
             notify_proc: MIDINotifyProc,
             notify_ref_con: *mut c_void,
-            out_client: NonNull<MIDIClientRef>,
+            out_client: &mut MIDIClientRef,
         ) -> OSStatus;
     }
     unsafe { MIDIClientCreate(name, notify_proc, notify_ref_con, out_client) }
@@ -1595,21 +1594,17 @@ pub unsafe fn MIDIClientCreate(
 ///
 /// Note that notifyBlock is called on a thread chosen by the implementation.
 /// Thread-safety is the block's responsibility.
-///
-/// # Safety
-///
-/// `out_client` must be a valid pointer.
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe fn MIDIClientCreateWithBlock(
     name: &CFString,
-    out_client: NonNull<MIDIClientRef>,
+    out_client: &mut MIDIClientRef,
     notify_block: Option<&MIDINotifyBlock>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIClientCreateWithBlock(
             name: &CFString,
-            out_client: NonNull<MIDIClientRef>,
+            out_client: &mut MIDIClientRef,
             notify_block: Option<&MIDINotifyBlock>,
         ) -> OSStatus;
     }
@@ -1662,17 +1657,13 @@ pub unsafe fn MIDIClientDispose(client: MIDIClientRef) -> OSStatus {
 /// any number of sources to your port.
 ///
 /// readBlock will be called on a separate high-priority thread owned by CoreMIDI.
-///
-/// # Safety
-///
-/// `out_port` must be a valid pointer.
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe fn MIDIInputPortCreateWithProtocol(
     client: MIDIClientRef,
     port_name: &CFString,
     protocol: MIDIProtocolID,
-    out_port: NonNull<MIDIPortRef>,
+    out_port: &mut MIDIPortRef,
     receive_block: &MIDIReceiveBlock,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -1680,7 +1671,7 @@ pub unsafe fn MIDIInputPortCreateWithProtocol(
             client: MIDIClientRef,
             port_name: &CFString,
             protocol: MIDIProtocolID,
-            out_port: NonNull<MIDIPortRef>,
+            out_port: &mut MIDIPortRef,
             receive_block: &MIDIReceiveBlock,
         ) -> OSStatus;
     }
@@ -1715,7 +1706,6 @@ pub unsafe fn MIDIInputPortCreateWithProtocol(
 ///
 /// - `read_proc` must be implemented correctly.
 /// - `ref_con` must be a valid pointer or null.
-/// - `out_port` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -1724,7 +1714,7 @@ pub unsafe fn MIDIInputPortCreate(
     port_name: &CFString,
     read_proc: MIDIReadProc,
     ref_con: *mut c_void,
-    out_port: NonNull<MIDIPortRef>,
+    out_port: &mut MIDIPortRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIInputPortCreate(
@@ -1732,7 +1722,7 @@ pub unsafe fn MIDIInputPortCreate(
             port_name: &CFString,
             read_proc: MIDIReadProc,
             ref_con: *mut c_void,
-            out_port: NonNull<MIDIPortRef>,
+            out_port: &mut MIDIPortRef,
         ) -> OSStatus;
     }
     unsafe { MIDIInputPortCreate(client, port_name, read_proc, ref_con, out_port) }
@@ -1759,24 +1749,20 @@ pub unsafe fn MIDIInputPortCreate(
 /// any number of sources to your port.
 ///
 /// readBlock will be called on a separate high-priority thread owned by CoreMIDI.
-///
-/// # Safety
-///
-/// `out_port` must be a valid pointer.
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[deprecated]
 #[inline]
 pub unsafe fn MIDIInputPortCreateWithBlock(
     client: MIDIClientRef,
     port_name: &CFString,
-    out_port: NonNull<MIDIPortRef>,
+    out_port: &mut MIDIPortRef,
     read_block: &MIDIReadBlock,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIInputPortCreateWithBlock(
             client: MIDIClientRef,
             port_name: &CFString,
-            out_port: NonNull<MIDIPortRef>,
+            out_port: &mut MIDIPortRef,
             read_block: &MIDIReadBlock,
         ) -> OSStatus;
     }
@@ -1803,22 +1789,18 @@ pub unsafe fn MIDIInputPortCreateWithBlock(
 ///
 /// Multiple output ports are only necessary when an application is capable of directing
 /// multiple simultaneous MIDI streams to the same destination.
-///
-/// # Safety
-///
-/// `out_port` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn MIDIOutputPortCreate(
     client: MIDIClientRef,
     port_name: &CFString,
-    out_port: NonNull<MIDIPortRef>,
+    out_port: &mut MIDIPortRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIOutputPortCreate(
             client: MIDIClientRef,
             port_name: &CFString,
-            out_port: NonNull<MIDIPortRef>,
+            out_port: &mut MIDIPortRef,
         ) -> OSStatus;
     }
     unsafe { MIDIOutputPortCreate(client, port_name, out_port) }
@@ -2057,19 +2039,15 @@ pub unsafe fn MIDIEntityGetDestination(
 /// Parameter `inEntity`: The entity being queried.
 ///
 /// Parameter `outDevice`: On successful return, the entity's owning device.
-///
-/// # Safety
-///
-/// `out_device` must be a valid pointer or null.
 #[inline]
 pub unsafe fn MIDIEntityGetDevice(
     in_entity: MIDIEntityRef,
-    out_device: *mut MIDIDeviceRef,
+    out_device: Option<&mut MIDIDeviceRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIEntityGetDevice(
             in_entity: MIDIEntityRef,
-            out_device: *mut MIDIDeviceRef,
+            out_device: Option<&mut MIDIDeviceRef>,
         ) -> OSStatus;
     }
     unsafe { MIDIEntityGetDevice(in_entity, out_device) }
@@ -2140,19 +2118,15 @@ pub unsafe fn MIDIGetDestination(dest_index0: ItemCount) -> MIDIEndpointRef {
 ///
 ///
 /// Virtual sources and destinations don't have entities.
-///
-/// # Safety
-///
-/// `out_entity` must be a valid pointer or null.
 #[inline]
 pub unsafe fn MIDIEndpointGetEntity(
     in_endpoint: MIDIEndpointRef,
-    out_entity: *mut MIDIEntityRef,
+    out_entity: Option<&mut MIDIEntityRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIEndpointGetEntity(
             in_endpoint: MIDIEndpointRef,
-            out_entity: *mut MIDIEntityRef,
+            out_entity: Option<&mut MIDIEntityRef>,
         ) -> OSStatus;
     }
     unsafe { MIDIEndpointGetEntity(in_endpoint, out_entity) }
@@ -2190,17 +2164,13 @@ pub unsafe fn MIDIEndpointGetEntity(
 /// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the
 /// relationship between when a sender sends MIDI to the destination and when it is
 /// received.
-///
-/// # Safety
-///
-/// `out_dest` must be a valid pointer.
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe fn MIDIDestinationCreateWithProtocol(
     client: MIDIClientRef,
     name: &CFString,
     protocol: MIDIProtocolID,
-    out_dest: NonNull<MIDIEndpointRef>,
+    out_dest: &mut MIDIEndpointRef,
     read_block: &MIDIReceiveBlock,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -2208,7 +2178,7 @@ pub unsafe fn MIDIDestinationCreateWithProtocol(
             client: MIDIClientRef,
             name: &CFString,
             protocol: MIDIProtocolID,
-            out_dest: NonNull<MIDIEndpointRef>,
+            out_dest: &mut MIDIEndpointRef,
             read_block: &MIDIReceiveBlock,
         ) -> OSStatus;
     }
@@ -2251,7 +2221,6 @@ pub unsafe fn MIDIDestinationCreateWithProtocol(
 ///
 /// - `read_proc` must be implemented correctly.
 /// - `ref_con` must be a valid pointer or null.
-/// - `out_dest` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -2260,7 +2229,7 @@ pub unsafe fn MIDIDestinationCreate(
     name: &CFString,
     read_proc: MIDIReadProc,
     ref_con: *mut c_void,
-    out_dest: NonNull<MIDIEndpointRef>,
+    out_dest: &mut MIDIEndpointRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIDestinationCreate(
@@ -2268,7 +2237,7 @@ pub unsafe fn MIDIDestinationCreate(
             name: &CFString,
             read_proc: MIDIReadProc,
             ref_con: *mut c_void,
-            out_dest: NonNull<MIDIEndpointRef>,
+            out_dest: &mut MIDIEndpointRef,
         ) -> OSStatus;
     }
     unsafe { MIDIDestinationCreate(client, name, read_proc, ref_con, out_dest) }
@@ -2303,24 +2272,20 @@ pub unsafe fn MIDIDestinationCreate(
 /// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the
 /// relationship between when a sender sends MIDI to the destination and when it is
 /// received.
-///
-/// # Safety
-///
-/// `out_dest` must be a valid pointer.
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 #[deprecated]
 #[inline]
 pub unsafe fn MIDIDestinationCreateWithBlock(
     client: MIDIClientRef,
     name: &CFString,
-    out_dest: NonNull<MIDIEndpointRef>,
+    out_dest: &mut MIDIEndpointRef,
     read_block: &MIDIReadBlock,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIDestinationCreateWithBlock(
             client: MIDIClientRef,
             name: &CFString,
-            out_dest: NonNull<MIDIEndpointRef>,
+            out_dest: &mut MIDIEndpointRef,
             read_block: &MIDIReadBlock,
         ) -> OSStatus;
     }
@@ -2354,24 +2319,20 @@ pub unsafe fn MIDIDestinationCreateWithBlock(
 /// the last time your application created it. (Although you should be prepared for this to
 /// fail in the unlikely event of a collision.) This will permit other clients to retain
 /// persistent references to your virtual source more easily.
-///
-/// # Safety
-///
-/// `out_src` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn MIDISourceCreateWithProtocol(
     client: MIDIClientRef,
     name: &CFString,
     protocol: MIDIProtocolID,
-    out_src: NonNull<MIDIEndpointRef>,
+    out_src: &mut MIDIEndpointRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDISourceCreateWithProtocol(
             client: MIDIClientRef,
             name: &CFString,
             protocol: MIDIProtocolID,
-            out_src: NonNull<MIDIEndpointRef>,
+            out_src: &mut MIDIEndpointRef,
         ) -> OSStatus;
     }
     unsafe { MIDISourceCreateWithProtocol(client, name, protocol, out_src) }
@@ -2400,23 +2361,19 @@ pub unsafe fn MIDISourceCreateWithProtocol(
 /// the last time your application created it. (Although you should be prepared for this to
 /// fail in the unlikely event of a collision.) This will permit other clients to retain
 /// persistent references to your virtual source more easily.
-///
-/// # Safety
-///
-/// `out_src` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
 pub unsafe fn MIDISourceCreate(
     client: MIDIClientRef,
     name: &CFString,
-    out_src: NonNull<MIDIEndpointRef>,
+    out_src: &mut MIDIEndpointRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDISourceCreate(
             client: MIDIClientRef,
             name: &CFString,
-            out_src: NonNull<MIDIEndpointRef>,
+            out_src: &mut MIDIEndpointRef,
         ) -> OSStatus;
     }
     unsafe { MIDISourceCreate(client, name, out_src) }
@@ -2486,22 +2443,18 @@ pub unsafe fn MIDIGetExternalDevice(device_index0: ItemCount) -> MIDIDeviceRef {
 ///
 ///
 /// (See the MIDIObjectRef documentation for information about properties.)
-///
-/// # Safety
-///
-/// `out_value` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe fn MIDIObjectGetIntegerProperty(
     obj: MIDIObjectRef,
     property_id: &CFString,
-    out_value: NonNull<i32>,
+    out_value: &mut i32,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIObjectGetIntegerProperty(
             obj: MIDIObjectRef,
             property_id: &CFString,
-            out_value: NonNull<i32>,
+            out_value: &mut i32,
         ) -> OSStatus;
     }
     unsafe { MIDIObjectGetIntegerProperty(obj, property_id, out_value) }
@@ -2840,22 +2793,17 @@ pub unsafe fn MIDIObjectRemoveProperty(obj: MIDIObjectRef, property_id: &CFStrin
 ///
 /// Returns: An OSStatus error code, including kMIDIObjectNotFound if there
 /// is no object with the specified uniqueID.
-///
-/// # Safety
-///
-/// - `out_object` must be a valid pointer or null.
-/// - `out_object_type` must be a valid pointer or null.
 #[inline]
 pub unsafe fn MIDIObjectFindByUniqueID(
     in_unique_id: MIDIUniqueID,
-    out_object: *mut MIDIObjectRef,
-    out_object_type: *mut MIDIObjectType,
+    out_object: Option<&mut MIDIObjectRef>,
+    out_object_type: Option<&mut MIDIObjectType>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIObjectFindByUniqueID(
             in_unique_id: MIDIUniqueID,
-            out_object: *mut MIDIObjectRef,
-            out_object_type: *mut MIDIObjectType,
+            out_object: Option<&mut MIDIObjectRef>,
+            out_object_type: Option<&mut MIDIObjectType>,
         ) -> OSStatus;
     }
     unsafe { MIDIObjectFindByUniqueID(in_unique_id, out_object, out_object_type) }
@@ -2939,14 +2887,10 @@ pub unsafe fn MIDISend(
 ///
 ///
 /// request->data must point to a single MIDI system-exclusive message, or portion thereof.
-///
-/// # Safety
-///
-/// `request` must be a valid pointer.
 #[inline]
-pub unsafe fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus {
+pub unsafe fn MIDISendSysex(request: &mut MIDISysexSendRequest) -> OSStatus {
     extern "C-unwind" {
-        fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus;
+        fn MIDISendSysex(request: &mut MIDISysexSendRequest) -> OSStatus;
     }
     unsafe { MIDISendSysex(request) }
 }
@@ -2960,14 +2904,10 @@ pub unsafe fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus 
 ///
 ///
 /// request->words must point to a single MIDI system-exclusive message, or portion thereof.
-///
-/// # Safety
-///
-/// `ump_request` must be a valid pointer.
 #[inline]
-pub unsafe fn MIDISendUMPSysex(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus {
+pub unsafe fn MIDISendUMPSysex(ump_request: &mut MIDISysexSendRequestUMP) -> OSStatus {
     extern "C-unwind" {
-        fn MIDISendUMPSysex(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
+        fn MIDISendUMPSysex(ump_request: &mut MIDISysexSendRequestUMP) -> OSStatus;
     }
     unsafe { MIDISendUMPSysex(ump_request) }
 }
@@ -2981,14 +2921,10 @@ pub unsafe fn MIDISendUMPSysex(ump_request: NonNull<MIDISysexSendRequestUMP>) ->
 ///
 ///
 /// request->data must point to a single MIDI system-exclusive message, or portion thereof.
-///
-/// # Safety
-///
-/// `ump_request` must be a valid pointer.
 #[inline]
-pub unsafe fn MIDISendUMPSysex8(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus {
+pub unsafe fn MIDISendUMPSysex8(ump_request: &mut MIDISysexSendRequestUMP) -> OSStatus {
     extern "C-unwind" {
-        fn MIDISendUMPSysex8(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
+        fn MIDISendUMPSysex8(ump_request: &mut MIDISysexSendRequestUMP) -> OSStatus;
     }
     unsafe { MIDISendUMPSysex8(ump_request) }
 }

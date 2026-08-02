@@ -8,12 +8,12 @@ use crate::*;
 
 /// # Safety
 ///
-/// `micro_tick_count` must be a valid pointer.
+/// `micro_tick_count` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn Microseconds(micro_tick_count: *mut UnsignedWide) {
+pub unsafe fn Microseconds(micro_tick_count: Option<&mut UnsignedWide>) {
     extern "C-unwind" {
-        fn Microseconds(micro_tick_count: *mut UnsignedWide);
+        fn Microseconds(micro_tick_count: Option<&mut UnsignedWide>);
     }
     unsafe { Microseconds(micro_tick_count) }
 }

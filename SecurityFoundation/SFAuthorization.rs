@@ -54,14 +54,16 @@ impl SFAuthorization {
         ///
         /// # Safety
         ///
-        /// - `rights` must be a valid pointer.
-        /// - `environment` must be a valid pointer.
+        /// - `rights` struct field `items` must be a valid pointer or null.
+        /// - `rights` might not allow `None`.
+        /// - `environment` struct field `items` must be a valid pointer or null.
+        /// - `environment` might not allow `None`.
         #[unsafe(method(authorizationWithFlags:rights:environment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationWithFlags_rights_environment(
             flags: AuthorizationFlags,
-            rights: *const AuthorizationRights,
-            environment: *const AuthorizationEnvironment,
+            rights: Option<&AuthorizationRights>,
+            environment: Option<&AuthorizationEnvironment>,
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "objc2-security")]
@@ -75,15 +77,17 @@ impl SFAuthorization {
         ///
         /// # Safety
         ///
-        /// - `rights` must be a valid pointer.
-        /// - `environment` must be a valid pointer.
+        /// - `rights` struct field `items` must be a valid pointer or null.
+        /// - `rights` might not allow `None`.
+        /// - `environment` struct field `items` must be a valid pointer or null.
+        /// - `environment` might not allow `None`.
         #[unsafe(method(initWithFlags:rights:environment:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFlags_rights_environment(
             this: Allocated<Self>,
             flags: AuthorizationFlags,
-            rights: *const AuthorizationRights,
-            environment: *const AuthorizationEnvironment,
+            rights: Option<&AuthorizationRights>,
+            environment: Option<&AuthorizationEnvironment>,
         ) -> Option<Retained<Self>>;
 
         /// Initializes an authorization object initialized with a default environment, flags and rights.
@@ -132,18 +136,21 @@ impl SFAuthorization {
         ///
         /// # Safety
         ///
-        /// - `rights` must be a valid pointer.
-        /// - `environment` must be a valid pointer.
+        /// - `rights` struct field `items` must be a valid pointer or null.
+        /// - `rights` might not allow `None`.
+        /// - `environment` struct field `items` must be a valid pointer or null.
+        /// - `environment` might not allow `None`.
         /// - `authorized_rights` must be a valid pointer.
+        /// - `authorized_rights` might not allow `None`.
         /// - `error` might not allow `None`.
         #[unsafe(method(obtainWithRights:flags:environment:authorizedRights:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn obtainWithRights_flags_environment_authorizedRights_error(
             &self,
-            rights: *const AuthorizationRights,
+            rights: Option<&AuthorizationRights>,
             flags: AuthorizationFlags,
-            environment: *const AuthorizationEnvironment,
-            authorized_rights: *mut *mut AuthorizationRights,
+            environment: Option<&AuthorizationEnvironment>,
+            authorized_rights: Option<&mut *mut AuthorizationRights>,
         ) -> Result<(), Retained<NSError>>;
     );
 }
@@ -176,18 +183,21 @@ impl SFAuthorization {
         ///
         /// # Safety
         ///
-        /// - `rights` must be a valid pointer.
-        /// - `environment` must be a valid pointer.
-        /// - `authorized_rights` must be a valid pointer.
+        /// - `rights` struct field `items` must be a valid pointer or null.
+        /// - `rights` might not allow `None`.
+        /// - `environment` struct field `items` must be a valid pointer or null.
+        /// - `environment` might not allow `None`.
+        /// - `authorized_rights` struct field `items` must be a valid pointer or null.
+        /// - `authorized_rights` might not allow `None`.
         #[deprecated]
         #[unsafe(method(permitWithRights:flags:environment:authorizedRights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn permitWithRights_flags_environment_authorizedRights(
             &self,
-            rights: *const AuthorizationRights,
+            rights: Option<&AuthorizationRights>,
             flags: AuthorizationFlags,
-            environment: *const AuthorizationEnvironment,
-            authorized_rights: *mut AuthorizationRights,
+            environment: Option<&AuthorizationEnvironment>,
+            authorized_rights: Option<&mut AuthorizationRights>,
         ) -> OSStatus;
 
         #[cfg(feature = "objc2-security")]

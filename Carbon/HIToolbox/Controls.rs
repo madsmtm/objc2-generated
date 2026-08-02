@@ -611,25 +611,25 @@ pub unsafe fn DisposeControlKeyFilterUPP(user_upp: ControlKeyFilterUPP) {
 
 /// # Safety
 ///
-/// - `key_code` must be a valid pointer.
-/// - `char_code` must be a valid pointer.
-/// - `modifiers` must be a valid pointer.
+/// - `key_code` might not allow `None`.
+/// - `char_code` might not allow `None`.
+/// - `modifiers` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "Events", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeControlKeyFilterUPP(
     the_control: &Control,
-    key_code: *mut i16,
-    char_code: *mut i16,
-    modifiers: *mut EventModifiers,
+    key_code: Option<&mut i16>,
+    char_code: Option<&mut i16>,
+    modifiers: Option<&mut EventModifiers>,
     user_upp: ControlKeyFilterUPP,
 ) -> ControlKeyFilterResult {
     extern "C-unwind" {
         fn InvokeControlKeyFilterUPP(
             the_control: &Control,
-            key_code: *mut i16,
-            char_code: *mut i16,
-            modifiers: *mut EventModifiers,
+            key_code: Option<&mut i16>,
+            char_code: Option<&mut i16>,
+            modifiers: Option<&mut EventModifiers>,
             user_upp: ControlKeyFilterUPP,
         ) -> ControlKeyFilterResult;
     }

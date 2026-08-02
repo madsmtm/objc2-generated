@@ -97,18 +97,18 @@ pub unsafe fn UAZoomEnabled() -> bool {
 ///
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_highlight_rect` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_highlight_rect` might not allow `None`.
 #[inline]
 pub unsafe fn UAZoomChangeFocus(
-    in_rect: *const CGRect,
-    in_highlight_rect: *const CGRect,
+    in_rect: Option<&CGRect>,
+    in_highlight_rect: Option<&CGRect>,
     in_type: UAZoomChangeFocusType,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UAZoomChangeFocus(
-            in_rect: *const CGRect,
-            in_highlight_rect: *const CGRect,
+            in_rect: Option<&CGRect>,
+            in_highlight_rect: Option<&CGRect>,
             in_type: UAZoomChangeFocusType,
         ) -> OSStatus;
     }

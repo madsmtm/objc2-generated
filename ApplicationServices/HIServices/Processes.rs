@@ -225,12 +225,12 @@ pub const kQuitNotQuitDuringLogoutMask: c_uint = 0x0200;
 ///
 /// # Safety
 ///
-/// `p_psn` must be a valid pointer.
+/// `p_psn` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
+pub unsafe fn GetCurrentProcess(p_psn: Option<&mut ProcessSerialNumber>) -> OSErr {
     extern "C-unwind" {
-        fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
+        fn GetCurrentProcess(p_psn: Option<&mut ProcessSerialNumber>) -> OSErr;
     }
     unsafe { GetCurrentProcess(p_psn) }
 }
@@ -245,12 +245,12 @@ pub unsafe fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
 ///
 /// # Safety
 ///
-/// `p_psn` must be a valid pointer.
+/// `p_psn` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
+pub unsafe fn GetFrontProcess(p_psn: Option<&mut ProcessSerialNumber>) -> OSErr {
     extern "C-unwind" {
-        fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
+        fn GetFrontProcess(p_psn: Option<&mut ProcessSerialNumber>) -> OSErr;
     }
     unsafe { GetFrontProcess(p_psn) }
 }
@@ -268,28 +268,28 @@ pub unsafe fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
 ///
 /// # Safety
 ///
-/// `p_psn` must be a valid pointer.
+/// `p_psn` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr {
+pub unsafe fn GetNextProcess(p_psn: Option<&mut ProcessSerialNumber>) -> OSErr {
     extern "C-unwind" {
-        fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
+        fn GetNextProcess(p_psn: Option<&mut ProcessSerialNumber>) -> OSErr;
     }
     unsafe { GetNextProcess(p_psn) }
 }
 
 /// # Safety
 ///
-/// `psn` must be a valid pointer.
+/// `psn` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn ProcessInformationCopyDictionary(
-    psn: *const ProcessSerialNumber,
+    psn: Option<&ProcessSerialNumber>,
     info_to_return: u32,
 ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn ProcessInformationCopyDictionary(
-            psn: *const ProcessSerialNumber,
+            psn: Option<&ProcessSerialNumber>,
             info_to_return: u32,
         ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
@@ -308,12 +308,12 @@ pub unsafe fn ProcessInformationCopyDictionary(
 ///
 /// # Safety
 ///
-/// `p_psn` must be a valid pointer.
+/// `p_psn` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn SetFrontProcess(p_psn: *const ProcessSerialNumber) -> OSErr {
+pub unsafe fn SetFrontProcess(p_psn: Option<&ProcessSerialNumber>) -> OSErr {
     extern "C-unwind" {
-        fn SetFrontProcess(p_psn: *const ProcessSerialNumber) -> OSErr;
+        fn SetFrontProcess(p_psn: Option<&ProcessSerialNumber>) -> OSErr;
     }
     unsafe { SetFrontProcess(p_psn) }
 }
@@ -325,16 +325,16 @@ pub const kSetFrontProcessCausedByUser: c_uint = 1 << 1;
 
 /// # Safety
 ///
-/// `in_process` must be a valid pointer.
+/// `in_process` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn SetFrontProcessWithOptions(
-    in_process: *const ProcessSerialNumber,
+    in_process: Option<&ProcessSerialNumber>,
     in_options: OptionBits,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SetFrontProcessWithOptions(
-            in_process: *const ProcessSerialNumber,
+            in_process: Option<&ProcessSerialNumber>,
             in_options: OptionBits,
         ) -> OSStatus;
     }
@@ -343,33 +343,33 @@ pub unsafe fn SetFrontProcessWithOptions(
 
 /// # Safety
 ///
-/// `psn` must be a valid pointer.
+/// `psn` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn WakeUpProcess(psn: *const ProcessSerialNumber) -> OSErr {
+pub unsafe fn WakeUpProcess(psn: Option<&ProcessSerialNumber>) -> OSErr {
     extern "C-unwind" {
-        fn WakeUpProcess(psn: *const ProcessSerialNumber) -> OSErr;
+        fn WakeUpProcess(psn: Option<&ProcessSerialNumber>) -> OSErr;
     }
     unsafe { WakeUpProcess(psn) }
 }
 
 /// # Safety
 ///
-/// - `psn1` must be a valid pointer.
-/// - `psn2` must be a valid pointer.
-/// - `result` must be a valid pointer.
+/// - `psn1` might not allow `None`.
+/// - `psn2` might not allow `None`.
+/// - `result` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn SameProcess(
-    psn1: *const ProcessSerialNumber,
-    psn2: *const ProcessSerialNumber,
-    result: *mut Boolean,
+    psn1: Option<&ProcessSerialNumber>,
+    psn2: Option<&ProcessSerialNumber>,
+    result: Option<&mut Boolean>,
 ) -> OSErr {
     extern "C-unwind" {
         fn SameProcess(
-            psn1: *const ProcessSerialNumber,
-            psn2: *const ProcessSerialNumber,
-            result: *mut Boolean,
+            psn1: Option<&ProcessSerialNumber>,
+            psn2: Option<&ProcessSerialNumber>,
+            result: Option<&mut Boolean>,
         ) -> OSErr;
     }
     unsafe { SameProcess(psn1, psn2, result) }
@@ -386,29 +386,29 @@ pub unsafe fn ExitToShell() {
 
 /// # Safety
 ///
-/// `in_process` must be a valid pointer.
+/// `in_process` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn KillProcess(in_process: *const ProcessSerialNumber) -> OSErr {
+pub unsafe fn KillProcess(in_process: Option<&ProcessSerialNumber>) -> OSErr {
     extern "C-unwind" {
-        fn KillProcess(in_process: *const ProcessSerialNumber) -> OSErr;
+        fn KillProcess(in_process: Option<&ProcessSerialNumber>) -> OSErr;
     }
     unsafe { KillProcess(in_process) }
 }
 
 /// # Safety
 ///
-/// - `psn` must be a valid pointer.
+/// - `psn` might not allow `None`.
 /// - `name` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn CopyProcessName(
-    psn: *const ProcessSerialNumber,
+    psn: Option<&ProcessSerialNumber>,
     name: Option<&mut Option<CFRetained<CFString>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CopyProcessName(
-            psn: *const ProcessSerialNumber,
+            psn: Option<&ProcessSerialNumber>,
             name: Option<&mut Option<CFRetained<CFString>>>,
         ) -> OSStatus;
     }
@@ -423,27 +423,36 @@ pub unsafe fn CopyProcessName(
 
 /// # Safety
 ///
-/// - `psn` must be a valid pointer.
-/// - `pid` must be a valid pointer.
+/// - `psn` might not allow `None`.
+/// - `pid` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe fn GetProcessPID(psn: *const ProcessSerialNumber, pid: *mut libc::pid_t) -> OSStatus {
+pub unsafe fn GetProcessPID(
+    psn: Option<&ProcessSerialNumber>,
+    pid: Option<&mut libc::pid_t>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn GetProcessPID(psn: *const ProcessSerialNumber, pid: *mut libc::pid_t) -> OSStatus;
+        fn GetProcessPID(
+            psn: Option<&ProcessSerialNumber>,
+            pid: Option<&mut libc::pid_t>,
+        ) -> OSStatus;
     }
     unsafe { GetProcessPID(psn, pid) }
 }
 
 /// # Safety
 ///
-/// `psn` must be a valid pointer.
+/// `psn` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe fn GetProcessForPID(pid: libc::pid_t, psn: *mut ProcessSerialNumber) -> OSStatus {
+pub unsafe fn GetProcessForPID(
+    pid: libc::pid_t,
+    psn: Option<&mut ProcessSerialNumber>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn GetProcessForPID(pid: libc::pid_t, psn: *mut ProcessSerialNumber) -> OSStatus;
+        fn GetProcessForPID(pid: libc::pid_t, psn: Option<&mut ProcessSerialNumber>) -> OSStatus;
     }
     unsafe { GetProcessForPID(pid, psn) }
 }
@@ -454,12 +463,12 @@ pub unsafe fn GetProcessForPID(pid: libc::pid_t, psn: *mut ProcessSerialNumber) 
 ///
 /// # Safety
 ///
-/// `psn` must be a valid pointer.
+/// `psn` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn IsProcessVisible(psn: *const ProcessSerialNumber) -> bool {
+pub unsafe fn IsProcessVisible(psn: Option<&ProcessSerialNumber>) -> bool {
     extern "C-unwind" {
-        fn IsProcessVisible(psn: *const ProcessSerialNumber) -> Boolean;
+        fn IsProcessVisible(psn: Option<&ProcessSerialNumber>) -> Boolean;
     }
     let ret = unsafe { IsProcessVisible(psn) };
     ret != 0
@@ -467,12 +476,12 @@ pub unsafe fn IsProcessVisible(psn: *const ProcessSerialNumber) -> bool {
 
 /// # Safety
 ///
-/// `psn` must be a valid pointer.
+/// `psn` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn ShowHideProcess(psn: *const ProcessSerialNumber, visible: bool) -> OSErr {
+pub unsafe fn ShowHideProcess(psn: Option<&ProcessSerialNumber>, visible: bool) -> OSErr {
     extern "C-unwind" {
-        fn ShowHideProcess(psn: *const ProcessSerialNumber, visible: Boolean) -> OSErr;
+        fn ShowHideProcess(psn: Option<&ProcessSerialNumber>, visible: Boolean) -> OSErr;
     }
     let visible = visible as _;
     unsafe { ShowHideProcess(psn, visible) }
@@ -480,15 +489,15 @@ pub unsafe fn ShowHideProcess(psn: *const ProcessSerialNumber, visible: bool) ->
 
 /// # Safety
 ///
-/// `psn` must be a valid pointer.
+/// `psn` might not allow `None`.
 #[inline]
 pub unsafe fn TransformProcessType(
-    psn: *const ProcessSerialNumber,
+    psn: Option<&ProcessSerialNumber>,
     transform_state: ProcessApplicationTransformState,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TransformProcessType(
-            psn: *const ProcessSerialNumber,
+            psn: Option<&ProcessSerialNumber>,
             transform_state: ProcessApplicationTransformState,
         ) -> OSStatus;
     }

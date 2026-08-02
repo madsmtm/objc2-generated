@@ -335,7 +335,7 @@ pub unsafe fn InvokeListClickLoopUPP(user_upp: ListClickLoopUPP) -> bool {
 
 /// # Safety
 ///
-/// - `l_rect` must be a valid pointer.
+/// - `l_rect` might not allow `None`.
 /// - `l_handle` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
@@ -344,7 +344,7 @@ pub unsafe fn InvokeListClickLoopUPP(user_upp: ListClickLoopUPP) -> bool {
 pub unsafe fn InvokeListDefUPP(
     l_message: c_short,
     l_select: bool,
-    l_rect: *mut Rect,
+    l_rect: Option<&mut Rect>,
     l_cell: Cell,
     l_data_offset: c_short,
     l_data_len: c_short,
@@ -355,7 +355,7 @@ pub unsafe fn InvokeListDefUPP(
         fn InvokeListDefUPP(
             l_message: c_short,
             l_select: Boolean,
-            l_rect: *mut Rect,
+            l_rect: Option<&mut Rect>,
             l_cell: Cell,
             l_data_offset: c_short,
             l_data_len: c_short,

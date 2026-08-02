@@ -246,10 +246,6 @@ pub unsafe fn LSCopyApplicationURLsForURL(
 ///
 ///
 /// Parameter `outAcceptsItem`: Filled in with result. Must not be NULL.
-///
-/// # Safety
-///
-/// `out_accepts_item` must be a valid pointer.
 #[cfg(feature = "LSConstants")]
 #[inline]
 pub unsafe fn LSCanURLAcceptURL(
@@ -257,7 +253,7 @@ pub unsafe fn LSCanURLAcceptURL(
     in_target_url: &CFURL,
     in_role_mask: LSRolesMask,
     in_flags: LSAcceptanceFlags,
-    out_accepts_item: NonNull<Boolean>,
+    out_accepts_item: &mut Boolean,
 ) -> OSStatus {
     extern "C-unwind" {
         fn LSCanURLAcceptURL(
@@ -265,7 +261,7 @@ pub unsafe fn LSCanURLAcceptURL(
             in_target_url: &CFURL,
             in_role_mask: LSRolesMask,
             in_flags: LSAcceptanceFlags,
-            out_accepts_item: NonNull<Boolean>,
+            out_accepts_item: &mut Boolean,
         ) -> OSStatus;
     }
     unsafe {

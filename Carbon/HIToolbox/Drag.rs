@@ -147,23 +147,23 @@ pub unsafe fn DisposeDragInputUPP(user_upp: DragInputUPP) {
 
 /// # Safety
 ///
-/// - `mouse` must be a valid pointer.
-/// - `modifiers` must be a valid pointer.
+/// - `mouse` might not allow `None`.
+/// - `modifiers` might not allow `None`.
 /// - `drag_input_ref_con` must be a valid pointer.
 /// - `the_drag` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[inline]
 pub unsafe fn InvokeDragInputUPP(
-    mouse: *mut Point,
-    modifiers: *mut i16,
+    mouse: Option<&mut Point>,
+    modifiers: Option<&mut i16>,
     drag_input_ref_con: *mut c_void,
     the_drag: DragRef,
     user_upp: DragInputUPP,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeDragInputUPP(
-            mouse: *mut Point,
-            modifiers: *mut i16,
+            mouse: Option<&mut Point>,
+            modifiers: Option<&mut i16>,
             drag_input_ref_con: *mut c_void,
             the_drag: DragRef,
             user_upp: DragInputUPP,

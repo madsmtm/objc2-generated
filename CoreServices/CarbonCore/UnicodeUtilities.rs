@@ -493,7 +493,7 @@ pub unsafe fn DisposeIndexToUCStringUPP(user_upp: IndexToUCStringUPP) {
 /// - `list_data_ptr` must be a valid pointer.
 /// - `refcon` must be a valid pointer.
 /// - `out_string` might not allow `None`.
-/// - `ts_options` must be a valid pointer.
+/// - `ts_options` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[inline]
 pub unsafe fn InvokeIndexToUCStringUPP(
@@ -501,7 +501,7 @@ pub unsafe fn InvokeIndexToUCStringUPP(
     list_data_ptr: *mut c_void,
     refcon: *mut c_void,
     out_string: Option<&mut Option<CFRetained<CFString>>>,
-    ts_options: *mut UCTypeSelectOptions,
+    ts_options: Option<&mut UCTypeSelectOptions>,
     user_upp: IndexToUCStringUPP,
 ) -> bool {
     extern "C-unwind" {
@@ -510,7 +510,7 @@ pub unsafe fn InvokeIndexToUCStringUPP(
             list_data_ptr: *mut c_void,
             refcon: *mut c_void,
             out_string: Option<&mut Option<CFRetained<CFString>>>,
-            ts_options: *mut UCTypeSelectOptions,
+            ts_options: Option<&mut UCTypeSelectOptions>,
             user_upp: IndexToUCStringUPP,
         ) -> Boolean;
     }
@@ -621,8 +621,8 @@ pub const kUCTextBreakIterateMask: c_uint = 1 << 2;
 /// # Safety
 ///
 /// - `key_layout_ptr` must be a valid pointer.
-/// - `dead_key_state` must be a valid pointer.
-/// - `actual_string_length` must be a valid pointer.
+/// - `dead_key_state` might not allow `None`.
+/// - `actual_string_length` might not allow `None`.
 /// - `unicode_string` must be a valid pointer.
 #[inline]
 pub unsafe fn UCKeyTranslate(
@@ -632,9 +632,9 @@ pub unsafe fn UCKeyTranslate(
     modifier_key_state: u32,
     keyboard_type: u32,
     key_translate_options: OptionBits,
-    dead_key_state: *mut u32,
+    dead_key_state: Option<&mut u32>,
     max_string_length: UniCharCount,
-    actual_string_length: *mut UniCharCount,
+    actual_string_length: Option<&mut UniCharCount>,
     unicode_string: *mut UniChar,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -645,9 +645,9 @@ pub unsafe fn UCKeyTranslate(
             modifier_key_state: u32,
             keyboard_type: u32,
             key_translate_options: OptionBits,
-            dead_key_state: *mut u32,
+            dead_key_state: Option<&mut u32>,
             max_string_length: UniCharCount,
-            actual_string_length: *mut UniCharCount,
+            actual_string_length: Option<&mut UniCharCount>,
             unicode_string: *mut UniChar,
         ) -> OSStatus;
     }
@@ -671,20 +671,21 @@ pub unsafe fn UCKeyTranslate(
 ///
 /// - `locale` must be a valid pointer.
 /// - `collator_ref` must be a valid pointer.
+/// - `collator_ref` might not allow `None`.
 #[cfg(feature = "MacLocales")]
 #[inline]
 pub unsafe fn UCCreateCollator(
     locale: LocaleRef,
     op_variant: LocaleOperationVariant,
     options: UCCollateOptions,
-    collator_ref: *mut CollatorRef,
+    collator_ref: Option<&mut CollatorRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCCreateCollator(
             locale: LocaleRef,
             op_variant: LocaleOperationVariant,
             options: UCCollateOptions,
-            collator_ref: *mut CollatorRef,
+            collator_ref: Option<&mut CollatorRef>,
         ) -> OSStatus;
     }
     unsafe { UCCreateCollator(locale, op_variant, options, collator_ref) }
@@ -694,7 +695,7 @@ pub unsafe fn UCCreateCollator(
 ///
 /// - `collator_ref` must be a valid pointer.
 /// - `text_ptr` must be a valid pointer.
-/// - `actual_key_size` must be a valid pointer.
+/// - `actual_key_size` might not allow `None`.
 /// - `collation_key` must be a valid pointer.
 #[inline]
 pub unsafe fn UCGetCollationKey(
@@ -702,7 +703,7 @@ pub unsafe fn UCGetCollationKey(
     text_ptr: *const UniChar,
     text_length: UniCharCount,
     max_key_size: ItemCount,
-    actual_key_size: *mut ItemCount,
+    actual_key_size: Option<&mut ItemCount>,
     collation_key: *mut UCCollationValue,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -711,7 +712,7 @@ pub unsafe fn UCGetCollationKey(
             text_ptr: *const UniChar,
             text_length: UniCharCount,
             max_key_size: ItemCount,
-            actual_key_size: *mut ItemCount,
+            actual_key_size: Option<&mut ItemCount>,
             collation_key: *mut UCCollationValue,
         ) -> OSStatus;
     }
@@ -731,16 +732,16 @@ pub unsafe fn UCGetCollationKey(
 ///
 /// - `key1_ptr` must be a valid pointer.
 /// - `key2_ptr` must be a valid pointer.
-/// - `equivalent` must be a valid pointer.
-/// - `order` must be a valid pointer.
+/// - `equivalent` might not allow `None`.
+/// - `order` might not allow `None`.
 #[inline]
 pub unsafe fn UCCompareCollationKeys(
     key1_ptr: *const UCCollationValue,
     key1_length: ItemCount,
     key2_ptr: *const UCCollationValue,
     key2_length: ItemCount,
-    equivalent: *mut Boolean,
-    order: *mut i32,
+    equivalent: Option<&mut Boolean>,
+    order: Option<&mut i32>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCCompareCollationKeys(
@@ -748,8 +749,8 @@ pub unsafe fn UCCompareCollationKeys(
             key1_length: ItemCount,
             key2_ptr: *const UCCollationValue,
             key2_length: ItemCount,
-            equivalent: *mut Boolean,
-            order: *mut i32,
+            equivalent: Option<&mut Boolean>,
+            order: Option<&mut i32>,
         ) -> OSStatus;
     }
     unsafe {
@@ -769,8 +770,8 @@ pub unsafe fn UCCompareCollationKeys(
 /// - `collator_ref` must be a valid pointer.
 /// - `text1_ptr` must be a valid pointer.
 /// - `text2_ptr` must be a valid pointer.
-/// - `equivalent` must be a valid pointer.
-/// - `order` must be a valid pointer.
+/// - `equivalent` might not allow `None`.
+/// - `order` might not allow `None`.
 #[inline]
 pub unsafe fn UCCompareText(
     collator_ref: CollatorRef,
@@ -778,8 +779,8 @@ pub unsafe fn UCCompareText(
     text1_length: UniCharCount,
     text2_ptr: *const UniChar,
     text2_length: UniCharCount,
-    equivalent: *mut Boolean,
-    order: *mut i32,
+    equivalent: Option<&mut Boolean>,
+    order: Option<&mut i32>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCCompareText(
@@ -788,8 +789,8 @@ pub unsafe fn UCCompareText(
             text1_length: UniCharCount,
             text2_ptr: *const UniChar,
             text2_length: UniCharCount,
-            equivalent: *mut Boolean,
-            order: *mut i32,
+            equivalent: Option<&mut Boolean>,
+            order: Option<&mut i32>,
         ) -> OSStatus;
     }
     unsafe {
@@ -807,11 +808,12 @@ pub unsafe fn UCCompareText(
 
 /// # Safety
 ///
-/// `collator_ref` must be a valid pointer.
+/// - `collator_ref` must be a valid pointer.
+/// - `collator_ref` might not allow `None`.
 #[inline]
-pub unsafe fn UCDisposeCollator(collator_ref: *mut CollatorRef) -> OSStatus {
+pub unsafe fn UCDisposeCollator(collator_ref: Option<&mut CollatorRef>) -> OSStatus {
     extern "C-unwind" {
-        fn UCDisposeCollator(collator_ref: *mut CollatorRef) -> OSStatus;
+        fn UCDisposeCollator(collator_ref: Option<&mut CollatorRef>) -> OSStatus;
     }
     unsafe { UCDisposeCollator(collator_ref) }
 }
@@ -820,8 +822,8 @@ pub unsafe fn UCDisposeCollator(collator_ref: *mut CollatorRef) -> OSStatus {
 ///
 /// - `text1_ptr` must be a valid pointer.
 /// - `text2_ptr` must be a valid pointer.
-/// - `equivalent` must be a valid pointer.
-/// - `order` must be a valid pointer.
+/// - `equivalent` might not allow `None`.
+/// - `order` might not allow `None`.
 #[inline]
 pub unsafe fn UCCompareTextDefault(
     options: UCCollateOptions,
@@ -829,8 +831,8 @@ pub unsafe fn UCCompareTextDefault(
     text1_length: UniCharCount,
     text2_ptr: *const UniChar,
     text2_length: UniCharCount,
-    equivalent: *mut Boolean,
-    order: *mut i32,
+    equivalent: Option<&mut Boolean>,
+    order: Option<&mut i32>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCCompareTextDefault(
@@ -839,8 +841,8 @@ pub unsafe fn UCCompareTextDefault(
             text1_length: UniCharCount,
             text2_ptr: *const UniChar,
             text2_length: UniCharCount,
-            equivalent: *mut Boolean,
-            order: *mut i32,
+            equivalent: Option<&mut Boolean>,
+            order: Option<&mut i32>,
         ) -> OSStatus;
     }
     unsafe {
@@ -860,8 +862,8 @@ pub unsafe fn UCCompareTextDefault(
 ///
 /// - `text1_ptr` must be a valid pointer.
 /// - `text2_ptr` must be a valid pointer.
-/// - `equivalent` must be a valid pointer.
-/// - `order` must be a valid pointer.
+/// - `equivalent` might not allow `None`.
+/// - `order` might not allow `None`.
 #[inline]
 pub unsafe fn UCCompareTextNoLocale(
     options: UCCollateOptions,
@@ -869,8 +871,8 @@ pub unsafe fn UCCompareTextNoLocale(
     text1_length: UniCharCount,
     text2_ptr: *const UniChar,
     text2_length: UniCharCount,
-    equivalent: *mut Boolean,
-    order: *mut i32,
+    equivalent: Option<&mut Boolean>,
+    order: Option<&mut i32>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCCompareTextNoLocale(
@@ -879,8 +881,8 @@ pub unsafe fn UCCompareTextNoLocale(
             text1_length: UniCharCount,
             text2_ptr: *const UniChar,
             text2_length: UniCharCount,
-            equivalent: *mut Boolean,
-            order: *mut i32,
+            equivalent: Option<&mut Boolean>,
+            order: Option<&mut i32>,
         ) -> OSStatus;
     }
     unsafe {
@@ -900,6 +902,7 @@ pub unsafe fn UCCompareTextNoLocale(
 ///
 /// - `locale` must be a valid pointer.
 /// - `break_ref` must be a valid pointer.
+/// - `break_ref` might not allow `None`.
 #[cfg(feature = "MacLocales")]
 #[deprecated]
 #[inline]
@@ -907,14 +910,14 @@ pub unsafe fn UCCreateTextBreakLocator(
     locale: LocaleRef,
     op_variant: LocaleOperationVariant,
     break_types: UCTextBreakType,
-    break_ref: *mut TextBreakLocatorRef,
+    break_ref: Option<&mut TextBreakLocatorRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCCreateTextBreakLocator(
             locale: LocaleRef,
             op_variant: LocaleOperationVariant,
             break_types: UCTextBreakType,
-            break_ref: *mut TextBreakLocatorRef,
+            break_ref: Option<&mut TextBreakLocatorRef>,
         ) -> OSStatus;
     }
     unsafe { UCCreateTextBreakLocator(locale, op_variant, break_types, break_ref) }
@@ -924,7 +927,7 @@ pub unsafe fn UCCreateTextBreakLocator(
 ///
 /// - `break_ref` must be a valid pointer.
 /// - `text_ptr` must be a valid pointer.
-/// - `break_offset` must be a valid pointer.
+/// - `break_offset` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[deprecated]
 #[inline]
@@ -935,7 +938,7 @@ pub unsafe fn UCFindTextBreak(
     text_ptr: *const UniChar,
     text_length: UniCharCount,
     start_offset: UniCharArrayOffset,
-    break_offset: *mut UniCharArrayOffset,
+    break_offset: Option<&mut UniCharArrayOffset>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCFindTextBreak(
@@ -945,7 +948,7 @@ pub unsafe fn UCFindTextBreak(
             text_ptr: *const UniChar,
             text_length: UniCharCount,
             start_offset: UniCharArrayOffset,
-            break_offset: *mut UniCharArrayOffset,
+            break_offset: Option<&mut UniCharArrayOffset>,
         ) -> OSStatus;
     }
     unsafe {
@@ -963,12 +966,13 @@ pub unsafe fn UCFindTextBreak(
 
 /// # Safety
 ///
-/// `break_ref` must be a valid pointer.
+/// - `break_ref` must be a valid pointer.
+/// - `break_ref` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn UCDisposeTextBreakLocator(break_ref: *mut TextBreakLocatorRef) -> OSStatus {
+pub unsafe fn UCDisposeTextBreakLocator(break_ref: Option<&mut TextBreakLocatorRef>) -> OSStatus {
     extern "C-unwind" {
-        fn UCDisposeTextBreakLocator(break_ref: *mut TextBreakLocatorRef) -> OSStatus;
+        fn UCDisposeTextBreakLocator(break_ref: Option<&mut TextBreakLocatorRef>) -> OSStatus;
     }
     unsafe { UCDisposeTextBreakLocator(break_ref) }
 }
@@ -977,20 +981,21 @@ pub unsafe fn UCDisposeTextBreakLocator(break_ref: *mut TextBreakLocatorRef) -> 
 ///
 /// - `locale` must be a valid pointer.
 /// - `new_selector` must be a valid pointer.
+/// - `new_selector` might not allow `None`.
 #[cfg(feature = "MacLocales")]
 #[inline]
 pub unsafe fn UCTypeSelectCreateSelector(
     locale: LocaleRef,
     op_variant: LocaleOperationVariant,
     options: UCCollateOptions,
-    new_selector: *mut UCTypeSelectRef,
+    new_selector: Option<&mut UCTypeSelectRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCTypeSelectCreateSelector(
             locale: LocaleRef,
             op_variant: LocaleOperationVariant,
             options: UCCollateOptions,
-            new_selector: *mut UCTypeSelectRef,
+            new_selector: Option<&mut UCTypeSelectRef>,
         ) -> OSStatus;
     }
     unsafe { UCTypeSelectCreateSelector(locale, op_variant, options, new_selector) }
@@ -1009,11 +1014,12 @@ pub unsafe fn UCTypeSelectFlushSelectorData(r#ref: UCTypeSelectRef) -> OSStatus 
 
 /// # Safety
 ///
-/// `ref` must be a valid pointer.
+/// - `ref` must be a valid pointer.
+/// - `ref` might not allow `None`.
 #[inline]
-pub unsafe fn UCTypeSelectReleaseSelector(r#ref: *mut UCTypeSelectRef) -> OSStatus {
+pub unsafe fn UCTypeSelectReleaseSelector(r#ref: Option<&mut UCTypeSelectRef>) -> OSStatus {
     extern "C-unwind" {
-        fn UCTypeSelectReleaseSelector(r#ref: *mut UCTypeSelectRef) -> OSStatus;
+        fn UCTypeSelectReleaseSelector(r#ref: Option<&mut UCTypeSelectRef>) -> OSStatus;
     }
     unsafe { UCTypeSelectReleaseSelector(r#ref) }
 }
@@ -1043,20 +1049,20 @@ pub unsafe fn UCTypeSelectWouldResetBuffer(
 ///
 /// - `in_ref` must be a valid pointer.
 /// - `in_text` might not allow `None`.
-/// - `update_flag` must be a valid pointer.
+/// - `update_flag` might not allow `None`.
 #[inline]
 pub unsafe fn UCTypeSelectAddKeyToSelector(
     in_ref: UCTypeSelectRef,
     in_text: Option<&CFString>,
     in_event_time: c_double,
-    update_flag: *mut Boolean,
+    update_flag: Option<&mut Boolean>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCTypeSelectAddKeyToSelector(
             in_ref: UCTypeSelectRef,
             in_text: Option<&CFString>,
             in_event_time: c_double,
-            update_flag: *mut Boolean,
+            update_flag: Option<&mut Boolean>,
         ) -> OSStatus;
     }
     unsafe { UCTypeSelectAddKeyToSelector(in_ref, in_text, in_event_time, update_flag) }
@@ -1066,18 +1072,18 @@ pub unsafe fn UCTypeSelectAddKeyToSelector(
 ///
 /// - `ref` must be a valid pointer.
 /// - `in_text` might not allow `None`.
-/// - `result` must be a valid pointer.
+/// - `result` might not allow `None`.
 #[inline]
 pub unsafe fn UCTypeSelectCompare(
     r#ref: UCTypeSelectRef,
     in_text: Option<&CFString>,
-    result: *mut UCTypeSelectCompareResult,
+    result: Option<&mut UCTypeSelectCompareResult>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCTypeSelectCompare(
             r#ref: UCTypeSelectRef,
             in_text: Option<&CFString>,
-            result: *mut UCTypeSelectCompareResult,
+            result: Option<&mut UCTypeSelectCompareResult>,
         ) -> OSStatus;
     }
     unsafe { UCTypeSelectCompare(r#ref, in_text, result) }
@@ -1089,7 +1095,7 @@ pub unsafe fn UCTypeSelectCompare(
 /// - `list_data_ptr` must be a valid pointer.
 /// - `refcon` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
-/// - `closest_item` must be a valid pointer.
+/// - `closest_item` might not allow `None`.
 #[inline]
 pub unsafe fn UCTypeSelectFindItem(
     r#ref: UCTypeSelectRef,
@@ -1097,7 +1103,7 @@ pub unsafe fn UCTypeSelectFindItem(
     list_data_ptr: *mut c_void,
     refcon: *mut c_void,
     user_upp: IndexToUCStringUPP,
-    closest_item: *mut u32,
+    closest_item: Option<&mut u32>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCTypeSelectFindItem(
@@ -1106,7 +1112,7 @@ pub unsafe fn UCTypeSelectFindItem(
             list_data_ptr: *mut c_void,
             refcon: *mut c_void,
             user_upp: IndexToUCStringUPP,
-            closest_item: *mut u32,
+            closest_item: Option<&mut u32>,
         ) -> OSStatus;
     }
     unsafe {
@@ -1128,7 +1134,7 @@ pub unsafe fn UCTypeSelectFindItem(
 /// - `list_data_ptr` must be a valid pointer.
 /// - `refcon` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
-/// - `closest_item` must be a valid pointer.
+/// - `closest_item` might not allow `None`.
 #[inline]
 pub unsafe fn UCTypeSelectWalkList(
     r#ref: UCTypeSelectRef,
@@ -1138,7 +1144,7 @@ pub unsafe fn UCTypeSelectWalkList(
     list_data_ptr: *mut c_void,
     refcon: *mut c_void,
     user_upp: IndexToUCStringUPP,
-    closest_item: *mut u32,
+    closest_item: Option<&mut u32>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCTypeSelectWalkList(
@@ -1149,7 +1155,7 @@ pub unsafe fn UCTypeSelectWalkList(
             list_data_ptr: *mut c_void,
             refcon: *mut c_void,
             user_upp: IndexToUCStringUPP,
-            closest_item: *mut u32,
+            closest_item: Option<&mut u32>,
         ) -> OSStatus;
     }
     unsafe {

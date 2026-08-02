@@ -172,45 +172,46 @@ impl GCExtendedGamepadSnapshotData {
     ///
     /// # Safety
     ///
-    /// `snapshot_data` must be a valid pointer or null.
+    /// `snapshot_data` struct field `version` must be set correctly.
     #[doc(alias = "GCExtendedGamepadSnapshotDataFromNSData")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[inline]
     pub unsafe fn from_ns_data(
-        snapshot_data: *mut GCExtendedGamepadSnapshotData,
+        snapshot_data: Option<&mut GCExtendedGamepadSnapshotData>,
         data: Option<&NSData>,
     ) -> bool {
         extern "C-unwind" {
             fn GCExtendedGamepadSnapshotDataFromNSData(
-                snapshot_data: *mut GCExtendedGamepadSnapshotData,
+                snapshot_data: Option<&mut GCExtendedGamepadSnapshotData>,
                 data: Option<&NSData>,
             ) -> Bool;
         }
         unsafe { GCExtendedGamepadSnapshotDataFromNSData(snapshot_data, data) }.as_bool()
     }
-}
 
-/// Creates an NSData object from a snapshot.
-/// If the version and size is not set in the snapshot the data will automatically have the version GCCurrentExtendedGamepadSnapshotDataVersion and sizeof(GCExtendedGamepadSnapshotData) set as the values implicitly.
-///
-///
-/// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCExtendedGamepadSnapshot.snapshotData
-///
-/// # Safety
-///
-/// `snapshot_data` must be a valid pointer or null.
-#[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
-#[inline]
-pub unsafe fn NSDataFromGCExtendedGamepadSnapshotData(
-    snapshot_data: *mut GCExtendedGamepadSnapshotData,
-) -> Option<Retained<NSData>> {
-    extern "C-unwind" {
-        fn NSDataFromGCExtendedGamepadSnapshotData(
-            snapshot_data: *mut GCExtendedGamepadSnapshotData,
-        ) -> *mut NSData;
+    /// Creates an NSData object from a snapshot.
+    /// If the version and size is not set in the snapshot the data will automatically have the version GCCurrentExtendedGamepadSnapshotDataVersion and sizeof(GCExtendedGamepadSnapshotData) set as the values implicitly.
+    ///
+    ///
+    /// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCExtendedGamepadSnapshot.snapshotData
+    ///
+    /// # Safety
+    ///
+    /// `snapshot_data` struct field `version` must be set correctly.
+    #[doc(alias = "NSDataFromGCExtendedGamepadSnapshotData")]
+    #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
+    #[inline]
+    pub unsafe fn to_ns_data(
+        snapshot_data: Option<&GCExtendedGamepadSnapshotData>,
+    ) -> Option<Retained<NSData>> {
+        extern "C-unwind" {
+            fn NSDataFromGCExtendedGamepadSnapshotData(
+                snapshot_data: Option<&GCExtendedGamepadSnapshotData>,
+            ) -> *mut NSData;
+        }
+        let ret = unsafe { NSDataFromGCExtendedGamepadSnapshotData(snapshot_data) };
+        unsafe { Retained::retain_autoreleased(ret) }
     }
-    let ret = unsafe { NSDataFromGCExtendedGamepadSnapshotData(snapshot_data) };
-    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdatav100?language=objc)
@@ -271,43 +272,44 @@ impl GCExtendedGamepadSnapShotDataV100 {
     ///
     /// # Safety
     ///
-    /// `snapshot_data` must be a valid pointer or null.
+    /// `snapshot_data` struct field `version` must be set correctly.
     #[doc(alias = "GCExtendedGamepadSnapShotDataV100FromNSData")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[inline]
     pub unsafe fn from_ns_data(
-        snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
+        snapshot_data: Option<&mut GCExtendedGamepadSnapShotDataV100>,
         data: Option<&NSData>,
     ) -> bool {
         extern "C-unwind" {
             fn GCExtendedGamepadSnapShotDataV100FromNSData(
-                snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
+                snapshot_data: Option<&mut GCExtendedGamepadSnapShotDataV100>,
                 data: Option<&NSData>,
             ) -> Bool;
         }
         unsafe { GCExtendedGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
     }
-}
 
-/// Creates an NSData object from a v100 snapshot.
-/// If the version and size is not set in the snapshot the data will automatically have version 0x100 and sizeof(GCExtendedGamepadSnapShotDataV100) set as the values implicitly.
-///
-///
-/// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCExtendedGamepadSnapshot.snapshotData
-///
-/// # Safety
-///
-/// `snapshot_data` must be a valid pointer or null.
-#[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
-#[inline]
-pub unsafe fn NSDataFromGCExtendedGamepadSnapShotDataV100(
-    snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
-) -> Option<Retained<NSData>> {
-    extern "C-unwind" {
-        fn NSDataFromGCExtendedGamepadSnapShotDataV100(
-            snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
-        ) -> *mut NSData;
+    /// Creates an NSData object from a v100 snapshot.
+    /// If the version and size is not set in the snapshot the data will automatically have version 0x100 and sizeof(GCExtendedGamepadSnapShotDataV100) set as the values implicitly.
+    ///
+    ///
+    /// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCExtendedGamepadSnapshot.snapshotData
+    ///
+    /// # Safety
+    ///
+    /// `snapshot_data` struct field `version` must be set correctly.
+    #[doc(alias = "NSDataFromGCExtendedGamepadSnapShotDataV100")]
+    #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
+    #[inline]
+    pub unsafe fn to_ns_data(
+        snapshot_data: Option<&GCExtendedGamepadSnapShotDataV100>,
+    ) -> Option<Retained<NSData>> {
+        extern "C-unwind" {
+            fn NSDataFromGCExtendedGamepadSnapShotDataV100(
+                snapshot_data: Option<&GCExtendedGamepadSnapShotDataV100>,
+            ) -> *mut NSData;
+        }
+        let ret = unsafe { NSDataFromGCExtendedGamepadSnapShotDataV100(snapshot_data) };
+        unsafe { Retained::retain_autoreleased(ret) }
     }
-    let ret = unsafe { NSDataFromGCExtendedGamepadSnapShotDataV100(snapshot_data) };
-    unsafe { Retained::retain_autoreleased(ret) }
 }

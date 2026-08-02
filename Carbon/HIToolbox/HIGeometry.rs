@@ -28,12 +28,12 @@ pub const kHICoordSpaceView: c_uint = 4;
 
 /// # Safety
 ///
-/// - `io_point` must be a valid pointer.
+/// - `io_point` might not allow `None`.
 /// - `in_source_object` must be a valid pointer.
 /// - `in_destination_object` must be a valid pointer.
 #[inline]
 pub unsafe fn HIPointConvert(
-    io_point: *mut HIPoint,
+    io_point: Option<&mut HIPoint>,
     in_source_space: HICoordinateSpace,
     in_source_object: *mut c_void,
     in_destination_space: HICoordinateSpace,
@@ -41,7 +41,7 @@ pub unsafe fn HIPointConvert(
 ) {
     extern "C-unwind" {
         fn HIPointConvert(
-            io_point: *mut HIPoint,
+            io_point: Option<&mut HIPoint>,
             in_source_space: HICoordinateSpace,
             in_source_object: *mut c_void,
             in_destination_space: HICoordinateSpace,
@@ -61,12 +61,12 @@ pub unsafe fn HIPointConvert(
 
 /// # Safety
 ///
-/// - `io_rect` must be a valid pointer.
+/// - `io_rect` might not allow `None`.
 /// - `in_source_object` must be a valid pointer.
 /// - `in_destination_object` must be a valid pointer.
 #[inline]
 pub unsafe fn HIRectConvert(
-    io_rect: *mut HIRect,
+    io_rect: Option<&mut HIRect>,
     in_source_space: HICoordinateSpace,
     in_source_object: *mut c_void,
     in_destination_space: HICoordinateSpace,
@@ -74,7 +74,7 @@ pub unsafe fn HIRectConvert(
 ) {
     extern "C-unwind" {
         fn HIRectConvert(
-            io_rect: *mut HIRect,
+            io_rect: Option<&mut HIRect>,
             in_source_space: HICoordinateSpace,
             in_source_object: *mut c_void,
             in_destination_space: HICoordinateSpace,
@@ -94,12 +94,12 @@ pub unsafe fn HIRectConvert(
 
 /// # Safety
 ///
-/// - `io_size` must be a valid pointer.
+/// - `io_size` might not allow `None`.
 /// - `in_source_object` must be a valid pointer.
 /// - `in_destination_object` must be a valid pointer.
 #[inline]
 pub unsafe fn HISizeConvert(
-    io_size: *mut HISize,
+    io_size: Option<&mut HISize>,
     in_source_space: HICoordinateSpace,
     in_source_object: *mut c_void,
     in_destination_space: HICoordinateSpace,
@@ -107,7 +107,7 @@ pub unsafe fn HISizeConvert(
 ) {
     extern "C-unwind" {
         fn HISizeConvert(
-            io_size: *mut HISize,
+            io_size: Option<&mut HISize>,
             in_source_space: HICoordinateSpace,
             in_source_object: *mut c_void,
             in_destination_space: HICoordinateSpace,

@@ -22,14 +22,13 @@ extern_protocol!(
         /// Parameter `max`: A pointer to a SCNVector3 to store the max vertex of the bounding box into.
         ///
         /// the returned bounding box is in local space of the receiver.
-        ///
-        /// # Safety
-        ///
-        /// - `min` must be a valid pointer or null.
-        /// - `max` must be a valid pointer or null.
         #[unsafe(method(getBoundingBoxMin:max:))]
         #[unsafe(method_family = none)]
-        unsafe fn getBoundingBoxMin_max(&self, min: *mut SCNVector3, max: *mut SCNVector3) -> bool;
+        unsafe fn getBoundingBoxMin_max(
+            &self,
+            min: Option<&mut SCNVector3>,
+            max: Option<&mut SCNVector3>,
+        ) -> bool;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Override the receiver bounding box with the min and max vectors provided (in local space of the receiver).
@@ -39,14 +38,9 @@ extern_protocol!(
         /// Parameter `max`: A pointer to a SCNVector3 representing the max vertex of the desired bounding box.
         ///
         /// Passing nil as arguments will recompute the original bounding box of the receiver.
-        ///
-        /// # Safety
-        ///
-        /// - `min` must be a valid pointer or null.
-        /// - `max` must be a valid pointer or null.
         #[unsafe(method(setBoundingBoxMin:max:))]
         #[unsafe(method_family = none)]
-        unsafe fn setBoundingBoxMin_max(&self, min: *mut SCNVector3, max: *mut SCNVector3);
+        unsafe fn setBoundingBoxMin_max(&self, min: Option<&SCNVector3>, max: Option<&SCNVector3>);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Fill the center vector with the center of the bounding sphere and store the radius of the bounding sphere in 'radius'.
@@ -56,17 +50,12 @@ extern_protocol!(
         /// Parameter `radius`: A pointer to a CGFloat to store the radius of the bounding sphere into.
         ///
         /// the returned bounding sphere is in local space of the receiver.
-        ///
-        /// # Safety
-        ///
-        /// - `center` must be a valid pointer or null.
-        /// - `radius` must be a valid pointer or null.
         #[unsafe(method(getBoundingSphereCenter:radius:))]
         #[unsafe(method_family = none)]
         unsafe fn getBoundingSphereCenter_radius(
             &self,
-            center: *mut SCNVector3,
-            radius: *mut CGFloat,
+            center: Option<&mut SCNVector3>,
+            radius: Option<&mut CGFloat>,
         ) -> bool;
     }
 );

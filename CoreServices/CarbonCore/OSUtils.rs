@@ -156,12 +156,12 @@ pub unsafe fn IsMetric() -> bool {
 
 /// # Safety
 ///
-/// `final_ticks` must be a valid pointer.
+/// `final_ticks` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn Delay(num_ticks: c_ulong, final_ticks: *mut c_ulong) {
+pub unsafe fn Delay(num_ticks: c_ulong, final_ticks: Option<&mut c_ulong>) {
     extern "C-unwind" {
-        fn Delay(num_ticks: c_ulong, final_ticks: *mut c_ulong);
+        fn Delay(num_ticks: c_ulong, final_ticks: Option<&mut c_ulong>);
     }
     unsafe { Delay(num_ticks, final_ticks) }
 }
@@ -194,12 +194,13 @@ pub unsafe fn Dequeue(q_element: QElemPtr, q_header: QHdrPtr) -> OSErr {
 
 /// # Safety
 ///
-/// `loc` must be a valid pointer.
+/// - `loc` struct field `u` must be correctly initialized.
+/// - `loc` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn ReadLocation(loc: *mut MachineLocation) {
+pub unsafe fn ReadLocation(loc: Option<&mut MachineLocation>) {
     extern "C-unwind" {
-        fn ReadLocation(loc: *mut MachineLocation);
+        fn ReadLocation(loc: Option<&mut MachineLocation>);
     }
     unsafe { ReadLocation(loc) }
 }

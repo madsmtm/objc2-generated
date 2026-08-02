@@ -368,18 +368,18 @@ unsafe impl RefEncode for TogglePB {
 
 /// # Safety
 ///
-/// - `i_utc_date` must be a valid pointer.
-/// - `o_cf_time` must be a valid pointer.
+/// - `i_utc_date` might not allow `None`.
+/// - `o_cf_time` might not allow `None`.
 #[cfg(feature = "UTCUtils")]
 #[inline]
 pub unsafe fn UCConvertUTCDateTimeToCFAbsoluteTime(
-    i_utc_date: *const UTCDateTime,
-    o_cf_time: *mut CFAbsoluteTime,
+    i_utc_date: Option<&UTCDateTime>,
+    o_cf_time: Option<&mut CFAbsoluteTime>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCConvertUTCDateTimeToCFAbsoluteTime(
-            i_utc_date: *const UTCDateTime,
-            o_cf_time: *mut CFAbsoluteTime,
+            i_utc_date: Option<&UTCDateTime>,
+            o_cf_time: Option<&mut CFAbsoluteTime>,
         ) -> OSStatus;
     }
     unsafe { UCConvertUTCDateTimeToCFAbsoluteTime(i_utc_date, o_cf_time) }
@@ -387,16 +387,16 @@ pub unsafe fn UCConvertUTCDateTimeToCFAbsoluteTime(
 
 /// # Safety
 ///
-/// `o_cf_time` must be a valid pointer.
+/// `o_cf_time` might not allow `None`.
 #[inline]
 pub unsafe fn UCConvertSecondsToCFAbsoluteTime(
     i_seconds: u32,
-    o_cf_time: *mut CFAbsoluteTime,
+    o_cf_time: Option<&mut CFAbsoluteTime>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCConvertSecondsToCFAbsoluteTime(
             i_seconds: u32,
-            o_cf_time: *mut CFAbsoluteTime,
+            o_cf_time: Option<&mut CFAbsoluteTime>,
         ) -> OSStatus;
     }
     unsafe { UCConvertSecondsToCFAbsoluteTime(i_seconds, o_cf_time) }
@@ -404,16 +404,16 @@ pub unsafe fn UCConvertSecondsToCFAbsoluteTime(
 
 /// # Safety
 ///
-/// `o_cf_time` must be a valid pointer.
+/// `o_cf_time` might not allow `None`.
 #[inline]
 pub unsafe fn UCConvertLongDateTimeToCFAbsoluteTime(
     i_long_time: LongDateTime,
-    o_cf_time: *mut CFAbsoluteTime,
+    o_cf_time: Option<&mut CFAbsoluteTime>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCConvertLongDateTimeToCFAbsoluteTime(
             i_long_time: LongDateTime,
-            o_cf_time: *mut CFAbsoluteTime,
+            o_cf_time: Option<&mut CFAbsoluteTime>,
         ) -> OSStatus;
     }
     unsafe { UCConvertLongDateTimeToCFAbsoluteTime(i_long_time, o_cf_time) }
@@ -421,17 +421,17 @@ pub unsafe fn UCConvertLongDateTimeToCFAbsoluteTime(
 
 /// # Safety
 ///
-/// `o_utc_date` must be a valid pointer.
+/// `o_utc_date` might not allow `None`.
 #[cfg(feature = "UTCUtils")]
 #[inline]
 pub unsafe fn UCConvertCFAbsoluteTimeToUTCDateTime(
     i_cf_time: CFAbsoluteTime,
-    o_utc_date: *mut UTCDateTime,
+    o_utc_date: Option<&mut UTCDateTime>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCConvertCFAbsoluteTimeToUTCDateTime(
             i_cf_time: CFAbsoluteTime,
-            o_utc_date: *mut UTCDateTime,
+            o_utc_date: Option<&mut UTCDateTime>,
         ) -> OSStatus;
     }
     unsafe { UCConvertCFAbsoluteTimeToUTCDateTime(i_cf_time, o_utc_date) }
@@ -439,16 +439,16 @@ pub unsafe fn UCConvertCFAbsoluteTimeToUTCDateTime(
 
 /// # Safety
 ///
-/// `o_seconds` must be a valid pointer.
+/// `o_seconds` might not allow `None`.
 #[inline]
 pub unsafe fn UCConvertCFAbsoluteTimeToSeconds(
     i_cf_time: CFAbsoluteTime,
-    o_seconds: *mut u32,
+    o_seconds: Option<&mut u32>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCConvertCFAbsoluteTimeToSeconds(
             i_cf_time: CFAbsoluteTime,
-            o_seconds: *mut u32,
+            o_seconds: Option<&mut u32>,
         ) -> OSStatus;
     }
     unsafe { UCConvertCFAbsoluteTimeToSeconds(i_cf_time, o_seconds) }
@@ -456,16 +456,16 @@ pub unsafe fn UCConvertCFAbsoluteTimeToSeconds(
 
 /// # Safety
 ///
-/// `o_long_date` must be a valid pointer.
+/// `o_long_date` might not allow `None`.
 #[inline]
 pub unsafe fn UCConvertCFAbsoluteTimeToLongDateTime(
     i_cf_time: CFAbsoluteTime,
-    o_long_date: *mut LongDateTime,
+    o_long_date: Option<&mut LongDateTime>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCConvertCFAbsoluteTimeToLongDateTime(
             i_cf_time: CFAbsoluteTime,
-            o_long_date: *mut LongDateTime,
+            o_long_date: Option<&mut LongDateTime>,
         ) -> OSStatus;
     }
     unsafe { UCConvertCFAbsoluteTimeToLongDateTime(i_cf_time, o_long_date) }

@@ -145,14 +145,14 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `in_marked_range` must be a valid pointer.
+        /// `in_marked_range` might not allow `None`.
         #[unsafe(method(characterIndexForPoint:tracking:inMarkedRange:))]
         #[unsafe(method_family = none)]
         unsafe fn characterIndexForPoint_tracking_inMarkedRange(
             &self,
             point: NSPoint,
             mapping_mode: IMKLocationToOffsetMappingMode,
-            in_marked_range: *mut Bool,
+            in_marked_range: Option<&mut Bool>,
         ) -> NSInteger;
 
         #[cfg(feature = "objc2-foundation")]
@@ -164,13 +164,13 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `line_rect` must be a valid pointer.
+        /// `line_rect` might not allow `None`.
         #[unsafe(method(attributesForCharacterIndex:lineHeightRectangle:))]
         #[unsafe(method_family = none)]
         unsafe fn attributesForCharacterIndex_lineHeightRectangle(
             &self,
             index: NSUInteger,
-            line_rect: *mut NSRect,
+            line_rect: Option<&mut NSRect>,
         ) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "objc2-foundation")]

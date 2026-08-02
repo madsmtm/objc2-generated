@@ -969,9 +969,9 @@ pub unsafe fn ResolveDefaultTextEncoding(encoding: TextEncoding) -> TextEncoding
 
 /// # Safety
 ///
-/// - `o_name_length` must be a valid pointer.
-/// - `o_actual_region` must be a valid pointer.
-/// - `o_actual_encoding` must be a valid pointer.
+/// - `o_name_length` might not allow `None`.
+/// - `o_actual_region` might not allow `None`.
+/// - `o_actual_encoding` might not allow `None`.
 /// - `o_encoding_name` must be a valid pointer.
 #[inline]
 pub unsafe fn GetTextEncodingName(
@@ -980,9 +980,9 @@ pub unsafe fn GetTextEncodingName(
     i_preferred_region: RegionCode,
     i_preferred_encoding: TextEncoding,
     i_output_buf_len: ByteCount,
-    o_name_length: *mut ByteCount,
-    o_actual_region: *mut RegionCode,
-    o_actual_encoding: *mut TextEncoding,
+    o_name_length: Option<&mut ByteCount>,
+    o_actual_region: Option<&mut RegionCode>,
+    o_actual_encoding: Option<&mut TextEncoding>,
     o_encoding_name: TextPtr,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -992,9 +992,9 @@ pub unsafe fn GetTextEncodingName(
             i_preferred_region: RegionCode,
             i_preferred_encoding: TextEncoding,
             i_output_buf_len: ByteCount,
-            o_name_length: *mut ByteCount,
-            o_actual_region: *mut RegionCode,
-            o_actual_encoding: *mut TextEncoding,
+            o_name_length: Option<&mut ByteCount>,
+            o_actual_region: Option<&mut RegionCode>,
+            o_actual_encoding: Option<&mut TextEncoding>,
             o_encoding_name: TextPtr,
         ) -> OSStatus;
     }
@@ -1015,11 +1015,12 @@ pub unsafe fn GetTextEncodingName(
 
 /// # Safety
 ///
-/// `tec_info` must be a valid pointer.
+/// - `tec_info` must be a valid pointer.
+/// - `tec_info` might not allow `None`.
 #[inline]
-pub unsafe fn TECGetInfo(tec_info: *mut TECInfoHandle) -> OSStatus {
+pub unsafe fn TECGetInfo(tec_info: Option<&mut TECInfoHandle>) -> OSStatus {
     extern "C-unwind" {
-        fn TECGetInfo(tec_info: *mut TECInfoHandle) -> OSStatus;
+        fn TECGetInfo(tec_info: Option<&mut TECInfoHandle>) -> OSStatus;
     }
     unsafe { TECGetInfo(tec_info) }
 }
@@ -1027,14 +1028,14 @@ pub unsafe fn TECGetInfo(tec_info: *mut TECInfoHandle) -> OSStatus {
 /// # Safety
 ///
 /// - `i_text_fontname` must be a valid pointer.
-/// - `o_encoding` must be a valid pointer.
+/// - `o_encoding` might not allow `None`.
 #[inline]
 pub unsafe fn UpgradeScriptInfoToTextEncoding(
     i_text_script_id: ScriptCode,
     i_text_language_id: LangCode,
     i_region_id: RegionCode,
     i_text_fontname: ConstStr255Param,
-    o_encoding: *mut TextEncoding,
+    o_encoding: Option<&mut TextEncoding>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UpgradeScriptInfoToTextEncoding(
@@ -1042,7 +1043,7 @@ pub unsafe fn UpgradeScriptInfoToTextEncoding(
             i_text_language_id: LangCode,
             i_region_id: RegionCode,
             i_text_fontname: ConstStr255Param,
-            o_encoding: *mut TextEncoding,
+            o_encoding: Option<&mut TextEncoding>,
         ) -> OSStatus;
     }
     unsafe {
@@ -1058,21 +1059,21 @@ pub unsafe fn UpgradeScriptInfoToTextEncoding(
 
 /// # Safety
 ///
-/// - `o_text_script_id` must be a valid pointer.
-/// - `o_text_language_id` must be a valid pointer.
+/// - `o_text_script_id` might not allow `None`.
+/// - `o_text_language_id` might not allow `None`.
 /// - `o_text_fontname` might not allow `None`.
 #[inline]
 pub unsafe fn RevertTextEncodingToScriptInfo(
     i_encoding: TextEncoding,
-    o_text_script_id: *mut ScriptCode,
-    o_text_language_id: *mut LangCode,
+    o_text_script_id: Option<&mut ScriptCode>,
+    o_text_language_id: Option<&mut LangCode>,
     o_text_fontname: Option<&mut Str255>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn RevertTextEncodingToScriptInfo(
             i_encoding: TextEncoding,
-            o_text_script_id: *mut ScriptCode,
-            o_text_language_id: *mut LangCode,
+            o_text_script_id: Option<&mut ScriptCode>,
+            o_text_language_id: Option<&mut LangCode>,
             o_text_fontname: Option<&mut Str255>,
         ) -> OSStatus;
     }
@@ -1088,20 +1089,20 @@ pub unsafe fn RevertTextEncodingToScriptInfo(
 
 /// # Safety
 ///
-/// `o_encoding` must be a valid pointer.
+/// `o_encoding` might not allow `None`.
 #[inline]
 pub unsafe fn GetTextEncodingFromScriptInfo(
     i_text_script_id: ScriptCode,
     i_text_language_id: LangCode,
     i_text_region_id: RegionCode,
-    o_encoding: *mut TextEncoding,
+    o_encoding: Option<&mut TextEncoding>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn GetTextEncodingFromScriptInfo(
             i_text_script_id: ScriptCode,
             i_text_language_id: LangCode,
             i_text_region_id: RegionCode,
-            o_encoding: *mut TextEncoding,
+            o_encoding: Option<&mut TextEncoding>,
         ) -> OSStatus;
     }
     unsafe {
@@ -1116,19 +1117,19 @@ pub unsafe fn GetTextEncodingFromScriptInfo(
 
 /// # Safety
 ///
-/// - `o_text_script_id` must be a valid pointer.
-/// - `o_text_language_id` must be a valid pointer.
+/// - `o_text_script_id` might not allow `None`.
+/// - `o_text_language_id` might not allow `None`.
 #[inline]
 pub unsafe fn GetScriptInfoFromTextEncoding(
     i_encoding: TextEncoding,
-    o_text_script_id: *mut ScriptCode,
-    o_text_language_id: *mut LangCode,
+    o_text_script_id: Option<&mut ScriptCode>,
+    o_text_language_id: Option<&mut LangCode>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn GetScriptInfoFromTextEncoding(
             i_encoding: TextEncoding,
-            o_text_script_id: *mut ScriptCode,
-            o_text_language_id: *mut LangCode,
+            o_text_script_id: Option<&mut ScriptCode>,
+            o_text_language_id: Option<&mut LangCode>,
         ) -> OSStatus;
     }
     unsafe { GetScriptInfoFromTextEncoding(i_encoding, o_text_script_id, o_text_language_id) }
@@ -1136,19 +1137,19 @@ pub unsafe fn GetScriptInfoFromTextEncoding(
 
 /// # Safety
 ///
-/// - `best_mac_encoding` must be a valid pointer.
-/// - `alternate_mac_encoding` must be a valid pointer.
+/// - `best_mac_encoding` might not allow `None`.
+/// - `alternate_mac_encoding` might not allow `None`.
 #[inline]
 pub unsafe fn NearestMacTextEncodings(
     general_encoding: TextEncoding,
-    best_mac_encoding: *mut TextEncoding,
-    alternate_mac_encoding: *mut TextEncoding,
+    best_mac_encoding: Option<&mut TextEncoding>,
+    alternate_mac_encoding: Option<&mut TextEncoding>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn NearestMacTextEncodings(
             general_encoding: TextEncoding,
-            best_mac_encoding: *mut TextEncoding,
-            alternate_mac_encoding: *mut TextEncoding,
+            best_mac_encoding: Option<&mut TextEncoding>,
+            alternate_mac_encoding: Option<&mut TextEncoding>,
         ) -> OSStatus;
     }
     unsafe { NearestMacTextEncodings(general_encoding, best_mac_encoding, alternate_mac_encoding) }
@@ -1157,20 +1158,20 @@ pub unsafe fn NearestMacTextEncodings(
 /// # Safety
 ///
 /// - `char_ptr` must be a valid pointer.
-/// - `prop_value` must be a valid pointer.
+/// - `prop_value` might not allow `None`.
 #[inline]
 pub unsafe fn UCGetCharProperty(
     char_ptr: *const UniChar,
     text_length: UniCharCount,
     prop_type: UCCharPropertyType,
-    prop_value: *mut UCCharPropertyValue,
+    prop_value: Option<&mut UCCharPropertyValue>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCGetCharProperty(
             char_ptr: *const UniChar,
             text_length: UniCharCount,
             prop_type: UCCharPropertyType,
-            prop_value: *mut UCCharPropertyValue,
+            prop_value: Option<&mut UCCharPropertyValue>,
         ) -> OSStatus;
     }
     unsafe { UCGetCharProperty(char_ptr, text_length, prop_type, prop_value) }

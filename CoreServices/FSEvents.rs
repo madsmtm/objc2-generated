@@ -155,12 +155,16 @@ pub type FSEventStreamCallback = Option<
 /// # Safety
 ///
 /// - `callback` must be implemented correctly.
-/// - `context` must be a valid pointer or null.
+/// - `context` struct field `version` must be set correctly.
+/// - `context` struct field `info` must be a valid pointer or null.
+/// - `context` struct field `retain` must be implemented correctly.
+/// - `context` struct field `release` must be implemented correctly.
+/// - `context` struct field `copyDescription` must be implemented correctly.
 #[inline]
 pub unsafe fn FSEventStreamCreate(
     allocator: Option<&CFAllocator>,
     callback: FSEventStreamCallback,
-    context: *mut FSEventStreamContext,
+    context: Option<&mut FSEventStreamContext>,
     paths_to_watch: &CFArray<CFString>,
     since_when: FSEventStreamEventId,
     latency: CFTimeInterval,
@@ -170,7 +174,7 @@ pub unsafe fn FSEventStreamCreate(
         fn FSEventStreamCreate(
             allocator: Option<&CFAllocator>,
             callback: FSEventStreamCallback,
-            context: *mut FSEventStreamContext,
+            context: Option<&mut FSEventStreamContext>,
             paths_to_watch: &CFArray<CFString>,
             since_when: FSEventStreamEventId,
             latency: CFTimeInterval,
@@ -193,13 +197,17 @@ pub unsafe fn FSEventStreamCreate(
 /// # Safety
 ///
 /// - `callback` must be implemented correctly.
-/// - `context` must be a valid pointer or null.
+/// - `context` struct field `version` must be set correctly.
+/// - `context` struct field `info` must be a valid pointer or null.
+/// - `context` struct field `retain` must be implemented correctly.
+/// - `context` struct field `release` must be implemented correctly.
+/// - `context` struct field `copyDescription` must be implemented correctly.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn FSEventStreamCreateRelativeToDevice(
     allocator: Option<&CFAllocator>,
     callback: FSEventStreamCallback,
-    context: *mut FSEventStreamContext,
+    context: Option<&mut FSEventStreamContext>,
     device_to_watch: libc::dev_t,
     paths_to_watch_relative_to_device: &CFArray<CFString>,
     since_when: FSEventStreamEventId,
@@ -210,7 +218,7 @@ pub unsafe fn FSEventStreamCreateRelativeToDevice(
         fn FSEventStreamCreateRelativeToDevice(
             allocator: Option<&CFAllocator>,
             callback: FSEventStreamCallback,
-            context: *mut FSEventStreamContext,
+            context: Option<&mut FSEventStreamContext>,
             device_to_watch: libc::dev_t,
             paths_to_watch_relative_to_device: &CFArray<CFString>,
             since_when: FSEventStreamEventId,

@@ -443,8 +443,7 @@ impl CMTagCollection {
     ///
     /// # Safety
     ///
-    /// - `tag_buffer` must be a valid pointer.
-    /// - `number_of_tags_copied` must be a valid pointer or null.
+    /// `tag_buffer` must be a valid pointer.
     #[doc(alias = "CMTagCollectionGetTags")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -452,14 +451,14 @@ impl CMTagCollection {
         &self,
         tag_buffer: NonNull<CMTag>,
         tag_buffer_count: CMItemCount,
-        number_of_tags_copied: *mut CMItemCount,
+        number_of_tags_copied: Option<&mut CMItemCount>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionGetTags(
                 tag_collection: &CMTagCollection,
                 tag_buffer: NonNull<CMTag>,
                 tag_buffer_count: CMItemCount,
-                number_of_tags_copied: *mut CMItemCount,
+                number_of_tags_copied: Option<&mut CMItemCount>,
             ) -> OSStatus;
         }
         unsafe { CMTagCollectionGetTags(self, tag_buffer, tag_buffer_count, number_of_tags_copied) }
@@ -483,8 +482,7 @@ impl CMTagCollection {
     ///
     /// # Safety
     ///
-    /// - `tag_buffer` must be a valid pointer.
-    /// - `number_of_tags_copied` must be a valid pointer or null.
+    /// `tag_buffer` must be a valid pointer.
     #[doc(alias = "CMTagCollectionGetTagsWithCategory")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -493,7 +491,7 @@ impl CMTagCollection {
         category: CMTagCategory,
         tag_buffer: NonNull<CMTag>,
         tag_buffer_count: CMItemCount,
-        number_of_tags_copied: *mut CMItemCount,
+        number_of_tags_copied: Option<&mut CMItemCount>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionGetTagsWithCategory(
@@ -501,7 +499,7 @@ impl CMTagCollection {
                 category: CMTagCategory,
                 tag_buffer: NonNull<CMTag>,
                 tag_buffer_count: CMItemCount,
-                number_of_tags_copied: *mut CMItemCount,
+                number_of_tags_copied: Option<&mut CMItemCount>,
             ) -> OSStatus;
         }
         unsafe {
@@ -570,7 +568,6 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// - `tag_buffer` must be a valid pointer.
-    /// - `number_of_tags_copied` must be a valid pointer or null.
     /// - `filter` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "CMTagCollectionGetTagsWithFilterFunction")]
@@ -580,7 +577,7 @@ impl CMTagCollection {
         &self,
         tag_buffer: NonNull<CMTag>,
         tag_buffer_count: CMItemCount,
-        number_of_tags_copied: *mut CMItemCount,
+        number_of_tags_copied: Option<&mut CMItemCount>,
         filter: CMTagCollectionTagFilterFunction,
         context: *mut c_void,
     ) -> OSStatus {
@@ -589,7 +586,7 @@ impl CMTagCollection {
                 tag_collection: &CMTagCollection,
                 tag_buffer: NonNull<CMTag>,
                 tag_buffer_count: CMItemCount,
-                number_of_tags_copied: *mut CMItemCount,
+                number_of_tags_copied: Option<&mut CMItemCount>,
                 filter: CMTagCollectionTagFilterFunction,
                 context: *mut c_void,
             ) -> OSStatus;

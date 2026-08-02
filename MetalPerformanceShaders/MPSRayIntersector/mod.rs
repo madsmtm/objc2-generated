@@ -1088,16 +1088,12 @@ impl MPSRayIntersector {
         ///
         ///
         /// Returns: A pointer to a copy of this MPSRayIntersector
-        ///
-        /// # Safety
-        ///
-        /// `zone` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
-            zone: *mut NSZone,
+            zone: Option<&NSZone>,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 

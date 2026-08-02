@@ -545,7 +545,12 @@ impl MDQuery {
     ///
     /// - `func` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    /// - `cb` must be a valid pointer.
+    /// - `cb` struct field `version` must be set correctly.
+    /// - `cb` struct field `retain` must be implemented correctly.
+    /// - `cb` struct field `release` must be implemented correctly.
+    /// - `cb` struct field `copyDescription` must be implemented correctly.
+    /// - `cb` struct field `equal` must be implemented correctly.
+    /// - `cb` might not allow `None`.
     #[doc(alias = "MDQuerySetCreateResultFunction")]
     #[cfg(feature = "MDItem")]
     #[inline]
@@ -553,14 +558,14 @@ impl MDQuery {
         &self,
         func: MDQueryCreateResultFunction,
         context: *mut c_void,
-        cb: *const CFArrayCallBacks,
+        cb: Option<&CFArrayCallBacks>,
     ) {
         extern "C-unwind" {
             fn MDQuerySetCreateResultFunction(
                 query: &MDQuery,
                 func: MDQueryCreateResultFunction,
                 context: *mut c_void,
-                cb: *const CFArrayCallBacks,
+                cb: Option<&CFArrayCallBacks>,
             );
         }
         unsafe { MDQuerySetCreateResultFunction(self, func, context, cb) }
@@ -672,21 +677,26 @@ impl MDQuery {
     ///
     /// - `func` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    /// - `cb` must be a valid pointer.
+    /// - `cb` struct field `version` must be set correctly.
+    /// - `cb` struct field `retain` must be implemented correctly.
+    /// - `cb` struct field `release` must be implemented correctly.
+    /// - `cb` struct field `copyDescription` must be implemented correctly.
+    /// - `cb` struct field `equal` must be implemented correctly.
+    /// - `cb` might not allow `None`.
     #[doc(alias = "MDQuerySetCreateValueFunction")]
     #[inline]
     pub unsafe fn set_create_value_function(
         &self,
         func: MDQueryCreateValueFunction,
         context: *mut c_void,
-        cb: *const CFArrayCallBacks,
+        cb: Option<&CFArrayCallBacks>,
     ) {
         extern "C-unwind" {
             fn MDQuerySetCreateValueFunction(
                 query: &MDQuery,
                 func: MDQueryCreateValueFunction,
                 context: *mut c_void,
-                cb: *const CFArrayCallBacks,
+                cb: Option<&CFArrayCallBacks>,
             );
         }
         unsafe { MDQuerySetCreateValueFunction(self, func, context, cb) }

@@ -374,43 +374,37 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetID(self) }
     }
 
-    /// # Safety
-    ///
-    /// `seed` must be a valid pointer or null.
     #[doc(alias = "IOSurfaceLock")]
     #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
     #[inline]
-    pub unsafe fn lock(
+    pub fn lock(
         &self,
         options: IOSurfaceLockOptions,
-        seed: *mut u32,
+        seed: Option<&mut u32>,
     ) -> libc::kern_return_t {
         extern "C-unwind" {
             fn IOSurfaceLock(
                 buffer: &IOSurfaceRef,
                 options: IOSurfaceLockOptions,
-                seed: *mut u32,
+                seed: Option<&mut u32>,
             ) -> libc::kern_return_t;
         }
         unsafe { IOSurfaceLock(self, options, seed) }
     }
 
-    /// # Safety
-    ///
-    /// `seed` must be a valid pointer or null.
     #[doc(alias = "IOSurfaceUnlock")]
     #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
     #[inline]
-    pub unsafe fn unlock(
+    pub fn unlock(
         &self,
         options: IOSurfaceLockOptions,
-        seed: *mut u32,
+        seed: Option<&mut u32>,
     ) -> libc::kern_return_t {
         extern "C-unwind" {
             fn IOSurfaceUnlock(
                 buffer: &IOSurfaceRef,
                 options: IOSurfaceLockOptions,
-                seed: *mut u32,
+                seed: Option<&mut u32>,
             ) -> libc::kern_return_t;
         }
         unsafe { IOSurfaceUnlock(self, options, seed) }
@@ -886,18 +880,19 @@ impl IOSurfaceRef {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `old_state` must be a valid pointer or null.
     #[doc(alias = "IOSurfaceSetPurgeable")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub unsafe fn set_purgeable(&self, new_state: u32, old_state: *mut u32) -> libc::kern_return_t {
+    pub unsafe fn set_purgeable(
+        &self,
+        new_state: u32,
+        old_state: Option<&mut u32>,
+    ) -> libc::kern_return_t {
         extern "C-unwind" {
             fn IOSurfaceSetPurgeable(
                 buffer: &IOSurfaceRef,
                 new_state: u32,
-                old_state: *mut u32,
+                old_state: Option<&mut u32>,
             ) -> libc::kern_return_t;
         }
         unsafe { IOSurfaceSetPurgeable(self, new_state, old_state) }

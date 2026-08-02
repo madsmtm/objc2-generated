@@ -133,15 +133,11 @@ impl IOUSBHostControllerInterface {
         /// delivered to the kernel service.
         ///
         /// Parameter `interrupt`: An IOUSBHostCIMessage structure representing an interrupt message
-        ///
-        /// # Safety
-        ///
-        /// `interrupt` must be a valid pointer.
         #[unsafe(method(enqueueInterrupt:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueInterrupt_error(
             &self,
-            interrupt: NonNull<IOUSBHostCIMessage>,
+            interrupt: &IOUSBHostCIMessage,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
@@ -153,15 +149,11 @@ impl IOUSBHostControllerInterface {
         ///
         /// Parameter `expedite`: Bool NO to use interruptRateHz to determine when the interrupt message is delivered to the kernel service. Bool YES if interruptRateHz
         /// should be ignored, sending the message to the kernel driver at the next opportunity while maintaining in-order delivery of all interrupt messages.
-        ///
-        /// # Safety
-        ///
-        /// `interrupt` must be a valid pointer.
         #[unsafe(method(enqueueInterrupt:expedite:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueInterrupt_expedite_error(
             &self,
-            interrupt: NonNull<IOUSBHostCIMessage>,
+            interrupt: &IOUSBHostCIMessage,
             expedite: bool,
         ) -> Result<(), Retained<NSError>>;
 
@@ -225,14 +217,11 @@ impl IOUSBHostControllerInterface {
         pub unsafe fn setInterruptRateHz(&self, interrupt_rate_hz: NSUInteger);
 
         #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
-        /// # Safety
-        ///
-        /// `message` must be a valid pointer.
         #[unsafe(method(descriptionForMessage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionForMessage(
             &self,
-            message: NonNull<IOUSBHostCIMessage>,
+            message: &IOUSBHostCIMessage,
         ) -> Retained<NSString>;
 
         #[cfg(feature = "IOUSBHostCIControllerStateMachine")]
@@ -244,14 +233,11 @@ impl IOUSBHostControllerInterface {
             feature = "IOUSBHostCIPortStateMachine",
             feature = "IOUSBHostControllerInterfaceDefinitions"
         ))]
-        /// # Safety
-        ///
-        /// `command` must be a valid pointer.
         #[unsafe(method(getPortStateMachineForCommand:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPortStateMachineForCommand_error(
             &self,
-            command: NonNull<IOUSBHostCIMessage>,
+            command: &IOUSBHostCIMessage,
         ) -> Result<Retained<IOUSBHostCIPortStateMachine>, Retained<NSError>>;
 
         #[cfg(feature = "IOUSBHostCIPortStateMachine")]

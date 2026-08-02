@@ -373,7 +373,12 @@ impl WSMethodInvocation {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field `version` must be set correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "WSMethodInvocationSetCallBack")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
@@ -381,13 +386,13 @@ impl WSMethodInvocation {
     pub unsafe fn set_call_back(
         &self,
         client_cb: WSMethodInvocationCallBackProcPtr,
-        context: *mut WSClientContext,
+        context: Option<&mut WSClientContext>,
     ) {
         extern "C-unwind" {
             fn WSMethodInvocationSetCallBack(
                 invocation: &WSMethodInvocation,
                 client_cb: WSMethodInvocationCallBackProcPtr,
-                context: *mut WSClientContext,
+                context: Option<&mut WSClientContext>,
             );
         }
         unsafe { WSMethodInvocationSetCallBack(self, client_cb, context) }
@@ -471,7 +476,12 @@ impl WSMethodInvocation {
     /// # Safety
     ///
     /// - `serialization_proc` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field `version` must be set correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "WSMethodInvocationAddSerializationOverride")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
@@ -480,14 +490,14 @@ impl WSMethodInvocation {
         &self,
         obj_type: CFTypeID,
         serialization_proc: WSMethodInvocationSerializationProcPtr,
-        context: *mut WSClientContext,
+        context: Option<&mut WSClientContext>,
     ) {
         extern "C-unwind" {
             fn WSMethodInvocationAddSerializationOverride(
                 invocation: &WSMethodInvocation,
                 obj_type: CFTypeID,
                 serialization_proc: WSMethodInvocationSerializationProcPtr,
-                context: *mut WSClientContext,
+                context: Option<&mut WSClientContext>,
             );
         }
         unsafe {
@@ -513,7 +523,12 @@ impl WSMethodInvocation {
     /// - `type_namespace` might not allow `None`.
     /// - `type_name` might not allow `None`.
     /// - `deserialization_proc` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field `version` must be set correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "WSMethodInvocationAddDeserializationOverride")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
@@ -523,7 +538,7 @@ impl WSMethodInvocation {
         type_namespace: Option<&CFString>,
         type_name: Option<&CFString>,
         deserialization_proc: WSMethodInvocationDeserializationProcPtr,
-        context: *mut WSClientContext,
+        context: Option<&mut WSClientContext>,
     ) {
         extern "C-unwind" {
             fn WSMethodInvocationAddDeserializationOverride(
@@ -531,7 +546,7 @@ impl WSMethodInvocation {
                 type_namespace: Option<&CFString>,
                 type_name: Option<&CFString>,
                 deserialization_proc: WSMethodInvocationDeserializationProcPtr,
-                context: *mut WSClientContext,
+                context: Option<&mut WSClientContext>,
             );
         }
         unsafe {

@@ -63,16 +63,12 @@ impl AVSampleCursor {
         /// Parameter `outWasPinned`: If the beginning or the end of the sample sequence was reached before the requested deltaDecodeTime was traversed, the BOOL value at the address specified by outWasPinned will be set to YES. May be NULL if this information isn't desired.
         ///
         /// Returns: The amount of time the cursor was moved along the decode timeline. Because sample cursors snap to sample boundaries when stepped, this value may not be equal to deltaDecodeTime even if the cursor was not pinned.
-        ///
-        /// # Safety
-        ///
-        /// `out_was_pinned` must be a valid pointer or null.
         #[unsafe(method(stepByDecodeTime:wasPinned:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stepByDecodeTime_wasPinned(
             &self,
             delta_decode_time: CMTime,
-            out_was_pinned: *mut Bool,
+            out_was_pinned: Option<&mut Bool>,
         ) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
@@ -83,16 +79,12 @@ impl AVSampleCursor {
         /// Parameter `outWasPinned`: If the beginning or the end of the sample sequence was reached before the requested deltaPresentationTime was traversed, the BOOL value at the address specified by outWasPinned will be set to YES. May be NULL if this information isn't desired.
         ///
         /// Returns: The amount of time the cursor was moved along the presentation timeline. Because sample cursors snap to sample boundaries when stepped, this value may not be equal to deltaPresentationTime even if the cursor was not pinned.
-        ///
-        /// # Safety
-        ///
-        /// `out_was_pinned` must be a valid pointer or null.
         #[unsafe(method(stepByPresentationTime:wasPinned:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stepByPresentationTime_wasPinned(
             &self,
             delta_presentation_time: CMTime,
-            out_was_pinned: *mut Bool,
+            out_was_pinned: Option<&mut Bool>,
         ) -> CMTime;
     );
 }

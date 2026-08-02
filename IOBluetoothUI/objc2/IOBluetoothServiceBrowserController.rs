@@ -212,7 +212,8 @@ impl IOBluetoothServiceBrowserController {
         ///
         /// # Safety
         ///
-        /// - `device_attributes` must be a valid pointer.
+        /// - `device_attributes` struct field `attributeList` must be a valid pointer.
+        /// - `device_attributes` might not allow `None`.
         /// - `service_array` generic should be of the correct type.
         /// - `service_array` might not allow `None`.
         /// - `out_record` might not allow `None`.
@@ -221,7 +222,7 @@ impl IOBluetoothServiceBrowserController {
         #[unsafe(method_family = none)]
         pub unsafe fn discoverWithDeviceAttributes_serviceList_serviceRecord(
             &self,
-            device_attributes: *mut IOBluetoothDeviceSearchAttributes,
+            device_attributes: Option<&mut IOBluetoothDeviceSearchAttributes>,
             service_array: Option<&NSArray>,
             out_record: Option<&mut Option<Retained<IOBluetoothSDPServiceRecord>>>,
         ) -> IOReturn;
@@ -331,12 +332,13 @@ impl IOBluetoothServiceBrowserController {
         ///
         /// # Safety
         ///
-        /// `search_attributes` must be a valid pointer.
+        /// - `search_attributes` struct field `attributeList` must be a valid pointer.
+        /// - `search_attributes` might not allow `None`.
         #[unsafe(method(setSearchAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchAttributes(
             &self,
-            search_attributes: *const IOBluetoothDeviceSearchAttributes,
+            search_attributes: Option<&IOBluetoothDeviceSearchAttributes>,
         );
 
         #[cfg(feature = "objc2-io-bluetooth")]

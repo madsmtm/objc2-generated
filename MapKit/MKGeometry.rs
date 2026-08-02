@@ -295,25 +295,21 @@ impl MKMapRect {
         unsafe { MKMapRectOffset(self, dx, dy) }
     }
 
-    /// # Safety
-    ///
-    /// - `slice` must be a valid pointer.
-    /// - `remainder` must be a valid pointer.
     #[doc(alias = "MKMapRectDivide")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn divide(
         self,
-        slice: NonNull<MKMapRect>,
-        remainder: NonNull<MKMapRect>,
+        slice: &mut MKMapRect,
+        remainder: &mut MKMapRect,
         amount: c_double,
         edge: CGRectEdge,
     ) {
         extern "C-unwind" {
             fn MKMapRectDivide(
                 rect: MKMapRect,
-                slice: NonNull<MKMapRect>,
-                remainder: NonNull<MKMapRect>,
+                slice: &mut MKMapRect,
+                remainder: &mut MKMapRect,
                 amount: c_double,
                 edge: CGRectEdge,
             );

@@ -1088,10 +1088,12 @@ pub type HIThemeBackgroundDrawInfoPtr = *mut HIThemeBackgroundDrawInfo;
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `animation` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
-/// - `out_label_rect` must be a valid pointer.
+/// - `out_label_rect` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -1099,19 +1101,19 @@ pub type HIThemeBackgroundDrawInfoPtr = *mut HIThemeBackgroundDrawInfo;
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawButton(
-    in_bounds: *const HIRect,
-    in_draw_info: *const HIThemeButtonDrawInfo,
+    in_bounds: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeButtonDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
-    out_label_rect: *mut HIRect,
+    out_label_rect: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawButton(
-            in_bounds: *const HIRect,
-            in_draw_info: *const HIThemeButtonDrawInfo,
+            in_bounds: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeButtonDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
-            out_label_rect: *mut HIRect,
+            out_label_rect: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     unsafe {
@@ -1127,8 +1129,10 @@ pub unsafe fn HIThemeDrawButton(
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `animation` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
 /// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1137,14 +1141,14 @@ pub unsafe fn HIThemeDrawButton(
 ))]
 #[inline]
 pub unsafe fn HIThemeGetButtonShape(
-    in_bounds: *const HIRect,
-    in_draw_info: *const HIThemeButtonDrawInfo,
+    in_bounds: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeButtonDrawInfo>,
     out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetButtonShape(
-            in_bounds: *const HIRect,
-            in_draw_info: *const HIThemeButtonDrawInfo,
+            in_bounds: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeButtonDrawInfo>,
             out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
@@ -1159,21 +1163,23 @@ pub unsafe fn HIThemeGetButtonShape(
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
-/// - `out_bounds` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `animation` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
+/// - `out_bounds` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeGetButtonContentBounds(
-    in_bounds: *const HIRect,
-    in_draw_info: *const HIThemeButtonDrawInfo,
-    out_bounds: *mut HIRect,
+    in_bounds: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeButtonDrawInfo>,
+    out_bounds: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetButtonContentBounds(
-            in_bounds: *const HIRect,
-            in_draw_info: *const HIThemeButtonDrawInfo,
-            out_bounds: *mut HIRect,
+            in_bounds: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeButtonDrawInfo>,
+            out_bounds: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     unsafe { HIThemeGetButtonContentBounds(in_bounds, in_draw_info, out_bounds) }
@@ -1181,21 +1187,23 @@ pub unsafe fn HIThemeGetButtonContentBounds(
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
-/// - `out_bounds` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `animation` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
+/// - `out_bounds` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeGetButtonBackgroundBounds(
-    in_bounds: *const HIRect,
-    in_draw_info: *const HIThemeButtonDrawInfo,
-    out_bounds: *mut HIRect,
+    in_bounds: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeButtonDrawInfo>,
+    out_bounds: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetButtonBackgroundBounds(
-            in_bounds: *const HIRect,
-            in_draw_info: *const HIThemeButtonDrawInfo,
-            out_bounds: *mut HIRect,
+            in_bounds: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeButtonDrawInfo>,
+            out_bounds: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     unsafe { HIThemeGetButtonBackgroundBounds(in_bounds, in_draw_info, out_bounds) }
@@ -1203,8 +1211,9 @@ pub unsafe fn HIThemeGetButtonBackgroundBounds(
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1213,15 +1222,15 @@ pub unsafe fn HIThemeGetButtonBackgroundBounds(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawChasingArrows(
-    in_bounds: *const HIRect,
-    in_draw_info: *const HIThemeChasingArrowsDrawInfo,
+    in_bounds: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeChasingArrowsDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawChasingArrows(
-            in_bounds: *const HIRect,
-            in_draw_info: *const HIThemeChasingArrowsDrawInfo,
+            in_bounds: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeChasingArrowsDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -1231,8 +1240,9 @@ pub unsafe fn HIThemeDrawChasingArrows(
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1241,15 +1251,15 @@ pub unsafe fn HIThemeDrawChasingArrows(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawPopupArrow(
-    in_bounds: *const HIRect,
-    in_draw_info: *const HIThemePopupArrowDrawInfo,
+    in_bounds: Option<&HIRect>,
+    in_draw_info: Option<&HIThemePopupArrowDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawPopupArrow(
-            in_bounds: *const HIRect,
-            in_draw_info: *const HIThemePopupArrowDrawInfo,
+            in_bounds: Option<&HIRect>,
+            in_draw_info: Option<&HIThemePopupArrowDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -1259,8 +1269,9 @@ pub unsafe fn HIThemeDrawPopupArrow(
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1269,15 +1280,15 @@ pub unsafe fn HIThemeDrawPopupArrow(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawMenuBarBackground(
-    in_bounds: *const HIRect,
-    in_draw_info: *const HIThemeMenuBarDrawInfo,
+    in_bounds: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeMenuBarDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawMenuBarBackground(
-            in_bounds: *const HIRect,
-            in_draw_info: *const HIThemeMenuBarDrawInfo,
+            in_bounds: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeMenuBarDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -1287,11 +1298,12 @@ pub unsafe fn HIThemeDrawMenuBarBackground(
 
 /// # Safety
 ///
-/// - `in_menu_bar_rect` must be a valid pointer.
-/// - `in_title_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_menu_bar_rect` might not allow `None`.
+/// - `in_title_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
-/// - `out_label_rect` must be a valid pointer.
+/// - `out_label_rect` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -1299,21 +1311,21 @@ pub unsafe fn HIThemeDrawMenuBarBackground(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawMenuTitle(
-    in_menu_bar_rect: *const HIRect,
-    in_title_rect: *const HIRect,
-    in_draw_info: *const HIThemeMenuTitleDrawInfo,
+    in_menu_bar_rect: Option<&HIRect>,
+    in_title_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeMenuTitleDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
-    out_label_rect: *mut HIRect,
+    out_label_rect: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawMenuTitle(
-            in_menu_bar_rect: *const HIRect,
-            in_title_rect: *const HIRect,
-            in_draw_info: *const HIThemeMenuTitleDrawInfo,
+            in_menu_bar_rect: Option<&HIRect>,
+            in_title_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeMenuTitleDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
-            out_label_rect: *mut HIRect,
+            out_label_rect: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     unsafe {
@@ -1330,8 +1342,9 @@ pub unsafe fn HIThemeDrawMenuTitle(
 
 /// # Safety
 ///
-/// - `in_menu_rect` must be a valid pointer.
-/// - `in_menu_draw_info` must be a valid pointer.
+/// - `in_menu_rect` might not allow `None`.
+/// - `in_menu_draw_info` struct field `version` must be set correctly.
+/// - `in_menu_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1340,15 +1353,15 @@ pub unsafe fn HIThemeDrawMenuTitle(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawMenuBackground(
-    in_menu_rect: *const HIRect,
-    in_menu_draw_info: *const HIThemeMenuDrawInfo,
+    in_menu_rect: Option<&HIRect>,
+    in_menu_draw_info: Option<&HIThemeMenuDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawMenuBackground(
-            in_menu_rect: *const HIRect,
-            in_menu_draw_info: *const HIThemeMenuDrawInfo,
+            in_menu_rect: Option<&HIRect>,
+            in_menu_draw_info: Option<&HIThemeMenuDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -1360,11 +1373,12 @@ pub unsafe fn HIThemeDrawMenuBackground(
 
 /// # Safety
 ///
-/// - `in_menu_rect` must be a valid pointer.
-/// - `in_item_rect` must be a valid pointer.
-/// - `in_item_draw_info` must be a valid pointer.
+/// - `in_menu_rect` might not allow `None`.
+/// - `in_item_rect` might not allow `None`.
+/// - `in_item_draw_info` struct field `version` must be set correctly.
+/// - `in_item_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
-/// - `out_content_rect` must be a valid pointer.
+/// - `out_content_rect` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -1372,21 +1386,21 @@ pub unsafe fn HIThemeDrawMenuBackground(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawMenuItem(
-    in_menu_rect: *const HIRect,
-    in_item_rect: *const HIRect,
-    in_item_draw_info: *const HIThemeMenuItemDrawInfo,
+    in_menu_rect: Option<&HIRect>,
+    in_item_rect: Option<&HIRect>,
+    in_item_draw_info: Option<&HIThemeMenuItemDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
-    out_content_rect: *mut HIRect,
+    out_content_rect: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawMenuItem(
-            in_menu_rect: *const HIRect,
-            in_item_rect: *const HIRect,
-            in_item_draw_info: *const HIThemeMenuItemDrawInfo,
+            in_menu_rect: Option<&HIRect>,
+            in_item_rect: Option<&HIRect>,
+            in_item_draw_info: Option<&HIThemeMenuItemDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
-            out_content_rect: *mut HIRect,
+            out_content_rect: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     unsafe {
@@ -1403,9 +1417,10 @@ pub unsafe fn HIThemeDrawMenuItem(
 
 /// # Safety
 ///
-/// - `in_menu_rect` must be a valid pointer.
-/// - `in_item_rect` must be a valid pointer.
-/// - `in_item_draw_info` must be a valid pointer.
+/// - `in_menu_rect` might not allow `None`.
+/// - `in_item_rect` might not allow `None`.
+/// - `in_item_draw_info` struct field `version` must be set correctly.
+/// - `in_item_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1414,17 +1429,17 @@ pub unsafe fn HIThemeDrawMenuItem(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawMenuSeparator(
-    in_menu_rect: *const HIRect,
-    in_item_rect: *const HIRect,
-    in_item_draw_info: *const HIThemeMenuItemDrawInfo,
+    in_menu_rect: Option<&HIRect>,
+    in_item_rect: Option<&HIRect>,
+    in_item_draw_info: Option<&HIThemeMenuItemDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawMenuSeparator(
-            in_menu_rect: *const HIRect,
-            in_item_rect: *const HIRect,
-            in_item_draw_info: *const HIThemeMenuItemDrawInfo,
+            in_menu_rect: Option<&HIRect>,
+            in_item_rect: Option<&HIRect>,
+            in_item_draw_info: Option<&HIThemeMenuItemDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -1442,8 +1457,9 @@ pub unsafe fn HIThemeDrawMenuSeparator(
 
 /// # Safety
 ///
-/// - `in_menu_rect` must be a valid pointer.
-/// - `in_menu_draw_info` must be a valid pointer.
+/// - `in_menu_rect` might not allow `None`.
+/// - `in_menu_draw_info` struct field `version` must be set correctly.
+/// - `in_menu_draw_info` might not allow `None`.
 /// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1452,14 +1468,14 @@ pub unsafe fn HIThemeDrawMenuSeparator(
 ))]
 #[inline]
 pub unsafe fn HIThemeGetMenuBackgroundShape(
-    in_menu_rect: *const HIRect,
-    in_menu_draw_info: *const HIThemeMenuDrawInfo,
+    in_menu_rect: Option<&HIRect>,
+    in_menu_draw_info: Option<&HIThemeMenuDrawInfo>,
     out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetMenuBackgroundShape(
-            in_menu_rect: *const HIRect,
-            in_menu_draw_info: *const HIThemeMenuDrawInfo,
+            in_menu_rect: Option<&HIRect>,
+            in_menu_draw_info: Option<&HIThemeMenuDrawInfo>,
             out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
@@ -1557,8 +1573,9 @@ pub type HIThemeSegmentDrawInfoPtr = *mut HIThemeSegmentDrawInfo;
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1567,15 +1584,15 @@ pub type HIThemeSegmentDrawInfoPtr = *mut HIThemeSegmentDrawInfo;
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawSegment(
-    in_bounds: *const HIRect,
-    in_draw_info: *const HIThemeSegmentDrawInfo,
+    in_bounds: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeSegmentDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawSegment(
-            in_bounds: *const HIRect,
-            in_draw_info: *const HIThemeSegmentDrawInfo,
+            in_bounds: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeSegmentDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -1585,8 +1602,9 @@ pub unsafe fn HIThemeDrawSegment(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1595,15 +1613,15 @@ pub unsafe fn HIThemeDrawSegment(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawTabPane(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemeTabPaneDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeTabPaneDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawTabPane(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemeTabPaneDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeTabPaneDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -1613,10 +1631,11 @@ pub unsafe fn HIThemeDrawTabPane(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
-/// - `out_label_rect` must be a valid pointer.
+/// - `out_label_rect` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -1624,19 +1643,19 @@ pub unsafe fn HIThemeDrawTabPane(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawTab(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemeTabDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeTabDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
-    out_label_rect: *mut HIRect,
+    out_label_rect: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawTab(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemeTabDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeTabDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
-            out_label_rect: *mut HIRect,
+            out_label_rect: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     unsafe {
@@ -1652,7 +1671,7 @@ pub unsafe fn HIThemeDrawTab(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
 /// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1661,14 +1680,14 @@ pub unsafe fn HIThemeDrawTab(
 ))]
 #[inline]
 pub unsafe fn HIThemeGetTabPaneDrawShape(
-    in_rect: *const HIRect,
+    in_rect: Option<&HIRect>,
     in_direction: ThemeTabDirection,
     in_tab_size: HIThemeTabSize,
     out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTabPaneDrawShape(
-            in_rect: *const HIRect,
+            in_rect: Option<&HIRect>,
             in_direction: ThemeTabDirection,
             in_tab_size: HIThemeTabSize,
             out_shape: Option<&mut Option<CFRetained<HIShape>>>,
@@ -1685,7 +1704,7 @@ pub unsafe fn HIThemeGetTabPaneDrawShape(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
 /// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1694,14 +1713,14 @@ pub unsafe fn HIThemeGetTabPaneDrawShape(
 ))]
 #[inline]
 pub unsafe fn HIThemeGetTabPaneContentShape(
-    in_rect: *const HIRect,
+    in_rect: Option<&HIRect>,
     in_direction: ThemeTabDirection,
     in_tab_size: HIThemeTabSize,
     out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTabPaneContentShape(
-            in_rect: *const HIRect,
+            in_rect: Option<&HIRect>,
             in_direction: ThemeTabDirection,
             in_tab_size: HIThemeTabSize,
             out_shape: Option<&mut Option<CFRetained<HIShape>>>,
@@ -1718,8 +1737,9 @@ pub unsafe fn HIThemeGetTabPaneContentShape(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1728,14 +1748,14 @@ pub unsafe fn HIThemeGetTabPaneContentShape(
 ))]
 #[inline]
 pub unsafe fn HIThemeGetTabDrawShape(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemeTabDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeTabDrawInfo>,
     out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTabDrawShape(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemeTabDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeTabDrawInfo>,
             out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
@@ -1750,8 +1770,9 @@ pub unsafe fn HIThemeGetTabDrawShape(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1760,14 +1781,14 @@ pub unsafe fn HIThemeGetTabDrawShape(
 ))]
 #[inline]
 pub unsafe fn HIThemeGetTabShape(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemeTabDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeTabDrawInfo>,
     out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTabShape(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemeTabDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeTabDrawInfo>,
             out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
@@ -1880,28 +1901,30 @@ unsafe impl RefEncode for HIThemeTextInfo {
 ///
 /// - `in_string` should be of the correct type.
 /// - `in_string` might not allow `None`.
-/// - `in_text_info` must be a valid pointer.
-/// - `out_width` must be a valid pointer.
-/// - `out_height` must be a valid pointer.
-/// - `out_baseline` must be a valid pointer.
+/// - `in_text_info` struct field `version` must be set correctly.
+/// - `in_text_info` struct field `font` must be a valid pointer.
+/// - `in_text_info` might not allow `None`.
+/// - `out_width` might not allow `None`.
+/// - `out_height` might not allow `None`.
+/// - `out_baseline` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "objc2-core-text"))]
 #[inline]
 pub unsafe fn HIThemeGetTextDimensions(
     in_string: Option<&CFType>,
     in_width: CGFloat,
-    in_text_info: *mut HIThemeTextInfo,
-    out_width: *mut CGFloat,
-    out_height: *mut CGFloat,
-    out_baseline: *mut CGFloat,
+    in_text_info: Option<&mut HIThemeTextInfo>,
+    out_width: Option<&mut CGFloat>,
+    out_height: Option<&mut CGFloat>,
+    out_baseline: Option<&mut CGFloat>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTextDimensions(
             in_string: Option<&CFType>,
             in_width: CGFloat,
-            in_text_info: *mut HIThemeTextInfo,
-            out_width: *mut CGFloat,
-            out_height: *mut CGFloat,
-            out_baseline: *mut CGFloat,
+            in_text_info: Option<&mut HIThemeTextInfo>,
+            out_width: Option<&mut CGFloat>,
+            out_height: Option<&mut CGFloat>,
+            out_baseline: Option<&mut CGFloat>,
         ) -> OSStatus;
     }
     unsafe {
@@ -1920,8 +1943,10 @@ pub unsafe fn HIThemeGetTextDimensions(
 ///
 /// - `in_string` should be of the correct type.
 /// - `in_string` might not allow `None`.
-/// - `in_bounds` must be a valid pointer.
-/// - `in_text_info` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_text_info` struct field `version` must be set correctly.
+/// - `in_text_info` struct field `font` must be a valid pointer.
+/// - `in_text_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1932,16 +1957,16 @@ pub unsafe fn HIThemeGetTextDimensions(
 #[inline]
 pub unsafe fn HIThemeDrawTextBox(
     in_string: Option<&CFType>,
-    in_bounds: *const HIRect,
-    in_text_info: *mut HIThemeTextInfo,
+    in_bounds: Option<&HIRect>,
+    in_text_info: Option<&mut HIThemeTextInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawTextBox(
             in_string: Option<&CFType>,
-            in_bounds: *const HIRect,
-            in_text_info: *mut HIThemeTextInfo,
+            in_bounds: Option<&HIRect>,
+            in_text_info: Option<&mut HIThemeTextInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -1968,8 +1993,10 @@ pub unsafe fn HIThemeGetUIFontType(in_font_id: ThemeFontID) -> CTFontUIFontType 
 
 /// # Safety
 ///
-/// - `in_draw_info` must be a valid pointer.
-/// - `in_ghost_rect` must be a valid pointer.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `trackInfo` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
+/// - `in_ghost_rect` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -1978,15 +2005,15 @@ pub unsafe fn HIThemeGetUIFontType(in_font_id: ThemeFontID) -> CTFontUIFontType 
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawTrack(
-    in_draw_info: *const HIThemeTrackDrawInfo,
-    in_ghost_rect: *const HIRect,
+    in_draw_info: Option<&HIThemeTrackDrawInfo>,
+    in_ghost_rect: Option<&HIRect>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawTrack(
-            in_draw_info: *const HIThemeTrackDrawInfo,
-            in_ghost_rect: *const HIRect,
+            in_draw_info: Option<&HIThemeTrackDrawInfo>,
+            in_ghost_rect: Option<&HIRect>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -1996,7 +2023,9 @@ pub unsafe fn HIThemeDrawTrack(
 
 /// # Safety
 ///
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `trackInfo` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2005,14 +2034,14 @@ pub unsafe fn HIThemeDrawTrack(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawTrackTickMarks(
-    in_draw_info: *const HIThemeTrackDrawInfo,
+    in_draw_info: Option<&HIThemeTrackDrawInfo>,
     in_num_ticks: ItemCount,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawTrackTickMarks(
-            in_draw_info: *const HIThemeTrackDrawInfo,
+            in_draw_info: Option<&HIThemeTrackDrawInfo>,
             in_num_ticks: ItemCount,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
@@ -2023,8 +2052,9 @@ pub unsafe fn HIThemeDrawTrackTickMarks(
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2033,15 +2063,15 @@ pub unsafe fn HIThemeDrawTrackTickMarks(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawTickMark(
-    in_bounds: *const HIRect,
-    in_draw_info: *const HIThemeTickMarkDrawInfo,
+    in_bounds: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeTickMarkDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawTickMark(
-            in_bounds: *const HIRect,
-            in_draw_info: *const HIThemeTickMarkDrawInfo,
+            in_bounds: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeTickMarkDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2051,7 +2081,9 @@ pub unsafe fn HIThemeDrawTickMark(
 
 /// # Safety
 ///
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `trackInfo` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
 /// - `out_thumb_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2060,12 +2092,12 @@ pub unsafe fn HIThemeDrawTickMark(
 ))]
 #[inline]
 pub unsafe fn HIThemeGetTrackThumbShape(
-    in_draw_info: *const HIThemeTrackDrawInfo,
+    in_draw_info: Option<&HIThemeTrackDrawInfo>,
     out_thumb_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTrackThumbShape(
-            in_draw_info: *const HIThemeTrackDrawInfo,
+            in_draw_info: Option<&HIThemeTrackDrawInfo>,
             out_thumb_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
     }
@@ -2080,21 +2112,23 @@ pub unsafe fn HIThemeGetTrackThumbShape(
 
 /// # Safety
 ///
-/// - `in_draw_info` must be a valid pointer.
-/// - `in_mouse_point` must be a valid pointer.
-/// - `out_part_hit` must be a valid pointer.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `trackInfo` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
+/// - `in_mouse_point` might not allow `None`.
+/// - `out_part_hit` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "Controls", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeHitTestTrack(
-    in_draw_info: *const HIThemeTrackDrawInfo,
-    in_mouse_point: *const HIPoint,
-    out_part_hit: *mut ControlPartCode,
+    in_draw_info: Option<&HIThemeTrackDrawInfo>,
+    in_mouse_point: Option<&HIPoint>,
+    out_part_hit: Option<&mut ControlPartCode>,
 ) -> bool {
     extern "C-unwind" {
         fn HIThemeHitTestTrack(
-            in_draw_info: *const HIThemeTrackDrawInfo,
-            in_mouse_point: *const HIPoint,
-            out_part_hit: *mut ControlPartCode,
+            in_draw_info: Option<&HIThemeTrackDrawInfo>,
+            in_mouse_point: Option<&HIPoint>,
+            out_part_hit: Option<&mut ControlPartCode>,
         ) -> Boolean;
     }
     let ret = unsafe { HIThemeHitTestTrack(in_draw_info, in_mouse_point, out_part_hit) };
@@ -2103,18 +2137,20 @@ pub unsafe fn HIThemeHitTestTrack(
 
 /// # Safety
 ///
-/// - `in_draw_info` must be a valid pointer.
-/// - `out_bounds` must be a valid pointer.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `trackInfo` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
+/// - `out_bounds` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeGetTrackBounds(
-    in_draw_info: *const HIThemeTrackDrawInfo,
-    out_bounds: *mut HIRect,
+    in_draw_info: Option<&HIThemeTrackDrawInfo>,
+    out_bounds: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTrackBounds(
-            in_draw_info: *const HIThemeTrackDrawInfo,
-            out_bounds: *mut HIRect,
+            in_draw_info: Option<&HIThemeTrackDrawInfo>,
+            out_bounds: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     unsafe { HIThemeGetTrackBounds(in_draw_info, out_bounds) }
@@ -2122,20 +2158,22 @@ pub unsafe fn HIThemeGetTrackBounds(
 
 /// # Safety
 ///
-/// - `in_draw_info` must be a valid pointer.
-/// - `out_part_bounds` must be a valid pointer.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `trackInfo` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
+/// - `out_part_bounds` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "Controls", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeGetTrackPartBounds(
-    in_draw_info: *const HIThemeTrackDrawInfo,
+    in_draw_info: Option<&HIThemeTrackDrawInfo>,
     in_part_code: ControlPartCode,
-    out_part_bounds: *mut HIRect,
+    out_part_bounds: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTrackPartBounds(
-            in_draw_info: *const HIThemeTrackDrawInfo,
+            in_draw_info: Option<&HIThemeTrackDrawInfo>,
             in_part_code: ControlPartCode,
-            out_part_bounds: *mut HIRect,
+            out_part_bounds: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     unsafe { HIThemeGetTrackPartBounds(in_draw_info, in_part_code, out_part_bounds) }
@@ -2143,21 +2181,23 @@ pub unsafe fn HIThemeGetTrackPartBounds(
 
 /// # Safety
 ///
-/// - `in_draw_info` must be a valid pointer.
-/// - `out_number_of_parts` must be a valid pointer.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `trackInfo` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
+/// - `out_number_of_parts` might not allow `None`.
 /// - `io_parts_buffer` must be a valid pointer.
 #[cfg(all(feature = "Appearance", feature = "Controls", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeGetTrackParts(
-    in_draw_info: *const HIThemeTrackDrawInfo,
-    out_number_of_parts: *mut u32,
+    in_draw_info: Option<&HIThemeTrackDrawInfo>,
+    out_number_of_parts: Option<&mut u32>,
     in_max_parts: u32,
     io_parts_buffer: *mut ControlPartCode,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTrackParts(
-            in_draw_info: *const HIThemeTrackDrawInfo,
-            out_number_of_parts: *mut u32,
+            in_draw_info: Option<&HIThemeTrackDrawInfo>,
+            out_number_of_parts: Option<&mut u32>,
             in_max_parts: u32,
             io_parts_buffer: *mut ControlPartCode,
         ) -> OSStatus;
@@ -2174,18 +2214,20 @@ pub unsafe fn HIThemeGetTrackParts(
 
 /// # Safety
 ///
-/// - `in_draw_info` must be a valid pointer.
-/// - `out_drag_rect` must be a valid pointer.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `trackInfo` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
+/// - `out_drag_rect` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeGetTrackDragRect(
-    in_draw_info: *const HIThemeTrackDrawInfo,
-    out_drag_rect: *mut HIRect,
+    in_draw_info: Option<&HIThemeTrackDrawInfo>,
+    out_drag_rect: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTrackDragRect(
-            in_draw_info: *const HIThemeTrackDrawInfo,
-            out_drag_rect: *mut HIRect,
+            in_draw_info: Option<&HIThemeTrackDrawInfo>,
+            out_drag_rect: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     unsafe { HIThemeGetTrackDragRect(in_draw_info, out_drag_rect) }
@@ -2193,21 +2235,23 @@ pub unsafe fn HIThemeGetTrackDragRect(
 
 /// # Safety
 ///
-/// - `in_draw_info` must be a valid pointer.
-/// - `in_thumb_offset` must be a valid pointer.
-/// - `out_relative_position` must be a valid pointer.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `trackInfo` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
+/// - `in_thumb_offset` might not allow `None`.
+/// - `out_relative_position` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeGetTrackThumbPositionFromOffset(
-    in_draw_info: *const HIThemeTrackDrawInfo,
-    in_thumb_offset: *const HIPoint,
-    out_relative_position: *mut CGFloat,
+    in_draw_info: Option<&HIThemeTrackDrawInfo>,
+    in_thumb_offset: Option<&HIPoint>,
+    out_relative_position: Option<&mut CGFloat>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTrackThumbPositionFromOffset(
-            in_draw_info: *const HIThemeTrackDrawInfo,
-            in_thumb_offset: *const HIPoint,
-            out_relative_position: *mut CGFloat,
+            in_draw_info: Option<&HIThemeTrackDrawInfo>,
+            in_thumb_offset: Option<&HIPoint>,
+            out_relative_position: Option<&mut CGFloat>,
         ) -> OSStatus;
     }
     unsafe {
@@ -2217,21 +2261,23 @@ pub unsafe fn HIThemeGetTrackThumbPositionFromOffset(
 
 /// # Safety
 ///
-/// - `in_draw_info` must be a valid pointer.
-/// - `in_thumb_bounds` must be a valid pointer.
-/// - `out_relative_position` must be a valid pointer.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `trackInfo` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
+/// - `in_thumb_bounds` might not allow `None`.
+/// - `out_relative_position` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeGetTrackThumbPositionFromBounds(
-    in_draw_info: *const HIThemeTrackDrawInfo,
-    in_thumb_bounds: *const HIRect,
-    out_relative_position: *mut CGFloat,
+    in_draw_info: Option<&HIThemeTrackDrawInfo>,
+    in_thumb_bounds: Option<&HIRect>,
+    out_relative_position: Option<&mut CGFloat>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTrackThumbPositionFromBounds(
-            in_draw_info: *const HIThemeTrackDrawInfo,
-            in_thumb_bounds: *const HIRect,
-            out_relative_position: *mut CGFloat,
+            in_draw_info: Option<&HIThemeTrackDrawInfo>,
+            in_thumb_bounds: Option<&HIRect>,
+            out_relative_position: Option<&mut CGFloat>,
         ) -> OSStatus;
     }
     unsafe {
@@ -2241,20 +2287,22 @@ pub unsafe fn HIThemeGetTrackThumbPositionFromBounds(
 
 /// # Safety
 ///
-/// - `in_draw_info` must be a valid pointer.
-/// - `out_value` must be a valid pointer.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `trackInfo` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
+/// - `out_value` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeGetTrackLiveValue(
-    in_draw_info: *const HIThemeTrackDrawInfo,
+    in_draw_info: Option<&HIThemeTrackDrawInfo>,
     in_relative_position: CGFloat,
-    out_value: *mut i32,
+    out_value: Option<&mut i32>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTrackLiveValue(
-            in_draw_info: *const HIThemeTrackDrawInfo,
+            in_draw_info: Option<&HIThemeTrackDrawInfo>,
             in_relative_position: CGFloat,
-            out_value: *mut i32,
+            out_value: Option<&mut i32>,
         ) -> OSStatus;
     }
     unsafe { HIThemeGetTrackLiveValue(in_draw_info, in_relative_position, out_value) }
@@ -2262,23 +2310,24 @@ pub unsafe fn HIThemeGetTrackLiveValue(
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_track_info` must be a valid pointer.
-/// - `out_track_bounds` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_track_info` struct field `version` must be set correctly.
+/// - `in_track_info` might not allow `None`.
+/// - `out_track_bounds` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeGetScrollBarTrackRect(
-    in_bounds: *const HIRect,
-    in_track_info: *const HIScrollBarTrackInfo,
+    in_bounds: Option<&HIRect>,
+    in_track_info: Option<&HIScrollBarTrackInfo>,
     in_is_horiz: bool,
-    out_track_bounds: *mut HIRect,
+    out_track_bounds: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetScrollBarTrackRect(
-            in_bounds: *const HIRect,
-            in_track_info: *const HIScrollBarTrackInfo,
+            in_bounds: Option<&HIRect>,
+            in_track_info: Option<&HIScrollBarTrackInfo>,
             in_is_horiz: Boolean,
-            out_track_bounds: *mut HIRect,
+            out_track_bounds: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     let in_is_horiz = in_is_horiz as _;
@@ -2287,29 +2336,30 @@ pub unsafe fn HIThemeGetScrollBarTrackRect(
 
 /// # Safety
 ///
-/// - `in_scroll_bar_bounds` must be a valid pointer.
-/// - `in_track_info` must be a valid pointer.
-/// - `in_pt_hit` must be a valid pointer.
-/// - `out_track_bounds` must be a valid pointer.
-/// - `out_part_code` must be a valid pointer.
+/// - `in_scroll_bar_bounds` might not allow `None`.
+/// - `in_track_info` struct field `version` must be set correctly.
+/// - `in_track_info` might not allow `None`.
+/// - `in_pt_hit` might not allow `None`.
+/// - `out_track_bounds` might not allow `None`.
+/// - `out_part_code` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "Controls", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeHitTestScrollBarArrows(
-    in_scroll_bar_bounds: *const HIRect,
-    in_track_info: *const HIScrollBarTrackInfo,
+    in_scroll_bar_bounds: Option<&HIRect>,
+    in_track_info: Option<&HIScrollBarTrackInfo>,
     in_is_horiz: bool,
-    in_pt_hit: *const HIPoint,
-    out_track_bounds: *mut HIRect,
-    out_part_code: *mut ControlPartCode,
+    in_pt_hit: Option<&HIPoint>,
+    out_track_bounds: Option<&mut HIRect>,
+    out_part_code: Option<&mut ControlPartCode>,
 ) -> bool {
     extern "C-unwind" {
         fn HIThemeHitTestScrollBarArrows(
-            in_scroll_bar_bounds: *const HIRect,
-            in_track_info: *const HIScrollBarTrackInfo,
+            in_scroll_bar_bounds: Option<&HIRect>,
+            in_track_info: Option<&HIScrollBarTrackInfo>,
             in_is_horiz: Boolean,
-            in_pt_hit: *const HIPoint,
-            out_track_bounds: *mut HIRect,
-            out_part_code: *mut ControlPartCode,
+            in_pt_hit: Option<&HIPoint>,
+            out_track_bounds: Option<&mut HIRect>,
+            out_part_code: Option<&mut ControlPartCode>,
         ) -> Boolean;
     }
     let in_is_horiz = in_is_horiz as _;
@@ -2328,8 +2378,9 @@ pub unsafe fn HIThemeHitTestScrollBarArrows(
 
 /// # Safety
 ///
-/// - `in_cont_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_cont_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2338,15 +2389,15 @@ pub unsafe fn HIThemeHitTestScrollBarArrows(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawScrollBarDelimiters(
-    in_cont_rect: *const HIRect,
-    in_draw_info: *const HIThemeScrollBarDelimitersDrawInfo,
+    in_cont_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeScrollBarDelimitersDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawScrollBarDelimiters(
-            in_cont_rect: *const HIRect,
-            in_draw_info: *const HIThemeScrollBarDelimitersDrawInfo,
+            in_cont_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeScrollBarDelimitersDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2358,10 +2409,11 @@ pub unsafe fn HIThemeDrawScrollBarDelimiters(
 
 /// # Safety
 ///
-/// - `in_cont_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_cont_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
-/// - `out_title_rect` must be a valid pointer.
+/// - `out_title_rect` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
     feature = "HIGeometry",
@@ -2369,19 +2421,19 @@ pub unsafe fn HIThemeDrawScrollBarDelimiters(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawWindowFrame(
-    in_cont_rect: *const HIRect,
-    in_draw_info: *const HIThemeWindowDrawInfo,
+    in_cont_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeWindowDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
-    out_title_rect: *mut HIRect,
+    out_title_rect: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawWindowFrame(
-            in_cont_rect: *const HIRect,
-            in_draw_info: *const HIThemeWindowDrawInfo,
+            in_cont_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeWindowDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
-            out_title_rect: *mut HIRect,
+            out_title_rect: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     unsafe {
@@ -2397,8 +2449,9 @@ pub unsafe fn HIThemeDrawWindowFrame(
 
 /// # Safety
 ///
-/// - `in_cont_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_cont_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2407,15 +2460,15 @@ pub unsafe fn HIThemeDrawWindowFrame(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawTitleBarWidget(
-    in_cont_rect: *const HIRect,
-    in_draw_info: *const HIThemeWindowWidgetDrawInfo,
+    in_cont_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeWindowWidgetDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawTitleBarWidget(
-            in_cont_rect: *const HIRect,
-            in_draw_info: *const HIThemeWindowWidgetDrawInfo,
+            in_cont_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeWindowWidgetDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2425,8 +2478,9 @@ pub unsafe fn HIThemeDrawTitleBarWidget(
 
 /// # Safety
 ///
-/// - `in_origin` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_origin` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2435,15 +2489,15 @@ pub unsafe fn HIThemeDrawTitleBarWidget(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawGrowBox(
-    in_origin: *const HIPoint,
-    in_draw_info: *const HIThemeGrowBoxDrawInfo,
+    in_origin: Option<&HIPoint>,
+    in_draw_info: Option<&HIThemeGrowBoxDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawGrowBox(
-            in_origin: *const HIPoint,
-            in_draw_info: *const HIThemeGrowBoxDrawInfo,
+            in_origin: Option<&HIPoint>,
+            in_draw_info: Option<&HIThemeGrowBoxDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2453,21 +2507,22 @@ pub unsafe fn HIThemeDrawGrowBox(
 
 /// # Safety
 ///
-/// - `in_origin` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
-/// - `out_bounds` must be a valid pointer.
+/// - `in_origin` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
+/// - `out_bounds` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIThemeGetGrowBoxBounds(
-    in_origin: *const HIPoint,
-    in_draw_info: *const HIThemeGrowBoxDrawInfo,
-    out_bounds: *mut HIRect,
+    in_origin: Option<&HIPoint>,
+    in_draw_info: Option<&HIThemeGrowBoxDrawInfo>,
+    out_bounds: Option<&mut HIRect>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetGrowBoxBounds(
-            in_origin: *const HIPoint,
-            in_draw_info: *const HIThemeGrowBoxDrawInfo,
-            out_bounds: *mut HIRect,
+            in_origin: Option<&HIPoint>,
+            in_draw_info: Option<&HIThemeGrowBoxDrawInfo>,
+            out_bounds: Option<&mut HIRect>,
         ) -> OSStatus;
     }
     unsafe { HIThemeGetGrowBoxBounds(in_origin, in_draw_info, out_bounds) }
@@ -2475,8 +2530,9 @@ pub unsafe fn HIThemeGetGrowBoxBounds(
 
 /// # Safety
 ///
-/// - `in_cont_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_cont_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `out_shape` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2486,15 +2542,15 @@ pub unsafe fn HIThemeGetGrowBoxBounds(
 ))]
 #[inline]
 pub unsafe fn HIThemeGetWindowShape(
-    in_cont_rect: *const HIRect,
-    in_draw_info: *const HIThemeWindowDrawInfo,
+    in_cont_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeWindowDrawInfo>,
     in_win_region: WindowRegionCode,
     out_shape: Option<&mut Option<CFRetained<HIShape>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetWindowShape(
-            in_cont_rect: *const HIRect,
-            in_draw_info: *const HIThemeWindowDrawInfo,
+            in_cont_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeWindowDrawInfo>,
             in_win_region: WindowRegionCode,
             out_shape: Option<&mut Option<CFRetained<HIShape>>>,
         ) -> OSStatus;
@@ -2510,24 +2566,25 @@ pub unsafe fn HIThemeGetWindowShape(
 
 /// # Safety
 ///
-/// - `in_cont_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
-/// - `in_point` must be a valid pointer.
-/// - `out_region_hit` must be a valid pointer.
+/// - `in_cont_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
+/// - `in_point` might not allow `None`.
+/// - `out_region_hit` might not allow `None`.
 #[cfg(all(feature = "Appearance", feature = "HIGeometry", feature = "MacWindows"))]
 #[inline]
 pub unsafe fn HIThemeGetWindowRegionHit(
-    in_cont_rect: *const HIRect,
-    in_draw_info: *const HIThemeWindowDrawInfo,
-    in_point: *const HIPoint,
-    out_region_hit: *mut WindowRegionCode,
+    in_cont_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeWindowDrawInfo>,
+    in_point: Option<&HIPoint>,
+    out_region_hit: Option<&mut WindowRegionCode>,
 ) -> bool {
     extern "C-unwind" {
         fn HIThemeGetWindowRegionHit(
-            in_cont_rect: *const HIRect,
-            in_draw_info: *const HIThemeWindowDrawInfo,
-            in_point: *const HIPoint,
-            out_region_hit: *mut WindowRegionCode,
+            in_cont_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeWindowDrawInfo>,
+            in_point: Option<&HIPoint>,
+            out_region_hit: Option<&mut WindowRegionCode>,
         ) -> Boolean;
     }
     let ret =
@@ -2537,8 +2594,9 @@ pub unsafe fn HIThemeGetWindowRegionHit(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2547,15 +2605,15 @@ pub unsafe fn HIThemeGetWindowRegionHit(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawFrame(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemeFrameDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeFrameDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawFrame(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemeFrameDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeFrameDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2565,8 +2623,9 @@ pub unsafe fn HIThemeDrawFrame(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2575,15 +2634,15 @@ pub unsafe fn HIThemeDrawFrame(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawGroupBox(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemeGroupBoxDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeGroupBoxDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawGroupBox(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemeGroupBoxDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeGroupBoxDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2593,8 +2652,10 @@ pub unsafe fn HIThemeDrawGroupBox(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` struct field `animation` must be correctly initialized.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2603,15 +2664,15 @@ pub unsafe fn HIThemeDrawGroupBox(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawGenericWell(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemeButtonDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeButtonDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawGenericWell(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemeButtonDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeButtonDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2621,8 +2682,9 @@ pub unsafe fn HIThemeDrawGenericWell(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2631,15 +2693,15 @@ pub unsafe fn HIThemeDrawGenericWell(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawPaneSplitter(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemeSplitterDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeSplitterDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawPaneSplitter(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemeSplitterDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeSplitterDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2649,8 +2711,9 @@ pub unsafe fn HIThemeDrawPaneSplitter(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2659,15 +2722,15 @@ pub unsafe fn HIThemeDrawPaneSplitter(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawGrabber(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemeGrabberDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeGrabberDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawGrabber(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemeGrabberDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeGrabberDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2677,8 +2740,9 @@ pub unsafe fn HIThemeDrawGrabber(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2687,15 +2751,15 @@ pub unsafe fn HIThemeDrawGrabber(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawPlacard(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemePlacardDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemePlacardDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawPlacard(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemePlacardDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemePlacardDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2705,8 +2769,9 @@ pub unsafe fn HIThemeDrawPlacard(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2715,15 +2780,15 @@ pub unsafe fn HIThemeDrawPlacard(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawHeader(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemeHeaderDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeHeaderDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawHeader(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemeHeaderDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeHeaderDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2733,19 +2798,19 @@ pub unsafe fn HIThemeDrawHeader(
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(feature = "HIGeometry", feature = "objc2-core-graphics"))]
 #[inline]
 pub unsafe fn HIThemeDrawFocusRect(
-    in_rect: *const HIRect,
+    in_rect: Option<&HIRect>,
     in_has_focus: bool,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawFocusRect(
-            in_rect: *const HIRect,
+            in_rect: Option<&HIRect>,
             in_has_focus: Boolean,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
@@ -2800,8 +2865,9 @@ pub unsafe fn HIThemeEndFocus(in_context: Option<&CGContext>) -> OSStatus {
 
 /// # Safety
 ///
-/// - `in_rect` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_rect` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2810,15 +2876,15 @@ pub unsafe fn HIThemeEndFocus(in_context: Option<&CGContext>) -> OSStatus {
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawSeparator(
-    in_rect: *const HIRect,
-    in_draw_info: *const HIThemeSeparatorDrawInfo,
+    in_rect: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeSeparatorDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawSeparator(
-            in_rect: *const HIRect,
-            in_draw_info: *const HIThemeSeparatorDrawInfo,
+            in_rect: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeSeparatorDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2897,8 +2963,9 @@ pub unsafe fn HIThemeSetTextFill(
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2907,15 +2974,15 @@ pub unsafe fn HIThemeSetTextFill(
 ))]
 #[inline]
 pub unsafe fn HIThemeApplyBackground(
-    in_bounds: *const HIRect,
-    in_draw_info: *const HIThemeBackgroundDrawInfo,
+    in_bounds: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeBackgroundDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeApplyBackground(
-            in_bounds: *const HIRect,
-            in_draw_info: *const HIThemeBackgroundDrawInfo,
+            in_bounds: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeBackgroundDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2925,8 +2992,9 @@ pub unsafe fn HIThemeApplyBackground(
 
 /// # Safety
 ///
-/// - `in_bounds` must be a valid pointer.
-/// - `in_draw_info` must be a valid pointer.
+/// - `in_bounds` might not allow `None`.
+/// - `in_draw_info` struct field `version` must be set correctly.
+/// - `in_draw_info` might not allow `None`.
 /// - `in_context` might not allow `None`.
 #[cfg(all(
     feature = "Appearance",
@@ -2935,15 +3003,15 @@ pub unsafe fn HIThemeApplyBackground(
 ))]
 #[inline]
 pub unsafe fn HIThemeDrawBackground(
-    in_bounds: *const HIRect,
-    in_draw_info: *const HIThemeBackgroundDrawInfo,
+    in_bounds: Option<&HIRect>,
+    in_draw_info: Option<&HIThemeBackgroundDrawInfo>,
     in_context: Option<&CGContext>,
     in_orientation: HIThemeOrientation,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeDrawBackground(
-            in_bounds: *const HIRect,
-            in_draw_info: *const HIThemeBackgroundDrawInfo,
+            in_bounds: Option<&HIRect>,
+            in_draw_info: Option<&HIThemeBackgroundDrawInfo>,
             in_context: Option<&CGContext>,
             in_orientation: HIThemeOrientation,
         ) -> OSStatus;
@@ -2977,19 +3045,19 @@ pub unsafe fn HIThemeBrushCreateCGColor(
 
 /// # Safety
 ///
-/// `out_color` must be a valid pointer.
+/// `out_color` might not allow `None`.
 #[cfg(feature = "Appearance")]
 #[inline]
 pub unsafe fn HIThemeGetTextColorForThemeBrush(
     in_brush: ThemeBrush,
     in_window_is_active: bool,
-    out_color: *mut ThemeTextColor,
+    out_color: Option<&mut ThemeTextColor>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIThemeGetTextColorForThemeBrush(
             in_brush: ThemeBrush,
             in_window_is_active: Boolean,
-            out_color: *mut ThemeTextColor,
+            out_color: Option<&mut ThemeTextColor>,
         ) -> OSStatus;
     }
     let in_window_is_active = in_window_is_active as _;
@@ -2998,31 +3066,31 @@ pub unsafe fn HIThemeGetTextColorForThemeBrush(
 
 /// # Safety
 ///
-/// `out_height` must be a valid pointer.
+/// `out_height` might not allow `None`.
 #[inline]
-pub unsafe fn GetThemeMenuSeparatorHeight(out_height: *mut i16) -> OSStatus {
+pub unsafe fn GetThemeMenuSeparatorHeight(out_height: Option<&mut i16>) -> OSStatus {
     extern "C-unwind" {
-        fn GetThemeMenuSeparatorHeight(out_height: *mut i16) -> OSStatus;
+        fn GetThemeMenuSeparatorHeight(out_height: Option<&mut i16>) -> OSStatus;
     }
     unsafe { GetThemeMenuSeparatorHeight(out_height) }
 }
 
 /// # Safety
 ///
-/// - `out_height` must be a valid pointer.
-/// - `out_width` must be a valid pointer.
+/// - `out_height` might not allow `None`.
+/// - `out_width` might not allow `None`.
 #[cfg(feature = "Appearance")]
 #[inline]
 pub unsafe fn GetThemeMenuItemExtra(
     in_item_type: ThemeMenuItemType,
-    out_height: *mut i16,
-    out_width: *mut i16,
+    out_height: Option<&mut i16>,
+    out_width: Option<&mut i16>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn GetThemeMenuItemExtra(
             in_item_type: ThemeMenuItemType,
-            out_height: *mut i16,
-            out_width: *mut i16,
+            out_height: Option<&mut i16>,
+            out_width: Option<&mut i16>,
         ) -> OSStatus;
     }
     unsafe { GetThemeMenuItemExtra(in_item_type, out_height, out_width) }
@@ -3030,11 +3098,15 @@ pub unsafe fn GetThemeMenuItemExtra(
 
 /// # Safety
 ///
-/// `out_width` must be a valid pointer.
+/// `out_width` might not allow `None`.
 #[inline]
-pub unsafe fn GetThemeMenuTitleExtra(out_width: *mut i16, in_is_squished: bool) -> OSStatus {
+pub unsafe fn GetThemeMenuTitleExtra(
+    out_width: Option<&mut i16>,
+    in_is_squished: bool,
+) -> OSStatus {
     extern "C-unwind" {
-        fn GetThemeMenuTitleExtra(out_width: *mut i16, in_is_squished: Boolean) -> OSStatus;
+        fn GetThemeMenuTitleExtra(out_width: Option<&mut i16>, in_is_squished: Boolean)
+            -> OSStatus;
     }
     let in_is_squished = in_is_squished as _;
     unsafe { GetThemeMenuTitleExtra(out_width, in_is_squished) }
@@ -3332,11 +3404,11 @@ pub type ThemeMetric = u32;
 
 /// # Safety
 ///
-/// `out_metric` must be a valid pointer.
+/// `out_metric` might not allow `None`.
 #[inline]
-pub unsafe fn GetThemeMetric(in_metric: ThemeMetric, out_metric: *mut i32) -> OSStatus {
+pub unsafe fn GetThemeMetric(in_metric: ThemeMetric, out_metric: Option<&mut i32>) -> OSStatus {
     extern "C-unwind" {
-        fn GetThemeMetric(in_metric: ThemeMetric, out_metric: *mut i32) -> OSStatus;
+        fn GetThemeMetric(in_metric: ThemeMetric, out_metric: Option<&mut i32>) -> OSStatus;
     }
     unsafe { GetThemeMetric(in_metric, out_metric) }
 }

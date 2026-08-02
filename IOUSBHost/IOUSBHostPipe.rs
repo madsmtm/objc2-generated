@@ -145,17 +145,13 @@ impl IOUSBHostPipe {
         /// The default value is IOUSBHostDefaultControlCompletionTimeout.
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendControlRequest:data:bytesTransferred:completionTimeout:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendControlRequest_data_bytesTransferred_completionTimeout_error(
             &self,
             request: IOUSBDeviceRequest,
             data: Option<&NSMutableData>,
-            bytes_transferred: *mut NSUInteger,
+            bytes_transferred: Option<&mut NSUInteger>,
             completion_timeout: NSTimeInterval,
         ) -> Result<(), Retained<NSError>>;
 
@@ -173,17 +169,13 @@ impl IOUSBHostPipe {
         /// of the completed data phase.
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendControlRequest:data:bytesTransferred:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendControlRequest_data_bytesTransferred_error(
             &self,
             request: IOUSBDeviceRequest,
             data: Option<&NSMutableData>,
-            bytes_transferred: *mut NSUInteger,
+            bytes_transferred: Option<&mut NSUInteger>,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-io-kit")]
@@ -346,16 +338,12 @@ impl IOUSBHostPipe {
         /// Must be 0 for interrupt pipes and streams.
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendIORequestWithData:bytesTransferred:completionTimeout:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendIORequestWithData_bytesTransferred_completionTimeout_error(
             &self,
             data: Option<&NSMutableData>,
-            bytes_transferred: *mut NSUInteger,
+            bytes_transferred: Option<&mut NSUInteger>,
             completion_timeout: NSTimeInterval,
         ) -> Result<(), Retained<NSError>>;
 

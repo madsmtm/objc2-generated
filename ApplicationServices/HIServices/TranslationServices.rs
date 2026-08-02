@@ -240,17 +240,17 @@ impl Translation {
 
     /// # Safety
     ///
-    /// `out_translation_flags` must be a valid pointer.
+    /// `out_translation_flags` might not allow `None`.
     #[doc(alias = "TranslationGetTranslationFlags")]
     #[inline]
     pub unsafe fn translation_flags(
         &self,
-        out_translation_flags: *mut TranslationFlags,
+        out_translation_flags: Option<&mut TranslationFlags>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn TranslationGetTranslationFlags(
                 in_translation: &Translation,
-                out_translation_flags: *mut TranslationFlags,
+                out_translation_flags: Option<&mut TranslationFlags>,
             ) -> OSStatus;
         }
         unsafe { TranslationGetTranslationFlags(self, out_translation_flags) }

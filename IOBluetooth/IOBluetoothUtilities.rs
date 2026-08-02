@@ -21,17 +21,17 @@ use crate::*;
 /// # Safety
 ///
 /// - `in_name_string` might not allow `None`.
-/// - `out_device_address` must be a valid pointer.
+/// - `out_device_address` might not allow `None`.
 #[cfg(all(feature = "Bluetooth", feature = "objc2-foundation"))]
 #[inline]
 pub unsafe fn IOBluetoothNSStringToDeviceAddress(
     in_name_string: Option<&NSString>,
-    out_device_address: *mut BluetoothDeviceAddress,
+    out_device_address: Option<&mut BluetoothDeviceAddress>,
 ) -> IOReturn {
     extern "C-unwind" {
         fn IOBluetoothNSStringToDeviceAddress(
             in_name_string: Option<&NSString>,
-            out_device_address: *mut BluetoothDeviceAddress,
+            out_device_address: Option<&mut BluetoothDeviceAddress>,
         ) -> IOReturn;
     }
     unsafe { IOBluetoothNSStringToDeviceAddress(in_name_string, out_device_address) }
@@ -47,15 +47,15 @@ pub unsafe fn IOBluetoothNSStringToDeviceAddress(
 ///
 /// # Safety
 ///
-/// `device_address` must be a valid pointer.
+/// `device_address` might not allow `None`.
 #[cfg(all(feature = "Bluetooth", feature = "objc2", feature = "objc2-foundation"))]
 #[inline]
 pub unsafe fn IOBluetoothNSStringFromDeviceAddress(
-    device_address: *const BluetoothDeviceAddress,
+    device_address: Option<&BluetoothDeviceAddress>,
 ) -> Option<Retained<NSString>> {
     extern "C-unwind" {
         fn IOBluetoothNSStringFromDeviceAddress(
-            device_address: *const BluetoothDeviceAddress,
+            device_address: Option<&BluetoothDeviceAddress>,
         ) -> *mut NSString;
     }
     let ret = unsafe { IOBluetoothNSStringFromDeviceAddress(device_address) };
@@ -72,15 +72,15 @@ pub unsafe fn IOBluetoothNSStringFromDeviceAddress(
 ///
 /// # Safety
 ///
-/// `device_address` must be a valid pointer.
+/// `device_address` might not allow `None`.
 #[cfg(all(feature = "Bluetooth", feature = "objc2", feature = "objc2-foundation"))]
 #[inline]
 pub unsafe fn IOBluetoothNSStringFromDeviceAddressColon(
-    device_address: *const BluetoothDeviceAddress,
+    device_address: Option<&BluetoothDeviceAddress>,
 ) -> Option<Retained<NSString>> {
     extern "C-unwind" {
         fn IOBluetoothNSStringFromDeviceAddressColon(
-            device_address: *const BluetoothDeviceAddress,
+            device_address: Option<&BluetoothDeviceAddress>,
         ) -> *mut NSString;
     }
     let ret = unsafe { IOBluetoothNSStringFromDeviceAddressColon(device_address) };
@@ -197,13 +197,16 @@ pub unsafe fn IOBluetoothNumberOfTabletHIDDevices() -> c_long {
 ///
 /// # Safety
 ///
-/// `device_type` must be a valid pointer.
+/// `device_type` might not allow `None`.
 #[inline]
 pub unsafe fn IOBluetoothFindNumberOfRegistryEntriesOfClassName(
-    device_type: *const c_char,
+    device_type: Option<&CStr>,
 ) -> c_long {
     extern "C-unwind" {
         fn IOBluetoothFindNumberOfRegistryEntriesOfClassName(device_type: *const c_char) -> c_long;
     }
+    let device_type = device_type
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
     unsafe { IOBluetoothFindNumberOfRegistryEntriesOfClassName(device_type) }
 }

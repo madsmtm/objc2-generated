@@ -76,14 +76,10 @@ impl VNGeometryUtils {
         ///
         ///
         /// Returns: Area calculation status, YES indicates success, NO - failure. The failure case is accompanied by populating an 'error' output parameter
-        ///
-        /// # Safety
-        ///
-        /// `area` must be a valid pointer.
         #[unsafe(method(calculateArea:forContour:orientedArea:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn calculateArea_forContour_orientedArea_error(
-            area: NonNull<c_double>,
+            area: &mut c_double,
             contour: &VNContour,
             oriented_area: bool,
         ) -> Result<(), Retained<NSError>>;
@@ -104,14 +100,10 @@ impl VNGeometryUtils {
         ///
         ///
         /// Returns: Perimeter calculation status, YES indicates success, NO - failure. The failure case is accompanied by populating an 'error' output parameter
-        ///
-        /// # Safety
-        ///
-        /// `perimeter` must be a valid pointer.
         #[unsafe(method(calculatePerimeter:forContour:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn calculatePerimeter_forContour_error(
-            perimeter: NonNull<c_double>,
+            perimeter: &mut c_double,
             contour: &VNContour,
         ) -> Result<(), Retained<NSError>>;
     );

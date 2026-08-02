@@ -178,19 +178,14 @@ impl AVAudioMixInputParameters {
         pub unsafe fn audioTapProcessor(&self) -> Option<Retained<MTAudioProcessingTap>>;
 
         #[cfg(feature = "objc2-core-media")]
-        /// # Safety
-        ///
-        /// - `start_volume` must be a valid pointer or null.
-        /// - `end_volume` must be a valid pointer or null.
-        /// - `time_range` must be a valid pointer or null.
         #[unsafe(method(getVolumeRampForTime:startVolume:endVolume:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getVolumeRampForTime_startVolume_endVolume_timeRange(
             &self,
             time: CMTime,
-            start_volume: *mut c_float,
-            end_volume: *mut c_float,
-            time_range: *mut CMTimeRange,
+            start_volume: Option<&mut c_float>,
+            end_volume: Option<&mut c_float>,
+            time_range: Option<&mut CMTimeRange>,
         ) -> bool;
     );
 }

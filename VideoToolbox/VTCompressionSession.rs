@@ -285,7 +285,6 @@ impl VTCompressionSession {
     ///
     /// - `frame_properties` generic should be of the correct type.
     /// - `source_frame_refcon` must be a valid pointer or null.
-    /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEncodeFrame")]
     #[cfg(all(
         feature = "VTErrors",
@@ -300,7 +299,7 @@ impl VTCompressionSession {
         duration: CMTime,
         frame_properties: Option<&CFDictionary<CFString, CFType>>,
         source_frame_refcon: *mut c_void,
-        info_flags_out: *mut VTEncodeInfoFlags,
+        info_flags_out: Option<&mut VTEncodeInfoFlags>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTCompressionSessionEncodeFrame(
@@ -310,7 +309,7 @@ impl VTCompressionSession {
                 duration: CMTime,
                 frame_properties: Option<&CFDictionary<CFString, CFType>>,
                 source_frame_refcon: *mut c_void,
-                info_flags_out: *mut VTEncodeInfoFlags,
+                info_flags_out: Option<&mut VTEncodeInfoFlags>,
             ) -> OSStatus;
         }
         unsafe {
@@ -381,8 +380,7 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_properties` generic should be of the correct type.
-    /// - `info_flags_out` must be a valid pointer or null.
+    /// `frame_properties` generic should be of the correct type.
     #[doc(alias = "VTCompressionSessionEncodeFrameWithOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -397,7 +395,7 @@ impl VTCompressionSession {
         presentation_time_stamp: CMTime,
         duration: CMTime,
         frame_properties: Option<&CFDictionary<CFString, CFType>>,
-        info_flags_out: *mut VTEncodeInfoFlags,
+        info_flags_out: Option<&mut VTEncodeInfoFlags>,
         output_handler: &VTCompressionOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -407,7 +405,7 @@ impl VTCompressionSession {
                 presentation_time_stamp: CMTime,
                 duration: CMTime,
                 frame_properties: Option<&CFDictionary<CFString, CFType>>,
-                info_flags_out: *mut VTEncodeInfoFlags,
+                info_flags_out: Option<&mut VTEncodeInfoFlags>,
                 output_handler: &VTCompressionOutputHandler,
             ) -> OSStatus;
         }
@@ -492,7 +490,6 @@ impl VTCompressionSession {
     ///
     /// - `frame_properties` generic should be of the correct type.
     /// - `source_frame_refcon` must be a valid pointer or null.
-    /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrame")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -503,7 +500,7 @@ impl VTCompressionSession {
         duration: CMTime,
         frame_properties: Option<&CFDictionary<CFString, CFType>>,
         source_frame_refcon: *mut c_void,
-        info_flags_out: *mut VTEncodeInfoFlags,
+        info_flags_out: Option<&mut VTEncodeInfoFlags>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTCompressionSessionEncodeMultiImageFrame(
@@ -513,7 +510,7 @@ impl VTCompressionSession {
                 duration: CMTime,
                 frame_properties: Option<&CFDictionary<CFString, CFType>>,
                 source_frame_refcon: *mut c_void,
-                info_flags_out: *mut VTEncodeInfoFlags,
+                info_flags_out: Option<&mut VTEncodeInfoFlags>,
             ) -> OSStatus;
         }
         unsafe {
@@ -561,8 +558,7 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_properties` generic should be of the correct type.
-    /// - `info_flags_out` must be a valid pointer or null.
+    /// `frame_properties` generic should be of the correct type.
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler")]
     #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
     #[inline]
@@ -572,7 +568,7 @@ impl VTCompressionSession {
         presentation_time_stamp: CMTime,
         duration: CMTime,
         frame_properties: Option<&CFDictionary<CFString, CFType>>,
-        info_flags_out: *mut VTEncodeInfoFlags,
+        info_flags_out: Option<&mut VTEncodeInfoFlags>,
         output_handler: &VTCompressionOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -582,7 +578,7 @@ impl VTCompressionSession {
                 presentation_time_stamp: CMTime,
                 duration: CMTime,
                 frame_properties: Option<&CFDictionary<CFString, CFType>>,
-                info_flags_out: *mut VTEncodeInfoFlags,
+                info_flags_out: Option<&mut VTEncodeInfoFlags>,
                 output_handler: &VTCompressionOutputHandler,
             ) -> OSStatus;
         }
@@ -662,19 +658,18 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `further_passes_requested_out` must be a valid pointer or null.
-    /// - `reserved` must be a valid pointer or null.
+    /// `reserved` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEndPass")]
     #[inline]
     pub unsafe fn end_pass(
         &self,
-        further_passes_requested_out: *mut Boolean,
+        further_passes_requested_out: Option<&mut Boolean>,
         reserved: *mut u32,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTCompressionSessionEndPass(
                 session: &VTCompressionSession,
-                further_passes_requested_out: *mut Boolean,
+                further_passes_requested_out: Option<&mut Boolean>,
                 reserved: *mut u32,
             ) -> OSStatus;
         }
@@ -695,21 +690,20 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `time_range_count_out` must be a valid pointer.
-    /// - `time_range_array_out` must be a valid pointer.
+    /// `time_range_array_out` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionGetTimeRangesForNextPass")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
     pub unsafe fn time_ranges_for_next_pass(
         &self,
-        time_range_count_out: NonNull<CMItemCount>,
-        time_range_array_out: NonNull<*const CMTimeRange>,
+        time_range_count_out: &mut CMItemCount,
+        time_range_array_out: &mut *const CMTimeRange,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTCompressionSessionGetTimeRangesForNextPass(
                 session: &VTCompressionSession,
-                time_range_count_out: NonNull<CMItemCount>,
-                time_range_array_out: NonNull<*const CMTimeRange>,
+                time_range_count_out: &mut CMItemCount,
+                time_range_array_out: &mut *const CMTimeRange,
             ) -> OSStatus;
         }
         unsafe {

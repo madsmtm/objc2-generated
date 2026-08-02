@@ -206,7 +206,10 @@ impl CMBlockBuffer {
     /// # Safety
     ///
     /// - `memory_block` must be a valid pointer or null.
-    /// - `custom_block_source` must be a valid pointer or null.
+    /// - `custom_block_source` struct field `version` must be set correctly.
+    /// - `custom_block_source` struct field `AllocateBlock` must be implemented correctly.
+    /// - `custom_block_source` struct field `FreeBlock` must be implemented correctly.
+    /// - `custom_block_source` struct field `refCon` must be a valid pointer or null.
     #[doc(alias = "CMBlockBufferCreateWithMemoryBlock")]
     #[inline]
     pub unsafe fn with_memory_block(
@@ -214,7 +217,7 @@ impl CMBlockBuffer {
         memory_block: *mut c_void,
         block_length: usize,
         block_allocator: Option<&CFAllocator>,
-        custom_block_source: *const CMBlockBufferCustomBlockSource,
+        custom_block_source: Option<&CMBlockBufferCustomBlockSource>,
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
@@ -226,7 +229,7 @@ impl CMBlockBuffer {
                 memory_block: *mut c_void,
                 block_length: usize,
                 block_allocator: Option<&CFAllocator>,
-                custom_block_source: *const CMBlockBufferCustomBlockSource,
+                custom_block_source: Option<&CMBlockBufferCustomBlockSource>,
                 offset_to_data: usize,
                 data_length: usize,
                 flags: CMBlockBufferFlags,
@@ -347,14 +350,17 @@ impl CMBlockBuffer {
     ///
     /// # Safety
     ///
-    /// `custom_block_source` must be a valid pointer or null.
+    /// - `custom_block_source` struct field `version` must be set correctly.
+    /// - `custom_block_source` struct field `AllocateBlock` must be implemented correctly.
+    /// - `custom_block_source` struct field `FreeBlock` must be implemented correctly.
+    /// - `custom_block_source` struct field `refCon` must be a valid pointer or null.
     #[doc(alias = "CMBlockBufferCreateContiguous")]
     #[inline]
     pub unsafe fn contiguous(
         &self,
         structure_allocator: Option<&CFAllocator>,
         block_allocator: Option<&CFAllocator>,
-        custom_block_source: *const CMBlockBufferCustomBlockSource,
+        custom_block_source: Option<&CMBlockBufferCustomBlockSource>,
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
@@ -365,7 +371,7 @@ impl CMBlockBuffer {
                 structure_allocator: Option<&CFAllocator>,
                 source_buffer: &CMBlockBuffer,
                 block_allocator: Option<&CFAllocator>,
-                custom_block_source: *const CMBlockBufferCustomBlockSource,
+                custom_block_source: Option<&CMBlockBufferCustomBlockSource>,
                 offset_to_data: usize,
                 data_length: usize,
                 flags: CMBlockBufferFlags,
@@ -452,7 +458,10 @@ impl CMBlockBuffer {
     /// # Safety
     ///
     /// - `memory_block` must be a valid pointer or null.
-    /// - `custom_block_source` must be a valid pointer or null.
+    /// - `custom_block_source` struct field `version` must be set correctly.
+    /// - `custom_block_source` struct field `AllocateBlock` must be implemented correctly.
+    /// - `custom_block_source` struct field `FreeBlock` must be implemented correctly.
+    /// - `custom_block_source` struct field `refCon` must be a valid pointer or null.
     #[doc(alias = "CMBlockBufferAppendMemoryBlock")]
     #[inline]
     pub unsafe fn append_memory_block(
@@ -460,7 +469,7 @@ impl CMBlockBuffer {
         memory_block: *mut c_void,
         block_length: usize,
         block_allocator: Option<&CFAllocator>,
-        custom_block_source: *const CMBlockBufferCustomBlockSource,
+        custom_block_source: Option<&CMBlockBufferCustomBlockSource>,
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
@@ -471,7 +480,7 @@ impl CMBlockBuffer {
                 memory_block: *mut c_void,
                 block_length: usize,
                 block_allocator: Option<&CFAllocator>,
-                custom_block_source: *const CMBlockBufferCustomBlockSource,
+                custom_block_source: Option<&CMBlockBufferCustomBlockSource>,
                 offset_to_data: usize,
                 data_length: usize,
                 flags: CMBlockBufferFlags,
@@ -586,7 +595,7 @@ impl CMBlockBuffer {
     /// # Safety
     ///
     /// - `temporary_block` must be a valid pointer.
-    /// - `returned_pointer_out` must be a valid pointer.
+    /// - `returned_pointer_out` must be a valid pointer or null.
     #[doc(alias = "CMBlockBufferAccessDataBytes")]
     #[inline]
     pub unsafe fn access_data_bytes(
@@ -594,7 +603,7 @@ impl CMBlockBuffer {
         offset: usize,
         length: usize,
         temporary_block: NonNull<c_void>,
-        returned_pointer_out: NonNull<*mut c_char>,
+        returned_pointer_out: &mut *mut c_char,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBlockBufferAccessDataBytes(
@@ -602,7 +611,7 @@ impl CMBlockBuffer {
                 offset: usize,
                 length: usize,
                 temporary_block: NonNull<c_void>,
-                returned_pointer_out: NonNull<*mut c_char>,
+                returned_pointer_out: &mut *mut c_char,
             ) -> OSStatus;
         }
         unsafe {
@@ -781,25 +790,23 @@ impl CMBlockBuffer {
     ///
     /// # Safety
     ///
-    /// - `length_at_offset_out` must be a valid pointer or null.
-    /// - `total_length_out` must be a valid pointer or null.
-    /// - `data_pointer_out` must be a valid pointer or null.
+    /// `data_pointer_out` must be a valid pointer or null.
     #[doc(alias = "CMBlockBufferGetDataPointer")]
     #[inline]
     pub unsafe fn data_pointer(
         &self,
         offset: usize,
-        length_at_offset_out: *mut usize,
-        total_length_out: *mut usize,
-        data_pointer_out: *mut *mut c_char,
+        length_at_offset_out: Option<&mut usize>,
+        total_length_out: Option<&mut usize>,
+        data_pointer_out: Option<&mut *mut c_char>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBlockBufferGetDataPointer(
                 the_buffer: &CMBlockBuffer,
                 offset: usize,
-                length_at_offset_out: *mut usize,
-                total_length_out: *mut usize,
-                data_pointer_out: *mut *mut c_char,
+                length_at_offset_out: Option<&mut usize>,
+                total_length_out: Option<&mut usize>,
+                data_pointer_out: Option<&mut *mut c_char>,
             ) -> OSStatus;
         }
         unsafe {

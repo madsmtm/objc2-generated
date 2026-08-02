@@ -342,14 +342,11 @@ impl MPSSVGF {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        /// # Safety
-        ///
-        /// `zone` must be a valid pointer or null.
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
-            zone: *mut NSZone,
+            zone: Option<&NSZone>,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 

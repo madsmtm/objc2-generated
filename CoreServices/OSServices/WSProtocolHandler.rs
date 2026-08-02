@@ -244,7 +244,12 @@ impl WSProtocolHandler {
     /// # Safety
     ///
     /// - `serialization_proc` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field `version` must be set correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerSetSerializationOverride")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
@@ -253,14 +258,14 @@ impl WSProtocolHandler {
         &self,
         obj_type: CFTypeID,
         serialization_proc: WSProtocolHandlerSerializationProcPtr,
-        context: *mut WSClientContext,
+        context: Option<&mut WSClientContext>,
     ) {
         extern "C-unwind" {
             fn WSProtocolHandlerSetSerializationOverride(
                 protocol: &WSProtocolHandler,
                 obj_type: CFTypeID,
                 serialization_proc: WSProtocolHandlerSerializationProcPtr,
-                context: *mut WSClientContext,
+                context: Option<&mut WSClientContext>,
             );
         }
         unsafe {
@@ -285,7 +290,12 @@ impl WSProtocolHandler {
     /// - `type_namespace` might not allow `None`.
     /// - `type_name` might not allow `None`.
     /// - `deserialization_proc` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field `version` must be set correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerSetDeserializationOverride")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
@@ -295,7 +305,7 @@ impl WSProtocolHandler {
         type_namespace: Option<&CFString>,
         type_name: Option<&CFString>,
         deserialization_proc: WSProtocolHandlerDeserializationProcPtr,
-        context: *mut WSClientContext,
+        context: Option<&mut WSClientContext>,
     ) {
         extern "C-unwind" {
             fn WSProtocolHandlerSetDeserializationOverride(
@@ -303,7 +313,7 @@ impl WSProtocolHandler {
                 type_namespace: Option<&CFString>,
                 type_name: Option<&CFString>,
                 deserialization_proc: WSProtocolHandlerDeserializationProcPtr,
-                context: *mut WSClientContext,
+                context: Option<&mut WSClientContext>,
             );
         }
         unsafe {

@@ -183,15 +183,11 @@ impl MPSNDArrayMultiaryBase {
         /// Parameter `device`: The device on which the new kernel will run. Pass nil for same device.
         ///
         /// Returns: A valid MPSNDArrayMultiaryKernel, or nil if allocation failure.
-        ///
-        /// # Safety
-        ///
-        /// `zone` must be a valid pointer or null.
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
-            zone: *mut NSZone,
+            zone: Option<&NSZone>,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 

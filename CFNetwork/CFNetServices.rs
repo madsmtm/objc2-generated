@@ -351,44 +351,38 @@ impl CFNetService {
         unsafe { CFRetained::retain(ret) }
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceRegisterWithOptions")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
     pub unsafe fn register_with_options(
         &self,
         options: CFOptionFlags,
-        error: *mut CFStreamError,
+        error: Option<&mut CFStreamError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFNetServiceRegisterWithOptions(
                 the_service: &CFNetService,
                 options: CFOptionFlags,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             ) -> Boolean;
         }
         let ret = unsafe { CFNetServiceRegisterWithOptions(self, options, error) };
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceResolveWithTimeout")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
     pub unsafe fn resolve_with_timeout(
         &self,
         timeout: CFTimeInterval,
-        error: *mut CFStreamError,
+        error: Option<&mut CFStreamError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFNetServiceResolveWithTimeout(
                 the_service: &CFNetService,
                 timeout: CFTimeInterval,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             ) -> Boolean;
         }
         let ret = unsafe { CFNetServiceResolveWithTimeout(self, timeout, error) };
@@ -498,20 +492,24 @@ impl CFNetService {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
-    /// - `client_context` must be a valid pointer or null.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer or null.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFNetServiceSetClient")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
     pub unsafe fn set_client(
         &self,
         client_cb: CFNetServiceClientCallBack,
-        client_context: *mut CFNetServiceClientContext,
+        client_context: Option<&mut CFNetServiceClientContext>,
     ) -> bool {
         extern "C-unwind" {
             fn CFNetServiceSetClient(
                 the_service: &CFNetService,
                 client_cb: CFNetServiceClientCallBack,
-                client_context: *mut CFNetServiceClientContext,
+                client_context: Option<&mut CFNetServiceClientContext>,
             ) -> Boolean;
         }
         let ret = unsafe { CFNetServiceSetClient(self, client_cb, client_context) };
@@ -557,7 +555,11 @@ impl CFNetServiceMonitor {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer or null.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFNetServiceMonitorCreate")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -565,14 +567,14 @@ impl CFNetServiceMonitor {
         alloc: Option<&CFAllocator>,
         the_service: &CFNetService,
         client_cb: CFNetServiceMonitorClientCallBack,
-        client_context: NonNull<CFNetServiceClientContext>,
+        client_context: &mut CFNetServiceClientContext,
     ) -> CFRetained<CFNetServiceMonitor> {
         extern "C-unwind" {
             fn CFNetServiceMonitorCreate(
                 alloc: Option<&CFAllocator>,
                 the_service: &CFNetService,
                 client_cb: CFNetServiceMonitorClientCallBack,
-                client_context: NonNull<CFNetServiceClientContext>,
+                client_context: &mut CFNetServiceClientContext,
             ) -> Option<NonNull<CFNetServiceMonitor>>;
         }
         let ret =
@@ -592,37 +594,34 @@ impl CFNetServiceMonitor {
         unsafe { CFNetServiceMonitorInvalidate(self) }
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceMonitorStart")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
     pub unsafe fn start(
         &self,
         record_type: CFNetServiceMonitorType,
-        error: *mut CFStreamError,
+        error: Option<&mut CFStreamError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFNetServiceMonitorStart(
                 monitor: &CFNetServiceMonitor,
                 record_type: CFNetServiceMonitorType,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             ) -> Boolean;
         }
         let ret = unsafe { CFNetServiceMonitorStart(self, record_type, error) };
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceMonitorStop")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
-    pub unsafe fn stop(&self, error: *mut CFStreamError) {
+    pub unsafe fn stop(&self, error: Option<&mut CFStreamError>) {
         extern "C-unwind" {
-            fn CFNetServiceMonitorStop(monitor: &CFNetServiceMonitor, error: *mut CFStreamError);
+            fn CFNetServiceMonitorStop(
+                monitor: &CFNetServiceMonitor,
+                error: Option<&mut CFStreamError>,
+            );
         }
         unsafe { CFNetServiceMonitorStop(self, error) }
     }
@@ -666,20 +665,24 @@ impl CFNetServiceBrowser {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer or null.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFNetServiceBrowserCreate")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
     pub unsafe fn new(
         alloc: Option<&CFAllocator>,
         client_cb: CFNetServiceBrowserClientCallBack,
-        client_context: NonNull<CFNetServiceClientContext>,
+        client_context: &mut CFNetServiceClientContext,
     ) -> CFRetained<CFNetServiceBrowser> {
         extern "C-unwind" {
             fn CFNetServiceBrowserCreate(
                 alloc: Option<&CFAllocator>,
                 client_cb: CFNetServiceBrowserClientCallBack,
-                client_context: NonNull<CFNetServiceClientContext>,
+                client_context: &mut CFNetServiceClientContext,
             ) -> Option<NonNull<CFNetServiceBrowser>>;
         }
         let ret = unsafe { CFNetServiceBrowserCreate(alloc, client_cb, client_context) };
@@ -698,22 +701,19 @@ impl CFNetServiceBrowser {
         unsafe { CFNetServiceBrowserInvalidate(self) }
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceBrowserSearchForDomains")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
     pub unsafe fn search_for_domains(
         &self,
         registration_domains: bool,
-        error: *mut CFStreamError,
+        error: Option<&mut CFStreamError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFNetServiceBrowserSearchForDomains(
                 browser: &CFNetServiceBrowser,
                 registration_domains: Boolean,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             ) -> Boolean;
         }
         let registration_domains = registration_domains as _;
@@ -721,9 +721,6 @@ impl CFNetServiceBrowser {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceBrowserSearchForServices")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -731,14 +728,14 @@ impl CFNetServiceBrowser {
         &self,
         domain: &CFString,
         service_type: &CFString,
-        error: *mut CFStreamError,
+        error: Option<&mut CFStreamError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFNetServiceBrowserSearchForServices(
                 browser: &CFNetServiceBrowser,
                 domain: &CFString,
                 service_type: &CFString,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             ) -> Boolean;
         }
         let ret =
@@ -746,17 +743,14 @@ impl CFNetServiceBrowser {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceBrowserStopSearch")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
-    pub unsafe fn stop_search(&self, error: *mut CFStreamError) {
+    pub unsafe fn stop_search(&self, error: Option<&mut CFStreamError>) {
         extern "C-unwind" {
             fn CFNetServiceBrowserStopSearch(
                 browser: &CFNetServiceBrowser,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             );
         }
         unsafe { CFNetServiceBrowserStopSearch(self, error) }
@@ -798,34 +792,28 @@ impl CFNetServiceBrowser {
 }
 
 impl CFNetService {
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceRegister")]
     #[deprecated]
     #[inline]
-    pub unsafe fn register(&self, error: *mut CFStreamError) -> bool {
+    pub unsafe fn register(&self, error: Option<&mut CFStreamError>) -> bool {
         extern "C-unwind" {
             fn CFNetServiceRegister(
                 the_service: &CFNetService,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             ) -> Boolean;
         }
         let ret = unsafe { CFNetServiceRegister(self, error) };
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceResolve")]
     #[deprecated]
     #[inline]
-    pub unsafe fn resolve(&self, error: *mut CFStreamError) -> bool {
+    pub unsafe fn resolve(&self, error: Option<&mut CFStreamError>) -> bool {
         extern "C-unwind" {
             fn CFNetServiceResolve(
                 the_service: &CFNetService,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             ) -> Boolean;
         }
         let ret = unsafe { CFNetServiceResolve(self, error) };

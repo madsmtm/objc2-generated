@@ -79,20 +79,24 @@ pub unsafe fn CFNetworkCopyProxiesForAutoConfigurationScript(
 /// # Safety
 ///
 /// - `cb` must be implemented correctly.
-/// - `client_context` must be a valid pointer.
+/// - `client_context` struct field `version` must be set correctly.
+/// - `client_context` struct field `info` must be a valid pointer.
+/// - `client_context` struct field `retain` must be implemented correctly.
+/// - `client_context` struct field `release` must be implemented correctly.
+/// - `client_context` struct field `copyDescription` must be implemented correctly.
 #[inline]
 pub unsafe fn CFNetworkExecuteProxyAutoConfigurationScript(
     proxy_auto_configuration_script: &CFString,
     target_url: &CFURL,
     cb: CFProxyAutoConfigurationResultCallback,
-    client_context: NonNull<CFStreamClientContext>,
+    client_context: &mut CFStreamClientContext,
 ) -> CFRetained<CFRunLoopSource> {
     extern "C-unwind" {
         fn CFNetworkExecuteProxyAutoConfigurationScript(
             proxy_auto_configuration_script: &CFString,
             target_url: &CFURL,
             cb: CFProxyAutoConfigurationResultCallback,
-            client_context: NonNull<CFStreamClientContext>,
+            client_context: &mut CFStreamClientContext,
         ) -> Option<NonNull<CFRunLoopSource>>;
     }
     let ret = unsafe {
@@ -110,20 +114,24 @@ pub unsafe fn CFNetworkExecuteProxyAutoConfigurationScript(
 /// # Safety
 ///
 /// - `cb` must be implemented correctly.
-/// - `client_context` must be a valid pointer.
+/// - `client_context` struct field `version` must be set correctly.
+/// - `client_context` struct field `info` must be a valid pointer.
+/// - `client_context` struct field `retain` must be implemented correctly.
+/// - `client_context` struct field `release` must be implemented correctly.
+/// - `client_context` struct field `copyDescription` must be implemented correctly.
 #[inline]
 pub unsafe fn CFNetworkExecuteProxyAutoConfigurationURL(
     proxy_auto_config_url: &CFURL,
     target_url: &CFURL,
     cb: CFProxyAutoConfigurationResultCallback,
-    client_context: NonNull<CFStreamClientContext>,
+    client_context: &mut CFStreamClientContext,
 ) -> CFRetained<CFRunLoopSource> {
     extern "C-unwind" {
         fn CFNetworkExecuteProxyAutoConfigurationURL(
             proxy_auto_config_url: &CFURL,
             target_url: &CFURL,
             cb: CFProxyAutoConfigurationResultCallback,
-            client_context: NonNull<CFStreamClientContext>,
+            client_context: &mut CFStreamClientContext,
         ) -> Option<NonNull<CFRunLoopSource>>;
     }
     let ret = unsafe {

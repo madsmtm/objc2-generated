@@ -59,12 +59,12 @@ pub unsafe fn annuity(rate: c_double, periods: c_double) -> c_double {
 ///
 /// # Safety
 ///
-/// `x` must be a valid pointer.
+/// `x` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn randomx(x: *mut c_double) -> c_double {
+pub unsafe fn randomx(x: Option<&mut c_double>) -> c_double {
     extern "C-unwind" {
-        fn randomx(x: *mut c_double) -> c_double;
+        fn randomx(x: Option<&mut c_double>) -> c_double;
     }
     unsafe { randomx(x) }
 }
@@ -172,115 +172,125 @@ unsafe impl RefEncode for decform {
 
 /// # Safety
 ///
-/// - `f` must be a valid pointer.
-/// - `d` must be a valid pointer.
+/// - `f` might not allow `None`.
+/// - `d` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn num2dec(f: *const decform, x: c_double, d: *mut decimal) {
+pub unsafe fn num2dec(f: Option<&decform>, x: c_double, d: Option<&mut decimal>) {
     extern "C-unwind" {
-        fn num2dec(f: *const decform, x: c_double, d: *mut decimal);
+        fn num2dec(f: Option<&decform>, x: c_double, d: Option<&mut decimal>);
     }
     unsafe { num2dec(f, x, d) }
 }
 
 /// # Safety
 ///
-/// `d` must be a valid pointer.
+/// `d` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn dec2num(d: *const decimal) -> c_double {
+pub unsafe fn dec2num(d: Option<&decimal>) -> c_double {
     extern "C-unwind" {
-        fn dec2num(d: *const decimal) -> c_double;
+        fn dec2num(d: Option<&decimal>) -> c_double;
     }
     unsafe { dec2num(d) }
 }
 
 /// # Safety
 ///
-/// - `f` must be a valid pointer.
-/// - `d` must be a valid pointer.
-/// - `s` must be a valid pointer.
+/// - `f` might not allow `None`.
+/// - `d` might not allow `None`.
+/// - `s` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn dec2str(f: *const decform, d: *const decimal, s: *mut c_char) {
+pub unsafe fn dec2str(f: Option<&decform>, d: Option<&decimal>, s: Option<&mut c_char>) {
     extern "C-unwind" {
-        fn dec2str(f: *const decform, d: *const decimal, s: *mut c_char);
+        fn dec2str(f: Option<&decform>, d: Option<&decimal>, s: Option<&mut c_char>);
     }
     unsafe { dec2str(f, d, s) }
 }
 
 /// # Safety
 ///
-/// - `s` must be a valid pointer.
-/// - `ix` must be a valid pointer.
-/// - `d` must be a valid pointer.
-/// - `vp` must be a valid pointer.
+/// - `s` might not allow `None`.
+/// - `ix` might not allow `None`.
+/// - `d` might not allow `None`.
+/// - `vp` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn str2dec(s: *const c_char, ix: *mut c_short, d: *mut decimal, vp: *mut c_short) {
+pub unsafe fn str2dec(
+    s: Option<&c_char>,
+    ix: Option<&mut c_short>,
+    d: Option<&mut decimal>,
+    vp: Option<&mut c_short>,
+) {
     extern "C-unwind" {
-        fn str2dec(s: *const c_char, ix: *mut c_short, d: *mut decimal, vp: *mut c_short);
+        fn str2dec(
+            s: Option<&c_char>,
+            ix: Option<&mut c_short>,
+            d: Option<&mut decimal>,
+            vp: Option<&mut c_short>,
+        );
     }
     unsafe { str2dec(s, ix, d, vp) }
 }
 
 /// # Safety
 ///
-/// `d` must be a valid pointer.
+/// `d` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn dec2f(d: *const decimal) -> c_float {
+pub unsafe fn dec2f(d: Option<&decimal>) -> c_float {
     extern "C-unwind" {
-        fn dec2f(d: *const decimal) -> c_float;
+        fn dec2f(d: Option<&decimal>) -> c_float;
     }
     unsafe { dec2f(d) }
 }
 
 /// # Safety
 ///
-/// `d` must be a valid pointer.
+/// `d` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn dec2s(d: *const decimal) -> c_short {
+pub unsafe fn dec2s(d: Option<&decimal>) -> c_short {
     extern "C-unwind" {
-        fn dec2s(d: *const decimal) -> c_short;
+        fn dec2s(d: Option<&decimal>) -> c_short;
     }
     unsafe { dec2s(d) }
 }
 
 /// # Safety
 ///
-/// `d` must be a valid pointer.
+/// `d` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn dec2l(d: *const decimal) -> c_long {
+pub unsafe fn dec2l(d: Option<&decimal>) -> c_long {
     extern "C-unwind" {
-        fn dec2l(d: *const decimal) -> c_long;
+        fn dec2l(d: Option<&decimal>) -> c_long;
     }
     unsafe { dec2l(d) }
 }
 
 /// # Safety
 ///
-/// `x80` must be a valid pointer.
+/// `x80` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn x80tod(x80: *const extended80) -> c_double {
+pub unsafe fn x80tod(x80: Option<&extended80>) -> c_double {
     extern "C-unwind" {
-        fn x80tod(x80: *const extended80) -> c_double;
+        fn x80tod(x80: Option<&extended80>) -> c_double;
     }
     unsafe { x80tod(x80) }
 }
 
 /// # Safety
 ///
-/// - `x` must be a valid pointer.
-/// - `x80` must be a valid pointer.
+/// - `x` might not allow `None`.
+/// - `x80` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn dtox80(x: *const c_double, x80: *mut extended80) {
+pub unsafe fn dtox80(x: Option<&c_double>, x80: Option<&mut extended80>) {
     extern "C-unwind" {
-        fn dtox80(x: *const c_double, x80: *mut extended80);
+        fn dtox80(x: Option<&c_double>, x80: Option<&mut extended80>);
     }
     unsafe { dtox80(x, x80) }
 }

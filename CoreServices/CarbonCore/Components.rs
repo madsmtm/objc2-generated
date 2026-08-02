@@ -653,7 +653,7 @@ pub type GetMissingComponentResourceUPP = GetMissingComponentResourceProcPtr;
 ///
 /// # Safety
 ///
-/// - `cd` must be a valid pointer.
+/// - `cd` might not allow `None`.
 /// - `component_entry_point` must be implemented correctly.
 /// - `component_name` must be a valid pointer.
 /// - `component_info` must be a valid pointer.
@@ -661,7 +661,7 @@ pub type GetMissingComponentResourceUPP = GetMissingComponentResourceProcPtr;
 #[deprecated]
 #[inline]
 pub unsafe fn RegisterComponent(
-    cd: *mut ComponentDescription,
+    cd: Option<&mut ComponentDescription>,
     component_entry_point: ComponentRoutineUPP,
     global: i16,
     component_name: Handle,
@@ -670,7 +670,7 @@ pub unsafe fn RegisterComponent(
 ) -> Component {
     extern "C-unwind" {
         fn RegisterComponent(
-            cd: *mut ComponentDescription,
+            cd: Option<&mut ComponentDescription>,
             component_entry_point: ComponentRoutineUPP,
             global: i16,
             component_name: Handle,
@@ -717,17 +717,17 @@ pub unsafe fn UnregisterComponent(a_component: Component) -> OSErr {
 /// # Safety
 ///
 /// - `a_component` must be a valid pointer.
-/// - `looking` must be a valid pointer.
+/// - `looking` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn FindNextComponent(
     a_component: Component,
-    looking: *mut ComponentDescription,
+    looking: Option<&mut ComponentDescription>,
 ) -> Component {
     extern "C-unwind" {
         fn FindNextComponent(
             a_component: Component,
-            looking: *mut ComponentDescription,
+            looking: Option<&mut ComponentDescription>,
         ) -> Component;
     }
     unsafe { FindNextComponent(a_component, looking) }
@@ -735,12 +735,12 @@ pub unsafe fn FindNextComponent(
 
 /// # Safety
 ///
-/// `looking` must be a valid pointer.
+/// `looking` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn CountComponents(looking: *mut ComponentDescription) -> c_long {
+pub unsafe fn CountComponents(looking: Option<&mut ComponentDescription>) -> c_long {
     extern "C-unwind" {
-        fn CountComponents(looking: *mut ComponentDescription) -> c_long;
+        fn CountComponents(looking: Option<&mut ComponentDescription>) -> c_long;
     }
     unsafe { CountComponents(looking) }
 }
@@ -748,7 +748,7 @@ pub unsafe fn CountComponents(looking: *mut ComponentDescription) -> c_long {
 /// # Safety
 ///
 /// - `a_component` must be a valid pointer.
-/// - `cd` must be a valid pointer.
+/// - `cd` might not allow `None`.
 /// - `component_name` must be a valid pointer.
 /// - `component_info` must be a valid pointer.
 /// - `component_icon` must be a valid pointer.
@@ -756,7 +756,7 @@ pub unsafe fn CountComponents(looking: *mut ComponentDescription) -> c_long {
 #[inline]
 pub unsafe fn GetComponentInfo(
     a_component: Component,
-    cd: *mut ComponentDescription,
+    cd: Option<&mut ComponentDescription>,
     component_name: Handle,
     component_info: Handle,
     component_icon: Handle,
@@ -764,7 +764,7 @@ pub unsafe fn GetComponentInfo(
     extern "C-unwind" {
         fn GetComponentInfo(
             a_component: Component,
-            cd: *mut ComponentDescription,
+            cd: Option<&mut ComponentDescription>,
             component_name: Handle,
             component_info: Handle,
             component_icon: Handle,
@@ -807,11 +807,12 @@ pub unsafe fn GetComponentTypeModSeed(component_type: OSType) -> i32 {
 ///
 /// - `a_component` must be a valid pointer.
 /// - `ci` must be a valid pointer.
+/// - `ci` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn OpenAComponent(a_component: Component, ci: *mut ComponentInstance) -> OSErr {
+pub unsafe fn OpenAComponent(a_component: Component, ci: Option<&mut ComponentInstance>) -> OSErr {
     extern "C-unwind" {
-        fn OpenAComponent(a_component: Component, ci: *mut ComponentInstance) -> OSErr;
+        fn OpenAComponent(a_component: Component, ci: Option<&mut ComponentInstance>) -> OSErr;
     }
     unsafe { OpenAComponent(a_component, ci) }
 }
@@ -876,20 +877,21 @@ pub unsafe fn ResolveComponentAlias(a_component: Component) -> Component {
 ///
 /// - `a_component` must be a valid pointer.
 /// - `the_resource` must be a valid pointer.
+/// - `the_resource` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn GetComponentPublicResource(
     a_component: Component,
     resource_type: OSType,
     resource_id: i16,
-    the_resource: *mut Handle,
+    the_resource: Option<&mut Handle>,
 ) -> OSErr {
     extern "C-unwind" {
         fn GetComponentPublicResource(
             a_component: Component,
             resource_type: OSType,
             resource_id: i16,
-            the_resource: *mut Handle,
+            the_resource: Option<&mut Handle>,
         ) -> OSErr;
     }
     unsafe { GetComponentPublicResource(a_component, resource_type, resource_id, the_resource) }
@@ -897,7 +899,7 @@ pub unsafe fn GetComponentPublicResource(
 
 /// # Safety
 ///
-/// - `cd` must be a valid pointer.
+/// - `cd` might not allow `None`.
 /// - `missing_proc` must be implemented correctly.
 /// - `ref_con` must be a valid pointer.
 /// - `atom_container_ptr` must be a valid pointer.
@@ -907,7 +909,7 @@ pub unsafe fn GetComponentPublicResourceList(
     resource_type: OSType,
     resource_id: i16,
     flags: i32,
-    cd: *mut ComponentDescription,
+    cd: Option<&mut ComponentDescription>,
     missing_proc: GetMissingComponentResourceUPP,
     ref_con: *mut c_void,
     atom_container_ptr: *mut c_void,
@@ -917,7 +919,7 @@ pub unsafe fn GetComponentPublicResourceList(
             resource_type: OSType,
             resource_id: i16,
             flags: i32,
-            cd: *mut ComponentDescription,
+            cd: Option<&mut ComponentDescription>,
             missing_proc: GetMissingComponentResourceUPP,
             ref_con: *mut c_void,
             atom_container_ptr: *mut c_void,
@@ -1021,13 +1023,19 @@ pub unsafe fn OpenComponentResFile(a_component: Component) -> ResFileRefNum {
 /// # Safety
 ///
 /// - `a_component` must be a valid pointer.
-/// - `res_ref` must be a valid pointer.
+/// - `res_ref` might not allow `None`.
 #[cfg(all(feature = "Files", feature = "Resources"))]
 #[deprecated]
 #[inline]
-pub unsafe fn OpenAComponentResFile(a_component: Component, res_ref: *mut ResFileRefNum) -> OSErr {
+pub unsafe fn OpenAComponentResFile(
+    a_component: Component,
+    res_ref: Option<&mut ResFileRefNum>,
+) -> OSErr {
     extern "C-unwind" {
-        fn OpenAComponentResFile(a_component: Component, res_ref: *mut ResFileRefNum) -> OSErr;
+        fn OpenAComponentResFile(
+            a_component: Component,
+            res_ref: Option<&mut ResFileRefNum>,
+        ) -> OSErr;
     }
     unsafe { OpenAComponentResFile(a_component, res_ref) }
 }
@@ -1046,20 +1054,21 @@ pub unsafe fn CloseComponentResFile(refnum: ResFileRefNum) -> OSErr {
 ///
 /// - `a_component` must be a valid pointer.
 /// - `the_resource` must be a valid pointer.
+/// - `the_resource` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn GetComponentResource(
     a_component: Component,
     res_type: OSType,
     res_id: i16,
-    the_resource: *mut Handle,
+    the_resource: Option<&mut Handle>,
 ) -> OSErr {
     extern "C-unwind" {
         fn GetComponentResource(
             a_component: Component,
             res_type: OSType,
             res_id: i16,
-            the_resource: *mut Handle,
+            the_resource: Option<&mut Handle>,
         ) -> OSErr;
     }
     unsafe { GetComponentResource(a_component, res_type, res_id, the_resource) }
@@ -1208,19 +1217,20 @@ pub unsafe fn OpenDefaultComponent(
 
 /// # Safety
 ///
-/// `ci` must be a valid pointer.
+/// - `ci` must be a valid pointer.
+/// - `ci` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn OpenADefaultComponent(
     component_type: OSType,
     component_sub_type: OSType,
-    ci: *mut ComponentInstance,
+    ci: Option<&mut ComponentInstance>,
 ) -> OSErr {
     extern "C-unwind" {
         fn OpenADefaultComponent(
             component_type: OSType,
             component_sub_type: OSType,
-            ci: *mut ComponentInstance,
+            ci: Option<&mut ComponentInstance>,
         ) -> OSErr;
     }
     unsafe { OpenADefaultComponent(component_type, component_sub_type, ci) }
@@ -1268,35 +1278,35 @@ pub unsafe fn RegisterComponentResourceFile(res_ref_num: i16, global: i16) -> i3
 
 /// # Safety
 ///
-/// `ref` must be a valid pointer.
+/// `ref` might not allow `None`.
 #[cfg(feature = "Files")]
 #[deprecated]
 #[inline]
-pub unsafe fn RegisterComponentFileRef(r#ref: *const FSRef, global: i16) -> OSErr {
+pub unsafe fn RegisterComponentFileRef(r#ref: Option<&FSRef>, global: i16) -> OSErr {
     extern "C-unwind" {
-        fn RegisterComponentFileRef(r#ref: *const FSRef, global: i16) -> OSErr;
+        fn RegisterComponentFileRef(r#ref: Option<&FSRef>, global: i16) -> OSErr;
     }
     unsafe { RegisterComponentFileRef(r#ref, global) }
 }
 
 /// # Safety
 ///
-/// - `ref` must be a valid pointer.
-/// - `to_register` must be a valid pointer.
+/// - `ref` might not allow `None`.
+/// - `to_register` might not allow `None`.
 #[cfg(feature = "Files")]
 #[deprecated]
 #[inline]
 pub unsafe fn RegisterComponentFileRefEntries(
-    r#ref: *const FSRef,
+    r#ref: Option<&FSRef>,
     global: i16,
-    to_register: *const ComponentDescription,
+    to_register: Option<&ComponentDescription>,
     register_count: u32,
 ) -> OSErr {
     extern "C-unwind" {
         fn RegisterComponentFileRefEntries(
-            r#ref: *const FSRef,
+            r#ref: Option<&FSRef>,
             global: i16,
-            to_register: *const ComponentDescription,
+            to_register: Option<&ComponentDescription>,
             register_count: u32,
         ) -> OSErr;
     }
@@ -1403,20 +1413,22 @@ pub unsafe fn CallComponentUnregister(ci: ComponentInstance) -> ComponentResult 
 /// # Safety
 ///
 /// - `ci` must be a valid pointer.
-/// - `work_function` must be a valid pointer.
+/// - `work_function` must be implemented correctly.
+/// - `work_function` might not allow `None`.
 /// - `ref_con` must be a valid pointer.
+/// - `ref_con` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn CallComponentGetMPWorkFunction(
     ci: ComponentInstance,
-    work_function: *mut ComponentMPWorkFunctionUPP,
-    ref_con: *mut *mut c_void,
+    work_function: Option<&mut ComponentMPWorkFunctionUPP>,
+    ref_con: Option<&mut *mut c_void>,
 ) -> ComponentResult {
     extern "C-unwind" {
         fn CallComponentGetMPWorkFunction(
             ci: ComponentInstance,
-            work_function: *mut ComponentMPWorkFunctionUPP,
-            ref_con: *mut *mut c_void,
+            work_function: Option<&mut ComponentMPWorkFunctionUPP>,
+            ref_con: Option<&mut *mut c_void>,
         ) -> ComponentResult;
     }
     unsafe { CallComponentGetMPWorkFunction(ci, work_function, ref_con) }
@@ -1426,20 +1438,21 @@ pub unsafe fn CallComponentGetMPWorkFunction(
 ///
 /// - `ci` must be a valid pointer.
 /// - `resource` must be a valid pointer.
+/// - `resource` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn CallComponentGetPublicResource(
     ci: ComponentInstance,
     resource_type: OSType,
     resource_id: i16,
-    resource: *mut Handle,
+    resource: Option<&mut Handle>,
 ) -> ComponentResult {
     extern "C-unwind" {
         fn CallComponentGetPublicResource(
             ci: ComponentInstance,
             resource_type: OSType,
             resource_id: i16,
-            resource: *mut Handle,
+            resource: Option<&mut Handle>,
         ) -> ComponentResult;
     }
     unsafe { CallComponentGetPublicResource(ci, resource_type, resource_id, resource) }
@@ -1586,6 +1599,7 @@ pub unsafe fn InvokeComponentRoutineUPP(
 /// - `c` must be a valid pointer.
 /// - `ref_con` must be a valid pointer.
 /// - `resource` must be a valid pointer.
+/// - `resource` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
@@ -1594,7 +1608,7 @@ pub unsafe fn InvokeGetMissingComponentResourceUPP(
     res_type: OSType,
     res_id: i16,
     ref_con: *mut c_void,
-    resource: *mut Handle,
+    resource: Option<&mut Handle>,
     user_upp: GetMissingComponentResourceUPP,
 ) -> OSErr {
     extern "C-unwind" {
@@ -1603,7 +1617,7 @@ pub unsafe fn InvokeGetMissingComponentResourceUPP(
             res_type: OSType,
             res_id: i16,
             ref_con: *mut c_void,
-            resource: *mut Handle,
+            resource: Option<&mut Handle>,
             user_upp: GetMissingComponentResourceUPP,
         ) -> OSErr;
     }

@@ -596,12 +596,12 @@ pub unsafe fn FlushEvents(which_mask: EventMask, stop_mask: EventMask) {
 
 /// # Safety
 ///
-/// `event` must be a valid pointer.
+/// `event` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn IsCmdChar(event: *const EventRecord, test: c_short) -> bool {
+pub unsafe fn IsCmdChar(event: Option<&EventRecord>, test: c_short) -> bool {
     extern "C-unwind" {
-        fn IsCmdChar(event: *const EventRecord, test: c_short) -> Boolean;
+        fn IsCmdChar(event: Option<&EventRecord>, test: c_short) -> Boolean;
     }
     let ret = unsafe { IsCmdChar(event, test) };
     ret != 0

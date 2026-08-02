@@ -297,25 +297,17 @@ impl MERAWProcessingBooleanParameter {
         ///
         /// If the return value is YES and outNeutralValue is not nil, the value held by outNeutralValue will be set to the neutral value.
         /// If the return value is NO and outNeutralValue is not nil, the value held by outNeutralValue will be set to NO.
-        ///
-        /// # Safety
-        ///
-        /// `out_neutral_value` must be a valid pointer or null.
         #[unsafe(method(hasNeutralValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasNeutralValue(&self, out_neutral_value: *mut Bool) -> bool;
+        pub unsafe fn hasNeutralValue(&self, out_neutral_value: Option<&mut Bool>) -> bool;
 
         /// Return value indicates whether the MERAWProcessingBooleanParameter has an optional declared Camera value.
         ///
         /// If the return value is YES and outCameraValue is not nil, the value held by outCameraValue will be set to the camera value.
         /// If the return value is NO and outCameraValue is not nil, the value held by outCameraValue will be set to NO.
-        ///
-        /// # Safety
-        ///
-        /// `out_camera_value` must be a valid pointer or null.
         #[unsafe(method(hasCameraValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasCameraValue(&self, out_camera_value: *mut Bool) -> bool;
+        pub unsafe fn hasCameraValue(&self, out_camera_value: Option<&mut Bool>) -> bool;
     );
 }
 
@@ -428,24 +420,16 @@ impl MERAWProcessingIntegerParameter {
         ///
         /// If the return value is YES and outNeutralValue is not nil, the value held by outNeutralValue will be set to the neutral value.
         /// If the return value is NO and outNeutralValue is not nil, the value held by outNeutralValue will be set to 0.
-        ///
-        /// # Safety
-        ///
-        /// `out_neutral_value` must be a valid pointer or null.
         #[unsafe(method(hasNeutralValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasNeutralValue(&self, out_neutral_value: *mut NSInteger) -> bool;
+        pub unsafe fn hasNeutralValue(&self, out_neutral_value: Option<&mut NSInteger>) -> bool;
 
         /// Return value indicates whether the MERAWProcessingIntegerParameter has an optional declared Camera value.
         /// If the return value is YES and outCameraValue is not nil, the value held by outCameraValue will be set to the camera value.
         /// If the return value is NO and outCameraValue is not nil, the value held by outCameraValue will be set to 0.
-        ///
-        /// # Safety
-        ///
-        /// `out_camera_value` must be a valid pointer or null.
         #[unsafe(method(hasCameraValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasCameraValue(&self, out_camera_value: *mut NSInteger) -> bool;
+        pub unsafe fn hasCameraValue(&self, out_camera_value: Option<&mut NSInteger>) -> bool;
     );
 }
 
@@ -558,25 +542,17 @@ impl MERAWProcessingFloatParameter {
         ///
         /// If the return value is YES and outNeutralValue is not nil, the value held by outNeutralValue will be set to the neutral value.
         /// If the return value is NO and outNeutralValue is not nil, the value held by outNeutralValue will be set to 0.
-        ///
-        /// # Safety
-        ///
-        /// `out_neutral_value` must be a valid pointer or null.
         #[unsafe(method(hasNeutralValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasNeutralValue(&self, out_neutral_value: *mut c_float) -> bool;
+        pub unsafe fn hasNeutralValue(&self, out_neutral_value: Option<&mut c_float>) -> bool;
 
         /// Return value indicates whether the MERAWProcessingFloatParameter has an optional declared Camera value.
         ///
         /// If the return value is YES and outCameraValue is not nil, the value held by outCameraValue will be set to the camera value.
         /// If the return value is NO and outCameraValue is not nil, the value held by outCameraValue will be set to 0.
-        ///
-        /// # Safety
-        ///
-        /// `out_camera_value` must be a valid pointer or null.
         #[unsafe(method(hasCameraValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasCameraValue(&self, out_camera_value: *mut c_float) -> bool;
+        pub unsafe fn hasCameraValue(&self, out_camera_value: Option<&mut c_float>) -> bool;
     );
 }
 
@@ -681,25 +657,17 @@ impl MERAWProcessingListParameter {
         ///
         /// If the return value is YES and outNeutralValue is not nil, the value held by outNeutralValue will be set to the neutral value.
         /// If the return value is NO and outNeutralValue is not nil, the value held by outNeutralValue will be set to 0.
-        ///
-        /// # Safety
-        ///
-        /// `out_neutral_value` must be a valid pointer or null.
         #[unsafe(method(hasNeutralValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasNeutralValue(&self, out_neutral_value: *mut NSInteger) -> bool;
+        pub unsafe fn hasNeutralValue(&self, out_neutral_value: Option<&mut NSInteger>) -> bool;
 
         /// Return value indicates whether the MERAWProcessingListParameter has an optional declared Camera value.
         ///
         /// If the return value is YES and outCameraValue is not nil, the value held by outCameraValue will be set to the camera value.
         /// If the return value is NO and outCameraValue is not nil, the value held by outCameraValue will be set to 0.
-        ///
-        /// # Safety
-        ///
-        /// `out_camera_value` must be a valid pointer or null.
         #[unsafe(method(hasCameraValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasCameraValue(&self, out_camera_value: *mut NSInteger) -> bool;
+        pub unsafe fn hasCameraValue(&self, out_camera_value: Option<&mut NSInteger>) -> bool;
     );
 }
 

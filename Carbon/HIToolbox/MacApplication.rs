@@ -104,12 +104,18 @@ pub unsafe fn SetSystemUIMode(in_mode: SystemUIMode, in_options: SystemUIOptions
 
 /// # Safety
 ///
-/// - `out_mode` must be a valid pointer.
-/// - `out_options` must be a valid pointer.
+/// - `out_mode` might not allow `None`.
+/// - `out_options` might not allow `None`.
 #[inline]
-pub unsafe fn GetSystemUIMode(out_mode: *mut SystemUIMode, out_options: *mut SystemUIOptions) {
+pub unsafe fn GetSystemUIMode(
+    out_mode: Option<&mut SystemUIMode>,
+    out_options: Option<&mut SystemUIOptions>,
+) {
     extern "C-unwind" {
-        fn GetSystemUIMode(out_mode: *mut SystemUIMode, out_options: *mut SystemUIOptions);
+        fn GetSystemUIMode(
+            out_mode: Option<&mut SystemUIMode>,
+            out_options: Option<&mut SystemUIOptions>,
+        );
     }
     unsafe { GetSystemUIMode(out_mode, out_options) }
 }
@@ -146,7 +152,7 @@ pub unsafe fn HISearchWindowShow(
 /// - `text_string` should be of the correct type.
 /// - `text_string` might not allow `None`.
 /// - `text_font` might not allow `None`.
-/// - `view_transform` must be a valid pointer.
+/// - `view_transform` might not allow `None`.
 #[cfg(all(feature = "objc2-core-services", feature = "objc2-core-text"))]
 #[inline]
 pub unsafe fn HIDictionaryWindowShow(
@@ -156,7 +162,7 @@ pub unsafe fn HIDictionaryWindowShow(
     text_font: Option<&CTFont>,
     text_origin: CGPoint,
     vertical_text: bool,
-    view_transform: *const CGAffineTransform,
+    view_transform: Option<&CGAffineTransform>,
 ) {
     extern "C-unwind" {
         fn HIDictionaryWindowShow(
@@ -166,7 +172,7 @@ pub unsafe fn HIDictionaryWindowShow(
             text_font: Option<&CTFont>,
             text_origin: CGPoint,
             vertical_text: Boolean,
-            view_transform: *const CGAffineTransform,
+            view_transform: Option<&CGAffineTransform>,
         );
     }
     let vertical_text = vertical_text as _;

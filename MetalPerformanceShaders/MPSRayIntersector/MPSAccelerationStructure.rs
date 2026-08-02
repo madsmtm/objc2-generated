@@ -553,16 +553,12 @@ impl MPSAccelerationStructure {
         /// Parameter `zone`: This parameter is ignored. Memory zones are no longer used by Objective-C.
         ///
         /// Parameter `device`: New Metal device
-        ///
-        /// # Safety
-        ///
-        /// `zone` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
-            zone: *mut NSZone,
+            zone: Option<&NSZone>,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 
@@ -580,16 +576,12 @@ impl MPSAccelerationStructure {
         /// Parameter `zone`: This parameter is ignored. Memory zones are no longer used by Objective-C.
         ///
         /// Parameter `group`: New acceleration structure group
-        ///
-        /// # Safety
-        ///
-        /// `zone` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(copyWithZone:group:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_group(
             &self,
-            zone: *mut NSZone,
+            zone: Option<&NSZone>,
             group: &MPSAccelerationStructureGroup,
         ) -> Retained<Self>;
 

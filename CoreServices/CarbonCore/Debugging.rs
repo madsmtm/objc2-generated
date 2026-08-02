@@ -14,20 +14,20 @@ pub const kBlessedBusErrorBait: c_uint = 0x68F168F1;
 
 /// # Safety
 ///
-/// - `assertion_string` must be a valid pointer.
-/// - `exception_label_string` must be a valid pointer.
-/// - `error_string` must be a valid pointer.
-/// - `file_name` must be a valid pointer.
+/// - `assertion_string` might not allow `None`.
+/// - `exception_label_string` might not allow `None`.
+/// - `error_string` might not allow `None`.
+/// - `file_name` might not allow `None`.
 /// - `value` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn DebugAssert(
     component_signature: OSType,
     options: u32,
-    assertion_string: *const c_char,
-    exception_label_string: *const c_char,
-    error_string: *const c_char,
-    file_name: *const c_char,
+    assertion_string: Option<&CStr>,
+    exception_label_string: Option<&CStr>,
+    error_string: Option<&CStr>,
+    file_name: Option<&CStr>,
     line_number: c_long,
     value: *mut c_void,
 ) {
@@ -43,6 +43,18 @@ pub unsafe fn DebugAssert(
             value: *mut c_void,
         );
     }
+    let assertion_string = assertion_string
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
+    let exception_label_string = exception_label_string
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
+    let error_string = error_string
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
+    let file_name = file_name
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
     unsafe {
         DebugAssert(
             component_signature,
@@ -152,19 +164,19 @@ pub unsafe fn DisposeDebugComponent(component_signature: OSType) -> OSStatus {
 
 /// # Safety
 ///
-/// - `component_signature` must be a valid pointer.
+/// - `component_signature` might not allow `None`.
 /// - `component_name` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn GetDebugComponentInfo(
     item_index: u32,
-    component_signature: *mut OSType,
+    component_signature: Option<&mut OSType>,
     component_name: Option<&mut Str255>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn GetDebugComponentInfo(
             item_index: u32,
-            component_signature: *mut OSType,
+            component_signature: Option<&mut OSType>,
             component_name: Option<&mut Str255>,
         ) -> OSStatus;
     }
@@ -173,25 +185,25 @@ pub unsafe fn GetDebugComponentInfo(
 
 /// # Safety
 ///
-/// - `option_selector_num` must be a valid pointer.
+/// - `option_selector_num` might not allow `None`.
 /// - `option_name` might not allow `None`.
-/// - `option_setting` must be a valid pointer.
+/// - `option_setting` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn GetDebugOptionInfo(
     item_index: u32,
     component_signature: OSType,
-    option_selector_num: *mut i32,
+    option_selector_num: Option<&mut i32>,
     option_name: Option<&mut Str255>,
-    option_setting: *mut Boolean,
+    option_setting: Option<&mut Boolean>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn GetDebugOptionInfo(
             item_index: u32,
             component_signature: OSType,
-            option_selector_num: *mut i32,
+            option_selector_num: Option<&mut i32>,
             option_name: Option<&mut Str255>,
-            option_setting: *mut Boolean,
+            option_setting: Option<&mut Boolean>,
         ) -> OSStatus;
     }
     unsafe {
@@ -355,21 +367,21 @@ pub unsafe fn DisposeDebugAssertOutputHandlerUPP(user_upp: DebugAssertOutputHand
 
 /// # Safety
 ///
-/// - `option_setting` must be a valid pointer.
+/// - `option_setting` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeDebugComponentCallbackUPP(
     option_selector_num: i32,
     command: u32,
-    option_setting: *mut Boolean,
+    option_setting: Option<&mut Boolean>,
     user_upp: DebugComponentCallbackUPP,
 ) {
     extern "C-unwind" {
         fn InvokeDebugComponentCallbackUPP(
             option_selector_num: i32,
             command: u32,
-            option_setting: *mut Boolean,
+            option_setting: Option<&mut Boolean>,
             user_upp: DebugComponentCallbackUPP,
         );
     }
@@ -380,10 +392,10 @@ pub unsafe fn InvokeDebugComponentCallbackUPP(
 
 /// # Safety
 ///
-/// - `assertion_string` must be a valid pointer.
-/// - `exception_label_string` must be a valid pointer.
-/// - `error_string` must be a valid pointer.
-/// - `file_name` must be a valid pointer.
+/// - `assertion_string` might not allow `None`.
+/// - `exception_label_string` might not allow `None`.
+/// - `error_string` might not allow `None`.
+/// - `file_name` might not allow `None`.
 /// - `value` must be a valid pointer.
 /// - `output_msg` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
@@ -392,10 +404,10 @@ pub unsafe fn InvokeDebugComponentCallbackUPP(
 pub unsafe fn InvokeDebugAssertOutputHandlerUPP(
     component_signature: OSType,
     options: u32,
-    assertion_string: *const c_char,
-    exception_label_string: *const c_char,
-    error_string: *const c_char,
-    file_name: *const c_char,
+    assertion_string: Option<&CStr>,
+    exception_label_string: Option<&CStr>,
+    error_string: Option<&CStr>,
+    file_name: Option<&CStr>,
     line_number: c_long,
     value: *mut c_void,
     output_msg: ConstStr255Param,
@@ -415,6 +427,18 @@ pub unsafe fn InvokeDebugAssertOutputHandlerUPP(
             user_upp: DebugAssertOutputHandlerUPP,
         );
     }
+    let assertion_string = assertion_string
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
+    let exception_label_string = exception_label_string
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
+    let error_string = error_string
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
+    let file_name = file_name
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
     unsafe {
         InvokeDebugAssertOutputHandlerUPP(
             component_signature,

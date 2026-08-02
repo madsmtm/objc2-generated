@@ -20,20 +20,21 @@ use crate::*;
 ///
 /// - `ctx` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[inline]
 pub unsafe fn JSObjectMakeTypedArray(
     ctx: JSContextRef,
     array_type: JSTypedArrayType,
     length: usize,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeTypedArray(
             ctx: JSContextRef,
             array_type: JSTypedArrayType,
             length: usize,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe { JSObjectMakeTypedArray(ctx, array_type, length, exception) }
@@ -66,6 +67,7 @@ pub unsafe fn JSObjectMakeTypedArray(
 /// - `bytes_deallocator` must be implemented correctly.
 /// - `deallocator_context` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[inline]
 pub unsafe fn JSObjectMakeTypedArrayWithBytesNoCopy(
@@ -75,7 +77,7 @@ pub unsafe fn JSObjectMakeTypedArrayWithBytesNoCopy(
     byte_length: usize,
     bytes_deallocator: JSTypedArrayBytesDeallocator,
     deallocator_context: *mut c_void,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeTypedArrayWithBytesNoCopy(
@@ -85,7 +87,7 @@ pub unsafe fn JSObjectMakeTypedArrayWithBytesNoCopy(
             byte_length: usize,
             bytes_deallocator: JSTypedArrayBytesDeallocator,
             deallocator_context: *mut c_void,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe {
@@ -118,20 +120,21 @@ pub unsafe fn JSObjectMakeTypedArrayWithBytesNoCopy(
 /// - `ctx` must be a valid pointer.
 /// - `buffer` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[inline]
 pub unsafe fn JSObjectMakeTypedArrayWithArrayBuffer(
     ctx: JSContextRef,
     array_type: JSTypedArrayType,
     buffer: JSObjectRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeTypedArrayWithArrayBuffer(
             ctx: JSContextRef,
             array_type: JSTypedArrayType,
             buffer: JSObjectRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe { JSObjectMakeTypedArrayWithArrayBuffer(ctx, array_type, buffer, exception) }
@@ -158,6 +161,7 @@ pub unsafe fn JSObjectMakeTypedArrayWithArrayBuffer(
 /// - `ctx` must be a valid pointer.
 /// - `buffer` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[inline]
 pub unsafe fn JSObjectMakeTypedArrayWithArrayBufferAndOffset(
@@ -166,7 +170,7 @@ pub unsafe fn JSObjectMakeTypedArrayWithArrayBufferAndOffset(
     buffer: JSObjectRef,
     byte_offset: usize,
     length: usize,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeTypedArrayWithArrayBufferAndOffset(
@@ -175,7 +179,7 @@ pub unsafe fn JSObjectMakeTypedArrayWithArrayBufferAndOffset(
             buffer: JSObjectRef,
             byte_offset: usize,
             length: usize,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe {
@@ -207,18 +211,19 @@ pub unsafe fn JSObjectMakeTypedArrayWithArrayBufferAndOffset(
 /// - `ctx` must be a valid pointer.
 /// - `object` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectGetTypedArrayBytesPtr(
     ctx: JSContextRef,
     object: JSObjectRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> *mut c_void {
     extern "C-unwind" {
         fn JSObjectGetTypedArrayBytesPtr(
             ctx: JSContextRef,
             object: JSObjectRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> *mut c_void;
     }
     unsafe { JSObjectGetTypedArrayBytesPtr(ctx, object, exception) }
@@ -239,18 +244,19 @@ pub unsafe fn JSObjectGetTypedArrayBytesPtr(
 /// - `ctx` must be a valid pointer.
 /// - `object` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectGetTypedArrayLength(
     ctx: JSContextRef,
     object: JSObjectRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> usize {
     extern "C-unwind" {
         fn JSObjectGetTypedArrayLength(
             ctx: JSContextRef,
             object: JSObjectRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> usize;
     }
     unsafe { JSObjectGetTypedArrayLength(ctx, object, exception) }
@@ -271,18 +277,19 @@ pub unsafe fn JSObjectGetTypedArrayLength(
 /// - `ctx` must be a valid pointer.
 /// - `object` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectGetTypedArrayByteLength(
     ctx: JSContextRef,
     object: JSObjectRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> usize {
     extern "C-unwind" {
         fn JSObjectGetTypedArrayByteLength(
             ctx: JSContextRef,
             object: JSObjectRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> usize;
     }
     unsafe { JSObjectGetTypedArrayByteLength(ctx, object, exception) }
@@ -303,18 +310,19 @@ pub unsafe fn JSObjectGetTypedArrayByteLength(
 /// - `ctx` must be a valid pointer.
 /// - `object` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectGetTypedArrayByteOffset(
     ctx: JSContextRef,
     object: JSObjectRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> usize {
     extern "C-unwind" {
         fn JSObjectGetTypedArrayByteOffset(
             ctx: JSContextRef,
             object: JSObjectRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> usize;
     }
     unsafe { JSObjectGetTypedArrayByteOffset(ctx, object, exception) }
@@ -335,18 +343,19 @@ pub unsafe fn JSObjectGetTypedArrayByteOffset(
 /// - `ctx` must be a valid pointer.
 /// - `object` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectGetTypedArrayBuffer(
     ctx: JSContextRef,
     object: JSObjectRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectGetTypedArrayBuffer(
             ctx: JSContextRef,
             object: JSObjectRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe { JSObjectGetTypedArrayBuffer(ctx, object, exception) }
@@ -377,6 +386,7 @@ pub unsafe fn JSObjectGetTypedArrayBuffer(
 /// - `bytes_deallocator` must be implemented correctly.
 /// - `deallocator_context` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectMakeArrayBufferWithBytesNoCopy(
@@ -385,7 +395,7 @@ pub unsafe fn JSObjectMakeArrayBufferWithBytesNoCopy(
     byte_length: usize,
     bytes_deallocator: JSTypedArrayBytesDeallocator,
     deallocator_context: *mut c_void,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeArrayBufferWithBytesNoCopy(
@@ -394,7 +404,7 @@ pub unsafe fn JSObjectMakeArrayBufferWithBytesNoCopy(
             byte_length: usize,
             bytes_deallocator: JSTypedArrayBytesDeallocator,
             deallocator_context: *mut c_void,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
     }
     unsafe {
@@ -424,18 +434,19 @@ pub unsafe fn JSObjectMakeArrayBufferWithBytesNoCopy(
 /// - `ctx` must be a valid pointer.
 /// - `object` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectGetArrayBufferBytesPtr(
     ctx: JSContextRef,
     object: JSObjectRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> *mut c_void {
     extern "C-unwind" {
         fn JSObjectGetArrayBufferBytesPtr(
             ctx: JSContextRef,
             object: JSObjectRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> *mut c_void;
     }
     unsafe { JSObjectGetArrayBufferBytesPtr(ctx, object, exception) }
@@ -456,18 +467,19 @@ pub unsafe fn JSObjectGetArrayBufferBytesPtr(
 /// - `ctx` must be a valid pointer.
 /// - `object` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectGetArrayBufferByteLength(
     ctx: JSContextRef,
     object: JSObjectRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> usize {
     extern "C-unwind" {
         fn JSObjectGetArrayBufferByteLength(
             ctx: JSContextRef,
             object: JSObjectRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> usize;
     }
     unsafe { JSObjectGetArrayBufferByteLength(ctx, object, exception) }

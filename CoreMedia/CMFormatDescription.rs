@@ -380,7 +380,6 @@ impl CMAudioFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `asbd` must be a valid pointer.
     /// - `layout` must be a valid pointer or null.
     /// - `magic_cookie` must be a valid pointer or null.
     #[doc(alias = "CMAudioFormatDescriptionCreate")]
@@ -388,7 +387,7 @@ impl CMAudioFormatDescription {
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        asbd: NonNull<AudioStreamBasicDescription>,
+        asbd: &AudioStreamBasicDescription,
         layout_size: usize,
         layout: *const AudioChannelLayout,
         magic_cookie_size: usize,
@@ -399,7 +398,7 @@ impl CMAudioFormatDescription {
         extern "C-unwind" {
             fn CMAudioFormatDescriptionCreate(
                 allocator: Option<&CFAllocator>,
-                asbd: NonNull<AudioStreamBasicDescription>,
+                asbd: &AudioStreamBasicDescription,
                 layout_size: usize,
                 layout: *const AudioChannelLayout,
                 magic_cookie_size: usize,
@@ -452,17 +451,13 @@ impl CMAudioFormatDescription {
     /// description.
     ///
     /// Returns: A read-only pointer to the magic cookie inside the audio format description.
-    ///
-    /// # Safety
-    ///
-    /// `size_out` must be a valid pointer or null.
     #[doc(alias = "CMAudioFormatDescriptionGetMagicCookie")]
     #[inline]
-    pub unsafe fn magic_cookie(&self, size_out: *mut usize) -> *const c_void {
+    pub unsafe fn magic_cookie(&self, size_out: Option<&mut usize>) -> *const c_void {
         extern "C-unwind" {
             fn CMAudioFormatDescriptionGetMagicCookie(
                 desc: &CMAudioFormatDescription,
-                size_out: *mut usize,
+                size_out: Option<&mut usize>,
             ) -> *const c_void;
         }
         unsafe { CMAudioFormatDescriptionGetMagicCookie(self, size_out) }
@@ -477,18 +472,14 @@ impl CMAudioFormatDescription {
     /// format description.
     ///
     /// Returns: A read-only pointer to the AudioChannelLayout inside the audio format description.
-    ///
-    /// # Safety
-    ///
-    /// `size_out` must be a valid pointer or null.
     #[doc(alias = "CMAudioFormatDescriptionGetChannelLayout")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
-    pub unsafe fn channel_layout(&self, size_out: *mut usize) -> *const AudioChannelLayout {
+    pub unsafe fn channel_layout(&self, size_out: Option<&mut usize>) -> *const AudioChannelLayout {
         extern "C-unwind" {
             fn CMAudioFormatDescriptionGetChannelLayout(
                 desc: &CMAudioFormatDescription,
-                size_out: *mut usize,
+                size_out: Option<&mut usize>,
             ) -> *const AudioChannelLayout;
         }
         unsafe { CMAudioFormatDescriptionGetChannelLayout(self, size_out) }
@@ -503,18 +494,14 @@ impl CMAudioFormatDescription {
     /// format description.
     ///
     /// Returns: A read-only pointer to the array of AudioFormatListItem structs inside the audio format description.
-    ///
-    /// # Safety
-    ///
-    /// `size_out` must be a valid pointer or null.
     #[doc(alias = "CMAudioFormatDescriptionGetFormatList")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
-    pub unsafe fn format_list(&self, size_out: *mut usize) -> *const AudioFormatListItem {
+    pub unsafe fn format_list(&self, size_out: Option<&mut usize>) -> *const AudioFormatListItem {
         extern "C-unwind" {
             fn CMAudioFormatDescriptionGetFormatList(
                 desc: &CMAudioFormatDescription,
-                size_out: *mut usize,
+                size_out: Option<&mut usize>,
             ) -> *const AudioFormatListItem;
         }
         unsafe { CMAudioFormatDescriptionGetFormatList(self, size_out) }
@@ -638,24 +625,20 @@ impl CMAudioFormatDescription {
     ///
     /// Returns: The result of the comparison.  True if all parts in which the caller is interested are equal.
     /// False if any of the parts in which the caller is interested are not equal.
-    ///
-    /// # Safety
-    ///
-    /// `equality_mask_out` must be a valid pointer or null.
     #[doc(alias = "CMAudioFormatDescriptionEqual")]
     #[inline]
     pub unsafe fn equal(
         &self,
         other_format_description: &CMAudioFormatDescription,
         equality_mask: CMAudioFormatDescriptionMask,
-        equality_mask_out: *mut CMAudioFormatDescriptionMask,
+        equality_mask_out: Option<&mut CMAudioFormatDescriptionMask>,
     ) -> bool {
         extern "C-unwind" {
             fn CMAudioFormatDescriptionEqual(
                 format_description: &CMAudioFormatDescription,
                 other_format_description: &CMAudioFormatDescription,
                 equality_mask: CMAudioFormatDescriptionMask,
-                equality_mask_out: *mut CMAudioFormatDescriptionMask,
+                equality_mask_out: Option<&mut CMAudioFormatDescriptionMask>,
             ) -> Boolean;
         }
         let ret = unsafe {
@@ -1858,28 +1841,25 @@ impl CMVideoFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `parameter_set_pointer_out` must be a valid pointer or null.
-    /// - `parameter_set_size_out` must be a valid pointer or null.
-    /// - `parameter_set_count_out` must be a valid pointer or null.
-    /// - `nal_unit_header_length_out` must be a valid pointer or null.
+    /// `parameter_set_pointer_out` must be a valid pointer or null.
     #[doc(alias = "CMVideoFormatDescriptionGetH264ParameterSetAtIndex")]
     #[inline]
     pub unsafe fn h264_parameter_set_at_index(
         video_desc: &CMFormatDescription,
         parameter_set_index: usize,
-        parameter_set_pointer_out: *mut *const u8,
-        parameter_set_size_out: *mut usize,
-        parameter_set_count_out: *mut usize,
-        nal_unit_header_length_out: *mut c_int,
+        parameter_set_pointer_out: Option<&mut *const u8>,
+        parameter_set_size_out: Option<&mut usize>,
+        parameter_set_count_out: Option<&mut usize>,
+        nal_unit_header_length_out: Option<&mut c_int>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionGetH264ParameterSetAtIndex(
                 video_desc: &CMFormatDescription,
                 parameter_set_index: usize,
-                parameter_set_pointer_out: *mut *const u8,
-                parameter_set_size_out: *mut usize,
-                parameter_set_count_out: *mut usize,
-                nal_unit_header_length_out: *mut c_int,
+                parameter_set_pointer_out: Option<&mut *const u8>,
+                parameter_set_size_out: Option<&mut usize>,
+                parameter_set_count_out: Option<&mut usize>,
+                nal_unit_header_length_out: Option<&mut c_int>,
             ) -> OSStatus;
         }
         unsafe {
@@ -1903,28 +1883,25 @@ impl CMVideoFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `parameter_set_pointer_out` must be a valid pointer or null.
-    /// - `parameter_set_size_out` must be a valid pointer or null.
-    /// - `parameter_set_count_out` must be a valid pointer or null.
-    /// - `nal_unit_header_length_out` must be a valid pointer or null.
+    /// `parameter_set_pointer_out` must be a valid pointer or null.
     #[doc(alias = "CMVideoFormatDescriptionGetHEVCParameterSetAtIndex")]
     #[inline]
     pub unsafe fn hevc_parameter_set_at_index(
         video_desc: &CMFormatDescription,
         parameter_set_index: usize,
-        parameter_set_pointer_out: *mut *const u8,
-        parameter_set_size_out: *mut usize,
-        parameter_set_count_out: *mut usize,
-        nal_unit_header_length_out: *mut c_int,
+        parameter_set_pointer_out: Option<&mut *const u8>,
+        parameter_set_size_out: Option<&mut usize>,
+        parameter_set_count_out: Option<&mut usize>,
+        nal_unit_header_length_out: Option<&mut c_int>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMVideoFormatDescriptionGetHEVCParameterSetAtIndex(
                 video_desc: &CMFormatDescription,
                 parameter_set_index: usize,
-                parameter_set_pointer_out: *mut *const u8,
-                parameter_set_size_out: *mut usize,
-                parameter_set_count_out: *mut usize,
-                nal_unit_header_length_out: *mut c_int,
+                parameter_set_pointer_out: Option<&mut *const u8>,
+                parameter_set_size_out: Option<&mut usize>,
+                parameter_set_count_out: Option<&mut usize>,
+                nal_unit_header_length_out: Option<&mut c_int>,
             ) -> OSStatus;
         }
         unsafe {
@@ -2431,20 +2408,16 @@ impl CMTextFormatDescription {
     /// Returns the displayFlags.
     ///
     /// These are the flags that control how the text appears. The function can return kCMFormatDescriptionError_ValueNotAvailable for formats without display flags.
-    ///
-    /// # Safety
-    ///
-    /// `display_flags_out` must be a valid pointer.
     #[doc(alias = "CMTextFormatDescriptionGetDisplayFlags")]
     #[inline]
     pub unsafe fn display_flags(
         desc: &CMFormatDescription,
-        display_flags_out: NonNull<CMTextDisplayFlags>,
+        display_flags_out: &mut CMTextDisplayFlags,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTextFormatDescriptionGetDisplayFlags(
                 desc: &CMFormatDescription,
-                display_flags_out: NonNull<CMTextDisplayFlags>,
+                display_flags_out: &mut CMTextDisplayFlags,
             ) -> OSStatus;
         }
         unsafe { CMTextFormatDescriptionGetDisplayFlags(desc, display_flags_out) }
@@ -2453,23 +2426,18 @@ impl CMTextFormatDescription {
     /// Returns horizontal and vertical justification.
     ///
     /// Values are kCMTextJustification_* constants. The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry text justification.
-    ///
-    /// # Safety
-    ///
-    /// - `horizonta_justificationl_out` must be a valid pointer or null.
-    /// - `vertical_justification_out` must be a valid pointer or null.
     #[doc(alias = "CMTextFormatDescriptionGetJustification")]
     #[inline]
     pub unsafe fn justification(
         desc: &CMFormatDescription,
-        horizonta_justificationl_out: *mut CMTextJustificationValue,
-        vertical_justification_out: *mut CMTextJustificationValue,
+        horizonta_justificationl_out: Option<&mut CMTextJustificationValue>,
+        vertical_justification_out: Option<&mut CMTextJustificationValue>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTextFormatDescriptionGetJustification(
                 desc: &CMFormatDescription,
-                horizonta_justificationl_out: *mut CMTextJustificationValue,
-                vertical_justification_out: *mut CMTextJustificationValue,
+                horizonta_justificationl_out: Option<&mut CMTextJustificationValue>,
+                vertical_justification_out: Option<&mut CMTextJustificationValue>,
             ) -> OSStatus;
         }
         unsafe {
@@ -2484,24 +2452,20 @@ impl CMTextFormatDescription {
     /// Returns the default text box.
     ///
     /// Within a text track, text is rendered within a text box.  There is a default text box set, which can be over-ridden by a sample. The function can return kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry a default text box.
-    ///
-    /// # Safety
-    ///
-    /// `default_text_box_out` must be a valid pointer.
     #[doc(alias = "CMTextFormatDescriptionGetDefaultTextBox")]
     #[inline]
     pub unsafe fn default_text_box(
         desc: &CMFormatDescription,
         origin_is_at_top_left: bool,
         height_of_text_track: CGFloat,
-        default_text_box_out: NonNull<CGRect>,
+        default_text_box_out: &mut CGRect,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTextFormatDescriptionGetDefaultTextBox(
                 desc: &CMFormatDescription,
                 origin_is_at_top_left: Boolean,
                 height_of_text_track: CGFloat,
-                default_text_box_out: NonNull<CGRect>,
+                default_text_box_out: &mut CGRect,
             ) -> OSStatus;
         }
         let origin_is_at_top_left = origin_is_at_top_left as _;
@@ -2518,33 +2482,25 @@ impl CMTextFormatDescription {
     /// Returns the default style.
     ///
     /// The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry default style information.
-    ///
-    /// # Safety
-    ///
-    /// - `local_font_id_out` must be a valid pointer or null.
-    /// - `bold_out` must be a valid pointer or null.
-    /// - `italic_out` must be a valid pointer or null.
-    /// - `underline_out` must be a valid pointer or null.
-    /// - `font_size_out` must be a valid pointer or null.
     #[doc(alias = "CMTextFormatDescriptionGetDefaultStyle")]
     #[inline]
     pub unsafe fn default_style(
         desc: &CMFormatDescription,
-        local_font_id_out: *mut u16,
-        bold_out: *mut Boolean,
-        italic_out: *mut Boolean,
-        underline_out: *mut Boolean,
-        font_size_out: *mut CGFloat,
+        local_font_id_out: Option<&mut u16>,
+        bold_out: Option<&mut Boolean>,
+        italic_out: Option<&mut Boolean>,
+        underline_out: Option<&mut Boolean>,
+        font_size_out: Option<&mut CGFloat>,
         color_components_out: Option<&mut [CGFloat; 4]>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMTextFormatDescriptionGetDefaultStyle(
                 desc: &CMFormatDescription,
-                local_font_id_out: *mut u16,
-                bold_out: *mut Boolean,
-                italic_out: *mut Boolean,
-                underline_out: *mut Boolean,
-                font_size_out: *mut CGFloat,
+                local_font_id_out: Option<&mut u16>,
+                bold_out: Option<&mut Boolean>,
+                italic_out: Option<&mut Boolean>,
+                underline_out: Option<&mut Boolean>,
+                font_size_out: Option<&mut CGFloat>,
                 color_components_out: Option<&mut [CGFloat; 4]>,
             ) -> OSStatus;
         }

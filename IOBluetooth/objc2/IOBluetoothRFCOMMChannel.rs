@@ -304,7 +304,7 @@ impl IOBluetoothRFCOMMChannel {
         /// # Safety
         ///
         /// - `data` must be a valid pointer.
-        /// - `num_bytes_sent` must be a valid pointer.
+        /// - `num_bytes_sent` might not allow `None`.
         #[deprecated]
         #[unsafe(method(writeSimple:length:sleep:bytesSent:))]
         #[unsafe(method_family = none)]
@@ -313,7 +313,7 @@ impl IOBluetoothRFCOMMChannel {
             data: *mut c_void,
             length: u16,
             sleep: bool,
-            num_bytes_sent: *mut u32,
+            num_bytes_sent: Option<&mut u32>,
         ) -> IOReturn;
 
         #[cfg(feature = "Bluetooth")]

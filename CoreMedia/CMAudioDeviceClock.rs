@@ -98,25 +98,20 @@ pub unsafe fn CMAudioDeviceClockSetAudioDeviceID(
 /// and *trackingDefaultDeviceOut == false.
 /// If a NULL deviceUID has been set (which means "track the default device"), CMAudioDeviceClockGetAudioDevice
 /// returns NULL UID, the ID of the current default device, and *trackingDefaultDeviceOut == true.
-///
-/// # Safety
-///
-/// - `device_id_out` must be a valid pointer or null.
-/// - `tracking_default_device_out` must be a valid pointer or null.
 #[cfg(all(feature = "CMSync", feature = "objc2-core-audio"))]
 #[inline]
 pub unsafe fn CMAudioDeviceClockGetAudioDevice(
     clock: &CMClock,
     device_uid_out: Option<&mut Option<CFRetained<CFString>>>,
-    device_id_out: *mut AudioDeviceID,
-    tracking_default_device_out: *mut Boolean,
+    device_id_out: Option<&mut AudioDeviceID>,
+    tracking_default_device_out: Option<&mut Boolean>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMAudioDeviceClockGetAudioDevice(
             clock: &CMClock,
             device_uid_out: Option<&mut Option<CFRetained<CFString>>>,
-            device_id_out: *mut AudioDeviceID,
-            tracking_default_device_out: *mut Boolean,
+            device_id_out: Option<&mut AudioDeviceID>,
+            tracking_default_device_out: Option<&mut Boolean>,
         ) -> OSStatus;
     }
     struct RetainDeviceUidOutOnDrop<'a>(&'a mut Option<CFRetained<CFString>>);

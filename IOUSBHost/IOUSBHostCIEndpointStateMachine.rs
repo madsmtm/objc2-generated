@@ -49,16 +49,12 @@ impl IOUSBHostCIEndpointStateMachine {
         /// Parameter `command`: IOUSBHostCIMessage with type IOUSBHostCIMessageTypeEndpointCreate
         ///
         /// Returns: IOUSBHostCIEndpointStateMachine instance, to be released by the caller.
-        ///
-        /// # Safety
-        ///
-        /// `command` must be a valid pointer.
         #[unsafe(method(initWithInterface:command:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInterface_command_error(
             this: Allocated<Self>,
             interface: &IOUSBHostControllerInterface,
-            command: NonNull<IOUSBHostCIMessage>,
+            command: &IOUSBHostCIMessage,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
@@ -70,15 +66,11 @@ impl IOUSBHostCIEndpointStateMachine {
         ///
         /// Returns: BOOL YES if the command is targeting this endpoint, and can be handled in the current state
         /// BOOL NO if the command does not target this endpoint, or cannot be handled in the current state
-        ///
-        /// # Safety
-        ///
-        /// `command` must be a valid pointer.
         #[unsafe(method(inspectCommand:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn inspectCommand_error(
             &self,
-            command: NonNull<IOUSBHostCIMessage>,
+            command: &IOUSBHostCIMessage,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
@@ -94,15 +86,11 @@ impl IOUSBHostCIEndpointStateMachine {
         ///
         /// Returns: BOOL YES if the command response was sent to the kernel driver
         /// BOOL NO if the command response was not sent to the kernel driver
-        ///
-        /// # Safety
-        ///
-        /// `command` must be a valid pointer.
         #[unsafe(method(respondToCommand:status:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn respondToCommand_status_error(
             &self,
-            command: NonNull<IOUSBHostCIMessage>,
+            command: &IOUSBHostCIMessage,
             status: IOUSBHostCIMessageStatus,
         ) -> Result<(), Retained<NSError>>;
 
@@ -138,15 +126,11 @@ impl IOUSBHostCIEndpointStateMachine {
         /// Parameter `status`: IOUSBHostCIMessageStatus
         ///
         /// Parameter `transferLength`: The number of bytes transferred for the specified transfer structure.
-        ///
-        /// # Safety
-        ///
-        /// `message` must be a valid pointer.
         #[unsafe(method(enqueueTransferCompletionForMessage:status:transferLength:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueTransferCompletionForMessage_status_transferLength_error(
             &self,
-            message: NonNull<IOUSBHostCIMessage>,
+            message: &IOUSBHostCIMessage,
             status: IOUSBHostCIMessageStatus,
             transfer_length: NSUInteger,
         ) -> Result<(), Retained<NSError>>;

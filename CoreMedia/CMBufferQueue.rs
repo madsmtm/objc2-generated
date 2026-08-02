@@ -303,21 +303,29 @@ impl CMBufferQueue {
     ///
     /// # Safety
     ///
-    /// `callbacks` must be a valid pointer.
+    /// - `callbacks` struct field `version` must be set correctly.
+    /// - `callbacks` struct field `refcon` must be a valid pointer or null.
+    /// - `callbacks` struct field `getDecodeTimeStamp` must be implemented correctly.
+    /// - `callbacks` struct field `getPresentationTimeStamp` must be implemented correctly.
+    /// - `callbacks` struct field `getDuration` must be implemented correctly.
+    /// - `callbacks` struct field `isDataReady` must be implemented correctly.
+    /// - `callbacks` struct field `compare` must be implemented correctly.
+    /// - `callbacks` struct field `dataBecameReadyNotification` must be a valid pointer or null.
+    /// - `callbacks` struct field `getSize` must be implemented correctly.
     #[doc(alias = "CMBufferQueueCreate")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         capacity: CMItemCount,
-        callbacks: NonNull<CMBufferCallbacks>,
+        callbacks: &CMBufferCallbacks,
         queue_out: &mut Option<CFRetained<CMBufferQueue>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBufferQueueCreate(
                 allocator: Option<&CFAllocator>,
                 capacity: CMItemCount,
-                callbacks: NonNull<CMBufferCallbacks>,
+                callbacks: &CMBufferCallbacks,
                 queue_out: &mut Option<CFRetained<CMBufferQueue>>,
             ) -> OSStatus;
         }
@@ -334,21 +342,28 @@ impl CMBufferQueue {
     ///
     /// # Safety
     ///
-    /// `handlers` must be a valid pointer.
+    /// - `handlers` struct field `version` must be set correctly.
+    /// - `handlers` struct field `getDecodeTimeStamp` must be a valid pointer or null.
+    /// - `handlers` struct field `getPresentationTimeStamp` must be a valid pointer or null.
+    /// - `handlers` struct field `getDuration` must be a valid pointer.
+    /// - `handlers` struct field `isDataReady` must be a valid pointer or null.
+    /// - `handlers` struct field `compare` must be a valid pointer or null.
+    /// - `handlers` struct field `dataBecameReadyNotification` must be a valid pointer or null.
+    /// - `handlers` struct field `getSize` must be a valid pointer or null.
     #[doc(alias = "CMBufferQueueCreateWithHandlers")]
     #[cfg(all(feature = "CMBase", feature = "CMTime", feature = "block2"))]
     #[inline]
     pub unsafe fn with_handlers(
         allocator: Option<&CFAllocator>,
         capacity: CMItemCount,
-        handlers: NonNull<CMBufferHandlers>,
+        handlers: &CMBufferHandlers,
         queue_out: &mut Option<CFRetained<CMBufferQueue>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBufferQueueCreateWithHandlers(
                 allocator: Option<&CFAllocator>,
                 capacity: CMItemCount,
-                handlers: NonNull<CMBufferHandlers>,
+                handlers: &CMBufferHandlers,
                 queue_out: &mut Option<CFRetained<CMBufferQueue>>,
             ) -> OSStatus;
         }
@@ -811,7 +826,7 @@ impl CMBufferQueue {
         refcon: *mut c_void,
         condition: CMBufferQueueTriggerCondition,
         time: CMTime,
-        trigger_token_out: *mut CMBufferQueueTriggerToken,
+        trigger_token_out: Option<&mut CMBufferQueueTriggerToken>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBufferQueueInstallTrigger(
@@ -820,7 +835,7 @@ impl CMBufferQueue {
                 refcon: *mut c_void,
                 condition: CMBufferQueueTriggerCondition,
                 time: CMTime,
-                trigger_token_out: *mut CMBufferQueueTriggerToken,
+                trigger_token_out: Option<&mut CMBufferQueueTriggerToken>,
             ) -> OSStatus;
         }
         unsafe {
@@ -847,7 +862,7 @@ impl CMBufferQueue {
         refcon: *mut c_void,
         condition: CMBufferQueueTriggerCondition,
         threshold: CMItemCount,
-        trigger_token_out: *mut CMBufferQueueTriggerToken,
+        trigger_token_out: Option<&mut CMBufferQueueTriggerToken>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBufferQueueInstallTriggerWithIntegerThreshold(
@@ -856,7 +871,7 @@ impl CMBufferQueue {
                 refcon: *mut c_void,
                 condition: CMBufferQueueTriggerCondition,
                 threshold: CMItemCount,
-                trigger_token_out: *mut CMBufferQueueTriggerToken,
+                trigger_token_out: Option<&mut CMBufferQueueTriggerToken>,
             ) -> OSStatus;
         }
         unsafe {
@@ -891,7 +906,7 @@ impl CMBufferQueue {
         &self,
         condition: CMBufferQueueTriggerCondition,
         time: CMTime,
-        trigger_token_out: *mut CMBufferQueueTriggerToken,
+        trigger_token_out: Option<&mut CMBufferQueueTriggerToken>,
         handler: Option<&CMBufferQueueTriggerHandler>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -899,7 +914,7 @@ impl CMBufferQueue {
                 queue: &CMBufferQueue,
                 condition: CMBufferQueueTriggerCondition,
                 time: CMTime,
-                trigger_token_out: *mut CMBufferQueueTriggerToken,
+                trigger_token_out: Option<&mut CMBufferQueueTriggerToken>,
                 handler: Option<&CMBufferQueueTriggerHandler>,
             ) -> OSStatus;
         }
@@ -923,7 +938,7 @@ impl CMBufferQueue {
         &self,
         condition: CMBufferQueueTriggerCondition,
         threshold: CMItemCount,
-        trigger_token_out: *mut CMBufferQueueTriggerToken,
+        trigger_token_out: Option<&mut CMBufferQueueTriggerToken>,
         handler: Option<&CMBufferQueueTriggerHandler>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -931,7 +946,7 @@ impl CMBufferQueue {
                 queue: &CMBufferQueue,
                 condition: CMBufferQueueTriggerCondition,
                 threshold: CMItemCount,
-                trigger_token_out: *mut CMBufferQueueTriggerToken,
+                trigger_token_out: Option<&mut CMBufferQueueTriggerToken>,
                 handler: Option<&CMBufferQueueTriggerHandler>,
             ) -> OSStatus;
         }

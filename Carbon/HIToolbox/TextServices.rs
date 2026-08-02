@@ -132,14 +132,14 @@ pub unsafe fn TSMSetDocumentProperty(
 /// # Safety
 ///
 /// - `doc_id` must be a valid pointer.
-/// - `actual_size` must be a valid pointer.
+/// - `actual_size` might not allow `None`.
 /// - `property_buffer` must be a valid pointer.
 #[inline]
 pub unsafe fn TSMGetDocumentProperty(
     doc_id: TSMDocumentID,
     property_tag: TSMDocumentPropertyTag,
     buffer_size: u32,
-    actual_size: *mut u32,
+    actual_size: Option<&mut u32>,
     property_buffer: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -147,7 +147,7 @@ pub unsafe fn TSMGetDocumentProperty(
             doc_id: TSMDocumentID,
             property_tag: TSMDocumentPropertyTag,
             buffer_size: u32,
-            actual_size: *mut u32,
+            actual_size: Option<&mut u32>,
             property_buffer: *mut c_void,
         ) -> OSStatus;
     }

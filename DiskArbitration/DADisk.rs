@@ -254,17 +254,13 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
-    ///
-    /// # Safety
-    ///
-    /// `name` must be a valid pointer.
     #[doc(alias = "DADiskCreateFromBSDName")]
     #[cfg(feature = "DASession")]
     #[inline]
     pub unsafe fn from_bsd_name(
         allocator: Option<&CFAllocator>,
         session: &DASession,
-        name: NonNull<c_char>,
+        name: &CStr,
     ) -> Option<CFRetained<DADisk>> {
         extern "C-unwind" {
             fn DADiskCreateFromBSDName(
@@ -273,6 +269,7 @@ impl DADisk {
                 name: NonNull<c_char>,
             ) -> Option<NonNull<DADisk>>;
         }
+        let name = NonNull::new(name.as_ptr().cast_mut()).unwrap();
         let ret = unsafe { DADiskCreateFromBSDName(allocator, session, name) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }

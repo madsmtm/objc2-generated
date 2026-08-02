@@ -79,21 +79,17 @@ pub unsafe fn CMSetAttachment(
 /// Parameter `attachmentModeOut`: Returns the mode of the attachment, if desired.  May be NULL.
 ///
 /// Returns: If found the attachment object; else NULL.
-///
-/// # Safety
-///
-/// `attachment_mode_out` must be a valid pointer or null.
 #[inline]
 pub unsafe fn CMGetAttachment(
     target: &CMAttachmentBearer,
     key: &CFString,
-    attachment_mode_out: *mut CMAttachmentMode,
+    attachment_mode_out: Option<&mut CMAttachmentMode>,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn CMGetAttachment(
             target: &CMAttachmentBearer,
             key: &CFString,
-            attachment_mode_out: *mut CMAttachmentMode,
+            attachment_mode_out: Option<&mut CMAttachmentMode>,
         ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CMGetAttachment(target, key, attachment_mode_out) };

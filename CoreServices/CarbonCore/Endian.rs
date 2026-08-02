@@ -186,22 +186,24 @@ pub unsafe fn CoreEndianInstallFlipper(
 
 /// # Safety
 ///
-/// - `proc` must be a valid pointer.
+/// - `proc` must be implemented correctly.
+/// - `proc` might not allow `None`.
 /// - `refcon` must be a valid pointer.
+/// - `refcon` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn CoreEndianGetFlipper(
     data_domain: OSType,
     data_type: OSType,
-    proc: *mut CoreEndianFlipProc,
-    refcon: *mut *mut c_void,
+    proc: Option<&mut CoreEndianFlipProc>,
+    refcon: Option<&mut *mut c_void>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CoreEndianGetFlipper(
             data_domain: OSType,
             data_type: OSType,
-            proc: *mut CoreEndianFlipProc,
-            refcon: *mut *mut c_void,
+            proc: Option<&mut CoreEndianFlipProc>,
+            refcon: Option<&mut *mut c_void>,
         ) -> OSStatus;
     }
     unsafe { CoreEndianGetFlipper(data_domain, data_type, proc, refcon) }

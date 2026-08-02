@@ -97,12 +97,13 @@ impl SFAuthorizationView {
         ///
         /// # Safety
         ///
-        /// `authorization_rights` must be a valid pointer.
+        /// - `authorization_rights` struct field `items` must be a valid pointer or null.
+        /// - `authorization_rights` might not allow `None`.
         #[unsafe(method(setAuthorizationRights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthorizationRights(
             &self,
-            authorization_rights: *const AuthorizationRights,
+            authorization_rights: Option<&AuthorizationRights>,
         );
 
         #[cfg(feature = "objc2-security")]

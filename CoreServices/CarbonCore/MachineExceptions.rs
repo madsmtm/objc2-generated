@@ -521,17 +521,22 @@ pub unsafe fn DisposeExceptionHandlerUPP(user_upp: ExceptionHandlerUPP) {
 
 /// # Safety
 ///
-/// - `the_exception` must be a valid pointer.
+/// - `the_exception` struct field `machineState` must be a valid pointer.
+/// - `the_exception` struct field `registerImage` must be a valid pointer.
+/// - `the_exception` struct field `FPUImage` must be a valid pointer.
+/// - `the_exception` struct field `info` must be correctly initialized.
+/// - `the_exception` struct field `vectorImage` must be a valid pointer.
+/// - `the_exception` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe fn InvokeExceptionHandlerUPP(
-    the_exception: *mut ExceptionInformation,
+    the_exception: Option<&mut ExceptionInformation>,
     user_upp: ExceptionHandlerUPP,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeExceptionHandlerUPP(
-            the_exception: *mut ExceptionInformation,
+            the_exception: Option<&mut ExceptionInformation>,
             user_upp: ExceptionHandlerUPP,
         ) -> OSStatus;
     }

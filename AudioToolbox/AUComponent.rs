@@ -1209,23 +1209,21 @@ pub unsafe fn AudioUnitRender(
 /// # Safety
 ///
 /// - `in_unit` must be a valid pointer.
-/// - `io_action_flags` must be a valid pointer or null.
-/// - `in_time_stamp` must be a valid pointer.
 /// - `io_data` must be a valid pointer.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
 pub unsafe fn AudioUnitProcess(
     in_unit: AudioUnit,
-    io_action_flags: *mut AudioUnitRenderActionFlags,
-    in_time_stamp: NonNull<AudioTimeStamp>,
+    io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
+    in_time_stamp: &AudioTimeStamp,
     in_number_frames: u32,
     io_data: NonNull<AudioBufferList>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioUnitProcess(
             in_unit: AudioUnit,
-            io_action_flags: *mut AudioUnitRenderActionFlags,
-            in_time_stamp: NonNull<AudioTimeStamp>,
+            io_action_flags: Option<&mut AudioUnitRenderActionFlags>,
+            in_time_stamp: &AudioTimeStamp,
             in_number_frames: u32,
             io_data: NonNull<AudioBufferList>,
         ) -> OSStatus;
@@ -1346,20 +1344,19 @@ pub unsafe fn AudioUnitReset(
 ///
 /// # Safety
 ///
-/// - `in_desc` must be a valid pointer.
-/// - `in_output_unit` must be a valid pointer.
+/// `in_output_unit` must be a valid pointer.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
 #[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
 #[inline]
 pub unsafe fn AudioOutputUnitPublish(
-    in_desc: NonNull<AudioComponentDescription>,
+    in_desc: &AudioComponentDescription,
     in_name: &CFString,
     in_version: u32,
     in_output_unit: AudioUnit,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioOutputUnitPublish(
-            in_desc: NonNull<AudioComponentDescription>,
+            in_desc: &AudioComponentDescription,
             in_name: &CFString,
             in_version: u32,
             in_output_unit: AudioUnit,

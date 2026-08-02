@@ -182,17 +182,13 @@ impl IOUSBHostObject {
         /// default this value is IOUSBHostDefaultControlCompletionTimeout.
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure.
-        ///
-        /// # Safety
-        ///
-        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendDeviceRequest:data:bytesTransferred:completionTimeout:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendDeviceRequest_data_bytesTransferred_completionTimeout_error(
             &self,
             request: IOUSBDeviceRequest,
             data: Option<&NSMutableData>,
-            bytes_transferred: *mut NSUInteger,
+            bytes_transferred: Option<&mut NSUInteger>,
             completion_timeout: NSTimeInterval,
         ) -> Result<(), Retained<NSError>>;
 
@@ -210,17 +206,13 @@ impl IOUSBHostObject {
         /// count of the completed data phase.
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure.
-        ///
-        /// # Safety
-        ///
-        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendDeviceRequest:data:bytesTransferred:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendDeviceRequest_data_bytesTransferred_error(
             &self,
             request: IOUSBDeviceRequest,
             data: Option<&NSMutableData>,
-            bytes_transferred: *mut NSUInteger,
+            bytes_transferred: Option<&mut NSUInteger>,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-io-kit")]
@@ -411,16 +403,12 @@ impl IOUSBHostObject {
         ///
         /// Returns: Pointer to the cached descriptor if found, otherwise nil. An IOReturn error code
         /// will be reported on failure.
-        ///
-        /// # Safety
-        ///
-        /// `length` must be a valid pointer.
         #[unsafe(method(descriptorWithType:length:index:languageID:requestType:requestRecipient:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_length_index_languageID_requestType_requestRecipient_error(
             &self,
             r#type: tIOUSBDescriptorType,
-            length: NonNull<NSUInteger>,
+            length: &mut NSUInteger,
             index: NSUInteger,
             language_id: NSUInteger,
             request_type: tIOUSBDeviceRequestTypeValue,
@@ -466,16 +454,12 @@ impl IOUSBHostObject {
         ///
         /// Returns: Pointer to the cached descriptor if found, otherwise nil. An IOReturn error code
         /// will be reported on failure.
-        ///
-        /// # Safety
-        ///
-        /// `length` must be a valid pointer.
         #[unsafe(method(descriptorWithType:length:index:languageID:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_length_index_languageID_error(
             &self,
             r#type: tIOUSBDescriptorType,
-            length: NonNull<NSUInteger>,
+            length: &mut NSUInteger,
             index: NSUInteger,
             language_id: NSUInteger,
             error: Option<&mut Option<Retained<NSError>>>,
@@ -506,16 +490,12 @@ impl IOUSBHostObject {
         ///
         /// Returns: Pointer to the cached descriptor if found, otherwise nil. An IOReturn error code
         /// will be reported on failure.
-        ///
-        /// # Safety
-        ///
-        /// `length` must be a valid pointer.
         #[unsafe(method(descriptorWithType:length:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_length_error(
             &self,
             r#type: tIOUSBDescriptorType,
-            length: NonNull<NSUInteger>,
+            length: &mut NSUInteger,
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> *const IOUSBDescriptor;
 
@@ -641,13 +621,9 @@ impl IOUSBHostObject {
         /// Parameter `time`: If not nil, this will be updated with the current system time
         ///
         /// Returns: The current frame number
-        ///
-        /// # Safety
-        ///
-        /// `time` must be a valid pointer or null.
         #[unsafe(method(frameNumberWithTime:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frameNumberWithTime(&self, time: *mut IOUSBHostTime) -> u64;
+        pub unsafe fn frameNumberWithTime(&self, time: Option<&mut IOUSBHostTime>) -> u64;
 
         #[cfg(feature = "IOUSBHostDefinitions")]
         /// Return the current microframe number of the USB controller
@@ -658,15 +634,11 @@ impl IOUSBHostObject {
         /// Parameter `time`: If not nil, this will be updated with system time associated with the microframe.
         ///
         /// Returns: The current microframe number. Returns 0 on failure, with NSError populated with the IOReturn error code.
-        ///
-        /// # Safety
-        ///
-        /// `time` must be a valid pointer or null.
         #[unsafe(method(currentMicroframeWithTime:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentMicroframeWithTime_error(
             &self,
-            time: *mut IOUSBHostTime,
+            time: Option<&mut IOUSBHostTime>,
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> u64;
 
@@ -679,15 +651,11 @@ impl IOUSBHostObject {
         /// Parameter `time`: If not nil, this will be updated with system time associated with the microframe.
         ///
         /// Returns: A recent microframe number. Returns 0 on failure, with NSError populated with the IOReturn error code.
-        ///
-        /// # Safety
-        ///
-        /// `time` must be a valid pointer or null.
         #[unsafe(method(referenceMicroframeWithTime:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceMicroframeWithTime_error(
             &self,
-            time: *mut IOUSBHostTime,
+            time: Option<&mut IOUSBHostTime>,
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> u64;
 

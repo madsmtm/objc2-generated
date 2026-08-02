@@ -419,17 +419,19 @@ pub unsafe fn CMIODeviceStopStream(device_id: CMIODeviceID, stream_id: CMIOStrea
 ///
 /// # Safety
 ///
-/// `io_avc_command` must be a valid pointer.
+/// - `io_avc_command` struct field `mCommand` must be a valid pointer.
+/// - `io_avc_command` struct field `mResponse` must be a valid pointer.
+/// - `io_avc_command` might not allow `None`.
 #[cfg(feature = "CMIOHardwareObject")]
 #[inline]
 pub unsafe fn CMIODeviceProcessAVCCommand(
     device_id: CMIODeviceID,
-    io_avc_command: *mut CMIODeviceAVCCommand,
+    io_avc_command: Option<&mut CMIODeviceAVCCommand>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIODeviceProcessAVCCommand(
             device_id: CMIODeviceID,
-            io_avc_command: *mut CMIODeviceAVCCommand,
+            io_avc_command: Option<&mut CMIODeviceAVCCommand>,
         ) -> OSStatus;
     }
     unsafe { CMIODeviceProcessAVCCommand(device_id, io_avc_command) }
@@ -446,17 +448,19 @@ pub unsafe fn CMIODeviceProcessAVCCommand(
 ///
 /// # Safety
 ///
-/// `io_rs422_command` must be a valid pointer.
+/// - `io_rs422_command` struct field `mCommand` must be a valid pointer.
+/// - `io_rs422_command` struct field `mResponse` must be a valid pointer.
+/// - `io_rs422_command` might not allow `None`.
 #[cfg(feature = "CMIOHardwareObject")]
 #[inline]
 pub unsafe fn CMIODeviceProcessRS422Command(
     device_id: CMIODeviceID,
-    io_rs422_command: *mut CMIODeviceRS422Command,
+    io_rs422_command: Option<&mut CMIODeviceRS422Command>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIODeviceProcessRS422Command(
             device_id: CMIODeviceID,
-            io_rs422_command: *mut CMIODeviceRS422Command,
+            io_rs422_command: Option<&mut CMIODeviceRS422Command>,
         ) -> OSStatus;
     }
     unsafe { CMIODeviceProcessRS422Command(device_id, io_rs422_command) }

@@ -410,19 +410,20 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    /// - `exception` might not allow `None`.
     #[doc(alias = "JSValueGetTypedArrayType")]
     #[cfg(feature = "JSBase")]
     #[inline]
     pub unsafe fn typed_array_type(
         ctx: JSContextRef,
         value: JSValueRef,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> JSTypedArrayType {
         extern "C-unwind" {
             fn JSValueGetTypedArrayType(
                 ctx: JSContextRef,
                 value: JSValueRef,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> JSTypedArrayType;
         }
         unsafe { JSValueGetTypedArrayType(ctx, value, exception) }
@@ -446,6 +447,7 @@ impl JSValue {
     /// - `a` must be a valid pointer.
     /// - `b` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    /// - `exception` might not allow `None`.
     #[doc(alias = "JSValueIsEqual")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -453,14 +455,14 @@ impl JSValue {
         ctx: JSContextRef,
         a: JSValueRef,
         b: JSValueRef,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> bool {
         extern "C-unwind" {
             fn JSValueIsEqual(
                 ctx: JSContextRef,
                 a: JSValueRef,
                 b: JSValueRef,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> bool;
         }
         unsafe { JSValueIsEqual(ctx, a, b, exception) }
@@ -509,6 +511,7 @@ impl JSValue {
     /// - `value` must be a valid pointer.
     /// - `constructor` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    /// - `exception` might not allow `None`.
     #[doc(alias = "JSValueIsInstanceOfConstructor")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -516,14 +519,14 @@ impl JSValue {
         ctx: JSContextRef,
         value: JSValueRef,
         constructor: JSObjectRef,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> bool {
         extern "C-unwind" {
             fn JSValueIsInstanceOfConstructor(
                 ctx: JSContextRef,
                 value: JSValueRef,
                 constructor: JSObjectRef,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> bool;
         }
         unsafe { JSValueIsInstanceOfConstructor(ctx, value, constructor, exception) }
@@ -558,14 +561,14 @@ impl JSValue {
         ctx: JSContextRef,
         left: JSValueRef,
         right: JSValueRef,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> JSRelationCondition {
         extern "C-unwind" {
             fn JSValueCompare(
                 ctx: JSContextRef,
                 left: JSValueRef,
                 right: JSValueRef,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> JSRelationCondition;
         }
         unsafe { JSValueCompare(ctx, left, right, exception) }
@@ -597,14 +600,14 @@ impl JSValue {
         ctx: JSContextRef,
         left: JSValueRef,
         right: i64,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> JSRelationCondition {
         extern "C-unwind" {
             fn JSValueCompareInt64(
                 ctx: JSContextRef,
                 left: JSValueRef,
                 right: i64,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> JSRelationCondition;
         }
         unsafe { JSValueCompareInt64(ctx, left, right, exception) }
@@ -636,14 +639,14 @@ impl JSValue {
         ctx: JSContextRef,
         left: JSValueRef,
         right: u64,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> JSRelationCondition {
         extern "C-unwind" {
             fn JSValueCompareUInt64(
                 ctx: JSContextRef,
                 left: JSValueRef,
                 right: u64,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> JSRelationCondition;
         }
         unsafe { JSValueCompareUInt64(ctx, left, right, exception) }
@@ -675,14 +678,14 @@ impl JSValue {
         ctx: JSContextRef,
         left: JSValueRef,
         right: c_double,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> JSRelationCondition {
         extern "C-unwind" {
             fn JSValueCompareDouble(
                 ctx: JSContextRef,
                 left: JSValueRef,
                 right: c_double,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> JSRelationCondition;
         }
         unsafe { JSValueCompareDouble(ctx, left, right, exception) }
@@ -835,13 +838,13 @@ impl JSValue {
 pub unsafe fn JSBigIntCreateWithDouble(
     ctx: JSContextRef,
     value: c_double,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSValueRef {
     extern "C-unwind" {
         fn JSBigIntCreateWithDouble(
             ctx: JSContextRef,
             value: c_double,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSValueRef;
     }
     unsafe { JSBigIntCreateWithDouble(ctx, value, exception) }
@@ -866,13 +869,13 @@ pub unsafe fn JSBigIntCreateWithDouble(
 pub unsafe fn JSBigIntCreateWithInt64(
     ctx: JSContextRef,
     integer: i64,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSValueRef {
     extern "C-unwind" {
         fn JSBigIntCreateWithInt64(
             ctx: JSContextRef,
             integer: i64,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSValueRef;
     }
     unsafe { JSBigIntCreateWithInt64(ctx, integer, exception) }
@@ -897,13 +900,13 @@ pub unsafe fn JSBigIntCreateWithInt64(
 pub unsafe fn JSBigIntCreateWithUInt64(
     ctx: JSContextRef,
     integer: u64,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSValueRef {
     extern "C-unwind" {
         fn JSBigIntCreateWithUInt64(
             ctx: JSContextRef,
             integer: u64,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSValueRef;
     }
     unsafe { JSBigIntCreateWithUInt64(ctx, integer, exception) }
@@ -931,13 +934,13 @@ pub unsafe fn JSBigIntCreateWithUInt64(
 pub unsafe fn JSBigIntCreateWithString(
     ctx: JSContextRef,
     string: JSStringRef,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSValueRef {
     extern "C-unwind" {
         fn JSBigIntCreateWithString(
             ctx: JSContextRef,
             string: JSStringRef,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSValueRef;
     }
     unsafe { JSBigIntCreateWithString(ctx, string, exception) }
@@ -984,6 +987,7 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    /// - `exception` might not allow `None`.
     #[doc(alias = "JSValueCreateJSONString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -991,14 +995,14 @@ impl JSValue {
         ctx: JSContextRef,
         value: JSValueRef,
         indent: c_uint,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> JSStringRef {
         extern "C-unwind" {
             fn JSValueCreateJSONString(
                 ctx: JSContextRef,
                 value: JSValueRef,
                 indent: c_uint,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> JSStringRef;
         }
         unsafe { JSValueCreateJSONString(ctx, value, indent, exception) }
@@ -1043,19 +1047,20 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    /// - `exception` might not allow `None`.
     #[doc(alias = "JSValueToNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
     pub unsafe fn to_number(
         ctx: JSContextRef,
         value: JSValueRef,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> c_double {
         extern "C-unwind" {
             fn JSValueToNumber(
                 ctx: JSContextRef,
                 value: JSValueRef,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> c_double;
         }
         unsafe { JSValueToNumber(ctx, value, exception) }
@@ -1084,13 +1089,13 @@ impl JSValue {
     pub unsafe fn to_int32(
         ctx: JSContextRef,
         value: JSValueRef,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> i32 {
         extern "C-unwind" {
             fn JSValueToInt32(
                 ctx: JSContextRef,
                 value: JSValueRef,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> i32;
         }
         unsafe { JSValueToInt32(ctx, value, exception) }
@@ -1119,13 +1124,13 @@ impl JSValue {
     pub unsafe fn to_u_int32(
         ctx: JSContextRef,
         value: JSValueRef,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> u32 {
         extern "C-unwind" {
             fn JSValueToUInt32(
                 ctx: JSContextRef,
                 value: JSValueRef,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> u32;
         }
         unsafe { JSValueToUInt32(ctx, value, exception) }
@@ -1154,13 +1159,13 @@ impl JSValue {
     pub unsafe fn to_int64(
         ctx: JSContextRef,
         value: JSValueRef,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> i64 {
         extern "C-unwind" {
             fn JSValueToInt64(
                 ctx: JSContextRef,
                 value: JSValueRef,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> i64;
         }
         unsafe { JSValueToInt64(ctx, value, exception) }
@@ -1189,13 +1194,13 @@ impl JSValue {
     pub unsafe fn to_u_int64(
         ctx: JSContextRef,
         value: JSValueRef,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> u64 {
         extern "C-unwind" {
             fn JSValueToUInt64(
                 ctx: JSContextRef,
                 value: JSValueRef,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> u64;
         }
         unsafe { JSValueToUInt64(ctx, value, exception) }
@@ -1216,19 +1221,20 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    /// - `exception` might not allow `None`.
     #[doc(alias = "JSValueToStringCopy")]
     #[cfg(feature = "JSBase")]
     #[inline]
     pub unsafe fn to_string_copy(
         ctx: JSContextRef,
         value: JSValueRef,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> JSStringRef {
         extern "C-unwind" {
             fn JSValueToStringCopy(
                 ctx: JSContextRef,
                 value: JSValueRef,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> JSStringRef;
         }
         unsafe { JSValueToStringCopy(ctx, value, exception) }
@@ -1249,19 +1255,20 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    /// - `exception` might not allow `None`.
     #[doc(alias = "JSValueToObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
     pub unsafe fn to_object(
         ctx: JSContextRef,
         value: JSValueRef,
-        exception: *mut JSValueRef,
+        exception: Option<&mut JSValueRef>,
     ) -> JSObjectRef {
         extern "C-unwind" {
             fn JSValueToObject(
                 ctx: JSContextRef,
                 value: JSValueRef,
-                exception: *mut JSValueRef,
+                exception: Option<&mut JSValueRef>,
             ) -> JSObjectRef;
         }
         unsafe { JSValueToObject(ctx, value, exception) }

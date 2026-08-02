@@ -70,10 +70,10 @@ pub unsafe trait NSObjectWebScripting:
         ///
         /// # Safety
         ///
-        /// `name` must be a valid pointer.
+        /// `name` might not allow `None`.
         #[unsafe(method(webScriptNameForKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn webScriptNameForKey(name: *const c_char) -> Option<Retained<NSString>>;
+        unsafe fn webScriptNameForKey(name: Option<&CStr>) -> Option<Retained<NSString>>;
 
         /// Parameter `name`: The name of the instance variable that will be exposed to the
         /// script environment.
@@ -85,10 +85,10 @@ pub unsafe trait NSObjectWebScripting:
         ///
         /// # Safety
         ///
-        /// `name` must be a valid pointer.
+        /// `name` might not allow `None`.
         #[unsafe(method(isKeyExcludedFromWebScript:))]
         #[unsafe(method_family = none)]
-        unsafe fn isKeyExcludedFromWebScript(name: *const c_char) -> bool;
+        unsafe fn isKeyExcludedFromWebScript(name: Option<&CStr>) -> bool;
 
         /// Parameter `name`: The name of the method to invoke.
         ///

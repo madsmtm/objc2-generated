@@ -45,14 +45,11 @@ extern_conformance!(
 impl AVAudioTime {
     extern_methods!(
         #[cfg(feature = "objc2-core-audio-types")]
-        /// # Safety
-        ///
-        /// `ts` must be a valid pointer.
         #[unsafe(method(initWithAudioTimeStamp:sampleRate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioTimeStamp_sampleRate(
             this: Allocated<Self>,
-            ts: NonNull<AudioTimeStamp>,
+            ts: &AudioTimeStamp,
             sample_rate: c_double,
         ) -> Retained<Self>;
 
@@ -80,13 +77,10 @@ impl AVAudioTime {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-audio-types")]
-        /// # Safety
-        ///
-        /// `ts` must be a valid pointer.
         #[unsafe(method(timeWithAudioTimeStamp:sampleRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeWithAudioTimeStamp_sampleRate(
-            ts: NonNull<AudioTimeStamp>,
+            ts: &AudioTimeStamp,
             sample_rate: c_double,
         ) -> Retained<Self>;
 

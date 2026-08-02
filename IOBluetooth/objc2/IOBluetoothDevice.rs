@@ -162,22 +162,23 @@ impl IOBluetoothDevice {
         ///
         /// # Safety
         ///
-        /// `address` must be a valid pointer.
+        /// `address` might not allow `None`.
         #[unsafe(method(deviceWithAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceWithAddress(
-            address: *const BluetoothDeviceAddress,
+            address: Option<&BluetoothDeviceAddress>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "Bluetooth")]
         /// # Safety
         ///
-        /// `address` must be a valid pointer.
+        /// `address` might not allow `None`.
         #[deprecated]
         #[unsafe(method(withAddress:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn withAddress(address: *const BluetoothDeviceAddress)
-            -> Option<Retained<Self>>;
+        pub unsafe fn withAddress(
+            address: Option<&BluetoothDeviceAddress>,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Returns the IOBluetoothDevice object for the given BluetoothDeviceAddress

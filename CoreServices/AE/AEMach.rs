@@ -23,20 +23,22 @@ pub unsafe fn AEGetRegisteredMachPort() -> libc::mach_port_t {
 
 /// # Safety
 ///
-/// - `event` must be a valid pointer.
-/// - `reply` must be a valid pointer.
+/// - `event` struct field `dataHandle` must be a valid pointer.
+/// - `event` might not allow `None`.
+/// - `reply` struct field `dataHandle` must be a valid pointer.
+/// - `reply` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AESendMessage(
-    event: *const AppleEvent,
-    reply: *mut AppleEvent,
+    event: Option<&AppleEvent>,
+    reply: Option<&mut AppleEvent>,
     send_mode: AESendMode,
     time_out_in_ticks: c_long,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AESendMessage(
-            event: *const AppleEvent,
-            reply: *mut AppleEvent,
+            event: Option<&AppleEvent>,
+            reply: Option<&mut AppleEvent>,
             send_mode: AESendMode,
             time_out_in_ticks: c_long,
         ) -> OSStatus;

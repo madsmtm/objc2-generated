@@ -23,18 +23,19 @@ use crate::*;
 ///
 /// # Safety
 ///
-/// `out_session_ref` must be a valid pointer.
+/// - `out_session_ref` must be a valid pointer.
+/// - `out_session_ref` might not allow `None`.
 #[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
 #[deprecated]
 #[inline]
 pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
     in_sdp_service_ref: &IOBluetoothSDPServiceRecordRef,
-    out_session_ref: *mut OBEXSessionRef,
+    out_session_ref: Option<&mut OBEXSessionRef>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
             in_sdp_service_ref: &IOBluetoothSDPServiceRecordRef,
-            out_session_ref: *mut OBEXSessionRef,
+            out_session_ref: Option<&mut OBEXSessionRef>,
         ) -> OBEXError;
     }
     unsafe {
@@ -66,7 +67,8 @@ pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
 ///
 /// # Safety
 ///
-/// `out_session_ref` must be a valid pointer.
+/// - `out_session_ref` must be a valid pointer.
+/// - `out_session_ref` might not allow `None`.
 #[cfg(all(
     feature = "Bluetooth",
     feature = "IOBluetoothUserLib",
@@ -77,13 +79,13 @@ pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
 pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(
     in_device_ref: &IOBluetoothDeviceRef,
     in_channel_id: BluetoothRFCOMMChannelID,
-    out_session_ref: *mut OBEXSessionRef,
+    out_session_ref: Option<&mut OBEXSessionRef>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(
             in_device_ref: &IOBluetoothDeviceRef,
             in_channel_id: BluetoothRFCOMMChannelID,
-            out_session_ref: *mut OBEXSessionRef,
+            out_session_ref: Option<&mut OBEXSessionRef>,
         ) -> OBEXError;
     }
     unsafe {
@@ -120,6 +122,7 @@ pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumb
 /// - `in_callback` must be implemented correctly.
 /// - `in_user_ref_con` must be a valid pointer.
 /// - `out_session_ref` must be a valid pointer.
+/// - `out_session_ref` might not allow `None`.
 #[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
 #[deprecated]
 #[inline]
@@ -127,14 +130,14 @@ pub unsafe fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
     in_rfcomm_channel_ref: &IOBluetoothRFCOMMChannelRef,
     in_callback: OBEXSessionEventCallback,
     in_user_ref_con: *mut c_void,
-    out_session_ref: *mut OBEXSessionRef,
+    out_session_ref: Option<&mut OBEXSessionRef>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
             in_rfcomm_channel_ref: &IOBluetoothRFCOMMChannelRef,
             in_callback: OBEXSessionEventCallback,
             in_user_ref_con: *mut c_void,
-            out_session_ref: *mut OBEXSessionRef,
+            out_session_ref: Option<&mut OBEXSessionRef>,
         ) -> OBEXError;
     }
     unsafe {

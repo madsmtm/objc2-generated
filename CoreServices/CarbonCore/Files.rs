@@ -1668,27 +1668,27 @@ pub unsafe fn InvokeIOCompletionUPP(param_block: ParmBlkPtr, user_upp: IOComplet
 impl FSRef {
     /// # Safety
     ///
-    /// - `parent_ref` must be a valid pointer.
+    /// - `parent_ref` might not allow `None`.
     /// - `name` must be a valid pointer.
-    /// - `new_ref` must be a valid pointer.
+    /// - `new_ref` might not allow `None`.
     #[doc(alias = "FSMakeFSRefUnicode")]
     #[cfg(feature = "TextCommon")]
     #[deprecated]
     #[inline]
     pub unsafe fn new_fs_ref_unicode(
-        parent_ref: *const FSRef,
+        parent_ref: Option<&FSRef>,
         name_length: UniCharCount,
         name: *const UniChar,
         text_encoding_hint: TextEncoding,
-        new_ref: *mut FSRef,
+        new_ref: Option<&mut FSRef>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSMakeFSRefUnicode(
-                parent_ref: *const FSRef,
+                parent_ref: Option<&FSRef>,
                 name_length: UniCharCount,
                 name: *const UniChar,
                 text_encoding_hint: TextEncoding,
-                new_ref: *mut FSRef,
+                new_ref: Option<&mut FSRef>,
             ) -> OSErr;
         }
         unsafe { FSMakeFSRefUnicode(parent_ref, name_length, name, text_encoding_hint, new_ref) }
@@ -1697,26 +1697,48 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBMakeFSRefUnicodeSync(param_block: *mut FSRefParam) -> OSErr {
+pub unsafe fn PBMakeFSRefUnicodeSync(param_block: Option<&mut FSRefParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBMakeFSRefUnicodeSync(param_block: *mut FSRefParam) -> OSErr;
+        fn PBMakeFSRefUnicodeSync(param_block: Option<&mut FSRefParam>) -> OSErr;
     }
     unsafe { PBMakeFSRefUnicodeSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBMakeFSRefUnicodeAsync(param_block: *mut FSRefParam) {
+pub unsafe fn PBMakeFSRefUnicodeAsync(param_block: Option<&mut FSRefParam>) {
     extern "C-unwind" {
-        fn PBMakeFSRefUnicodeAsync(param_block: *mut FSRefParam);
+        fn PBMakeFSRefUnicodeAsync(param_block: Option<&mut FSRefParam>);
     }
     unsafe { PBMakeFSRefUnicodeAsync(param_block) }
 }
@@ -1724,14 +1746,14 @@ pub unsafe fn PBMakeFSRefUnicodeAsync(param_block: *mut FSRefParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `ref1` must be a valid pointer.
-    /// - `ref2` must be a valid pointer.
+    /// - `ref1` might not allow `None`.
+    /// - `ref2` might not allow `None`.
     #[doc(alias = "FSCompareFSRefs")]
     #[deprecated]
     #[inline]
-    pub unsafe fn compare_fs_refs(ref1: *const FSRef, ref2: *const FSRef) -> OSErr {
+    pub unsafe fn compare_fs_refs(ref1: Option<&FSRef>, ref2: Option<&FSRef>) -> OSErr {
         extern "C-unwind" {
-            fn FSCompareFSRefs(ref1: *const FSRef, ref2: *const FSRef) -> OSErr;
+            fn FSCompareFSRefs(ref1: Option<&FSRef>, ref2: Option<&FSRef>) -> OSErr;
         }
         unsafe { FSCompareFSRefs(ref1, ref2) }
     }
@@ -1739,26 +1761,48 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCompareFSRefsSync(param_block: *mut FSRefParam) -> OSErr {
+pub unsafe fn PBCompareFSRefsSync(param_block: Option<&mut FSRefParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBCompareFSRefsSync(param_block: *mut FSRefParam) -> OSErr;
+        fn PBCompareFSRefsSync(param_block: Option<&mut FSRefParam>) -> OSErr;
     }
     unsafe { PBCompareFSRefsSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCompareFSRefsAsync(param_block: *mut FSRefParam) {
+pub unsafe fn PBCompareFSRefsAsync(param_block: Option<&mut FSRefParam>) {
     extern "C-unwind" {
-        fn PBCompareFSRefsAsync(param_block: *mut FSRefParam);
+        fn PBCompareFSRefsAsync(param_block: Option<&mut FSRefParam>);
     }
     unsafe { PBCompareFSRefsAsync(param_block) }
 }
@@ -1766,32 +1810,33 @@ pub unsafe fn PBCompareFSRefsAsync(param_block: *mut FSRefParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `parent_ref` must be a valid pointer.
+    /// - `parent_ref` might not allow `None`.
     /// - `name` must be a valid pointer.
-    /// - `catalog_info` must be a valid pointer.
-    /// - `new_ref` must be a valid pointer.
+    /// - `catalog_info` struct field `permissions` struct field `fileSec` must be a valid pointer.
+    /// - `catalog_info` might not allow `None`.
+    /// - `new_ref` might not allow `None`.
     /// - `new_spec` must be a valid pointer.
     #[doc(alias = "FSCreateFileUnicode")]
     #[cfg(all(feature = "TextCommon", feature = "UTCUtils"))]
     #[deprecated]
     #[inline]
     pub unsafe fn create_file_unicode(
-        parent_ref: *const FSRef,
+        parent_ref: Option<&FSRef>,
         name_length: UniCharCount,
         name: *const UniChar,
         which_info: FSCatalogInfoBitmap,
-        catalog_info: *const FSCatalogInfo,
-        new_ref: *mut FSRef,
+        catalog_info: Option<&FSCatalogInfo>,
+        new_ref: Option<&mut FSRef>,
         new_spec: FSSpecPtr,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSCreateFileUnicode(
-                parent_ref: *const FSRef,
+                parent_ref: Option<&FSRef>,
                 name_length: UniCharCount,
                 name: *const UniChar,
                 which_info: FSCatalogInfoBitmap,
-                catalog_info: *const FSCatalogInfo,
-                new_ref: *mut FSRef,
+                catalog_info: Option<&FSCatalogInfo>,
+                new_ref: Option<&mut FSRef>,
                 new_spec: FSSpecPtr,
             ) -> OSErr;
         }
@@ -1811,26 +1856,48 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCreateFileUnicodeSync(param_block: *mut FSRefParam) -> OSErr {
+pub unsafe fn PBCreateFileUnicodeSync(param_block: Option<&mut FSRefParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBCreateFileUnicodeSync(param_block: *mut FSRefParam) -> OSErr;
+        fn PBCreateFileUnicodeSync(param_block: Option<&mut FSRefParam>) -> OSErr;
     }
     unsafe { PBCreateFileUnicodeSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCreateFileUnicodeAsync(param_block: *mut FSRefParam) {
+pub unsafe fn PBCreateFileUnicodeAsync(param_block: Option<&mut FSRefParam>) {
     extern "C-unwind" {
-        fn PBCreateFileUnicodeAsync(param_block: *mut FSRefParam);
+        fn PBCreateFileUnicodeAsync(param_block: Option<&mut FSRefParam>);
     }
     unsafe { PBCreateFileUnicodeAsync(param_block) }
 }
@@ -1838,36 +1905,37 @@ pub unsafe fn PBCreateFileUnicodeAsync(param_block: *mut FSRefParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `parent_ref` must be a valid pointer.
+    /// - `parent_ref` might not allow `None`.
     /// - `name` must be a valid pointer.
-    /// - `catalog_info` must be a valid pointer.
-    /// - `new_ref` must be a valid pointer.
+    /// - `catalog_info` struct field `permissions` struct field `fileSec` must be a valid pointer.
+    /// - `catalog_info` might not allow `None`.
+    /// - `new_ref` might not allow `None`.
     /// - `new_spec` must be a valid pointer.
-    /// - `new_dir_id` must be a valid pointer.
+    /// - `new_dir_id` might not allow `None`.
     #[doc(alias = "FSCreateDirectoryUnicode")]
     #[cfg(all(feature = "TextCommon", feature = "UTCUtils"))]
     #[deprecated]
     #[inline]
     pub unsafe fn create_directory_unicode(
-        parent_ref: *const FSRef,
+        parent_ref: Option<&FSRef>,
         name_length: UniCharCount,
         name: *const UniChar,
         which_info: FSCatalogInfoBitmap,
-        catalog_info: *const FSCatalogInfo,
-        new_ref: *mut FSRef,
+        catalog_info: Option<&FSCatalogInfo>,
+        new_ref: Option<&mut FSRef>,
         new_spec: FSSpecPtr,
-        new_dir_id: *mut u32,
+        new_dir_id: Option<&mut u32>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSCreateDirectoryUnicode(
-                parent_ref: *const FSRef,
+                parent_ref: Option<&FSRef>,
                 name_length: UniCharCount,
                 name: *const UniChar,
                 which_info: FSCatalogInfoBitmap,
-                catalog_info: *const FSCatalogInfo,
-                new_ref: *mut FSRef,
+                catalog_info: Option<&FSCatalogInfo>,
+                new_ref: Option<&mut FSRef>,
                 new_spec: FSSpecPtr,
-                new_dir_id: *mut u32,
+                new_dir_id: Option<&mut u32>,
             ) -> OSErr;
         }
         unsafe {
@@ -1887,26 +1955,48 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCreateDirectoryUnicodeSync(param_block: *mut FSRefParam) -> OSErr {
+pub unsafe fn PBCreateDirectoryUnicodeSync(param_block: Option<&mut FSRefParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBCreateDirectoryUnicodeSync(param_block: *mut FSRefParam) -> OSErr;
+        fn PBCreateDirectoryUnicodeSync(param_block: Option<&mut FSRefParam>) -> OSErr;
     }
     unsafe { PBCreateDirectoryUnicodeSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCreateDirectoryUnicodeAsync(param_block: *mut FSRefParam) {
+pub unsafe fn PBCreateDirectoryUnicodeAsync(param_block: Option<&mut FSRefParam>) {
     extern "C-unwind" {
-        fn PBCreateDirectoryUnicodeAsync(param_block: *mut FSRefParam);
+        fn PBCreateDirectoryUnicodeAsync(param_block: Option<&mut FSRefParam>);
     }
     unsafe { PBCreateDirectoryUnicodeAsync(param_block) }
 }
@@ -1914,13 +2004,13 @@ pub unsafe fn PBCreateDirectoryUnicodeAsync(param_block: *mut FSRefParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// `ref` must be a valid pointer.
+    /// `ref` might not allow `None`.
     #[doc(alias = "FSDeleteObject")]
     #[deprecated]
     #[inline]
-    pub unsafe fn delete_object(r#ref: *const FSRef) -> OSErr {
+    pub unsafe fn delete_object(r#ref: Option<&FSRef>) -> OSErr {
         extern "C-unwind" {
-            fn FSDeleteObject(r#ref: *const FSRef) -> OSErr;
+            fn FSDeleteObject(r#ref: Option<&FSRef>) -> OSErr;
         }
         unsafe { FSDeleteObject(r#ref) }
     }
@@ -1928,26 +2018,48 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBDeleteObjectSync(param_block: *mut FSRefParam) -> OSErr {
+pub unsafe fn PBDeleteObjectSync(param_block: Option<&mut FSRefParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBDeleteObjectSync(param_block: *mut FSRefParam) -> OSErr;
+        fn PBDeleteObjectSync(param_block: Option<&mut FSRefParam>) -> OSErr;
     }
     unsafe { PBDeleteObjectSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBDeleteObjectAsync(param_block: *mut FSRefParam) {
+pub unsafe fn PBDeleteObjectAsync(param_block: Option<&mut FSRefParam>) {
     extern "C-unwind" {
-        fn PBDeleteObjectAsync(param_block: *mut FSRefParam);
+        fn PBDeleteObjectAsync(param_block: Option<&mut FSRefParam>);
     }
     unsafe { PBDeleteObjectAsync(param_block) }
 }
@@ -1955,13 +2067,13 @@ pub unsafe fn PBDeleteObjectAsync(param_block: *mut FSRefParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// `ref` must be a valid pointer.
+    /// `ref` might not allow `None`.
     #[doc(alias = "FSUnlinkObject")]
     #[deprecated]
     #[inline]
-    pub unsafe fn unlink_object(r#ref: *const FSRef) -> OSErr {
+    pub unsafe fn unlink_object(r#ref: Option<&FSRef>) -> OSErr {
         extern "C-unwind" {
-            fn FSUnlinkObject(r#ref: *const FSRef) -> OSErr;
+            fn FSUnlinkObject(r#ref: Option<&FSRef>) -> OSErr;
         }
         unsafe { FSUnlinkObject(r#ref) }
     }
@@ -1969,26 +2081,48 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBUnlinkObjectSync(param_block: *mut FSRefParam) -> OSErr {
+pub unsafe fn PBUnlinkObjectSync(param_block: Option<&mut FSRefParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBUnlinkObjectSync(param_block: *mut FSRefParam) -> OSErr;
+        fn PBUnlinkObjectSync(param_block: Option<&mut FSRefParam>) -> OSErr;
     }
     unsafe { PBUnlinkObjectSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBUnlinkObjectAsync(param_block: *mut FSRefParam) {
+pub unsafe fn PBUnlinkObjectAsync(param_block: Option<&mut FSRefParam>) {
     extern "C-unwind" {
-        fn PBUnlinkObjectAsync(param_block: *mut FSRefParam);
+        fn PBUnlinkObjectAsync(param_block: Option<&mut FSRefParam>);
     }
     unsafe { PBUnlinkObjectAsync(param_block) }
 }
@@ -1996,22 +2130,22 @@ pub unsafe fn PBUnlinkObjectAsync(param_block: *mut FSRefParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
-    /// - `dest_directory` must be a valid pointer.
-    /// - `new_ref` must be a valid pointer.
+    /// - `ref` might not allow `None`.
+    /// - `dest_directory` might not allow `None`.
+    /// - `new_ref` might not allow `None`.
     #[doc(alias = "FSMoveObject")]
     #[deprecated]
     #[inline]
     pub unsafe fn move_object(
-        r#ref: *const FSRef,
-        dest_directory: *const FSRef,
-        new_ref: *mut FSRef,
+        r#ref: Option<&FSRef>,
+        dest_directory: Option<&FSRef>,
+        new_ref: Option<&mut FSRef>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSMoveObject(
-                r#ref: *const FSRef,
-                dest_directory: *const FSRef,
-                new_ref: *mut FSRef,
+                r#ref: Option<&FSRef>,
+                dest_directory: Option<&FSRef>,
+                new_ref: Option<&mut FSRef>,
             ) -> OSErr;
         }
         unsafe { FSMoveObject(r#ref, dest_directory, new_ref) }
@@ -2020,26 +2154,48 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBMoveObjectSync(param_block: *mut FSRefParam) -> OSErr {
+pub unsafe fn PBMoveObjectSync(param_block: Option<&mut FSRefParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBMoveObjectSync(param_block: *mut FSRefParam) -> OSErr;
+        fn PBMoveObjectSync(param_block: Option<&mut FSRefParam>) -> OSErr;
     }
     unsafe { PBMoveObjectSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBMoveObjectAsync(param_block: *mut FSRefParam) {
+pub unsafe fn PBMoveObjectAsync(param_block: Option<&mut FSRefParam>) {
     extern "C-unwind" {
-        fn PBMoveObjectAsync(param_block: *mut FSRefParam);
+        fn PBMoveObjectAsync(param_block: Option<&mut FSRefParam>);
     }
     unsafe { PBMoveObjectAsync(param_block) }
 }
@@ -2047,14 +2203,14 @@ pub unsafe fn PBMoveObjectAsync(param_block: *mut FSRefParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
-    /// - `dest_ref` must be a valid pointer.
+    /// - `ref` might not allow `None`.
+    /// - `dest_ref` might not allow `None`.
     #[doc(alias = "FSExchangeObjects")]
     #[deprecated]
     #[inline]
-    pub unsafe fn exchange_objects(r#ref: *const FSRef, dest_ref: *const FSRef) -> OSErr {
+    pub unsafe fn exchange_objects(r#ref: Option<&FSRef>, dest_ref: Option<&FSRef>) -> OSErr {
         extern "C-unwind" {
-            fn FSExchangeObjects(r#ref: *const FSRef, dest_ref: *const FSRef) -> OSErr;
+            fn FSExchangeObjects(r#ref: Option<&FSRef>, dest_ref: Option<&FSRef>) -> OSErr;
         }
         unsafe { FSExchangeObjects(r#ref, dest_ref) }
     }
@@ -2062,26 +2218,48 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBExchangeObjectsSync(param_block: *mut FSRefParam) -> OSErr {
+pub unsafe fn PBExchangeObjectsSync(param_block: Option<&mut FSRefParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBExchangeObjectsSync(param_block: *mut FSRefParam) -> OSErr;
+        fn PBExchangeObjectsSync(param_block: Option<&mut FSRefParam>) -> OSErr;
     }
     unsafe { PBExchangeObjectsSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBExchangeObjectsAsync(param_block: *mut FSRefParam) {
+pub unsafe fn PBExchangeObjectsAsync(param_block: Option<&mut FSRefParam>) {
     extern "C-unwind" {
-        fn PBExchangeObjectsAsync(param_block: *mut FSRefParam);
+        fn PBExchangeObjectsAsync(param_block: Option<&mut FSRefParam>);
     }
     unsafe { PBExchangeObjectsAsync(param_block) }
 }
@@ -2102,33 +2280,33 @@ pub const kFSReplaceObjectDoNotCheckObjectWriteAccess: c_uint = 0x10;
 impl FSRef {
     /// # Safety
     ///
-    /// - `original_object` must be a valid pointer.
-    /// - `replacement_object` must be a valid pointer.
+    /// - `original_object` might not allow `None`.
+    /// - `replacement_object` might not allow `None`.
     /// - `new_name` might not allow `None`.
     /// - `temporary_name` might not allow `None`.
-    /// - `temporary_directory` must be a valid pointer.
-    /// - `result_object` must be a valid pointer.
+    /// - `temporary_directory` might not allow `None`.
+    /// - `result_object` might not allow `None`.
     #[doc(alias = "FSReplaceObject")]
     #[deprecated = "Use NSFileManager's -replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error: instead. WARNING: FSReplaceObject does not work correctly in sandboxed apps."]
     #[inline]
     pub unsafe fn replace_object(
-        original_object: *const FSRef,
-        replacement_object: *const FSRef,
+        original_object: Option<&FSRef>,
+        replacement_object: Option<&FSRef>,
         new_name: Option<&CFString>,
         temporary_name: Option<&CFString>,
-        temporary_directory: *const FSRef,
+        temporary_directory: Option<&FSRef>,
         flags: OptionBits,
-        result_object: *mut FSRef,
+        result_object: Option<&mut FSRef>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSReplaceObject(
-                original_object: *const FSRef,
-                replacement_object: *const FSRef,
+                original_object: Option<&FSRef>,
+                replacement_object: Option<&FSRef>,
                 new_name: Option<&CFString>,
                 temporary_name: Option<&CFString>,
-                temporary_directory: *const FSRef,
+                temporary_directory: Option<&FSRef>,
                 flags: OptionBits,
-                result_object: *mut FSRef,
+                result_object: Option<&mut FSRef>,
             ) -> OSStatus;
         }
         unsafe {
@@ -2146,20 +2324,20 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// - `original_object_path` must be a valid pointer.
-    /// - `replacement_object_path` must be a valid pointer.
+    /// - `original_object_path` might not allow `None`.
+    /// - `replacement_object_path` might not allow `None`.
     /// - `new_name` might not allow `None`.
     /// - `temporary_name` might not allow `None`.
-    /// - `temporary_directory_path` must be a valid pointer.
+    /// - `temporary_directory_path` might not allow `None`.
     #[doc(alias = "FSPathReplaceObject")]
     #[deprecated = "Use NSFileManager's -replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error: instead. WARNING: FSPathReplaceObject does not work correctly in sandboxed apps."]
     #[inline]
     pub unsafe fn path_replace_object(
-        original_object_path: *const c_char,
-        replacement_object_path: *const c_char,
+        original_object_path: Option<&CStr>,
+        replacement_object_path: Option<&CStr>,
         new_name: Option<&CFString>,
         temporary_name: Option<&CFString>,
-        temporary_directory_path: *const c_char,
+        temporary_directory_path: Option<&CStr>,
         flags: OptionBits,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -2172,6 +2350,15 @@ impl FSRef {
                 flags: OptionBits,
             ) -> OSStatus;
         }
+        let original_object_path = original_object_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let replacement_object_path = replacement_object_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let temporary_directory_path = temporary_directory_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
         unsafe {
             FSPathReplaceObject(
                 original_object_path,
@@ -2186,20 +2373,20 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// - `original_object` must be a valid pointer.
-    /// - `temporary_directory` must be a valid pointer.
+    /// - `original_object` might not allow `None`.
+    /// - `temporary_directory` might not allow `None`.
     #[doc(alias = "FSGetTemporaryDirectoryForReplaceObject")]
     #[deprecated]
     #[inline]
     pub unsafe fn temporary_directory_for_replace_object(
-        original_object: *const FSRef,
-        temporary_directory: *mut FSRef,
+        original_object: Option<&FSRef>,
+        temporary_directory: Option<&mut FSRef>,
         flags: OptionBits,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSGetTemporaryDirectoryForReplaceObject(
-                original_object: *const FSRef,
-                temporary_directory: *mut FSRef,
+                original_object: Option<&FSRef>,
+                temporary_directory: Option<&mut FSRef>,
                 flags: OptionBits,
             ) -> OSStatus;
         }
@@ -2210,13 +2397,13 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// - `original_object_path` must be a valid pointer.
-    /// - `temporary_directory_path` must be a valid pointer.
+    /// - `original_object_path` might not allow `None`.
+    /// - `temporary_directory_path` might not allow `None`.
     #[doc(alias = "FSPathGetTemporaryDirectoryForReplaceObject")]
     #[deprecated]
     #[inline]
     pub unsafe fn path_get_temporary_directory_for_replace_object(
-        original_object_path: *const c_char,
+        original_object_path: Option<&CStr>,
         temporary_directory_path: *mut c_char,
         max_path_size: u32,
         flags: OptionBits,
@@ -2229,6 +2416,9 @@ impl FSRef {
                 flags: OptionBits,
             ) -> OSStatus;
         }
+        let original_object_path = original_object_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
         unsafe {
             FSPathGetTemporaryDirectoryForReplaceObject(
                 original_object_path,
@@ -2241,27 +2431,27 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might not allow `None`.
     /// - `name` must be a valid pointer.
-    /// - `new_ref` must be a valid pointer.
+    /// - `new_ref` might not allow `None`.
     #[doc(alias = "FSRenameUnicode")]
     #[cfg(feature = "TextCommon")]
     #[deprecated]
     #[inline]
     pub unsafe fn rename_unicode(
-        r#ref: *const FSRef,
+        r#ref: Option<&FSRef>,
         name_length: UniCharCount,
         name: *const UniChar,
         text_encoding_hint: TextEncoding,
-        new_ref: *mut FSRef,
+        new_ref: Option<&mut FSRef>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSRenameUnicode(
-                r#ref: *const FSRef,
+                r#ref: Option<&FSRef>,
                 name_length: UniCharCount,
                 name: *const UniChar,
                 text_encoding_hint: TextEncoding,
-                new_ref: *mut FSRef,
+                new_ref: Option<&mut FSRef>,
             ) -> OSErr;
         }
         unsafe { FSRenameUnicode(r#ref, name_length, name, text_encoding_hint, new_ref) }
@@ -2270,26 +2460,48 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBRenameUnicodeSync(param_block: *mut FSRefParam) -> OSErr {
+pub unsafe fn PBRenameUnicodeSync(param_block: Option<&mut FSRefParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBRenameUnicodeSync(param_block: *mut FSRefParam) -> OSErr;
+        fn PBRenameUnicodeSync(param_block: Option<&mut FSRefParam>) -> OSErr;
     }
     unsafe { PBRenameUnicodeSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBRenameUnicodeAsync(param_block: *mut FSRefParam) {
+pub unsafe fn PBRenameUnicodeAsync(param_block: Option<&mut FSRefParam>) {
     extern "C-unwind" {
-        fn PBRenameUnicodeAsync(param_block: *mut FSRefParam);
+        fn PBRenameUnicodeAsync(param_block: Option<&mut FSRefParam>);
     }
     unsafe { PBRenameUnicodeAsync(param_block) }
 }
@@ -2297,31 +2509,32 @@ pub unsafe fn PBRenameUnicodeAsync(param_block: *mut FSRefParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
-    /// - `catalog_info` must be a valid pointer.
-    /// - `out_name` must be a valid pointer.
+    /// - `ref` might not allow `None`.
+    /// - `catalog_info` struct field `permissions` struct field `fileSec` must be a valid pointer.
+    /// - `catalog_info` might not allow `None`.
+    /// - `out_name` might not allow `None`.
     /// - `fs_spec` must be a valid pointer.
-    /// - `parent_ref` must be a valid pointer.
+    /// - `parent_ref` might not allow `None`.
     #[doc(alias = "FSGetCatalogInfo")]
     #[cfg(all(feature = "TextCommon", feature = "UTCUtils"))]
     #[deprecated]
     #[inline]
     pub unsafe fn catalog_info(
-        r#ref: *const FSRef,
+        r#ref: Option<&FSRef>,
         which_info: FSCatalogInfoBitmap,
-        catalog_info: *mut FSCatalogInfo,
-        out_name: *mut HFSUniStr255,
+        catalog_info: Option<&mut FSCatalogInfo>,
+        out_name: Option<&mut HFSUniStr255>,
         fs_spec: FSSpecPtr,
-        parent_ref: *mut FSRef,
+        parent_ref: Option<&mut FSRef>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSGetCatalogInfo(
-                r#ref: *const FSRef,
+                r#ref: Option<&FSRef>,
                 which_info: FSCatalogInfoBitmap,
-                catalog_info: *mut FSCatalogInfo,
-                out_name: *mut HFSUniStr255,
+                catalog_info: Option<&mut FSCatalogInfo>,
+                out_name: Option<&mut HFSUniStr255>,
                 fs_spec: FSSpecPtr,
-                parent_ref: *mut FSRef,
+                parent_ref: Option<&mut FSRef>,
             ) -> OSErr;
         }
         unsafe {
@@ -2339,26 +2552,48 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetCatalogInfoSync(param_block: *mut FSRefParam) -> OSErr {
+pub unsafe fn PBGetCatalogInfoSync(param_block: Option<&mut FSRefParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBGetCatalogInfoSync(param_block: *mut FSRefParam) -> OSErr;
+        fn PBGetCatalogInfoSync(param_block: Option<&mut FSRefParam>) -> OSErr;
     }
     unsafe { PBGetCatalogInfoSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetCatalogInfoAsync(param_block: *mut FSRefParam) {
+pub unsafe fn PBGetCatalogInfoAsync(param_block: Option<&mut FSRefParam>) {
     extern "C-unwind" {
-        fn PBGetCatalogInfoAsync(param_block: *mut FSRefParam);
+        fn PBGetCatalogInfoAsync(param_block: Option<&mut FSRefParam>);
     }
     unsafe { PBGetCatalogInfoAsync(param_block) }
 }
@@ -2366,22 +2601,23 @@ pub unsafe fn PBGetCatalogInfoAsync(param_block: *mut FSRefParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
-    /// - `catalog_info` must be a valid pointer.
+    /// - `ref` might not allow `None`.
+    /// - `catalog_info` struct field `permissions` struct field `fileSec` must be a valid pointer.
+    /// - `catalog_info` might not allow `None`.
     #[doc(alias = "FSSetCatalogInfo")]
     #[cfg(all(feature = "TextCommon", feature = "UTCUtils"))]
     #[deprecated]
     #[inline]
     pub unsafe fn set_catalog_info(
-        r#ref: *const FSRef,
+        r#ref: Option<&FSRef>,
         which_info: FSCatalogInfoBitmap,
-        catalog_info: *const FSCatalogInfo,
+        catalog_info: Option<&FSCatalogInfo>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSSetCatalogInfo(
-                r#ref: *const FSRef,
+                r#ref: Option<&FSRef>,
                 which_info: FSCatalogInfoBitmap,
-                catalog_info: *const FSCatalogInfo,
+                catalog_info: Option<&FSCatalogInfo>,
             ) -> OSErr;
         }
         unsafe { FSSetCatalogInfo(r#ref, which_info, catalog_info) }
@@ -2390,26 +2626,48 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBSetCatalogInfoSync(param_block: *mut FSRefParam) -> OSErr {
+pub unsafe fn PBSetCatalogInfoSync(param_block: Option<&mut FSRefParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBSetCatalogInfoSync(param_block: *mut FSRefParam) -> OSErr;
+        fn PBSetCatalogInfoSync(param_block: Option<&mut FSRefParam>) -> OSErr;
     }
     unsafe { PBSetCatalogInfoSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `catInfo` must be a valid pointer.
+/// - `param_block` struct field `name` must be a valid pointer.
+/// - `param_block` struct field `spec` must be a valid pointer.
+/// - `param_block` struct field `parentRef` must be a valid pointer.
+/// - `param_block` struct field `newRef` must be a valid pointer.
+/// - `param_block` struct field `outName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBSetCatalogInfoAsync(param_block: *mut FSRefParam) {
+pub unsafe fn PBSetCatalogInfoAsync(param_block: Option<&mut FSRefParam>) {
     extern "C-unwind" {
-        fn PBSetCatalogInfoAsync(param_block: *mut FSRefParam);
+        fn PBSetCatalogInfoAsync(param_block: Option<&mut FSRefParam>);
     }
     unsafe { PBSetCatalogInfoAsync(param_block) }
 }
@@ -2417,21 +2675,22 @@ pub unsafe fn PBSetCatalogInfoAsync(param_block: *mut FSRefParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `container` must be a valid pointer.
+    /// - `container` might not allow `None`.
     /// - `iterator` must be a valid pointer.
+    /// - `iterator` might not allow `None`.
     #[doc(alias = "FSOpenIterator")]
     #[deprecated]
     #[inline]
     pub unsafe fn open_iterator(
-        container: *const FSRef,
+        container: Option<&FSRef>,
         iterator_flags: FSIteratorFlags,
-        iterator: *mut FSIterator,
+        iterator: Option<&mut FSIterator>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSOpenIterator(
-                container: *const FSRef,
+                container: Option<&FSRef>,
                 iterator_flags: FSIteratorFlags,
-                iterator: *mut FSIterator,
+                iterator: Option<&mut FSIterator>,
             ) -> OSErr;
         }
         unsafe { FSOpenIterator(container, iterator_flags, iterator) }
@@ -2440,26 +2699,46 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `iterator` must be a valid pointer.
+/// - `param_block` struct field `container` must be a valid pointer.
+/// - `param_block` struct field `catalogInfo` must be a valid pointer.
+/// - `param_block` struct field `refs` must be a valid pointer.
+/// - `param_block` struct field `specs` must be a valid pointer.
+/// - `param_block` struct field `names` must be a valid pointer.
+/// - `param_block` struct field `searchParams` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBOpenIteratorSync(param_block: *mut FSCatalogBulkParam) -> OSErr {
+pub unsafe fn PBOpenIteratorSync(param_block: Option<&mut FSCatalogBulkParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBOpenIteratorSync(param_block: *mut FSCatalogBulkParam) -> OSErr;
+        fn PBOpenIteratorSync(param_block: Option<&mut FSCatalogBulkParam>) -> OSErr;
     }
     unsafe { PBOpenIteratorSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `iterator` must be a valid pointer.
+/// - `param_block` struct field `container` must be a valid pointer.
+/// - `param_block` struct field `catalogInfo` must be a valid pointer.
+/// - `param_block` struct field `refs` must be a valid pointer.
+/// - `param_block` struct field `specs` must be a valid pointer.
+/// - `param_block` struct field `names` must be a valid pointer.
+/// - `param_block` struct field `searchParams` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBOpenIteratorAsync(param_block: *mut FSCatalogBulkParam) {
+pub unsafe fn PBOpenIteratorAsync(param_block: Option<&mut FSCatalogBulkParam>) {
     extern "C-unwind" {
-        fn PBOpenIteratorAsync(param_block: *mut FSCatalogBulkParam);
+        fn PBOpenIteratorAsync(param_block: Option<&mut FSCatalogBulkParam>);
     }
     unsafe { PBOpenIteratorAsync(param_block) }
 }
@@ -2481,26 +2760,46 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `iterator` must be a valid pointer.
+/// - `param_block` struct field `container` must be a valid pointer.
+/// - `param_block` struct field `catalogInfo` must be a valid pointer.
+/// - `param_block` struct field `refs` must be a valid pointer.
+/// - `param_block` struct field `specs` must be a valid pointer.
+/// - `param_block` struct field `names` must be a valid pointer.
+/// - `param_block` struct field `searchParams` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCloseIteratorSync(param_block: *mut FSCatalogBulkParam) -> OSErr {
+pub unsafe fn PBCloseIteratorSync(param_block: Option<&mut FSCatalogBulkParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBCloseIteratorSync(param_block: *mut FSCatalogBulkParam) -> OSErr;
+        fn PBCloseIteratorSync(param_block: Option<&mut FSCatalogBulkParam>) -> OSErr;
     }
     unsafe { PBCloseIteratorSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `iterator` must be a valid pointer.
+/// - `param_block` struct field `container` must be a valid pointer.
+/// - `param_block` struct field `catalogInfo` must be a valid pointer.
+/// - `param_block` struct field `refs` must be a valid pointer.
+/// - `param_block` struct field `specs` must be a valid pointer.
+/// - `param_block` struct field `names` must be a valid pointer.
+/// - `param_block` struct field `searchParams` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCloseIteratorAsync(param_block: *mut FSCatalogBulkParam) {
+pub unsafe fn PBCloseIteratorAsync(param_block: Option<&mut FSCatalogBulkParam>) {
     extern "C-unwind" {
-        fn PBCloseIteratorAsync(param_block: *mut FSCatalogBulkParam);
+        fn PBCloseIteratorAsync(param_block: Option<&mut FSCatalogBulkParam>);
     }
     unsafe { PBCloseIteratorAsync(param_block) }
 }
@@ -2509,8 +2808,8 @@ impl FSRef {
     /// # Safety
     ///
     /// - `iterator` must be a valid pointer.
-    /// - `actual_objects` must be a valid pointer.
-    /// - `container_changed` must be a valid pointer.
+    /// - `actual_objects` might not allow `None`.
+    /// - `container_changed` might not allow `None`.
     /// - `catalog_infos` must be a valid pointer.
     /// - `refs` must be a valid pointer.
     /// - `specs` must be a valid pointer.
@@ -2522,8 +2821,8 @@ impl FSRef {
     pub unsafe fn catalog_info_bulk(
         iterator: FSIterator,
         maximum_objects: ItemCount,
-        actual_objects: *mut ItemCount,
-        container_changed: *mut Boolean,
+        actual_objects: Option<&mut ItemCount>,
+        container_changed: Option<&mut Boolean>,
         which_info: FSCatalogInfoBitmap,
         catalog_infos: *mut FSCatalogInfo,
         refs: *mut FSRef,
@@ -2534,8 +2833,8 @@ impl FSRef {
             fn FSGetCatalogInfoBulk(
                 iterator: FSIterator,
                 maximum_objects: ItemCount,
-                actual_objects: *mut ItemCount,
-                container_changed: *mut Boolean,
+                actual_objects: Option<&mut ItemCount>,
+                container_changed: Option<&mut Boolean>,
                 which_info: FSCatalogInfoBitmap,
                 catalog_infos: *mut FSCatalogInfo,
                 refs: *mut FSRef,
@@ -2561,26 +2860,46 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `iterator` must be a valid pointer.
+/// - `param_block` struct field `container` must be a valid pointer.
+/// - `param_block` struct field `catalogInfo` must be a valid pointer.
+/// - `param_block` struct field `refs` must be a valid pointer.
+/// - `param_block` struct field `specs` must be a valid pointer.
+/// - `param_block` struct field `names` must be a valid pointer.
+/// - `param_block` struct field `searchParams` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetCatalogInfoBulkSync(param_block: *mut FSCatalogBulkParam) -> OSErr {
+pub unsafe fn PBGetCatalogInfoBulkSync(param_block: Option<&mut FSCatalogBulkParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBGetCatalogInfoBulkSync(param_block: *mut FSCatalogBulkParam) -> OSErr;
+        fn PBGetCatalogInfoBulkSync(param_block: Option<&mut FSCatalogBulkParam>) -> OSErr;
     }
     unsafe { PBGetCatalogInfoBulkSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `iterator` must be a valid pointer.
+/// - `param_block` struct field `container` must be a valid pointer.
+/// - `param_block` struct field `catalogInfo` must be a valid pointer.
+/// - `param_block` struct field `refs` must be a valid pointer.
+/// - `param_block` struct field `specs` must be a valid pointer.
+/// - `param_block` struct field `names` must be a valid pointer.
+/// - `param_block` struct field `searchParams` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetCatalogInfoBulkAsync(param_block: *mut FSCatalogBulkParam) {
+pub unsafe fn PBGetCatalogInfoBulkAsync(param_block: Option<&mut FSCatalogBulkParam>) {
     extern "C-unwind" {
-        fn PBGetCatalogInfoBulkAsync(param_block: *mut FSCatalogBulkParam);
+        fn PBGetCatalogInfoBulkAsync(param_block: Option<&mut FSCatalogBulkParam>);
     }
     unsafe { PBGetCatalogInfoBulkAsync(param_block) }
 }
@@ -2589,9 +2908,12 @@ impl FSRef {
     /// # Safety
     ///
     /// - `iterator` must be a valid pointer.
-    /// - `search_criteria` must be a valid pointer.
-    /// - `actual_objects` must be a valid pointer.
-    /// - `container_changed` must be a valid pointer.
+    /// - `search_criteria` struct field `searchName` must be a valid pointer.
+    /// - `search_criteria` struct field `searchInfo1` must be a valid pointer.
+    /// - `search_criteria` struct field `searchInfo2` must be a valid pointer.
+    /// - `search_criteria` might not allow `None`.
+    /// - `actual_objects` might not allow `None`.
+    /// - `container_changed` might not allow `None`.
     /// - `catalog_infos` must be a valid pointer.
     /// - `refs` must be a valid pointer.
     /// - `specs` must be a valid pointer.
@@ -2602,10 +2924,10 @@ impl FSRef {
     #[inline]
     pub unsafe fn catalog_search(
         iterator: FSIterator,
-        search_criteria: *const FSSearchParams,
+        search_criteria: Option<&FSSearchParams>,
         maximum_objects: ItemCount,
-        actual_objects: *mut ItemCount,
-        container_changed: *mut Boolean,
+        actual_objects: Option<&mut ItemCount>,
+        container_changed: Option<&mut Boolean>,
         which_info: FSCatalogInfoBitmap,
         catalog_infos: *mut FSCatalogInfo,
         refs: *mut FSRef,
@@ -2615,10 +2937,10 @@ impl FSRef {
         extern "C-unwind" {
             fn FSCatalogSearch(
                 iterator: FSIterator,
-                search_criteria: *const FSSearchParams,
+                search_criteria: Option<&FSSearchParams>,
                 maximum_objects: ItemCount,
-                actual_objects: *mut ItemCount,
-                container_changed: *mut Boolean,
+                actual_objects: Option<&mut ItemCount>,
+                container_changed: Option<&mut Boolean>,
                 which_info: FSCatalogInfoBitmap,
                 catalog_infos: *mut FSCatalogInfo,
                 refs: *mut FSRef,
@@ -2645,26 +2967,46 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `iterator` must be a valid pointer.
+/// - `param_block` struct field `container` must be a valid pointer.
+/// - `param_block` struct field `catalogInfo` must be a valid pointer.
+/// - `param_block` struct field `refs` must be a valid pointer.
+/// - `param_block` struct field `specs` must be a valid pointer.
+/// - `param_block` struct field `names` must be a valid pointer.
+/// - `param_block` struct field `searchParams` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCatalogSearchSync(param_block: *mut FSCatalogBulkParam) -> OSErr {
+pub unsafe fn PBCatalogSearchSync(param_block: Option<&mut FSCatalogBulkParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBCatalogSearchSync(param_block: *mut FSCatalogBulkParam) -> OSErr;
+        fn PBCatalogSearchSync(param_block: Option<&mut FSCatalogBulkParam>) -> OSErr;
     }
     unsafe { PBCatalogSearchSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `iterator` must be a valid pointer.
+/// - `param_block` struct field `container` must be a valid pointer.
+/// - `param_block` struct field `catalogInfo` must be a valid pointer.
+/// - `param_block` struct field `refs` must be a valid pointer.
+/// - `param_block` struct field `specs` must be a valid pointer.
+/// - `param_block` struct field `names` must be a valid pointer.
+/// - `param_block` struct field `searchParams` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "TextCommon", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCatalogSearchAsync(param_block: *mut FSCatalogBulkParam) {
+pub unsafe fn PBCatalogSearchAsync(param_block: Option<&mut FSCatalogBulkParam>) {
     extern "C-unwind" {
-        fn PBCatalogSearchAsync(param_block: *mut FSCatalogBulkParam);
+        fn PBCatalogSearchAsync(param_block: Option<&mut FSCatalogBulkParam>);
     }
     unsafe { PBCatalogSearchAsync(param_block) }
 }
@@ -2672,40 +3014,41 @@ pub unsafe fn PBCatalogSearchAsync(param_block: *mut FSCatalogBulkParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `parent_ref` must be a valid pointer.
+    /// - `parent_ref` might not allow `None`.
     /// - `name` must be a valid pointer.
-    /// - `catalog_info` must be a valid pointer.
+    /// - `catalog_info` struct field `permissions` struct field `fileSec` must be a valid pointer.
+    /// - `catalog_info` might not allow `None`.
     /// - `fork_name` must be a valid pointer.
-    /// - `fork_ref_num` must be a valid pointer.
-    /// - `new_ref` must be a valid pointer.
+    /// - `fork_ref_num` might not allow `None`.
+    /// - `new_ref` might not allow `None`.
     #[doc(alias = "FSCreateFileAndOpenForkUnicode")]
     #[cfg(all(feature = "TextCommon", feature = "UTCUtils"))]
     #[deprecated]
     #[inline]
     pub unsafe fn create_file_and_open_fork_unicode(
-        parent_ref: *const FSRef,
+        parent_ref: Option<&FSRef>,
         name_length: UniCharCount,
         name: *const UniChar,
         which_info: FSCatalogInfoBitmap,
-        catalog_info: *const FSCatalogInfo,
+        catalog_info: Option<&FSCatalogInfo>,
         fork_name_length: UniCharCount,
         fork_name: *const UniChar,
         permissions: i8,
-        fork_ref_num: *mut FSIORefNum,
-        new_ref: *mut FSRef,
+        fork_ref_num: Option<&mut FSIORefNum>,
+        new_ref: Option<&mut FSRef>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSCreateFileAndOpenForkUnicode(
-                parent_ref: *const FSRef,
+                parent_ref: Option<&FSRef>,
                 name_length: UniCharCount,
                 name: *const UniChar,
                 which_info: FSCatalogInfoBitmap,
-                catalog_info: *const FSCatalogInfo,
+                catalog_info: Option<&FSCatalogInfo>,
                 fork_name_length: UniCharCount,
                 fork_name: *const UniChar,
                 permissions: i8,
-                fork_ref_num: *mut FSIORefNum,
-                new_ref: *mut FSRef,
+                fork_ref_num: Option<&mut FSIORefNum>,
+                new_ref: Option<&mut FSRef>,
             ) -> OSStatus;
         }
         unsafe {
@@ -2754,19 +3097,19 @@ pub unsafe fn PBCreateFileAndOpenForkUnicodeAsync(param_block: FSRefForkIOParamP
 impl FSRef {
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might not allow `None`.
     /// - `fork_name` must be a valid pointer.
     #[doc(alias = "FSCreateFork")]
     #[deprecated]
     #[inline]
     pub unsafe fn create_fork(
-        r#ref: *const FSRef,
+        r#ref: Option<&FSRef>,
         fork_name_length: UniCharCount,
         fork_name: *const UniChar,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSCreateFork(
-                r#ref: *const FSRef,
+                r#ref: Option<&FSRef>,
                 fork_name_length: UniCharCount,
                 fork_name: *const UniChar,
             ) -> OSErr;
@@ -2777,26 +3120,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCreateForkSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBCreateForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBCreateForkSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBCreateForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBCreateForkSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCreateForkAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBCreateForkAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBCreateForkAsync(param_block: *mut FSForkIOParam);
+        fn PBCreateForkAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBCreateForkAsync(param_block) }
 }
@@ -2804,19 +3163,19 @@ pub unsafe fn PBCreateForkAsync(param_block: *mut FSForkIOParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might not allow `None`.
     /// - `fork_name` must be a valid pointer.
     #[doc(alias = "FSDeleteFork")]
     #[deprecated]
     #[inline]
     pub unsafe fn delete_fork(
-        r#ref: *const FSRef,
+        r#ref: Option<&FSRef>,
         fork_name_length: UniCharCount,
         fork_name: *const UniChar,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSDeleteFork(
-                r#ref: *const FSRef,
+                r#ref: Option<&FSRef>,
                 fork_name_length: UniCharCount,
                 fork_name: *const UniChar,
             ) -> OSErr;
@@ -2827,26 +3186,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBDeleteForkSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBDeleteForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBDeleteForkSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBDeleteForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBDeleteForkSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBDeleteForkAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBDeleteForkAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBDeleteForkAsync(param_block: *mut FSForkIOParam);
+        fn PBDeleteForkAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBDeleteForkAsync(param_block) }
 }
@@ -2854,28 +3229,28 @@ pub unsafe fn PBDeleteForkAsync(param_block: *mut FSForkIOParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
-    /// - `fork_iterator` must be a valid pointer.
-    /// - `fork_name` must be a valid pointer.
-    /// - `fork_size` must be a valid pointer.
-    /// - `fork_physical_size` must be a valid pointer.
+    /// - `ref` might not allow `None`.
+    /// - `fork_iterator` might not allow `None`.
+    /// - `fork_name` might not allow `None`.
+    /// - `fork_size` might not allow `None`.
+    /// - `fork_physical_size` might not allow `None`.
     #[doc(alias = "FSIterateForks")]
     #[deprecated]
     #[inline]
     pub unsafe fn iterate_forks(
-        r#ref: *const FSRef,
-        fork_iterator: *mut CatPositionRec,
-        fork_name: *mut HFSUniStr255,
-        fork_size: *mut i64,
-        fork_physical_size: *mut u64,
+        r#ref: Option<&FSRef>,
+        fork_iterator: Option<&mut CatPositionRec>,
+        fork_name: Option<&mut HFSUniStr255>,
+        fork_size: Option<&mut i64>,
+        fork_physical_size: Option<&mut u64>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSIterateForks(
-                r#ref: *const FSRef,
-                fork_iterator: *mut CatPositionRec,
-                fork_name: *mut HFSUniStr255,
-                fork_size: *mut i64,
-                fork_physical_size: *mut u64,
+                r#ref: Option<&FSRef>,
+                fork_iterator: Option<&mut CatPositionRec>,
+                fork_name: Option<&mut HFSUniStr255>,
+                fork_size: Option<&mut i64>,
+                fork_physical_size: Option<&mut u64>,
             ) -> OSErr;
         }
         unsafe {
@@ -2892,26 +3267,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBIterateForksSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBIterateForksSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBIterateForksSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBIterateForksSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBIterateForksSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBIterateForksAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBIterateForksAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBIterateForksAsync(param_block: *mut FSForkIOParam);
+        fn PBIterateForksAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBIterateForksAsync(param_block) }
 }
@@ -2919,26 +3310,26 @@ pub unsafe fn PBIterateForksAsync(param_block: *mut FSForkIOParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might not allow `None`.
     /// - `fork_name` must be a valid pointer.
-    /// - `fork_ref_num` must be a valid pointer.
+    /// - `fork_ref_num` might not allow `None`.
     #[doc(alias = "FSOpenFork")]
     #[deprecated]
     #[inline]
     pub unsafe fn open_fork(
-        r#ref: *const FSRef,
+        r#ref: Option<&FSRef>,
         fork_name_length: UniCharCount,
         fork_name: *const UniChar,
         permissions: i8,
-        fork_ref_num: *mut FSIORefNum,
+        fork_ref_num: Option<&mut FSIORefNum>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSOpenFork(
-                r#ref: *const FSRef,
+                r#ref: Option<&FSRef>,
                 fork_name_length: UniCharCount,
                 fork_name: *const UniChar,
                 permissions: i8,
-                fork_ref_num: *mut FSIORefNum,
+                fork_ref_num: Option<&mut FSIORefNum>,
             ) -> OSErr;
         }
         unsafe {
@@ -2955,26 +3346,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBOpenForkSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBOpenForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBOpenForkSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBOpenForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBOpenForkSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBOpenForkAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBOpenForkAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBOpenForkAsync(param_block: *mut FSForkIOParam);
+        fn PBOpenForkAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBOpenForkAsync(param_block) }
 }
@@ -2983,7 +3390,7 @@ impl FSRef {
     /// # Safety
     ///
     /// - `buffer` must be a valid pointer.
-    /// - `actual_count` must be a valid pointer.
+    /// - `actual_count` might not allow `None`.
     #[doc(alias = "FSReadFork")]
     #[deprecated]
     #[inline]
@@ -2993,7 +3400,7 @@ impl FSRef {
         position_offset: i64,
         request_count: ByteCount,
         buffer: *mut c_void,
-        actual_count: *mut ByteCount,
+        actual_count: Option<&mut ByteCount>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSReadFork(
@@ -3002,7 +3409,7 @@ impl FSRef {
                 position_offset: i64,
                 request_count: ByteCount,
                 buffer: *mut c_void,
-                actual_count: *mut ByteCount,
+                actual_count: Option<&mut ByteCount>,
             ) -> OSErr;
         }
         unsafe {
@@ -3020,26 +3427,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBReadForkSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBReadForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBReadForkSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBReadForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBReadForkSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBReadForkAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBReadForkAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBReadForkAsync(param_block: *mut FSForkIOParam);
+        fn PBReadForkAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBReadForkAsync(param_block) }
 }
@@ -3048,7 +3471,7 @@ impl FSRef {
     /// # Safety
     ///
     /// - `buffer` must be a valid pointer.
-    /// - `actual_count` must be a valid pointer.
+    /// - `actual_count` might not allow `None`.
     #[doc(alias = "FSWriteFork")]
     #[deprecated]
     #[inline]
@@ -3058,7 +3481,7 @@ impl FSRef {
         position_offset: i64,
         request_count: ByteCount,
         buffer: *const c_void,
-        actual_count: *mut ByteCount,
+        actual_count: Option<&mut ByteCount>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSWriteFork(
@@ -3067,7 +3490,7 @@ impl FSRef {
                 position_offset: i64,
                 request_count: ByteCount,
                 buffer: *const c_void,
-                actual_count: *mut ByteCount,
+                actual_count: Option<&mut ByteCount>,
             ) -> OSErr;
         }
         unsafe {
@@ -3085,26 +3508,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBWriteForkSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBWriteForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBWriteForkSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBWriteForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBWriteForkSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBWriteForkAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBWriteForkAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBWriteForkAsync(param_block: *mut FSForkIOParam);
+        fn PBWriteForkAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBWriteForkAsync(param_block) }
 }
@@ -3112,13 +3551,13 @@ pub unsafe fn PBWriteForkAsync(param_block: *mut FSForkIOParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// `position` must be a valid pointer.
+    /// `position` might not allow `None`.
     #[doc(alias = "FSGetForkPosition")]
     #[deprecated]
     #[inline]
-    pub unsafe fn fork_position(fork_ref_num: FSIORefNum, position: *mut i64) -> OSErr {
+    pub unsafe fn fork_position(fork_ref_num: FSIORefNum, position: Option<&mut i64>) -> OSErr {
         extern "C-unwind" {
-            fn FSGetForkPosition(fork_ref_num: FSIORefNum, position: *mut i64) -> OSErr;
+            fn FSGetForkPosition(fork_ref_num: FSIORefNum, position: Option<&mut i64>) -> OSErr;
         }
         unsafe { FSGetForkPosition(fork_ref_num, position) }
     }
@@ -3126,26 +3565,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetForkPositionSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBGetForkPositionSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBGetForkPositionSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBGetForkPositionSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBGetForkPositionSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetForkPositionAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBGetForkPositionAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBGetForkPositionAsync(param_block: *mut FSForkIOParam);
+        fn PBGetForkPositionAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBGetForkPositionAsync(param_block) }
 }
@@ -3172,26 +3627,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBSetForkPositionSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBSetForkPositionSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBSetForkPositionSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBSetForkPositionSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBSetForkPositionSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBSetForkPositionAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBSetForkPositionAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBSetForkPositionAsync(param_block: *mut FSForkIOParam);
+        fn PBSetForkPositionAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBSetForkPositionAsync(param_block) }
 }
@@ -3199,13 +3670,13 @@ pub unsafe fn PBSetForkPositionAsync(param_block: *mut FSForkIOParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// `fork_size` must be a valid pointer.
+    /// `fork_size` might not allow `None`.
     #[doc(alias = "FSGetForkSize")]
     #[deprecated]
     #[inline]
-    pub unsafe fn fork_size(fork_ref_num: FSIORefNum, fork_size: *mut i64) -> OSErr {
+    pub unsafe fn fork_size(fork_ref_num: FSIORefNum, fork_size: Option<&mut i64>) -> OSErr {
         extern "C-unwind" {
-            fn FSGetForkSize(fork_ref_num: FSIORefNum, fork_size: *mut i64) -> OSErr;
+            fn FSGetForkSize(fork_ref_num: FSIORefNum, fork_size: Option<&mut i64>) -> OSErr;
         }
         unsafe { FSGetForkSize(fork_ref_num, fork_size) }
     }
@@ -3213,26 +3684,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetForkSizeSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBGetForkSizeSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBGetForkSizeSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBGetForkSizeSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBGetForkSizeSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetForkSizeAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBGetForkSizeAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBGetForkSizeAsync(param_block: *mut FSForkIOParam);
+        fn PBGetForkSizeAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBGetForkSizeAsync(param_block) }
 }
@@ -3259,26 +3746,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBSetForkSizeSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBSetForkSizeSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBSetForkSizeSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBSetForkSizeSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBSetForkSizeSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBSetForkSizeAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBSetForkSizeAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBSetForkSizeAsync(param_block: *mut FSForkIOParam);
+        fn PBSetForkSizeAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBSetForkSizeAsync(param_block) }
 }
@@ -3286,7 +3789,7 @@ pub unsafe fn PBSetForkSizeAsync(param_block: *mut FSForkIOParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// `actual_count` must be a valid pointer.
+    /// `actual_count` might not allow `None`.
     #[doc(alias = "FSAllocateFork")]
     #[deprecated]
     #[inline]
@@ -3296,7 +3799,7 @@ impl FSRef {
         position_mode: u16,
         position_offset: i64,
         request_count: u64,
-        actual_count: *mut u64,
+        actual_count: Option<&mut u64>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSAllocateFork(
@@ -3305,7 +3808,7 @@ impl FSRef {
                 position_mode: u16,
                 position_offset: i64,
                 request_count: u64,
-                actual_count: *mut u64,
+                actual_count: Option<&mut u64>,
             ) -> OSErr;
         }
         unsafe {
@@ -3323,26 +3826,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBAllocateForkSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBAllocateForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBAllocateForkSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBAllocateForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBAllocateForkSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBAllocateForkAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBAllocateForkAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBAllocateForkAsync(param_block: *mut FSForkIOParam);
+        fn PBAllocateForkAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBAllocateForkAsync(param_block) }
 }
@@ -3361,26 +3880,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBFlushForkSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBFlushForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBFlushForkSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBFlushForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBFlushForkSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBFlushForkAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBFlushForkAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBFlushForkAsync(param_block: *mut FSForkIOParam);
+        fn PBFlushForkAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBFlushForkAsync(param_block) }
 }
@@ -3399,26 +3934,42 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCloseForkSync(param_block: *mut FSForkIOParam) -> OSErr {
+pub unsafe fn PBCloseForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBCloseForkSync(param_block: *mut FSForkIOParam) -> OSErr;
+        fn PBCloseForkSync(param_block: Option<&mut FSForkIOParam>) -> OSErr;
     }
     unsafe { PBCloseForkSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `reserved1` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `buffer` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` struct field `outForkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBCloseForkAsync(param_block: *mut FSForkIOParam) {
+pub unsafe fn PBCloseForkAsync(param_block: Option<&mut FSForkIOParam>) {
     extern "C-unwind" {
-        fn PBCloseForkAsync(param_block: *mut FSForkIOParam);
+        fn PBCloseForkAsync(param_block: Option<&mut FSForkIOParam>);
     }
     unsafe { PBCloseForkAsync(param_block) }
 }
@@ -3426,32 +3977,32 @@ pub unsafe fn PBCloseForkAsync(param_block: *mut FSForkIOParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// - `iterator` must be a valid pointer.
-    /// - `actual_ref_num` must be a valid pointer.
-    /// - `fork_info` must be a valid pointer.
-    /// - `ref` must be a valid pointer.
-    /// - `out_fork_name` must be a valid pointer.
+    /// - `iterator` might not allow `None`.
+    /// - `actual_ref_num` might not allow `None`.
+    /// - `fork_info` might not allow `None`.
+    /// - `ref` might not allow `None`.
+    /// - `out_fork_name` might not allow `None`.
     #[doc(alias = "FSGetForkCBInfo")]
     #[deprecated]
     #[inline]
     pub unsafe fn fork_cb_info(
         desired_ref_num: FSIORefNum,
         volume: FSVolumeRefNum,
-        iterator: *mut c_short,
-        actual_ref_num: *mut FSIORefNum,
-        fork_info: *mut FSForkInfo,
-        r#ref: *mut FSRef,
-        out_fork_name: *mut HFSUniStr255,
+        iterator: Option<&mut c_short>,
+        actual_ref_num: Option<&mut FSIORefNum>,
+        fork_info: Option<&mut FSForkInfo>,
+        r#ref: Option<&mut FSRef>,
+        out_fork_name: Option<&mut HFSUniStr255>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSGetForkCBInfo(
                 desired_ref_num: FSIORefNum,
                 volume: FSVolumeRefNum,
-                iterator: *mut c_short,
-                actual_ref_num: *mut FSIORefNum,
-                fork_info: *mut FSForkInfo,
-                r#ref: *mut FSRef,
-                out_fork_name: *mut HFSUniStr255,
+                iterator: Option<&mut c_short>,
+                actual_ref_num: Option<&mut FSIORefNum>,
+                fork_info: Option<&mut FSForkInfo>,
+                r#ref: Option<&mut FSRef>,
+                out_fork_name: Option<&mut HFSUniStr255>,
             ) -> OSErr;
         }
         unsafe {
@@ -3470,26 +4021,38 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `forkInfo` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetForkCBInfoSync(param_block: *mut FSForkCBInfoParam) -> OSErr {
+pub unsafe fn PBGetForkCBInfoSync(param_block: Option<&mut FSForkCBInfoParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBGetForkCBInfoSync(param_block: *mut FSForkCBInfoParam) -> OSErr;
+        fn PBGetForkCBInfoSync(param_block: Option<&mut FSForkCBInfoParam>) -> OSErr;
     }
     unsafe { PBGetForkCBInfoSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` struct field `forkInfo` must be a valid pointer.
+/// - `param_block` struct field `forkName` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(feature = "OSUtils")]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetForkCBInfoAsync(param_block: *mut FSForkCBInfoParam) {
+pub unsafe fn PBGetForkCBInfoAsync(param_block: Option<&mut FSForkCBInfoParam>) {
     extern "C-unwind" {
-        fn PBGetForkCBInfoAsync(param_block: *mut FSForkCBInfoParam);
+        fn PBGetForkCBInfoAsync(param_block: Option<&mut FSForkCBInfoParam>);
     }
     unsafe { PBGetForkCBInfoAsync(param_block) }
 }
@@ -3497,7 +4060,7 @@ pub unsafe fn PBGetForkCBInfoAsync(param_block: *mut FSForkCBInfoParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// `range_start` must be a valid pointer.
+    /// `range_start` might not allow `None`.
     #[doc(alias = "FSLockRange")]
     #[deprecated]
     #[inline]
@@ -3506,7 +4069,7 @@ impl FSRef {
         position_mode: u16,
         position_offset: i64,
         request_count: u64,
-        range_start: *mut u64,
+        range_start: Option<&mut u64>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSLockRange(
@@ -3514,7 +4077,7 @@ impl FSRef {
                 position_mode: u16,
                 position_offset: i64,
                 request_count: u64,
-                range_start: *mut u64,
+                range_start: Option<&mut u64>,
             ) -> OSStatus;
         }
         unsafe {
@@ -3558,7 +4121,7 @@ pub unsafe fn PBXLockRangeAsync(param_block: FSRangeLockParamPtr) -> OSStatus {
 impl FSRef {
     /// # Safety
     ///
-    /// `range_start` must be a valid pointer.
+    /// `range_start` might not allow `None`.
     #[doc(alias = "FSUnlockRange")]
     #[deprecated]
     #[inline]
@@ -3567,7 +4130,7 @@ impl FSRef {
         position_mode: u16,
         position_offset: i64,
         request_count: u64,
-        range_start: *mut u64,
+        range_start: Option<&mut u64>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSUnlockRange(
@@ -3575,7 +4138,7 @@ impl FSRef {
                 position_mode: u16,
                 position_offset: i64,
                 request_count: u64,
-                range_start: *mut u64,
+                range_start: Option<&mut u64>,
             ) -> OSStatus;
         }
         unsafe {
@@ -3619,10 +4182,10 @@ pub unsafe fn PBXUnlockRangeAsync(param_block: FSRangeLockParamPtr) -> OSStatus 
 impl FSRef {
     /// # Safety
     ///
-    /// - `actual_volume` must be a valid pointer.
-    /// - `info` must be a valid pointer.
-    /// - `volume_name` must be a valid pointer.
-    /// - `root_directory` must be a valid pointer.
+    /// - `actual_volume` might not allow `None`.
+    /// - `info` might not allow `None`.
+    /// - `volume_name` might not allow `None`.
+    /// - `root_directory` might not allow `None`.
     #[doc(alias = "FSGetVolumeInfo")]
     #[cfg(feature = "UTCUtils")]
     #[deprecated]
@@ -3630,21 +4193,21 @@ impl FSRef {
     pub unsafe fn volume_info(
         volume: FSVolumeRefNum,
         volume_index: ItemCount,
-        actual_volume: *mut FSVolumeRefNum,
+        actual_volume: Option<&mut FSVolumeRefNum>,
         which_info: FSVolumeInfoBitmap,
-        info: *mut FSVolumeInfo,
-        volume_name: *mut HFSUniStr255,
-        root_directory: *mut FSRef,
+        info: Option<&mut FSVolumeInfo>,
+        volume_name: Option<&mut HFSUniStr255>,
+        root_directory: Option<&mut FSRef>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSGetVolumeInfo(
                 volume: FSVolumeRefNum,
                 volume_index: ItemCount,
-                actual_volume: *mut FSVolumeRefNum,
+                actual_volume: Option<&mut FSVolumeRefNum>,
                 which_info: FSVolumeInfoBitmap,
-                info: *mut FSVolumeInfo,
-                volume_name: *mut HFSUniStr255,
-                root_directory: *mut FSRef,
+                info: Option<&mut FSVolumeInfo>,
+                volume_name: Option<&mut HFSUniStr255>,
+                root_directory: Option<&mut FSRef>,
             ) -> OSErr;
         }
         unsafe {
@@ -3663,26 +4226,40 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `volumeInfo` must be a valid pointer.
+/// - `param_block` struct field `volumeName` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetVolumeInfoSync(param_block: *mut FSVolumeInfoParam) -> OSErr {
+pub unsafe fn PBGetVolumeInfoSync(param_block: Option<&mut FSVolumeInfoParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBGetVolumeInfoSync(param_block: *mut FSVolumeInfoParam) -> OSErr;
+        fn PBGetVolumeInfoSync(param_block: Option<&mut FSVolumeInfoParam>) -> OSErr;
     }
     unsafe { PBGetVolumeInfoSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `volumeInfo` must be a valid pointer.
+/// - `param_block` struct field `volumeName` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBGetVolumeInfoAsync(param_block: *mut FSVolumeInfoParam) {
+pub unsafe fn PBGetVolumeInfoAsync(param_block: Option<&mut FSVolumeInfoParam>) {
     extern "C-unwind" {
-        fn PBGetVolumeInfoAsync(param_block: *mut FSVolumeInfoParam);
+        fn PBGetVolumeInfoAsync(param_block: Option<&mut FSVolumeInfoParam>);
     }
     unsafe { PBGetVolumeInfoAsync(param_block) }
 }
@@ -3690,7 +4267,7 @@ pub unsafe fn PBGetVolumeInfoAsync(param_block: *mut FSVolumeInfoParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// `info` must be a valid pointer.
+    /// `info` might not allow `None`.
     #[doc(alias = "FSSetVolumeInfo")]
     #[cfg(feature = "UTCUtils")]
     #[deprecated]
@@ -3698,13 +4275,13 @@ impl FSRef {
     pub unsafe fn set_volume_info(
         volume: FSVolumeRefNum,
         which_info: FSVolumeInfoBitmap,
-        info: *const FSVolumeInfo,
+        info: Option<&FSVolumeInfo>,
     ) -> OSErr {
         extern "C-unwind" {
             fn FSSetVolumeInfo(
                 volume: FSVolumeRefNum,
                 which_info: FSVolumeInfoBitmap,
-                info: *const FSVolumeInfo,
+                info: Option<&FSVolumeInfo>,
             ) -> OSErr;
         }
         unsafe { FSSetVolumeInfo(volume, which_info, info) }
@@ -3713,26 +4290,40 @@ impl FSRef {
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `volumeInfo` must be a valid pointer.
+/// - `param_block` struct field `volumeName` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBSetVolumeInfoSync(param_block: *mut FSVolumeInfoParam) -> OSErr {
+pub unsafe fn PBSetVolumeInfoSync(param_block: Option<&mut FSVolumeInfoParam>) -> OSErr {
     extern "C-unwind" {
-        fn PBSetVolumeInfoSync(param_block: *mut FSVolumeInfoParam) -> OSErr;
+        fn PBSetVolumeInfoSync(param_block: Option<&mut FSVolumeInfoParam>) -> OSErr;
     }
     unsafe { PBSetVolumeInfoSync(param_block) }
 }
 
 /// # Safety
 ///
-/// `param_block` must be a valid pointer.
+/// - `param_block` struct field `qLink` must be a valid pointer.
+/// - `param_block` struct field `ioCmdAddr` must be a valid pointer.
+/// - `param_block` struct field `ioCompletion` must be implemented correctly.
+/// - `param_block` struct field `ioNamePtr` must be a valid pointer.
+/// - `param_block` struct field `volumeInfo` must be a valid pointer.
+/// - `param_block` struct field `volumeName` must be a valid pointer.
+/// - `param_block` struct field `ref` must be a valid pointer.
+/// - `param_block` might not allow `None`.
 #[cfg(all(feature = "OSUtils", feature = "UTCUtils"))]
 #[deprecated]
 #[inline]
-pub unsafe fn PBSetVolumeInfoAsync(param_block: *mut FSVolumeInfoParam) {
+pub unsafe fn PBSetVolumeInfoAsync(param_block: Option<&mut FSVolumeInfoParam>) {
     extern "C-unwind" {
-        fn PBSetVolumeInfoAsync(param_block: *mut FSVolumeInfoParam);
+        fn PBSetVolumeInfoAsync(param_block: Option<&mut FSVolumeInfoParam>);
     }
     unsafe { PBSetVolumeInfoAsync(param_block) }
 }
@@ -3740,45 +4331,48 @@ pub unsafe fn PBSetVolumeInfoAsync(param_block: *mut FSVolumeInfoParam) {
 impl FSRef {
     /// # Safety
     ///
-    /// `data_fork_name` must be a valid pointer.
+    /// `data_fork_name` might not allow `None`.
     #[doc(alias = "FSGetDataForkName")]
     #[deprecated]
     #[inline]
-    pub unsafe fn data_fork_name(data_fork_name: *mut HFSUniStr255) -> OSErr {
+    pub unsafe fn data_fork_name(data_fork_name: Option<&mut HFSUniStr255>) -> OSErr {
         extern "C-unwind" {
-            fn FSGetDataForkName(data_fork_name: *mut HFSUniStr255) -> OSErr;
+            fn FSGetDataForkName(data_fork_name: Option<&mut HFSUniStr255>) -> OSErr;
         }
         unsafe { FSGetDataForkName(data_fork_name) }
     }
 
     /// # Safety
     ///
-    /// `resource_fork_name` must be a valid pointer.
+    /// `resource_fork_name` might not allow `None`.
     #[doc(alias = "FSGetResourceForkName")]
     #[deprecated]
     #[inline]
-    pub unsafe fn resource_fork_name(resource_fork_name: *mut HFSUniStr255) -> OSErr {
+    pub unsafe fn resource_fork_name(resource_fork_name: Option<&mut HFSUniStr255>) -> OSErr {
         extern "C-unwind" {
-            fn FSGetResourceForkName(resource_fork_name: *mut HFSUniStr255) -> OSErr;
+            fn FSGetResourceForkName(resource_fork_name: Option<&mut HFSUniStr255>) -> OSErr;
         }
         unsafe { FSGetResourceForkName(resource_fork_name) }
     }
 
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might not allow `None`.
     /// - `path` must be a valid pointer.
     #[doc(alias = "FSRefMakePath")]
     #[deprecated]
     #[inline]
     pub unsafe fn ref_make_path(
-        r#ref: *const FSRef,
+        r#ref: Option<&FSRef>,
         path: *mut u8,
         path_buffer_size: u32,
     ) -> OSStatus {
         extern "C-unwind" {
-            fn FSRefMakePath(r#ref: *const FSRef, path: *mut u8, path_buffer_size: u32)
-                -> OSStatus;
+            fn FSRefMakePath(
+                r#ref: Option<&FSRef>,
+                path: *mut u8,
+                path_buffer_size: u32,
+            ) -> OSStatus;
         }
         unsafe { FSRefMakePath(r#ref, path, path_buffer_size) }
     }
@@ -3786,21 +4380,21 @@ impl FSRef {
     /// # Safety
     ///
     /// - `path` must be a valid pointer.
-    /// - `ref` must be a valid pointer.
-    /// - `is_directory` must be a valid pointer.
+    /// - `ref` might not allow `None`.
+    /// - `is_directory` might not allow `None`.
     #[doc(alias = "FSPathMakeRef")]
     #[deprecated]
     #[inline]
     pub unsafe fn path_make_ref(
         path: *const u8,
-        r#ref: *mut FSRef,
-        is_directory: *mut Boolean,
+        r#ref: Option<&mut FSRef>,
+        is_directory: Option<&mut Boolean>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSPathMakeRef(
                 path: *const u8,
-                r#ref: *mut FSRef,
-                is_directory: *mut Boolean,
+                r#ref: Option<&mut FSRef>,
+                is_directory: Option<&mut Boolean>,
             ) -> OSStatus;
         }
         unsafe { FSPathMakeRef(path, r#ref, is_directory) }
@@ -3816,23 +4410,23 @@ impl FSRef {
     /// # Safety
     ///
     /// - `path` must be a valid pointer.
-    /// - `ref` must be a valid pointer.
-    /// - `is_directory` must be a valid pointer.
+    /// - `ref` might not allow `None`.
+    /// - `is_directory` might not allow `None`.
     #[doc(alias = "FSPathMakeRefWithOptions")]
     #[deprecated]
     #[inline]
     pub unsafe fn path_make_ref_with_options(
         path: *const u8,
         options: OptionBits,
-        r#ref: *mut FSRef,
-        is_directory: *mut Boolean,
+        r#ref: Option<&mut FSRef>,
+        is_directory: Option<&mut Boolean>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSPathMakeRefWithOptions(
                 path: *const u8,
                 options: OptionBits,
-                r#ref: *mut FSRef,
-                is_directory: *mut Boolean,
+                r#ref: Option<&mut FSRef>,
+                is_directory: Option<&mut Boolean>,
             ) -> OSStatus;
         }
         unsafe { FSPathMakeRefWithOptions(path, options, r#ref, is_directory) }
@@ -3840,13 +4434,13 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// `ref` must be a valid pointer.
+    /// `ref` might not allow `None`.
     #[doc(alias = "FSIsFSRefValid")]
     #[deprecated]
     #[inline]
-    pub unsafe fn is_fs_ref_valid(r#ref: *const FSRef) -> bool {
+    pub unsafe fn is_fs_ref_valid(r#ref: Option<&FSRef>) -> bool {
         extern "C-unwind" {
-            fn FSIsFSRefValid(r#ref: *const FSRef) -> Boolean;
+            fn FSIsFSRefValid(r#ref: Option<&FSRef>) -> Boolean;
         }
         let ret = unsafe { FSIsFSRefValid(r#ref) };
         ret != 0
@@ -3861,12 +4455,12 @@ pub const kFNDirectoryModifiedMessage: c_uint = 1;
 
 /// # Safety
 ///
-/// `ref` must be a valid pointer.
+/// `ref` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn FNNotify(r#ref: *const FSRef, message: FNMessage, flags: OptionBits) -> OSStatus {
+pub unsafe fn FNNotify(r#ref: Option<&FSRef>, message: FNMessage, flags: OptionBits) -> OSStatus {
     extern "C-unwind" {
-        fn FNNotify(r#ref: *const FSRef, message: FNMessage, flags: OptionBits) -> OSStatus;
+        fn FNNotify(r#ref: Option<&FSRef>, message: FNMessage, flags: OptionBits) -> OSStatus;
     }
     unsafe { FNNotify(r#ref, message, flags) }
 }
@@ -3973,26 +4567,27 @@ pub unsafe fn InvokeFNSubscriptionUPP(
 
 /// # Safety
 ///
-/// - `directory_ref` must be a valid pointer.
+/// - `directory_ref` might not allow `None`.
 /// - `callback` must be implemented correctly.
 /// - `refcon` must be a valid pointer.
 /// - `subscription` must be a valid pointer.
+/// - `subscription` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn FNSubscribe(
-    directory_ref: *const FSRef,
+    directory_ref: Option<&FSRef>,
     callback: FNSubscriptionUPP,
     refcon: *mut c_void,
     flags: OptionBits,
-    subscription: *mut FNSubscriptionRef,
+    subscription: Option<&mut FNSubscriptionRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn FNSubscribe(
-            directory_ref: *const FSRef,
+            directory_ref: Option<&FSRef>,
             callback: FNSubscriptionUPP,
             refcon: *mut c_void,
             flags: OptionBits,
-            subscription: *mut FNSubscriptionRef,
+            subscription: Option<&mut FNSubscriptionRef>,
         ) -> OSStatus;
     }
     unsafe { FNSubscribe(directory_ref, callback, refcon, flags, subscription) }
@@ -4004,6 +4599,7 @@ pub unsafe fn FNSubscribe(
 /// - `callback` must be implemented correctly.
 /// - `refcon` must be a valid pointer.
 /// - `subscription` must be a valid pointer.
+/// - `subscription` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn FNSubscribeByPath(
@@ -4011,7 +4607,7 @@ pub unsafe fn FNSubscribeByPath(
     callback: FNSubscriptionUPP,
     refcon: *mut c_void,
     flags: OptionBits,
-    subscription: *mut FNSubscriptionRef,
+    subscription: Option<&mut FNSubscriptionRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn FNSubscribeByPath(
@@ -4019,7 +4615,7 @@ pub unsafe fn FNSubscribeByPath(
             callback: FNSubscriptionUPP,
             refcon: *mut c_void,
             flags: OptionBits,
-            subscription: *mut FNSubscriptionRef,
+            subscription: Option<&mut FNSubscriptionRef>,
         ) -> OSStatus;
     }
     unsafe { FNSubscribeByPath(directory_path, callback, refcon, flags, subscription) }
@@ -4040,17 +4636,17 @@ pub unsafe fn FNUnsubscribe(subscription: FNSubscriptionRef) -> OSStatus {
 /// # Safety
 ///
 /// - `subscription` must be a valid pointer.
-/// - `ref` must be a valid pointer.
+/// - `ref` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn FNGetDirectoryForSubscription(
     subscription: FNSubscriptionRef,
-    r#ref: *mut FSRef,
+    r#ref: Option<&mut FSRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn FNGetDirectoryForSubscription(
             subscription: FNSubscriptionRef,
-            r#ref: *mut FSRef,
+            r#ref: Option<&mut FSRef>,
         ) -> OSStatus;
     }
     unsafe { FNGetDirectoryForSubscription(subscription, r#ref) }
@@ -4339,13 +4935,14 @@ pub const kFSUnmountVolumeForceUnmount: c_uint = 1 << 0;
 impl FSRef {
     /// # Safety
     ///
-    /// `volume_op` must be a valid pointer.
+    /// - `volume_op` must be a valid pointer.
+    /// - `volume_op` might not allow `None`.
     #[doc(alias = "FSCreateVolumeOperation")]
     #[deprecated]
     #[inline]
-    pub unsafe fn create_volume_operation(volume_op: *mut FSVolumeOperation) -> OSStatus {
+    pub unsafe fn create_volume_operation(volume_op: Option<&mut FSVolumeOperation>) -> OSStatus {
         extern "C-unwind" {
-            fn FSCreateVolumeOperation(volume_op: *mut FSVolumeOperation) -> OSStatus;
+            fn FSCreateVolumeOperation(volume_op: Option<&mut FSVolumeOperation>) -> OSStatus;
         }
         unsafe { FSCreateVolumeOperation(volume_op) }
     }
@@ -4367,21 +4964,21 @@ impl FSRef {
     ///
     /// - `disk_id` might not allow `None`.
     /// - `mount_dir` might not allow `None`.
-    /// - `mounted_volume_ref_num` must be a valid pointer.
+    /// - `mounted_volume_ref_num` might not allow `None`.
     #[doc(alias = "FSMountLocalVolumeSync")]
     #[deprecated]
     #[inline]
     pub unsafe fn mount_local_volume_sync(
         disk_id: Option<&CFString>,
         mount_dir: Option<&CFURL>,
-        mounted_volume_ref_num: *mut FSVolumeRefNum,
+        mounted_volume_ref_num: Option<&mut FSVolumeRefNum>,
         flags: OptionBits,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSMountLocalVolumeSync(
                 disk_id: Option<&CFString>,
                 mount_dir: Option<&CFURL>,
-                mounted_volume_ref_num: *mut FSVolumeRefNum,
+                mounted_volume_ref_num: Option<&mut FSVolumeRefNum>,
                 flags: OptionBits,
             ) -> OSStatus;
         }
@@ -4443,7 +5040,7 @@ impl FSRef {
     /// - `mount_dir` might not allow `None`.
     /// - `user` might not allow `None`.
     /// - `password` might not allow `None`.
-    /// - `mounted_volume_ref_num` must be a valid pointer.
+    /// - `mounted_volume_ref_num` might not allow `None`.
     #[doc(alias = "FSMountServerVolumeSync")]
     #[deprecated]
     #[inline]
@@ -4452,7 +5049,7 @@ impl FSRef {
         mount_dir: Option<&CFURL>,
         user: Option<&CFString>,
         password: Option<&CFString>,
-        mounted_volume_ref_num: *mut FSVolumeRefNum,
+        mounted_volume_ref_num: Option<&mut FSVolumeRefNum>,
         flags: OptionBits,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -4461,7 +5058,7 @@ impl FSRef {
                 mount_dir: Option<&CFURL>,
                 user: Option<&CFString>,
                 password: Option<&CFString>,
-                mounted_volume_ref_num: *mut FSVolumeRefNum,
+                mounted_volume_ref_num: Option<&mut FSVolumeRefNum>,
                 flags: OptionBits,
             ) -> OSStatus;
         }
@@ -4537,27 +5134,28 @@ impl FSRef {
     /// # Safety
     ///
     /// - `volume_op` must be a valid pointer.
-    /// - `status` must be a valid pointer.
-    /// - `volume_op_status` must be a valid pointer.
-    /// - `mounted_volume_ref_num` must be a valid pointer.
+    /// - `status` might not allow `None`.
+    /// - `volume_op_status` might not allow `None`.
+    /// - `mounted_volume_ref_num` might not allow `None`.
     /// - `client_data` must be a valid pointer.
+    /// - `client_data` might not allow `None`.
     #[doc(alias = "FSGetAsyncMountStatus")]
     #[deprecated]
     #[inline]
     pub unsafe fn async_mount_status(
         volume_op: FSVolumeOperation,
-        status: *mut FSMountStatus,
-        volume_op_status: *mut OSStatus,
-        mounted_volume_ref_num: *mut FSVolumeRefNum,
-        client_data: *mut *mut c_void,
+        status: Option<&mut FSMountStatus>,
+        volume_op_status: Option<&mut OSStatus>,
+        mounted_volume_ref_num: Option<&mut FSVolumeRefNum>,
+        client_data: Option<&mut *mut c_void>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSGetAsyncMountStatus(
                 volume_op: FSVolumeOperation,
-                status: *mut FSMountStatus,
-                volume_op_status: *mut OSStatus,
-                mounted_volume_ref_num: *mut FSVolumeRefNum,
-                client_data: *mut *mut c_void,
+                status: Option<&mut FSMountStatus>,
+                volume_op_status: Option<&mut OSStatus>,
+                mounted_volume_ref_num: Option<&mut FSVolumeRefNum>,
+                client_data: Option<&mut *mut c_void>,
             ) -> OSStatus;
         }
         unsafe {
@@ -4573,7 +5171,7 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// `dissenter` must be a valid pointer.
+    /// `dissenter` might not allow `None`.
     #[doc(alias = "FSUnmountVolumeSync")]
     #[cfg(feature = "libc")]
     #[deprecated]
@@ -4581,13 +5179,13 @@ impl FSRef {
     pub unsafe fn unmount_volume_sync(
         v_ref_num: FSVolumeRefNum,
         flags: OptionBits,
-        dissenter: *mut libc::pid_t,
+        dissenter: Option<&mut libc::pid_t>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSUnmountVolumeSync(
                 v_ref_num: FSVolumeRefNum,
                 flags: OptionBits,
-                dissenter: *mut libc::pid_t,
+                dissenter: Option<&mut libc::pid_t>,
             ) -> OSStatus;
         }
         unsafe { FSUnmountVolumeSync(v_ref_num, flags, dissenter) }
@@ -4641,31 +5239,32 @@ impl FSRef {
     /// # Safety
     ///
     /// - `volume_op` must be a valid pointer.
-    /// - `status` must be a valid pointer.
-    /// - `volume_op_status` must be a valid pointer.
-    /// - `volume_ref_num` must be a valid pointer.
-    /// - `dissenter` must be a valid pointer.
+    /// - `status` might not allow `None`.
+    /// - `volume_op_status` might not allow `None`.
+    /// - `volume_ref_num` might not allow `None`.
+    /// - `dissenter` might not allow `None`.
     /// - `client_data` must be a valid pointer.
+    /// - `client_data` might not allow `None`.
     #[doc(alias = "FSGetAsyncUnmountStatus")]
     #[cfg(feature = "libc")]
     #[deprecated]
     #[inline]
     pub unsafe fn async_unmount_status(
         volume_op: FSVolumeOperation,
-        status: *mut FSUnmountStatus,
-        volume_op_status: *mut OSStatus,
-        volume_ref_num: *mut FSVolumeRefNum,
-        dissenter: *mut libc::pid_t,
-        client_data: *mut *mut c_void,
+        status: Option<&mut FSUnmountStatus>,
+        volume_op_status: Option<&mut OSStatus>,
+        volume_ref_num: Option<&mut FSVolumeRefNum>,
+        dissenter: Option<&mut libc::pid_t>,
+        client_data: Option<&mut *mut c_void>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSGetAsyncUnmountStatus(
                 volume_op: FSVolumeOperation,
-                status: *mut FSUnmountStatus,
-                volume_op_status: *mut OSStatus,
-                volume_ref_num: *mut FSVolumeRefNum,
-                dissenter: *mut libc::pid_t,
-                client_data: *mut *mut c_void,
+                status: Option<&mut FSUnmountStatus>,
+                volume_op_status: Option<&mut OSStatus>,
+                volume_ref_num: Option<&mut FSVolumeRefNum>,
+                dissenter: Option<&mut libc::pid_t>,
+                client_data: Option<&mut *mut c_void>,
             ) -> OSStatus;
         }
         unsafe {
@@ -4695,7 +5294,7 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// `dissenter` must be a valid pointer.
+    /// `dissenter` might not allow `None`.
     #[doc(alias = "FSEjectVolumeSync")]
     #[cfg(feature = "libc")]
     #[deprecated]
@@ -4703,13 +5302,13 @@ impl FSRef {
     pub unsafe fn eject_volume_sync(
         v_ref_num: FSVolumeRefNum,
         flags: OptionBits,
-        dissenter: *mut libc::pid_t,
+        dissenter: Option<&mut libc::pid_t>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSEjectVolumeSync(
                 v_ref_num: FSVolumeRefNum,
                 flags: OptionBits,
-                dissenter: *mut libc::pid_t,
+                dissenter: Option<&mut libc::pid_t>,
             ) -> OSStatus;
         }
         unsafe { FSEjectVolumeSync(v_ref_num, flags, dissenter) }
@@ -4763,31 +5362,32 @@ impl FSRef {
     /// # Safety
     ///
     /// - `volume_op` must be a valid pointer.
-    /// - `status` must be a valid pointer.
-    /// - `volume_op_status` must be a valid pointer.
-    /// - `volume_ref_num` must be a valid pointer.
-    /// - `dissenter` must be a valid pointer.
+    /// - `status` might not allow `None`.
+    /// - `volume_op_status` might not allow `None`.
+    /// - `volume_ref_num` might not allow `None`.
+    /// - `dissenter` might not allow `None`.
     /// - `client_data` must be a valid pointer.
+    /// - `client_data` might not allow `None`.
     #[doc(alias = "FSGetAsyncEjectStatus")]
     #[cfg(feature = "libc")]
     #[deprecated]
     #[inline]
     pub unsafe fn async_eject_status(
         volume_op: FSVolumeOperation,
-        status: *mut FSEjectStatus,
-        volume_op_status: *mut OSStatus,
-        volume_ref_num: *mut FSVolumeRefNum,
-        dissenter: *mut libc::pid_t,
-        client_data: *mut *mut c_void,
+        status: Option<&mut FSEjectStatus>,
+        volume_op_status: Option<&mut OSStatus>,
+        volume_ref_num: Option<&mut FSVolumeRefNum>,
+        dissenter: Option<&mut libc::pid_t>,
+        client_data: Option<&mut *mut c_void>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSGetAsyncEjectStatus(
                 volume_op: FSVolumeOperation,
-                status: *mut FSEjectStatus,
-                volume_op_status: *mut OSStatus,
-                volume_ref_num: *mut FSVolumeRefNum,
-                dissenter: *mut libc::pid_t,
-                client_data: *mut *mut c_void,
+                status: Option<&mut FSEjectStatus>,
+                volume_op_status: Option<&mut OSStatus>,
+                volume_ref_num: Option<&mut FSVolumeRefNum>,
+                dissenter: Option<&mut libc::pid_t>,
+                client_data: Option<&mut *mut c_void>,
             ) -> OSStatus;
         }
         unsafe {
@@ -4855,18 +5455,18 @@ impl FSRef {
     /// # Safety
     ///
     /// - `disk_id` might not allow `None`.
-    /// - `v_ref_num` must be a valid pointer.
+    /// - `v_ref_num` might not allow `None`.
     #[doc(alias = "FSGetVolumeForDiskID")]
     #[deprecated]
     #[inline]
     pub unsafe fn volume_for_disk_id(
         disk_id: Option<&CFString>,
-        v_ref_num: *mut FSVolumeRefNum,
+        v_ref_num: Option<&mut FSVolumeRefNum>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSGetVolumeForDiskID(
                 disk_id: Option<&CFString>,
-                v_ref_num: *mut FSVolumeRefNum,
+                v_ref_num: Option<&mut FSVolumeRefNum>,
             ) -> OSStatus;
         }
         unsafe { FSGetVolumeForDiskID(disk_id, v_ref_num) }
@@ -4901,15 +5501,21 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// `v_ref_num` must be a valid pointer.
+    /// `v_ref_num` might not allow `None`.
     #[doc(alias = "FSGetVolumeForDADisk")]
     #[cfg(feature = "objc2-disk-arbitration")]
     #[cfg(target_os = "macos")]
     #[deprecated]
     #[inline]
-    pub unsafe fn volume_for_da_disk(disk: &DADisk, v_ref_num: *mut FSVolumeRefNum) -> OSStatus {
+    pub unsafe fn volume_for_da_disk(
+        disk: &DADisk,
+        v_ref_num: Option<&mut FSVolumeRefNum>,
+    ) -> OSStatus {
         extern "C-unwind" {
-            fn FSGetVolumeForDADisk(disk: &DADisk, v_ref_num: *mut FSVolumeRefNum) -> OSStatus;
+            fn FSGetVolumeForDADisk(
+                disk: &DADisk,
+                v_ref_num: Option<&mut FSVolumeRefNum>,
+            ) -> OSStatus;
         }
         unsafe { FSGetVolumeForDADisk(disk, v_ref_num) }
     }
@@ -5072,26 +5678,26 @@ extern "C" {
 impl FSRef {
     /// # Safety
     ///
-    /// - `source` must be a valid pointer.
-    /// - `dest_dir` must be a valid pointer.
+    /// - `source` might not allow `None`.
+    /// - `dest_dir` might not allow `None`.
     /// - `dest_name` might not allow `None`.
-    /// - `target` must be a valid pointer.
+    /// - `target` might not allow `None`.
     #[doc(alias = "FSCopyObjectSync")]
     #[deprecated]
     #[inline]
     pub unsafe fn copy_object_sync(
-        source: *const FSRef,
-        dest_dir: *const FSRef,
+        source: Option<&FSRef>,
+        dest_dir: Option<&FSRef>,
         dest_name: Option<&CFString>,
-        target: *mut FSRef,
+        target: Option<&mut FSRef>,
         options: OptionBits,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSCopyObjectSync(
-                source: *const FSRef,
-                dest_dir: *const FSRef,
+                source: Option<&FSRef>,
+                dest_dir: Option<&FSRef>,
                 dest_name: Option<&CFString>,
-                target: *mut FSRef,
+                target: Option<&mut FSRef>,
                 options: OptionBits,
             ) -> OSStatus;
         }
@@ -5100,26 +5706,26 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// - `source` must be a valid pointer.
-    /// - `dest_dir` must be a valid pointer.
+    /// - `source` might not allow `None`.
+    /// - `dest_dir` might not allow `None`.
     /// - `dest_name` might not allow `None`.
-    /// - `target` must be a valid pointer.
+    /// - `target` might not allow `None`.
     #[doc(alias = "FSMoveObjectSync")]
     #[deprecated]
     #[inline]
     pub unsafe fn move_object_sync(
-        source: *const FSRef,
-        dest_dir: *const FSRef,
+        source: Option<&FSRef>,
+        dest_dir: Option<&FSRef>,
         dest_name: Option<&CFString>,
-        target: *mut FSRef,
+        target: Option<&mut FSRef>,
         options: OptionBits,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSMoveObjectSync(
-                source: *const FSRef,
-                dest_dir: *const FSRef,
+                source: Option<&FSRef>,
+                dest_dir: Option<&FSRef>,
                 dest_name: Option<&CFString>,
-                target: *mut FSRef,
+                target: Option<&mut FSRef>,
                 options: OptionBits,
             ) -> OSStatus;
         }
@@ -5128,20 +5734,20 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// - `source` must be a valid pointer.
-    /// - `target` must be a valid pointer.
+    /// - `source` might not allow `None`.
+    /// - `target` might not allow `None`.
     #[doc(alias = "FSMoveObjectToTrashSync")]
     #[deprecated]
     #[inline]
     pub unsafe fn move_object_to_trash_sync(
-        source: *const FSRef,
-        target: *mut FSRef,
+        source: Option<&FSRef>,
+        target: Option<&mut FSRef>,
         options: OptionBits,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSMoveObjectToTrashSync(
-                source: *const FSRef,
-                target: *mut FSRef,
+                source: Option<&FSRef>,
+                target: Option<&mut FSRef>,
                 options: OptionBits,
             ) -> OSStatus;
         }
@@ -5150,18 +5756,19 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// - `source_path` must be a valid pointer.
-    /// - `dest_dir_path` must be a valid pointer.
+    /// - `source_path` might not allow `None`.
+    /// - `dest_dir_path` might not allow `None`.
     /// - `dest_name` might not allow `None`.
     /// - `target_path` must be a valid pointer.
+    /// - `target_path` might not allow `None`.
     #[doc(alias = "FSPathCopyObjectSync")]
     #[deprecated]
     #[inline]
     pub unsafe fn path_copy_object_sync(
-        source_path: *const c_char,
-        dest_dir_path: *const c_char,
+        source_path: Option<&CStr>,
+        dest_dir_path: Option<&CStr>,
         dest_name: Option<&CFString>,
-        target_path: *mut *mut c_char,
+        target_path: Option<&mut *mut c_char>,
         options: OptionBits,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -5169,27 +5776,34 @@ impl FSRef {
                 source_path: *const c_char,
                 dest_dir_path: *const c_char,
                 dest_name: Option<&CFString>,
-                target_path: *mut *mut c_char,
+                target_path: Option<&mut *mut c_char>,
                 options: OptionBits,
             ) -> OSStatus;
         }
+        let source_path = source_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let dest_dir_path = dest_dir_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
         unsafe { FSPathCopyObjectSync(source_path, dest_dir_path, dest_name, target_path, options) }
     }
 
     /// # Safety
     ///
-    /// - `source_path` must be a valid pointer.
-    /// - `dest_dir_path` must be a valid pointer.
+    /// - `source_path` might not allow `None`.
+    /// - `dest_dir_path` might not allow `None`.
     /// - `dest_name` might not allow `None`.
     /// - `target_path` must be a valid pointer.
+    /// - `target_path` might not allow `None`.
     #[doc(alias = "FSPathMoveObjectSync")]
     #[deprecated]
     #[inline]
     pub unsafe fn path_move_object_sync(
-        source_path: *const c_char,
-        dest_dir_path: *const c_char,
+        source_path: Option<&CStr>,
+        dest_dir_path: Option<&CStr>,
         dest_name: Option<&CFString>,
-        target_path: *mut *mut c_char,
+        target_path: Option<&mut *mut c_char>,
         options: OptionBits,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -5197,32 +5811,42 @@ impl FSRef {
                 source_path: *const c_char,
                 dest_dir_path: *const c_char,
                 dest_name: Option<&CFString>,
-                target_path: *mut *mut c_char,
+                target_path: Option<&mut *mut c_char>,
                 options: OptionBits,
             ) -> OSStatus;
         }
+        let source_path = source_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let dest_dir_path = dest_dir_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
         unsafe { FSPathMoveObjectSync(source_path, dest_dir_path, dest_name, target_path, options) }
     }
 
     /// # Safety
     ///
-    /// - `source_path` must be a valid pointer.
+    /// - `source_path` might not allow `None`.
     /// - `target_path` must be a valid pointer.
+    /// - `target_path` might not allow `None`.
     #[doc(alias = "FSPathMoveObjectToTrashSync")]
     #[deprecated]
     #[inline]
     pub unsafe fn path_move_object_to_trash_sync(
-        source_path: *const c_char,
-        target_path: *mut *mut c_char,
+        source_path: Option<&CStr>,
+        target_path: Option<&mut *mut c_char>,
         options: OptionBits,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSPathMoveObjectToTrashSync(
                 source_path: *const c_char,
-                target_path: *mut *mut c_char,
+                target_path: Option<&mut *mut c_char>,
                 options: OptionBits,
             ) -> OSStatus;
         }
+        let source_path = source_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
         unsafe { FSPathMoveObjectToTrashSync(source_path, target_path, options) }
     }
 }
@@ -5303,34 +5927,39 @@ impl FSRef {
     /// # Safety
     ///
     /// - `file_op` might not allow `None`.
-    /// - `source` must be a valid pointer.
-    /// - `dest_dir` must be a valid pointer.
+    /// - `source` might not allow `None`.
+    /// - `dest_dir` might not allow `None`.
     /// - `dest_name` might not allow `None`.
     /// - `callback` must be implemented correctly.
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
+    /// - `client_context` might not allow `None`.
     #[doc(alias = "FSCopyObjectAsync")]
     #[deprecated]
     #[inline]
     pub unsafe fn copy_object_async(
         file_op: Option<&FSFileOperation>,
-        source: *const FSRef,
-        dest_dir: *const FSRef,
+        source: Option<&FSRef>,
+        dest_dir: Option<&FSRef>,
         dest_name: Option<&CFString>,
         flags: OptionBits,
         callback: FSFileOperationStatusProcPtr,
         status_change_interval: CFTimeInterval,
-        client_context: *mut FSFileOperationClientContext,
+        client_context: Option<&mut FSFileOperationClientContext>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSCopyObjectAsync(
                 file_op: Option<&FSFileOperation>,
-                source: *const FSRef,
-                dest_dir: *const FSRef,
+                source: Option<&FSRef>,
+                dest_dir: Option<&FSRef>,
                 dest_name: Option<&CFString>,
                 flags: OptionBits,
                 callback: FSFileOperationStatusProcPtr,
                 status_change_interval: CFTimeInterval,
-                client_context: *mut FSFileOperationClientContext,
+                client_context: Option<&mut FSFileOperationClientContext>,
             ) -> OSStatus;
         }
         unsafe {
@@ -5350,34 +5979,39 @@ impl FSRef {
     /// # Safety
     ///
     /// - `file_op` might not allow `None`.
-    /// - `source` must be a valid pointer.
-    /// - `dest_dir` must be a valid pointer.
+    /// - `source` might not allow `None`.
+    /// - `dest_dir` might not allow `None`.
     /// - `dest_name` might not allow `None`.
     /// - `callback` must be implemented correctly.
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
+    /// - `client_context` might not allow `None`.
     #[doc(alias = "FSMoveObjectAsync")]
     #[deprecated]
     #[inline]
     pub unsafe fn move_object_async(
         file_op: Option<&FSFileOperation>,
-        source: *const FSRef,
-        dest_dir: *const FSRef,
+        source: Option<&FSRef>,
+        dest_dir: Option<&FSRef>,
         dest_name: Option<&CFString>,
         flags: OptionBits,
         callback: FSFileOperationStatusProcPtr,
         status_change_interval: CFTimeInterval,
-        client_context: *mut FSFileOperationClientContext,
+        client_context: Option<&mut FSFileOperationClientContext>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSMoveObjectAsync(
                 file_op: Option<&FSFileOperation>,
-                source: *const FSRef,
-                dest_dir: *const FSRef,
+                source: Option<&FSRef>,
+                dest_dir: Option<&FSRef>,
                 dest_name: Option<&CFString>,
                 flags: OptionBits,
                 callback: FSFileOperationStatusProcPtr,
                 status_change_interval: CFTimeInterval,
-                client_context: *mut FSFileOperationClientContext,
+                client_context: Option<&mut FSFileOperationClientContext>,
             ) -> OSStatus;
         }
         unsafe {
@@ -5397,28 +6031,33 @@ impl FSRef {
     /// # Safety
     ///
     /// - `file_op` might not allow `None`.
-    /// - `source` must be a valid pointer.
+    /// - `source` might not allow `None`.
     /// - `callback` must be implemented correctly.
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
+    /// - `client_context` might not allow `None`.
     #[doc(alias = "FSMoveObjectToTrashAsync")]
     #[deprecated]
     #[inline]
     pub unsafe fn move_object_to_trash_async(
         file_op: Option<&FSFileOperation>,
-        source: *const FSRef,
+        source: Option<&FSRef>,
         flags: OptionBits,
         callback: FSFileOperationStatusProcPtr,
         status_change_interval: CFTimeInterval,
-        client_context: *mut FSFileOperationClientContext,
+        client_context: Option<&mut FSFileOperationClientContext>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSMoveObjectToTrashAsync(
                 file_op: Option<&FSFileOperation>,
-                source: *const FSRef,
+                source: Option<&FSRef>,
                 flags: OptionBits,
                 callback: FSFileOperationStatusProcPtr,
                 status_change_interval: CFTimeInterval,
-                client_context: *mut FSFileOperationClientContext,
+                client_context: Option<&mut FSFileOperationClientContext>,
             ) -> OSStatus;
         }
         unsafe {
@@ -5436,23 +6075,28 @@ impl FSRef {
     /// # Safety
     ///
     /// - `file_op` might not allow `None`.
-    /// - `source_path` must be a valid pointer.
-    /// - `dest_dir_path` must be a valid pointer.
+    /// - `source_path` might not allow `None`.
+    /// - `dest_dir_path` might not allow `None`.
     /// - `dest_name` might not allow `None`.
     /// - `callback` must be implemented correctly.
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
+    /// - `client_context` might not allow `None`.
     #[doc(alias = "FSPathCopyObjectAsync")]
     #[deprecated]
     #[inline]
     pub unsafe fn path_copy_object_async(
         file_op: Option<&FSFileOperation>,
-        source_path: *const c_char,
-        dest_dir_path: *const c_char,
+        source_path: Option<&CStr>,
+        dest_dir_path: Option<&CStr>,
         dest_name: Option<&CFString>,
         flags: OptionBits,
         callback: FSPathFileOperationStatusProcPtr,
         status_change_interval: CFTimeInterval,
-        client_context: *mut FSFileOperationClientContext,
+        client_context: Option<&mut FSFileOperationClientContext>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSPathCopyObjectAsync(
@@ -5463,9 +6107,15 @@ impl FSRef {
                 flags: OptionBits,
                 callback: FSPathFileOperationStatusProcPtr,
                 status_change_interval: CFTimeInterval,
-                client_context: *mut FSFileOperationClientContext,
+                client_context: Option<&mut FSFileOperationClientContext>,
             ) -> OSStatus;
         }
+        let source_path = source_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let dest_dir_path = dest_dir_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
         unsafe {
             FSPathCopyObjectAsync(
                 file_op,
@@ -5483,23 +6133,28 @@ impl FSRef {
     /// # Safety
     ///
     /// - `file_op` might not allow `None`.
-    /// - `source_path` must be a valid pointer.
-    /// - `dest_dir_path` must be a valid pointer.
+    /// - `source_path` might not allow `None`.
+    /// - `dest_dir_path` might not allow `None`.
     /// - `dest_name` might not allow `None`.
     /// - `callback` must be implemented correctly.
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
+    /// - `client_context` might not allow `None`.
     #[doc(alias = "FSPathMoveObjectAsync")]
     #[deprecated]
     #[inline]
     pub unsafe fn path_move_object_async(
         file_op: Option<&FSFileOperation>,
-        source_path: *const c_char,
-        dest_dir_path: *const c_char,
+        source_path: Option<&CStr>,
+        dest_dir_path: Option<&CStr>,
         dest_name: Option<&CFString>,
         flags: OptionBits,
         callback: FSPathFileOperationStatusProcPtr,
         status_change_interval: CFTimeInterval,
-        client_context: *mut FSFileOperationClientContext,
+        client_context: Option<&mut FSFileOperationClientContext>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSPathMoveObjectAsync(
@@ -5510,9 +6165,15 @@ impl FSRef {
                 flags: OptionBits,
                 callback: FSPathFileOperationStatusProcPtr,
                 status_change_interval: CFTimeInterval,
-                client_context: *mut FSFileOperationClientContext,
+                client_context: Option<&mut FSFileOperationClientContext>,
             ) -> OSStatus;
         }
+        let source_path = source_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
+        let dest_dir_path = dest_dir_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
         unsafe {
             FSPathMoveObjectAsync(
                 file_op,
@@ -5530,19 +6191,24 @@ impl FSRef {
     /// # Safety
     ///
     /// - `file_op` might not allow `None`.
-    /// - `source_path` must be a valid pointer.
+    /// - `source_path` might not allow `None`.
     /// - `callback` must be implemented correctly.
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
+    /// - `client_context` might not allow `None`.
     #[doc(alias = "FSPathMoveObjectToTrashAsync")]
     #[deprecated]
     #[inline]
     pub unsafe fn path_move_object_to_trash_async(
         file_op: Option<&FSFileOperation>,
-        source_path: *const c_char,
+        source_path: Option<&CStr>,
         flags: OptionBits,
         callback: FSPathFileOperationStatusProcPtr,
         status_change_interval: CFTimeInterval,
-        client_context: *mut FSFileOperationClientContext,
+        client_context: Option<&mut FSFileOperationClientContext>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSPathMoveObjectToTrashAsync(
@@ -5551,9 +6217,12 @@ impl FSRef {
                 flags: OptionBits,
                 callback: FSPathFileOperationStatusProcPtr,
                 status_change_interval: CFTimeInterval,
-                client_context: *mut FSFileOperationClientContext,
+                client_context: Option<&mut FSFileOperationClientContext>,
             ) -> OSStatus;
         }
+        let source_path = source_path
+            .map(|ptr| ptr.as_ptr())
+            .unwrap_or_else(core::ptr::null);
         unsafe {
             FSPathMoveObjectToTrashAsync(
                 file_op,
@@ -5580,30 +6249,31 @@ impl FSFileOperation {
 
     /// # Safety
     ///
-    /// - `current_item` must be a valid pointer.
-    /// - `stage` must be a valid pointer.
-    /// - `error` must be a valid pointer.
+    /// - `current_item` might not allow `None`.
+    /// - `stage` might not allow `None`.
+    /// - `error` might not allow `None`.
     /// - `status_dictionary` might not allow `None`.
     /// - `info` must be a valid pointer.
+    /// - `info` might not allow `None`.
     #[doc(alias = "FSFileOperationCopyStatus")]
     #[deprecated]
     #[inline]
     pub unsafe fn status(
         &self,
-        current_item: *mut FSRef,
-        stage: *mut FSFileOperationStage,
-        error: *mut OSStatus,
+        current_item: Option<&mut FSRef>,
+        stage: Option<&mut FSFileOperationStage>,
+        error: Option<&mut OSStatus>,
         status_dictionary: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
-        info: *mut *mut c_void,
+        info: Option<&mut *mut c_void>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSFileOperationCopyStatus(
                 file_op: &FSFileOperation,
-                current_item: *mut FSRef,
-                stage: *mut FSFileOperationStage,
-                error: *mut OSStatus,
+                current_item: Option<&mut FSRef>,
+                stage: Option<&mut FSFileOperationStage>,
+                error: Option<&mut OSStatus>,
                 status_dictionary: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
-                info: *mut *mut c_void,
+                info: Option<&mut *mut c_void>,
             ) -> OSStatus;
         }
         if let Some(status_dictionary) = status_dictionary.as_ref() {
@@ -5623,29 +6293,31 @@ impl FSRef {
     ///
     /// - `file_op` might not allow `None`.
     /// - `current_item` must be a valid pointer.
-    /// - `stage` must be a valid pointer.
-    /// - `error` must be a valid pointer.
+    /// - `current_item` might not allow `None`.
+    /// - `stage` might not allow `None`.
+    /// - `error` might not allow `None`.
     /// - `status_dictionary` might not allow `None`.
     /// - `info` must be a valid pointer.
+    /// - `info` might not allow `None`.
     #[doc(alias = "FSPathFileOperationCopyStatus")]
     #[deprecated]
     #[inline]
     pub unsafe fn path_file_operation_copy_status(
         file_op: Option<&FSFileOperation>,
-        current_item: *mut *mut c_char,
-        stage: *mut FSFileOperationStage,
-        error: *mut OSStatus,
+        current_item: Option<&mut *mut c_char>,
+        stage: Option<&mut FSFileOperationStage>,
+        error: Option<&mut OSStatus>,
         status_dictionary: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
-        info: *mut *mut c_void,
+        info: Option<&mut *mut c_void>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSPathFileOperationCopyStatus(
                 file_op: Option<&FSFileOperation>,
-                current_item: *mut *mut c_char,
-                stage: *mut FSFileOperationStage,
-                error: *mut OSStatus,
+                current_item: Option<&mut *mut c_char>,
+                stage: Option<&mut FSFileOperationStage>,
+                error: Option<&mut OSStatus>,
                 status_dictionary: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
-                info: *mut *mut c_void,
+                info: Option<&mut *mut c_void>,
             ) -> OSStatus;
         }
         if let Some(status_dictionary) = status_dictionary.as_ref() {
@@ -5668,18 +6340,18 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// `uni_str` must be a valid pointer.
+    /// `uni_str` might not allow `None`.
     #[doc(alias = "FSCreateStringFromHFSUniStr")]
     #[deprecated]
     #[inline]
     pub unsafe fn new_string_from_hfs_uni_str(
         alloc: Option<&CFAllocator>,
-        uni_str: *const HFSUniStr255,
+        uni_str: Option<&HFSUniStr255>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn FSCreateStringFromHFSUniStr(
                 alloc: Option<&CFAllocator>,
-                uni_str: *const HFSUniStr255,
+                uni_str: Option<&HFSUniStr255>,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { FSCreateStringFromHFSUniStr(alloc, uni_str) };
@@ -5689,18 +6361,18 @@ impl FSRef {
     /// # Safety
     ///
     /// - `the_string` might not allow `None`.
-    /// - `uni_str` must be a valid pointer.
+    /// - `uni_str` might not allow `None`.
     #[doc(alias = "FSGetHFSUniStrFromString")]
     #[deprecated]
     #[inline]
     pub unsafe fn hfs_uni_str_from_string(
         the_string: Option<&CFString>,
-        uni_str: *mut HFSUniStr255,
+        uni_str: Option<&mut HFSUniStr255>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSGetHFSUniStrFromString(
                 the_string: Option<&CFString>,
-                uni_str: *mut HFSUniStr255,
+                uni_str: Option<&mut HFSUniStr255>,
             ) -> OSStatus;
         }
         unsafe { FSGetHFSUniStrFromString(the_string, uni_str) }
@@ -5733,18 +6405,19 @@ impl FSFileSecurity {
 
     /// # Safety
     ///
-    /// `permissions` must be a valid pointer.
+    /// - `permissions` struct field `fileSec` must be a valid pointer.
+    /// - `permissions` might not allow `None`.
     #[doc(alias = "FSFileSecurityCreateWithFSPermissionInfo")]
     #[deprecated]
     #[inline]
     pub unsafe fn with_fs_permission_info(
         alloc: Option<&CFAllocator>,
-        permissions: *const FSPermissionInfo,
+        permissions: Option<&FSPermissionInfo>,
     ) -> Option<CFRetained<FSFileSecurity>> {
         extern "C-unwind" {
             fn FSFileSecurityCreateWithFSPermissionInfo(
                 alloc: Option<&CFAllocator>,
-                permissions: *const FSPermissionInfo,
+                permissions: Option<&FSPermissionInfo>,
             ) -> Option<NonNull<FSFileSecurity>>;
         }
         let ret = unsafe { FSFileSecurityCreateWithFSPermissionInfo(alloc, permissions) };
@@ -5773,15 +6446,15 @@ impl FSFileSecurity {
 
     /// # Safety
     ///
-    /// `owner` must be a valid pointer.
+    /// `owner` might not allow `None`.
     #[doc(alias = "FSFileSecurityGetOwnerUUID")]
     #[deprecated]
     #[inline]
-    pub unsafe fn owner_uuid(&self, owner: *mut CFUUIDBytes) -> OSStatus {
+    pub unsafe fn owner_uuid(&self, owner: Option<&mut CFUUIDBytes>) -> OSStatus {
         extern "C-unwind" {
             fn FSFileSecurityGetOwnerUUID(
                 file_sec: &FSFileSecurity,
-                owner: *mut CFUUIDBytes,
+                owner: Option<&mut CFUUIDBytes>,
             ) -> OSStatus;
         }
         unsafe { FSFileSecurityGetOwnerUUID(self, owner) }
@@ -5789,15 +6462,15 @@ impl FSFileSecurity {
 
     /// # Safety
     ///
-    /// `owner` must be a valid pointer.
+    /// `owner` might not allow `None`.
     #[doc(alias = "FSFileSecuritySetOwnerUUID")]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_owner_uuid(&self, owner: *const CFUUIDBytes) -> OSStatus {
+    pub unsafe fn set_owner_uuid(&self, owner: Option<&CFUUIDBytes>) -> OSStatus {
         extern "C-unwind" {
             fn FSFileSecuritySetOwnerUUID(
                 file_sec: &FSFileSecurity,
-                owner: *const CFUUIDBytes,
+                owner: Option<&CFUUIDBytes>,
             ) -> OSStatus;
         }
         unsafe { FSFileSecuritySetOwnerUUID(self, owner) }
@@ -5805,15 +6478,15 @@ impl FSFileSecurity {
 
     /// # Safety
     ///
-    /// `group` must be a valid pointer.
+    /// `group` might not allow `None`.
     #[doc(alias = "FSFileSecurityGetGroupUUID")]
     #[deprecated]
     #[inline]
-    pub unsafe fn group_uuid(&self, group: *mut CFUUIDBytes) -> OSStatus {
+    pub unsafe fn group_uuid(&self, group: Option<&mut CFUUIDBytes>) -> OSStatus {
         extern "C-unwind" {
             fn FSFileSecurityGetGroupUUID(
                 file_sec: &FSFileSecurity,
-                group: *mut CFUUIDBytes,
+                group: Option<&mut CFUUIDBytes>,
             ) -> OSStatus;
         }
         unsafe { FSFileSecurityGetGroupUUID(self, group) }
@@ -5821,15 +6494,15 @@ impl FSFileSecurity {
 
     /// # Safety
     ///
-    /// `group` must be a valid pointer.
+    /// `group` might not allow `None`.
     #[doc(alias = "FSFileSecuritySetGroupUUID")]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_group_uuid(&self, group: *const CFUUIDBytes) -> OSStatus {
+    pub unsafe fn set_group_uuid(&self, group: Option<&CFUUIDBytes>) -> OSStatus {
         extern "C-unwind" {
             fn FSFileSecuritySetGroupUUID(
                 file_sec: &FSFileSecurity,
-                group: *const CFUUIDBytes,
+                group: Option<&CFUUIDBytes>,
             ) -> OSStatus;
         }
         unsafe { FSFileSecuritySetGroupUUID(self, group) }
@@ -5837,13 +6510,16 @@ impl FSFileSecurity {
 
     /// # Safety
     ///
-    /// `owner` must be a valid pointer.
+    /// `owner` might not allow `None`.
     #[doc(alias = "FSFileSecurityGetOwner")]
     #[deprecated]
     #[inline]
-    pub unsafe fn owner(&self, owner: *mut u32) -> OSStatus {
+    pub unsafe fn owner(&self, owner: Option<&mut u32>) -> OSStatus {
         extern "C-unwind" {
-            fn FSFileSecurityGetOwner(file_sec: &FSFileSecurity, owner: *mut u32) -> OSStatus;
+            fn FSFileSecurityGetOwner(
+                file_sec: &FSFileSecurity,
+                owner: Option<&mut u32>,
+            ) -> OSStatus;
         }
         unsafe { FSFileSecurityGetOwner(self, owner) }
     }
@@ -5860,13 +6536,16 @@ impl FSFileSecurity {
 
     /// # Safety
     ///
-    /// `group` must be a valid pointer.
+    /// `group` might not allow `None`.
     #[doc(alias = "FSFileSecurityGetGroup")]
     #[deprecated]
     #[inline]
-    pub unsafe fn group(&self, group: *mut u32) -> OSStatus {
+    pub unsafe fn group(&self, group: Option<&mut u32>) -> OSStatus {
         extern "C-unwind" {
-            fn FSFileSecurityGetGroup(file_sec: &FSFileSecurity, group: *mut u32) -> OSStatus;
+            fn FSFileSecurityGetGroup(
+                file_sec: &FSFileSecurity,
+                group: Option<&mut u32>,
+            ) -> OSStatus;
         }
         unsafe { FSFileSecurityGetGroup(self, group) }
     }
@@ -5883,13 +6562,14 @@ impl FSFileSecurity {
 
     /// # Safety
     ///
-    /// `mode` must be a valid pointer.
+    /// `mode` might not allow `None`.
     #[doc(alias = "FSFileSecurityGetMode")]
     #[deprecated]
     #[inline]
-    pub unsafe fn mode(&self, mode: *mut u16) -> OSStatus {
+    pub unsafe fn mode(&self, mode: Option<&mut u16>) -> OSStatus {
         extern "C-unwind" {
-            fn FSFileSecurityGetMode(file_sec: &FSFileSecurity, mode: *mut u16) -> OSStatus;
+            fn FSFileSecurityGetMode(file_sec: &FSFileSecurity, mode: Option<&mut u16>)
+                -> OSStatus;
         }
         unsafe { FSFileSecurityGetMode(self, mode) }
     }
@@ -6167,19 +6847,21 @@ pub const kownerPrivileges: c_int = 0x00000007;
 impl FSRef {
     /// # Safety
     ///
-    /// `buffer` must be a valid pointer.
+    /// - `buffer` struct field `vMLocalHand` must be a valid pointer.
+    /// - `buffer` struct field `vMDeviceID` must be a valid pointer.
+    /// - `buffer` might not allow `None`.
     #[doc(alias = "FSGetVolumeParms")]
     #[deprecated]
     #[inline]
     pub unsafe fn volume_parms(
         volume: FSVolumeRefNum,
-        buffer: *mut GetVolParmsInfoBuffer,
+        buffer: Option<&mut GetVolParmsInfoBuffer>,
         buffer_size: ByteCount,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSGetVolumeParms(
                 volume: FSVolumeRefNum,
-                buffer: *mut GetVolParmsInfoBuffer,
+                buffer: Option<&mut GetVolParmsInfoBuffer>,
                 buffer_size: ByteCount,
             ) -> OSStatus;
         }
@@ -6188,13 +6870,19 @@ impl FSRef {
 
     /// # Safety
     ///
-    /// `size` must be a valid pointer.
+    /// `size` might not allow `None`.
     #[doc(alias = "FSGetVolumeMountInfoSize")]
     #[deprecated]
     #[inline]
-    pub unsafe fn volume_mount_info_size(volume: FSVolumeRefNum, size: *mut ByteCount) -> OSStatus {
+    pub unsafe fn volume_mount_info_size(
+        volume: FSVolumeRefNum,
+        size: Option<&mut ByteCount>,
+    ) -> OSStatus {
         extern "C-unwind" {
-            fn FSGetVolumeMountInfoSize(volume: FSVolumeRefNum, size: *mut ByteCount) -> OSStatus;
+            fn FSGetVolumeMountInfoSize(
+                volume: FSVolumeRefNum,
+                size: Option<&mut ByteCount>,
+            ) -> OSStatus;
         }
         unsafe { FSGetVolumeMountInfoSize(volume, size) }
     }
@@ -6202,7 +6890,7 @@ impl FSRef {
     /// # Safety
     ///
     /// - `buffer` must be a valid pointer.
-    /// - `actual_size` must be a valid pointer.
+    /// - `actual_size` might not allow `None`.
     #[doc(alias = "FSGetVolumeMountInfo")]
     #[deprecated]
     #[inline]
@@ -6210,14 +6898,14 @@ impl FSRef {
         volume: FSVolumeRefNum,
         buffer: BytePtr,
         buffer_size: ByteCount,
-        actual_size: *mut ByteCount,
+        actual_size: Option<&mut ByteCount>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn FSGetVolumeMountInfo(
                 volume: FSVolumeRefNum,
                 buffer: BytePtr,
                 buffer_size: ByteCount,
-                actual_size: *mut ByteCount,
+                actual_size: Option<&mut ByteCount>,
             ) -> OSStatus;
         }
         unsafe { FSGetVolumeMountInfo(volume, buffer, buffer_size, actual_size) }
@@ -6226,13 +6914,19 @@ impl FSRef {
     /// # Safety
     ///
     /// - `buffer` must be a valid pointer.
-    /// - `mounted_volume` must be a valid pointer.
+    /// - `mounted_volume` might not allow `None`.
     #[doc(alias = "FSVolumeMount")]
     #[deprecated]
     #[inline]
-    pub unsafe fn volume_mount(buffer: BytePtr, mounted_volume: *mut FSVolumeRefNum) -> OSStatus {
+    pub unsafe fn volume_mount(
+        buffer: BytePtr,
+        mounted_volume: Option<&mut FSVolumeRefNum>,
+    ) -> OSStatus {
         extern "C-unwind" {
-            fn FSVolumeMount(buffer: BytePtr, mounted_volume: *mut FSVolumeRefNum) -> OSStatus;
+            fn FSVolumeMount(
+                buffer: BytePtr,
+                mounted_volume: Option<&mut FSVolumeRefNum>,
+            ) -> OSStatus;
         }
         unsafe { FSVolumeMount(buffer, mounted_volume) }
     }

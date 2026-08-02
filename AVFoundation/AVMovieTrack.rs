@@ -582,18 +582,13 @@ impl AVMutableMovieTrack {
         /// - the sample buffer's media type does not match the track's media type
         /// - the sample buffer contains image buffers (must contain encoded video)
         /// - the sample buffer contains caption groups (must contain encoded media data)
-        ///
-        /// # Safety
-        ///
-        /// - `out_decode_time` must be a valid pointer or null.
-        /// - `out_presentation_time` must be a valid pointer or null.
         #[unsafe(method(appendSampleBuffer:decodeTime:presentationTime:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendSampleBuffer_decodeTime_presentationTime_error(
             &self,
             sample_buffer: &CMSampleBuffer,
-            out_decode_time: *mut CMTime,
-            out_presentation_time: *mut CMTime,
+            out_decode_time: Option<&mut CMTime>,
+            out_presentation_time: Option<&mut CMTime>,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-media")]

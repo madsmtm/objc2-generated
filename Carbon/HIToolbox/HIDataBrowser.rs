@@ -1026,6 +1026,7 @@ pub unsafe fn InvokeDataBrowserItemNotificationUPP(
 /// - `browser` might not allow `None`.
 /// - `the_drag` must be a valid pointer.
 /// - `item_ref` must be a valid pointer.
+/// - `item_ref` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
@@ -1033,7 +1034,7 @@ pub unsafe fn InvokeDataBrowserAddDragItemUPP(
     browser: Option<&Control>,
     the_drag: DragReference,
     item: DataBrowserItemID,
-    item_ref: *mut ItemReference,
+    item_ref: Option<&mut ItemReference>,
     user_upp: DataBrowserAddDragItemUPP,
 ) -> bool {
     extern "C-unwind" {
@@ -1041,7 +1042,7 @@ pub unsafe fn InvokeDataBrowserAddDragItemUPP(
             browser: Option<&Control>,
             the_drag: DragReference,
             item: DataBrowserItemID,
-            item_ref: *mut ItemReference,
+            item_ref: Option<&mut ItemReference>,
             user_upp: DataBrowserAddDragItemUPP,
         ) -> Boolean;
     }
@@ -1128,9 +1129,10 @@ pub unsafe fn InvokeDataBrowserPostProcessDragUPP(
 ///
 /// - `browser` might not allow `None`.
 /// - `menu` might not allow `None`.
-/// - `help_type` must be a valid pointer.
+/// - `help_type` might not allow `None`.
 /// - `help_item_string` might not allow `None`.
-/// - `selection` must be a valid pointer.
+/// - `selection` struct field `dataHandle` must be a valid pointer.
+/// - `selection` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(
     feature = "HIObject",
@@ -1141,18 +1143,18 @@ pub unsafe fn InvokeDataBrowserPostProcessDragUPP(
 pub unsafe fn InvokeDataBrowserGetContextualMenuUPP(
     browser: Option<&Control>,
     menu: Option<&mut Option<CFRetained<Menu>>>,
-    help_type: *mut u32,
+    help_type: Option<&mut u32>,
     help_item_string: Option<&mut Option<CFRetained<CFString>>>,
-    selection: *mut AEDesc,
+    selection: Option<&mut AEDesc>,
     user_upp: DataBrowserGetContextualMenuUPP,
 ) {
     extern "C-unwind" {
         fn InvokeDataBrowserGetContextualMenuUPP(
             browser: Option<&Control>,
             menu: Option<&mut Option<CFRetained<Menu>>>,
-            help_type: *mut u32,
+            help_type: Option<&mut u32>,
             help_item_string: Option<&mut Option<CFRetained<CFString>>>,
-            selection: *mut AEDesc,
+            selection: Option<&mut AEDesc>,
             user_upp: DataBrowserGetContextualMenuUPP,
         );
     }
@@ -1242,8 +1244,10 @@ pub unsafe fn InvokeDataBrowserSelectContextualMenuUPP(
 /// # Safety
 ///
 /// - `browser` might not allow `None`.
-/// - `out_content_provided` must be a valid pointer.
-/// - `io_help_content` must be a valid pointer.
+/// - `out_content_provided` might not allow `None`.
+/// - `io_help_content` struct field `version` must be set correctly.
+/// - `io_help_content` struct field `content` array element struct field `u` must be correctly initialized.
+/// - `io_help_content` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "HIObject", feature = "MacHelp", feature = "TextEdit"))]
 #[inline]
@@ -1252,8 +1256,8 @@ pub unsafe fn InvokeDataBrowserItemHelpContentUPP(
     item: DataBrowserItemID,
     property: DataBrowserPropertyID,
     in_request: HMContentRequest,
-    out_content_provided: *mut HMContentProvidedType,
-    io_help_content: *mut HMHelpContentRec,
+    out_content_provided: Option<&mut HMContentProvidedType>,
+    io_help_content: Option<&mut HMHelpContentRec>,
     user_upp: DataBrowserItemHelpContentUPP,
 ) {
     extern "C-unwind" {
@@ -1262,8 +1266,8 @@ pub unsafe fn InvokeDataBrowserItemHelpContentUPP(
             item: DataBrowserItemID,
             property: DataBrowserPropertyID,
             in_request: HMContentRequest,
-            out_content_provided: *mut HMContentProvidedType,
-            io_help_content: *mut HMHelpContentRec,
+            out_content_provided: Option<&mut HMContentProvidedType>,
+            io_help_content: Option<&mut HMHelpContentRec>,
             user_upp: DataBrowserItemHelpContentUPP,
         );
     }
@@ -1775,7 +1779,7 @@ pub unsafe fn DisposeDataBrowserItemReceiveDragUPP(user_upp: DataBrowserItemRece
 /// # Safety
 ///
 /// - `browser` might not allow `None`.
-/// - `the_rect` must be a valid pointer.
+/// - `the_rect` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "HIObject")]
 #[inline]
@@ -1784,7 +1788,7 @@ pub unsafe fn InvokeDataBrowserDrawItemUPP(
     item: DataBrowserItemID,
     property: DataBrowserPropertyID,
     item_state: DataBrowserItemState,
-    the_rect: *const Rect,
+    the_rect: Option<&Rect>,
     gd_depth: i16,
     color_device: bool,
     user_upp: DataBrowserDrawItemUPP,
@@ -1795,7 +1799,7 @@ pub unsafe fn InvokeDataBrowserDrawItemUPP(
             item: DataBrowserItemID,
             property: DataBrowserPropertyID,
             item_state: DataBrowserItemState,
-            the_rect: *const Rect,
+            the_rect: Option<&Rect>,
             gd_depth: i16,
             color_device: Boolean,
             user_upp: DataBrowserDrawItemUPP,
@@ -1820,8 +1824,8 @@ pub unsafe fn InvokeDataBrowserDrawItemUPP(
 ///
 /// - `browser` might not allow `None`.
 /// - `the_string` might not allow `None`.
-/// - `max_edit_text_rect` must be a valid pointer.
-/// - `shrink_to_fit` must be a valid pointer.
+/// - `max_edit_text_rect` might not allow `None`.
+/// - `shrink_to_fit` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "HIObject")]
 #[inline]
@@ -1830,8 +1834,8 @@ pub unsafe fn InvokeDataBrowserEditItemUPP(
     item: DataBrowserItemID,
     property: DataBrowserPropertyID,
     the_string: Option<&CFString>,
-    max_edit_text_rect: *mut Rect,
-    shrink_to_fit: *mut Boolean,
+    max_edit_text_rect: Option<&mut Rect>,
+    shrink_to_fit: Option<&mut Boolean>,
     user_upp: DataBrowserEditItemUPP,
 ) -> bool {
     extern "C-unwind" {
@@ -1840,8 +1844,8 @@ pub unsafe fn InvokeDataBrowserEditItemUPP(
             item: DataBrowserItemID,
             property: DataBrowserPropertyID,
             the_string: Option<&CFString>,
-            max_edit_text_rect: *mut Rect,
-            shrink_to_fit: *mut Boolean,
+            max_edit_text_rect: Option<&mut Rect>,
+            shrink_to_fit: Option<&mut Boolean>,
             user_upp: DataBrowserEditItemUPP,
         ) -> Boolean;
     }
@@ -1862,8 +1866,8 @@ pub unsafe fn InvokeDataBrowserEditItemUPP(
 /// # Safety
 ///
 /// - `browser` might not allow `None`.
-/// - `the_rect` must be a valid pointer.
-/// - `mouse_rect` must be a valid pointer.
+/// - `the_rect` might not allow `None`.
+/// - `mouse_rect` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "HIObject")]
 #[inline]
@@ -1871,8 +1875,8 @@ pub unsafe fn InvokeDataBrowserHitTestUPP(
     browser: Option<&Control>,
     item_id: DataBrowserItemID,
     property: DataBrowserPropertyID,
-    the_rect: *const Rect,
-    mouse_rect: *const Rect,
+    the_rect: Option<&Rect>,
+    mouse_rect: Option<&Rect>,
     user_upp: DataBrowserHitTestUPP,
 ) -> bool {
     extern "C-unwind" {
@@ -1880,8 +1884,8 @@ pub unsafe fn InvokeDataBrowserHitTestUPP(
             browser: Option<&Control>,
             item_id: DataBrowserItemID,
             property: DataBrowserPropertyID,
-            the_rect: *const Rect,
-            mouse_rect: *const Rect,
+            the_rect: Option<&Rect>,
+            mouse_rect: Option<&Rect>,
             user_upp: DataBrowserHitTestUPP,
         ) -> Boolean;
     }
@@ -1894,7 +1898,7 @@ pub unsafe fn InvokeDataBrowserHitTestUPP(
 /// # Safety
 ///
 /// - `browser` might not allow `None`.
-/// - `the_rect` must be a valid pointer.
+/// - `the_rect` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "Events", feature = "HIObject"))]
 #[inline]
@@ -1902,7 +1906,7 @@ pub unsafe fn InvokeDataBrowserTrackingUPP(
     browser: Option<&Control>,
     item_id: DataBrowserItemID,
     property: DataBrowserPropertyID,
-    the_rect: *const Rect,
+    the_rect: Option<&Rect>,
     start_pt: Point,
     modifiers: EventModifiers,
     user_upp: DataBrowserTrackingUPP,
@@ -1912,7 +1916,7 @@ pub unsafe fn InvokeDataBrowserTrackingUPP(
             browser: Option<&Control>,
             item_id: DataBrowserItemID,
             property: DataBrowserPropertyID,
-            the_rect: *const Rect,
+            the_rect: Option<&Rect>,
             start_pt: Point,
             modifiers: EventModifiers,
             user_upp: DataBrowserTrackingUPP,
@@ -1928,7 +1932,7 @@ pub unsafe fn InvokeDataBrowserTrackingUPP(
 /// # Safety
 ///
 /// - `browser` might not allow `None`.
-/// - `the_rect` must be a valid pointer.
+/// - `the_rect` might not allow `None`.
 /// - `drag_rgn` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
@@ -1937,7 +1941,7 @@ pub unsafe fn InvokeDataBrowserItemDragRgnUPP(
     browser: Option<&Control>,
     item_id: DataBrowserItemID,
     property: DataBrowserPropertyID,
-    the_rect: *const Rect,
+    the_rect: Option<&Rect>,
     drag_rgn: RgnHandle,
     user_upp: DataBrowserItemDragRgnUPP,
 ) {
@@ -1946,7 +1950,7 @@ pub unsafe fn InvokeDataBrowserItemDragRgnUPP(
             browser: Option<&Control>,
             item_id: DataBrowserItemID,
             property: DataBrowserPropertyID,
-            the_rect: *const Rect,
+            the_rect: Option<&Rect>,
             drag_rgn: RgnHandle,
             user_upp: DataBrowserItemDragRgnUPP,
         );
@@ -1959,7 +1963,7 @@ pub unsafe fn InvokeDataBrowserItemDragRgnUPP(
 /// # Safety
 ///
 /// - `browser` might not allow `None`.
-/// - `the_rect` must be a valid pointer.
+/// - `the_rect` might not allow `None`.
 /// - `the_drag` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
@@ -1968,7 +1972,7 @@ pub unsafe fn InvokeDataBrowserItemAcceptDragUPP(
     browser: Option<&Control>,
     item_id: DataBrowserItemID,
     property: DataBrowserPropertyID,
-    the_rect: *const Rect,
+    the_rect: Option<&Rect>,
     the_drag: DragReference,
     user_upp: DataBrowserItemAcceptDragUPP,
 ) -> DataBrowserDragFlags {
@@ -1977,7 +1981,7 @@ pub unsafe fn InvokeDataBrowserItemAcceptDragUPP(
             browser: Option<&Control>,
             item_id: DataBrowserItemID,
             property: DataBrowserPropertyID,
-            the_rect: *const Rect,
+            the_rect: Option<&Rect>,
             the_drag: DragReference,
             user_upp: DataBrowserItemAcceptDragUPP,
         ) -> DataBrowserDragFlags;

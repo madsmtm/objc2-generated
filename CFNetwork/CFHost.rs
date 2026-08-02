@@ -162,82 +162,70 @@ impl CFHost {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFHostStartInfoResolution")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
     pub unsafe fn start_info_resolution(
         &self,
         info: CFHostInfoType,
-        error: *mut CFStreamError,
+        error: Option<&mut CFStreamError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFHostStartInfoResolution(
                 the_host: &CFHost,
                 info: CFHostInfoType,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             ) -> Boolean;
         }
         let ret = unsafe { CFHostStartInfoResolution(self, info, error) };
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `has_been_resolved` must be a valid pointer or null.
     #[doc(alias = "CFHostGetAddressing")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
     pub unsafe fn addressing(
         &self,
-        has_been_resolved: *mut Boolean,
+        has_been_resolved: Option<&mut Boolean>,
     ) -> Option<CFRetained<CFArray<CFData>>> {
         extern "C-unwind" {
             fn CFHostGetAddressing(
                 the_host: &CFHost,
-                has_been_resolved: *mut Boolean,
+                has_been_resolved: Option<&mut Boolean>,
             ) -> Option<NonNull<CFArray<CFData>>>;
         }
         let ret = unsafe { CFHostGetAddressing(self, has_been_resolved) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `has_been_resolved` must be a valid pointer or null.
     #[doc(alias = "CFHostGetNames")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
     pub unsafe fn names(
         &self,
-        has_been_resolved: *mut Boolean,
+        has_been_resolved: Option<&mut Boolean>,
     ) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn CFHostGetNames(
                 the_host: &CFHost,
-                has_been_resolved: *mut Boolean,
+                has_been_resolved: Option<&mut Boolean>,
             ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CFHostGetNames(self, has_been_resolved) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `has_been_resolved` must be a valid pointer or null.
     #[doc(alias = "CFHostGetReachability")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
     pub unsafe fn reachability(
         &self,
-        has_been_resolved: *mut Boolean,
+        has_been_resolved: Option<&mut Boolean>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFHostGetReachability(
                 the_host: &CFHost,
-                has_been_resolved: *mut Boolean,
+                has_been_resolved: Option<&mut Boolean>,
             ) -> Option<NonNull<CFData>>;
         }
         let ret = unsafe { CFHostGetReachability(self, has_been_resolved) };
@@ -257,20 +245,24 @@ impl CFHost {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
-    /// - `client_context` must be a valid pointer or null.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer or null.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFHostSetClient")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
     pub unsafe fn set_client(
         &self,
         client_cb: CFHostClientCallBack,
-        client_context: *mut CFHostClientContext,
+        client_context: Option<&mut CFHostClientContext>,
     ) -> bool {
         extern "C-unwind" {
             fn CFHostSetClient(
                 the_host: &CFHost,
                 client_cb: CFHostClientCallBack,
-                client_context: *mut CFHostClientContext,
+                client_context: Option<&mut CFHostClientContext>,
             ) -> Boolean;
         }
         let ret = unsafe { CFHostSetClient(self, client_cb, client_context) };

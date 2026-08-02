@@ -809,10 +809,11 @@ impl OBEXSession {
         ///
         /// # Safety
         ///
-        /// `event` must be a valid pointer.
+        /// - `event` struct field `dataPtr` must be a valid pointer.
+        /// - `event` might not allow `None`.
         #[unsafe(method(serverHandleIncomingData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn serverHandleIncomingData(&self, event: *mut OBEXTransportEvent);
+        pub unsafe fn serverHandleIncomingData(&self, event: Option<&mut OBEXTransportEvent>);
 
         #[cfg(feature = "OBEX")]
         /// Tranport subclasses need to invoke this from their own data-receive handlers. For example, when data is
@@ -825,10 +826,11 @@ impl OBEXSession {
         ///
         /// # Safety
         ///
-        /// `event` must be a valid pointer.
+        /// - `event` struct field `dataPtr` must be a valid pointer.
+        /// - `event` might not allow `None`.
         #[unsafe(method(clientHandleIncomingData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clientHandleIncomingData(&self, event: *mut OBEXTransportEvent);
+        pub unsafe fn clientHandleIncomingData(&self, event: Option<&mut OBEXTransportEvent>);
 
         #[cfg(feature = "OBEX")]
         /// You must override this to send data over your transport. This does nothing by default, it will

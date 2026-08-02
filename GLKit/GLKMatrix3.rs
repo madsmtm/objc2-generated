@@ -47,28 +47,30 @@ extern "C" {
 
 /// # Safety
 ///
-/// `is_invertible` must be a valid pointer.
+/// `is_invertible` might not allow `None`.
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
-pub unsafe fn GLKMatrix3Invert(matrix: GLKMatrix3, is_invertible: *mut bool) -> GLKMatrix3 {
+pub unsafe fn GLKMatrix3Invert(matrix: GLKMatrix3, is_invertible: Option<&mut bool>) -> GLKMatrix3 {
     extern "C-unwind" {
-        fn GLKMatrix3Invert(matrix: GLKMatrix3, is_invertible: *mut bool) -> GLKMatrix3;
+        fn GLKMatrix3Invert(matrix: GLKMatrix3, is_invertible: Option<&mut bool>) -> GLKMatrix3;
     }
     unsafe { GLKMatrix3Invert(matrix, is_invertible) }
 }
 
 /// # Safety
 ///
-/// `is_invertible` must be a valid pointer.
+/// `is_invertible` might not allow `None`.
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
 pub unsafe fn GLKMatrix3InvertAndTranspose(
     matrix: GLKMatrix3,
-    is_invertible: *mut bool,
+    is_invertible: Option<&mut bool>,
 ) -> GLKMatrix3 {
     extern "C-unwind" {
-        fn GLKMatrix3InvertAndTranspose(matrix: GLKMatrix3, is_invertible: *mut bool)
-            -> GLKMatrix3;
+        fn GLKMatrix3InvertAndTranspose(
+            matrix: GLKMatrix3,
+            is_invertible: Option<&mut bool>,
+        ) -> GLKMatrix3;
     }
     unsafe { GLKMatrix3InvertAndTranspose(matrix, is_invertible) }
 }

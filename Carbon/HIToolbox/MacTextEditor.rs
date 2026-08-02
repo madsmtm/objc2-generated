@@ -1062,41 +1062,42 @@ pub unsafe fn DisposeTXNScrollInfoUPP(user_upp: TXNScrollInfoUPP) {
 
 /// # Safety
 ///
-/// - `match_data` must be a valid pointer.
+/// - `match_data` struct field `iTextPtr` must be a valid pointer.
+/// - `match_data` might not allow `None`.
 /// - `i_search_text_ptr` must be a valid pointer.
-/// - `o_start_match` must be a valid pointer.
-/// - `o_end_match` must be a valid pointer.
-/// - `ofound` must be a valid pointer.
+/// - `o_start_match` might not allow `None`.
+/// - `o_end_match` might not allow `None`.
+/// - `ofound` might not allow `None`.
 /// - `ref_con` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
 pub unsafe fn InvokeTXNFindUPP(
-    match_data: *const TXNMatchTextRecord,
+    match_data: Option<&TXNMatchTextRecord>,
     i_data_type: TXNDataType,
     i_match_options: TXNMatchOptions,
     i_search_text_ptr: *const c_void,
     encoding: TextEncoding,
     abs_start_offset: TXNOffset,
     search_text_length: ByteCount,
-    o_start_match: *mut TXNOffset,
-    o_end_match: *mut TXNOffset,
-    ofound: *mut Boolean,
+    o_start_match: Option<&mut TXNOffset>,
+    o_end_match: Option<&mut TXNOffset>,
+    ofound: Option<&mut Boolean>,
     ref_con: URefCon,
     user_upp: TXNFindUPP,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeTXNFindUPP(
-            match_data: *const TXNMatchTextRecord,
+            match_data: Option<&TXNMatchTextRecord>,
             i_data_type: TXNDataType,
             i_match_options: TXNMatchOptions,
             i_search_text_ptr: *const c_void,
             encoding: TextEncoding,
             abs_start_offset: TXNOffset,
             search_text_length: ByteCount,
-            o_start_match: *mut TXNOffset,
-            o_end_match: *mut TXNOffset,
-            ofound: *mut Boolean,
+            o_start_match: Option<&mut TXNOffset>,
+            o_end_match: Option<&mut TXNOffset>,
+            ofound: Option<&mut Boolean>,
             ref_con: URefCon,
             user_upp: TXNFindUPP,
         ) -> OSStatus;

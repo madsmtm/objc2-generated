@@ -28,11 +28,17 @@ pub unsafe fn CSBackupSetItemExcluded(
 /// # Safety
 ///
 /// - `item` might not allow `None`.
-/// - `exclude_by_path` must be a valid pointer.
+/// - `exclude_by_path` might not allow `None`.
 #[inline]
-pub unsafe fn CSBackupIsItemExcluded(item: Option<&CFURL>, exclude_by_path: *mut Boolean) -> bool {
+pub unsafe fn CSBackupIsItemExcluded(
+    item: Option<&CFURL>,
+    exclude_by_path: Option<&mut Boolean>,
+) -> bool {
     extern "C-unwind" {
-        fn CSBackupIsItemExcluded(item: Option<&CFURL>, exclude_by_path: *mut Boolean) -> Boolean;
+        fn CSBackupIsItemExcluded(
+            item: Option<&CFURL>,
+            exclude_by_path: Option<&mut Boolean>,
+        ) -> Boolean;
     }
     let ret = unsafe { CSBackupIsItemExcluded(item, exclude_by_path) };
     ret != 0

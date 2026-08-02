@@ -200,17 +200,13 @@ impl AVPlayerItemIntegratedTimelineSnapshot {
         /// Parameter `segmentOffsetOut`: Output parameter for offset in segment.
         ///
         /// Provides mapping from time to segment and offset in the segment's timeMapping target. For time that correlates to the start of multiple segments, this will return the first one.
-        ///
-        /// # Safety
-        ///
-        /// `segment_offset_out` must be a valid pointer.
         #[unsafe(method(mapTime:toSegment:atSegmentOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapTime_toSegment_atSegmentOffset(
             &self,
             time: CMTime,
             time_segment_out: Option<&mut Retained<AVPlayerItemSegment>>,
-            segment_offset_out: NonNull<CMTime>,
+            segment_offset_out: &mut CMTime,
         );
     );
 }

@@ -539,7 +539,7 @@ pub unsafe fn AddCollectionItem(
 /// # Safety
 ///
 /// - `c` must be a valid pointer.
-/// - `item_size` must be a valid pointer.
+/// - `item_size` might not allow `None`.
 /// - `item_data` must be a valid pointer.
 #[deprecated]
 #[inline]
@@ -547,7 +547,7 @@ pub unsafe fn GetCollectionItem(
     c: Collection,
     tag: CollectionTag,
     id: i32,
-    item_size: *mut i32,
+    item_size: Option<&mut i32>,
     item_data: *mut c_void,
 ) -> OSErr {
     extern "C-unwind" {
@@ -555,7 +555,7 @@ pub unsafe fn GetCollectionItem(
             c: Collection,
             tag: CollectionTag,
             id: i32,
-            item_size: *mut i32,
+            item_size: Option<&mut i32>,
             item_data: *mut c_void,
         ) -> OSErr;
     }
@@ -601,27 +601,27 @@ pub unsafe fn SetCollectionItemInfo(
 /// # Safety
 ///
 /// - `c` must be a valid pointer.
-/// - `item_index` must be a valid pointer.
-/// - `item_size` must be a valid pointer.
-/// - `attributes` must be a valid pointer.
+/// - `item_index` might not allow `None`.
+/// - `item_size` might not allow `None`.
+/// - `attributes` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn GetCollectionItemInfo(
     c: Collection,
     tag: CollectionTag,
     id: i32,
-    item_index: *mut i32,
-    item_size: *mut i32,
-    attributes: *mut i32,
+    item_index: Option<&mut i32>,
+    item_size: Option<&mut i32>,
+    attributes: Option<&mut i32>,
 ) -> OSErr {
     extern "C-unwind" {
         fn GetCollectionItemInfo(
             c: Collection,
             tag: CollectionTag,
             id: i32,
-            item_index: *mut i32,
-            item_size: *mut i32,
-            attributes: *mut i32,
+            item_index: Option<&mut i32>,
+            item_size: Option<&mut i32>,
+            attributes: Option<&mut i32>,
         ) -> OSErr;
     }
     unsafe { GetCollectionItemInfo(c, tag, id, item_index, item_size, attributes) }
@@ -653,21 +653,21 @@ pub unsafe fn ReplaceIndexedCollectionItem(
 /// # Safety
 ///
 /// - `c` must be a valid pointer.
-/// - `item_size` must be a valid pointer.
+/// - `item_size` might not allow `None`.
 /// - `item_data` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn GetIndexedCollectionItem(
     c: Collection,
     item_index: i32,
-    item_size: *mut i32,
+    item_size: Option<&mut i32>,
     item_data: *mut c_void,
 ) -> OSErr {
     extern "C-unwind" {
         fn GetIndexedCollectionItem(
             c: Collection,
             item_index: i32,
-            item_size: *mut i32,
+            item_size: Option<&mut i32>,
             item_data: *mut c_void,
         ) -> OSErr;
     }
@@ -711,28 +711,28 @@ pub unsafe fn SetIndexedCollectionItemInfo(
 /// # Safety
 ///
 /// - `c` must be a valid pointer.
-/// - `tag` must be a valid pointer.
-/// - `id` must be a valid pointer.
-/// - `item_size` must be a valid pointer.
-/// - `attributes` must be a valid pointer.
+/// - `tag` might not allow `None`.
+/// - `id` might not allow `None`.
+/// - `item_size` might not allow `None`.
+/// - `attributes` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn GetIndexedCollectionItemInfo(
     c: Collection,
     item_index: i32,
-    tag: *mut CollectionTag,
-    id: *mut i32,
-    item_size: *mut i32,
-    attributes: *mut i32,
+    tag: Option<&mut CollectionTag>,
+    id: Option<&mut i32>,
+    item_size: Option<&mut i32>,
+    attributes: Option<&mut i32>,
 ) -> OSErr {
     extern "C-unwind" {
         fn GetIndexedCollectionItemInfo(
             c: Collection,
             item_index: i32,
-            tag: *mut CollectionTag,
-            id: *mut i32,
-            item_size: *mut i32,
-            attributes: *mut i32,
+            tag: Option<&mut CollectionTag>,
+            id: Option<&mut i32>,
+            item_size: Option<&mut i32>,
+            attributes: Option<&mut i32>,
         ) -> OSErr;
     }
     unsafe { GetIndexedCollectionItemInfo(c, item_index, tag, id, item_size, attributes) }
@@ -766,17 +766,20 @@ pub unsafe fn CountCollectionTags(c: Collection) -> i32 {
 /// # Safety
 ///
 /// - `c` must be a valid pointer.
-/// - `tag` must be a valid pointer.
+/// - `tag` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn GetIndexedCollectionTag(
     c: Collection,
     tag_index: i32,
-    tag: *mut CollectionTag,
+    tag: Option<&mut CollectionTag>,
 ) -> OSErr {
     extern "C-unwind" {
-        fn GetIndexedCollectionTag(c: Collection, tag_index: i32, tag: *mut CollectionTag)
-            -> OSErr;
+        fn GetIndexedCollectionTag(
+            c: Collection,
+            tag_index: i32,
+            tag: Option<&mut CollectionTag>,
+        ) -> OSErr;
     }
     unsafe { GetIndexedCollectionTag(c, tag_index, tag) }
 }
@@ -796,7 +799,7 @@ pub unsafe fn CountTaggedCollectionItems(c: Collection, tag: CollectionTag) -> i
 /// # Safety
 ///
 /// - `c` must be a valid pointer.
-/// - `item_size` must be a valid pointer.
+/// - `item_size` might not allow `None`.
 /// - `item_data` must be a valid pointer.
 #[deprecated]
 #[inline]
@@ -804,7 +807,7 @@ pub unsafe fn GetTaggedCollectionItem(
     c: Collection,
     tag: CollectionTag,
     which_item: i32,
-    item_size: *mut i32,
+    item_size: Option<&mut i32>,
     item_data: *mut c_void,
 ) -> OSErr {
     extern "C-unwind" {
@@ -812,7 +815,7 @@ pub unsafe fn GetTaggedCollectionItem(
             c: Collection,
             tag: CollectionTag,
             which_item: i32,
-            item_size: *mut i32,
+            item_size: Option<&mut i32>,
             item_data: *mut c_void,
         ) -> OSErr;
     }
@@ -822,30 +825,30 @@ pub unsafe fn GetTaggedCollectionItem(
 /// # Safety
 ///
 /// - `c` must be a valid pointer.
-/// - `id` must be a valid pointer.
-/// - `item_index` must be a valid pointer.
-/// - `item_size` must be a valid pointer.
-/// - `attributes` must be a valid pointer.
+/// - `id` might not allow `None`.
+/// - `item_index` might not allow `None`.
+/// - `item_size` might not allow `None`.
+/// - `attributes` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn GetTaggedCollectionItemInfo(
     c: Collection,
     tag: CollectionTag,
     which_item: i32,
-    id: *mut i32,
-    item_index: *mut i32,
-    item_size: *mut i32,
-    attributes: *mut i32,
+    id: Option<&mut i32>,
+    item_index: Option<&mut i32>,
+    item_size: Option<&mut i32>,
+    attributes: Option<&mut i32>,
 ) -> OSErr {
     extern "C-unwind" {
         fn GetTaggedCollectionItemInfo(
             c: Collection,
             tag: CollectionTag,
             which_item: i32,
-            id: *mut i32,
-            item_index: *mut i32,
-            item_size: *mut i32,
-            attributes: *mut i32,
+            id: Option<&mut i32>,
+            item_index: Option<&mut i32>,
+            item_size: Option<&mut i32>,
+            attributes: Option<&mut i32>,
         ) -> OSErr;
     }
     unsafe {

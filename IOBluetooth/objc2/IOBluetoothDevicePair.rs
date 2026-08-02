@@ -256,13 +256,13 @@ impl IOBluetoothDevicePair {
         ///
         /// # Safety
         ///
-        /// `pin_code` must be a valid pointer.
+        /// `pin_code` might not allow `None`.
         #[unsafe(method(replyPINCode:PINCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replyPINCode_PINCode(
             &self,
             pin_code_size: ByteCount,
-            pin_code: *mut BluetoothPINCode,
+            pin_code: Option<&mut BluetoothPINCode>,
         );
 
         /// This is the required reply to the devicePairingUserConfirmationRequest delegate message.

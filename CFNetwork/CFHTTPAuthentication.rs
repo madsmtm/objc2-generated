@@ -96,16 +96,13 @@ impl CFHTTPAuthentication {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFHTTPAuthenticationIsValid")]
     #[inline]
-    pub unsafe fn is_valid(&self, error: *mut CFStreamError) -> bool {
+    pub unsafe fn is_valid(&self, error: Option<&mut CFStreamError>) -> bool {
         extern "C-unwind" {
             fn CFHTTPAuthenticationIsValid(
                 auth: &CFHTTPAuthentication,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             ) -> Boolean;
         }
         let ret = unsafe { CFHTTPAuthenticationIsValid(self, error) };
@@ -139,9 +136,6 @@ impl CFHTTPAuthentication {
 
 #[cfg(feature = "CFHTTPMessage")]
 impl CFHTTPMessage {
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFHTTPMessageApplyCredentials")]
     #[cfg(feature = "CFHTTPMessage")]
     #[inline]
@@ -150,7 +144,7 @@ impl CFHTTPMessage {
         auth: &CFHTTPAuthentication,
         username: Option<&CFString>,
         password: Option<&CFString>,
-        error: *mut CFStreamError,
+        error: Option<&mut CFStreamError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFHTTPMessageApplyCredentials(
@@ -158,7 +152,7 @@ impl CFHTTPMessage {
                 auth: &CFHTTPAuthentication,
                 username: Option<&CFString>,
                 password: Option<&CFString>,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             ) -> Boolean;
         }
         let ret = unsafe { CFHTTPMessageApplyCredentials(self, auth, username, password, error) };
@@ -167,8 +161,7 @@ impl CFHTTPMessage {
 
     /// # Safety
     ///
-    /// - `dict` generic should be of the correct type.
-    /// - `error` must be a valid pointer or null.
+    /// `dict` generic should be of the correct type.
     #[doc(alias = "CFHTTPMessageApplyCredentialDictionary")]
     #[cfg(feature = "CFHTTPMessage")]
     #[inline]
@@ -176,14 +169,14 @@ impl CFHTTPMessage {
         &self,
         auth: &CFHTTPAuthentication,
         dict: &CFDictionary<CFString, CFType>,
-        error: *mut CFStreamError,
+        error: Option<&mut CFStreamError>,
     ) -> bool {
         extern "C-unwind" {
             fn CFHTTPMessageApplyCredentialDictionary(
                 request: &CFHTTPMessage,
                 auth: &CFHTTPAuthentication,
                 dict: &CFDictionary<CFString, CFType>,
-                error: *mut CFStreamError,
+                error: Option<&mut CFStreamError>,
             ) -> Boolean;
         }
         let ret = unsafe { CFHTTPMessageApplyCredentialDictionary(self, auth, dict, error) };

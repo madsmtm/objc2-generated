@@ -293,7 +293,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `keep_tracking` must be a valid pointer.
+        /// - `keep_tracking` might not allow `None`.
         /// - `sender` should be of the correct type.
         /// - `sender` might not allow `None`.
         #[unsafe(method(mouseDownOnCharacterIndex:coordinate:withModifier:continueTracking:client:))]
@@ -303,7 +303,7 @@ extern_protocol!(
             index: NSUInteger,
             point: NSPoint,
             flags: NSUInteger,
-            keep_tracking: *mut Bool,
+            keep_tracking: Option<&mut Bool>,
             sender: Option<&AnyObject>,
         ) -> bool;
 

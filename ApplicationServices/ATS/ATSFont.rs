@@ -311,28 +311,28 @@ pub unsafe fn ATSGetGeneration() -> ATSGeneration {
 
 /// # Safety
 ///
-/// - `i_file` must be a valid pointer.
+/// - `i_file` might not allow `None`.
 /// - `i_ref_con` must be a valid pointer.
-/// - `o_container` must be a valid pointer.
+/// - `o_container` might not allow `None`.
 #[cfg(all(feature = "ATSTypes", feature = "objc2-core-services"))]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSFontActivateFromFileReference(
-    i_file: *const FSRef,
+    i_file: Option<&FSRef>,
     i_context: ATSFontContext,
     i_format: ATSFontFormat,
     i_ref_con: *mut c_void,
     i_options: ATSOptionFlags,
-    o_container: *mut ATSFontContainerRef,
+    o_container: Option<&mut ATSFontContainerRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontActivateFromFileReference(
-            i_file: *const FSRef,
+            i_file: Option<&FSRef>,
             i_context: ATSFontContext,
             i_format: ATSFontFormat,
             i_ref_con: *mut c_void,
             i_options: ATSOptionFlags,
-            o_container: *mut ATSFontContainerRef,
+            o_container: Option<&mut ATSFontContainerRef>,
         ) -> OSStatus;
     }
     unsafe {
@@ -351,7 +351,7 @@ pub unsafe fn ATSFontActivateFromFileReference(
 ///
 /// - `i_data` must be a valid pointer.
 /// - `i_reserved` must be a valid pointer.
-/// - `o_container` must be a valid pointer.
+/// - `o_container` might not allow `None`.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
@@ -362,7 +362,7 @@ pub unsafe fn ATSFontActivateFromMemory(
     i_format: ATSFontFormat,
     i_reserved: *mut c_void,
     i_options: ATSOptionFlags,
-    o_container: *mut ATSFontContainerRef,
+    o_container: Option<&mut ATSFontContainerRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontActivateFromMemory(
@@ -372,7 +372,7 @@ pub unsafe fn ATSFontActivateFromMemory(
             i_format: ATSFontFormat,
             i_reserved: *mut c_void,
             i_options: ATSOptionFlags,
-            o_container: *mut ATSFontContainerRef,
+            o_container: Option<&mut ATSFontContainerRef>,
         ) -> OSStatus;
     }
     unsafe {
@@ -411,23 +411,23 @@ pub unsafe fn ATSFontDeactivate(
 
 /// # Safety
 ///
-/// - `i_file` must be a valid pointer.
-/// - `o_container` must be a valid pointer.
+/// - `i_file` might not allow `None`.
+/// - `o_container` might not allow `None`.
 #[cfg(all(feature = "ATSTypes", feature = "objc2-core-services"))]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSFontGetContainerFromFileReference(
-    i_file: *const FSRef,
+    i_file: Option<&FSRef>,
     i_context: ATSFontContext,
     i_options: ATSOptionFlags,
-    o_container: *mut ATSFontContainerRef,
+    o_container: Option<&mut ATSFontContainerRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontGetContainerFromFileReference(
-            i_file: *const FSRef,
+            i_file: Option<&FSRef>,
             i_context: ATSFontContext,
             i_options: ATSOptionFlags,
-            o_container: *mut ATSFontContainerRef,
+            o_container: Option<&mut ATSFontContainerRef>,
         ) -> OSStatus;
     }
     unsafe { ATSFontGetContainerFromFileReference(i_file, i_context, i_options, o_container) }
@@ -435,20 +435,20 @@ pub unsafe fn ATSFontGetContainerFromFileReference(
 
 /// # Safety
 ///
-/// `o_container` must be a valid pointer.
+/// `o_container` might not allow `None`.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSFontGetContainer(
     i_font: ATSFontRef,
     i_options: ATSOptionFlags,
-    o_container: *mut ATSFontContainerRef,
+    o_container: Option<&mut ATSFontContainerRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontGetContainer(
             i_font: ATSFontRef,
             i_options: ATSOptionFlags,
-            o_container: *mut ATSFontContainerRef,
+            o_container: Option<&mut ATSFontContainerRef>,
         ) -> OSStatus;
     }
     unsafe { ATSFontGetContainer(i_font, i_options, o_container) }
@@ -507,27 +507,30 @@ pub unsafe fn ATSFontFamilyApplyFunction(
 impl ATSFontFamilyIterator_ {
     /// # Safety
     ///
-    /// - `i_filter` must be a valid pointer.
+    /// - `i_filter` struct field `version` must be set correctly.
+    /// - `i_filter` struct field `filter` must be correctly initialized.
+    /// - `i_filter` might not allow `None`.
     /// - `i_ref_con` must be a valid pointer.
     /// - `io_iterator` must be a valid pointer.
+    /// - `io_iterator` might not allow `None`.
     #[doc(alias = "ATSFontFamilyIteratorCreate")]
     #[cfg(all(feature = "ATSTypes", feature = "objc2-core-services"))]
     #[deprecated = "ATS is no longer supported"]
     #[inline]
     pub unsafe fn create(
         i_context: ATSFontContext,
-        i_filter: *const ATSFontFilter,
+        i_filter: Option<&ATSFontFilter>,
         i_ref_con: *mut c_void,
         i_options: ATSOptionFlags,
-        io_iterator: *mut ATSFontFamilyIterator,
+        io_iterator: Option<&mut ATSFontFamilyIterator>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn ATSFontFamilyIteratorCreate(
                 i_context: ATSFontContext,
-                i_filter: *const ATSFontFilter,
+                i_filter: Option<&ATSFontFilter>,
                 i_ref_con: *mut c_void,
                 i_options: ATSOptionFlags,
-                io_iterator: *mut ATSFontFamilyIterator,
+                io_iterator: Option<&mut ATSFontFamilyIterator>,
             ) -> OSStatus;
         }
         unsafe {
@@ -537,40 +540,46 @@ impl ATSFontFamilyIterator_ {
 
     /// # Safety
     ///
-    /// `io_iterator` must be a valid pointer.
+    /// - `io_iterator` must be a valid pointer.
+    /// - `io_iterator` might not allow `None`.
     #[doc(alias = "ATSFontFamilyIteratorRelease")]
     #[deprecated = "ATS is no longer supported"]
     #[inline]
-    pub unsafe fn release(io_iterator: *mut ATSFontFamilyIterator) -> OSStatus {
+    pub unsafe fn release(io_iterator: Option<&mut ATSFontFamilyIterator>) -> OSStatus {
         extern "C-unwind" {
-            fn ATSFontFamilyIteratorRelease(io_iterator: *mut ATSFontFamilyIterator) -> OSStatus;
+            fn ATSFontFamilyIteratorRelease(
+                io_iterator: Option<&mut ATSFontFamilyIterator>,
+            ) -> OSStatus;
         }
         unsafe { ATSFontFamilyIteratorRelease(io_iterator) }
     }
 
     /// # Safety
     ///
-    /// - `i_filter` must be a valid pointer.
+    /// - `i_filter` struct field `version` must be set correctly.
+    /// - `i_filter` struct field `filter` must be correctly initialized.
+    /// - `i_filter` might not allow `None`.
     /// - `i_ref_con` must be a valid pointer.
     /// - `io_iterator` must be a valid pointer.
+    /// - `io_iterator` might not allow `None`.
     #[doc(alias = "ATSFontFamilyIteratorReset")]
     #[cfg(all(feature = "ATSTypes", feature = "objc2-core-services"))]
     #[deprecated = "ATS is no longer supported"]
     #[inline]
     pub unsafe fn reset(
         i_context: ATSFontContext,
-        i_filter: *const ATSFontFilter,
+        i_filter: Option<&ATSFontFilter>,
         i_ref_con: *mut c_void,
         i_options: ATSOptionFlags,
-        io_iterator: *mut ATSFontFamilyIterator,
+        io_iterator: Option<&mut ATSFontFamilyIterator>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn ATSFontFamilyIteratorReset(
                 i_context: ATSFontContext,
-                i_filter: *const ATSFontFilter,
+                i_filter: Option<&ATSFontFilter>,
                 i_ref_con: *mut c_void,
                 i_options: ATSOptionFlags,
-                io_iterator: *mut ATSFontFamilyIterator,
+                io_iterator: Option<&mut ATSFontFamilyIterator>,
             ) -> OSStatus;
         }
         unsafe {
@@ -581,19 +590,19 @@ impl ATSFontFamilyIterator_ {
     /// # Safety
     ///
     /// - `i_iterator` must be a valid pointer.
-    /// - `o_family` must be a valid pointer.
+    /// - `o_family` might not allow `None`.
     #[doc(alias = "ATSFontFamilyIteratorNext")]
     #[cfg(feature = "ATSTypes")]
     #[deprecated = "ATS is no longer supported"]
     #[inline]
     pub unsafe fn next(
         i_iterator: ATSFontFamilyIterator,
-        o_family: *mut ATSFontFamilyRef,
+        o_family: Option<&mut ATSFontFamilyRef>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn ATSFontFamilyIteratorNext(
                 i_iterator: ATSFontFamilyIterator,
-                o_family: *mut ATSFontFamilyRef,
+                o_family: Option<&mut ATSFontFamilyRef>,
             ) -> OSStatus;
         }
         unsafe { ATSFontFamilyIteratorNext(i_iterator, o_family) }
@@ -700,27 +709,30 @@ pub unsafe fn ATSFontApplyFunction(
 impl ATSFontIterator_ {
     /// # Safety
     ///
-    /// - `i_filter` must be a valid pointer.
+    /// - `i_filter` struct field `version` must be set correctly.
+    /// - `i_filter` struct field `filter` must be correctly initialized.
+    /// - `i_filter` might not allow `None`.
     /// - `i_ref_con` must be a valid pointer.
     /// - `io_iterator` must be a valid pointer.
+    /// - `io_iterator` might not allow `None`.
     #[doc(alias = "ATSFontIteratorCreate")]
     #[cfg(all(feature = "ATSTypes", feature = "objc2-core-services"))]
     #[deprecated = "ATS is no longer supported"]
     #[inline]
     pub unsafe fn create(
         i_context: ATSFontContext,
-        i_filter: *const ATSFontFilter,
+        i_filter: Option<&ATSFontFilter>,
         i_ref_con: *mut c_void,
         i_options: ATSOptionFlags,
-        io_iterator: *mut ATSFontIterator,
+        io_iterator: Option<&mut ATSFontIterator>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn ATSFontIteratorCreate(
                 i_context: ATSFontContext,
-                i_filter: *const ATSFontFilter,
+                i_filter: Option<&ATSFontFilter>,
                 i_ref_con: *mut c_void,
                 i_options: ATSOptionFlags,
-                io_iterator: *mut ATSFontIterator,
+                io_iterator: Option<&mut ATSFontIterator>,
             ) -> OSStatus;
         }
         unsafe { ATSFontIteratorCreate(i_context, i_filter, i_ref_con, i_options, io_iterator) }
@@ -728,40 +740,44 @@ impl ATSFontIterator_ {
 
     /// # Safety
     ///
-    /// `io_iterator` must be a valid pointer.
+    /// - `io_iterator` must be a valid pointer.
+    /// - `io_iterator` might not allow `None`.
     #[doc(alias = "ATSFontIteratorRelease")]
     #[deprecated = "ATS is no longer supported"]
     #[inline]
-    pub unsafe fn release(io_iterator: *mut ATSFontIterator) -> OSStatus {
+    pub unsafe fn release(io_iterator: Option<&mut ATSFontIterator>) -> OSStatus {
         extern "C-unwind" {
-            fn ATSFontIteratorRelease(io_iterator: *mut ATSFontIterator) -> OSStatus;
+            fn ATSFontIteratorRelease(io_iterator: Option<&mut ATSFontIterator>) -> OSStatus;
         }
         unsafe { ATSFontIteratorRelease(io_iterator) }
     }
 
     /// # Safety
     ///
-    /// - `i_filter` must be a valid pointer.
+    /// - `i_filter` struct field `version` must be set correctly.
+    /// - `i_filter` struct field `filter` must be correctly initialized.
+    /// - `i_filter` might not allow `None`.
     /// - `i_ref_con` must be a valid pointer.
     /// - `io_iterator` must be a valid pointer.
+    /// - `io_iterator` might not allow `None`.
     #[doc(alias = "ATSFontIteratorReset")]
     #[cfg(all(feature = "ATSTypes", feature = "objc2-core-services"))]
     #[deprecated = "ATS is no longer supported"]
     #[inline]
     pub unsafe fn reset(
         i_context: ATSFontContext,
-        i_filter: *const ATSFontFilter,
+        i_filter: Option<&ATSFontFilter>,
         i_ref_con: *mut c_void,
         i_options: ATSOptionFlags,
-        io_iterator: *mut ATSFontIterator,
+        io_iterator: Option<&mut ATSFontIterator>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn ATSFontIteratorReset(
                 i_context: ATSFontContext,
-                i_filter: *const ATSFontFilter,
+                i_filter: Option<&ATSFontFilter>,
                 i_ref_con: *mut c_void,
                 i_options: ATSOptionFlags,
-                io_iterator: *mut ATSFontIterator,
+                io_iterator: Option<&mut ATSFontIterator>,
             ) -> OSStatus;
         }
         unsafe { ATSFontIteratorReset(i_context, i_filter, i_ref_con, i_options, io_iterator) }
@@ -770,16 +786,16 @@ impl ATSFontIterator_ {
     /// # Safety
     ///
     /// - `i_iterator` must be a valid pointer.
-    /// - `o_font` must be a valid pointer.
+    /// - `o_font` might not allow `None`.
     #[doc(alias = "ATSFontIteratorNext")]
     #[cfg(feature = "ATSTypes")]
     #[deprecated = "ATS is no longer supported"]
     #[inline]
-    pub unsafe fn next(i_iterator: ATSFontIterator, o_font: *mut ATSFontRef) -> OSStatus {
+    pub unsafe fn next(i_iterator: ATSFontIterator, o_font: Option<&mut ATSFontRef>) -> OSStatus {
         extern "C-unwind" {
             fn ATSFontIteratorNext(
                 i_iterator: ATSFontIterator,
-                o_font: *mut ATSFontRef,
+                o_font: Option<&mut ATSFontRef>,
             ) -> OSStatus;
         }
         unsafe { ATSFontIteratorNext(i_iterator, o_font) }
@@ -824,7 +840,7 @@ pub unsafe fn ATSFontFindFromPostScriptName(
 /// # Safety
 ///
 /// - `io_array` must be a valid pointer.
-/// - `o_count` must be a valid pointer.
+/// - `o_count` might not allow `None`.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
@@ -833,7 +849,7 @@ pub unsafe fn ATSFontFindFromContainer(
     i_options: ATSOptionFlags,
     i_count: ItemCount,
     io_array: *mut ATSFontRef,
-    o_count: *mut ItemCount,
+    o_count: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontFindFromContainer(
@@ -841,7 +857,7 @@ pub unsafe fn ATSFontFindFromContainer(
             i_options: ATSOptionFlags,
             i_count: ItemCount,
             io_array: *mut ATSFontRef,
-            o_count: *mut ItemCount,
+            o_count: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe { ATSFontFindFromContainer(i_container, i_options, i_count, io_array, o_count) }
@@ -936,7 +952,7 @@ pub unsafe fn ATSFontGetPostScriptName(
 /// # Safety
 ///
 /// - `io_buffer` must be a valid pointer.
-/// - `o_size` must be a valid pointer.
+/// - `o_size` might not allow `None`.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
@@ -944,14 +960,14 @@ pub unsafe fn ATSFontGetTableDirectory(
     i_font: ATSFontRef,
     i_buffer_size: ByteCount,
     io_buffer: *mut c_void,
-    o_size: *mut ByteCount,
+    o_size: Option<&mut ByteCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontGetTableDirectory(
             i_font: ATSFontRef,
             i_buffer_size: ByteCount,
             io_buffer: *mut c_void,
-            o_size: *mut ByteCount,
+            o_size: Option<&mut ByteCount>,
         ) -> OSStatus;
     }
     unsafe { ATSFontGetTableDirectory(i_font, i_buffer_size, io_buffer, o_size) }
@@ -960,7 +976,7 @@ pub unsafe fn ATSFontGetTableDirectory(
 /// # Safety
 ///
 /// - `io_buffer` must be a valid pointer.
-/// - `o_size` must be a valid pointer.
+/// - `o_size` might not allow `None`.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
@@ -970,7 +986,7 @@ pub unsafe fn ATSFontGetTable(
     i_offset: ByteOffset,
     i_buffer_size: ByteCount,
     io_buffer: *mut c_void,
-    o_size: *mut ByteCount,
+    o_size: Option<&mut ByteCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontGetTable(
@@ -979,7 +995,7 @@ pub unsafe fn ATSFontGetTable(
             i_offset: ByteOffset,
             i_buffer_size: ByteCount,
             io_buffer: *mut c_void,
-            o_size: *mut ByteCount,
+            o_size: Option<&mut ByteCount>,
         ) -> OSStatus;
     }
     unsafe { ATSFontGetTable(i_font, i_tag, i_offset, i_buffer_size, io_buffer, o_size) }
@@ -987,20 +1003,21 @@ pub unsafe fn ATSFontGetTable(
 
 /// # Safety
 ///
-/// `o_metrics` must be a valid pointer.
+/// - `o_metrics` struct field `version` must be set correctly.
+/// - `o_metrics` might not allow `None`.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSFontGetHorizontalMetrics(
     i_font: ATSFontRef,
     i_options: ATSOptionFlags,
-    o_metrics: *mut ATSFontMetrics,
+    o_metrics: Option<&mut ATSFontMetrics>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontGetHorizontalMetrics(
             i_font: ATSFontRef,
             i_options: ATSOptionFlags,
-            o_metrics: *mut ATSFontMetrics,
+            o_metrics: Option<&mut ATSFontMetrics>,
         ) -> OSStatus;
     }
     unsafe { ATSFontGetHorizontalMetrics(i_font, i_options, o_metrics) }
@@ -1008,20 +1025,21 @@ pub unsafe fn ATSFontGetHorizontalMetrics(
 
 /// # Safety
 ///
-/// `o_metrics` must be a valid pointer.
+/// - `o_metrics` struct field `version` must be set correctly.
+/// - `o_metrics` might not allow `None`.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSFontGetVerticalMetrics(
     i_font: ATSFontRef,
     i_options: ATSOptionFlags,
-    o_metrics: *mut ATSFontMetrics,
+    o_metrics: Option<&mut ATSFontMetrics>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontGetVerticalMetrics(
             i_font: ATSFontRef,
             i_options: ATSOptionFlags,
-            o_metrics: *mut ATSFontMetrics,
+            o_metrics: Option<&mut ATSFontMetrics>,
         ) -> OSStatus;
     }
     unsafe { ATSFontGetVerticalMetrics(i_font, i_options, o_metrics) }
@@ -1061,13 +1079,13 @@ pub unsafe fn ATSFontFamilyGetQuickDrawName(
 
 /// # Safety
 ///
-/// `o_file` must be a valid pointer.
+/// `o_file` might not allow `None`.
 #[cfg(all(feature = "ATSTypes", feature = "objc2-core-services"))]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
-pub unsafe fn ATSFontGetFileReference(i_font: ATSFontRef, o_file: *mut FSRef) -> OSStatus {
+pub unsafe fn ATSFontGetFileReference(i_font: ATSFontRef, o_file: Option<&mut FSRef>) -> OSStatus {
     extern "C-unwind" {
-        fn ATSFontGetFileReference(i_font: ATSFontRef, o_file: *mut FSRef) -> OSStatus;
+        fn ATSFontGetFileReference(i_font: ATSFontRef, o_file: Option<&mut FSRef>) -> OSStatus;
     }
     unsafe { ATSFontGetFileReference(i_font, o_file) }
 }
@@ -1075,7 +1093,7 @@ pub unsafe fn ATSFontGetFileReference(i_font: ATSFontRef, o_file: *mut FSRef) ->
 /// # Safety
 ///
 /// - `io_buffer` must be a valid pointer.
-/// - `o_size` must be a valid pointer.
+/// - `o_size` might not allow `None`.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
@@ -1083,14 +1101,14 @@ pub unsafe fn ATSFontGetFontFamilyResource(
     i_font: ATSFontRef,
     i_buffer_size: ByteCount,
     io_buffer: *mut c_void,
-    o_size: *mut ByteCount,
+    o_size: Option<&mut ByteCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontGetFontFamilyResource(
             i_font: ATSFontRef,
             i_buffer_size: ByteCount,
             io_buffer: *mut c_void,
-            o_size: *mut ByteCount,
+            o_size: Option<&mut ByteCount>,
         ) -> OSStatus;
     }
     unsafe { ATSFontGetFontFamilyResource(i_font, i_buffer_size, io_buffer, o_size) }
@@ -1113,20 +1131,21 @@ pub unsafe fn ATSFontNotify(action: ATSFontNotifyAction, info: *mut c_void) -> O
 /// - `callback` must be implemented correctly.
 /// - `i_refcon` must be a valid pointer.
 /// - `o_notification_ref` must be a valid pointer.
+/// - `o_notification_ref` might not allow `None`.
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSFontNotificationSubscribe(
     callback: ATSNotificationCallback,
     options: ATSFontNotifyOption,
     i_refcon: *mut c_void,
-    o_notification_ref: *mut ATSFontNotificationRef,
+    o_notification_ref: Option<&mut ATSFontNotificationRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontNotificationSubscribe(
             callback: ATSNotificationCallback,
             options: ATSFontNotifyOption,
             i_refcon: *mut c_void,
-            o_notification_ref: *mut ATSFontNotificationRef,
+            o_notification_ref: Option<&mut ATSFontNotificationRef>,
         ) -> OSStatus;
     }
     unsafe { ATSFontNotificationSubscribe(callback, options, i_refcon, o_notification_ref) }
@@ -1204,21 +1223,25 @@ pub type ATSFontQueryCallback = Option<
 /// # Safety
 ///
 /// - `callout` must be implemented correctly.
-/// - `context` must be a valid pointer.
+/// - `context` struct field `version` must be set correctly.
+/// - `context` struct field `refCon` must be a valid pointer.
+/// - `context` struct field `retain` must be implemented correctly.
+/// - `context` struct field `release` must be implemented correctly.
+/// - `context` might not allow `None`.
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSCreateFontQueryRunLoopSource(
     query_order: CFIndex,
     source_order: CFIndex,
     callout: ATSFontQueryCallback,
-    context: *const ATSFontQuerySourceContext,
+    context: Option<&ATSFontQuerySourceContext>,
 ) -> Option<CFRetained<CFRunLoopSource>> {
     extern "C-unwind" {
         fn ATSCreateFontQueryRunLoopSource(
             query_order: CFIndex,
             source_order: CFIndex,
             callout: ATSFontQueryCallback,
-            context: *const ATSFontQuerySourceContext,
+            context: Option<&ATSFontQuerySourceContext>,
         ) -> Option<NonNull<CFRunLoopSource>>;
     }
     let ret =

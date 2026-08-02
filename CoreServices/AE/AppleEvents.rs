@@ -193,23 +193,25 @@ pub unsafe fn AERemoveEventHandler(
 
 /// # Safety
 ///
-/// - `handler` must be a valid pointer.
+/// - `handler` must be implemented correctly.
+/// - `handler` might not allow `None`.
 /// - `handler_refcon` must be a valid pointer.
+/// - `handler_refcon` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AEGetEventHandler(
     the_ae_event_class: AEEventClass,
     the_ae_event_id: AEEventID,
-    handler: *mut AEEventHandlerUPP,
-    handler_refcon: *mut SRefCon,
+    handler: Option<&mut AEEventHandlerUPP>,
+    handler_refcon: Option<&mut SRefCon>,
     is_sys_handler: bool,
 ) -> OSErr {
     extern "C-unwind" {
         fn AEGetEventHandler(
             the_ae_event_class: AEEventClass,
             the_ae_event_id: AEEventID,
-            handler: *mut AEEventHandlerUPP,
-            handler_refcon: *mut SRefCon,
+            handler: Option<&mut AEEventHandlerUPP>,
+            handler_refcon: Option<&mut SRefCon>,
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
@@ -274,18 +276,19 @@ pub unsafe fn AERemoveSpecialHandler(
 
 /// # Safety
 ///
-/// `handler` must be a valid pointer.
+/// - `handler` must be implemented correctly.
+/// - `handler` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AEGetSpecialHandler(
     function_class: AEKeyword,
-    handler: *mut AEEventHandlerUPP,
+    handler: Option<&mut AEEventHandlerUPP>,
     is_sys_handler: bool,
 ) -> OSErr {
     extern "C-unwind" {
         fn AEGetSpecialHandler(
             function_class: AEKeyword,
-            handler: *mut AEEventHandlerUPP,
+            handler: Option<&mut AEEventHandlerUPP>,
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
@@ -302,12 +305,12 @@ pub unsafe fn AEGetSpecialHandler(
 ///
 /// # Safety
 ///
-/// `result` must be a valid pointer.
+/// `result` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn AEManagerInfo(key_word: AEKeyword, result: *mut c_long) -> OSErr {
+pub unsafe fn AEManagerInfo(key_word: AEKeyword, result: Option<&mut c_long>) -> OSErr {
     extern "C-unwind" {
-        fn AEManagerInfo(key_word: AEKeyword, result: *mut c_long) -> OSErr;
+        fn AEManagerInfo(key_word: AEKeyword, result: Option<&mut c_long>) -> OSErr;
     }
     unsafe { AEManagerInfo(key_word, result) }
 }
@@ -412,17 +415,17 @@ impl AERemoteProcessResolver {
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.
-    /// - `out_error` must be a valid pointer.
+    /// - `out_error` might not allow `None`.
     #[doc(alias = "AERemoteProcessResolverGetProcesses")]
     #[inline]
     pub unsafe fn processes(
         r#ref: AERemoteProcessResolverRef,
-        out_error: *mut CFStreamError,
+        out_error: Option<&mut CFStreamError>,
     ) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
         extern "C-unwind" {
             fn AERemoteProcessResolverGetProcesses(
                 r#ref: AERemoteProcessResolverRef,
-                out_error: *mut CFStreamError,
+                out_error: Option<&mut CFStreamError>,
             ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
         }
         let ret = unsafe { AERemoteProcessResolverGetProcesses(r#ref, out_error) };
@@ -442,7 +445,12 @@ impl AERemoteProcessResolver {
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
     /// - `callback` must be implemented correctly.
-    /// - `ctx` must be a valid pointer.
+    /// - `ctx` struct field `version` must be set correctly.
+    /// - `ctx` struct field `info` must be a valid pointer.
+    /// - `ctx` struct field `retain` must be implemented correctly.
+    /// - `ctx` struct field `release` must be implemented correctly.
+    /// - `ctx` struct field `copyDescription` must be implemented correctly.
+    /// - `ctx` might not allow `None`.
     #[doc(alias = "AERemoteProcessResolverScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(
@@ -450,7 +458,7 @@ impl AERemoteProcessResolver {
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
         callback: AERemoteProcessResolverCallback,
-        ctx: *const AERemoteProcessResolverContext,
+        ctx: Option<&AERemoteProcessResolverContext>,
     ) {
         extern "C-unwind" {
             fn AERemoteProcessResolverScheduleWithRunLoop(
@@ -458,7 +466,7 @@ impl AERemoteProcessResolver {
                 run_loop: Option<&CFRunLoop>,
                 run_loop_mode: Option<&CFString>,
                 callback: AERemoteProcessResolverCallback,
-                ctx: *const AERemoteProcessResolverContext,
+                ctx: Option<&AERemoteProcessResolverContext>,
             );
         }
         unsafe {
@@ -518,18 +526,19 @@ impl AERemoteProcessResolver {
 ///
 /// # Safety
 ///
-/// `target` must be a valid pointer.
+/// - `target` struct field `dataHandle` must be a valid pointer.
+/// - `target` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AEDeterminePermissionToAutomateTarget(
-    target: *const AEAddressDesc,
+    target: Option<&AEAddressDesc>,
     the_ae_event_class: AEEventClass,
     the_ae_event_id: AEEventID,
     ask_user_if_needed: bool,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AEDeterminePermissionToAutomateTarget(
-            target: *const AEAddressDesc,
+            target: Option<&AEAddressDesc>,
             the_ae_event_class: AEEventClass,
             the_ae_event_id: AEEventID,
             ask_user_if_needed: Boolean,

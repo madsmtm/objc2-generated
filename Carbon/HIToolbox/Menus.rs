@@ -661,11 +661,18 @@ pub const kMenuPropertyPersistent: c_uint = 0x00000001;
 
 /// # Safety
 ///
-/// `out_data` must be a valid pointer.
+/// - `out_data` struct field `menu` must be a valid pointer.
+/// - `out_data` might not allow `None`.
 #[inline]
-pub unsafe fn GetMenuTrackingData(the_menu: &Menu, out_data: *mut MenuTrackingData) -> OSStatus {
+pub unsafe fn GetMenuTrackingData(
+    the_menu: &Menu,
+    out_data: Option<&mut MenuTrackingData>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn GetMenuTrackingData(the_menu: &Menu, out_data: *mut MenuTrackingData) -> OSStatus;
+        fn GetMenuTrackingData(
+            the_menu: &Menu,
+            out_data: Option<&mut MenuTrackingData>,
+        ) -> OSStatus;
     }
     unsafe { GetMenuTrackingData(the_menu, out_data) }
 }
@@ -751,20 +758,22 @@ unsafe impl RefEncode for ContextualMenuInterfaceStruct {
 /// # Safety
 ///
 /// - `this_instance` must be a valid pointer.
-/// - `in_context` must be a valid pointer.
-/// - `out_command_pairs` must be a valid pointer.
+/// - `in_context` struct field `dataHandle` must be a valid pointer.
+/// - `in_context` might not allow `None`.
+/// - `out_command_pairs` struct field `dataHandle` must be a valid pointer.
+/// - `out_command_pairs` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
 pub unsafe fn CMPluginExamineContext(
     this_instance: *mut c_void,
-    in_context: *const AEDesc,
-    out_command_pairs: *mut AEDescList,
+    in_context: Option<&AEDesc>,
+    out_command_pairs: Option<&mut AEDescList>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMPluginExamineContext(
             this_instance: *mut c_void,
-            in_context: *const AEDesc,
-            out_command_pairs: *mut AEDescList,
+            in_context: Option<&AEDesc>,
+            out_command_pairs: Option<&mut AEDescList>,
         ) -> OSStatus;
     }
     unsafe { CMPluginExamineContext(this_instance, in_context, out_command_pairs) }
@@ -773,18 +782,19 @@ pub unsafe fn CMPluginExamineContext(
 /// # Safety
 ///
 /// - `this_instance` must be a valid pointer.
-/// - `in_context` must be a valid pointer.
+/// - `in_context` struct field `dataHandle` must be a valid pointer.
+/// - `in_context` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
 pub unsafe fn CMPluginHandleSelection(
     this_instance: *mut c_void,
-    in_context: *mut AEDesc,
+    in_context: Option<&mut AEDesc>,
     in_command_id: i32,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMPluginHandleSelection(
             this_instance: *mut c_void,
-            in_context: *mut AEDesc,
+            in_context: Option<&mut AEDesc>,
             in_command_id: i32,
         ) -> OSStatus;
     }

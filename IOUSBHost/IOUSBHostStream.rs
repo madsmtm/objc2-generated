@@ -78,16 +78,12 @@ impl IOUSBHostStream {
         /// transferred during the request
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendIORequestWithData:bytesTransferred:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendIORequestWithData_bytesTransferred_error(
             &self,
             data: Option<&NSMutableData>,
-            bytes_transferred: *mut NSUInteger,
+            bytes_transferred: Option<&mut NSUInteger>,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "IOUSBHostDefinitions", feature = "block2"))]

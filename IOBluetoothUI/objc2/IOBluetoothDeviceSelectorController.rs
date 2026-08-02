@@ -154,12 +154,13 @@ impl IOBluetoothDeviceSelectorController {
         ///
         /// # Safety
         ///
-        /// `search_attributes` must be a valid pointer.
+        /// - `search_attributes` struct field `attributeList` must be a valid pointer.
+        /// - `search_attributes` might not allow `None`.
         #[unsafe(method(setSearchAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchAttributes(
             &self,
-            search_attributes: *const IOBluetoothDeviceSearchAttributes,
+            search_attributes: Option<&IOBluetoothDeviceSearchAttributes>,
         );
 
         #[cfg(feature = "objc2-io-bluetooth")]

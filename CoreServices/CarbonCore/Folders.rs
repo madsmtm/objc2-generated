@@ -45,8 +45,8 @@ pub const kDontCreateFolder: bool = false;
 
 /// # Safety
 ///
-/// - `found_v_ref_num` must be a valid pointer.
-/// - `found_dir_id` must be a valid pointer.
+/// - `found_v_ref_num` might not allow `None`.
+/// - `found_dir_id` might not allow `None`.
 #[cfg(feature = "Files")]
 #[deprecated]
 #[inline]
@@ -54,16 +54,16 @@ pub unsafe fn FindFolder(
     v_ref_num: FSVolumeRefNum,
     folder_type: OSType,
     create_folder: bool,
-    found_v_ref_num: *mut FSVolumeRefNum,
-    found_dir_id: *mut i32,
+    found_v_ref_num: Option<&mut FSVolumeRefNum>,
+    found_dir_id: Option<&mut i32>,
 ) -> OSErr {
     extern "C-unwind" {
         fn FindFolder(
             v_ref_num: FSVolumeRefNum,
             folder_type: OSType,
             create_folder: Boolean,
-            found_v_ref_num: *mut FSVolumeRefNum,
-            found_dir_id: *mut i32,
+            found_v_ref_num: Option<&mut FSVolumeRefNum>,
+            found_dir_id: Option<&mut i32>,
         ) -> OSErr;
     }
     let create_folder = create_folder as _;
@@ -90,7 +90,7 @@ pub unsafe fn ReleaseFolder(v_ref_num: FSVolumeRefNum, folder_type: OSType) -> O
 
 /// # Safety
 ///
-/// `found_ref` must be a valid pointer.
+/// `found_ref` might not allow `None`.
 #[cfg(feature = "Files")]
 #[deprecated]
 #[inline]
@@ -98,14 +98,14 @@ pub unsafe fn FSFindFolder(
     v_ref_num: FSVolumeRefNum,
     folder_type: OSType,
     create_folder: bool,
-    found_ref: *mut FSRef,
+    found_ref: Option<&mut FSRef>,
 ) -> OSErr {
     extern "C-unwind" {
         fn FSFindFolder(
             v_ref_num: FSVolumeRefNum,
             folder_type: OSType,
             create_folder: Boolean,
-            found_ref: *mut FSRef,
+            found_ref: Option<&mut FSRef>,
         ) -> OSErr;
     }
     let create_folder = create_folder as _;
@@ -859,19 +859,19 @@ pub unsafe fn AddFolderDescriptor(
 
 /// # Safety
 ///
-/// - `total_type_count` must be a valid pointer.
+/// - `total_type_count` might not allow `None`.
 /// - `the_types` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn GetFolderTypes(
     requested_type_count: u32,
-    total_type_count: *mut u32,
+    total_type_count: Option<&mut u32>,
     the_types: *mut FolderType,
 ) -> OSErr {
     extern "C-unwind" {
         fn GetFolderTypes(
             requested_type_count: u32,
-            total_type_count: *mut u32,
+            total_type_count: Option<&mut u32>,
             the_types: *mut FolderType,
         ) -> OSErr;
     }
@@ -889,23 +889,23 @@ pub unsafe fn RemoveFolderDescriptor(fold_type: FolderType) -> OSErr {
 
 /// # Safety
 ///
-/// - `found_v_ref_num` must be a valid pointer.
-/// - `name` must be a valid pointer.
+/// - `found_v_ref_num` might not allow `None`.
+/// - `name` might not allow `None`.
 #[cfg(feature = "Files")]
 #[deprecated]
 #[inline]
 pub unsafe fn GetFolderNameUnicode(
     v_ref_num: FSVolumeRefNum,
     fold_type: OSType,
-    found_v_ref_num: *mut FSVolumeRefNum,
-    name: *mut HFSUniStr255,
+    found_v_ref_num: Option<&mut FSVolumeRefNum>,
+    name: Option<&mut HFSUniStr255>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn GetFolderNameUnicode(
             v_ref_num: FSVolumeRefNum,
             fold_type: OSType,
-            found_v_ref_num: *mut FSVolumeRefNum,
-            name: *mut HFSUniStr255,
+            found_v_ref_num: Option<&mut FSVolumeRefNum>,
+            name: Option<&mut HFSUniStr255>,
         ) -> OSStatus;
     }
     unsafe { GetFolderNameUnicode(v_ref_num, fold_type, found_v_ref_num, name) }
@@ -923,20 +923,20 @@ pub unsafe fn InvalidateFolderDescriptorCache(v_ref_num: FSVolumeRefNum, dir_id:
 
 /// # Safety
 ///
-/// `fold_type` must be a valid pointer.
+/// `fold_type` might not allow `None`.
 #[cfg(feature = "Files")]
 #[deprecated]
 #[inline]
 pub unsafe fn IdentifyFolder(
     v_ref_num: FSVolumeRefNum,
     dir_id: i32,
-    fold_type: *mut FolderType,
+    fold_type: Option<&mut FolderType>,
 ) -> OSErr {
     extern "C-unwind" {
         fn IdentifyFolder(
             v_ref_num: FSVolumeRefNum,
             dir_id: i32,
-            fold_type: *mut FolderType,
+            fold_type: Option<&mut FolderType>,
         ) -> OSErr;
     }
     unsafe { IdentifyFolder(v_ref_num, dir_id, fold_type) }
@@ -945,7 +945,7 @@ pub unsafe fn IdentifyFolder(
 /// # Safety
 ///
 /// - `in_ref` must be a valid pointer.
-/// - `out_result` must be a valid pointer.
+/// - `out_result` might not allow `None`.
 #[cfg(feature = "Files")]
 #[deprecated]
 #[inline]
@@ -953,14 +953,14 @@ pub unsafe fn FSDetermineIfRefIsEnclosedByFolder(
     domain_or_v_ref_num: FSVolumeRefNum,
     folder_type: OSType,
     in_ref: *const FSRef,
-    out_result: *mut Boolean,
+    out_result: Option<&mut Boolean>,
 ) -> OSErr {
     extern "C-unwind" {
         fn FSDetermineIfRefIsEnclosedByFolder(
             domain_or_v_ref_num: FSVolumeRefNum,
             folder_type: OSType,
             in_ref: *const FSRef,
-            out_result: *mut Boolean,
+            out_result: Option<&mut Boolean>,
         ) -> OSErr;
     }
     unsafe {
@@ -971,7 +971,7 @@ pub unsafe fn FSDetermineIfRefIsEnclosedByFolder(
 /// # Safety
 ///
 /// - `utf8_path` must be a valid pointer.
-/// - `out_result` must be a valid pointer.
+/// - `out_result` might not allow `None`.
 #[cfg(feature = "Files")]
 #[deprecated]
 #[inline]
@@ -980,7 +980,7 @@ pub unsafe fn DetermineIfPathIsEnclosedByFolder(
     folder_type: OSType,
     utf8_path: *const u8,
     path_is_real_path: bool,
-    out_result: *mut Boolean,
+    out_result: Option<&mut Boolean>,
 ) -> OSErr {
     extern "C-unwind" {
         fn DetermineIfPathIsEnclosedByFolder(
@@ -988,7 +988,7 @@ pub unsafe fn DetermineIfPathIsEnclosedByFolder(
             folder_type: OSType,
             utf8_path: *const u8,
             path_is_real_path: Boolean,
-            out_result: *mut Boolean,
+            out_result: Option<&mut Boolean>,
         ) -> OSErr;
     }
     let path_is_real_path = path_is_real_path as _;

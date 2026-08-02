@@ -206,16 +206,12 @@ impl AVPlayerItemVideoOutput {
         /// Parameter `itemTime`: A CMTime that expresses a desired item time.
         ///
         /// Parameter `itemTimeForDisplay`: A CMTime pointer whose value will contain the true display deadline for the copied pixel buffer. Can be NULL.
-        ///
-        /// # Safety
-        ///
-        /// `out_item_time_for_display` must be a valid pointer or null.
         #[unsafe(method(copyPixelBufferForItemTime:itemTimeForDisplay:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyPixelBufferForItemTime_itemTimeForDisplay(
             &self,
             item_time: CMTime,
-            out_item_time_for_display: *mut CMTime,
+            out_item_time_for_display: Option<&mut CMTime>,
         ) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "dispatch2")]

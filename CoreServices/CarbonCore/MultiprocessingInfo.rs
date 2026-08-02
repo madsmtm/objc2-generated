@@ -10,12 +10,19 @@ use crate::*;
 ///
 /// - `owning_coherence_id` must be a valid pointer.
 /// - `cpu_id` must be a valid pointer.
+/// - `cpu_id` might not allow `None`.
 #[cfg(feature = "Multiprocessing")]
 #[deprecated]
 #[inline]
-pub unsafe fn MPGetNextCpuID(owning_coherence_id: MPCoherenceID, cpu_id: *mut MPCpuID) -> OSStatus {
+pub unsafe fn MPGetNextCpuID(
+    owning_coherence_id: MPCoherenceID,
+    cpu_id: Option<&mut MPCpuID>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn MPGetNextCpuID(owning_coherence_id: MPCoherenceID, cpu_id: *mut MPCpuID) -> OSStatus;
+        fn MPGetNextCpuID(
+            owning_coherence_id: MPCoherenceID,
+            cpu_id: Option<&mut MPCpuID>,
+        ) -> OSStatus;
     }
     unsafe { MPGetNextCpuID(owning_coherence_id, cpu_id) }
 }
@@ -24,12 +31,19 @@ pub unsafe fn MPGetNextCpuID(owning_coherence_id: MPCoherenceID, cpu_id: *mut MP
 ///
 /// - `owning_process_id` must be a valid pointer.
 /// - `task_id` must be a valid pointer.
+/// - `task_id` might not allow `None`.
 #[cfg(feature = "Multiprocessing")]
 #[deprecated]
 #[inline]
-pub unsafe fn MPGetNextTaskID(owning_process_id: MPProcessID, task_id: *mut MPTaskID) -> OSStatus {
+pub unsafe fn MPGetNextTaskID(
+    owning_process_id: MPProcessID,
+    task_id: Option<&mut MPTaskID>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn MPGetNextTaskID(owning_process_id: MPProcessID, task_id: *mut MPTaskID) -> OSStatus;
+        fn MPGetNextTaskID(
+            owning_process_id: MPProcessID,
+            task_id: Option<&mut MPTaskID>,
+        ) -> OSStatus;
     }
     unsafe { MPGetNextTaskID(owning_process_id, task_id) }
 }

@@ -86,15 +86,11 @@ impl AVAudioFormat {
         /// Parameter `asbd`: the AudioStreamBasicDescription
         ///
         /// If the format specifies more than 2 channels, this method fails (returns nil).
-        ///
-        /// # Safety
-        ///
-        /// `asbd` must be a valid pointer.
         #[unsafe(method(initWithStreamDescription:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStreamDescription(
             this: Allocated<Self>,
-            asbd: NonNull<AudioStreamBasicDescription>,
+            asbd: &AudioStreamBasicDescription,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "AVAudioChannelLayout", feature = "objc2-core-audio-types"))]
@@ -106,15 +102,11 @@ impl AVAudioFormat {
         ///
         /// If the format specifies more than 2 channels, this method fails (returns nil) unless layout
         /// is non-nil.
-        ///
-        /// # Safety
-        ///
-        /// `asbd` must be a valid pointer.
         #[unsafe(method(initWithStreamDescription:channelLayout:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStreamDescription_channelLayout(
             this: Allocated<Self>,
-            asbd: NonNull<AudioStreamBasicDescription>,
+            asbd: &AudioStreamBasicDescription,
             layout: Option<&AVAudioChannelLayout>,
         ) -> Option<Retained<Self>>;
 

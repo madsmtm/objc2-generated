@@ -655,7 +655,7 @@ pub unsafe fn CMIOSampleBufferCreate(
 ///
 /// - `image_buffer` might not allow `None`.
 /// - `format_description` might not allow `None`.
-/// - `sample_timing` must be a valid pointer.
+/// - `sample_timing` might not allow `None`.
 /// - `s_buf_out` might not allow `None`.
 #[cfg(all(
     feature = "objc2-core-foundation",
@@ -667,7 +667,7 @@ pub unsafe fn CMIOSampleBufferCreateForImageBuffer(
     allocator: Option<&CFAllocator>,
     image_buffer: Option<&CVImageBuffer>,
     format_description: Option<&CMVideoFormatDescription>,
-    sample_timing: *const CMSampleTimingInfo,
+    sample_timing: Option<&CMSampleTimingInfo>,
     sequence_number: u64,
     discontinuity_flags: u32,
     s_buf_out: Option<&mut Option<CFRetained<CMSampleBuffer>>>,
@@ -677,7 +677,7 @@ pub unsafe fn CMIOSampleBufferCreateForImageBuffer(
             allocator: Option<&CFAllocator>,
             image_buffer: Option<&CVImageBuffer>,
             format_description: Option<&CMVideoFormatDescription>,
-            sample_timing: *const CMSampleTimingInfo,
+            sample_timing: Option<&CMSampleTimingInfo>,
             sequence_number: u64,
             discontinuity_flags: u32,
             s_buf_out: Option<&mut Option<CFRetained<CMSampleBuffer>>>,

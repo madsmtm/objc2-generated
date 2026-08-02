@@ -358,20 +358,26 @@ impl MTAudioProcessingTap {
     ///
     /// # Safety
     ///
-    /// `callbacks` must be a valid pointer.
+    /// - `callbacks` struct field `version` must be set correctly.
+    /// - `callbacks` struct field `clientInfo` must be a valid pointer or null.
+    /// - `callbacks` struct field `init` must be implemented correctly.
+    /// - `callbacks` struct field `finalize` must be implemented correctly.
+    /// - `callbacks` struct field `prepare` must be implemented correctly.
+    /// - `callbacks` struct field `unprepare` must be implemented correctly.
+    /// - `callbacks` struct field `process` must be implemented correctly.
     #[doc(alias = "MTAudioProcessingTapCreate")]
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        callbacks: NonNull<MTAudioProcessingTapCallbacks>,
+        callbacks: &MTAudioProcessingTapCallbacks,
         flags: MTAudioProcessingTapCreationFlags,
         tap_out: &mut Option<CFRetained<MTAudioProcessingTap>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn MTAudioProcessingTapCreate(
                 allocator: Option<&CFAllocator>,
-                callbacks: NonNull<MTAudioProcessingTapCallbacks>,
+                callbacks: &MTAudioProcessingTapCallbacks,
                 flags: MTAudioProcessingTapCreationFlags,
                 tap_out: &mut Option<CFRetained<MTAudioProcessingTap>>,
             ) -> OSStatus;
@@ -431,10 +437,7 @@ impl MTAudioProcessingTap {
     ///
     /// # Safety
     ///
-    /// - `buffer_list_in_out` must be a valid pointer.
-    /// - `flags_out` must be a valid pointer or null.
-    /// - `time_range_out` must be a valid pointer or null.
-    /// - `number_frames_out` must be a valid pointer or null.
+    /// `buffer_list_in_out` must be a valid pointer.
     #[doc(alias = "MTAudioProcessingTapGetSourceAudio")]
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
     #[inline]
@@ -442,18 +445,18 @@ impl MTAudioProcessingTap {
         &self,
         number_frames: CMItemCount,
         buffer_list_in_out: NonNull<AudioBufferList>,
-        flags_out: *mut MTAudioProcessingTapFlags,
-        time_range_out: *mut CMTimeRange,
-        number_frames_out: *mut CMItemCount,
+        flags_out: Option<&mut MTAudioProcessingTapFlags>,
+        time_range_out: Option<&mut CMTimeRange>,
+        number_frames_out: Option<&mut CMItemCount>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn MTAudioProcessingTapGetSourceAudio(
                 tap: &MTAudioProcessingTap,
                 number_frames: CMItemCount,
                 buffer_list_in_out: NonNull<AudioBufferList>,
-                flags_out: *mut MTAudioProcessingTapFlags,
-                time_range_out: *mut CMTimeRange,
-                number_frames_out: *mut CMItemCount,
+                flags_out: Option<&mut MTAudioProcessingTapFlags>,
+                time_range_out: Option<&mut CMTimeRange>,
+                number_frames_out: Option<&mut CMItemCount>,
             ) -> OSStatus;
         }
         unsafe {

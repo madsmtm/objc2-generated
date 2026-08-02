@@ -446,20 +446,16 @@ pub unsafe fn MACaptionAppearanceIsCustomized(domain: MACaptionAppearanceDomain)
 /// )
 ///
 /// Returns: User preference for foreground/text color.
-///
-/// # Safety
-///
-/// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe fn MACaptionAppearanceCopyForegroundColor(
     domain: MACaptionAppearanceDomain,
-    behavior: *mut MACaptionAppearanceBehavior,
+    behavior: Option<&mut MACaptionAppearanceBehavior>,
 ) -> CFRetained<CGColor> {
     extern "C-unwind" {
         fn MACaptionAppearanceCopyForegroundColor(
             domain: MACaptionAppearanceDomain,
-            behavior: *mut MACaptionAppearanceBehavior,
+            behavior: Option<&mut MACaptionAppearanceBehavior>,
         ) -> Option<NonNull<CGColor>>;
     }
     let ret = unsafe { MACaptionAppearanceCopyForegroundColor(domain, behavior) };
@@ -488,20 +484,16 @@ pub unsafe fn MACaptionAppearanceCopyForegroundColor(
 /// )
 ///
 /// Returns: User preference for background color.
-///
-/// # Safety
-///
-/// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe fn MACaptionAppearanceCopyBackgroundColor(
     domain: MACaptionAppearanceDomain,
-    behavior: *mut MACaptionAppearanceBehavior,
+    behavior: Option<&mut MACaptionAppearanceBehavior>,
 ) -> CFRetained<CGColor> {
     extern "C-unwind" {
         fn MACaptionAppearanceCopyBackgroundColor(
             domain: MACaptionAppearanceDomain,
-            behavior: *mut MACaptionAppearanceBehavior,
+            behavior: Option<&mut MACaptionAppearanceBehavior>,
         ) -> Option<NonNull<CGColor>>;
     }
     let ret = unsafe { MACaptionAppearanceCopyBackgroundColor(domain, behavior) };
@@ -530,20 +522,16 @@ pub unsafe fn MACaptionAppearanceCopyBackgroundColor(
 /// )
 ///
 /// Returns: User preference for window color.
-///
-/// # Safety
-///
-/// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe fn MACaptionAppearanceCopyWindowColor(
     domain: MACaptionAppearanceDomain,
-    behavior: *mut MACaptionAppearanceBehavior,
+    behavior: Option<&mut MACaptionAppearanceBehavior>,
 ) -> CFRetained<CGColor> {
     extern "C-unwind" {
         fn MACaptionAppearanceCopyWindowColor(
             domain: MACaptionAppearanceDomain,
-            behavior: *mut MACaptionAppearanceBehavior,
+            behavior: Option<&mut MACaptionAppearanceBehavior>,
         ) -> Option<NonNull<CGColor>>;
     }
     let ret = unsafe { MACaptionAppearanceCopyWindowColor(domain, behavior) };
@@ -570,19 +558,15 @@ pub unsafe fn MACaptionAppearanceCopyWindowColor(
 /// )
 ///
 /// Returns: User preference for foreground opacity.
-///
-/// # Safety
-///
-/// `behavior` must be a valid pointer or null.
 #[inline]
 pub unsafe fn MACaptionAppearanceGetForegroundOpacity(
     domain: MACaptionAppearanceDomain,
-    behavior: *mut MACaptionAppearanceBehavior,
+    behavior: Option<&mut MACaptionAppearanceBehavior>,
 ) -> CGFloat {
     extern "C-unwind" {
         fn MACaptionAppearanceGetForegroundOpacity(
             domain: MACaptionAppearanceDomain,
-            behavior: *mut MACaptionAppearanceBehavior,
+            behavior: Option<&mut MACaptionAppearanceBehavior>,
         ) -> CGFloat;
     }
     unsafe { MACaptionAppearanceGetForegroundOpacity(domain, behavior) }
@@ -607,19 +591,15 @@ pub unsafe fn MACaptionAppearanceGetForegroundOpacity(
 /// )
 ///
 /// Returns: User preference for background opacity.
-///
-/// # Safety
-///
-/// `behavior` must be a valid pointer or null.
 #[inline]
 pub unsafe fn MACaptionAppearanceGetBackgroundOpacity(
     domain: MACaptionAppearanceDomain,
-    behavior: *mut MACaptionAppearanceBehavior,
+    behavior: Option<&mut MACaptionAppearanceBehavior>,
 ) -> CGFloat {
     extern "C-unwind" {
         fn MACaptionAppearanceGetBackgroundOpacity(
             domain: MACaptionAppearanceDomain,
-            behavior: *mut MACaptionAppearanceBehavior,
+            behavior: Option<&mut MACaptionAppearanceBehavior>,
         ) -> CGFloat;
     }
     unsafe { MACaptionAppearanceGetBackgroundOpacity(domain, behavior) }
@@ -644,19 +624,15 @@ pub unsafe fn MACaptionAppearanceGetBackgroundOpacity(
 /// )
 ///
 /// Returns: User preference for window opacity.
-///
-/// # Safety
-///
-/// `behavior` must be a valid pointer or null.
 #[inline]
 pub unsafe fn MACaptionAppearanceGetWindowOpacity(
     domain: MACaptionAppearanceDomain,
-    behavior: *mut MACaptionAppearanceBehavior,
+    behavior: Option<&mut MACaptionAppearanceBehavior>,
 ) -> CGFloat {
     extern "C-unwind" {
         fn MACaptionAppearanceGetWindowOpacity(
             domain: MACaptionAppearanceDomain,
-            behavior: *mut MACaptionAppearanceBehavior,
+            behavior: Option<&mut MACaptionAppearanceBehavior>,
         ) -> CGFloat;
     }
     unsafe { MACaptionAppearanceGetWindowOpacity(domain, behavior) }
@@ -681,19 +657,15 @@ pub unsafe fn MACaptionAppearanceGetWindowOpacity(
 /// )
 ///
 /// Returns: User preference for caption-window corner radius.
-///
-/// # Safety
-///
-/// `behavior` must be a valid pointer or null.
 #[inline]
 pub unsafe fn MACaptionAppearanceGetWindowRoundedCornerRadius(
     domain: MACaptionAppearanceDomain,
-    behavior: *mut MACaptionAppearanceBehavior,
+    behavior: Option<&mut MACaptionAppearanceBehavior>,
 ) -> CGFloat {
     extern "C-unwind" {
         fn MACaptionAppearanceGetWindowRoundedCornerRadius(
             domain: MACaptionAppearanceDomain,
-            behavior: *mut MACaptionAppearanceBehavior,
+            behavior: Option<&mut MACaptionAppearanceBehavior>,
         ) -> CGFloat;
     }
     unsafe { MACaptionAppearanceGetWindowRoundedCornerRadius(domain, behavior) }
@@ -726,21 +698,17 @@ pub unsafe fn MACaptionAppearanceGetWindowRoundedCornerRadius(
 /// .
 ///
 /// Returns: User font preference for the specified style.
-///
-/// # Safety
-///
-/// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-text")]
 #[inline]
 pub unsafe fn MACaptionAppearanceCopyFontDescriptorForStyle(
     domain: MACaptionAppearanceDomain,
-    behavior: *mut MACaptionAppearanceBehavior,
+    behavior: Option<&mut MACaptionAppearanceBehavior>,
     font_style: MACaptionAppearanceFontStyle,
 ) -> CFRetained<CTFontDescriptor> {
     extern "C-unwind" {
         fn MACaptionAppearanceCopyFontDescriptorForStyle(
             domain: MACaptionAppearanceDomain,
-            behavior: *mut MACaptionAppearanceBehavior,
+            behavior: Option<&mut MACaptionAppearanceBehavior>,
             font_style: MACaptionAppearanceFontStyle,
         ) -> Option<NonNull<CTFontDescriptor>>;
     }
@@ -769,19 +737,15 @@ pub unsafe fn MACaptionAppearanceCopyFontDescriptorForStyle(
 /// )
 ///
 /// Returns: User font scaling preference for the specified style.
-///
-/// # Safety
-///
-/// `behavior` must be a valid pointer or null.
 #[inline]
 pub unsafe fn MACaptionAppearanceGetRelativeCharacterSize(
     domain: MACaptionAppearanceDomain,
-    behavior: *mut MACaptionAppearanceBehavior,
+    behavior: Option<&mut MACaptionAppearanceBehavior>,
 ) -> CGFloat {
     extern "C-unwind" {
         fn MACaptionAppearanceGetRelativeCharacterSize(
             domain: MACaptionAppearanceDomain,
-            behavior: *mut MACaptionAppearanceBehavior,
+            behavior: Option<&mut MACaptionAppearanceBehavior>,
         ) -> CGFloat;
     }
     unsafe { MACaptionAppearanceGetRelativeCharacterSize(domain, behavior) }
@@ -806,19 +770,15 @@ pub unsafe fn MACaptionAppearanceGetRelativeCharacterSize(
 /// )
 ///
 /// Returns: User preference for text edge style.
-///
-/// # Safety
-///
-/// `behavior` must be a valid pointer or null.
 #[inline]
 pub unsafe fn MACaptionAppearanceGetTextEdgeStyle(
     domain: MACaptionAppearanceDomain,
-    behavior: *mut MACaptionAppearanceBehavior,
+    behavior: Option<&mut MACaptionAppearanceBehavior>,
 ) -> MACaptionAppearanceTextEdgeStyle {
     extern "C-unwind" {
         fn MACaptionAppearanceGetTextEdgeStyle(
             domain: MACaptionAppearanceDomain,
-            behavior: *mut MACaptionAppearanceBehavior,
+            behavior: Option<&mut MACaptionAppearanceBehavior>,
         ) -> MACaptionAppearanceTextEdgeStyle;
     }
     unsafe { MACaptionAppearanceGetTextEdgeStyle(domain, behavior) }

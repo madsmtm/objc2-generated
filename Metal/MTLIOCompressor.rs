@@ -39,12 +39,11 @@ pub fn MTLIOCompressionContextDefaultChunkSize() -> usize {
 
 /// # Safety
 ///
-/// - `path` must be a valid pointer.
-/// - `chunkSize` might not be bounds-checked.
+/// `chunkSize` might not be bounds-checked.
 #[cfg(feature = "MTLDevice")]
 #[inline]
 pub unsafe fn MTLIOCreateCompressionContext(
-    path: NonNull<c_char>,
+    path: &CStr,
     r#type: MTLIOCompressionMethod,
     chunk_size: usize,
 ) -> MTLIOCompressionContext {
@@ -55,6 +54,7 @@ pub unsafe fn MTLIOCreateCompressionContext(
             chunk_size: usize,
         ) -> MTLIOCompressionContext;
     }
+    let path = NonNull::new(path.as_ptr().cast_mut()).unwrap();
     unsafe { MTLIOCreateCompressionContext(path, r#type, chunk_size) }
 }
 

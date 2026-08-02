@@ -209,23 +209,19 @@ impl CMTaggedBufferGroup {
     /// Parameter `indexOut`: On success, index of the returned CVPixelBuffer.  May be NULL.
     ///
     /// Returns: Returns the CVPixelBuffer, or NULL on failure (including if the buffer at this index is not a CVPixelBuffer).
-    ///
-    /// # Safety
-    ///
-    /// `index_out` must be a valid pointer or null.
     #[doc(alias = "CMTaggedBufferGroupGetCVPixelBufferForTag")]
     #[cfg(all(feature = "CMTag", feature = "objc2-core-video"))]
     #[inline]
     pub unsafe fn cv_pixel_buffer_for_tag(
         &self,
         tag: CMTag,
-        index_out: *mut CFIndex,
+        index_out: Option<&mut CFIndex>,
     ) -> Option<CFRetained<CVPixelBuffer>> {
         extern "C-unwind" {
             fn CMTaggedBufferGroupGetCVPixelBufferForTag(
                 group: &CMTaggedBufferGroup,
                 tag: CMTag,
-                index_out: *mut CFIndex,
+                index_out: Option<&mut CFIndex>,
             ) -> Option<NonNull<CVPixelBuffer>>;
         }
         let ret = unsafe { CMTaggedBufferGroupGetCVPixelBufferForTag(self, tag, index_out) };
@@ -241,23 +237,19 @@ impl CMTaggedBufferGroup {
     /// Parameter `indexOut`: On success, index of the returned CVPixelBuffer.  May be NULL.
     ///
     /// Returns: Returns the CVPixelBuffer, or NULL on failure (including if the buffer at this index is not a CVPixelBuffer).
-    ///
-    /// # Safety
-    ///
-    /// `index_out` must be a valid pointer or null.
     #[doc(alias = "CMTaggedBufferGroupGetCVPixelBufferForTagCollection")]
     #[cfg(all(feature = "CMTagCollection", feature = "objc2-core-video"))]
     #[inline]
     pub unsafe fn cv_pixel_buffer_for_tag_collection(
         &self,
         tag_collection: &CMTagCollection,
-        index_out: *mut CFIndex,
+        index_out: Option<&mut CFIndex>,
     ) -> Option<CFRetained<CVPixelBuffer>> {
         extern "C-unwind" {
             fn CMTaggedBufferGroupGetCVPixelBufferForTagCollection(
                 group: &CMTaggedBufferGroup,
                 tag_collection: &CMTagCollection,
-                index_out: *mut CFIndex,
+                index_out: Option<&mut CFIndex>,
             ) -> Option<NonNull<CVPixelBuffer>>;
         }
         let ret = unsafe {
@@ -299,23 +291,19 @@ impl CMTaggedBufferGroup {
     /// Parameter `indexOut`: On success, index of the returned CMSampleBuffer.  May be NULL.
     ///
     /// Returns: Returns the CMSampleBuffer, or NULL on failure (including if the buffer at this index is not a CMSampleBuffer).
-    ///
-    /// # Safety
-    ///
-    /// `index_out` must be a valid pointer or null.
     #[doc(alias = "CMTaggedBufferGroupGetCMSampleBufferForTag")]
     #[cfg(all(feature = "CMSampleBuffer", feature = "CMTag"))]
     #[inline]
     pub unsafe fn cm_sample_buffer_for_tag(
         &self,
         tag: CMTag,
-        index_out: *mut CFIndex,
+        index_out: Option<&mut CFIndex>,
     ) -> Option<CFRetained<CMSampleBuffer>> {
         extern "C-unwind" {
             fn CMTaggedBufferGroupGetCMSampleBufferForTag(
                 group: &CMTaggedBufferGroup,
                 tag: CMTag,
-                index_out: *mut CFIndex,
+                index_out: Option<&mut CFIndex>,
             ) -> Option<NonNull<CMSampleBuffer>>;
         }
         let ret = unsafe { CMTaggedBufferGroupGetCMSampleBufferForTag(self, tag, index_out) };
@@ -331,23 +319,19 @@ impl CMTaggedBufferGroup {
     /// Parameter `indexOut`: On success, index of the returned CMSampleBuffer.  May be NULL.
     ///
     /// Returns: Returns the CMSampleBuffer, or NULL on failure (including if the buffer at this index is not a CMSampleBuffer).
-    ///
-    /// # Safety
-    ///
-    /// `index_out` must be a valid pointer or null.
     #[doc(alias = "CMTaggedBufferGroupGetCMSampleBufferForTagCollection")]
     #[cfg(all(feature = "CMSampleBuffer", feature = "CMTagCollection"))]
     #[inline]
     pub unsafe fn cm_sample_buffer_for_tag_collection(
         &self,
         tag_collection: &CMTagCollection,
-        index_out: *mut CFIndex,
+        index_out: Option<&mut CFIndex>,
     ) -> Option<CFRetained<CMSampleBuffer>> {
         extern "C-unwind" {
             fn CMTaggedBufferGroupGetCMSampleBufferForTagCollection(
                 group: &CMTaggedBufferGroup,
                 tag_collection: &CMTagCollection,
-                index_out: *mut CFIndex,
+                index_out: Option<&mut CFIndex>,
             ) -> Option<NonNull<CMSampleBuffer>>;
         }
         let ret = unsafe {

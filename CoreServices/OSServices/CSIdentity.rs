@@ -558,7 +558,13 @@ unsafe impl RefEncode for CSIdentityClientContext {
 impl CSIdentity {
     /// # Safety
     ///
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
+    /// - `client_context` struct field `statusUpdated` must be implemented correctly.
+    /// - `client_context` might not allow `None`.
     /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
@@ -568,7 +574,7 @@ impl CSIdentity {
     #[inline]
     pub unsafe fn commit_asynchronously(
         &self,
-        client_context: *const CSIdentityClientContext,
+        client_context: Option<&CSIdentityClientContext>,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
         authorization: AuthorizationRef,
@@ -576,7 +582,7 @@ impl CSIdentity {
         extern "C-unwind" {
             fn CSIdentityCommitAsynchronously(
                 identity: &CSIdentity,
-                client_context: *const CSIdentityClientContext,
+                client_context: Option<&CSIdentityClientContext>,
                 run_loop: Option<&CFRunLoop>,
                 run_loop_mode: Option<&CFString>,
                 authorization: AuthorizationRef,

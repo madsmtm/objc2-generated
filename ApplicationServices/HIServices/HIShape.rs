@@ -93,12 +93,12 @@ impl HIShape {
 
     /// # Safety
     ///
-    /// `in_rect` must be a valid pointer.
+    /// `in_rect` might not allow `None`.
     #[doc(alias = "HIShapeCreateWithRect")]
     #[inline]
-    pub unsafe fn with_rect(in_rect: *const CGRect) -> Option<CFRetained<HIShape>> {
+    pub unsafe fn with_rect(in_rect: Option<&CGRect>) -> Option<CFRetained<HIShape>> {
         extern "C-unwind" {
-            fn HIShapeCreateWithRect(in_rect: *const CGRect) -> Option<NonNull<HIShape>>;
+            fn HIShapeCreateWithRect(in_rect: Option<&CGRect>) -> Option<NonNull<HIShape>>;
         }
         let ret = unsafe { HIShapeCreateWithRect(in_rect) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -203,12 +203,12 @@ impl HIShape {
 
     /// # Safety
     ///
-    /// `in_point` must be a valid pointer.
+    /// `in_point` might not allow `None`.
     #[doc(alias = "HIShapeContainsPoint")]
     #[inline]
-    pub unsafe fn contains_point(&self, in_point: *const CGPoint) -> bool {
+    pub unsafe fn contains_point(&self, in_point: Option<&CGPoint>) -> bool {
         extern "C-unwind" {
-            fn HIShapeContainsPoint(in_shape: &HIShape, in_point: *const CGPoint) -> Boolean;
+            fn HIShapeContainsPoint(in_shape: &HIShape, in_point: Option<&CGPoint>) -> Boolean;
         }
         let ret = unsafe { HIShapeContainsPoint(self, in_point) };
         ret != 0
@@ -216,12 +216,12 @@ impl HIShape {
 
     /// # Safety
     ///
-    /// `in_rect` must be a valid pointer.
+    /// `in_rect` might not allow `None`.
     #[doc(alias = "HIShapeIntersectsRect")]
     #[inline]
-    pub unsafe fn intersects_rect(&self, in_rect: *const CGRect) -> bool {
+    pub unsafe fn intersects_rect(&self, in_rect: Option<&CGRect>) -> bool {
         extern "C-unwind" {
-            fn HIShapeIntersectsRect(in_shape: &HIShape, in_rect: *const CGRect) -> Boolean;
+            fn HIShapeIntersectsRect(in_shape: &HIShape, in_rect: Option<&CGRect>) -> Boolean;
         }
         let ret = unsafe { HIShapeIntersectsRect(self, in_rect) };
         ret != 0
@@ -229,12 +229,12 @@ impl HIShape {
 
     /// # Safety
     ///
-    /// `out_rect` must be a valid pointer.
+    /// `out_rect` might not allow `None`.
     #[doc(alias = "HIShapeGetBounds")]
     #[inline]
-    pub unsafe fn bounds(&self, out_rect: *mut CGRect) -> *mut CGRect {
+    pub unsafe fn bounds(&self, out_rect: Option<&mut CGRect>) -> *mut CGRect {
         extern "C-unwind" {
-            fn HIShapeGetBounds(in_shape: &HIShape, out_rect: *mut CGRect) -> *mut CGRect;
+            fn HIShapeGetBounds(in_shape: &HIShape, out_rect: Option<&mut CGRect>) -> *mut CGRect;
         }
         unsafe { HIShapeGetBounds(self, out_rect) }
     }
@@ -302,13 +302,13 @@ impl HIMutableShape {
 
     /// # Safety
     ///
-    /// `in_rect` must be a valid pointer.
+    /// `in_rect` might not allow `None`.
     #[doc(alias = "HIShapeCreateMutableWithRect")]
     #[inline]
-    pub unsafe fn with_rect(in_rect: *const CGRect) -> Option<CFRetained<HIMutableShape>> {
+    pub unsafe fn with_rect(in_rect: Option<&CGRect>) -> Option<CFRetained<HIMutableShape>> {
         extern "C-unwind" {
             fn HIShapeCreateMutableWithRect(
-                in_rect: *const CGRect,
+                in_rect: Option<&CGRect>,
             ) -> Option<NonNull<HIMutableShape>>;
         }
         let ret = unsafe { HIShapeCreateMutableWithRect(in_rect) };
@@ -452,12 +452,15 @@ impl HIMutableShape {
 
     /// # Safety
     ///
-    /// `in_rect` must be a valid pointer.
+    /// `in_rect` might not allow `None`.
     #[doc(alias = "HIShapeUnionWithRect")]
     #[inline]
-    pub unsafe fn union_with_rect(&self, in_rect: *const CGRect) -> OSStatus {
+    pub unsafe fn union_with_rect(&self, in_rect: Option<&CGRect>) -> OSStatus {
         extern "C-unwind" {
-            fn HIShapeUnionWithRect(in_shape: &HIMutableShape, in_rect: *const CGRect) -> OSStatus;
+            fn HIShapeUnionWithRect(
+                in_shape: &HIMutableShape,
+                in_rect: Option<&CGRect>,
+            ) -> OSStatus;
         }
         unsafe { HIShapeUnionWithRect(self, in_rect) }
     }

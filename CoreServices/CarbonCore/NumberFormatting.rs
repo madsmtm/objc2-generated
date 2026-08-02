@@ -121,7 +121,7 @@ pub type TripleInt = [FVector; 3];
 
 /// # Safety
 ///
-/// `the_string` must be a valid pointer.
+/// `the_string` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn numtostring(the_num: c_long, the_string: *mut c_char) {

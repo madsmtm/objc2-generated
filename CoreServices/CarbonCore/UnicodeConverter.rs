@@ -270,9 +270,9 @@ pub unsafe fn DisposeUnicodeToTextFallbackUPP(user_upp: UnicodeToTextFallbackUPP
 /// # Safety
 ///
 /// - `i_src_uni_str` must be a valid pointer.
-/// - `o_src_conv_len` must be a valid pointer.
+/// - `o_src_conv_len` might not allow `None`.
 /// - `o_dest_str` must be a valid pointer.
-/// - `o_dest_conv_len` must be a valid pointer.
+/// - `o_dest_conv_len` might not allow `None`.
 /// - `i_info_ptr` must be a valid pointer.
 /// - `i_unicode_mapping_ptr` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
@@ -281,10 +281,10 @@ pub unsafe fn DisposeUnicodeToTextFallbackUPP(user_upp: UnicodeToTextFallbackUPP
 pub unsafe fn InvokeUnicodeToTextFallbackUPP(
     i_src_uni_str: *mut UniChar,
     i_src_uni_str_len: ByteCount,
-    o_src_conv_len: *mut ByteCount,
+    o_src_conv_len: Option<&mut ByteCount>,
     o_dest_str: TextPtr,
     i_dest_str_len: ByteCount,
-    o_dest_conv_len: *mut ByteCount,
+    o_dest_conv_len: Option<&mut ByteCount>,
     i_info_ptr: LogicalAddress,
     i_unicode_mapping_ptr: ConstUnicodeMappingPtr,
     user_upp: UnicodeToTextFallbackUPP,
@@ -293,10 +293,10 @@ pub unsafe fn InvokeUnicodeToTextFallbackUPP(
         fn InvokeUnicodeToTextFallbackUPP(
             i_src_uni_str: *mut UniChar,
             i_src_uni_str_len: ByteCount,
-            o_src_conv_len: *mut ByteCount,
+            o_src_conv_len: Option<&mut ByteCount>,
             o_dest_str: TextPtr,
             i_dest_str_len: ByteCount,
-            o_dest_conv_len: *mut ByteCount,
+            o_dest_conv_len: Option<&mut ByteCount>,
             i_info_ptr: LogicalAddress,
             i_unicode_mapping_ptr: ConstUnicodeMappingPtr,
             user_upp: UnicodeToTextFallbackUPP,
@@ -321,16 +321,17 @@ pub unsafe fn InvokeUnicodeToTextFallbackUPP(
 ///
 /// - `i_unicode_mapping` must be a valid pointer.
 /// - `o_text_to_unicode_info` must be a valid pointer.
+/// - `o_text_to_unicode_info` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn CreateTextToUnicodeInfo(
     i_unicode_mapping: ConstUnicodeMappingPtr,
-    o_text_to_unicode_info: *mut TextToUnicodeInfo,
+    o_text_to_unicode_info: Option<&mut TextToUnicodeInfo>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CreateTextToUnicodeInfo(
             i_unicode_mapping: ConstUnicodeMappingPtr,
-            o_text_to_unicode_info: *mut TextToUnicodeInfo,
+            o_text_to_unicode_info: Option<&mut TextToUnicodeInfo>,
         ) -> OSStatus;
     }
     unsafe { CreateTextToUnicodeInfo(i_unicode_mapping, o_text_to_unicode_info) }
@@ -338,17 +339,18 @@ pub unsafe fn CreateTextToUnicodeInfo(
 
 /// # Safety
 ///
-/// `o_text_to_unicode_info` must be a valid pointer.
+/// - `o_text_to_unicode_info` must be a valid pointer.
+/// - `o_text_to_unicode_info` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn CreateTextToUnicodeInfoByEncoding(
     i_encoding: TextEncoding,
-    o_text_to_unicode_info: *mut TextToUnicodeInfo,
+    o_text_to_unicode_info: Option<&mut TextToUnicodeInfo>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CreateTextToUnicodeInfoByEncoding(
             i_encoding: TextEncoding,
-            o_text_to_unicode_info: *mut TextToUnicodeInfo,
+            o_text_to_unicode_info: Option<&mut TextToUnicodeInfo>,
         ) -> OSStatus;
     }
     unsafe { CreateTextToUnicodeInfoByEncoding(i_encoding, o_text_to_unicode_info) }
@@ -358,16 +360,17 @@ pub unsafe fn CreateTextToUnicodeInfoByEncoding(
 ///
 /// - `i_unicode_mapping` must be a valid pointer.
 /// - `o_unicode_to_text_info` must be a valid pointer.
+/// - `o_unicode_to_text_info` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn CreateUnicodeToTextInfo(
     i_unicode_mapping: ConstUnicodeMappingPtr,
-    o_unicode_to_text_info: *mut UnicodeToTextInfo,
+    o_unicode_to_text_info: Option<&mut UnicodeToTextInfo>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CreateUnicodeToTextInfo(
             i_unicode_mapping: ConstUnicodeMappingPtr,
-            o_unicode_to_text_info: *mut UnicodeToTextInfo,
+            o_unicode_to_text_info: Option<&mut UnicodeToTextInfo>,
         ) -> OSStatus;
     }
     unsafe { CreateUnicodeToTextInfo(i_unicode_mapping, o_unicode_to_text_info) }
@@ -375,17 +378,18 @@ pub unsafe fn CreateUnicodeToTextInfo(
 
 /// # Safety
 ///
-/// `o_unicode_to_text_info` must be a valid pointer.
+/// - `o_unicode_to_text_info` must be a valid pointer.
+/// - `o_unicode_to_text_info` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn CreateUnicodeToTextInfoByEncoding(
     i_encoding: TextEncoding,
-    o_unicode_to_text_info: *mut UnicodeToTextInfo,
+    o_unicode_to_text_info: Option<&mut UnicodeToTextInfo>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CreateUnicodeToTextInfoByEncoding(
             i_encoding: TextEncoding,
-            o_unicode_to_text_info: *mut UnicodeToTextInfo,
+            o_unicode_to_text_info: Option<&mut UnicodeToTextInfo>,
         ) -> OSStatus;
     }
     unsafe { CreateUnicodeToTextInfoByEncoding(i_encoding, o_unicode_to_text_info) }
@@ -395,18 +399,19 @@ pub unsafe fn CreateUnicodeToTextInfoByEncoding(
 ///
 /// - `i_unicode_mappings` must be a valid pointer.
 /// - `o_unicode_to_text_info` must be a valid pointer.
+/// - `o_unicode_to_text_info` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn CreateUnicodeToTextRunInfo(
     i_number_of_mappings: ItemCount,
     i_unicode_mappings: *mut UnicodeMapping,
-    o_unicode_to_text_info: *mut UnicodeToTextRunInfo,
+    o_unicode_to_text_info: Option<&mut UnicodeToTextRunInfo>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CreateUnicodeToTextRunInfo(
             i_number_of_mappings: ItemCount,
             i_unicode_mappings: *mut UnicodeMapping,
-            o_unicode_to_text_info: *mut UnicodeToTextRunInfo,
+            o_unicode_to_text_info: Option<&mut UnicodeToTextRunInfo>,
         ) -> OSStatus;
     }
     unsafe {
@@ -422,18 +427,19 @@ pub unsafe fn CreateUnicodeToTextRunInfo(
 ///
 /// - `i_encodings` must be a valid pointer.
 /// - `o_unicode_to_text_info` must be a valid pointer.
+/// - `o_unicode_to_text_info` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn CreateUnicodeToTextRunInfoByEncoding(
     i_number_of_encodings: ItemCount,
     i_encodings: *mut TextEncoding,
-    o_unicode_to_text_info: *mut UnicodeToTextRunInfo,
+    o_unicode_to_text_info: Option<&mut UnicodeToTextRunInfo>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CreateUnicodeToTextRunInfoByEncoding(
             i_number_of_encodings: ItemCount,
             i_encodings: *mut TextEncoding,
-            o_unicode_to_text_info: *mut UnicodeToTextRunInfo,
+            o_unicode_to_text_info: Option<&mut UnicodeToTextRunInfo>,
         ) -> OSStatus;
     }
     unsafe {
@@ -449,17 +455,18 @@ pub unsafe fn CreateUnicodeToTextRunInfoByEncoding(
 ///
 /// - `i_scripts` must be a valid pointer.
 /// - `o_unicode_to_text_info` must be a valid pointer.
+/// - `o_unicode_to_text_info` might not allow `None`.
 #[inline]
 pub unsafe fn CreateUnicodeToTextRunInfoByScriptCode(
     i_number_of_script_codes: ItemCount,
     i_scripts: *mut ScriptCode,
-    o_unicode_to_text_info: *mut UnicodeToTextRunInfo,
+    o_unicode_to_text_info: Option<&mut UnicodeToTextRunInfo>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CreateUnicodeToTextRunInfoByScriptCode(
             i_number_of_script_codes: ItemCount,
             i_scripts: *mut ScriptCode,
-            o_unicode_to_text_info: *mut UnicodeToTextRunInfo,
+            o_unicode_to_text_info: Option<&mut UnicodeToTextRunInfo>,
         ) -> OSStatus;
     }
     unsafe {
@@ -511,40 +518,47 @@ pub unsafe fn ChangeUnicodeToTextInfo(
 
 /// # Safety
 ///
-/// `io_text_to_unicode_info` must be a valid pointer.
+/// - `io_text_to_unicode_info` must be a valid pointer.
+/// - `io_text_to_unicode_info` might not allow `None`.
 #[inline]
 pub unsafe fn DisposeTextToUnicodeInfo(
-    io_text_to_unicode_info: *mut TextToUnicodeInfo,
+    io_text_to_unicode_info: Option<&mut TextToUnicodeInfo>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn DisposeTextToUnicodeInfo(io_text_to_unicode_info: *mut TextToUnicodeInfo) -> OSStatus;
+        fn DisposeTextToUnicodeInfo(
+            io_text_to_unicode_info: Option<&mut TextToUnicodeInfo>,
+        ) -> OSStatus;
     }
     unsafe { DisposeTextToUnicodeInfo(io_text_to_unicode_info) }
 }
 
 /// # Safety
 ///
-/// `io_unicode_to_text_info` must be a valid pointer.
+/// - `io_unicode_to_text_info` must be a valid pointer.
+/// - `io_unicode_to_text_info` might not allow `None`.
 #[inline]
 pub unsafe fn DisposeUnicodeToTextInfo(
-    io_unicode_to_text_info: *mut UnicodeToTextInfo,
+    io_unicode_to_text_info: Option<&mut UnicodeToTextInfo>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn DisposeUnicodeToTextInfo(io_unicode_to_text_info: *mut UnicodeToTextInfo) -> OSStatus;
+        fn DisposeUnicodeToTextInfo(
+            io_unicode_to_text_info: Option<&mut UnicodeToTextInfo>,
+        ) -> OSStatus;
     }
     unsafe { DisposeUnicodeToTextInfo(io_unicode_to_text_info) }
 }
 
 /// # Safety
 ///
-/// `io_unicode_to_text_run_info` must be a valid pointer.
+/// - `io_unicode_to_text_run_info` must be a valid pointer.
+/// - `io_unicode_to_text_run_info` might not allow `None`.
 #[inline]
 pub unsafe fn DisposeUnicodeToTextRunInfo(
-    io_unicode_to_text_run_info: *mut UnicodeToTextRunInfo,
+    io_unicode_to_text_run_info: Option<&mut UnicodeToTextRunInfo>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn DisposeUnicodeToTextRunInfo(
-            io_unicode_to_text_run_info: *mut UnicodeToTextRunInfo,
+            io_unicode_to_text_run_info: Option<&mut UnicodeToTextRunInfo>,
         ) -> OSStatus;
     }
     unsafe { DisposeUnicodeToTextRunInfo(io_unicode_to_text_run_info) }
@@ -555,10 +569,10 @@ pub unsafe fn DisposeUnicodeToTextRunInfo(
 /// - `i_text_to_unicode_info` must be a valid pointer.
 /// - `i_source_str` must be a valid pointer.
 /// - `i_offset_array` must be a valid pointer.
-/// - `o_offset_count` must be a valid pointer.
+/// - `o_offset_count` might not allow `None`.
 /// - `o_offset_array` must be a valid pointer.
-/// - `o_source_read` must be a valid pointer.
-/// - `o_unicode_len` must be a valid pointer.
+/// - `o_source_read` might not allow `None`.
+/// - `o_unicode_len` might not allow `None`.
 /// - `o_unicode_str` must be a valid pointer.
 #[inline]
 pub unsafe fn ConvertFromTextToUnicode(
@@ -568,11 +582,11 @@ pub unsafe fn ConvertFromTextToUnicode(
     i_control_flags: OptionBits,
     i_offset_count: ItemCount,
     i_offset_array: *mut ByteOffset,
-    o_offset_count: *mut ItemCount,
+    o_offset_count: Option<&mut ItemCount>,
     o_offset_array: *mut ByteOffset,
     i_output_buf_len: ByteCount,
-    o_source_read: *mut ByteCount,
-    o_unicode_len: *mut ByteCount,
+    o_source_read: Option<&mut ByteCount>,
+    o_unicode_len: Option<&mut ByteCount>,
     o_unicode_str: *mut UniChar,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -583,11 +597,11 @@ pub unsafe fn ConvertFromTextToUnicode(
             i_control_flags: OptionBits,
             i_offset_count: ItemCount,
             i_offset_array: *mut ByteOffset,
-            o_offset_count: *mut ItemCount,
+            o_offset_count: Option<&mut ItemCount>,
             o_offset_array: *mut ByteOffset,
             i_output_buf_len: ByteCount,
-            o_source_read: *mut ByteCount,
-            o_unicode_len: *mut ByteCount,
+            o_source_read: Option<&mut ByteCount>,
+            o_unicode_len: Option<&mut ByteCount>,
             o_unicode_str: *mut UniChar,
         ) -> OSStatus;
     }
@@ -614,10 +628,10 @@ pub unsafe fn ConvertFromTextToUnicode(
 /// - `i_unicode_to_text_info` must be a valid pointer.
 /// - `i_unicode_str` must be a valid pointer.
 /// - `i_offset_array` must be a valid pointer.
-/// - `o_offset_count` must be a valid pointer.
+/// - `o_offset_count` might not allow `None`.
 /// - `o_offset_array` must be a valid pointer.
-/// - `o_input_read` must be a valid pointer.
-/// - `o_output_len` must be a valid pointer.
+/// - `o_input_read` might not allow `None`.
+/// - `o_output_len` might not allow `None`.
 /// - `o_output_str` must be a valid pointer.
 #[inline]
 pub unsafe fn ConvertFromUnicodeToText(
@@ -627,11 +641,11 @@ pub unsafe fn ConvertFromUnicodeToText(
     i_control_flags: OptionBits,
     i_offset_count: ItemCount,
     i_offset_array: *mut ByteOffset,
-    o_offset_count: *mut ItemCount,
+    o_offset_count: Option<&mut ItemCount>,
     o_offset_array: *mut ByteOffset,
     i_output_buf_len: ByteCount,
-    o_input_read: *mut ByteCount,
-    o_output_len: *mut ByteCount,
+    o_input_read: Option<&mut ByteCount>,
+    o_output_len: Option<&mut ByteCount>,
     o_output_str: LogicalAddress,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -642,11 +656,11 @@ pub unsafe fn ConvertFromUnicodeToText(
             i_control_flags: OptionBits,
             i_offset_count: ItemCount,
             i_offset_array: *mut ByteOffset,
-            o_offset_count: *mut ItemCount,
+            o_offset_count: Option<&mut ItemCount>,
             o_offset_array: *mut ByteOffset,
             i_output_buf_len: ByteCount,
-            o_input_read: *mut ByteCount,
-            o_output_len: *mut ByteCount,
+            o_input_read: Option<&mut ByteCount>,
+            o_output_len: Option<&mut ByteCount>,
             o_output_str: LogicalAddress,
         ) -> OSStatus;
     }
@@ -673,12 +687,12 @@ pub unsafe fn ConvertFromUnicodeToText(
 /// - `i_unicode_to_text_info` must be a valid pointer.
 /// - `i_unicode_str` must be a valid pointer.
 /// - `i_offset_array` must be a valid pointer.
-/// - `o_offset_count` must be a valid pointer.
+/// - `o_offset_count` might not allow `None`.
 /// - `o_offset_array` must be a valid pointer.
-/// - `o_input_read` must be a valid pointer.
-/// - `o_output_len` must be a valid pointer.
+/// - `o_input_read` might not allow `None`.
+/// - `o_output_len` might not allow `None`.
 /// - `o_output_str` must be a valid pointer.
-/// - `o_encoding_run_out_len` must be a valid pointer.
+/// - `o_encoding_run_out_len` might not allow `None`.
 /// - `o_encoding_runs` must be a valid pointer.
 #[cfg(feature = "TextCommon")]
 #[inline]
@@ -689,14 +703,14 @@ pub unsafe fn ConvertFromUnicodeToTextRun(
     i_control_flags: OptionBits,
     i_offset_count: ItemCount,
     i_offset_array: *mut ByteOffset,
-    o_offset_count: *mut ItemCount,
+    o_offset_count: Option<&mut ItemCount>,
     o_offset_array: *mut ByteOffset,
     i_output_buf_len: ByteCount,
-    o_input_read: *mut ByteCount,
-    o_output_len: *mut ByteCount,
+    o_input_read: Option<&mut ByteCount>,
+    o_output_len: Option<&mut ByteCount>,
     o_output_str: LogicalAddress,
     i_encoding_run_buf_len: ItemCount,
-    o_encoding_run_out_len: *mut ItemCount,
+    o_encoding_run_out_len: Option<&mut ItemCount>,
     o_encoding_runs: *mut TextEncodingRun,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -707,14 +721,14 @@ pub unsafe fn ConvertFromUnicodeToTextRun(
             i_control_flags: OptionBits,
             i_offset_count: ItemCount,
             i_offset_array: *mut ByteOffset,
-            o_offset_count: *mut ItemCount,
+            o_offset_count: Option<&mut ItemCount>,
             o_offset_array: *mut ByteOffset,
             i_output_buf_len: ByteCount,
-            o_input_read: *mut ByteCount,
-            o_output_len: *mut ByteCount,
+            o_input_read: Option<&mut ByteCount>,
+            o_output_len: Option<&mut ByteCount>,
             o_output_str: LogicalAddress,
             i_encoding_run_buf_len: ItemCount,
-            o_encoding_run_out_len: *mut ItemCount,
+            o_encoding_run_out_len: Option<&mut ItemCount>,
             o_encoding_runs: *mut TextEncodingRun,
         ) -> OSStatus;
     }
@@ -744,12 +758,12 @@ pub unsafe fn ConvertFromUnicodeToTextRun(
 /// - `i_unicode_to_text_info` must be a valid pointer.
 /// - `i_unicode_str` must be a valid pointer.
 /// - `i_offset_array` must be a valid pointer.
-/// - `o_offset_count` must be a valid pointer.
+/// - `o_offset_count` might not allow `None`.
 /// - `o_offset_array` must be a valid pointer.
-/// - `o_input_read` must be a valid pointer.
-/// - `o_output_len` must be a valid pointer.
+/// - `o_input_read` might not allow `None`.
+/// - `o_output_len` might not allow `None`.
 /// - `o_output_str` must be a valid pointer.
-/// - `o_script_run_out_len` must be a valid pointer.
+/// - `o_script_run_out_len` might not allow `None`.
 /// - `o_script_code_runs` must be a valid pointer.
 #[cfg(feature = "TextCommon")]
 #[inline]
@@ -760,14 +774,14 @@ pub unsafe fn ConvertFromUnicodeToScriptCodeRun(
     i_control_flags: OptionBits,
     i_offset_count: ItemCount,
     i_offset_array: *mut ByteOffset,
-    o_offset_count: *mut ItemCount,
+    o_offset_count: Option<&mut ItemCount>,
     o_offset_array: *mut ByteOffset,
     i_output_buf_len: ByteCount,
-    o_input_read: *mut ByteCount,
-    o_output_len: *mut ByteCount,
+    o_input_read: Option<&mut ByteCount>,
+    o_output_len: Option<&mut ByteCount>,
     o_output_str: LogicalAddress,
     i_script_run_buf_len: ItemCount,
-    o_script_run_out_len: *mut ItemCount,
+    o_script_run_out_len: Option<&mut ItemCount>,
     o_script_code_runs: *mut ScriptCodeRun,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -778,14 +792,14 @@ pub unsafe fn ConvertFromUnicodeToScriptCodeRun(
             i_control_flags: OptionBits,
             i_offset_count: ItemCount,
             i_offset_array: *mut ByteOffset,
-            o_offset_count: *mut ItemCount,
+            o_offset_count: Option<&mut ItemCount>,
             o_offset_array: *mut ByteOffset,
             i_output_buf_len: ByteCount,
-            o_input_read: *mut ByteCount,
-            o_output_len: *mut ByteCount,
+            o_input_read: Option<&mut ByteCount>,
+            o_output_len: Option<&mut ByteCount>,
             o_output_str: LogicalAddress,
             i_script_run_buf_len: ItemCount,
-            o_script_run_out_len: *mut ItemCount,
+            o_script_run_out_len: Option<&mut ItemCount>,
             o_script_code_runs: *mut ScriptCodeRun,
         ) -> OSStatus;
     }
@@ -814,14 +828,14 @@ pub unsafe fn ConvertFromUnicodeToScriptCodeRun(
 ///
 /// - `i_text_to_unicode_info` must be a valid pointer.
 /// - `i_source_str` must be a valid pointer.
-/// - `o_truncated_len` must be a valid pointer.
+/// - `o_truncated_len` might not allow `None`.
 #[inline]
 pub unsafe fn TruncateForTextToUnicode(
     i_text_to_unicode_info: ConstTextToUnicodeInfo,
     i_source_len: ByteCount,
     i_source_str: ConstLogicalAddress,
     i_max_len: ByteCount,
-    o_truncated_len: *mut ByteCount,
+    o_truncated_len: Option<&mut ByteCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TruncateForTextToUnicode(
@@ -829,7 +843,7 @@ pub unsafe fn TruncateForTextToUnicode(
             i_source_len: ByteCount,
             i_source_str: ConstLogicalAddress,
             i_max_len: ByteCount,
-            o_truncated_len: *mut ByteCount,
+            o_truncated_len: Option<&mut ByteCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -847,7 +861,7 @@ pub unsafe fn TruncateForTextToUnicode(
 ///
 /// - `i_unicode_to_text_info` must be a valid pointer.
 /// - `i_source_str` must be a valid pointer.
-/// - `o_truncated_len` must be a valid pointer.
+/// - `o_truncated_len` might not allow `None`.
 #[inline]
 pub unsafe fn TruncateForUnicodeToText(
     i_unicode_to_text_info: ConstUnicodeToTextInfo,
@@ -855,7 +869,7 @@ pub unsafe fn TruncateForUnicodeToText(
     i_source_str: *mut UniChar,
     i_control_flags: OptionBits,
     i_max_len: ByteCount,
-    o_truncated_len: *mut ByteCount,
+    o_truncated_len: Option<&mut ByteCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TruncateForUnicodeToText(
@@ -864,7 +878,7 @@ pub unsafe fn TruncateForUnicodeToText(
             i_source_str: *mut UniChar,
             i_control_flags: OptionBits,
             i_max_len: ByteCount,
-            o_truncated_len: *mut ByteCount,
+            o_truncated_len: Option<&mut ByteCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -883,14 +897,14 @@ pub unsafe fn TruncateForUnicodeToText(
 ///
 /// - `i_text_to_unicode_info` must be a valid pointer.
 /// - `i_pascal_str` must be a valid pointer.
-/// - `o_unicode_len` must be a valid pointer.
+/// - `o_unicode_len` might not allow `None`.
 /// - `o_unicode_str` must be a valid pointer.
 #[inline]
 pub unsafe fn ConvertFromPStringToUnicode(
     i_text_to_unicode_info: TextToUnicodeInfo,
     i_pascal_str: ConstStr255Param,
     i_output_buf_len: ByteCount,
-    o_unicode_len: *mut ByteCount,
+    o_unicode_len: Option<&mut ByteCount>,
     o_unicode_str: *mut UniChar,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -898,7 +912,7 @@ pub unsafe fn ConvertFromPStringToUnicode(
             i_text_to_unicode_info: TextToUnicodeInfo,
             i_pascal_str: ConstStr255Param,
             i_output_buf_len: ByteCount,
-            o_unicode_len: *mut ByteCount,
+            o_unicode_len: Option<&mut ByteCount>,
             o_unicode_str: *mut UniChar,
         ) -> OSStatus;
     }
@@ -946,19 +960,19 @@ pub unsafe fn ConvertFromUnicodeToPString(
 /// # Safety
 ///
 /// - `i_find_mapping` must be a valid pointer.
-/// - `o_actual_count` must be a valid pointer.
+/// - `o_actual_count` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn CountUnicodeMappings(
     i_filter: OptionBits,
     i_find_mapping: ConstUnicodeMappingPtr,
-    o_actual_count: *mut ItemCount,
+    o_actual_count: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CountUnicodeMappings(
             i_filter: OptionBits,
             i_find_mapping: ConstUnicodeMappingPtr,
-            o_actual_count: *mut ItemCount,
+            o_actual_count: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe { CountUnicodeMappings(i_filter, i_find_mapping, o_actual_count) }
@@ -967,7 +981,7 @@ pub unsafe fn CountUnicodeMappings(
 /// # Safety
 ///
 /// - `i_find_mapping` must be a valid pointer.
-/// - `o_actual_count` must be a valid pointer.
+/// - `o_actual_count` might not allow `None`.
 /// - `o_returned_mappings` must be a valid pointer.
 #[cfg(feature = "TextCommon")]
 #[inline]
@@ -975,7 +989,7 @@ pub unsafe fn QueryUnicodeMappings(
     i_filter: OptionBits,
     i_find_mapping: ConstUnicodeMappingPtr,
     i_max_count: ItemCount,
-    o_actual_count: *mut ItemCount,
+    o_actual_count: Option<&mut ItemCount>,
     o_returned_mappings: *mut UnicodeMapping,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -983,7 +997,7 @@ pub unsafe fn QueryUnicodeMappings(
             i_filter: OptionBits,
             i_find_mapping: ConstUnicodeMappingPtr,
             i_max_count: ItemCount,
-            o_actual_count: *mut ItemCount,
+            o_actual_count: Option<&mut ItemCount>,
             o_returned_mappings: *mut UnicodeMapping,
         ) -> OSStatus;
     }

@@ -81,18 +81,19 @@ pub const kLocaleAndVariantNameMask: c_uint = 0x00000003;
 
 /// # Safety
 ///
-/// `locale` must be a valid pointer.
+/// - `locale` must be a valid pointer.
+/// - `locale` might not allow `None`.
 #[inline]
 pub unsafe fn LocaleRefFromLangOrRegionCode(
     lang: LangCode,
     region: RegionCode,
-    locale: *mut LocaleRef,
+    locale: Option<&mut LocaleRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn LocaleRefFromLangOrRegionCode(
             lang: LangCode,
             region: RegionCode,
-            locale: *mut LocaleRef,
+            locale: Option<&mut LocaleRef>,
         ) -> OSStatus;
     }
     unsafe { LocaleRefFromLangOrRegionCode(lang, region, locale) }
@@ -100,17 +101,19 @@ pub unsafe fn LocaleRefFromLangOrRegionCode(
 
 /// # Safety
 ///
-/// - `locale_string` must be a valid pointer.
+/// - `locale_string` has unclear size.
+/// - `locale_string` might not allow `None`.
 /// - `locale` must be a valid pointer.
+/// - `locale` might not allow `None`.
 #[inline]
 pub unsafe fn LocaleRefFromLocaleString(
     locale_string: *mut c_char,
-    locale: *mut LocaleRef,
+    locale: Option<&mut LocaleRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn LocaleRefFromLocaleString(
             locale_string: *mut c_char,
-            locale: *mut LocaleRef,
+            locale: Option<&mut LocaleRef>,
         ) -> OSStatus;
     }
     unsafe { LocaleRefFromLocaleString(locale_string, locale) }
@@ -140,38 +143,43 @@ pub unsafe fn LocaleRefGetPartString(
 
 /// # Safety
 ///
-/// - `locale_string` must be a valid pointer.
-/// - `lang` must be a valid pointer.
-/// - `region` must be a valid pointer.
+/// - `locale_string` has unclear size.
+/// - `locale_string` might not allow `None`.
+/// - `lang` might not allow `None`.
+/// - `region` might not allow `None`.
 #[inline]
 pub unsafe fn LocaleStringToLangAndRegionCodes(
-    locale_string: *mut c_char,
-    lang: *mut LangCode,
-    region: *mut RegionCode,
+    locale_string: Option<&CStr>,
+    lang: Option<&mut LangCode>,
+    region: Option<&mut RegionCode>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn LocaleStringToLangAndRegionCodes(
-            locale_string: *mut c_char,
-            lang: *mut LangCode,
-            region: *mut RegionCode,
+            locale_string: *const c_char,
+            lang: Option<&mut LangCode>,
+            region: Option<&mut RegionCode>,
         ) -> OSStatus;
     }
+    let locale_string = locale_string
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null)
+        .cast();
     unsafe { LocaleStringToLangAndRegionCodes(locale_string, lang, region) }
 }
 
 /// # Safety
 ///
-/// `locale_count` must be a valid pointer.
+/// `locale_count` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn LocaleOperationCountLocales(
     op_class: LocaleOperationClass,
-    locale_count: *mut ItemCount,
+    locale_count: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn LocaleOperationCountLocales(
             op_class: LocaleOperationClass,
-            locale_count: *mut ItemCount,
+            locale_count: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe { LocaleOperationCountLocales(op_class, locale_count) }
@@ -179,21 +187,21 @@ pub unsafe fn LocaleOperationCountLocales(
 
 /// # Safety
 ///
-/// - `actual_locale_count` must be a valid pointer.
+/// - `actual_locale_count` might not allow `None`.
 /// - `locale_variant_list` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn LocaleOperationGetLocales(
     op_class: LocaleOperationClass,
     max_locale_count: ItemCount,
-    actual_locale_count: *mut ItemCount,
+    actual_locale_count: Option<&mut ItemCount>,
     locale_variant_list: *mut LocaleAndVariant,
 ) -> OSStatus {
     extern "C-unwind" {
         fn LocaleOperationGetLocales(
             op_class: LocaleOperationClass,
             max_locale_count: ItemCount,
-            actual_locale_count: *mut ItemCount,
+            actual_locale_count: Option<&mut ItemCount>,
             locale_variant_list: *mut LocaleAndVariant,
         ) -> OSStatus;
     }
@@ -211,7 +219,7 @@ pub unsafe fn LocaleOperationGetLocales(
 ///
 /// - `locale` must be a valid pointer.
 /// - `display_locale` must be a valid pointer.
-/// - `actual_name_len` must be a valid pointer.
+/// - `actual_name_len` might not allow `None`.
 /// - `display_name` must be a valid pointer.
 #[deprecated]
 #[inline]
@@ -221,7 +229,7 @@ pub unsafe fn LocaleGetName(
     name_mask: LocaleNameMask,
     display_locale: LocaleRef,
     max_name_len: UniCharCount,
-    actual_name_len: *mut UniCharCount,
+    actual_name_len: Option<&mut UniCharCount>,
     display_name: *mut UniChar,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -231,7 +239,7 @@ pub unsafe fn LocaleGetName(
             name_mask: LocaleNameMask,
             display_locale: LocaleRef,
             max_name_len: UniCharCount,
-            actual_name_len: *mut UniCharCount,
+            actual_name_len: Option<&mut UniCharCount>,
             display_name: *mut UniChar,
         ) -> OSStatus;
     }
@@ -251,21 +259,21 @@ pub unsafe fn LocaleGetName(
 /// # Safety
 ///
 /// - `locale` must be a valid pointer.
-/// - `name_count` must be a valid pointer.
+/// - `name_count` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn LocaleCountNames(
     locale: LocaleRef,
     op_variant: LocaleOperationVariant,
     name_mask: LocaleNameMask,
-    name_count: *mut ItemCount,
+    name_count: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn LocaleCountNames(
             locale: LocaleRef,
             op_variant: LocaleOperationVariant,
             name_mask: LocaleNameMask,
-            name_count: *mut ItemCount,
+            name_count: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe { LocaleCountNames(locale, op_variant, name_mask, name_count) }
@@ -274,9 +282,10 @@ pub unsafe fn LocaleCountNames(
 /// # Safety
 ///
 /// - `locale` must be a valid pointer.
-/// - `actual_name_len` must be a valid pointer.
+/// - `actual_name_len` might not allow `None`.
 /// - `display_name` must be a valid pointer.
 /// - `display_locale` must be a valid pointer.
+/// - `display_locale` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn LocaleGetIndName(
@@ -285,9 +294,9 @@ pub unsafe fn LocaleGetIndName(
     name_mask: LocaleNameMask,
     name_index: ItemCount,
     max_name_len: UniCharCount,
-    actual_name_len: *mut UniCharCount,
+    actual_name_len: Option<&mut UniCharCount>,
     display_name: *mut UniChar,
-    display_locale: *mut LocaleRef,
+    display_locale: Option<&mut LocaleRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn LocaleGetIndName(
@@ -296,9 +305,9 @@ pub unsafe fn LocaleGetIndName(
             name_mask: LocaleNameMask,
             name_index: ItemCount,
             max_name_len: UniCharCount,
-            actual_name_len: *mut UniCharCount,
+            actual_name_len: Option<&mut UniCharCount>,
             display_name: *mut UniChar,
-            display_locale: *mut LocaleRef,
+            display_locale: Option<&mut LocaleRef>,
         ) -> OSStatus;
     }
     unsafe {
@@ -318,14 +327,14 @@ pub unsafe fn LocaleGetIndName(
 /// # Safety
 ///
 /// - `display_locale` must be a valid pointer.
-/// - `actual_name_len` must be a valid pointer.
+/// - `actual_name_len` might not allow `None`.
 /// - `display_name` must be a valid pointer.
 #[inline]
 pub unsafe fn LocaleOperationGetName(
     op_class: LocaleOperationClass,
     display_locale: LocaleRef,
     max_name_len: UniCharCount,
-    actual_name_len: *mut UniCharCount,
+    actual_name_len: Option<&mut UniCharCount>,
     display_name: *mut UniChar,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -333,7 +342,7 @@ pub unsafe fn LocaleOperationGetName(
             op_class: LocaleOperationClass,
             display_locale: LocaleRef,
             max_name_len: UniCharCount,
-            actual_name_len: *mut UniCharCount,
+            actual_name_len: Option<&mut UniCharCount>,
             display_name: *mut UniChar,
         ) -> OSStatus;
     }
@@ -350,16 +359,16 @@ pub unsafe fn LocaleOperationGetName(
 
 /// # Safety
 ///
-/// `name_count` must be a valid pointer.
+/// `name_count` might not allow `None`.
 #[inline]
 pub unsafe fn LocaleOperationCountNames(
     op_class: LocaleOperationClass,
-    name_count: *mut ItemCount,
+    name_count: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn LocaleOperationCountNames(
             op_class: LocaleOperationClass,
-            name_count: *mut ItemCount,
+            name_count: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe { LocaleOperationCountNames(op_class, name_count) }
@@ -367,26 +376,27 @@ pub unsafe fn LocaleOperationCountNames(
 
 /// # Safety
 ///
-/// - `actual_name_len` must be a valid pointer.
+/// - `actual_name_len` might not allow `None`.
 /// - `display_name` must be a valid pointer.
 /// - `display_locale` must be a valid pointer.
+/// - `display_locale` might not allow `None`.
 #[inline]
 pub unsafe fn LocaleOperationGetIndName(
     op_class: LocaleOperationClass,
     name_index: ItemCount,
     max_name_len: UniCharCount,
-    actual_name_len: *mut UniCharCount,
+    actual_name_len: Option<&mut UniCharCount>,
     display_name: *mut UniChar,
-    display_locale: *mut LocaleRef,
+    display_locale: Option<&mut LocaleRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn LocaleOperationGetIndName(
             op_class: LocaleOperationClass,
             name_index: ItemCount,
             max_name_len: UniCharCount,
-            actual_name_len: *mut UniCharCount,
+            actual_name_len: Option<&mut UniCharCount>,
             display_name: *mut UniChar,
-            display_locale: *mut LocaleRef,
+            display_locale: Option<&mut LocaleRef>,
         ) -> OSStatus;
     }
     unsafe {

@@ -344,15 +344,12 @@ impl NSLayoutManager {
         pub fn numberOfGlyphs(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-graphics")]
-        /// # Safety
-        ///
-        /// `is_valid_index` must be a valid pointer or null.
         #[unsafe(method(CGGlyphAtIndex:isValidIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn CGGlyphAtIndex_isValidIndex(
+        pub fn CGGlyphAtIndex_isValidIndex(
             &self,
             glyph_index: NSUInteger,
-            is_valid_index: *mut Bool,
+            is_valid_index: Option<&mut Bool>,
         ) -> CGGlyph;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -452,17 +449,12 @@ impl NSLayoutManager {
 
     extern_methods!(
         /// ********************** Get layout information ***********************
-        ///
-        /// # Safety
-        ///
-        /// - `char_index` must be a valid pointer or null.
-        /// - `glyph_index` must be a valid pointer or null.
         #[unsafe(method(getFirstUnlaidCharacterIndex:glyphIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getFirstUnlaidCharacterIndex_glyphIndex(
+        pub fn getFirstUnlaidCharacterIndex_glyphIndex(
             &self,
-            char_index: *mut NSUInteger,
-            glyph_index: *mut NSUInteger,
+            char_index: Option<&mut NSUInteger>,
+            glyph_index: Option<&mut NSUInteger>,
         );
 
         #[unsafe(method(firstUnlaidCharacterIndex))]
@@ -657,16 +649,13 @@ impl NSLayoutManager {
         ) -> NSRange;
 
         #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
-        /// # Safety
-        ///
-        /// `partial_fraction` must be a valid pointer or null.
         #[unsafe(method(glyphIndexForPoint:inTextContainer:fractionOfDistanceThroughGlyph:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn glyphIndexForPoint_inTextContainer_fractionOfDistanceThroughGlyph(
+        pub fn glyphIndexForPoint_inTextContainer_fractionOfDistanceThroughGlyph(
             &self,
             point: CGPoint,
             container: &NSTextContainer,
-            partial_fraction: *mut CGFloat,
+            partial_fraction: Option<&mut CGFloat>,
         ) -> NSUInteger;
 
         #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
@@ -688,16 +677,13 @@ impl NSLayoutManager {
         ) -> CGFloat;
 
         #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
-        /// # Safety
-        ///
-        /// `partial_fraction` must be a valid pointer or null.
         #[unsafe(method(characterIndexForPoint:inTextContainer:fractionOfDistanceBetweenInsertionPoints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn characterIndexForPoint_inTextContainer_fractionOfDistanceBetweenInsertionPoints(
+        pub fn characterIndexForPoint_inTextContainer_fractionOfDistanceBetweenInsertionPoints(
             &self,
             point: CGPoint,
             container: &NSTextContainer,
-            partial_fraction: *mut CGFloat,
+            partial_fraction: Option<&mut CGFloat>,
         ) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -964,20 +950,15 @@ extern_protocol!(
         ) -> CGRect;
 
         #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
-        /// # Safety
-        ///
-        /// - `line_fragment_rect` must be a valid pointer.
-        /// - `line_fragment_used_rect` must be a valid pointer.
-        /// - `baseline_offset` must be a valid pointer.
         #[optional]
         #[unsafe(method(layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange(
+        fn layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange(
             &self,
             layout_manager: &NSLayoutManager,
-            line_fragment_rect: NonNull<CGRect>,
-            line_fragment_used_rect: NonNull<CGRect>,
-            baseline_offset: NonNull<CGFloat>,
+            line_fragment_rect: &mut CGRect,
+            line_fragment_used_rect: &mut CGRect,
+            baseline_offset: &mut CGFloat,
             text_container: &NSTextContainer,
             glyph_range: NSRange,
         ) -> bool;
@@ -1039,15 +1020,12 @@ pub const NSControlCharacterContainerBreakAction: NSInteger =
 impl NSLayoutManager {
     extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
-        /// # Safety
-        ///
-        /// `is_valid_index` must be a valid pointer or null.
         #[unsafe(method(glyphAtIndex:isValidIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn glyphAtIndex_isValidIndex(
+        pub fn glyphAtIndex_isValidIndex(
             &self,
             glyph_index: NSUInteger,
-            is_valid_index: *mut Bool,
+            is_valid_index: Option<&mut Bool>,
         ) -> CGGlyph;
 
         #[cfg(feature = "objc2-core-graphics")]

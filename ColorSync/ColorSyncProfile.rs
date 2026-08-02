@@ -644,43 +644,32 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileEstimateGammaWithDisplayID(display_id, error) }
     }
 
-    /// # Safety
-    ///
-    /// - `red_min` must be a valid pointer.
-    /// - `red_max` must be a valid pointer.
-    /// - `red_gamma` must be a valid pointer.
-    /// - `green_min` must be a valid pointer.
-    /// - `green_max` must be a valid pointer.
-    /// - `green_gamma` must be a valid pointer.
-    /// - `blue_min` must be a valid pointer.
-    /// - `blue_max` must be a valid pointer.
-    /// - `blue_gamma` must be a valid pointer.
     #[doc(alias = "ColorSyncProfileGetDisplayTransferFormulaFromVCGT")]
     #[inline]
     pub unsafe fn display_transfer_formula_from_vcgt(
         &self,
-        red_min: NonNull<c_float>,
-        red_max: NonNull<c_float>,
-        red_gamma: NonNull<c_float>,
-        green_min: NonNull<c_float>,
-        green_max: NonNull<c_float>,
-        green_gamma: NonNull<c_float>,
-        blue_min: NonNull<c_float>,
-        blue_max: NonNull<c_float>,
-        blue_gamma: NonNull<c_float>,
+        red_min: &mut c_float,
+        red_max: &mut c_float,
+        red_gamma: &mut c_float,
+        green_min: &mut c_float,
+        green_max: &mut c_float,
+        green_gamma: &mut c_float,
+        blue_min: &mut c_float,
+        blue_max: &mut c_float,
+        blue_gamma: &mut c_float,
     ) -> bool {
         extern "C-unwind" {
             fn ColorSyncProfileGetDisplayTransferFormulaFromVCGT(
                 profile: &ColorSyncProfile,
-                red_min: NonNull<c_float>,
-                red_max: NonNull<c_float>,
-                red_gamma: NonNull<c_float>,
-                green_min: NonNull<c_float>,
-                green_max: NonNull<c_float>,
-                green_gamma: NonNull<c_float>,
-                blue_min: NonNull<c_float>,
-                blue_max: NonNull<c_float>,
-                blue_gamma: NonNull<c_float>,
+                red_min: &mut c_float,
+                red_max: &mut c_float,
+                red_gamma: &mut c_float,
+                green_min: &mut c_float,
+                green_max: &mut c_float,
+                green_gamma: &mut c_float,
+                blue_min: &mut c_float,
+                blue_max: &mut c_float,
+                blue_gamma: &mut c_float,
             ) -> bool;
         }
         unsafe {
@@ -699,19 +688,16 @@ impl ColorSyncProfile {
         }
     }
 
-    /// # Safety
-    ///
-    /// `n_samples_per_channel` must be a valid pointer.
     #[doc(alias = "ColorSyncProfileCreateDisplayTransferTablesFromVCGT")]
     #[inline]
     pub unsafe fn display_transfer_tables_from_vcgt(
         &self,
-        n_samples_per_channel: NonNull<usize>,
+        n_samples_per_channel: &mut usize,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn ColorSyncProfileCreateDisplayTransferTablesFromVCGT(
                 profile: &ColorSyncProfile,
-                n_samples_per_channel: NonNull<usize>,
+                n_samples_per_channel: &mut usize,
             ) -> Option<NonNull<CFData>>;
         }
         let ret = unsafe {
@@ -922,19 +908,18 @@ extern "C" {
 /// # Safety
 ///
 /// - `call_back` must be implemented correctly.
-/// - `seed` must be a valid pointer or null.
 /// - `user_info` must be a valid pointer or null.
 #[inline]
 pub unsafe fn ColorSyncIterateInstalledProfiles(
     call_back: ColorSyncProfileIterateCallback,
-    seed: *mut u32,
+    seed: Option<&mut u32>,
     user_info: *mut c_void,
     error: Option<&mut Option<CFRetained<CFError>>>,
 ) {
     extern "C-unwind" {
         fn ColorSyncIterateInstalledProfiles(
             call_back: ColorSyncProfileIterateCallback,
-            seed: *mut u32,
+            seed: Option<&mut u32>,
             user_info: *mut c_void,
             error: Option<&mut Option<CFRetained<CFError>>>,
         );
@@ -956,13 +941,12 @@ extern "C" {
 /// # Safety
 ///
 /// - `call_back` must be implemented correctly.
-/// - `seed` must be a valid pointer or null.
 /// - `user_info` must be a valid pointer or null.
 /// - `options` generic should be of the correct type.
 #[inline]
 pub unsafe fn ColorSyncIterateInstalledProfilesWithOptions(
     call_back: ColorSyncProfileIterateCallback,
-    seed: *mut u32,
+    seed: Option<&mut u32>,
     user_info: *mut c_void,
     options: Option<&CFDictionary<CFString, CFType>>,
     error: Option<&mut Option<CFRetained<CFError>>>,
@@ -970,7 +954,7 @@ pub unsafe fn ColorSyncIterateInstalledProfilesWithOptions(
     extern "C-unwind" {
         fn ColorSyncIterateInstalledProfilesWithOptions(
             call_back: ColorSyncProfileIterateCallback,
-            seed: *mut u32,
+            seed: Option<&mut u32>,
             user_info: *mut c_void,
             options: Option<&CFDictionary<CFString, CFType>>,
             error: Option<&mut Option<CFRetained<CFError>>>,

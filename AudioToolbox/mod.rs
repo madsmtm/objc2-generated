@@ -5915,21 +5915,20 @@ pub unsafe fn AudioFileComponentFileDataIsThisFormat(
 ///
 /// # Safety
 ///
-/// - `in_component` must be a valid pointer.
-/// - `out_result` must be a valid pointer.
+/// `in_component` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe fn AudioFileComponentFileIsThisFormat(
     in_component: AudioFileComponent,
     in_file_ref_num: i16,
-    out_result: NonNull<u32>,
+    out_result: &mut u32,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioFileComponentFileIsThisFormat(
             in_component: AudioFileComponent,
             in_file_ref_num: i16,
-            out_result: NonNull<u32>,
+            out_result: &mut u32,
         ) -> OSStatus;
     }
     unsafe { AudioFileComponentFileIsThisFormat(in_component, in_file_ref_num, out_result) }

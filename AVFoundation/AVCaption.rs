@@ -944,17 +944,13 @@ impl AVCaption {
         /// Cyan    (RGB:0.0, 1.0, 1.0)
         /// Magenta    (RGB:1.0, 0.0, 1.0)
         /// Black    (RGB:0.0, 0.0, 0.0)
-        ///
-        /// # Safety
-        ///
-        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(textColorAtIndex:range:))]
         // required for soundness, method has `returns_retained` attribute.
         #[unsafe(method_family = copy)]
         pub unsafe fn textColorAtIndex_range(
             &self,
             index: NSInteger,
-            out_range: *mut NSRange,
+            out_range: Option<&mut NSRange>,
         ) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -973,17 +969,13 @@ impl AVCaption {
         /// Cyan    (RGB:0.0, 1.0, 1.0)
         /// Magenta    (RGB:1.0, 0.0, 1.0)
         /// Black    (RGB:0.0, 0.0, 0.0)
-        ///
-        /// # Safety
-        ///
-        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(backgroundColorAtIndex:range:))]
         // required for soundness, method has `returns_retained` attribute.
         #[unsafe(method_family = copy)]
         pub unsafe fn backgroundColorAtIndex_range(
             &self,
             index: NSInteger,
-            out_range: *mut NSRange,
+            out_range: Option<&mut NSRange>,
         ) -> Option<Retained<CGColor>>;
 
         /// Indicates the font weight of the character(s).
@@ -993,16 +985,12 @@ impl AVCaption {
         /// CEA608 closed captions ignore this property.
         ///
         /// A visible distinction between AVCaptionFontWeightNormal and AVCaptionFontWeightBold may not exist if the font used has only one weight. This can be more common with CJK fonts where individual fonts can be quite large in terms of storage. Nevertheless, AVCaption still carries the font weight semantics so if the same AVCaption is applied to a different font having multiple weights, the distinction will become visible.
-        ///
-        /// # Safety
-        ///
-        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(fontWeightAtIndex:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontWeightAtIndex_range(
             &self,
             index: NSInteger,
-            out_range: *mut NSRange,
+            out_range: Option<&mut NSRange>,
         ) -> AVCaptionFontWeight;
 
         /// Indicates the font style of the character(s).
@@ -1010,16 +998,12 @@ impl AVCaption {
         /// The range parameter receives UTF-16 code unit index range the style is effective. After returning from the call, the range will indicate where the current style returned will be active and allows discovery of the next change in the style.
         ///
         /// Some writing systems may not have italic glyphs for characters and so fonts with italic forms are not available. For example, Japanese fonts do not typically have italic forms for most characters although there may be special cases for Latin characters. Nevertheless, AVCaption still carries the font style semantics even though there may be no visible rendering distinction between using AVCaptionFontStyleNormal and AVCaptionFontStyleItalic with that language.
-        ///
-        /// # Safety
-        ///
-        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(fontStyleAtIndex:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontStyleAtIndex_range(
             &self,
             index: NSInteger,
-            out_range: *mut NSRange,
+            out_range: Option<&mut NSRange>,
         ) -> AVCaptionFontStyle;
 
         /// Character decoration
@@ -1027,16 +1011,12 @@ impl AVCaption {
         /// The value of OR-ed value of AVCaptionDecoration as NSInteger. The range parameter receives UTF-16 code unit index range the style is effective. After returning from the call, the range will indicate where the current style returned will be active and allows discovery of the next change in the style.
         ///
         /// CEA608 closed captions support only AVCaptionDecorationNone and AVCaptionDecorationUnderline.
-        ///
-        /// # Safety
-        ///
-        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(decorationAtIndex:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decorationAtIndex_range(
             &self,
             index: NSInteger,
-            out_range: *mut NSRange,
+            out_range: Option<&mut NSRange>,
         ) -> AVCaptionDecoration;
 
         /// Text combine (Tate-Chu-Yoko)
@@ -1044,16 +1024,12 @@ impl AVCaption {
         /// The style is effective only in a vertical text region.
         ///
         /// When specified, the renderer combines all the characters in the style range so that their glyph areas consume the nominal bounding box of a single em square of the surrounding vertical text.
-        ///
-        /// # Safety
-        ///
-        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(textCombineAtIndex:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textCombineAtIndex_range(
             &self,
             index: NSInteger,
-            out_range: *mut NSRange,
+            out_range: Option<&mut NSRange>,
         ) -> AVCaptionTextCombine;
 
         /// Get Ruby associated with the characters.
@@ -1063,16 +1039,12 @@ impl AVCaption {
         /// It returns nil when the text doesn't have a ruby at the position.
         ///
         /// CEA608 closed captions ignore this property.
-        ///
-        /// # Safety
-        ///
-        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(rubyAtIndex:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rubyAtIndex_range(
             &self,
             index: NSInteger,
-            out_range: *mut NSRange,
+            out_range: Option<&mut NSRange>,
         ) -> Option<Retained<AVCaptionRuby>>;
     );
 }

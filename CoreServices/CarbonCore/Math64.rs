@@ -30,7 +30,7 @@ pub unsafe fn S64Absolute(value: i64) -> i64 {
 
 // TODO: pub fn S64Mod(dividend: i64,divisor: i64,) -> i64;
 
-// TODO: pub fn S64Divide(dividend: i64,divisor: i64,remainder_p: *mut i64,) -> i64;
+// TODO: pub fn S64Divide(dividend: i64,divisor: i64,remainder_p: Option<&mut i64>,) -> i64;
 
 // TODO: pub fn S64Div(dividend: i64,divisor: i64,) -> i64;
 
@@ -72,7 +72,7 @@ pub unsafe fn S64Absolute(value: i64) -> i64 {
 
 // TODO: pub fn U64Mod(dividend: u64,divisor: u64,) -> u64;
 
-// TODO: pub fn U64Divide(dividend: u64,divisor: u64,remainder: *mut u64,) -> u64;
+// TODO: pub fn U64Divide(dividend: u64,divisor: u64,remainder: Option<&mut u64>,) -> u64;
 
 // TODO: pub fn U64Div(dividend: u64,divisor: u64,) -> u64;
 

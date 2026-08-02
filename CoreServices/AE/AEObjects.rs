@@ -494,31 +494,34 @@ pub unsafe fn DisposeOSLAdjustMarksUPP(user_upp: OSLAdjustMarksUPP) {
 
 /// # Safety
 ///
-/// - `container` must be a valid pointer.
-/// - `selection_data` must be a valid pointer.
-/// - `value` must be a valid pointer.
+/// - `container` struct field `dataHandle` must be a valid pointer.
+/// - `container` might not allow `None`.
+/// - `selection_data` struct field `dataHandle` must be a valid pointer.
+/// - `selection_data` might not allow `None`.
+/// - `value` struct field `dataHandle` must be a valid pointer.
+/// - `value` might not allow `None`.
 /// - `accessor_refcon` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLAccessorUPP(
     desired_class: DescType,
-    container: *const AEDesc,
+    container: Option<&AEDesc>,
     container_class: DescType,
     form: DescType,
-    selection_data: *const AEDesc,
-    value: *mut AEDesc,
+    selection_data: Option<&AEDesc>,
+    value: Option<&mut AEDesc>,
     accessor_refcon: SRefCon,
     user_upp: OSLAccessorUPP,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLAccessorUPP(
             desired_class: DescType,
-            container: *const AEDesc,
+            container: Option<&AEDesc>,
             container_class: DescType,
             form: DescType,
-            selection_data: *const AEDesc,
-            value: *mut AEDesc,
+            selection_data: Option<&AEDesc>,
+            value: Option<&mut AEDesc>,
             accessor_refcon: SRefCon,
             user_upp: OSLAccessorUPP,
         ) -> OSErr;
@@ -539,25 +542,27 @@ pub unsafe fn InvokeOSLAccessorUPP(
 
 /// # Safety
 ///
-/// - `obj1` must be a valid pointer.
-/// - `obj2` must be a valid pointer.
-/// - `result` must be a valid pointer.
+/// - `obj1` struct field `dataHandle` must be a valid pointer.
+/// - `obj1` might not allow `None`.
+/// - `obj2` struct field `dataHandle` must be a valid pointer.
+/// - `obj2` might not allow `None`.
+/// - `result` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLCompareUPP(
     oper: DescType,
-    obj1: *const AEDesc,
-    obj2: *const AEDesc,
-    result: *mut Boolean,
+    obj1: Option<&AEDesc>,
+    obj2: Option<&AEDesc>,
+    result: Option<&mut Boolean>,
     user_upp: OSLCompareUPP,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLCompareUPP(
             oper: DescType,
-            obj1: *const AEDesc,
-            obj2: *const AEDesc,
-            result: *mut Boolean,
+            obj1: Option<&AEDesc>,
+            obj2: Option<&AEDesc>,
+            result: Option<&mut Boolean>,
             user_upp: OSLCompareUPP,
         ) -> OSErr;
     }
@@ -566,24 +571,25 @@ pub unsafe fn InvokeOSLCompareUPP(
 
 /// # Safety
 ///
-/// - `container` must be a valid pointer.
-/// - `result` must be a valid pointer.
+/// - `container` struct field `dataHandle` must be a valid pointer.
+/// - `container` might not allow `None`.
+/// - `result` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLCountUPP(
     desired_type: DescType,
     container_class: DescType,
-    container: *const AEDesc,
-    result: *mut c_long,
+    container: Option<&AEDesc>,
+    result: Option<&mut c_long>,
     user_upp: OSLCountUPP,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLCountUPP(
             desired_type: DescType,
             container_class: DescType,
-            container: *const AEDesc,
-            result: *mut c_long,
+            container: Option<&AEDesc>,
+            result: Option<&mut c_long>,
             user_upp: OSLCountUPP,
         ) -> OSErr;
     }
@@ -592,17 +598,18 @@ pub unsafe fn InvokeOSLCountUPP(
 
 /// # Safety
 ///
-/// - `unneeded_token` must be a valid pointer.
+/// - `unneeded_token` struct field `dataHandle` must be a valid pointer.
+/// - `unneeded_token` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLDisposeTokenUPP(
-    unneeded_token: *mut AEDesc,
+    unneeded_token: Option<&mut AEDesc>,
     user_upp: OSLDisposeTokenUPP,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLDisposeTokenUPP(
-            unneeded_token: *mut AEDesc,
+            unneeded_token: Option<&mut AEDesc>,
             user_upp: OSLDisposeTokenUPP,
         ) -> OSErr;
     }
@@ -611,22 +618,24 @@ pub unsafe fn InvokeOSLDisposeTokenUPP(
 
 /// # Safety
 ///
-/// - `d_container_token` must be a valid pointer.
-/// - `result` must be a valid pointer.
+/// - `d_container_token` struct field `dataHandle` must be a valid pointer.
+/// - `d_container_token` might not allow `None`.
+/// - `result` struct field `dataHandle` must be a valid pointer.
+/// - `result` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLGetMarkTokenUPP(
-    d_container_token: *const AEDesc,
+    d_container_token: Option<&AEDesc>,
     container_class: DescType,
-    result: *mut AEDesc,
+    result: Option<&mut AEDesc>,
     user_upp: OSLGetMarkTokenUPP,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLGetMarkTokenUPP(
-            d_container_token: *const AEDesc,
+            d_container_token: Option<&AEDesc>,
             container_class: DescType,
-            result: *mut AEDesc,
+            result: Option<&mut AEDesc>,
             user_upp: OSLGetMarkTokenUPP,
         ) -> OSErr;
     }
@@ -636,16 +645,17 @@ pub unsafe fn InvokeOSLGetMarkTokenUPP(
 /// # Safety
 ///
 /// - `app_desc_ptr` must be a valid pointer.
+/// - `app_desc_ptr` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLGetErrDescUPP(
-    app_desc_ptr: *mut *mut AEDesc,
+    app_desc_ptr: Option<&mut *mut AEDesc>,
     user_upp: OSLGetErrDescUPP,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLGetErrDescUPP(
-            app_desc_ptr: *mut *mut AEDesc,
+            app_desc_ptr: Option<&mut *mut AEDesc>,
             user_upp: OSLGetErrDescUPP,
         ) -> OSErr;
     }
@@ -654,21 +664,23 @@ pub unsafe fn InvokeOSLGetErrDescUPP(
 
 /// # Safety
 ///
-/// - `d_token` must be a valid pointer.
-/// - `mark_token` must be a valid pointer.
+/// - `d_token` struct field `dataHandle` must be a valid pointer.
+/// - `d_token` might not allow `None`.
+/// - `mark_token` struct field `dataHandle` must be a valid pointer.
+/// - `mark_token` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLMarkUPP(
-    d_token: *const AEDesc,
-    mark_token: *const AEDesc,
+    d_token: Option<&AEDesc>,
+    mark_token: Option<&AEDesc>,
     index: c_long,
     user_upp: OSLMarkUPP,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLMarkUPP(
-            d_token: *const AEDesc,
-            mark_token: *const AEDesc,
+            d_token: Option<&AEDesc>,
+            mark_token: Option<&AEDesc>,
             index: c_long,
             user_upp: OSLMarkUPP,
         ) -> OSErr;
@@ -678,21 +690,22 @@ pub unsafe fn InvokeOSLMarkUPP(
 
 /// # Safety
 ///
-/// - `mark_token` must be a valid pointer.
+/// - `mark_token` struct field `dataHandle` must be a valid pointer.
+/// - `mark_token` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLAdjustMarksUPP(
     new_start: c_long,
     new_stop: c_long,
-    mark_token: *const AEDesc,
+    mark_token: Option<&AEDesc>,
     user_upp: OSLAdjustMarksUPP,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLAdjustMarksUPP(
             new_start: c_long,
             new_stop: c_long,
-            mark_token: *const AEDesc,
+            mark_token: Option<&AEDesc>,
             user_upp: OSLAdjustMarksUPP,
         ) -> OSErr;
     }
@@ -753,20 +766,22 @@ pub unsafe fn AESetObjectCallbacks(
 
 /// # Safety
 ///
-/// - `object_specifier` must be a valid pointer.
-/// - `the_token` must be a valid pointer.
+/// - `object_specifier` struct field `dataHandle` must be a valid pointer.
+/// - `object_specifier` might not allow `None`.
+/// - `the_token` struct field `dataHandle` must be a valid pointer.
+/// - `the_token` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AEResolve(
-    object_specifier: *const AEDesc,
+    object_specifier: Option<&AEDesc>,
     callback_flags: c_short,
-    the_token: *mut AEDesc,
+    the_token: Option<&mut AEDesc>,
 ) -> OSErr {
     extern "C-unwind" {
         fn AEResolve(
-            object_specifier: *const AEDesc,
+            object_specifier: Option<&AEDesc>,
             callback_flags: c_short,
-            the_token: *mut AEDesc,
+            the_token: Option<&mut AEDesc>,
         ) -> OSErr;
     }
     unsafe { AEResolve(object_specifier, callback_flags, the_token) }
@@ -831,23 +846,25 @@ pub unsafe fn AERemoveObjectAccessor(
 
 /// # Safety
 ///
-/// - `accessor` must be a valid pointer.
+/// - `accessor` must be implemented correctly.
+/// - `accessor` might not allow `None`.
 /// - `accessor_refcon` must be a valid pointer.
+/// - `accessor_refcon` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AEGetObjectAccessor(
     desired_class: DescType,
     container_type: DescType,
-    accessor: *mut OSLAccessorUPP,
-    accessor_refcon: *mut SRefCon,
+    accessor: Option<&mut OSLAccessorUPP>,
+    accessor_refcon: Option<&mut SRefCon>,
     is_sys_handler: bool,
 ) -> OSErr {
     extern "C-unwind" {
         fn AEGetObjectAccessor(
             desired_class: DescType,
             container_type: DescType,
-            accessor: *mut OSLAccessorUPP,
-            accessor_refcon: *mut SRefCon,
+            accessor: Option<&mut OSLAccessorUPP>,
+            accessor_refcon: Option<&mut SRefCon>,
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
@@ -865,39 +882,43 @@ pub unsafe fn AEGetObjectAccessor(
 
 /// # Safety
 ///
-/// `the_token` must be a valid pointer.
+/// - `the_token` struct field `dataHandle` must be a valid pointer.
+/// - `the_token` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn AEDisposeToken(the_token: *mut AEDesc) -> OSErr {
+pub unsafe fn AEDisposeToken(the_token: Option<&mut AEDesc>) -> OSErr {
     extern "C-unwind" {
-        fn AEDisposeToken(the_token: *mut AEDesc) -> OSErr;
+        fn AEDisposeToken(the_token: Option<&mut AEDesc>) -> OSErr;
     }
     unsafe { AEDisposeToken(the_token) }
 }
 
 /// # Safety
 ///
-/// - `container_token` must be a valid pointer.
-/// - `key_data` must be a valid pointer.
-/// - `token` must be a valid pointer.
+/// - `container_token` struct field `dataHandle` must be a valid pointer.
+/// - `container_token` might not allow `None`.
+/// - `key_data` struct field `dataHandle` must be a valid pointer.
+/// - `key_data` might not allow `None`.
+/// - `token` struct field `dataHandle` must be a valid pointer.
+/// - `token` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AECallObjectAccessor(
     desired_class: DescType,
-    container_token: *const AEDesc,
+    container_token: Option<&AEDesc>,
     container_class: DescType,
     key_form: DescType,
-    key_data: *const AEDesc,
-    token: *mut AEDesc,
+    key_data: Option<&AEDesc>,
+    token: Option<&mut AEDesc>,
 ) -> OSErr {
     extern "C-unwind" {
         fn AECallObjectAccessor(
             desired_class: DescType,
-            container_token: *const AEDesc,
+            container_token: Option<&AEDesc>,
             container_class: DescType,
             key_form: DescType,
-            key_data: *const AEDesc,
-            token: *mut AEDesc,
+            key_data: Option<&AEDesc>,
+            token: Option<&mut AEDesc>,
         ) -> OSErr;
     }
     unsafe {

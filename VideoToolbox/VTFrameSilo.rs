@@ -149,17 +149,13 @@ impl VTFrameSilo {
     /// Calculates the current progress based on the most recent sample buffer added and the current pass time ranges.
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
-    ///
-    /// # Safety
-    ///
-    /// `progress_out` must be a valid pointer.
     #[doc(alias = "VTFrameSiloGetProgressOfCurrentPass")]
     #[inline]
-    pub unsafe fn progress_of_current_pass(&self, progress_out: NonNull<f32>) -> OSStatus {
+    pub unsafe fn progress_of_current_pass(&self, progress_out: &mut f32) -> OSStatus {
         extern "C-unwind" {
             fn VTFrameSiloGetProgressOfCurrentPass(
                 silo: &VTFrameSilo,
-                progress_out: NonNull<f32>,
+                progress_out: &mut f32,
             ) -> OSStatus;
         }
         unsafe { VTFrameSiloGetProgressOfCurrentPass(self, progress_out) }

@@ -422,8 +422,10 @@ pub unsafe fn DisposeHMMenuItemContentUPP(user_upp: HMMenuItemContentUPP) {
 
 /// # Safety
 ///
-/// - `out_content_provided` must be a valid pointer.
-/// - `io_help_content` must be a valid pointer.
+/// - `out_content_provided` might not allow `None`.
+/// - `io_help_content` struct field `version` must be set correctly.
+/// - `io_help_content` struct field `content` array element struct field `u` must be correctly initialized.
+/// - `io_help_content` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "HIObject", feature = "TextEdit"))]
 #[inline]
@@ -431,8 +433,8 @@ pub unsafe fn InvokeHMControlContentUPP(
     in_control: &Control,
     in_global_mouse: Point,
     in_request: HMContentRequest,
-    out_content_provided: *mut HMContentProvidedType,
-    io_help_content: *mut HMHelpContentRec,
+    out_content_provided: Option<&mut HMContentProvidedType>,
+    io_help_content: Option<&mut HMHelpContentRec>,
     user_upp: HMControlContentUPP,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -440,8 +442,8 @@ pub unsafe fn InvokeHMControlContentUPP(
             in_control: &Control,
             in_global_mouse: Point,
             in_request: HMContentRequest,
-            out_content_provided: *mut HMContentProvidedType,
-            io_help_content: *mut HMHelpContentRec,
+            out_content_provided: Option<&mut HMContentProvidedType>,
+            io_help_content: Option<&mut HMHelpContentRec>,
             user_upp: HMControlContentUPP,
         ) -> OSStatus;
     }
@@ -460,8 +462,10 @@ pub unsafe fn InvokeHMControlContentUPP(
 /// # Safety
 ///
 /// - `in_window` must be a valid pointer.
-/// - `out_content_provided` must be a valid pointer.
-/// - `io_help_content` must be a valid pointer.
+/// - `out_content_provided` might not allow `None`.
+/// - `io_help_content` struct field `version` must be set correctly.
+/// - `io_help_content` struct field `content` array element struct field `u` must be correctly initialized.
+/// - `io_help_content` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "TextEdit", feature = "objc2-application-services"))]
 #[inline]
@@ -469,8 +473,8 @@ pub unsafe fn InvokeHMWindowContentUPP(
     in_window: WindowRef,
     in_global_mouse: Point,
     in_request: HMContentRequest,
-    out_content_provided: *mut HMContentProvidedType,
-    io_help_content: *mut HMHelpContentRec,
+    out_content_provided: Option<&mut HMContentProvidedType>,
+    io_help_content: Option<&mut HMHelpContentRec>,
     user_upp: HMWindowContentUPP,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -478,8 +482,8 @@ pub unsafe fn InvokeHMWindowContentUPP(
             in_window: WindowRef,
             in_global_mouse: Point,
             in_request: HMContentRequest,
-            out_content_provided: *mut HMContentProvidedType,
-            io_help_content: *mut HMHelpContentRec,
+            out_content_provided: Option<&mut HMContentProvidedType>,
+            io_help_content: Option<&mut HMHelpContentRec>,
             user_upp: HMWindowContentUPP,
         ) -> OSStatus;
     }
@@ -497,24 +501,26 @@ pub unsafe fn InvokeHMWindowContentUPP(
 
 /// # Safety
 ///
-/// - `out_content_provided` must be a valid pointer.
-/// - `io_help_content` must be a valid pointer.
+/// - `out_content_provided` might not allow `None`.
+/// - `io_help_content` struct field `version` must be set correctly.
+/// - `io_help_content` struct field `content` array element struct field `u` must be correctly initialized.
+/// - `io_help_content` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "Menus", feature = "TextEdit"))]
 #[inline]
 pub unsafe fn InvokeHMMenuTitleContentUPP(
     in_menu: &Menu,
     in_request: HMContentRequest,
-    out_content_provided: *mut HMContentProvidedType,
-    io_help_content: *mut HMHelpContentRec,
+    out_content_provided: Option<&mut HMContentProvidedType>,
+    io_help_content: Option<&mut HMHelpContentRec>,
     user_upp: HMMenuTitleContentUPP,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeHMMenuTitleContentUPP(
             in_menu: &Menu,
             in_request: HMContentRequest,
-            out_content_provided: *mut HMContentProvidedType,
-            io_help_content: *mut HMHelpContentRec,
+            out_content_provided: Option<&mut HMContentProvidedType>,
+            io_help_content: Option<&mut HMHelpContentRec>,
             user_upp: HMMenuTitleContentUPP,
         ) -> OSStatus;
     }
@@ -531,25 +537,28 @@ pub unsafe fn InvokeHMMenuTitleContentUPP(
 
 /// # Safety
 ///
-/// - `in_tracking_data` must be a valid pointer.
-/// - `out_content_provided` must be a valid pointer.
-/// - `io_help_content` must be a valid pointer.
+/// - `in_tracking_data` struct field `menu` must be a valid pointer.
+/// - `in_tracking_data` might not allow `None`.
+/// - `out_content_provided` might not allow `None`.
+/// - `io_help_content` struct field `version` must be set correctly.
+/// - `io_help_content` struct field `content` array element struct field `u` must be correctly initialized.
+/// - `io_help_content` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "Menus", feature = "TextEdit"))]
 #[inline]
 pub unsafe fn InvokeHMMenuItemContentUPP(
-    in_tracking_data: *const MenuTrackingData,
+    in_tracking_data: Option<&MenuTrackingData>,
     in_request: HMContentRequest,
-    out_content_provided: *mut HMContentProvidedType,
-    io_help_content: *mut HMHelpContentRec,
+    out_content_provided: Option<&mut HMContentProvidedType>,
+    io_help_content: Option<&mut HMHelpContentRec>,
     user_upp: HMMenuItemContentUPP,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeHMMenuItemContentUPP(
-            in_tracking_data: *const MenuTrackingData,
+            in_tracking_data: Option<&MenuTrackingData>,
             in_request: HMContentRequest,
-            out_content_provided: *mut HMContentProvidedType,
-            io_help_content: *mut HMHelpContentRec,
+            out_content_provided: Option<&mut HMContentProvidedType>,
+            io_help_content: Option<&mut HMHelpContentRec>,
             user_upp: HMMenuItemContentUPP,
         ) -> OSStatus;
     }

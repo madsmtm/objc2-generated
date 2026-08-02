@@ -168,125 +168,142 @@ pub unsafe fn X2Frac(x: c_double) -> Fract {
 
 /// # Safety
 ///
-/// - `target` must be a valid pointer.
-/// - `source` must be a valid pointer.
+/// - `target` might not allow `None`.
+/// - `source` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn WideCompare(target: *const wide, source: *const wide) -> c_short {
+pub unsafe fn WideCompare(target: Option<&wide>, source: Option<&wide>) -> c_short {
     extern "C-unwind" {
-        fn WideCompare(target: *const wide, source: *const wide) -> c_short;
+        fn WideCompare(target: Option<&wide>, source: Option<&wide>) -> c_short;
     }
     unsafe { WideCompare(target, source) }
 }
 
 /// # Safety
 ///
-/// - `target` must be a valid pointer.
-/// - `source` must be a valid pointer.
+/// - `target` might not allow `None`.
+/// - `source` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn WideAdd(target: *mut wide, source: *const wide) -> *mut wide {
+pub unsafe fn WideAdd(target: Option<&mut wide>, source: Option<&wide>) -> *mut wide {
     extern "C-unwind" {
-        fn WideAdd(target: *mut wide, source: *const wide) -> *mut wide;
+        fn WideAdd(target: Option<&mut wide>, source: Option<&wide>) -> *mut wide;
     }
     unsafe { WideAdd(target, source) }
 }
 
 /// # Safety
 ///
-/// - `target` must be a valid pointer.
-/// - `source` must be a valid pointer.
+/// - `target` might not allow `None`.
+/// - `source` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn WideSubtract(target: *mut wide, source: *const wide) -> *mut wide {
+pub unsafe fn WideSubtract(target: Option<&mut wide>, source: Option<&wide>) -> *mut wide {
     extern "C-unwind" {
-        fn WideSubtract(target: *mut wide, source: *const wide) -> *mut wide;
+        fn WideSubtract(target: Option<&mut wide>, source: Option<&wide>) -> *mut wide;
     }
     unsafe { WideSubtract(target, source) }
 }
 
 /// # Safety
 ///
-/// `target` must be a valid pointer.
+/// `target` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn WideNegate(target: *mut wide) -> *mut wide {
+pub unsafe fn WideNegate(target: Option<&mut wide>) -> *mut wide {
     extern "C-unwind" {
-        fn WideNegate(target: *mut wide) -> *mut wide;
+        fn WideNegate(target: Option<&mut wide>) -> *mut wide;
     }
     unsafe { WideNegate(target) }
 }
 
 /// # Safety
 ///
-/// `target` must be a valid pointer.
+/// `target` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn WideShift(target: *mut wide, shift: i32) -> *mut wide {
+pub unsafe fn WideShift(target: Option<&mut wide>, shift: i32) -> *mut wide {
     extern "C-unwind" {
-        fn WideShift(target: *mut wide, shift: i32) -> *mut wide;
+        fn WideShift(target: Option<&mut wide>, shift: i32) -> *mut wide;
     }
     unsafe { WideShift(target, shift) }
 }
 
 /// # Safety
 ///
-/// `source` must be a valid pointer.
+/// `source` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn WideSquareRoot(source: *const wide) -> u32 {
+pub unsafe fn WideSquareRoot(source: Option<&wide>) -> u32 {
     extern "C-unwind" {
-        fn WideSquareRoot(source: *const wide) -> u32;
+        fn WideSquareRoot(source: Option<&wide>) -> u32;
     }
     unsafe { WideSquareRoot(source) }
 }
 
 /// # Safety
 ///
-/// `target` must be a valid pointer.
+/// `target` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn WideMultiply(multiplicand: i32, multiplier: i32, target: *mut wide) -> *mut wide {
+pub unsafe fn WideMultiply(
+    multiplicand: i32,
+    multiplier: i32,
+    target: Option<&mut wide>,
+) -> *mut wide {
     extern "C-unwind" {
-        fn WideMultiply(multiplicand: i32, multiplier: i32, target: *mut wide) -> *mut wide;
+        fn WideMultiply(multiplicand: i32, multiplier: i32, target: Option<&mut wide>)
+            -> *mut wide;
     }
     unsafe { WideMultiply(multiplicand, multiplier, target) }
 }
 
 /// # Safety
 ///
-/// - `dividend` must be a valid pointer.
-/// - `remainder` must be a valid pointer.
+/// - `dividend` might not allow `None`.
+/// - `remainder` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn WideDivide(dividend: *const wide, divisor: i32, remainder: *mut i32) -> i32 {
+pub unsafe fn WideDivide(
+    dividend: Option<&wide>,
+    divisor: i32,
+    remainder: Option<&mut i32>,
+) -> i32 {
     extern "C-unwind" {
-        fn WideDivide(dividend: *const wide, divisor: i32, remainder: *mut i32) -> i32;
+        fn WideDivide(dividend: Option<&wide>, divisor: i32, remainder: Option<&mut i32>) -> i32;
     }
     unsafe { WideDivide(dividend, divisor, remainder) }
 }
 
 /// # Safety
 ///
-/// - `dividend` must be a valid pointer.
-/// - `remainder` must be a valid pointer.
+/// - `dividend` might not allow `None`.
+/// - `remainder` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn WideWideDivide(dividend: *mut wide, divisor: i32, remainder: *mut i32) -> *mut wide {
+pub unsafe fn WideWideDivide(
+    dividend: Option<&mut wide>,
+    divisor: i32,
+    remainder: Option<&mut i32>,
+) -> *mut wide {
     extern "C-unwind" {
-        fn WideWideDivide(dividend: *mut wide, divisor: i32, remainder: *mut i32) -> *mut wide;
+        fn WideWideDivide(
+            dividend: Option<&mut wide>,
+            divisor: i32,
+            remainder: Option<&mut i32>,
+        ) -> *mut wide;
     }
     unsafe { WideWideDivide(dividend, divisor, remainder) }
 }
 
 /// # Safety
 ///
-/// `target` must be a valid pointer.
+/// `target` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn WideBitShift(target: *mut wide, shift: i32) -> *mut wide {
+pub unsafe fn WideBitShift(target: Option<&mut wide>, shift: i32) -> *mut wide {
     extern "C-unwind" {
-        fn WideBitShift(target: *mut wide, shift: i32) -> *mut wide;
+        fn WideBitShift(target: Option<&mut wide>, shift: i32) -> *mut wide;
     }
     unsafe { WideBitShift(target, shift) }
 }

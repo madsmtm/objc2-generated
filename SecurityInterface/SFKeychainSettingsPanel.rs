@@ -71,13 +71,14 @@ impl SFKeychainSettingsPanel {
         ///
         /// # Safety
         ///
-        /// - `settings` must be a valid pointer.
+        /// - `settings` struct field `version` must be set correctly.
+        /// - `settings` might not allow `None`.
         /// - `keychain` might not allow `None`.
         #[unsafe(method(runModalForSettings:keychain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalForSettings_keychain(
             &self,
-            settings: *mut SecKeychainSettings,
+            settings: Option<&mut SecKeychainSettings>,
             keychain: Option<&SecKeychain>,
         ) -> NSInteger;
 
@@ -104,7 +105,8 @@ impl SFKeychainSettingsPanel {
         /// - `delegate` might not allow `None`.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer.
-        /// - `settings` must be a valid pointer.
+        /// - `settings` struct field `version` must be set correctly.
+        /// - `settings` might not allow `None`.
         /// - `keychain` might not allow `None`.
         #[unsafe(method(beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:settings:keychain:))]
         #[unsafe(method_family = none)]
@@ -114,7 +116,7 @@ impl SFKeychainSettingsPanel {
             delegate: Option<&AnyObject>,
             did_end_selector: Option<Sel>,
             context_info: *mut c_void,
-            settings: *mut SecKeychainSettings,
+            settings: Option<&mut SecKeychainSettings>,
             keychain: Option<&SecKeychain>,
         );
     );

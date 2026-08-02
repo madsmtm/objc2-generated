@@ -264,12 +264,9 @@ pub fn NSProtocolFromString(namestr: &NSString) -> Option<Retained<AnyProtocol>>
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// # Safety
-///
-/// `type_ptr` must be a valid pointer.
 #[inline]
-pub unsafe fn NSGetSizeAndAlignment(
-    type_ptr: NonNull<c_char>,
+pub fn NSGetSizeAndAlignment(
+    type_ptr: &CStr,
     sizep: Option<&mut NSUInteger>,
     alignp: Option<&mut NSUInteger>,
 ) -> NonNull<c_char> {
@@ -280,6 +277,7 @@ pub unsafe fn NSGetSizeAndAlignment(
             alignp: Option<&mut NSUInteger>,
         ) -> Option<NonNull<c_char>>;
     }
+    let type_ptr = NonNull::new(type_ptr.as_ptr().cast_mut()).unwrap();
     let ret = unsafe { NSGetSizeAndAlignment(type_ptr, sizep, alignp) };
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }

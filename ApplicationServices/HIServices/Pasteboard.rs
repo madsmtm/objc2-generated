@@ -191,16 +191,13 @@ impl Pasteboard {
         unsafe { PasteboardCopyName(self, out_name) }
     }
 
-    /// # Safety
-    ///
-    /// `out_item_count` must be a valid pointer.
     #[doc(alias = "PasteboardGetItemCount")]
     #[inline]
-    pub unsafe fn item_count(&self, out_item_count: NonNull<ItemCount>) -> OSStatus {
+    pub unsafe fn item_count(&self, out_item_count: &mut ItemCount) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardGetItemCount(
                 in_pasteboard: &Pasteboard,
-                out_item_count: NonNull<ItemCount>,
+                out_item_count: &mut ItemCount,
             ) -> OSStatus;
         }
         unsafe { PasteboardGetItemCount(self, out_item_count) }
@@ -208,19 +205,19 @@ impl Pasteboard {
 
     /// # Safety
     ///
-    /// `out_item` must be a valid pointer.
+    /// `out_item` must be a valid pointer or null.
     #[doc(alias = "PasteboardGetItemIdentifier")]
     #[inline]
     pub unsafe fn item_identifier(
         &self,
         in_index: CFIndex,
-        out_item: NonNull<PasteboardItemID>,
+        out_item: &mut PasteboardItemID,
     ) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardGetItemIdentifier(
                 in_pasteboard: &Pasteboard,
                 in_index: CFIndex,
-                out_item: NonNull<PasteboardItemID>,
+                out_item: &mut PasteboardItemID,
             ) -> OSStatus;
         }
         unsafe { PasteboardGetItemIdentifier(self, in_index, out_item) }
@@ -252,22 +249,21 @@ impl Pasteboard {
 
     /// # Safety
     ///
-    /// - `in_item` must be a valid pointer.
-    /// - `out_flags` must be a valid pointer.
+    /// `in_item` must be a valid pointer.
     #[doc(alias = "PasteboardGetItemFlavorFlags")]
     #[inline]
     pub unsafe fn item_flavor_flags(
         &self,
         in_item: PasteboardItemID,
         in_flavor_type: &CFString,
-        out_flags: NonNull<PasteboardFlavorFlags>,
+        out_flags: &mut PasteboardFlavorFlags,
     ) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardGetItemFlavorFlags(
                 in_pasteboard: &Pasteboard,
                 in_item: PasteboardItemID,
                 in_flavor_type: &CFString,
-                out_flags: NonNull<PasteboardFlavorFlags>,
+                out_flags: &mut PasteboardFlavorFlags,
             ) -> OSStatus;
         }
         unsafe { PasteboardGetItemFlavorFlags(self, in_item, in_flavor_type, out_flags) }

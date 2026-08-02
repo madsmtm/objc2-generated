@@ -1144,8 +1144,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `refinement_data` must be a valid pointer.
-        /// - `refined_location_out` must be a valid pointer.
+        /// `refinement_data` must be a valid pointer.
         #[optional]
         #[unsafe(method(refineSampleLocation:refinementData:refinementDataLength:refinedLocation:error:_))]
         #[unsafe(method_family = none)]
@@ -1154,7 +1153,7 @@ extern_protocol!(
             estimated_sample_location: AVSampleCursorStorageRange,
             refinement_data: NonNull<u8>,
             refinement_data_length: usize,
-            refined_location_out: NonNull<AVSampleCursorStorageRange>,
+            refined_location_out: &mut AVSampleCursorStorageRange,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]

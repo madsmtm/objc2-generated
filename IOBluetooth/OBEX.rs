@@ -1182,17 +1182,17 @@ pub unsafe fn OBEXSessionDelete(in_session_ref: OBEXSessionRef) -> OBEXError {
 /// # Safety
 ///
 /// - `in_session_ref` must be a valid pointer.
-/// - `out_is_connected` must be a valid pointer.
+/// - `out_is_connected` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn OBEXSessionHasOpenOBEXConnection(
     in_session_ref: OBEXSessionRef,
-    out_is_connected: *mut Boolean,
+    out_is_connected: Option<&mut Boolean>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXSessionHasOpenOBEXConnection(
             in_session_ref: OBEXSessionRef,
-            out_is_connected: *mut Boolean,
+            out_is_connected: Option<&mut Boolean>,
         ) -> OBEXError;
     }
     unsafe { OBEXSessionHasOpenOBEXConnection(in_session_ref, out_is_connected) }
@@ -1216,17 +1216,17 @@ pub unsafe fn OBEXSessionHasOpenOBEXConnection(
 /// # Safety
 ///
 /// - `in_session_ref` must be a valid pointer.
-/// - `out_length` must be a valid pointer.
+/// - `out_length` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn OBEXSessionGetMaxPacketLength(
     in_session_ref: OBEXSessionRef,
-    out_length: *mut OBEXMaxPacketLength,
+    out_length: Option<&mut OBEXMaxPacketLength>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXSessionGetMaxPacketLength(
             in_session_ref: OBEXSessionRef,
-            out_length: *mut OBEXMaxPacketLength,
+            out_length: Option<&mut OBEXMaxPacketLength>,
         ) -> OBEXError;
     }
     unsafe { OBEXSessionGetMaxPacketLength(in_session_ref, out_length) }
@@ -1257,19 +1257,19 @@ pub unsafe fn OBEXSessionGetMaxPacketLength(
 /// # Safety
 ///
 /// - `in_session_ref` must be a valid pointer.
-/// - `out_length` must be a valid pointer.
+/// - `out_length` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn OBEXSessionGetAvailableCommandPayloadLength(
     in_session_ref: OBEXSessionRef,
     in_op_code: OBEXOpCode,
-    out_length: *mut OBEXMaxPacketLength,
+    out_length: Option<&mut OBEXMaxPacketLength>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXSessionGetAvailableCommandPayloadLength(
             in_session_ref: OBEXSessionRef,
             in_op_code: OBEXOpCode,
-            out_length: *mut OBEXMaxPacketLength,
+            out_length: Option<&mut OBEXMaxPacketLength>,
         ) -> OBEXError;
     }
     unsafe { OBEXSessionGetAvailableCommandPayloadLength(in_session_ref, in_op_code, out_length) }
@@ -1302,19 +1302,19 @@ pub unsafe fn OBEXSessionGetAvailableCommandPayloadLength(
 /// # Safety
 ///
 /// - `in_session_ref` must be a valid pointer.
-/// - `out_length` must be a valid pointer.
+/// - `out_length` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn OBEXSessionGetAvailableCommandResponsePayloadLength(
     in_session_ref: OBEXSessionRef,
     in_op_code: OBEXOpCode,
-    out_length: *mut OBEXMaxPacketLength,
+    out_length: Option<&mut OBEXMaxPacketLength>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn OBEXSessionGetAvailableCommandResponsePayloadLength(
             in_session_ref: OBEXSessionRef,
             in_op_code: OBEXOpCode,
-            out_length: *mut OBEXMaxPacketLength,
+            out_length: Option<&mut OBEXMaxPacketLength>,
         ) -> OBEXError;
     }
     unsafe {

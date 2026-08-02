@@ -143,20 +143,25 @@ impl QLThumbnailRequest {
     /// # Safety
     ///
     /// - `object` must be a valid pointer.
-    /// - `callbacks` must be a valid pointer.
+    /// - `callbacks` struct field `version` must be set correctly.
+    /// - `callbacks` struct field `retain` must be implemented correctly.
+    /// - `callbacks` struct field `release` must be implemented correctly.
+    /// - `callbacks` struct field `copyDescription` must be implemented correctly.
+    /// - `callbacks` struct field `equal` must be implemented correctly.
+    /// - `callbacks` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetDocumentObject")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
     pub unsafe fn set_document_object(
         &self,
         object: *const c_void,
-        callbacks: *const CFArrayCallBacks,
+        callbacks: Option<&CFArrayCallBacks>,
     ) {
         extern "C-unwind" {
             fn QLThumbnailRequestSetDocumentObject(
                 thumbnail: &QLThumbnailRequest,
                 object: *const c_void,
-                callbacks: *const CFArrayCallBacks,
+                callbacks: Option<&CFArrayCallBacks>,
             );
         }
         unsafe { QLThumbnailRequestSetDocumentObject(self, object, callbacks) }
@@ -687,20 +692,25 @@ impl QLPreviewRequest {
     /// # Safety
     ///
     /// - `object` must be a valid pointer.
-    /// - `callbacks` must be a valid pointer.
+    /// - `callbacks` struct field `version` must be set correctly.
+    /// - `callbacks` struct field `retain` must be implemented correctly.
+    /// - `callbacks` struct field `release` must be implemented correctly.
+    /// - `callbacks` struct field `copyDescription` must be implemented correctly.
+    /// - `callbacks` struct field `equal` must be implemented correctly.
+    /// - `callbacks` might not allow `None`.
     #[doc(alias = "QLPreviewRequestSetDocumentObject")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
     pub unsafe fn set_document_object(
         &self,
         object: *const c_void,
-        callbacks: *const CFArrayCallBacks,
+        callbacks: Option<&CFArrayCallBacks>,
     ) {
         extern "C-unwind" {
             fn QLPreviewRequestSetDocumentObject(
                 preview: &QLPreviewRequest,
                 object: *const c_void,
-                callbacks: *const CFArrayCallBacks,
+                callbacks: Option<&CFArrayCallBacks>,
             );
         }
         unsafe { QLPreviewRequestSetDocumentObject(self, object, callbacks) }
@@ -866,7 +876,7 @@ impl QLPreviewRequest {
     ///
     /// # Safety
     ///
-    /// - `media_box` must be a valid pointer.
+    /// - `media_box` might not allow `None`.
     /// - `auxiliary_info` generic should be of the correct type.
     /// - `auxiliary_info` might not allow `None`.
     /// - `properties` generic should be of the correct type.
@@ -877,14 +887,14 @@ impl QLPreviewRequest {
     #[inline]
     pub unsafe fn pdf_context(
         &self,
-        media_box: *const CGRect,
+        media_box: Option<&CGRect>,
         auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
         properties: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CGContext>> {
         extern "C-unwind" {
             fn QLPreviewRequestCreatePDFContext(
                 preview: &QLPreviewRequest,
-                media_box: *const CGRect,
+                media_box: Option<&CGRect>,
                 auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
                 properties: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CGContext>>;

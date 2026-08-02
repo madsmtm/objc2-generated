@@ -150,6 +150,7 @@ pub type JSValueRef = *const OpaqueJSValue;
 /// - `this_object` must be a valid pointer.
 /// - `source_url` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[inline]
 pub unsafe fn JSEvaluateScript(
     ctx: JSContextRef,
@@ -157,7 +158,7 @@ pub unsafe fn JSEvaluateScript(
     this_object: JSObjectRef,
     source_url: JSStringRef,
     starting_line_number: c_int,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> JSValueRef {
     extern "C-unwind" {
         fn JSEvaluateScript(
@@ -166,7 +167,7 @@ pub unsafe fn JSEvaluateScript(
             this_object: JSObjectRef,
             source_url: JSStringRef,
             starting_line_number: c_int,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> JSValueRef;
     }
     unsafe {
@@ -201,13 +202,14 @@ pub unsafe fn JSEvaluateScript(
 /// - `script` must be a valid pointer.
 /// - `source_url` must be a valid pointer.
 /// - `exception` must be a valid pointer.
+/// - `exception` might not allow `None`.
 #[inline]
 pub unsafe fn JSCheckScriptSyntax(
     ctx: JSContextRef,
     script: JSStringRef,
     source_url: JSStringRef,
     starting_line_number: c_int,
-    exception: *mut JSValueRef,
+    exception: Option<&mut JSValueRef>,
 ) -> bool {
     extern "C-unwind" {
         fn JSCheckScriptSyntax(
@@ -215,7 +217,7 @@ pub unsafe fn JSCheckScriptSyntax(
             script: JSStringRef,
             source_url: JSStringRef,
             starting_line_number: c_int,
-            exception: *mut JSValueRef,
+            exception: Option<&mut JSValueRef>,
         ) -> bool;
     }
     unsafe { JSCheckScriptSyntax(ctx, script, source_url, starting_line_number, exception) }

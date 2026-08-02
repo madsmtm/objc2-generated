@@ -154,8 +154,7 @@ impl MDLObject {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// - `object_class` probably has further requirements.
-        /// - `stop_pointer` must be a valid pointer.
+        /// `object_class` probably has further requirements.
         #[unsafe(method(enumerateChildObjectsOfClass:root:usingBlock:stopPointer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateChildObjectsOfClass_root_usingBlock_stopPointer(
@@ -163,7 +162,7 @@ impl MDLObject {
             object_class: &AnyClass,
             root: &MDLObject,
             block: &block2::Block<'static, fn(NonNull<MDLObject>, NonNull<Bool>)>,
-            stop_pointer: NonNull<Bool>,
+            stop_pointer: &mut Bool,
         );
 
         #[cfg(all(feature = "MDLTransform", feature = "MDLTypes"))]

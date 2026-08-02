@@ -782,7 +782,6 @@ impl CMSampleBuffer {
     ///
     /// - `make_data_ready_callback` must be implemented correctly.
     /// - `make_data_ready_refcon` must be a valid pointer or null.
-    /// - `sample_timing` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateForImageBuffer")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -797,7 +796,7 @@ impl CMSampleBuffer {
         make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
         make_data_ready_refcon: *mut c_void,
         format_description: &CMVideoFormatDescription,
-        sample_timing: NonNull<CMSampleTimingInfo>,
+        sample_timing: &CMSampleTimingInfo,
         sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -808,7 +807,7 @@ impl CMSampleBuffer {
                 make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
                 make_data_ready_refcon: *mut c_void,
                 format_description: &CMVideoFormatDescription,
-                sample_timing: NonNull<CMSampleTimingInfo>,
+                sample_timing: &CMSampleTimingInfo,
                 sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
             ) -> OSStatus;
         }
@@ -834,10 +833,6 @@ impl CMSampleBuffer {
     /// Creates a CMSampleBuffer that contains a CVImageBuffer instead of a CMBlockBuffer.
     ///
     /// See CMSampleBufferCreateForImageBuffer; this variant allows for passing a block to make the data ready.
-    ///
-    /// # Safety
-    ///
-    /// `sample_timing` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -851,7 +846,7 @@ impl CMSampleBuffer {
         image_buffer: &CVImageBuffer,
         data_ready: bool,
         format_description: &CMVideoFormatDescription,
-        sample_timing: NonNull<CMSampleTimingInfo>,
+        sample_timing: &CMSampleTimingInfo,
         sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
         make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
     ) -> OSStatus {
@@ -861,7 +856,7 @@ impl CMSampleBuffer {
                 image_buffer: &CVImageBuffer,
                 data_ready: Boolean,
                 format_description: &CMVideoFormatDescription,
-                sample_timing: NonNull<CMSampleTimingInfo>,
+                sample_timing: &CMSampleTimingInfo,
                 sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
                 make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
             ) -> OSStatus;
@@ -908,10 +903,6 @@ impl CMSampleBuffer {
     ///
     /// CMSampleBufferCreateReadyWithImageBuffer is identical to CMSampleBufferCreateForImageBuffer except that
     /// dataReady is always true, and so no makeDataReadyCallback or refcon needs to be passed.
-    ///
-    /// # Safety
-    ///
-    /// `sample_timing` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateReadyWithImageBuffer")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -923,7 +914,7 @@ impl CMSampleBuffer {
         allocator: Option<&CFAllocator>,
         image_buffer: &CVImageBuffer,
         format_description: &CMVideoFormatDescription,
-        sample_timing: NonNull<CMSampleTimingInfo>,
+        sample_timing: &CMSampleTimingInfo,
         sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -931,7 +922,7 @@ impl CMSampleBuffer {
                 allocator: Option<&CFAllocator>,
                 image_buffer: &CVImageBuffer,
                 format_description: &CMVideoFormatDescription,
-                sample_timing: NonNull<CMSampleTimingInfo>,
+                sample_timing: &CMSampleTimingInfo,
                 sample_buffer_out: &mut Option<CFRetained<CMSampleBuffer>>,
             ) -> OSStatus;
         }
@@ -1176,14 +1167,13 @@ impl CMSampleBuffer {
     ///
     /// # Safety
     ///
-    /// - `buffer_list_size_needed_out` must be a valid pointer or null.
-    /// - `buffer_list_out` must be a valid pointer or null.
+    /// `buffer_list_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-audio-types"))]
     #[inline]
     pub unsafe fn audio_buffer_list_with_retained_block_buffer(
         &self,
-        buffer_list_size_needed_out: *mut usize,
+        buffer_list_size_needed_out: Option<&mut usize>,
         buffer_list_out: *mut AudioBufferList,
         buffer_list_size: usize,
         block_buffer_structure_allocator: Option<&CFAllocator>,
@@ -1194,7 +1184,7 @@ impl CMSampleBuffer {
         extern "C-unwind" {
             fn CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
                 sbuf: &CMSampleBuffer,
-                buffer_list_size_needed_out: *mut usize,
+                buffer_list_size_needed_out: Option<&mut usize>,
                 buffer_list_out: *mut AudioBufferList,
                 buffer_list_size: usize,
                 block_buffer_structure_allocator: Option<&CFAllocator>,
@@ -1233,8 +1223,7 @@ impl CMSampleBuffer {
     ///
     /// # Safety
     ///
-    /// - `packet_descriptions_out` must be a valid pointer or null.
-    /// - `packet_descriptions_size_needed_out` must be a valid pointer or null.
+    /// `packet_descriptions_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetAudioStreamPacketDescriptions")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
@@ -1242,14 +1231,14 @@ impl CMSampleBuffer {
         &self,
         packet_descriptions_size: usize,
         packet_descriptions_out: *mut AudioStreamPacketDescription,
-        packet_descriptions_size_needed_out: *mut usize,
+        packet_descriptions_size_needed_out: Option<&mut usize>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferGetAudioStreamPacketDescriptions(
                 sbuf: &CMSampleBuffer,
                 packet_descriptions_size: usize,
                 packet_descriptions_out: *mut AudioStreamPacketDescription,
-                packet_descriptions_size_needed_out: *mut usize,
+                packet_descriptions_size_needed_out: Option<&mut usize>,
             ) -> OSStatus;
         }
         unsafe {
@@ -1275,21 +1264,20 @@ impl CMSampleBuffer {
     ///
     /// # Safety
     ///
-    /// - `packet_descriptions_pointer_out` must be a valid pointer or null.
-    /// - `packet_descriptions_size_out` must be a valid pointer or null.
+    /// `packet_descriptions_pointer_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetAudioStreamPacketDescriptionsPtr")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
     pub unsafe fn audio_stream_packet_descriptions_ptr(
         &self,
-        packet_descriptions_pointer_out: *mut *const AudioStreamPacketDescription,
-        packet_descriptions_size_out: *mut usize,
+        packet_descriptions_pointer_out: Option<&mut *const AudioStreamPacketDescription>,
+        packet_descriptions_size_out: Option<&mut usize>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferGetAudioStreamPacketDescriptionsPtr(
                 sbuf: &CMSampleBuffer,
-                packet_descriptions_pointer_out: *mut *const AudioStreamPacketDescription,
-                packet_descriptions_size_out: *mut usize,
+                packet_descriptions_pointer_out: Option<&mut *const AudioStreamPacketDescription>,
+                packet_descriptions_size_out: Option<&mut usize>,
             ) -> OSStatus;
         }
         unsafe {
@@ -1380,17 +1368,13 @@ impl CMSampleBuffer {
     }
 
     /// Returns whether or not a CMSampleBuffer's data loading request has failed.
-    ///
-    /// # Safety
-    ///
-    /// `status_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferHasDataFailed")]
     #[inline]
-    pub unsafe fn has_data_failed(&self, status_out: *mut OSStatus) -> bool {
+    pub unsafe fn has_data_failed(&self, status_out: Option<&mut OSStatus>) -> bool {
         extern "C-unwind" {
             fn CMSampleBufferHasDataFailed(
                 sbuf: &CMSampleBuffer,
-                status_out: *mut OSStatus,
+                status_out: Option<&mut OSStatus>,
             ) -> Boolean;
         }
         let ret = unsafe { CMSampleBufferHasDataFailed(self, status_out) };
@@ -1778,8 +1762,7 @@ impl CMSampleBuffer {
     ///
     /// # Safety
     ///
-    /// - `timing_array_out` must be a valid pointer or null.
-    /// - `timing_array_entries_needed_out` must be a valid pointer or null.
+    /// `timing_array_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetSampleTimingInfoArray")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
@@ -1787,14 +1770,14 @@ impl CMSampleBuffer {
         &self,
         num_sample_timing_entries: CMItemCount,
         timing_array_out: *mut CMSampleTimingInfo,
-        timing_array_entries_needed_out: *mut CMItemCount,
+        timing_array_entries_needed_out: Option<&mut CMItemCount>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferGetSampleTimingInfoArray(
                 sbuf: &CMSampleBuffer,
                 num_sample_timing_entries: CMItemCount,
                 timing_array_out: *mut CMSampleTimingInfo,
-                timing_array_entries_needed_out: *mut CMItemCount,
+                timing_array_entries_needed_out: Option<&mut CMItemCount>,
             ) -> OSStatus;
         }
         unsafe {
@@ -1825,8 +1808,7 @@ impl CMSampleBuffer {
     ///
     /// # Safety
     ///
-    /// - `timing_array_out` must be a valid pointer or null.
-    /// - `timing_array_entries_needed_out` must be a valid pointer or null.
+    /// `timing_array_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetOutputSampleTimingInfoArray")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
@@ -1834,14 +1816,14 @@ impl CMSampleBuffer {
         &self,
         timing_array_entries: CMItemCount,
         timing_array_out: *mut CMSampleTimingInfo,
-        timing_array_entries_needed_out: *mut CMItemCount,
+        timing_array_entries_needed_out: Option<&mut CMItemCount>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferGetOutputSampleTimingInfoArray(
                 sbuf: &CMSampleBuffer,
                 timing_array_entries: CMItemCount,
                 timing_array_out: *mut CMSampleTimingInfo,
-                timing_array_entries_needed_out: *mut CMItemCount,
+                timing_array_entries_needed_out: Option<&mut CMItemCount>,
             ) -> OSStatus;
         }
         unsafe {
@@ -1862,23 +1844,19 @@ impl CMSampleBuffer {
     /// allocated by the caller.  If the sample index is not in the range 0 .. numSamples-1,
     /// kCMSampleBufferError_SampleIndexOutOfRange will be returned.  If there is no timingInfo
     /// in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleTimingInfo will be returned.
-    ///
-    /// # Safety
-    ///
-    /// `timing_info_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferGetSampleTimingInfo")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
     pub unsafe fn sample_timing_info(
         &self,
         sample_index: CMItemIndex,
-        timing_info_out: NonNull<CMSampleTimingInfo>,
+        timing_info_out: &mut CMSampleTimingInfo,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferGetSampleTimingInfo(
                 sbuf: &CMSampleBuffer,
                 sample_index: CMItemIndex,
-                timing_info_out: NonNull<CMSampleTimingInfo>,
+                timing_info_out: &mut CMSampleTimingInfo,
             ) -> OSStatus;
         }
         unsafe { CMSampleBufferGetSampleTimingInfo(self, sample_index, timing_info_out) }
@@ -1905,8 +1883,7 @@ impl CMSampleBuffer {
     ///
     /// # Safety
     ///
-    /// - `size_array_out` must be a valid pointer or null.
-    /// - `size_array_entries_needed_out` must be a valid pointer or null.
+    /// `size_array_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetSampleSizeArray")]
     #[cfg(feature = "CMBase")]
     #[inline]
@@ -1914,14 +1891,14 @@ impl CMSampleBuffer {
         &self,
         size_array_entries: CMItemCount,
         size_array_out: *mut usize,
-        size_array_entries_needed_out: *mut CMItemCount,
+        size_array_entries_needed_out: Option<&mut CMItemCount>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferGetSampleSizeArray(
                 sbuf: &CMSampleBuffer,
                 size_array_entries: CMItemCount,
                 size_array_out: *mut usize,
-                size_array_entries_needed_out: *mut CMItemCount,
+                size_array_entries_needed_out: Option<&mut CMItemCount>,
             ) -> OSStatus;
         }
         unsafe {

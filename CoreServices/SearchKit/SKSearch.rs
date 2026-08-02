@@ -86,7 +86,7 @@ impl SKSearch {
     ///
     /// - `out_document_i_ds_array` must be a valid pointer.
     /// - `out_scores_array` must be a valid pointer.
-    /// - `out_found_count` must be a valid pointer.
+    /// - `out_found_count` might not allow `None`.
     #[doc(alias = "SKSearchFindMatches")]
     #[cfg(feature = "SKIndex")]
     #[inline]
@@ -96,7 +96,7 @@ impl SKSearch {
         out_document_i_ds_array: *mut SKDocumentID,
         out_scores_array: *mut c_float,
         maximum_time: CFTimeInterval,
-        out_found_count: *mut CFIndex,
+        out_found_count: Option<&mut CFIndex>,
     ) -> bool {
         extern "C-unwind" {
             fn SKSearchFindMatches(
@@ -105,7 +105,7 @@ impl SKSearch {
                 out_document_i_ds_array: *mut SKDocumentID,
                 out_scores_array: *mut c_float,
                 maximum_time: CFTimeInterval,
-                out_found_count: *mut CFIndex,
+                out_found_count: Option<&mut CFIndex>,
             ) -> Boolean;
         }
         let ret = unsafe {

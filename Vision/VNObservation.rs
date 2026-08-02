@@ -1688,15 +1688,11 @@ impl VNFeaturePrintObservation {
         /// Computes the distance between two observations.
         ///
         /// The larger the distance the more dissimlar the feature prints are. In case of an error this method returns false with an error describing the error condition, for instance comparing two non-comparable feature prints.
-        ///
-        /// # Safety
-        ///
-        /// `out_distance` must be a valid pointer.
         #[unsafe(method(computeDistance:toFeaturePrintObservation:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn computeDistance_toFeaturePrintObservation_error(
             &self,
-            out_distance: NonNull<c_float>,
+            out_distance: &mut c_float,
             feature_print: &VNFeaturePrintObservation,
         ) -> Result<(), Retained<NSError>>;
     );

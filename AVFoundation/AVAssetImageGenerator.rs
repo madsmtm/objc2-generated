@@ -299,17 +299,13 @@ impl AVAssetImageGenerator {
         /// Because of the nature of timed audiovisual media, generating an image may take significant time. AVAssetImageGenerator may have to block the calling thread in order to do so.  In order to avoid blocking, clients can use -generateCGImagesAsynchronouslyForTimes:completionHandler: to request that one or more images be generated asynchronously and to be notified when they become available.
         ///
         /// On iOS and tvOS, it is particularly important to avoid blocking.  To preserve responsiveness, a synchronous request that blocks for too long (eg, a request to generate an image from an asset on a slow HTTP server) may lead to media services being reset.
-        ///
-        /// # Safety
-        ///
-        /// `actual_time` must be a valid pointer or null.
         #[deprecated = "Use generateCGImageAsynchronouslyForTime:completionHandler: instead"]
         #[unsafe(method(copyCGImageAtTime:actualTime:error:_))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyCGImageAtTime_actualTime_error(
             &self,
             requested_time: CMTime,
-            actual_time: *mut CMTime,
+            actual_time: Option<&mut CMTime>,
         ) -> Result<Retained<CGImage>, Retained<NSError>>;
 
         #[cfg(all(

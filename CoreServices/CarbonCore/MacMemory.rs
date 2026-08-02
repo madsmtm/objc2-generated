@@ -174,12 +174,12 @@ pub unsafe fn HUnlock(h: Handle) {
 
 /// # Safety
 ///
-/// `result_code` must be a valid pointer.
+/// `result_code` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn TempNewHandle(logical_size: Size, result_code: *mut OSErr) -> Handle {
+pub unsafe fn TempNewHandle(logical_size: Size, result_code: Option<&mut OSErr>) -> Handle {
     extern "C-unwind" {
-        fn TempNewHandle(logical_size: Size, result_code: *mut OSErr) -> Handle;
+        fn TempNewHandle(logical_size: Size, result_code: Option<&mut OSErr>) -> Handle;
     }
     unsafe { TempNewHandle(logical_size, result_code) }
 }
@@ -330,12 +330,13 @@ pub unsafe fn HSetState(h: Handle, flags: i8) {
 
 /// # Safety
 ///
-/// `the_hndl` must be a valid pointer.
+/// - `the_hndl` must be a valid pointer.
+/// - `the_hndl` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn HandToHand(the_hndl: *mut Handle) -> OSErr {
+pub unsafe fn HandToHand(the_hndl: Option<&mut Handle>) -> OSErr {
     extern "C-unwind" {
-        fn HandToHand(the_hndl: *mut Handle) -> OSErr;
+        fn HandToHand(the_hndl: Option<&mut Handle>) -> OSErr;
     }
     unsafe { HandToHand(the_hndl) }
 }
@@ -357,11 +358,16 @@ pub unsafe fn PtrToXHand(src_ptr: *const c_void, dst_hndl: Handle, size: c_long)
 ///
 /// - `src_ptr` must be a valid pointer.
 /// - `dst_hndl` must be a valid pointer.
+/// - `dst_hndl` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn PtrToHand(src_ptr: *const c_void, dst_hndl: *mut Handle, size: c_long) -> OSErr {
+pub unsafe fn PtrToHand(
+    src_ptr: *const c_void,
+    dst_hndl: Option<&mut Handle>,
+    size: c_long,
+) -> OSErr {
     extern "C-unwind" {
-        fn PtrToHand(src_ptr: *const c_void, dst_hndl: *mut Handle, size: c_long) -> OSErr;
+        fn PtrToHand(src_ptr: *const c_void, dst_hndl: Option<&mut Handle>, size: c_long) -> OSErr;
     }
     unsafe { PtrToHand(src_ptr, dst_hndl, size) }
 }

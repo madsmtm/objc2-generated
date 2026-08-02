@@ -100,16 +100,19 @@ pub unsafe fn LSOpenCFURLRef(
 
 /// # Safety
 ///
-/// `in_launch_spec` must be a valid pointer.
+/// - `in_launch_spec` struct field `appURL` must be a valid pointer or null.
+/// - `in_launch_spec` struct field `itemURLs` must be a valid pointer or null.
+/// - `in_launch_spec` struct field `passThruParams` must be a valid pointer or null.
+/// - `in_launch_spec` struct field `asyncRefCon` must be a valid pointer or null.
 #[cfg(all(feature = "AE", feature = "AEDataModel"))]
 #[inline]
 pub unsafe fn LSOpenFromURLSpec(
-    in_launch_spec: NonNull<LSLaunchURLSpec>,
+    in_launch_spec: &LSLaunchURLSpec,
     out_launched_url: Option<&mut Option<CFRetained<CFURL>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn LSOpenFromURLSpec(
-            in_launch_spec: NonNull<LSLaunchURLSpec>,
+            in_launch_spec: &LSLaunchURLSpec,
             out_launched_url: Option<&mut Option<CFRetained<CFURL>>>,
         ) -> OSStatus;
     }

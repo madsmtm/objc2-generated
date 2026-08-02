@@ -1316,20 +1316,14 @@ impl AVVideoCompositionLayerInstruction {
         /// - Parameter timeRange: A pointer to a CMTimeRange to receive the timeRange of the transform ramp. May be NULL.
         ///
         /// - Returns: An indication of success. NO will be returned if the specified time is beyond the duration of the last transform ramp that has been set.
-        ///
-        /// # Safety
-        ///
-        /// - `start_transform` must be a valid pointer or null.
-        /// - `end_transform` must be a valid pointer or null.
-        /// - `time_range` must be a valid pointer or null.
         #[unsafe(method(getTransformRampForTime:startTransform:endTransform:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTransformRampForTime_startTransform_endTransform_timeRange(
             &self,
             time: CMTime,
-            start_transform: *mut CGAffineTransform,
-            end_transform: *mut CGAffineTransform,
-            time_range: *mut CMTimeRange,
+            start_transform: Option<&mut CGAffineTransform>,
+            end_transform: Option<&mut CGAffineTransform>,
+            time_range: Option<&mut CMTimeRange>,
         ) -> bool;
 
         #[cfg(feature = "objc2-core-media")]
@@ -1341,20 +1335,14 @@ impl AVVideoCompositionLayerInstruction {
         /// - Parameter timeRange: A pointer to a CMTimeRange to receive the timeRange of the opacity ramp. May be NULL.
         ///
         /// - Returns: An indication of success. NO will be returned if the specified time is beyond the duration of the last opacity ramp that has been set.
-        ///
-        /// # Safety
-        ///
-        /// - `start_opacity` must be a valid pointer or null.
-        /// - `end_opacity` must be a valid pointer or null.
-        /// - `time_range` must be a valid pointer or null.
         #[unsafe(method(getOpacityRampForTime:startOpacity:endOpacity:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getOpacityRampForTime_startOpacity_endOpacity_timeRange(
             &self,
             time: CMTime,
-            start_opacity: *mut c_float,
-            end_opacity: *mut c_float,
-            time_range: *mut CMTimeRange,
+            start_opacity: Option<&mut c_float>,
+            end_opacity: Option<&mut c_float>,
+            time_range: Option<&mut CMTimeRange>,
         ) -> bool;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
@@ -1366,20 +1354,14 @@ impl AVVideoCompositionLayerInstruction {
         /// - Parameter timeRange: A pointer to a CMTimeRange to receive the timeRange of the crop rectangle ramp. May be NULL.
         ///
         /// - Returns: An indication of success. NO will be returned if the specified time is beyond the duration of the last crop rectangle ramp that has been set.
-        ///
-        /// # Safety
-        ///
-        /// - `start_crop_rectangle` must be a valid pointer or null.
-        /// - `end_crop_rectangle` must be a valid pointer or null.
-        /// - `time_range` must be a valid pointer or null.
         #[unsafe(method(getCropRectangleRampForTime:startCropRectangle:endCropRectangle:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCropRectangleRampForTime_startCropRectangle_endCropRectangle_timeRange(
             &self,
             time: CMTime,
-            start_crop_rectangle: *mut CGRect,
-            end_crop_rectangle: *mut CGRect,
-            time_range: *mut CMTimeRange,
+            start_crop_rectangle: Option<&mut CGRect>,
+            end_crop_rectangle: Option<&mut CGRect>,
+            time_range: Option<&mut CMTimeRange>,
         ) -> bool;
     );
 }

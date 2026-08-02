@@ -142,14 +142,14 @@ pub unsafe trait NSObjectIOBluetoothHostControllerDelegate:
         /// - `controller` should be of the correct type.
         /// - `controller` might not allow `None`.
         /// - `device` might not allow `None`.
-        /// - `info` must be a valid pointer.
+        /// - `info` might not allow `None`.
         #[unsafe(method(readRSSIForDeviceComplete:device:info:error:))]
         #[unsafe(method_family = none)]
         unsafe fn readRSSIForDeviceComplete_device_info_error(
             &self,
             controller: Option<&AnyObject>,
             device: Option<&IOBluetoothDevice>,
-            info: *mut BluetoothHCIRSSIInfo,
+            info: Option<&mut BluetoothHCIRSSIInfo>,
             error: IOReturn,
         );
 
@@ -169,14 +169,14 @@ pub unsafe trait NSObjectIOBluetoothHostControllerDelegate:
         /// - `controller` should be of the correct type.
         /// - `controller` might not allow `None`.
         /// - `device` might not allow `None`.
-        /// - `info` must be a valid pointer.
+        /// - `info` might not allow `None`.
         #[unsafe(method(readLinkQualityForDeviceComplete:device:info:error:))]
         #[unsafe(method_family = none)]
         unsafe fn readLinkQualityForDeviceComplete_device_info_error(
             &self,
             controller: Option<&AnyObject>,
             device: Option<&IOBluetoothDevice>,
-            info: *mut BluetoothHCILinkQualityInfo,
+            info: Option<&mut BluetoothHCILinkQualityInfo>,
             error: IOReturn,
         );
     );

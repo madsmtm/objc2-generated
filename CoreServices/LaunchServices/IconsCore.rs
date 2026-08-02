@@ -551,12 +551,12 @@ pub const kIconServicesCatalogInfoMask: c_uint = 531550;
 /// # Safety
 ///
 /// - `the_icon_ref` must be a valid pointer.
-/// - `owners` must be a valid pointer.
+/// - `owners` might not allow `None`.
 #[deprecated = "This function is no longer supported. Use NSWorkspace and NSImage to get icons."]
 #[inline]
-pub unsafe fn GetIconRefOwners(the_icon_ref: IconRef, owners: *mut u16) -> OSErr {
+pub unsafe fn GetIconRefOwners(the_icon_ref: IconRef, owners: Option<&mut u16>) -> OSErr {
     extern "C-unwind" {
-        fn GetIconRefOwners(the_icon_ref: IconRef, owners: *mut u16) -> OSErr;
+        fn GetIconRefOwners(the_icon_ref: IconRef, owners: Option<&mut u16>) -> OSErr;
     }
     unsafe { GetIconRefOwners(the_icon_ref, owners) }
 }
@@ -587,21 +587,22 @@ pub unsafe fn ReleaseIconRef(the_icon_ref: IconRef) -> OSErr {
 
 /// # Safety
 ///
-/// `the_icon_ref` must be a valid pointer.
+/// - `the_icon_ref` must be a valid pointer.
+/// - `the_icon_ref` might not allow `None`.
 #[deprecated = "Use -[NSWorkspace iconForFile:] instead."]
 #[inline]
 pub unsafe fn GetIconRef(
     v_ref_num: i16,
     creator: OSType,
     icon_type: OSType,
-    the_icon_ref: *mut IconRef,
+    the_icon_ref: Option<&mut IconRef>,
 ) -> OSErr {
     extern "C-unwind" {
         fn GetIconRef(
             v_ref_num: i16,
             creator: OSType,
             icon_type: OSType,
-            the_icon_ref: *mut IconRef,
+            the_icon_ref: Option<&mut IconRef>,
         ) -> OSErr;
     }
     unsafe { GetIconRef(v_ref_num, creator, icon_type, the_icon_ref) }
@@ -609,7 +610,8 @@ pub unsafe fn GetIconRef(
 
 /// # Safety
 ///
-/// `the_icon_ref` must be a valid pointer.
+/// - `the_icon_ref` must be a valid pointer.
+/// - `the_icon_ref` might not allow `None`.
 #[deprecated = "Use -[NSWorkspace iconForFile:] instead."]
 #[inline]
 pub unsafe fn GetIconRefFromFolder(
@@ -618,7 +620,7 @@ pub unsafe fn GetIconRefFromFolder(
     folder_id: i32,
     attributes: i8,
     access_privileges: i8,
-    the_icon_ref: *mut IconRef,
+    the_icon_ref: Option<&mut IconRef>,
 ) -> OSErr {
     extern "C-unwind" {
         fn GetIconRefFromFolder(
@@ -627,7 +629,7 @@ pub unsafe fn GetIconRefFromFolder(
             folder_id: i32,
             attributes: i8,
             access_privileges: i8,
-            the_icon_ref: *mut IconRef,
+            the_icon_ref: Option<&mut IconRef>,
         ) -> OSErr;
     }
     unsafe {
@@ -644,11 +646,13 @@ pub unsafe fn GetIconRefFromFolder(
 
 /// # Safety
 ///
-/// - `in_ref` must be a valid pointer.
+/// - `in_ref` might not allow `None`.
 /// - `in_file_name` must be a valid pointer.
-/// - `in_catalog_info` must be a valid pointer.
+/// - `in_catalog_info` struct field `permissions` struct field `fileSec` must be a valid pointer.
+/// - `in_catalog_info` might not allow `None`.
 /// - `out_icon_ref` must be a valid pointer.
-/// - `out_label` must be a valid pointer.
+/// - `out_icon_ref` might not allow `None`.
+/// - `out_label` might not allow `None`.
 #[cfg(all(
     feature = "CarbonCore",
     feature = "Files",
@@ -658,25 +662,25 @@ pub unsafe fn GetIconRefFromFolder(
 #[deprecated = "Use -[NSWorkspace iconForFile:] instead."]
 #[inline]
 pub unsafe fn GetIconRefFromFileInfo(
-    in_ref: *const FSRef,
+    in_ref: Option<&FSRef>,
     in_file_name_length: UniCharCount,
     in_file_name: *const UniChar,
     in_which_info: FSCatalogInfoBitmap,
-    in_catalog_info: *const FSCatalogInfo,
+    in_catalog_info: Option<&FSCatalogInfo>,
     in_usage_flags: IconServicesUsageFlags,
-    out_icon_ref: *mut IconRef,
-    out_label: *mut i16,
+    out_icon_ref: Option<&mut IconRef>,
+    out_label: Option<&mut i16>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn GetIconRefFromFileInfo(
-            in_ref: *const FSRef,
+            in_ref: Option<&FSRef>,
             in_file_name_length: UniCharCount,
             in_file_name: *const UniChar,
             in_which_info: FSCatalogInfoBitmap,
-            in_catalog_info: *const FSCatalogInfo,
+            in_catalog_info: Option<&FSCatalogInfo>,
             in_usage_flags: IconServicesUsageFlags,
-            out_icon_ref: *mut IconRef,
-            out_label: *mut i16,
+            out_icon_ref: Option<&mut IconRef>,
+            out_label: Option<&mut i16>,
         ) -> OSStatus;
     }
     unsafe {
@@ -698,6 +702,7 @@ pub unsafe fn GetIconRefFromFileInfo(
 /// - `in_extension` might not allow `None`.
 /// - `in_mime_type` might not allow `None`.
 /// - `out_icon_ref` must be a valid pointer.
+/// - `out_icon_ref` might not allow `None`.
 #[deprecated = "Use -[NSWorkspace iconForFileType:] instead."]
 #[inline]
 pub unsafe fn GetIconRefFromTypeInfo(
@@ -706,7 +711,7 @@ pub unsafe fn GetIconRefFromTypeInfo(
     in_extension: Option<&CFString>,
     in_mime_type: Option<&CFString>,
     in_usage_flags: IconServicesUsageFlags,
-    out_icon_ref: *mut IconRef,
+    out_icon_ref: Option<&mut IconRef>,
 ) -> OSErr {
     extern "C-unwind" {
         fn GetIconRefFromTypeInfo(
@@ -715,7 +720,7 @@ pub unsafe fn GetIconRefFromTypeInfo(
             in_extension: Option<&CFString>,
             in_mime_type: Option<&CFString>,
             in_usage_flags: IconServicesUsageFlags,
-            out_icon_ref: *mut IconRef,
+            out_icon_ref: Option<&mut IconRef>,
         ) -> OSErr;
     }
     unsafe {
@@ -734,19 +739,20 @@ pub unsafe fn GetIconRefFromTypeInfo(
 ///
 /// - `in_icon_family_ptr` must be a valid pointer.
 /// - `out_icon_ref` must be a valid pointer.
+/// - `out_icon_ref` might not allow `None`.
 #[cfg(all(feature = "IconStorage", feature = "OSServices"))]
 #[deprecated = "This function is no longer supported. Use NSWorkspace and NSImage to get icons."]
 #[inline]
 pub unsafe fn GetIconRefFromIconFamilyPtr(
     in_icon_family_ptr: *const IconFamilyResource,
     in_size: Size,
-    out_icon_ref: *mut IconRef,
+    out_icon_ref: Option<&mut IconRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn GetIconRefFromIconFamilyPtr(
             in_icon_family_ptr: *const IconFamilyResource,
             in_size: Size,
-            out_icon_ref: *mut IconRef,
+            out_icon_ref: Option<&mut IconRef>,
         ) -> OSStatus;
     }
     unsafe { GetIconRefFromIconFamilyPtr(in_icon_family_ptr, in_size, out_icon_ref) }
@@ -756,16 +762,19 @@ pub unsafe fn GetIconRefFromIconFamilyPtr(
 ///
 /// - `in_component` must be a valid pointer.
 /// - `out_icon_ref` must be a valid pointer.
+/// - `out_icon_ref` might not allow `None`.
 #[cfg(all(feature = "CarbonCore", feature = "Components"))]
 #[deprecated = "This function is no longer supported. Use NSWorkspace and NSImage to get icons."]
 #[inline]
 pub unsafe fn GetIconRefFromComponent(
     in_component: Component,
-    out_icon_ref: *mut IconRef,
+    out_icon_ref: Option<&mut IconRef>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn GetIconRefFromComponent(in_component: Component, out_icon_ref: *mut IconRef)
-            -> OSStatus;
+        fn GetIconRefFromComponent(
+            in_component: Component,
+            out_icon_ref: Option<&mut IconRef>,
+        ) -> OSStatus;
     }
     unsafe { GetIconRefFromComponent(in_component, out_icon_ref) }
 }
@@ -774,6 +783,7 @@ pub unsafe fn GetIconRefFromComponent(
 ///
 /// - `icon_family` must be a valid pointer.
 /// - `the_icon_ref` must be a valid pointer.
+/// - `the_icon_ref` might not allow `None`.
 #[cfg(all(feature = "IconStorage", feature = "OSServices"))]
 #[deprecated = "This function is no longer supported. Use NSWorkspace and NSImage to get icons."]
 #[inline]
@@ -781,14 +791,14 @@ pub unsafe fn RegisterIconRefFromIconFamily(
     creator: OSType,
     icon_type: OSType,
     icon_family: IconFamilyHandle,
-    the_icon_ref: *mut IconRef,
+    the_icon_ref: Option<&mut IconRef>,
 ) -> OSErr {
     extern "C-unwind" {
         fn RegisterIconRefFromIconFamily(
             creator: OSType,
             icon_type: OSType,
             icon_family: IconFamilyHandle,
-            the_icon_ref: *mut IconRef,
+            the_icon_ref: Option<&mut IconRef>,
         ) -> OSErr;
     }
     unsafe { RegisterIconRefFromIconFamily(creator, icon_type, icon_family, the_icon_ref) }
@@ -796,23 +806,24 @@ pub unsafe fn RegisterIconRefFromIconFamily(
 
 /// # Safety
 ///
-/// - `icon_file` must be a valid pointer.
+/// - `icon_file` might not allow `None`.
 /// - `the_icon_ref` must be a valid pointer.
+/// - `the_icon_ref` might not allow `None`.
 #[cfg(all(feature = "CarbonCore", feature = "Files"))]
 #[deprecated = "You do not need to register .icns files to use them with -[NSImage initWithContentsOfURL:]."]
 #[inline]
 pub unsafe fn RegisterIconRefFromFSRef(
     creator: OSType,
     icon_type: OSType,
-    icon_file: *const FSRef,
-    the_icon_ref: *mut IconRef,
+    icon_file: Option<&FSRef>,
+    the_icon_ref: Option<&mut IconRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn RegisterIconRefFromFSRef(
             creator: OSType,
             icon_type: OSType,
-            icon_file: *const FSRef,
-            the_icon_ref: *mut IconRef,
+            icon_file: Option<&FSRef>,
+            the_icon_ref: Option<&mut IconRef>,
         ) -> OSStatus;
     }
     unsafe { RegisterIconRefFromFSRef(creator, icon_type, icon_file, the_icon_ref) }
@@ -869,18 +880,19 @@ pub unsafe fn RemoveIconRefOverride(the_icon_ref: IconRef) -> OSErr {
 /// - `background_icon_ref` must be a valid pointer.
 /// - `foreground_icon_ref` must be a valid pointer.
 /// - `composite_icon_ref` must be a valid pointer.
+/// - `composite_icon_ref` might not allow `None`.
 #[deprecated = "Use NSImage or Core Graphics to composite images."]
 #[inline]
 pub unsafe fn CompositeIconRef(
     background_icon_ref: IconRef,
     foreground_icon_ref: IconRef,
-    composite_icon_ref: *mut IconRef,
+    composite_icon_ref: Option<&mut IconRef>,
 ) -> OSErr {
     extern "C-unwind" {
         fn CompositeIconRef(
             background_icon_ref: IconRef,
             foreground_icon_ref: IconRef,
-            composite_icon_ref: *mut IconRef,
+            composite_icon_ref: Option<&mut IconRef>,
         ) -> OSErr;
     }
     unsafe { CompositeIconRef(background_icon_ref, foreground_icon_ref, composite_icon_ref) }
@@ -890,19 +902,21 @@ pub unsafe fn CompositeIconRef(
 ///
 /// - `composite_icon_ref` must be a valid pointer.
 /// - `background_icon_ref` must be a valid pointer.
+/// - `background_icon_ref` might not allow `None`.
 /// - `foreground_icon_ref` must be a valid pointer.
+/// - `foreground_icon_ref` might not allow `None`.
 #[deprecated = "Use NSImage or Core Graphics to composite images."]
 #[inline]
 pub unsafe fn IsIconRefComposite(
     composite_icon_ref: IconRef,
-    background_icon_ref: *mut IconRef,
-    foreground_icon_ref: *mut IconRef,
+    background_icon_ref: Option<&mut IconRef>,
+    foreground_icon_ref: Option<&mut IconRef>,
 ) -> OSErr {
     extern "C-unwind" {
         fn IsIconRefComposite(
             composite_icon_ref: IconRef,
-            background_icon_ref: *mut IconRef,
-            foreground_icon_ref: *mut IconRef,
+            background_icon_ref: Option<&mut IconRef>,
+            foreground_icon_ref: Option<&mut IconRef>,
         ) -> OSErr;
     }
     unsafe { IsIconRefComposite(composite_icon_ref, background_icon_ref, foreground_icon_ref) }
@@ -946,20 +960,27 @@ pub unsafe fn SetCustomIconsEnabled(v_ref_num: i16, enable_custom_icons: bool) -
 
 /// # Safety
 ///
-/// `custom_icons_enabled` must be a valid pointer.
+/// `custom_icons_enabled` might not allow `None`.
 #[deprecated = "This function is no longer supported. Use NSWorkspace and NSImage to get icons."]
 #[inline]
-pub unsafe fn GetCustomIconsEnabled(v_ref_num: i16, custom_icons_enabled: *mut Boolean) -> OSErr {
+pub unsafe fn GetCustomIconsEnabled(
+    v_ref_num: i16,
+    custom_icons_enabled: Option<&mut Boolean>,
+) -> OSErr {
     extern "C-unwind" {
-        fn GetCustomIconsEnabled(v_ref_num: i16, custom_icons_enabled: *mut Boolean) -> OSErr;
+        fn GetCustomIconsEnabled(
+            v_ref_num: i16,
+            custom_icons_enabled: Option<&mut Boolean>,
+        ) -> OSErr;
     }
     unsafe { GetCustomIconsEnabled(v_ref_num, custom_icons_enabled) }
 }
 
 /// # Safety
 ///
-/// - `ref` must be a valid pointer.
+/// - `ref` might not allow `None`.
 /// - `icon_family` must be a valid pointer.
+/// - `icon_family` might not allow `None`.
 #[cfg(all(
     feature = "CarbonCore",
     feature = "Files",
@@ -969,11 +990,14 @@ pub unsafe fn GetCustomIconsEnabled(v_ref_num: i16, custom_icons_enabled: *mut B
 #[deprecated = "Use -[NSWorkspace iconForFile:] instead."]
 #[inline]
 pub unsafe fn ReadIconFromFSRef(
-    r#ref: *const FSRef,
-    icon_family: *mut IconFamilyHandle,
+    r#ref: Option<&FSRef>,
+    icon_family: Option<&mut IconFamilyHandle>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn ReadIconFromFSRef(r#ref: *const FSRef, icon_family: *mut IconFamilyHandle) -> OSStatus;
+        fn ReadIconFromFSRef(
+            r#ref: Option<&FSRef>,
+            icon_family: Option<&mut IconFamilyHandle>,
+        ) -> OSStatus;
     }
     unsafe { ReadIconFromFSRef(r#ref, icon_family) }
 }

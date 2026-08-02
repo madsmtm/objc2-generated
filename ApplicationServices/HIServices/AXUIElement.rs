@@ -391,23 +391,19 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// # Safety
-    ///
-    /// `count` must be a valid pointer.
     #[doc(alias = "AXUIElementGetAttributeValueCount")]
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn attribute_value_count(
         &self,
         attribute: &CFString,
-        count: NonNull<CFIndex>,
+        count: &mut CFIndex,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementGetAttributeValueCount(
                 element: &AXUIElement,
                 attribute: &CFString,
-                count: NonNull<CFIndex>,
+                count: &mut CFIndex,
             ) -> AXError;
         }
         unsafe { AXUIElementGetAttributeValueCount(self, attribute, count) }
@@ -593,23 +589,19 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// # Safety
-    ///
-    /// `settable` must be a valid pointer.
     #[doc(alias = "AXUIElementIsAttributeSettable")]
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn is_attribute_settable(
         &self,
         attribute: &CFString,
-        settable: NonNull<Boolean>,
+        settable: &mut Boolean,
     ) -> AXError {
         extern "C-unwind" {
             fn AXUIElementIsAttributeSettable(
                 element: &AXUIElement,
                 attribute: &CFString,
-                settable: NonNull<Boolean>,
+                settable: &mut Boolean,
             ) -> AXError;
         }
         unsafe { AXUIElementIsAttributeSettable(self, attribute, settable) }
@@ -1390,16 +1382,12 @@ impl AXUIElement {
     /// The AXUIElementRef is invalid.
     /// </dd>
     /// </dl>
-    ///
-    /// # Safety
-    ///
-    /// `pid` must be a valid pointer.
     #[doc(alias = "AXUIElementGetPid")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
-    pub unsafe fn pid(&self, pid: NonNull<libc::pid_t>) -> AXError {
+    pub unsafe fn pid(&self, pid: &mut libc::pid_t) -> AXError {
         extern "C-unwind" {
-            fn AXUIElementGetPid(element: &AXUIElement, pid: NonNull<libc::pid_t>) -> AXError;
+            fn AXUIElementGetPid(element: &AXUIElement, pid: &mut libc::pid_t) -> AXError;
         }
         unsafe { AXUIElementGetPid(self, pid) }
     }

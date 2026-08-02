@@ -186,7 +186,7 @@ impl IOSurface {
         pub fn lockWithOptions_seed(
             &self,
             options: IOSurfaceLockOptions,
-            seed: *mut u32,
+            seed: Option<&mut u32>,
         ) -> libc::kern_return_t;
 
         #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
@@ -195,7 +195,7 @@ impl IOSurface {
         pub fn unlockWithOptions_seed(
             &self,
             options: IOSurfaceLockOptions,
-            seed: *mut u32,
+            seed: Option<&mut u32>,
         ) -> libc::kern_return_t;
 
         #[unsafe(method(allocationSize))]
@@ -328,15 +328,12 @@ impl IOSurface {
         pub fn allowsPixelSizeCasting(&self) -> bool;
 
         #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
-        /// # Safety
-        ///
-        /// `old_state` must be a valid pointer or null.
         #[unsafe(method(setPurgeable:oldState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPurgeable_oldState(
             &self,
             new_state: IOSurfacePurgeabilityState,
-            old_state: *mut IOSurfacePurgeabilityState,
+            old_state: Option<&mut IOSurfacePurgeabilityState>,
         ) -> libc::kern_return_t;
     );
 }

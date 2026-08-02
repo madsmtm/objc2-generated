@@ -151,7 +151,8 @@ impl VTDecompressionSession {
     ///
     /// - `video_decoder_specification` generic should be of the correct type.
     /// - `destination_image_buffer_attributes` generic should be of the correct type.
-    /// - `output_callback` must be a valid pointer or null.
+    /// - `output_callback` struct field `decompressionOutputCallback` must be implemented correctly.
+    /// - `output_callback` struct field `decompressionOutputRefCon` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionCreate")]
     #[cfg(all(
         feature = "VTErrors",
@@ -164,7 +165,7 @@ impl VTDecompressionSession {
         video_format_description: &CMVideoFormatDescription,
         video_decoder_specification: Option<&CFDictionary<CFString, CFType>>,
         destination_image_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-        output_callback: *const VTDecompressionOutputCallbackRecord,
+        output_callback: Option<&VTDecompressionOutputCallbackRecord>,
         decompression_session_out: &mut Option<CFRetained<VTDecompressionSession>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -173,7 +174,7 @@ impl VTDecompressionSession {
                 video_format_description: &CMVideoFormatDescription,
                 video_decoder_specification: Option<&CFDictionary<CFString, CFType>>,
                 destination_image_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
-                output_callback: *const VTDecompressionOutputCallbackRecord,
+                output_callback: Option<&VTDecompressionOutputCallbackRecord>,
                 decompression_session_out: &mut Option<CFRetained<VTDecompressionSession>>,
             ) -> OSStatus;
         }
@@ -253,8 +254,7 @@ impl VTDecompressionSession {
     ///
     /// # Safety
     ///
-    /// - `source_frame_ref_con` must be a valid pointer or null.
-    /// - `info_flags_out` must be a valid pointer or null.
+    /// `source_frame_ref_con` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionDecodeFrame")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -263,7 +263,7 @@ impl VTDecompressionSession {
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
         source_frame_ref_con: *mut c_void,
-        info_flags_out: *mut VTDecodeInfoFlags,
+        info_flags_out: Option<&mut VTDecodeInfoFlags>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTDecompressionSessionDecodeFrame(
@@ -271,7 +271,7 @@ impl VTDecompressionSession {
                 sample_buffer: &CMSampleBuffer,
                 decode_flags: VTDecodeFrameFlags,
                 source_frame_ref_con: *mut c_void,
-                info_flags_out: *mut VTDecodeInfoFlags,
+                info_flags_out: Option<&mut VTDecodeInfoFlags>,
             ) -> OSStatus;
         }
         unsafe {
@@ -347,10 +347,6 @@ impl VTDecompressionSession {
     ///
     /// Parameter `outputHandler`: The block to be called when decoding the frame is completed.  If the VTDecompressionSessionDecodeFrameWithOutputHandler
     /// call returns an error, the block will not be called.
-    ///
-    /// # Safety
-    ///
-    /// `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -363,7 +359,7 @@ impl VTDecompressionSession {
         &self,
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
-        info_flags_out: *mut VTDecodeInfoFlags,
+        info_flags_out: Option<&mut VTDecodeInfoFlags>,
         output_handler: &VTDecompressionOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -371,7 +367,7 @@ impl VTDecompressionSession {
                 session: &VTDecompressionSession,
                 sample_buffer: &CMSampleBuffer,
                 decode_flags: VTDecodeFrameFlags,
-                info_flags_out: *mut VTDecodeInfoFlags,
+                info_flags_out: Option<&mut VTDecodeInfoFlags>,
                 output_handler: &VTDecompressionOutputHandler,
             ) -> OSStatus;
         }
@@ -650,10 +646,6 @@ impl VTDecompressionSession {
     /// Parameter `multiImageCapableOutputHandler`: The block to be called when decoding the frame is completed.  If the
     /// VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler call returns an error,
     /// the block will not be called.
-    ///
-    /// # Safety
-    ///
-    /// `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -666,7 +658,7 @@ impl VTDecompressionSession {
         &self,
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
-        info_flags_out: *mut VTDecodeInfoFlags,
+        info_flags_out: Option<&mut VTDecodeInfoFlags>,
         multi_image_capable_output_handler: &VTDecompressionMultiImageCapableOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -674,7 +666,7 @@ impl VTDecompressionSession {
                 session: &VTDecompressionSession,
                 sample_buffer: &CMSampleBuffer,
                 decode_flags: VTDecodeFrameFlags,
-                info_flags_out: *mut VTDecodeInfoFlags,
+                info_flags_out: Option<&mut VTDecodeInfoFlags>,
                 multi_image_capable_output_handler: &VTDecompressionMultiImageCapableOutputHandler,
             ) -> OSStatus;
         }
@@ -724,7 +716,6 @@ impl VTDecompressionSession {
     ///
     /// - `frame_options` generic should be of the correct type.
     /// - `source_frame_ref_con` must be a valid pointer or null.
-    /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptions")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -734,7 +725,7 @@ impl VTDecompressionSession {
         decode_flags: VTDecodeFrameFlags,
         frame_options: Option<&CFDictionary<CFString, CFType>>,
         source_frame_ref_con: *mut c_void,
-        info_flags_out: *mut VTDecodeInfoFlags,
+        info_flags_out: Option<&mut VTDecodeInfoFlags>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTDecompressionSessionDecodeFrameWithOptions(
@@ -743,7 +734,7 @@ impl VTDecompressionSession {
                 decode_flags: VTDecodeFrameFlags,
                 frame_options: Option<&CFDictionary<CFString, CFType>>,
                 source_frame_ref_con: *mut c_void,
-                info_flags_out: *mut VTDecodeInfoFlags,
+                info_flags_out: Option<&mut VTDecodeInfoFlags>,
             ) -> OSStatus;
         }
         unsafe {
@@ -792,8 +783,7 @@ impl VTDecompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_options` generic should be of the correct type.
-    /// - `info_flags_out` must be a valid pointer or null.
+    /// `frame_options` generic should be of the correct type.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -807,7 +797,7 @@ impl VTDecompressionSession {
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
         frame_options: Option<&CFDictionary<CFString, CFType>>,
-        info_flags_out: *mut VTDecodeInfoFlags,
+        info_flags_out: Option<&mut VTDecodeInfoFlags>,
         output_handler: &VTDecompressionOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -816,7 +806,7 @@ impl VTDecompressionSession {
                 sample_buffer: &CMSampleBuffer,
                 decode_flags: VTDecodeFrameFlags,
                 frame_options: Option<&CFDictionary<CFString, CFType>>,
-                info_flags_out: *mut VTDecodeInfoFlags,
+                info_flags_out: Option<&mut VTDecodeInfoFlags>,
                 output_handler: &VTDecompressionOutputHandler,
             ) -> OSStatus;
         }

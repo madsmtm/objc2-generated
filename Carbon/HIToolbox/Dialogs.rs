@@ -288,22 +288,22 @@ pub unsafe fn DisposeUserItemUPP(user_upp: UserItemUPP) {
 /// # Safety
 ///
 /// - `the_dialog` must be a valid pointer.
-/// - `the_event` must be a valid pointer.
-/// - `item_hit` must be a valid pointer.
+/// - `the_event` might not allow `None`.
+/// - `item_hit` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 #[inline]
 pub unsafe fn InvokeModalFilterUPP(
     the_dialog: DialogRef,
-    the_event: *mut EventRecord,
-    item_hit: *mut DialogItemIndex,
+    the_event: Option<&mut EventRecord>,
+    item_hit: Option<&mut DialogItemIndex>,
     user_upp: ModalFilterUPP,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeModalFilterUPP(
             the_dialog: DialogRef,
-            the_event: *mut EventRecord,
-            item_hit: *mut DialogItemIndex,
+            the_event: Option<&mut EventRecord>,
+            item_hit: Option<&mut DialogItemIndex>,
             user_upp: ModalFilterUPP,
         ) -> Boolean;
     }
@@ -314,24 +314,24 @@ pub unsafe fn InvokeModalFilterUPP(
 /// # Safety
 ///
 /// - `the_dialog` must be a valid pointer.
-/// - `the_event` must be a valid pointer.
-/// - `item_hit` must be a valid pointer.
+/// - `the_event` might not allow `None`.
+/// - `item_hit` might not allow `None`.
 /// - `your_data_ptr` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 #[inline]
 pub unsafe fn InvokeModalFilterYDUPP(
     the_dialog: DialogRef,
-    the_event: *mut EventRecord,
-    item_hit: *mut c_short,
+    the_event: Option<&mut EventRecord>,
+    item_hit: Option<&mut c_short>,
     your_data_ptr: *mut c_void,
     user_upp: ModalFilterYDUPP,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeModalFilterYDUPP(
             the_dialog: DialogRef,
-            the_event: *mut EventRecord,
-            item_hit: *mut c_short,
+            the_event: Option<&mut EventRecord>,
+            item_hit: Option<&mut c_short>,
             your_data_ptr: *mut c_void,
             user_upp: ModalFilterYDUPP,
         ) -> Boolean;

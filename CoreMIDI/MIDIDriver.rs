@@ -216,8 +216,7 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// - `owner` must be a valid pointer or null.
-/// - `out_device` must be a valid pointer.
+/// `owner` must be a valid pointer or null.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe fn MIDIDeviceCreate(
@@ -225,7 +224,7 @@ pub unsafe fn MIDIDeviceCreate(
     name: &CFString,
     manufacturer: &CFString,
     model: &CFString,
-    out_device: NonNull<MIDIDeviceRef>,
+    out_device: &mut MIDIDeviceRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIDeviceCreate(
@@ -233,7 +232,7 @@ pub unsafe fn MIDIDeviceCreate(
             name: &CFString,
             manufacturer: &CFString,
             model: &CFString,
-            out_device: NonNull<MIDIDeviceRef>,
+            out_device: &mut MIDIDeviceRef,
         ) -> OSStatus;
     }
     unsafe { MIDIDeviceCreate(owner, name, manufacturer, model, out_device) }
@@ -387,20 +386,20 @@ pub unsafe fn MIDIEndpointSetRefCons(
 ///
 /// # Safety
 ///
-/// - `ref1` must be a valid pointer or null.
-/// - `ref2` must be a valid pointer or null.
+/// - `ref1` must be a valid pointer.
+/// - `ref2` must be a valid pointer.
 #[cfg(feature = "MIDIServices")]
 #[inline]
 pub unsafe fn MIDIEndpointGetRefCons(
     endpt: MIDIEndpointRef,
-    ref1: *mut NonNull<c_void>,
-    ref2: *mut NonNull<c_void>,
+    ref1: Option<&mut NonNull<c_void>>,
+    ref2: Option<&mut NonNull<c_void>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIEndpointGetRefCons(
             endpt: MIDIEndpointRef,
-            ref1: *mut NonNull<c_void>,
-            ref2: *mut NonNull<c_void>,
+            ref1: Option<&mut NonNull<c_void>>,
+            ref2: Option<&mut NonNull<c_void>>,
         ) -> OSStatus;
     }
     unsafe { MIDIEndpointGetRefCons(endpt, ref1, ref2) }

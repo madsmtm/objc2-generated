@@ -82,13 +82,29 @@ impl SFAuthorizationPluginView {
         ///
         /// # Safety
         ///
-        /// - `callbacks` must be a valid pointer.
+        /// - `callbacks` struct field `version` must be set correctly.
+        /// - `callbacks` struct field `SetResult` must be implemented correctly.
+        /// - `callbacks` struct field `RequestInterrupt` must be implemented correctly.
+        /// - `callbacks` struct field `DidDeactivate` must be implemented correctly.
+        /// - `callbacks` struct field `GetContextValue` must be implemented correctly.
+        /// - `callbacks` struct field `SetContextValue` must be implemented correctly.
+        /// - `callbacks` struct field `GetHintValue` must be implemented correctly.
+        /// - `callbacks` struct field `SetHintValue` must be implemented correctly.
+        /// - `callbacks` struct field `GetArguments` must be implemented correctly.
+        /// - `callbacks` struct field `GetSessionId` must be implemented correctly.
+        /// - `callbacks` struct field `GetImmutableHintValue` must be implemented correctly.
+        /// - `callbacks` struct field `GetLAContext` must be implemented correctly.
+        /// - `callbacks` struct field `GetTokenIdentities` must be implemented correctly.
+        /// - `callbacks` struct field `GetTKTokenWatcher` must be implemented correctly.
+        /// - `callbacks` struct field `RemoveHintValue` must be implemented correctly.
+        /// - `callbacks` struct field `RemoveContextValue` must be implemented correctly.
+        /// - `callbacks` might not allow `None`.
         /// - `engine_ref` must be a valid pointer.
         #[unsafe(method(initWithCallbacks:andEngineRef:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallbacks_andEngineRef(
             this: Allocated<Self>,
-            callbacks: *const AuthorizationCallbacks,
+            callbacks: Option<&AuthorizationCallbacks>,
             engine_ref: AuthorizationEngineRef,
         ) -> Option<Retained<Self>>;
 

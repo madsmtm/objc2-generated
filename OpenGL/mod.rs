@@ -255,20 +255,19 @@ pub const CGL_VERSION_1_3: c_uint = 1;
 /// # Safety
 ///
 /// - `attribs` must be a valid pointer.
-/// - `pix` must be a valid pointer.
-/// - `npix` must be a valid pointer.
+/// - `pix` must be a valid pointer or null.
 #[cfg(feature = "CGLTypes")]
 #[inline]
 pub unsafe fn CGLChoosePixelFormat(
     attribs: NonNull<CGLPixelFormatAttribute>,
-    pix: NonNull<CGLPixelFormatObj>,
-    npix: NonNull<GLint>,
+    pix: &mut CGLPixelFormatObj,
+    npix: &mut GLint,
 ) -> CGLError {
     extern "C-unwind" {
         fn CGLChoosePixelFormat(
             attribs: NonNull<CGLPixelFormatAttribute>,
-            pix: NonNull<CGLPixelFormatObj>,
-            npix: NonNull<GLint>,
+            pix: &mut CGLPixelFormatObj,
+            npix: &mut GLint,
         ) -> CGLError;
     }
     unsafe { CGLChoosePixelFormat(attribs, pix, npix) }
@@ -288,22 +287,21 @@ pub unsafe fn CGLDestroyPixelFormat(pix: CGLPixelFormatObj) -> CGLError {
 
 /// # Safety
 ///
-/// - `pix` must be a valid pointer.
-/// - `value` must be a valid pointer.
+/// `pix` must be a valid pointer.
 #[cfg(feature = "CGLTypes")]
 #[inline]
 pub unsafe fn CGLDescribePixelFormat(
     pix: CGLPixelFormatObj,
     pix_num: GLint,
     attrib: CGLPixelFormatAttribute,
-    value: NonNull<GLint>,
+    value: &mut GLint,
 ) -> CGLError {
     extern "C-unwind" {
         fn CGLDescribePixelFormat(
             pix: CGLPixelFormatObj,
             pix_num: GLint,
             attrib: CGLPixelFormatAttribute,
-            value: NonNull<GLint>,
+            value: &mut GLint,
         ) -> CGLError;
     }
     unsafe { CGLDescribePixelFormat(pix, pix_num, attrib, value) }
@@ -347,20 +345,19 @@ pub unsafe fn CGLGetPixelFormatRetainCount(pix: CGLPixelFormatObj) -> GLuint {
 
 /// # Safety
 ///
-/// - `rend` must be a valid pointer.
-/// - `nrend` must be a valid pointer.
+/// `rend` must be a valid pointer or null.
 #[cfg(feature = "CGLTypes")]
 #[inline]
 pub unsafe fn CGLQueryRendererInfo(
     display_mask: GLuint,
-    rend: NonNull<CGLRendererInfoObj>,
-    nrend: NonNull<GLint>,
+    rend: &mut CGLRendererInfoObj,
+    nrend: &mut GLint,
 ) -> CGLError {
     extern "C-unwind" {
         fn CGLQueryRendererInfo(
             display_mask: GLuint,
-            rend: NonNull<CGLRendererInfoObj>,
-            nrend: NonNull<GLint>,
+            rend: &mut CGLRendererInfoObj,
+            nrend: &mut GLint,
         ) -> CGLError;
     }
     unsafe { CGLQueryRendererInfo(display_mask, rend, nrend) }
@@ -380,22 +377,21 @@ pub unsafe fn CGLDestroyRendererInfo(rend: CGLRendererInfoObj) -> CGLError {
 
 /// # Safety
 ///
-/// - `rend` must be a valid pointer.
-/// - `value` must be a valid pointer or null.
+/// `rend` must be a valid pointer.
 #[cfg(feature = "CGLTypes")]
 #[inline]
 pub unsafe fn CGLDescribeRenderer(
     rend: CGLRendererInfoObj,
     rend_num: GLint,
     prop: CGLRendererProperty,
-    value: *mut GLint,
+    value: Option<&mut GLint>,
 ) -> CGLError {
     extern "C-unwind" {
         fn CGLDescribeRenderer(
             rend: CGLRendererInfoObj,
             rend_num: GLint,
             prop: CGLRendererProperty,
-            value: *mut GLint,
+            value: Option<&mut GLint>,
         ) -> CGLError;
     }
     unsafe { CGLDescribeRenderer(rend, rend_num, prop, value) }
@@ -405,19 +401,19 @@ pub unsafe fn CGLDescribeRenderer(
 ///
 /// - `pix` must be a valid pointer.
 /// - `share` must be a valid pointer or null.
-/// - `ctx` must be a valid pointer.
+/// - `ctx` must be a valid pointer or null.
 #[cfg(feature = "CGLTypes")]
 #[inline]
 pub unsafe fn CGLCreateContext(
     pix: CGLPixelFormatObj,
     share: CGLContextObj,
-    ctx: NonNull<CGLContextObj>,
+    ctx: &mut CGLContextObj,
 ) -> CGLError {
     extern "C-unwind" {
         fn CGLCreateContext(
             pix: CGLPixelFormatObj,
             share: CGLContextObj,
-            ctx: NonNull<CGLContextObj>,
+            ctx: &mut CGLContextObj,
         ) -> CGLError;
     }
     unsafe { CGLCreateContext(pix, share, ctx) }
@@ -498,7 +494,7 @@ pub unsafe fn CGLGetPixelFormat(ctx: CGLContextObj) -> CGLPixelFormatObj {
 
 /// # Safety
 ///
-/// `pbuffer` must be a valid pointer.
+/// `pbuffer` must be a valid pointer or null.
 #[cfg(feature = "CGLTypes")]
 #[inline]
 pub unsafe fn CGLCreatePBuffer(
@@ -507,7 +503,7 @@ pub unsafe fn CGLCreatePBuffer(
     target: GLenum,
     internal_format: GLenum,
     max_level: GLint,
-    pbuffer: NonNull<CGLPBufferObj>,
+    pbuffer: &mut CGLPBufferObj,
 ) -> CGLError {
     extern "C-unwind" {
         fn CGLCreatePBuffer(
@@ -516,7 +512,7 @@ pub unsafe fn CGLCreatePBuffer(
             target: GLenum,
             internal_format: GLenum,
             max_level: GLint,
-            pbuffer: NonNull<CGLPBufferObj>,
+            pbuffer: &mut CGLPBufferObj,
         ) -> CGLError;
     }
     unsafe { CGLCreatePBuffer(width, height, target, internal_format, max_level, pbuffer) }
@@ -536,30 +532,25 @@ pub unsafe fn CGLDestroyPBuffer(pbuffer: CGLPBufferObj) -> CGLError {
 
 /// # Safety
 ///
-/// - `obj` must be a valid pointer.
-/// - `width` must be a valid pointer.
-/// - `height` must be a valid pointer.
-/// - `target` must be a valid pointer.
-/// - `internal_format` must be a valid pointer.
-/// - `mipmap` must be a valid pointer.
+/// `obj` must be a valid pointer.
 #[cfg(feature = "CGLTypes")]
 #[inline]
 pub unsafe fn CGLDescribePBuffer(
     obj: CGLPBufferObj,
-    width: NonNull<GLsizei>,
-    height: NonNull<GLsizei>,
-    target: NonNull<GLenum>,
-    internal_format: NonNull<GLenum>,
-    mipmap: NonNull<GLint>,
+    width: &mut GLsizei,
+    height: &mut GLsizei,
+    target: &mut GLenum,
+    internal_format: &mut GLenum,
+    mipmap: &mut GLint,
 ) -> CGLError {
     extern "C-unwind" {
         fn CGLDescribePBuffer(
             obj: CGLPBufferObj,
-            width: NonNull<GLsizei>,
-            height: NonNull<GLsizei>,
-            target: NonNull<GLenum>,
-            internal_format: NonNull<GLenum>,
-            mipmap: NonNull<GLint>,
+            width: &mut GLsizei,
+            height: &mut GLsizei,
+            target: &mut GLenum,
+            internal_format: &mut GLenum,
+            mipmap: &mut GLint,
         ) -> CGLError;
     }
     unsafe { CGLDescribePBuffer(obj, width, height, target, internal_format, mipmap) }
@@ -650,26 +641,23 @@ pub unsafe fn CGLSetOffScreen(
 /// # Safety
 ///
 /// - `ctx` must be a valid pointer.
-/// - `width` must be a valid pointer.
-/// - `height` must be a valid pointer.
-/// - `rowbytes` must be a valid pointer.
-/// - `baseaddr` must be a valid pointer.
+/// - `baseaddr` must be a valid pointer or null.
 #[cfg(feature = "CGLTypes")]
 #[inline]
 pub unsafe fn CGLGetOffScreen(
     ctx: CGLContextObj,
-    width: NonNull<GLsizei>,
-    height: NonNull<GLsizei>,
-    rowbytes: NonNull<GLint>,
-    baseaddr: NonNull<*mut c_void>,
+    width: &mut GLsizei,
+    height: &mut GLsizei,
+    rowbytes: &mut GLint,
+    baseaddr: &mut *mut c_void,
 ) -> CGLError {
     extern "C-unwind" {
         fn CGLGetOffScreen(
             ctx: CGLContextObj,
-            width: NonNull<GLsizei>,
-            height: NonNull<GLsizei>,
-            rowbytes: NonNull<GLint>,
-            baseaddr: NonNull<*mut c_void>,
+            width: &mut GLsizei,
+            height: &mut GLsizei,
+            rowbytes: &mut GLint,
+            baseaddr: &mut *mut c_void,
         ) -> CGLError;
     }
     unsafe { CGLGetOffScreen(ctx, width, height, rowbytes, baseaddr) }
@@ -727,26 +715,23 @@ pub unsafe fn CGLSetPBuffer(
 /// # Safety
 ///
 /// - `ctx` must be a valid pointer.
-/// - `pbuffer` must be a valid pointer.
-/// - `face` must be a valid pointer.
-/// - `level` must be a valid pointer.
-/// - `screen` must be a valid pointer.
+/// - `pbuffer` must be a valid pointer or null.
 #[cfg(feature = "CGLTypes")]
 #[inline]
 pub unsafe fn CGLGetPBuffer(
     ctx: CGLContextObj,
-    pbuffer: NonNull<CGLPBufferObj>,
-    face: NonNull<GLenum>,
-    level: NonNull<GLint>,
-    screen: NonNull<GLint>,
+    pbuffer: &mut CGLPBufferObj,
+    face: &mut GLenum,
+    level: &mut GLint,
+    screen: &mut GLint,
 ) -> CGLError {
     extern "C-unwind" {
         fn CGLGetPBuffer(
             ctx: CGLContextObj,
-            pbuffer: NonNull<CGLPBufferObj>,
-            face: NonNull<GLenum>,
-            level: NonNull<GLint>,
-            screen: NonNull<GLint>,
+            pbuffer: &mut CGLPBufferObj,
+            face: &mut GLenum,
+            level: &mut GLint,
+            screen: &mut GLint,
         ) -> CGLError;
     }
     unsafe { CGLGetPBuffer(ctx, pbuffer, face, level, screen) }
@@ -802,20 +787,19 @@ pub unsafe fn CGLDisable(ctx: CGLContextObj, pname: CGLContextEnable) -> CGLErro
 
 /// # Safety
 ///
-/// - `ctx` must be a valid pointer.
-/// - `enable` must be a valid pointer.
+/// `ctx` must be a valid pointer.
 #[cfg(feature = "CGLTypes")]
 #[inline]
 pub unsafe fn CGLIsEnabled(
     ctx: CGLContextObj,
     pname: CGLContextEnable,
-    enable: NonNull<GLint>,
+    enable: &mut GLint,
 ) -> CGLError {
     extern "C-unwind" {
         fn CGLIsEnabled(
             ctx: CGLContextObj,
             pname: CGLContextEnable,
-            enable: NonNull<GLint>,
+            enable: &mut GLint,
         ) -> CGLError;
     }
     unsafe { CGLIsEnabled(ctx, pname, enable) }
@@ -877,13 +861,12 @@ pub unsafe fn CGLSetVirtualScreen(ctx: CGLContextObj, screen: GLint) -> CGLError
 
 /// # Safety
 ///
-/// - `ctx` must be a valid pointer.
-/// - `screen` must be a valid pointer.
+/// `ctx` must be a valid pointer.
 #[cfg(feature = "CGLTypes")]
 #[inline]
-pub unsafe fn CGLGetVirtualScreen(ctx: CGLContextObj, screen: NonNull<GLint>) -> CGLError {
+pub unsafe fn CGLGetVirtualScreen(ctx: CGLContextObj, screen: &mut GLint) -> CGLError {
     extern "C-unwind" {
-        fn CGLGetVirtualScreen(ctx: CGLContextObj, screen: NonNull<GLint>) -> CGLError;
+        fn CGLGetVirtualScreen(ctx: CGLContextObj, screen: &mut GLint) -> CGLError;
     }
     unsafe { CGLGetVirtualScreen(ctx, screen) }
 }
@@ -933,14 +916,11 @@ pub unsafe fn CGLSetOption(pname: CGLGlobalOption, param: GLint) -> CGLError {
     unsafe { CGLSetOption(pname, param) }
 }
 
-/// # Safety
-///
-/// `param` must be a valid pointer.
 #[cfg(feature = "CGLTypes")]
 #[inline]
-pub unsafe fn CGLGetOption(pname: CGLGlobalOption, param: NonNull<GLint>) -> CGLError {
+pub unsafe fn CGLGetOption(pname: CGLGlobalOption, param: &mut GLint) -> CGLError {
     extern "C-unwind" {
-        fn CGLGetOption(pname: CGLGlobalOption, param: NonNull<GLint>) -> CGLError;
+        fn CGLGetOption(pname: CGLGlobalOption, param: &mut GLint) -> CGLError;
     }
     unsafe { CGLGetOption(pname, param) }
 }
@@ -969,14 +949,10 @@ pub unsafe fn CGLUnlockContext(ctx: CGLContextObj) -> CGLError {
     unsafe { CGLUnlockContext(ctx) }
 }
 
-/// # Safety
-///
-/// - `majorvers` must be a valid pointer or null.
-/// - `minorvers` must be a valid pointer or null.
 #[inline]
-pub unsafe fn CGLGetVersion(majorvers: *mut GLint, minorvers: *mut GLint) {
+pub unsafe fn CGLGetVersion(majorvers: Option<&mut GLint>, minorvers: Option<&mut GLint>) {
     extern "C-unwind" {
-        fn CGLGetVersion(majorvers: *mut GLint, minorvers: *mut GLint);
+        fn CGLGetVersion(majorvers: Option<&mut GLint>, minorvers: Option<&mut GLint>);
     }
     unsafe { CGLGetVersion(majorvers, minorvers) }
 }

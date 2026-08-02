@@ -12,12 +12,12 @@ pub type SelectorFunctionUPP = SelectorFunctionProcPtr;
 
 /// # Safety
 ///
-/// `response` must be a valid pointer.
+/// `response` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn Gestalt(selector: OSType, response: *mut i32) -> OSErr {
+pub unsafe fn Gestalt(selector: OSType, response: Option<&mut i32>) -> OSErr {
     extern "C-unwind" {
-        fn Gestalt(selector: OSType, response: *mut i32) -> OSErr;
+        fn Gestalt(selector: OSType, response: Option<&mut i32>) -> OSErr;
     }
     unsafe { Gestalt(selector, response) }
 }
@@ -84,19 +84,19 @@ pub unsafe fn DisposeSelectorFunctionUPP(user_upp: SelectorFunctionUPP) {
 
 /// # Safety
 ///
-/// - `response` must be a valid pointer.
+/// - `response` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeSelectorFunctionUPP(
     selector: OSType,
-    response: *mut i32,
+    response: Option<&mut i32>,
     user_upp: SelectorFunctionUPP,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeSelectorFunctionUPP(
             selector: OSType,
-            response: *mut i32,
+            response: Option<&mut i32>,
             user_upp: SelectorFunctionUPP,
         ) -> OSErr;
     }

@@ -185,16 +185,16 @@ pub unsafe fn CMIOObjectShow(object_id: CMIOObjectID) {
 ///
 /// # Safety
 ///
-/// `address` must be a valid pointer.
+/// `address` might not allow `None`.
 #[inline]
 pub unsafe fn CMIOObjectHasProperty(
     object_id: CMIOObjectID,
-    address: *const CMIOObjectPropertyAddress,
+    address: Option<&CMIOObjectPropertyAddress>,
 ) -> bool {
     extern "C-unwind" {
         fn CMIOObjectHasProperty(
             object_id: CMIOObjectID,
-            address: *const CMIOObjectPropertyAddress,
+            address: Option<&CMIOObjectPropertyAddress>,
         ) -> Boolean;
     }
     let ret = unsafe { CMIOObjectHasProperty(object_id, address) };
@@ -213,19 +213,19 @@ pub unsafe fn CMIOObjectHasProperty(
 ///
 /// # Safety
 ///
-/// - `address` must be a valid pointer.
-/// - `is_settable` must be a valid pointer.
+/// - `address` might not allow `None`.
+/// - `is_settable` might not allow `None`.
 #[inline]
 pub unsafe fn CMIOObjectIsPropertySettable(
     object_id: CMIOObjectID,
-    address: *const CMIOObjectPropertyAddress,
-    is_settable: *mut Boolean,
+    address: Option<&CMIOObjectPropertyAddress>,
+    is_settable: Option<&mut Boolean>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOObjectIsPropertySettable(
             object_id: CMIOObjectID,
-            address: *const CMIOObjectPropertyAddress,
-            is_settable: *mut Boolean,
+            address: Option<&CMIOObjectPropertyAddress>,
+            is_settable: Option<&mut Boolean>,
         ) -> OSStatus;
     }
     unsafe { CMIOObjectIsPropertySettable(object_id, address, is_settable) }
@@ -248,24 +248,24 @@ pub unsafe fn CMIOObjectIsPropertySettable(
 ///
 /// # Safety
 ///
-/// - `address` must be a valid pointer.
+/// - `address` might not allow `None`.
 /// - `qualifier_data` must be a valid pointer.
-/// - `data_size` must be a valid pointer.
+/// - `data_size` might not allow `None`.
 #[inline]
 pub unsafe fn CMIOObjectGetPropertyDataSize(
     object_id: CMIOObjectID,
-    address: *const CMIOObjectPropertyAddress,
+    address: Option<&CMIOObjectPropertyAddress>,
     qualifier_data_size: u32,
     qualifier_data: *const c_void,
-    data_size: *mut u32,
+    data_size: Option<&mut u32>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOObjectGetPropertyDataSize(
             object_id: CMIOObjectID,
-            address: *const CMIOObjectPropertyAddress,
+            address: Option<&CMIOObjectPropertyAddress>,
             qualifier_data_size: u32,
             qualifier_data: *const c_void,
-            data_size: *mut u32,
+            data_size: Option<&mut u32>,
         ) -> OSStatus;
     }
     unsafe {
@@ -300,28 +300,28 @@ pub unsafe fn CMIOObjectGetPropertyDataSize(
 ///
 /// # Safety
 ///
-/// - `address` must be a valid pointer.
+/// - `address` might not allow `None`.
 /// - `qualifier_data` must be a valid pointer.
-/// - `data_used` must be a valid pointer.
+/// - `data_used` might not allow `None`.
 /// - `data` must be a valid pointer.
 #[inline]
 pub unsafe fn CMIOObjectGetPropertyData(
     object_id: CMIOObjectID,
-    address: *const CMIOObjectPropertyAddress,
+    address: Option<&CMIOObjectPropertyAddress>,
     qualifier_data_size: u32,
     qualifier_data: *const c_void,
     data_size: u32,
-    data_used: *mut u32,
+    data_used: Option<&mut u32>,
     data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOObjectGetPropertyData(
             object_id: CMIOObjectID,
-            address: *const CMIOObjectPropertyAddress,
+            address: Option<&CMIOObjectPropertyAddress>,
             qualifier_data_size: u32,
             qualifier_data: *const c_void,
             data_size: u32,
-            data_used: *mut u32,
+            data_used: Option<&mut u32>,
             data: *mut c_void,
         ) -> OSStatus;
     }
@@ -359,13 +359,13 @@ pub unsafe fn CMIOObjectGetPropertyData(
 ///
 /// # Safety
 ///
-/// - `address` must be a valid pointer.
+/// - `address` might not allow `None`.
 /// - `qualifier_data` must be a valid pointer.
 /// - `data` must be a valid pointer.
 #[inline]
 pub unsafe fn CMIOObjectSetPropertyData(
     object_id: CMIOObjectID,
-    address: *const CMIOObjectPropertyAddress,
+    address: Option<&CMIOObjectPropertyAddress>,
     qualifier_data_size: u32,
     qualifier_data: *const c_void,
     data_size: u32,
@@ -374,7 +374,7 @@ pub unsafe fn CMIOObjectSetPropertyData(
     extern "C-unwind" {
         fn CMIOObjectSetPropertyData(
             object_id: CMIOObjectID,
-            address: *const CMIOObjectPropertyAddress,
+            address: Option<&CMIOObjectPropertyAddress>,
             qualifier_data_size: u32,
             qualifier_data: *const c_void,
             data_size: u32,
@@ -407,20 +407,20 @@ pub unsafe fn CMIOObjectSetPropertyData(
 ///
 /// # Safety
 ///
-/// - `address` must be a valid pointer.
+/// - `address` might not allow `None`.
 /// - `listener` must be implemented correctly.
 /// - `client_data` must be a valid pointer.
 #[inline]
 pub unsafe fn CMIOObjectAddPropertyListener(
     object_id: CMIOObjectID,
-    address: *const CMIOObjectPropertyAddress,
+    address: Option<&CMIOObjectPropertyAddress>,
     listener: CMIOObjectPropertyListenerProc,
     client_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOObjectAddPropertyListener(
             object_id: CMIOObjectID,
-            address: *const CMIOObjectPropertyAddress,
+            address: Option<&CMIOObjectPropertyAddress>,
             listener: CMIOObjectPropertyListenerProc,
             client_data: *mut c_void,
         ) -> OSStatus;
@@ -442,20 +442,20 @@ pub unsafe fn CMIOObjectAddPropertyListener(
 ///
 /// # Safety
 ///
-/// - `address` must be a valid pointer.
+/// - `address` might not allow `None`.
 /// - `listener` must be implemented correctly.
 /// - `client_data` must be a valid pointer.
 #[inline]
 pub unsafe fn CMIOObjectRemovePropertyListener(
     object_id: CMIOObjectID,
-    address: *const CMIOObjectPropertyAddress,
+    address: Option<&CMIOObjectPropertyAddress>,
     listener: CMIOObjectPropertyListenerProc,
     client_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOObjectRemovePropertyListener(
             object_id: CMIOObjectID,
-            address: *const CMIOObjectPropertyAddress,
+            address: Option<&CMIOObjectPropertyAddress>,
             listener: CMIOObjectPropertyListenerProc,
             client_data: *mut c_void,
         ) -> OSStatus;
@@ -480,7 +480,7 @@ pub unsafe fn CMIOObjectRemovePropertyListener(
 ///
 /// # Safety
 ///
-/// - `address` must be a valid pointer.
+/// - `address` might not allow `None`.
 /// - `dispatch_queue` possibly has additional threading requirements.
 /// - `dispatch_queue` might not allow `None`.
 /// - `listener` might not allow `None`.
@@ -488,14 +488,14 @@ pub unsafe fn CMIOObjectRemovePropertyListener(
 #[inline]
 pub unsafe fn CMIOObjectAddPropertyListenerBlock(
     object_id: CMIOObjectID,
-    address: *const CMIOObjectPropertyAddress,
+    address: Option<&CMIOObjectPropertyAddress>,
     dispatch_queue: Option<&DispatchQueue>,
     listener: Option<&CMIOObjectPropertyListenerBlock>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOObjectAddPropertyListenerBlock(
             object_id: CMIOObjectID,
-            address: *const CMIOObjectPropertyAddress,
+            address: Option<&CMIOObjectPropertyAddress>,
             dispatch_queue: Option<&DispatchQueue>,
             listener: Option<&CMIOObjectPropertyListenerBlock>,
         ) -> OSStatus;
@@ -519,7 +519,7 @@ pub unsafe fn CMIOObjectAddPropertyListenerBlock(
 ///
 /// # Safety
 ///
-/// - `address` must be a valid pointer.
+/// - `address` might not allow `None`.
 /// - `dispatch_queue` possibly has additional threading requirements.
 /// - `dispatch_queue` might not allow `None`.
 /// - `listener` might not allow `None`.
@@ -527,14 +527,14 @@ pub unsafe fn CMIOObjectAddPropertyListenerBlock(
 #[inline]
 pub unsafe fn CMIOObjectRemovePropertyListenerBlock(
     object_id: CMIOObjectID,
-    address: *const CMIOObjectPropertyAddress,
+    address: Option<&CMIOObjectPropertyAddress>,
     dispatch_queue: Option<&DispatchQueue>,
     listener: Option<&CMIOObjectPropertyListenerBlock>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOObjectRemovePropertyListenerBlock(
             object_id: CMIOObjectID,
-            address: *const CMIOObjectPropertyAddress,
+            address: Option<&CMIOObjectPropertyAddress>,
             dispatch_queue: Option<&DispatchQueue>,
             listener: Option<&CMIOObjectPropertyListenerBlock>,
         ) -> OSStatus;

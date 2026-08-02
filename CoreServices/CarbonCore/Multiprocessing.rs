@@ -387,6 +387,7 @@ pub type TaskProc = Option<unsafe extern "C-unwind" fn(*mut c_void) -> OSStatus>
 /// - `termination_parameter1` must be a valid pointer.
 /// - `termination_parameter2` must be a valid pointer.
 /// - `task` must be a valid pointer.
+/// - `task` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
 pub unsafe fn MPCreateTask(
@@ -397,7 +398,7 @@ pub unsafe fn MPCreateTask(
     termination_parameter1: *mut c_void,
     termination_parameter2: *mut c_void,
     options: MPTaskOptions,
-    task: *mut MPTaskID,
+    task: Option<&mut MPTaskID>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MPCreateTask(
@@ -408,7 +409,7 @@ pub unsafe fn MPCreateTask(
             termination_parameter1: *mut c_void,
             termination_parameter2: *mut c_void,
             options: MPTaskOptions,
-            task: *mut MPTaskID,
+            task: Option<&mut MPTaskID>,
         ) -> OSStatus;
     }
     unsafe {
@@ -503,12 +504,12 @@ pub unsafe fn MPSetTaskType(task: MPTaskID, task_type: OSType) -> OSStatus {
 
 /// # Safety
 ///
-/// `task_index` must be a valid pointer.
+/// `task_index` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
-pub unsafe fn MPAllocateTaskStorageIndex(task_index: *mut TaskStorageIndex) -> OSStatus {
+pub unsafe fn MPAllocateTaskStorageIndex(task_index: Option<&mut TaskStorageIndex>) -> OSStatus {
     extern "C-unwind" {
-        fn MPAllocateTaskStorageIndex(task_index: *mut TaskStorageIndex) -> OSStatus;
+        fn MPAllocateTaskStorageIndex(task_index: Option<&mut TaskStorageIndex>) -> OSStatus;
     }
     unsafe { MPAllocateTaskStorageIndex(task_index) }
 }
@@ -549,12 +550,13 @@ pub unsafe fn MPGetTaskStorageValue(task_index: TaskStorageIndex) -> TaskStorage
 
 /// # Safety
 ///
-/// `queue` must be a valid pointer.
+/// - `queue` must be a valid pointer.
+/// - `queue` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
-pub unsafe fn MPCreateQueue(queue: *mut MPQueueID) -> OSStatus {
+pub unsafe fn MPCreateQueue(queue: Option<&mut MPQueueID>) -> OSStatus {
     extern "C-unwind" {
-        fn MPCreateQueue(queue: *mut MPQueueID) -> OSStatus;
+        fn MPCreateQueue(queue: Option<&mut MPQueueID>) -> OSStatus;
     }
     unsafe { MPCreateQueue(queue) }
 }
@@ -600,23 +602,26 @@ pub unsafe fn MPNotifyQueue(
 ///
 /// - `queue` must be a valid pointer.
 /// - `param1` must be a valid pointer.
+/// - `param1` might not allow `None`.
 /// - `param2` must be a valid pointer.
+/// - `param2` might not allow `None`.
 /// - `param3` must be a valid pointer.
+/// - `param3` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
 pub unsafe fn MPWaitOnQueue(
     queue: MPQueueID,
-    param1: *mut *mut c_void,
-    param2: *mut *mut c_void,
-    param3: *mut *mut c_void,
+    param1: Option<&mut *mut c_void>,
+    param2: Option<&mut *mut c_void>,
+    param3: Option<&mut *mut c_void>,
     timeout: Duration,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MPWaitOnQueue(
             queue: MPQueueID,
-            param1: *mut *mut c_void,
-            param2: *mut *mut c_void,
-            param3: *mut *mut c_void,
+            param1: Option<&mut *mut c_void>,
+            param2: Option<&mut *mut c_void>,
+            param3: Option<&mut *mut c_void>,
             timeout: Duration,
         ) -> OSStatus;
     }
@@ -637,19 +642,20 @@ pub unsafe fn MPSetQueueReserve(queue: MPQueueID, count: ItemCount) -> OSStatus 
 
 /// # Safety
 ///
-/// `semaphore` must be a valid pointer.
+/// - `semaphore` must be a valid pointer.
+/// - `semaphore` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
 pub unsafe fn MPCreateSemaphore(
     maximum_value: MPSemaphoreCount,
     initial_value: MPSemaphoreCount,
-    semaphore: *mut MPSemaphoreID,
+    semaphore: Option<&mut MPSemaphoreID>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MPCreateSemaphore(
             maximum_value: MPSemaphoreCount,
             initial_value: MPSemaphoreCount,
-            semaphore: *mut MPSemaphoreID,
+            semaphore: Option<&mut MPSemaphoreID>,
         ) -> OSStatus;
     }
     unsafe { MPCreateSemaphore(maximum_value, initial_value, semaphore) }
@@ -693,12 +699,13 @@ pub unsafe fn MPWaitOnSemaphore(semaphore: MPSemaphoreID, timeout: Duration) -> 
 
 /// # Safety
 ///
-/// `critical_region` must be a valid pointer.
+/// - `critical_region` must be a valid pointer.
+/// - `critical_region` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
-pub unsafe fn MPCreateCriticalRegion(critical_region: *mut MPCriticalRegionID) -> OSStatus {
+pub unsafe fn MPCreateCriticalRegion(critical_region: Option<&mut MPCriticalRegionID>) -> OSStatus {
     extern "C-unwind" {
-        fn MPCreateCriticalRegion(critical_region: *mut MPCriticalRegionID) -> OSStatus;
+        fn MPCreateCriticalRegion(critical_region: Option<&mut MPCriticalRegionID>) -> OSStatus;
     }
     unsafe { MPCreateCriticalRegion(critical_region) }
 }
@@ -747,12 +754,13 @@ pub unsafe fn MPExitCriticalRegion(critical_region: MPCriticalRegionID) -> OSSta
 
 /// # Safety
 ///
-/// `event` must be a valid pointer.
+/// - `event` must be a valid pointer.
+/// - `event` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
-pub unsafe fn MPCreateEvent(event: *mut MPEventID) -> OSStatus {
+pub unsafe fn MPCreateEvent(event: Option<&mut MPEventID>) -> OSStatus {
     extern "C-unwind" {
-        fn MPCreateEvent(event: *mut MPEventID) -> OSStatus;
+        fn MPCreateEvent(event: Option<&mut MPEventID>) -> OSStatus;
     }
     unsafe { MPCreateEvent(event) }
 }
@@ -784,18 +792,18 @@ pub unsafe fn MPSetEvent(event: MPEventID, flags: MPEventFlags) -> OSStatus {
 /// # Safety
 ///
 /// - `event` must be a valid pointer.
-/// - `flags` must be a valid pointer.
+/// - `flags` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
 pub unsafe fn MPWaitForEvent(
     event: MPEventID,
-    flags: *mut MPEventFlags,
+    flags: Option<&mut MPEventFlags>,
     timeout: Duration,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MPWaitForEvent(
             event: MPEventID,
-            flags: *mut MPEventFlags,
+            flags: Option<&mut MPEventFlags>,
             timeout: Duration,
         ) -> OSStatus;
     }
@@ -804,12 +812,13 @@ pub unsafe fn MPWaitForEvent(
 
 /// # Safety
 ///
-/// `notification_id` must be a valid pointer.
+/// - `notification_id` must be a valid pointer.
+/// - `notification_id` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
-pub unsafe fn MPCreateNotification(notification_id: *mut MPNotificationID) -> OSStatus {
+pub unsafe fn MPCreateNotification(notification_id: Option<&mut MPNotificationID>) -> OSStatus {
     extern "C-unwind" {
-        fn MPCreateNotification(notification_id: *mut MPNotificationID) -> OSStatus;
+        fn MPCreateNotification(notification_id: Option<&mut MPNotificationID>) -> OSStatus;
     }
     unsafe { MPCreateNotification(notification_id) }
 }
@@ -921,24 +930,25 @@ pub const kMPTimeIsDurationMask: c_uint = 1 << 2;
 
 /// # Safety
 ///
-/// `expiration_time` must be a valid pointer.
+/// `expiration_time` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
-pub unsafe fn MPDelayUntil(expiration_time: *mut AbsoluteTime) -> OSStatus {
+pub unsafe fn MPDelayUntil(expiration_time: Option<&mut AbsoluteTime>) -> OSStatus {
     extern "C-unwind" {
-        fn MPDelayUntil(expiration_time: *mut AbsoluteTime) -> OSStatus;
+        fn MPDelayUntil(expiration_time: Option<&mut AbsoluteTime>) -> OSStatus;
     }
     unsafe { MPDelayUntil(expiration_time) }
 }
 
 /// # Safety
 ///
-/// `timer_id` must be a valid pointer.
+/// - `timer_id` must be a valid pointer.
+/// - `timer_id` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
-pub unsafe fn MPCreateTimer(timer_id: *mut MPTimerID) -> OSStatus {
+pub unsafe fn MPCreateTimer(timer_id: Option<&mut MPTimerID>) -> OSStatus {
     extern "C-unwind" {
-        fn MPCreateTimer(timer_id: *mut MPTimerID) -> OSStatus;
+        fn MPCreateTimer(timer_id: Option<&mut MPTimerID>) -> OSStatus;
     }
     unsafe { MPCreateTimer(timer_id) }
 }
@@ -986,18 +996,18 @@ pub unsafe fn MPSetTimerNotify(
 /// # Safety
 ///
 /// - `timer_id` must be a valid pointer.
-/// - `expiration_time` must be a valid pointer.
+/// - `expiration_time` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
 pub unsafe fn MPArmTimer(
     timer_id: MPTimerID,
-    expiration_time: *mut AbsoluteTime,
+    expiration_time: Option<&mut AbsoluteTime>,
     options: OptionBits,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MPArmTimer(
             timer_id: MPTimerID,
-            expiration_time: *mut AbsoluteTime,
+            expiration_time: Option<&mut AbsoluteTime>,
             options: OptionBits,
         ) -> OSStatus;
     }
@@ -1007,12 +1017,18 @@ pub unsafe fn MPArmTimer(
 /// # Safety
 ///
 /// - `timer_id` must be a valid pointer.
-/// - `time_remaining` must be a valid pointer.
+/// - `time_remaining` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
-pub unsafe fn MPCancelTimer(timer_id: MPTimerID, time_remaining: *mut AbsoluteTime) -> OSStatus {
+pub unsafe fn MPCancelTimer(
+    timer_id: MPTimerID,
+    time_remaining: Option<&mut AbsoluteTime>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn MPCancelTimer(timer_id: MPTimerID, time_remaining: *mut AbsoluteTime) -> OSStatus;
+        fn MPCancelTimer(
+            timer_id: MPTimerID,
+            time_remaining: Option<&mut AbsoluteTime>,
+        ) -> OSStatus;
     }
     unsafe { MPCancelTimer(timer_id, time_remaining) }
 }
@@ -1499,26 +1515,27 @@ pub type MPIsFullyInitializedProc = Option<unsafe extern "C-unwind" fn() -> Bool
 /// # Safety
 ///
 /// - `version_c_string` must be a valid pointer.
-/// - `major` must be a valid pointer.
-/// - `minor` must be a valid pointer.
-/// - `release` must be a valid pointer.
-/// - `revision` must be a valid pointer.
+/// - `version_c_string` might not allow `None`.
+/// - `major` might not allow `None`.
+/// - `minor` might not allow `None`.
+/// - `release` might not allow `None`.
+/// - `revision` might not allow `None`.
 #[deprecated = "No longer useful"]
 #[inline]
 pub(crate) unsafe fn _MPLibraryVersion(
-    version_c_string: *mut *const c_char,
-    major: *mut u32,
-    minor: *mut u32,
-    release: *mut u32,
-    revision: *mut u32,
+    version_c_string: Option<&mut *const c_char>,
+    major: Option<&mut u32>,
+    minor: Option<&mut u32>,
+    release: Option<&mut u32>,
+    revision: Option<&mut u32>,
 ) {
     extern "C-unwind" {
         fn _MPLibraryVersion(
-            version_c_string: *mut *const c_char,
-            major: *mut u32,
-            minor: *mut u32,
-            release: *mut u32,
-            revision: *mut u32,
+            version_c_string: Option<&mut *const c_char>,
+            major: Option<&mut u32>,
+            minor: Option<&mut u32>,
+            release: Option<&mut u32>,
+            revision: Option<&mut u32>,
         );
     }
     unsafe { _MPLibraryVersion(version_c_string, major, minor, release, revision) }
@@ -1526,11 +1543,11 @@ pub(crate) unsafe fn _MPLibraryVersion(
 
 /// # Safety
 ///
-/// `version_c_string` must be a valid pointer.
+/// `version_c_string` might not allow `None`.
 #[deprecated = "Use libDispatch"]
 #[inline]
 pub(crate) unsafe fn _MPLibraryIsCompatible(
-    version_c_string: *const c_char,
+    version_c_string: Option<&CStr>,
     major: u32,
     minor: u32,
     release: u32,
@@ -1545,6 +1562,9 @@ pub(crate) unsafe fn _MPLibraryIsCompatible(
             revision: u32,
         ) -> Boolean;
     }
+    let version_c_string = version_c_string
+        .map(|ptr| ptr.as_ptr())
+        .unwrap_or_else(core::ptr::null);
     let ret = unsafe { _MPLibraryIsCompatible(version_c_string, major, minor, release, revision) };
     ret != 0
 }

@@ -365,7 +365,7 @@ unsafe impl RefEncode for MIDIThruConnectionParams {
 
 #[cfg(feature = "MIDIServices")]
 impl MIDIThruConnectionParams {
-    // TODO: pub fn MIDIThruConnectionParamsSize(ptr: NonNull<MIDIThruConnectionParams>,) -> usize;
+    // TODO: pub fn MIDIThruConnectionParamsSize(ptr: &MIDIThruConnectionParams,) -> usize;
 
     /// Fills a MIDIThruConnectionParams with default values.
     ///
@@ -377,14 +377,14 @@ impl MIDIThruConnectionParams {
     ///
     /// # Safety
     ///
-    /// `in_connection_params` must be a valid pointer.
+    /// `in_connection_params` struct field `version` must be set correctly.
     #[doc(alias = "MIDIThruConnectionParamsInitialize")]
     #[cfg(feature = "MIDIServices")]
     #[inline]
-    pub unsafe fn initialize(in_connection_params: NonNull<MIDIThruConnectionParams>) {
+    pub unsafe fn initialize(in_connection_params: &mut MIDIThruConnectionParams) {
         extern "C-unwind" {
             fn MIDIThruConnectionParamsInitialize(
-                in_connection_params: NonNull<MIDIThruConnectionParams>,
+                in_connection_params: &mut MIDIThruConnectionParams,
             );
         }
         unsafe { MIDIThruConnectionParamsInitialize(in_connection_params) }
@@ -402,22 +402,18 @@ impl MIDIThruConnectionParams {
 /// Parameter `outConnection`: On successful return, a reference to the newly-created connection.
 ///
 /// Returns: An OSStatus result code.
-///
-/// # Safety
-///
-/// `out_connection` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe fn MIDIThruConnectionCreate(
     in_persistent_owner_id: Option<&CFString>,
     in_connection_params: &CFData,
-    out_connection: NonNull<MIDIThruConnectionRef>,
+    out_connection: &mut MIDIThruConnectionRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIThruConnectionCreate(
             in_persistent_owner_id: Option<&CFString>,
             in_connection_params: &CFData,
-            out_connection: NonNull<MIDIThruConnectionRef>,
+            out_connection: &mut MIDIThruConnectionRef,
         ) -> OSStatus;
     }
     unsafe {

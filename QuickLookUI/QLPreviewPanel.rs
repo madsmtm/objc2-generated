@@ -541,7 +541,7 @@ extern_protocol!(
         ///
         /// - `panel` might not allow `None`.
         /// - `item` might not allow `None`.
-        /// - `content_rect` must be a valid pointer.
+        /// - `content_rect` might not allow `None`.
         #[optional]
         #[unsafe(method(previewPanel:transitionImageForPreviewItem:contentRect:))]
         #[unsafe(method_family = none)]
@@ -549,7 +549,7 @@ extern_protocol!(
             &self,
             panel: Option<&QLPreviewPanel>,
             item: Option<&ProtocolObject<dyn QLPreviewItem>>,
-            content_rect: *mut NSRect,
+            content_rect: Option<&mut NSRect>,
         ) -> Option<Retained<AnyObject>>;
     }
 );

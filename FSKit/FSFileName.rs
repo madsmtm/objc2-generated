@@ -84,16 +84,9 @@ impl FSFileName {
         /// > Note: This initializer is unavailable in Swift. Use ``initWithData:`` or ``initWithString:`` instead.
         ///
         /// - Parameter name: A pointer to a C string.
-        ///
-        /// # Safety
-        ///
-        /// `name` must be a valid pointer.
         #[unsafe(method(initWithCString:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCString(
-            this: Allocated<Self>,
-            name: NonNull<c_char>,
-        ) -> Retained<Self>;
+        pub unsafe fn initWithCString(this: Allocated<Self>, name: &CStr) -> Retained<Self>;
 
         /// Initializes a file name by copying a character sequence from a byte array.
         ///
@@ -136,13 +129,9 @@ impl FSFileName {
         /// Creates a filename from a null-terminated character sequence.
         ///
         /// - Parameter name: A pointer to a C string.
-        ///
-        /// # Safety
-        ///
-        /// `name` must be a valid pointer.
         #[unsafe(method(nameWithCString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nameWithCString(name: NonNull<c_char>) -> Retained<Self>;
+        pub unsafe fn nameWithCString(name: &CStr) -> Retained<Self>;
 
         /// Creates a filename by copying a character sequence from a byte array.
         ///

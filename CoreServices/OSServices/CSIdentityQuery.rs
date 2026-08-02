@@ -289,7 +289,13 @@ unsafe impl RefEncode for CSIdentityQueryClientContext {
 impl CSIdentityQuery {
     /// # Safety
     ///
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field `version` must be set correctly.
+    /// - `client_context` struct field `info` must be a valid pointer.
+    /// - `client_context` struct field `retainInfo` must be implemented correctly.
+    /// - `client_context` struct field `releaseInfo` must be implemented correctly.
+    /// - `client_context` struct field `copyInfoDescription` must be implemented correctly.
+    /// - `client_context` struct field `receiveEvent` must be implemented correctly.
+    /// - `client_context` might not allow `None`.
     /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
@@ -299,7 +305,7 @@ impl CSIdentityQuery {
     pub unsafe fn execute_asynchronously(
         &self,
         flags: CSIdentityQueryFlags,
-        client_context: *const CSIdentityQueryClientContext,
+        client_context: Option<&CSIdentityQueryClientContext>,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
     ) -> bool {
@@ -307,7 +313,7 @@ impl CSIdentityQuery {
             fn CSIdentityQueryExecuteAsynchronously(
                 query: &CSIdentityQuery,
                 flags: CSIdentityQueryFlags,
-                client_context: *const CSIdentityQueryClientContext,
+                client_context: Option<&CSIdentityQueryClientContext>,
                 run_loop: Option<&CFRunLoop>,
                 run_loop_mode: Option<&CFString>,
             ) -> Boolean;

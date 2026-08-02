@@ -901,14 +901,14 @@ pub unsafe fn DisposeTEClickLoopUPP(user_upp: TEClickLoopUPP) {
 
 /// # Safety
 ///
-/// - `r` must be a valid pointer.
+/// - `r` might not allow `None`.
 /// - `p_te` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeHighHookUPP(r: *const Rect, p_te: TEPtr, user_upp: HighHookUPP) {
+pub unsafe fn InvokeHighHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: HighHookUPP) {
     extern "C-unwind" {
-        fn InvokeHighHookUPP(r: *const Rect, p_te: TEPtr, user_upp: HighHookUPP);
+        fn InvokeHighHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: HighHookUPP);
     }
     unsafe { InvokeHighHookUPP(r, p_te, user_upp) }
 }
@@ -940,14 +940,14 @@ pub unsafe fn InvokeEOLHookUPP(
 
 /// # Safety
 ///
-/// - `r` must be a valid pointer.
+/// - `r` might not allow `None`.
 /// - `p_te` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeCaretHookUPP(r: *const Rect, p_te: TEPtr, user_upp: CaretHookUPP) {
+pub unsafe fn InvokeCaretHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: CaretHookUPP) {
     extern "C-unwind" {
-        fn InvokeCaretHookUPP(r: *const Rect, p_te: TEPtr, user_upp: CaretHookUPP);
+        fn InvokeCaretHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: CaretHookUPP);
     }
     unsafe { InvokeCaretHookUPP(r, p_te, user_upp) }
 }
@@ -1013,7 +1013,7 @@ pub unsafe fn InvokeTextWidthHookUPP(
 /// # Safety
 ///
 /// - `text_buffer_ptr` must be a valid pointer.
-/// - `line_start` must be a valid pointer.
+/// - `line_start` might not allow `None`.
 /// - `p_te` must be a valid pointer.
 /// - `h_te` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
@@ -1025,7 +1025,7 @@ pub unsafe fn InvokeNWidthHookUPP(
     slop: c_short,
     direction: c_short,
     text_buffer_ptr: *mut c_void,
-    line_start: *mut c_short,
+    line_start: Option<&mut c_short>,
     p_te: TEPtr,
     h_te: TEHandle,
     user_upp: NWidthHookUPP,
@@ -1037,7 +1037,7 @@ pub unsafe fn InvokeNWidthHookUPP(
             slop: c_short,
             direction: c_short,
             text_buffer_ptr: *mut c_void,
-            line_start: *mut c_short,
+            line_start: Option<&mut c_short>,
             p_te: TEPtr,
             h_te: TEHandle,
             user_upp: NWidthHookUPP,
@@ -1092,9 +1092,9 @@ pub unsafe fn InvokeDrawHookUPP(
 /// - `text_buffer_ptr` must be a valid pointer.
 /// - `p_te` must be a valid pointer.
 /// - `h_te` must be a valid pointer.
-/// - `pixel_width` must be a valid pointer.
-/// - `char_offset` must be a valid pointer.
-/// - `pixel_in_char` must be a valid pointer.
+/// - `pixel_width` might not allow `None`.
+/// - `char_offset` might not allow `None`.
+/// - `pixel_in_char` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
@@ -1105,9 +1105,9 @@ pub unsafe fn InvokeHitTestHookUPP(
     text_buffer_ptr: *mut c_void,
     p_te: TEPtr,
     h_te: TEHandle,
-    pixel_width: *mut c_ushort,
-    char_offset: *mut c_ushort,
-    pixel_in_char: *mut Boolean,
+    pixel_width: Option<&mut c_ushort>,
+    char_offset: Option<&mut c_ushort>,
+    pixel_in_char: Option<&mut Boolean>,
     user_upp: HitTestHookUPP,
 ) -> bool {
     extern "C-unwind" {
@@ -1118,9 +1118,9 @@ pub unsafe fn InvokeHitTestHookUPP(
             text_buffer_ptr: *mut c_void,
             p_te: TEPtr,
             h_te: TEHandle,
-            pixel_width: *mut c_ushort,
-            char_offset: *mut c_ushort,
-            pixel_in_char: *mut Boolean,
+            pixel_width: Option<&mut c_ushort>,
+            char_offset: Option<&mut c_ushort>,
+            pixel_in_char: Option<&mut Boolean>,
             user_upp: HitTestHookUPP,
         ) -> Boolean;
     }
@@ -1145,8 +1145,8 @@ pub unsafe fn InvokeHitTestHookUPP(
 ///
 /// - `p_te` must be a valid pointer.
 /// - `h_te` must be a valid pointer.
-/// - `word_start` must be a valid pointer.
-/// - `word_end` must be a valid pointer.
+/// - `word_start` might not allow `None`.
+/// - `word_end` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
@@ -1155,8 +1155,8 @@ pub unsafe fn InvokeTEFindWordUPP(
     caller: c_short,
     p_te: TEPtr,
     h_te: TEHandle,
-    word_start: *mut c_ushort,
-    word_end: *mut c_ushort,
+    word_start: Option<&mut c_ushort>,
+    word_end: Option<&mut c_ushort>,
     user_upp: TEFindWordUPP,
 ) {
     extern "C-unwind" {
@@ -1165,8 +1165,8 @@ pub unsafe fn InvokeTEFindWordUPP(
             caller: c_short,
             p_te: TEPtr,
             h_te: TEHandle,
-            word_start: *mut c_ushort,
-            word_end: *mut c_ushort,
+            word_start: Option<&mut c_ushort>,
+            word_end: Option<&mut c_ushort>,
             user_upp: TEFindWordUPP,
         );
     }
@@ -1186,27 +1186,27 @@ pub unsafe fn InvokeTEFindWordUPP(
 /// # Safety
 ///
 /// - `p_te` must be a valid pointer.
-/// - `line_start` must be a valid pointer.
-/// - `first_char` must be a valid pointer.
-/// - `last_char` must be a valid pointer.
+/// - `line_start` might not allow `None`.
+/// - `first_char` might not allow `None`.
+/// - `last_char` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeTERecalcUPP(
     p_te: TEPtr,
     change_length: c_ushort,
-    line_start: *mut c_ushort,
-    first_char: *mut c_ushort,
-    last_char: *mut c_ushort,
+    line_start: Option<&mut c_ushort>,
+    first_char: Option<&mut c_ushort>,
+    last_char: Option<&mut c_ushort>,
     user_upp: TERecalcUPP,
 ) {
     extern "C-unwind" {
         fn InvokeTERecalcUPP(
             p_te: TEPtr,
             change_length: c_ushort,
-            line_start: *mut c_ushort,
-            first_char: *mut c_ushort,
-            last_char: *mut c_ushort,
+            line_start: Option<&mut c_ushort>,
+            first_char: Option<&mut c_ushort>,
+            last_char: Option<&mut c_ushort>,
             user_upp: TERecalcUPP,
         );
     }
@@ -1226,7 +1226,8 @@ pub unsafe fn InvokeTERecalcUPP(
 ///
 /// - `p_te` must be a valid pointer.
 /// - `current_graf_port` must be a valid pointer.
-/// - `char_position` must be a valid pointer.
+/// - `current_graf_port` might not allow `None`.
+/// - `char_position` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
@@ -1236,8 +1237,8 @@ pub unsafe fn InvokeTEDoTextUPP(
     first_char: c_ushort,
     last_char: c_ushort,
     selector: c_short,
-    current_graf_port: *mut GrafPtr,
-    char_position: *mut c_short,
+    current_graf_port: Option<&mut GrafPtr>,
+    char_position: Option<&mut c_short>,
     user_upp: TEDoTextUPP,
 ) {
     extern "C-unwind" {
@@ -1246,8 +1247,8 @@ pub unsafe fn InvokeTEDoTextUPP(
             first_char: c_ushort,
             last_char: c_ushort,
             selector: c_short,
-            current_graf_port: *mut GrafPtr,
-            char_position: *mut c_short,
+            current_graf_port: Option<&mut GrafPtr>,
+            char_position: Option<&mut c_short>,
             user_upp: TEDoTextUPP,
         );
     }

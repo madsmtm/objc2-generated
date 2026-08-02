@@ -248,12 +248,12 @@ impl IOBluetoothSDPServiceRecord {
         ///
         /// # Safety
         ///
-        /// `rfcomm_channel_id` must be a valid pointer.
+        /// `rfcomm_channel_id` might not allow `None`.
         #[unsafe(method(getRFCOMMChannelID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRFCOMMChannelID(
             &self,
-            rfcomm_channel_id: *mut BluetoothRFCOMMChannelID,
+            rfcomm_channel_id: Option<&mut BluetoothRFCOMMChannelID>,
         ) -> IOReturn;
 
         #[cfg(feature = "Bluetooth")]
@@ -270,10 +270,10 @@ impl IOBluetoothSDPServiceRecord {
         ///
         /// # Safety
         ///
-        /// `out_psm` must be a valid pointer.
+        /// `out_psm` might not allow `None`.
         #[unsafe(method(getL2CAPPSM:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getL2CAPPSM(&self, out_psm: *mut BluetoothL2CAPPSM) -> IOReturn;
+        pub unsafe fn getL2CAPPSM(&self, out_psm: Option<&mut BluetoothL2CAPPSM>) -> IOReturn;
 
         #[cfg(feature = "Bluetooth")]
         /// Allows the discovery of the service record handle assigned to the service.
@@ -289,12 +289,12 @@ impl IOBluetoothSDPServiceRecord {
         ///
         /// # Safety
         ///
-        /// `out_service_record_handle` must be a valid pointer.
+        /// `out_service_record_handle` might not allow `None`.
         #[unsafe(method(getServiceRecordHandle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getServiceRecordHandle(
             &self,
-            out_service_record_handle: *mut BluetoothSDPServiceRecordHandle,
+            out_service_record_handle: Option<&mut BluetoothSDPServiceRecordHandle>,
         ) -> IOReturn;
 
         #[cfg(feature = "Bluetooth")]

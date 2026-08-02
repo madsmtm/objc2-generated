@@ -116,11 +116,11 @@ pub const kTECDisableLooseMappingsMask: c_uint = 1 << kTECDisableLooseMappingsBi
 
 /// # Safety
 ///
-/// `number_encodings` must be a valid pointer.
+/// `number_encodings` might not allow `None`.
 #[inline]
-pub unsafe fn TECCountAvailableTextEncodings(number_encodings: *mut ItemCount) -> OSStatus {
+pub unsafe fn TECCountAvailableTextEncodings(number_encodings: Option<&mut ItemCount>) -> OSStatus {
     extern "C-unwind" {
-        fn TECCountAvailableTextEncodings(number_encodings: *mut ItemCount) -> OSStatus;
+        fn TECCountAvailableTextEncodings(number_encodings: Option<&mut ItemCount>) -> OSStatus;
     }
     unsafe { TECCountAvailableTextEncodings(number_encodings) }
 }
@@ -128,19 +128,19 @@ pub unsafe fn TECCountAvailableTextEncodings(number_encodings: *mut ItemCount) -
 /// # Safety
 ///
 /// - `available_encodings` must be a valid pointer.
-/// - `actual_available_encodings` must be a valid pointer.
+/// - `actual_available_encodings` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECGetAvailableTextEncodings(
     available_encodings: *mut TextEncoding,
     max_available_encodings: ItemCount,
-    actual_available_encodings: *mut ItemCount,
+    actual_available_encodings: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECGetAvailableTextEncodings(
             available_encodings: *mut TextEncoding,
             max_available_encodings: ItemCount,
-            actual_available_encodings: *mut ItemCount,
+            actual_available_encodings: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -154,13 +154,15 @@ pub unsafe fn TECGetAvailableTextEncodings(
 
 /// # Safety
 ///
-/// `number_of_encodings` must be a valid pointer.
+/// `number_of_encodings` might not allow `None`.
 #[inline]
 pub unsafe fn TECCountDirectTextEncodingConversions(
-    number_of_encodings: *mut ItemCount,
+    number_of_encodings: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn TECCountDirectTextEncodingConversions(number_of_encodings: *mut ItemCount) -> OSStatus;
+        fn TECCountDirectTextEncodingConversions(
+            number_of_encodings: Option<&mut ItemCount>,
+        ) -> OSStatus;
     }
     unsafe { TECCountDirectTextEncodingConversions(number_of_encodings) }
 }
@@ -168,19 +170,19 @@ pub unsafe fn TECCountDirectTextEncodingConversions(
 /// # Safety
 ///
 /// - `available_conversions` must be a valid pointer.
-/// - `actual_available_conversions` must be a valid pointer.
+/// - `actual_available_conversions` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECGetDirectTextEncodingConversions(
     available_conversions: *mut TECConversionInfo,
     max_available_conversions: ItemCount,
-    actual_available_conversions: *mut ItemCount,
+    actual_available_conversions: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECGetDirectTextEncodingConversions(
             available_conversions: *mut TECConversionInfo,
             max_available_conversions: ItemCount,
-            actual_available_conversions: *mut ItemCount,
+            actual_available_conversions: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -194,17 +196,17 @@ pub unsafe fn TECGetDirectTextEncodingConversions(
 
 /// # Safety
 ///
-/// `number_of_encodings` must be a valid pointer.
+/// `number_of_encodings` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECCountDestinationTextEncodings(
     input_encoding: TextEncoding,
-    number_of_encodings: *mut ItemCount,
+    number_of_encodings: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCountDestinationTextEncodings(
             input_encoding: TextEncoding,
-            number_of_encodings: *mut ItemCount,
+            number_of_encodings: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe { TECCountDestinationTextEncodings(input_encoding, number_of_encodings) }
@@ -213,21 +215,21 @@ pub unsafe fn TECCountDestinationTextEncodings(
 /// # Safety
 ///
 /// - `destination_encodings` must be a valid pointer.
-/// - `actual_destination_encodings` must be a valid pointer.
+/// - `actual_destination_encodings` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECGetDestinationTextEncodings(
     input_encoding: TextEncoding,
     destination_encodings: *mut TextEncoding,
     max_destination_encodings: ItemCount,
-    actual_destination_encodings: *mut ItemCount,
+    actual_destination_encodings: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECGetDestinationTextEncodings(
             input_encoding: TextEncoding,
             destination_encodings: *mut TextEncoding,
             max_destination_encodings: ItemCount,
-            actual_destination_encodings: *mut ItemCount,
+            actual_destination_encodings: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -260,17 +262,17 @@ pub unsafe fn TECGetTextEncodingInternetName(
 
 /// # Safety
 ///
-/// - `text_encoding` must be a valid pointer.
+/// - `text_encoding` might not allow `None`.
 /// - `encoding_name` must be a valid pointer.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECGetTextEncodingFromInternetName(
-    text_encoding: *mut TextEncoding,
+    text_encoding: Option<&mut TextEncoding>,
     encoding_name: ConstStr255Param,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECGetTextEncodingFromInternetName(
-            text_encoding: *mut TextEncoding,
+            text_encoding: Option<&mut TextEncoding>,
             encoding_name: ConstStr255Param,
         ) -> OSStatus;
     }
@@ -279,17 +281,18 @@ pub unsafe fn TECGetTextEncodingFromInternetName(
 
 /// # Safety
 ///
-/// `new_encoding_converter` must be a valid pointer.
+/// - `new_encoding_converter` must be a valid pointer.
+/// - `new_encoding_converter` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECCreateConverter(
-    new_encoding_converter: *mut TECObjectRef,
+    new_encoding_converter: Option<&mut TECObjectRef>,
     input_encoding: TextEncoding,
     output_encoding: TextEncoding,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCreateConverter(
-            new_encoding_converter: *mut TECObjectRef,
+            new_encoding_converter: Option<&mut TECObjectRef>,
             input_encoding: TextEncoding,
             output_encoding: TextEncoding,
         ) -> OSStatus;
@@ -300,17 +303,18 @@ pub unsafe fn TECCreateConverter(
 /// # Safety
 ///
 /// - `new_encoding_converter` must be a valid pointer.
+/// - `new_encoding_converter` might not allow `None`.
 /// - `in_path` must be a valid pointer.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECCreateConverterFromPath(
-    new_encoding_converter: *mut TECObjectRef,
+    new_encoding_converter: Option<&mut TECObjectRef>,
     in_path: *mut TextEncoding,
     in_encodings: ItemCount,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCreateConverterFromPath(
-            new_encoding_converter: *mut TECObjectRef,
+            new_encoding_converter: Option<&mut TECObjectRef>,
             in_path: *mut TextEncoding,
             in_encodings: ItemCount,
         ) -> OSStatus;
@@ -344,29 +348,29 @@ pub unsafe fn TECClearConverterContextInfo(encoding_converter: TECObjectRef) -> 
 ///
 /// - `encoding_converter` must be a valid pointer.
 /// - `input_buffer` must be a valid pointer.
-/// - `actual_input_length` must be a valid pointer.
+/// - `actual_input_length` might not allow `None`.
 /// - `output_buffer` must be a valid pointer.
-/// - `actual_output_length` must be a valid pointer.
+/// - `actual_output_length` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECConvertText(
     encoding_converter: TECObjectRef,
     input_buffer: ConstTextPtr,
     input_buffer_length: ByteCount,
-    actual_input_length: *mut ByteCount,
+    actual_input_length: Option<&mut ByteCount>,
     output_buffer: TextPtr,
     output_buffer_length: ByteCount,
-    actual_output_length: *mut ByteCount,
+    actual_output_length: Option<&mut ByteCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECConvertText(
             encoding_converter: TECObjectRef,
             input_buffer: ConstTextPtr,
             input_buffer_length: ByteCount,
-            actual_input_length: *mut ByteCount,
+            actual_input_length: Option<&mut ByteCount>,
             output_buffer: TextPtr,
             output_buffer_length: ByteCount,
-            actual_output_length: *mut ByteCount,
+            actual_output_length: Option<&mut ByteCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -386,21 +390,21 @@ pub unsafe fn TECConvertText(
 ///
 /// - `encoding_converter` must be a valid pointer.
 /// - `output_buffer` must be a valid pointer.
-/// - `actual_output_length` must be a valid pointer.
+/// - `actual_output_length` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECFlushText(
     encoding_converter: TECObjectRef,
     output_buffer: TextPtr,
     output_buffer_length: ByteCount,
-    actual_output_length: *mut ByteCount,
+    actual_output_length: Option<&mut ByteCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECFlushText(
             encoding_converter: TECObjectRef,
             output_buffer: TextPtr,
             output_buffer_length: ByteCount,
-            actual_output_length: *mut ByteCount,
+            actual_output_length: Option<&mut ByteCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -415,17 +419,17 @@ pub unsafe fn TECFlushText(
 
 /// # Safety
 ///
-/// `number_of_encodings` must be a valid pointer.
+/// `number_of_encodings` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECCountSubTextEncodings(
     input_encoding: TextEncoding,
-    number_of_encodings: *mut ItemCount,
+    number_of_encodings: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCountSubTextEncodings(
             input_encoding: TextEncoding,
-            number_of_encodings: *mut ItemCount,
+            number_of_encodings: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe { TECCountSubTextEncodings(input_encoding, number_of_encodings) }
@@ -434,21 +438,21 @@ pub unsafe fn TECCountSubTextEncodings(
 /// # Safety
 ///
 /// - `sub_encodings` must be a valid pointer.
-/// - `actual_sub_encodings` must be a valid pointer.
+/// - `actual_sub_encodings` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECGetSubTextEncodings(
     input_encoding: TextEncoding,
     sub_encodings: *mut TextEncoding,
     max_sub_encodings: ItemCount,
-    actual_sub_encodings: *mut ItemCount,
+    actual_sub_encodings: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECGetSubTextEncodings(
             input_encoding: TextEncoding,
             sub_encodings: *mut TextEncoding,
             max_sub_encodings: ItemCount,
-            actual_sub_encodings: *mut ItemCount,
+            actual_sub_encodings: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -464,18 +468,18 @@ pub unsafe fn TECGetSubTextEncodings(
 /// # Safety
 ///
 /// - `encoding_converter` must be a valid pointer.
-/// - `num_encodings` must be a valid pointer.
+/// - `num_encodings` might not allow `None`.
 /// - `encoding_list` must be a valid pointer.
 #[inline]
 pub unsafe fn TECGetEncodingList(
     encoding_converter: TECObjectRef,
-    num_encodings: *mut ItemCount,
+    num_encodings: Option<&mut ItemCount>,
     encoding_list: *mut Handle,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECGetEncodingList(
             encoding_converter: TECObjectRef,
-            num_encodings: *mut ItemCount,
+            num_encodings: Option<&mut ItemCount>,
             encoding_list: *mut Handle,
         ) -> OSStatus;
     }
@@ -485,18 +489,19 @@ pub unsafe fn TECGetEncodingList(
 /// # Safety
 ///
 /// - `new_encoding_converter` must be a valid pointer.
+/// - `new_encoding_converter` might not allow `None`.
 /// - `output_encodings` must be a valid pointer.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECCreateOneToManyConverter(
-    new_encoding_converter: *mut TECObjectRef,
+    new_encoding_converter: Option<&mut TECObjectRef>,
     input_encoding: TextEncoding,
     num_output_encodings: ItemCount,
     output_encodings: *mut TextEncoding,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCreateOneToManyConverter(
-            new_encoding_converter: *mut TECObjectRef,
+            new_encoding_converter: Option<&mut TECObjectRef>,
             input_encoding: TextEncoding,
             num_output_encodings: ItemCount,
             output_encodings: *mut TextEncoding,
@@ -516,37 +521,37 @@ pub unsafe fn TECCreateOneToManyConverter(
 ///
 /// - `encoding_converter` must be a valid pointer.
 /// - `input_buffer` must be a valid pointer.
-/// - `actual_input_length` must be a valid pointer.
+/// - `actual_input_length` might not allow `None`.
 /// - `output_buffer` must be a valid pointer.
-/// - `actual_output_length` must be a valid pointer.
+/// - `actual_output_length` might not allow `None`.
 /// - `out_encodings_buffer` must be a valid pointer.
-/// - `actual_out_encoding_runs` must be a valid pointer.
+/// - `actual_out_encoding_runs` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECConvertTextToMultipleEncodings(
     encoding_converter: TECObjectRef,
     input_buffer: ConstTextPtr,
     input_buffer_length: ByteCount,
-    actual_input_length: *mut ByteCount,
+    actual_input_length: Option<&mut ByteCount>,
     output_buffer: TextPtr,
     output_buffer_length: ByteCount,
-    actual_output_length: *mut ByteCount,
+    actual_output_length: Option<&mut ByteCount>,
     out_encodings_buffer: *mut TextEncodingRun,
     max_out_encoding_runs: ItemCount,
-    actual_out_encoding_runs: *mut ItemCount,
+    actual_out_encoding_runs: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECConvertTextToMultipleEncodings(
             encoding_converter: TECObjectRef,
             input_buffer: ConstTextPtr,
             input_buffer_length: ByteCount,
-            actual_input_length: *mut ByteCount,
+            actual_input_length: Option<&mut ByteCount>,
             output_buffer: TextPtr,
             output_buffer_length: ByteCount,
-            actual_output_length: *mut ByteCount,
+            actual_output_length: Option<&mut ByteCount>,
             out_encodings_buffer: *mut TextEncodingRun,
             max_out_encoding_runs: ItemCount,
-            actual_out_encoding_runs: *mut ItemCount,
+            actual_out_encoding_runs: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -569,29 +574,29 @@ pub unsafe fn TECConvertTextToMultipleEncodings(
 ///
 /// - `encoding_converter` must be a valid pointer.
 /// - `output_buffer` must be a valid pointer.
-/// - `actual_output_length` must be a valid pointer.
+/// - `actual_output_length` might not allow `None`.
 /// - `out_encodings_buffer` must be a valid pointer.
-/// - `actual_out_encoding_runs` must be a valid pointer.
+/// - `actual_out_encoding_runs` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECFlushMultipleEncodings(
     encoding_converter: TECObjectRef,
     output_buffer: TextPtr,
     output_buffer_length: ByteCount,
-    actual_output_length: *mut ByteCount,
+    actual_output_length: Option<&mut ByteCount>,
     out_encodings_buffer: *mut TextEncodingRun,
     max_out_encoding_runs: ItemCount,
-    actual_out_encoding_runs: *mut ItemCount,
+    actual_out_encoding_runs: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECFlushMultipleEncodings(
             encoding_converter: TECObjectRef,
             output_buffer: TextPtr,
             output_buffer_length: ByteCount,
-            actual_output_length: *mut ByteCount,
+            actual_output_length: Option<&mut ByteCount>,
             out_encodings_buffer: *mut TextEncodingRun,
             max_out_encoding_runs: ItemCount,
-            actual_out_encoding_runs: *mut ItemCount,
+            actual_out_encoding_runs: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -609,16 +614,16 @@ pub unsafe fn TECFlushMultipleEncodings(
 
 /// # Safety
 ///
-/// `number_encodings` must be a valid pointer.
+/// `number_encodings` might not allow `None`.
 #[inline]
 pub unsafe fn TECCountWebTextEncodings(
     locale: RegionCode,
-    number_encodings: *mut ItemCount,
+    number_encodings: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCountWebTextEncodings(
             locale: RegionCode,
-            number_encodings: *mut ItemCount,
+            number_encodings: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe { TECCountWebTextEncodings(locale, number_encodings) }
@@ -627,21 +632,21 @@ pub unsafe fn TECCountWebTextEncodings(
 /// # Safety
 ///
 /// - `available_encodings` must be a valid pointer.
-/// - `actual_available_encodings` must be a valid pointer.
+/// - `actual_available_encodings` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECGetWebTextEncodings(
     locale: RegionCode,
     available_encodings: *mut TextEncoding,
     max_available_encodings: ItemCount,
-    actual_available_encodings: *mut ItemCount,
+    actual_available_encodings: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECGetWebTextEncodings(
             locale: RegionCode,
             available_encodings: *mut TextEncoding,
             max_available_encodings: ItemCount,
-            actual_available_encodings: *mut ItemCount,
+            actual_available_encodings: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -656,16 +661,16 @@ pub unsafe fn TECGetWebTextEncodings(
 
 /// # Safety
 ///
-/// `number_encodings` must be a valid pointer.
+/// `number_encodings` might not allow `None`.
 #[inline]
 pub unsafe fn TECCountMailTextEncodings(
     locale: RegionCode,
-    number_encodings: *mut ItemCount,
+    number_encodings: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCountMailTextEncodings(
             locale: RegionCode,
-            number_encodings: *mut ItemCount,
+            number_encodings: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe { TECCountMailTextEncodings(locale, number_encodings) }
@@ -674,21 +679,21 @@ pub unsafe fn TECCountMailTextEncodings(
 /// # Safety
 ///
 /// - `available_encodings` must be a valid pointer.
-/// - `actual_available_encodings` must be a valid pointer.
+/// - `actual_available_encodings` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECGetMailTextEncodings(
     locale: RegionCode,
     available_encodings: *mut TextEncoding,
     max_available_encodings: ItemCount,
-    actual_available_encodings: *mut ItemCount,
+    actual_available_encodings: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECGetMailTextEncodings(
             locale: RegionCode,
             available_encodings: *mut TextEncoding,
             max_available_encodings: ItemCount,
-            actual_available_encodings: *mut ItemCount,
+            actual_available_encodings: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -703,11 +708,11 @@ pub unsafe fn TECGetMailTextEncodings(
 
 /// # Safety
 ///
-/// `number_of_encodings` must be a valid pointer.
+/// `number_of_encodings` might not allow `None`.
 #[inline]
-pub unsafe fn TECCountAvailableSniffers(number_of_encodings: *mut ItemCount) -> OSStatus {
+pub unsafe fn TECCountAvailableSniffers(number_of_encodings: Option<&mut ItemCount>) -> OSStatus {
     extern "C-unwind" {
-        fn TECCountAvailableSniffers(number_of_encodings: *mut ItemCount) -> OSStatus;
+        fn TECCountAvailableSniffers(number_of_encodings: Option<&mut ItemCount>) -> OSStatus;
     }
     unsafe { TECCountAvailableSniffers(number_of_encodings) }
 }
@@ -715,19 +720,19 @@ pub unsafe fn TECCountAvailableSniffers(number_of_encodings: *mut ItemCount) -> 
 /// # Safety
 ///
 /// - `available_sniffers` must be a valid pointer.
-/// - `actual_available_sniffers` must be a valid pointer.
+/// - `actual_available_sniffers` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECGetAvailableSniffers(
     available_sniffers: *mut TextEncoding,
     max_available_sniffers: ItemCount,
-    actual_available_sniffers: *mut ItemCount,
+    actual_available_sniffers: Option<&mut ItemCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECGetAvailableSniffers(
             available_sniffers: *mut TextEncoding,
             max_available_sniffers: ItemCount,
-            actual_available_sniffers: *mut ItemCount,
+            actual_available_sniffers: Option<&mut ItemCount>,
         ) -> OSStatus;
     }
     unsafe {
@@ -742,17 +747,18 @@ pub unsafe fn TECGetAvailableSniffers(
 /// # Safety
 ///
 /// - `encoding_sniffer` must be a valid pointer.
+/// - `encoding_sniffer` might not allow `None`.
 /// - `test_encodings` must be a valid pointer.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECCreateSniffer(
-    encoding_sniffer: *mut TECSnifferObjectRef,
+    encoding_sniffer: Option<&mut TECSnifferObjectRef>,
     test_encodings: *mut TextEncoding,
     num_text_encodings: ItemCount,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCreateSniffer(
-            encoding_sniffer: *mut TECSnifferObjectRef,
+            encoding_sniffer: Option<&mut TECSnifferObjectRef>,
             test_encodings: *mut TextEncoding,
             num_text_encodings: ItemCount,
         ) -> OSStatus;
@@ -850,21 +856,21 @@ pub unsafe fn TECSetBasicOptions(
 /// # Safety
 ///
 /// - `encoding_name_ptr` might not allow `None`.
-/// - `mib_enum_ptr` must be a valid pointer.
+/// - `mib_enum_ptr` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECCopyTextEncodingInternetNameAndMIB(
     text_encoding: TextEncoding,
     usage: TECInternetNameUsageMask,
     encoding_name_ptr: Option<&mut Option<CFRetained<CFString>>>,
-    mib_enum_ptr: *mut i32,
+    mib_enum_ptr: Option<&mut i32>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCopyTextEncodingInternetNameAndMIB(
             text_encoding: TextEncoding,
             usage: TECInternetNameUsageMask,
             encoding_name_ptr: Option<&mut Option<CFRetained<CFString>>>,
-            mib_enum_ptr: *mut i32,
+            mib_enum_ptr: Option<&mut i32>,
         ) -> OSStatus;
     }
     if let Some(encoding_name_ptr) = encoding_name_ptr.as_ref() {
@@ -880,19 +886,19 @@ pub unsafe fn TECCopyTextEncodingInternetNameAndMIB(
 
 /// # Safety
 ///
-/// - `text_encoding_ptr` must be a valid pointer.
+/// - `text_encoding_ptr` might not allow `None`.
 /// - `encoding_name` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECGetTextEncodingFromInternetNameOrMIB(
-    text_encoding_ptr: *mut TextEncoding,
+    text_encoding_ptr: Option<&mut TextEncoding>,
     usage: TECInternetNameUsageMask,
     encoding_name: Option<&CFString>,
     mib_enum: i32,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECGetTextEncodingFromInternetNameOrMIB(
-            text_encoding_ptr: *mut TextEncoding,
+            text_encoding_ptr: Option<&mut TextEncoding>,
             usage: TECInternetNameUsageMask,
             encoding_name: Option<&CFString>,
             mib_enum: i32,

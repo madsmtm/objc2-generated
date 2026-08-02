@@ -391,10 +391,6 @@ pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshot;
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshotData;
 #[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshotDataVersion;
-#[cfg(feature = "GCExtendedGamepadSnapshot")]
-pub use self::__GCExtendedGamepadSnapshot::NSDataFromGCExtendedGamepadSnapShotDataV100;
-#[cfg(feature = "GCExtendedGamepadSnapshot")]
-pub use self::__GCExtendedGamepadSnapshot::NSDataFromGCExtendedGamepadSnapshotData;
 #[cfg(all(feature = "GCGamepad", feature = "GCPhysicalInputProfile"))]
 pub use self::__GCGamepad::GCGamepad;
 #[cfg(all(
@@ -412,8 +408,6 @@ pub use self::__GCGamepadSnapshot::GCGamepadSnapShotDataV100;
     feature = "GCPhysicalInputProfile"
 ))]
 pub use self::__GCGamepadSnapshot::GCGamepadSnapshot;
-#[cfg(feature = "GCGamepadSnapshot")]
-pub use self::__GCGamepadSnapshot::NSDataFromGCGamepadSnapShotDataV100;
 #[cfg(feature = "GCGearShifterElement")]
 pub use self::__GCGearShifterElement::GCGearShifterElement;
 #[cfg(feature = "GCInputNames")]
@@ -1115,10 +1109,6 @@ pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshot;
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotData;
 #[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotDataVersion;
-#[cfg(feature = "GCMicroGamepadSnapshot")]
-pub use self::__GCMicroGamepadSnapshot::NSDataFromGCMicroGamepadSnapShotDataV100;
-#[cfg(feature = "GCMicroGamepadSnapshot")]
-pub use self::__GCMicroGamepadSnapshot::NSDataFromGCMicroGamepadSnapshotData;
 #[cfg(feature = "GCMotion")]
 pub use self::__GCMotion::GCAcceleration;
 #[cfg(feature = "GCMotion")]

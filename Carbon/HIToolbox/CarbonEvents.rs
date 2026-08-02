@@ -758,20 +758,20 @@ pub const kMouseParamsDragInitiation: c_uint = 0x64726167;
 
 /// # Safety
 ///
-/// - `out_time` must be a valid pointer.
-/// - `out_distance` must be a valid pointer.
+/// - `out_time` might not allow `None`.
+/// - `out_distance` might not allow `None`.
 #[cfg(all(feature = "CarbonEventsCore", feature = "HIGeometry"))]
 #[inline]
 pub unsafe fn HIMouseTrackingGetParameters(
     in_selector: OSType,
-    out_time: *mut EventTime,
-    out_distance: *mut HISize,
+    out_time: Option<&mut EventTime>,
+    out_distance: Option<&mut HISize>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn HIMouseTrackingGetParameters(
             in_selector: OSType,
-            out_time: *mut EventTime,
-            out_distance: *mut HISize,
+            out_time: Option<&mut EventTime>,
+            out_distance: Option<&mut HISize>,
         ) -> OSStatus;
     }
     unsafe { HIMouseTrackingGetParameters(in_selector, out_time, out_distance) }
@@ -2014,12 +2014,13 @@ pub unsafe fn GetEventMonitorTarget() -> EventTargetRef {
 
 /// # Safety
 ///
-/// `in_command` must be a valid pointer.
+/// - `in_command` struct field `menu` struct field `menuRef` must be a valid pointer.
+/// - `in_command` might not allow `None`.
 #[cfg(feature = "Menus")]
 #[inline]
-pub unsafe fn ProcessHICommand(in_command: *const HICommand) -> OSStatus {
+pub unsafe fn ProcessHICommand(in_command: Option<&HICommand>) -> OSStatus {
     extern "C-unwind" {
-        fn ProcessHICommand(in_command: *const HICommand) -> OSStatus;
+        fn ProcessHICommand(in_command: Option<&HICommand>) -> OSStatus;
     }
     unsafe { ProcessHICommand(in_command) }
 }
@@ -2069,6 +2070,7 @@ pub const kEventHotKeyExclusive: c_uint = 1 << 0;
 ///
 /// - `in_target` must be a valid pointer.
 /// - `out_ref` must be a valid pointer.
+/// - `out_ref` might not allow `None`.
 #[cfg(feature = "CarbonEventsCore")]
 #[inline]
 pub unsafe fn RegisterEventHotKey(
@@ -2077,7 +2079,7 @@ pub unsafe fn RegisterEventHotKey(
     in_hot_key_id: EventHotKeyID,
     in_target: EventTargetRef,
     in_options: OptionBits,
-    out_ref: *mut EventHotKeyRef,
+    out_ref: Option<&mut EventHotKeyRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn RegisterEventHotKey(
@@ -2086,7 +2088,7 @@ pub unsafe fn RegisterEventHotKey(
             in_hot_key_id: EventHotKeyID,
             in_target: EventTargetRef,
             in_options: OptionBits,
-            out_ref: *mut EventHotKeyRef,
+            out_ref: Option<&mut EventHotKeyRef>,
         ) -> OSStatus;
     }
     unsafe {

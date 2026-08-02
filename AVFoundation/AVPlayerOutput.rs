@@ -70,16 +70,12 @@ impl AVPlayerVideoOutput {
         /// Returns: A tagged buffer group for the specified host time if a sample is available, and NULL otherwise.
         ///
         /// The client is responsible for releasing the returned CMTaggedBufferGroup.
-        ///
-        /// # Safety
-        ///
-        /// `presentation_time_stamp_out` must be a valid pointer or null.
         #[unsafe(method(copyTaggedBufferGroupForHostTime:presentationTimeStamp:activeConfiguration:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyTaggedBufferGroupForHostTime_presentationTimeStamp_activeConfiguration(
             &self,
             host_time: CMTime,
-            presentation_time_stamp_out: *mut CMTime,
+            presentation_time_stamp_out: Option<&mut CMTime>,
             active_configuration_out: Option<
                 &mut Option<Retained<AVPlayerVideoOutputConfiguration>>,
             >,

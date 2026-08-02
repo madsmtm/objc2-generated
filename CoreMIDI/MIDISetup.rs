@@ -35,16 +35,12 @@ pub type MIDISetupRef = MIDIObjectRef;
 /// system, with MIDISetupInstall.
 ///
 /// Returns: An OSStatus result code.
-///
-/// # Safety
-///
-/// `out_setup` must be a valid pointer.
 #[cfg(feature = "MIDIServices")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe fn MIDISetupCreate(out_setup: NonNull<MIDISetupRef>) -> OSStatus {
+pub unsafe fn MIDISetupCreate(out_setup: &mut MIDISetupRef) -> OSStatus {
     extern "C-unwind" {
-        fn MIDISetupCreate(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
+        fn MIDISetupCreate(out_setup: &mut MIDISetupRef) -> OSStatus;
     }
     unsafe { MIDISetupCreate(out_setup) }
 }
@@ -116,16 +112,12 @@ pub unsafe fn MIDISetupInstall(setup: MIDISetupRef) -> OSStatus {
 /// dispose of this MIDISetup.
 ///
 /// Returns: An OSStatus result code.
-///
-/// # Safety
-///
-/// `out_setup` must be a valid pointer.
 #[cfg(feature = "MIDIServices")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetupRef>) -> OSStatus {
+pub unsafe fn MIDISetupGetCurrent(out_setup: &mut MIDISetupRef) -> OSStatus {
     extern "C-unwind" {
-        fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
+        fn MIDISetupGetCurrent(out_setup: &mut MIDISetupRef) -> OSStatus;
     }
     unsafe { MIDISetupGetCurrent(out_setup) }
 }
@@ -180,16 +172,12 @@ pub unsafe fn MIDISetupToData(
 /// with MIDISetupInstall.
 ///
 /// Returns: An OSStatus result code.
-///
-/// # Safety
-///
-/// `out_setup` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe fn MIDISetupFromData(data: &CFData, out_setup: NonNull<MIDISetupRef>) -> OSStatus {
+pub unsafe fn MIDISetupFromData(data: &CFData, out_setup: &mut MIDISetupRef) -> OSStatus {
     extern "C-unwind" {
-        fn MIDISetupFromData(data: &CFData, out_setup: NonNull<MIDISetupRef>) -> OSStatus;
+        fn MIDISetupFromData(data: &CFData, out_setup: &mut MIDISetupRef) -> OSStatus;
     }
     unsafe { MIDISetupFromData(data, out_setup) }
 }
@@ -221,10 +209,6 @@ pub unsafe fn MIDISetupFromData(data: &CFData, out_setup: NonNull<MIDISetupRef>)
 /// Parameter `newEntity`: On successful return, points to the newly-created entity.
 ///
 /// Returns: An OSStatus result code.
-///
-/// # Safety
-///
-/// `new_entity` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe fn MIDIDeviceNewEntity(
@@ -234,7 +218,7 @@ pub unsafe fn MIDIDeviceNewEntity(
     embedded: bool,
     num_source_endpoints: ItemCount,
     num_destination_endpoints: ItemCount,
-    new_entity: NonNull<MIDIEntityRef>,
+    new_entity: &mut MIDIEntityRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIDeviceNewEntity(
@@ -244,7 +228,7 @@ pub unsafe fn MIDIDeviceNewEntity(
             embedded: Boolean,
             num_source_endpoints: ItemCount,
             num_destination_endpoints: ItemCount,
-            new_entity: NonNull<MIDIEntityRef>,
+            new_entity: &mut MIDIEntityRef,
         ) -> OSStatus;
     }
     let embedded = embedded as _;
@@ -283,10 +267,6 @@ pub unsafe fn MIDIDeviceNewEntity(
 /// Parameter `newEntity`: On successful return, points to the newly-created entity.
 ///
 /// Returns: An OSStatus result code.
-///
-/// # Safety
-///
-/// `new_entity` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[deprecated]
 #[inline]
@@ -296,7 +276,7 @@ pub unsafe fn MIDIDeviceAddEntity(
     embedded: bool,
     num_source_endpoints: ItemCount,
     num_destination_endpoints: ItemCount,
-    new_entity: NonNull<MIDIEntityRef>,
+    new_entity: &mut MIDIEntityRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIDeviceAddEntity(
@@ -305,7 +285,7 @@ pub unsafe fn MIDIDeviceAddEntity(
             embedded: Boolean,
             num_source_endpoints: ItemCount,
             num_destination_endpoints: ItemCount,
-            new_entity: NonNull<MIDIEntityRef>,
+            new_entity: &mut MIDIEntityRef,
         ) -> OSStatus;
     }
     let embedded = embedded as _;
@@ -581,24 +561,20 @@ pub unsafe fn MIDIGetSerialPortDrivers(
 /// Parameter `outDevice`: On successful return, points to the newly-created device.
 ///
 /// Returns: An OSStatus result code.
-///
-/// # Safety
-///
-/// `out_device` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe fn MIDIExternalDeviceCreate(
     name: &CFString,
     manufacturer: &CFString,
     model: &CFString,
-    out_device: NonNull<MIDIDeviceRef>,
+    out_device: &mut MIDIDeviceRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIExternalDeviceCreate(
             name: &CFString,
             manufacturer: &CFString,
             model: &CFString,
-            out_device: NonNull<MIDIDeviceRef>,
+            out_device: &mut MIDIDeviceRef,
         ) -> OSStatus;
     }
     unsafe { MIDIExternalDeviceCreate(name, manufacturer, model, out_device) }

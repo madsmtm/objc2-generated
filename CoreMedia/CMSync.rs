@@ -187,24 +187,19 @@ impl CMClock {
     /// Retrieves the current time from a clock and also the matching time from the clock's reference clock.
     ///
     /// To make practical use of this, you may need to know what the clock's reference clock is.
-    ///
-    /// # Safety
-    ///
-    /// - `clock_time_out` must be a valid pointer.
-    /// - `reference_clock_time_out` must be a valid pointer.
     #[doc(alias = "CMClockGetAnchorTime")]
     #[cfg(feature = "CMTime")]
     #[inline]
     pub unsafe fn anchor_time(
         &self,
-        clock_time_out: NonNull<CMTime>,
-        reference_clock_time_out: NonNull<CMTime>,
+        clock_time_out: &mut CMTime,
+        reference_clock_time_out: &mut CMTime,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMClockGetAnchorTime(
                 clock: &CMClock,
-                clock_time_out: NonNull<CMTime>,
-                reference_clock_time_out: NonNull<CMTime>,
+                clock_time_out: &mut CMTime,
+                reference_clock_time_out: &mut CMTime,
             ) -> OSStatus;
         }
         unsafe { CMClockGetAnchorTime(self, clock_time_out, reference_clock_time_out) }
@@ -527,20 +522,19 @@ impl CMTimebase {
     ///
     /// You can use this function to take a consistent snapshot of the two values,
     /// avoiding possible inconsistencies due to external changes between retrieval of time and rate.
-    ///
-    /// # Safety
-    ///
-    /// - `time_out` must be a valid pointer or null.
-    /// - `rate_out` must be a valid pointer or null.
     #[doc(alias = "CMTimebaseGetTimeAndRate")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn time_and_rate(&self, time_out: *mut CMTime, rate_out: *mut f64) -> OSStatus {
+    pub unsafe fn time_and_rate(
+        &self,
+        time_out: Option<&mut CMTime>,
+        rate_out: Option<&mut f64>,
+    ) -> OSStatus {
         extern "C-unwind" {
             fn CMTimebaseGetTimeAndRate(
                 timebase: &CMTimebase,
-                time_out: *mut CMTime,
-                rate_out: *mut f64,
+                time_out: Option<&mut CMTime>,
+                rate_out: Option<&mut f64>,
             ) -> OSStatus;
         }
         unsafe { CMTimebaseGetTimeAndRate(self, time_out, rate_out) }
@@ -845,25 +839,22 @@ pub unsafe fn CMSyncGetRelativeRate(
 ///
 /// - `of_clock_or_timebase` should be of the correct type.
 /// - `relative_to_clock_or_timebase` should be of the correct type.
-/// - `out_relative_rate` must be a valid pointer or null.
-/// - `out_of_clock_or_timebase_anchor_time` must be a valid pointer or null.
-/// - `out_relative_to_clock_or_timebase_anchor_time` must be a valid pointer or null.
 #[cfg(feature = "CMTime")]
 #[inline]
 pub unsafe fn CMSyncGetRelativeRateAndAnchorTime(
     of_clock_or_timebase: &CMClockOrTimebase,
     relative_to_clock_or_timebase: &CMClockOrTimebase,
-    out_relative_rate: *mut f64,
-    out_of_clock_or_timebase_anchor_time: *mut CMTime,
-    out_relative_to_clock_or_timebase_anchor_time: *mut CMTime,
+    out_relative_rate: Option<&mut f64>,
+    out_of_clock_or_timebase_anchor_time: Option<&mut CMTime>,
+    out_relative_to_clock_or_timebase_anchor_time: Option<&mut CMTime>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMSyncGetRelativeRateAndAnchorTime(
             of_clock_or_timebase: &CMClockOrTimebase,
             relative_to_clock_or_timebase: &CMClockOrTimebase,
-            out_relative_rate: *mut f64,
-            out_of_clock_or_timebase_anchor_time: *mut CMTime,
-            out_relative_to_clock_or_timebase_anchor_time: *mut CMTime,
+            out_relative_rate: Option<&mut f64>,
+            out_of_clock_or_timebase_anchor_time: Option<&mut CMTime>,
+            out_relative_to_clock_or_timebase_anchor_time: Option<&mut CMTime>,
         ) -> OSStatus;
     }
     unsafe {
