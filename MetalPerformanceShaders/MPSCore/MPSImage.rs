@@ -157,13 +157,6 @@ impl MPSImageDescriptor {
             number_of_images: NSUInteger,
             usage: MTLTextureUsage,
         ) -> Retained<Self>;
-
-        /// # Safety
-        ///
-        /// `zone` must be a valid pointer or null.
-        #[unsafe(method(copyWithZone:))]
-        #[unsafe(method_family = copy)]
-        pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<Self>;
     );
 }
 

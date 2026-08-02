@@ -227,13 +227,6 @@ impl AVPlayerItem {
             automatically_loaded_asset_keys: Option<&NSArray<NSString>>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `zone` must be a valid pointer or null.
-        #[unsafe(method(copyWithZone:))]
-        #[unsafe(method_family = copy)]
-        pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<AnyObject>;
-
         #[unsafe(method(copy))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copy(&self) -> Retained<AnyObject>;

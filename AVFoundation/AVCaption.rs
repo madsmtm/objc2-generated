@@ -404,17 +404,6 @@ impl AVCaptionRegion {
         #[unsafe(method(isEqual:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqual(&self, object: &AnyObject) -> bool;
-
-        /// NSMutableCopying protocol method override
-        ///
-        /// This method throws an exception if the caption region contains an identifier.
-        ///
-        /// # Safety
-        ///
-        /// `zone` must be a valid pointer or null.
-        #[unsafe(method(mutableCopyWithZone:))]
-        #[unsafe(method_family = mutableCopy)]
-        pub unsafe fn mutableCopyWithZone(&self, zone: *mut NSZone) -> Retained<AnyObject>;
     );
 }
 
