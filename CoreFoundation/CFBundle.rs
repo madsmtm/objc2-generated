@@ -834,13 +834,13 @@ impl CFBundle {
     pub unsafe fn function_pointers_for_names(
         &self,
         function_names: &CFArray<CFString>,
-        ftbl: &mut *mut c_void,
+        ftbl: NonNull<*mut c_void>,
     ) {
         extern "C-unwind" {
             fn CFBundleGetFunctionPointersForNames(
                 bundle: &CFBundle,
                 function_names: &CFArray<CFString>,
-                ftbl: &mut *mut c_void,
+                ftbl: NonNull<*mut c_void>,
             );
         }
         unsafe { CFBundleGetFunctionPointersForNames(self, function_names, ftbl) }
