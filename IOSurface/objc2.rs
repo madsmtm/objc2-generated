@@ -173,9 +173,13 @@ extern_conformance!(
 impl IOSurface {
     extern_methods!(
         #[cfg(feature = "objc2-foundation")]
+        /// # Safety
+        ///
+        /// - `properties` generic should be of the correct type.
+        /// - `properties` generic must be thread-safe.
         #[unsafe(method(initWithProperties:))]
         #[unsafe(method_family = init)]
-        pub fn initWithProperties(
+        pub unsafe fn initWithProperties(
             this: Allocated<Self>,
             properties: &NSDictionary<IOSurfacePropertyKey, AnyObject>,
         ) -> Option<Retained<Self>>;
@@ -294,9 +298,13 @@ impl IOSurface {
         pub fn removeAttachmentForKey(&self, key: &NSString);
 
         #[cfg(feature = "objc2-foundation")]
+        /// # Safety
+        ///
+        /// - `dict` generic should be of the correct type.
+        /// - `dict` generic must be thread-safe.
         #[unsafe(method(setAllAttachments:))]
         #[unsafe(method_family = none)]
-        pub fn setAllAttachments(&self, dict: &NSDictionary<NSString, AnyObject>);
+        pub unsafe fn setAllAttachments(&self, dict: &NSDictionary<NSString, AnyObject>);
 
         #[cfg(feature = "objc2-foundation")]
         #[unsafe(method(allAttachments))]
