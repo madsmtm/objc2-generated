@@ -416,14 +416,12 @@ impl LSSharedFileList {
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-}
 
-impl LSSharedFileListItem {
     #[doc(alias = "LSSharedFileListItemMove")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn r#move(
-        in_list: &LSSharedFileList,
+    pub unsafe fn item_move(
+        &self,
         in_item: &LSSharedFileListItem,
         in_move_after_item: &LSSharedFileListItem,
     ) -> OSStatus {
@@ -434,24 +432,22 @@ impl LSSharedFileListItem {
                 in_move_after_item: &LSSharedFileListItem,
             ) -> OSStatus;
         }
-        unsafe { LSSharedFileListItemMove(in_list, in_item, in_move_after_item) }
+        unsafe { LSSharedFileListItemMove(self, in_item, in_move_after_item) }
     }
 
     #[doc(alias = "LSSharedFileListItemRemove")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn remove(in_list: &LSSharedFileList, in_item: &LSSharedFileListItem) -> OSStatus {
+    pub unsafe fn item_remove(&self, in_item: &LSSharedFileListItem) -> OSStatus {
         extern "C-unwind" {
             fn LSSharedFileListItemRemove(
                 in_list: &LSSharedFileList,
                 in_item: &LSSharedFileListItem,
             ) -> OSStatus;
         }
-        unsafe { LSSharedFileListItemRemove(in_list, in_item) }
+        unsafe { LSSharedFileListItemRemove(self, in_item) }
     }
-}
 
-impl LSSharedFileList {
     #[doc(alias = "LSSharedFileListRemoveAllItems")]
     #[deprecated = "No longer supported"]
     #[inline]
