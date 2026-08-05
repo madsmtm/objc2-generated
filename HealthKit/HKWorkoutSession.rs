@@ -325,15 +325,11 @@ impl HKWorkoutSession {
         /// the mirrored session.
         /// This method will fail if called for a session that is ended.
         /// The completion handler will be executed on an arbitrary background queue.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(startMirroringToCompanionDeviceWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMirroringToCompanionDeviceWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -343,15 +339,11 @@ impl HKWorkoutSession {
         /// `didDisconnectFromRemoteDeviceWithError:` will be called to indicate that.
         /// When a workout session is ended, mirroring is automatically stopped.
         /// The completion handler will be executed on an arbitrary background queue.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(stopMirroringToCompanionDeviceWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopMirroringToCompanionDeviceWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -364,16 +356,12 @@ impl HKWorkoutSession {
         /// If this limit is exceeded, an error will be returned in the completion handler.
         /// An error will also be returned if the session is not mirroring.
         /// The completion handler will be executed on an arbitrary background queue.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(sendDataToRemoteWorkoutSession:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendDataToRemoteWorkoutSession_completion(
             &self,
             data: &NSData,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
     );
 }

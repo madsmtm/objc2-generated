@@ -166,15 +166,11 @@ impl GKGameActivityDefinition {
 
         #[cfg(all(feature = "GKAchievementDescription", feature = "block2"))]
         /// Loads all associated achievements that have defined deep links to this game activity definition.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadAchievementDescriptionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAchievementDescriptionsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<GKAchievementDescription>, *mut NSError),
             >,
@@ -182,15 +178,11 @@ impl GKGameActivityDefinition {
 
         #[cfg(all(feature = "GKLeaderboard", feature = "block2"))]
         /// Loads all associated leaderboards that have defined deep links to this game activity definition.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadLeaderboardsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<GKLeaderboard>, *mut NSError),
             >,
@@ -199,15 +191,11 @@ impl GKGameActivityDefinition {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Asynchronously load the image. Error will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadImageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSImage, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSImage, *mut NSError)>,
         );
     );
 }
@@ -225,14 +213,10 @@ impl GKGameActivityDefinition {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// Loads all the game activity definitions for the current game.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadGameActivityDefinitionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadGameActivityDefinitionsWithCompletionHandler(
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<GKGameActivityDefinition>, *mut NSError),
             >,
@@ -240,15 +224,11 @@ impl GKGameActivityDefinition {
 
         #[cfg(feature = "block2")]
         /// Loads game activity definitions with the supplied App Store Connect identifiers.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadGameActivityDefinitionsWithIDs:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadGameActivityDefinitionsWithIDs_completionHandler(
             activity_definition_i_ds: Option<&NSArray<NSString>>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<GKGameActivityDefinition>, *mut NSError),
             >,

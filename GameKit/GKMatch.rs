@@ -127,15 +127,11 @@ impl GKMatch {
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Choose the best host from among the connected players using gathered estimates for bandwidth and packet loss. This is intended for applications that wish to implement a client-server model on top of the match. The returned player ID will be nil if the best host cannot currently be determined (e.g. players are still connecting).
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(chooseBestHostingPlayerWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn chooseBestHostingPlayerWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut GKPlayer)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut GKPlayer)>,
         );
 
         #[cfg(feature = "block2")]
@@ -143,15 +139,13 @@ impl GKMatch {
         /// Possible reasons for error:
         /// 1. Communications failure
         /// 2. Timeout
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(rematchWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rematchWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut GKMatch, *mut NSError)>>,
+            completion_handler: Option<
+                &block2::SendableBlock<'static, fn(*mut GKMatch, *mut NSError)>,
+            >,
         );
 
         #[cfg(feature = "GKVoiceChat")]
@@ -272,16 +266,12 @@ impl GKMatch {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(chooseBestHostPlayerWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn chooseBestHostPlayerWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSString)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSString)>,
         );
 
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**

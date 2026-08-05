@@ -530,25 +530,19 @@ impl NSBundleResourceRequest {
         pub fn bundle(&self) -> Retained<NSBundle>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(beginAccessingResourcesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beginAccessingResourcesWithCompletionHandler(
+        pub fn beginAccessingResourcesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(conditionallyBeginAccessingResourcesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn conditionallyBeginAccessingResourcesWithCompletionHandler(
+        pub fn conditionallyBeginAccessingResourcesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(Bool)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool)>,
         );
 
         #[unsafe(method(endAccessingResources))]

@@ -34,14 +34,11 @@ impl MKLookAroundSnapshotter {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKLookAroundSnapshot", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getSnapshotWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSnapshotWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut MKLookAroundSnapshot, *mut NSError),
             >,

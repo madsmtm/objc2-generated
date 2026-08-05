@@ -53,9 +53,6 @@ impl SKProductStorePromotionController {
         pub unsafe fn defaultController() -> Retained<Self>;
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Get visibility from Product.PromotionInfo.currentOrder."]
         #[unsafe(method(fetchStorePromotionVisibilityForProduct:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -63,14 +60,14 @@ impl SKProductStorePromotionController {
             &self,
             product: &SKProduct,
             completion_handler: Option<
-                &block2::Block<'static, fn(SKProductStorePromotionVisibility, *mut NSError)>,
+                &block2::SendableBlock<
+                    'static,
+                    fn(SKProductStorePromotionVisibility, *mut NSError),
+                >,
             >,
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use Product.PromotionInfo.updateProductVisibility(_:for:)."]
         #[unsafe(method(updateStorePromotionVisibility:forProduct:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -78,34 +75,28 @@ impl SKProductStorePromotionController {
             &self,
             promotion_visibility: SKProductStorePromotionVisibility,
             product: &SKProduct,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use Product.PromotionInfo.currentOrder."]
         #[unsafe(method(fetchStorePromotionOrderWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchStorePromotionOrderWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::Block<'static, fn(NonNull<NSArray<SKProduct>>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(NonNull<NSArray<SKProduct>>, *mut NSError)>,
             >,
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use Product.PromotionInfo.updateProductOrder(byID:)."]
         #[unsafe(method(updateStorePromotionOrder:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateStorePromotionOrder_completionHandler(
             &self,
             promotion_order: &NSArray<SKProduct>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }

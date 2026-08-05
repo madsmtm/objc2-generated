@@ -113,16 +113,12 @@ impl CNContactStore {
         /// Parameter `entityType`: Set to CNEntityTypeContacts.
         ///
         /// Parameter `completionHandler`: This block is called upon completion. If the user grants access then granted is YES and error is nil. Otherwise granted is NO with an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestAccessForEntityType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAccessForEntityType_completionHandler(
             &self,
             entity_type: CNEntityType,
-            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "CNContact")]

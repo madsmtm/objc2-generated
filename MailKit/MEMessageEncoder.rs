@@ -26,17 +26,13 @@ extern_protocol!(
         /// Parameter `composeContext`: -
         /// `MEComposeContext`instance which corresponds to the
         /// `message`being composed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getEncodingStatusForMessage:composeContext:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn getEncodingStatusForMessage_composeContext_completionHandler(
             &self,
             message: &MEMessage,
             compose_context: &MEComposeContext,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NonNull<MEOutgoingMessageEncodingStatus>),
             >,
@@ -62,17 +58,16 @@ extern_protocol!(
         /// Parameter `composeContext`: -
         /// `MEComposeContext`instance which corresponds to the
         /// `message`being composed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(encodeMessage:composeContext:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeMessage_composeContext_completionHandler(
             &self,
             message: &MEMessage,
             compose_context: &MEComposeContext,
-            completion_handler: &block2::Block<'static, fn(NonNull<MEMessageEncodingResult>)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<MEMessageEncodingResult>),
+            >,
         );
     }
 );

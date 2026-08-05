@@ -24,14 +24,11 @@ extern_conformance!(
 impl NSAnimationContext {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(runAnimationGroup:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runAnimationGroup_completionHandler(
+        pub fn runAnimationGroup_completionHandler(
             changes: &block2::Block<'_, fn(NonNull<NSAnimationContext>)>,
-            completion_handler: Option<&block2::Block<'static, fn()>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]

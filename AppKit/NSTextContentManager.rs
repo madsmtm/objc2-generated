@@ -58,14 +58,11 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(synchronizeToBackingStore:))]
         #[unsafe(method_family = none)]
-        unsafe fn synchronizeToBackingStore(
+        fn synchronizeToBackingStore(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "NSTextRange")]
@@ -175,14 +172,11 @@ impl NSTextContentManager {
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(synchronizeTextLayoutManagers:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn synchronizeTextLayoutManagers(
+        pub fn synchronizeTextLayoutManagers(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]

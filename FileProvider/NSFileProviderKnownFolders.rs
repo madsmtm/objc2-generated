@@ -186,17 +186,13 @@ impl NSFileProviderManager {
         /// - ...
         ///
         /// Currently, only claiming both ~/Desktop and ~/Documents together is allowed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(claimKnownFolders:localizedReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn claimKnownFolders_localizedReason_completionHandler(
             &self,
             known_folders: &NSFileProviderKnownFolderLocations,
             localized_reason: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
@@ -204,17 +200,13 @@ impl NSFileProviderManager {
         ///
         /// This call can be used by the provider to immediately disable replication of the specified
         /// known folders.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(releaseKnownFolders:localizedReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn releaseKnownFolders_localizedReason_completionHandler(
             &self,
             known_folders: NSFileProviderKnownFolders,
             localized_reason: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -228,16 +220,12 @@ extern_protocol!(
         /// This function is called when the user decides to switch some known folders to the current domain, outside of the `claimKnownFolders` call.
         /// The system provides a list of folders that the user decides to move to this domain, and expect in return non-nil locations for those known
         /// folders.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getKnownFolderLocations:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn getKnownFolderLocations_completionHandler(
             &self,
             known_folders: NSFileProviderKnownFolders,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSFileProviderKnownFolderLocations, *mut NSError),
             >,

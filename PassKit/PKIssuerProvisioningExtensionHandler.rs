@@ -21,48 +21,39 @@ extern_conformance!(
 impl PKIssuerProvisioningExtensionHandler {
     extern_methods!(
         #[cfg(all(feature = "PKIssuerProvisioningExtensionStatus", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(statusWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(NonNull<PKIssuerProvisioningExtensionStatus>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<PKIssuerProvisioningExtensionStatus>),
+            >,
         );
 
         #[cfg(all(feature = "PKIssuerProvisioningExtensionPassEntry", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(passEntriesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn passEntriesWithCompletion(
             &self,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<PKIssuerProvisioningExtensionPassEntry>>),
             >,
         );
 
         #[cfg(all(feature = "PKIssuerProvisioningExtensionPassEntry", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(remotePassEntriesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remotePassEntriesWithCompletion(
             &self,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<PKIssuerProvisioningExtensionPassEntry>>),
             >,
         );
 
         #[cfg(all(feature = "PKAddPaymentPassRequest", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(generateAddPaymentPassRequestForPassEntryWithIdentifier:configuration:certificateChain:nonce:nonceSignature:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateAddPaymentPassRequestForPassEntryWithIdentifier_configuration_certificateChain_nonce_nonceSignature_completionHandler(
@@ -72,7 +63,7 @@ impl PKIssuerProvisioningExtensionHandler {
             certificates: &NSArray<NSData>,
             nonce: &NSData,
             nonce_signature: &NSData,
-            completion: &block2::Block<'static, fn(*mut PKAddPaymentPassRequest)>,
+            completion: &block2::SendableBlock<'static, fn(*mut PKAddPaymentPassRequest)>,
         );
     );
 }

@@ -566,16 +566,12 @@ impl UIPasteboard {
         /// Parameter `patterns`: Detect only these patterns.
         ///
         /// Parameter `completionHandler`: Receives which patterns were detected, or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(detectPatternsForPatterns:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detectPatternsForPatterns_completionHandler(
+        pub fn detectPatternsForPatterns_completionHandler(
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSSet<UIPasteboardDetectionPattern>, *mut NSError),
             >,
@@ -593,17 +589,13 @@ impl UIPasteboard {
         ///
         /// Parameter `completionHandler`: Receives which patterns were detected per item specified,
         /// or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(detectPatternsForPatterns:inItemSet:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detectPatternsForPatterns_inItemSet_completionHandler(
+        pub fn detectPatternsForPatterns_inItemSet_completionHandler(
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
             item_set: Option<&NSIndexSet>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<NSSet<UIPasteboardDetectionPattern>>, *mut NSError),
             >,
@@ -616,16 +608,12 @@ impl UIPasteboard {
         /// Parameter `patterns`: Detect only these patterns.
         ///
         /// Parameter `completionHandler`: Receives which patterns and values were detected, or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(detectValuesForPatterns:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detectValuesForPatterns_completionHandler(
+        pub fn detectValuesForPatterns_completionHandler(
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSDictionary<UIPasteboardDetectionPattern, AnyObject>, *mut NSError),
             >,
@@ -641,17 +629,13 @@ impl UIPasteboard {
         ///
         /// Parameter `completionHandler`: Receives which patterns and values were detected per item specified,
         /// or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(detectValuesForPatterns:inItemSet:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detectValuesForPatterns_inItemSet_completionHandler(
+        pub fn detectValuesForPatterns_inItemSet_completionHandler(
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
             item_set: Option<&NSIndexSet>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     *mut NSArray<NSDictionary<UIPasteboardDetectionPattern, AnyObject>>,

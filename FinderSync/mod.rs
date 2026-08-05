@@ -168,16 +168,13 @@ impl FIFinderSyncController {
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(setLastUsedDate:forItemWithURL:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLastUsedDate_forItemWithURL_completion(
             &self,
             last_used_date: &NSDate,
             item_url: &NSURL,
-            completion: &block2::Block<'static, fn(NonNull<NSError>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<NSError>)>,
         );
 
         #[unsafe(method(tagDataForItemWithURL:))]
@@ -185,16 +182,13 @@ impl FIFinderSyncController {
         pub unsafe fn tagDataForItemWithURL(&self, item_url: &NSURL) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(setTagData:forItemWithURL:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTagData_forItemWithURL_completion(
             &self,
             tag_data: Option<&NSData>,
             item_url: &NSURL,
-            completion: &block2::Block<'static, fn(NonNull<NSError>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<NSError>)>,
         );
 
         #[unsafe(method(isExtensionEnabled))]
@@ -392,9 +386,6 @@ extern_protocol!(
         ) -> Result<Retained<NSXPCListenerEndpoint>, Retained<NSError>>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(valuesForAttributes:forItemWithURL:completion:))]
         #[unsafe(method_family = none)]
@@ -402,7 +393,7 @@ extern_protocol!(
             &self,
             attributes: &NSArray<NSURLResourceKey>,
             item_url: &NSURL,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSDictionary<NSURLResourceKey, AnyObject>>, *mut NSError),
             >,

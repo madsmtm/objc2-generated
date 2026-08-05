@@ -99,30 +99,28 @@ impl STWebHistory {
         ///
         /// - Parameters:
         /// - interval: The date interval of web history you want to fetch.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchHistoryDuringInterval:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchHistoryDuringInterval_completionHandler(
             &self,
             interval: &NSDateInterval,
-            completion_handler: &block2::Block<'static, fn(*mut NSSet<NSURL>, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSSet<NSURL>, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
         /// Fetches all web history associated with the bundle identifier and profile identifier
         /// you specified during initialization.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchAllHistoryWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllHistoryWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSSet<NSURL>, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSSet<NSURL>, *mut NSError),
+            >,
         );
 
         /// Deletes all the web history for the URL you specify.

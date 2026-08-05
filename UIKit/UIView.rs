@@ -1174,17 +1174,14 @@ impl UIView {
 impl UIView {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(animateKeyframesWithDuration:delay:options:animations:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animateKeyframesWithDuration_delay_options_animations_completion(
+        pub fn animateKeyframesWithDuration_delay_options_animations_completion(
             duration: NSTimeInterval,
             delay: NSTimeInterval,
             options: UIViewKeyframeAnimationOptions,
             animations: &block2::Block<'static, fn()>,
-            completion: Option<&block2::Block<'static, fn(Bool)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool)>>,
             mtm: MainThreadMarker,
         );
 

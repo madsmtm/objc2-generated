@@ -40,17 +40,13 @@ impl LAPrivateKey {
         /// `SecKeyAlgorithm`suitable for generating signatures with this key – e.g:
         /// `kSecKeyAlgorithmECDSASignatureMessageX962SHA256`
         /// Parameter `handler`: Completion handler with the signature of given data or an error on failure.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(signData:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn signData_secKeyAlgorithm_completion(
             &self,
             data: &NSData,
             algorithm: &SecKeyAlgorithm,
-            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-security")]
@@ -73,17 +69,13 @@ impl LAPrivateKey {
         /// `SecKeyAlgorithm`suitable for decrypting data with this key –e.g:
         /// `kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA256AESGCM`
         /// Parameter `handler`: Completion handler with plaintext or an error on failure.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(decryptData:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decryptData_secKeyAlgorithm_completion(
             &self,
             data: &NSData,
             algorithm: &SecKeyAlgorithm,
-            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-security")]
@@ -111,8 +103,7 @@ impl LAPrivateKey {
         ///
         /// # Safety
         ///
-        /// - `parameters` generic should be of the correct type.
-        /// - `handler` block must be sendable.
+        /// `parameters` generic should be of the correct type.
         #[unsafe(method(exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exchangeKeysWithPublicKey_secKeyAlgorithm_secKeyParameters_completion(
@@ -120,7 +111,7 @@ impl LAPrivateKey {
             public_key: &NSData,
             algorithm: &SecKeyAlgorithm,
             parameters: &NSDictionary,
-            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-security")]

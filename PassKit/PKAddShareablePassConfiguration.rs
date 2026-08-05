@@ -282,9 +282,6 @@ extern_conformance!(
 impl PKAddShareablePassConfiguration {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use configurationForPassMetadata:primaryAction:completion:"]
         #[unsafe(method(configurationForPassMetadata:provisioningPolicyIdentifier:primaryAction:completion:))]
         #[unsafe(method_family = none)]
@@ -292,22 +289,19 @@ impl PKAddShareablePassConfiguration {
             pass_metadata: &NSArray<PKShareablePassMetadata>,
             provisioning_policy_identifier: &NSString,
             action: PKAddShareablePassConfigurationPrimaryAction,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(*mut PKAddShareablePassConfiguration, *mut NSError),
             >,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(configurationForPassMetadata:primaryAction:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationForPassMetadata_primaryAction_completion(
             pass_metadata: &NSArray<PKShareablePassMetadata>,
             action: PKAddShareablePassConfigurationPrimaryAction,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(*mut PKAddShareablePassConfiguration, *mut NSError),
             >,

@@ -96,16 +96,12 @@ extern_protocol!(
         ///
         ///
         /// See: INCancelWorkoutIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleCancelWorkout:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleCancelWorkout_completion(
             &self,
             intent: &INCancelWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCancelWorkoutIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INCancelWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -125,17 +121,13 @@ extern_protocol!(
         ///
         ///
         /// See: INCancelWorkoutIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmCancelWorkout:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmCancelWorkout_completion(
             &self,
             intent: &INCancelWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCancelWorkoutIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INCancelWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -155,17 +147,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveWorkoutNameForCancelWorkout:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveWorkoutNameForCancelWorkout_withCompletion(
             &self,
             intent: &INCancelWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

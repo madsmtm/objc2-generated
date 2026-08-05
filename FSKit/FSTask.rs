@@ -145,15 +145,11 @@ impl FSTask {
         /// The check can either complete successfully, complete with an error, or enter the interrupted state.
         /// It should then call ``FSTask/didComplete(error:)`` with the appropriate error value or `nil`.
         /// Finally it should call `context.work_group.leave()` (Swift) or `dispatch_group_leave(context.work_group)` (Objective-C) to remove itself from its dispatch group.
-        ///
-        /// # Safety
-        ///
-        /// The returned block must be sendable.
         #[unsafe(method(cancellationHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancellationHandler(
             &self,
-        ) -> *mut block2::Block<'static, fn() -> *mut NSError>;
+        ) -> *mut block2::SendableBlock<'static, fn() -> *mut NSError>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`cancellationHandler`][Self::cancellationHandler].
@@ -162,12 +158,12 @@ impl FSTask {
         ///
         /// # Safety
         ///
-        /// `cancellation_handler` block must be sendable.
+        /// `cancellation_handler` block's return must be a valid pointer or null.
         #[unsafe(method(setCancellationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCancellationHandler(
             &self,
-            cancellation_handler: Option<&block2::Block<'static, fn() -> *mut NSError>>,
+            cancellation_handler: Option<&block2::SendableBlock<'static, fn() -> *mut NSError>>,
         );
     );
 }

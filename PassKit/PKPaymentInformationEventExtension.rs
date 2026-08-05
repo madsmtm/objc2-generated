@@ -9,12 +9,12 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkinformationrequestcompletionblock?language=objc)
 #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
 pub type PKInformationRequestCompletionBlock =
-    block2::Block<'static, fn(NonNull<PKBarcodeEventMetadataResponse>)>;
+    block2::SendableBlock<'static, fn(NonNull<PKBarcodeEventMetadataResponse>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksignaturerequestcompletionblock?language=objc)
 #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
 pub type PKSignatureRequestCompletionBlock =
-    block2::Block<'static, fn(NonNull<PKBarcodeEventSignatureResponse>)>;
+    block2::SendableBlock<'static, fn(NonNull<PKBarcodeEventSignatureResponse>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentinformationeventextension?language=objc)
@@ -46,9 +46,6 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentinformationrequesthandling?language=objc)
     pub unsafe trait PKPaymentInformationRequestHandling {
         #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleInformationRequest:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleInformationRequest_completion(
@@ -58,9 +55,6 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleSignatureRequest:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSignatureRequest_completion(
@@ -70,15 +64,12 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleConfigurationRequest:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleConfigurationRequest_completion(
             &self,
             configuration_request: &PKBarcodeEventConfigurationRequest,
-            completion: &block2::Block<'static, fn()>,
+            completion: &block2::SendableBlock<'static, fn()>,
         );
     }
 );

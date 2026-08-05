@@ -146,14 +146,13 @@ impl HMCharacteristic {
         ///
         /// # Safety
         ///
-        /// - `value` should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `value` should be of the correct type.
         #[unsafe(method(writeValue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeValue_completionHandler(
             &self,
             value: Option<&AnyObject>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -163,15 +162,11 @@ impl HMCharacteristic {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(readValueWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readValueWithCompletionHandler(
             &self,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -185,16 +180,12 @@ impl HMCharacteristic {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(enableNotification:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableNotification_completionHandler(
             &self,
             enable: bool,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -207,16 +198,12 @@ impl HMCharacteristic {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateAuthorizationData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateAuthorizationData_completionHandler(
             &self,
             data: Option<&NSData>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[deprecated = "HMCharacteristic objects are created by their parent container objects. Directly creating them is not supported."]

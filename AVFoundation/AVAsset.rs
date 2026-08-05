@@ -237,16 +237,15 @@ impl AVAsset {
         ///
         /// - Parameter trackID: The trackID of the requested AVAssetTrack.
         /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<'static, fn(*mut AVAssetTrack, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut AVAssetTrack, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMediaFormat"))]
@@ -276,16 +275,12 @@ impl AVAsset {
         ///
         /// - Parameter mediaType: The media type according to which AVAsset filters its AVAssetTracks. (Media types are defined in AVMediaFormat.h.)
         /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVAssetTrack>, *mut NSError),
             >,
@@ -318,16 +313,12 @@ impl AVAsset {
         ///
         /// - Parameter mediaCharacteristic: The media characteristic according to which AVAsset filters its AVAssetTracks. (Media characteristics are defined in AVMediaFormat.h.)
         /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVAssetTrack>, *mut NSError),
             >,
@@ -402,16 +393,12 @@ impl AVAsset {
         ///
         /// - Parameter format: The metadata format for which items are requested.
         /// - Parameter completionHandler: A block that is invoked when loading is complete, vending the array of metadata items (which may be empty if there is no metadata of the specified format) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadMetadataForFormat:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMetadataForFormat_completionHandler(
             &self,
             format: &AVMetadataFormat,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVMetadataItem>, *mut NSError),
             >,
@@ -465,17 +452,13 @@ impl AVAsset {
         /// - Parameter locale: Locale of the metadata items carrying chapter titles to be returned (supports the IETF BCP 47 specification).
         /// - Parameter commonKeys: Array of common keys of AVMetadataItem to be included; if no common keys are required, send an empty list. AVMetadataCommonKeyArtwork is the only supported key for now.
         /// - Parameter completionHandler: A block that is invoked when loading is complete, vending the array of timed metadata groups or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadChapterMetadataGroupsWithTitleLocale_containingItemsWithCommonKeys_completionHandler(
             &self,
             locale: &NSLocale,
             common_keys: &NSArray<AVMetadataKey>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVTimedMetadataGroup>, *mut NSError),
             >,
@@ -514,16 +497,12 @@ impl AVAsset {
         ///
         /// - Parameter preferredLanguages: An array of language identifiers in order of preference, each of which is an IETF BCP 47 (RFC 4646) language identifier. If your goal is to provide the best match for the end user's preferred languages without consideration of your app's available localizations, pass [NSLocale preferredLanguages] as the value of preferredLanguages. However, if you want to filter the available choices in order to obtain the best match among the localizations that are available for your app, pass [NSBundle preferredLocalizationsFromArray:[[NSBundle mainBundle] localizations] forPreferences:[NSLocale preferredLanguages]] instead. The latter choice is normally more appropriate for strings intended for display as part of the app's UI.
         /// - Parameter completionHandler: A block that is invoked when loading is complete, vending the array of timed metadata groups or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadChapterMetadataGroupsBestMatchingPreferredLanguages_completionHandler(
             &self,
             preferred_languages: &NSArray<NSString>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVTimedMetadataGroup>, *mut NSError),
             >,
@@ -583,16 +562,12 @@ impl AVAsset {
         /// Pass AVMediaCharacteristicLegible to obtain the group of available options for subtitles in various languages and for various purposes
         /// Pass AVMediaCharacteristicVisual to obtain the group of available options for video media.
         /// - Parameter completionHandler: A block that is invoked when loading is complete, vending an instance of AVMediaSelectionGroup (which may be nil) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadMediaSelectionGroupForMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMediaSelectionGroupForMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut AVMediaSelectionGroup, *mut NSError),
             >,
@@ -1051,16 +1026,15 @@ impl AVURLAsset {
         ///
         /// - Parameter compositionTrack: The composition track for which a compatible AVAssetTrack is requested.
         /// - Parameter completionHandler: A block that is invoked when loading is complete, vending an instance of AVAssetTrack or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(findCompatibleTrackForCompositionTrack:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findCompatibleTrackForCompositionTrack_completionHandler(
             &self,
             composition_track: &AVCompositionTrack,
-            completion_handler: &block2::Block<'static, fn(*mut AVAssetTrack, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut AVAssetTrack, *mut NSError),
+            >,
         );
     );
 }
@@ -1454,16 +1428,12 @@ impl AVFragmentedAsset {
         ///
         /// - Parameter trackID: The trackID of the requested AVFragmentedAssetTrack.
         /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut AVFragmentedAssetTrack, *mut NSError),
             >,
@@ -1496,16 +1466,12 @@ impl AVFragmentedAsset {
         ///
         /// - Parameter mediaType: The media type according to which AVAsset filters its AVFragmentedAssetTracks. (Media types are defined in AVMediaFormat.h.)
         /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVFragmentedAssetTrack>, *mut NSError),
             >,
@@ -1538,16 +1504,12 @@ impl AVFragmentedAsset {
         ///
         /// - Parameter mediaCharacteristic: The media characteristic according to which AVAsset filters its AVFragmentedAssetTracks. (Media characteristics are defined in AVMediaFormat.h.)
         /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVFragmentedAssetTrack>, *mut NSError),
             >,

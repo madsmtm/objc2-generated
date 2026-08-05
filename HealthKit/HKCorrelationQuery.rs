@@ -70,10 +70,6 @@ impl HKCorrelationQuery {
         /// Parameter `samplePredicates`: A dictionary mapping HKSampleTypes to NSPredicates. If no predicate for a particular type
         /// is provided, it is assumed to be a nil predicate and objects of that type will not be
         /// filtered.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(initWithType:predicate:samplePredicates:completion:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_predicate_samplePredicates_completion(
@@ -81,7 +77,7 @@ impl HKCorrelationQuery {
             correlation_type: &HKCorrelationType,
             predicate: Option<&NSPredicate>,
             sample_predicates: Option<&NSDictionary<HKSampleType, NSPredicate>>,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<HKCorrelationQuery>, *mut NSArray<HKCorrelation>, *mut NSError),
             >,

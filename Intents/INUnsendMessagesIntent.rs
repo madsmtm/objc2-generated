@@ -94,16 +94,15 @@ extern_protocol!(
         ///
         ///
         /// See: INUnsendMessagesIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleUnsendMessages:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleUnsendMessages_completion(
             &self,
             intent: &INUnsendMessagesIntent,
-            completion: &block2::Block<'static, fn(NonNull<INUnsendMessagesIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INUnsendMessagesIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -123,17 +122,16 @@ extern_protocol!(
         ///
         ///
         /// See: INUnsendMessagesIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmUnsendMessages:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmUnsendMessages_completion(
             &self,
             intent: &INUnsendMessagesIntent,
-            completion: &block2::Block<'static, fn(NonNull<INUnsendMessagesIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INUnsendMessagesIntentResponse>),
+            >,
         );
     }
 );

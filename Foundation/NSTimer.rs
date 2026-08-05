@@ -92,16 +92,12 @@ impl NSTimer {
         /// - parameter:  timeInterval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
         /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
         /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(timerWithTimeInterval:repeats:block:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn timerWithTimeInterval_repeats_block(
+        pub fn timerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
             repeats: bool,
-            block: &block2::Block<'static, fn(NonNull<NSTimer>)>,
+            block: &block2::SendableBlock<'static, fn(NonNull<NSTimer>)>,
         ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "block2"))]
@@ -109,16 +105,12 @@ impl NSTimer {
         /// - parameter:  ti    The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
         /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
         /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(scheduledTimerWithTimeInterval:repeats:block:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scheduledTimerWithTimeInterval_repeats_block(
+        pub fn scheduledTimerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
             repeats: bool,
-            block: &block2::Block<'static, fn(NonNull<NSTimer>)>,
+            block: &block2::SendableBlock<'static, fn(NonNull<NSTimer>)>,
         ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "block2"))]
@@ -127,18 +119,14 @@ impl NSTimer {
         /// - parameter:  interval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
         /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
         /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(initWithFireDate:interval:repeats:block:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFireDate_interval_repeats_block(
+        pub fn initWithFireDate_interval_repeats_block(
             this: Allocated<Self>,
             date: &NSDate,
             interval: NSTimeInterval,
             repeats: bool,
-            block: &block2::Block<'static, fn(NonNull<NSTimer>)>,
+            block: &block2::SendableBlock<'static, fn(NonNull<NSTimer>)>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]

@@ -46,13 +46,13 @@ impl CKSyncEngineRecordZoneChangeBatch {
         ///
         /// # Safety
         ///
-        /// `record_provider` block must be sendable.
+        /// `record_provider` block's return must be a valid pointer or null.
         #[unsafe(method(initWithPendingChanges:recordProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPendingChanges_recordProvider(
             this: Allocated<Self>,
             pending_changes: &NSArray<CKSyncEnginePendingRecordZoneChange>,
-            record_provider: &block2::Block<'_, fn(NonNull<CKRecordID>) -> *mut CKRecord>,
+            record_provider: &block2::SendableBlock<'_, fn(NonNull<CKRecordID>) -> *mut CKRecord>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID"))]

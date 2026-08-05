@@ -83,16 +83,12 @@ extern_protocol!(
         ///
         ///
         /// See: INGetRideStatusIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleGetRideStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetRideStatus_completion(
             &self,
             intent: &INGetRideStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INGetRideStatusIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INGetRideStatusIntentResponse>)>,
         );
 
         #[cfg(feature = "INIntent")]
@@ -126,17 +122,13 @@ extern_protocol!(
         ///
         ///
         /// See: INGetRideStatusIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetRideStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmGetRideStatus_completion(
             &self,
             intent: &INGetRideStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INGetRideStatusIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INGetRideStatusIntentResponse>)>,
         );
     }
 );

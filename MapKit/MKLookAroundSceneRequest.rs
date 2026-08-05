@@ -61,14 +61,14 @@ impl MKLookAroundSceneRequest {
         pub unsafe fn isLoading(&self) -> bool;
 
         #[cfg(all(feature = "MKLookAroundScene", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getSceneWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSceneWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut MKLookAroundScene, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut MKLookAroundScene, *mut NSError),
+            >,
         );
 
         #[unsafe(method(cancel))]

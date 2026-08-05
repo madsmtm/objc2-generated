@@ -115,16 +115,15 @@ extern_protocol!(
         ///
         ///
         /// See: INSendRideFeedbackIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleSendRideFeedback:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSendRideFeedback_completion(
             &self,
             send_ride_feedbackintent: &INSendRideFeedbackIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSendRideFeedbackIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSendRideFeedbackIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -144,17 +143,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSendRideFeedbackIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSendRideFeedback:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmSendRideFeedback_completion(
             &self,
             send_ride_feedback_intent: &INSendRideFeedbackIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSendRideFeedbackIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSendRideFeedbackIntentResponse>),
+            >,
         );
     }
 );

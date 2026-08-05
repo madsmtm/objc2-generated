@@ -25,22 +25,16 @@ extern_conformance!(
 impl GKNotificationBanner {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]
         #[unsafe(method(showBannerWithTitle:message:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showBannerWithTitle_message_completionHandler(
             title: Option<&NSString>,
             message: Option<&NSString>,
-            completion_handler: Option<&block2::Block<'static, fn()>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]
         #[unsafe(method(showBannerWithTitle:message:duration:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -48,7 +42,7 @@ impl GKNotificationBanner {
             title: Option<&NSString>,
             message: Option<&NSString>,
             duration: NSTimeInterval,
-            completion_handler: Option<&block2::Block<'static, fn()>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
     );
 }

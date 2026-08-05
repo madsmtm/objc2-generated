@@ -132,16 +132,12 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -179,16 +175,12 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addAccessory:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAccessory_completionHandler(
             &self,
             accessory: &HMAccessory,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMAccessory", feature = "block2"))]
@@ -201,16 +193,12 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(removeAccessory:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAccessory_completionHandler(
             &self,
             accessory: &HMAccessory,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMAccessory", feature = "HMRoom", feature = "block2"))]
@@ -230,17 +218,13 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(assignAccessory:toRoom:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assignAccessory_toRoom_completionHandler(
             &self,
             accessory: &HMAccessory,
             room: &HMRoom,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "HMService")]
@@ -273,16 +257,12 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(unblockAccessory:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unblockAccessory_completionHandler(
             &self,
             accessory: &HMAccessory,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -293,16 +273,12 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use -[HMAccessorySetupManager performAccessorySetupUsingRequest:completionHandler:] instead"]
         #[unsafe(method(addAndSetupAccessoriesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAndSetupAccessoriesWithCompletionHandler(
             &self,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -319,17 +295,16 @@ impl HMHome {
         /// Accessories provides the list of added accessories.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use -[HMAccessorySetupManager performAccessorySetupUsingRequest:completionHandler:] instead"]
         #[unsafe(method(addAndSetupAccessoriesWithPayload:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAndSetupAccessoriesWithPayload_completionHandler(
             &self,
             payload: &HMAccessorySetupPayload,
-            completion: &block2::Block<'static, fn(*mut NSArray<HMAccessory>, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut NSArray<HMAccessory>, *mut NSError),
+            >,
         );
 
         /// True if this home supports all of the requirements for adding a network router.
@@ -385,15 +360,11 @@ impl HMHome {
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success. If the user does not have administrator privileges the error code will be set to
         /// HMErrorCodeInsufficientPrivileges.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(manageUsersWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn manageUsersWithCompletionHandler(
             &self,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMUser", feature = "block2"))]
@@ -405,16 +376,12 @@ impl HMHome {
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success. The userInfo dictionary will contain the HMUserFailedAccessoriesKey which provides
         /// more details on the accessories that failed to add the user.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(addUserWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addUserWithCompletionHandler(
             &self,
-            completion: &block2::Block<'static, fn(*mut HMUser, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut HMUser, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HMUser", feature = "block2"))]
@@ -428,17 +395,13 @@ impl HMHome {
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success. The userInfo dictionary will contain the HMUserFailedAccessoriesKey which provides
         /// more details on the accessories that failed to remove the user.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(removeUser:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeUser_completionHandler(
             &self,
             user: &HMUser,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -482,16 +445,12 @@ impl HMHome {
         /// The HMRoom is the new room added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addRoomWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRoomWithName_completionHandler(
             &self,
             room_name: &NSString,
-            completion: &block2::Block<'static, fn(*mut HMRoom, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut HMRoom, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HMRoom", feature = "block2"))]
@@ -509,16 +468,12 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(removeRoom:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRoom_completionHandler(
             &self,
             room: &HMRoom,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "HMRoom")]
@@ -559,16 +514,12 @@ impl HMHome {
         /// The HMZone is the new zone added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addZoneWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addZoneWithName_completionHandler(
             &self,
             zone_name: &NSString,
-            completion: &block2::Block<'static, fn(*mut HMZone, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut HMZone, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HMZone", feature = "block2"))]
@@ -581,16 +532,12 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(removeZone:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeZone_completionHandler(
             &self,
             zone: &HMZone,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -621,16 +568,12 @@ impl HMHome {
         /// The HMServiceGroup is the new service group added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addServiceGroupWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addServiceGroupWithName_completionHandler(
             &self,
             service_group_name: &NSString,
-            completion: &block2::Block<'static, fn(*mut HMServiceGroup, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut HMServiceGroup, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HMServiceGroup", feature = "block2"))]
@@ -643,16 +586,12 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(removeServiceGroup:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeServiceGroup_completionHandler(
             &self,
             group: &HMServiceGroup,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -683,16 +622,12 @@ impl HMHome {
         /// The HMActionSet parameter is the new action set added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addActionSetWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addActionSetWithName_completionHandler(
             &self,
             action_set_name: &NSString,
-            completion: &block2::Block<'static, fn(*mut HMActionSet, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut HMActionSet, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HMActionSet", feature = "block2"))]
@@ -705,16 +640,12 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(removeActionSet:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeActionSet_completionHandler(
             &self,
             action_set: &HMActionSet,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMActionSet", feature = "block2"))]
@@ -727,16 +658,12 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(executeActionSet:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeActionSet_completionHandler(
             &self,
             action_set: &HMActionSet,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "HMActionSet")]
@@ -790,16 +717,12 @@ impl HMHome {
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         /// Errors when no Home Hub is associated with the home
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addTrigger:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTrigger_completionHandler(
             &self,
             trigger: &HMTrigger,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMTrigger", feature = "block2"))]
@@ -812,16 +735,12 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(removeTrigger:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTrigger_completionHandler(
             &self,
             trigger: &HMTrigger,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

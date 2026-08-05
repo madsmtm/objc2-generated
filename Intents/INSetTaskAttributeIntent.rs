@@ -133,16 +133,15 @@ extern_protocol!(
         ///
         ///
         /// See: INSetTaskAttributeIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleSetTaskAttribute:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSetTaskAttribute_completion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetTaskAttributeIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetTaskAttributeIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -162,17 +161,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSetTaskAttributeIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSetTaskAttribute:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmSetTaskAttribute_completion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetTaskAttributeIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetTaskAttributeIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -192,17 +190,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTargetTaskForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveTargetTaskForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INTaskResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INTaskResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -211,16 +205,16 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTaskTitleForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveTaskTitleForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -229,16 +223,13 @@ extern_protocol!(
             feature = "INTaskStatusResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveStatusForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveStatusForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INTaskStatusResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INTaskStatusResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -247,16 +238,16 @@ extern_protocol!(
             feature = "INTaskPriorityResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePriorityForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolvePriorityForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INTaskPriorityResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INTaskPriorityResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -265,16 +256,16 @@ extern_protocol!(
             feature = "INSpatialEventTriggerResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSpatialEventTriggerForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveSpatialEventTriggerForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpatialEventTriggerResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpatialEventTriggerResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -283,9 +274,6 @@ extern_protocol!(
             feature = "INTemporalEventTriggerResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "resolveTemporalEventTriggerForSetTaskAttribute:withCompletion: is deprecated. Use resolveTemporalEventTriggerForSetTaskAttribute:completion: instead"]
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerForSetTaskAttribute:withCompletion:))]
@@ -293,7 +281,7 @@ extern_protocol!(
         unsafe fn resolveTemporalEventTriggerForSetTaskAttribute_withCompletion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INTemporalEventTriggerResolutionResult>),
             >,
@@ -306,16 +294,13 @@ extern_protocol!(
             feature = "INTemporalEventTriggerResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerForSetTaskAttribute:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveTemporalEventTriggerForSetTaskAttribute_completion(
             &self,
             intent: &INSetTaskAttributeIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INSetTaskAttributeTemporalEventTriggerResolutionResult>),
             >,

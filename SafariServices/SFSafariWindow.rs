@@ -42,56 +42,40 @@ impl SFSafariWindow {
 
         #[cfg(all(feature = "SFSafariTab", feature = "block2"))]
         /// Calls the completion handler with the active tab in the window.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getActiveTabWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getActiveTabWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut SFSafariTab)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut SFSafariTab)>,
         );
 
         #[cfg(all(feature = "SFSafariTab", feature = "block2"))]
         /// Calls the completion handler with all of the tabs in this window ordered left to right.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getAllTabsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAllTabsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<SFSafariTab>>)>,
+            completion_handler: &block2::SendableBlock<'static, fn(NonNull<NSArray<SFSafariTab>>)>,
         );
 
         #[cfg(all(feature = "SFSafariTab", feature = "block2"))]
         /// This will open a tab at the end of the tab list. The completion handler is called when the tab has been opened.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(openTabWithURL:makeActiveIfPossible:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openTabWithURL_makeActiveIfPossible_completionHandler(
             &self,
             url: &NSURL,
             activate_tab: bool,
-            completion_handler: Option<&block2::Block<'static, fn(*mut SFSafariTab)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut SFSafariTab)>>,
         );
 
         #[cfg(all(feature = "SFSafariToolbarItem", feature = "block2"))]
         /// Gets the extension’s toolbar item in this window.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getToolbarItemWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getToolbarItemWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut SFSafariToolbarItem)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut SFSafariToolbarItem)>,
         );
 
         /// Closes this window.

@@ -39,14 +39,11 @@ extern_conformance!(
 impl BEAvailability {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(isEligibleForContext:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEligibleForContext_completionHandler(
             context: BEEligibilityContext,
-            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
     );
 }

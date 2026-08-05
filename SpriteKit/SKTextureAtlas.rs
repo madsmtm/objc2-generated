@@ -53,15 +53,11 @@ impl SKTextureAtlas {
         /// Parameter `textureAtlases`: an array of SKTextureAtlas to be preloaded
         ///
         /// Parameter `completionHandler`: will be called upon the preload completion
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(preloadTextureAtlases:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preloadTextureAtlases_withCompletionHandler(
             texture_atlases: &NSArray<SKTextureAtlas>,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -73,15 +69,11 @@ impl SKTextureAtlas {
         /// Parameter `atlasNames`: is an array of the SKTextureAtlas, that were located and preloaded.
         ///
         /// Parameter `completionHandler`: will be called upon the preload completion.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(preloadTextureAtlasesNamed:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preloadTextureAtlasesNamed_withCompletionHandler(
             atlas_names: &NSArray<NSString>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSError, NonNull<NSArray<SKTextureAtlas>>),
             >,
@@ -89,15 +81,11 @@ impl SKTextureAtlas {
 
         #[cfg(feature = "block2")]
         /// Request that this texture atlas be loaded into vram on the next render update, with a callback handler.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(preloadWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preloadWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         #[unsafe(method(textureNames))]

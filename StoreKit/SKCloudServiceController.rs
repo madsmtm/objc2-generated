@@ -88,76 +88,64 @@ impl SKCloudServiceController {
         pub unsafe fn authorizationStatus() -> SKCloudServiceAuthorizationStatus;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use MusicAuthorization.request() from MusicKit."]
         #[unsafe(method(requestAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorization(
-            completion_handler: &block2::Block<'static, fn(SKCloudServiceAuthorizationStatus)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(SKCloudServiceAuthorizationStatus),
+            >,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use MusicSubscription.current from MusicKit."]
         #[unsafe(method(requestCapabilitiesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestCapabilitiesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(SKCloudServiceCapability, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(SKCloudServiceCapability, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use MusicDataRequest.currentCountryCode from MusicKit."]
         #[unsafe(method(requestStorefrontCountryCodeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestStorefrontCountryCodeWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use Storefront.current.id."]
         #[unsafe(method(requestStorefrontIdentifierWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestStorefrontIdentifierWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use MusicKit."]
         #[unsafe(method(requestUserTokenForDeveloperToken:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestUserTokenForDeveloperToken_completionHandler(
             &self,
             developer_token: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(requestPersonalizationTokenForClientToken:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestPersonalizationTokenForClientToken_withCompletionHandler(
             &self,
             client_token: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut NSString, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSString, *mut NSError)>,
         );
     );
 }

@@ -124,15 +124,11 @@ impl VZMacOSInstaller {
         /// the virtual machine will result in undefined behavior.
         /// If installation is started on the same VZMacOSInstaller object more than once, an exception will be raised.
         /// This method must be called on the virtual machine's queue.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(installWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn installWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// An NSProgress object that can be used to observe or cancel installation.

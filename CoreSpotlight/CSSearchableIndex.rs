@@ -96,50 +96,38 @@ impl CSSearchableIndex {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "CSSearchableItem", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(indexSearchableItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexSearchableItems_completionHandler(
             &self,
             items: &NSArray<CSSearchableItem>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteSearchableItemsWithIdentifiers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSearchableItemsWithIdentifiers_completionHandler(
             &self,
             identifiers: &NSArray<NSString>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteSearchableItemsWithDomainIdentifiers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSearchableItemsWithDomainIdentifiers_completionHandler(
             &self,
             domain_identifiers: &NSArray<NSString>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteAllSearchableItemsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAllSearchableItemsWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -165,39 +153,30 @@ impl CSSearchableIndex {
         pub unsafe fn beginIndexBatch(&self);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(endIndexBatchWithExpectedClientState:newClientState:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endIndexBatchWithExpectedClientState_newClientState_completionHandler(
             &self,
             expected_client_state: Option<&NSData>,
             new_client_state: &NSData,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(endIndexBatchWithClientState:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endIndexBatchWithClientState_completionHandler(
             &self,
             client_state: &NSData,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchLastClientStateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchLastClientStateWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
     );
 }
@@ -206,9 +185,6 @@ impl CSSearchableIndex {
 impl CSSearchableIndex {
     extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-uniform-type-identifiers"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchDataForBundleIdentifier_itemIdentifier_contentType_completionHandler(
@@ -216,7 +192,7 @@ impl CSSearchableIndex {
             bundle_identifier: &NSString,
             item_identifier: &NSString,
             content_type: &UTType,
-            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
     );
 }

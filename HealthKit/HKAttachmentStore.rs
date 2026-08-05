@@ -58,8 +58,7 @@ impl HKAttachmentStore {
         ///
         /// # Safety
         ///
-        /// - `metadata` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(addAttachmentToObject:name:contentType:URL:metadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAttachmentToObject_name_contentType_URL_metadata_completion(
@@ -69,7 +68,7 @@ impl HKAttachmentStore {
             content_type: &UTType,
             url: &NSURL,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: &block2::Block<'static, fn(*mut HKAttachment, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut HKAttachment, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKAttachment", feature = "HKObject", feature = "block2"))]
@@ -80,17 +79,13 @@ impl HKAttachmentStore {
         /// Parameter `object`: The object from which to remove the attachment.
         ///
         /// Parameter `completion`: Called once the remove operation finishes.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(removeAttachment:fromObject:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAttachment_fromObject_completion(
             &self,
             attachment: &HKAttachment,
             object: &HKObject,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKAttachment", feature = "HKObject", feature = "block2"))]
@@ -99,16 +94,15 @@ impl HKAttachmentStore {
         /// Parameter `object`: The object for which to retrieve attachments.
         ///
         /// Parameter `completion`: Called with a list of attachments or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(getAttachmentsForObject:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAttachmentsForObject_completion(
             &self,
             object: &HKObject,
-            completion: &block2::Block<'static, fn(*mut NSArray<HKAttachment>, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut NSArray<HKAttachment>, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "HKAttachment", feature = "block2"))]

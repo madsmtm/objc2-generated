@@ -261,17 +261,13 @@ impl TVApplicationController {
         ///
         /// Parameter `completion`: Invoked after the evaluation block has been executed.
         /// evaluated is YES if the block was evaluated; NO otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(evaluateInJavaScriptContext:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn evaluateInJavaScriptContext_completion(
             &self,
             evaluation: &block2::Block<'static, fn(NonNull<JSContext>)>,
-            completion: Option<&block2::Block<'static, fn(Bool)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         /// Stops the application lifecycle. appController:didStopWithOptions: is

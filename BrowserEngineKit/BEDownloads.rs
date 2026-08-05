@@ -81,26 +81,23 @@ impl BEDownloadMonitor {
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(beginMonitoring:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginMonitoring(
             &self,
-            completion: &block2::Block<'static, fn(*mut BEDownloadMonitorLocation, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut BEDownloadMonitorLocation, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(resumeMonitoring:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeMonitoring_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[unsafe(method(identifier))]

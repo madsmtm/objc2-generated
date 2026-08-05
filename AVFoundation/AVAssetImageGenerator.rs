@@ -100,7 +100,7 @@ unsafe impl RefEncode for AVAssetImageGeneratorResult {
     feature = "objc2-core-graphics",
     feature = "objc2-core-media"
 ))]
-pub type AVAssetImageGeneratorCompletionHandler = block2::Block<
+pub type AVAssetImageGeneratorCompletionHandler = block2::SendableBlock<
     'static,
     fn(CMTime, *mut CGImage, CMTime, AVAssetImageGeneratorResult, *mut NSError),
 >;
@@ -323,10 +323,6 @@ impl AVAssetImageGenerator {
         /// The client will receive exactly one handler callback for each requested time in requestedTimes.
         /// Changes to generator properties (snap behavior, maximum size, etc...) will not affect outstanding asynchronous image generation requests.
         /// The generated image is not retained.  Clients should retain the image if they wish it to persist after the completion handler returns.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(generateCGImagesAsynchronouslyForTimes:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateCGImagesAsynchronouslyForTimes_completionHandler(
@@ -350,16 +346,12 @@ impl AVAssetImageGenerator {
         /// Changes to generator properties (snap behavior, maximum size, etc...) will not affect outstanding asynchronous image generation requests.
         /// The generated image is not retained.  Clients should retain the image if they wish it to persist after the completion handler returns.
         /// If image generation succeeds, the `image` parameter to the completion handler will be non-NULL and the `error` parameter will be nil.  If image generation fails or was cancelled, the `image` parameter will be NULL and the `error` parameter will describe what went wrong.  For cancelled images, the returned error will be AVErrorOperationCancelled.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(generateCGImageAsynchronouslyForTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateCGImageAsynchronouslyForTime_completionHandler(
             &self,
             requested_time: CMTime,
-            handler: &block2::Block<'static, fn(*mut CGImage, CMTime, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut CGImage, CMTime, *mut NSError)>,
         );
 
         /// Cancels all outstanding image generation requests.

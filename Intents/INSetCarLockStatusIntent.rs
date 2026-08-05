@@ -101,16 +101,15 @@ extern_protocol!(
         ///
         ///
         /// See: INSetCarLockStatusIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleSetCarLockStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSetCarLockStatus_completion(
             &self,
             intent: &INSetCarLockStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetCarLockStatusIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetCarLockStatusIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -130,17 +129,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSetCarLockStatusIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSetCarLockStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmSetCarLockStatus_completion(
             &self,
             intent: &INSetCarLockStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetCarLockStatusIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetCarLockStatusIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -160,17 +158,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveLockedForSetCarLockStatus:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveLockedForSetCarLockStatus_withCompletion(
             &self,
             intent: &INSetCarLockStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -179,16 +173,16 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForSetCarLockStatus:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCarNameForSetCarLockStatus_withCompletion(
             &self,
             intent: &INSetCarLockStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

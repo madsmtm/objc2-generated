@@ -96,18 +96,15 @@ impl DefaultRetained for MTLSharedEventListener {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedeventnotificationblock?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLSharedEventNotificationBlock =
-    block2::Block<'static, fn(NonNull<ProtocolObject<dyn MTLSharedEvent>>, u64)>;
+    block2::SendableBlock<'static, fn(NonNull<ProtocolObject<dyn MTLSharedEvent>>, u64)>;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedevent?language=objc)
     pub unsafe trait MTLSharedEvent: MTLEvent {
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(notifyListener:atValue:block:))]
         #[unsafe(method_family = none)]
-        unsafe fn notifyListener_atValue_block(
+        fn notifyListener_atValue_block(
             &self,
             listener: &MTLSharedEventListener,
             value: u64,

@@ -46,16 +46,12 @@ impl MAMusicHapticsManager {
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         /// In an asynchronous completion handler, returns whether a specific media track with the supplied
         /// ISRC has an available haptic track.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(checkHapticTrackAvailabilityForMediaMatchingCode:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkHapticTrackAvailabilityForMediaMatchingCode_completionHandler(
             &self,
             international_standard_recording_code: &NSString,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]

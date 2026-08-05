@@ -166,16 +166,12 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForNotebookItemsIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleSearchForNotebookItems:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSearchForNotebookItems_completion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INSearchForNotebookItemsIntentResponse>),
             >,
@@ -198,17 +194,13 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForNotebookItemsIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSearchForNotebookItems:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmSearchForNotebookItems_completion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INSearchForNotebookItemsIntentResponse>),
             >,
@@ -231,17 +223,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTitleForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveTitleForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -250,16 +241,13 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveContentForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveContentForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -268,16 +256,16 @@ extern_protocol!(
             feature = "INNotebookItemTypeResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveItemTypeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveItemTypeForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INNotebookItemTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INNotebookItemTypeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -286,16 +274,13 @@ extern_protocol!(
             feature = "INTaskStatusResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveStatusForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveStatusForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INTaskStatusResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INTaskStatusResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -304,16 +289,13 @@ extern_protocol!(
             feature = "INPlacemarkResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveLocationForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveLocationForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -322,16 +304,16 @@ extern_protocol!(
             feature = "INLocationSearchTypeResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveLocationSearchTypeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveLocationSearchTypeForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INLocationSearchTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INLocationSearchTypeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -340,16 +322,16 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDateTimeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveDateTimeForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INDateComponentsRangeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -358,16 +340,16 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDateSearchTypeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveDateSearchTypeForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDateSearchTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INDateSearchTypeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -376,16 +358,13 @@ extern_protocol!(
             feature = "INTemporalEventTriggerTypeOptionsResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerTypesForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveTemporalEventTriggerTypesForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INTemporalEventTriggerTypeOptionsResolutionResult>),
             >,
@@ -397,16 +376,16 @@ extern_protocol!(
             feature = "INTaskPriorityResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTaskPriorityForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveTaskPriorityForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INTaskPriorityResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INTaskPriorityResolutionResult>),
+            >,
         );
     }
 );

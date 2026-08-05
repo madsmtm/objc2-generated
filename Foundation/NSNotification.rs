@@ -195,7 +195,6 @@ impl NSNotificationCenter {
         ///
         /// - `obj` should be of the correct type.
         /// - `queue` possibly has additional threading requirements.
-        /// - `block` block must be sendable.
         #[unsafe(method(addObserverForName:object:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserverForName_object_queue_usingBlock(
@@ -203,7 +202,7 @@ impl NSNotificationCenter {
             name: Option<&NSNotificationName>,
             obj: Option<&AnyObject>,
             queue: Option<&NSOperationQueue>,
-            block: &block2::Block<'static, fn(NonNull<NSNotification>)>,
+            block: &block2::SendableBlock<'static, fn(NonNull<NSNotification>)>,
         ) -> Retained<ProtocolObject<dyn NSObjectProtocol>>;
     );
 }

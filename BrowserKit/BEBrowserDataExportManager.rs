@@ -220,39 +220,33 @@ impl BEBrowserDataExportManager {
             -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestExportForMetadata:token:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestExportForMetadata_token_completionHandler(
             &self,
             metadata: &BEExportMetadata,
             token: Option<&NSUUID>,
-            completion_handler: &block2::Block<'static, fn(*mut BEExportOptions, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut BEExportOptions, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "BEBrowserData", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(exportBrowserData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportBrowserData_completionHandler(
             &self,
             browser_data: &BEBrowserData,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(exportFinishedWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportFinishedWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

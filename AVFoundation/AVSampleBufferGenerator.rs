@@ -111,15 +111,11 @@ impl AVSampleBufferGenerator {
         /// Allows the client to get notified when the sample buffer data is ready, or as soon as an error has occured.
         ///
         /// Parameter `completionHandler`: The completionHandler will be called, when the sample buffer data is ready, or as soon as an error has occurred.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(notifyOfDataReadyForSampleBuffer:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notifyOfDataReadyForSampleBuffer_completionHandler(
             sbuf: &CMSampleBuffer,
-            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
     );
 }
@@ -311,15 +307,11 @@ impl AVSampleBufferGeneratorBatch {
         /// This can only be called once on a batch, an exception will be thrown otherwise.
         ///
         /// Parameter `completionHandler`: The completionHandler is called once, when all CMSampleBuffers in the batch are data-ready, or as soon as an error has occurred.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(makeDataReadyWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeDataReadyWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// Attempt to cancel any I/O for this batch. The associated sample buffers will have their data ready handler invoked with an error.

@@ -94,16 +94,12 @@ extern_protocol!(
         ///
         ///
         /// See: INHangUpCallIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleHangUpCall:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleHangUpCall_completion(
             &self,
             intent: &INHangUpCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INHangUpCallIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INHangUpCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -123,17 +119,13 @@ extern_protocol!(
         ///
         ///
         /// See: INHangUpCallIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmHangUpCall:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmHangUpCall_completion(
             &self,
             intent: &INHangUpCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INHangUpCallIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INHangUpCallIntentResponse>)>,
         );
     }
 );

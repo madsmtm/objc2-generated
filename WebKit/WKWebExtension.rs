@@ -87,15 +87,14 @@ impl WKWebExtension {
         ///
         /// The app extension bundle must contain a `manifest.json` file in its resources directory. If the manifest is invalid or missing,
         /// or the bundle is otherwise improperly configured, an error will be returned.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(extensionWithAppExtensionBundle:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionWithAppExtensionBundle_completionHandler(
             app_extension_bundle: &NSBundle,
-            completion_handler: &block2::Block<'static, fn(*mut WKWebExtension, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut WKWebExtension, *mut NSError),
+            >,
             mtm: MainThreadMarker,
         );
 
@@ -109,15 +108,14 @@ impl WKWebExtension {
         ///
         /// The URL must be a file URL that points to either a directory with a `manifest.json` file or a ZIP archive containing a `manifest.json` file.
         /// If the manifest is invalid or missing, or the URL points to an unsupported format or invalid archive, an error will be returned.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(extensionWithResourceBaseURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionWithResourceBaseURL_completionHandler(
             resource_base_url: &NSURL,
-            completion_handler: &block2::Block<'static, fn(*mut WKWebExtension, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut WKWebExtension, *mut NSError),
+            >,
             mtm: MainThreadMarker,
         );
 

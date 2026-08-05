@@ -199,15 +199,11 @@ pub unsafe trait AUAudioUnit_ViewController:
         /// Asynchronously requests the audio unit's view controller. This method will later call the
         /// completion handler, in a thread/dispatch queue context internal to the implementation, with
         /// a view controller, or nil in the case of an audio unit without a custom view controller.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestViewControllerWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn requestViewControllerWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut AUViewControllerBase)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut AUViewControllerBase)>,
         );
 
         /// Parameter `availableViewConfigurations`: The list of all available view configurations supported by the host.

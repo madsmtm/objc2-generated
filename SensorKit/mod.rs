@@ -966,15 +966,11 @@ impl SRSensorReader {
         /// the prompt, your completion block will be called with a nil error.
         /// Changes in authorization status will delivered to the delegate in the
         /// sensorReader:didChangeAuthorizationStatus: method.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestAuthorizationForSensors:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationForSensors_completion(
             sensors: &NSSet<SRSensor>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

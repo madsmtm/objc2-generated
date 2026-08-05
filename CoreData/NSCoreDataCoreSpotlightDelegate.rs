@@ -77,14 +77,11 @@ impl NSCoreDataCoreSpotlightDelegate {
         pub unsafe fn stopSpotlightIndexing(&self);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteSpotlightIndexWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSpotlightIndexWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSManagedObject", feature = "objc2-core-spotlight"))]

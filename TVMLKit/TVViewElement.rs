@@ -203,8 +203,7 @@ impl TVViewElement {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// - `extra_info` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `extra_info` generic should be of the correct type.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(dispatchEventOfType:canBubble:cancellable:extraInfo:completion:))]
         #[unsafe(method_family = none)]
@@ -214,14 +213,13 @@ impl TVViewElement {
             can_bubble: bool,
             is_cancellable: bool,
             extra_info: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: Option<&block2::Block<'static, fn(Bool, Bool)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool, Bool)>>,
         );
 
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// - `extra_info` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `extra_info` generic should be of the correct type.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(dispatchEventWithName:canBubble:cancellable:extraInfo:completion:))]
         #[unsafe(method_family = none)]
@@ -231,7 +229,7 @@ impl TVViewElement {
             can_bubble: bool,
             is_cancellable: bool,
             extra_info: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: Option<&block2::Block<'static, fn(Bool, Bool)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool, Bool)>>,
         );
     );
 }

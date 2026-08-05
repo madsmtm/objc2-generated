@@ -105,16 +105,12 @@ impl NEAppProxyFlow {
         /// Parameter `localEndpoint`: The address and port that should be used as the local endpoint of the socket associated with this flow. If the source application already specified a local endpoint by binding the socket then this parameter is ignored.
         ///
         /// Parameter `completionHandler`: A block that is called when the process of opening flow is complete. A nil value passed to this block indicates that the flow was opened successfully. A non-nil NSError value indicates that the flow failed to open successfully.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(openWithLocalFlowEndpoint:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openWithLocalFlowEndpoint_completionHandler(
             &self,
             local_endpoint: Option<&NWEndpoint>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -123,17 +119,13 @@ impl NEAppProxyFlow {
         /// Parameter `localEndpoint`: The address and port that should be used as the local endpoint of the socket associated with this flow. If the source application already specified a local endpoint by binding the socket then this parameter is ignored.
         ///
         /// Parameter `completionHandler`: A block that is called when the process of opening flow is complete. A nil value passed to this block indicates that the flow was opened successfully. A non-nil NSError value indicates that the flow failed to open successfully.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(openWithLocalEndpoint:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openWithLocalEndpoint_completionHandler(
             &self,
             local_endpoint: Option<&NEHostEndpoint>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// This function is used by an NEProvider implementation to indicate that it does not want to receive any more data from the flow.
@@ -282,15 +274,11 @@ impl NEProvider {
         /// This function is called by the framework when the system is about to go to sleep. Subclass developers can override this method to implement custom behavior such as closing connections or pausing some network activity.
         ///
         /// Parameter `completionHandler`: When the method is finished handling the sleep event it must execute this completion handler.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(sleepWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sleepWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         /// This function is called by the framework immediately after the system wakes up from sleep. Subclass developers can override this method to implement custom behavior such as re-establishing connections or resuming some network activity.
@@ -346,17 +334,13 @@ impl NEProvider {
         /// Parameter `message`: The message to be displayed.
         ///
         /// Parameter `completionHandler`: A block that is executed when the user acknowledges the message. If this method is called on a NEFilterDataProvider instance or the message cannot be displayed, then the completion handler block will be executed immediately with success parameter set to NO. If the message was successfully displayed to the user, then the completion handler block is executed with the success parameter set to YES when the user dismisses the message.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(displayMessage:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayMessage_completionHandler(
             &self,
             message: &NSString,
-            completion_handler: &block2::Block<'static, fn(Bool)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool)>,
         );
 
         /// Start the Network Extension machinery in a system extension (.system bundle). This class method will cause the calling system extension to start handling
@@ -505,16 +489,12 @@ impl NETunnelProvider {
         /// Parameter `messageData`: An NSData object containing the message sent by the container app.
         ///
         /// Parameter `completionHandler`: A block that the method can execute to send a response to the container app. If this parameter is non-nil then the method implementation should always execute the block. If this parameter is nil then the method implementation should treat this as an indication that the container app is not expecting a response.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(handleAppMessage:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleAppMessage_completionHandler(
             &self,
             message_data: &NSData,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSData)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSData)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -523,16 +503,12 @@ impl NETunnelProvider {
         /// Parameter `tunnelNetworkSettings`: An NETunnelNetworkSettings object containing all of the desired network settings for the tunnel. Pass nil to clear out the current network settings.
         ///
         /// Parameter `completionHandler`: A block that will be called by the framework when the process of setting or clearing the network settings is complete. If an error occurred during the process of setting or clearing the IP network settings then a non-nill NSError object will be passed to this block containing error details.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(setTunnelNetworkSettings:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTunnelNetworkSettings_completionHandler(
             &self,
             tunnel_network_settings: Option<&NETunnelNetworkSettings>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         /// An NEVPNProtocol object containing the provider's current configuration. The value of this property may change during the lifetime of the tunnel provided by this NETunnelProvider, KVO can be used to detect when changes occur.  For different protocol types, this property will contain the corresponding subclass.   For NEVPNProtocolTypePlugin protocol type, this property will contain the NETunnelProviderProtocol subclass.  For NEVPNProtocolTypeIKEv2 protocol type, this property will contain the NEVPNProtocolIKEv2 subclass.
@@ -601,14 +577,13 @@ impl NEAppProxyProvider {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(startProxyWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startProxyWithOptions_completionHandler(
             &self,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -617,16 +592,12 @@ impl NEAppProxyProvider {
         /// Parameter `reason`: An NEProviderStopReason indicating why the proxy is being stopped.
         ///
         /// Parameter `completionHandler`: A block that must be called when the proxy is completely stopped.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(stopProxyWithReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopProxyWithReason_completionHandler(
             &self,
             reason: NEProviderStopReason,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         /// This function is called by proxy provider implementations to stop the proxy when a network error is encountered that renders the proxy no longer viable. Subclasses should not override this method.
@@ -770,30 +741,22 @@ impl NEVPNManager {
         /// This function loads the current VPN configuration from the caller's VPN preferences.
         ///
         /// Parameter `completionHandler`: A block that will be called on the main thread when the load operation is completed. The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// This function removes the VPN configuration from the caller's VPN preferences. If the VPN is enabled, has VPN On Demand enabled, and has VPN On Demand rules, the VPN is disabled and the VPN On Demand rules are de-activated.
         ///
         /// Parameter `completionHandler`: A block that will be called on the main thread when the remove operation is completed. The NSError passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -801,15 +764,11 @@ impl NEVPNManager {
         ///
         ///
         /// Parameter `completionHandler`: A block that will be called on the main thread when the save operation is completed. The NSError passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "objc2-security")]
@@ -934,14 +893,10 @@ impl NETunnelProviderManager {
         /// This function asynchronously reads all of the NETunnelProvider configurations created by the calling app that have previously been saved to disk and returns them as NETunnelProviderManager objects.
         ///
         /// Parameter `completionHandler`: A block that takes an array NETunnelProviderManager objects. The array passed to the block may be empty if no NETunnelProvider configurations were successfully read from the disk.  The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<NETunnelProviderManager>, *mut NSError),
             >,
@@ -1084,14 +1039,10 @@ impl NEAppProxyProviderManager {
         /// This function asynchronously reads all of the NEAppProxy configurations associated with the calling app that have previously been saved to disk and returns them as NEAppProxyProviderManager objects.
         ///
         /// Parameter `completionHandler`: A block that takes an array NEAppProxyProviderManager objects. The array passed to the block may be empty if no NETunnelProvider configurations were successfully read from the disk.  The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<NEAppProxyProviderManager>, *mut NSError),
             >,
@@ -1158,16 +1109,12 @@ impl NEAppProxyTCPFlow {
         /// Parameter `data`: The data to write.
         ///
         /// Parameter `completionHandler`: A block that will be executed when the data is written into the associated socket's receive buffer. The caller should use this callback as an indication that it is possible to write more data to the flow without using up excessive buffer memory. If an error occurs while writing the data then a non-nil NSError object is passed to the block.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeData:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeData_withCompletionHandler(
             &self,
             data: &NSData,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "objc2-network")]
@@ -1257,17 +1204,13 @@ impl NEAppProxyUDPFlow {
         /// Parameter `remoteEndpoints`: The source endpoints of the datagrams.
         ///
         /// Parameter `completionHandler`: A block that will be executed when the datagrams have been written to the corresponding socket's receive buffer.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeDatagrams:sentByFlowEndpoints:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeDatagrams_sentByFlowEndpoints_completionHandler(
             &self,
             datagrams: &NSArray<NSData>,
             remote_endpoints: &NWEndpointArray,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1278,10 +1221,6 @@ impl NEAppProxyUDPFlow {
         /// Parameter `remoteEndpoints`: The source endpoints of the datagrams.
         ///
         /// Parameter `completionHandler`: A block that will be executed when the datagrams have been written to the corresponding socket's receive buffer.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(writeDatagrams:sentByEndpoints:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -1289,7 +1228,7 @@ impl NEAppProxyUDPFlow {
             &self,
             datagrams: &NSArray<NSData>,
             remote_endpoints: &NSArray<NEEndpoint>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "objc2-network")]
@@ -1509,45 +1448,33 @@ impl NEDNSProxyManager {
         /// This function loads the current DNS proxy configuration from the caller's DNS proxy preferences.
         ///
         /// Parameter `completionHandler`: A block that will be called when the load operation is completed. The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// This function removes the DNS proxy configuration from the caller's DNS proxy preferences. If the DNS proxy is enabled, the DNS proxy becomes disabled.
         ///
         /// Parameter `completionHandler`: A block that will be called when the remove operation is completed. The NSError passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// This function saves the DNS proxy configuration in the caller's DNS proxy preferences. If the DNS proxy is enabled, it will become active.
         ///
         /// Parameter `completionHandler`: A block that will be called when the save operation is completed. The NSError passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// A string containing a description of the DNS proxy.
@@ -1626,14 +1553,13 @@ impl NEDNSProxyProvider {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(startProxyWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startProxyWithOptions_completionHandler(
             &self,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1642,16 +1568,12 @@ impl NEDNSProxyProvider {
         /// Parameter `reason`: An NEProviderStopReason indicating why the proxy is being stopped.
         ///
         /// Parameter `completionHandler`: A block that must be called when the proxy is completely stopped.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(stopProxyWithReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopProxyWithReason_completionHandler(
             &self,
             reason: NEProviderStopReason,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         /// This function is called by proxy provider implementations to stop the proxy when a network error is encountered that renders the proxy no longer viable. Subclasses should not override this method.
@@ -2697,45 +2619,33 @@ impl NEDNSSettingsManager {
         /// This function loads the current DNS settings configuration from the caller's DNS settings preferences.
         ///
         /// Parameter `completionHandler`: A block that will be called when the load operation is completed. The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// This function removes the DNS settings configuration from the caller's DNS settings preferences. If the DNS settings are enabled, the DNS settings becomes disabled.
         ///
         /// Parameter `completionHandler`: A block that will be called when the remove operation is completed. The NSError passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// This function saves the DNS settingsconfiguration in the caller's DNS settings preferences. If the DNS settings are enabled, they will become active.
         ///
         /// Parameter `completionHandler`: A block that will be called when the save operation is completed. The NSError passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// A string containing a description of the DNS settings.
@@ -3390,15 +3300,11 @@ impl NEFilterProvider {
         /// Parameter `completionHandler`: A block that must be called when the process of starting the filter is complete. If the
         /// filter was started successfully, subclass implementations must pass the nil value to this block. If an error occurred
         /// while starting the filter, sublcass implementations must pass a non-nil NSError containing more details about the error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(startFilterWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startFilterWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -3408,16 +3314,12 @@ impl NEFilterProvider {
         /// Parameter `reason`: An NEProviderStopReason indicating why the filter is being stopped.
         ///
         /// Parameter `completionHandler`: A block that must be called when the process of stopping the filter is complete.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(stopFilterWithReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopFilterWithReason_completionHandler(
             &self,
             reason: NEProviderStopReason,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         /// An NEContentFilterConfiguration object containing the current filter configuration. The value of this
@@ -3973,16 +3875,15 @@ impl NEFilterControlProvider {
         /// Parameter `flow`: An NEFilterFlow object containing details about the flow that requires remediation.
         ///
         /// Parameter `completionHandler`: A block that must be called when the NEFilterControlProvider is ready for the NEFilterDataProvider to re-process the new flow. NEFilterControlVerdict stores the verdict through which the control provider determines if a flow needs to be dropped or allowed. The verdict also indicates if the control plugin wants the data plugin to update its rules and handle the verdict.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(handleRemediationForFlow:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleRemediationForFlow_completionHandler(
             &self,
             flow: &NEFilterFlow,
-            completion_handler: &block2::Block<'static, fn(NonNull<NEFilterControlVerdict>)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NEFilterControlVerdict>),
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -3991,16 +3892,15 @@ impl NEFilterControlProvider {
         /// Parameter `flow`: An NEFilterFlow object containing details about the flow that requires a rules update.
         ///
         /// Parameter `completionHandler`: A block that must be called when the NEFilterControlProvider is ready for the NEFilterDataProvider to re-process the new flow. NEFilterControlVerdict stores the verdict through which the control provider determines if a flow needs to be dropped or allowed. The verdict also indicates if the control plugin wants the data plugin to update its rules and handle the verdict.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(handleNewFlow:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleNewFlow_completionHandler(
             &self,
             flow: &NEFilterFlow,
-            completion_handler: &block2::Block<'static, fn(NonNull<NEFilterControlVerdict>)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NEFilterControlVerdict>),
+            >,
         );
 
         /// This function is called by filter control implementations to notify the data provider "out of band" that the rules changed.
@@ -4152,16 +4052,12 @@ impl NEFilterDataProvider {
         /// empty list of rules and a default action of NEFilterActionFilterData.
         ///
         /// Parameter `completionHandler`: A block that will be executed when the settings have been applied to the system. If an error occurs then the error parameter will be non-nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(applySettings:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySettings_completionHandler(
             &self,
             settings: Option<&NEFilterSettings>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// This function is called by the provider to resume a flow that was previously paused by the provider returning a pause verdict.
@@ -4486,45 +4382,33 @@ impl NEFilterManager {
         /// This function loads the current filter configuration from the caller's filter preferences.
         ///
         /// Parameter `completionHandler`: A block that will be called when the load operation is completed. The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// This function removes the filter configuration from the caller's filter preferences. If the filter is enabled, the filter becomes disabled.
         ///
         /// Parameter `completionHandler`: A block that will be called when the remove operation is completed. The NSError passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// This function saves the filter configuration in the caller's filter preferences. If the filter is enabled, it will become active.
         ///
         /// Parameter `completionHandler`: A block that will be called when the save operation is completed. The NSError passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// A string containing a description of the filter.
@@ -5242,14 +5126,10 @@ impl NEHotspotNetwork {
         /// application fails to meet above requirements, non-nil otherwise. NEHotspotNetwork object contains only valid
         /// SSID, BSSID and security type values, when the block is passed non-nil object.This block is executed on application's
         /// main queue.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchCurrentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchCurrentWithCompletionHandler(
-            completion_handler: &block2::Block<'static, fn(*mut NEHotspotNetwork)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NEHotspotNetwork)>,
         );
     );
 }
@@ -6455,16 +6335,12 @@ impl NEHotspotConfigurationManager {
         /// If the configuration is found invalid or API encounters some other error then completionHandler is called
         /// with instance of NSError containing appropriate error code. This API attempts to join the Wi-Fi network
         /// if the configuration is successfully added or updated and the network is found nearby.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(applyConfiguration:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyConfiguration_completionHandler(
             &self,
             configuration: &NEHotspotConfiguration,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         /// This function removes Wi-Fi configuration.
@@ -6486,15 +6362,11 @@ impl NEHotspotConfigurationManager {
         #[cfg(feature = "block2")]
         /// This function returns array of SSIDs and HS2.0 Domain Names that the calling application has configured.
         /// It returns nil if there are no networks configurred by the calling application.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getConfiguredSSIDsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getConfiguredSSIDsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSString>>)>,
+            completion_handler: &block2::SendableBlock<'static, fn(NonNull<NSArray<NSString>>)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-accessory-setup-kit"))]
@@ -6513,17 +6385,13 @@ impl NEHotspotConfigurationManager {
         /// The NSError passed to this block will be nil if the hotspot is successfully joined, non-nil otherwise.
         /// If the configuration is found to be invalid or some other error is encountered then the completionHandler
         /// block is executed with with an instance of NSError containing an appropriate error code.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(joinAccessoryHotspot:passphrase:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn joinAccessoryHotspot_passphrase_completionHandler(
             &self,
             accessory: &ASAccessory,
             passphrase: &NSString,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-accessory-setup-kit"))]
@@ -6539,16 +6407,12 @@ impl NEHotspotConfigurationManager {
         /// The NSError passed to this block will be nil if the hotspot is successfully joined, non-nil otherwise.
         /// If the configuration is found to be invalid or some other error is encountered then the completionHandler
         /// block is executed with with an instance of NSError containing an appropriate error code.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(joinAccessoryHotspotWithoutSecurity:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn joinAccessoryHotspotWithoutSecurity_completionHandler(
             &self,
             accessory: &ASAccessory,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -7283,14 +7147,13 @@ impl NEPacketTunnelProvider {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(startTunnelWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startTunnelWithOptions_completionHandler(
             &self,
             options: Option<&NSDictionary<NSString, NSObject>>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -7299,16 +7162,12 @@ impl NEPacketTunnelProvider {
         /// Parameter `reason`: An NEProviderStopReason indicating why the tunnel is being stopped.
         ///
         /// Parameter `completionHandler`: A block that must be called when the tunnel is completely torn down.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(stopTunnelWithReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopTunnelWithReason_completionHandler(
             &self,
             reason: NEProviderStopReason,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         /// This function is called by tunnel provider implementations to initiate tunnel destruction when a network error is encountered that renders the tunnel no longer viable. Subclasses should not override this method.
@@ -8026,15 +7885,11 @@ impl NEPacketTunnelFlow {
         /// Read available IP packets from the flow.
         ///
         /// Parameter `completionHandler`: A block that will be executed to handle the packets. This block takes an array of NSData objects and an array of NSNumber objects. The NSData and NSNumber in corresponding indicies in the array represent one packet. If after handling the packets the caller wants to read more packets then the caller must call this method again.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(readPacketsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readPacketsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<NSData>>, NonNull<NSArray<NSNumber>>),
             >,
@@ -8057,15 +7912,11 @@ impl NEPacketTunnelFlow {
         /// Read available IP packets from the flow.
         ///
         /// Parameter `completionHandler`: A block that will be executed to handle the packets. This block takes an array of NEPacket objects. If after handling the packets the caller wants to read more packets then the caller must call this method again.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(readPacketObjectsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readPacketObjectsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NEPacket>>)>,
+            completion_handler: &block2::SendableBlock<'static, fn(NonNull<NSArray<NEPacket>>)>,
         );
 
         /// Write multiple IP packets to the flow.
@@ -8369,45 +8220,33 @@ impl NERelayManager {
         /// This function loads the current relay configuration from the caller's relay preferences.
         ///
         /// Parameter `completionHandler`: A block that will be called when the load operation is completed. The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// This function removes the relay configuration from the caller's relay preferences. If the relay is enabled, the relay becomes disabled.
         ///
         /// Parameter `completionHandler`: A block that will be called when the remove operation is completed. The NSError passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// This function saves the relay configuration in the caller's relay preferences. If the relay are enabled, they will become active.
         ///
         /// Parameter `completionHandler`: A block that will be called when the save operation is completed. The NSError passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -8416,16 +8255,12 @@ impl NERelayManager {
         /// Parameter `seconds`: A NSTimeInterval that specifies how many seconds to report errors for.  The maximum supported value is 24 hours and any larger values will be automatically reduced to 24 hours.
         ///
         /// Parameter `completionHandler`: A block that will be called when once the errors have been collected. The NSArray will contain a list of NERelayManagerClientError values detected within the last number of seconds as specified by the "seconds" parameter.  The values will be ordered from the error most recently detected to the oldest.  The error value of NERelayManagerClientErrorNone indicates the last successful use of the relay without error.  The NSArray will be empty if there are no values detected within the specified time period or nil if there was a problem in retrieving the errors.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getLastClientErrors:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLastClientErrors_completionHandler(
             &self,
             seconds: NSTimeInterval,
-            completion_handler: &block2::Block<'static, fn(*mut NSArray<NSError>)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSArray<NSError>)>,
         );
 
         /// A string containing a description of the relay.
@@ -8544,14 +8379,10 @@ impl NERelayManager {
         /// This function asynchronously reads all of the NERelay configurations created by the calling app that have previously been saved to disk and returns them as NERelayManager objects.
         ///
         /// Parameter `completionHandler`: A block that takes an array NERelayManager objects. The array passed to the block may be empty if no NERelay configurations were successfully read from the disk.  The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadAllManagersFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllManagersFromPreferencesWithCompletionHandler(
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<NERelayManager>>, *mut NSError),
             >,
@@ -8593,14 +8424,10 @@ impl NETransparentProxyManager {
         /// This function asynchronously reads all of the transparent proxy configurations associated with the calling app that have previously been saved to disk and returns them as NETransparentProxyManager objects.
         ///
         /// Parameter `completionHandler`: A block that takes an array NETransparentProxyManager objects. The array passed to the block may be empty if no transparent proxy configurations were successfully read from the disk.  The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<NETransparentProxyManager>, *mut NSError),
             >,
@@ -8931,15 +8758,11 @@ impl NEVPNConnection {
         /// Retrive the most recent error that caused the VPN to disconnect. If the error was generated by the VPN system (including the IPsec client) then the error will be in the NEVPNConnectionErrorDomain error domain. If the error was generated by a tunnel provider app extension then the error will be the NSError that the provider passed when disconnecting the tunnel.
         ///
         /// Parameter `handler`: A block which takes an optional NSError that will be called when the error is obtained.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(fetchLastDisconnectErrorWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchLastDisconnectErrorWithCompletionHandler(
             &self,
-            handler: &block2::Block<'static, fn(*mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// The current status of the VPN.
@@ -10152,14 +9975,10 @@ impl NEAppPushManager {
         ///
         /// Parameter `completionHandler`: A block that takes an array of NEAppPushManager objects. The array passed to the block may be empty if no configurations
         /// were successfully read from the disk. The NSError object passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<NEAppPushManager>, *mut NSError),
             >,
@@ -10169,45 +9988,33 @@ impl NEAppPushManager {
         /// This method loads the saved configuration from the persistent store.
         ///
         /// Parameter `completionHandler`: A block that will be called when the load operation is completed. The NSError object passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// This method removes the configuration from the persistent store.
         ///
         /// Parameter `completionHandler`: A block that will be called when the remove operation is completed. The NSError object passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// This method saves the configuration in the persistent store.
         ///
         /// Parameter `completionHandler`: A block that will be called when the save operation is completed. The NSError object passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// A string containing a description of the app push manager.
@@ -10323,16 +10130,12 @@ impl NEAppPushProvider {
         /// Parameter `reason`: An NEProviderStopReason indicating why the provider was stopped.
         ///
         /// Parameter `completionHandler`: A block that must be called when the provider is completely stopped.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(stopWithReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWithReason_completionHandler(
             &self,
             reason: NEProviderStopReason,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         /// This function is called by the provider when it determines incoming call on the conection.
@@ -11386,15 +11189,11 @@ impl NEURLFilter {
         /// - url: url to be validated
         /// - completionHandler: A block that will be called when validation is completed. A NEURLFilterVerdict verdict will be returned to indicate
         /// whether the specified URL should be allowed or denied.  If verdict is Deny, caller should fail the URL request.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(verdictForURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn verdictForURL_completionHandler(
             url: &NSURL,
-            completion_handler: &block2::Block<'static, fn(NEURLFilterVerdict)>,
+            completion_handler: &block2::SendableBlock<'static, fn(NEURLFilterVerdict)>,
         );
     );
 }

@@ -104,16 +104,15 @@ extern_protocol!(
         ///
         ///
         /// See: INListRideOptionsIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleListRideOptions:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleListRideOptions_completion(
             &self,
             intent: &INListRideOptionsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INListRideOptionsIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INListRideOptionsIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -133,17 +132,16 @@ extern_protocol!(
         ///
         ///
         /// See: INListRideOptionsIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmListRideOptions:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmListRideOptions_completion(
             &self,
             intent: &INListRideOptionsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INListRideOptionsIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INListRideOptionsIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -163,17 +161,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePickupLocationForListRideOptions:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolvePickupLocationForListRideOptions_withCompletion(
             &self,
             intent: &INListRideOptionsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -182,16 +176,13 @@ extern_protocol!(
             feature = "INPlacemarkResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDropOffLocationForListRideOptions:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveDropOffLocationForListRideOptions_withCompletion(
             &self,
             intent: &INListRideOptionsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
         );
     }
 );

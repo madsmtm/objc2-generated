@@ -63,16 +63,12 @@ impl GKChallenge {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// Query challenges for the current game issued to the local player -- equivalent GKChallenge objects are not guaranteed to be pointer equivalent across calls, but equal GKChallenge objects will have equal hashes
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadReceivedChallengesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadReceivedChallengesWithCompletionHandler(
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut NSArray<GKChallenge>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<GKChallenge>, *mut NSError)>,
             >,
         );
 
@@ -252,30 +248,23 @@ impl GKScore {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// Use this alternative to reportScores:withCompletionHandler: to allow only certain specific challenges to be completed. Pass nil to avoid completing any challenges.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(reportScores:withEligibleChallenges:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportScores_withEligibleChallenges_withCompletionHandler(
             scores: &NSArray<GKScore>,
             challenges: &NSArray<GKChallenge>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "GKLeaderboardScore", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(reportLeaderboardScores:withEligibleChallenges:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportLeaderboardScores_withEligibleChallenges_withCompletionHandler(
             scores: &NSArray<GKLeaderboardScore>,
             challenges: &NSArray<GKChallenge>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -286,10 +275,6 @@ impl GKAchievement {
     extern_methods!(
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Given a list of players, return a subset of that list containing only players that are eligible to receive a challenge for the achievement.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(selectChallengeablePlayers:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -297,23 +282,19 @@ impl GKAchievement {
             &self,
             players: &NSArray<GKPlayer>,
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
             >,
         );
 
         #[cfg(feature = "block2")]
         /// Use this alternative to reportAchievements:withCompletionHandler: to allow only certain specific challenges to be completed. Pass nil to avoid completing any challenges.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(reportAchievements:withEligibleChallenges:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportAchievements_withEligibleChallenges_withCompletionHandler(
             achievements: &NSArray<GKAchievement>,
             challenges: &NSArray<GKChallenge>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -350,10 +331,6 @@ impl GKAchievement {
 
         #[cfg(feature = "block2")]
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "This method is obsolete."]
         #[unsafe(method(selectChallengeablePlayerIDs:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -361,7 +338,7 @@ impl GKAchievement {
             &self,
             player_i_ds: Option<&NSArray<NSString>>,
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut NSArray<NSString>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<NSString>, *mut NSError)>,
             >,
         );
     );

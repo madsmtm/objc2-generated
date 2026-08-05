@@ -77,16 +77,12 @@ impl HMServiceGroup {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMService", feature = "block2"))]
@@ -101,16 +97,12 @@ impl HMServiceGroup {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addService:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addService_completionHandler(
             &self,
             service: &HMService,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMService", feature = "block2"))]
@@ -123,16 +115,12 @@ impl HMServiceGroup {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(removeService:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeService_completionHandler(
             &self,
             service: &HMService,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

@@ -35,15 +35,11 @@ impl INVoiceShortcutCenter {
         #[cfg(all(feature = "INVoiceShortcut", feature = "block2"))]
         /// Get all of the shortcuts associated with this app that have been added to Siri.
         /// These could have either been added with `INUIAddVoiceShortcutViewController`, or separately by the user in the Shortcuts app.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getAllVoiceShortcutsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAllVoiceShortcutsWithCompletion(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<INVoiceShortcut>, *mut NSError),
             >,
@@ -51,16 +47,15 @@ impl INVoiceShortcutCenter {
 
         #[cfg(all(feature = "INVoiceShortcut", feature = "block2"))]
         /// Get a single shortcut (associated with this app) that has been added to Siri, by its identifier.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getVoiceShortcutWithIdentifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getVoiceShortcutWithIdentifier_completion(
             &self,
             identifier: &NSUUID,
-            completion_handler: &block2::Block<'static, fn(*mut INVoiceShortcut, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut INVoiceShortcut, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "INShortcut")]

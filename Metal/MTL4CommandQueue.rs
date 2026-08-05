@@ -77,13 +77,9 @@ impl MTL4CommitOptions {
         /// Registers a commit feedback handler that Metal calls with feedback data when available.
         ///
         /// - Parameter block: ``MTL4CommitFeedbackHandler`` that Metal invokes.
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(addFeedbackHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addFeedbackHandler(&self, block: &MTL4CommitFeedbackHandler);
+        pub fn addFeedbackHandler(&self, block: &MTL4CommitFeedbackHandler);
     );
 }
 

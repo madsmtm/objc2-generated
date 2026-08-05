@@ -21,14 +21,11 @@ extern_conformance!(
 impl SFSafariExtensionManager {
     extern_methods!(
         #[cfg(all(feature = "SFSafariExtensionState", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getStateOfSafariExtensionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getStateOfSafariExtensionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut SFSafariExtensionState, *mut NSError),
             >,

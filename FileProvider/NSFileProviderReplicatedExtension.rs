@@ -977,16 +977,12 @@ extern_protocol!(
         /// Execution time:
         /// ---------------
         /// This call is not expected to take more than a few seconds to complete.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(importDidFinishWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn importDidFinishWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -1044,16 +1040,12 @@ extern_protocol!(
         /// Execution time:
         /// ---------------
         /// This call is not expected to take more than a few seconds to complete.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(materializedItemsDidChangeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn materializedItemsDidChangeWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -1102,16 +1094,12 @@ extern_protocol!(
         /// Execution time:
         /// ---------------
         /// This call is not expected to take more than a few seconds to complete.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(pendingItemsDidChangeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn pendingItemsDidChangeWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
     }
 );
@@ -1544,15 +1532,11 @@ extern_protocol!(
         ///
         /// If your extension does not implement this protocol, domains on external volumes will automatically be
         /// connected and instantiated in your extension.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(shouldConnectExternalDomainWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn shouldConnectExternalDomainWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     }
 );

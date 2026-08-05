@@ -336,17 +336,13 @@ impl SCScreenshotManager {
         /// Parameter `completionHandler`: is the handler that will deliver the screenshot to the user
         ///
         /// this method takes a screenshot using the filter and configuration passed in and returns it as a CMSampleBuffer
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(captureSampleBufferWithFilter:configuration:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn captureSampleBufferWithFilter_configuration_completionHandler(
+        pub fn captureSampleBufferWithFilter_configuration_completionHandler(
             content_filter: &SCContentFilter,
             config: &SCStreamConfiguration,
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut CMSampleBuffer, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut CMSampleBuffer, *mut NSError)>,
             >,
         );
 
@@ -364,16 +360,14 @@ impl SCScreenshotManager {
         /// Parameter `completionHandler`: is the handler that will deliver the screenshot to the user
         ///
         /// this method takes a screenshot using the filter and configuration passed in and returns it as a CGImage in BGRA format if captureDynamicRange is SCCaptureDynamicRangeSDR, in RGhA format if captureDynamicRange is SCCaptureDynamicRangeHDRLocalDisplay/SCCaptureDynamicRangeHDRCanonicalDisplay
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(captureImageWithFilter:configuration:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn captureImageWithFilter_configuration_completionHandler(
+        pub fn captureImageWithFilter_configuration_completionHandler(
             content_filter: &SCContentFilter,
             config: &SCStreamConfiguration,
-            completion_handler: Option<&block2::Block<'static, fn(*mut CGImage, *mut NSError)>>,
+            completion_handler: Option<
+                &block2::SendableBlock<'static, fn(*mut CGImage, *mut NSError)>,
+            >,
         );
 
         #[cfg(all(
@@ -388,15 +382,13 @@ impl SCScreenshotManager {
         /// Parameter `completionHandler`: is the handler that will deliver the screenshot to the client
         ///
         /// this method returns an image containing the contents of the rectangle in points, specified in display space
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(captureImageInRect:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn captureImageInRect_completionHandler(
+        pub fn captureImageInRect_completionHandler(
             rect: CGRect,
-            completion_handler: Option<&block2::Block<'static, fn(*mut CGImage, *mut NSError)>>,
+            completion_handler: Option<
+                &block2::SendableBlock<'static, fn(*mut CGImage, *mut NSError)>,
+            >,
         );
 
         #[cfg(all(feature = "SCStream", feature = "block2"))]
@@ -409,17 +401,13 @@ impl SCScreenshotManager {
         /// Parameter `completionHandler`: is the handler that will deliver the SCScreenshotOutput object to the client
         ///
         /// this method returns an SCScreenshotOutput object containing CGImages of the screenshot requested by the client
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(captureScreenshotWithFilter:configuration:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn captureScreenshotWithFilter_configuration_completionHandler(
+        pub fn captureScreenshotWithFilter_configuration_completionHandler(
             content_filter: &SCContentFilter,
             config: &SCScreenshotConfiguration,
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut SCScreenshotOutput, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut SCScreenshotOutput, *mut NSError)>,
             >,
         );
 
@@ -433,17 +421,13 @@ impl SCScreenshotManager {
         /// Parameter `completionHandler`: is the handler that will deliver the SCScreenshotOutput object to the client
         ///
         /// this method returns an SCScreenshotOutput object containing CGImages of the screenshot requested by the client
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(captureScreenshotWithRect:configuration:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn captureScreenshotWithRect_configuration_completionHandler(
+        pub fn captureScreenshotWithRect_configuration_completionHandler(
             rect: CGRect,
             config: &SCScreenshotConfiguration,
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut SCScreenshotOutput, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut SCScreenshotOutput, *mut NSError)>,
             >,
         );
     );

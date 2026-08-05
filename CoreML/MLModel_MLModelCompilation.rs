@@ -55,15 +55,11 @@ impl MLModel {
         /// ```text
         ///  [MLModel modelWithContentsOfURL:error:]
         /// ```
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(compileModelAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compileModelAtURL_completionHandler(
             model_url: &NSURL,
-            handler: &block2::Block<'static, fn(*mut NSURL, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSURL, *mut NSError)>,
         );
     );
 }

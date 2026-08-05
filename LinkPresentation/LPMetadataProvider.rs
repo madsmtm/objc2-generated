@@ -84,16 +84,15 @@ impl LPMetadataProvider {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(startFetchingMetadataForURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startFetchingMetadataForURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<'static, fn(*mut LPLinkMetadata, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut LPLinkMetadata, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "LPLinkMetadata", feature = "block2"))]
@@ -119,16 +118,15 @@ impl LPMetadataProvider {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(startFetchingMetadataForRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startFetchingMetadataForRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &block2::Block<'static, fn(*mut LPLinkMetadata, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut LPLinkMetadata, *mut NSError),
+            >,
         );
 
         /// Cancels a metadata request.

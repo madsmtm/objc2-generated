@@ -108,16 +108,12 @@ extern_protocol!(
         ///
         ///
         /// See: INCreateNoteIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleCreateNote:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleCreateNote_completion(
             &self,
             intent: &INCreateNoteIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCreateNoteIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INCreateNoteIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -137,17 +133,13 @@ extern_protocol!(
         ///
         ///
         /// See: INCreateNoteIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmCreateNote:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmCreateNote_completion(
             &self,
             intent: &INCreateNoteIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCreateNoteIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INCreateNoteIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -167,17 +159,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTitleForCreateNote:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveTitleForCreateNote_withCompletion(
             &self,
             intent: &INCreateNoteIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -186,16 +177,13 @@ extern_protocol!(
             feature = "INNoteContentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveContentForCreateNote:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveContentForCreateNote_withCompletion(
             &self,
             intent: &INCreateNoteIntent,
-            completion: &block2::Block<'static, fn(NonNull<INNoteContentResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INNoteContentResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -204,16 +192,16 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveGroupNameForCreateNote:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveGroupNameForCreateNote_withCompletion(
             &self,
             intent: &INCreateNoteIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

@@ -52,15 +52,12 @@ extern_conformance!(
 impl CLKWatchFaceLibrary {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(addWatchFaceAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addWatchFaceAtURL_completionHandler(
             &self,
             file_url: &NSURL,
-            handler: &block2::Block<'static, fn(*mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

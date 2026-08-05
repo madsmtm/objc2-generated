@@ -21,25 +21,19 @@ extern_conformance!(
 impl SFContentBlockerManager {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(reloadContentBlockerWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadContentBlockerWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "SFContentBlockerState", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getStateOfContentBlockerWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getStateOfContentBlockerWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut SFContentBlockerState, *mut NSError),
             >,

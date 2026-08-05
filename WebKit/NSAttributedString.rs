@@ -32,7 +32,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/nsattributedstringcompletionhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-pub type NSAttributedStringCompletionHandler = block2::Block<
+pub type NSAttributedStringCompletionHandler = block2::SendableBlock<
     'static,
     fn(
         *mut NSAttributedString,
@@ -75,8 +75,7 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(loadFromHTMLWithRequest:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithRequest_options_completionHandler(
@@ -104,8 +103,7 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(loadFromHTMLWithFileURL:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithFileURL_options_completionHandler(
@@ -132,8 +130,7 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(loadFromHTMLWithString:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithString_options_completionHandler(
@@ -160,8 +157,7 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(loadFromHTMLWithData:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithData_options_completionHandler(

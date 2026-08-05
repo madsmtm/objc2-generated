@@ -59,17 +59,13 @@ impl HKVerifiableClinicalRecordQuery {
         /// Parameter `predicate`: The predicate which records should match.
         ///
         /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
-        ///
-        /// # Safety
-        ///
-        /// `results_handler` block must be sendable.
         #[unsafe(method(initWithRecordTypes:predicate:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordTypes_predicate_resultsHandler(
             this: Allocated<Self>,
             record_types: &NSArray<NSString>,
             predicate: Option<&NSPredicate>,
-            results_handler: &block2::Block<
+            results_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<HKVerifiableClinicalRecordQuery>,
@@ -95,10 +91,6 @@ impl HKVerifiableClinicalRecordQuery {
         /// Parameter `predicate`: The predicate which records should match.
         ///
         /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
-        ///
-        /// # Safety
-        ///
-        /// `results_handler` block must be sendable.
         #[unsafe(method(initWithRecordTypes:sourceTypes:predicate:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordTypes_sourceTypes_predicate_resultsHandler(
@@ -106,7 +98,7 @@ impl HKVerifiableClinicalRecordQuery {
             record_types: &NSArray<NSString>,
             source_types: &NSArray<HKVerifiableClinicalRecordSourceType>,
             predicate: Option<&NSPredicate>,
-            results_handler: &block2::Block<
+            results_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<HKVerifiableClinicalRecordQuery>,

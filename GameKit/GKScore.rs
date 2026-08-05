@@ -133,16 +133,12 @@ impl GKScore {
         /// 1. Value not set
         /// 2. Local player not authenticated
         /// 3. Communications problem
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(reportScores:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportScores_withCompletionHandler(
             scores: &NSArray<GKScore>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -165,15 +161,12 @@ impl GKScore {
 impl GKScore {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(reportScoreWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportScoreWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[deprecated]

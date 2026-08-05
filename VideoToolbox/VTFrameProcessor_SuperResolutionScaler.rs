@@ -386,15 +386,11 @@ impl VTSuperResolutionScalerConfiguration {
         /// download process. If the download fails, the completion handler is invoked with an `NSError`, and the
         /// ``configurationModelStatus`` goes back to ``VTSuperResolutionScalerConfigurationModelStatusDownloadRequired``. If
         /// the download succeeds, the completion handler is invoked with `nil` NSError.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(downloadConfigurationModelWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadConfigurationModelWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// Returns a floating point value between 0.0 and 1.0 indicating the percentage of required model assets that have been downloaded.

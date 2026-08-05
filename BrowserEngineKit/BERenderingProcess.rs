@@ -42,15 +42,11 @@ impl BERenderingProcess {
         /// - `interruptionHandler` : A block that is called if the extension process terminates.
         /// - `completion` : A block called with a new ``BERenderingProcess`` when the extension process has
         /// launched or with an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(renderingProcessWithInterruptionHandler:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingProcessWithInterruptionHandler_completion(
             interruption_handler: &block2::Block<'static, fn()>,
-            completion: &block2::Block<'static, fn(*mut BERenderingProcess, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut BERenderingProcess, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -63,16 +59,12 @@ impl BERenderingProcess {
         /// - `interruptionHandler` : A block that is called if the extension process terminates.
         /// - `completion` : A block called with a new ``BERenderingProcess`` when the extension process has
         /// launched or with an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(renderingProcessWithBundleID:interruptionHandler:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingProcessWithBundleID_interruptionHandler_completion(
             bundle_id: &NSString,
             interruption_handler: &block2::Block<'static, fn()>,
-            completion: &block2::Block<'static, fn(*mut BERenderingProcess, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut BERenderingProcess, *mut NSError)>,
         );
 
         /// Stops the extension process.

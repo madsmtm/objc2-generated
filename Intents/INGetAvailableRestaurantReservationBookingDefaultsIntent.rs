@@ -102,16 +102,12 @@ extern_protocol!(
         ///
         ///
         /// See: INGetAvailableRestaurantReservationBookingDefaultsIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleGetAvailableRestaurantReservationBookingDefaults:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetAvailableRestaurantReservationBookingDefaults_completion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingDefaultsIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INGetAvailableRestaurantReservationBookingDefaultsIntentResponse>),
             >,
@@ -134,17 +130,13 @@ extern_protocol!(
         ///
         ///
         /// See: INGetAvailableRestaurantReservationBookingDefaultsIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetAvailableRestaurantReservationBookingDefaults:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmGetAvailableRestaurantReservationBookingDefaults_completion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingDefaultsIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INGetAvailableRestaurantReservationBookingDefaultsIntentResponse>),
             >,
@@ -167,17 +159,13 @@ extern_protocol!(
         ///
         ///
         /// See: INGetAvailableRestaurantReservationBookingDefaultsIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRestaurantForGetAvailableRestaurantReservationBookingDefaults:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveRestaurantForGetAvailableRestaurantReservationBookingDefaults_withCompletion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingDefaultsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INRestaurantResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INRestaurantResolutionResult>)>,
         );
     }
 );

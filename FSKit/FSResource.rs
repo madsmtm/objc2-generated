@@ -289,8 +289,7 @@ impl FSBlockDeviceResource {
         ///
         /// # Safety
         ///
-        /// - `buffer` must be a valid pointer.
-        /// - `completion_handler` block must be sendable.
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(readInto:startingAt:length:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readInto_startingAt_length_completionHandler(
@@ -298,7 +297,7 @@ impl FSBlockDeviceResource {
             buffer: NonNull<c_void>,
             offset: libc::off_t,
             length: usize,
-            completion_handler: &block2::Block<'static, fn(usize, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(usize, *mut NSError)>,
         );
 
         #[cfg(feature = "libc")]
@@ -343,8 +342,7 @@ impl FSBlockDeviceResource {
         ///
         /// # Safety
         ///
-        /// - `buffer` must be a valid pointer.
-        /// - `completion_handler` block must be sendable.
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(writeFrom:startingAt:length:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeFrom_startingAt_length_completionHandler(
@@ -352,7 +350,7 @@ impl FSBlockDeviceResource {
             buffer: NonNull<c_void>,
             offset: libc::off_t,
             length: usize,
-            completion_handler: &block2::Block<'static, fn(usize, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(usize, *mut NSError)>,
         );
 
         #[cfg(feature = "libc")]

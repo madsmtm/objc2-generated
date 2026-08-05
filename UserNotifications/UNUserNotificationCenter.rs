@@ -89,15 +89,12 @@ impl UNUserNotificationCenter {
         // -init (unavailable)
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestAuthorizationWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestAuthorizationWithOptions_completionHandler(
+        pub fn requestAuthorizationWithOptions_completionHandler(
             &self,
             options: UNAuthorizationOptions,
-            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "UNNotificationCategory")]
@@ -106,48 +103,42 @@ impl UNUserNotificationCenter {
         pub fn setNotificationCategories(&self, categories: &NSSet<UNNotificationCategory>);
 
         #[cfg(all(feature = "UNNotificationCategory", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getNotificationCategoriesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getNotificationCategoriesWithCompletionHandler(
+        pub fn getNotificationCategoriesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(NonNull<NSSet<UNNotificationCategory>>)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSSet<UNNotificationCategory>>),
+            >,
         );
 
         #[cfg(all(feature = "UNNotificationSettings", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getNotificationSettingsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getNotificationSettingsWithCompletionHandler(
+        pub fn getNotificationSettingsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(NonNull<UNNotificationSettings>)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<UNNotificationSettings>),
+            >,
         );
 
         #[cfg(all(feature = "UNNotificationRequest", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(addNotificationRequest:withCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addNotificationRequest_withCompletionHandler(
+        pub fn addNotificationRequest_withCompletionHandler(
             &self,
             request: &UNNotificationRequest,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "UNNotificationRequest", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getPendingNotificationRequestsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getPendingNotificationRequestsWithCompletionHandler(
+        pub fn getPendingNotificationRequestsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<UNNotificationRequest>>),
             >,
@@ -165,14 +156,14 @@ impl UNUserNotificationCenter {
         pub fn removeAllPendingNotificationRequests(&self);
 
         #[cfg(all(feature = "UNNotification", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getDeliveredNotificationsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getDeliveredNotificationsWithCompletionHandler(
+        pub fn getDeliveredNotificationsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<UNNotification>>)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<UNNotification>>),
+            >,
         );
 
         #[unsafe(method(removeDeliveredNotificationsWithIdentifiers:))]
@@ -184,15 +175,12 @@ impl UNUserNotificationCenter {
         pub fn removeAllDeliveredNotifications(&self);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(setBadgeCount:withCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBadgeCount_withCompletionHandler(
+        pub fn setBadgeCount_withCompletionHandler(
             &self,
             new_badge_count: NSInteger,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -243,31 +231,28 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate?language=objc)
     pub unsafe trait UNUserNotificationCenterDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UNNotification", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(userNotificationCenter:willPresentNotification:withCompletionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn userNotificationCenter_willPresentNotification_withCompletionHandler(
+        fn userNotificationCenter_willPresentNotification_withCompletionHandler(
             &self,
             center: &UNUserNotificationCenter,
             notification: &UNNotification,
-            completion_handler: &block2::Block<'static, fn(UNNotificationPresentationOptions)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(UNNotificationPresentationOptions),
+            >,
         );
 
         #[cfg(all(feature = "UNNotificationResponse", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn userNotificationCenter_didReceiveNotificationResponse_withCompletionHandler(
+        fn userNotificationCenter_didReceiveNotificationResponse_withCompletionHandler(
             &self,
             center: &UNUserNotificationCenter,
             response: &UNNotificationResponse,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(feature = "UNNotification")]

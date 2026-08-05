@@ -107,16 +107,12 @@ extern_protocol!(
         ///
         ///
         /// See: INSnoozeTasksIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleSnoozeTasks:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSnoozeTasks_completion(
             &self,
             intent: &INSnoozeTasksIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSnoozeTasksIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INSnoozeTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -136,17 +132,13 @@ extern_protocol!(
         ///
         ///
         /// See: INSnoozeTasksIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSnoozeTasks:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmSnoozeTasks_completion(
             &self,
             intent: &INSnoozeTasksIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSnoozeTasksIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INSnoozeTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -167,17 +159,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTasksForSnoozeTasks:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveTasksForSnoozeTasks_withCompletion(
             &self,
             intent: &INSnoozeTasksIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<INSnoozeTasksTaskResolutionResult>>),
             >,
@@ -189,16 +177,16 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveNextTriggerTimeForSnoozeTasks:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveNextTriggerTimeForSnoozeTasks_withCompletion(
             &self,
             intent: &INSnoozeTasksIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INDateComponentsRangeResolutionResult>),
+            >,
         );
     }
 );

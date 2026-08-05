@@ -320,7 +320,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLCommandBufferHandler =
-    block2::Block<'static, fn(NonNull<ProtocolObject<dyn MTLCommandBuffer>>)>;
+    block2::SendableBlock<'static, fn(NonNull<ProtocolObject<dyn MTLCommandBuffer>>)>;
 
 /// MTLDispatchType Describes how a command encoder will execute dispatched work.
 ///
@@ -429,13 +429,9 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Adds a block to be called when this command buffer has been scheduled for execution.
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(addScheduledHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn addScheduledHandler(&self, block: &MTLCommandBufferHandler);
+        fn addScheduledHandler(&self, block: &MTLCommandBufferHandler);
 
         #[cfg(feature = "MTLDrawable")]
         /// Add a drawable present that will be invoked when this command buffer has been scheduled for execution.
@@ -481,13 +477,9 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Add a block to be called when this command buffer has completed execution.
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(addCompletedHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn addCompletedHandler(&self, block: &MTLCommandBufferHandler);
+        fn addCompletedHandler(&self, block: &MTLCommandBufferHandler);
 
         /// Synchronously wait for this command buffer to complete.
         #[unsafe(method(waitUntilCompleted))]

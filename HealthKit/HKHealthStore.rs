@@ -70,17 +70,13 @@ impl HKHealthStore {
         /// To customize the messages displayed on the authorization sheet, set the following keys in your app's
         /// Info.plist file. Set the NSHealthShareUsageDescription key to customize the message for reading data.
         /// Set the NSHealthUpdateUsageDescription key to customize the message for writing data.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestAuthorizationToShareTypes:readTypes:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationToShareTypes_readTypes_completion(
             &self,
             types_to_share: Option<&NSSet<HKSampleType>>,
             types_to_read: Option<&NSSet<HKObjectType>>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
@@ -96,17 +92,13 @@ impl HKHealthStore {
         /// access with each prompt. The success parameter of the completion indicates whether prompting the user
         /// completed successfully and was not cancelled. It does NOT indicate whether the application was granted
         /// authorization.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestPerObjectReadAuthorizationForType:predicate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestPerObjectReadAuthorizationForType_predicate_completion(
             &self,
             object_type: &HKObjectType,
             predicate: Option<&NSPredicate>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKDefines", feature = "HKObjectType", feature = "block2"))]
@@ -116,17 +108,16 @@ impl HKHealthStore {
         /// the same collections of types are passed to requestAuthorizationToShareTypes:readTypes:completion:.
         /// This determination is performed asynchronously and its completion will be executed on an arbitrary
         /// background queue.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(getRequestStatusForAuthorizationToShareTypes:readTypes:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRequestStatusForAuthorizationToShareTypes_readTypes_completion(
             &self,
             types_to_share: &NSSet<HKSampleType>,
             types_to_read: &NSSet<HKObjectType>,
-            completion: &block2::Block<'static, fn(HKAuthorizationRequestStatus, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(HKAuthorizationRequestStatus, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -140,15 +131,11 @@ impl HKHealthStore {
         /// queue after the user has responded.  The success parameter of the completion indicates whether prompting
         /// the user, if necessary, completed successfully and was not cancelled by the user.  It does NOT indicate
         /// whether the application was granted authorization.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleAuthorizationForExtensionWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleAuthorizationForExtensionWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         /// Samples prior to the earliestPermittedSampleDate cannot be saved or queried.
@@ -174,48 +161,36 @@ impl HKHealthStore {
         ///
         /// This operation is performed asynchronously and the completion will be executed on an arbitrary
         /// background queue.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(saveObject:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveObject_withCompletion(
             &self,
             object: &HKObject,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
         /// Saves an array of HKObjects.
         ///
         /// See discussion of saveObject:withCompletion:.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(saveObjects:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveObjects_withCompletion(
             &self,
             objects: &NSArray<HKObject>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
         /// Deletes a single HKObject from the HealthKit database.
         ///
         /// See deleteObjects:withCompletion:.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(deleteObject:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteObject_withCompletion(
             &self,
             object: &HKObject,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
@@ -223,16 +198,12 @@ impl HKHealthStore {
         ///
         /// An application may only delete objects that it previously saved.  This operation is performed
         /// asynchronously and the completion will be executed on an arbitrary background queue.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(deleteObjects:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteObjects_withCompletion(
             &self,
             objects: &NSArray<HKObject>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
@@ -240,17 +211,13 @@ impl HKHealthStore {
         ///
         /// An application may only delete objects that it previously saved.  This operation is performed
         /// asynchronously and the completion will be executed on an arbitrary background queue.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(deleteObjectsOfType:predicate:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteObjectsOfType_predicate_withCompletion(
             &self,
             object_type: &HKObjectType,
             predicate: &NSPredicate,
-            completion: &block2::Block<'static, fn(Bool, NSUInteger, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, NSUInteger, *mut NSError)>,
         );
 
         #[cfg(feature = "HKQuery")]
@@ -286,10 +253,6 @@ impl HKHealthStore {
         /// This method uses the user's metrics like age, biological sex, body mass and height to determine
         /// their basal metabolic rate. If the application does not have authorization to access these characteristics
         /// or if the user has not entered their data then this method uses builtin default values.
-        ///
-        /// # Safety
-        ///
-        /// `results_handler` block must be sendable.
         #[deprecated = "No longer supported"]
         #[unsafe(method(splitTotalEnergy:startDate:endDate:resultsHandler:))]
         #[unsafe(method_family = none)]
@@ -298,7 +261,7 @@ impl HKHealthStore {
             total_energy: &HKQuantity,
             start_date: &NSDate,
             end_date: &NSDate,
-            results_handler: &block2::Block<
+            results_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut HKQuantity, *mut HKQuantity, *mut NSError),
             >,
@@ -403,27 +366,23 @@ impl HKHealthStore {
         ///
         /// # Safety
         ///
-        /// The returned block must be sendable.
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(workoutSessionMirroringStartHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutSessionMirroringStartHandler(
             &self,
-        ) -> *mut block2::Block<'static, fn(NonNull<HKWorkoutSession>)>;
+        ) -> *mut block2::SendableBlock<'static, fn(NonNull<HKWorkoutSession>)>;
 
         #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
         /// Setter for [`workoutSessionMirroringStartHandler`][Self::workoutSessionMirroringStartHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `workout_session_mirroring_start_handler` block must be sendable.
         #[unsafe(method(setWorkoutSessionMirroringStartHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorkoutSessionMirroringStartHandler(
             &self,
             workout_session_mirroring_start_handler: Option<
-                &block2::Block<'static, fn(NonNull<HKWorkoutSession>)>,
+                &block2::SendableBlock<'static, fn(NonNull<HKWorkoutSession>)>,
             >,
         );
 
@@ -440,10 +399,6 @@ impl HKHealthStore {
         /// be saved for you. Note that the sample will be saved without an HKDevice.
         ///
         /// The workout provided must be one that has already been saved to HealthKit.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use HKWorkoutBuilder"]
         #[unsafe(method(addSamples:toWorkout:completion:))]
         #[unsafe(method_family = none)]
@@ -451,7 +406,7 @@ impl HKHealthStore {
             &self,
             samples: &NSArray<HKSample>,
             workout: &HKWorkout,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "HKWorkoutSession")]
@@ -504,30 +459,22 @@ impl HKHealthStore {
         /// active Apple Watch. After launching, the handleWorkoutConfiguration: method on the WKExtensionDelegate
         /// protocol will be called with the HKWorkoutConfiguration as a parameter. The receiving Watch app can use
         /// this configuration object to create an HKWorkoutSession and start it with -startWorkoutSession:.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(startWatchAppWithWorkoutConfiguration:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWatchAppWithWorkoutConfiguration_completion(
             &self,
             workout_configuration: &HKWorkoutConfiguration,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
         /// Recovers an active workout session after a client crash. If no session is available to be re-attached,
         /// nil will be returned. If an error occurs, session will be nil and error will be set appropriately.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(recoverActiveWorkoutSessionWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recoverActiveWorkoutSessionWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(*mut HKWorkoutSession, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut HKWorkoutSession, *mut NSError)>,
         );
     );
 }
@@ -543,40 +490,30 @@ impl HKHealthStore {
         /// data types have been updated and the corresponding fetch queries. Note that certain data types (such as
         /// HKQuantityTypeIdentifierStepCount) have a minimum frequency of HKUpdateFrequencyHourly. This is enforced
         /// transparently to the caller.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(enableBackgroundDeliveryForType:frequency:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableBackgroundDeliveryForType_frequency_withCompletion(
             &self,
             r#type: &HKObjectType,
             frequency: HKUpdateFrequency,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(disableBackgroundDeliveryForType:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableBackgroundDeliveryForType_withCompletion(
             &self,
             r#type: &HKObjectType,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(disableAllBackgroundDeliveryWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableAllBackgroundDeliveryWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
     );
 }
@@ -609,16 +546,12 @@ impl HKHealthStore {
         /// unavailable or authorization status is not determined for one or more of the provided types.
         ///
         /// The returned dictionary will map HKQuantityType to HKUnit.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(preferredUnitsForQuantityTypes:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredUnitsForQuantityTypes_completion(
             &self,
             quantity_types: &NSSet<HKQuantityType>,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSDictionary<HKQuantityType, HKUnit>>, *mut NSError),
             >,
@@ -634,17 +567,13 @@ impl HKHealthStore {
         ///
         /// Check -[HKSampleType allowsRecalibrationForEstimates] to see if a given sample type is supported. Calling this method results in first-party
         /// estimation algorithms to recalibrate what data is used when generating values for HKSamples of this sampleType.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(recalibrateEstimatesForSampleType:atDate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recalibrateEstimatesForSampleType_atDate_completion(
             &self,
             sample_type: &HKSampleType,
             date: &NSDate,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
     );
 }
@@ -669,10 +598,6 @@ impl HKHealthStore {
         /// Parameter `activity`: The HKWorkoutActivity on the HKWorkout
         ///
         /// Parameter `completion`: The block to be called when the sample has been related
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(relateWorkoutEffortSample:withWorkout:activity:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn relateWorkoutEffortSample_withWorkout_activity_completion(
@@ -680,7 +605,7 @@ impl HKHealthStore {
             sample: &HKSample,
             workout: &HKWorkout,
             activity: Option<&HKWorkoutActivity>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -700,10 +625,6 @@ impl HKHealthStore {
         /// Parameter `activity`: The HKWorkoutActivity on the HKWorkout
         ///
         /// Parameter `completion`: The block to be called when the sample has been unrelated
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(unrelateWorkoutEffortSample:fromWorkout:activity:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unrelateWorkoutEffortSample_fromWorkout_activity_completion(
@@ -711,7 +632,7 @@ impl HKHealthStore {
             sample: &HKSample,
             workout: &HKWorkout,
             activity: Option<&HKWorkoutActivity>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
     );
 }

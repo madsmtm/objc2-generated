@@ -35,10 +35,6 @@ extern_protocol!(
         /// - identifier: The identifier of the searchable item.
         /// - queryString: A search string to associate with the searchable item.
         /// - handler: A completion handler that notifies the platform that a preview is available. The operating system shows a loading spinner, so call the handler as soon as possible. You can call the completion handler asynchronously after returning from the callback.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[optional]
         #[unsafe(method(preparePreviewOfSearchableItemWithIdentifier:queryString:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -46,7 +42,7 @@ extern_protocol!(
             &self,
             identifier: &NSString,
             query_string: Option<&NSString>,
-            handler: &block2::Block<'static, fn(*mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -59,17 +55,13 @@ extern_protocol!(
         /// - Parameters:
         /// - url: The URL of the file to preview.
         /// - handler: A completion handler that notifies the platform that a preview is available. The operating system shows a loading spinner, so call the handler as soon as possible. You can call the completion handler asynchronously after returning from the callback.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[optional]
         #[unsafe(method(preparePreviewOfFileAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn preparePreviewOfFileAtURL_completionHandler(
             &self,
             url: &NSURL,
-            handler: &block2::Block<'static, fn(*mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -84,17 +76,13 @@ extern_protocol!(
         /// - handler: The closure to call with a
         /// <doc
         /// ://com.apple.documentation/documentation/quicklook/qlpreviewreply> for the system to display as the preview.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[optional]
         #[unsafe(method(providePreviewForFileRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn providePreviewForFileRequest_completionHandler(
             &self,
             request: &QLFilePreviewRequest,
-            handler: &block2::Block<'static, fn(*mut QLPreviewReply, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut QLPreviewReply, *mut NSError)>,
         );
     }
 );

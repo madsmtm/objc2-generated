@@ -8,7 +8,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserscripttaskcompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "block2"))]
-pub type NSUserScriptTaskCompletionHandler = block2::Block<'static, fn(*mut NSError)>;
+pub type NSUserScriptTaskCompletionHandler = block2::SendableBlock<'static, fn(*mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserscripttask?language=objc)
@@ -37,12 +37,9 @@ impl NSUserScriptTask {
         pub fn scriptURL(&self) -> Retained<NSURL>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(executeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn executeWithCompletionHandler(
+        pub fn executeWithCompletionHandler(
             &self,
             handler: Option<&NSUserScriptTaskCompletionHandler>,
         );
@@ -71,7 +68,7 @@ impl DefaultRetained for NSUserScriptTask {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserunixtaskcompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "block2"))]
-pub type NSUserUnixTaskCompletionHandler = block2::Block<'static, fn(*mut NSError)>;
+pub type NSUserUnixTaskCompletionHandler = block2::SendableBlock<'static, fn(*mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserunixtask?language=objc)
@@ -125,12 +122,9 @@ impl NSUserUnixTask {
             feature = "NSString",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(executeWithArguments:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn executeWithArguments_completionHandler(
+        pub fn executeWithArguments_completionHandler(
             &self,
             arguments: Option<&NSArray<NSString>>,
             handler: Option<&NSUserUnixTaskCompletionHandler>,
@@ -178,7 +172,7 @@ impl DefaultRetained for NSUserUnixTask {
     feature = "block2"
 ))]
 pub type NSUserAppleScriptTaskCompletionHandler =
-    block2::Block<'static, fn(*mut NSAppleEventDescriptor, *mut NSError)>;
+    block2::SendableBlock<'static, fn(*mut NSAppleEventDescriptor, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserapplescripttask?language=objc)
@@ -198,12 +192,9 @@ impl NSUserAppleScriptTask {
             feature = "NSError",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(executeWithAppleEvent:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn executeWithAppleEvent_completionHandler(
+        pub fn executeWithAppleEvent_completionHandler(
             &self,
             event: Option<&NSAppleEventDescriptor>,
             handler: Option<&NSUserAppleScriptTaskCompletionHandler>,
@@ -247,7 +238,7 @@ impl DefaultRetained for NSUserAppleScriptTask {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserautomatortaskcompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserAutomatorTaskCompletionHandler =
-    block2::Block<'static, fn(*mut AnyObject, *mut NSError)>;
+    block2::SendableBlock<'static, fn(*mut AnyObject, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserautomatortask?language=objc)
@@ -282,8 +273,7 @@ impl NSUserAutomatorTask {
         #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
         /// # Safety
         ///
-        /// - `input` should be of the correct type.
-        /// - `handler` block must be sendable.
+        /// `input` should be of the correct type.
         #[unsafe(method(executeWithInput:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithInput_completionHandler(

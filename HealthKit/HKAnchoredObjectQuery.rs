@@ -45,13 +45,17 @@ impl HKAnchoredObjectQuery {
         ///
         /// # Safety
         ///
-        /// - The returned block must be sendable.
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - The returned block's argument 4 must be a valid pointer or null.
+        /// - The returned block's argument 5 must be a valid pointer or null.
         /// - This might not be thread-safe.
         #[unsafe(method(updateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::SendableBlock<
             'static,
             fn(
                 NonNull<HKAnchoredObjectQuery>,
@@ -75,14 +79,13 @@ impl HKAnchoredObjectQuery {
         ///
         /// # Safety
         ///
-        /// - `update_handler` block must be sendable.
-        /// - This might not be thread-safe.
+        /// This might not be thread-safe.
         #[unsafe(method(setUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpdateHandler(
             &self,
             update_handler: Option<
-                &block2::Block<
+                &block2::SendableBlock<
                     'static,
                     fn(
                         NonNull<HKAnchoredObjectQuery>,
@@ -122,10 +125,6 @@ impl HKAnchoredObjectQuery {
         /// for no limit.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished finding.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(initWithType:predicate:anchor:limit:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_predicate_anchor_limit_resultsHandler(
@@ -134,7 +133,7 @@ impl HKAnchoredObjectQuery {
             predicate: Option<&NSPredicate>,
             anchor: Option<&HKQueryAnchor>,
             limit: NSUInteger,
-            handler: &block2::Block<
+            handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<HKAnchoredObjectQuery>,
@@ -152,9 +151,6 @@ impl HKAnchoredObjectQuery {
             feature = "HKSample",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(initWithType:predicate:anchor:limit:completionHandler:))]
         #[unsafe(method_family = init)]
@@ -164,7 +160,7 @@ impl HKAnchoredObjectQuery {
             predicate: Option<&NSPredicate>,
             anchor: NSUInteger,
             limit: NSUInteger,
-            handler: &block2::Block<
+            handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<HKAnchoredObjectQuery>,
@@ -201,10 +197,6 @@ impl HKAnchoredObjectQuery {
         /// HKObjectQueryNoLimit for no limit.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished finding.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(initWithQueryDescriptors:anchor:limit:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQueryDescriptors_anchor_limit_resultsHandler(
@@ -212,7 +204,7 @@ impl HKAnchoredObjectQuery {
             query_descriptors: &NSArray<HKQueryDescriptor>,
             anchor: Option<&HKQueryAnchor>,
             limit: NSInteger,
-            handler: &block2::Block<
+            handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<HKAnchoredObjectQuery>,

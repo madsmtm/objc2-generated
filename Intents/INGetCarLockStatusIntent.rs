@@ -96,16 +96,15 @@ extern_protocol!(
         ///
         ///
         /// See: INGetCarLockStatusIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleGetCarLockStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetCarLockStatus_completion(
             &self,
             intent: &INGetCarLockStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INGetCarLockStatusIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INGetCarLockStatusIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -125,17 +124,16 @@ extern_protocol!(
         ///
         ///
         /// See: INGetCarLockStatusIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetCarLockStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmGetCarLockStatus_completion(
             &self,
             intent: &INGetCarLockStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INGetCarLockStatusIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INGetCarLockStatusIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -155,17 +153,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForGetCarLockStatus:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCarNameForGetCarLockStatus_withCompletion(
             &self,
             intent: &INGetCarLockStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

@@ -36,16 +36,12 @@ impl TKSmartCardSlotManager {
 
         #[cfg(feature = "block2")]
         /// Instantiates smartcard reader slot of specified name.  If specified name is not registered, reports nil.
-        ///
-        /// # Safety
-        ///
-        /// `reply` block must be sendable.
         #[unsafe(method(getSlotWithName:reply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSlotWithName_reply(
             &self,
             name: &NSString,
-            reply: &block2::Block<'static, fn(*mut TKSmartCardSlot)>,
+            reply: &block2::SendableBlock<'static, fn(*mut TKSmartCardSlot)>,
         );
 
         /// Gets SmartCard reader slot with specified name.  If reader slot with this name does not exist, returns nil.
@@ -70,16 +66,15 @@ impl TKSmartCardSlotManager {
         /// ```text
         ///  https://developer.apple.com/documentation/bundleresources/information-property-list/com.apple.developer.nfc.readersession.iso7816.select-identifiers
         /// ```
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(createNFCSlotWithMessage:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createNFCSlotWithMessage_completion(
             &self,
             message: Option<&NSString>,
-            completion: &block2::Block<'static, fn(*mut TKSmartCardSlotNFCSession, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut TKSmartCardSlotNFCSession, *mut NSError),
+            >,
         );
 
         /// Determines whether NFC (Near Field Communication) is supported on this device.
@@ -542,13 +537,12 @@ impl TKSmartCardUserInteraction {
 
         #[cfg(feature = "block2")]
         /// Runs the interaction.
-        ///
-        /// # Safety
-        ///
-        /// `reply` block must be sendable.
         #[unsafe(method(runWithReply:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runWithReply(&self, reply: &block2::Block<'static, fn(Bool, *mut NSError)>);
+        pub unsafe fn runWithReply(
+            &self,
+            reply: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
+        );
 
         /// Attempts to cancel a running interaction. Note that for some interactions, this functionality might not be available.
         ///
@@ -888,15 +882,11 @@ impl TKSmartCard {
         /// Parameter `success`: Signals whether session was successfully started.
         ///
         /// Parameter `error`: More information about error preventing the transaction to start
-        ///
-        /// # Safety
-        ///
-        /// `reply` block must be sendable.
         #[unsafe(method(beginSessionWithReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSessionWithReply(
             &self,
-            reply: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            reply: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -907,16 +897,12 @@ impl TKSmartCard {
         /// Parameter `reponse`: Response part of APDU, or nil if communication with the card failed
         ///
         /// Parameter `error`: Error details when communication with the card failed
-        ///
-        /// # Safety
-        ///
-        /// `reply` block must be sendable.
         #[unsafe(method(transmitRequest:reply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transmitRequest_reply(
             &self,
             request: &NSData,
-            reply: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            reply: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         /// Terminates the transaction. If no transaction is pending any more, the connection will be closed if there is another session in the system waiting for the transaction.
@@ -1039,10 +1025,6 @@ impl TKSmartCard {
         /// Parameter `sw`: SW1SW2 result code, first two bytes of returned card's reply.
         ///
         /// Parameter `error`: Contains error details when nil is returned.  Specific error is also filled in if there was no communication error, but card returned other SW code than 0x9000.
-        ///
-        /// # Safety
-        ///
-        /// `reply` block must be sendable.
         #[unsafe(method(sendIns:p1:p2:data:le:reply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendIns_p1_p2_data_le_reply(
@@ -1052,7 +1034,7 @@ impl TKSmartCard {
             p2: u8,
             request_data: Option<&NSData>,
             le: Option<&NSNumber>,
-            reply: &block2::Block<'static, fn(*mut NSData, u16, *mut NSError)>,
+            reply: &block2::SendableBlock<'static, fn(*mut NSData, u16, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]

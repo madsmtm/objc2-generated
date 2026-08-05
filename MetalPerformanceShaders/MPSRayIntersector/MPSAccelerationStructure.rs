@@ -14,7 +14,7 @@ use crate::*;
 #[deprecated]
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "block2"))]
 pub type MPSAccelerationStructureCompletionHandler =
-    block2::Block<'static, fn(*mut MPSAccelerationStructure)>;
+    block2::SendableBlock<'static, fn(*mut MPSAccelerationStructure)>;
 
 /// Options describing how an acceleration structure will be used
 ///
@@ -507,10 +507,6 @@ impl MPSAccelerationStructure {
         /// the vertex buffer, index buffer, etc. must be completed (and, for managed buffers,
         /// synchronized). Any prior intersection tests must also be completed before the acceleration
         /// structure can be rebuilt.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(rebuildWithCompletionHandler:))]
         #[unsafe(method_family = none)]

@@ -161,27 +161,25 @@ impl MKMapItem {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// - `launch_options` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `launch_options` generic should be of the correct type.
         #[unsafe(method(openInMapsWithLaunchOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openInMapsWithLaunchOptions_completionHandler(
             &self,
             launch_options: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: Option<&block2::Block<'static, fn(Bool)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// - `launch_options` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `launch_options` generic should be of the correct type.
         #[unsafe(method(openMapsWithItems:launchOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openMapsWithItems_launchOptions_completionHandler(
             map_items: &NSArray<MKMapItem>,
             launch_options: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: Option<&block2::Block<'static, fn(Bool)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
     );
 }

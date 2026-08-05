@@ -117,17 +117,13 @@ impl HKQuantitySeriesSampleQuery {
         /// The stopQuery call can be made within the quantityHandler block.
         /// Once done is YES, or stopQuery has been called, the query is
         /// complete and no more calls to quantityHandler will be made.
-        ///
-        /// # Safety
-        ///
-        /// `quantity_handler` block must be sendable.
         #[unsafe(method(initWithQuantityType:predicate:quantityHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQuantityType_predicate_quantityHandler(
             this: Allocated<Self>,
             quantity_type: &HKQuantityType,
             predicate: Option<&NSPredicate>,
-            quantity_handler: &block2::Block<
+            quantity_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<HKQuantitySeriesSampleQuery>,
@@ -147,16 +143,13 @@ impl HKQuantitySeriesSampleQuery {
             feature = "HKSample",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `quantity_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(initWithSample:quantityHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSample_quantityHandler(
             this: Allocated<Self>,
             quantity_sample: &HKQuantitySample,
-            quantity_handler: &block2::Block<
+            quantity_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<HKQuantitySeriesSampleQuery>,

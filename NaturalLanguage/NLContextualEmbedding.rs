@@ -299,15 +299,11 @@ impl NLContextualEmbedding {
         ///
         /// You use a contextual embedding after loading the necessary assets onto the device. Use ``NLContextualEmbedding/hasAvailableAssets`` to determine whether assets are available.
         /// This method returns immediately if the framework knows the state of the assets or if an error occurs.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestEmbeddingAssetsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestEmbeddingAssetsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NLContextualEmbeddingAssetsResult, *mut NSError),
             >,

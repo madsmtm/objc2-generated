@@ -11,7 +11,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiplayercompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type AVMIDIPlayerCompletionHandler = block2::Block<'static, fn()>;
+pub type AVMIDIPlayerCompletionHandler = block2::SendableBlock<'static, fn()>;
 
 extern_class!(
     /// A player for music file formats (MIDI, iMelody).
@@ -63,10 +63,6 @@ impl AVMIDIPlayer {
 
         #[cfg(feature = "block2")]
         /// Play the sequence.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(play:))]
         #[unsafe(method_family = none)]
         pub unsafe fn play(&self, completion_handler: Option<&AVMIDIPlayerCompletionHandler>);

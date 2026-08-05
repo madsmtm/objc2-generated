@@ -43,15 +43,11 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         /// Add a function block to handle log message output.
         /// In the absence of any handlers, log messages go through the default handler.
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(addLogHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn addLogHandler(
+        fn addLogHandler(
             &self,
-            block: &block2::Block<
+            block: &block2::SendableBlock<
                 'static,
                 fn(*mut NSString, *mut NSString, MTLLogLevel, NonNull<NSString>),
             >,

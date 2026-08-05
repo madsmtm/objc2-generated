@@ -100,46 +100,34 @@ impl INInteraction {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(donateInteractionWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn donateInteractionWithCompletion(
             &self,
-            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(deleteAllInteractionsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAllInteractionsWithCompletion(
-            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(deleteInteractionsWithIdentifiers:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteInteractionsWithIdentifiers_completion(
             identifiers: &NSArray<NSString>,
-            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(deleteInteractionsWithGroupIdentifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteInteractionsWithGroupIdentifier_completion(
             group_identifier: &NSString,
-            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "INIntent")]

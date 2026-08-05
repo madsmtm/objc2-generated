@@ -190,16 +190,12 @@ impl HMService {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -223,16 +219,12 @@ impl HMService {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateAssociatedServiceType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateAssociatedServiceType_completionHandler(
             &self,
             service_type: Option<&NSString>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[deprecated = "HMService objects are created by their parent container objects. Directly creating them is not supported."]

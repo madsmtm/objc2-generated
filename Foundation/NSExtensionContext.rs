@@ -27,14 +27,13 @@ impl NSExtensionContext {
         #[cfg(all(feature = "NSArray", feature = "block2"))]
         /// # Safety
         ///
-        /// - `items` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `items` generic should be of the correct type.
         #[unsafe(method(completeRequestReturningItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
             items: Option<&NSArray>,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "NSError")]
@@ -43,15 +42,12 @@ impl NSExtensionContext {
         pub fn cancelRequestWithError(&self, error: &NSError);
 
         #[cfg(all(feature = "NSURL", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(openURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openURL_completionHandler(
+        pub fn openURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
     );
 }

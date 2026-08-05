@@ -111,17 +111,13 @@ extern_protocol!(
         ///
         ///
         /// See: INSetDefrosterSettingsInCarIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetDefrosterSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSetDefrosterSettingsInCar:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSetDefrosterSettingsInCar_completion(
             &self,
             intent: &INSetDefrosterSettingsInCarIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INSetDefrosterSettingsInCarIntentResponse>),
             >,
@@ -144,10 +140,6 @@ extern_protocol!(
         ///
         ///
         /// See: INSetDefrosterSettingsInCarIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetDefrosterSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSetDefrosterSettingsInCar:completion:))]
@@ -155,7 +147,7 @@ extern_protocol!(
         unsafe fn confirmSetDefrosterSettingsInCar_completion(
             &self,
             intent: &INSetDefrosterSettingsInCarIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INSetDefrosterSettingsInCarIntentResponse>),
             >,
@@ -178,10 +170,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetDefrosterSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableForSetDefrosterSettingsInCar:withCompletion:))]
@@ -189,7 +177,7 @@ extern_protocol!(
         unsafe fn resolveEnableForSetDefrosterSettingsInCar_withCompletion(
             &self,
             intent: &INSetDefrosterSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -198,9 +186,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetDefrosterSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveDefrosterForSetDefrosterSettingsInCar:withCompletion:))]
@@ -208,7 +193,10 @@ extern_protocol!(
         unsafe fn resolveDefrosterForSetDefrosterSettingsInCar_withCompletion(
             &self,
             intent: &INSetDefrosterSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCarDefrosterResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INCarDefrosterResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -217,16 +205,16 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForSetDefrosterSettingsInCar:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCarNameForSetDefrosterSettingsInCar_withCompletion(
             &self,
             intent: &INSetDefrosterSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

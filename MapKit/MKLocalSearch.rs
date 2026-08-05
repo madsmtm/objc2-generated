@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompletionhandler?language=objc)
 #[cfg(all(feature = "MKLocalSearchResponse", feature = "block2"))]
 pub type MKLocalSearchCompletionHandler =
-    block2::Block<'static, fn(*mut MKLocalSearchResponse, *mut NSError)>;
+    block2::SendableBlock<'static, fn(*mut MKLocalSearchResponse, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch?language=objc)
@@ -42,9 +42,6 @@ impl MKLocalSearch {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKLocalSearchResponse", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(

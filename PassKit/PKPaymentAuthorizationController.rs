@@ -38,9 +38,6 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "PKConstants", feature = "PKPayment", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use paymentAuthorizationController:didAuthorizePayment:handler: instead to provide more granular errors"]
         #[optional]
         #[unsafe(method(paymentAuthorizationController:didAuthorizePayment:completion:))]
@@ -49,7 +46,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             payment: &PKPayment,
-            completion: &block2::Block<'static, fn(PKPaymentAuthorizationStatus)>,
+            completion: &block2::SendableBlock<'static, fn(PKPaymentAuthorizationStatus)>,
         );
 
         #[optional]
@@ -139,9 +136,6 @@ extern_protocol!(
             feature = "PKShippingMethod",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use paymentAuthorizationController:didSelectShippingMethod:handler: instead to provide more granular errors"]
         #[optional]
         #[unsafe(method(paymentAuthorizationController:didSelectShippingMethod:completion:))]
@@ -150,7 +144,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             shipping_method: &PKShippingMethod,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(PKPaymentAuthorizationStatus, NonNull<NSArray<PKPaymentSummaryItem>>),
             >,
@@ -163,9 +157,6 @@ extern_protocol!(
             feature = "PKShippingMethod",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use paymentAuthorizationController:didSelectShippingContact:handler: instead to provide more granular errors"]
         #[optional]
         #[unsafe(method(paymentAuthorizationController:didSelectShippingContact:completion:))]
@@ -174,7 +165,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             contact: &PKContact,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(
                     PKPaymentAuthorizationStatus,
@@ -189,9 +180,6 @@ extern_protocol!(
             feature = "PKPaymentSummaryItem",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use paymentAuthorizationController:didSelectPaymentMethod:handler: instead to provide more granular errors"]
         #[optional]
         #[unsafe(method(paymentAuthorizationController:didSelectPaymentMethod:completion:))]
@@ -200,7 +188,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             payment_method: &PKPaymentMethod,
-            completion: &block2::Block<'static, fn(NonNull<NSArray<PKPaymentSummaryItem>>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<NSArray<PKPaymentSummaryItem>>)>,
         );
 
         #[cfg(feature = "objc2-app-kit")]
@@ -272,25 +260,19 @@ impl PKPaymentAuthorizationController {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(presentWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentWithCompletion(
             &self,
-            completion: Option<&block2::Block<'static, fn(Bool)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(dismissWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissWithCompletion(
             &self,
-            completion: Option<&block2::Block<'static, fn()>>,
+            completion: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[unsafe(method(supportsDisbursements))]

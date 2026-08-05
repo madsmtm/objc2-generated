@@ -98,7 +98,7 @@ pub type ENActivityHandler = block2::Block<'static, fn(ENActivityFlags)>;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetdiagnosiskeyshandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetDiagnosisKeysHandler =
-    block2::Block<'static, fn(*mut NSArray<ENTemporaryExposureKey>, *mut NSError)>;
+    block2::SendableBlock<'static, fn(*mut NSArray<ENTemporaryExposureKey>, *mut NSError)>;
 
 /// Invoked when detecting exposures completes. It provides a summary of exposures.
 /// If it completes successfully, summary will contain a summary of exposures and error will be nil.
@@ -136,7 +136,7 @@ pub type ENGetExposureWindowsHandler =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetusertraveledhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ENGetUserTraveledHandler = block2::Block<'static, fn(Bool, *mut NSError)>;
+pub type ENGetUserTraveledHandler = block2::SendableBlock<'static, fn(Bool, *mut NSError)>;
 
 extern_class!(
     /// Manages Exposure Notification functionality.
@@ -190,10 +190,6 @@ impl ENManager {
 
         #[cfg(feature = "dispatch2")]
         /// Invoked exactly once when invalidation completes. This property is cleared before it's invoked to break retain cycles.
-        ///
-        /// # Safety
-        ///
-        /// The returned block must be sendable.
         #[unsafe(method(invalidationHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidationHandler(&self) -> *mut dispatch_block_t;
@@ -202,10 +198,6 @@ impl ENManager {
         /// Setter for [`invalidationHandler`][Self::invalidationHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `invalidation_handler` block must be sendable.
         #[unsafe(method(setInvalidationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInvalidationHandler(
@@ -215,10 +207,6 @@ impl ENManager {
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Activates the object to prepare it for use. Properties may not be usable until the completion handler reports success.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(activateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateWithCompletionHandler(&self, completion_handler: &ENErrorHandler);
@@ -231,10 +219,6 @@ impl ENManager {
 
         #[cfg(feature = "block2")]
         /// Reports if the user traveled within an exposure period (e.g. 14 days).
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getUserTraveledWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getUserTraveledWithCompletionHandler(
@@ -262,10 +246,6 @@ impl ENManager {
         /// If not previously authorized, this shows a user dialog for consent to enable Exposure Notification.
         /// Note: Disabling stops Bluetooth advertising and scanning related to Exposure Notification, but the
         /// Diagnosis Keys and data will remain.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(setExposureNotificationEnabled:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExposureNotificationEnabled_completionHandler(
@@ -326,10 +306,6 @@ impl ENManager {
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Requests the temporary exposure keys used by this device to share with a server.
         /// Each use of this API will present the user with system UI to authorize it.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDiagnosisKeysWithCompletionHandler(
@@ -342,10 +318,6 @@ impl ENManager {
         /// Each use of this API will present the user with system UI to authorize it.
         /// WARNING: This API is only for use by developers. It requires a special entitlement that is not allowed in the app store.
         /// It's only intended to allow developers to test without needing to wait 24 hours for a key to be released.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getTestDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTestDiagnosisKeysWithCompletionHandler(
@@ -378,10 +350,6 @@ impl ENManager {
         /// Authorizes a one-time, future release of diagnosis keys without a user prompt at the time of release.
         /// This allows the user to authorize ahead of time in case they are unable to approve at the time of positive diagnosis.
         /// WARNING: Application should be in foreground to request the authorization
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(preAuthorizeDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preAuthorizeDiagnosisKeysWithCompletionHandler(
@@ -393,10 +361,6 @@ impl ENManager {
         /// Requests diagnosis keys after previously using preAuthorizeDiagnosisKeys successfully.
         /// This will display a notification to the user for the user to know the keys will be returned.
         /// Keys are returned by invoking diagnosisKeysAvailable, which must be set before calling this.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestPreAuthorizedDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestPreAuthorizedDiagnosisKeysWithCompletionHandler(

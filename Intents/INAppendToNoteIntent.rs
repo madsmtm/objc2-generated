@@ -107,17 +107,13 @@ extern_protocol!(
         ///
         ///
         /// See: INAppendToNoteIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INAppendToNoteIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleAppendToNote:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleAppendToNote_completion(
             &self,
             intent: &INAppendToNoteIntent,
-            completion: &block2::Block<'static, fn(NonNull<INAppendToNoteIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INAppendToNoteIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -137,10 +133,6 @@ extern_protocol!(
         ///
         ///
         /// See: INAppendToNoteIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INAppendToNoteIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmAppendToNote:completion:))]
@@ -148,7 +140,7 @@ extern_protocol!(
         unsafe fn confirmAppendToNote_completion(
             &self,
             intent: &INAppendToNoteIntent,
-            completion: &block2::Block<'static, fn(NonNull<INAppendToNoteIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INAppendToNoteIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -168,10 +160,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INAppendToNoteIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTargetNoteForAppendToNote:withCompletion:))]
@@ -179,7 +167,7 @@ extern_protocol!(
         unsafe fn resolveTargetNoteForAppendToNote_withCompletion(
             &self,
             intent: &INAppendToNoteIntent,
-            completion: &block2::Block<'static, fn(NonNull<INNoteResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INNoteResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -188,9 +176,6 @@ extern_protocol!(
             feature = "INNoteContentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INAppendToNoteIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveContentForAppendToNote:withCompletion:))]
@@ -198,7 +183,7 @@ extern_protocol!(
         unsafe fn resolveContentForAppendToNote_withCompletion(
             &self,
             intent: &INAppendToNoteIntent,
-            completion: &block2::Block<'static, fn(NonNull<INNoteContentResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INNoteContentResolutionResult>)>,
         );
     }
 );

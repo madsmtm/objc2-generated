@@ -194,15 +194,14 @@ impl BGTaskScheduler {
         /// - Parameters:
         /// - completionHandler: The completion handler called with the pending tasks.
         /// - Note: The handler may execute on a background thread.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getPendingTaskRequestsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPendingTaskRequestsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<BGTaskRequest>>)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<BGTaskRequest>>),
+            >,
         );
     );
 }

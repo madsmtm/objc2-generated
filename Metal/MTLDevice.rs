@@ -87,7 +87,7 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type MTLDeviceNotificationHandler = block2::Block<
+pub type MTLDeviceNotificationHandler = block2::SendableBlock<
     'static,
     fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>),
 >;
@@ -97,13 +97,9 @@ pub type MTLDeviceNotificationHandler = block2::Block<
 /// passed to MTLRemoveDeviceObserver() if the application no longer wishes to receive notifications.
 ///
 /// Note: The observer out parameter is returned with a +1 retain count in addition to the retain mentioned above.
-///
-/// # Safety
-///
-/// `handler` block must be sendable.
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe fn MTLCopyAllDevicesWithObserver(
+pub fn MTLCopyAllDevicesWithObserver(
     observer: &mut Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>,
     handler: &MTLDeviceNotificationHandler,
 ) -> Retained<NSArray<ProtocolObject<dyn MTLDevice>>> {
@@ -980,8 +976,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `pointer` must be a valid pointer.
-        /// - `deallocator` block must be sendable.
+        /// `pointer` must be a valid pointer.
         #[unsafe(method(newBufferWithBytesNoCopy:length:options:deallocator:))]
         #[unsafe(method_family = new)]
         unsafe fn newBufferWithBytesNoCopy_length_options_deallocator(
@@ -989,7 +984,7 @@ extern_protocol!(
             pointer: NonNull<c_void>,
             length: NSUInteger,
             options: MTLResourceOptions,
-            deallocator: Option<&block2::Block<'static, fn(NonNull<c_void>, NSUInteger)>>,
+            deallocator: Option<&block2::SendableBlock<'static, fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(feature = "MTLDepthStencil")]
@@ -1149,13 +1144,9 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLLibrary", feature = "block2"))]
         /// Load a MTLLibrary from source.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(newLibraryWithSource:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newLibraryWithSource_options_completionHandler(
+        fn newLibraryWithSource_options_completionHandler(
             &self,
             source: &NSString,
             options: Option<&MTLCompileOptions>,
@@ -1177,13 +1168,9 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Generates a new library using the graphs in the descriptor.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(newLibraryWithStitchedDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newLibraryWithStitchedDescriptor_completionHandler(
+        fn newLibraryWithStitchedDescriptor_completionHandler(
             &self,
             descriptor: &MTLStitchedLibraryDescriptor,
             completion_handler: &MTLNewLibraryCompletionHandler,
@@ -1220,13 +1207,9 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newRenderPipelineStateWithDescriptor_completionHandler(
+        fn newRenderPipelineStateWithDescriptor_completionHandler(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
             completion_handler: &MTLNewRenderPipelineStateCompletionHandler,
@@ -1239,13 +1222,9 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously and returns additional reflection information
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newRenderPipelineStateWithDescriptor_options_completionHandler(
+        fn newRenderPipelineStateWithDescriptor_options_completionHandler(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
             options: MTLPipelineOption,
@@ -1297,7 +1276,6 @@ extern_protocol!(
         ///
         /// - `compute_function` must be safe to call.
         /// - `compute_function` must have the correct argument and return types.
-        /// - `completion_handler` block must be sendable.
         #[unsafe(method(newComputePipelineStateWithFunction:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newComputePipelineStateWithFunction_completionHandler(
@@ -1318,7 +1296,6 @@ extern_protocol!(
         ///
         /// - `compute_function` must be safe to call.
         /// - `compute_function` must have the correct argument and return types.
-        /// - `completion_handler` block must be sendable.
         #[unsafe(method(newComputePipelineStateWithFunction:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newComputePipelineStateWithFunction_options_completionHandler(
@@ -1350,13 +1327,9 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Create and compile a new MTLComputePipelineState object asynchronously.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(newComputePipelineStateWithDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newComputePipelineStateWithDescriptor_options_completionHandler(
+        fn newComputePipelineStateWithDescriptor_options_completionHandler(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
             options: MTLPipelineOption,
@@ -1423,13 +1396,9 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLTileRenderPipelineDescriptor.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(newRenderPipelineStateWithTileDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(
+        fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(
             &self,
             descriptor: &MTLTileRenderPipelineDescriptor,
             options: MTLPipelineOption,
@@ -1458,13 +1427,9 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLMeshRenderPipelineDescriptor.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(newRenderPipelineStateWithMeshDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(
+        fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(
             &self,
             descriptor: &MTLMeshRenderPipelineDescriptor,
             options: MTLPipelineOption,

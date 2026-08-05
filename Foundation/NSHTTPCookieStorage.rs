@@ -236,15 +236,12 @@ impl NSHTTPCookieStorage {
             feature = "NSURLSession",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getCookiesForTask:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getCookiesForTask_completionHandler(
+        pub fn getCookiesForTask_completionHandler(
             &self,
             task: &NSURLSessionTask,
-            completion_handler: &block2::Block<'static, fn(*mut NSArray<NSHTTPCookie>)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSArray<NSHTTPCookie>)>,
         );
     );
 }

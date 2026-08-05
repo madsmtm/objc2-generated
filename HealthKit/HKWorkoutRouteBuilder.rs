@@ -71,16 +71,12 @@ impl HKWorkoutRouteBuilder {
         /// NO, then error is non-nil. An error here is considered fatal and the series builder will be complete.
         /// If data was previously saved, then the HKWorkoutRoute may be retrieved by the
         /// finishRouteWithMetadata: method.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(insertRouteData:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertRouteData_completion(
             &self,
             route_data: &NSArray<CLLocation>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -100,14 +96,13 @@ impl HKWorkoutRouteBuilder {
         ///
         /// # Safety
         ///
-        /// - `metadata` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(addMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMetadata_completion(
             &self,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -140,15 +135,14 @@ impl HKWorkoutRouteBuilder {
         ///
         /// # Safety
         ///
-        /// - `metadata` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(finishRouteWithWorkout:metadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishRouteWithWorkout_metadata_completion(
             &self,
             workout: &HKWorkout,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: &block2::Block<'static, fn(*mut HKWorkoutRoute, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut HKWorkoutRoute, *mut NSError)>,
         );
     );
 }

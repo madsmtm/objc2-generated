@@ -51,15 +51,11 @@ impl BELayerHierarchyHandle {
         /// - The block is responsible for disposing of `copiedPort` - failure to manage its lifecycle will leak the port. Note that some functions (like ``handleWithPort:data:error:``) will assume control of the right for you.
         /// - `copiedPort` will be `MACH_PORT_NULL` if the ``BELayerHierarchy`` pointed to by the handle is already invalidated.
         /// - The port and data should ultimately be consumed together  by ``handleWithPort:data:error:``.
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(encodeWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeWithBlock(
             &self,
-            block: &block2::Block<'_, fn(libc::mach_port_t, NonNull<NSData>)>,
+            block: &block2::SendableBlock<'_, fn(libc::mach_port_t, NonNull<NSData>)>,
         );
     );
 }

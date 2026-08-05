@@ -265,15 +265,11 @@ impl PKAddIdentityDocumentConfiguration {
         /// - Parameters:
         /// - metadata: Set of configured metadata defining the required information to add the corresponding pass to Wallet.
         /// - completion: Returns the identity document configuration if successful, otherwise returns an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(configurationForMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationForMetadata_completion(
             metadata: &PKIdentityDocumentMetadata,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(*mut PKAddIdentityDocumentConfiguration, *mut NSError),
             >,

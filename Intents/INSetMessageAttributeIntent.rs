@@ -101,16 +101,15 @@ extern_protocol!(
         ///
         ///
         /// See: INSetMessageAttributeIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleSetMessageAttribute:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSetMessageAttribute_completion(
             &self,
             intent: &INSetMessageAttributeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetMessageAttributeIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetMessageAttributeIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -130,17 +129,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSetMessageAttributeIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSetMessageAttribute:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmSetMessageAttribute_completion(
             &self,
             intent: &INSetMessageAttributeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetMessageAttributeIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetMessageAttributeIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -160,17 +158,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveAttributeForSetMessageAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveAttributeForSetMessageAttribute_withCompletion(
             &self,
             intent: &INSetMessageAttributeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INMessageAttributeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INMessageAttributeResolutionResult>),
+            >,
         );
     }
 );

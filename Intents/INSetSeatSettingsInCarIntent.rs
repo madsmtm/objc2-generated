@@ -140,17 +140,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSetSeatSettingsInCarIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSetSeatSettingsInCar:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSetSeatSettingsInCar_completion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetSeatSettingsInCarIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetSeatSettingsInCarIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -170,10 +169,6 @@ extern_protocol!(
         ///
         ///
         /// See: INSetSeatSettingsInCarIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSetSeatSettingsInCar:completion:))]
@@ -181,7 +176,10 @@ extern_protocol!(
         unsafe fn confirmSetSeatSettingsInCar_completion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetSeatSettingsInCarIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetSeatSettingsInCarIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -201,10 +199,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableHeatingForSetSeatSettingsInCar:withCompletion:))]
@@ -212,7 +206,7 @@ extern_protocol!(
         unsafe fn resolveEnableHeatingForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -221,9 +215,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableCoolingForSetSeatSettingsInCar:withCompletion:))]
@@ -231,7 +222,7 @@ extern_protocol!(
         unsafe fn resolveEnableCoolingForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -240,9 +231,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableMassageForSetSeatSettingsInCar:withCompletion:))]
@@ -250,7 +238,7 @@ extern_protocol!(
         unsafe fn resolveEnableMassageForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -259,9 +247,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveSeatForSetSeatSettingsInCar:withCompletion:))]
@@ -269,7 +254,7 @@ extern_protocol!(
         unsafe fn resolveSeatForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCarSeatResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INCarSeatResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -278,9 +263,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveLevelForSetSeatSettingsInCar:withCompletion:))]
@@ -288,7 +270,7 @@ extern_protocol!(
         unsafe fn resolveLevelForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -297,9 +279,6 @@ extern_protocol!(
             feature = "INRelativeSettingResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetSeatSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRelativeLevelSettingForSetSeatSettingsInCar:withCompletion:))]
@@ -307,7 +286,10 @@ extern_protocol!(
         unsafe fn resolveRelativeLevelSettingForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INRelativeSettingResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INRelativeSettingResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -316,16 +298,16 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForSetSeatSettingsInCar:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCarNameForSetSeatSettingsInCar_withCompletion(
             &self,
             intent: &INSetSeatSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

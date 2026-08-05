@@ -44,15 +44,11 @@ impl GKSavedGame {
 
         #[cfg(feature = "block2")]
         /// Asynchronously load the data for this saved game. The completion handler is called with loaded data or an error.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(loadDataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadDataWithCompletionHandler(
             &self,
-            handler: Option<&block2::Block<'static, fn(*mut NSData, *mut NSError)>>,
+            handler: Option<&block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>>,
         );
     );
 }
@@ -81,60 +77,48 @@ impl GKLocalPlayer {
         #[cfg(feature = "block2")]
         /// Asynchronously fetch saved games. The handler is called with an array of GKSavedGame objects or an error.
         /// If there is more than one saved game with the same name then a conflict exists. The application should determine the correct data to use and call resolveConflictingSavedGames:withData:completionHandler:. This may require data merging or asking the user.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(fetchSavedGamesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchSavedGamesWithCompletionHandler(
             &self,
-            handler: Option<&block2::Block<'static, fn(*mut NSArray<GKSavedGame>, *mut NSError)>>,
+            handler: Option<
+                &block2::SendableBlock<'static, fn(*mut NSArray<GKSavedGame>, *mut NSError)>,
+            >,
         );
 
         #[cfg(feature = "block2")]
         /// Asynchronously save game data. If a saved game with that name already exists it is overwritten, otherwise a new one is created. The completion handler is called with the new / modified GKSavedGame or an error.
         /// If the saved game was in conflict then the overwritten version will be the one with the same deviceName if present, otherwise the most recent overall.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(saveGameData:withName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveGameData_withName_completionHandler(
             &self,
             data: &NSData,
             name: &NSString,
-            handler: Option<&block2::Block<'static, fn(*mut GKSavedGame, *mut NSError)>>,
+            handler: Option<&block2::SendableBlock<'static, fn(*mut GKSavedGame, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
         /// Asynchronously delete saved games with the given name. The completion handler will indicate whether or not the deletion was successful.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(deleteSavedGamesWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSavedGamesWithName_completionHandler(
             &self,
             name: &NSString,
-            handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
         /// Asynchronously resolve a saved game conflict. This deletes all versions included in conflictingSavedGames and creates a new version with the given data. The completion handler is called with the newly created save and all other remaining versions or an error.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(resolveConflictingSavedGames:withData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolveConflictingSavedGames_withData_completionHandler(
             &self,
             conflicting_saved_games: &NSArray<GKSavedGame>,
             data: &NSData,
-            handler: Option<&block2::Block<'static, fn(*mut NSArray<GKSavedGame>, *mut NSError)>>,
+            handler: Option<
+                &block2::SendableBlock<'static, fn(*mut NSArray<GKSavedGame>, *mut NSError)>,
+            >,
         );
     );
 }

@@ -35,15 +35,11 @@ impl AVCaptureDeskViewApplication {
         ///
         ///
         /// This method allows you to programmatically launch the Desk View application from your own application UI. If the Desk View application is already running, this method brings it to the front. If the Desk View application is minimized in the Dock, this method un-minimizes it and brings it to the front.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(presentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -57,16 +53,12 @@ impl AVCaptureDeskViewApplication {
         ///
         ///
         /// This method allows you to programmatically launch the Desk View application from your own application UI. If the Desk View application is already running, this method brings it to the front. If the Desk View application is minimized in the Dock, this method un-minimizes it and brings it to the front.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(presentWithLaunchConfiguration:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentWithLaunchConfiguration_completionHandler(
             &self,
             launch_configuration: &AVCaptureDeskViewApplicationLaunchConfiguration,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }

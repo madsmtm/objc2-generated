@@ -64,17 +64,13 @@ impl SHMediaLibrary {
         /// This block takes the following parameters:
         ///
         /// - term `error`: An error object if a problem occurs when adding any item; otherwise, `nil`.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use SHLibrary instead"]
         #[unsafe(method(addMediaItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMediaItems_completionHandler(
             &self,
             media_items: &NSArray<SHMediaItem>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

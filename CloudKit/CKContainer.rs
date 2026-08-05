@@ -270,15 +270,11 @@ impl CKContainer {
         /// This method determines the status of the user's iCloud account asynchronously, passing the results to the closure that you provide. Call this method before accessing the private database to determine whether that database is available. While your app is running, use the
         /// <doc
         /// ://com.apple.documentation/documentation/foundation/nsnotification/name-swift.struct/ckaccountchanged> notification to detect account changes, and call this method again to determine the status of the new account.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(accountStatusWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountStatusWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(CKAccountStatus, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(CKAccountStatus, *mut NSError)>,
         );
     );
 }
@@ -354,7 +350,7 @@ unsafe impl RefEncode for CKApplicationPermissionStatus {
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
 #[cfg(feature = "block2")]
 pub type CKApplicationPermissionBlock =
-    block2::Block<'static, fn(CKApplicationPermissionStatus, *mut NSError)>;
+    block2::SendableBlock<'static, fn(CKApplicationPermissionStatus, *mut NSError)>;
 
 /// ApplicationPermission.
 impl CKContainer {
@@ -367,10 +363,6 @@ impl CKContainer {
         /// - completionHandler: The handler to execute with the outcome.
         ///
         /// Use this method to determine the extra capabilities that the user grants to your app. If your app doesn't have a specific permission, calling this method yields ``CKContainer/ApplicationPermissionStatus/initialState``. In response, call the ``CKContainer/requestApplicationPermission:completionHandler:`` method to prompt the user to provide their permission.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(statusForApplicationPermission:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -392,10 +384,6 @@ impl CKContainer {
         /// The first time you request a permission on any of the user's devices, the user receives a prompt to grant or deny the request. After the user grants or denies a permission, subsequent requests for the same permission (on the same or separate devices), don't prompt the user again.
         ///
         /// This method runs asynchronously, and the system calls your completion handler on an arbitary queue and provides the outcome.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(requestApplicationPermission:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -426,15 +414,11 @@ impl CKContainer {
         /// - The device doesn't have an iCloud account.
         ///
         /// - Note: At startup, fetching the user record ID may take longer while CloudKit makes the initial iCloud account request. After the initial fetch, accessing the ID generally takes less time.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchUserRecordIDWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchUserRecordIDWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut CKRecordID, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut CKRecordID, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
@@ -449,16 +433,12 @@ impl CKContainer {
         /// - An error if a problem occurs, or `nil` if the system successfully completes the request.
         ///
         /// This method searches for the users asynchronously and with a low priority. If you want the task to execute with a higher priority, create an instance of ``CKDiscoverAllUserIdentitiesOperation`` and configure it to use the necessary priority.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(discoverAllIdentitiesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverAllIdentitiesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<CKUserIdentity>, *mut NSError),
             >,
@@ -481,17 +461,16 @@ impl CKContainer {
         /// - The user grants the ``CKContainer/ApplicationPermissions/userDiscoverability`` permission for the container.
         ///
         /// This method searches for the user asynchronously and with a low priority. If you want the task to execute the request with a higher priority, create an instance of ``CKDiscoverUserIdentitiesOperation`` and configure it to use the necessary priority.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(discoverUserIdentityWithEmailAddress:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverUserIdentityWithEmailAddress_completionHandler(
             &self,
             email: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut CKUserIdentity, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKUserIdentity, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
@@ -511,17 +490,16 @@ impl CKContainer {
         /// - The user grants the ``CKContainer/ApplicationPermissions/userDiscoverability`` permission for the container.
         ///
         /// This method searches for the user asynchronously and with a low priority. If you want the task to execute the request with a higher priority, create an instance of ``CKDiscoverUserIdentitiesOperation`` and configure it to use the necessary priority.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(discoverUserIdentityWithPhoneNumber:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverUserIdentityWithPhoneNumber_completionHandler(
             &self,
             phone_number: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut CKUserIdentity, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKUserIdentity, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CKRecordID", feature = "CKUserIdentity", feature = "block2"))]
@@ -541,17 +519,16 @@ impl CKContainer {
         /// - The user grants the ``CKContainer/ApplicationPermissions/userDiscoverability`` permission for the container.
         ///
         /// This method searches for the user asynchronously and with a low priority. If you want the task to execute the request with a higher priority, create an instance of ``CKDiscoverUserIdentitiesOperation`` and configure it to use the necessary priority.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(discoverUserIdentityWithUserRecordID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverUserIdentityWithUserRecordID_completionHandler(
             &self,
             user_record_id: &CKRecordID,
-            completion_handler: &block2::Block<'static, fn(*mut CKUserIdentity, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKUserIdentity, *mut NSError),
+            >,
         );
     );
 }
@@ -573,16 +550,15 @@ impl CKContainer {
         /// CloudKit can translate any valid email address into a share participant.  If the email address doesn't correspond to a known iCloud account, then at share-accept-time, CloudKit offers the accepting participant a vetting process. The accepting participant uses this vetting process to link the email address to an iCloud account.
         ///
         /// This method searches for the share participant asynchronously and with a low priority. If you want the task to execute with a higher priority, create an instance of ``CKFetchShareParticipantsOperation`` and configure it to use the necessary priority.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchShareParticipantWithEmailAddress:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareParticipantWithEmailAddress_completionHandler(
             &self,
             email_address: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut CKShareParticipant, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKShareParticipant, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
@@ -599,16 +575,15 @@ impl CKContainer {
         /// CloudKit can translate any valid phone number into a share participant.  If the phone number doesn't correspond to a known iCloud account, then at share-accept-time, CloudKit offers the accepting participant a vetting process. The accepting participant uses this vetting process to link the phone number to an iCloud account.
         ///
         /// This method searches for the share participant asynchronously and with a low priority. If you want the task to execute with a higher priority, create an instance of ``CKFetchShareParticipantsOperation`` and configure it to use the necessary priority.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchShareParticipantWithPhoneNumber:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareParticipantWithPhoneNumber_completionHandler(
             &self,
             phone_number: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut CKShareParticipant, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKShareParticipant, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -627,16 +602,15 @@ impl CKContainer {
         /// - An error if a problem occurs, or `nil` if CloudKit successfully retrieves the participant.
         ///
         /// This method searches for the share participant asynchronously and with a low priority. If you want the task to execute with a higher priority, create an instance of ``CKFetchShareParticipantsOperation`` and configure it to use the necessary priority.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchShareParticipantWithUserRecordID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareParticipantWithUserRecordID_completionHandler(
             &self,
             user_record_id: &CKRecordID,
-            completion_handler: &block2::Block<'static, fn(*mut CKShareParticipant, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKShareParticipant, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CKShareMetadata", feature = "block2"))]
@@ -649,16 +623,15 @@ impl CKContainer {
         /// The closure doesn't return a value and takes the following parameters:
         /// - The share metadata, or `nil` if CloudKit can't find the metadata.
         /// - An error if a problem occurs, or `nil` if CloudKit successfully retrieves the metadata.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchShareMetadataWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareMetadataWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<'static, fn(*mut CKShareMetadata, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKShareMetadata, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -677,16 +650,12 @@ impl CKContainer {
         ///
         /// - The corresponding share, or `nil` if CloudKit can't accept the metadata.
         /// - An error if a problem occurs, or `nil` if CloudKit successfully accepts the metadata.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(acceptShareMetadata:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptShareMetadata_completionHandler(
             &self,
             metadata: &CKShareMetadata,
-            completion_handler: &block2::Block<'static, fn(*mut CKShare, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut CKShare, *mut NSError)>,
         );
     );
 }
@@ -706,15 +675,11 @@ impl CKContainer {
         /// A long-lived operation is one that continues to run after the user closes the app. When a long-lived operation completes, or your app or the system cancels it, it's no longer active and CloudKit doesn't include its ID in `outstandingOperationsByIDs`. An operation is complete when the system calls its completion handler.
         ///
         /// Use the ``CKContainer/fetchLongLivedOperationWithID:completionHandler:`` method to fetch the operation for a specific ID.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchAllLongLivedOperationIDsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllLongLivedOperationIDsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<CKOperationID>, *mut NSError),
             >,
@@ -731,16 +696,12 @@ impl CKContainer {
         /// - term `error`: An error if a problem occurs, or `nil` if CloudKit successfully retrieves the operation.
         ///
         /// A long-lived operation is one that continues to run after the user closes your app. When a long-lived operation completes, the system calls its completion block to notify you.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchLongLivedOperationWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchLongLivedOperationWithID_completionHandler(
             &self,
             operation_id: &CKOperationID,
-            completion_handler: &block2::Block<'static, fn(*mut CKOperation, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut CKOperation, *mut NSError)>,
         );
     );
 }

@@ -155,17 +155,13 @@ extern_protocol!(
         /// Parameter `options`: The request options that apply to the request.
         ///
         /// Parameter `completion`: The completion to call to continue device registration.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(beginDeviceRegistrationUsingLoginManager:options:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn beginDeviceRegistrationUsingLoginManager_options_completion(
             &self,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
             options: ASAuthorizationProviderExtensionRequestOptions,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(ASAuthorizationProviderExtensionRegistrationResult),
             >,
@@ -186,10 +182,6 @@ extern_protocol!(
         /// Parameter `options`: The request options that apply to the request.
         ///
         /// Parameter `completion`: The completion to call to continue user registration.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(beginUserRegistrationUsingLoginManager:userName:authenticationMethod:options:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn beginUserRegistrationUsingLoginManager_userName_authenticationMethod_options_completion(
@@ -198,7 +190,7 @@ extern_protocol!(
             user_name: Option<&NSString>,
             authentication_method: ASAuthorizationProviderExtensionAuthenticationMethod,
             options: ASAuthorizationProviderExtensionRequestOptions,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(ASAuthorizationProviderExtensionRegistrationResult),
             >,
@@ -264,10 +256,6 @@ extern_protocol!(
             feature = "objc2-security"
         ))]
         /// The specified keyType will rotate to a new key. The rotation is complete when the completion handler is called.  This is only called by the system for automatic key rotation.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(keyWillRotateForKeyType:newKey:loginManager:completion:))]
         #[unsafe(method_family = none)]
@@ -276,7 +264,7 @@ extern_protocol!(
             key_type: ASAuthorizationProviderExtensionKeyType,
             new_key: &SecKey,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
-            completion: &block2::Block<'static, fn(Bool)>,
+            completion: &block2::SendableBlock<'static, fn(Bool)>,
         );
 
         #[cfg(all(
@@ -284,10 +272,6 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Request the display names for the supplied group identifiers.  The completion key is the identifier and the value is the display name.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(displayNamesForGroups:loginManager:completion:))]
         #[unsafe(method_family = none)]
@@ -295,7 +279,10 @@ extern_protocol!(
             &self,
             groups: &NSArray<NSString>,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
-            completion: &block2::Block<'static, fn(NonNull<NSDictionary<NSString, NSString>>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSDictionary<NSString, NSString>>),
+            >,
         );
 
         #[cfg(all(
@@ -303,17 +290,13 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Request the profile picture for the current user in jpeg format.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(profilePictureForUserUsingLoginManager:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn profilePictureForUserUsingLoginManager_completion(
             &self,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
-            completion: &block2::Block<'static, fn(NonNull<NSData>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<NSData>)>,
         );
     }
 );

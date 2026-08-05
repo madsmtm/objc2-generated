@@ -42,54 +42,38 @@ impl SFSafariTab {
 
         #[cfg(all(feature = "SFSafariPage", feature = "block2"))]
         /// This calls the completion handler passing the active page in the tab.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getActivePageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getActivePageWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut SFSafariPage)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut SFSafariPage)>,
         );
 
         #[cfg(all(feature = "SFSafariPage", feature = "block2"))]
         /// This calls the completion handler passing all the pages in the tab. This includes the active page and any pages being preloaded by Safari.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getPagesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPagesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSArray<SFSafariPage>)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSArray<SFSafariPage>)>,
         );
 
         #[cfg(all(feature = "SFSafariWindow", feature = "block2"))]
         /// This calls completion handler with the window containing this tab. If the tab is pinned, the window is nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getContainingWindowWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getContainingWindowWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut SFSafariWindow)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut SFSafariWindow)>,
         );
 
         #[cfg(feature = "block2")]
         /// Activates this tab in the window it belongs to.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(activateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn()>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         /// Navigates this tab to the given URL. The extension doesn't need permission to access the URL to navigate to it.

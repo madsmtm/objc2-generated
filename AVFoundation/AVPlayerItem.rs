@@ -486,16 +486,12 @@ impl AVPlayerItem {
         ///
         /// - Parameter time:
         /// - Parameter completionHandler:
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_completionHandler(
             &self,
             time: CMTime,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -516,10 +512,6 @@ impl AVPlayerItem {
         /// - Parameter toleranceBefore:
         /// - Parameter toleranceAfter:
         /// - Parameter completionHandler:
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter_completionHandler(
@@ -527,7 +519,7 @@ impl AVPlayerItem {
             time: CMTime,
             tolerance_before: CMTime,
             tolerance_after: CMTime,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         /// Cancel any pending seek requests and invoke the corresponding completion handlers if present.
@@ -559,16 +551,12 @@ impl AVPlayerItem {
         /// - Parameter completionHandler: The block to invoke when seek operation is complete
         ///
         /// - Returns: Returns true if the playhead was moved to the supplied date.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate_completionHandler(
             &self,
             date: &NSDate,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         ) -> bool;
 
         /// Moves player's current item's current time forward or backward by the specified number of steps.

@@ -45,7 +45,7 @@ pub type EKEventSearchCallback = block2::Block<'static, fn(NonNull<EKEvent>, Non
 /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstorerequestaccesscompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type EKEventStoreRequestAccessCompletionHandler =
-    block2::Block<'static, fn(Bool, *mut NSError)>;
+    block2::SendableBlock<'static, fn(Bool, *mut NSError)>;
 
 extern_class!(
     /// The EKEventStore class provides an interface for accessing and manipulating calendar events and reminders.
@@ -112,9 +112,6 @@ impl EKEventStore {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestFullAccessToEventsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestFullAccessToEventsWithCompletion(
@@ -123,9 +120,6 @@ impl EKEventStore {
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestWriteOnlyAccessToEventsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestWriteOnlyAccessToEventsWithCompletion(
@@ -134,9 +128,6 @@ impl EKEventStore {
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestFullAccessToRemindersWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestFullAccessToRemindersWithCompletion(
@@ -145,9 +136,6 @@ impl EKEventStore {
         );
 
         #[cfg(all(feature = "EKTypes", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use -requestFullAccessToEventsWithCompletion:, -requestWriteOnlyAccessToEventsWithCompletion:, or -requestFullAccessToRemindersWithCompletion:"]
         #[unsafe(method(requestAccessToEntityType:completion:))]
         #[unsafe(method_family = none)]

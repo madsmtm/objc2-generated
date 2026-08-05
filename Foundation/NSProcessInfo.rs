@@ -278,15 +278,12 @@ impl NSProcessInfo {
         );
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(performExpiringActivityWithReason:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performExpiringActivityWithReason_usingBlock(
+        pub fn performExpiringActivityWithReason_usingBlock(
             &self,
             reason: &NSString,
-            block: &block2::Block<'static, fn(Bool)>,
+            block: &block2::SendableBlock<'static, fn(Bool)>,
         );
     );
 }

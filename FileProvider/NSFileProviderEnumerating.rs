@@ -248,16 +248,12 @@ extern_protocol!(
         /// NOTE that the change-based observation methods are marked optional for historical
         /// reasons, but are really required. System performance will be severely degraded if
         /// they are not implemented.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(currentSyncAnchorWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn currentSyncAnchorWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderSyncAnchor)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSFileProviderSyncAnchor)>,
         );
     }
 );

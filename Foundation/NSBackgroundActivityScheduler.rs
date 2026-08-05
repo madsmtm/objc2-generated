@@ -29,7 +29,7 @@ unsafe impl RefEncode for NSBackgroundActivityResult {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbackgroundactivitycompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type NSBackgroundActivityCompletionHandler =
-    block2::Block<'static, fn(NSBackgroundActivityResult)>;
+    block2::SendableBlock<'static, fn(NSBackgroundActivityResult)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler?language=objc)
@@ -97,14 +97,14 @@ impl NSBackgroundActivityScheduler {
         pub fn setTolerance(&self, tolerance: NSTimeInterval);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(scheduleWithBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scheduleWithBlock(
+        pub fn scheduleWithBlock(
             &self,
-            block: &block2::Block<'static, fn(NonNull<NSBackgroundActivityCompletionHandler>)>,
+            block: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSBackgroundActivityCompletionHandler>),
+            >,
         );
 
         #[unsafe(method(invalidate))]

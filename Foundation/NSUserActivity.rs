@@ -199,14 +199,11 @@ impl NSUserActivity {
         pub fn invalidate(&self);
 
         #[cfg(all(feature = "NSError", feature = "NSStream", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getContinuationStreamsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getContinuationStreamsWithCompletionHandler(
+        pub fn getContinuationStreamsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSInputStream, *mut NSOutputStream, *mut NSError),
             >,
@@ -265,24 +262,18 @@ impl NSUserActivity {
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deleteSavedUserActivitiesWithPersistentIdentifiers_completionHandler(
+        pub fn deleteSavedUserActivitiesWithPersistentIdentifiers_completionHandler(
             persistent_identifiers: &NSArray<NSUserActivityPersistentIdentifier>,
-            handler: &block2::Block<'static, fn()>,
+            handler: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(deleteAllSavedUserActivitiesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deleteAllSavedUserActivitiesWithCompletionHandler(
-            handler: &block2::Block<'static, fn()>,
+        pub fn deleteAllSavedUserActivitiesWithCompletionHandler(
+            handler: &block2::SendableBlock<'static, fn()>,
         );
     );
 }

@@ -108,16 +108,13 @@ extern_protocol!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(filePromiseProvider:writePromiseToURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn filePromiseProvider_writePromiseToURL_completionHandler(
+        fn filePromiseProvider_writePromiseToURL_completionHandler(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
             url: &NSURL,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[optional]

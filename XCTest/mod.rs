@@ -118,15 +118,11 @@ impl XCTest {
         /// Parameter `completion`: A block which must be called to signal completion of set up.
         /// May be called asynchronously. If the block's `error` argument is non-nil, the specified error
         /// is recorded as a thrown error issue.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(setUpWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUpWithCompletionHandler(
+        pub fn setUpWithCompletionHandler(
             &self,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// This method is called before invoking `setUp` and the test method.
@@ -159,15 +155,11 @@ impl XCTest {
         /// Parameter `completion`: A block which must be called to signal completion of tear down.
         /// May be called asynchronously. If the block's `error` argument is non-nil, the specified error
         /// is recorded as a thrown error issue.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(tearDownWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tearDownWithCompletionHandler(
+        pub fn tearDownWithCompletionHandler(
             &self,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }
@@ -4369,7 +4361,7 @@ impl DefaultRetained for XCTestExpectation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xckeyvalueobservingexpectationhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type XCKeyValueObservingExpectationHandler =
-    block2::Block<'static, fn(NonNull<AnyObject>, NonNull<NSDictionary>) -> Bool>;
+    block2::SendableBlock<'static, fn(NonNull<AnyObject>, NonNull<NSDictionary>) -> Bool>;
 
 extern_class!(
     /// Expectation subclass for waiting on a condition defined Key Value Observation of a key path for an object.
@@ -4473,7 +4465,8 @@ impl XCTKVOExpectation {
         ///
         /// # Safety
         ///
-        /// The returned block must be sendable.
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
         pub unsafe fn handler(&self) -> *mut XCKeyValueObservingExpectationHandler;
@@ -4482,13 +4475,9 @@ impl XCTKVOExpectation {
         /// Setter for [`handler`][Self::handler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHandler(&self, handler: Option<&XCKeyValueObservingExpectationHandler>);
+        pub fn setHandler(&self, handler: Option<&XCKeyValueObservingExpectationHandler>);
     );
 }
 
@@ -4504,7 +4493,7 @@ impl XCTKVOExpectation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xcnotificationexpectationhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type XCNotificationExpectationHandler =
-    block2::Block<'static, fn(NonNull<NSNotification>) -> Bool>;
+    block2::SendableBlock<'static, fn(NonNull<NSNotification>) -> Bool>;
 
 extern_class!(
     /// Expectation subclass for waiting on a condition defined by an NSNotification.
@@ -4586,7 +4575,7 @@ impl XCTNSNotificationExpectation {
         ///
         /// # Safety
         ///
-        /// The returned block must be sendable.
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
         pub unsafe fn handler(&self) -> *mut XCNotificationExpectationHandler;
@@ -4595,13 +4584,9 @@ impl XCTNSNotificationExpectation {
         /// Setter for [`handler`][Self::handler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHandler(&self, handler: Option<&XCNotificationExpectationHandler>);
+        pub fn setHandler(&self, handler: Option<&XCNotificationExpectationHandler>);
     );
 }
 
@@ -4612,7 +4597,7 @@ impl XCTNSNotificationExpectation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xcpredicateexpectationhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type XCPredicateExpectationHandler = block2::Block<'static, fn() -> Bool>;
+pub type XCPredicateExpectationHandler = block2::SendableBlock<'static, fn() -> Bool>;
 
 extern_class!(
     /// Expectation subclass for waiting on a condition defined by an NSPredicate and an object.
@@ -4669,25 +4654,17 @@ impl XCTNSPredicateExpectation {
 
         #[cfg(feature = "block2")]
         /// Allows the caller to install a special handler to do custom evaluation of predicate and its object.
-        ///
-        /// # Safety
-        ///
-        /// The returned block must be sendable.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handler(&self) -> *mut XCPredicateExpectationHandler;
+        pub fn handler(&self) -> *mut XCPredicateExpectationHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`handler`][Self::handler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHandler(&self, handler: Option<&XCPredicateExpectationHandler>);
+        pub fn setHandler(&self, handler: Option<&XCPredicateExpectationHandler>);
     );
 }
 
@@ -4700,7 +4677,7 @@ impl XCTNSPredicateExpectation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xcwaitcompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type XCWaitCompletionHandler = block2::Block<'static, fn(*mut NSError)>;
+pub type XCWaitCompletionHandler = block2::SendableBlock<'static, fn(*mut NSError)>;
 
 /// AsynchronousTesting.
 ///
@@ -4738,13 +4715,9 @@ impl XCTestCase {
         /// -waitForExpectationsWithTimeout:handler: runs the run loop while handling events until all expectations
         /// are fulfilled or the timeout is reached. Clients should not manipulate the run
         /// loop while using this API.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(waitForExpectationsWithTimeout:handler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectationsWithTimeout_handler(
+        pub fn waitForExpectationsWithTimeout_handler(
             &self,
             timeout: NSTimeInterval,
             handler: Option<&XCWaitCompletionHandler>,
@@ -4899,8 +4872,7 @@ impl XCTestCase {
         ///
         /// # Safety
         ///
-        /// - `object_to_observe` should be of the correct type.
-        /// - `handler` block must be sendable.
+        /// `object_to_observe` should be of the correct type.
         #[unsafe(method(keyValueObservingExpectationForObject:keyPath:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyValueObservingExpectationForObject_keyPath_handler(
@@ -4930,8 +4902,7 @@ impl XCTestCase {
         ///
         /// # Safety
         ///
-        /// - `object_to_observe` should be of the correct type.
-        /// - `handler` block must be sendable.
+        /// `object_to_observe` should be of the correct type.
         #[unsafe(method(expectationForNotification:object:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectationForNotification_object_handler(
@@ -4964,8 +4935,7 @@ impl XCTestCase {
         ///
         /// # Safety
         ///
-        /// - `object_to_observe` should be of the correct type.
-        /// - `handler` block must be sendable.
+        /// `object_to_observe` should be of the correct type.
         #[unsafe(method(expectationForNotification:object:notificationCenter:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectationForNotification_object_notificationCenter_handler(
@@ -4989,8 +4959,7 @@ impl XCTestCase {
         ///
         /// # Safety
         ///
-        /// - `object` should be of the correct type.
-        /// - `handler` block must be sendable.
+        /// `object` should be of the correct type.
         #[unsafe(method(expectationForPredicate:evaluatedWithObject:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectationForPredicate_evaluatedWithObject_handler(
@@ -5014,7 +4983,7 @@ extern_conformance!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctdarwinnotificationexpectationhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type XCTDarwinNotificationExpectationHandler = block2::Block<'static, fn() -> Bool>;
+pub type XCTDarwinNotificationExpectationHandler = block2::SendableBlock<'static, fn() -> Bool>;
 
 extern_class!(
     /// Expectation subclass for waiting on a condition defined by a Darwin notification. The notification
@@ -5055,25 +5024,17 @@ impl XCTDarwinNotificationExpectation {
 
         #[cfg(feature = "block2")]
         /// Allows the caller to install a special handler to do custom evaluation when the notification is posted.
-        ///
-        /// # Safety
-        ///
-        /// The returned block must be sendable.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handler(&self) -> *mut XCTDarwinNotificationExpectationHandler;
+        pub fn handler(&self) -> *mut XCTDarwinNotificationExpectationHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`handler`][Self::handler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHandler(&self, handler: Option<&XCTDarwinNotificationExpectationHandler>);
+        pub fn setHandler(&self, handler: Option<&XCTDarwinNotificationExpectationHandler>);
     );
 }
 

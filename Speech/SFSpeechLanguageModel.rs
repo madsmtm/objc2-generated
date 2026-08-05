@@ -137,9 +137,6 @@ extern_conformance!(
 impl SFSpeechLanguageModel {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:))]
         #[unsafe(method_family = none)]
@@ -147,13 +144,10 @@ impl SFSpeechLanguageModel {
             asset: &NSURL,
             client_identifier: &NSString,
             configuration: &SFSpeechLanguageModelConfiguration,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(prepareCustomLanguageModelForUrl:clientIdentifier:configuration:ignoresCache:completion:))]
         #[unsafe(method_family = none)]
@@ -162,7 +156,7 @@ impl SFSpeechLanguageModel {
             client_identifier: &NSString,
             configuration: &SFSpeechLanguageModelConfiguration,
             ignores_cache: bool,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -172,16 +166,12 @@ impl SFSpeechLanguageModel {
         /// - asset: The URL of a file containing custom training data. Create this file with ``SFCustomLanguageModelData/export(to:)``.
         /// - configuration: An object listing the URLs at which this method should create the language model and compiled vocabulary from the training data.
         /// - completion: Called when the language model has been created.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(prepareCustomLanguageModelForUrl:configuration:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareCustomLanguageModelForUrl_configuration_completion(
             asset: &NSURL,
             configuration: &SFSpeechLanguageModelConfiguration,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -192,17 +182,13 @@ impl SFSpeechLanguageModel {
         /// - configuration: An object listing the URLs at which this method should create the language model and compiled vocabulary from the training data.
         /// - ignoresCache: If `true`, the language model identified by the configuration will be recreated even if the `asset` file is unchanged.
         /// - completion: Called when the language model has been created.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(prepareCustomLanguageModelForUrl:configuration:ignoresCache:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareCustomLanguageModelForUrl_configuration_ignoresCache_completion(
             asset: &NSURL,
             configuration: &SFSpeechLanguageModelConfiguration,
             ignores_cache: bool,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

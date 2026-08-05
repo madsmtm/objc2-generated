@@ -186,15 +186,11 @@ extern_protocol!(
         /// The returned MEFileInfo object.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFileInfoWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFileInfoWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut MEFileInfo, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut MEFileInfo, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
@@ -207,15 +203,11 @@ extern_protocol!(
         /// The returned NSArray of AVMetadataItem objects.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadMetadataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadMetadataWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVMetadataItem>, *mut NSError),
             >,
@@ -231,15 +223,11 @@ extern_protocol!(
         /// The returned NSArray of METrackReader objects.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackReadersWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadTrackReadersWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<ProtocolObject<dyn METrackReader>>, *mut NSError),
             >,
@@ -255,16 +243,12 @@ extern_protocol!(
         /// The returned MEFormatReaderParseAdditionalFragmentsStatus flags with status information.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil. Returns an error of MEFormatReaderErrorUnsupportedFeature if the MEFormatReaderInstantiationOptions property allowIncrementalFragmentParsing was not set to YES at creation time. Returns an error of MEFormatReaderErrorParsingFailure if there was a parsing failure.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(parseAdditionalFragmentsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn parseAdditionalFragmentsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(MEFormatReaderParseAdditionalFragmentsStatus, *mut NSError),
             >,
@@ -401,15 +385,11 @@ extern_protocol!(
         /// The returned METrackInfo object if the method succeeds, otherwise nil.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackInfoWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadTrackInfoWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut METrackInfo, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut METrackInfo, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -424,16 +404,12 @@ extern_protocol!(
         /// The returned MESampleCursor if the method succeeds, otherwise nil.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(generateSampleCursorAtPresentationTimeStamp:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn generateSampleCursorAtPresentationTimeStamp_completionHandler(
             &self,
             presentation_time_stamp: CMTime,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut ProtocolObject<dyn MESampleCursor>, *mut NSError),
             >,
@@ -449,15 +425,11 @@ extern_protocol!(
         /// The returned MESampleCursor if the method succeeds, otherwise nil.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(generateSampleCursorAtFirstSampleInDecodeOrderWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn generateSampleCursorAtFirstSampleInDecodeOrderWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut ProtocolObject<dyn MESampleCursor>, *mut NSError),
             >,
@@ -473,15 +445,11 @@ extern_protocol!(
         /// The returned MESampleCursor if the method succeeds, otherwise nil.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(generateSampleCursorAtLastSampleInDecodeOrderWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn generateSampleCursorAtLastSampleInDecodeOrderWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut ProtocolObject<dyn MESampleCursor>, *mut NSError),
             >,
@@ -497,16 +465,12 @@ extern_protocol!(
         /// A valid duration if the method succeeds, otherwise kCMTimeInvalid.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadUneditedDurationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadUneditedDurationWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(CMTime, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(CMTime, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -519,16 +483,12 @@ extern_protocol!(
         /// A valid data length if the method succeeds, otherwise 0.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadTotalSampleDataLengthWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadTotalSampleDataLengthWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(i64, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(i64, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -539,16 +499,12 @@ extern_protocol!(
         /// A valid data rate if the method succeeds, otherwise 0.0.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadEstimatedDataRateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadEstimatedDataRateWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(f32, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(f32, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
@@ -561,16 +517,12 @@ extern_protocol!(
         /// An NSArray of AVMetadataItem objects if the method succeeds, otherwise nil.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadMetadataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadMetadataWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVMetadataItem>, *mut NSError),
             >,
@@ -921,16 +873,12 @@ extern_protocol!(
         /// The final count of steps taken.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(stepInDecodeOrderByCount:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn stepInDecodeOrderByCount_completionHandler(
             &self,
             step_count: i64,
-            completion_handler: &block2::Block<'static, fn(i64, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(i64, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -948,16 +896,12 @@ extern_protocol!(
         /// The final count of steps taken.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(stepInPresentationOrderByCount:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn stepInPresentationOrderByCount_completionHandler(
             &self,
             step_count: i64,
-            completion_handler: &block2::Block<'static, fn(i64, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(i64, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -974,16 +918,12 @@ extern_protocol!(
         /// YES if the request attempted to advance the cursor beyond the track limits, otherwise NO.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(stepByDecodeTime:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn stepByDecodeTime_completionHandler(
             &self,
             delta_decode_time: CMTime,
-            completion_handler: &block2::Block<'static, fn(CMTime, Bool, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(CMTime, Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -1000,16 +940,12 @@ extern_protocol!(
         /// YES if the request attempted to advance the cursor beyond the track limits, otherwise NO.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(stepByPresentationTime:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn stepByPresentationTime_completionHandler(
             &self,
             delta_presentation_time: CMTime,
-            completion_handler: &block2::Block<'static, fn(CMTime, Bool, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(CMTime, Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-av-foundation")]
@@ -1168,17 +1104,16 @@ extern_protocol!(
         /// A CMSampleBufferRef with the newly created sample buffer. If the sample cursor is implemented in Objective-C, it is the responsibility of the sample cursor implementation to balance the creation of this sample buffer by calling CFRelease.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadSampleBufferContainingSamplesToEndCursor:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadSampleBufferContainingSamplesToEndCursor_completionHandler(
             &self,
             end_sample_cursor: Option<&ProtocolObject<dyn MESampleCursor>>,
-            completion_handler: &block2::Block<'static, fn(*mut CMSampleBuffer, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CMSampleBuffer, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -1192,16 +1127,12 @@ extern_protocol!(
         /// The returned NSDictionary should conform to a CFPropertyList.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(loadPostDecodeProcessingMetadataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadPostDecodeProcessingMetadataWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSDictionary<NSString, AnyObject>, *mut NSError),
             >,
@@ -1859,8 +1790,7 @@ impl MEByteSource {
         ///
         /// # Safety
         ///
-        /// - `dest` must be a valid pointer.
-        /// - `completion_handler` block must be sendable.
+        /// `dest` must be a valid pointer.
         #[unsafe(method(readDataOfLength:fromOffset:toDestination:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readDataOfLength_fromOffset_toDestination_completionHandler(
@@ -1868,7 +1798,7 @@ impl MEByteSource {
             length: usize,
             offset: i64,
             dest: NonNull<c_void>,
-            completion_handler: &block2::Block<'static, fn(usize, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(usize, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1885,17 +1815,13 @@ impl MEByteSource {
         /// The NSData object holding the data that have been read. The NSData length property will indicate the actual number of bytes read.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil. Returns MEErrorEndOfStream if no more bytes can be read.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(readDataOfLength:fromOffset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readDataOfLength_fromOffset_completionHandler(
             &self,
             length: usize,
             offset: i64,
-            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         /// Reads bytes from an MEByteSource synchronously into a buffer.

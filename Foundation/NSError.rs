@@ -247,13 +247,13 @@ impl NSError {
         #[cfg(all(feature = "NSString", feature = "block2"))]
         /// # Safety
         ///
-        /// `provider` block must be sendable.
+        /// `provider` block's return must be a valid pointer or null.
         #[unsafe(method(setUserInfoValueProviderForDomain:provider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfoValueProviderForDomain_provider(
             error_domain: &NSErrorDomain,
             provider: Option<
-                &block2::Block<
+                &block2::SendableBlock<
                     'static,
                     fn(NonNull<NSError>, NonNull<NSErrorUserInfoKey>) -> *mut AnyObject,
                 >,
@@ -263,12 +263,13 @@ impl NSError {
         #[cfg(all(feature = "NSString", feature = "block2"))]
         /// # Safety
         ///
-        /// The returned block must be sendable.
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(userInfoValueProviderForDomain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfoValueProviderForDomain(
             error_domain: &NSErrorDomain,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::SendableBlock<
             'static,
             fn(NonNull<NSError>, NonNull<NSErrorUserInfoKey>) -> *mut AnyObject,
         >;

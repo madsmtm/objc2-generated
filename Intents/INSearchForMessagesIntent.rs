@@ -180,16 +180,15 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForMessagesIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleSearchForMessages:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSearchForMessages_completion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSearchForMessagesIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSearchForMessagesIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -209,17 +208,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForMessagesIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSearchForMessages:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmSearchForMessages_completion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSearchForMessagesIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSearchForMessagesIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -239,17 +237,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRecipientsForSearchForMessages:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveRecipientsForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<'static, fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<INPersonResolutionResult>>),
+            >,
         );
 
         #[cfg(all(
@@ -258,16 +255,16 @@ extern_protocol!(
             feature = "INPersonResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSendersForSearchForMessages:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveSendersForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<'static, fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<INPersonResolutionResult>>),
+            >,
         );
 
         #[cfg(all(
@@ -276,16 +273,13 @@ extern_protocol!(
             feature = "INMessageAttributeOptionsResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveAttributesForSearchForMessages:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveAttributesForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INMessageAttributeOptionsResolutionResult>),
             >,
@@ -297,16 +291,16 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDateTimeRangeForSearchForMessages:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveDateTimeRangeForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INDateComponentsRangeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -315,9 +309,6 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "resolveGroupNamesForSearchForMessages:withCompletion: is deprecated. Use resolveSpeakableGroupNamesForSearchForMessages:withCompletion: instead"]
         #[optional]
         #[unsafe(method(resolveGroupNamesForSearchForMessages:withCompletion:))]
@@ -325,7 +316,10 @@ extern_protocol!(
         unsafe fn resolveGroupNamesForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<'static, fn(NonNull<NSArray<INStringResolutionResult>>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<INStringResolutionResult>>),
+            >,
         );
 
         #[cfg(all(
@@ -334,16 +328,13 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSpeakableGroupNamesForSearchForMessages:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveSpeakableGroupNamesForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<INSpeakableStringResolutionResult>>),
             >,

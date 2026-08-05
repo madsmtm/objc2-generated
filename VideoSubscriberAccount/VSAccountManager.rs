@@ -100,14 +100,16 @@ impl VSAccountManager {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(checkAccessStatusWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkAccessStatusWithOptions_completionHandler(
             &self,
             options: &NSDictionary<VSCheckAccessOption, AnyObject>,
-            completion_handler: &block2::Block<'static, fn(VSAccountAccessStatus, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(VSAccountAccessStatus, *mut NSError),
+            >,
         );
 
         #[cfg(all(

@@ -153,29 +153,22 @@ impl HMTimerTrigger {
         /// The NSError provides more information on the status of the request,
         /// error will be nil on success. HMErrorCodeDateMustBeOnSpecifiedBoundaries will
         /// be returned if the fireDate includes a seconds value other than 0.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateFireDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateFireDate_completionHandler(
             &self,
             fire_date: &NSDate,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use HMEventTrigger with HMCalendarEvent for triggers based on a time-zone-relative time of day"]
         #[unsafe(method(updateTimeZone:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateTimeZone_completionHandler(
             &self,
             time_zone: Option<&NSTimeZone>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -196,16 +189,12 @@ impl HMTimerTrigger {
         /// 5 minutes;
         /// HMErrorCodeRecurrenceTooLarge is returned if the recurrence interval is
         /// greater than 5 weeks. *                   error will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateRecurrence:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateRecurrence_completionHandler(
             &self,
             recurrence: Option<&NSDateComponents>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

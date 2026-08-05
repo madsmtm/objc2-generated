@@ -57,14 +57,14 @@ impl MKReverseGeocodingRequest {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "MKMapItem", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getMapItemsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getMapItemsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSArray<MKMapItem>, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSArray<MKMapItem>, *mut NSError),
+            >,
         );
 
         #[unsafe(method(cancel))]

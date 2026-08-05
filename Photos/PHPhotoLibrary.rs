@@ -104,14 +104,11 @@ impl PHPhotoLibrary {
         ) -> PHAuthorizationStatus;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(requestAuthorizationForAccessLevel:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationForAccessLevel_handler(
             access_level: PHAccessLevel,
-            handler: &block2::Block<'static, fn(PHAuthorizationStatus)>,
+            handler: &block2::SendableBlock<'static, fn(PHAuthorizationStatus)>,
         );
 
         /// Deprecated and replaced by authorizationStatusForAccessLevel:, will return
@@ -148,22 +145,15 @@ impl PHPhotoLibrary {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
-        /// # Safety
-        ///
-        /// - `change_block` block must be sendable.
-        /// - `completion_handler` block must be sendable.
         #[unsafe(method(performChanges:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performChanges_completionHandler(
             &self,
             change_block: &dispatch_block_t,
-            completion_handler: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(feature = "dispatch2")]
-        /// # Safety
-        ///
-        /// `change_block` block must be sendable.
         #[unsafe(method(performChangesAndWait:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn performChangesAndWait_error(

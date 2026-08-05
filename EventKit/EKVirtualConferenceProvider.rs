@@ -41,15 +41,11 @@ impl EKVirtualConferenceProvider {
         /// call this block with nil for both arguments. Similarly, do not call this block with both
         /// a non-nil array and a non-nil NSError. This block must be called when your extension has
         /// finished its work.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchAvailableRoomTypesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAvailableRoomTypesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<EKVirtualConferenceRoomTypeDescriptor>, *mut NSError),
             >,
@@ -74,16 +70,12 @@ impl EKVirtualConferenceProvider {
         /// both arguments. Similarly, do not call this block with both a non-nil
         /// EKVirtualConferenceDescriptor and a non-nil NSError.  This block must be called when your
         /// extension has finished its work.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchVirtualConferenceForIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchVirtualConferenceForIdentifier_completionHandler(
             &self,
             identifier: &EKVirtualConferenceRoomTypeIdentifier,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut EKVirtualConferenceDescriptor, *mut NSError),
             >,

@@ -648,15 +648,11 @@ impl UIImage {
         ///
         ///
         /// Note: The prepared `UIImage` is not related to the original image. If the properties of the screen (such as its resolution or color gamut) change, or if the image is displayed on a different screen that the one it was prepared for, it may not render correctly.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(prepareForDisplayWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prepareForDisplayWithCompletionHandler(
+        pub fn prepareForDisplayWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut UIImage)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut UIImage)>,
         );
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -665,15 +661,12 @@ impl UIImage {
         pub fn imageByPreparingThumbnailOfSize(&self, size: CGSize) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(prepareThumbnailOfSize:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prepareThumbnailOfSize_completionHandler(
+        pub fn prepareThumbnailOfSize_completionHandler(
             &self,
             size: CGSize,
-            completion_handler: &block2::Block<'static, fn(*mut UIImage)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut UIImage)>,
         );
 
         /// Indicates that this image is tagged for display of high dynamic range content.

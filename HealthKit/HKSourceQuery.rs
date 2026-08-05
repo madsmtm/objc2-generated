@@ -39,17 +39,13 @@ impl HKSourceQuery {
         /// Parameter `objectPredicate`: The predicate which samples must match.
         ///
         /// Parameter `completionHandler`: The block to be called when the query has finished executing.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(initWithSampleType:samplePredicate:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleType_samplePredicate_completionHandler(
             this: Allocated<Self>,
             sample_type: &HKSampleType,
             object_predicate: Option<&NSPredicate>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NonNull<HKSourceQuery>, *mut NSSet<HKSource>, *mut NSError),
             >,

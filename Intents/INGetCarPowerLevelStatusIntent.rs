@@ -96,16 +96,12 @@ extern_protocol!(
         ///
         ///
         /// See: INGetCarPowerLevelStatusIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleGetCarPowerLevelStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetCarPowerLevelStatus_completion(
             &self,
             intent: &INGetCarPowerLevelStatusIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INGetCarPowerLevelStatusIntentResponse>),
             >,
@@ -147,17 +143,13 @@ extern_protocol!(
         ///
         ///
         /// See: INGetCarPowerLevelStatusIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetCarPowerLevelStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmGetCarPowerLevelStatus_completion(
             &self,
             intent: &INGetCarPowerLevelStatusIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INGetCarPowerLevelStatusIntentResponse>),
             >,
@@ -180,17 +172,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForGetCarPowerLevelStatus:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCarNameForGetCarPowerLevelStatus_withCompletion(
             &self,
             intent: &INGetCarPowerLevelStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

@@ -38,17 +38,13 @@ extern_protocol!(
         /// Parameter `context`: Extension context which offers API to defer request to network if necessary.
         ///
         /// Parameter `completion`: Completion block for returning a response.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleQueryRequest:context:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleQueryRequest_context_completion(
             &self,
             query_request: &ILMessageFilterQueryRequest,
             context: &ILMessageFilterExtensionContext,
-            completion: &block2::Block<'static, fn(NonNull<ILMessageFilterQueryResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<ILMessageFilterQueryResponse>)>,
         );
     }
 );

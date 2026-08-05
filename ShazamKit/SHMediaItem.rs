@@ -390,15 +390,11 @@ impl SHMediaItem {
         ///
         /// - term `mediaItem`: A media item.
         /// - term `error`: An error object if a problem occurs when fetching the media item; otherwise, `nil`.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchMediaItemWithShazamID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchMediaItemWithShazamID_completionHandler(
             shazam_id: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut SHMediaItem, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut SHMediaItem, *mut NSError)>,
         );
 
         /// Accesses the property for the specified key for reading.

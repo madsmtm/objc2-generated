@@ -19,7 +19,7 @@ pub const CHHapticTimeImmediate: NSTimeInterval = 0.0;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticcompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CHHapticCompletionHandler = block2::Block<'static, fn(*mut NSError)>;
+pub type CHHapticCompletionHandler = block2::SendableBlock<'static, fn(*mut NSError)>;
 
 /// Constants indicating what the engine should do in response to the finished handler being called.
 ///
@@ -329,10 +329,6 @@ impl CHHapticEngine {
         /// Asynchronously start the engine. The handler will be called when the operation completes.
         ///
         /// The handler is guaranteed to be called on either success or failure.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
@@ -351,10 +347,6 @@ impl CHHapticEngine {
         /// Asynchronously stop the engine.  The handler will be called when the operation completes.
         ///
         /// The handler is guaranteed to be called on either success or failure.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(stopWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWithCompletionHandler(

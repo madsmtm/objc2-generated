@@ -28,15 +28,11 @@ impl LAPublicKey {
         /// Exports public key bytes.
         ///
         /// Parameter `handler`: Completion handler with the raw bytes of the public key or an error on failure
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(exportBytesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportBytesWithCompletion(
             &self,
-            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-security"))]
@@ -49,17 +45,13 @@ impl LAPublicKey {
         /// `kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA256AESGCM`.
         ///
         /// Parameter `handler`: Completion handler with the cipher text or an error on failure.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(encryptData:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encryptData_secKeyAlgorithm_completion(
             &self,
             data: &NSData,
             algorithm: &SecKeyAlgorithm,
-            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-security")]
@@ -83,10 +75,6 @@ impl LAPublicKey {
         /// `SecKeyAlgorithm`suitable for verifying signatures with this key –e.g:
         /// `kSecKeyAlgorithmECDSASignatureMessageX962SHA256`
         /// Parameter `handler`: Completion handler with the signature of given data or an error on failure.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(verifyData:signature:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn verifyData_signature_secKeyAlgorithm_completion(
@@ -94,7 +82,7 @@ impl LAPublicKey {
             signed_data: &NSData,
             signature: &NSData,
             algorithm: &SecKeyAlgorithm,
-            handler: &block2::Block<'static, fn(*mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "objc2-security")]

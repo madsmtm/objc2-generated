@@ -49,16 +49,12 @@ impl AVAudioUnit {
         /// The returned AVAudioUnit instance normally will be of a subclass (AVAudioUnitEffect,
         /// AVAudioUnitGenerator, AVAudioUnitMIDIInstrument, or AVAudioUnitTimeEffect), selected
         /// according to the component's type.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(instantiateWithComponentDescription:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateWithComponentDescription_options_completionHandler(
             audio_component_description: AudioComponentDescription,
             options: AudioComponentInstantiationOptions,
-            completion_handler: &block2::Block<'static, fn(*mut AVAudioUnit, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut AVAudioUnit, *mut NSError)>,
         );
 
         /// Load an audio unit preset.

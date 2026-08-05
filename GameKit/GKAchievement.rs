@@ -30,15 +30,11 @@ impl GKAchievement {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// Asynchronously load all achievements for the local player
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadAchievementsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAchievementsWithCompletionHandler(
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut NSArray<GKAchievement>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<GKAchievement>, *mut NSError)>,
             >,
         );
 
@@ -47,14 +43,10 @@ impl GKAchievement {
         /// Possible reasons for error:
         /// 1. Local player not authenticated
         /// 2. Communications failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(resetAchievementsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetAchievementsWithCompletionHandler(
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         /// Designated initializer
@@ -81,15 +73,11 @@ impl GKAchievement {
         /// 1. Local player not authenticated
         /// 2. Communications failure
         /// 3. Reported Achievement does not exist
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(reportAchievements:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportAchievements_withCompletionHandler(
             achievements: &NSArray<GKAchievement>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         /// Achievement identifier
@@ -159,15 +147,12 @@ impl GKAchievement {
 impl GKAchievement {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(reportAchievementWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportAchievementWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[deprecated]

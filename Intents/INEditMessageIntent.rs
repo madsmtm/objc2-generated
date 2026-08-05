@@ -99,16 +99,12 @@ extern_protocol!(
         ///
         ///
         /// See: INEditMessageIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleEditMessage:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleEditMessage_completion(
             &self,
             intent: &INEditMessageIntent,
-            completion: &block2::Block<'static, fn(NonNull<INEditMessageIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INEditMessageIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -128,17 +124,13 @@ extern_protocol!(
         ///
         ///
         /// See: INEditMessageIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmEditMessage:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmEditMessage_completion(
             &self,
             intent: &INEditMessageIntent,
-            completion: &block2::Block<'static, fn(NonNull<INEditMessageIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INEditMessageIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -158,17 +150,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveEditedContentForEditMessage:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveEditedContentForEditMessage_withCompletion(
             &self,
             intent: &INEditMessageIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStringResolutionResult>)>,
         );
     }
 );

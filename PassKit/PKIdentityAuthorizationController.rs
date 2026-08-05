@@ -25,16 +25,12 @@ impl PKIdentityAuthorizationController {
         #[cfg(all(feature = "PKIdentityDocumentDescriptor", feature = "block2"))]
         /// Determines if a document can be requested, taking into account the entitlement of the
         /// calling process as well as the state of this device.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(checkCanRequestDocument:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkCanRequestDocument_completion(
             &self,
             descriptor: &ProtocolObject<dyn PKIdentityDocumentDescriptor>,
-            completion: &block2::Block<'static, fn(Bool)>,
+            completion: &block2::SendableBlock<'static, fn(Bool)>,
         );
 
         #[cfg(all(
@@ -51,16 +47,12 @@ impl PKIdentityAuthorizationController {
         /// will be returned.
         /// Only one request can be in progress at a time, otherwise PKIdentityErrorRequestAlreadyInProgress
         /// will be returned.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestDocument:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestDocument_completion(
             &self,
             request: &PKIdentityRequest,
-            completion: &block2::Block<'static, fn(*mut PKIdentityDocument, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut PKIdentityDocument, *mut NSError)>,
         );
 
         /// If there is a request in progress through requestDocument, this will cancel that request

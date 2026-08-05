@@ -223,15 +223,15 @@ impl NLTagger {
         ) -> Retained<NSArray<NLGazetteer>>;
 
         #[cfg(all(feature = "NLLanguage", feature = "NLTagScheme", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestAssetsForLanguage:tagScheme:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAssetsForLanguage_tagScheme_completionHandler(
             language: &NLLanguage,
             tag_scheme: &NLTagScheme,
-            completion_handler: &block2::Block<'static, fn(NLTaggerAssetsResult, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NLTaggerAssetsResult, *mut NSError),
+            >,
         );
     );
 }

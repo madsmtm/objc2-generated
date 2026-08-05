@@ -197,17 +197,13 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use updateEvents:completionHandler: instead"]
         #[unsafe(method(addEvent:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addEvent_completionHandler(
             &self,
             event: &HMEvent,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMEvent", feature = "block2"))]
@@ -220,17 +216,13 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "Use updateEvents:completionHandler: instead"]
         #[unsafe(method(removeEvent:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeEvent_completionHandler(
             &self,
             event: &HMEvent,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMEvent", feature = "block2"))]
@@ -243,16 +235,12 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateEvents:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateEvents_completionHandler(
             &self,
             events: &NSArray<HMEvent>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMEvent", feature = "block2"))]
@@ -265,16 +253,12 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateEndEvents:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateEndEvents_completionHandler(
             &self,
             end_events: &NSArray<HMEvent>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -287,16 +271,12 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request,
         /// error will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updatePredicate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatePredicate_completionHandler(
             &self,
             predicate: Option<&NSPredicate>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -309,16 +289,12 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request,
         /// error will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateRecurrences:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateRecurrences_completionHandler(
             &self,
             recurrences: Option<&NSArray<NSDateComponents>>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -331,16 +307,12 @@ impl HMEventTrigger {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateExecuteOnce:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateExecuteOnce_completionHandler(
             &self,
             execute_once: bool,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

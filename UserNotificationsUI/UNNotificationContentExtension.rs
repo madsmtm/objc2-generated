@@ -202,17 +202,16 @@ extern_protocol!(
         /// - term `dismiss`: The response you want to take for the notification. For a list of
         /// possible options, see
         /// ``UserNotificationsUI/UNNotificationContentExtensionResponseOption``.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(didReceiveNotificationResponse:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn didReceiveNotificationResponse_completionHandler(
             &self,
             response: &UNNotificationResponse,
-            completion: &block2::Block<'static, fn(UNNotificationContentExtensionResponseOption)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(UNNotificationContentExtensionResponseOption),
+            >,
         );
 
         /// The type of media button type to display.

@@ -13,14 +13,13 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// - `payload` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `payload` generic should be of the correct type.
         #[unsafe(method(didReceiveLocationPushPayload:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn didReceiveLocationPushPayload_completion(
             &self,
             payload: &NSDictionary<NSString, AnyObject>,
-            completion: &block2::Block<'static, fn()>,
+            completion: &block2::SendableBlock<'static, fn()>,
         );
 
         #[optional]

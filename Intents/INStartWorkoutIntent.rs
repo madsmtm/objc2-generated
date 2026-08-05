@@ -122,16 +122,12 @@ extern_protocol!(
         ///
         ///
         /// See: INStartWorkoutIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleStartWorkout:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleStartWorkout_completion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStartWorkoutIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStartWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -151,17 +147,13 @@ extern_protocol!(
         ///
         ///
         /// See: INStartWorkoutIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmStartWorkout:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmStartWorkout_completion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStartWorkoutIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStartWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -181,17 +173,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveWorkoutNameForStartWorkout:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveWorkoutNameForStartWorkout_withCompletion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -200,16 +191,13 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveGoalValueForStartWorkout:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveGoalValueForStartWorkout_withCompletion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDoubleResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INDoubleResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -218,16 +206,16 @@ extern_protocol!(
             feature = "INWorkoutGoalUnitTypeResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveWorkoutGoalUnitTypeForStartWorkout:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveWorkoutGoalUnitTypeForStartWorkout_withCompletion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INWorkoutGoalUnitTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INWorkoutGoalUnitTypeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -236,16 +224,16 @@ extern_protocol!(
             feature = "INWorkoutLocationTypeResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveWorkoutLocationTypeForStartWorkout:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveWorkoutLocationTypeForStartWorkout_withCompletion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INWorkoutLocationTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INWorkoutLocationTypeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -254,16 +242,13 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveIsOpenEndedForStartWorkout:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveIsOpenEndedForStartWorkout_withCompletion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
     }
 );

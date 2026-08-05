@@ -9,11 +9,12 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionshandler?language=objc)
 #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-pub type MKDirectionsHandler = block2::Block<'static, fn(*mut MKDirectionsResponse, *mut NSError)>;
+pub type MKDirectionsHandler =
+    block2::SendableBlock<'static, fn(*mut MKDirectionsResponse, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mketahandler?language=objc)
 #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-pub type MKETAHandler = block2::Block<'static, fn(*mut MKETAResponse, *mut NSError)>;
+pub type MKETAHandler = block2::SendableBlock<'static, fn(*mut MKETAResponse, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections?language=objc)
@@ -37,9 +38,6 @@ impl MKDirections {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(calculateDirectionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn calculateDirectionsWithCompletionHandler(
@@ -48,9 +46,6 @@ impl MKDirections {
         );
 
         #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(calculateETAWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn calculateETAWithCompletionHandler(&self, completion_handler: &MKETAHandler);

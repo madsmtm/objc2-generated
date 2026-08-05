@@ -452,14 +452,10 @@ impl GCController {
         /// See: stopWirelessControllerDiscovery
         ///
         /// See: controllers
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(startWirelessControllerDiscoveryWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWirelessControllerDiscoveryWithCompletionHandler(
-            completion_handler: Option<&block2::Block<'static, fn()>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         /// If no more controllers are needed, depending on game state or number of controllers supported by a game, the discovery

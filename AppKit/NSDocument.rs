@@ -993,47 +993,35 @@ impl NSDocument {
         pub fn observedPresentedItemUbiquityAttributes(&self) -> Retained<NSSet<NSURLResourceKey>>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `reader` block must be sendable.
         #[unsafe(method(relinquishPresentedItemToReader:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn relinquishPresentedItemToReader(
+        pub fn relinquishPresentedItemToReader(
             &self,
-            reader: &block2::Block<'static, fn(*mut block2::Block<'static, fn()>)>,
+            reader: &block2::SendableBlock<'static, fn(*mut block2::SendableBlock<'static, fn()>)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `writer` block must be sendable.
         #[unsafe(method(relinquishPresentedItemToWriter:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn relinquishPresentedItemToWriter(
+        pub fn relinquishPresentedItemToWriter(
             &self,
-            writer: &block2::Block<'static, fn(*mut block2::Block<'static, fn()>)>,
+            writer: &block2::SendableBlock<'static, fn(*mut block2::SendableBlock<'static, fn()>)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(savePresentedItemChangesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn savePresentedItemChangesWithCompletionHandler(
+        pub fn savePresentedItemChangesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(accommodatePresentedItemDeletionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
+        pub fn accommodatePresentedItemDeletionWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[unsafe(method(presentedItemDidMoveToURL:))]

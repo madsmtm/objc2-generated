@@ -140,16 +140,12 @@ extern_protocol!(
         ///
         ///
         /// See: INPlayMediaIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handlePlayMedia:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handlePlayMedia_completion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPlayMediaIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INPlayMediaIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -169,17 +165,13 @@ extern_protocol!(
         ///
         ///
         /// See: INPlayMediaIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmPlayMedia:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmPlayMedia_completion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPlayMediaIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INPlayMediaIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -200,17 +192,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveMediaItemsForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveMediaItemsForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<INPlayMediaMediaItemResolutionResult>>),
             >,
@@ -222,16 +210,13 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePlayShuffledForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolvePlayShuffledForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -240,16 +225,16 @@ extern_protocol!(
             feature = "INPlaybackRepeatModeResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePlaybackRepeatModeForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolvePlaybackRepeatModeForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPlaybackRepeatModeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INPlaybackRepeatModeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -258,16 +243,13 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveResumePlaybackForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveResumePlaybackForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -276,16 +258,13 @@ extern_protocol!(
             feature = "INPlaybackQueueLocationResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePlaybackQueueLocationForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolvePlaybackQueueLocationForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INPlaybackQueueLocationResolutionResult>),
             >,
@@ -298,16 +277,13 @@ extern_protocol!(
             feature = "INPlayMediaPlaybackSpeedResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePlaybackSpeedForPlayMedia:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolvePlaybackSpeedForPlayMedia_withCompletion(
             &self,
             intent: &INPlayMediaIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INPlayMediaPlaybackSpeedResolutionResult>),
             >,

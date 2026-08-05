@@ -123,15 +123,11 @@ impl GKChallengeDefinition {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Loads the image set on the challenge definition, which may be `nil` if none was set.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadImageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSImage, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSImage, *mut NSError)>,
         );
     );
 }
@@ -155,14 +151,10 @@ impl GKChallengeDefinition {
         #[cfg(feature = "block2")]
         /// Loads all the challenge definitions for the current game, returns an empty array if none exist.
         /// - Important: Archived challenge definitions are excluded.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadChallengeDefinitionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadChallengeDefinitionsWithCompletionHandler(
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<GKChallengeDefinition>, *mut NSError),
             >,
@@ -170,15 +162,11 @@ impl GKChallengeDefinition {
 
         #[cfg(feature = "block2")]
         /// Indicates if this definition has active challenges associated with it.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(hasActiveChallengesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasActiveChallengesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
     );
 }

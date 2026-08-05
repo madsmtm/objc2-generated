@@ -159,17 +159,16 @@ extern_protocol!(
         ///
         ///
         /// See: INStartPhotoPlaybackIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartPhotoPlaybackIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleStartPhotoPlayback:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleStartPhotoPlayback_completion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStartPhotoPlaybackIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INStartPhotoPlaybackIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -189,10 +188,6 @@ extern_protocol!(
         ///
         ///
         /// See: INStartPhotoPlaybackIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartPhotoPlaybackIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmStartPhotoPlayback:completion:))]
@@ -200,7 +195,10 @@ extern_protocol!(
         unsafe fn confirmStartPhotoPlayback_completion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStartPhotoPlaybackIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INStartPhotoPlaybackIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -220,10 +218,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartPhotoPlaybackIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveDateCreatedForStartPhotoPlayback:withCompletion:))]
@@ -231,7 +225,10 @@ extern_protocol!(
         unsafe fn resolveDateCreatedForStartPhotoPlayback_withCompletion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INDateComponentsRangeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -240,9 +237,6 @@ extern_protocol!(
             feature = "INPlacemarkResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartPhotoPlaybackIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveLocationCreatedForStartPhotoPlayback:withCompletion:))]
@@ -250,7 +244,7 @@ extern_protocol!(
         unsafe fn resolveLocationCreatedForStartPhotoPlayback_withCompletion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -259,9 +253,6 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartPhotoPlaybackIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveAlbumNameForStartPhotoPlayback:withCompletion:))]
@@ -269,7 +260,7 @@ extern_protocol!(
         unsafe fn resolveAlbumNameForStartPhotoPlayback_withCompletion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -278,9 +269,6 @@ extern_protocol!(
             feature = "INPersonResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartPhotoPlaybackIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolvePeopleInPhotoForStartPhotoPlayback:withCompletion:))]
@@ -288,7 +276,10 @@ extern_protocol!(
         unsafe fn resolvePeopleInPhotoForStartPhotoPlayback_withCompletion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<'static, fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<INPersonResolutionResult>>),
+            >,
         );
     }
 );

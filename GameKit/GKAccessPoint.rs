@@ -178,96 +178,68 @@ impl GKAccessPoint {
 
         #[cfg(feature = "block2")]
         /// Displays the view that allows players to engage each other with activities and challenges.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(triggerAccessPointForPlayTogetherWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointForPlayTogetherWithHandler(
             &self,
-            handler: Option<&block2::Block<'static, fn()>>,
+            handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
         /// Displays the view that allows players to engage each other with challenges.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(triggerAccessPointForChallengesWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointForChallengesWithHandler(
             &self,
-            handler: Option<&block2::Block<'static, fn()>>,
+            handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
         /// Displays the challenge creation view for the provided challenge definition ID.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(triggerAccessPointWithChallengeDefinitionID:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointWithChallengeDefinitionID_handler(
             &self,
             challenge_definition_id: &NSString,
-            handler: Option<&block2::Block<'static, fn()>>,
+            handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
         /// Displays the game activity creation view for the provided activity definition ID.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(triggerAccessPointWithGameActivityDefinitionID:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointWithGameActivityDefinitionID_handler(
             &self,
             game_activity_definition_id: &NSString,
-            handler: Option<&block2::Block<'static, fn()>>,
+            handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[cfg(all(feature = "GKGameActivity", feature = "block2"))]
         /// Displays the game activity view for the provided activity instance.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(triggerAccessPointWithGameActivity:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointWithGameActivity_handler(
             &self,
             game_activity: &GKGameActivity,
-            handler: Option<&block2::Block<'static, fn()>>,
+            handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
         /// Brings up the invite friends view.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(triggerAccessPointForFriendingWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointForFriendingWithHandler(
             &self,
-            handler: Option<&block2::Block<'static, fn()>>,
+            handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
         /// Brings up the Arcade dashboard.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(triggerAccessPointForArcadeWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointForArcadeWithHandler(
             &self,
-            handler: Option<&block2::Block<'static, fn()>>,
+            handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
     );
 }

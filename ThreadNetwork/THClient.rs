@@ -70,15 +70,14 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(retrieveAllCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrieveAllCredentials(
             &self,
-            completion: &block2::Block<'static, fn(*mut NSSet<THCredentials>, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut NSSet<THCredentials>, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "THCredentials", feature = "block2"))]
@@ -105,15 +104,14 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(retrieveAllActiveCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrieveAllActiveCredentials(
             &self,
-            completion: &block2::Block<'static, fn(*mut NSSet<THCredentials>, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut NSSet<THCredentials>, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -139,16 +137,12 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(deleteCredentialsForBorderAgent:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteCredentialsForBorderAgent_completion(
             &self,
             border_agent_id: &NSData,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "THCredentials", feature = "block2"))]
@@ -173,16 +167,12 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(retrieveCredentialsForBorderAgent:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrieveCredentialsForBorderAgent_completion(
             &self,
             border_agent_id: &NSData,
-            completion: &block2::Block<'static, fn(*mut THCredentials, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut THCredentials, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -215,17 +205,13 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(storeCredentialsForBorderAgent:activeOperationalDataSet:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn storeCredentialsForBorderAgent_activeOperationalDataSet_completion(
             &self,
             border_agent_id: &NSData,
             active_operational_data_set: &NSData,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "THCredentials", feature = "block2"))]
@@ -249,15 +235,11 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(retrievePreferredCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrievePreferredCredentials(
             &self,
-            completion: &block2::Block<'static, fn(*mut THCredentials, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut THCredentials, *mut NSError)>,
         );
 
         #[cfg(all(feature = "THCredentials", feature = "block2"))]
@@ -282,16 +264,12 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(retrieveCredentialsForExtendedPANID:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrieveCredentialsForExtendedPANID_completion(
             &self,
             extended_panid: &NSData,
-            completion: &block2::Block<'static, fn(*mut THCredentials, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut THCredentials, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -315,16 +293,12 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(checkPreferredNetworkForActiveOperationalDataset:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkPreferredNetworkForActiveOperationalDataset_completion(
             &self,
             active_operational_data_set: &NSData,
-            completion: &block2::Block<'static, fn(Bool)>,
+            completion: &block2::SendableBlock<'static, fn(Bool)>,
         );
 
         #[cfg(feature = "block2")]
@@ -345,15 +319,11 @@ impl THClient {
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(isPreferredNetworkAvailableWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPreferredNetworkAvailableWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(Bool)>,
+            completion: &block2::SendableBlock<'static, fn(Bool)>,
         );
     );
 }

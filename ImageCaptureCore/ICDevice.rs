@@ -406,14 +406,13 @@ impl ICDevice {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(requestOpenSessionWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestOpenSessionWithOptions_completion(
             &self,
             options: Option<&NSDictionary<ICSessionOptions, AnyObject>>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -425,14 +424,13 @@ impl ICDevice {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(requestCloseSessionWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestCloseSessionWithOptions_completion(
             &self,
             options: Option<&NSDictionary<ICSessionOptions, AnyObject>>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -441,15 +439,11 @@ impl ICDevice {
         /// This request will execute the completion handler provided upon return.
         ///
         /// Note: The completion block will execute on an any available queue, often this will not be the main queue.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestEjectWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestEjectWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// ￼Filesystem path of an application that is to be automatically launched when this device is added.

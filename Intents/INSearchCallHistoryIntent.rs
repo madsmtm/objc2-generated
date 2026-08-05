@@ -129,17 +129,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchCallHistoryIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchCallHistoryIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSearchCallHistory:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSearchCallHistory_completion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSearchCallHistoryIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSearchCallHistoryIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -159,10 +158,6 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchCallHistoryIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchCallHistoryIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSearchCallHistory:completion:))]
@@ -170,7 +165,10 @@ extern_protocol!(
         unsafe fn confirmSearchCallHistory_completion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSearchCallHistoryIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSearchCallHistoryIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -190,10 +188,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchCallHistoryIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveCallTypeForSearchCallHistory:withCompletion:))]
@@ -201,7 +195,10 @@ extern_protocol!(
         unsafe fn resolveCallTypeForSearchCallHistory_withCompletion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCallRecordTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INCallRecordTypeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -210,9 +207,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchCallHistoryIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveDateCreatedForSearchCallHistory:withCompletion:))]
@@ -220,7 +214,10 @@ extern_protocol!(
         unsafe fn resolveDateCreatedForSearchCallHistory_withCompletion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INDateComponentsRangeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -229,9 +226,6 @@ extern_protocol!(
             feature = "INPersonResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchCallHistoryIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRecipientForSearchCallHistory:withCompletion:))]
@@ -239,7 +233,7 @@ extern_protocol!(
         unsafe fn resolveRecipientForSearchCallHistory_withCompletion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPersonResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INPersonResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -248,16 +242,13 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCallTypesForSearchCallHistory:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCallTypesForSearchCallHistory_withCompletion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INCallRecordTypeOptionsResolutionResult>),
             >,
@@ -269,16 +260,13 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveUnseenForSearchCallHistory:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveUnseenForSearchCallHistory_withCompletion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
     }
 );

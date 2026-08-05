@@ -41,15 +41,11 @@ impl BENetworkingProcess {
         /// - `interruptionHandler` : A block that is called if the extension process terminates.
         /// - `completion` : A block called with a new ``BENetworkingProcess`` when the extension process has
         /// launched or with an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(networkProcessWithInterruptionHandler:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkProcessWithInterruptionHandler_completion(
             interruption_handler: &block2::Block<'static, fn()>,
-            completion: &block2::Block<'static, fn(*mut BENetworkingProcess, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut BENetworkingProcess, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -62,16 +58,12 @@ impl BENetworkingProcess {
         /// - `interruptionHandler` : A block that is called if the extension process terminates.
         /// - `completion` : A block called with a new ``BENetworkingProcess`` when the extension process has
         /// launched or with an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(networkProcessWithBundleID:interruptionHandler:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkProcessWithBundleID_interruptionHandler_completion(
             bundle_id: &NSString,
             interruption_handler: &block2::Block<'static, fn()>,
-            completion: &block2::Block<'static, fn(*mut BENetworkingProcess, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut BENetworkingProcess, *mut NSError)>,
         );
 
         /// Stops the extension process.

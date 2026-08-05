@@ -143,16 +143,15 @@ impl AVComposition {
         /// Parameter `trackID`: The trackID of the requested AVCompositionTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<'static, fn(*mut AVCompositionTrack, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut AVCompositionTrack, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -187,16 +186,12 @@ impl AVComposition {
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVCompositionTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVCompositionTrack>, *mut NSError),
             >,
@@ -234,16 +229,12 @@ impl AVComposition {
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVCompositionTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVCompositionTrack>, *mut NSError),
             >,
@@ -413,10 +404,6 @@ impl AVMutableComposition {
         /// Note that the media data for the inserted timeRange will be presented at its natural duration and rate. It can be scaled to a different duration and presented at a different rate via -scaleTimeRange:toDuration:.
         /// Existing content at the specified startTime will be pushed out by the duration of timeRange.
         /// Note that this operation only inserts one or more track segments into affected AVMutableCompositionTracks; it does not affect the values of other track properties, either to match the corresponding values of tracks in the source asset or for any other purpose.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(insertTimeRange:ofAsset:atTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertTimeRange_ofAsset_atTime_completionHandler(
@@ -424,7 +411,7 @@ impl AVMutableComposition {
             time_range: CMTimeRange,
             asset: &AVAsset,
             start_time: CMTime,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "objc2-core-media")]
@@ -562,16 +549,12 @@ impl AVMutableComposition {
         /// Parameter `trackID`: The trackID of the requested AVMutableCompositionTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut AVMutableCompositionTrack, *mut NSError),
             >,
@@ -609,16 +592,12 @@ impl AVMutableComposition {
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVMutableCompositionTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVMutableCompositionTrack>, *mut NSError),
             >,
@@ -656,16 +635,12 @@ impl AVMutableComposition {
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVMutableCompositionTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVMutableCompositionTrack>, *mut NSError),
             >,

@@ -129,28 +129,20 @@ impl NSRunLoop {
         /// Schedules the execution of a block on the target run loop in given modes.
         /// - parameter: modes   An array of input modes for which the block may be executed.
         /// - parameter: block   The block to execute
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(performInModes:block:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performInModes_block(
+        pub fn performInModes_block(
             &self,
             modes: &NSArray<NSRunLoopMode>,
-            block: &block2::Block<'static, fn()>,
+            block: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
         /// Schedules the execution of a block on the target run loop.
         /// - parameter: block   The block to execute
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(performBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performBlock(&self, block: &block2::Block<'static, fn()>);
+        pub fn performBlock(&self, block: &block2::SendableBlock<'static, fn()>);
     );
 }
 

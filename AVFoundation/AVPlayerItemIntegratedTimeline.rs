@@ -274,10 +274,6 @@ impl AVPlayerItemIntegratedTimeline {
         /// Parameter `completionHandler`: CompletionHandler callback after seek completes. Success will be true if the playhead moved to the new time.
         ///
         /// The integrated timeline seeks to the the range of [time-beforeTolerance, time+afterTolerance] will be attributed to a segment and AVPlayerItem that falls in that range. You can request sample accurate seeking by passing a time value of kCMTimeZero for both toleranceBefore and toleranceAfter.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter_completionHandler(
@@ -285,7 +281,7 @@ impl AVPlayerItemIntegratedTimeline {
             time: CMTime,
             tolerance_before: CMTime,
             tolerance_after: CMTime,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -296,16 +292,12 @@ impl AVPlayerItemIntegratedTimeline {
         /// Parameter `completionHandler`: CompletionHandler callback after seek completes. Success will be true if the playhead moved to the new date.
         ///
         /// The integrated timeline will seek playhead to the coresponding date.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate_completionHandler(
             &self,
             date: &NSDate,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
     );
 }
@@ -337,15 +329,14 @@ impl AVPlayerItemIntegratedTimeline {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` block must be sendable.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(addPeriodicTimeObserverForInterval:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPeriodicTimeObserverForInterval_queue_usingBlock(
             &self,
             interval: CMTime,
             queue: Option<&DispatchQueue>,
-            block: &block2::Block<'static, fn(CMTime)>,
+            block: &block2::SendableBlock<'static, fn(CMTime)>,
         ) -> Retained<ProtocolObject<dyn AVPlayerItemIntegratedTimelineObserver>>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -366,7 +357,6 @@ impl AVPlayerItemIntegratedTimeline {
         ///
         /// - `offsets_into_segment` generic should be of the correct type.
         /// - `queue` possibly has additional threading requirements.
-        /// - `block` block must be sendable.
         #[unsafe(method(addBoundaryTimeObserverForSegment:offsetsIntoSegment:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addBoundaryTimeObserverForSegment_offsetsIntoSegment_queue_usingBlock(
@@ -374,7 +364,7 @@ impl AVPlayerItemIntegratedTimeline {
             segment: &AVPlayerItemSegment,
             offsets_into_segment: &NSArray,
             queue: Option<&DispatchQueue>,
-            block: &block2::Block<'static, fn(Bool)>,
+            block: &block2::SendableBlock<'static, fn(Bool)>,
         ) -> Retained<ProtocolObject<dyn AVPlayerItemIntegratedTimelineObserver>>;
 
         /// Cancels a previously registered time observer.

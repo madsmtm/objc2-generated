@@ -367,15 +367,11 @@ impl GKGameActivity {
         /// returns the match object in the completion handler or any error that occurred.
         /// An error occurs if this activity doesn't support party code, or has an unsupported range of players, which
         /// is used to be configured as match request's `minPlayers` and `maxPlayers`.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(findMatchWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findMatchWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut GKMatch, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut GKMatch, *mut NSError)>,
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
@@ -385,15 +381,14 @@ impl GKGameActivity {
         /// information, and returns the players in the completion handler or any error that occurred.
         /// An error occurs if this activity doesn't support party code, or has unsupported range of players, which is
         /// used to be configured as match request's `minPlayers` and `maxPlayers`.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(findPlayersForHostedMatchWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findPlayersForHostedMatchWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSArray<GKPlayer>, *mut NSError),
+            >,
         );
     );
 }
@@ -406,14 +401,10 @@ impl GKGameActivity {
         ///
         /// You can call this method before you initialize Game Center to avoid activating the system banner or
         /// welcome experience.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(checkPendingGameActivityExistenceWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkPendingGameActivityExistenceWithCompletionHandler(
-            completion_handler: &block2::Block<'static, fn(Bool)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool)>,
         );
     );
 }

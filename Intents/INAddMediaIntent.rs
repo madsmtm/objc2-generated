@@ -112,16 +112,12 @@ extern_protocol!(
         ///
         ///
         /// See: INAddMediaIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleAddMedia:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleAddMedia_completion(
             &self,
             intent: &INAddMediaIntent,
-            completion: &block2::Block<'static, fn(NonNull<INAddMediaIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INAddMediaIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -141,17 +137,13 @@ extern_protocol!(
         ///
         ///
         /// See: INAddMediaIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmAddMedia:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmAddMedia_completion(
             &self,
             intent: &INAddMediaIntent,
-            completion: &block2::Block<'static, fn(NonNull<INAddMediaIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INAddMediaIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -172,17 +164,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveMediaItemsForAddMedia:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveMediaItemsForAddMedia_withCompletion(
             &self,
             intent: &INAddMediaIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<INAddMediaMediaItemResolutionResult>>),
             >,
@@ -195,16 +183,13 @@ extern_protocol!(
             feature = "INMediaDestinationResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveMediaDestinationForAddMedia:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveMediaDestinationForAddMedia_withCompletion(
             &self,
             intent: &INAddMediaIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INAddMediaMediaDestinationResolutionResult>),
             >,

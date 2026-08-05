@@ -96,16 +96,12 @@ extern_protocol!(
         ///
         ///
         /// See: INPauseWorkoutIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handlePauseWorkout:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handlePauseWorkout_completion(
             &self,
             intent: &INPauseWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPauseWorkoutIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INPauseWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -125,17 +121,13 @@ extern_protocol!(
         ///
         ///
         /// See: INPauseWorkoutIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmPauseWorkout:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmPauseWorkout_completion(
             &self,
             intent: &INPauseWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPauseWorkoutIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INPauseWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -155,17 +147,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveWorkoutNameForPauseWorkout:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveWorkoutNameForPauseWorkout_withCompletion(
             &self,
             intent: &INPauseWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

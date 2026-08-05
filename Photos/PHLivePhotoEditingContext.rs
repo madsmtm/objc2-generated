@@ -125,15 +125,14 @@ impl PHLivePhotoEditingContext {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareLivePhotoForPlaybackWithTargetSize_options_completionHandler(
             &self,
             target_size: CGSize,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            handler: &block2::Block<'static, fn(*mut PHLivePhoto, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut PHLivePhoto, *mut NSError)>,
         );
 
         #[cfg(all(feature = "PHContentEditingOutput", feature = "block2"))]
@@ -142,15 +141,14 @@ impl PHLivePhotoEditingContext {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(saveLivePhotoToOutput:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveLivePhotoToOutput_options_completionHandler(
             &self,
             output: &PHContentEditingOutput,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         /// Cancel the current asynchronous operation

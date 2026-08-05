@@ -101,7 +101,7 @@ unsafe impl RefEncode for AVAudioPlayerNodeCompletionCallbackType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type AVAudioPlayerNodeCompletionHandler =
-    block2::Block<'static, fn(AVAudioPlayerNodeCompletionCallbackType)>;
+    block2::SendableBlock<'static, fn(AVAudioPlayerNodeCompletionCallbackType)>;
 
 extern_class!(
     /// Play buffers or segments of audio files.
@@ -226,10 +226,6 @@ impl AVAudioPlayerNode {
         ///
         /// It is possible for the completionHandler to be called before rendering begins
         /// or before the buffer is played completely.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(scheduleBuffer:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBuffer_completionHandler(
@@ -249,10 +245,6 @@ impl AVAudioPlayerNode {
         /// the player is stopped. may be nil.
         ///
         /// Schedules the buffer to be played following any previously scheduled commands.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(scheduleBuffer:completionCallbackType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBuffer_completionCallbackType_completionHandler(
@@ -280,10 +272,6 @@ impl AVAudioPlayerNode {
         ///
         /// It is possible for the completionHandler to be called before rendering begins
         /// or before the buffer is played completely.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(scheduleBuffer:atTime:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBuffer_atTime_options_completionHandler(
@@ -307,10 +295,6 @@ impl AVAudioPlayerNode {
         ///
         /// Parameter `completionHandler`: called after the buffer has been consumed by the player or has finished playing back or
         /// the player is stopped. may be nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(scheduleBuffer:atTime:options:completionCallbackType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBuffer_atTime_options_completionCallbackType_completionHandler(
@@ -338,10 +322,6 @@ impl AVAudioPlayerNode {
         ///
         /// It is possible for the completionHandler to be called before rendering begins
         /// or before the file is played completely.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(scheduleFile:atTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleFile_atTime_completionHandler(
@@ -362,10 +342,6 @@ impl AVAudioPlayerNode {
         ///
         /// Parameter `completionHandler`: called after the file has been consumed by the player or has finished playing back or
         /// the player is stopped. may be nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(scheduleFile:atTime:completionCallbackType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleFile_atTime_completionCallbackType_completionHandler(
@@ -396,10 +372,6 @@ impl AVAudioPlayerNode {
         ///
         /// It is possible for the completionHandler to be called before rendering begins
         /// or before the segment is played completely.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(scheduleSegment:startingFrame:frameCount:atTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleSegment_startingFrame_frameCount_atTime_completionHandler(
@@ -431,10 +403,6 @@ impl AVAudioPlayerNode {
         ///
         /// Parameter `completionHandler`: called after the segment has been consumed by the player or has finished playing back or
         /// the player is stopped. may be nil.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(scheduleSegment:startingFrame:frameCount:atTime:completionCallbackType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleSegment_startingFrame_frameCount_atTime_completionCallbackType_completionHandler(

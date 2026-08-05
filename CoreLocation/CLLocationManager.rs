@@ -348,15 +348,12 @@ impl CLLocationManager {
         pub unsafe fn requestAlwaysAuthorization(&self);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestTemporaryFullAccuracyAuthorizationWithPurposeKey_completion(
             &self,
             purpose_key: &NSString,
-            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[unsafe(method(requestTemporaryFullAccuracyAuthorizationWithPurposeKey:))]
@@ -401,14 +398,11 @@ impl CLLocationManager {
         pub unsafe fn stopMonitoringSignificantLocationChanges(&self);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(startMonitoringLocationPushesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringLocationPushesWithCompletion(
             &self,
-            completion: Option<&block2::Block<'static, fn(*mut NSData, *mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>>,
         );
 
         #[unsafe(method(stopMonitoringLocationPushes))]
@@ -500,16 +494,16 @@ impl CLLocationManager {
         pub unsafe fn deferredLocationUpdatesAvailable() -> bool;
 
         #[cfg(all(feature = "CLLocation", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(requestHistoricalLocationsWithPurposeKey:sampleCount:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestHistoricalLocationsWithPurposeKey_sampleCount_completionHandler(
             &self,
             purpose_key: &NSString,
             sample_count: NSInteger,
-            handler: &block2::Block<'static, fn(NonNull<NSArray<CLLocation>>, *mut NSError)>,
+            handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<CLLocation>>, *mut NSError),
+            >,
         );
     );
 }

@@ -56,15 +56,11 @@ impl SHSignatureGenerator {
         ///
         /// - term `signature`: A new signature instance.
         /// - term error: An error object if a problem occurs when creating thesignature; otherwise, `nil`.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(generateSignatureFromAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateSignatureFromAsset_completionHandler(
             asset: &AVAsset,
-            completion_handler: &block2::Block<'static, fn(*mut SHSignature, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut SHSignature, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-avf-audio")]

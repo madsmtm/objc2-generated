@@ -47,38 +47,32 @@ impl CXCallDirectoryManager {
         pub unsafe fn sharedInstance() -> Retained<CXCallDirectoryManager>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(reloadExtensionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadExtensionWithIdentifier_completionHandler(
             &self,
             identifier: &NSString,
-            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(getEnabledStatusForExtensionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getEnabledStatusForExtensionWithIdentifier_completionHandler(
             &self,
             identifier: &NSString,
-            completion: &block2::Block<'static, fn(CXCallDirectoryEnabledStatus, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(CXCallDirectoryEnabledStatus, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(openSettingsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openSettingsWithCompletionHandler(
             &self,
-            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }

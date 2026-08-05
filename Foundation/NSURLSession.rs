@@ -85,36 +85,27 @@ impl NSURLSession {
         pub fn invalidateAndCancel(&self);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(resetWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resetWithCompletionHandler(
+        pub fn resetWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(flushWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn flushWithCompletionHandler(
+        pub fn flushWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(all(feature = "NSArray", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getTasksWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getTasksWithCompletionHandler(
+        pub fn getTasksWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<NSArray<NSURLSessionDataTask>>,
@@ -125,14 +116,14 @@ impl NSURLSession {
         );
 
         #[cfg(all(feature = "NSArray", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getAllTasksWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getAllTasksWithCompletionHandler(
+        pub fn getAllTasksWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSURLSessionTask>>)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<NSURLSessionTask>>),
+            >,
         );
 
         #[cfg(feature = "NSURLRequest")]
@@ -271,15 +262,12 @@ impl NSURLSession {
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(dataTaskWithRequest:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataTaskWithRequest_completionHandler(
+        pub fn dataTaskWithRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
@@ -292,15 +280,12 @@ impl NSURLSession {
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(dataTaskWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataTaskWithURL_completionHandler(
+        pub fn dataTaskWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
@@ -314,16 +299,13 @@ impl NSURLSession {
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(uploadTaskWithRequest:fromFile:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn uploadTaskWithRequest_fromFile_completionHandler(
+        pub fn uploadTaskWithRequest_fromFile_completionHandler(
             &self,
             request: &NSURLRequest,
             file_url: &NSURL,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
@@ -336,16 +318,13 @@ impl NSURLSession {
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(uploadTaskWithRequest:fromData:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn uploadTaskWithRequest_fromData_completionHandler(
+        pub fn uploadTaskWithRequest_fromData_completionHandler(
             &self,
             request: &NSURLRequest,
             body_data: Option<&NSData>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
@@ -363,16 +342,12 @@ impl NSURLSession {
         /// - Parameter resumeData: Resume data blob from an incomplete upload, such as data returned by the cancelByProducingResumeData: method.
         /// - Parameter completionHandler: The completion handler to call when the load request is complete.
         /// - Returns: A new session upload task, or nil if the resumeData is invalid.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(uploadTaskWithResumeData:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn uploadTaskWithResumeData_completionHandler(
+        pub fn uploadTaskWithResumeData_completionHandler(
             &self,
             resume_data: &NSData,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
@@ -385,15 +360,12 @@ impl NSURLSession {
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(downloadTaskWithRequest:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn downloadTaskWithRequest_completionHandler(
+        pub fn downloadTaskWithRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
             >,
@@ -405,15 +377,12 @@ impl NSURLSession {
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(downloadTaskWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn downloadTaskWithURL_completionHandler(
+        pub fn downloadTaskWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
             >,
@@ -426,15 +395,12 @@ impl NSURLSession {
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(downloadTaskWithResumeData:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn downloadTaskWithResumeData_completionHandler(
+        pub fn downloadTaskWithResumeData_completionHandler(
             &self,
             resume_data: &NSData,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
             >,
@@ -756,15 +722,11 @@ impl NSURLSessionUploadTask {
         /// https://datatracker.ietf.org/doc/draft-ietf-httpbis-resumable-upload/
         ///
         /// - Parameter completionHandler: The completion handler to call when the upload has been successfully canceled.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(cancelByProducingResumeData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancelByProducingResumeData(
+        pub fn cancelByProducingResumeData(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSData)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSData)>,
         );
     );
 }
@@ -802,14 +764,11 @@ extern_conformance!(
 impl NSURLSessionDownloadTask {
     extern_methods!(
         #[cfg(all(feature = "NSData", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(cancelByProducingResumeData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancelByProducingResumeData(
+        pub fn cancelByProducingResumeData(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSData)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSData)>,
         );
 
         #[deprecated = "Please use -[NSURLSession downloadTaskWithRequest:] or other NSURLSession methods to create instances"]
@@ -862,17 +821,17 @@ impl NSURLSessionStreamTask {
             feature = "NSError",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(readDataOfMinLength:maxLength:timeout:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn readDataOfMinLength_maxLength_timeout_completionHandler(
+        pub fn readDataOfMinLength_maxLength_timeout_completionHandler(
             &self,
             min_bytes: NSUInteger,
             max_bytes: NSUInteger,
             timeout: NSTimeInterval,
-            completion_handler: &block2::Block<'static, fn(*mut NSData, Bool, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSData, Bool, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -881,16 +840,13 @@ impl NSURLSessionStreamTask {
             feature = "NSError",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeData:timeout:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn writeData_timeout_completionHandler(
+        pub fn writeData_timeout_completionHandler(
             &self,
             data: &NSData,
             timeout: NSTimeInterval,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[unsafe(method(captureStreams))]
@@ -1064,40 +1020,31 @@ extern_conformance!(
 impl NSURLSessionWebSocketTask {
     extern_methods!(
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendMessage:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sendMessage_completionHandler(
+        pub fn sendMessage_completionHandler(
             &self,
             message: &NSURLSessionWebSocketMessage,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(receiveMessageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn receiveMessageWithCompletionHandler(
+        pub fn receiveMessageWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSURLSessionWebSocketMessage, *mut NSError),
             >,
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `pong_receive_handler` block must be sendable.
         #[unsafe(method(sendPingWithPongReceiveHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sendPingWithPongReceiveHandler(
+        pub fn sendPingWithPongReceiveHandler(
             &self,
-            pong_receive_handler: &block2::Block<'static, fn(*mut NSError)>,
+            pong_receive_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "NSData")]
@@ -1637,17 +1584,14 @@ extern_protocol!(
             feature = "NSURLCredential",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(URLSession:didReceiveChallenge:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn URLSession_didReceiveChallenge_completionHandler(
+        fn URLSession_didReceiveChallenge_completionHandler(
             &self,
             session: &NSURLSession,
             challenge: &NSURLAuthenticationChallenge,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
@@ -1669,18 +1613,15 @@ extern_protocol!(
         fn URLSession_didCreateTask(&self, session: &NSURLSession, task: &NSURLSessionTask);
 
         #[cfg(all(feature = "NSURLRequest", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(URLSession:task:willBeginDelayedRequest:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn URLSession_task_willBeginDelayedRequest_completionHandler(
+        fn URLSession_task_willBeginDelayedRequest_completionHandler(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
             request: &NSURLRequest,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NSURLSessionDelayedRequestDisposition, *mut NSURLRequest),
             >,
@@ -1700,19 +1641,16 @@ extern_protocol!(
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler(
+        fn URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
             response: &NSHTTPURLResponse,
             request: &NSURLRequest,
-            completion_handler: &block2::Block<'static, fn(*mut NSURLRequest)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSURLRequest)>,
         );
 
         #[cfg(all(
@@ -1720,35 +1658,29 @@ extern_protocol!(
             feature = "NSURLCredential",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(URLSession:task:didReceiveChallenge:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn URLSession_task_didReceiveChallenge_completionHandler(
+        fn URLSession_task_didReceiveChallenge_completionHandler(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
             challenge: &NSURLAuthenticationChallenge,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 
         #[cfg(all(feature = "NSStream", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(URLSession:task:needNewBodyStream:))]
         #[unsafe(method_family = none)]
-        unsafe fn URLSession_task_needNewBodyStream(
+        fn URLSession_task_needNewBodyStream(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
-            completion_handler: &block2::Block<'static, fn(*mut NSInputStream)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSInputStream)>,
         );
 
         #[cfg(all(feature = "NSStream", feature = "block2"))]
@@ -1759,19 +1691,15 @@ extern_protocol!(
         /// - Parameter task: The task that needs a new body stream.
         /// - Parameter offset: The starting offset required for the body stream.
         /// - Parameter completionHandler: A completion handler that your delegate method should call with the new body stream.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(URLSession:task:needNewBodyStreamFromOffset:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn URLSession_task_needNewBodyStreamFromOffset_completionHandler(
+        fn URLSession_task_needNewBodyStreamFromOffset_completionHandler(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
             offset: i64,
-            completion_handler: &block2::Block<'static, fn(*mut NSInputStream)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSInputStream)>,
         );
 
         #[optional]
@@ -1824,18 +1752,18 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondatadelegate?language=objc)
     pub unsafe trait NSURLSessionDataDelegate: NSURLSessionTaskDelegate {
         #[cfg(all(feature = "NSURLResponse", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(URLSession:dataTask:didReceiveResponse:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn URLSession_dataTask_didReceiveResponse_completionHandler(
+        fn URLSession_dataTask_didReceiveResponse_completionHandler(
             &self,
             session: &NSURLSession,
             data_task: &NSURLSessionDataTask,
             response: &NSURLResponse,
-            completion_handler: &block2::Block<'static, fn(NSURLSessionResponseDisposition)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NSURLSessionResponseDisposition),
+            >,
         );
 
         #[optional]
@@ -1870,18 +1798,15 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSURLCache", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(URLSession:dataTask:willCacheResponse:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn URLSession_dataTask_willCacheResponse_completionHandler(
+        fn URLSession_dataTask_willCacheResponse_completionHandler(
             &self,
             session: &NSURLSession,
             data_task: &NSURLSessionDataTask,
             proposed_response: &NSCachedURLResponse,
-            completion_handler: &block2::Block<'static, fn(*mut NSCachedURLResponse)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSCachedURLResponse)>,
         );
     }
 );

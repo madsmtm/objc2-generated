@@ -225,16 +225,12 @@ impl AVContentKeySession {
         ///
         /// - Parameter persistableContentKeyData: Persistable content key data that was previously created using -[AVContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] or obtained via AVContentKeySessionDelegate callback -contentKeySession:didUpdatePersistableContentKey:forContentKeyIdentifier:.
         /// - Parameter handler: Once the secure token is ready, this block will be called with the token or an error describing the failure.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(makeSecureTokenForExpirationDateOfPersistableContentKey:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeSecureTokenForExpirationDateOfPersistableContentKey_completionHandler(
             &self,
             persistable_content_key_data: &NSData,
-            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -248,8 +244,7 @@ impl AVContentKeySession {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(invalidatePersistableContentKey:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidatePersistableContentKey_options_completionHandler(
@@ -258,7 +253,7 @@ impl AVContentKeySession {
             options: Option<
                 &NSDictionary<AVContentKeySessionServerPlaybackContextOption, AnyObject>,
             >,
-            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -272,8 +267,7 @@ impl AVContentKeySession {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(invalidateAllPersistableContentKeysForApp:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateAllPersistableContentKeysForApp_options_completionHandler(
@@ -282,7 +276,7 @@ impl AVContentKeySession {
             options: Option<
                 &NSDictionary<AVContentKeySessionServerPlaybackContextOption, AnyObject>,
             >,
-            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
     );
 }
@@ -637,8 +631,7 @@ impl AVContentKeyRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeStreamingContentKeyRequestDataForApp_contentIdentifier_options_completionHandler(
@@ -646,7 +639,7 @@ impl AVContentKeyRequest {
             app_identifier: &NSData,
             content_identifier: Option<&NSData>,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         /// Informs the receiver to process the specified content key response.

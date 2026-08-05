@@ -48,16 +48,12 @@ impl ASCredentialProviderExtensionContext {
         /// non-expiration invocation of the completionHandler.
         ///
         /// Calling this method will eventually dismiss the associated view controller.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(completeAssertionRequestWithSelectedPasskeyCredential:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeAssertionRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
             credential: &ASPasskeyAssertionCredential,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         #[cfg(all(feature = "ASPasskeyRegistrationCredential", feature = "block2"))]
@@ -70,16 +66,12 @@ impl ASCredentialProviderExtensionContext {
         /// non-expiration invocation of the completionHandler.
         ///
         /// Calling this method will eventually dismiss the associated view controller.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(completeRegistrationRequestWithSelectedPasskeyCredential:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeRegistrationRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
             credential: &ASPasskeyRegistrationCredential,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         #[cfg(all(feature = "ASOneTimeCodeCredential", feature = "block2"))]
@@ -92,16 +84,12 @@ impl ASCredentialProviderExtensionContext {
         /// non-expiration invocation of the completionHandler.
         ///
         /// Calling this method will eventually dismiss the associated view controller.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(completeOneTimeCodeRequestWithSelectedCredential:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeOneTimeCodeRequestWithSelectedCredential_completionHandler(
             &self,
             credential: &ASOneTimeCodeCredential,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -109,15 +97,11 @@ impl ASCredentialProviderExtensionContext {
         /// - parameter completionHandler: An optional block your extension can provide to perform any cleanup work after the system has captured the results.
         /// The expired parameter is true if the system decides to prematurely end a previous non-expiration invocation of the completion handler.
         /// - note: You are responsible for updating the ASCredentialIdentityStore.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(completeSavePasswordRequestWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeSavePasswordRequestWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         #[cfg(all(feature = "ASGeneratedPassword", feature = "block2"))]
@@ -126,16 +110,12 @@ impl ASCredentialProviderExtensionContext {
         /// These results should be returned in priority order.
         /// - parameter completionHandler: An optional block your extension can provide to perform any cleanup work after the system has captured the results.
         /// The expired parameter is true if the system decides to prematurely end a previous non-expiration invocation of the completion handler.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(completeGeneratePasswordRequestWithResults:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeGeneratePasswordRequestWithResults_completionHandler(
             &self,
             results: &NSArray<ASGeneratedPassword>,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         /// Complete the request to configure the extension.

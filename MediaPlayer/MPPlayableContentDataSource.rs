@@ -24,10 +24,6 @@ extern_protocol!(
         /// content items to display.
         /// Client applications should always call the completion handler after loading
         /// has finished, if this method is implemented.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[unsafe(method(beginLoadingChildItemsAtIndexPath:completionHandler:))]
@@ -35,7 +31,7 @@ extern_protocol!(
         unsafe fn beginLoadingChildItemsAtIndexPath_completionHandler(
             &self,
             index_path: &NSIndexPath,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// Tells MediaPlayer whether the content provided by the data source supports
@@ -58,10 +54,6 @@ extern_protocol!(
         /// to be retrieved.
         /// Client applications should always call the completion handler after loading
         /// has finished, if this method is implemented.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[unsafe(method(contentItemForIdentifier:completionHandler:))]
@@ -69,7 +61,10 @@ extern_protocol!(
         unsafe fn contentItemForIdentifier_completionHandler(
             &self,
             identifier: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut MPContentItem, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut MPContentItem, *mut NSError),
+            >,
         );
 
         /// Returns the number of child nodes at the specified index path. In a virtual

@@ -231,8 +231,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `push_payload` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `push_payload` generic should be of the correct type.
         #[optional]
         #[unsafe(method(incomingServiceUpdatePushForChannelManager:channelUUID:pushPayload:isHighPriority:remainingHighPriorityBudget:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -243,7 +242,7 @@ extern_protocol!(
             push_payload: &NSDictionary<NSString, AnyObject>,
             is_high_priority: bool,
             remaining_high_priority_budget: NSInteger,
-            completion: &block2::Block<'static, fn()>,
+            completion: &block2::SendableBlock<'static, fn()>,
         );
     }
 );

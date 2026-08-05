@@ -466,16 +466,12 @@ impl AVPlayer {
         ///
         /// - Parameter date:
         /// - Parameter completionHandler:
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate_completionHandler(
             &self,
             date: &NSDate,
-            completion_handler: &block2::Block<'static, fn(Bool)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool)>,
         );
 
         #[cfg(feature = "objc2-core-media")]
@@ -520,16 +516,12 @@ impl AVPlayer {
         ///
         /// - Parameter time:
         /// - Parameter completionHandler:
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_completionHandler(
             &self,
             time: CMTime,
-            completion_handler: &block2::Block<'static, fn(Bool)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -546,10 +538,6 @@ impl AVPlayer {
         /// - Parameter time:
         /// - Parameter toleranceBefore:
         /// - Parameter toleranceAfter:
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter_completionHandler(
@@ -557,7 +545,7 @@ impl AVPlayer {
             time: CMTime,
             tolerance_before: CMTime,
             tolerance_after: CMTime,
-            completion_handler: &block2::Block<'static, fn(Bool)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool)>,
         );
     );
 }
@@ -627,16 +615,12 @@ impl AVPlayer {
         ///
         /// - Parameter rate: The intended rate for subsequent playback.
         /// - Parameter completionHandler: The block that will be called when the preroll is either completed or is interrupted.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(prerollAtRate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prerollAtRate_completionHandler(
             &self,
             rate: c_float,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         /// Cancel any pending preroll requests and invoke the corresponding completion handlers if present.
@@ -689,15 +673,14 @@ impl AVPlayer {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` block must be sendable.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(addPeriodicTimeObserverForInterval:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPeriodicTimeObserverForInterval_queue_usingBlock(
             &self,
             interval: CMTime,
             queue: Option<&DispatchQueue>,
-            block: &block2::Block<'static, fn(CMTime)>,
+            block: &block2::SendableBlock<'static, fn(CMTime)>,
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -715,15 +698,14 @@ impl AVPlayer {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` block must be sendable.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(addBoundaryTimeObserverForTimes:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addBoundaryTimeObserverForTimes_queue_usingBlock(
             &self,
             times: &NSArray<NSValue>,
             queue: Option<&DispatchQueue>,
-            block: &block2::Block<'static, fn()>,
+            block: &block2::SendableBlock<'static, fn()>,
         ) -> Retained<AnyObject>;
 
         /// Cancels a previously registered time observer.

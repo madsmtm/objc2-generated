@@ -26,63 +26,48 @@ extern_protocol!(
         fn primaryPresentedItemURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `reader` block must be sendable.
         #[optional]
         #[unsafe(method(relinquishPresentedItemToReader:))]
         #[unsafe(method_family = none)]
-        unsafe fn relinquishPresentedItemToReader(
+        fn relinquishPresentedItemToReader(
             &self,
-            reader: &block2::Block<'static, fn(*mut block2::Block<'static, fn()>)>,
+            reader: &block2::SendableBlock<'static, fn(*mut block2::SendableBlock<'static, fn()>)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `writer` block must be sendable.
         #[optional]
         #[unsafe(method(relinquishPresentedItemToWriter:))]
         #[unsafe(method_family = none)]
-        unsafe fn relinquishPresentedItemToWriter(
+        fn relinquishPresentedItemToWriter(
             &self,
-            writer: &block2::Block<'static, fn(*mut block2::Block<'static, fn()>)>,
+            writer: &block2::SendableBlock<'static, fn(*mut block2::SendableBlock<'static, fn()>)>,
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(savePresentedItemChangesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn savePresentedItemChangesWithCompletionHandler(
+        fn savePresentedItemChangesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(accommodatePresentedItemDeletionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
+        fn accommodatePresentedItemDeletionWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(accommodatePresentedItemEvictionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn accommodatePresentedItemEvictionWithCompletionHandler(
+        fn accommodatePresentedItemEvictionWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "NSURL")]
@@ -127,16 +112,13 @@ extern_protocol!(
         fn presentedItemDidResolveConflictVersion(&self, version: &NSFileVersion);
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(accommodatePresentedSubitemDeletionAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn accommodatePresentedSubitemDeletionAtURL_completionHandler(
+        fn accommodatePresentedSubitemDeletionAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "NSURL")]

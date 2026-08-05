@@ -898,10 +898,6 @@ impl SKAction {
         /// Creates an action that executes a block
         ///
         /// Parameter `block`: The block to run
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(runBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock(block: &dispatch_block_t) -> Retained<SKAction>;
@@ -915,8 +911,7 @@ impl SKAction {
         ///
         /// # Safety
         ///
-        /// - `block` block must be sendable.
-        /// - `queue` possibly has additional threading requirements.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(runBlock:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock_queue(

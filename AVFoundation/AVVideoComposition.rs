@@ -115,15 +115,14 @@ impl AVVideoComposition {
         ///
         /// - Parameter asset: An instance of AVAsset.
         /// - Parameter completionHandler: A block that is invoked when the new video composition has finished being created. If the `videoComposition` parameter is nil, the `error` parameter describes the failure that occurred.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(videoCompositionWithPropertiesOfAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_completionHandler(
             asset: &AVAsset,
-            completion_handler: &block2::Block<'static, fn(*mut AVVideoComposition, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut AVVideoComposition, *mut NSError),
+            >,
         );
 
         /// Pass-through initializer, for internal use in AVFoundation only
@@ -315,16 +314,15 @@ impl AVVideoComposition {
         /// - Parameter asset: An instance of AVAsset. For best performance, ensure that the duration and tracks properties of the asset are already loaded before invoking this method.
         ///
         /// - Returns: An instance of AVVideoComposition.
-        ///
-        /// # Safety
-        ///
-        /// `applier` block must be sendable.
         #[deprecated = "Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead"]
         #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler(
             asset: &AVAsset,
-            applier: &block2::Block<'static, fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
+            applier: &block2::SendableBlock<
+                'static,
+                fn(NonNull<AVAsynchronousCIImageFilteringRequest>),
+            >,
         ) -> Retained<AVVideoComposition>;
 
         #[cfg(all(
@@ -373,17 +371,18 @@ impl AVVideoComposition {
         /// ```
         /// - Parameter asset: An instance of AVAsset.
         /// - Parameter completionHandler: A block that is invoked when the new video composition has finished being created. If the `videoComposition` parameter is nil, the `error` parameter describes the failure that occurred.
-        ///
-        /// # Safety
-        ///
-        /// - `applier` block must be sendable.
-        /// - `completion_handler` block must be sendable.
         #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler(
             asset: &AVAsset,
-            applier: &block2::Block<'static, fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
-            completion_handler: &block2::Block<'static, fn(*mut AVVideoComposition, *mut NSError)>,
+            applier: &block2::SendableBlock<
+                'static,
+                fn(NonNull<AVAsynchronousCIImageFilteringRequest>),
+            >,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut AVVideoComposition, *mut NSError),
+            >,
         );
     );
 }
@@ -462,15 +461,11 @@ impl AVMutableVideoComposition {
         ///
         /// - Parameter asset: An instance of AVAsset.
         /// - Parameter completionHandler: A block that is invoked when the new video composition has finished being created. If the `videoComposition` parameter is nil, the `error` parameter describes the failure that occurred.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(videoCompositionWithPropertiesOfAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_completionHandler(
             asset: &AVAsset,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut AVMutableVideoComposition, *mut NSError),
             >,
@@ -520,16 +515,12 @@ impl AVMutableVideoComposition {
         /// - Parameter asset: An instance of AVAsset.
         /// - Parameter prototypeInstruction: Custom instructions that the client can choose to override.
         /// - Parameter completionHandler: A block that is invoked when the new video composition has finished being created. If the `videoComposition` parameter is nil, the `error` parameter describes the failure that occurred.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_prototypeInstruction_completionHandler(
             asset: &AVAsset,
             prototype_instruction: &AVVideoCompositionInstruction,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut AVMutableVideoComposition, *mut NSError),
             >,
@@ -818,16 +809,15 @@ impl AVMutableVideoComposition {
         /// - Parameter asset: An instance of AVAsset. For best performance, ensure that the duration and tracks properties of the asset are already loaded before invoking this method.
         ///
         /// - Returns: An instance of AVMutableVideoComposition.
-        ///
-        /// # Safety
-        ///
-        /// `applier` block must be sendable.
         #[deprecated = "Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead"]
         #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler(
             asset: &AVAsset,
-            applier: &block2::Block<'static, fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
+            applier: &block2::SendableBlock<
+                'static,
+                fn(NonNull<AVAsynchronousCIImageFilteringRequest>),
+            >,
         ) -> Retained<AVMutableVideoComposition>;
 
         #[cfg(all(
@@ -874,17 +864,15 @@ impl AVMutableVideoComposition {
         /// ```
         /// - Parameter asset: An instance of AVAsset.
         /// - Parameter completionHandler: A block that is invoked when the new video composition has finished being created. If the `videoComposition` parameter is nil, the `error` parameter describes the failure that occurred.
-        ///
-        /// # Safety
-        ///
-        /// - `applier` block must be sendable.
-        /// - `completion_handler` block must be sendable.
         #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler(
             asset: &AVAsset,
-            applier: &block2::Block<'static, fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
-            completion_handler: &block2::Block<
+            applier: &block2::SendableBlock<
+                'static,
+                fn(NonNull<AVAsynchronousCIImageFilteringRequest>),
+            >,
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut AVMutableVideoComposition, *mut NSError),
             >,
@@ -1709,15 +1697,14 @@ impl AVAsset {
         /// Loads a track ID that will not collide with any existing track
         ///
         /// - Parameter completionHandler: A block that is invoked when loading is complete, vending the track ID or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(findUnusedTrackIDWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findUnusedTrackIDWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(CMPersistentTrackID, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(CMPersistentTrackID, *mut NSError),
+            >,
         );
     );
 }
@@ -1756,10 +1743,6 @@ impl AVVideoComposition {
         /// - Parameter timeRange: A CMTimeRange. Only those instructions with timeRanges that overlap with the specified timeRange will be validated. To validate all instructions that may be used for playback or other processing, regardless of timeRange, pass CMTimeRangeMake(kCMTimeZero, kCMTimePositiveInfinity).
         /// - Parameter validationDelegate: Indicates an object implementing the AVVideoCompositionValidationHandling protocol to receive information about troublesome portions of a video composition during processing of -determineValidityForAsset:. May be nil.
         /// - Parameter completionHandler: A block that is invoked when a determination is made about whether the video composition is valid. If the `isValid` parameter is NO, either the video composition is not valid, in which case the `error` parameter will be nil, or the answer could not be determined, in which case the `error` parameter will be non-nil and describe the failure that occurred.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(determineValidityForAsset:timeRange:validationDelegate:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -1768,7 +1751,7 @@ impl AVVideoComposition {
             asset: Option<&AVAsset>,
             time_range: CMTimeRange,
             validation_delegate: Option<&ProtocolObject<dyn AVVideoCompositionValidationHandling>>,
-            completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "AVAssetTrack", feature = "objc2-core-media"))]

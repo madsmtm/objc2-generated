@@ -53,16 +53,12 @@ extern_protocol!(
         /// - Parameters:
         /// - resource: The ``FSBlockDeviceResource`` to wipe.
         /// - completion: A block or closure that executes after the wipe operation completes. The completion handler receives a single parameter indicating any error that occurs during the operation. If the value is `nil`, the wipe operation succeeded.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(wipeResource:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn wipeResource_completionHandler(
             &self,
             resource: &FSBlockDeviceResource,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     }
 );

@@ -65,14 +65,16 @@ pub unsafe trait NSItemProviderUTType:
         ///
         /// # Safety
         ///
-        /// `load_handler` block must be sendable.
+        /// - `load_handler` block's return must be a valid pointer or null.
+        /// - `load_handler` block's argument block's argument 1 must be a valid pointer or null.
+        /// - `load_handler` block's argument block's argument 2 must be a valid pointer or null.
         #[unsafe(method(registerDataRepresentationForContentType:visibility:loadHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn registerDataRepresentationForContentType_visibility_loadHandler(
             &self,
             content_type: &UTType,
             visibility: NSItemProviderRepresentationVisibility,
-            load_handler: &block2::Block<
+            load_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<block2::Block<'static, fn(*mut NSData, *mut NSError)>>,
@@ -108,7 +110,9 @@ pub unsafe trait NSItemProviderUTType:
         ///
         /// # Safety
         ///
-        /// `load_handler` block must be sendable.
+        /// - `load_handler` block's return must be a valid pointer or null.
+        /// - `load_handler` block's argument block's argument 1 must be a valid pointer or null.
+        /// - `load_handler` block's argument block's argument 3 must be a valid pointer or null.
         #[unsafe(method(registerFileRepresentationForContentType:visibility:openInPlace:loadHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn registerFileRepresentationForContentType_visibility_openInPlace_loadHandler(
@@ -116,7 +120,7 @@ pub unsafe trait NSItemProviderUTType:
             content_type: &UTType,
             visibility: NSItemProviderRepresentationVisibility,
             open_in_place: bool,
-            load_handler: &block2::Block<
+            load_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<block2::Block<'static, fn(*mut NSURL, Bool, *mut NSError)>>,
@@ -170,16 +174,12 @@ pub unsafe trait NSItemProviderUTType:
         /// `error`parameter.
         ///
         /// Returns: A progress object. Use it to monitor loading progress, or to cancel loading.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadDataRepresentationForContentType:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn loadDataRepresentationForContentType_completionHandler(
+        fn loadDataRepresentationForContentType_completionHandler(
             &self,
             content_type: &UTType,
-            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "UTType", feature = "block2"))]
@@ -215,17 +215,13 @@ pub unsafe trait NSItemProviderUTType:
         /// created in a temporary directory.
         ///
         /// Returns: A progress object. Use it to monitor loading progress, or to cancel loading.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFileRepresentationForContentType:openInPlace:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn loadFileRepresentationForContentType_openInPlace_completionHandler(
+        fn loadFileRepresentationForContentType_openInPlace_completionHandler(
             &self,
             content_type: &UTType,
             open_in_place: bool,
-            completion_handler: &block2::Block<'static, fn(*mut NSURL, Bool, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSURL, Bool, *mut NSError)>,
         ) -> Retained<NSProgress>;
     );
 }

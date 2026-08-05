@@ -100,17 +100,16 @@ extern_protocol!(
         ///
         ///
         /// See: INStartVideoCallIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[unsafe(method(handleStartVideoCall:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleStartVideoCall_completion(
             &self,
             intent: &INStartVideoCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStartVideoCallIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INStartVideoCallIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -130,10 +129,6 @@ extern_protocol!(
         ///
         ///
         /// See: INStartVideoCallIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[optional]
         #[unsafe(method(confirmStartVideoCall:completion:))]
@@ -141,7 +136,10 @@ extern_protocol!(
         unsafe fn confirmStartVideoCall_completion(
             &self,
             intent: &INStartVideoCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStartVideoCallIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INStartVideoCallIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -161,10 +159,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[optional]
         #[unsafe(method(resolveContactsForStartVideoCall:withCompletion:))]
@@ -172,7 +166,10 @@ extern_protocol!(
         unsafe fn resolveContactsForStartVideoCall_withCompletion(
             &self,
             intent: &INStartVideoCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<INPersonResolutionResult>>),
+            >,
         );
     }
 );

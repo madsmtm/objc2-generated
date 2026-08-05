@@ -48,53 +48,42 @@ impl VSUserAccountManager {
         pub unsafe fn sharedUserAccountManager() -> Retained<VSUserAccountManager>;
 
         #[cfg(all(feature = "VSUserAccount", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateUserAccount:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateUserAccount_completion(
             &self,
             account: &VSUserAccount,
-            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "VSUserAccount", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(queryUserAccountsWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryUserAccountsWithOptions_completion(
             &self,
             options: VSUserAccountQueryOptions,
-            completion: &block2::Block<'static, fn(*mut NSArray<VSUserAccount>, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut NSArray<VSUserAccount>, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "VSAutoSignInToken", feature = "block2"))]
         /// Query the auto sign in token and authorization state.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(queryAutoSignInTokenWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryAutoSignInTokenWithCompletionHandler(
             &self,
-            completion: &block2::Block<'static, fn(*mut VSAutoSignInToken, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut VSAutoSignInToken, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// Deletes the auto sign in token.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(deleteAutoSignInTokenWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAutoSignInTokenWithCompletionHandler(
             &self,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

@@ -173,17 +173,13 @@ extern_protocol!(
         ///
         ///
         /// See: INSetClimateSettingsInCarIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSetClimateSettingsInCar:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSetClimateSettingsInCar_completion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INSetClimateSettingsInCarIntentResponse>),
             >,
@@ -206,10 +202,6 @@ extern_protocol!(
         ///
         ///
         /// See: INSetClimateSettingsInCarIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSetClimateSettingsInCar:completion:))]
@@ -217,7 +209,7 @@ extern_protocol!(
         unsafe fn confirmSetClimateSettingsInCar_completion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INSetClimateSettingsInCarIntentResponse>),
             >,
@@ -240,10 +232,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableFanForSetClimateSettingsInCar:withCompletion:))]
@@ -251,7 +239,7 @@ extern_protocol!(
         unsafe fn resolveEnableFanForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -260,9 +248,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableAirConditionerForSetClimateSettingsInCar:withCompletion:))]
@@ -270,7 +255,7 @@ extern_protocol!(
         unsafe fn resolveEnableAirConditionerForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -279,9 +264,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableClimateControlForSetClimateSettingsInCar:withCompletion:))]
@@ -289,7 +271,7 @@ extern_protocol!(
         unsafe fn resolveEnableClimateControlForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -298,9 +280,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveEnableAutoModeForSetClimateSettingsInCar:withCompletion:))]
@@ -308,7 +287,7 @@ extern_protocol!(
         unsafe fn resolveEnableAutoModeForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -317,9 +296,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveAirCirculationModeForSetClimateSettingsInCar:withCompletion:))]
@@ -327,7 +303,7 @@ extern_protocol!(
         unsafe fn resolveAirCirculationModeForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INCarAirCirculationModeResolutionResult>),
             >,
@@ -339,9 +315,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveFanSpeedIndexForSetClimateSettingsInCar:withCompletion:))]
@@ -349,7 +322,7 @@ extern_protocol!(
         unsafe fn resolveFanSpeedIndexForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -358,9 +331,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveFanSpeedPercentageForSetClimateSettingsInCar:withCompletion:))]
@@ -368,7 +338,7 @@ extern_protocol!(
         unsafe fn resolveFanSpeedPercentageForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDoubleResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INDoubleResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -377,9 +347,6 @@ extern_protocol!(
             feature = "INRelativeSettingResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRelativeFanSpeedSettingForSetClimateSettingsInCar:withCompletion:))]
@@ -387,7 +354,10 @@ extern_protocol!(
         unsafe fn resolveRelativeFanSpeedSettingForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INRelativeSettingResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INRelativeSettingResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -396,9 +366,6 @@ extern_protocol!(
             feature = "INTemperatureResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTemperatureForSetClimateSettingsInCar:withCompletion:))]
@@ -406,7 +373,7 @@ extern_protocol!(
         unsafe fn resolveTemperatureForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INTemperatureResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INTemperatureResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -415,9 +382,6 @@ extern_protocol!(
             feature = "INRelativeSettingResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRelativeTemperatureSettingForSetClimateSettingsInCar:withCompletion:))]
@@ -425,7 +389,10 @@ extern_protocol!(
         unsafe fn resolveRelativeTemperatureSettingForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INRelativeSettingResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INRelativeSettingResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -434,9 +401,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveClimateZoneForSetClimateSettingsInCar:withCompletion:))]
@@ -444,7 +408,7 @@ extern_protocol!(
         unsafe fn resolveClimateZoneForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCarSeatResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INCarSeatResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -453,16 +417,16 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForSetClimateSettingsInCar:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCarNameForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

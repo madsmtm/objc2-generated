@@ -71,15 +71,11 @@ impl SACrashDetectionManager {
         ///
         ///
         /// Parameter `handler`: Completion handler invoked with the status of the authorization request.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(requestAuthorizationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationWithCompletionHandler(
             &self,
-            handler: &block2::Block<'static, fn(SAAuthorizationStatus, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(SAAuthorizationStatus, *mut NSError)>,
         );
     );
 }

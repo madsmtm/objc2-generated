@@ -108,10 +108,6 @@ impl HMActionSet {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
@@ -130,10 +126,6 @@ impl HMActionSet {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addAction:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAction_completionHandler(
@@ -152,10 +144,6 @@ impl HMActionSet {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(removeAction:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAction_completionHandler(

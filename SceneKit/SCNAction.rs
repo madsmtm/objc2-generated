@@ -29,16 +29,12 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Adds an action to the list of actions executed by the node. Your block is called when the action completes.
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(runAction:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn runAction_completionHandler(
             &self,
             action: &SCNAction,
-            block: Option<&block2::Block<'static, fn()>>,
+            block: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         /// Adds an identifiable action to the list of actions executed by the node.
@@ -48,17 +44,13 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Adds an identifiable action to the list of actions executed by the node. Your block is called when the action completes.
-        ///
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(runAction:forKey:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn runAction_forKey_completionHandler(
             &self,
             action: &SCNAction,
             key: Option<&NSString>,
-            block: Option<&block2::Block<'static, fn()>>,
+            block: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         /// Returns a Boolean value that indicates whether the node is executing actions.
@@ -322,24 +314,20 @@ impl SCNAction {
         pub unsafe fn removeFromParentNode() -> Retained<SCNAction>;
 
         #[cfg(all(feature = "SCNNode", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(runBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock(
-            block: &block2::Block<'static, fn(NonNull<SCNNode>)>,
+            block: &block2::SendableBlock<'static, fn(NonNull<SCNNode>)>,
         ) -> Retained<SCNAction>;
 
         #[cfg(all(feature = "SCNNode", feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// - `block` block must be sendable.
-        /// - `queue` possibly has additional threading requirements.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(runBlock:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock_queue(
-            block: &block2::Block<'static, fn(NonNull<SCNNode>)>,
+            block: &block2::SendableBlock<'static, fn(NonNull<SCNNode>)>,
             queue: &DispatchQueue,
         ) -> Retained<SCNAction>;
 
@@ -355,14 +343,11 @@ impl SCNAction {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(customActionWithDuration:actionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customActionWithDuration_actionBlock(
             seconds: NSTimeInterval,
-            block: &block2::Block<'static, fn(NonNull<SCNNode>, CGFloat)>,
+            block: &block2::SendableBlock<'static, fn(NonNull<SCNNode>, CGFloat)>,
         ) -> Retained<SCNAction>;
 
         #[cfg(feature = "SCNAudioSource")]

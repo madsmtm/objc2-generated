@@ -37,16 +37,12 @@ impl QLThumbnailGenerator {
         /// QLThumbnail error codes can be found in
         /// <QuickLookThumbnailing
         /// /QLThumbnailErrors.h>.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(generateBestRepresentationForRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateBestRepresentationForRequest_completionHandler(
             &self,
             request: &QLThumbnailGenerationRequest,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut QLThumbnailRepresentation, *mut NSError),
             >,
@@ -99,10 +95,6 @@ impl QLThumbnailGenerator {
         /// Parameter `contentType`: An image content type to save the thumbnail as, supported by CGImageDestination, such as UTTypePNG or UTTypeJPEG
         ///
         /// Parameter `completionHandler`: Always called when the thumbnail generation is over. Will contain an error if the thumbnail could not be successfully saved to disk at fileURL.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveBestRepresentationForRequest:toFileAtURL:asContentType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveBestRepresentationForRequest_toFileAtURL_asContentType_completionHandler(
@@ -110,7 +102,7 @@ impl QLThumbnailGenerator {
             request: &QLThumbnailGenerationRequest,
             file_url: &NSURL,
             content_type: &UTType,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "QLThumbnailGenerationRequest", feature = "block2"))]
@@ -122,10 +114,6 @@ impl QLThumbnailGenerator {
         /// Parameter `contentType`: An image content type to save the thumbnail as, supported by CGImageDestination, such as kUTTypePNG or kUTTypeJPEG
         ///
         /// Parameter `completionHandler`: Always called when the thumbnail generation is over. Will contain an error if the thumbnail could not be successfully saved to disk at fileURL.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(saveBestRepresentationForRequest:toFileAtURL:withContentType:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -134,7 +122,7 @@ impl QLThumbnailGenerator {
             request: &QLThumbnailGenerationRequest,
             file_url: &NSURL,
             content_type: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

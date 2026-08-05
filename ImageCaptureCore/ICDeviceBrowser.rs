@@ -250,15 +250,11 @@ impl ICDeviceBrowser {
 
         #[cfg(feature = "block2")]
         /// This method requests the user’s permission, if needed, for accessing the conents of an external media device.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestContentsAuthorizationWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestContentsAuthorizationWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(NonNull<ICAuthorizationStatus>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<ICAuthorizationStatus>)>,
         );
 
         /// This property returns a constant indicating whether the app has permission to control the attached camera device.
@@ -268,43 +264,31 @@ impl ICDeviceBrowser {
 
         #[cfg(feature = "block2")]
         /// This method requests the user’s permission, if needed, for controlling the attached camera device.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestControlAuthorizationWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestControlAuthorizationWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(NonNull<ICAuthorizationStatus>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<ICAuthorizationStatus>)>,
         );
 
         #[cfg(feature = "block2")]
         /// This method resets the authorization status for the application accessing the conents of an external media device.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(resetContentsAuthorizationWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetContentsAuthorizationWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(NonNull<ICAuthorizationStatus>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<ICAuthorizationStatus>)>,
         );
 
         #[cfg(feature = "block2")]
         /// This method resets the authorization status for the application controlling the attached camera device.
         ///
         /// If the application already has been granted camera access, this will reset only the presentation dialog letting the user know the app has permission, not the camera access itself.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(resetControlAuthorizationWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetControlAuthorizationWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(NonNull<ICAuthorizationStatus>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<ICAuthorizationStatus>)>,
         );
     );
 }

@@ -39,13 +39,15 @@ impl HKActivitySummaryQuery {
         ///
         /// # Safety
         ///
-        /// - The returned block must be sendable.
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
         /// - This might not be thread-safe.
         #[unsafe(method(updateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::SendableBlock<
             'static,
             fn(NonNull<HKActivitySummaryQuery>, *mut NSArray<HKActivitySummary>, *mut NSError),
         >;
@@ -57,14 +59,13 @@ impl HKActivitySummaryQuery {
         ///
         /// # Safety
         ///
-        /// - `update_handler` block must be sendable.
-        /// - This might not be thread-safe.
+        /// This might not be thread-safe.
         #[unsafe(method(setUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpdateHandler(
             &self,
             update_handler: Option<
-                &block2::Block<
+                &block2::SendableBlock<
                     'static,
                     fn(
                         NonNull<HKActivitySummaryQuery>,
@@ -85,16 +86,12 @@ impl HKActivitySummaryQuery {
         /// Parameter `predicate`: The predicate which HKActivitySummaries should match.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(initWithPredicate:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPredicate_resultsHandler(
             this: Allocated<Self>,
             predicate: Option<&NSPredicate>,
-            handler: &block2::Block<
+            handler: &block2::SendableBlock<
                 'static,
                 fn(NonNull<HKActivitySummaryQuery>, *mut NSArray<HKActivitySummary>, *mut NSError),
             >,

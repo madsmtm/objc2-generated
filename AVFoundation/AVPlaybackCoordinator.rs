@@ -648,17 +648,13 @@ extern_protocol!(
         /// - Parameter coordinator: The coordinator requesting a change in playback rate.
         /// - Parameter playCommand: A play command object. See AVDelegatingPlaybackCoordinatorPlayCommand. The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
         /// - Parameter completionHandler: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability to handle the command by beginning a suspension with an appropriate reason.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(playbackCoordinator:didIssuePlayCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssuePlayCommand_completionHandler(
             &self,
             coordinator: &AVDelegatingPlaybackCoordinator,
             play_command: &AVDelegatingPlaybackCoordinatorPlayCommand,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -667,17 +663,13 @@ extern_protocol!(
         /// - Parameter coordinator: The coordinator requesting playback to pause.
         /// - Parameter pauseCommand: A pause command object. See AVDelegatingPlaybackCoordinatorPauseCommand. The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
         /// - Parameter completionHandler: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability to handle the command by beginning a suspension with an appropriate reason. If the command's shouldBufferInAnticipationOfPlayback is YES, the completion handler should also only be called once the playback object is ready to receive a subsequent play command.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(playbackCoordinator:didIssuePauseCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssuePauseCommand_completionHandler(
             &self,
             coordinator: &AVDelegatingPlaybackCoordinator,
             pause_command: &AVDelegatingPlaybackCoordinatorPauseCommand,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -688,17 +680,13 @@ extern_protocol!(
         /// - Parameter coordinator: The coordinator requesting the seek.
         /// - Parameter seekCommand: A seek command object. See AVDelegatingPlaybackCoordinatorSeekCommand. The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
         /// - Parameter completionHandler: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability to handle the command by beginning a suspension with an appropriate reason. If the command's shouldBufferInAnticipationOfPlayback is YES, the completion handler should also only be called once the playback object is ready to receive a subsequent play command.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(playbackCoordinator:didIssueSeekCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssueSeekCommand_completionHandler(
             &self,
             coordinator: &AVDelegatingPlaybackCoordinator,
             seek_command: &AVDelegatingPlaybackCoordinatorSeekCommand,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -711,17 +699,13 @@ extern_protocol!(
         /// - Parameter coordinator: The coordinator requesting buffering to begin.
         /// - Parameter bufferingCommand: A buffering command object. See AVDelegatingPlaybackCoordinatorBufferingCommand. The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
         /// - Parameter completionHandler: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability to handle the command by beginning a suspension with an appropriate reason. For buffering commands, the command should only be considered complete once the playback object is ready to receive a subsequent play command.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(playbackCoordinator:didIssueBufferingCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssueBufferingCommand_completionHandler(
             &self,
             coordinator: &AVDelegatingPlaybackCoordinator,
             buffering_command: &AVDelegatingPlaybackCoordinatorBufferingCommand,
-            completion_handler: &block2::Block<'static, fn()>,
+            completion_handler: &block2::SendableBlock<'static, fn()>,
         );
     }
 );

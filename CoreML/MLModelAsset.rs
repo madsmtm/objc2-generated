@@ -102,15 +102,11 @@ impl MLModelAsset {
         /// let modelDescription = try await modelAsset.modelDescription()
         /// print(modelDescription)
         /// ```
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(modelDescriptionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelDescriptionWithCompletionHandler(
             &self,
-            handler: &block2::Block<'static, fn(*mut MLModelDescription, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut MLModelDescription, *mut NSError)>,
         );
 
         #[cfg(all(feature = "MLModelDescription", feature = "block2"))]
@@ -123,16 +119,12 @@ impl MLModelAsset {
         /// let modelDescription = try await modelAsset.modelDescription(of: "my_function")
         /// print(modelDescription)
         /// ```
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(modelDescriptionOfFunctionNamed:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelDescriptionOfFunctionNamed_completionHandler(
             &self,
             function_name: &NSString,
-            handler: &block2::Block<'static, fn(*mut MLModelDescription, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut MLModelDescription, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -147,15 +139,11 @@ impl MLModelAsset {
         /// let functionNames = try await modelAsset.functionNames
         /// print(functionNames) // For example, ["my_function1", "my_function2"];
         /// ```
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(functionNamesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn functionNamesWithCompletionHandler(
             &self,
-            handler: &block2::Block<'static, fn(*mut NSArray<NSString>, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSArray<NSString>, *mut NSError)>,
         );
     );
 }

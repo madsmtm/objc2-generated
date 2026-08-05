@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewlibrarycompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLNewLibraryCompletionHandler =
-    block2::Block<'static, fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
+    block2::SendableBlock<'static, fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatecompletionhandler?language=objc)
 #[cfg(all(
@@ -18,8 +18,10 @@ pub type MTLNewLibraryCompletionHandler =
     feature = "MTLRenderPipeline",
     feature = "block2"
 ))]
-pub type MTLNewRenderPipelineStateCompletionHandler =
-    block2::Block<'static, fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError)>;
+pub type MTLNewRenderPipelineStateCompletionHandler = block2::SendableBlock<
+    'static,
+    fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError),
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatewithreflectioncompletionhandler?language=objc)
 #[cfg(all(
@@ -27,7 +29,7 @@ pub type MTLNewRenderPipelineStateCompletionHandler =
     feature = "MTLRenderPipeline",
     feature = "block2"
 ))]
-pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = block2::Block<
+pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = block2::SendableBlock<
     'static,
     fn(
         *mut ProtocolObject<dyn MTLRenderPipelineState>,
@@ -42,8 +44,10 @@ pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = block2::Bloc
     feature = "MTLComputePipeline",
     feature = "block2"
 ))]
-pub type MTLNewComputePipelineStateCompletionHandler =
-    block2::Block<'static, fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError)>;
+pub type MTLNewComputePipelineStateCompletionHandler = block2::SendableBlock<
+    'static,
+    fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError),
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatewithreflectioncompletionhandler?language=objc)
 #[cfg(all(
@@ -51,7 +55,7 @@ pub type MTLNewComputePipelineStateCompletionHandler =
     feature = "MTLComputePipeline",
     feature = "block2"
 ))]
-pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = block2::Block<
+pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = block2::SendableBlock<
     'static,
     fn(
         *mut ProtocolObject<dyn MTLComputePipelineState>,
@@ -965,17 +969,13 @@ extern_protocol!(
         /// Returns a pointer to a function object obtained by applying the constant values to the named function.
         ///
         /// This method is asynchronous since it is will call the compiler.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(newFunctionWithName:constantValues:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newFunctionWithName_constantValues_completionHandler(
+        fn newFunctionWithName_constantValues_completionHandler(
             &self,
             name: &NSString,
             constant_values: &MTLFunctionConstantValues,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut ProtocolObject<dyn MTLFunction>, *mut NSError),
             >,
@@ -1011,16 +1011,12 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLFunctionDescriptor", feature = "block2"))]
         /// Create a new MTLFunction object asynchronously.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(newFunctionWithDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newFunctionWithDescriptor_completionHandler(
+        fn newFunctionWithDescriptor_completionHandler(
             &self,
             descriptor: &MTLFunctionDescriptor,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut ProtocolObject<dyn MTLFunction>, *mut NSError),
             >,
@@ -1037,16 +1033,12 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLFunctionDescriptor", feature = "block2"))]
         /// Create a new MTLFunction object asynchronously.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(newIntersectionFunctionWithDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newIntersectionFunctionWithDescriptor_completionHandler(
+        fn newIntersectionFunctionWithDescriptor_completionHandler(
             &self,
             descriptor: &MTLIntersectionFunctionDescriptor,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut ProtocolObject<dyn MTLFunction>, *mut NSError),
             >,

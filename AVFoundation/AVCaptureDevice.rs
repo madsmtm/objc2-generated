@@ -1461,16 +1461,12 @@ impl AVCaptureDevice {
         ///
         ///
         /// This is the only way of setting lensPosition. This method throws an NSRangeException if lensPosition is set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(setFocusModeLockedWithLensPosition:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocusModeLockedWithLensPosition_completionHandler(
             &self,
             lens_position: c_float,
-            handler: Option<&block2::Block<'static, fn(CMTime)>>,
+            handler: Option<&block2::SendableBlock<'static, fn(CMTime)>>,
         );
 
         /// A property indicating the minimum focus distance.
@@ -1772,17 +1768,13 @@ impl AVCaptureDevice {
         ///
         ///
         /// This is the only way of setting exposureDuration and ISO. This method throws an NSRangeException if either exposureDuration or ISO is set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. When using AVCapturePhotoOutput to capture photos, note that the photoQualityPrioritization property of AVCapturePhotoSettings defaults to AVCapturePhotoQualityPrioritizationBalanced, which allows photo capture to temporarily override the capture device's ISO and exposureDuration values if the scene is dark enough to warrant some form of multi-image fusion to improve quality. To ensure that the receiver's ISO and exposureDuration values are honored while in AVCaptureExposureModeCustom or AVCaptureExposureModeLocked, you must set your AVCapturePhotoSettings.photoQualityPrioritization property to AVCapturePhotoQualityPrioritizationSpeed. The same rule applies if you use the deprecated AVCapturePhotoSettings.autoStillImageStabilizationEnabled property or AVCaptureStillImageOutput.automaticallyEnablesStillImageStabilizationWhenAvailable property. You must set them to NO to preserve your custom or locked exposure settings.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(setExposureModeCustomWithDuration:ISO:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExposureModeCustomWithDuration_ISO_completionHandler(
             &self,
             duration: CMTime,
             iso: c_float,
-            handler: Option<&block2::Block<'static, fn(CMTime)>>,
+            handler: Option<&block2::SendableBlock<'static, fn(CMTime)>>,
         );
 
         /// Indicates the metered exposure level's offset from the target exposure value, in EV units.
@@ -1827,16 +1819,12 @@ impl AVCaptureDevice {
         ///
         ///
         /// This is the only way of setting exposureTargetBias. This method throws an NSRangeException if exposureTargetBias is set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(setExposureTargetBias:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExposureTargetBias_completionHandler(
             &self,
             bias: c_float,
-            handler: Option<&block2::Block<'static, fn(CMTime)>>,
+            handler: Option<&block2::SendableBlock<'static, fn(CMTime)>>,
         );
     );
 }
@@ -2092,16 +2080,12 @@ impl AVCaptureDevice {
         /// - Parameter handler: A block to be called when white balance values have been set to the values specified and ``whiteBalanceMode`` is set to ``AVCaptureWhiteBalanceModeLocked``. If ``setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues:completionHandler:`` is called multiple times, the completion handlers are called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the ``AVCaptureSession/synchronizationClock`` prior to comparison with the timestamps of buffers delivered via an ``AVCaptureVideoDataOutput``. This parameter may be `nil` if synchronization is not required.
         ///
         /// This method takes a ``AVCaptureWhiteBalanceTemperatureAndTintValues`` struct and applies the appropriate ``AVCaptureWhiteBalanceGains``. This method throws an `NSRangeException` if any of the values are set to an unsupported level. This method throws an `NSGenericException` if called without first obtaining exclusive access to the device using ``AVCaptureDevice/lockForConfiguration:``.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues_completionHandler(
             &self,
             white_balance_temperature_and_tint_values: AVCaptureWhiteBalanceTemperatureAndTintValues,
-            handler: Option<&block2::Block<'static, fn(CMTime)>>,
+            handler: Option<&block2::SendableBlock<'static, fn(CMTime)>>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -2114,16 +2098,12 @@ impl AVCaptureDevice {
         ///
         ///
         /// Gain values are normalized to the minimum channel value to avoid brightness changes (e.g. R:2 G:2 B:4 will be normalized to R:1 G:1 B:2). For each channel in the whiteBalanceGains struct, only values between 1.0 and maxWhiteBalanceGain after nomalization are supported.  This method throws an NSRangeException if any of the whiteBalanceGains are set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains_completionHandler(
             &self,
             white_balance_gains: AVCaptureWhiteBalanceGains,
-            handler: Option<&block2::Block<'static, fn(CMTime)>>,
+            handler: Option<&block2::SendableBlock<'static, fn(CMTime)>>,
         );
 
         /// Converts device-specific white balance RGB gain values to device-independent chromaticity values.
@@ -2401,15 +2381,11 @@ impl AVCaptureDevice {
         /// Invoking this method with AVMediaTypeAudio is equivalent to calling -[AVAudioSession requestRecordPermission:].
         ///
         /// The completion handler is called on an arbitrary dispatch queue. It is the client's responsibility to ensure that any UIKit-related updates are called on the main queue or main thread as a result.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(requestAccessForMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAccessForMediaType_completionHandler(
             media_type: &AVMediaType,
-            handler: &block2::Block<'static, fn(Bool)>,
+            handler: &block2::SendableBlock<'static, fn(Bool)>,
         );
     );
 }
@@ -3215,16 +3191,12 @@ impl AVCaptureDevice {
         /// - Parameter handler: A block called by the device when `dynamicAspectRatio` is set to the value specified. If you call ``setDynamicAspectRatio:completionHandler:`` multiple times, the completion handlers are called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the ``AVCaptureSession/synchronizationClock`` prior to comparison with the timestamps of buffers delivered via an ``AVCaptureVideoDataOutput``. You may pass `nil` for the `handler` parameter if you do not need to know when the operation completes.
         ///
         /// This is the only way of setting ``dynamicAspectRatio``. This method throws an `NSInvalidArgumentException` if `dynamicAspectRatio` is not a supported aspect ratio found in the device's activeFormat's ``AVCaptureDeviceFormat/supportedDynamicAspectRatios``. This method throws an `NSGenericException` if you call it without first obtaining exclusive access to the device using ``AVCaptureDevice/lockForConfiguration:``.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(setDynamicAspectRatio:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDynamicAspectRatio_completionHandler(
             &self,
             dynamic_aspect_ratio: &AVCaptureAspectRatio,
-            handler: Option<&block2::Block<'static, fn(CMTime, *mut NSError)>>,
+            handler: Option<&block2::SendableBlock<'static, fn(CMTime, *mut NSError)>>,
         );
     );
 }

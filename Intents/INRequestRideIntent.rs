@@ -132,16 +132,12 @@ extern_protocol!(
         ///
         ///
         /// See: INRequestRideIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleRequestRide:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleRequestRide_completion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::Block<'static, fn(NonNull<INRequestRideIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INRequestRideIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -161,17 +157,13 @@ extern_protocol!(
         ///
         ///
         /// See: INRequestRideIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmRequestRide:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmRequestRide_completion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::Block<'static, fn(NonNull<INRequestRideIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INRequestRideIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -191,17 +183,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePickupLocationForRequestRide:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolvePickupLocationForRequestRide_withCompletion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -210,16 +198,13 @@ extern_protocol!(
             feature = "INPlacemarkResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDropOffLocationForRequestRide:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveDropOffLocationForRequestRide_withCompletion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INPlacemarkResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -228,16 +213,16 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRideOptionNameForRequestRide:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveRideOptionNameForRequestRide_withCompletion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -246,16 +231,13 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePartySizeForRequestRide:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolvePartySizeForRequestRide_withCompletion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::Block<'static, fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -264,16 +246,16 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveScheduledPickupTimeForRequestRide:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveScheduledPickupTimeForRequestRide_withCompletion(
             &self,
             intent: &INRequestRideIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INDateComponentsRangeResolutionResult>),
+            >,
         );
     }
 );

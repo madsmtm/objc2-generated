@@ -380,16 +380,12 @@ impl AVAudioSession {
         /// output route has not already been selected automatically. watchOS apps using
         /// AVAudioSessionRouteSharingPolicyLongFormAudio should be prepared for this method to fail if no
         /// eligible audio route can be activated or if the user cancels the route picker view.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(activateWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateWithOptions_completionHandler(
             &self,
             options: AVAudioSessionActivationOptions,
-            handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
     );
 }

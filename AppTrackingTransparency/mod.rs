@@ -166,14 +166,10 @@ impl ATTrackingManager {
         /// key must be in the
         /// <doc
         /// ://com.apple.documentation/documentation/bundleresources/information_property_list>.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestTrackingAuthorizationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestTrackingAuthorizationWithCompletionHandler(
-            completion: &block2::Block<'static, fn(ATTrackingManagerAuthorizationStatus)>,
+            completion: &block2::SendableBlock<'static, fn(ATTrackingManagerAuthorizationStatus)>,
         );
     );
 }

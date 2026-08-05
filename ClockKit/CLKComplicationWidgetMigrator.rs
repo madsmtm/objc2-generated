@@ -14,16 +14,13 @@ extern_protocol!(
             feature = "CLKComplicationWidgetMigrationConfiguration",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(getWidgetConfigurationFrom:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn getWidgetConfigurationFrom_completionHandler(
             &self,
             complication_descriptor: &CLKComplicationDescriptor,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut CLKComplicationWidgetMigrationConfiguration),
             >,

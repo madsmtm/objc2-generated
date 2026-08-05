@@ -42,17 +42,16 @@ impl RPBroadcastActivityController {
         /// Parameter `preferredExtension`: The extension bundle identifier for the preferred broadcast extension service. nil specifies all extensions will be shown.
         ///
         /// The handler will be called after the user us finished with the picker and has finish setting up the broadcast extension, which will provide an instance of RPBroadcastAcvityController and an error if one occured.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(showBroadcastPickerAtPoint:fromWindow:preferredExtensionIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showBroadcastPickerAtPoint_fromWindow_preferredExtensionIdentifier_completionHandler(
             point: CGPoint,
             window: Option<&NSWindow>,
             preferred_extension: Option<&NSString>,
-            handler: &block2::Block<'static, fn(*mut RPBroadcastActivityController, *mut NSError)>,
+            handler: &block2::SendableBlock<
+                'static,
+                fn(*mut RPBroadcastActivityController, *mut NSError),
+            >,
         );
 
         /// Delegate that is notified when the activity view controller is complete.

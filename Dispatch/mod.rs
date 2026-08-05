@@ -130,7 +130,7 @@ impl DispatchTime {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_t?language=objc)
 #[cfg(feature = "block2")]
-pub type dispatch_block_t = block2::Block<'static, fn()>;
+pub type dispatch_block_t = block2::SendableBlock<'static, fn()>;
 
 /// Increment the reference count of a dispatch object.
 ///
@@ -408,8 +408,7 @@ unsafe impl Sync for DispatchQueue {}
 impl DispatchQueue {
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` block must be sendable.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_async")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -460,8 +459,7 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` block must be sendable.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_sync")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -510,8 +508,7 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` block must be sendable.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1302,8 +1299,7 @@ pub unsafe fn dispatch_set_target_queue(
 impl DispatchQueue {
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` block must be sendable.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_after")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1365,8 +1361,7 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` block must be sendable.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_barrier_async")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1422,8 +1417,7 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` block must be sendable.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_barrier_sync")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1475,8 +1469,7 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` block must be sendable.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_barrier_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -2244,15 +2237,10 @@ unsafe impl RefEncode for dispatch_block_flags_t {
 /// Returns: The newly created dispatch block object, or NULL.
 /// When not building with Objective-C ARC, must be released with a -[release]
 /// message or the Block_release() function.
-///
-/// # Safety
-///
-/// - `block` block must be sendable.
-/// - The returned block must be sendable.
 #[cfg(feature = "block2")]
 #[must_use]
 #[inline]
-pub unsafe fn dispatch_block_create(
+pub fn dispatch_block_create(
     flags: dispatch_block_flags_t,
     block: &dispatch_block_t,
 ) -> NonNull<dispatch_block_t> {
@@ -2327,15 +2315,10 @@ pub unsafe fn dispatch_block_create(
 /// Returns: The newly created dispatch block object, or NULL.
 /// When not building with Objective-C ARC, must be released with a -[release]
 /// message or the Block_release() function.
-///
-/// # Safety
-///
-/// - `block` block must be sendable.
-/// - The returned block must be sendable.
 #[cfg(feature = "block2")]
 #[must_use]
 #[inline]
-pub unsafe fn dispatch_block_create_with_qos_class(
+pub fn dispatch_block_create_with_qos_class(
     flags: dispatch_block_flags_t,
     qos_class: DispatchQoS,
     relative_priority: c_int,
@@ -2374,13 +2357,9 @@ pub unsafe fn dispatch_block_create_with_qos_class(
 ///
 ///
 /// Parameter `block`: The block to create the temporary block object from.
-///
-/// # Safety
-///
-/// `block` block must be sendable.
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &dispatch_block_t) {
+pub fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &dispatch_block_t) {
     extern "C" {
         fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &dispatch_block_t);
     }
@@ -2427,13 +2406,9 @@ pub unsafe fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &disp
 ///
 /// Returns: Returns zero on success (the dispatch block object completed within the
 /// specified timeout) or non-zero on error (i.e. timed out).
-///
-/// # Safety
-///
-/// `block` block must be sendable.
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTime) -> isize {
+pub fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTime) -> isize {
     extern "C" {
         fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTime) -> isize;
     }
@@ -2474,9 +2449,7 @@ pub unsafe fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTim
 ///
 /// # Safety
 ///
-/// - `block` block must be sendable.
-/// - `queue` possibly has additional threading requirements.
-/// - `notification_block` block must be sendable.
+/// `queue` possibly has additional threading requirements.
 #[cfg(feature = "block2")]
 #[inline]
 pub unsafe fn dispatch_block_notify(
@@ -2515,13 +2488,9 @@ pub unsafe fn dispatch_block_notify(
 /// Parameter `block`: The dispatch block object to cancel.
 /// The result of passing NULL or a block object not returned by one of the
 /// dispatch_block_create* functions is undefined.
-///
-/// # Safety
-///
-/// `block` block must be sendable.
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe fn dispatch_block_cancel(block: &dispatch_block_t) {
+pub fn dispatch_block_cancel(block: &dispatch_block_t) {
     extern "C" {
         fn dispatch_block_cancel(block: &dispatch_block_t);
     }
@@ -2537,14 +2506,10 @@ pub unsafe fn dispatch_block_cancel(block: &dispatch_block_t) {
 ///
 ///
 /// Returns: Non-zero if canceled and zero if not canceled.
-///
-/// # Safety
-///
-/// `block` block must be sendable.
 #[cfg(feature = "block2")]
 #[must_use]
 #[inline]
-pub unsafe fn dispatch_block_testcancel(block: &dispatch_block_t) -> isize {
+pub fn dispatch_block_testcancel(block: &dispatch_block_t) -> isize {
     extern "C" {
         fn dispatch_block_testcancel(block: &dispatch_block_t) -> isize;
     }
@@ -2700,9 +2665,6 @@ impl DispatchSource {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
-    /// # Safety
-    ///
-    /// `handler` block must be sendable.
     #[doc(alias = "dispatch_source_set_event_handler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -2742,9 +2704,6 @@ impl DispatchSource {
         unsafe { dispatch_source_set_event_handler_f(self, handler) }
     }
 
-    /// # Safety
-    ///
-    /// `handler` block must be sendable.
     #[doc(alias = "dispatch_source_set_cancel_handler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -3008,9 +2967,6 @@ impl DispatchSource {
         unsafe { dispatch_source_set_timer(self, start, interval, leeway) }
     }
 
-    /// # Safety
-    ///
-    /// `handler` block must be sendable.
     #[doc(alias = "dispatch_source_set_registration_handler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -3097,8 +3053,7 @@ impl DispatchGroup {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` block must be sendable.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_group_async")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -3199,8 +3154,7 @@ impl DispatchGroup {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` block must be sendable.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_group_notify")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -3399,8 +3353,7 @@ pub type dispatch_once_t = isize;
 impl DispatchOnce {
     /// # Safety
     ///
-    /// - `predicate` must be a valid pointer.
-    /// - `block` block must be sendable.
+    /// `predicate` must be a valid pointer.
     #[doc(alias = "dispatch_once")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -3494,7 +3447,6 @@ impl DispatchData {
     ///
     /// - `buffer` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
-    /// - `destructor` block must be sendable.
     #[doc(alias = "dispatch_data_create")]
     #[cfg(feature = "block2")]
     #[must_use]
@@ -4257,14 +4209,10 @@ impl DispatchIO {
     /// Parameter `channel`: The dispatch I/O channel to schedule the barrier on.
     ///
     /// Parameter `barrier`: The barrier block.
-    ///
-    /// # Safety
-    ///
-    /// `barrier` block must be sendable.
     #[doc(alias = "dispatch_io_barrier")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier(&self, barrier: &dispatch_block_t) {
+    pub fn barrier(&self, barrier: &dispatch_block_t) {
         extern "C" {
             fn dispatch_io_barrier(channel: &DispatchIO, barrier: &dispatch_block_t);
         }

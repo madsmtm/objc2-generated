@@ -84,14 +84,11 @@ impl NSFileVersion {
             feature = "NSURL",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getNonlocalVersionsOfItemAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getNonlocalVersionsOfItemAtURL_completionHandler(
+        pub fn getNonlocalVersionsOfItemAtURL_completionHandler(
             url: &NSURL,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<NSFileVersion>, *mut NSError),
             >,

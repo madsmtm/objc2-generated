@@ -72,17 +72,13 @@ impl NSFileProviderManager {
     extern_methods!(
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         /// Retrieve the service with the specified named for the specified item.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getServiceWithName:itemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getServiceWithName_itemIdentifier_completionHandler(
             &self,
             service_name: &NSFileProviderServiceName,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSFileProviderService, *mut NSError),
             >,

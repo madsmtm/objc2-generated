@@ -179,15 +179,14 @@ impl NSFileCoordinator {
         ))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `accessor` block must be sendable.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(coordinateAccessWithIntents:queue:byAccessor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinateAccessWithIntents_queue_byAccessor(
             &self,
             intents: &NSArray<NSFileAccessIntent>,
             queue: &NSOperationQueue,
-            accessor: &block2::Block<'static, fn(*mut NSError)>,
+            accessor: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
@@ -244,19 +243,16 @@ impl NSFileCoordinator {
             feature = "NSURL",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `batch_accessor` block's argument block must be sendable.
         #[unsafe(method(prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prepareForReadingItemsAtURLs_options_writingItemsAtURLs_options_error_byAccessor(
+        pub fn prepareForReadingItemsAtURLs_options_writingItemsAtURLs_options_error_byAccessor(
             &self,
             reading_ur_ls: &NSArray<NSURL>,
             reading_options: NSFileCoordinatorReadingOptions,
             writing_ur_ls: &NSArray<NSURL>,
             writing_options: NSFileCoordinatorWritingOptions,
             out_error: Option<&mut Option<Retained<NSError>>>,
-            batch_accessor: &block2::Block<'_, fn(NonNull<block2::Block<'static, fn()>>)>,
+            batch_accessor: &block2::Block<'_, fn(NonNull<block2::SendableBlock<'static, fn()>>)>,
         );
 
         #[cfg(feature = "NSURL")]

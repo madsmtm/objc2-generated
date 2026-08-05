@@ -102,16 +102,15 @@ extern_protocol!(
         ///
         ///
         /// See: INActivateCarSignalIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleActivateCarSignal:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleActivateCarSignal_completion(
             &self,
             intent: &INActivateCarSignalIntent,
-            completion: &block2::Block<'static, fn(NonNull<INActivateCarSignalIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INActivateCarSignalIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -131,17 +130,16 @@ extern_protocol!(
         ///
         ///
         /// See: INActivateCarSignalIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmActivateCarSignal:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmActivateCarSignal_completion(
             &self,
             intent: &INActivateCarSignalIntent,
-            completion: &block2::Block<'static, fn(NonNull<INActivateCarSignalIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INActivateCarSignalIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -161,17 +159,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCarNameForActivateCarSignal:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCarNameForActivateCarSignal_withCompletion(
             &self,
             intent: &INActivateCarSignalIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -180,16 +177,16 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSignalsForActivateCarSignal:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveSignalsForActivateCarSignal_withCompletion(
             &self,
             intent: &INActivateCarSignalIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCarSignalOptionsResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INCarSignalOptionsResolutionResult>),
+            >,
         );
     }
 );

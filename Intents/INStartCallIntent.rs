@@ -133,16 +133,12 @@ extern_protocol!(
         ///
         ///
         /// See: INStartCallIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleStartCall:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleStartCall_completion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStartCallIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStartCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -162,17 +158,13 @@ extern_protocol!(
         ///
         ///
         /// See: INStartCallIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmStartCall:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmStartCall_completion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStartCallIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStartCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -192,17 +184,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCallRecordToCallBackForStartCall:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCallRecordToCallBackForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCallRecordResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INCallRecordResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -211,16 +199,16 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDestinationTypeForStartCall:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveDestinationTypeForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCallDestinationTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INCallDestinationTypeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -230,16 +218,13 @@ extern_protocol!(
             feature = "INStartCallContactResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveContactsForStartCall:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveContactsForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<INStartCallContactResolutionResult>>),
             >,
@@ -252,16 +237,13 @@ extern_protocol!(
             feature = "INStartCallCallCapabilityResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveCallCapabilityForStartCall:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCallCapabilityForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INStartCallCallCapabilityResolutionResult>),
             >,

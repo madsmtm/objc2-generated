@@ -24,12 +24,9 @@ impl NSThread {
         pub fn currentThread() -> Retained<NSThread>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(detachNewThreadWithBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detachNewThreadWithBlock(block: &block2::Block<'static, fn()>);
+        pub fn detachNewThreadWithBlock(block: &block2::SendableBlock<'static, fn()>);
 
         /// # Safety
         ///
@@ -161,14 +158,11 @@ impl NSThread {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(initWithBlock:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithBlock(
+        pub fn initWithBlock(
             this: Allocated<Self>,
-            block: &block2::Block<'static, fn()>,
+            block: &block2::SendableBlock<'static, fn()>,
         ) -> Retained<Self>;
 
         #[unsafe(method(isExecuting))]

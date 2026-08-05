@@ -140,16 +140,12 @@ extern_protocol!(
         ///
         ///
         /// See: INSendMessageIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleSendMessage:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSendMessage_completion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSendMessageIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INSendMessageIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -169,17 +165,13 @@ extern_protocol!(
         ///
         ///
         /// See: INSendMessageIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSendMessage:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmSendMessage_completion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSendMessageIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INSendMessageIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -199,10 +191,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "resolveRecipientsForSendMessage:withCompletion: is deprecated. Use resolveRecipientsForSendMessage:completion: instead"]
         #[optional]
         #[unsafe(method(resolveRecipientsForSendMessage:withCompletion:))]
@@ -210,7 +198,10 @@ extern_protocol!(
         unsafe fn resolveRecipientsForSendMessage_withCompletion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<'static, fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<INPersonResolutionResult>>),
+            >,
         );
 
         #[cfg(all(
@@ -220,16 +211,13 @@ extern_protocol!(
             feature = "INSendMessageRecipientResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRecipientsForSendMessage:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveRecipientsForSendMessage_completion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<INSendMessageRecipientResolutionResult>>),
             >,
@@ -241,9 +229,6 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "resolveGroupNameForSendMessage:withCompletion: is deprecated. Use resolveSpeakableGroupNameForSendMessage:withCompletion: instead"]
         #[optional]
         #[unsafe(method(resolveGroupNameForSendMessage:withCompletion:))]
@@ -251,7 +236,7 @@ extern_protocol!(
         unsafe fn resolveGroupNameForSendMessage_withCompletion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -260,16 +245,16 @@ extern_protocol!(
             feature = "INOutgoingMessageTypeResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveOutgoingMessageTypeForSendMessage:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveOutgoingMessageTypeForSendMessage_withCompletion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<'static, fn(NonNull<INOutgoingMessageTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INOutgoingMessageTypeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -278,16 +263,13 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveContentForSendMessage:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveContentForSendMessage_withCompletion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -296,16 +278,16 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSpeakableGroupNameForSendMessage:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveSpeakableGroupNameForSendMessage_withCompletion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

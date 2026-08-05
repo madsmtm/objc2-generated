@@ -35,16 +35,12 @@ impl LARightStore {
         /// Parameter `identifier`: Identifier associated with a previously stored right.
         ///
         /// Parameter `handler`: Completion handler with the fetched right or an error on failure.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(rightForIdentifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightForIdentifier_completion(
             &self,
             identifier: &NSString,
-            handler: &block2::Block<'static, fn(*mut LAPersistedRight, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
         #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
@@ -55,17 +51,13 @@ impl LARightStore {
         /// Parameter `identifier`: Identifier to be associated with the right. Useful for later retrieval.
         ///
         /// Parameter `handler`: Completion handler with the persisted right or an error on failure.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(saveRight:identifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveRight_identifier_completion(
             &self,
             right: &LARight,
             identifier: &NSString,
-            handler: &block2::Block<'static, fn(*mut LAPersistedRight, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
         #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
@@ -78,10 +70,6 @@ impl LARightStore {
         /// Parameter `secret`: Secret data to be associated with the provided right.
         ///
         /// Parameter `handler`: Completion handler with the persisted right or an error on failure.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(saveRight:identifier:secret:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveRight_identifier_secret_completion(
@@ -89,7 +77,7 @@ impl LARightStore {
             right: &LARight,
             identifier: &NSString,
             secret: &NSData,
-            handler: &block2::Block<'static, fn(*mut LAPersistedRight, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
         #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
@@ -98,16 +86,12 @@ impl LARightStore {
         /// Parameter `right`: `LAPersistedRight`instance to remove.
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(removeRight:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRight_completion(
             &self,
             right: &LAPersistedRight,
-            handler: &block2::Block<'static, fn(*mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -117,31 +101,23 @@ impl LARightStore {
         /// `LAPersistedRight`instance to remove.
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(removeRightForIdentifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRightForIdentifier_completion(
             &self,
             identifier: &NSString,
-            handler: &block2::Block<'static, fn(*mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// Removes all rights stored by the client
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(removeAllRightsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllRightsWithCompletion(
             &self,
-            handler: &block2::Block<'static, fn(*mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

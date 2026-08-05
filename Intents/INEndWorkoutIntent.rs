@@ -96,16 +96,12 @@ extern_protocol!(
         ///
         ///
         /// See: INEndWorkoutIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleEndWorkout:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleEndWorkout_completion(
             &self,
             intent: &INEndWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INEndWorkoutIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INEndWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -125,17 +121,13 @@ extern_protocol!(
         ///
         ///
         /// See: INEndWorkoutIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmEndWorkout:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmEndWorkout_completion(
             &self,
             intent: &INEndWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INEndWorkoutIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INEndWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -155,17 +147,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveWorkoutNameForEndWorkout:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveWorkoutNameForEndWorkout_withCompletion(
             &self,
             intent: &INEndWorkoutIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

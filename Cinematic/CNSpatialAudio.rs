@@ -125,15 +125,11 @@ impl CNAssetSpatialAudioInfo {
         /// Parameter `completionHandler`: Completion handler to return the result
         ///
         /// Returns: Boolean
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(checkIfContainsSpatialAudio:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkIfContainsSpatialAudio_completionHandler(
             asset: &AVAsset,
-            completion_handler: &block2::Block<'static, fn(Bool)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
@@ -144,15 +140,11 @@ impl CNAssetSpatialAudioInfo {
         /// Parameter `completionHandler`: Completion handler to return the result
         ///
         /// Returns: An instance of CNAssetSpatialAudioInfo delivered via the completion handler or an error on failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFromAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromAsset_completionHandler(
             asset: &AVAsset,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut CNAssetSpatialAudioInfo, *mut NSError),
             >,

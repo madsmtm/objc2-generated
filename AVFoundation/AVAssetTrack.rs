@@ -243,16 +243,15 @@ impl AVAssetTrack {
         ///
         /// - Parameter trackTime: The trackTime for which an AVAssetTrackSegment is requested.
         /// - Parameter completionHandler: A block that is invoked when loading is complete, vending an AVAssetTrackSegment or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadSegmentForTrackTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSegmentForTrackTime_completionHandler(
             &self,
             track_time: CMTime,
-            completion_handler: &block2::Block<'static, fn(*mut AVAssetTrackSegment, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut AVAssetTrackSegment, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "objc2-core-media")]
@@ -271,16 +270,12 @@ impl AVAssetTrack {
         ///
         /// - Parameter trackTime: The trackTime for which a sample presentation time is requested.
         /// - Parameter completionHandler: A block that is invoked when loading is complete, vending a CMTime (which will be invalid if the trackTime is out of range) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadSamplePresentationTimeForTrackTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSamplePresentationTimeForTrackTime_completionHandler(
             &self,
             track_time: CMTime,
-            completion_handler: &block2::Block<'static, fn(CMTime, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(CMTime, *mut NSError)>,
         );
     );
 }
@@ -333,16 +328,12 @@ impl AVAssetTrack {
         ///
         /// - Parameter format: The metadata format for which items are requested.
         /// - Parameter completionHandler: A block that is invoked when loading is complete, vending the array of metadata items (which may be empty if there is no metadata of the specified format) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadMetadataForFormat:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMetadataForFormat_completionHandler(
             &self,
             format: &AVMetadataFormat,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVMetadataItem>, *mut NSError),
             >,
@@ -454,16 +445,12 @@ impl AVAssetTrack {
         ///
         /// - Parameter trackAssociationType: The type of track association for which associated tracks are requested.
         /// - Parameter completionHandler: A block that is invoked when loading is comlete, vending an array of tracks (which may be empty if there is no associated tracks of the specified type) or an error. `
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadAssociatedTracksOfType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAssociatedTracksOfType_completionHandler(
             &self,
             track_association_type: &AVTrackAssociationType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVAssetTrack>, *mut NSError),
             >,

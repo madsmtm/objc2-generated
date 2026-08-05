@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsnapshotcompletionhandler?language=objc)
 #[cfg(all(feature = "MKMapSnapshot", feature = "block2"))]
 pub type MKMapSnapshotCompletionHandler =
-    block2::Block<'static, fn(*mut MKMapSnapshot, *mut NSError)>;
+    block2::SendableBlock<'static, fn(*mut MKMapSnapshot, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter?language=objc)
@@ -36,9 +36,6 @@ impl MKMapSnapshotter {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMapSnapshot", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
@@ -49,8 +46,7 @@ impl MKMapSnapshotter {
         #[cfg(all(feature = "MKMapSnapshot", feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `completion_handler` block must be sendable.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startWithQueue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithQueue_completionHandler(

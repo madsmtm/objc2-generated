@@ -101,16 +101,12 @@ extern_protocol!(
         ///
         ///
         /// See: INAnswerCallIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleAnswerCall:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleAnswerCall_completion(
             &self,
             intent: &INAnswerCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INAnswerCallIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INAnswerCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -130,17 +126,13 @@ extern_protocol!(
         ///
         ///
         /// See: INAnswerCallIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmAnswerCall:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmAnswerCall_completion(
             &self,
             intent: &INAnswerCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INAnswerCallIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INAnswerCallIntentResponse>)>,
         );
     }
 );

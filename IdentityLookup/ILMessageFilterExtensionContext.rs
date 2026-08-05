@@ -31,15 +31,11 @@ impl ILMessageFilterExtensionContext {
         ///
         ///
         /// Parameter `completion`: Completion block containing either the network response to the HTTPS request or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(deferQueryRequestToNetworkWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deferQueryRequestToNetworkWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(*mut ILNetworkResponse, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut ILNetworkResponse, *mut NSError)>,
         );
     );
 }

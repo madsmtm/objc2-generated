@@ -182,16 +182,12 @@ extern_protocol!(
         ///
         ///
         /// See: INBookRestaurantReservationIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleBookRestaurantReservation:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleBookRestaurantReservation_completion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INBookRestaurantReservationIntentResponse>),
             >,
@@ -214,17 +210,13 @@ extern_protocol!(
         ///
         ///
         /// See: INEndWorkoutIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmBookRestaurantReservation:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmBookRestaurantReservation_completion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INBookRestaurantReservationIntentResponse>),
             >,
@@ -247,17 +239,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveRestaurantForBookRestaurantReservation:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveRestaurantForBookRestaurantReservation_withCompletion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INRestaurantResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INRestaurantResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -266,16 +254,16 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveBookingDateComponentsForBookRestaurantReservation:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveBookingDateComponentsForBookRestaurantReservation_withCompletion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDateComponentsResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INDateComponentsResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -284,16 +272,13 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePartySizeForBookRestaurantReservation:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolvePartySizeForBookRestaurantReservation_withCompletion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -302,16 +287,16 @@ extern_protocol!(
             feature = "INRestaurantGuestResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveGuestForBookRestaurantReservation:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveGuestForBookRestaurantReservation_withCompletion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INRestaurantGuestResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INRestaurantGuestResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -320,16 +305,13 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveGuestProvidedSpecialRequestTextForBookRestaurantReservation:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveGuestProvidedSpecialRequestTextForBookRestaurantReservation_withCompletion(
             &self,
             intent: &INBookRestaurantReservationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStringResolutionResult>)>,
         );
     }
 );

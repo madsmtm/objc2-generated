@@ -291,16 +291,13 @@ impl NSFileManager {
         ) -> Option<Retained<NSArray<NSURL>>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(unmountVolumeAtURL:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unmountVolumeAtURL_options_completionHandler(
+        pub fn unmountVolumeAtURL_options_completionHandler(
             &self,
             url: &NSURL,
             mask: NSFileManagerUnmountOptions,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -892,16 +889,12 @@ impl NSFileManager {
         /// - Parameters:
         /// - url: The URL of the item for which to pause sync.
         /// - completionHandler: A closure or block that the framework calls when the pause action completes. It receives a single ``NSError`` parameter to indicate an error that prevented pausing; this value is `nil` if the pause succeeded. In Swift, you can omit the completion handler and catch the thrown error instead.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(pauseSyncForUbiquitousItemAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pauseSyncForUbiquitousItemAtURL_completionHandler(
+        pub fn pauseSyncForUbiquitousItemAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
@@ -920,17 +913,13 @@ impl NSFileManager {
         /// - url: The URL of the item for which to resume sync.
         /// - behavior: A ``NSFileManagerResumeSyncBehavior`` value that tells the file manager how to handle conflicts between local and remote versions of files.
         /// - completionHandler: A closure or block that the framework calls when the resume action completes. It receives a single ``NSError`` parameter to indicate an error that prevented the resume action; the value is `nil` if the resume succeeded. In Swift, you can omit the completion handler and catch the thrown error instead.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(resumeSyncForUbiquitousItemAtURL:withBehavior:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resumeSyncForUbiquitousItemAtURL_withBehavior_completionHandler(
+        pub fn resumeSyncForUbiquitousItemAtURL_withBehavior_completionHandler(
             &self,
             url: &NSURL,
             behavior: NSFileManagerResumeSyncBehavior,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -956,16 +945,15 @@ impl NSFileManager {
         /// - Parameters:
         /// - url: The URL of the item for which to check the version.
         /// - completionHandler: A closure or block that the framework calls when the fetch action completes. It receives parameters of types ``NSFileVersion`` and ``NSError``. The error is `nil` if fetching the remote version succeeded; otherwise it indicates the error that caused the call to fail. In Swift, you can omit the completion handler, catching any error in a `do`-`catch` block and receiving the version as the return value.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchLatestRemoteVersionOfItemAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fetchLatestRemoteVersionOfItemAtURL_completionHandler(
+        pub fn fetchLatestRemoteVersionOfItemAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileVersion, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSFileVersion, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -992,17 +980,16 @@ impl NSFileManager {
         /// - url: The URL of the item for which to check the version.
         /// - conflictResolutionPolicy: The policy the file manager applies if the local and server versions conflict.
         /// - completionHandler: A closure or block that the framework calls when the upload completes. It receives parameters of types ``NSFileVersion`` and ``NSError``. The error is `nil` if fetching the remote version succeeded; otherwise it indicates the error that caused the call to fail. In Swift, you can omit the completion handler, catching any error in a `do`-`catch` block and receiving the version as the return value.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(uploadLocalVersionOfUbiquitousItemAtURL:withConflictResolutionPolicy:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn uploadLocalVersionOfUbiquitousItemAtURL_withConflictResolutionPolicy_completionHandler(
+        pub fn uploadLocalVersionOfUbiquitousItemAtURL_withConflictResolutionPolicy_completionHandler(
             &self,
             url: &NSURL,
             conflict_resolution_policy: NSFileManagerUploadLocalVersionConflictPolicy,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileVersion, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSFileVersion, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -1012,15 +999,12 @@ impl NSFileManager {
             feature = "NSURL",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getFileProviderServicesForItemAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getFileProviderServicesForItemAtURL_completionHandler(
+        pub fn getFileProviderServicesForItemAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     *mut NSDictionary<NSFileProviderServiceName, NSFileProviderService>,
@@ -1368,14 +1352,14 @@ extern_conformance!(
 impl NSFileProviderService {
     extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSXPCConnection", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getFileProviderConnectionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getFileProviderConnectionWithCompletionHandler(
+        pub fn getFileProviderConnectionWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSXPCConnection, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSXPCConnection, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "NSString")]

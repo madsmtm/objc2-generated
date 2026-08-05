@@ -17,10 +17,6 @@ extern_protocol!(
         ))]
         /// Called when a player intends to play for a specific game activity.
         /// A completion handler block is provided to indicate whether the activity was successfully handled.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(player:wantsToPlayGameActivity:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -28,7 +24,7 @@ extern_protocol!(
             &self,
             player: &GKPlayer,
             activity: &GKGameActivity,
-            completion_handler: &block2::Block<'static, fn(Bool)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool)>,
         );
     }
 );

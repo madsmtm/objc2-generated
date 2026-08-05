@@ -96,16 +96,15 @@ extern_protocol!(
         ///
         ///
         /// See: INShareFocusStatusIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleShareFocusStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleShareFocusStatus_completion(
             &self,
             intent: &INShareFocusStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INShareFocusStatusIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INShareFocusStatusIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -125,17 +124,16 @@ extern_protocol!(
         ///
         ///
         /// See: INShareFocusStatusIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmShareFocusStatus:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmShareFocusStatus_completion(
             &self,
             intent: &INShareFocusStatusIntent,
-            completion: &block2::Block<'static, fn(NonNull<INShareFocusStatusIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INShareFocusStatusIntentResponse>),
+            >,
         );
     }
 );

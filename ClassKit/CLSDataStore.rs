@@ -115,15 +115,11 @@ impl CLSDataStore {
         /// Save changes made in the data store.
         ///
         /// Save new/modified/removed contexts, activities, etc. to the local store. In case of an error -[NSError userInfo] will contain the object that caused the error under the CLSErrorObjectKey..
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(saveWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveWithCompletion(
             &self,
-            completion: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         /// Complete all assigned actvities.
@@ -147,16 +143,15 @@ impl CLSDataStore {
         /// For example: NSPredicate
         /// <topic
         /// == CLSContextTopicMath AND parent == someContext>.  Completion block may be called on a background thread.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(contextsMatchingPredicate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextsMatchingPredicate_completion(
             &self,
             predicate: &NSPredicate,
-            completion: &block2::Block<'static, fn(NonNull<NSArray<CLSContext>>, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<CLSContext>>, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject", feature = "block2"))]
@@ -172,16 +167,15 @@ impl CLSDataStore {
         /// ```
         ///
         /// If the dataStore does not have a delegate and there are missing contexts then an incomplete list of contexts will be passed to the completion handler.  Completion block may be called on a background thread.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(contextsMatchingIdentifierPath:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextsMatchingIdentifierPath_completion(
             &self,
             identifier_path: &NSArray<NSString>,
-            completion: &block2::Block<'static, fn(NonNull<NSArray<CLSContext>>, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<CLSContext>>, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
@@ -198,16 +192,12 @@ impl CLSDataStore {
         /// Gets the currently CLSActivity for the file. If no current activity exists, one will be created for you.
         ///
         /// Parameter `url`: File url for the document.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(fetchActivityForURL:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchActivityForURL_completion(
             &self,
             url: &NSURL,
-            completion: &block2::Block<'static, fn(*mut CLSActivity, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut CLSActivity, *mut NSError)>,
         );
     );
 }
@@ -269,16 +259,12 @@ impl CLSDataStore {
         ///      });
         ///  }];
         /// ```
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(checkIsAssignedDocument:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkIsAssignedDocument_completion(
             &self,
             document_url: &NSURL,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
     );
 }

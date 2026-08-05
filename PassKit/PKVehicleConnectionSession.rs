@@ -102,15 +102,15 @@ impl PKVehicleConnectionSession {
             feature = "PKSecureElementPass",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(sessionForPass:delegate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionForPass_delegate_completion(
             pass: &PKSecureElementPass,
             delegate: &ProtocolObject<dyn PKVehicleConnectionDelegate>,
-            completion: &block2::Block<'static, fn(*mut PKVehicleConnectionSession, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut PKVehicleConnectionSession, *mut NSError),
+            >,
         );
 
         #[unsafe(method(sendData:error:_))]

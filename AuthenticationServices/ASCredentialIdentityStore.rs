@@ -88,15 +88,14 @@ impl ASCredentialIdentityStore {
         /// Call this method to find out the current state of the store before attempting to call other store methods.
         /// Use the provided ASCredentialIdentityStoreState to find out if the store is enabled and whether it supports incremental
         /// updates.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(getCredentialIdentityStoreStateWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCredentialIdentityStoreStateWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(NonNull<ASCredentialIdentityStoreState>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<ASCredentialIdentityStoreState>),
+            >,
         );
 
         #[cfg(all(
@@ -113,17 +112,13 @@ impl ASCredentialIdentityStore {
         /// Pass ASCredentialIdentityTypesAll to get credential identities of all types.
         ///
         /// Call this method to get a list of all credential identities saved in the store for your extension.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getCredentialIdentitiesForService:credentialIdentityTypes:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCredentialIdentitiesForService_credentialIdentityTypes_completionHandler(
             &self,
             service_identifier: Option<&ASCredentialServiceIdentifier>,
             credential_identity_types: ASCredentialIdentityTypes,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<ProtocolObject<dyn ASCredentialIdentity>>>),
             >,
@@ -143,17 +138,13 @@ impl ASCredentialIdentityStore {
         /// identities.
         /// If some credential identities in credentialIdentities already exist in the store, they will be replaced by
         /// those from credentialIdentities.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(saveCredentialIdentities:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveCredentialIdentities_completion(
             &self,
             credential_identities: &NSArray<ASPasswordCredentialIdentity>,
-            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
@@ -170,16 +161,12 @@ impl ASCredentialIdentityStore {
         /// identities.
         /// If some credential identities in credentialIdentities already exist in the store, they will be replaced by
         /// those from credentialIdentities.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(saveCredentialIdentityEntries:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveCredentialIdentityEntries_completion(
             &self,
             credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
-            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "ASPasswordCredentialIdentity", feature = "block2"))]
@@ -193,17 +180,13 @@ impl ASCredentialIdentityStore {
         ///
         /// Use this method only if the store supports incremental updates to remove previously added
         /// credentials to the store.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(removeCredentialIdentities:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCredentialIdentities_completion(
             &self,
             credential_identities: &NSArray<ASPasswordCredentialIdentity>,
-            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
@@ -217,16 +200,12 @@ impl ASCredentialIdentityStore {
         ///
         /// Use this method only if the store supports incremental updates to remove previously added
         /// credentials to the store.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(removeCredentialIdentityEntries:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCredentialIdentityEntries_completion(
             &self,
             credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
-            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -235,15 +214,11 @@ impl ASCredentialIdentityStore {
         /// Parameter `completion`: optional completion handler to be called after removing all existing credential identities.
         /// If the operation fails, an error with domain ASCredentialIdentityStoreErrorDomain will be provided and none of
         /// the existing credential identities will be removed from the store.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(removeAllCredentialIdentitiesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllCredentialIdentitiesWithCompletion(
             &self,
-            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "ASPasswordCredentialIdentity", feature = "block2"))]
@@ -257,17 +232,13 @@ impl ASCredentialIdentityStore {
         /// store and replace them with the provided array of credential identities. If the operation fails, an
         /// error with domain ASCredentialIdentityStoreErrorDomain will be provided and none of the new credential
         /// identities will be saved.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated]
         #[unsafe(method(replaceCredentialIdentitiesWithIdentities:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceCredentialIdentitiesWithIdentities_completion(
             &self,
             new_credential_identities: &NSArray<ASPasswordCredentialIdentity>,
-            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
@@ -281,16 +252,12 @@ impl ASCredentialIdentityStore {
         /// store and replace them with the provided array of credential identities. If the operation fails, an
         /// error with domain ASCredentialIdentityStoreErrorDomain will be provided and none of the new credential
         /// identities will be saved.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(replaceCredentialIdentityEntries:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceCredentialIdentityEntries_completion(
             &self,
             new_credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
-            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool, *mut NSError)>>,
         );
     );
 }

@@ -113,17 +113,13 @@ extern_protocol!(
         ///
         ///
         /// See: INDeleteTasksIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INDeleteTasksIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleDeleteTasks:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleDeleteTasks_completion(
             &self,
             intent: &INDeleteTasksIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDeleteTasksIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INDeleteTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -143,10 +139,6 @@ extern_protocol!(
         ///
         ///
         /// See: INDeleteTasksIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INDeleteTasksIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmDeleteTasks:completion:))]
@@ -154,7 +146,7 @@ extern_protocol!(
         unsafe fn confirmDeleteTasks_completion(
             &self,
             intent: &INDeleteTasksIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDeleteTasksIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INDeleteTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -175,10 +167,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INDeleteTasksIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTaskListForDeleteTasks:withCompletion:))]
@@ -186,7 +174,10 @@ extern_protocol!(
         unsafe fn resolveTaskListForDeleteTasks_withCompletion(
             &self,
             intent: &INDeleteTasksIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDeleteTasksTaskListResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INDeleteTasksTaskListResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -196,9 +187,6 @@ extern_protocol!(
             feature = "INTaskResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INDeleteTasksIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTasksForDeleteTasks:withCompletion:))]
@@ -206,7 +194,7 @@ extern_protocol!(
         unsafe fn resolveTasksForDeleteTasks_withCompletion(
             &self,
             intent: &INDeleteTasksIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<INDeleteTasksTaskResolutionResult>>),
             >,

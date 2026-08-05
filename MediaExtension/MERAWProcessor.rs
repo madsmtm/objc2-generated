@@ -800,16 +800,15 @@ extern_protocol!(
         /// Contains the processed frame if processing was successful, otherwise NULL. The imageBuffer must be allocated using MERAWProcessorPixelBufferManager.
         /// 'error'
         /// An NSError object that will contain error information if the method fails, otherwise nil. Errors outside of MediaExtensionErrorDomain will be reported as kVTRAWProcessorUnknownErr to the VTRAWProcessingSession client.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(processFrameFromImageBuffer:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn processFrameFromImageBuffer_completionHandler(
             &self,
             input_frame: &CVPixelBuffer,
-            completion_handler: &block2::Block<'static, fn(*mut CVPixelBuffer, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CVPixelBuffer, *mut NSError),
+            >,
         );
     }
 );

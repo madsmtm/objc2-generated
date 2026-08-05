@@ -459,16 +459,12 @@ impl AUAudioUnit {
         ///
         /// Note: Do not block the main thread while waiting for the completion handler to be called;
         /// this can deadlock.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(instantiateWithComponentDescription:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateWithComponentDescription_options_completionHandler(
             component_description: AudioComponentDescription,
             options: AudioComponentInstantiationOptions,
-            completion_handler: &block2::Block<'static, fn(*mut AUAudioUnit, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut AUAudioUnit, *mut NSError)>,
         );
 
         #[cfg(feature = "AudioComponent")]

@@ -79,17 +79,13 @@ impl HKHeartbeatSeriesBuilder {
         /// Parameter `completion`: The completion callback handler returns the status of the save. If the completion
         /// handler success is NO, then error is non-nil. An error here is considered fatal and
         /// the series builder will be complete.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addHeartbeatWithTimeIntervalSinceSeriesStartDate:precededByGap:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addHeartbeatWithTimeIntervalSinceSeriesStartDate_precededByGap_completion(
             &self,
             time_interval_since_start: NSTimeInterval,
             preceded_by_gap: bool,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -109,14 +105,13 @@ impl HKHeartbeatSeriesBuilder {
         ///
         /// # Safety
         ///
-        /// - `metadata` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(addMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMetadata_completion(
             &self,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -139,15 +134,14 @@ impl HKHeartbeatSeriesBuilder {
         /// including database inaccessibility during device lock. Subsequent requests for the
         /// HKHeartbeatSeriesSample can be made through HKSampleQuery or similar queries. To
         /// retrieve the data stored with an HKHeartbeatSeriesSample use HKHeartbeatSeriesQuery.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(finishSeriesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(*mut HKHeartbeatSeriesSample, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut HKHeartbeatSeriesSample, *mut NSError),
+            >,
         );
     );
 }

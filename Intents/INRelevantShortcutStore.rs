@@ -32,16 +32,12 @@ impl INRelevantShortcutStore {
         /// Provide a new set of relevant shortcuts that should be suggested by Siri.
         ///
         /// Note: Setting new relevant shortcuts will replace all relevant shortcuts that were previously provided.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(setRelevantShortcuts:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRelevantShortcuts_completionHandler(
             &self,
             shortcuts: &NSArray<INRelevantShortcut>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }

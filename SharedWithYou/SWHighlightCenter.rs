@@ -82,16 +82,12 @@ impl SWHighlightCenter {
         /// Parameter `URL`: The URL used to find the SWHighlight
         ///
         /// Parameter `completionHandler`: an SWHighlight if it  was fetched. The completion handler will always be invoked on the main queue
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getHighlightForURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getHighlightForURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<'static, fn(*mut SWHighlight, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut SWHighlight, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -116,16 +112,12 @@ impl SWHighlightCenter {
         /// Parameter `URL`: The URL used to find the SWCollaborationHighlight
         ///
         /// Parameter `completionHandler`: an SWCollaborationHighlight if it was fetched. The completion handler will always be invoked on the main queue
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getCollaborationHighlightForURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCollaborationHighlightForURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut SWCollaborationHighlight, *mut NSError),
             >,
@@ -163,17 +155,13 @@ impl SWHighlightCenter {
         /// Parameter `collaborationHighlight`: The corresponding collaboration highlight.
         ///
         /// Parameter `completionHandler`: Signed data along with proof of inclusion for merkle if signing succeeded, otherwise an error. The completion handler will always be invoked on main queue
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getSignedIdentityProofForCollaborationHighlight:usingData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSignedIdentityProofForCollaborationHighlight_usingData_completionHandler(
             &self,
             collaboration_highlight: &SWCollaborationHighlight,
             data: &NSData,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut SWSignedPersonIdentityProof, *mut NSError),
             >,

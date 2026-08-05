@@ -102,16 +102,15 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForMediaIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleSearchForMedia:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSearchForMedia_completion(
             &self,
             intent: &INSearchForMediaIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSearchForMediaIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSearchForMediaIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -131,17 +130,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForMediaIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmSearchForMedia:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmSearchForMedia_completion(
             &self,
             intent: &INSearchForMediaIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSearchForMediaIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSearchForMediaIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -162,17 +160,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveMediaItemsForSearchForMedia:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveMediaItemsForSearchForMedia_withCompletion(
             &self,
             intent: &INSearchForMediaIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<INSearchForMediaMediaItemResolutionResult>>),
             >,

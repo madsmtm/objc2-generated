@@ -163,15 +163,11 @@ impl WKWebsiteDataStore {
         ///
         /// This should be called when the data store is not used any more. Returns error if removal fails
         /// to complete. WKWebView using the data store must be released before removal.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeDataStoreForIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeDataStoreForIdentifier_completionHandler(
             identifier: &NSUUID,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
             mtm: MainThreadMarker,
         );
 
@@ -181,14 +177,10 @@ impl WKWebsiteDataStore {
         /// Parameter `completionHandler`: A block to invoke with an array of identifiers when the operation completes.
         ///
         /// Default or non-persistent data store do not have an identifier.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchAllDataStoreIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllDataStoreIdentifiers(
-            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSUUID>>)>,
+            completion_handler: &block2::SendableBlock<'static, fn(NonNull<NSArray<NSUUID>>)>,
             mtm: MainThreadMarker,
         );
 

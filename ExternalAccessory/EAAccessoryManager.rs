@@ -38,7 +38,7 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickercompletion?language=objc)
 #[cfg(feature = "block2")]
-pub type EABluetoothAccessoryPickerCompletion = block2::Block<'static, fn(*mut NSError)>;
+pub type EABluetoothAccessoryPickerCompletion = block2::SendableBlock<'static, fn(*mut NSError)>;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaaccessorydidconnectnotification?language=objc)
@@ -78,9 +78,6 @@ impl EAAccessoryManager {
         pub unsafe fn sharedAccessoryManager() -> Retained<EAAccessoryManager>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(showBluetoothAccessoryPickerWithNameFilter:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showBluetoothAccessoryPickerWithNameFilter_completion(

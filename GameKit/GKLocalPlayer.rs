@@ -72,16 +72,12 @@ impl GKLocalPlayer {
         /// Possible reasons for error:
         /// 1. Communications problem
         /// 2. Unauthenticated player
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadRecentPlayersWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadRecentPlayersWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
             >,
         );
 
@@ -90,16 +86,12 @@ impl GKLocalPlayer {
         /// Possible reasons for error:
         /// 1. Communications problem
         /// 2. Unauthenticated player
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadChallengableFriendsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadChallengableFriendsWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
             >,
         );
 
@@ -108,16 +100,12 @@ impl GKLocalPlayer {
         /// Possible reasons for error:
         /// 1. Communications problem
         /// 2. Unauthenticated player
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchItemsForIdentityVerificationSignature:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchItemsForIdentityVerificationSignature(
             &self,
             completion_handler: Option<
-                &block2::Block<
+                &block2::SendableBlock<
                     'static,
                     fn(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError),
                 >,
@@ -219,53 +207,43 @@ extern "C" {
 impl GKLocalPlayer {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(setDefaultLeaderboardCategoryID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultLeaderboardCategoryID_completionHandler(
             &self,
             category_id: Option<&NSString>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadDefaultLeaderboardCategoryIDWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadDefaultLeaderboardCategoryIDWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSString, *mut NSError)>>,
+            completion_handler: Option<
+                &block2::SendableBlock<'static, fn(*mut NSString, *mut NSError)>,
+            >,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(authenticateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn authenticateWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadFriendPlayersWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFriendPlayersWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
             >,
         );
 
@@ -274,17 +252,13 @@ impl GKLocalPlayer {
         /// Possible reasons for error:
         /// 1. Communications problem
         /// 2. Unauthenticated player
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(generateIdentityVerificationSignatureWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateIdentityVerificationSignatureWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::Block<
+                &block2::SendableBlock<
                     'static,
                     fn(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError),
                 >,
@@ -297,16 +271,14 @@ impl GKLocalPlayer {
         /// 1. Communications problem
         /// 2. Unauthenticated player
         /// 3. Leaderboard not present
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported"]
         #[unsafe(method(loadDefaultLeaderboardIdentifierWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadDefaultLeaderboardIdentifierWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSString, *mut NSError)>>,
+            completion_handler: Option<
+                &block2::SendableBlock<'static, fn(*mut NSString, *mut NSError)>,
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -315,17 +287,13 @@ impl GKLocalPlayer {
         /// 1. Communications problem
         /// 2. Unauthenticated player
         /// 3. Leaderboard not present
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "No longer supported"]
         #[unsafe(method(setDefaultLeaderboardIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultLeaderboardIdentifier_completionHandler(
             &self,
             leaderboard_identifier: &NSString,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }
@@ -336,17 +304,13 @@ impl GKLocalPlayer {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// This method is obsolete. It will never be invoked and its implementation does nothing**
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadFriendsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFriendsWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut NSArray<NSString>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<NSString>, *mut NSError)>,
             >,
         );
 
@@ -387,40 +351,37 @@ unsafe impl RefEncode for GKFriendsAuthorizationStatus {
 impl GKLocalPlayer {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFriendsAuthorizationStatus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFriendsAuthorizationStatus(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(GKFriendsAuthorizationStatus, *mut NSError),
             >,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFriends:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFriends(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSArray<GKPlayer>, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFriendsWithIdentifiers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFriendsWithIdentifiers_completionHandler(
             &self,
             identifiers: &NSArray<NSString>,
-            completion_handler: &block2::Block<'static, fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSArray<GKPlayer>, *mut NSError),
+            >,
         );
     );
 }

@@ -84,17 +84,16 @@ impl NSFileProviderExtension {
         /// Other errors will be presented to the user, but are unexpected.  If you want to
         /// prevent imports in a given directory, then the directory item's capacities
         /// should exclude NSFileProviderItemCapabilitiesAllowsAddingSubItems.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(importDocumentAtURL:toParentItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn importDocumentAtURL_toParentItemIdentifier_completionHandler(
             &self,
             file_url: &NSURL,
             parent_item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSFileProviderItem, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -114,17 +113,16 @@ impl NSFileProviderExtension {
         /// Errors (including collision errors) are handled as documented for the import
         /// method above.  Directory creation is gated by the capabilities of the
         /// destination directory, with NSFileProviderItemCapabilitiesAllowsAddingSubItems.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(createDirectoryWithName:inParentItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createDirectoryWithName_inParentItemIdentifier_completionHandler(
             &self,
             directory_name: &NSString,
             parent_item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSFileProviderItem, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -140,17 +138,16 @@ impl NSFileProviderExtension {
         /// Errors (including collision errors) are handled as documented for the import
         /// method above.  Renames are gated by the capabilities of the renamed item, with
         /// NSFileProviderItemCapabilitiesAllowsRenaming.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(renameItemWithIdentifier:toName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renameItemWithIdentifier_toName_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
             item_name: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSFileProviderItem, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -164,10 +161,6 @@ impl NSFileProviderExtension {
         /// method above.  Moves are gated by the capabilities of both the moved item with
         /// NSFileProviderItemCapabilitiesAllowsReparenting, and the destination directory
         /// with NSFileProviderItemCapabilitiesAllowsAddingSubItems.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(reparentItemWithIdentifier:toParentItemWithIdentifier:newName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reparentItemWithIdentifier_toParentItemWithIdentifier_newName_completionHandler(
@@ -175,7 +168,10 @@ impl NSFileProviderExtension {
             item_identifier: &NSFileProviderItemIdentifier,
             parent_item_identifier: &NSFileProviderItemIdentifier,
             new_name: Option<&NSString>,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSFileProviderItem, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -197,16 +193,15 @@ impl NSFileProviderExtension {
         ///
         /// Trash is gated by the capabilities of the trashed item with
         /// NSFileProviderItemCapabilitiesAllowsTrashing.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(trashItemWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn trashItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSFileProviderItem, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -222,17 +217,16 @@ impl NSFileProviderExtension {
         ///
         /// Untrash is gated by the capabilities of the destination directory, with
         /// NSFileProviderItemCapabilitiesAllowsAddingSubItems.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(untrashItemWithIdentifier:toParentItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn untrashItemWithIdentifier_toParentItemIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
             parent_item_identifier: Option<&NSFileProviderItemIdentifier>,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSFileProviderItem, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -244,16 +238,12 @@ impl NSFileProviderExtension {
         ///
         /// Delete is gated by the capabilities of the removed item with
         /// NSFileProviderItemCapabilitiesAllowsDeleting.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteItemWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -269,17 +259,16 @@ impl NSFileProviderExtension {
         ///
         /// The error parameter is here for debugging purposes alone; it won't be presented
         /// to the user or otherwise handled, but it will be logged.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(setLastUsedDate:forItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLastUsedDate_forItemIdentifier_completionHandler(
             &self,
             last_used_date: Option<&NSDate>,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSFileProviderItem, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -297,17 +286,16 @@ impl NSFileProviderExtension {
         ///
         /// On shared items, tags should sync across the devices of any one participant but
         /// shouldn't sync across users.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(setTagData:forItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTagData_forItemIdentifier_completionHandler(
             &self,
             tag_data: Option<&NSData>,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSFileProviderItem, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -324,17 +312,16 @@ impl NSFileProviderExtension {
         /// The file provider is asked to persist the new favorite rank on disk, then call
         /// the completion callback with the updated favorite rank.  At a later point, the
         /// file provider should sync the new favorite rank to their server.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(setFavoriteRank:forItemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFavoriteRank_forItemIdentifier_completionHandler(
             &self,
             favorite_rank: Option<&NSNumber>,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::Block<'static, fn(*mut NSFileProviderItem, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSFileProviderItem, *mut NSError),
+            >,
         );
     );
 }

@@ -46,10 +46,6 @@ extern_protocol!(
 
         #[cfg(all(feature = "BADownload", feature = "block2"))]
         /// Download is about to begin but requires an authentication challenge to continue.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(backgroundDownload:didReceiveChallenge:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -57,7 +53,7 @@ extern_protocol!(
             &self,
             download: &BADownload,
             challenge: &NSURLAuthenticationChallenge,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,

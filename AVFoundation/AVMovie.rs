@@ -365,16 +365,15 @@ impl AVMovie {
         /// Parameter `trackID`: The trackID of the requested AVMovieTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<'static, fn(*mut AVMovieTrack, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut AVMovieTrack, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -410,16 +409,12 @@ impl AVMovie {
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVMovieTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVMovieTrack>, *mut NSError),
             >,
@@ -458,16 +453,12 @@ impl AVMovie {
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVMovieTrack>, *mut NSError),
             >,
@@ -1107,16 +1098,15 @@ impl AVMutableMovie {
         /// Parameter `trackID`: The trackID of the requested AVMutableMovieTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<'static, fn(*mut AVMutableMovieTrack, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut AVMutableMovieTrack, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -1151,16 +1141,12 @@ impl AVMutableMovie {
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVMutableMovieTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVMutableMovieTrack>, *mut NSError),
             >,
@@ -1198,16 +1184,12 @@ impl AVMutableMovie {
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVMutableMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVMutableMovieTrack>, *mut NSError),
             >,
@@ -1504,16 +1486,12 @@ impl AVFragmentedMovie {
         /// Parameter `trackID`: The trackID of the requested AVFragmentedMovieTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut AVFragmentedMovieTrack, *mut NSError),
             >,
@@ -1552,16 +1530,12 @@ impl AVFragmentedMovie {
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVFragmentedMovieTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVFragmentedMovieTrack>, *mut NSError),
             >,
@@ -1600,16 +1574,12 @@ impl AVFragmentedMovie {
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVFragmentedMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<AVFragmentedMovieTrack>, *mut NSError),
             >,

@@ -105,17 +105,16 @@ extern_protocol!(
         ///
         ///
         /// See: INStartAudioCallIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[unsafe(method(handleStartAudioCall:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleStartAudioCall_completion(
             &self,
             intent: &INStartAudioCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStartAudioCallIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INStartAudioCallIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -135,10 +134,6 @@ extern_protocol!(
         ///
         ///
         /// See: INStartAudioCallIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[optional]
         #[unsafe(method(confirmStartAudioCall:completion:))]
@@ -146,7 +141,10 @@ extern_protocol!(
         unsafe fn confirmStartAudioCall_completion(
             &self,
             intent: &INStartAudioCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStartAudioCallIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INStartAudioCallIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -166,17 +164,16 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveDestinationTypeForStartAudioCall:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveDestinationTypeForStartAudioCall_withCompletion(
             &self,
             intent: &INStartAudioCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCallDestinationTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INCallDestinationTypeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -185,9 +182,6 @@ extern_protocol!(
             feature = "INPersonResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[optional]
         #[unsafe(method(resolveContactsForStartAudioCall:withCompletion:))]
@@ -195,7 +189,10 @@ extern_protocol!(
         unsafe fn resolveContactsForStartAudioCall_withCompletion(
             &self,
             intent: &INStartAudioCallIntent,
-            completion: &block2::Block<'static, fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<INPersonResolutionResult>>),
+            >,
         );
     }
 );

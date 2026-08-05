@@ -158,20 +158,14 @@ impl NSManagedObjectContext {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(performBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performBlock(&self, block: &block2::Block<'static, fn()>);
+        pub unsafe fn performBlock(&self, block: &block2::SendableBlock<'static, fn()>);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `block` block must be sendable.
         #[unsafe(method(performBlockAndWait:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performBlockAndWait(&self, block: &block2::Block<'_, fn()>);
+        pub unsafe fn performBlockAndWait(&self, block: &block2::SendableBlock<'_, fn()>);
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[unsafe(method(persistentStoreCoordinator))]

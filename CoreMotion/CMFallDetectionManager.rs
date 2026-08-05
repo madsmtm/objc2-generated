@@ -111,10 +111,6 @@ extern_protocol!(
         /// The same event may be reported across different app launches, always check the date of the event before processing it.
         ///
         /// Fall Detection events can be simulated with the watchOS simulator. Use it to test the background functionality of your app.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[optional]
         #[unsafe(method(fallDetectionManager:didDetectEvent:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -122,7 +118,7 @@ extern_protocol!(
             &self,
             fall_detection_manager: &CMFallDetectionManager,
             event: &CMFallDetectionEvent,
-            handler: &block2::Block<'static, fn()>,
+            handler: &block2::SendableBlock<'static, fn()>,
         );
 
         /// Update the delegate when the app's Fall Detection authorization status changes

@@ -955,16 +955,12 @@ impl SCStream {
         /// Parameter `completionHandler`: the handler to be called when the function completes
         ///
         /// this method will update the content filter for a content stream. A completion handler will be called when the update is complete with an error denoting if the update has failed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(updateContentFilter:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateContentFilter_completionHandler(
+        pub fn updateContentFilter_completionHandler(
             &self,
             content_filter: &SCContentFilter,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -975,16 +971,12 @@ impl SCStream {
         /// Parameter `completionHandler`: the handler to be called when the function completes
         ///
         /// this method will update the stream configuration for a content stream. A completion handler will be called when the update is complete with an error denoting if the update has failed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(updateConfiguration:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateConfiguration_completionHandler(
+        pub fn updateConfiguration_completionHandler(
             &self,
             stream_config: &SCStreamConfiguration,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -993,15 +985,11 @@ impl SCStream {
         /// Parameter `completionHandler`: the handler to be called when the function completes
         ///
         /// this method starts the content stream. The handler will be called when the content stream start has completed with an error denoting if the start has failed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(startCaptureWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startCaptureWithCompletionHandler(
+        pub fn startCaptureWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -1010,15 +998,11 @@ impl SCStream {
         /// Parameter `completionHandler`: the handler to be called when the function completes
         ///
         /// this method stops the content stream. The handler will be called when the content stream stop has completed with an error denoting if the stop has failed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(stopCaptureWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stopCaptureWithCompletionHandler(
+        pub fn stopCaptureWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "SCRecordingOutput")]

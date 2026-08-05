@@ -133,17 +133,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForBillsIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSearchForBills:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSearchForBills_completion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSearchForBillsIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSearchForBillsIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -163,10 +162,6 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForBillsIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSearchForBills:completion:))]
@@ -174,7 +169,10 @@ extern_protocol!(
         unsafe fn confirmSearchForBills_completion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSearchForBillsIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSearchForBillsIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -194,10 +192,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveBillPayeeForSearchForBills:withCompletion:))]
@@ -205,7 +199,7 @@ extern_protocol!(
         unsafe fn resolveBillPayeeForSearchForBills_withCompletion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBillPayeeResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBillPayeeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -214,9 +208,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolvePaymentDateRangeForSearchForBills:withCompletion:))]
@@ -224,7 +215,10 @@ extern_protocol!(
         unsafe fn resolvePaymentDateRangeForSearchForBills_withCompletion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INDateComponentsRangeResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -233,9 +227,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveBillTypeForSearchForBills:withCompletion:))]
@@ -243,7 +234,7 @@ extern_protocol!(
         unsafe fn resolveBillTypeForSearchForBills_withCompletion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INBillTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INBillTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -252,9 +243,6 @@ extern_protocol!(
             feature = "INPaymentStatusResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveStatusForSearchForBills:withCompletion:))]
@@ -262,7 +250,10 @@ extern_protocol!(
         unsafe fn resolveStatusForSearchForBills_withCompletion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INPaymentStatusResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INPaymentStatusResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -271,9 +262,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveDueDateRangeForSearchForBills:withCompletion:))]
@@ -281,7 +269,10 @@ extern_protocol!(
         unsafe fn resolveDueDateRangeForSearchForBills_withCompletion(
             &self,
             intent: &INSearchForBillsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INDateComponentsRangeResolutionResult>),
+            >,
         );
     }
 );

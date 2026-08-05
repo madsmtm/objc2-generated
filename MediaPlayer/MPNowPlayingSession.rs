@@ -145,15 +145,11 @@ impl MPNowPlayingSession {
 
         #[cfg(feature = "block2")]
         /// Asks the system to make this session the active now playing sessin for the App.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(becomeActiveIfPossibleWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn becomeActiveIfPossibleWithCompletion(
             &self,
-            completion: Option<&block2::Block<'static, fn(Bool)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         #[cfg(feature = "objc2-av-foundation")]

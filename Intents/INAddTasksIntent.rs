@@ -126,16 +126,12 @@ extern_protocol!(
         ///
         ///
         /// See: INAddTasksIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleAddTasks:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<'static, fn(NonNull<INAddTasksIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INAddTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -155,17 +151,13 @@ extern_protocol!(
         ///
         ///
         /// See: INAddTasksIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmAddTasks:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<'static, fn(NonNull<INAddTasksIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INAddTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -185,10 +177,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "resolveTargetTaskListForAddTasks:withCompletion: is deprecated. Use resolveTargetTaskListForAddTasks:completion: instead"]
         #[optional]
         #[unsafe(method(resolveTargetTaskListForAddTasks:withCompletion:))]
@@ -196,7 +184,7 @@ extern_protocol!(
         unsafe fn resolveTargetTaskListForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<'static, fn(NonNull<INTaskListResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INTaskListResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -206,16 +194,13 @@ extern_protocol!(
             feature = "INTaskListResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTargetTaskListForAddTasks:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveTargetTaskListForAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INAddTasksTargetTaskListResolutionResult>),
             >,
@@ -227,16 +212,13 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTaskTitlesForAddTasks:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveTaskTitlesForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<INSpeakableStringResolutionResult>>),
             >,
@@ -248,16 +230,16 @@ extern_protocol!(
             feature = "INSpatialEventTriggerResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveSpatialEventTriggerForAddTasks:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveSpatialEventTriggerForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpatialEventTriggerResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpatialEventTriggerResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -266,9 +248,6 @@ extern_protocol!(
             feature = "INTemporalEventTriggerResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "resolveTemporalEventTriggerForAddTasks:withCompletion: is deprecated. Use resolveTemporalEventTriggerForAddTasks:completion: instead"]
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerForAddTasks:withCompletion:))]
@@ -276,7 +255,7 @@ extern_protocol!(
         unsafe fn resolveTemporalEventTriggerForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INTemporalEventTriggerResolutionResult>),
             >,
@@ -289,16 +268,13 @@ extern_protocol!(
             feature = "INTemporalEventTriggerResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerForAddTasks:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveTemporalEventTriggerForAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<INAddTasksTemporalEventTriggerResolutionResult>),
             >,
@@ -310,16 +286,16 @@ extern_protocol!(
             feature = "INTaskPriorityResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolvePriorityForAddTasks:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolvePriorityForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<'static, fn(NonNull<INTaskPriorityResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INTaskPriorityResolutionResult>),
+            >,
         );
     }
 );

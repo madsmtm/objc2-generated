@@ -119,16 +119,12 @@ impl HKWorkoutBuilder {
         /// Parameter `startDate`: The start date of the workout.
         ///
         /// Parameter `completion`: Called once data collection has started or has failed to start.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(beginCollectionWithStartDate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginCollectionWithStartDate_completion(
             &self,
             start_date: &NSDate,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "block2"))]
@@ -145,16 +141,12 @@ impl HKWorkoutBuilder {
         /// Parameter `completion`: Block to be called when the insertion is complete. If success is YES, the samples were added
         /// to the builder successfully. If success is NO, error will be non-nil and contain the error
         /// encountered while adding the new samples.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addSamples:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSamples_completion(
             &self,
             samples: &NSArray<HKSample>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKWorkout", feature = "block2"))]
@@ -169,16 +161,12 @@ impl HKWorkoutBuilder {
         /// Parameter `completion`: Block to be called when the addition of events to the builder is complete. If success is
         /// YES, the events were added to the builder successfully. If success is NO, error will be
         /// non-null and will contain the error encountered during the insertion operation.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addWorkoutEvents:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addWorkoutEvents_completion(
             &self,
             workout_events: &NSArray<HKWorkoutEvent>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -197,14 +185,13 @@ impl HKWorkoutBuilder {
         ///
         /// # Safety
         ///
-        /// - `metadata` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(addMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMetadata_completion(
             &self,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKWorkoutActivity", feature = "block2"))]
@@ -219,16 +206,12 @@ impl HKWorkoutBuilder {
         /// Parameter `completion`: Block to be called when the addition of the activity to the builder is complete. If success is
         /// YES, the activity was added to the builder successfully. If success is NO, error will be
         /// non-null and will contain the error encountered during the insertion operation.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(addWorkoutActivity:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addWorkoutActivity_completion(
             &self,
             workout_activity: &HKWorkoutActivity,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -244,17 +227,13 @@ impl HKWorkoutBuilder {
         /// Parameter `completion`: Block to be called when the update of the end date on the activity is complete. If success is
         /// YES, the end date was set to the actvity successfully. If success is NO, error will be
         /// non-null and will contain the error encountered during the update operation.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(updateActivityWithUUID:endDate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateActivityWithUUID_endDate_completion(
             &self,
             uuid: &NSUUID,
             end_date: &NSDate,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -276,15 +255,14 @@ impl HKWorkoutBuilder {
         ///
         /// # Safety
         ///
-        /// - `metadata` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(updateActivityWithUUID:addMedatata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateActivityWithUUID_addMedatata_completion(
             &self,
             uuid: &NSUUID,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -296,16 +274,12 @@ impl HKWorkoutBuilder {
         /// Parameter `endDate`: The end date of the workout.
         ///
         /// Parameter `completion`: Called once data collection has stopped or has failed to stop.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(endCollectionWithEndDate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endCollectionWithEndDate_completion(
             &self,
             end_date: &NSDate,
-            completion: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -321,15 +295,11 @@ impl HKWorkoutBuilder {
         /// workout is nil, an error may have occurred in which case error will be non-nil. If both
         /// workout and error are nil then finishing the workout succeeded but the workout sample
         /// is not available because the device is locked.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(finishWorkoutWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWorkoutWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(*mut HKWorkout, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut HKWorkout, *mut NSError)>,
         );
 
         /// Finishes building the workout and discards the result instead of saving it. Samples that were added to

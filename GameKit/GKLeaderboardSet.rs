@@ -61,15 +61,11 @@ impl GKLeaderboardSet {
         /// 1. Communications problem
         /// 2. Unauthenticated player
         /// 3. Set not present
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadLeaderboardSetsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardSetsWithCompletionHandler(
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut NSArray<GKLeaderboardSet>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<GKLeaderboardSet>, *mut NSError)>,
             >,
         );
 
@@ -108,17 +104,13 @@ impl GKLeaderboardSet {
         /// Possible reasons for error:
         /// 1. Communications problem
         /// 2. Unauthenticated player
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadLeaderboardsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
             >,
         );
     );
@@ -130,15 +122,13 @@ impl GKLeaderboardSet {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Asynchronously load the image. Error will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadImageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSImage, *mut NSError)>>,
+            completion_handler: Option<
+                &block2::SendableBlock<'static, fn(*mut NSImage, *mut NSError)>,
+            >,
         );
     );
 }

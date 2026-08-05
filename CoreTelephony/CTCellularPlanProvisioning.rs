@@ -29,15 +29,12 @@ impl CTCellularPlanProvisioning {
         pub unsafe fn supportsCellularPlan(&self) -> bool;
 
         #[cfg(all(feature = "CTCellularPlanProvisioningRequest", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(addPlanWith:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPlanWith_completionHandler(
             &self,
             request: &CTCellularPlanProvisioningRequest,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(CTCellularPlanProvisioningAddPlanResult),
             >,
@@ -48,31 +45,25 @@ impl CTCellularPlanProvisioning {
             feature = "CTCellularPlanProvisioningRequest",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(addPlanWithRequest:properties:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPlanWithRequest_properties_completionHandler(
             &self,
             request: &CTCellularPlanProvisioningRequest,
             properties: Option<&CTCellularPlanProperties>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(CTCellularPlanProvisioningAddPlanResult),
             >,
         );
 
         #[cfg(all(feature = "CTCellularPlanProperties", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(updateCellularPlanProperties:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateCellularPlanProperties_completionHandler(
             &self,
             properties: &CTCellularPlanProperties,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

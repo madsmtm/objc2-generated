@@ -50,16 +50,12 @@ impl CXCallController {
         /// A non-nil error indicates that the requested transaction could not be executed.
         ///
         /// Completion block is performed on the queue supplied to designated initializer.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestTransaction:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestTransaction_completion(
             &self,
             transaction: &CXTransaction,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "CXAction", feature = "block2"))]
@@ -69,16 +65,12 @@ impl CXCallController {
         /// A non-nil error indicates that the requested transaction could not be executed.
         ///
         /// Completion block is performed on the queue supplied to designated initializer.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestTransactionWithActions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestTransactionWithActions_completion(
             &self,
             actions: &NSArray<CXAction>,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "CXAction", feature = "block2"))]
@@ -88,16 +80,12 @@ impl CXCallController {
         /// A non-nil error indicates that the requested transaction could not be executed.
         ///
         /// Completion block is performed on the queue supplied to designated initializer.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(requestTransactionWithAction:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestTransactionWithAction_completion(
             &self,
             action: &CXAction,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

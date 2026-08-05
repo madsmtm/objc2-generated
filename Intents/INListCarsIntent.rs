@@ -83,16 +83,12 @@ extern_protocol!(
         ///
         ///
         /// See: INListCarsIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleListCars:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleListCars_completion(
             &self,
             intent: &INListCarsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INListCarsIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INListCarsIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -112,17 +108,13 @@ extern_protocol!(
         ///
         ///
         /// See: INListCarsIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmListCars:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmListCars_completion(
             &self,
             intent: &INListCarsIntent,
-            completion: &block2::Block<'static, fn(NonNull<INListCarsIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INListCarsIntentResponse>)>,
         );
     }
 );

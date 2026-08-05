@@ -449,15 +449,12 @@ impl NSURLCache {
         );
 
         #[cfg(all(feature = "NSURLSession", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getCachedResponseForDataTask:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getCachedResponseForDataTask_completionHandler(
+        pub fn getCachedResponseForDataTask_completionHandler(
             &self,
             data_task: &NSURLSessionDataTask,
-            completion_handler: &block2::Block<'static, fn(*mut NSCachedURLResponse)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSCachedURLResponse)>,
         );
 
         #[cfg(feature = "NSURLSession")]

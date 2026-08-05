@@ -191,25 +191,22 @@ impl NSTask {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// The returned block must be sendable.
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(terminationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn terminationHandler(&self)
-            -> *mut block2::Block<'static, fn(NonNull<NSTask>)>;
+        pub unsafe fn terminationHandler(
+            &self,
+        ) -> *mut block2::SendableBlock<'static, fn(NonNull<NSTask>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`terminationHandler`][Self::terminationHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `termination_handler` block must be sendable.
         #[unsafe(method(setTerminationHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTerminationHandler(
+        pub fn setTerminationHandler(
             &self,
-            termination_handler: Option<&block2::Block<'static, fn(NonNull<NSTask>)>>,
+            termination_handler: Option<&block2::SendableBlock<'static, fn(NonNull<NSTask>)>>,
         );
 
         #[cfg(feature = "NSObjCRuntime")]
@@ -251,16 +248,13 @@ impl NSTask {
             feature = "NSURL",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `termination_handler` block must be sendable.
         #[unsafe(method(launchedTaskWithExecutableURL:arguments:error:terminationHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn launchedTaskWithExecutableURL_arguments_error_terminationHandler(
+        pub fn launchedTaskWithExecutableURL_arguments_error_terminationHandler(
             url: &NSURL,
             arguments: &NSArray<NSString>,
             error: Option<&mut Option<Retained<NSError>>>,
-            termination_handler: Option<&block2::Block<'static, fn(NonNull<NSTask>)>>,
+            termination_handler: Option<&block2::SendableBlock<'static, fn(NonNull<NSTask>)>>,
         ) -> Option<Retained<NSTask>>;
 
         #[unsafe(method(waitUntilExit))]

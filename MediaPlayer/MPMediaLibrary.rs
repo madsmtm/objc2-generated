@@ -73,26 +73,23 @@ impl MPMediaLibrary {
         pub unsafe fn authorizationStatus() -> MPMediaLibraryAuthorizationStatus;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorization(
-            completion_handler: &block2::Block<'static, fn(MPMediaLibraryAuthorizationStatus)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(MPMediaLibraryAuthorizationStatus),
+            >,
         );
 
         #[cfg(all(feature = "MPMediaEntity", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(addItemWithProductID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addItemWithProductID_completionHandler(
             &self,
             product_id: &NSString,
             completion_handler: Option<
-                &block2::Block<'static, fn(NonNull<NSArray<MPMediaEntity>>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(NonNull<NSArray<MPMediaEntity>>, *mut NSError)>,
             >,
         );
 
@@ -108,17 +105,16 @@ impl MPMediaLibrary {
         ///
         ///
         /// The UUID should typically be pre-generated to avoid creating a new playlist with every call.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getPlaylistWithUUID:creationMetadata:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPlaylistWithUUID_creationMetadata_completionHandler(
             &self,
             uuid: &NSUUID,
             creation_metadata: Option<&MPMediaPlaylistCreationMetadata>,
-            completion_handler: &block2::Block<'static, fn(*mut MPMediaPlaylist, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut MPMediaPlaylist, *mut NSError),
+            >,
         );
     );
 }

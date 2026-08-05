@@ -39,10 +39,6 @@ extern_protocol!(
 
         #[cfg(all(feature = "BADownload", feature = "block2"))]
         /// A download has tried to start but gotten a challenge quest.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(download:didReceiveChallenge:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -50,7 +46,7 @@ extern_protocol!(
             &self,
             download: &BADownload,
             challenge: &NSURLAuthenticationChallenge,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
@@ -143,15 +139,11 @@ impl BADownloadManager {
         /// Fetches the current list of scheduled or in-flight downloads queued by your application or extension.
         ///
         /// Parameter `completionHandler`: A block to recieve the currently scheduled or in-flight downloads. The block is called on the same queue as all the other completion blocks in the class.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchCurrentDownloadsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchCurrentDownloadsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<BADownload>>, *mut NSError),
             >,
@@ -185,15 +177,11 @@ impl BADownloadManager {
         ///
         /// Parameter `performHandler`: A block that will be executed once exclusive control is acquired.
         /// If an error is non-nil then a problem occurred acquiring exclusive access.
-        ///
-        /// # Safety
-        ///
-        /// `perform_handler` block must be sendable.
         #[unsafe(method(performWithExclusiveControl:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performWithExclusiveControl(
             &self,
-            perform_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            perform_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -206,16 +194,12 @@ impl BADownloadManager {
         ///
         /// Parameter `performHandler`: A block that will be executed once exclusive control is acquired.
         /// If an error is non-nil then a problem occurred acquiring exclusive access.
-        ///
-        /// # Safety
-        ///
-        /// `perform_handler` block must be sendable.
         #[unsafe(method(performWithExclusiveControlBeforeDate:performHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performWithExclusiveControlBeforeDate_performHandler(
             &self,
             date: &NSDate,
-            perform_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
+            perform_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "BADownload")]

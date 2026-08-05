@@ -14,14 +14,11 @@ extern_protocol!(
         fn remoteObjectProxy(&self) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(remoteObjectProxyWithErrorHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn remoteObjectProxyWithErrorHandler(
+        fn remoteObjectProxyWithErrorHandler(
             &self,
-            handler: &block2::Block<'static, fn(NonNull<NSError>)>,
+            handler: &block2::SendableBlock<'static, fn(NonNull<NSError>)>,
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]

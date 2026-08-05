@@ -127,16 +127,14 @@ impl GKPlayer {
         /// Asynchronously load the player's photo. Error will be nil on success.
         /// Possible reasons for error:
         /// 1. Communications failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadPhotoForSize:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPhotoForSize_withCompletionHandler(
             &self,
             size: GKPhotoSize,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSImage, *mut NSError)>>,
+            completion_handler: Option<
+                &block2::SendableBlock<'static, fn(*mut NSImage, *mut NSError)>,
+            >,
         );
     );
 }

@@ -102,17 +102,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSaveProfileInCarIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSaveProfileInCarIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSaveProfileInCar:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSaveProfileInCar_completion(
             &self,
             intent: &INSaveProfileInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSaveProfileInCarIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSaveProfileInCarIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -132,10 +131,6 @@ extern_protocol!(
         ///
         ///
         /// See: INSaveProfileInCarIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSaveProfileInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSaveProfileInCar:completion:))]
@@ -143,7 +138,10 @@ extern_protocol!(
         unsafe fn confirmSaveProfileInCar_completion(
             &self,
             intent: &INSaveProfileInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSaveProfileInCarIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSaveProfileInCarIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -163,10 +161,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSaveProfileInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveProfileNumberForSaveProfileInCar:withCompletion:))]
@@ -174,7 +168,7 @@ extern_protocol!(
         unsafe fn resolveProfileNumberForSaveProfileInCar_withCompletion(
             &self,
             intent: &INSaveProfileInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -183,16 +177,13 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveProfileNameForSaveProfileInCar:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveProfileNameForSaveProfileInCar_withCompletion(
             &self,
             intent: &INSaveProfileInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStringResolutionResult>)>,
         );
     }
 );

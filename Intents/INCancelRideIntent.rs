@@ -91,16 +91,12 @@ extern_protocol!(
         ///
         ///
         /// See: INCancelRideIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleCancelRide:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleCancelRide_completion(
             &self,
             intent: &INCancelRideIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCancelRideIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INCancelRideIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -120,17 +116,13 @@ extern_protocol!(
         ///
         ///
         /// See: INCancelRideIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmCancelRide:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmCancelRide_completion(
             &self,
             intent: &INCancelRideIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCancelRideIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INCancelRideIntentResponse>)>,
         );
     }
 );

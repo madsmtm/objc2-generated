@@ -331,14 +331,13 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `objects` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `objects` generic should be of the correct type.
         #[unsafe(method(prepareObjects:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn prepareObjects_withCompletionHandler(
             &self,
             objects: &NSArray,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
 
         /// Determines whether the receiver should display statistics info like FPS. Defaults to NO.

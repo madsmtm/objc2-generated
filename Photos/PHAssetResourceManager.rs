@@ -111,9 +111,6 @@ impl PHAssetResourceManager {
         ) -> PHAssetResourceDataRequestID;
 
         #[cfg(all(feature = "PHAssetResource", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(writeDataForAssetResource:toFile:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeDataForAssetResource_toFile_options_completionHandler(
@@ -121,7 +118,7 @@ impl PHAssetResourceManager {
             resource: &PHAssetResource,
             file_url: &NSURL,
             options: Option<&PHAssetResourceRequestOptions>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[unsafe(method(cancelDataRequest:))]

@@ -167,15 +167,17 @@ impl HKQuantitySeriesSampleBuilder {
         ///
         /// # Safety
         ///
-        /// - `metadata` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(finishSeriesWithMetadata:endDate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithMetadata_endDate_completion(
             &self,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
             end_date: Option<&NSDate>,
-            completion: &block2::Block<'static, fn(*mut NSArray<HKQuantitySample>, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut NSArray<HKQuantitySample>, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -216,14 +218,16 @@ impl HKQuantitySeriesSampleBuilder {
         ///
         /// # Safety
         ///
-        /// - `metadata` generic should be of the correct type.
-        /// - `completion` block must be sendable.
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(finishSeriesWithMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithMetadata_completion(
             &self,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: &block2::Block<'static, fn(*mut NSArray<HKQuantitySample>, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut NSArray<HKQuantitySample>, *mut NSError),
+            >,
         );
 
         /// Discards all previously inserted data and invalidates the series.

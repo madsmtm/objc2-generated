@@ -57,45 +57,33 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Called the first time a project is created.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(beginProjectWithExtensionContext:projectInfo:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn beginProjectWithExtensionContext_projectInfo_completion(
             &self,
             extension_context: &PHProjectExtensionContext,
             project_info: &PHProjectInfo,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "PHProjectExtensionContext", feature = "block2"))]
         /// Called anytime the user returns to a project that was previously created.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(resumeProjectWithExtensionContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn resumeProjectWithExtensionContext_completion(
             &self,
             extension_context: &PHProjectExtensionContext,
-            completion: &block2::Block<'static, fn(*mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// Called when a user is switching away from the project or before Photos terminates the extension.
         /// The receiver should persist any state data to using PHProjectChangeRequest, then call the completion handler.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(finishProjectWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn finishProjectWithCompletionHandler(
             &self,
-            completion: &block2::Block<'static, fn()>,
+            completion: &block2::SendableBlock<'static, fn()>,
         );
     }
 );

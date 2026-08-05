@@ -108,14 +108,13 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` block must be sendable.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(requestMediaDataWhenReadyOnQueue:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn requestMediaDataWhenReadyOnQueue_usingBlock(
             &self,
             queue: &DispatchQueue,
-            block: &block2::Block<'static, fn()>,
+            block: &block2::SendableBlock<'static, fn()>,
         );
 
         /// Cancels any current requestMediaDataWhenReadyOnQueue:usingBlock: call.

@@ -153,15 +153,15 @@ impl BEBrowserDataImportManager {
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestImportForMetadata:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestImportForMetadata_completionHandler(
             &self,
             metadata: &BEImportMetadata,
-            completion_handler: &block2::Block<'static, fn(*mut BEImportOptions, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut BEImportOptions, *mut NSError),
+            >,
         );
     );
 }

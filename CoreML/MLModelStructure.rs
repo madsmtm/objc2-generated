@@ -56,15 +56,11 @@ impl MLModelStructure {
         /// Parameter `url`: The location of its on-disk representation (.mlmodelc directory).
         ///
         /// Parameter `handler`: When the model structure is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLModelStructure instance or NSError object.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(loadContentsOfURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadContentsOfURL_completionHandler(
             url: &NSURL,
-            handler: &block2::Block<'static, fn(*mut MLModelStructure, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut MLModelStructure, *mut NSError)>,
         );
 
         #[cfg(all(feature = "MLModelAsset", feature = "block2"))]
@@ -74,15 +70,11 @@ impl MLModelStructure {
         /// Parameter `asset`: The model asset.
         ///
         /// Parameter `handler`: When the model structure is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLModelStructure instance or NSError object.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(loadModelAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadModelAsset_completionHandler(
             asset: &MLModelAsset,
-            handler: &block2::Block<'static, fn(*mut MLModelStructure, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut MLModelStructure, *mut NSError)>,
         );
 
         #[cfg(feature = "MLModelStructureNeuralNetwork")]

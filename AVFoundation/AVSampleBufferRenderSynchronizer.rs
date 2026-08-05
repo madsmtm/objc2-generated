@@ -205,17 +205,13 @@ impl AVSampleBufferRenderSynchronizer {
         /// - Parameter renderer: An object conforming to AVQueuedSampleBufferRendering currently synchronized by this synchronizer to no longer be synchronized by the synchronizer.
         /// - Parameter time: The time on the timebase's timeline at which the renderer should be removed.
         /// - Parameter completionHandler: Optional. A block called when the renderer is removed from the synchronizer. If provided, this block will always be called with didRemoveRenderer indicating whether the renderer was removed by this scheduled removal.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeRenderer:atTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRenderer_atTime_completionHandler(
             &self,
             renderer: &ProtocolObject<dyn AVQueuedSampleBufferRendering>,
             time: CMTime,
-            completion_handler: Option<&block2::Block<'static, fn(Bool)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(Bool)>>,
         );
     );
 }
@@ -244,15 +240,14 @@ impl AVSampleBufferRenderSynchronizer {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` block must be sendable.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(addPeriodicTimeObserverForInterval:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPeriodicTimeObserverForInterval_queue_usingBlock(
             &self,
             interval: CMTime,
             queue: Option<&DispatchQueue>,
-            block: &block2::Block<'static, fn(CMTime)>,
+            block: &block2::SendableBlock<'static, fn(CMTime)>,
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -268,15 +263,14 @@ impl AVSampleBufferRenderSynchronizer {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` block must be sendable.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(addBoundaryTimeObserverForTimes:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addBoundaryTimeObserverForTimes_queue_usingBlock(
             &self,
             times: &NSArray<NSValue>,
             queue: Option<&DispatchQueue>,
-            block: &block2::Block<'static, fn()>,
+            block: &block2::SendableBlock<'static, fn()>,
         ) -> Retained<AnyObject>;
 
         /// Cancels a previously registered time observer.

@@ -26,15 +26,11 @@ impl LASecret {
         /// Fetch stored data if any
         ///
         /// Parameter `handler`: Completion handler invoked with a generic secret stored along with the right or an error if no secret is found or the fetch operation fails.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(loadDataWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadDataWithCompletion(
             &self,
-            handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
     );
 }

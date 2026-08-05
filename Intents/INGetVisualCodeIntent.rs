@@ -100,17 +100,13 @@ extern_protocol!(
         ///
         ///
         /// See: INGetVisualCodeIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INGetVisualCodeIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleGetVisualCode:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetVisualCode_completion(
             &self,
             intent: &INGetVisualCodeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INGetVisualCodeIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INGetVisualCodeIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -130,10 +126,6 @@ extern_protocol!(
         ///
         ///
         /// See: INGetVisualCodeIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INGetVisualCodeIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmGetVisualCode:completion:))]
@@ -141,7 +133,7 @@ extern_protocol!(
         unsafe fn confirmGetVisualCode_completion(
             &self,
             intent: &INGetVisualCodeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INGetVisualCodeIntentResponse>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INGetVisualCodeIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -161,10 +153,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INGetVisualCodeIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveVisualCodeTypeForGetVisualCode:withCompletion:))]
@@ -172,7 +160,10 @@ extern_protocol!(
         unsafe fn resolveVisualCodeTypeForGetVisualCode_withCompletion(
             &self,
             intent: &INGetVisualCodeIntent,
-            completion: &block2::Block<'static, fn(NonNull<INVisualCodeTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INVisualCodeTypeResolutionResult>),
+            >,
         );
     }
 );

@@ -101,15 +101,11 @@ impl ARReferenceImage {
         ///
         /// Parameter `completionHandler`: Completion handler invoked when validation is done. The completion handler takes the following parameters:
         /// error - An error that indicates why the image is not suitable for tracking, or nil if no error occurred.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(validateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(

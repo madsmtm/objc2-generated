@@ -194,16 +194,13 @@ impl NSURLCredentialStorage {
             feature = "NSURLSession",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getCredentialsForProtectionSpace:task:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getCredentialsForProtectionSpace_task_completionHandler(
+        pub fn getCredentialsForProtectionSpace_task_completionHandler(
             &self,
             protection_space: &NSURLProtectionSpace,
             task: &NSURLSessionTask,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSDictionary<NSString, NSURLCredential>),
             >,
@@ -249,16 +246,13 @@ impl NSURLCredentialStorage {
             feature = "NSURLSession",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getDefaultCredentialForProtectionSpace:task:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getDefaultCredentialForProtectionSpace_task_completionHandler(
+        pub fn getDefaultCredentialForProtectionSpace_task_completionHandler(
             &self,
             space: &NSURLProtectionSpace,
             task: &NSURLSessionTask,
-            completion_handler: &block2::Block<'static, fn(*mut NSURLCredential)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSURLCredential)>,
         );
 
         #[cfg(all(

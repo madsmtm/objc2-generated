@@ -39,39 +39,30 @@ impl SFSafariApplication {
 
         #[cfg(all(feature = "SFSafariWindow", feature = "block2"))]
         /// Calls the completion handler with the active browser window.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getActiveWindowWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getActiveWindowWithCompletionHandler(
-            completion_handler: &block2::Block<'static, fn(*mut SFSafariWindow)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut SFSafariWindow)>,
         );
 
         #[cfg(all(feature = "SFSafariWindow", feature = "block2"))]
         /// Calls the completion handler with all currently open windows ordered front to back.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getAllWindowsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAllWindowsWithCompletionHandler(
-            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<SFSafariWindow>>)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<SFSafariWindow>>),
+            >,
         );
 
         #[cfg(all(feature = "SFSafariWindow", feature = "block2"))]
         /// Opens a new window with a tab containing the URL to pass in.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(openWindowWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openWindowWithURL_completionHandler(
             url: &NSURL,
-            completion_handler: Option<&block2::Block<'static, fn(*mut SFSafariWindow)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut SFSafariWindow)>>,
         );
 
         /// This will cause -validateToolbarItemInWindow:completionHandler: to be called on all windows, to let the extension update enabled states or badges of its toolbar items.
@@ -82,41 +73,32 @@ impl SFSafariApplication {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Gets an NSRunningApplication instance with information about the app that this extension is connected to.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getHostApplicationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getHostApplicationWithCompletionHandler(
-            completion_handler: &block2::Block<'static, fn(NonNull<NSRunningApplication>)>,
+            completion_handler: &block2::SendableBlock<'static, fn(NonNull<NSRunningApplication>)>,
         );
 
         #[cfg(feature = "block2")]
         /// Opens Safari Extensions preferences and selects extension with the identifier.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(showPreferencesForExtensionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showPreferencesForExtensionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// - `user_info` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(dispatchMessageWithName:toExtensionWithIdentifier:userInfo:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatchMessageWithName_toExtensionWithIdentifier_userInfo_completionHandler(
             message_name: &NSString,
             identifier: &NSString,
             user_info: Option<&NSDictionary<NSString, AnyObject>>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
     );
 }

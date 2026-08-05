@@ -114,17 +114,16 @@ extern_protocol!(
         ///
         ///
         /// See: INCreateTaskListIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INCreateTaskListIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleCreateTaskList:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleCreateTaskList_completion(
             &self,
             intent: &INCreateTaskListIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCreateTaskListIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INCreateTaskListIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -144,10 +143,6 @@ extern_protocol!(
         ///
         ///
         /// See: INCreateTaskListIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INCreateTaskListIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmCreateTaskList:completion:))]
@@ -155,7 +150,10 @@ extern_protocol!(
         unsafe fn confirmCreateTaskList_completion(
             &self,
             intent: &INCreateTaskListIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCreateTaskListIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INCreateTaskListIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -175,10 +173,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INCreateTaskListIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTitleForCreateTaskList:withCompletion:))]
@@ -186,7 +180,10 @@ extern_protocol!(
         unsafe fn resolveTitleForCreateTaskList_withCompletion(
             &self,
             intent: &INCreateTaskListIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -195,9 +192,6 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INCreateTaskListIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveTaskTitlesForCreateTaskList:withCompletion:))]
@@ -205,7 +199,7 @@ extern_protocol!(
         unsafe fn resolveTaskTitlesForCreateTaskList_withCompletion(
             &self,
             intent: &INCreateTaskListIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<INSpeakableStringResolutionResult>>),
             >,
@@ -217,9 +211,6 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INCreateTaskListIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveGroupNameForCreateTaskList:withCompletion:))]
@@ -227,7 +218,10 @@ extern_protocol!(
         unsafe fn resolveGroupNameForCreateTaskList_withCompletion(
             &self,
             intent: &INCreateTaskListIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSpeakableStringResolutionResult>),
+            >,
         );
     }
 );

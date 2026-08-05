@@ -89,15 +89,12 @@ extern_protocol!(
             feature = "NSString",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadDataWithTypeIdentifier:forItemProviderCompletionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn loadDataWithTypeIdentifier_forItemProviderCompletionHandler(
+        fn loadDataWithTypeIdentifier_forItemProviderCompletionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         ) -> Option<Retained<NSProgress>>;
     }
 );
@@ -123,7 +120,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidercompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
 pub type NSItemProviderCompletionHandler =
-    block2::Block<'static, fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
+    block2::SendableBlock<'static, fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderloadhandler?language=objc)
 #[cfg(all(
@@ -132,7 +129,7 @@ pub type NSItemProviderCompletionHandler =
     feature = "NSObject",
     feature = "block2"
 ))]
-pub type NSItemProviderLoadHandler = block2::Block<
+pub type NSItemProviderLoadHandler = block2::SendableBlock<
     'static,
     fn(*mut NSItemProviderCompletionHandler, *const AnyClass, *mut NSDictionary),
 >;
@@ -173,17 +170,19 @@ impl NSItemProvider {
         ))]
         /// # Safety
         ///
-        /// `load_handler` block must be sendable.
+        /// - `load_handler` block's return must be a valid pointer or null.
+        /// - `load_handler` block's argument block's argument 1 must be a valid pointer or null.
+        /// - `load_handler` block's argument block's argument 2 must be a valid pointer or null.
         #[unsafe(method(registerDataRepresentationForTypeIdentifier:visibility:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerDataRepresentationForTypeIdentifier_visibility_loadHandler(
             &self,
             type_identifier: &NSString,
             visibility: NSItemProviderRepresentationVisibility,
-            load_handler: &block2::Block<
+            load_handler: &block2::SendableBlock<
                 'static,
                 fn(
-                    NonNull<block2::Block<'static, fn(*mut NSData, *mut NSError)>>,
+                    NonNull<block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>>,
                 ) -> *mut NSProgress,
             >,
         );
@@ -197,7 +196,9 @@ impl NSItemProvider {
         ))]
         /// # Safety
         ///
-        /// `load_handler` block must be sendable.
+        /// - `load_handler` block's return must be a valid pointer or null.
+        /// - `load_handler` block's argument block's argument 1 must be a valid pointer or null.
+        /// - `load_handler` block's argument block's argument 3 must be a valid pointer or null.
         #[unsafe(method(registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerFileRepresentationForTypeIdentifier_fileOptions_visibility_loadHandler(
@@ -205,10 +206,10 @@ impl NSItemProvider {
             type_identifier: &NSString,
             file_options: NSItemProviderFileOptions,
             visibility: NSItemProviderRepresentationVisibility,
-            load_handler: &block2::Block<
+            load_handler: &block2::SendableBlock<
                 'static,
                 fn(
-                    NonNull<block2::Block<'static, fn(*mut NSURL, Bool, *mut NSError)>>,
+                    NonNull<block2::SendableBlock<'static, fn(*mut NSURL, Bool, *mut NSError)>>,
                 ) -> *mut NSProgress,
             >,
         );
@@ -247,15 +248,12 @@ impl NSItemProvider {
             feature = "NSString",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadDataRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn loadDataRepresentationForTypeIdentifier_completionHandler(
+        pub fn loadDataRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(
@@ -265,15 +263,12 @@ impl NSItemProvider {
             feature = "NSURL",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFileRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn loadFileRepresentationForTypeIdentifier_completionHandler(
+        pub fn loadFileRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut NSURL, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSURL, *mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(
@@ -283,15 +278,12 @@ impl NSItemProvider {
             feature = "NSURL",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn loadInPlaceFileRepresentationForTypeIdentifier_completionHandler(
+        pub fn loadInPlaceFileRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut NSURL, Bool, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSURL, Bool, *mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(feature = "NSString")]
@@ -326,18 +318,20 @@ impl NSItemProvider {
         /// # Safety
         ///
         /// - `a_class` must implement NSItemProviderWriting.
-        /// - `load_handler` block must be sendable.
+        /// - `load_handler` block's return must be a valid pointer or null.
+        /// - `load_handler` block's argument block's argument 1 must be a valid pointer or null.
+        /// - `load_handler` block's argument block's argument 2 must be a valid pointer or null.
         #[unsafe(method(registerObjectOfClass:visibility:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerObjectOfClass_visibility_loadHandler(
             &self,
             a_class: &AnyClass,
             visibility: NSItemProviderRepresentationVisibility,
-            load_handler: &block2::Block<
+            load_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<
-                        block2::Block<
+                        block2::SendableBlock<
                             'static,
                             fn(*mut ProtocolObject<dyn NSItemProviderWriting>, *mut NSError),
                         >,
@@ -356,14 +350,13 @@ impl NSItemProvider {
         #[cfg(all(feature = "NSError", feature = "NSProgress", feature = "block2"))]
         /// # Safety
         ///
-        /// - `a_class` must implement NSItemProviderReading.
-        /// - `completion_handler` block must be sendable.
+        /// `a_class` must implement NSItemProviderReading.
         #[unsafe(method(loadObjectOfClass:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadObjectOfClass_completionHandler(
             &self,
             a_class: &AnyClass,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut ProtocolObject<dyn NSItemProviderReading>, *mut NSError),
             >,
@@ -401,7 +394,8 @@ impl NSItemProvider {
         ))]
         /// # Safety
         ///
-        /// `load_handler` block must be sendable.
+        /// - `load_handler` block's argument 1 block's argument 1 must be a valid pointer or null.
+        /// - `load_handler` block's argument 1 block's argument 2 must be a valid pointer.
         #[unsafe(method(registerItemForTypeIdentifier:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerItemForTypeIdentifier_loadHandler(
@@ -419,8 +413,7 @@ impl NSItemProvider {
         ))]
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` block must be sendable.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(loadItemForTypeIdentifier:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadItemForTypeIdentifier_options_completionHandler(
@@ -465,7 +458,9 @@ impl NSItemProvider {
         ))]
         /// # Safety
         ///
-        /// The returned block must be sendable.
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer.
         #[unsafe(method(previewImageHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewImageHandler(&self) -> *mut NSItemProviderLoadHandler;
@@ -482,7 +477,8 @@ impl NSItemProvider {
         ///
         /// # Safety
         ///
-        /// `preview_image_handler` block must be sendable.
+        /// - `preview_image_handler` block's argument 1 block's argument 1 must be a valid pointer or null.
+        /// - `preview_image_handler` block's argument 1 block's argument 2 must be a valid pointer.
         #[unsafe(method(setPreviewImageHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewImageHandler(
@@ -500,7 +496,6 @@ impl NSItemProvider {
         ///
         /// - `options` generic should be of the correct type.
         /// - `options` might not allow `None`.
-        /// - `completion_handler` block must be sendable.
         /// - `completion_handler` might not allow `None`.
         #[unsafe(method(loadPreviewImageWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]

@@ -31,21 +31,23 @@ unsafe impl RefEncode for ACAccountCredentialRenewResult {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoresavecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ACAccountStoreSaveCompletionHandler = block2::Block<'static, fn(Bool, *mut NSError)>;
+pub type ACAccountStoreSaveCompletionHandler =
+    block2::SendableBlock<'static, fn(Bool, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoreremovecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ACAccountStoreRemoveCompletionHandler = block2::Block<'static, fn(Bool, *mut NSError)>;
+pub type ACAccountStoreRemoveCompletionHandler =
+    block2::SendableBlock<'static, fn(Bool, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstorerequestaccesscompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ACAccountStoreRequestAccessCompletionHandler =
-    block2::Block<'static, fn(Bool, *mut NSError)>;
+    block2::SendableBlock<'static, fn(Bool, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstorecredentialrenewalhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ACAccountStoreCredentialRenewalHandler =
-    block2::Block<'static, fn(ACAccountCredentialRenewResult, *mut NSError)>;
+    block2::SendableBlock<'static, fn(ACAccountCredentialRenewResult, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstore?language=objc)
@@ -106,7 +108,6 @@ impl ACAccountStore {
         /// # Safety
         ///
         /// - `account` might not allow `None`.
-        /// - `completion_handler` block must be sendable.
         /// - `completion_handler` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(saveAccount:withCompletionHandler:))]
@@ -121,7 +122,6 @@ impl ACAccountStore {
         /// # Safety
         ///
         /// - `account_type` might not allow `None`.
-        /// - `handler` block must be sendable.
         /// - `handler` might not allow `None`.
         #[deprecated]
         #[unsafe(method(requestAccessToAccountsWithType:withCompletionHandler:))]
@@ -138,7 +138,6 @@ impl ACAccountStore {
         /// - `account_type` might not allow `None`.
         /// - `options` generic should be of the correct type.
         /// - `options` might not allow `None`.
-        /// - `completion` block must be sendable.
         /// - `completion` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(requestAccessToAccountsWithType:options:completion:))]
@@ -154,7 +153,6 @@ impl ACAccountStore {
         /// # Safety
         ///
         /// - `account` might not allow `None`.
-        /// - `completion_handler` block must be sendable.
         /// - `completion_handler` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(renewCredentialsForAccount:completion:))]
@@ -169,7 +167,6 @@ impl ACAccountStore {
         /// # Safety
         ///
         /// - `account` might not allow `None`.
-        /// - `completion_handler` block must be sendable.
         /// - `completion_handler` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(removeAccount:withCompletionHandler:))]

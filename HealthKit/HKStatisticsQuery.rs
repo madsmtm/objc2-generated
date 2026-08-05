@@ -30,9 +30,6 @@ extern_conformance!(
 impl HKStatisticsQuery {
     extern_methods!(
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(initWithQuantityType:quantitySamplePredicate:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQuantityType_quantitySamplePredicate_options_completionHandler(
@@ -40,7 +37,7 @@ impl HKStatisticsQuery {
             quantity_type: &HKQuantityType,
             quantity_sample_predicate: Option<&NSPredicate>,
             options: HKStatisticsOptions,
-            handler: &block2::Block<
+            handler: &block2::SendableBlock<
                 'static,
                 fn(NonNull<HKStatisticsQuery>, *mut HKStatistics, *mut NSError),
             >,

@@ -115,13 +115,15 @@ impl HKStatisticsCollectionQuery {
         ///
         /// # Safety
         ///
-        /// - The returned block must be sendable.
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
         /// - This might not be thread-safe.
         #[unsafe(method(initialResultsHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialResultsHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::SendableBlock<
             'static,
             fn(NonNull<HKStatisticsCollectionQuery>, *mut HKStatisticsCollection, *mut NSError),
         >;
@@ -133,14 +135,13 @@ impl HKStatisticsCollectionQuery {
         ///
         /// # Safety
         ///
-        /// - `initial_results_handler` block must be sendable.
-        /// - This might not be thread-safe.
+        /// This might not be thread-safe.
         #[unsafe(method(setInitialResultsHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialResultsHandler(
             &self,
             initial_results_handler: Option<
-                &block2::Block<
+                &block2::SendableBlock<
                     'static,
                     fn(
                         NonNull<HKStatisticsCollectionQuery>,
@@ -156,13 +157,16 @@ impl HKStatisticsCollectionQuery {
         ///
         /// # Safety
         ///
-        /// - The returned block must be sendable.
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - The returned block's argument 4 must be a valid pointer or null.
         /// - This might not be thread-safe.
         #[unsafe(method(statisticsUpdateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn statisticsUpdateHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::SendableBlock<
             'static,
             fn(
                 NonNull<HKStatisticsCollectionQuery>,
@@ -179,14 +183,13 @@ impl HKStatisticsCollectionQuery {
         ///
         /// # Safety
         ///
-        /// - `statistics_update_handler` block must be sendable.
-        /// - This might not be thread-safe.
+        /// This might not be thread-safe.
         #[unsafe(method(setStatisticsUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatisticsUpdateHandler(
             &self,
             statistics_update_handler: Option<
-                &block2::Block<
+                &block2::SendableBlock<
                     'static,
                     fn(
                         NonNull<HKStatisticsCollectionQuery>,

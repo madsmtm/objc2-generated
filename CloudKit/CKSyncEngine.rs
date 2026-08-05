@@ -160,15 +160,11 @@ impl CKSyncEngine {
         /// It is useful, however, in scenarios where you require more control over sync, such as pull-to-refresh or unit tests.
         ///
         /// - Note: The sync engine invokes the completion handler only after your sync delegate finishes processing all related fetch events.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchChangesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchChangesWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -185,16 +181,12 @@ impl CKSyncEngine {
         /// It is useful, however, in scenarios where you require more control over sync, such as pull-to-refresh or unit tests.
         ///
         /// - Note: The sync engine invokes the completion handler only after your sync delegate finishes processing all related fetch events.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchChangesWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchChangesWithOptions_completionHandler(
             &self,
             options: &CKSyncEngineFetchChangesOptions,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -210,15 +202,11 @@ impl CKSyncEngine {
         /// It is useful, however, in scenarios where you require greater control over sync, such as a "Backup now" button or unit tests.
         ///
         /// - Note: The sync engine invokes the completion handler only after your sync delegate finishes processing all related send events.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendChangesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendChangesWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -235,31 +223,23 @@ impl CKSyncEngine {
         /// It is useful, however, in scenarios where you require greater control over sync, such as a "Backup now" button or unit tests.
         ///
         /// - Note: The sync engine invokes the completion handler only after your sync delegate finishes processing all related send events.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendChangesWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendChangesWithOptions_completionHandler(
             &self,
             options: &CKSyncEngineSendChangesOptions,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
         /// Cancels any in-progress or pending sync operations.
         ///
         /// The sync engine processes cancelation requests asynchronously, meaning it's possible for in-progress operations to complete even after this method returns.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(cancelOperationsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelOperationsWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn()>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
     );
 }

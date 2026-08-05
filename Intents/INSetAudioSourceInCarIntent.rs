@@ -107,17 +107,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSetAudioSourceInCarIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetAudioSourceInCarIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSetAudioSourceInCar:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSetAudioSourceInCar_completion(
             &self,
             intent: &INSetAudioSourceInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetAudioSourceInCarIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetAudioSourceInCarIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -137,10 +136,6 @@ extern_protocol!(
         ///
         ///
         /// See: INSetAudioSourceInCarIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetAudioSourceInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSetAudioSourceInCar:completion:))]
@@ -148,7 +143,10 @@ extern_protocol!(
         unsafe fn confirmSetAudioSourceInCar_completion(
             &self,
             intent: &INSetAudioSourceInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetAudioSourceInCarIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetAudioSourceInCarIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -168,10 +166,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetAudioSourceInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveAudioSourceForSetAudioSourceInCar:withCompletion:))]
@@ -179,7 +173,10 @@ extern_protocol!(
         unsafe fn resolveAudioSourceForSetAudioSourceInCar_withCompletion(
             &self,
             intent: &INSetAudioSourceInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INCarAudioSourceResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INCarAudioSourceResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -188,9 +185,6 @@ extern_protocol!(
             feature = "INRelativeReferenceResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetAudioSourceInCarIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRelativeAudioSourceReferenceForSetAudioSourceInCar:withCompletion:))]
@@ -198,7 +192,10 @@ extern_protocol!(
         unsafe fn resolveRelativeAudioSourceReferenceForSetAudioSourceInCar_withCompletion(
             &self,
             intent: &INSetAudioSourceInCarIntent,
-            completion: &block2::Block<'static, fn(NonNull<INRelativeReferenceResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INRelativeReferenceResolutionResult>),
+            >,
         );
     }
 );

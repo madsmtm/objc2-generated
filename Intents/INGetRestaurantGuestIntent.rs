@@ -77,16 +77,15 @@ extern_protocol!(
         ///
         ///
         /// See: INGetRestaurantGuestIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleGetRestaurantGuest:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleGetRestaurantGuest_completion(
             &self,
             intent: &INGetRestaurantGuestIntent,
-            completion: &block2::Block<'static, fn(NonNull<INGetRestaurantGuestIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INGetRestaurantGuestIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -106,17 +105,16 @@ extern_protocol!(
         ///
         ///
         /// See: INGetRestaurantGuestIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmGetRestaurantGuest:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmGetRestaurantGuest_completion(
             &self,
             guest_intent: &INGetRestaurantGuestIntent,
-            completion: &block2::Block<'static, fn(NonNull<INGetRestaurantGuestIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INGetRestaurantGuestIntentResponse>),
+            >,
         );
     }
 );

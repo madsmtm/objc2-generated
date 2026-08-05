@@ -131,15 +131,12 @@ impl AVMetadataItem {
 impl AVMetadataItem {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(loadValuesAsynchronouslyForKeys:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadValuesAsynchronouslyForKeys_completionHandler(
             &self,
             keys: &NSArray<NSString>,
-            handler: Option<&block2::Block<'static, fn()>>,
+            handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
     );
 }
@@ -473,15 +470,11 @@ impl AVMetadataItem {
         /// When -loadValuesAsynchronouslyForKeys:completionHandler: is invoked on an AVMetadataItem created via +metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler: and
         /// "
         /// value" is among the keys for which loading is requested, the block you provide as the value loading handler will be executed on an arbitrary dispatch queue, off the main thread. The handler can perform I/O and other necessary operations to obtain the value. If loading of the value succeeds, provide the value by invoking -[AVMetadataItemValueRequest respondWithValue:]. If loading of the value fails, provide an instance of NSError that describes the failure by invoking -[AVMetadataItemValueRequest respondWithError:].
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemWithPropertiesOfMetadataItem_valueLoadingHandler(
             metadata_item: &AVMetadataItem,
-            handler: &block2::Block<'static, fn(NonNull<AVMetadataItemValueRequest>)>,
+            handler: &block2::SendableBlock<'static, fn(NonNull<AVMetadataItemValueRequest>)>,
         ) -> Retained<AVMetadataItem>;
     );
 }

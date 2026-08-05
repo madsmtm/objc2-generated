@@ -196,15 +196,11 @@ impl ARSession {
         /// on the session's delegate queue. The completion handler takes the following parameters:
         /// worldMap - The current world map or nil if unavailable.
         /// error - An error that indicates why the world map is unavailable, or nil if a world map was provided.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getCurrentWorldMapWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCurrentWorldMapWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut ARWorldMap, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut ARWorldMap, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -271,15 +267,11 @@ impl ARSession {
         /// See: -[ARVideoFormat isRecommendedForHighResolutionFrameCapturing]
         ///
         /// Parameter `completion`: Block being called when the call completes.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(captureHighResolutionFrameWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureHighResolutionFrameWithCompletion(
             &self,
-            completion: &block2::Block<'static, fn(*mut ARFrame, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut ARFrame, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -302,16 +294,12 @@ impl ARSession {
         /// Parameter `photoSettings`: Custom AVCapturePhotoSettings to be used.
         ///
         /// Parameter `completion`: Block being called when the call completes.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(captureHighResolutionFrameUsingPhotoSettings:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureHighResolutionFrameUsingPhotoSettings_completion(
             &self,
             photo_settings: Option<&AVCapturePhotoSettings>,
-            completion: &block2::Block<'static, fn(*mut ARFrame, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut ARFrame, *mut NSError)>,
         );
     );
 }

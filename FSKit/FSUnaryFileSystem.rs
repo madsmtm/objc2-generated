@@ -61,16 +61,12 @@ extern_protocol!(
         /// - Parameters:
         /// - resource: The ``FSResource`` to probe.
         /// - reply: A block or closure that your implementation invokes when it finishes the probe or encounters an error. Pass an instance of ``FSProbeResult`` with probe results as the first parameter if your probe operation succeeds. If probing fails, pass an error as the second parameter.
-        ///
-        /// # Safety
-        ///
-        /// `reply` block must be sendable.
         #[unsafe(method(probeResource:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn probeResource_replyHandler(
             &self,
             resource: &FSResource,
-            reply: &block2::Block<'static, fn(*mut FSProbeResult, *mut NSError)>,
+            reply: &block2::SendableBlock<'static, fn(*mut FSProbeResult, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -89,17 +85,13 @@ extern_protocol!(
         /// - resource: An ``FSResource`` to load.
         /// - options: An ``FSTaskOptions`` object specifying options to apply when loading the resource. An ``FSUnaryFileSystem`` supports two options: `-f` for "force" and `--rdonly` for read-only. The file system must remember if the read-only option is present.
         /// - reply: A block or closure that your implementation invokes when it finishes setting up or encounters an error. Pass a subclass of `FSVolume` as the first parameter if loading succeeds. If loading fails, pass an error as the second parameter.
-        ///
-        /// # Safety
-        ///
-        /// `reply` block must be sendable.
         #[unsafe(method(loadResource:options:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadResource_options_replyHandler(
             &self,
             resource: &FSResource,
             options: &FSTaskOptions,
-            reply: &block2::Block<'static, fn(*mut FSVolume, *mut NSError)>,
+            reply: &block2::SendableBlock<'static, fn(*mut FSVolume, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSResource", feature = "FSTaskOptions", feature = "block2"))]
@@ -109,17 +101,13 @@ extern_protocol!(
         /// - resource: An ``FSResource`` to unload.
         /// - options: An ``FSTaskOptions`` object specifying options to apply when unloading the resource.
         /// - reply: A block or closure that your implementation invokes when it finishes unloading or encounters an error. If unloading fails, pass an error as the parameter to describe the problem. Otherwise, pass `nil`.
-        ///
-        /// # Safety
-        ///
-        /// `reply` block must be sendable.
         #[unsafe(method(unloadResource:options:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn unloadResource_options_replyHandler(
             &self,
             resource: &FSResource,
             options: &FSTaskOptions,
-            reply: &block2::Block<'static, fn(*mut NSError)>,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         /// Notifies you that the system finished loading your file system extension.

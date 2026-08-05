@@ -339,10 +339,6 @@ extern_protocol!(
         /// - payload: The push payload sent by a developer via APNs server API.
         /// - type: This is a ``PushKit/PKPushType`` constant, which is present in `[registry desiredPushTypes]`.
         /// - completion: The notification's completion handler. Execute this block when you finish processing the notification.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(pushRegistry:didReceiveIncomingPushWithPayload:forType:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -351,7 +347,7 @@ extern_protocol!(
             registry: &PKPushRegistry,
             payload: &PKPushPayload,
             r#type: &PKPushType,
-            completion: &block2::Block<'static, fn()>,
+            completion: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(all(
@@ -413,10 +409,6 @@ extern_protocol!(
         /// - payload: The push payload sent by a developer via APNs server API.
         /// - metadata: An object containing metadata about the VoIP push payload, such as the `mustReport` boolean indicating whether your app is required to report a call/conversation to CallKit/LiveCommunicationKit for this push.
         /// - completion: The notification's completion handler. Execute this block when you finish processing the notification
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(pushRegistry:didReceiveIncomingVoIPPushWithPayload:metadata:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -425,7 +417,7 @@ extern_protocol!(
             registry: &PKPushRegistry,
             payload: &PKPushPayload,
             metadata: &PKVoIPPushMetadata,
-            completion: &block2::Block<'static, fn()>,
+            completion: &block2::SendableBlock<'static, fn()>,
         );
 
         #[cfg(feature = "PKDefines")]

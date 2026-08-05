@@ -156,15 +156,11 @@ impl GKLeaderboard {
         #[cfg(feature = "block2")]
         /// Loads classic and recurring leaderboards associated with the supplied App Store Connect leaderboard IDs.
         /// If leaderboardIDs is nil, this loads all classic and recurring leaderboards for this game.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadLeaderboardsWithIDs:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithIDs_completionHandler(
             leaderboard_i_ds: Option<&NSArray<NSString>>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<GKLeaderboard>, *mut NSError),
             >,
@@ -172,15 +168,14 @@ impl GKLeaderboard {
 
         #[cfg(feature = "block2")]
         /// Loads the occurrence preceding this occurrence for a recurring leaderboard in which the local player submitted a score. If no previous occurrence is found that the player submitted a score to, then the most recent previous occurrence is returned.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadPreviousOccurrenceWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPreviousOccurrenceWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut GKLeaderboard, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut GKLeaderboard, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
@@ -189,10 +184,6 @@ impl GKLeaderboard {
         /// context - developer supplied metadata associated with the player's score
         /// player - the player for whom this score is being submitted
         /// leaderboardIDs - one or more leaderboard IDs defined in App Store Connect
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(submitScore:context:player:leaderboardIDs:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitScore_context_player_leaderboardIDs_completionHandler(
@@ -200,7 +191,7 @@ impl GKLeaderboard {
             context: NSUInteger,
             player: &GKPlayer,
             leaderboard_i_ds: &NSArray<NSString>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
@@ -208,10 +199,6 @@ impl GKLeaderboard {
         /// score - earned by the player
         /// context - developer supplied metadata associated with the player's score
         /// player - the player for whom this score is being submitted
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(submitScore:context:player:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitScore_context_player_completionHandler(
@@ -219,7 +206,7 @@ impl GKLeaderboard {
             score: NSInteger,
             context: NSUInteger,
             player: &GKPlayer,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "GKLeaderboardEntry", feature = "block2"))]
@@ -231,10 +218,6 @@ impl GKLeaderboard {
         /// localPlayerEntry - entry for the local player
         /// entries - requested entries matching supplied parameters
         /// totalPlayerCount - total player count matching specified scope
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadEntriesForPlayerScope:timeScope:range:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadEntriesForPlayerScope_timeScope_range_completionHandler(
@@ -242,7 +225,7 @@ impl GKLeaderboard {
             player_scope: GKLeaderboardPlayerScope,
             time_scope: GKLeaderboardTimeScope,
             range: NSRange,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     *mut GKLeaderboardEntry,
@@ -265,17 +248,13 @@ impl GKLeaderboard {
         /// Upon completion, will return:
         /// localPlayerEntry - entry for the local player
         /// entries - requested entries matching supplied parameters
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadEntriesForPlayers:timeScope:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadEntriesForPlayers_timeScope_completionHandler(
             &self,
             players: &NSArray<GKPlayer>,
             time_scope: GKLeaderboardTimeScope,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut GKLeaderboardEntry, *mut NSArray<GKLeaderboardEntry>, *mut NSError),
             >,
@@ -308,15 +287,12 @@ impl GKLeaderboard {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadCategoriesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadCategoriesWithCompletionHandler(
             completion_handler: Option<
-                &block2::Block<
+                &block2::SendableBlock<
                     'static,
                     fn(*mut NSArray<NSString>, *mut NSArray<NSString>, *mut NSError),
                 >,
@@ -324,15 +300,12 @@ impl GKLeaderboard {
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(setDefaultLeaderboard:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultLeaderboard_withCompletionHandler(
             leaderboard_identifier: Option<&NSString>,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[deprecated]
@@ -442,16 +415,12 @@ impl GKLeaderboard {
         /// 1. Communications problem
         /// 2. Unauthenticated player
         /// 3. Leaderboard not present
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(loadLeaderboardsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             completion_handler: Option<
-                &block2::Block<'static, fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
             >,
         );
     );
@@ -463,15 +432,13 @@ impl GKLeaderboard {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Asynchronously load the image. Error will be nil on success.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadImageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSImage, *mut NSError)>>,
+            completion_handler: Option<
+                &block2::SendableBlock<'static, fn(*mut NSImage, *mut NSError)>,
+            >,
         );
     );
 }

@@ -124,17 +124,16 @@ extern_protocol!(
         ///
         ///
         /// See: INSetRadioStationIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[unsafe(method(handleSetRadioStation:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSetRadioStation_completion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetRadioStationIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetRadioStationIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -154,10 +153,6 @@ extern_protocol!(
         ///
         ///
         /// See: INSetRadioStationIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(confirmSetRadioStation:completion:))]
@@ -165,7 +160,10 @@ extern_protocol!(
         unsafe fn confirmSetRadioStation_completion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INSetRadioStationIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INSetRadioStationIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -185,10 +183,6 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveRadioTypeForSetRadioStation:withCompletion:))]
@@ -196,7 +190,7 @@ extern_protocol!(
         unsafe fn resolveRadioTypeForSetRadioStation_withCompletion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INRadioTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INRadioTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -205,9 +199,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveFrequencyForSetRadioStation:withCompletion:))]
@@ -215,7 +206,7 @@ extern_protocol!(
         unsafe fn resolveFrequencyForSetRadioStation_withCompletion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INDoubleResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INDoubleResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -224,9 +215,6 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveStationNameForSetRadioStation:withCompletion:))]
@@ -234,7 +222,7 @@ extern_protocol!(
         unsafe fn resolveStationNameForSetRadioStation_withCompletion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -243,9 +231,6 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolveChannelForSetRadioStation:withCompletion:))]
@@ -253,7 +238,7 @@ extern_protocol!(
         unsafe fn resolveChannelForSetRadioStation_withCompletion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -262,9 +247,6 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
         #[optional]
         #[unsafe(method(resolvePresetNumberForSetRadioStation:withCompletion:))]
@@ -272,7 +254,7 @@ extern_protocol!(
         unsafe fn resolvePresetNumberForSetRadioStation_withCompletion(
             &self,
             intent: &INSetRadioStationIntent,
-            completion: &block2::Block<'static, fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::SendableBlock<'static, fn(NonNull<INIntegerResolutionResult>)>,
         );
     }
 );

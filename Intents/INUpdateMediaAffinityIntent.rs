@@ -112,16 +112,15 @@ extern_protocol!(
         ///
         ///
         /// See: INUpdateMediaAffinityIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(handleUpdateMediaAffinity:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleUpdateMediaAffinity_completion(
             &self,
             intent: &INUpdateMediaAffinityIntent,
-            completion: &block2::Block<'static, fn(NonNull<INUpdateMediaAffinityIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INUpdateMediaAffinityIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -141,17 +140,16 @@ extern_protocol!(
         ///
         ///
         /// See: INUpdateMediaAffinityIntentResponse
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(confirmUpdateMediaAffinity:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn confirmUpdateMediaAffinity_completion(
             &self,
             intent: &INUpdateMediaAffinityIntent,
-            completion: &block2::Block<'static, fn(NonNull<INUpdateMediaAffinityIntentResponse>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INUpdateMediaAffinityIntentResponse>),
+            >,
         );
 
         #[cfg(all(
@@ -172,17 +170,13 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveMediaItemsForUpdateMediaAffinity:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveMediaItemsForUpdateMediaAffinity_withCompletion(
             &self,
             intent: &INUpdateMediaAffinityIntent,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<INUpdateMediaAffinityMediaItemResolutionResult>>),
             >,
@@ -194,16 +188,16 @@ extern_protocol!(
             feature = "INMediaAffinityTypeResolutionResult",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[optional]
         #[unsafe(method(resolveAffinityTypeForUpdateMediaAffinity:withCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveAffinityTypeForUpdateMediaAffinity_withCompletion(
             &self,
             intent: &INUpdateMediaAffinityIntent,
-            completion: &block2::Block<'static, fn(NonNull<INMediaAffinityTypeResolutionResult>)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(NonNull<INMediaAffinityTypeResolutionResult>),
+            >,
         );
     }
 );

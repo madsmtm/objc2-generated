@@ -150,10 +150,6 @@ impl HKWorkoutEffortRelationshipQuery {
         /// Parameter `options`: The options for the query, one of types from `HKWorkoutEffortRelationshipQueryOptions`
         ///
         /// Parameter `resultsHandler`: The block to invoke with related sample results
-        ///
-        /// # Safety
-        ///
-        /// `results_handler` block must be sendable.
         #[unsafe(method(initWithPredicate:anchor:options:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPredicate_anchor_options_resultsHandler(
@@ -161,7 +157,7 @@ impl HKWorkoutEffortRelationshipQuery {
             predicate: Option<&NSPredicate>,
             anchor: Option<&HKQueryAnchor>,
             options: HKWorkoutEffortRelationshipQueryOptions,
-            results_handler: &block2::Block<
+            results_handler: &block2::SendableBlock<
                 'static,
                 fn(
                     NonNull<HKWorkoutEffortRelationshipQuery>,

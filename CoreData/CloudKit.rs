@@ -21,9 +21,6 @@ impl NSPersistentCloudKitContainer {
             feature = "block2",
             feature = "objc2-cloud-kit"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(acceptShareInvitationsFromMetadata:intoPersistentStore:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptShareInvitationsFromMetadata_intoPersistentStore_completion(
@@ -31,7 +28,7 @@ impl NSPersistentCloudKitContainer {
             metadata: &NSArray<CKShareMetadata>,
             persistent_store: &NSPersistentStore,
             completion: Option<
-                &block2::Block<'static, fn(*mut NSArray<CKShareMetadata>, *mut NSError)>,
+                &block2::SendableBlock<'static, fn(*mut NSArray<CKShareMetadata>, *mut NSError)>,
             >,
         );
 
@@ -40,16 +37,15 @@ impl NSPersistentCloudKitContainer {
             feature = "block2",
             feature = "objc2-cloud-kit"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(purgeObjectsAndRecordsInZoneWithID:inPersistentStore:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn purgeObjectsAndRecordsInZoneWithID_inPersistentStore_completion(
             &self,
             zone_id: &CKRecordZoneID,
             persistent_store: Option<&NSPersistentStore>,
-            completion: Option<&block2::Block<'static, fn(*mut CKRecordZoneID, *mut NSError)>>,
+            completion: Option<
+                &block2::SendableBlock<'static, fn(*mut CKRecordZoneID, *mut NSError)>,
+            >,
         );
 
         #[cfg(all(
@@ -57,16 +53,13 @@ impl NSPersistentCloudKitContainer {
             feature = "block2",
             feature = "objc2-cloud-kit"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(persistUpdatedShare:inPersistentStore:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistUpdatedShare_inPersistentStore_completion(
             &self,
             share: &CKShare,
             persistent_store: &NSPersistentStore,
-            completion: Option<&block2::Block<'static, fn(*mut CKShare, *mut NSError)>>,
+            completion: Option<&block2::SendableBlock<'static, fn(*mut CKShare, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -74,16 +67,16 @@ impl NSPersistentCloudKitContainer {
             feature = "block2",
             feature = "objc2-cloud-kit"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchParticipantsMatchingLookupInfos_intoPersistentStore_completion(
             &self,
             lookup_infos: &NSArray<CKUserIdentityLookupInfo>,
             persistent_store: &NSPersistentStore,
-            completion: &block2::Block<'static, fn(*mut NSArray<CKShareParticipant>, *mut NSError)>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut NSArray<CKShareParticipant>, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "NSManagedObjectID", feature = "objc2-cloud-kit"))]
@@ -108,16 +101,13 @@ impl NSPersistentCloudKitContainer {
             feature = "block2",
             feature = "objc2-cloud-kit"
         ))]
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(shareManagedObjects:toShare:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shareManagedObjects_toShare_completion(
             &self,
             managed_objects: &NSArray<NSManagedObject>,
             share: Option<&CKShare>,
-            completion: &block2::Block<
+            completion: &block2::SendableBlock<
                 'static,
                 fn(*mut NSSet<NSManagedObjectID>, *mut CKShare, *mut CKContainer, *mut NSError),
             >,

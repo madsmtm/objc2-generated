@@ -24,26 +24,18 @@ impl ASSettingsHelper {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// Calling this method will open the Settings app and navigate directly to the AutoFill provider settings.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(openCredentialProviderAppSettingsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openCredentialProviderAppSettingsWithCompletionHandler(
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
         /// Calling this method will open the Settings app and navigate directly to the Verification Code provider settings.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(openVerificationCodeAppSettingsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openVerificationCodeAppSettingsWithCompletionHandler(
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -51,14 +43,10 @@ impl ASSettingsHelper {
         /// If the extension is not currently enabled, a prompt will be shown to allow it to be turned on.
         /// The completion handler is called with YES or NO depending on whether the credential provider is enabled.
         /// You need to wait 10 seconds in order to make additional request to this API.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(requestToTurnOnCredentialProviderExtensionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestToTurnOnCredentialProviderExtensionWithCompletionHandler(
-            completion_handler: &block2::Block<'static, fn(Bool)>,
+            completion_handler: &block2::SendableBlock<'static, fn(Bool)>,
         );
     );
 }

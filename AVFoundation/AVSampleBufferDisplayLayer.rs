@@ -315,15 +315,14 @@ impl AVSampleBufferDisplayLayer {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` block must be sendable.
+        /// `queue` possibly has additional threading requirements.
         #[deprecated = "Use sampleBufferRenderer's requestMediaDataWhenReadyOnQueue:usingBlock: instead"]
         #[unsafe(method(requestMediaDataWhenReadyOnQueue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestMediaDataWhenReadyOnQueue_usingBlock(
             &self,
             queue: &DispatchQueue,
-            block: &block2::Block<'static, fn()>,
+            block: &block2::SendableBlock<'static, fn()>,
         );
 
         /// Cancels any current requestMediaDataWhenReadyOnQueue:usingBlock: call.

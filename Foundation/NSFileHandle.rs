@@ -281,51 +281,45 @@ impl NSFileHandle {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// The returned block must be sendable.
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(readabilityHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn readabilityHandler(
             &self,
-        ) -> *mut block2::Block<'static, fn(NonNull<NSFileHandle>)>;
+        ) -> *mut block2::SendableBlock<'static, fn(NonNull<NSFileHandle>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`readabilityHandler`][Self::readabilityHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `readability_handler` block must be sendable.
         #[unsafe(method(setReadabilityHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setReadabilityHandler(
+        pub fn setReadabilityHandler(
             &self,
-            readability_handler: Option<&block2::Block<'static, fn(NonNull<NSFileHandle>)>>,
+            readability_handler: Option<&block2::SendableBlock<'static, fn(NonNull<NSFileHandle>)>>,
         );
 
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// The returned block must be sendable.
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(writeabilityHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeabilityHandler(
             &self,
-        ) -> *mut block2::Block<'static, fn(NonNull<NSFileHandle>)>;
+        ) -> *mut block2::SendableBlock<'static, fn(NonNull<NSFileHandle>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`writeabilityHandler`][Self::writeabilityHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `writeability_handler` block must be sendable.
         #[unsafe(method(setWriteabilityHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWriteabilityHandler(
+        pub fn setWriteabilityHandler(
             &self,
-            writeability_handler: Option<&block2::Block<'static, fn(NonNull<NSFileHandle>)>>,
+            writeability_handler: Option<
+                &block2::SendableBlock<'static, fn(NonNull<NSFileHandle>)>,
+            >,
         );
     );
 }

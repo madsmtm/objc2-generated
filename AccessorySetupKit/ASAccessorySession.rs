@@ -112,15 +112,11 @@ impl ASAccessorySession {
         /// - completionHandler: A block or closure that the picker calls when it completes the operation. The completion handler receives an
         /// <doc
         /// ://com.apple.documentation/documentation/Foundation/NSError> instance if the picker encounters an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(showPickerWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showPickerWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "ASPickerDisplayItem", feature = "block2"))]
@@ -134,16 +130,12 @@ impl ASAccessorySession {
         /// - completionHandler: A block or closure that the picker calls when it completes the operation. The completion handler receives an
         /// <doc
         /// ://com.apple.documentation/documentation/Foundation/NSError> instance if the picker encounters an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(showPickerForDisplayItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showPickerForDisplayItems_completionHandler(
             &self,
             display_items: &NSArray<ASPickerDisplayItem>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -154,31 +146,23 @@ impl ASAccessorySession {
         /// Finish authorization of a partially-setup accessory.
         ///
         /// Use this method in scenarios where an accessory has multiple wireless interfaces. For example, when an accessory has both Bluetooth and Wi-Fi, and your descriptor may only provides an SSID prefix. In this case, the Bluetooth interface onboards first and your app needs to then finish authorization with the full SSID.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(finishAuthorization:settings:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishAuthorization_settings_completionHandler(
             &self,
             accessory: &ASAccessory,
             settings: &ASAccessorySettings,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "ASAccessory", feature = "block2"))]
         /// End authorization of a partially-configured accessory as a failure.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(failAuthorization:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn failAuthorization_completionHandler(
             &self,
             accessory: &ASAccessory,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "ASAccessory", feature = "block2"))]
@@ -189,16 +173,12 @@ impl ASAccessorySession {
         /// - completionHandler: A block or closure that executes after the remove operation completes. The completion handler receives an
         /// <doc
         /// ://com.apple.documentation/documentation/Foundation/NSError> instance if the remove operation encounters an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeAccessory:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAccessory_completionHandler(
             &self,
             accessory: &ASAccessory,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "ASAccessory", feature = "block2"))]
@@ -212,17 +192,13 @@ impl ASAccessorySession {
         /// - completionHandler: A block or closure that executes after the rename operation completes. The completion handler receives an
         /// <doc
         /// ://com.apple.documentation/documentation/Foundation/NSError> instance if the rename operation encounters an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(renameAccessory:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renameAccessory_options_completionHandler(
             &self,
             accessory: &ASAccessory,
             rename_options: ASAccessoryRenameOptions,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -240,17 +216,13 @@ impl ASAccessorySession {
         /// - completionHandler: A block or closure that executes after the picker is shown. The completion handler receives an
         /// <doc
         /// ://com.apple.documentation/documentation/Foundation/NSError> instance if the upgrade operation encounters an error. In Swift, you can omit the completion handler by calling the method asynchronously and catching any error thrown by the method.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(updateAuthorization:descriptor:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateAuthorization_descriptor_completionHandler(
             &self,
             accessory: &ASAccessory,
             descriptor: &ASDiscoveryDescriptor,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "ASPickerDisplayItem", feature = "block2"))]
@@ -264,16 +236,12 @@ impl ASAccessorySession {
         /// - completionHandler: A block or closure that executes after the updatePicker operation completes. The completion handler receives an
         /// <doc
         /// ://com.apple.documentation/documentation/Foundation/NSError> instance if the operation encounters an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(updatePickerShowingDiscoveredDisplayItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatePickerShowingDiscoveredDisplayItems_completionHandler(
             &self,
             display_items: &NSArray<ASDiscoveredDisplayItem>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -288,15 +256,11 @@ impl ASAccessorySession {
         /// - completionHandler: A block or closure that executes after this operation completes. The completion handler receives an
         /// <doc
         /// ://com.apple.documentation/documentation/Foundation/NSError> instance if the operation encounters an error.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(finishPickerDiscovery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishPickerDiscovery(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

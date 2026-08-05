@@ -58,15 +58,14 @@ impl BAAssetPackManager {
         ///
         /// This method might attempt to get the latest asset-pack information from the server.
         /// - Parameter completionHandler: A block that receives the asset packs or an error if one occurs.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getAllAssetPacksWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAllAssetPacksWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSSet<BAAssetPack>, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSSet<BAAssetPack>, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
@@ -76,16 +75,12 @@ impl BAAssetPackManager {
         /// - Parameters:
         /// - assetPackIdentifier: The asset pack’s identifier.
         /// - completionHandler: A block that receives the asset pack or an error if one occurs.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getAssetPackWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAssetPackWithIdentifier_completionHandler(
             &self,
             asset_pack_identifier: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut BAAssetPack, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut BAAssetPack, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -108,16 +103,15 @@ impl BAAssetPackManager {
         /// - Parameters:
         /// - assetPack: The asset pack.
         /// - completionHandler: A block that receives the asset pack’s status or an error if one occurs.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getStatusRelativeToAssetPack:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getStatusRelativeToAssetPack_completionHandler(
             &self,
             asset_pack: &BAAssetPack,
-            completion_handler: &block2::Block<'static, fn(BAAssetPackStatus, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(BAAssetPackStatus, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "BAAssetPackStatus", feature = "block2"))]
@@ -132,16 +126,12 @@ impl BAAssetPackManager {
         /// - Parameters:
         /// - assetPackIdentifier: The asset pack’s identifier.
         /// - completionHandler: A block that receives the asset pack’s local status.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(getLocalStatusOfAssetPackWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLocalStatusOfAssetPackWithIdentifier_completionHandler(
             &self,
             asset_pack_identifier: &NSString,
-            completion_handler: &block2::Block<'static, fn(BAAssetPackStatus)>,
+            completion_handler: &block2::SendableBlock<'static, fn(BAAssetPackStatus)>,
         );
 
         /// Checks whether the asset pack with the specified identifier is available locally.
@@ -161,16 +151,12 @@ impl BAAssetPackManager {
         /// - Parameters:
         /// - assetPack: The asset pack the local availability of which to ensure.
         /// - completionHandler: A block that’s called when the asset pack is available locally or that receives an error if one occurs.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(ensureLocalAvailabilityOfAssetPack:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ensureLocalAvailabilityOfAssetPack_completionHandler(
             &self,
             asset_pack: &BAAssetPack,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
@@ -181,32 +167,24 @@ impl BAAssetPackManager {
         /// - assetPack: The asset pack the local availability of which to ensure.
         /// - shouldUpdate: Whether to require that the latest version be available locally. When `YES` is passed to this parameter, the method will wait for the update (if there indeed is one available) to be downloaded before returning. When `NO` is passed, the method won’t check for updates and won’t attempt to download any.
         /// - completionHandler: A block that’s called when the asset pack is available locally or that receives an error if one occurs.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(ensureLocalAvailabilityOfAssetPack:requireLatestVersion:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ensureLocalAvailabilityOfAssetPack_requireLatestVersion_completionHandler(
             &self,
             asset_pack: &BAAssetPack,
             should_update: bool,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
         /// Gets the latest asset-pack information from the server, updates outdated asset packs, and removes obsolete asset packs.
         /// - Parameter completionHandler: A block that receives a set of identifiers of asset packs that are being updated and a set of identifiers of removed asset packs or an error if one occurs.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(checkForUpdatesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkForUpdatesWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::Block<
+                &block2::SendableBlock<
                     'static,
                     fn(*mut NSSet<NSString>, *mut NSSet<NSString>, *mut NSError),
                 >,
@@ -252,16 +230,12 @@ impl BAAssetPackManager {
         /// - Parameters:
         /// - assetPackIdentifier: The asset pack’s identifier.
         /// - completionHandler: A block that receives an error if one occurs.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeAssetPackWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAssetPackWithIdentifier_completionHandler(
             &self,
             asset_pack_identifier: &NSString,
-            completion_handler: Option<&block2::Block<'static, fn(*mut NSError)>>,
+            completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "BAAssetPackStatus", feature = "block2"))]
@@ -271,17 +245,16 @@ impl BAAssetPackManager {
         /// - Parameters:
         /// - assetPackIdentifier: The asset pack’s identifier.
         /// - completionHandler: A block that receives the asset pack’s status or an error if one occurs.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(getStatusOfAssetPackWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getStatusOfAssetPackWithIdentifier_completionHandler(
             &self,
             asset_pack_identifier: &NSString,
-            completion_handler: &block2::Block<'static, fn(BAAssetPackStatus, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(BAAssetPackStatus, *mut NSError),
+            >,
         );
     );
 }

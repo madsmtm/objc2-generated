@@ -159,16 +159,12 @@ impl CKDatabase {
         /// - An error if a problem occurs, or `nil` if the fetch completes successfully.
         ///
         /// For information on a more convenient way to fetch specific records, see ``CKDatabase/records(for:desiredKeys:)``.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchRecordWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordWithID_completionHandler(
             &self,
             record_id: &CKRecordID,
-            completion_handler: &block2::Block<'static, fn(*mut CKRecord, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut CKRecord, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
@@ -186,16 +182,12 @@ impl CKDatabase {
         /// The save succeeds only when the specified record is new, or is a more recent version than the one on the server.
         ///
         /// For information on a more convenient way to save records, see ``CKDatabase/modifyRecords(saving:deleting:savePolicy:atomically:)``.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveRecord:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveRecord_completionHandler(
             &self,
             record: &CKRecord,
-            completion_handler: &block2::Block<'static, fn(*mut CKRecord, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut CKRecord, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
@@ -213,16 +205,12 @@ impl CKDatabase {
         /// Deleting a record may cause additional deletions if other records in the database reference the deleted record. CloudKit doesn't provide the identifiers of any additional records it deletes.
         ///
         /// For information on a more convenient way to delete records, see ``CKDatabase/modifyRecords(saving:deleting:savePolicy:atomically:)``.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteRecordWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteRecordWithID_completionHandler(
             &self,
             record_id: &CKRecordID,
-            completion_handler: &block2::Block<'static, fn(*mut CKRecordID, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut CKRecordID, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -244,17 +232,16 @@ impl CKDatabase {
         /// - An error if a problem occurs, or `nil` if CloudKit completes the search successfully.
         ///
         /// For information on a more convenient way to search a database, see ``CKDatabase/records(matching:inZoneWith:desiredKeys:resultsLimit:)``.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(performQuery:inZoneWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performQuery_inZoneWithID_completionHandler(
             &self,
             query: &CKQuery,
             zone_id: Option<&CKRecordZoneID>,
-            completion_handler: &block2::Block<'static, fn(*mut NSArray<CKRecord>, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSArray<CKRecord>, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CKRecordZone", feature = "block2"))]
@@ -267,15 +254,11 @@ impl CKDatabase {
         ///
         /// - An array of fetched record zones, or `nil` if there's an error. When present, the array contains at least one record zone, the default zone.
         /// - An error if a problem occurs, or `nil` if CloudKit successfully fetches all record zones.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchAllRecordZonesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllRecordZonesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<CKRecordZone>, *mut NSError),
             >,
@@ -298,16 +281,15 @@ impl CKDatabase {
         /// - An error if a problem occurs, or `nil` if CloudKit successfully fetches the specified record zone.
         ///
         /// For information on a more convenient way to fetch specific record zones, see ``CKDatabase/recordZones(for:)`` in Swift or ``CKFetchRecordZonesOperation`` in Objective-C.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchRecordZoneWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordZoneWithID_completionHandler(
             &self,
             zone_id: &CKRecordZoneID,
-            completion_handler: &block2::Block<'static, fn(*mut CKRecordZone, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKRecordZone, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CKRecordZone", feature = "block2"))]
@@ -323,16 +305,15 @@ impl CKDatabase {
         /// - An error if a problem occurs, or `nil` if CloudKit successfully saves the record zone.
         ///
         /// For information on a more convenient way to save record zones, see ``CKDatabase/modifyRecordZones(saving:deleting:)``.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveRecordZone:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveRecordZone_completionHandler(
             &self,
             zone: &CKRecordZone,
-            completion_handler: &block2::Block<'static, fn(*mut CKRecordZone, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKRecordZone, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
@@ -350,16 +331,15 @@ impl CKDatabase {
         /// - An error if a problem occurs, or `nil` if CloudKit successfully deletes the record zone.
         ///
         /// For information on a more convenient way to delete record zones, see ``CKDatabase/modifyRecordZones(saving:deleting:)``.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteRecordZoneWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteRecordZoneWithID_completionHandler(
             &self,
             zone_id: &CKRecordZoneID,
-            completion_handler: &block2::Block<'static, fn(*mut CKRecordZoneID, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKRecordZoneID, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
@@ -375,16 +355,15 @@ impl CKDatabase {
         /// - term `error`: An error if a problem occurs, or `nil` if the fetch completes successfully.
         ///
         /// For information on a more configurable way to fetch specific subscriptions, see ``CKFetchSubscriptionsOperation``.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchSubscriptionWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchSubscriptionWithID_completionHandler(
             &self,
             subscription_id: &CKSubscriptionID,
-            completion_handler: &block2::Block<'static, fn(*mut CKSubscription, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKSubscription, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
@@ -399,15 +378,11 @@ impl CKDatabase {
         /// - An error if a problem occurs, or `nil` if the fetch completes successfully.
         ///
         /// For information on a more configurable way to fetch all subscriptions from a specific database, see ``CKFetchSubscriptionsOperation/fetchAllSubscriptionsOperation()``.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchAllSubscriptionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllSubscriptionsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<CKSubscription>, *mut NSError),
             >,
@@ -426,16 +401,15 @@ impl CKDatabase {
         /// - An error if a problem occurs, or `nil` if CloudKit successfully saves the subscription.
         ///
         /// For information on a more convenient way to save subscriptions, see ``CKDatabase/modifySubscriptions(saving:deleting:)``.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(saveSubscription:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveSubscription_completionHandler(
             &self,
             subscription: &CKSubscription,
-            completion_handler: &block2::Block<'static, fn(*mut CKSubscription, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKSubscription, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
@@ -451,16 +425,15 @@ impl CKDatabase {
         /// - term `error`: An error if a problem occurs, or `nil` if CloudKit successfully deletes the subscription.
         ///
         /// For information on a more configurable way to delete subscriptions, see ``CKModifySubscriptionsOperation``.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(deleteSubscriptionWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSubscriptionWithID_completionHandler(
             &self,
             subscription_id: &CKSubscriptionID,
-            completion_handler: &block2::Block<'static, fn(*mut CKSubscriptionID, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut CKSubscriptionID, *mut NSError),
+            >,
         );
     );
 }

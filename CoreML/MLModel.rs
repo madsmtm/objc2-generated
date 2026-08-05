@@ -188,16 +188,12 @@ impl MLModel {
         /// Parameter `configuration`: Model configuration that hold options for loading a model
         ///
         /// Parameter `handler`: When the model load completes successfully or unsuccessfully, the completion handler is invoked with a valid MLModel instance or NSError object.
-        ///
-        /// # Safety
-        ///
-        /// `handler` block must be sendable.
         #[unsafe(method(loadModelAsset:configuration:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadModelAsset_configuration_completionHandler(
             asset: &MLModelAsset,
             configuration: &MLModelConfiguration,
-            handler: &block2::Block<'static, fn(*mut MLModel, *mut NSError)>,
+            handler: &block2::SendableBlock<'static, fn(*mut MLModel, *mut NSError)>,
         );
     );
 }

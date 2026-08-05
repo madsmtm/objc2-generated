@@ -23,12 +23,12 @@ pub type NSProgressFileOperationKind = NSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressunpublishinghandler?language=objc)
 #[cfg(feature = "block2")]
-pub type NSProgressUnpublishingHandler = block2::Block<'static, fn()>;
+pub type NSProgressUnpublishingHandler = block2::SendableBlock<'static, fn()>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogresspublishinghandler?language=objc)
 #[cfg(feature = "block2")]
 pub type NSProgressPublishingHandler =
-    block2::Block<'static, fn(NonNull<NSProgress>) -> *mut NSProgressUnpublishingHandler>;
+    block2::SendableBlock<'static, fn(NonNull<NSProgress>) -> *mut NSProgressUnpublishingHandler>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogress?language=objc)
@@ -174,72 +174,51 @@ impl NSProgress {
         pub fn isPaused(&self) -> bool;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// The returned block must be sendable.
         #[unsafe(method(cancellationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancellationHandler(&self) -> *mut block2::Block<'static, fn()>;
+        pub fn cancellationHandler(&self) -> *mut block2::SendableBlock<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`cancellationHandler`][Self::cancellationHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `cancellation_handler` block must be sendable.
         #[unsafe(method(setCancellationHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCancellationHandler(
+        pub fn setCancellationHandler(
             &self,
-            cancellation_handler: Option<&block2::Block<'static, fn()>>,
+            cancellation_handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// The returned block must be sendable.
         #[unsafe(method(pausingHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pausingHandler(&self) -> *mut block2::Block<'static, fn()>;
+        pub fn pausingHandler(&self) -> *mut block2::SendableBlock<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`pausingHandler`][Self::pausingHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `pausing_handler` block must be sendable.
         #[unsafe(method(setPausingHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPausingHandler(
+        pub fn setPausingHandler(
             &self,
-            pausing_handler: Option<&block2::Block<'static, fn()>>,
+            pausing_handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// The returned block must be sendable.
         #[unsafe(method(resumingHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resumingHandler(&self) -> *mut block2::Block<'static, fn()>;
+        pub fn resumingHandler(&self) -> *mut block2::SendableBlock<'static, fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`resumingHandler`][Self::resumingHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `resuming_handler` block must be sendable.
         #[unsafe(method(setResumingHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setResumingHandler(
+        pub fn setResumingHandler(
             &self,
-            resuming_handler: Option<&block2::Block<'static, fn()>>,
+            resuming_handler: Option<&block2::SendableBlock<'static, fn()>>,
         );
 
         #[cfg(feature = "NSString")]
@@ -390,7 +369,7 @@ impl NSProgress {
         #[cfg(all(feature = "NSURL", feature = "block2"))]
         /// # Safety
         ///
-        /// `publishing_handler` block must be sendable.
+        /// `publishing_handler` block's return must be a valid pointer or null.
         #[unsafe(method(addSubscriberForFileURL:withPublishingHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSubscriberForFileURL_withPublishingHandler(

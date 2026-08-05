@@ -106,9 +106,6 @@ impl GKGameSession {
         pub unsafe fn badgedPlayers(&self) -> Retained<NSArray<GKCloudPlayer>>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -116,70 +113,61 @@ impl GKGameSession {
             container_name: Option<&NSString>,
             title: &NSString,
             max_players: NSInteger,
-            completion_handler: &block2::Block<'static, fn(*mut GKGameSession, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut GKGameSession, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(loadSessionsInContainer:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSessionsInContainer_completionHandler(
             container_name: Option<&NSString>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::SendableBlock<
                 'static,
                 fn(*mut NSArray<GKGameSession>, *mut NSError),
             >,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(loadSessionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSessionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut GKGameSession, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut GKGameSession, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(removeSessionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeSessionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(getShareURLWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getShareURLWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSURL, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSURL, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(loadDataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadDataWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<'static, fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -193,16 +181,13 @@ impl GKGameSession {
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(setConnectionState:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConnectionState_completionHandler(
             &self,
             state: GKConnectionState,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
@@ -215,9 +200,6 @@ impl GKGameSession {
         ) -> Retained<NSArray<GKCloudPlayer>>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(sendData:withTransportType:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -225,7 +207,7 @@ impl GKGameSession {
             &self,
             data: &NSData,
             transport: GKTransportType,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -233,9 +215,6 @@ impl GKGameSession {
             feature = "GKCloudPlayer",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -246,7 +225,7 @@ impl GKGameSession {
             data: Option<&NSData>,
             players: &NSArray<GKCloudPlayer>,
             badge_players: bool,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -254,16 +233,13 @@ impl GKGameSession {
             feature = "GKCloudPlayer",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(clearBadgeForPlayers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearBadgeForPlayers_completionHandler(
             &self,
             players: &NSArray<GKCloudPlayer>,
-            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );
 }

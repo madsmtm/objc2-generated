@@ -420,16 +420,12 @@ impl CLSContext {
         /// ```
         ///
         /// If the dataStore does not have a delegate and there are missing contexts then an incomplete list of contexts will be passed to the completion handler. Completion block is called on a background thread.
-        ///
-        /// # Safety
-        ///
-        /// `completion` block must be sendable.
         #[unsafe(method(descendantMatchingIdentifierPath:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descendantMatchingIdentifierPath_completion(
             &self,
             identifier_path: &NSArray<NSString>,
-            completion: &block2::Block<'static, fn(*mut CLSContext, *mut NSError)>,
+            completion: &block2::SendableBlock<'static, fn(*mut CLSContext, *mut NSError)>,
         );
 
         /// Child contexts that can be navigated to from this context.

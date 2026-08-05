@@ -24,16 +24,12 @@ extern_protocol!(
         /// `MEMessageActionDecision.invokeAgainWithBody`and this method will be invoked again once the full body is available.
         ///
         /// Parameter `message`: - The message for which the action will be performed. Might or might not contain the full message body data.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` block must be sendable.
         #[unsafe(method(decideActionForMessage:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn decideActionForMessage_completionHandler(
             &self,
             message: &MEMessage,
-            completion_handler: &block2::Block<'static, fn(*mut MEMessageActionDecision)>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut MEMessageActionDecision)>,
         );
 
         /// Provide additional headers that the extension requires to perform an action. Mail will fetch these additional headers before invoking
