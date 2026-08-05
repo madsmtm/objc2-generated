@@ -518,6 +518,7 @@ unsafe impl RefEncode for CGLOpenGLProfile {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglerror?language=objc)
+#[doc(alias = "_CGLError")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLError(pub c_uint);

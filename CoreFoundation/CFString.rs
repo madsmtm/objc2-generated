@@ -19,33 +19,33 @@ pub type CFStringEncoding = u32;
 pub struct CFStringBuiltInEncodings(pub CFStringEncoding);
 impl CFStringBuiltInEncodings {
     #[doc(alias = "kCFStringEncodingMacRoman")]
-    pub const EncodingMacRoman: Self = Self(0);
+    pub const MacRoman: Self = Self(0);
     #[doc(alias = "kCFStringEncodingWindowsLatin1")]
-    pub const EncodingWindowsLatin1: Self = Self(0x0500);
+    pub const WindowsLatin1: Self = Self(0x0500);
     #[doc(alias = "kCFStringEncodingISOLatin1")]
-    pub const EncodingISOLatin1: Self = Self(0x0201);
+    pub const ISOLatin1: Self = Self(0x0201);
     #[doc(alias = "kCFStringEncodingNextStepLatin")]
-    pub const EncodingNextStepLatin: Self = Self(0x0B01);
+    pub const NextStepLatin: Self = Self(0x0B01);
     #[doc(alias = "kCFStringEncodingASCII")]
-    pub const EncodingASCII: Self = Self(0x0600);
+    pub const ASCII: Self = Self(0x0600);
     #[doc(alias = "kCFStringEncodingUnicode")]
-    pub const EncodingUnicode: Self = Self(0x0100);
+    pub const Unicode: Self = Self(0x0100);
     #[doc(alias = "kCFStringEncodingUTF8")]
-    pub const EncodingUTF8: Self = Self(0x08000100);
+    pub const UTF8: Self = Self(0x08000100);
     #[doc(alias = "kCFStringEncodingNonLossyASCII")]
-    pub const EncodingNonLossyASCII: Self = Self(0x0BFF);
+    pub const NonLossyASCII: Self = Self(0x0BFF);
     #[doc(alias = "kCFStringEncodingUTF16")]
-    pub const EncodingUTF16: Self = Self(0x0100);
+    pub const UTF16: Self = Self(0x0100);
     #[doc(alias = "kCFStringEncodingUTF16BE")]
-    pub const EncodingUTF16BE: Self = Self(0x10000100);
+    pub const UTF16BE: Self = Self(0x10000100);
     #[doc(alias = "kCFStringEncodingUTF16LE")]
-    pub const EncodingUTF16LE: Self = Self(0x14000100);
+    pub const UTF16LE: Self = Self(0x14000100);
     #[doc(alias = "kCFStringEncodingUTF32")]
-    pub const EncodingUTF32: Self = Self(0x0c000100);
+    pub const UTF32: Self = Self(0x0c000100);
     #[doc(alias = "kCFStringEncodingUTF32BE")]
-    pub const EncodingUTF32BE: Self = Self(0x18000100);
+    pub const UTF32BE: Self = Self(0x18000100);
     #[doc(alias = "kCFStringEncodingUTF32LE")]
-    pub const EncodingUTF32LE: Self = Self(0x1c000100);
+    pub const UTF32LE: Self = Self(0x1c000100);
 }
 
 #[cfg(feature = "objc2")]

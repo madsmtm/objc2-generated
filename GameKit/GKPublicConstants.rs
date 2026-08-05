@@ -71,27 +71,27 @@ pub struct GKPeerConnectionState(pub c_int);
 impl GKPeerConnectionState {
     #[doc(alias = "GKPeerStateAvailable")]
     #[deprecated = "No longer supported"]
-    pub const StateAvailable: Self = Self(0);
+    pub const Available: Self = Self(0);
     /// not connected to session, but available for connectToPeer:withTimeout:
     #[doc(alias = "GKPeerStateUnavailable")]
     #[deprecated = "No longer supported"]
-    pub const StateUnavailable: Self = Self(1);
+    pub const Unavailable: Self = Self(1);
     /// no longer available
     #[doc(alias = "GKPeerStateConnected")]
     #[deprecated = "No longer supported"]
-    pub const StateConnected: Self = Self(2);
+    pub const Connected: Self = Self(2);
     /// connected to the session
     #[doc(alias = "GKPeerStateDisconnected")]
     #[deprecated = "No longer supported"]
-    pub const StateDisconnected: Self = Self(3);
+    pub const Disconnected: Self = Self(3);
     /// disconnected from the session
     #[doc(alias = "GKPeerStateConnecting")]
     #[deprecated = "No longer supported"]
-    pub const StateConnecting: Self = Self(4);
+    pub const Connecting: Self = Self(4);
     /// waiting for accept, or deny response
     #[doc(alias = "GKPeerStateConnectedRelay")]
     #[deprecated = "No longer supported"]
-    pub const StateConnectedRelay: Self = Self(5);
+    pub const ConnectedRelay: Self = Self(5);
 }
 
 unsafe impl Encode for GKPeerConnectionState {

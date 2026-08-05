@@ -385,15 +385,15 @@ unsafe impl RefEncode for ICReturnCode {
 pub struct ICReturnObjectErrorCode(pub NSInteger);
 impl ICReturnObjectErrorCode {
     #[doc(alias = "ICReturnCodeObjectDoesNotExist")]
-    pub const CodeObjectDoesNotExist: Self = Self(-21450);
+    pub const ObjectDoesNotExist: Self = Self(-21450);
     #[doc(alias = "ICReturnCodeObjectDataOffsetInvalid")]
-    pub const CodeObjectDataOffsetInvalid: Self = Self(-21449);
+    pub const ObjectDataOffsetInvalid: Self = Self(-21449);
     #[doc(alias = "ICReturnCodeObjectCouldNotBeRead")]
-    pub const CodeObjectCouldNotBeRead: Self = Self(-21448);
+    pub const ObjectCouldNotBeRead: Self = Self(-21448);
     #[doc(alias = "ICReturnCodeObjectDataEmpty")]
-    pub const CodeObjectDataEmpty: Self = Self(-21447);
+    pub const ObjectDataEmpty: Self = Self(-21447);
     #[doc(alias = "ICReturnCodeObjectDataRequestTooLarge")]
-    pub const CodeObjectDataRequestTooLarge: Self = Self(-21446);
+    pub const ObjectDataRequestTooLarge: Self = Self(-21446);
 }
 
 unsafe impl Encode for ICReturnObjectErrorCode {

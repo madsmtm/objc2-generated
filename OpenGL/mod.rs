@@ -958,11 +958,15 @@ pub unsafe fn CGLGetVersion(majorvers: Option<&mut GLint>, minorvers: Option<&mu
 }
 
 #[cfg(feature = "CGLTypes")]
-#[inline]
-pub unsafe fn CGLErrorString(error: CGLError) -> NonNull<c_char> {
-    extern "C-unwind" {
-        fn CGLErrorString(error: CGLError) -> Option<NonNull<c_char>>;
+impl CGLError {
+    #[doc(alias = "CGLErrorString")]
+    #[cfg(feature = "CGLTypes")]
+    #[inline]
+    pub unsafe fn string(self) -> NonNull<c_char> {
+        extern "C-unwind" {
+            fn CGLErrorString(error: CGLError) -> Option<NonNull<c_char>>;
+        }
+        let ret = unsafe { CGLErrorString(self) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { CGLErrorString(error) };
-    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }

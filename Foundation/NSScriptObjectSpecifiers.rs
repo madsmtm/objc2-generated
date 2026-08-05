@@ -28,15 +28,15 @@ pub const NSOperationNotSupportedForKeySpecifierError: NSInteger = 6;
 pub struct NSInsertionPosition(pub NSUInteger);
 impl NSInsertionPosition {
     #[doc(alias = "NSPositionAfter")]
-    pub const PositionAfter: Self = Self(0);
+    pub const After: Self = Self(0);
     #[doc(alias = "NSPositionBefore")]
-    pub const PositionBefore: Self = Self(1);
+    pub const Before: Self = Self(1);
     #[doc(alias = "NSPositionBeginning")]
-    pub const PositionBeginning: Self = Self(2);
+    pub const Beginning: Self = Self(2);
     #[doc(alias = "NSPositionEnd")]
-    pub const PositionEnd: Self = Self(3);
+    pub const End: Self = Self(3);
     #[doc(alias = "NSPositionReplace")]
-    pub const PositionReplace: Self = Self(4);
+    pub const Replace: Self = Self(4);
 }
 
 unsafe impl Encode for NSInsertionPosition {

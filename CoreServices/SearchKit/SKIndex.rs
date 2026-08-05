@@ -95,13 +95,13 @@ unsafe impl RefEncode for SKIndexType {
 pub struct SKDocumentIndexState(pub c_uint);
 impl SKDocumentIndexState {
     #[doc(alias = "kSKDocumentStateNotIndexed")]
-    pub const StateNotIndexed: Self = Self(0);
+    pub const NotIndexed: Self = Self(0);
     #[doc(alias = "kSKDocumentStateIndexed")]
-    pub const StateIndexed: Self = Self(1);
+    pub const Indexed: Self = Self(1);
     #[doc(alias = "kSKDocumentStateAddPending")]
-    pub const StateAddPending: Self = Self(2);
+    pub const AddPending: Self = Self(2);
     #[doc(alias = "kSKDocumentStateDeletePending")]
-    pub const StateDeletePending: Self = Self(3);
+    pub const DeletePending: Self = Self(3);
 }
 
 #[cfg(feature = "objc2")]

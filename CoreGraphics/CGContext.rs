@@ -97,10 +97,10 @@ pub struct CGTextEncoding(pub i32);
 impl CGTextEncoding {
     #[doc(alias = "kCGEncodingFontSpecific")]
     #[deprecated = "No longer supported"]
-    pub const EncodingFontSpecific: Self = Self(0);
+    pub const FontSpecific: Self = Self(0);
     #[doc(alias = "kCGEncodingMacRoman")]
     #[deprecated = "No longer supported"]
-    pub const EncodingMacRoman: Self = Self(1);
+    pub const MacRoman: Self = Self(1);
 }
 
 #[cfg(feature = "objc2")]

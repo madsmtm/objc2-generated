@@ -35,17 +35,17 @@ cf_objc2_type!(
 pub struct CGImageSourceStatus(pub i32);
 impl CGImageSourceStatus {
     #[doc(alias = "kCGImageStatusUnexpectedEOF")]
-    pub const StatusUnexpectedEOF: Self = Self(-5);
+    pub const UnexpectedEOF: Self = Self(-5);
     #[doc(alias = "kCGImageStatusInvalidData")]
-    pub const StatusInvalidData: Self = Self(-4);
+    pub const InvalidData: Self = Self(-4);
     #[doc(alias = "kCGImageStatusUnknownType")]
-    pub const StatusUnknownType: Self = Self(-3);
+    pub const UnknownType: Self = Self(-3);
     #[doc(alias = "kCGImageStatusReadingHeader")]
-    pub const StatusReadingHeader: Self = Self(-2);
+    pub const ReadingHeader: Self = Self(-2);
     #[doc(alias = "kCGImageStatusIncomplete")]
-    pub const StatusIncomplete: Self = Self(-1);
+    pub const Incomplete: Self = Self(-1);
     #[doc(alias = "kCGImageStatusComplete")]
-    pub const StatusComplete: Self = Self(0);
+    pub const Complete: Self = Self(0);
 }
 
 #[cfg(feature = "objc2")]

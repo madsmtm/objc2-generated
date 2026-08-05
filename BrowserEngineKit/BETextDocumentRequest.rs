@@ -14,17 +14,17 @@ pub struct BETextDocumentRequestOptions(pub NSInteger);
 bitflags::bitflags! {
     impl BETextDocumentRequestOptions: NSInteger {
         #[doc(alias = "BETextDocumentOptionNone")]
-        const OptionNone = 0;
+        const None = 0;
         #[doc(alias = "BETextDocumentOptionText")]
-        const OptionText = 1<<0;
+        const Text = 1<<0;
         #[doc(alias = "BETextDocumentOptionAttributedText")]
-        const OptionAttributedText = 1<<1;
+        const AttributedText = 1<<1;
         #[doc(alias = "BETextDocumentOptionTextRects")]
-        const OptionTextRects = 1<<2;
+        const TextRects = 1<<2;
         #[doc(alias = "BETextDocumentOptionMarkedTextRects")]
-        const OptionMarkedTextRects = 1<<5;
+        const MarkedTextRects = 1<<5;
         #[doc(alias = "BETextDocumentOptionAutocorrectedRanges")]
-        const OptionAutocorrectedRanges = 1<<7;
+        const AutocorrectedRanges = 1<<7;
         const _ = !0;
     }
 }

@@ -322,6 +322,7 @@ pub type CE_NetscapeCertType = uint16;
 pub type CE_CrlDistReasonFlags = uint8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_crldistributionpointnametype?language=objc)
+#[doc(alias = "__CE_CrlDistributionPointNameType")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CE_CrlDistributionPointNameType(pub c_uint);

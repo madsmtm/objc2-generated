@@ -276,15 +276,15 @@ unsafe impl RefEncode for IOBluetoothHandsFreeSMSSupport {
 pub struct IOBluetoothHandsFreePDUMessageStatus(pub NSUInteger);
 impl IOBluetoothHandsFreePDUMessageStatus {
     #[doc(alias = "IOBluetoothHandsFreePDUStatusRecUnread")]
-    pub const StatusRecUnread: Self = Self(0);
+    pub const RecUnread: Self = Self(0);
     #[doc(alias = "IOBluetoothHandsFreePDUStatusRecRead")]
-    pub const StatusRecRead: Self = Self(1);
+    pub const RecRead: Self = Self(1);
     #[doc(alias = "IOBluetoothHandsFreePDUStatusStoUnsent")]
-    pub const StatusStoUnsent: Self = Self(2);
+    pub const StoUnsent: Self = Self(2);
     #[doc(alias = "IOBluetoothHandsFreePDUStatusStoSent")]
-    pub const StatusStoSent: Self = Self(3);
+    pub const StoSent: Self = Self(3);
     #[doc(alias = "IOBluetoothHandsFreePDUStatusAll")]
-    pub const StatusAll: Self = Self(4);
+    pub const All: Self = Self(4);
 }
 
 unsafe impl Encode for IOBluetoothHandsFreePDUMessageStatus {

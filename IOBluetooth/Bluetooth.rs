@@ -3936,13 +3936,13 @@ pub type BluetoothIOCapability = u8;
 pub struct BluetoothIOCapabilities(pub c_uint);
 impl BluetoothIOCapabilities {
     #[doc(alias = "kBluetoothCapabilityTypeDisplayOnly")]
-    pub const CapabilityTypeDisplayOnly: Self = Self(0x00);
+    pub const TypeDisplayOnly: Self = Self(0x00);
     #[doc(alias = "kBluetoothCapabilityTypeDisplayYesNo")]
-    pub const CapabilityTypeDisplayYesNo: Self = Self(0x01);
+    pub const TypeDisplayYesNo: Self = Self(0x01);
     #[doc(alias = "kBluetoothCapabilityTypeKeyboardOnly")]
-    pub const CapabilityTypeKeyboardOnly: Self = Self(0x02);
+    pub const TypeKeyboardOnly: Self = Self(0x02);
     #[doc(alias = "kBluetoothCapabilityTypeNoInputNoOutput")]
-    pub const CapabilityTypeNoInputNoOutput: Self = Self(0x03);
+    pub const TypeNoInputNoOutput: Self = Self(0x03);
 }
 
 #[cfg(feature = "objc2")]

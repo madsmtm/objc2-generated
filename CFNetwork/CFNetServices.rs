@@ -132,7 +132,7 @@ pub struct CFNetServiceRegisterFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFNetServiceRegisterFlags: CFOptionFlags {
         #[doc(alias = "kCFNetServiceFlagNoAutoRename")]
-        const FlagNoAutoRename = 1;
+        const NoAutoRename = 1;
         const _ = !0;
     }
 }
@@ -155,16 +155,16 @@ pub struct CFNetServiceBrowserFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFNetServiceBrowserFlags: CFOptionFlags {
         #[doc(alias = "kCFNetServiceFlagMoreComing")]
-        const FlagMoreComing = 1;
+        const MoreComing = 1;
         #[doc(alias = "kCFNetServiceFlagIsDomain")]
-        const FlagIsDomain = 2;
+        const IsDomain = 2;
         #[doc(alias = "kCFNetServiceFlagIsDefault")]
-        const FlagIsDefault = 4;
+        const IsDefault = 4;
         #[doc(alias = "kCFNetServiceFlagIsRegistrationDomain")]
 #[deprecated]
-        const FlagIsRegistrationDomain = 4;
+        const IsRegistrationDomain = 4;
         #[doc(alias = "kCFNetServiceFlagRemove")]
-        const FlagRemove = 8;
+        const Remove = 8;
         const _ = !0;
     }
 }

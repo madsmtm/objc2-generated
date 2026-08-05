@@ -69,11 +69,11 @@ extern_protocol!(
 pub struct AXNumericDataAxisDescriptorScale(pub NSInteger);
 impl AXNumericDataAxisDescriptorScale {
     #[doc(alias = "AXScaleTypeLinear")]
-    pub const ScaleTypeLinear: Self = Self(0);
+    pub const TypeLinear: Self = Self(0);
     #[doc(alias = "AXScaleTypeLog10")]
-    pub const ScaleTypeLog10: Self = Self(1);
+    pub const TypeLog10: Self = Self(1);
     #[doc(alias = "AXScaleTypeLn")]
-    pub const ScaleTypeLn: Self = Self(2);
+    pub const TypeLn: Self = Self(2);
 }
 
 unsafe impl Encode for AXNumericDataAxisDescriptorScale {

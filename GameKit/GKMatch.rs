@@ -35,13 +35,13 @@ unsafe impl RefEncode for GKMatchSendDataMode {
 pub struct GKPlayerConnectionState(pub NSInteger);
 impl GKPlayerConnectionState {
     #[doc(alias = "GKPlayerStateUnknown")]
-    pub const StateUnknown: Self = Self(0);
+    pub const Unknown: Self = Self(0);
     /// initial player state
     #[doc(alias = "GKPlayerStateConnected")]
-    pub const StateConnected: Self = Self(1);
+    pub const Connected: Self = Self(1);
     /// connected to the match
     #[doc(alias = "GKPlayerStateDisconnected")]
-    pub const StateDisconnected: Self = Self(2);
+    pub const Disconnected: Self = Self(2);
 }
 
 unsafe impl Encode for GKPlayerConnectionState {

@@ -18,11 +18,11 @@ use crate::*;
 pub struct IKImageBrowserCellState(pub c_uint);
 impl IKImageBrowserCellState {
     #[doc(alias = "IKImageStateNoImage")]
-    pub const StateNoImage: Self = Self(0);
+    pub const NoImage: Self = Self(0);
     #[doc(alias = "IKImageStateInvalid")]
-    pub const StateInvalid: Self = Self(1);
+    pub const Invalid: Self = Self(1);
     #[doc(alias = "IKImageStateReady")]
-    pub const StateReady: Self = Self(2);
+    pub const Ready: Self = Self(2);
 }
 
 unsafe impl Encode for IKImageBrowserCellState {

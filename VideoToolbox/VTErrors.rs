@@ -119,13 +119,13 @@ pub const kVTVideoEncoderAutoWhiteBalanceNotLockedErr: OSStatus = -19512;
 pub struct VTDecodeFrameFlags(pub u32);
 bitflags::bitflags! {
     impl VTDecodeFrameFlags: u32 {
-#[doc(alias = "kVTDecodeFrame_EnableAsynchronousDecompression")]
+        #[doc(alias = "kVTDecodeFrame_EnableAsynchronousDecompression")]
         const Frame_EnableAsynchronousDecompression = 1<<0;
-#[doc(alias = "kVTDecodeFrame_DoNotOutputFrame")]
+        #[doc(alias = "kVTDecodeFrame_DoNotOutputFrame")]
         const Frame_DoNotOutputFrame = 1<<1;
-#[doc(alias = "kVTDecodeFrame_1xRealTimePlayback")]
+        #[doc(alias = "kVTDecodeFrame_1xRealTimePlayback")]
         const Frame_1xRealTimePlayback = 1<<2;
-#[doc(alias = "kVTDecodeFrame_EnableTemporalProcessing")]
+        #[doc(alias = "kVTDecodeFrame_EnableTemporalProcessing")]
         const Frame_EnableTemporalProcessing = 1<<3;
         const _ = !0;
     }

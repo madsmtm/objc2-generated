@@ -99,31 +99,31 @@ unsafe impl RefEncode for MIDICVStatus {
 pub struct MIDISystemStatus(pub c_uint);
 impl MIDISystemStatus {
     #[doc(alias = "kMIDIStatusStartOfExclusive")]
-    pub const StatusStartOfExclusive: Self = Self(0xF0);
+    pub const StartOfExclusive: Self = Self(0xF0);
     #[doc(alias = "kMIDIStatusEndOfExclusive")]
-    pub const StatusEndOfExclusive: Self = Self(0xF7);
+    pub const EndOfExclusive: Self = Self(0xF7);
     #[doc(alias = "kMIDIStatusMTC")]
-    pub const StatusMTC: Self = Self(0xF1);
+    pub const MTC: Self = Self(0xF1);
     #[doc(alias = "kMIDIStatusSongPosPointer")]
-    pub const StatusSongPosPointer: Self = Self(0xF2);
+    pub const SongPosPointer: Self = Self(0xF2);
     #[doc(alias = "kMIDIStatusSongSelect")]
-    pub const StatusSongSelect: Self = Self(0xF3);
+    pub const SongSelect: Self = Self(0xF3);
     #[doc(alias = "kMIDIStatusTuneRequest")]
-    pub const StatusTuneRequest: Self = Self(0xF6);
+    pub const TuneRequest: Self = Self(0xF6);
     #[doc(alias = "kMIDIStatusTimingClock")]
-    pub const StatusTimingClock: Self = Self(0xF8);
+    pub const TimingClock: Self = Self(0xF8);
     #[doc(alias = "kMIDIStatusStart")]
-    pub const StatusStart: Self = Self(0xFA);
+    pub const Start: Self = Self(0xFA);
     #[doc(alias = "kMIDIStatusContinue")]
-    pub const StatusContinue: Self = Self(0xFB);
+    pub const Continue: Self = Self(0xFB);
     #[doc(alias = "kMIDIStatusStop")]
-    pub const StatusStop: Self = Self(0xFC);
+    pub const Stop: Self = Self(0xFC);
     #[doc(alias = "kMIDIStatusActiveSending")]
-    pub const StatusActiveSending: Self = Self(0xFE);
+    pub const ActiveSending: Self = Self(0xFE);
     #[doc(alias = "kMIDIStatusActiveSensing")]
-    pub const StatusActiveSensing: Self = Self(MIDISystemStatus::StatusActiveSending.0);
+    pub const ActiveSensing: Self = Self(MIDISystemStatus::ActiveSending.0);
     #[doc(alias = "kMIDIStatusSystemReset")]
-    pub const StatusSystemReset: Self = Self(0xFF);
+    pub const SystemReset: Self = Self(0xFF);
 }
 
 #[cfg(feature = "objc2")]

@@ -1199,15 +1199,7 @@ pub use self::__CGPattern::CGPatternReleaseInfoCallback;
 #[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPatternTiling;
 #[cfg(feature = "CGRemoteOperation")]
-pub use self::__CGRemoteOperation::kCGEventFilterMaskPermitAllEvents;
-#[cfg(feature = "CGRemoteOperation")]
-pub use self::__CGRemoteOperation::kCGEventSupressionStateRemoteMouseDrag;
-#[cfg(feature = "CGRemoteOperation")]
-pub use self::__CGRemoteOperation::kCGEventSupressionStateSupressionInterval;
-#[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::kCGMouseDownEventMaskingDeadSwitchTimeout;
-#[cfg(feature = "CGRemoteOperation")]
-pub use self::__CGRemoteOperation::kCGNumberOfEventSupressionStates;
 #[cfg(all(feature = "CGError", feature = "CGRemoteOperation", feature = "libc"))]
 pub use self::__CGRemoteOperation::CGAssociateMouseAndMouseCursorPosition;
 #[cfg(feature = "CGRemoteOperation")]
