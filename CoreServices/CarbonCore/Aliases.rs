@@ -166,336 +166,317 @@ pub type AliasInfoType = c_short;
 pub type FSAliasFilterProcPtr =
     Option<unsafe extern "C-unwind" fn(*const FSRef, *mut Boolean, Ptr) -> Boolean>;
 
+/// # Safety
+///
+/// - `from_file` might not allow `None`.
+/// - `target` might not allow `None`.
+/// - `in_alias` must be a valid pointer.
+/// - `in_alias` might not allow `None`.
 #[cfg(feature = "Files")]
-impl FSRef {
-    /// # Safety
-    ///
-    /// - `from_file` might not allow `None`.
-    /// - `target` might not allow `None`.
-    /// - `in_alias` must be a valid pointer.
-    /// - `in_alias` might not allow `None`.
-    #[doc(alias = "FSNewAlias")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn new_alias(
-        from_file: Option<&FSRef>,
-        target: Option<&FSRef>,
-        in_alias: Option<&mut AliasHandle>,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSNewAlias(
-                from_file: Option<&FSRef>,
-                target: Option<&FSRef>,
-                in_alias: Option<&mut AliasHandle>,
-            ) -> OSErr;
-        }
-        unsafe { FSNewAlias(from_file, target, in_alias) }
+#[deprecated]
+#[inline]
+pub unsafe fn FSNewAlias(
+    from_file: Option<&FSRef>,
+    target: Option<&FSRef>,
+    in_alias: Option<&mut AliasHandle>,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSNewAlias(
+            from_file: Option<&FSRef>,
+            target: Option<&FSRef>,
+            in_alias: Option<&mut AliasHandle>,
+        ) -> OSErr;
     }
+    unsafe { FSNewAlias(from_file, target, in_alias) }
+}
 
-    /// # Safety
-    ///
-    /// - `target` might not allow `None`.
-    /// - `in_alias` must be a valid pointer.
-    /// - `in_alias` might not allow `None`.
-    #[doc(alias = "FSNewAliasMinimal")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn new_alias_minimal(
-        target: Option<&FSRef>,
-        in_alias: Option<&mut AliasHandle>,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSNewAliasMinimal(
-                target: Option<&FSRef>,
-                in_alias: Option<&mut AliasHandle>,
-            ) -> OSErr;
-        }
-        unsafe { FSNewAliasMinimal(target, in_alias) }
+/// # Safety
+///
+/// - `target` might not allow `None`.
+/// - `in_alias` must be a valid pointer.
+/// - `in_alias` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSNewAliasMinimal(
+    target: Option<&FSRef>,
+    in_alias: Option<&mut AliasHandle>,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSNewAliasMinimal(target: Option<&FSRef>, in_alias: Option<&mut AliasHandle>) -> OSErr;
     }
+    unsafe { FSNewAliasMinimal(target, in_alias) }
+}
 
-    /// # Safety
-    ///
-    /// - `file_ref` might not allow `None`.
-    /// - `alias_file_flag` might not allow `None`.
-    /// - `folder_flag` might not allow `None`.
-    #[doc(alias = "FSIsAliasFile")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn is_alias_file(
-        file_ref: Option<&FSRef>,
-        alias_file_flag: Option<&mut Boolean>,
-        folder_flag: Option<&mut Boolean>,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSIsAliasFile(
-                file_ref: Option<&FSRef>,
-                alias_file_flag: Option<&mut Boolean>,
-                folder_flag: Option<&mut Boolean>,
-            ) -> OSErr;
-        }
-        unsafe { FSIsAliasFile(file_ref, alias_file_flag, folder_flag) }
+/// # Safety
+///
+/// - `file_ref` might not allow `None`.
+/// - `alias_file_flag` might not allow `None`.
+/// - `folder_flag` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSIsAliasFile(
+    file_ref: Option<&FSRef>,
+    alias_file_flag: Option<&mut Boolean>,
+    folder_flag: Option<&mut Boolean>,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSIsAliasFile(
+            file_ref: Option<&FSRef>,
+            alias_file_flag: Option<&mut Boolean>,
+            folder_flag: Option<&mut Boolean>,
+        ) -> OSErr;
     }
+    unsafe { FSIsAliasFile(file_ref, alias_file_flag, folder_flag) }
+}
 
-    /// # Safety
-    ///
-    /// - `from_file` might not allow `None`.
-    /// - `in_alias` must be a valid pointer.
-    /// - `target` might not allow `None`.
-    /// - `was_changed` might not allow `None`.
-    #[doc(alias = "FSResolveAliasWithMountFlags")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn resolve_alias_with_mount_flags(
-        from_file: Option<&FSRef>,
-        in_alias: AliasHandle,
-        target: Option<&mut FSRef>,
-        was_changed: Option<&mut Boolean>,
-        mount_flags: c_ulong,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSResolveAliasWithMountFlags(
-                from_file: Option<&FSRef>,
-                in_alias: AliasHandle,
-                target: Option<&mut FSRef>,
-                was_changed: Option<&mut Boolean>,
-                mount_flags: c_ulong,
-            ) -> OSErr;
-        }
-        unsafe {
-            FSResolveAliasWithMountFlags(from_file, in_alias, target, was_changed, mount_flags)
-        }
+/// # Safety
+///
+/// - `from_file` might not allow `None`.
+/// - `in_alias` must be a valid pointer.
+/// - `target` might not allow `None`.
+/// - `was_changed` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSResolveAliasWithMountFlags(
+    from_file: Option<&FSRef>,
+    in_alias: AliasHandle,
+    target: Option<&mut FSRef>,
+    was_changed: Option<&mut Boolean>,
+    mount_flags: c_ulong,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSResolveAliasWithMountFlags(
+            from_file: Option<&FSRef>,
+            in_alias: AliasHandle,
+            target: Option<&mut FSRef>,
+            was_changed: Option<&mut Boolean>,
+            mount_flags: c_ulong,
+        ) -> OSErr;
     }
+    unsafe { FSResolveAliasWithMountFlags(from_file, in_alias, target, was_changed, mount_flags) }
+}
 
-    /// # Safety
-    ///
-    /// - `from_file` might not allow `None`.
-    /// - `alias` must be a valid pointer.
-    /// - `target` might not allow `None`.
-    /// - `was_changed` might not allow `None`.
-    #[doc(alias = "FSResolveAlias")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn resolve_alias(
-        from_file: Option<&FSRef>,
-        alias: AliasHandle,
-        target: Option<&mut FSRef>,
-        was_changed: Option<&mut Boolean>,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSResolveAlias(
-                from_file: Option<&FSRef>,
-                alias: AliasHandle,
-                target: Option<&mut FSRef>,
-                was_changed: Option<&mut Boolean>,
-            ) -> OSErr;
-        }
-        unsafe { FSResolveAlias(from_file, alias, target, was_changed) }
+/// # Safety
+///
+/// - `from_file` might not allow `None`.
+/// - `alias` must be a valid pointer.
+/// - `target` might not allow `None`.
+/// - `was_changed` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSResolveAlias(
+    from_file: Option<&FSRef>,
+    alias: AliasHandle,
+    target: Option<&mut FSRef>,
+    was_changed: Option<&mut Boolean>,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSResolveAlias(
+            from_file: Option<&FSRef>,
+            alias: AliasHandle,
+            target: Option<&mut FSRef>,
+            was_changed: Option<&mut Boolean>,
+        ) -> OSErr;
     }
+    unsafe { FSResolveAlias(from_file, alias, target, was_changed) }
+}
 
-    /// # Safety
-    ///
-    /// - `the_ref` might not allow `None`.
-    /// - `target_is_folder` might not allow `None`.
-    /// - `was_aliased` might not allow `None`.
-    #[doc(alias = "FSResolveAliasFileWithMountFlags")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn resolve_alias_file_with_mount_flags(
-        the_ref: Option<&mut FSRef>,
-        resolve_alias_chains: bool,
-        target_is_folder: Option<&mut Boolean>,
-        was_aliased: Option<&mut Boolean>,
-        mount_flags: c_ulong,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSResolveAliasFileWithMountFlags(
-                the_ref: Option<&mut FSRef>,
-                resolve_alias_chains: Boolean,
-                target_is_folder: Option<&mut Boolean>,
-                was_aliased: Option<&mut Boolean>,
-                mount_flags: c_ulong,
-            ) -> OSErr;
-        }
-        let resolve_alias_chains = resolve_alias_chains as _;
-        unsafe {
-            FSResolveAliasFileWithMountFlags(
-                the_ref,
-                resolve_alias_chains,
-                target_is_folder,
-                was_aliased,
-                mount_flags,
-            )
-        }
+/// # Safety
+///
+/// - `the_ref` might not allow `None`.
+/// - `target_is_folder` might not allow `None`.
+/// - `was_aliased` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSResolveAliasFileWithMountFlags(
+    the_ref: Option<&mut FSRef>,
+    resolve_alias_chains: bool,
+    target_is_folder: Option<&mut Boolean>,
+    was_aliased: Option<&mut Boolean>,
+    mount_flags: c_ulong,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSResolveAliasFileWithMountFlags(
+            the_ref: Option<&mut FSRef>,
+            resolve_alias_chains: Boolean,
+            target_is_folder: Option<&mut Boolean>,
+            was_aliased: Option<&mut Boolean>,
+            mount_flags: c_ulong,
+        ) -> OSErr;
     }
-
-    /// # Safety
-    ///
-    /// - `the_ref` might not allow `None`.
-    /// - `target_is_folder` might not allow `None`.
-    /// - `was_aliased` might not allow `None`.
-    #[doc(alias = "FSResolveAliasFile")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn resolve_alias_file(
-        the_ref: Option<&mut FSRef>,
-        resolve_alias_chains: bool,
-        target_is_folder: Option<&mut Boolean>,
-        was_aliased: Option<&mut Boolean>,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSResolveAliasFile(
-                the_ref: Option<&mut FSRef>,
-                resolve_alias_chains: Boolean,
-                target_is_folder: Option<&mut Boolean>,
-                was_aliased: Option<&mut Boolean>,
-            ) -> OSErr;
-        }
-        let resolve_alias_chains = resolve_alias_chains as _;
-        unsafe { FSResolveAliasFile(the_ref, resolve_alias_chains, target_is_folder, was_aliased) }
+    let resolve_alias_chains = resolve_alias_chains as _;
+    unsafe {
+        FSResolveAliasFileWithMountFlags(
+            the_ref,
+            resolve_alias_chains,
+            target_is_folder,
+            was_aliased,
+            mount_flags,
+        )
     }
+}
 
-    /// # Safety
-    ///
-    /// - `from_file` might not allow `None`.
-    /// - `alias` must be a valid pointer.
-    /// - `target` might not allow `None`.
-    /// - `was_changed` might not allow `None`.
-    #[doc(alias = "FSFollowFinderAlias")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn follow_finder_alias(
-        from_file: Option<&mut FSRef>,
-        alias: AliasHandle,
-        logon: bool,
-        target: Option<&mut FSRef>,
-        was_changed: Option<&mut Boolean>,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSFollowFinderAlias(
-                from_file: Option<&mut FSRef>,
-                alias: AliasHandle,
-                logon: Boolean,
-                target: Option<&mut FSRef>,
-                was_changed: Option<&mut Boolean>,
-            ) -> OSErr;
-        }
-        let logon = logon as _;
-        unsafe { FSFollowFinderAlias(from_file, alias, logon, target, was_changed) }
+/// # Safety
+///
+/// - `the_ref` might not allow `None`.
+/// - `target_is_folder` might not allow `None`.
+/// - `was_aliased` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSResolveAliasFile(
+    the_ref: Option<&mut FSRef>,
+    resolve_alias_chains: bool,
+    target_is_folder: Option<&mut Boolean>,
+    was_aliased: Option<&mut Boolean>,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSResolveAliasFile(
+            the_ref: Option<&mut FSRef>,
+            resolve_alias_chains: Boolean,
+            target_is_folder: Option<&mut Boolean>,
+            was_aliased: Option<&mut Boolean>,
+        ) -> OSErr;
     }
+    let resolve_alias_chains = resolve_alias_chains as _;
+    unsafe { FSResolveAliasFile(the_ref, resolve_alias_chains, target_is_folder, was_aliased) }
+}
 
-    /// # Safety
-    ///
-    /// - `from_file` might not allow `None`.
-    /// - `target` might not allow `None`.
-    /// - `alias` must be a valid pointer.
-    /// - `was_changed` might not allow `None`.
-    #[doc(alias = "FSUpdateAlias")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn update_alias(
-        from_file: Option<&FSRef>,
-        target: Option<&FSRef>,
-        alias: AliasHandle,
-        was_changed: Option<&mut Boolean>,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSUpdateAlias(
-                from_file: Option<&FSRef>,
-                target: Option<&FSRef>,
-                alias: AliasHandle,
-                was_changed: Option<&mut Boolean>,
-            ) -> OSErr;
-        }
-        unsafe { FSUpdateAlias(from_file, target, alias, was_changed) }
+/// # Safety
+///
+/// - `from_file` might not allow `None`.
+/// - `alias` must be a valid pointer.
+/// - `target` might not allow `None`.
+/// - `was_changed` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSFollowFinderAlias(
+    from_file: Option<&mut FSRef>,
+    alias: AliasHandle,
+    logon: bool,
+    target: Option<&mut FSRef>,
+    was_changed: Option<&mut Boolean>,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSFollowFinderAlias(
+            from_file: Option<&mut FSRef>,
+            alias: AliasHandle,
+            logon: Boolean,
+            target: Option<&mut FSRef>,
+            was_changed: Option<&mut Boolean>,
+        ) -> OSErr;
     }
+    let logon = logon as _;
+    unsafe { FSFollowFinderAlias(from_file, alias, logon, target, was_changed) }
+}
 
-    /// # Safety
-    ///
-    /// - `from_file` might not allow `None`.
-    /// - `target_parent_ref` might not allow `None`.
-    /// - `target_name` must be a valid pointer.
-    /// - `in_alias` must be a valid pointer.
-    /// - `in_alias` might not allow `None`.
-    /// - `is_directory` might not allow `None`.
-    #[doc(alias = "FSNewAliasUnicode")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn new_alias_unicode(
-        from_file: Option<&FSRef>,
-        target_parent_ref: Option<&FSRef>,
-        target_name_length: UniCharCount,
-        target_name: *const UniChar,
-        in_alias: Option<&mut AliasHandle>,
-        is_directory: Option<&mut Boolean>,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSNewAliasUnicode(
-                from_file: Option<&FSRef>,
-                target_parent_ref: Option<&FSRef>,
-                target_name_length: UniCharCount,
-                target_name: *const UniChar,
-                in_alias: Option<&mut AliasHandle>,
-                is_directory: Option<&mut Boolean>,
-            ) -> OSErr;
-        }
-        unsafe {
-            FSNewAliasUnicode(
-                from_file,
-                target_parent_ref,
-                target_name_length,
-                target_name,
-                in_alias,
-                is_directory,
-            )
-        }
+/// # Safety
+///
+/// - `from_file` might not allow `None`.
+/// - `target` might not allow `None`.
+/// - `alias` must be a valid pointer.
+/// - `was_changed` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSUpdateAlias(
+    from_file: Option<&FSRef>,
+    target: Option<&FSRef>,
+    alias: AliasHandle,
+    was_changed: Option<&mut Boolean>,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSUpdateAlias(
+            from_file: Option<&FSRef>,
+            target: Option<&FSRef>,
+            alias: AliasHandle,
+            was_changed: Option<&mut Boolean>,
+        ) -> OSErr;
     }
+    unsafe { FSUpdateAlias(from_file, target, alias, was_changed) }
+}
 
-    /// # Safety
-    ///
-    /// - `target_parent_ref` might not allow `None`.
-    /// - `target_name` must be a valid pointer.
-    /// - `in_alias` must be a valid pointer.
-    /// - `in_alias` might not allow `None`.
-    /// - `is_directory` might not allow `None`.
-    #[doc(alias = "FSNewAliasMinimalUnicode")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn new_alias_minimal_unicode(
-        target_parent_ref: Option<&FSRef>,
-        target_name_length: UniCharCount,
-        target_name: *const UniChar,
-        in_alias: Option<&mut AliasHandle>,
-        is_directory: Option<&mut Boolean>,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSNewAliasMinimalUnicode(
-                target_parent_ref: Option<&FSRef>,
-                target_name_length: UniCharCount,
-                target_name: *const UniChar,
-                in_alias: Option<&mut AliasHandle>,
-                is_directory: Option<&mut Boolean>,
-            ) -> OSErr;
-        }
-        unsafe {
-            FSNewAliasMinimalUnicode(
-                target_parent_ref,
-                target_name_length,
-                target_name,
-                in_alias,
-                is_directory,
-            )
-        }
+/// # Safety
+///
+/// - `from_file` might not allow `None`.
+/// - `target_parent_ref` might not allow `None`.
+/// - `target_name` must be a valid pointer.
+/// - `in_alias` must be a valid pointer.
+/// - `in_alias` might not allow `None`.
+/// - `is_directory` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSNewAliasUnicode(
+    from_file: Option<&FSRef>,
+    target_parent_ref: Option<&FSRef>,
+    target_name_length: UniCharCount,
+    target_name: *const UniChar,
+    in_alias: Option<&mut AliasHandle>,
+    is_directory: Option<&mut Boolean>,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSNewAliasUnicode(
+            from_file: Option<&FSRef>,
+            target_parent_ref: Option<&FSRef>,
+            target_name_length: UniCharCount,
+            target_name: *const UniChar,
+            in_alias: Option<&mut AliasHandle>,
+            is_directory: Option<&mut Boolean>,
+        ) -> OSErr;
+    }
+    unsafe {
+        FSNewAliasUnicode(
+            from_file,
+            target_parent_ref,
+            target_name_length,
+            target_name,
+            in_alias,
+            is_directory,
+        )
+    }
+}
+
+/// # Safety
+///
+/// - `target_parent_ref` might not allow `None`.
+/// - `target_name` must be a valid pointer.
+/// - `in_alias` must be a valid pointer.
+/// - `in_alias` might not allow `None`.
+/// - `is_directory` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSNewAliasMinimalUnicode(
+    target_parent_ref: Option<&FSRef>,
+    target_name_length: UniCharCount,
+    target_name: *const UniChar,
+    in_alias: Option<&mut AliasHandle>,
+    is_directory: Option<&mut Boolean>,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSNewAliasMinimalUnicode(
+            target_parent_ref: Option<&FSRef>,
+            target_name_length: UniCharCount,
+            target_name: *const UniChar,
+            in_alias: Option<&mut AliasHandle>,
+            is_directory: Option<&mut Boolean>,
+        ) -> OSErr;
+    }
+    unsafe {
+        FSNewAliasMinimalUnicode(
+            target_parent_ref,
+            target_name_length,
+            target_name,
+            in_alias,
+            is_directory,
+        )
     }
 }
 
@@ -533,55 +514,51 @@ pub unsafe fn FSNewAliasFromPath(
     unsafe { FSNewAliasFromPath(from_file_path, target_path, flags, in_alias, is_directory) }
 }
 
+/// # Safety
+///
+/// - `from_file` might not allow `None`.
+/// - `in_alias` must be a valid pointer.
+/// - `alias_count` might not allow `None`.
+/// - `alias_list` must be a valid pointer.
+/// - `needs_update` might not allow `None`.
+/// - `alias_filter` must be implemented correctly.
+/// - `your_data_ptr` must be a valid pointer.
 #[cfg(feature = "Files")]
-impl FSRef {
-    /// # Safety
-    ///
-    /// - `from_file` might not allow `None`.
-    /// - `in_alias` must be a valid pointer.
-    /// - `alias_count` might not allow `None`.
-    /// - `alias_list` must be a valid pointer.
-    /// - `needs_update` might not allow `None`.
-    /// - `alias_filter` must be implemented correctly.
-    /// - `your_data_ptr` must be a valid pointer.
-    #[doc(alias = "FSMatchAliasBulk")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn match_alias_bulk(
-        from_file: Option<&FSRef>,
-        rules_mask: c_ulong,
-        in_alias: AliasHandle,
-        alias_count: Option<&mut c_short>,
-        alias_list: *mut FSRef,
-        needs_update: Option<&mut Boolean>,
-        alias_filter: FSAliasFilterProcPtr,
-        your_data_ptr: *mut c_void,
-    ) -> OSStatus {
-        extern "C-unwind" {
-            fn FSMatchAliasBulk(
-                from_file: Option<&FSRef>,
-                rules_mask: c_ulong,
-                in_alias: AliasHandle,
-                alias_count: Option<&mut c_short>,
-                alias_list: *mut FSRef,
-                needs_update: Option<&mut Boolean>,
-                alias_filter: FSAliasFilterProcPtr,
-                your_data_ptr: *mut c_void,
-            ) -> OSStatus;
-        }
-        unsafe {
-            FSMatchAliasBulk(
-                from_file,
-                rules_mask,
-                in_alias,
-                alias_count,
-                alias_list,
-                needs_update,
-                alias_filter,
-                your_data_ptr,
-            )
-        }
+#[deprecated]
+#[inline]
+pub unsafe fn FSMatchAliasBulk(
+    from_file: Option<&FSRef>,
+    rules_mask: c_ulong,
+    in_alias: AliasHandle,
+    alias_count: Option<&mut c_short>,
+    alias_list: *mut FSRef,
+    needs_update: Option<&mut Boolean>,
+    alias_filter: FSAliasFilterProcPtr,
+    your_data_ptr: *mut c_void,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn FSMatchAliasBulk(
+            from_file: Option<&FSRef>,
+            rules_mask: c_ulong,
+            in_alias: AliasHandle,
+            alias_count: Option<&mut c_short>,
+            alias_list: *mut FSRef,
+            needs_update: Option<&mut Boolean>,
+            alias_filter: FSAliasFilterProcPtr,
+            your_data_ptr: *mut c_void,
+        ) -> OSStatus;
+    }
+    unsafe {
+        FSMatchAliasBulk(
+            from_file,
+            rules_mask,
+            in_alias,
+            alias_count,
+            alias_list,
+            needs_update,
+            alias_filter,
+            your_data_ptr,
+        )
     }
 }
 

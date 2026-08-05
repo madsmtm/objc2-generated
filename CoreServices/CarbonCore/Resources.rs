@@ -690,217 +690,207 @@ pub unsafe fn GetNextResourceFile(
     unsafe { GetNextResourceFile(cur_ref_num, next_ref_num) }
 }
 
+/// # Safety
+///
+/// `ref` might not allow `None`.
 #[cfg(feature = "Files")]
-impl FSRef {
-    /// # Safety
-    ///
-    /// `ref` might not allow `None`.
-    #[doc(alias = "FSOpenResFile")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn open_res_file(r#ref: Option<&FSRef>, permission: i8) -> ResFileRefNum {
-        extern "C-unwind" {
-            fn FSOpenResFile(r#ref: Option<&FSRef>, permission: i8) -> ResFileRefNum;
-        }
-        unsafe { FSOpenResFile(r#ref, permission) }
+#[deprecated]
+#[inline]
+pub unsafe fn FSOpenResFile(r#ref: Option<&FSRef>, permission: i8) -> ResFileRefNum {
+    extern "C-unwind" {
+        fn FSOpenResFile(r#ref: Option<&FSRef>, permission: i8) -> ResFileRefNum;
     }
+    unsafe { FSOpenResFile(r#ref, permission) }
+}
 
-    /// # Safety
-    ///
-    /// - `parent_ref` might not allow `None`.
-    /// - `name` must be a valid pointer.
-    /// - `catalog_info` struct field `permissions` struct field `fileSec` must be a valid pointer.
-    /// - `catalog_info` might not allow `None`.
-    /// - `new_ref` might not allow `None`.
-    /// - `new_spec` must be a valid pointer.
-    #[doc(alias = "FSCreateResFile")]
-    #[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn create_res_file(
-        parent_ref: Option<&FSRef>,
-        name_length: UniCharCount,
-        name: *const UniChar,
-        which_info: FSCatalogInfoBitmap,
-        catalog_info: Option<&FSCatalogInfo>,
-        new_ref: Option<&mut FSRef>,
-        new_spec: FSSpecPtr,
-    ) {
-        extern "C-unwind" {
-            fn FSCreateResFile(
-                parent_ref: Option<&FSRef>,
-                name_length: UniCharCount,
-                name: *const UniChar,
-                which_info: FSCatalogInfoBitmap,
-                catalog_info: Option<&FSCatalogInfo>,
-                new_ref: Option<&mut FSRef>,
-                new_spec: FSSpecPtr,
-            );
-        }
-        unsafe {
-            FSCreateResFile(
-                parent_ref,
-                name_length,
-                name,
-                which_info,
-                catalog_info,
-                new_ref,
-                new_spec,
-            )
-        }
+/// # Safety
+///
+/// - `parent_ref` might not allow `None`.
+/// - `name` must be a valid pointer.
+/// - `catalog_info` struct field `permissions` struct field `fileSec` must be a valid pointer.
+/// - `catalog_info` might not allow `None`.
+/// - `new_ref` might not allow `None`.
+/// - `new_spec` must be a valid pointer.
+#[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
+#[deprecated]
+#[inline]
+pub unsafe fn FSCreateResFile(
+    parent_ref: Option<&FSRef>,
+    name_length: UniCharCount,
+    name: *const UniChar,
+    which_info: FSCatalogInfoBitmap,
+    catalog_info: Option<&FSCatalogInfo>,
+    new_ref: Option<&mut FSRef>,
+    new_spec: FSSpecPtr,
+) {
+    extern "C-unwind" {
+        fn FSCreateResFile(
+            parent_ref: Option<&FSRef>,
+            name_length: UniCharCount,
+            name: *const UniChar,
+            which_info: FSCatalogInfoBitmap,
+            catalog_info: Option<&FSCatalogInfo>,
+            new_ref: Option<&mut FSRef>,
+            new_spec: FSSpecPtr,
+        );
     }
+    unsafe {
+        FSCreateResFile(
+            parent_ref,
+            name_length,
+            name,
+            which_info,
+            catalog_info,
+            new_ref,
+            new_spec,
+        )
+    }
+}
 
-    /// # Safety
-    ///
-    /// - `resource_file_ref` might not allow `None`.
-    /// - `in_chain` might not allow `None`.
-    /// - `ref_num` might not allow `None`.
-    #[doc(alias = "FSResourceFileAlreadyOpen")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn resource_file_already_open(
-        resource_file_ref: Option<&FSRef>,
-        in_chain: Option<&mut Boolean>,
-        ref_num: Option<&mut ResFileRefNum>,
-    ) -> bool {
-        extern "C-unwind" {
-            fn FSResourceFileAlreadyOpen(
-                resource_file_ref: Option<&FSRef>,
-                in_chain: Option<&mut Boolean>,
-                ref_num: Option<&mut ResFileRefNum>,
-            ) -> Boolean;
-        }
-        let ret = unsafe { FSResourceFileAlreadyOpen(resource_file_ref, in_chain, ref_num) };
-        ret != 0
+/// # Safety
+///
+/// - `resource_file_ref` might not allow `None`.
+/// - `in_chain` might not allow `None`.
+/// - `ref_num` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSResourceFileAlreadyOpen(
+    resource_file_ref: Option<&FSRef>,
+    in_chain: Option<&mut Boolean>,
+    ref_num: Option<&mut ResFileRefNum>,
+) -> bool {
+    extern "C-unwind" {
+        fn FSResourceFileAlreadyOpen(
+            resource_file_ref: Option<&FSRef>,
+            in_chain: Option<&mut Boolean>,
+            ref_num: Option<&mut ResFileRefNum>,
+        ) -> Boolean;
     }
+    let ret = unsafe { FSResourceFileAlreadyOpen(resource_file_ref, in_chain, ref_num) };
+    ret != 0
+}
 
-    /// # Safety
-    ///
-    /// - `ref` might not allow `None`.
-    /// - `ref_num` might not allow `None`.
-    #[doc(alias = "FSOpenOrphanResFile")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn open_orphan_res_file(
-        r#ref: Option<&FSRef>,
-        permission: SignedByte,
-        ref_num: Option<&mut ResFileRefNum>,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSOpenOrphanResFile(
-                r#ref: Option<&FSRef>,
-                permission: SignedByte,
-                ref_num: Option<&mut ResFileRefNum>,
-            ) -> OSErr;
-        }
-        unsafe { FSOpenOrphanResFile(r#ref, permission, ref_num) }
+/// # Safety
+///
+/// - `ref` might not allow `None`.
+/// - `ref_num` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSOpenOrphanResFile(
+    r#ref: Option<&FSRef>,
+    permission: SignedByte,
+    ref_num: Option<&mut ResFileRefNum>,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSOpenOrphanResFile(
+            r#ref: Option<&FSRef>,
+            permission: SignedByte,
+            ref_num: Option<&mut ResFileRefNum>,
+        ) -> OSErr;
     }
+    unsafe { FSOpenOrphanResFile(r#ref, permission, ref_num) }
+}
 
-    /// # Safety
-    ///
-    /// - `parent_ref` might not allow `None`.
-    /// - `name` must be a valid pointer.
-    /// - `catalog_info` struct field `permissions` struct field `fileSec` must be a valid pointer.
-    /// - `catalog_info` might not allow `None`.
-    /// - `fork_name` must be a valid pointer.
-    /// - `new_ref` might not allow `None`.
-    /// - `new_spec` must be a valid pointer.
-    #[doc(alias = "FSCreateResourceFile")]
-    #[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn create_resource_file(
-        parent_ref: Option<&FSRef>,
-        name_length: UniCharCount,
-        name: *const UniChar,
-        which_info: FSCatalogInfoBitmap,
-        catalog_info: Option<&FSCatalogInfo>,
-        fork_name_length: UniCharCount,
-        fork_name: *const UniChar,
-        new_ref: Option<&mut FSRef>,
-        new_spec: FSSpecPtr,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSCreateResourceFile(
-                parent_ref: Option<&FSRef>,
-                name_length: UniCharCount,
-                name: *const UniChar,
-                which_info: FSCatalogInfoBitmap,
-                catalog_info: Option<&FSCatalogInfo>,
-                fork_name_length: UniCharCount,
-                fork_name: *const UniChar,
-                new_ref: Option<&mut FSRef>,
-                new_spec: FSSpecPtr,
-            ) -> OSErr;
-        }
-        unsafe {
-            FSCreateResourceFile(
-                parent_ref,
-                name_length,
-                name,
-                which_info,
-                catalog_info,
-                fork_name_length,
-                fork_name,
-                new_ref,
-                new_spec,
-            )
-        }
+/// # Safety
+///
+/// - `parent_ref` might not allow `None`.
+/// - `name` must be a valid pointer.
+/// - `catalog_info` struct field `permissions` struct field `fileSec` must be a valid pointer.
+/// - `catalog_info` might not allow `None`.
+/// - `fork_name` must be a valid pointer.
+/// - `new_ref` might not allow `None`.
+/// - `new_spec` must be a valid pointer.
+#[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
+#[deprecated]
+#[inline]
+pub unsafe fn FSCreateResourceFile(
+    parent_ref: Option<&FSRef>,
+    name_length: UniCharCount,
+    name: *const UniChar,
+    which_info: FSCatalogInfoBitmap,
+    catalog_info: Option<&FSCatalogInfo>,
+    fork_name_length: UniCharCount,
+    fork_name: *const UniChar,
+    new_ref: Option<&mut FSRef>,
+    new_spec: FSSpecPtr,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSCreateResourceFile(
+            parent_ref: Option<&FSRef>,
+            name_length: UniCharCount,
+            name: *const UniChar,
+            which_info: FSCatalogInfoBitmap,
+            catalog_info: Option<&FSCatalogInfo>,
+            fork_name_length: UniCharCount,
+            fork_name: *const UniChar,
+            new_ref: Option<&mut FSRef>,
+            new_spec: FSSpecPtr,
+        ) -> OSErr;
     }
+    unsafe {
+        FSCreateResourceFile(
+            parent_ref,
+            name_length,
+            name,
+            which_info,
+            catalog_info,
+            fork_name_length,
+            fork_name,
+            new_ref,
+            new_spec,
+        )
+    }
+}
 
-    /// # Safety
-    ///
-    /// - `ref` might not allow `None`.
-    /// - `fork_name` must be a valid pointer.
-    #[doc(alias = "FSCreateResourceFork")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn create_resource_fork(
-        r#ref: Option<&FSRef>,
-        fork_name_length: UniCharCount,
-        fork_name: *const UniChar,
-        flags: u32,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSCreateResourceFork(
-                r#ref: Option<&FSRef>,
-                fork_name_length: UniCharCount,
-                fork_name: *const UniChar,
-                flags: u32,
-            ) -> OSErr;
-        }
-        unsafe { FSCreateResourceFork(r#ref, fork_name_length, fork_name, flags) }
+/// # Safety
+///
+/// - `ref` might not allow `None`.
+/// - `fork_name` must be a valid pointer.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSCreateResourceFork(
+    r#ref: Option<&FSRef>,
+    fork_name_length: UniCharCount,
+    fork_name: *const UniChar,
+    flags: u32,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSCreateResourceFork(
+            r#ref: Option<&FSRef>,
+            fork_name_length: UniCharCount,
+            fork_name: *const UniChar,
+            flags: u32,
+        ) -> OSErr;
     }
+    unsafe { FSCreateResourceFork(r#ref, fork_name_length, fork_name, flags) }
+}
 
-    /// # Safety
-    ///
-    /// - `ref` might not allow `None`.
-    /// - `fork_name` must be a valid pointer.
-    /// - `ref_num` might not allow `None`.
-    #[doc(alias = "FSOpenResourceFile")]
-    #[cfg(feature = "Files")]
-    #[deprecated]
-    #[inline]
-    pub unsafe fn open_resource_file(
-        r#ref: Option<&FSRef>,
-        fork_name_length: UniCharCount,
-        fork_name: *const UniChar,
-        permissions: i8,
-        ref_num: Option<&mut ResFileRefNum>,
-    ) -> OSErr {
-        extern "C-unwind" {
-            fn FSOpenResourceFile(
-                r#ref: Option<&FSRef>,
-                fork_name_length: UniCharCount,
-                fork_name: *const UniChar,
-                permissions: i8,
-                ref_num: Option<&mut ResFileRefNum>,
-            ) -> OSErr;
-        }
-        unsafe { FSOpenResourceFile(r#ref, fork_name_length, fork_name, permissions, ref_num) }
+/// # Safety
+///
+/// - `ref` might not allow `None`.
+/// - `fork_name` must be a valid pointer.
+/// - `ref_num` might not allow `None`.
+#[cfg(feature = "Files")]
+#[deprecated]
+#[inline]
+pub unsafe fn FSOpenResourceFile(
+    r#ref: Option<&FSRef>,
+    fork_name_length: UniCharCount,
+    fork_name: *const UniChar,
+    permissions: i8,
+    ref_num: Option<&mut ResFileRefNum>,
+) -> OSErr {
+    extern "C-unwind" {
+        fn FSOpenResourceFile(
+            r#ref: Option<&FSRef>,
+            fork_name_length: UniCharCount,
+            fork_name: *const UniChar,
+            permissions: i8,
+            ref_num: Option<&mut ResFileRefNum>,
+        ) -> OSErr;
     }
+    unsafe { FSOpenResourceFile(r#ref, fork_name_length, fork_name, permissions, ref_num) }
 }

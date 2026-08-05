@@ -206,8 +206,32 @@ pub use self::__Aliases::FSAliasInfoBitmap;
 pub use self::__Aliases::FSAliasInfoPtr;
 #[cfg(all(feature = "Aliases", feature = "Files", feature = "UTCUtils"))]
 pub use self::__Aliases::FSCopyAliasInfo;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSFollowFinderAlias;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSIsAliasFile;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSMatchAliasBulk;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSNewAlias;
 #[cfg(feature = "Aliases")]
 pub use self::__Aliases::FSNewAliasFromPath;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSNewAliasMinimal;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSNewAliasMinimalUnicode;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSNewAliasUnicode;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSResolveAlias;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSResolveAliasFile;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSResolveAliasFileWithMountFlags;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSResolveAliasWithMountFlags;
+#[cfg(all(feature = "Aliases", feature = "Files"))]
+pub use self::__Aliases::FSUpdateAlias;
 #[cfg(feature = "Aliases")]
 pub use self::__Aliases::GetAliasSize;
 #[cfg(feature = "Aliases")]
@@ -2075,7 +2099,11 @@ pub use self::__Files::FNSubscriptionUPP;
 #[cfg(feature = "Files")]
 pub use self::__Files::FNUnsubscribe;
 #[cfg(feature = "Files")]
+pub use self::__Files::FSAllocateFork;
+#[cfg(feature = "Files")]
 pub use self::__Files::FSAllocationFlags;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSCancelVolumeOperation;
 #[cfg(all(
     feature = "Files",
     feature = "OSUtils",
@@ -2096,8 +2124,51 @@ pub use self::__Files::FSCatalogInfo;
 pub use self::__Files::FSCatalogInfoBitmap;
 #[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
 pub use self::__Files::FSCatalogInfoPtr;
+#[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
+pub use self::__Files::FSCatalogSearch;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSCloseFork;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSCloseIterator;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSCompareFSRefs;
+#[cfg(all(feature = "Files", feature = "objc2-disk-arbitration"))]
+#[cfg(target_os = "macos")]
+pub use self::__Files::FSCopyDADiskForVolume;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSCopyDiskIDForVolume;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSCopyObjectAsync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSCopyObjectSync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSCopyURLForVolume;
+#[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
+pub use self::__Files::FSCreateDirectoryUnicode;
+#[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
+pub use self::__Files::FSCreateFileAndOpenForkUnicode;
+#[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
+pub use self::__Files::FSCreateFileUnicode;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSCreateFork;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSCreateStringFromHFSUniStr;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSCreateVolumeOperation;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSDeleteFork;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSDeleteObject;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSDisposeVolumeOperation;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSEjectStatus;
+#[cfg(all(feature = "Files", feature = "libc"))]
+pub use self::__Files::FSEjectVolumeAsync;
+#[cfg(all(feature = "Files", feature = "libc"))]
+pub use self::__Files::FSEjectVolumeSync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSExchangeObjects;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSFileOperation;
 #[cfg(feature = "Files")]
@@ -2108,6 +2179,10 @@ pub use self::__Files::FSFileOperationStage;
 pub use self::__Files::FSFileOperationStatusProcPtr;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSFileSecurity;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSFlushFork;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSFlushVolume;
 #[cfg(all(feature = "Files", feature = "OSUtils"))]
 pub use self::__Files::FSForkCBInfoParam;
 #[cfg(all(feature = "Files", feature = "OSUtils"))]
@@ -2122,22 +2197,113 @@ pub use self::__Files::FSForkInfo;
 pub use self::__Files::FSForkInfoFlags;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSForkInfoPtr;
+#[cfg(all(feature = "Files", feature = "libc"))]
+pub use self::__Files::FSGetAsyncEjectStatus;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetAsyncMountStatus;
+#[cfg(all(feature = "Files", feature = "libc"))]
+pub use self::__Files::FSGetAsyncUnmountStatus;
+#[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
+pub use self::__Files::FSGetCatalogInfo;
+#[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
+pub use self::__Files::FSGetCatalogInfoBulk;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetDataForkName;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetForkCBInfo;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetForkPosition;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetForkSize;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetHFSUniStrFromString;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetResourceForkName;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetTemporaryDirectoryForReplaceObject;
+#[cfg(all(feature = "Files", feature = "objc2-disk-arbitration"))]
+#[cfg(target_os = "macos")]
+pub use self::__Files::FSGetVolumeForDADisk;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetVolumeForDiskID;
+#[cfg(all(feature = "Files", feature = "UTCUtils"))]
+pub use self::__Files::FSGetVolumeInfo;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetVolumeMountInfo;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetVolumeMountInfoSize;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSGetVolumeParms;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSIORefNum;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSIsFSRefValid;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSIterateForks;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSIterator;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSIteratorFlags;
 #[cfg(feature = "Files")]
+pub use self::__Files::FSLockRange;
+#[cfg(all(feature = "Files", feature = "TextCommon"))]
+pub use self::__Files::FSMakeFSRefUnicode;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSMountLocalVolumeAsync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSMountLocalVolumeSync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSMountServerVolumeAsync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSMountServerVolumeSync;
+#[cfg(feature = "Files")]
 pub use self::__Files::FSMountStatus;
 #[cfg(feature = "Files")]
+pub use self::__Files::FSMoveObject;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSMoveObjectAsync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSMoveObjectSync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSMoveObjectToTrashAsync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSMoveObjectToTrashSync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSOpenFork;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSOpenIterator;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSPathCopyObjectAsync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSPathCopyObjectSync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSPathFileOperationCopyStatus;
+#[cfg(feature = "Files")]
 pub use self::__Files::FSPathFileOperationStatusProcPtr;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSPathGetTemporaryDirectoryForReplaceObject;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSPathMakeRef;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSPathMakeRefWithOptions;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSPathMoveObjectAsync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSPathMoveObjectSync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSPathMoveObjectToTrashAsync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSPathMoveObjectToTrashSync;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSPathReplaceObject;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSPermissionInfo;
 #[cfg(all(feature = "Files", feature = "OSUtils"))]
 pub use self::__Files::FSRangeLockParam;
 #[cfg(all(feature = "Files", feature = "OSUtils"))]
 pub use self::__Files::FSRangeLockParamPtr;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSReadFork;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSRef;
 #[cfg(all(
@@ -2154,6 +2320,8 @@ pub use self::__Files::FSRefForkIOParam;
     feature = "UTCUtils"
 ))]
 pub use self::__Files::FSRefForkIOParamPtr;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSRefMakePath;
 #[cfg(all(
     feature = "Files",
     feature = "OSUtils",
@@ -2170,10 +2338,24 @@ pub use self::__Files::FSRefParam;
 pub use self::__Files::FSRefParamPtr;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSRefPtr;
+#[cfg(all(feature = "Files", feature = "TextCommon"))]
+pub use self::__Files::FSRenameUnicode;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSReplaceObject;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSResolveNodeID;
 #[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
 pub use self::__Files::FSSearchParams;
 #[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
 pub use self::__Files::FSSearchParamsPtr;
+#[cfg(all(feature = "Files", feature = "TextCommon", feature = "UTCUtils"))]
+pub use self::__Files::FSSetCatalogInfo;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSSetForkPosition;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSSetForkSize;
+#[cfg(all(feature = "Files", feature = "UTCUtils"))]
+pub use self::__Files::FSSetVolumeInfo;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSSpec;
 #[cfg(feature = "Files")]
@@ -2183,7 +2365,15 @@ pub use self::__Files::FSSpecHandle;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSSpecPtr;
 #[cfg(feature = "Files")]
+pub use self::__Files::FSUnlinkObject;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSUnlockRange;
+#[cfg(feature = "Files")]
 pub use self::__Files::FSUnmountStatus;
+#[cfg(all(feature = "Files", feature = "libc"))]
+pub use self::__Files::FSUnmountVolumeAsync;
+#[cfg(all(feature = "Files", feature = "libc"))]
+pub use self::__Files::FSUnmountVolumeSync;
 #[cfg(all(feature = "Files", feature = "libc"))]
 pub use self::__Files::FSVolumeEjectProcPtr;
 #[cfg(all(feature = "Files", feature = "libc"))]
@@ -2199,6 +2389,8 @@ pub use self::__Files::FSVolumeInfoParamPtr;
 #[cfg(all(feature = "Files", feature = "UTCUtils"))]
 pub use self::__Files::FSVolumeInfoPtr;
 #[cfg(feature = "Files")]
+pub use self::__Files::FSVolumeMount;
+#[cfg(feature = "Files")]
 pub use self::__Files::FSVolumeMountProcPtr;
 #[cfg(feature = "Files")]
 pub use self::__Files::FSVolumeMountUPP;
@@ -2210,6 +2402,8 @@ pub use self::__Files::FSVolumeRefNum;
 pub use self::__Files::FSVolumeUnmountProcPtr;
 #[cfg(all(feature = "Files", feature = "libc"))]
 pub use self::__Files::FSVolumeUnmountUPP;
+#[cfg(feature = "Files")]
+pub use self::__Files::FSWriteFork;
 #[cfg(feature = "Files")]
 pub use self::__Files::GetVolParmsInfoBuffer;
 #[cfg(feature = "Files")]
@@ -11240,6 +11434,30 @@ pub use self::__Resources::DetachResource;
 pub use self::__Resources::DetachResourceFile;
 #[cfg(feature = "Resources")]
 pub use self::__Resources::DisposeResErrUPP;
+#[cfg(all(
+    feature = "Files",
+    feature = "Resources",
+    feature = "TextCommon",
+    feature = "UTCUtils"
+))]
+pub use self::__Resources::FSCreateResFile;
+#[cfg(all(
+    feature = "Files",
+    feature = "Resources",
+    feature = "TextCommon",
+    feature = "UTCUtils"
+))]
+pub use self::__Resources::FSCreateResourceFile;
+#[cfg(all(feature = "Files", feature = "Resources"))]
+pub use self::__Resources::FSCreateResourceFork;
+#[cfg(all(feature = "Files", feature = "Resources"))]
+pub use self::__Resources::FSOpenOrphanResFile;
+#[cfg(all(feature = "Files", feature = "Resources"))]
+pub use self::__Resources::FSOpenResFile;
+#[cfg(all(feature = "Files", feature = "Resources"))]
+pub use self::__Resources::FSOpenResourceFile;
+#[cfg(all(feature = "Files", feature = "Resources"))]
+pub use self::__Resources::FSResourceFileAlreadyOpen;
 #[cfg(feature = "Resources")]
 pub use self::__Resources::Get1IndResource;
 #[cfg(feature = "Resources")]
